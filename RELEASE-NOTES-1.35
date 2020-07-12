@@ -31,21 +31,21 @@ For notes on 1.34.x and older releases, see HISTORY.
 …
 
 ==== New configuration ====
-* $wgDiffEngine – This can be used to specify the difference engine to use,
+* $wgDiffEngine — This can be used to specify the difference engine to use,
   rather than MediaWiki choosing the first of $wgExternalDiffEngine, wikidiff2,
   or php that is usable.
-* $wgSearchMatchRedirectPreference – This configuration setting controls whether
+* $wgSearchMatchRedirectPreference — This configuration setting controls whether
   users can set a new preference, search-match-redirect, which decides if search
   should redirect them to exact matches is available. By default, this is set to
   false, which maintains the previous behaviour without preference bloat. Change
   your site's default by setting $wgDefaultUserOptions['search-match-redirect'].
-* $wgPoolCounterConf['SpecialContributions'] – Per-user concurrency in the use
+* $wgPoolCounterConf['SpecialContributions'] — Per-user concurrency in the use
   of SpecialContributions can now be limited by setting this appropriately.
-* $wgPasswordPolicy – PasswordCannotBeSubstringInUsername is a new password
+* $wgPasswordPolicy — PasswordCannotBeSubstringInUsername is a new password
   policy check. Similar to the existing PasswordCannotMatchUsername check, this
   check ensures that a user's (case-insensitive) password cannot be a part of
   their username. e.g. password = MyPass, username = ThisUsersPasswordIsMyPass.
-* $wgLogos – This new configuration setting combines the now-deprecated $wgLogo
+* $wgLogos — This new configuration setting combines the now-deprecated $wgLogo
   and $wgLogoHD settings into a single, associative array. It provides support
   for a new key, 'wordmark', for setting a horizontal wordmark to show next to
   the graphical logo. To do this, set 'wordmark' to an array with 'src' set to
@@ -55,31 +55,31 @@ For notes on 1.34.x and older releases, see HISTORY.
   (equivalent to $wgLogo), and '1.5x', '2x', and 'svg' operating as before for
   $wgLogoHD. If $wgLogos is unset, $wgLogo and $wgLogoHD values are read for
   temporary backwards compatibility. (T232140)
-* $wgWatchlistExpiry — Whether to enable the watchlist expiry feature. The
+* $wgWatchlistExpiry — This enables the new watchlist expiry feature. The
   database table (watchlist_expiry) for this is created regardless of this
   setting, but all other aspects of the expiry feature are controlled by it.
-* $wgWatchlistPurgeRate — Chance of expired watchlist items being purged on any
-  page edit. Only has effect if $wgWatchlistExpiry is true.
-* $wgWatchlistExpiryMaxDuration — Maximum definite relative duration for
-  watchlist expiries. Only has effect if $wgWatchlistExpiry is true.
-* $wgImgAuthPath can be used to override the path prefix used when handling
-  img_auth.php requests. (T235357)
-* $wgAllowedCorsHeaders — list of headers which can be used in a cross-site API
-  request.
-* Added $wgHTTPMaxTimeout and $wgHTTPMaxConnectTimeout, which allow site
+* $wgWatchlistPurgeRate — This sets the chance of expired watchlist items being
+  purged on each page edit. Only has effect if $wgWatchlistExpiry is true.
+* $wgWatchlistExpiryMaxDuration — This is the maximum definite relative duration
+  for watchlist expiries. Only has effect if $wgWatchlistExpiry is true.
+* $wgImgAuthPath – This can be used to override the path prefix used when
+  handling img_auth.php requests. (T235357)
+* $wgAllowedCorsHeaders — This is a list of headers which can be used in a
+  cross-site API request.
+* $wgHTTPMaxTimeout and $wgHTTPMaxConnectTimeout — These allow site
   administrators to limit the timeouts used by the HTTP client libraries.
   This only affects callers using HttpRequestFactory and the deprecated
   wrappers in the Http class.
-* Added $wgCdnMaxageStale, which controls the Cache-Control s-maxage header
-  for page views when PoolCounter lock contention indicates that a stale cache
-  entry should be sent.
-* Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
-  and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
+* $wgCdnMaxageStale — This controls the Cache-Control s-maxage header for page
+  views when PoolCounter lock contention indicates that a stale cache entry
+  should be sent.
+* $wgForceHTTPS — This makes the HTTP to HTTPS redirect be unconditional and
+  suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
   recommend this be set to true on pure HTTPS wikis.
-* Added $wgCookieSameSite, which allows login cookies to be sent with
-  SameSite=None. This is required for cross-site CentralAuth autologin after
+* $wgCookieSameSite — This setting allows login cookies to be sent with
+  SameSite=None. This is required for cross-site CentralAuth auto-login after
   Chrome 84.
-* Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
+* $wgUseSameSiteLegacyCookies — This adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
 * …
@@ -99,27 +99,29 @@ For notes on 1.34.x and older releases, see HISTORY.
     you may need to update your configuration.
   - The 'URL' parameter, previously allowed for backwards-compatibility, has
     been deprecated. Use 'url' instead.
-* $wgXmlDumpSchemaVersion – Default is now set to XML_DUMP_SCHEMA_VERSION_11, so
+* $wgXmlDumpSchemaVersion — Default is now set to XML_DUMP_SCHEMA_VERSION_11, so
   dumps use the new dump format per default. Consumers of XML dumps should not
   be affected if they ignore any unknown tags they encounter. Also, the format
   is effectively unchanged for revisions that only contain the main slot. The
   --schema-version option can be used with the dumpBackup.php script to set the
   dump format. (T238921)
-* $wgParserConf – This configuration is now deprecated. It has been
+* $wgParserConf — This configuration is now deprecated. It has been
   effectively constant since 2008, and is ignored by core code.
   Configure the ParserFactory service in order to customize the Parser used.
-* $wgAutoloadAttemptLowercase has been deprecated and the default value changed
-  to false.
-* $wgAllowImageMoving - This configuration is now deprecated. Use
-  $wgGroupPermissions instead; eg, to revoke sysop's ability to move images use
+* $wgAutoloadAttemptLowercase — This has been deprecated, and the default value
+  changed to false.
+* $wgAllowImageMoving - This configuration setting is now deprecated. Instead,
+  use $wgGroupPermissions; e.g., to revoke sysops' ability to move images use
   $wgGroupPermissions['sysop']['movefile'] = false.
-* $wgAllowImageTag - This configuration is now deprecated; future parsers will
+* $wgAllowImageTag — This configuration is now deprecated; future parsers will
   not support direct use of the HTML <img> tag in wikitext.
-* $wgUseTwoButtonsSearchForm has been deprecated. If you're relying on this in
-  your skin and want maintain that, you should convert the variable to your own
-  skin config variable. If you're relying on it to make site configuration, you
-  should check individual skins to see whether they have local skin config for
-  the feature and use that.
+* $wgUseTwoButtonsSearchForm — This has been deprecated. If you maintain a skin
+  that relies on this and wishes to let system administrators change it, you
+  should convert it to a config variable specific to your skin. If you're using
+  it to configure your wiki, you should check individual skins to see whether
+  they have local skin config for the feature and use that.
+* $wgPasswordPolicy — The deprecated policy 'PasswordCannotBePopular' has been
+  removed. Use PasswordNotInCommonList instead which covers many more passwords.
 * …
 
 ==== Removed configuration ====
@@ -129,36 +131,34 @@ For notes on 1.34.x and older releases, see HISTORY.
   for SQL Server was removed in 1.34. (T230418)
 * $wgProfileOnly — This setting, deprecated in 1.23, was removed. The profiler
   output should instead be configured via $wgProfiler['output'].
-* $wgProfileLimit – This setting, deprecated in 1.25, was removed.
+* $wgProfileLimit — This setting, deprecated in 1.25, was removed.
   Set $wgProfiler['threshold'] instead.
-* $wgDebugTimestamps – This setting was removed. It affected the text output
+* $wgDebugTimestamps — This setting was removed. It affected the text output
   produced via $wgDebugComments, if enabled.
-* $wgSkipSkin – This setting, deprecated in 1.23, was removed. To disable a
+* $wgSkipSkin — This setting, deprecated in 1.23, was removed. To disable a
   skin from being shown, use $wgSkipSkins.
-* $wgUseSquid, $wgSquidServers, $wgSquidServersNoPurge, and $wgSquidMaxage –
+* $wgUseSquid, $wgSquidServers, $wgSquidServersNoPurge, and $wgSquidMaxage —
   These, deprecated in 1.34, have been removed. Use $wgUseCdn, $wgCdnServers,
   $wgCdnServersNoPurge, or $wgCdnMaxAge instead.
-* $wgDisableCounters – This, deprecated in 1.25, was removed. The feature that
+* $wgDisableCounters — This, deprecated in 1.25, was removed. The feature that
   it controlled was already removed in 1.26, but the variable remained existent
   with a value of `false` for backward-compatibility.
-* $wgMaxGeneratedPPNodeCount – This setting was removed. It only affected
+* $wgMaxGeneratedPPNodeCount — This setting was removed. It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
-* $wgFixArabicUnicode and $wgFixMalayalamUnicode – These, deprecated in 1.33,
+* $wgFixArabicUnicode and $wgFixMalayalamUnicode — These, deprecated in 1.33,
   were removed. The fixes are now always enabled for their respective languages.
-* $wgAllowTitlesInSVG – This, unused and deprecated since 1.34, was removed.
-* $wgEnablePartialBlocks – This setting, deprecated when it was added in 1.33,
+* $wgAllowTitlesInSVG — This, unused and deprecated since 1.34, was removed.
+* $wgEnablePartialBlocks — This setting, deprecated when it was added in 1.33,
   was removed. Partial blocks are now always enabled.
-* $wgLocalInterwiki – This setting, deprecated in 1.23, has been removed.
+* $wgLocalInterwiki — This setting, deprecated in 1.23, has been removed.
 * $wgContentHandlerUseDB — This setting, deprecated in 1.34, has been removed.
 * $wgMultiContentRevisionSchemaMigrationStage — This setting must no longer
   be set locally. If the migration stage was set to anything other than
   SCHEMA_COMPAT_NEW locally, update.php must be run after removing the setting.
   Usage of the setting in code is deprecated. The setting will be removed
   completely in 1.36.
-* $wgObjectCaches – The 'slaveOnly' option for SqlBagOStuff, deprecated in 1.34,
+* $wgObjectCaches — The 'slaveOnly' option for SqlBagOStuff, deprecated in 1.34,
   was removed. Use 'replicaOnly' instead.
-* The deprecated PasswordPolicy 'PasswordCannotBePopular' has been removed.
-  Use PasswordNotInCommonList instead which covers many more passwords.
 * …
 
 === New user-facing features in 1.35 ===
