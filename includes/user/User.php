@@ -4458,29 +4458,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Return the list of user fields that should be selected to create
-	 * a new user object.
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectFields() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return [
-			'user_id',
-			'user_name',
-			'user_real_name',
-			'user_email',
-			'user_touched',
-			'user_token',
-			'user_email_authenticated',
-			'user_email_token',
-			'user_email_token_expires',
-			'user_registration',
-			'user_editcount',
-		];
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new user object.
 	 * @since 1.31
