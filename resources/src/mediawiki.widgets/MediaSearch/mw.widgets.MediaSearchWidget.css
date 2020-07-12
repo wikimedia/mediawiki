@@ -8,3 +8,17 @@
 .mw-widget-mediaSearchWidget .oo-ui-searchWidget-query .oo-ui-inputWidget {
 	max-width: none;
 }
+
+.mw-widget-mediaSearchWidget > .oo-ui-searchWidget-results {
+	display: block;
+	line-height: 1em;
+}
+
+.mw-widget-mediaSearchWidget-noResults {
+	font-style: italic;
+}
+
+.mw-widget-mediaSearchWidget-recentUploads {
+	margin: 0.5em 0 1em 0;
+	font-weight: bold;
+}
