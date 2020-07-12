@@ -1306,11 +1306,14 @@
 	path = extensions/UserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-UserFunctions
 	branch = REL1_34
+	ignore = dirty
 [submodule "extensions/TreeAndMenu"]
 	path = extensions/TreeAndMenu
 	url = https://gitlab.com/organicdesign/TreeAndMenu
 	branch = master
+	ignore = dirty
 [submodule "extensions/Lingo"]
 	path = extensions/Lingo
 	url = https://github.com/wikimedia/mediawiki-extensions-Lingo
 	branch = REL1_34
+	ignore = dirty
