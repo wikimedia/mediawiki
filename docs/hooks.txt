@@ -1123,7 +1123,7 @@ $limit: Exact query limit
 $descending: Query direction, false for ascending, true for descending
 
 'ContributionsLineEnding': Called before a contributions HTML line is finished
-$page: SpecialPage object for contributions
+$pager: The ContribsPager object hooked into
 &$ret: the HTML line
 $row: the DB row for this line
 &$classes: the classes to add to the surrounding <li>
