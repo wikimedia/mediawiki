@@ -31,20 +31,20 @@ For notes on 1.34.x and older releases, see HISTORY.
 …
 
 ==== New configuration ====
-* $wgDiffEngine can be used to specify the difference engine to use, rather
-  than choosing the first of $wgExternalDiffEngine, wikidiff2, or php that
-  is usable.
+* $wgDiffEngine – This can be used to specify the difference engine to use,
+  rather than MediaWiki choosing the first of $wgExternalDiffEngine, wikidiff2,
+  or php that is usable.
 * $wgSearchMatchRedirectPreference – This configuration setting controls whether
   users can set a new preference, search-match-redirect, which decides if search
   should redirect them to exact matches is available. By default, this is set to
   false, which maintains the previous behaviour without preference bloat. Change
   your site's default by setting $wgDefaultUserOptions['search-match-redirect'].
-* Per-user concurrency in SpecialContributions can now be limited by setting
-  $wgPoolCounterConf['SpecialContributions'] appropriately.
-* Added new PasswordPolicyCheck: PasswordCannotBeSubstringInUsername. Similar
-  to the existing PasswordCannotMatchUsername check, this check ensures that
-  a user's (case-insensitive) password cannot be a part of their username.
-  e.g. password = MyPassword, username = ThisUsersPasswordIsMyPassword.
+* $wgPoolCounterConf['SpecialContributions'] – Per-user concurrency in the use
+  of SpecialContributions can now be limited by setting this appropriately.
+* $wgPasswordPolicy – PasswordCannotBeSubstringInUsername is a new password
+  policy check. Similar to the existing PasswordCannotMatchUsername check, this
+  check ensures that a user's (case-insensitive) password cannot be a part of
+  their username. e.g. password = MyPass, username = ThisUsersPasswordIsMyPass.
 * $wgLogos – This new configuration setting combines the now-deprecated $wgLogo
   and $wgLogoHD settings into a single, associative array. It provides support
   for a new key, 'wordmark', for setting a horizontal wordmark to show next to
@@ -85,47 +85,27 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
-* $wgResourceLoaderMaxage (T235314) - This configuration array controls the
+* $wgResourceLoaderMaxage (T235314) — This configuration array controls the
   max-age for HTTP caching through the Cache-Control header. It has uses the
   "versioned" key for urls that do have a version parameter, and the
   "unversioned" key for urls without a version parameter. The sub keys for
   "client" and "server" are no longer supported in MediaWiki 1.35.
-* $wgEnableOpenSearchSuggest - This boolean variable is deprecated and no longer
+* $wgEnableOpenSearchSuggest — This boolean variable is deprecated and no longer
   used. The OpenSearch API is now always enabled.
-* $wgAuthManagerConfig and $wgAuthManagerAutoConfig can now use the 'services'
-  option in provider specifications.
-* The 'URL' parameter to $wgVirtualRestConfig['modules']['parsoid'], previously
-  allowed for backwards-compatibility, has been deprecated. Use 'url' instead.
-* Article::$mContext, use getContext()/setContext()
-* Article::__get(), ::__set() hard deprecated, use WikiPage property instead
-* Article::checkFlags(), ::checkTouched(), ::clearPreparedEdit(), ::exists(),
-  ::doDeleteArticleReal(), ::doEditContent(), ::doPurge(), ::doViewUpdates(),
-  ::followRedirect(), ::getContentHandler(), ::getId(), ::hasViewableContent()
-  ::getContentModel(), ::getContributors(), ::getLatest(),::getMinorEdit(),
-  ::getHiddenCategories(), ::getLinksTimestamp(), ::getDeletionUpdates(),
-  ::getRedirectTarget(), ::getRedirectURL(), ::getTimestamp(), ::getTouched(),
-  ::insertRedirect(), ::insertRedirectEntry(), ::isCountable(), ::isRedirect(),
-  ::loadFromRow(), ::loadPageData(), ::lockAndGetLatest(), ::setTimestamp(),
-  ::makeParserOptions(), ::updateCategoryCounts(), ::protectDescriptionLog(),
-  ::protectDescription(), ::replaceSectionAtRev(), ::pageDataFromTitle(),
-  ::shouldCheckParserCache(), ::supportsSections(), ::prepareContentForEdit(),
-  ::triggerOpportunisticLinksUpdate(), ::pageDataFromId(), ::commitRollback(),
-  ::updateRedirectOn(), ::doUpdateRestrictions(), ::insertOn(), ::doRollback()
-  hard deprecated, use corresponding methods of the WikiPage class instead
-* Article::generateReason() hard deprecated,
-  use \Article::getPage()->getAutoDeleteReason() instead
-* Article::replaceSectionContent() hard deprecated,
-  use ::replaceSectionAtRev instead
-* The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
-  updated. If you were relying on the default values, you may need to update
-  your configuration.
-* Set $wgXmlDumpSchemaVersion to XML_DUMP_SCHEMA_VERSION_11, so dumps use the
-  new dump format per default. Consumers of XML dumps should not be affected if
-  they ignore any unknown tags they encounter. Also, the format is effectively
-  unchanged for revisions that only contain the main slot. The --schema-version
-  option can be used with the dumpBackup.php script to set the dump format.
-  (T238921)
-* $wgParserConf - This configuration is now deprecated. It has been
+* $wgAuthManagerConfig and $wgAuthManagerAutoConfig — These can now use the
+  'services' option in provider specifications.
+* $wgVirtualRestConfig['modules']['parsoid'] —
+  - The defaults have been updated. If you were relying on the default values,
+    you may need to update your configuration.
+  - The 'URL' parameter, previously allowed for backwards-compatibility, has
+    been deprecated. Use 'url' instead.
+* $wgXmlDumpSchemaVersion – Default is now set to XML_DUMP_SCHEMA_VERSION_11, so
+  dumps use the new dump format per default. Consumers of XML dumps should not
+  be affected if they ignore any unknown tags they encounter. Also, the format
+  is effectively unchanged for revisions that only contain the main slot. The
+  --schema-version option can be used with the dumpBackup.php script to set the
+  dump format. (T238921)
+* $wgParserConf – This configuration is now deprecated. It has been
   effectively constant since 2008, and is ignored by core code.
   Configure the ParserFactory service in order to customize the Parser used.
 * $wgAutoloadAttemptLowercase has been deprecated and the default value changed
@@ -149,26 +129,26 @@ For notes on 1.34.x and older releases, see HISTORY.
   for SQL Server was removed in 1.34. (T230418)
 * $wgProfileOnly — This setting, deprecated in 1.23, was removed. The profiler
   output should instead be configured via $wgProfiler['output'].
-* $wgProfileLimit - This setting, deprecated in 1.25, was removed.
+* $wgProfileLimit – This setting, deprecated in 1.25, was removed.
   Set $wgProfiler['threshold'] instead.
-* $wgDebugTimestamps - This setting was removed. It affected the text output
+* $wgDebugTimestamps – This setting was removed. It affected the text output
   produced via $wgDebugComments, if enabled.
-* $wgSkipSkin - This setting, deprecated in 1.23, was removed. To disable a
+* $wgSkipSkin – This setting, deprecated in 1.23, was removed. To disable a
   skin from being shown, use $wgSkipSkins.
-* $wgUseSquid, $wgSquidServers, $wgSquidServersNoPurge, and $wgSquidMaxage,
-  deprecated in 1.34, have been removed. Use $wgUseCdn, $wgCdnServers,
+* $wgUseSquid, $wgSquidServers, $wgSquidServersNoPurge, and $wgSquidMaxage –
+  These, deprecated in 1.34, have been removed. Use $wgUseCdn, $wgCdnServers,
   $wgCdnServersNoPurge, or $wgCdnMaxAge instead.
-* $wgDisableCounters, deprecated in 1.25, was removed. The feature that it
-  controlled was already removed in 1.26, but the variable remained existent
+* $wgDisableCounters – This, deprecated in 1.25, was removed. The feature that
+  it controlled was already removed in 1.26, but the variable remained existent
   with a value of `false` for backward-compatibility.
-* $wgMaxGeneratedPPNodeCount - This setting was removed. It only affected
+* $wgMaxGeneratedPPNodeCount – This setting was removed. It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
-* $wgFixArabicUnicode and $wgFixMalayalamUnicode, deprecated in 1.33, were
-  removed. The fixes are now always enabled for their respective languages.
-* $wgAllowTitlesInSVG, unused and deprecated since 1.34, was removed.
-* $wgEnablePartialBlocks - This setting, deprecated when it was added in 1.33,
+* $wgFixArabicUnicode and $wgFixMalayalamUnicode – These, deprecated in 1.33,
+  were removed. The fixes are now always enabled for their respective languages.
+* $wgAllowTitlesInSVG – This, unused and deprecated since 1.34, was removed.
+* $wgEnablePartialBlocks – This setting, deprecated when it was added in 1.33,
   was removed. Partial blocks are now always enabled.
-* $wgLocalInterwiki, deprecated in 1.23 has been removed.
+* $wgLocalInterwiki – This setting, deprecated in 1.23, has been removed.
 * $wgContentHandlerUseDB — This setting, deprecated in 1.34, has been removed.
 * $wgMultiContentRevisionSchemaMigrationStage — This setting must no longer
   be set locally. If the migration stage was set to anything other than
@@ -1199,8 +1179,65 @@ because of Phabricator reports.
   - ::$mInParse
 * LinksUpdate::getRevision and ::setRevision are hard deprecated in favor
   of the new ::getRevisionRecord and ::setRevisionRecord methods.
-* Article::getRevision and WikiPage::getRevision were hard deprecated
-  in favor of the new WikiPage::getRevisionRecord method.
+* A large number of exposed variables and methods of Article were deprecated as
+  part of its planned removal:
+  - Article::$mContext is deprecated; use getContext()/setContext() instead.
+  - Article::__get(), ::__set() are hard deprecated, use the WikiPage properties
+    instead.
+  - These Article methods were hard deprecated; use their WikiPage equivalents:
+    - ::checkFlags,
+    - ::checkTouched,
+    - ::clearPreparedEdit,
+    - ::commitRollback,
+    - ::doDeleteArticleReal,
+    - ::doEditContent,
+    - ::doPurge,
+    - ::doRollback,
+    - ::doUpdateRestrictions,
+    - ::doViewUpdates,
+    - ::exists,
+    - ::followRedirect,
+    - ::getContentHandler,
+    - ::getContentModel,
+    - ::getContributors,
+    - ::getDeletionUpdates,
+    - ::getHiddenCategories,
+    - ::getId,
+    - ::getLatest,
+    - ::getLinksTimestamp,
+    - ::getMinorEdit,
+    - ::getRedirectTarget,
+    - ::getRedirectURL,
+    - ::getTimestamp,
+    - ::getTouched,
+    - ::hasViewableContent,
+    - ::insertOn,
+    - ::insertRedirect,
+    - ::insertRedirectEntry,
+    - ::isCountable,
+    - ::isRedirect,
+    - ::loadFromRow,
+    - ::loadPageData,
+    - ::lockAndGetLatest,
+    - ::makeParserOptions,
+    - ::pageDataFromId,
+    - ::pageDataFromTitle,
+    - ::prepareContentForEdit,
+    - ::protectDescription,
+    - ::protectDescriptionLog,
+    - ::replaceSectionAtRev,
+    - ::setTimestamp,
+    - ::shouldCheckParserCache,
+    - ::supportsSections,
+    - ::triggerOpportunisticLinksUpdate,
+    - ::updateCategoryCounts, and
+    - ::updateRedirectOn.
+  - Article::generateReason() was hard deprecated; instead, please use
+    WikiPage::getAutoDeleteReason().
+  - Article::replaceSectionContent() was hard deprecated, use
+    Article::replaceSectionAtRev() instead.
+  - Article::getRevision and WikiPage::getRevision were hard deprecated in favor
+    of the new WikiPage::getRevisionRecord method.
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
   - isIP
