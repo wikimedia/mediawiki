@@ -1704,33 +1704,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
 		}
 
-		$resultProxyList = [];
-		$deprecatedIPEntries = [];
-
-		// backward compatibility: move all ip addresses in keys to values
-		foreach ( $wgProxyList as $key => $value ) {
-			$keyIsIP = IPUtils::isIPAddress( $key );
-			$valueIsIP = IPUtils::isIPAddress( $value );
-			if ( $keyIsIP && !$valueIsIP ) {
-				$deprecatedIPEntries[] = $key;
-				$resultProxyList[] = $key;
-			} elseif ( $keyIsIP && $valueIsIP ) {
-				$deprecatedIPEntries[] = $key;
-				$resultProxyList[] = $key;
-				$resultProxyList[] = $value;
-			} else {
-				$resultProxyList[] = $value;
-			}
-		}
-
-		if ( $deprecatedIPEntries ) {
-			wfDeprecatedMsg(
-				'Use of IP addresses in the keys of $wgProxyList is deprecated since MediaWiki 1.30. ' .
-				'Found the following IP addresses in keys: ' . implode( ', ', $deprecatedIPEntries ) .
-				', please move them to values.', '1.30', false, false );
-		}
-
-		$proxyListIPSet = new IPSet( $resultProxyList );
+		$proxyListIPSet = new IPSet( $wgProxyList );
 		return $proxyListIPSet->match( $ip );
 	}
 
