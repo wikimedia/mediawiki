@@ -15,7 +15,7 @@ interface ContributionsLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ContribsPager $page SpecialPage object for contributions
+	 * @param ContribsPager $pager The ContribsPager object hooked into
 	 * @param string &$ret The HTML line
 	 * @param stdClass $row The DB row for this line
 	 * @param string[] &$classes The classes to add to the surrounding <li>
@@ -24,7 +24,7 @@ interface ContributionsLineEndingHook {
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onContributionsLineEnding( $page, &$ret, $row, &$classes,
+	public function onContributionsLineEnding( $pager, &$ret, $row, &$classes,
 		&$attribs
 	);
 }
