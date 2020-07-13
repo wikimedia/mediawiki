@@ -88,7 +88,7 @@ class SkinMustache extends SkinTemplate {
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
 			// HTML strings
-			'html-site-notices' => $this->getSiteNotice(),
+			'html-site-notice' => $this->getSiteNotice(),
 			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
 			'html-body-content' => $this->wrapHTML( $out->getTitle(), $bodyContent ),
