@@ -190,6 +190,7 @@
 	"config-admin-email-help": "Help text for an administrator email address in the MediaWiki installer.",
 	"config-admin-error-user": "Used as error message. Parameters:\n* $1 - username of administrator\nSee also:\n* {{msg-mw|Config-admin-error-password}}",
 	"config-admin-error-password": "Used as error message. Parameters:\n* $1 - username of administrator\n* $2 - error message\nSee also:\n* {{msg-mw|Config-admin-error-user}}",
+	"config-admin-error-password-invalid": "Used as error message. Parameters:\n* $1 - list of password errors\nSee also:\n* {{msg-mw|Config-admin-error-password}}",
 	"config-admin-error-bademail": "Error text in the MediaWiki installer when an entered email address does not validate.",
 	"config-subscribe": "Used as label for the installer checkbox",
 	"config-subscribe-help": "\"Low-volume\" in this context means that there will be few e-mails to that mailing list per time period.",
