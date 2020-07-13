@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @since 1.16.3
  * @author Tim Starling
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class Collation {
 	private static $instance;
