@@ -75,17 +75,13 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	private $httpParams;
 
 	/**
-	 * Optional serialization type to use. Allowed values: "PHP", "JSON", or "legacy".
-	 * "legacy" is PHP serialization with no serialization type tagging or hmac protection.
+	 * Optional serialization type to use. Allowed values: "PHP", "JSON".
 	 * @var string
-	 * @deprecated since 1.34, the "legacy" value will be removed in 1.35.
-	 *   Use either "PHP" or "JSON".
 	 */
 	private $serializationType;
 
 	/**
-	 * Optional HMAC Key for protecting the serialized blob. If omitted, or if serializationType
-	 * is "legacy", then no protection is done
+	 * Optional HMAC Key for protecting the serialized blob. If omitted no protection is done
 	 * @var string
 	 */
 	private $hmacKey;
@@ -122,7 +118,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		$this->httpParams['writeHeaders'] = $params['httpParams']['writeHeaders'] ?? [];
 		$this->httpParams['deleteHeaders'] = $params['httpParams']['deleteHeaders'] ?? [];
 		$this->extendedErrorBodyFields = $params['extendedErrorBodyFields'] ?? [];
-		$this->serializationType = $params['serialization_type'] ?? 'legacy';
+		$this->serializationType = $params['serialization_type'] ?? 'PHP';
 		$this->hmacKey = $params['hmac_key'] ?? '';
 
 		// The parent constructor calls setLogger() which sets the logger in $this->client
@@ -230,19 +226,15 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * @return mixed|bool the processed body, or false on error
 	 */
 	private function decodeBody( $body ) {
-		if ( $this->serializationType === 'legacy' ) {
-			$serialized = $body;
-		} else {
-			$pieces = explode( '.', $body, 3 );
-			if ( count( $pieces ) !== 3 || $pieces[0] !== $this->serializationType ) {
+		$pieces = explode( '.', $body, 3 );
+		if ( count( $pieces ) !== 3 || $pieces[0] !== $this->serializationType ) {
+			return false;
+		}
+		list( , $hmac, $serialized ) = $pieces;
+		if ( $this->hmacKey !== '' ) {
+			$checkHmac = hash_hmac( 'sha256', $serialized, $this->hmacKey, true );
+			if ( !hash_equals( $checkHmac, base64_decode( $hmac ) ) ) {
 				return false;
-			}
-			list( , $hmac, $serialized ) = $pieces;
-			if ( $this->hmacKey !== '' ) {
-				$checkHmac = hash_hmac( 'sha256', $serialized, $this->hmacKey, true );
-				if ( !hash_equals( $checkHmac, base64_decode( $hmac ) ) ) {
-					return false;
-				}
 			}
 		}
 
@@ -252,7 +244,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				return ( json_last_error() === JSON_ERROR_NONE ) ? $value : false;
 
 			case 'PHP':
-			case 'legacy':
 				return unserialize( $serialized );
 
 			default:
@@ -279,7 +270,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				break;
 
 			case 'PHP':
-			case "legacy":
 				$value = serialize( $body );
 				break;
 
@@ -289,18 +279,14 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				);
 		}
 
-		if ( $this->serializationType !== 'legacy' ) {
-			if ( $this->hmacKey !== '' ) {
-				$hmac = base64_encode(
-					hash_hmac( 'sha256', $value, $this->hmacKey, true )
-				);
-			} else {
-				$hmac = '';
-			}
-			$value = $this->serializationType . '.' . $hmac . '.' . $value;
+		if ( $this->hmacKey !== '' ) {
+			$hmac = base64_encode(
+				hash_hmac( 'sha256', $value, $this->hmacKey, true )
+			);
+		} else {
+			$hmac = '';
 		}
-
-		return $value;
+		return $this->serializationType . '.' . $hmac . '.' . $value;
 	}
 
 	/**
