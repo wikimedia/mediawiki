@@ -7,6 +7,10 @@
 .mediawiki-filewarning-anchor {
 	padding-bottom: 10px;
 	margin-bottom: -10px;
+
+	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
+		padding-right: 2px;
+	}
 }
 
 .mediawiki-filewarning {
@@ -18,7 +22,7 @@
 	}
 
 	.mediawiki-filewarning-footer {
-		color: #72777d;
+		color: @color-base--subtle;
 	}
 
 	.empty {
@@ -32,7 +36,7 @@
 
 .mime-type {
 	&.has-warning {
+		color: @color-warning;
 		font-weight: bold;
-		color: @colorMediumSevere;
 	}
 }
