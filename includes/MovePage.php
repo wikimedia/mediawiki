@@ -194,8 +194,7 @@ class MovePage {
 		}
 
 		$tp = $this->newTitle->getTitleProtection();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $tp !== false && !$permissionManager->userHasRight( $user, $tp['permission'] ) ) {
+		if ( $tp !== false && !$this->permMgr->userHasRight( $user, $tp['permission'] ) ) {
 			$status->fatal( 'cantmove-titleprotected' );
 		}
 
@@ -409,8 +408,7 @@ class MovePage {
 		}
 
 		// Check suppressredirect permission
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userHasRight( $user, 'suppressredirect' ) ) {
+		if ( !$this->permMgr->userHasRight( $user, 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
@@ -468,26 +466,23 @@ class MovePage {
 		$checkPermissions, User $user, $reason, $createRedirect, array $changeTags
 	) {
 		global $wgMaximumMovedPages;
-		$services = MediaWikiServices::getInstance();
 
 		if ( $checkPermissions ) {
-			if ( !$services->getPermissionManager()->userCan(
+			if ( !$this->permMgr->userCan(
 				'move-subpages', $user, $this->oldTitle )
 			) {
 				return Status::newFatal( 'cant-move-subpages' );
 			}
 		}
 
-		$nsInfo = $services->getNamespaceInfo();
-
 		// Do the source and target namespaces support subpages?
-		if ( !$nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
+		if ( !$this->nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
 			return Status::newFatal( 'namespace-nosubpages',
-				$nsInfo->getCanonicalName( $this->oldTitle->getNamespace() ) );
+				$this->nsInfo->getCanonicalName( $this->oldTitle->getNamespace() ) );
 		}
-		if ( !$nsInfo->hasSubpages( $this->newTitle->getNamespace() ) ) {
+		if ( !$this->nsInfo->hasSubpages( $this->newTitle->getNamespace() ) ) {
 			return Status::newFatal( 'namespace-nosubpages',
-				$nsInfo->getCanonicalName( $this->newTitle->getNamespace() ) );
+				$this->nsInfo->getCanonicalName( $this->newTitle->getNamespace() ) );
 		}
 
 		// Return a status for the overall result. Its value will be an array with per-title
