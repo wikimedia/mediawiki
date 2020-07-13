@@ -5,7 +5,7 @@ namespace MediaWiki\SpecialPage\Hook;
 use MediaWiki\Auth\AuthenticationRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface AuthChangeFormFieldsHook {

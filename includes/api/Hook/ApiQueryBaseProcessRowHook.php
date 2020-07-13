@@ -6,7 +6,7 @@ use ApiQueryBase;
 use stdClass;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiQueryBaseProcessRowHook {

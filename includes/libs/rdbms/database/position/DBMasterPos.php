@@ -9,7 +9,7 @@ use Serializable;
  *
  * The implementation details of this opaque type are up to the database subclass.
  *
- * @stable for implementation
+ * @stable to implement
  */
 interface DBMasterPos extends Serializable {
 	/**

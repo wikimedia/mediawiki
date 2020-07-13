@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use RecentChange;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface RecentChange_saveHook {

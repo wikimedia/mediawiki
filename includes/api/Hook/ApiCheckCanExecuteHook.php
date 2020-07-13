@@ -8,7 +8,7 @@ use Message;
 use User;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiCheckCanExecuteHook {

@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use Article;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ProtectionForm__buildFormHook {

@@ -7,7 +7,7 @@ use MessageSpecifier;
 use Status;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EmailUserHook {

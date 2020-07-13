@@ -3,7 +3,7 @@
 namespace MediaWiki\ResourceLoader\Hook;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup ResourceLoaderHooks
  */
 interface ResourceLoaderSiteModulePagesHook {

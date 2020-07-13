@@ -3,7 +3,7 @@
 /**
  * Callback wrapper that has an originating method
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.28
  */

@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use Skin;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SidebarBeforeOutputHook {

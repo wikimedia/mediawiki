@@ -7,7 +7,7 @@ use stdClass;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialContributions__formatRow__flagsHook {

@@ -5,7 +5,7 @@ namespace MediaWiki\Diff\Hook;
 use OutputPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface DifferenceEngineShowDiffPageHook {

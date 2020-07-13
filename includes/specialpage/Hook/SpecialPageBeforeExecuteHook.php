@@ -5,7 +5,7 @@ namespace MediaWiki\SpecialPage\Hook;
 use SpecialPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialPageBeforeExecuteHook {

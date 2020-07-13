@@ -6,7 +6,7 @@ use File;
 use ImageHistoryList;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ImagePageFileHistoryLineHook {

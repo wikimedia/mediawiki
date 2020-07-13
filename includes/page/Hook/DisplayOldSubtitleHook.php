@@ -5,7 +5,7 @@ namespace MediaWiki\Page\Hook;
 use Article;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface DisplayOldSubtitleHook {

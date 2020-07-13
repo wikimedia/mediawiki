@@ -3,7 +3,7 @@
 namespace MediaWiki\Api\Hook;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiMaxLagInfoHook {

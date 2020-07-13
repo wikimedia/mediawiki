@@ -6,7 +6,7 @@ use Content;
 use EditPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EditPageGetPreviewContentHook {

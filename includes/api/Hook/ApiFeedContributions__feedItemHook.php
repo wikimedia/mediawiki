@@ -8,7 +8,7 @@ use IContextSource;
 use stdClass;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiFeedContributions__feedItemHook {

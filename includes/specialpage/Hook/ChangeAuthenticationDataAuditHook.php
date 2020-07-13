@@ -6,7 +6,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use StatusValue;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ChangeAuthenticationDataAuditHook {

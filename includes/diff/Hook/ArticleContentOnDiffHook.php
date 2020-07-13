@@ -6,7 +6,7 @@ use DifferenceEngine;
 use OutputPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ArticleContentOnDiffHook {

@@ -5,7 +5,7 @@ namespace MediaWiki\Api\Hook;
 use ApiValidatePassword;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiValidatePasswordHook {

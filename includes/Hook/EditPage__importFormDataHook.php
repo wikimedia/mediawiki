@@ -7,7 +7,7 @@ use EditPage;
 use WebRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EditPage__importFormDataHook {

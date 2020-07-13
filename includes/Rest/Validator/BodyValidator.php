@@ -8,7 +8,7 @@ use MediaWiki\Rest\RequestInterface;
 /**
  * Interface for validating a request body
  *
- * @stable for implementation
+ * @stable to implement
  */
 interface BodyValidator {
 

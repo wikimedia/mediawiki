@@ -7,7 +7,7 @@ use EnhancedChangesList;
 use RecentChange;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EnhancedChangesList__getLogTextHook {

@@ -8,7 +8,7 @@ use User;
 use WikiPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ArticleDeleteCompleteHook {

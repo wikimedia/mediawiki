@@ -6,7 +6,7 @@ use MediaWiki\Session\SessionInfo;
 use WebRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SessionCheckInfoHook {

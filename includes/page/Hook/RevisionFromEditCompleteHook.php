@@ -7,7 +7,7 @@ use MediaWiki\User\UserIdentity;
 use WikiPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface RevisionFromEditCompleteHook {

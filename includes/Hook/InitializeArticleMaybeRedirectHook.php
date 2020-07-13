@@ -7,7 +7,7 @@ use Title;
 use WebRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface InitializeArticleMaybeRedirectHook {

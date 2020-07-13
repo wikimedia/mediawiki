@@ -5,7 +5,7 @@ namespace MediaWiki\SpecialPage\Hook;
 use FormOptions;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ChangesListSpecialPageQueryHook {

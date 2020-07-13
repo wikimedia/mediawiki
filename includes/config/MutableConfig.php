@@ -23,7 +23,7 @@
 /**
  * Interface for mutable configuration instances
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.24
  */
