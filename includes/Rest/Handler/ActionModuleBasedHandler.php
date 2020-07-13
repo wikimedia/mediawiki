@@ -193,7 +193,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * Subclasses overriding this method should call this method in the parent class,
 	 * to preserve baseline behavior.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param WebResponse $actionModuleResponse
 	 * @param array $actionModuleResult
@@ -216,7 +216,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * always either throw an exception, or call this method in the parent class,
 	 * which then throws an exception.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param IApiMessage $msg A message object representing an error in an action module,
 	 *        typically from calling getStatusValue()->getErrorsByType( 'error' ) on

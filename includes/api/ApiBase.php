@@ -204,7 +204,7 @@ abstract class ApiBase extends ContextSource {
 	private $mModuleSource = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names
@@ -245,7 +245,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get the module manager, or null if this module has no sub-modules
 	 * @since 1.21
-	 * @stable for overriding
+	 * @stable to override
 	 * @return ApiModuleManager
 	 */
 	public function getModuleManager() {
@@ -259,7 +259,7 @@ abstract class ApiBase extends ContextSource {
 	 * @note Do not use this just because you don't want to support non-json
 	 * formats. This should be used only when there is a fundamental
 	 * requirement for a specific format.
-	 * @stable for overriding
+	 * @stable to override
 	 * @return mixed Instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
@@ -275,7 +275,7 @@ abstract class ApiBase extends ContextSource {
 	 * Do not call this base class implementation when overriding this method.
 	 *
 	 * @since 1.25
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getExamplesMessages() {
@@ -285,7 +285,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Return links to more detailed help pages about the module.
 	 * @since 1.25, returning boolean false is deprecated
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|array
 	 */
 	public function getHelpUrls() {
@@ -302,7 +302,7 @@ abstract class ApiBase extends ContextSource {
 	 * in the overriding methods. Callers of this method can pass zero or
 	 * more OR-ed flags like GET_VALUES_FOR_HELP.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getAllowedParams( /* $flags = 0 */ ) {
@@ -313,7 +313,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Indicates if this module needs maxlag to be checked
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function shouldCheckMaxlag() {
@@ -322,7 +322,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Indicates whether this module requires read rights
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isReadMode() {
@@ -338,7 +338,7 @@ abstract class ApiBase extends ContextSource {
 	 * Additionally, requests that only need replica DBs can be efficiently routed to any
 	 * datacenter via the Promise-Non-Write-API-Action header.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isWriteMode() {
@@ -347,7 +347,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Indicates whether this module must be called with a POST request
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function mustBePosted() {
@@ -357,7 +357,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Indicates whether this module is deprecated
 	 * @since 1.25
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isDeprecated() {
@@ -368,7 +368,7 @@ abstract class ApiBase extends ContextSource {
 	 * Indicates whether this module is "internal"
 	 * Internal API modules are not (yet) intended for 3rd party use and may be unstable.
 	 * @since 1.25
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isInternal() {
@@ -391,7 +391,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returning true will generate errors indicating that the API module needs
 	 * updating.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|false
 	 */
 	public function needsToken() {
@@ -405,7 +405,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param array $params All supplied parameters for the module
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|array|null
 	 */
 	protected function getWebUITokenSalt( array $params ) {
@@ -416,7 +416,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns data for HTTP conditional request mechanisms.
 	 *
 	 * @since 1.26
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $condition Condition being queried:
 	 *  - last-modified: Return a timestamp representing the maximum of the
 	 *    last-modified dates for all resources involved in the request. See
@@ -471,7 +471,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Get the parent of this module
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.25
 	 * @return ApiBase|null
 	 */
@@ -573,7 +573,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Get the error formatter
-	 * @stable for overriding
+	 * @stable to override
 	 * @return ApiErrorFormatter
 	 */
 	public function getErrorFormatter() {
@@ -588,7 +588,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Gets a default replica DB connection object
-	 * @stable for overriding
+	 * @stable to override
 	 * @return IDatabase
 	 */
 	protected function getDB() {
@@ -675,7 +675,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Indicate if the module supports dynamically-determined parameters that
 	 * cannot be included in self::getAllowedParams().
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|array|Message|null Return null if the module does not
 	 *  support additional dynamic parameters, otherwise return a message
 	 *  describing them.
@@ -1679,7 +1679,7 @@ abstract class ApiBase extends ContextSource {
 	 * list of modules.
 	 *
 	 * @since 1.30
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|array|Message
 	 */
 	protected function getSummaryMessage() {
@@ -1693,7 +1693,7 @@ abstract class ApiBase extends ContextSource {
 	 * the summary.
 	 *
 	 * @since 1.30
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|array|Message
 	 */
 	protected function getExtendedDescription() {
@@ -1707,7 +1707,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final module summary
 	 *
 	 * @since 1.30
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Message
 	 */
 	public function getFinalSummary() {
@@ -2042,7 +2042,7 @@ abstract class ApiBase extends ContextSource {
 	 * This exists mainly for ApiMain to add the Permissions and Credits
 	 * sections. Other modules probably don't need it.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string[] &$help Array of help data
 	 * @param array $options Options passed to ApiHelp::getHelp
 	 * @param array &$tocData If a TOC is being generated, this array has keys

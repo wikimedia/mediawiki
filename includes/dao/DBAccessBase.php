@@ -40,7 +40,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	protected $dbDomain = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|bool $dbDomain The target wiki's DB domain
 	 */

@@ -75,7 +75,7 @@ abstract class LockManager {
 
 	/**
 	 * Construct a new instance from configuration
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config Parameters include:
 	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
@@ -217,7 +217,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::lockByType()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22
@@ -252,7 +252,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::unlockByType()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22

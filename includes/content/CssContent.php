@@ -41,7 +41,7 @@ class CssContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $text CSS code.
 	 * @param string $modelId the content content model
 	 */

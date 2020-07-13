@@ -38,7 +38,7 @@ class DerivativeRequest extends FauxRequest {
 	private $ip;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param WebRequest $base
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the

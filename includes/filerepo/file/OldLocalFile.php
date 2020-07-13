@@ -40,7 +40,7 @@ class OldLocalFile extends LocalFile {
 	public const CACHE_VERSION = 1;
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string|int|null $time
@@ -57,7 +57,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
@@ -69,7 +69,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param stdClass $row
 	 * @param FileRepo $repo
@@ -87,7 +87,7 @@ class OldLocalFile extends LocalFile {
 	 * Create a OldLocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
@@ -118,7 +118,7 @@ class OldLocalFile extends LocalFile {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new oldlocalfile object.
 	 * @since 1.31
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
@@ -162,7 +162,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
@@ -180,7 +180,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	protected function getCacheKey() {
@@ -188,7 +188,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getArchiveName() {
@@ -214,7 +214,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param int $flags
 	 */
 	protected function loadFromDB( $flags = 0 ) {
@@ -248,7 +248,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Load lazy file metadata from the DB
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function loadExtraFromDB() {
 		$this->extraDataLoaded = true;
@@ -293,7 +293,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function getCacheFields( $prefix = 'img_' ) {
 		$fields = parent::getCacheFields( $prefix );
@@ -305,7 +305,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * @return string
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getRel() {
 		return $this->getArchiveRel( $this->getArchiveName() );
@@ -313,14 +313,14 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * @return string
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getUrlRel() {
 		return $this->getArchiveRel( rawurlencode( $this->getArchiveName() ) );
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function upgradeRow() {
 		$this->loadFromFile();
@@ -427,7 +427,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Record a file upload in the oldimage table, without adding log entries.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $srcPath File system path to the source file
 	 * @param string $archiveName The archive name of the file

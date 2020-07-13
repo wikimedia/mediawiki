@@ -29,7 +29,7 @@
 class BadRequestError extends ErrorPageError {
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param int $action
 	 *
 	 * @throws FatalError

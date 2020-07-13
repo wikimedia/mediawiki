@@ -32,7 +32,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string HTML
 	 */
@@ -103,7 +103,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 * array whose keys must exactly match the keys of the array returned
 	 * by getIndexField(), and whose values are message keys.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array
 	 */

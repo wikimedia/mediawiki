@@ -70,7 +70,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * Set global flag for this field.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int $flag Bit flag to set/unset
 	 * @param bool $unset True if flag should be unset, false by default
@@ -87,7 +87,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * Check if flag is set.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int $flag
 	 * @return int 0 if unset, !=0 if set
@@ -98,7 +98,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * Merge two field definitions if possible.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param SearchIndexField $that
 	 * @return SearchIndexField|false New definition or false if not mergeable.

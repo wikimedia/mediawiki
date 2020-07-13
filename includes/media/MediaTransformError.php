@@ -33,7 +33,7 @@ class MediaTransformError extends MediaTransformOutput {
 	private $msg;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $msg
 	 * @param int $width
@@ -72,7 +72,7 @@ class MediaTransformError extends MediaTransformOutput {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return int
 	 */

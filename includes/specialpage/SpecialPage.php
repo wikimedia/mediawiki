@@ -138,7 +138,7 @@ class SpecialPage implements MessageLocalizer {
 	 *     If you override execute(), you can recover the default behavior with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
@@ -177,7 +177,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.3 (r3583)
 	 * @return bool
 	 */
@@ -213,7 +213,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isIncludable() {
@@ -227,7 +227,7 @@ class SpecialPage implements MessageLocalizer {
 	 *   if you want to do any per-user customizations, than this method
 	 *   must be overriden to return 0.
 	 * @since 1.26
-	 * @stable for overriding
+	 * @stable to override
 	 * @return int Time in seconds, 0 to disable caching altogether,
 	 *  false to use the parent page's cache settings
 	 */
@@ -236,7 +236,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return int Seconds that this page can be cached
 	 */
 	protected function getCacheTTL() {
@@ -254,7 +254,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Get the localised name of the special page
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getLocalName() {
@@ -272,7 +272,7 @@ class SpecialPage implements MessageLocalizer {
 	 * (and still overridden) by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isExpensive() {
@@ -285,7 +285,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Used by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 * @since 1.21
 	 */
@@ -297,7 +297,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool Should the page be displayed with the restricted-access
 	 *   pages?
 	 */
@@ -313,7 +313,7 @@ class SpecialPage implements MessageLocalizer {
 	 * special page (as defined by $mRestriction).  Can be overridden by sub-
 	 * classes with more complicated permissions schemes.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param User $user The user to check
 	 * @return bool Does the user have permission to view the page?
 	 */
@@ -325,7 +325,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Output an error message telling the user what access level they have to have
-	 * @stable for overriding
+	 * @stable to override
 	 * @throws PermissionsError
 	 */
 	protected function displayRestrictionError() {
@@ -335,7 +335,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Checks if userCanExecute, and if not throws a PermissionsError
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.19
 	 * @return void
 	 * @throws PermissionsError
@@ -382,7 +382,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Tells if the special page does something security-sensitive and needs extra defense against
 	 * a stolen account (e.g. a reauthentication). What exactly that will mean is decided by the
 	 * authentication framework.
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool|string False or the argument for AuthManager::securitySensitiveOperationStatus().
 	 *   Typically a special page needing elevated security would return its name here.
 	 */
@@ -401,7 +401,7 @@ class SpecialPage implements MessageLocalizer {
 	 * getLoginSecurityLevel() or checkLoginSecurityLevel(), it should probably
 	 * implement this to do something with the data.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.32
 	 * @param array $data
 	 */
@@ -496,7 +496,7 @@ class SpecialPage implements MessageLocalizer {
 	 *   - `prefixSearchSubpages( "z" )` should return `[]`
 	 *   - `prefixSearchSubpages( "" )` should return `[ foo", "bar", "baz" ]`
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return (usually 10)
 	 * @param int $offset Number of results to skip (usually 0)
@@ -517,7 +517,7 @@ class SpecialPage implements MessageLocalizer {
 	 * prefixSearchSubpages() directly so you can support $limit and $offset. This
 	 * method is better for static-ish lists of things.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string[] subpages to search from
 	 */
 	protected function getSubpagesForPrefixSearch() {
@@ -566,7 +566,7 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function setHeaders() {
 		$out = $this->getOutput();
@@ -607,7 +607,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Gets called before @see SpecialPage::execute.
 	 * Return false to prevent calling execute() (since 1.27+).
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.20
 	 *
 	 * @param string|null $subPage
@@ -620,7 +620,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Gets called after @see SpecialPage::execute.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.20
 	 *
 	 * @param string|null $subPage
@@ -635,7 +635,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string|null $subPage
 	 */
@@ -655,7 +655,7 @@ class SpecialPage implements MessageLocalizer {
 	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $summaryMessageKey Message key of the summary
 	 */
@@ -679,7 +679,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Derived classes can override this, but usually it is easier to keep the
 	 * default behavior.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -904,7 +904,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Indicates whether this special page may perform database writes
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 * @since 1.27
@@ -918,7 +918,7 @@ class SpecialPage implements MessageLocalizer {
 	 * See messages 'specialpages-group-*' for valid names
 	 * This method defaults to group 'other'
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 * @since 1.21

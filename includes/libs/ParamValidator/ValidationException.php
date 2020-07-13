@@ -28,7 +28,7 @@ class ValidationException extends UnexpectedValueException {
 	protected $settings;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param DataMessageValue $failureMessage Failure message.
 	 * @param string $name Parameter name being validated
 	 * @param mixed $value Value of the parameter

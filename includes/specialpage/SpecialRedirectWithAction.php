@@ -27,7 +27,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	protected $action, $msgPrefix;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name
 	 * @param string $action
@@ -52,7 +52,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function showNoRedirectPage() {
 		$this->setHeaders();
@@ -79,7 +79,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $formData
 	 *
@@ -98,7 +98,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isListed() {
@@ -106,7 +106,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getGroupName() {

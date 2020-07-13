@@ -53,7 +53,7 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param Config $config
 	 */
 	public function setConfig( Config $config ) {

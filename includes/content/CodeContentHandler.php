@@ -35,7 +35,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 	/**
 	 * Returns the English language, because code is English, and should be handled as such.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Title $title
 	 * @param Content|null $content
@@ -51,7 +51,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 	/**
 	 * Returns the English language, because code is English, and should be handled as such.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Title $title
 	 * @param Content|null $content
@@ -65,7 +65,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 * @throws MWException

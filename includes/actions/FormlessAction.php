@@ -37,7 +37,7 @@ abstract class FormlessAction extends Action {
 	abstract public function onView();
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function show() {
 		$this->setHeaders();

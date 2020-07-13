@@ -46,7 +46,7 @@ abstract class FileJournal {
 
 	/**
 	 * Construct a new instance from configuration.
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config Includes:
 	 *   - 'backend': The name of a registered file backend

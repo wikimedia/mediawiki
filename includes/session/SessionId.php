@@ -42,7 +42,7 @@ final class SessionId {
 	private $id;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $id
 	 */

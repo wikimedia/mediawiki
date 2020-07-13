@@ -32,7 +32,7 @@ class LocalizedException extends Exception implements ILocalizedException {
 	protected $messageSpec;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
 	 * @param int $code
 	 * @param Throwable|null $previous The previous exception used for the exception

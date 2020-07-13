@@ -41,7 +41,7 @@ class StripState {
 	protected $sizeLimit = 5000000;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Parser|null $parser
 	 * @param array $options

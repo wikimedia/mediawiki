@@ -64,7 +64,7 @@ class GitInfo {
 	private static $viewers = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $repoDir The root directory of the repo where .git can be found
 	 * @param bool $usePrecomputed Use precomputed information if available
 	 * @see precomputeValues

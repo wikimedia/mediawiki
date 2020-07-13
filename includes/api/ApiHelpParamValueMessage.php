@@ -39,7 +39,7 @@ class ApiHelpParamValueMessage extends Message {
 
 	/**
 	 * @see Message::__construct
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $paramValue Parameter value being documented
 	 * @param string $text Message to use.

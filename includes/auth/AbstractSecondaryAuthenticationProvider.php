@@ -34,7 +34,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
@@ -42,14 +42,14 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function providerAllowsPropertyChange( $property ) {
 		return true;
@@ -57,7 +57,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @note Reimplement this if self::getAuthenticationRequests( AuthManager::ACTION_REMOVE )
 	 *  doesn't return requests that will revoke all access for the user.
 	 */
@@ -73,7 +73,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
@@ -83,14 +83,14 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
@@ -98,7 +98,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function continueSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
@@ -106,14 +106,14 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		return \StatusValue::newGood();
@@ -121,7 +121,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function autoCreatedAccount( $user, $source ) {
 	}

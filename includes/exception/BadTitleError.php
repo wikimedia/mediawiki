@@ -30,7 +30,7 @@
  */
 class BadTitleError extends BadRequestError {
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|Message|MalformedTitleException $msg A message key (default: 'badtitletext'), or
 	 *     a MalformedTitleException to figure out things from

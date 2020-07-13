@@ -42,7 +42,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	public $rememberMe = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		/** @var SessionProvider $provider */
@@ -53,7 +53,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		if ( !$this->expiration ) {

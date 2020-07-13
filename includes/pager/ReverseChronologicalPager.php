@@ -37,7 +37,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDay;
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getNavigationBar() {
@@ -74,7 +74,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * Set and return the mOffset timestamp such that we can get all revisions with
 	 * a timestamp up to the specified parameters.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int $year Year up to which we want revisions
 	 * @param int $month Month up to which we want revisions

@@ -72,7 +72,7 @@ class SessionInfo {
 	private $providerMetadata = null;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param int $priority Session priority
 	 * @param array $data

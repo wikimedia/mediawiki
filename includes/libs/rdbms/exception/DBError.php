@@ -35,7 +35,7 @@ class DBError extends RuntimeException {
 
 	/**
 	 * Construct a database error
-	 * @stable for calling
+	 * @stable to call
 	 * @param IDatabase|null $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 * @param \Throwable|null $prev Previous throwable

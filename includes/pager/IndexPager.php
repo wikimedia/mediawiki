@@ -167,7 +167,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	private $linkRenderer;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IContextSource|null $context
 	 * @param LinkRenderer|null $linkRenderer
@@ -250,7 +250,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * has been kept minimal to make it overridable if necessary, to allow for
 	 * result sets formed from multiple DB queries.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function doQuery() {
 		$defaultOrder = ( $this->mDefaultDirection === self::DIR_ASCENDING )
@@ -318,7 +318,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * Verifies limit is between 1 and 5000
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int|string $limit
 	 */
@@ -357,7 +357,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Extract some useful data from the result object for use by
 	 * the navigation bar, put it into $this
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param bool $isFirst False if there are rows before those fetched (i.e.
 	 *     if a "previous" link would make sense)
@@ -422,7 +422,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get some text to go in brackets in the "function name" part of the SQL comment
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -435,7 +435,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @note For b/c, query direction is true for ascending and false for descending
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
@@ -454,7 +454,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @note For b/c, query direction is true for ascending and false for descending
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int|string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
@@ -568,7 +568,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Pre-process results; useful for performing batch existence checks, etc.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param IResultWrapper $result
 	 */
@@ -579,7 +579,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and
 	 * getEndBody(), concatenates the results and returns them.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -621,7 +621,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Make a self-link
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $text Text displayed on the link
 	 * @param array|null $query Associative array of parameter to be in the query string
@@ -660,7 +660,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * after doQuery() was called. This will be called only if there
 	 * are rows in the result set.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return void
 	 */
@@ -680,7 +680,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Hook into getBody() for the end of the list
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -692,7 +692,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Hook into getBody(), for the bit between the start and the
 	 * end when there are no rows
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -705,7 +705,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * By default, all parameters passed in the URL are used, except for a
 	 * short blacklist.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array Associative array
 	 */
@@ -738,7 +738,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get a URL query array for the prev, next, first and last links.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array
 	 */
@@ -779,7 +779,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * Returns whether to show the "navigation bar"
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -918,7 +918,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * page_len,page_id avoids temp tables (given a page_len index). This would
 	 * also work if page_id was non-unique but we had a page_len,page_id index.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string[]|array[]
 	 */
@@ -943,7 +943,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * particular instantiation, which is a single value.  This is the set of
 	 * all defaults for the class.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */

@@ -131,7 +131,7 @@ abstract class Handler {
 	 * failure, a response with an error message should be returned or an
 	 * HttpException should be thrown.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param Validator $restValidator
 	 * @throws HttpException On validation failure.
 	 */
@@ -166,7 +166,7 @@ abstract class Handler {
 	 * Check the conditional request headers and generate a response if appropriate.
 	 * This is called by the Router before execute() and may be overridden.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return ResponseInterface|null
 	 */
@@ -186,7 +186,7 @@ abstract class Handler {
 	 * the values previously returned by ETag and getLastModified(). This is
 	 * called after execute() returns, and may be overridden.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param ResponseInterface $response
 	 */
@@ -200,7 +200,7 @@ abstract class Handler {
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
 	 * the request is to contain the parameter.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array[] Associative array mapping parameter names to
 	 *  ParamValidator settings arrays
@@ -212,7 +212,7 @@ abstract class Handler {
 	/**
 	 * Fetch the BodyValidator
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $contentType Content type of the request.
 	 * @return BodyValidator
@@ -274,7 +274,7 @@ abstract class Handler {
 	 * The timestamp can be in any format accepted by ConvertibleTimestamp, or
 	 * null to indicate that the timestamp is unknown.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool|string|int|float|\DateTime|null
 	 */
@@ -291,7 +291,7 @@ abstract class Handler {
 	 *
 	 * See RFC 7232 § 2.3 for semantics.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string|null
 	 */
@@ -304,7 +304,7 @@ abstract class Handler {
 	 * exists. This is used for wildcard validators, for example "If-Match: *"
 	 * fails if the resource does not exist.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool|null
 	 */
@@ -319,7 +319,7 @@ abstract class Handler {
 	 * wiki. This is uncommon, but may be useful for login and other account
 	 * management APIs.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -337,7 +337,7 @@ abstract class Handler {
 	 * Modules that do not need such writes should also not rely on master database access,
 	 * since only read queries are needed and each master DB is a single point of failure.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -349,7 +349,7 @@ abstract class Handler {
 	 * The handler can override this to do any necessary setup after init()
 	 * is called to inject the dependencies.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function postInitSetup() {
 	}
@@ -365,7 +365,7 @@ abstract class Handler {
 	 * If execute() throws any other kind of exception, the exception will be
 	 * logged and a generic 500 error page will be shown.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return mixed
 	 */

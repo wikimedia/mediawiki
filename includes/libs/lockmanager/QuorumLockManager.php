@@ -80,7 +80,7 @@ abstract class QuorumLockManager extends LockManager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $pathsByType
 	 *

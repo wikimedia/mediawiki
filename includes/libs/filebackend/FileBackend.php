@@ -161,7 +161,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config Parameters include:
 	 *   - name : The unique name of this backend.
@@ -293,7 +293,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * Get the a bitfield of extra features supported by the backend medium
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return int Bitfield of FileBackend::ATTR_* flags
 	 * @since 1.23

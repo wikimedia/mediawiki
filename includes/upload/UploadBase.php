@@ -135,7 +135,7 @@ abstract class UploadBase {
 	/**
 	 * Returns true if uploads are enabled.
 	 * Can be override by subclasses.
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public static function isEnabled() {
@@ -233,7 +233,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 	}
@@ -242,7 +242,7 @@ abstract class UploadBase {
 	 * Returns the upload type. Should be overridden by child classes
 	 *
 	 * @since 1.18
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getSourceType() {
@@ -292,7 +292,7 @@ abstract class UploadBase {
 
 	/**
 	 * Fetch the file. Usually a no-op
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Status
 	 */
 	public function fetchFile() {
@@ -317,7 +317,7 @@ abstract class UploadBase {
 
 	/**
 	 * Get the base 36 SHA1 of the file
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getTempFileSha1Base36() {
@@ -360,7 +360,7 @@ abstract class UploadBase {
 	 * - 'blacklistedExt': set to the list of blacklisted file extensions if the current file extension
 	 *    is not allowed for uploads and the blacklist is not empty
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return mixed[] array representing the result of the verification
 	 */
 	public function verifyUpload() {
@@ -964,7 +964,7 @@ abstract class UploadBase {
 	/**
 	 * Perform extra steps after a successful upload.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since  1.25
 	 */
 	public function postProcessUpload() {
@@ -1107,7 +1107,7 @@ abstract class UploadBase {
 	/**
 	 * Return the local file and initializes if necessary.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return LocalFile|null
 	 */
 	public function getLocalFile() {
@@ -1135,7 +1135,7 @@ abstract class UploadBase {
 	 * Upload stash exceptions are also caught and converted to an error status.
 	 *
 	 * @since 1.28
-	 * @stable for overriding
+	 * @stable to override
 	 * @param User $user
 	 * @param bool $isPartial Pass `true` if this is a part of a chunked upload (not a complete file).
 	 * @return Status If successful, value is an UploadStashFile instance
@@ -1197,7 +1197,7 @@ abstract class UploadBase {
 	/**
 	 * Implementation for stashFile() and tryStashFile().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */

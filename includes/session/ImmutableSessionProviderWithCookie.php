@@ -46,7 +46,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 	protected $sessionCookieOptions = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param array $params Keys include:
 	 *  - sessionCookieName: Session cookie name, if multiple sessions per
 	 *    client are to be supported.
@@ -94,7 +94,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function persistsSessionId() {
 		return $this->sessionCookieName !== null;
@@ -102,7 +102,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function canChangeUser() {
 		return false;
@@ -110,7 +110,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function persistSession( SessionBackend $session, WebRequest $request ) {
 		if ( $this->sessionCookieName === null ) {
@@ -139,7 +139,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function unpersistSession( WebRequest $request ) {
 		if ( $this->sessionCookieName === null ) {
@@ -158,7 +158,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getVaryCookies() {
 		if ( $this->sessionCookieName === null ) {

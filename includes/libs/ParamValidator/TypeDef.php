@@ -22,7 +22,7 @@ abstract class TypeDef {
 	protected $callbacks;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Callbacks $callbacks
 	 */
@@ -90,7 +90,7 @@ abstract class TypeDef {
 
 	/**
 	 * Get the value from the request
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @note Only override this if you need to use something other than
 	 *  $this->callbacks->getValue() to fetch the value. Reformatting from a
@@ -132,7 +132,7 @@ abstract class TypeDef {
 
 	/**
 	 * Normalize a settings array
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $settings
 	 * @return array
 	 */
@@ -149,7 +149,7 @@ abstract class TypeDef {
 	 * The rest of the code should generally be more permissive.
 	 *
 	 * @see ParamValidator::checkSettings()
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $name Parameter name
 	 * @param array|mixed $settings Default value or an array of settings
@@ -174,7 +174,7 @@ abstract class TypeDef {
 	 * This is primarily intended for documentation and implementation of
 	 * PARAM_ALL; it is the responsibility of the TypeDef to ensure that validate()
 	 * accepts the values returned here.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $name Parameter name being validated.
 	 * @param array $settings Parameter settings array.
@@ -213,7 +213,7 @@ abstract class TypeDef {
 	 *
 	 * This is intended to handle PARAM constants specific to this class. It
 	 * generally shouldn't handle constants defined on ParamValidator itself.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $name Parameter name.
 	 * @param array $settings Parameter settings array.
@@ -240,7 +240,7 @@ abstract class TypeDef {
 	 *
 	 * MessageValues describing any other constraints applied via PARAM
 	 * constants specific to this class should also be returned.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $name Parameter name being described.
 	 * @param array $settings Parameter settings array.

@@ -40,7 +40,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	public $current;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IResultWrapper $res
 	 */

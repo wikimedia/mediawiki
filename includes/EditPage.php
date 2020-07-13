@@ -449,7 +449,7 @@ class EditPage implements IEditObject {
 	private $revisionStore;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {

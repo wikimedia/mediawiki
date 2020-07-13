@@ -99,7 +99,7 @@ abstract class SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $term Raw search term
 	 * @return ISearchResultSet|Status|null
@@ -130,7 +130,7 @@ abstract class SearchEngine {
 	/**
 	 * Perform a title search in the article archive.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $term Raw search term
 	 * @return Status
@@ -160,7 +160,7 @@ abstract class SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $term Raw search term
 	 * @return ISearchResultSet|null
@@ -206,7 +206,7 @@ abstract class SearchEngine {
 
 	/**
 	 * @since 1.18
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $feature
 	 * @return bool
@@ -334,7 +334,7 @@ abstract class SearchEngine {
 	 * might support more. The default in all implementations must be 'relevance.'
 	 *
 	 * @since 1.25
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string[] the valid sort directions for setSort
 	 */
@@ -564,7 +564,7 @@ abstract class SearchEngine {
 	 * Does not resolve namespaces and does not check variants.
 	 * Search engine implementations may want to override this function.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $search
 	 * @return SearchSuggestionSet
@@ -605,7 +605,7 @@ abstract class SearchEngine {
 
 	/**
 	 * Perform a completion search with variants.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $search
 	 * @return SearchSuggestionSet
@@ -750,7 +750,7 @@ abstract class SearchEngine {
 	 * - default: set to true if this profile is the default
 	 *
 	 * @since 1.28
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $profileType the type of profiles
 	 * @param User|null $user the user requesting the list of profiles
@@ -764,7 +764,7 @@ abstract class SearchEngine {
 	/**
 	 * Create a search field definition.
 	 * Specific search engines should override this method to create search fields.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $name
 	 * @param string $type One of the types in SearchIndexField::INDEX_TYPE_*

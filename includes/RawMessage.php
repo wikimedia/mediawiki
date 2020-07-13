@@ -38,7 +38,7 @@ class RawMessage extends Message {
 	 * Call the parent constructor, then store the key as
 	 * the message.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 * @see Message::__construct
 	 *
 	 * @param string $text Message to use.

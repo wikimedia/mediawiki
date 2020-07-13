@@ -29,7 +29,7 @@
 class EditAction extends FormlessAction {
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getName() {
@@ -37,7 +37,7 @@ class EditAction extends FormlessAction {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|null
 	 */
 	public function onView() {
@@ -45,7 +45,7 @@ class EditAction extends FormlessAction {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function show() {
 		$this->useTransactionalTimeLimit();

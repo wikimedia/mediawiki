@@ -79,7 +79,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config
 	 */
@@ -306,7 +306,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::moveInternal()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return StatusValue
 	 */
@@ -356,7 +356,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::describeInternal()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return StatusValue
 	 */
@@ -399,7 +399,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::concatenate()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return StatusValue
 	 */
@@ -498,7 +498,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPrepare()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
@@ -535,7 +535,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doSecure()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
@@ -572,7 +572,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPublish()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
@@ -631,7 +631,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doClean()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
@@ -825,7 +825,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileContentsMulti()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return string[]|bool[]|null[] Map of (path => string, false (missing), or null (error))
 	 */
@@ -887,7 +887,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileXAttributes()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return array[][]|false|null Attributes, false (missing file), or null (error)
 	 */
@@ -934,7 +934,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileSha1Base36()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return bool|string|null SHA1, false (missing file), or null (error)
 	 */
@@ -1000,7 +1000,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getLocalReferenceMulti()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return string[]|bool[]|null[] Map of (path => FSFile, false (missing), or null (error))
 	 */
@@ -1032,7 +1032,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileHttpUrl()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return string|null
 	 */
@@ -1063,7 +1063,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::streamFile()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 * @return StatusValue
 	 */
@@ -1421,7 +1421,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::executeOpHandlesInternal()
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
 	 *
@@ -1500,7 +1500,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Clears any additional stat caches for storage paths
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @see FileBackend::clearCache()
 	 *
@@ -1527,7 +1527,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get file stat information (concurrently if possible) for several files
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @see FileBackend::getFileStat()
 	 *
@@ -1760,7 +1760,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Resolve a container name, checking if it's allowed by the backend.
 	 * This is intended for internal use, such as encoding illegal chars.
 	 * Subclasses can override this to be more restrictive.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $container
 	 * @return string|null
@@ -1774,7 +1774,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * This is intended for internal use, such as encoding illegal chars or perhaps
 	 * getting absolute paths (e.g. FS based backends). Note that the relative path
 	 * may be the empty string (e.g. the path is simply to the container).
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $container Container name
 	 * @param string $relStoragePath Storage path relative to the container
@@ -1862,7 +1862,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Fill the backend-specific process cache given an array of
 	 * resolved container names and their corresponding cached info.
 	 * Only containers that actually exist should appear in the map.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $containerInfo Map of resolved container names to cached info
 	 */
@@ -2022,7 +2022,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get the content type to use in HEAD/GET requests for a file
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $storagePath
 	 * @param string|null $content File data

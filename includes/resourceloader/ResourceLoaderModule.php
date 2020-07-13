@@ -191,7 +191,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *     'main' => 'file1.js'
 	 * ]
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return string|array JavaScript code (string), or multi-file structure described above (array)
 	 */
@@ -203,7 +203,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Takes named templates by the module and returns an array mapping.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string[] Array of templates mapping template alias to content
 	 */
 	public function getTemplates() {
@@ -281,7 +281,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * #2 is important to prevent an infinite loop, therefore this function
 	 * MUST return either an only= URL or a non-load.php URL.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return array Array of URLs
 	 */
@@ -305,7 +305,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * getScript() will be used even in cases (debug mode, no only param) where
 	 * getScriptURLsForDebug() would normally be used instead.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function supportsURLLoading() {
@@ -315,7 +315,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get all CSS for this module for a given skin.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return array List of CSS strings or array of CSS strings keyed by media type.
 	 *  like [ 'screen' => '.foo { width: 0 }' ];
@@ -332,7 +332,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * the module, but file-based modules will want to override this to
 	 * load the files directly. See also getScriptURLsForDebug()
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return array [ mediaType => [ URL1, URL2, ... ], ... ]
 	 */
@@ -356,7 +356,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array List of message keys. Keys may occur more than once
 	 */
 	public function getMessages() {
@@ -367,7 +367,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get the group this module is in.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string Group name
 	 */
 	public function getGroup() {
@@ -378,7 +378,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get the source of this module. Should only be overridden for foreign modules.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string Source name, 'local' for local modules
 	 */
 	public function getSource() {
@@ -395,7 +395,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Note: It is expected that $context will be made non-optional in the near
 	 * future.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext|null $context
 	 * @return array List of module names as strings
 	 */
@@ -407,7 +407,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array Array of strings
 	 */
 	public function getTargets() {
@@ -417,7 +417,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get the module's load type.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.28
 	 * @return string ResourceLoaderModule LOAD_* constant
 	 */
@@ -437,7 +437,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * The value returned here must be valid javascript for execution in a private function.
 	 * It must not contain the "function () {" and "}" wrapper though.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string|null A JavaScript function body returning a boolean value, or null
 	 */
 	public function getSkipFunction() {
@@ -565,7 +565,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get the hash of the message blob.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.27
 	 * @param ResourceLoaderContext $context
 	 * @return string|null JSON blob or null if module has no messages
@@ -667,7 +667,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @see ResourceLoaderModule::getHeaders
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.30
 	 * @param ResourceLoaderContext $context
 	 * @return array Keyed by url, values must be an array containing
@@ -680,7 +680,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get module-specific LESS variables, if any.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.27
 	 * @param ResourceLoaderContext $context
 	 * @return array Module-specific LESS variables.
@@ -858,7 +858,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * content, consider disabling this in favour of manually tracking relevant
 	 * aspects in getDefinitionSummary(). See getVersionHash() for how this is used.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool
 	 */
 	public function enableModuleContentVersion() {
@@ -903,7 +903,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * This data structure must exclusively contain primitive "scalar" values,
 	 * as it will be serialised using `json_encode`.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.23
 	 * @param ResourceLoaderContext $context
 	 * @return array|null
@@ -924,7 +924,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * return true in that case. Callers may optimize the request for this
 	 * module away if this function returns true.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
@@ -939,7 +939,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * ResourceLoaderClientHtml.
 	 *
 	 * @since 1.30
-	 * @stable for overriding
+	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */

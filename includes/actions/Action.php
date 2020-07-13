@@ -333,7 +333,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Only public since 1.21
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Article|WikiPage|Page $page
 	 * 	Calling with anything other then Article is deprecated since 1.35
@@ -390,7 +390,7 @@ abstract class Action implements MessageLocalizer {
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
 	 * @since 1.17
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string|null
 	 */
@@ -403,7 +403,7 @@ abstract class Action implements MessageLocalizer {
 	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
 	 * must throw subclasses of ErrorPageError
 	 * @since 1.17
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param User $user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
@@ -444,7 +444,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action requires the wiki not to be locked
 	 * @since 1.17
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -455,7 +455,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action can still be executed by a blocked user
 	 * @since 1.17
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -466,7 +466,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Set output headers for noindexing etc.  This function will not be called through
 	 * the execute() entry point, so only put UI-related stuff in here.
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.17
 	 */
 	protected function setHeaders() {
@@ -480,7 +480,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the name that goes in the \<h1\> page title
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getPageTitle() {
@@ -490,7 +490,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the description that goes below the \<h1\> tag
 	 * @since 1.17
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string HTML
 	 */
@@ -543,7 +543,7 @@ abstract class Action implements MessageLocalizer {
 	 * Indicates whether this action may perform database writes
 	 * @return bool
 	 * @since 1.27
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function doesWrites() {
 		return false;

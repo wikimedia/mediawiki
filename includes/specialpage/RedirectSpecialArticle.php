@@ -89,7 +89,7 @@
 abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name
 	 */

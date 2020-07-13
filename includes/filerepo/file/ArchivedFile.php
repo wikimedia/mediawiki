@@ -100,7 +100,7 @@ class ArchivedFile {
 	protected $exists;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @throws MWException
 	 * @param Title $title
 	 * @param int $id
@@ -152,7 +152,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @stable for overriding
+	 * @stable to override
 	 * @throws MWException
 	 * @return bool|null True on success or null
 	 */
@@ -209,7 +209,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param stdClass $row
 	 * @return ArchivedFile
@@ -225,7 +225,7 @@ class ArchivedFile {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new archivedfile object.
 	 * @since 1.31
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
@@ -261,7 +261,7 @@ class ArchivedFile {
 
 	/**
 	 * Load ArchivedFile object fields from a DB row.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param stdClass $row Object database row
 	 * @since 1.21
@@ -440,7 +440,7 @@ class ArchivedFile {
 	/**
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
-	 * @stable for overriding
+	 * @stable to override
 	 * @return int|false
 	 */
 	public function pageCount() {

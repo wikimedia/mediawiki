@@ -32,7 +32,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	public $confirmedLinkIDs = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param AuthenticationRequest[] $linkRequests A list of autolink requests
 	 *  which need to be confirmed.
 	 */
@@ -45,7 +45,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		$options = [];
@@ -69,7 +69,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getUniqueId() {
 		$ids = [];

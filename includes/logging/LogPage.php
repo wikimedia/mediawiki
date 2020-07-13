@@ -79,7 +79,7 @@ class LogPage {
 	private $target;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move'
 	 * @param bool $rc Whether to update recent changes as well as the logging table

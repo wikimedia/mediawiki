@@ -31,7 +31,7 @@ abstract class EventRelayer implements LoggerAwareInterface {
 	protected $logger;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $params
 	 */

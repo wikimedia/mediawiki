@@ -32,7 +32,7 @@ class PermissionsError extends ErrorPageError {
 	public $permission, $errors;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|null $permission A permission name or null if unknown
 	 * @param array $errors Error message keys or [key, param...] arrays; must not be empty if

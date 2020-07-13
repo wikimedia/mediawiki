@@ -34,7 +34,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 	protected $redirSubpage;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name
 	 * @param string $redirName

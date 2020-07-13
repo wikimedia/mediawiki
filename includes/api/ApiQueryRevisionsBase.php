@@ -658,7 +658,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $params
 	 *
 	 * @return string
@@ -672,7 +672,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array
 	 * @throws MWException
 	 */

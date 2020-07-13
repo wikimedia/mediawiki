@@ -83,7 +83,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	protected $legacy = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @since 1.19
 	 * @param string $type
 	 * @param string $subtype

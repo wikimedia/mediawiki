@@ -49,7 +49,7 @@ class UserIdentityValue implements UserIdentity {
 	private $actor;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param int $id
 	 * @param string $name

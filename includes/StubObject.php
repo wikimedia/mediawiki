@@ -58,7 +58,7 @@ class StubObject {
 	protected $params;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|null $global Name of the global variable.
 	 * @param string|callable|null $class Name of the class of the real object

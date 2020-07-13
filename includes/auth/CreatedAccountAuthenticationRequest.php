@@ -36,14 +36,14 @@ class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		return [];
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param int $id User id
 	 * @param string $name Username
 	 */

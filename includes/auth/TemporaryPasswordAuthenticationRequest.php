@@ -41,7 +41,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		return [
@@ -54,7 +54,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string|null $password
 	 */
 	public function __construct( $password = null ) {
@@ -96,7 +96,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function describeCredentials() {
 		return [

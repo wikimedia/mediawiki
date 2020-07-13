@@ -29,7 +29,7 @@ use Exception;
 class ComplexityException extends Exception {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		parent::__construct( 'Diff is too complex to generate' );
