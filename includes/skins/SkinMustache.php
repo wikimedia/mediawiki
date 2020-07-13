@@ -137,7 +137,11 @@ class SkinMustache extends SkinTemplate {
 			MWDebug::getDebugHTML( $this ),
 			$this->bottomScripts(),
 			wfReportTime( $out->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog()
+			Html::rawElement(
+				'div',
+				[ 'id' => 'mw-html-debug-log' ],
+				MWDebug::getHTMLDebugLog()
+			)
 			. Html::closeElement( 'body' )
 			. Html::closeElement( 'html' )
 		];
