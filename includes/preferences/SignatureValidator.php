@@ -56,7 +56,7 @@ class SignatureValidator {
 	 */
 	public function validateSignature( string $signature ) {
 		$pstSignature = $this->applyPreSaveTransform( $signature );
-		if ( !$pstSignature ) {
+		if ( $pstSignature === false ) {
 			// Return early because the rest of the validation uses wikitext parsing, which requires
 			// the pre-save transform to be applied first, and we just found out that the result of the
 			// pre-save transform would require *another* pre-save transform, which is crazy
