@@ -1703,6 +1703,7 @@
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
 	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|Rcfilters-days-show-days}} or {{msg-mw|Rcfilters-days-show-hours}} is used as $2\n{{Identical|Change}}",
+	"rcfilters-limit-and-date-popup-dialog-aria-label": "Accessibility label to assistive technologies that describes the opened popup.",
 	"rcfilters-date-popup-title": "Section title of date options on recent changes results",
 	"rcfilters-days-title": "Title for the options to change the number of days for the results shown.",
 	"rcfilters-hours-title": "Title for the options to change the number of hours for the results shown.",
