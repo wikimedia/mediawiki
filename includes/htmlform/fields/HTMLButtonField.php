@@ -17,6 +17,7 @@
  *   client-side form validation. Used in HTMLFormFieldCloner for add/remove
  *   buttons.
  *
+ * @stable to extend
  * @since 1.22
  */
 class HTMLButtonField extends HTMLFormField {
@@ -28,6 +29,9 @@ class HTMLButtonField extends HTMLFormField {
 
 	protected $mFormnovalidate = false;
 
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $info ) {
 		$info['nodata'] = true;
 
@@ -90,6 +94,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	/**
 	 * Get the OOUI widget for this field.
+	 * @stable to override
 	 * @param string $value
 	 * @return OOUI\ButtonInputWidget
 	 */
@@ -110,12 +115,17 @@ class HTMLButtonField extends HTMLFormField {
 		) );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function needsLabel() {
 		return false;
 	}
 
 	/**
 	 * Button cannot be invalid
+	 * @stable to override
 	 *
 	 * @param string $value
 	 * @param array $alldata

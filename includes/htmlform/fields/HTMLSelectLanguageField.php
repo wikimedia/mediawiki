@@ -4,8 +4,14 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Language select field.
+ *
+ * @stable to extend
  */
 class HTMLSelectLanguageField extends HTMLSelectField {
+
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 

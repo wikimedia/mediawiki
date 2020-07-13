@@ -14,9 +14,13 @@ use Wikimedia\IPUtils;
  * 'iprangelimits' - Specifies the valid IP ranges for IPv4 and IPv6 in an array.
  *  defaults to IPv4 => 16; IPv6 => 32.
  *
+ * @stable to extend
  * @since 1.26
  */
 class HTMLUserTextField extends HTMLTextField {
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$params = wfArrayPlus2d( $params, [
 				'exists' => false,

@@ -3,6 +3,8 @@
 /**
  * The parent class to generate form fields.  Any field type should
  * be a subclass of this.
+ *
+ * @stable to extend
  */
 abstract class HTMLFormField {
 	/** @var array|array[] */
@@ -51,6 +53,7 @@ abstract class HTMLFormField {
 	/**
 	 * Same as getInputHTML, but returns an OOUI object.
 	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
+	 * @stable to override
 	 *
 	 * @param string $value
 	 * @return OOUI\Widget|false
@@ -62,6 +65,7 @@ abstract class HTMLFormField {
 	/**
 	 * True if this field type is able to display errors; false if validation errors need to be
 	 * displayed in the main HTMLForm error area.
+	 * @stable to override
 	 * @return bool
 	 */
 	public function canDisplayErrors() {
@@ -90,6 +94,7 @@ abstract class HTMLFormField {
 	/**
 	 * If this field has a user-visible output or not. If not,
 	 * it will not be rendered
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -278,6 +283,7 @@ abstract class HTMLFormField {
 	 * Override this function if the control can somehow trigger a form
 	 * submission that shouldn't actually submit the HTMLForm.
 	 *
+	 * @stable to override
 	 * @since 1.23
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
@@ -292,6 +298,7 @@ abstract class HTMLFormField {
 	 * Override this function to add specific validation checks on the
 	 * field input.  Don't forget to call parent::validate() to ensure
 	 * that the user-defined callback mValidationCallback is still run
+	 * @stable to override
 	 *
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
@@ -318,6 +325,14 @@ abstract class HTMLFormField {
 		return true;
 	}
 
+	/**
+	 * @stable to override
+	 *
+	 * @param mixed $value
+	 * @param HTMLFormField[] $alldata
+	 *
+	 * @return mixed
+	 */
 	public function filter( $value, $alldata ) {
 		if ( isset( $this->mFilterCallback ) ) {
 			$value = ( $this->mFilterCallback )( $value, $alldata, $this->mParent );
@@ -329,6 +344,7 @@ abstract class HTMLFormField {
 	/**
 	 * Should this field have a label, or is there no input element with the
 	 * appropriate id for the label to point to?
+	 * @stable to override
 	 *
 	 * @return bool True to output a label, false to suppress
 	 */
@@ -366,6 +382,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the value that this input has been set to from a posted form,
 	 * or the input's default value if it has not been set.
+	 * @stable to override
 	 *
 	 * @param WebRequest $request
 	 * @return mixed The value
@@ -381,6 +398,7 @@ abstract class HTMLFormField {
 	/**
 	 * Initialise the object
 	 *
+	 * @stable to call
 	 * @param array $params Associative Array. See HTMLForm doc for syntax.
 	 *
 	 * @since 1.22 The 'label' attribute no longer accepts raw HTML, use 'label-raw' instead
@@ -467,6 +485,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the complete table row for the input, including help text,
 	 * labels, and whatever.
+	 * @stable to override
 	 *
 	 * @param string $value The value to set the input to.
 	 *
@@ -524,6 +543,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the complete div for the input, including help text,
 	 * labels, and whatever.
+	 * @stable to override
 	 * @since 1.20
 	 *
 	 * @param string $value The value to set the input to.
@@ -573,6 +593,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get the OOUI version of the div. Falls back to getDiv by default.
+	 * @stable to override
 	 * @since 1.26
 	 *
 	 * @param string $value The value to set the input to.
@@ -647,6 +668,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get label alignment when generating field for OOUI.
+	 * @stable to override
 	 * @return string 'left', 'right', 'top' or 'inline'
 	 */
 	protected function getLabelAlignOOUI() {
@@ -672,6 +694,7 @@ abstract class HTMLFormField {
 	 * Whether the field should be automatically infused. Note that all OOUI HTMLForm fields are
 	 * infusable (you can call OO.ui.infuse() on them), but not all are infused by default, since
 	 * there is no benefit in doing it e.g. for buttons and it's a small performance hit on page load.
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -683,6 +706,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the list of extra ResourceLoader modules which must be loaded client-side before it's
 	 * possible to infuse this field's OOUI widget.
+	 * @stable to override
 	 *
 	 * @return string[]
 	 */
@@ -693,6 +717,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the complete raw fields for the input, including help text,
 	 * labels, and whatever.
+	 * @stable to override
 	 * @since 1.20
 	 *
 	 * @param string $value The value to set the input to.
@@ -718,6 +743,7 @@ abstract class HTMLFormField {
 	 * Get the complete field for the input, including help text,
 	 * labels, and whatever. Fall back from 'vform' to 'div' when not overridden.
 	 *
+	 * @stable to override
 	 * @since 1.25
 	 * @param string $value The value to set the input to.
 	 * @return string Complete HTML field.
@@ -730,6 +756,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get the complete field as an inline element.
+	 * @stable to override
 	 * @since 1.25
 	 * @param string $value The value to set the input to.
 	 * @return string Complete HTML inline element
@@ -818,6 +845,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Determine the help text to display
+	 * @stable to override
 	 * @since 1.20
 	 * @return string|null HTML
 	 */
@@ -913,12 +941,19 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * @stable to override
 	 * @return string HTML
 	 */
 	public function getLabel() {
 		return $this->mLabel ?? '';
 	}
 
+	/**
+	 * @stable to override
+	 * @param array $cellAttributes
+	 *
+	 * @return string
+	 */
 	public function getLabelHtml( $cellAttributes = [] ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
@@ -957,6 +992,10 @@ abstract class HTMLFormField {
 		return $html;
 	}
 
+	/**
+	 * @stable to override
+	 * @return mixed
+	 */
 	public function getDefault() {
 		return $this->mDefault ?? null;
 	}
@@ -992,6 +1031,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Returns the given attributes from the parameters
+	 * @stable to override
 	 *
 	 * @param array $list List of attributes to get
 	 * @return array Attributes
@@ -1072,6 +1112,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
+	 * @stable to override
 	 * @return array Options for inclusion in a select or whatever.
 	 */
 	public function getOptionsOOUI() {
@@ -1164,6 +1205,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Skip this field when collecting data.
+	 * @stable to override
 	 * @param WebRequest $request
 	 * @return bool
 	 * @since 1.27

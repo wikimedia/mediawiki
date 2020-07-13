@@ -8,12 +8,17 @@
  * Plus a text field underneath for an additional reason.  The 'value' of the field is
  * "<select>: <extra reason>", or "<extra reason>" if nothing has been selected in the
  * select dropdown.
+ *
+ * @stable to extend
  * @todo FIXME: If made 'required', only the text field should be compulsory.
  */
 class HTMLSelectAndOtherField extends HTMLSelectField {
 	/** @var string[] */
 	private $mFlatOptions;
 
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 			// Do nothing
@@ -141,6 +146,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputWidget( $params ) {
 		return new MediaWiki\Widget\SelectWithInputWidget( $params );
 	}

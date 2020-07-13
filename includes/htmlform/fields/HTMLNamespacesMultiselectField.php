@@ -12,6 +12,7 @@ use MediaWiki\Widget\NamespacesMultiselectWidget;
  * which itself duplicates HTMLUsersMultiselectField. These classes
  * should be refactored.
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
