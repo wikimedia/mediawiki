@@ -28,7 +28,7 @@ use Status;
 /**
  * Basic framework for a primary authentication provider that uses passwords
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

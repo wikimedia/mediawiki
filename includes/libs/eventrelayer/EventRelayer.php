@@ -24,7 +24,7 @@ use Psr\Log\NullLogger;
 /**
  * Base class for reliable event relays
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class EventRelayer implements LoggerAwareInterface {
 	/** @var LoggerInterface */

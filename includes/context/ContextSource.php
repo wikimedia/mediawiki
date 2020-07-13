@@ -24,7 +24,7 @@ use MediaWiki\MediaWikiServices;
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
  * member variable and provide accessors to it.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.18
  */
 abstract class ContextSource implements IContextSource {

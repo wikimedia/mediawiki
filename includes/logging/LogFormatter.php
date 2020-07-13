@@ -34,7 +34,7 @@ use MediaWiki\MediaWikiServices;
  *   $wgLogActionsHandlers['type/*'] = 'class';
  * @endcode
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.19
  */
 class LogFormatter {

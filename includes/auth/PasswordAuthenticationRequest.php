@@ -23,7 +23,7 @@ namespace MediaWiki\Auth;
 
 /**
  * This is a value object for authentication requests with a username and password
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

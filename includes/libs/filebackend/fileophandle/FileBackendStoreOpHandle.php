@@ -27,7 +27,7 @@
  * This class is largely backend-specific and is mostly just "magic" to be
  * passed to FileBackendStore::executeOpHandlesInternal().
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class FileBackendStoreOpHandle {
 	/** @var array */

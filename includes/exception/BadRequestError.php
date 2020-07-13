@@ -22,7 +22,7 @@
  * An error page that emits an HTTP 400 Bad Request status code.
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  * @since 1.28
  * @ingroup Exception
  */

@@ -41,7 +41,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * Subclasses should avoid throwing exceptions at all costs.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup LockManager
  * @since 1.19
  */

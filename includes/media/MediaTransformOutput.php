@@ -24,7 +24,7 @@
 /**
  * Base class for the output of MediaHandler::doTransform() and File::transform().
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Media
  */
 abstract class MediaTransformOutput {

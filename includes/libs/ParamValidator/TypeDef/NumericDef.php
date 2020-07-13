@@ -19,7 +19,7 @@ use Wikimedia\ParamValidator\ValidationException;
  *     - 'max': Normal maximum allowed, or null if there is no limit.
  *     - 'highmax': High limits maximum allowed, or null if there is no limit.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.35
  * @unstable
  */

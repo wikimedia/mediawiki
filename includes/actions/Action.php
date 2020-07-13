@@ -38,7 +38,7 @@ use MediaWiki\MediaWikiServices;
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
  * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class Action implements MessageLocalizer {
 

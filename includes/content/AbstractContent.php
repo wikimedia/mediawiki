@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Base implementation for content objects.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Content
  */

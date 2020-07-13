@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * Class definition for a wanted query page like
  * WantedPages, WantedTemplates, etc
- * @stable for subclassing
+ * @stable to extend
  * @ingroup SpecialPage
  */
 abstract class WantedQueryPage extends QueryPage {

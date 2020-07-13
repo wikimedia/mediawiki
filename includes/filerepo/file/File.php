@@ -57,7 +57,7 @@ use Wikimedia\AtEase\AtEase;
  * ideally accept a RepoGroup in its constructor and then, use $this->repoGroup->findFile()
  * and $this->repoGroup->getLocalRepo()->newFile().
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup FileAbstraction
  */
 abstract class File implements IDBAccessObject {

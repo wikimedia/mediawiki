@@ -24,7 +24,7 @@
 /**
  * Media handler abstract base class for images
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Media
  */

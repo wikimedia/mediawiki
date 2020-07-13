@@ -27,7 +27,7 @@ use MediaWiki\Revision\RevisionRecord;
 /**
  * Class to represent a file in the oldimage table
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup FileAbstraction
  */
 class OldLocalFile extends LocalFile {

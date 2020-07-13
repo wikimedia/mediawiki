@@ -34,7 +34,7 @@ use MediaWiki\Navigation\PrevNextNavigationRenderer;
  * Includes some static functions for handling the special page list deprecated
  * in favor of SpecialPageFactory.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup SpecialPage
  */

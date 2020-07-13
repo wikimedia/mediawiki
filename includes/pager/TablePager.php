@@ -25,7 +25,7 @@ use MediaWiki\Linker\LinkRenderer;
 
 /**
  * Table-based display with a user-selectable sort order
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {

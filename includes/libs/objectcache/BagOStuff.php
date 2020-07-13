@@ -60,7 +60,7 @@ use Wikimedia\ScopedCallback;
  * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
  * the maximum size and chunk count (indirectly) of values.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Cache
  */
 abstract class BagOStuff implements

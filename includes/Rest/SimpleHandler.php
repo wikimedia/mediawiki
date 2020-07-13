@@ -9,7 +9,7 @@ namespace MediaWiki\Rest;
  * run() must be declared in the subclass. It cannot be declared as abstract
  * here because it has a variable parameter list.
  *
- * @stable for subclassing
+ * @stable to extend
  * @package MediaWiki\Rest
  */
 abstract class SimpleHandler extends Handler {

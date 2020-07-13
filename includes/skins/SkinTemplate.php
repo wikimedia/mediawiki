@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Skins
  */

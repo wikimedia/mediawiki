@@ -34,7 +34,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * Subclasses should avoid throwing exceptions at all costs.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup FileJournal
  * @since 1.20
  */

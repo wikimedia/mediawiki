@@ -11,7 +11,7 @@ use MediaWiki\Rest\Validator\Validator;
 /**
  * Base class for REST route handlers.
  *
- * @stable for subclassing.
+ * @stable to extend.
  */
 abstract class Handler {
 

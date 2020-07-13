@@ -17,7 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @file
  * @ingroup SpecialPage

@@ -23,7 +23,7 @@
 
 /**
  * @newable
- * @stable for subclassing
+ * @stable to extend
  */
 class LocalFileLockError extends ErrorPageError {
 

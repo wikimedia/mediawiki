@@ -73,7 +73,7 @@ use WebRequest;
  * session cookie names should be used for different providers to avoid
  * collisions.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Session
  * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager

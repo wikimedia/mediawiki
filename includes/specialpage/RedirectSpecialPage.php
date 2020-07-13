@@ -24,7 +24,7 @@
 /**
  * Shortcut to construct a special page alias.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup SpecialPage
  */

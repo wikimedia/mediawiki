@@ -22,7 +22,7 @@
  * An error page which can definitely be safely rendered using the OutputPage.
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  *
  * @since 1.7
  * @ingroup Exception

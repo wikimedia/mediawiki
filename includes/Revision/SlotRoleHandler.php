@@ -29,7 +29,7 @@ use MediaWiki\Linker\LinkTarget;
  * Most importantly, they control which content model can be used for the slot, and how it is
  * represented in the rendered version of page content.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @since 1.33
  */

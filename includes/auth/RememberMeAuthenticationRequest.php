@@ -27,7 +27,7 @@ use MediaWiki\Session\SessionProvider;
 /**
  * This is an authentication request added by AuthManager to show a "remember
  * me" checkbox. When checked, it will take more time for the authenticated session to expire.
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

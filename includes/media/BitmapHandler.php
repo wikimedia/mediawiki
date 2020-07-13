@@ -26,7 +26,7 @@ use MediaWiki\Shell\Shell;
 /**
  * Generic handler for bitmap images
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Media
  */
 class BitmapHandler extends TransformationalImageHandler {

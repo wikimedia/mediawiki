@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * Variant of QueryPage which formats the result as a simple link to the page
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup SpecialPage
  */
 abstract class PageQueryPage extends QueryPage {

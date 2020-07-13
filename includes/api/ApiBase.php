@@ -45,7 +45,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * Self-documentation: code to allow the API to document its own state
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup API
  */

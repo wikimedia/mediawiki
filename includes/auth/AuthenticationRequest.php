@@ -31,7 +31,7 @@ use Message;
  * An AuthenticationRequest represents a set of form fields that are needed on
  * and provided from a login, account creation, password change or similar form.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

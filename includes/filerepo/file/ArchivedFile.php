@@ -27,7 +27,7 @@ use MediaWiki\Revision\RevisionRecord;
 /**
  * Class representing a row of the 'filearchive' table
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup FileAbstraction
  */
 class ArchivedFile {

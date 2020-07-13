@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @file
  * @ingroup Database
  *
- * @stable for subclassing
+ * @stable to extend
  * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */

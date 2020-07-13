@@ -28,7 +28,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * A base class that implements some of the boilerplate for an AuthenticationProvider
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

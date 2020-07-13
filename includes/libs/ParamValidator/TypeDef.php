@@ -12,7 +12,7 @@ use Wikimedia\Message\MessageValue;
  * passed to ParamValidator::getValue(), ParamValidator::validateValue(), and the like
  * and is intended for communication of non-global state to the Callbacks.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.34
  * @unstable
  */

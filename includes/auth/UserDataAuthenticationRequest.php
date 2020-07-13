@@ -28,7 +28,7 @@ use User;
 /**
  * This represents additional user data requested on the account creation form
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

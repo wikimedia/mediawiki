@@ -32,7 +32,7 @@ use Wikimedia\RelPath;
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup ResourceLoader
  * @since 1.17
  */

@@ -25,7 +25,7 @@
  * Stuff specific to JPEG and (built-in) TIFF handler.
  * All metadata related, since both JPEG and TIFF support Exif.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Media
  */
 class ExifBitmapHandler extends BitmapHandler {

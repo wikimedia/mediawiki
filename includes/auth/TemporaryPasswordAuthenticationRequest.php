@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * This represents the intention to set a temporary password for the user.
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

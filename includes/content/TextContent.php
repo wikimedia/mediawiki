@@ -33,7 +33,7 @@ use MediaWiki\MediaWikiServices;
  * TextContent instances are immutable
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Content
  */
 class TextContent extends AbstractContent {

@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Installer
  * @since 1.17
  */

@@ -25,7 +25,7 @@
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class DataUpdate implements DeferrableUpdate {
 	/** @var mixed Result from LBFactory::getEmptyTransactionTicket() */

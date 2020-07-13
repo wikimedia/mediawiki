@@ -22,7 +22,7 @@
  * MediaWiki exception
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Exception
  */

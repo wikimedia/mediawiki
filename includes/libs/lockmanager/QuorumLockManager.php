@@ -25,7 +25,7 @@
  * Version of LockManager that uses a quorum from peer servers for locks.
  * The resource space can also be sharded into separate peer groups.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup LockManager
  * @since 1.20
  */

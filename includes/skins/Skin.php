@@ -35,7 +35,7 @@ use Wikimedia\WrappedStringList;
  *
  * See docs/Skin.md for more information.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Skins
  */
 abstract class Skin extends ContextSource {

@@ -26,7 +26,7 @@ use RawMessage;
 
 /**
  * This is an authentication request that just implements a simple button.
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

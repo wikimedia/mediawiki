@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Variant of QueryPage which uses a gallery to output results, thus
  * suited for reports generating images
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
