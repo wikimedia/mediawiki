@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
  * Image gallery
  *
  * Add images to the gallery using add(), then render that list to HTML using toHTML().
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
@@ -153,6 +153,11 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * You should not call this directly, but instead use
 	 * ImageGalleryBase::factory().
+	 *
+	 * @stable to call
+	 * @note constructors of subclasses must have a compatible signature
+	 *       for use by the factory() method.
+	 *
 	 * @param string $mode
 	 * @param IContextSource|null $context
 	 */
@@ -258,7 +263,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * to allow extensions to add additional parameters to
 	 * <gallery> parser tag.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $options Attributes of gallery tag
 	 */
