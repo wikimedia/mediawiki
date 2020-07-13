@@ -37,14 +37,6 @@
 
 // Background colors
 @background-color-base: #fff;
-// Blue; for contextual use of a continuing action
-@colorProgressive: #36c;
-@colorProgressiveHighlight: #447ff5;
-@colorProgressiveActive: #2a4b8d;
-// Red; for contextual use of a negative action of high severity
-@colorDestructive: #d33;
-@colorDestructiveHighlight: #ff4242;
-@colorDestructiveActive: #b32424;
 // Orange; for contextual use of a potentially negative action of medium severity
 @colorMediumSevere: #ff5d00;
 // Yellow; for contextual use of a potentially negative action of low severity
@@ -58,6 +50,16 @@
 @color-base--inverted: #fff;
 @color-base--subtle: @colorGray7;
 @color-base--disabled: @colorGray7;
+// Accent50 Foundation Blue; for contextual use of a continuing action
+@color-primary: #36c;
+@color-primary--hover: #447ff5;
+@color-primary--active: #2a4b8d;
+@color-primary--focus: @color-primary;
+// Red50; for contextual use of a negative action of high severity
+@color-destructive: #d33;
+@color-destructive--hover: #ff4242;
+@color-destructive--active: #b32424;
+// Other UI colors
 @color-placeholder: @colorGray7;
 
 // Messages
@@ -77,16 +79,17 @@
 @borderColorSuccess: @colorSuccess;
 
 // UI colors
-@background-color-input-binary--active: @colorProgressiveActive;
-@background-color-input-binary--checked: @colorProgressive;
+@background-color-input-binary--active: @color-primary--active;
+@background-color-input-binary--checked: @color-primary;
 
 // Border
 @border-base: @border-width-base @border-style-base @border-color-base;
 
 // Border colors
 @border-color-base: #a2a9b1;
-@border-color-input-binary--active: @colorProgressiveActive;
-@border-color-input-binary--checked: @colorProgressive;
+@border-color-base--focus: @color-primary--focus;
+@border-color-input-binary--active: @color-primary--active;
+@border-color-input-binary--checked: @color-primary;
 
 // Border styles
 @border-style-base: solid;
@@ -103,9 +106,9 @@
 
 // Box shadows
 @box-shadow-base: inset 0 0 0 1px transparent;
-@box-shadow-base--focus: inset 0 0 0 1px @colorProgressive;
-@box-shadow-primary--focus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @color-base--inverted;
-@box-shadow-input-binary--active: inset 0 0 0 1px @colorProgressiveActive;
+@box-shadow-base--focus: inset 0 0 0 1px @color-primary--focus;
+@box-shadow-primary--focus: inset 0 0 0 1px @color-primary--focus, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-input-binary--active: inset 0 0 0 1px @color-primary--active;
 
 // Icon related variables
 @size-icon: 1.5em;
@@ -118,6 +121,12 @@
  * Deprecated variables
  */
 // Deprecated in MW v1.35.0
+@colorProgressive: @color-primary;
+@colorProgressiveHighlight: @color-primary--hover;
+@colorProgressiveActive: @color-primary--active;
+@colorDestructive: @color-destructive;
+@colorDestructiveHighlight: @color-destructive--hover;
+@colorDestructiveActive: @color-destructive--active;
 // Orange; for contextual use of returning to a past action
 @colorRegressive: #ff5d00;
 @colorText: @color-base;
