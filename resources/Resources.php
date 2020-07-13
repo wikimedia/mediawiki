@@ -2578,6 +2578,7 @@ return [
 		'messages' => [
 			'mw-widgets-mediasearch-noresults',
 			'mw-widgets-mediasearch-input-placeholder',
+			'mw-widgets-mediasearch-results-aria-label',
 			'mw-widgets-mediasearch-recent-uploads',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
