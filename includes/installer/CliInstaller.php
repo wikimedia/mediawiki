@@ -55,7 +55,7 @@ class CliInstaller extends Installer {
 	 * @throws InstallException
 	 */
 	public function __construct( $siteName, $admin = null, array $options = [] ) {
-		global $wgContLang;
+		global $wgContLang, $wgPasswordPolicy;
 
 		parent::__construct();
 
@@ -89,10 +89,6 @@ class CliInstaller extends Installer {
 		}
 		$this->setVar( 'wgMetaNamespace', $metaNS );
 
-		if ( $admin ) {
-			$this->setVar( '_AdminName', $admin );
-		}
-
 		if ( !isset( $options['installdbuser'] ) ) {
 			$this->setVar( '_InstallUser',
 				$this->getVar( 'wgDBuser' ) );
@@ -108,8 +104,25 @@ class CliInstaller extends Installer {
 			$this->setVar( '_CreateDBAccount', true );
 		}
 
-		if ( isset( $options['pass'] ) ) {
-			$this->setVar( '_AdminPassword', $options['pass'] );
+		if ( $admin ) {
+			$this->setVar( '_AdminName', $admin );
+			if ( isset( $options['pass'] ) ) {
+				$adminUser = User::newFromName( $admin );
+				if ( !$adminUser ) {
+					throw new InstallException( Status::newFatal( 'config-admin-name-invalid' ) );
+				}
+				$upp = new UserPasswordPolicy(
+					$wgPasswordPolicy['policies'],
+					$wgPasswordPolicy['checks']
+				);
+				$status = $upp->checkUserPasswordForGroups( $adminUser, $options['pass'],
+					[ 'bureaucrat', 'sysop', 'interface-admin' ] ); // per Installer::createSysop()
+				if ( !$status->isGood() ) {
+					throw new InstallException( Status::newFatal(
+						$status->getMessage( 'config-admin-error-password-invalid' ) ) );
+				}
+				$this->setVar( '_AdminPassword', $options['pass'] );
+			}
 		}
 
 		// Detect and inject any extension found
