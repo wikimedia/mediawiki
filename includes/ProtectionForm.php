@@ -578,8 +578,7 @@ class ProtectionForm {
 		}
 		$out .= Xml::closeElement( 'fieldset' );
 
-		if ( MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $user, 'editinterface' ) ) {
+		if ( $this->permManager->userHasRight( $user, 'editinterface' ) ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$link = $linkRenderer->makeKnownLink(
 				$context->msg( 'protect-dropdown' )->inContentLanguage()->getTitle(),
@@ -611,12 +610,10 @@ class ProtectionForm {
 	private function buildSelector( $action, $selected ) {
 		// If the form is disabled, display all relevant levels. Otherwise,
 		// just show the ones this user can use.
-		$levels = MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->getNamespaceRestrictionLevels(
-				$this->mTitle->getNamespace(),
-				$this->disabled ? null : $this->mContext->getUser()
-			);
+		$levels = $this->permManager->getNamespaceRestrictionLevels(
+			$this->mTitle->getNamespace(),
+			$this->disabled ? null : $this->mContext->getUser()
+		);
 
 		$id = 'mwProtect-level-' . $action;
 
