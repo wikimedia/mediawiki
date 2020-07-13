@@ -161,6 +161,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   SCHEMA_COMPAT_NEW locally, update.php must be run after removing the setting.
   Usage of the setting in code is deprecated. The setting will be removed
   completely in 1.36.
+* $wgEnableRestAPI — This setting is no longer obeyed by MediaWiki core, and
+  should not be set set locally. Usage of the setting in code is deprecated; it
+  is now set true by default. The setting will be removed completely in 1.36.
 * $wgObjectCaches — The 'slaveOnly' option for SqlBagOStuff, deprecated in 1.34,
   was removed. Use 'replicaOnly' instead.
 * …
