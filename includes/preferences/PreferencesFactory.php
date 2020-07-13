@@ -49,7 +49,7 @@ use User;
  * Once fields have been retrieved and validated, submission logic is handed over to the
  * submitForm() method of this interface.
  *
- * @stable for implementation
+ * @stable to implement
  */
 interface PreferencesFactory {
 

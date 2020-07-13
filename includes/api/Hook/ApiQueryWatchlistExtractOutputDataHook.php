@@ -6,7 +6,7 @@ use ApiQueryWatchlist;
 use WatchedItem;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiQueryWatchlistExtractOutputDataHook {

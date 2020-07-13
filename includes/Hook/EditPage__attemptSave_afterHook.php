@@ -7,7 +7,7 @@ use EditPage;
 use Status;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EditPage__attemptSave_afterHook {

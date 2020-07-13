@@ -7,7 +7,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface PageMoveCompletingHook {

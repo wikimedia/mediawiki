@@ -6,7 +6,7 @@ use IContextSource;
 use Skin;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface RequestContextCreateSkinHook {

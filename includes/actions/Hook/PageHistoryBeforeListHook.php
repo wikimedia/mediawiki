@@ -6,7 +6,7 @@ use Article;
 use IContextSource;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface PageHistoryBeforeListHook {

@@ -6,7 +6,7 @@ use OutputPage;
 use Skin;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface BeforePageDisplayHook {

@@ -8,7 +8,7 @@
  * SearchEngine implementations not implementing this interface will have
  * an over-fetch performed to determine next page availability.
  *
- * @stable for implementation
+ * @stable to implement
  */
 interface PaginatingSearchEngine {
 }

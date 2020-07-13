@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use WikiImporter;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ImportHandleUploadXMLTagHook {

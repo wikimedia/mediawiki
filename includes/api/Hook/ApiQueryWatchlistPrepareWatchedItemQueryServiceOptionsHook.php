@@ -6,7 +6,7 @@ namespace MediaWiki\Api\Hook;
 use ApiQueryWatchlist;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook {

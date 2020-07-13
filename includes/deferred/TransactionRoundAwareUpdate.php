@@ -4,7 +4,7 @@
  * Deferrable update that specifies whether it must run outside of any explicit
  * LBFactory transaction round or must run inside of a round owned by doUpdate().
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.34
  */

@@ -6,7 +6,7 @@ use FormOptions;
 use NewPagesPager;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialNewpagesConditionsHook {

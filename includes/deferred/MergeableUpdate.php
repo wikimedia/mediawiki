@@ -13,7 +13,7 @@
  *
  * The purges for urls A and B will all happen after the $deleteContentUrlsB update.
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.27
  */

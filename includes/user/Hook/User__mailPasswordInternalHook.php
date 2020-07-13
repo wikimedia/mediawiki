@@ -6,7 +6,7 @@ use User;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface User__mailPasswordInternalHook {

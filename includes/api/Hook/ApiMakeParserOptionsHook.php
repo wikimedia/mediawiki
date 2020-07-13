@@ -8,7 +8,7 @@ use Title;
 use Wikimedia\ScopedCallback;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiMakeParserOptionsHook {

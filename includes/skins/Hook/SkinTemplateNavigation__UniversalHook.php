@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use SkinTemplate;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SkinTemplateNavigation__UniversalHook {

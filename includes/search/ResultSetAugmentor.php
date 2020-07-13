@@ -2,7 +2,7 @@
 
 /**
  * Augment search results.
- * @stable for implementation
+ * @stable to implement
  */
 interface ResultSetAugmentor {
 	/**

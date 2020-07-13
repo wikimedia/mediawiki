@@ -6,7 +6,7 @@ use ChangesList;
 use RecentChange;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ChangesListInsertArticleLinkHook {

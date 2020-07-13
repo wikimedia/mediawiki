@@ -6,7 +6,7 @@ use SpecialContributions;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialContributions__getForm__filtersHook {

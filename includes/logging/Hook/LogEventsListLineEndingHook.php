@@ -6,7 +6,7 @@ use DatabaseLogEntry;
 use LogEventsList;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface LogEventsListLineEndingHook {

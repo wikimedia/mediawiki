@@ -6,7 +6,7 @@ namespace MediaWiki\Api\Hook;
 use ApiModuleManager;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiMain__moduleManagerHook {

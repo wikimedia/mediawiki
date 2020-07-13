@@ -6,7 +6,7 @@ use Parser;
 use ParserOutput;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ParserLimitReportPrepareHook {

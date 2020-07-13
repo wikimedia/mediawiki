@@ -5,7 +5,7 @@ namespace MediaWiki\Diff\Hook;
 use DifferenceEngine;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface AbortDiffCacheHook {

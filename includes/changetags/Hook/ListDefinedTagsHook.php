@@ -3,7 +3,7 @@
 namespace MediaWiki\ChangeTags\Hook;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ListDefinedTagsHook {

@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use Collation;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface Collation__factoryHook {

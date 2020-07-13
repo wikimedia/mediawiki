@@ -6,7 +6,7 @@ use Category;
 use WikiPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface CategoryAfterPageAddedHook {

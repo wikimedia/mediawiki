@@ -5,7 +5,7 @@ namespace MediaWiki\Revision\Hook;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface RevisionRecordInsertedHook {

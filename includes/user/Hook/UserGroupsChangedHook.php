@@ -6,7 +6,7 @@ use User;
 use UserGroupMembership;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UserGroupsChangedHook {

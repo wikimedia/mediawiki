@@ -5,7 +5,7 @@ namespace MediaWiki\SpecialPage\Hook;
 use HTMLForm;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialPageBeforeFormDisplayHook {

@@ -3,7 +3,7 @@
 namespace MediaWiki\Permissions\Hook;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UserGetAllRightsHook {

@@ -6,7 +6,7 @@ use MediaWiki\Session\SessionBackend;
 use WebRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SessionMetadataHook {

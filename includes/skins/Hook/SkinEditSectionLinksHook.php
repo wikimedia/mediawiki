@@ -7,7 +7,7 @@ use Skin;
 use Title;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SkinEditSectionLinksHook {

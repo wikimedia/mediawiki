@@ -23,7 +23,7 @@
 /**
  * Interface for generic jobs only uses the parameters field and are JSON serializable
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @ingroup JobQueue
  * @since 1.33

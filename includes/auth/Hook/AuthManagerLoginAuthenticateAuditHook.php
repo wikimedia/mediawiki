@@ -6,7 +6,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use User;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface AuthManagerLoginAuthenticateAuditHook {

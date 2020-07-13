@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use LinksUpdate;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface LinksUpdateCompleteHook {

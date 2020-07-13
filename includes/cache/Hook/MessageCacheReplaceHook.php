@@ -5,7 +5,7 @@ namespace MediaWiki\Cache\Hook;
 use Title;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface MessageCacheReplaceHook {

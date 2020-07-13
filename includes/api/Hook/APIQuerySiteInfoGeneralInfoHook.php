@@ -5,7 +5,7 @@ namespace MediaWiki\Api\Hook;
 use ApiQuerySiteinfo;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface APIQuerySiteInfoGeneralInfoHook {

@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use UploadBase;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UploadCompleteHook {

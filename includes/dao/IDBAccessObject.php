@@ -50,7 +50,7 @@
  *   - e) otherwise, do the updates
  *   - f) Commit transaction
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.20
  */
