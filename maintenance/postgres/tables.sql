@@ -170,18 +170,6 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 );
 ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
 
-
-CREATE SEQUENCE comment_comment_id_seq;
-CREATE TABLE comment (
-  comment_id   INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('comment_comment_id_seq'),
-  comment_hash INTEGER NOT NULL,
-  comment_text TEXT    NOT NULL,
-  comment_data TEXT
-);
-ALTER SEQUENCE comment_comment_id_seq OWNED BY comment.comment_id;
-CREATE INDEX comment_hash ON comment (comment_hash);
-
-
 CREATE SEQUENCE page_restrictions_pr_id_seq;
 CREATE TABLE page_restrictions (
   pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq'),

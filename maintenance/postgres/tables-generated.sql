@@ -37,3 +37,11 @@ CREATE TABLE bot_passwords (
   bp_grants TEXT NOT NULL,
   PRIMARY KEY(bp_user, bp_app_id)
 );
+CREATE TABLE comment (
+  comment_id BIGSERIAL NOT NULL,
+  comment_hash INT NOT NULL,
+  comment_text TEXT NOT NULL,
+  comment_data TEXT DEFAULT NULL,
+  PRIMARY KEY(comment_id)
+);
+CREATE INDEX comment_hash ON comment (comment_hash);
