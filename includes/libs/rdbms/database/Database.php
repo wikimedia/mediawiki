@@ -44,6 +44,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * Relational database abstraction object
  *
+ * @stable to extend
  * @ingroup Database
  * @since 1.28
  */
@@ -251,6 +252,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
+	 * @stable to call
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
@@ -460,6 +462,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31
 	 */
@@ -538,6 +541,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @return string Schema to use to qualify relations in queries
 	 */
 	protected function relationSchemaQualifier() {
@@ -580,6 +584,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lazyMasterHandle;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function implicitOrderby() {
 		return true;
 	}
@@ -752,6 +760,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Get information about an index into an object
+	 *
+	 * @stable to override
 	 * @param string $table Table name
 	 * @param string $index Index name
 	 * @param string $fname Calling function name
@@ -762,6 +772,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Wrapper for addslashes()
 	 *
+	 * @stable to override
 	 * @param string $s String to be slashed.
 	 * @return string Slashed string.
 	 */
@@ -1034,6 +1045,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Main purpose: Used by query() to decide whether to begin a transaction
 	 * before the current query (in DBO_TRX mode, on by default).
 	 *
+	 * @stable to override
 	 * @param string $sql
 	 * @return bool
 	 */
@@ -1520,6 +1532,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Reset any additional subclass trx* and session* fields
+	 * @stable to override
 	 */
 	protected function doHandleSessionLossPreconnect() {
 		// no-op
@@ -1562,6 +1575,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * It returns false by default, and not all engines support detecting this yet.
 	 * If this returns false, it will be treated as a generic query error.
 	 *
+	 * @stable to override
 	 * @param string $error Error text
 	 * @param int $errno Error number
 	 * @return bool
@@ -1649,9 +1663,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return new DBConnectionError( $this, $error );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function freeResult( $res ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function newSelectQueryBuilder() {
 		return new SelectQueryBuilder( $this );
 	}
@@ -1708,6 +1729,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @see Database::select()
 	 *
+	 * @stable to override
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
@@ -1829,6 +1851,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname, self::QUERY_CHANGE_NONE );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
@@ -1934,6 +1960,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->fetchObject( $res );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function estimateRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -2210,6 +2240,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	abstract public function tableExists( $table, $fname = __METHOD__ );
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$indexInfo = $this->indexInfo( $table, $index, $fname );
 
@@ -2238,6 +2272,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::insert()
+	 * @stable to override
 	 * @param string $table
 	 * @param array $rows Non-empty list of rows
 	 * @param string $fname
@@ -2254,6 +2289,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::insert()
+	 * @stable to override
 	 * @param string $table
 	 * @param array $rows Non-empty list of rows
 	 * @param string $fname
@@ -2270,6 +2306,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
 	 * @since 1.35
 	 */
@@ -2319,6 +2356,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Make UPDATE options array for Database::makeUpdateOptions
 	 *
+	 * @stable to override
 	 * @param array $options
 	 * @return array
 	 */
@@ -2337,6 +2375,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Make UPDATE options for the Database::update function
 	 *
+	 * @stable to override
 	 * @param array $options The options passed to Database::update
 	 * @return string
 	 */
@@ -2459,26 +2498,50 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuename;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function bitNot( $field ) {
 		return "(~$field)";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft & $fieldRight)";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft | $fieldRight)";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
@@ -2487,10 +2550,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildGreatest( $fields, $values ) {
 		return $this->buildSuperlative( 'GREATEST', $fields, $values );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildLeast( $fields, $values ) {
 		return $this->buildSuperlative( 'LEAST', $fields, $values );
 	}
@@ -2504,6 +2575,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
 	 * descriptive aliases.
 	 *
+	 * @stable to override
 	 * @param string $sqlfunc Name of a SQL function
 	 * @param string|string[] $fields Name(s) of column(s) with values to compare
 	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
@@ -2537,6 +2609,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		$this->assertBuildSubstringParams( $startPosition, $length );
 		$functionBody = "$input FROM $startPosition";
@@ -2595,12 +2671,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildStringCast( $field ) {
 		// In theory this should work for any standards-compliant
 		// SQL implementation, although it may not be the best way to do it.
 		return "CAST( $field AS CHARACTER )";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildIntegerCast( $field ) {
 		return 'CAST( ' . $field . ' AS INTEGER )';
 	}
@@ -2614,6 +2698,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function databasesAreIndependent() {
 		return false;
 	}
@@ -2633,6 +2721,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @param DatabaseDomain $domain
 	 * @throws DBConnectionError
 	 * @throws DBError
@@ -2650,6 +2739,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->server;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function tableName( $name, $format = 'quoted' ) {
 		if ( $name instanceof Subquery ) {
 			throw new DBUnexpectedError(
@@ -2814,6 +2907,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Get an aliased field name
 	 * e.g. fieldName AS newFieldName
 	 *
+	 * @stable to override
 	 * @param string $name Field name
 	 * @param string|bool $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
@@ -2953,6 +3047,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->indexAliases[$index] ?? $index;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
@@ -2968,14 +3066,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 
 	/**
 	 * Returns if the given identifier looks quoted or not according to
-	 * the database convention for quoting identifiers .
+	 * the database convention for quoting identifiers
 	 *
+	 * @stable to override
 	 * @note Do not use this to determine if untrusted input is safe.
 	 *   A malicious user can trick this function.
 	 * @param string $name
@@ -2986,6 +3089,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @param string $s
 	 * @param string $escapeChar
 	 * @return string
@@ -2996,6 +3100,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$s );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function buildLike( $param, ...$params ) {
 		if ( is_array( $param ) ) {
 			$params = $param;
@@ -3042,6 +3150,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * which index to pick. Anyway, other databases might have different
 	 * indexes on a given table. So don't bother overriding this unless you're
 	 * MySQL.
+	 *
+	 * @stable to override
 	 * @param string $index
 	 * @return string
 	 */
@@ -3056,6 +3166,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * which index to pick. Anyway, other databases might have different
 	 * indexes on a given table. So don't bother overriding this unless you're
 	 * MySQL.
+	 *
+	 * @stable to override
 	 * @param string $index
 	 * @return string
 	 */
@@ -3083,6 +3195,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::replace()
+	 * @stable to override
 	 * @param string $table
 	 * @param string[][] $uniqueKeys Non-empty list of unique keys
 	 * @param array $rows Non-empty list of rows
@@ -3193,6 +3306,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::upsert()
+	 * @stable to override
 	 * @param string $table
 	 * @param array[] $rows Non-empty list of rows
 	 * @param string[][] $uniqueKeys Non-empty list of unique keys
@@ -3224,6 +3338,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
 		$fname = __METHOD__
 	) {
@@ -3242,6 +3360,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\"";
@@ -3322,6 +3444,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @param array $insertOptions INSERT options
 	 * @param array $selectOptions SELECT options
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
@@ -3439,6 +3562,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBUnexpectedError(
@@ -3453,10 +3580,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			. "{$limit} ";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function unionSupportsOrderAndLimit() {
 		return true; // True for almost every DB supported
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function unionQueries( $sqls, $all ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
 
@@ -3534,6 +3669,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $sql;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function conditional( $cond, $trueVal, $falseVal ) {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
@@ -3542,26 +3681,50 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function strreplace( $orig, $old, $new ) {
 		return "REPLACE({$orig}, {$old}, {$new})";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getServerUptime() {
 		return 0;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function wasDeadlock() {
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function wasLockTimeout() {
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function wasConnectionLoss() {
 		return $this->wasConnectionError( $this->lastErrno() );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function wasReadOnlyError() {
 		return false;
 	}
@@ -3577,6 +3740,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Do not use this method outside of Database/DBError classes
 	 *
+	 * @stable to override
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
 	 */
@@ -3585,6 +3749,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @stable to override
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
 	 *   order to ignore problems like duplicate key errors or foriegn key violations
@@ -3594,6 +3759,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false; // don't know; it could have caused a transaction rollback
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function deadlockLoop( ...$args ) {
 		$function = array_shift( $args );
 		$tries = self::$DEADLOCK_TRIES;
@@ -3629,21 +3798,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout ) {
 		# Real waits are implemented in the subclass.
 		return 0;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getReplicaPos() {
 		# Stub
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getMasterPos() {
 		# Stub
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function serverIsReadOnly() {
 		return false;
 	}
@@ -4002,6 +4187,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * This is used internally to implement atomic sections. It should not be
 	 * used otherwise.
 	 *
+	 * @stable to override
 	 * @since 1.31
 	 * @param string $identifier Identifier for the savepoint
 	 * @param string $fname Calling function name
@@ -4017,6 +4203,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * This is used internally to implement atomic sections. It should not be
 	 * used otherwise.
 	 *
+	 * @stable to override
 	 * @since 1.31
 	 * @param string $identifier Identifier for the savepoint
 	 * @param string $fname Calling function name
@@ -4032,6 +4219,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * This is used internally to implement atomic sections. It should not be
 	 * used otherwise.
 	 *
+	 * @stable to override
 	 * @since 1.31
 	 * @param string $identifier Identifier for the savepoint
 	 * @param string $fname Calling function name
@@ -4281,6 +4469,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Issues the BEGIN command to the database server.
 	 *
 	 * @see Database::begin()
+	 * @stable to override
 	 * @param string $fname
 	 * @throws DBError
 	 */
@@ -4353,6 +4542,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Issues the COMMIT command to the database server.
 	 *
+	 * @stable to override
 	 * @see Database::commit()
 	 * @param string $fname
 	 * @throws DBError
@@ -4422,6 +4612,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Issues the ROLLBACK command to the database server.
 	 *
+	 * @stable to override
 	 * @see Database::rollback()
 	 * @param string $fname
 	 * @throws DBError
@@ -4469,20 +4660,36 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function timestamp( $ts = 0 ) {
 		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
@@ -4624,6 +4831,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This is a no-op unless the server is known a priori to be a replica DB
 	 *
+	 * @stable to override
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27
 	 */
@@ -4680,18 +4888,34 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->doGetLag();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function doGetLag() {
 		return 0;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function maxListLen() {
 		return 0;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function encodeBlob( $b ) {
 		return $b;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function decodeBlob( $b ) {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
@@ -4699,6 +4923,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $b;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function setSessionOptions( array $options ) {
 	}
 
@@ -4811,6 +5039,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Called by sourceStream() to check if we've reached a statement end
 	 *
+	 * @stable to override
 	 * @param string &$sql SQL assembled so far
 	 * @param string &$newLine New line about to be added to $sql
 	 * @return bool Whether $newLine contains end of the statement
@@ -4845,6 +5074,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * - In all other cases, / *$var* / is left unencoded. Except for table options,
 	 *   its use should be avoided. In 1.24 and older, string encoding was applied.
 	 *
+	 * @stable to override
 	 * @param string $ins SQL statement to replace variables in
 	 * @return string The new SQL statement with variables replaced
 	 */
@@ -4896,12 +5126,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Override this in derived classes to provide variables for tables.sql
 	 * and SQL patch files.
 	 *
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
 		return [];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function lockIsFree( $lockName, $method ) {
 		// RDBMs methods for checking named locks may or may not count this thread itself.
 		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
@@ -4909,12 +5144,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return !isset( $this->sessionNamedLocks[$lockName] );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$this->sessionNamedLocks[$lockName] = 1;
 
 		return true;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function unlock( $lockName, $method ) {
 		unset( $this->sessionNamedLocks[$lockName] );
 
@@ -4957,6 +5200,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $unlocker;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function namedLocksEnqueue() {
 		return false;
 	}
@@ -4980,6 +5227,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Helper function for lockTables() that handles the actual table locking
 	 *
+	 * @stable to override
 	 * @param array $read Array of tables to lock for read access
 	 * @param array $write Array of tables to lock for write access
 	 * @param string $method Name of caller
@@ -5002,6 +5250,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Helper function for unlockTables() that handles the actual table unlocking
 	 *
+	 * @stable to override
 	 * @param string $method Name of caller
 	 * @return true
 	 */
@@ -5021,6 +5270,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::dropTable()
+	 * @stable to override
 	 * @param string $table
 	 * @param string $fname
 	 */
@@ -5051,6 +5301,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @see Database::truncate()
+	 * @stable to override
 	 * @param string[] $tables
 	 * @param string $fname
 	 */
@@ -5061,6 +5312,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInfinity() {
 		return 'infinity';
 	}
@@ -5079,6 +5334,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return ConvertibleTimestamp::convert( $format, $expiry );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
 	}
@@ -5105,10 +5364,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function setIndexAliases( array $aliases ) {
 		$this->indexAliases = $aliases;
 	}
@@ -5130,6 +5397,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * This catches broken callers than catch and ignore disconnection exceptions.
 	 * Unlike checking isOpen(), this is safe to call inside of open().
 	 *
+	 * @stable to override
 	 * @return mixed
 	 * @throws DBUnexpectedError
 	 * @since 1.26
