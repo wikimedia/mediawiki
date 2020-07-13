@@ -21,7 +21,7 @@ class MessageValue {
 	private $params;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $key
 	 * @param (MessageParam|MessageValue|string|int|float)[] $params Values that are not instances

@@ -45,7 +45,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	private static $UPGRADE_TTL = 3600;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param array $params
 	 *   - caches: A numbered array of either ObjectFactory::getObjectFromSpec
 	 *      arrays yielding BagOStuff objects or direct BagOStuff objects.

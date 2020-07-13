@@ -43,7 +43,7 @@ class GlobalVarConfig implements Config {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $prefix
 	 */

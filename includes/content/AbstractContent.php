@@ -48,7 +48,7 @@ abstract class AbstractContent implements Content {
 	protected $model_id;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|null $modelId
 	 *

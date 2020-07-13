@@ -138,7 +138,7 @@ class SpecialPage implements MessageLocalizer {
 	 *     If you override execute(), you can recover the default behavior with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"

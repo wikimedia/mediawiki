@@ -28,7 +28,7 @@
 class LocalFileLockError extends ErrorPageError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Status $status
 	 */

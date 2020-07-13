@@ -179,7 +179,7 @@ abstract class File implements IDBAccessObject {
 	 * may return false or throw exceptions if they are not set.
 	 * Most subclasses will want to call assertRepoDefined() here.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 * @param Title|string|bool $title
 	 * @param FileRepo|bool $repo
 	 */

@@ -49,7 +49,7 @@ class WikitextContent extends TextContent {
 	private $previousParseStackTrace = null;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $text
 	 */

@@ -33,7 +33,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 * This returns $msg if it's an IApiMessage, calls 'new ApiRawMessage' if
 	 * $msg is a RawMessage, or calls 'new ApiMessage' in all other cases.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 * @param Message|RawMessage|array|string $msg
 	 * @param string|null $code
 	 * @param array|null $data

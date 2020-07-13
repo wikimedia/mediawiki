@@ -27,7 +27,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	protected $action, $msgPrefix;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name
 	 * @param string $action

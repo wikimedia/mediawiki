@@ -37,7 +37,7 @@ use MediaWiki\Session\Token;
 class LoggedOutEditToken extends Token {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		parent::__construct( '', '', false );

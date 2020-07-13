@@ -224,7 +224,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Lightweight constructor for an anonymous user.
 	 * Use the User::newFrom* factory functions for other kinds of users.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @see newFromName()
 	 * @see newFromId()

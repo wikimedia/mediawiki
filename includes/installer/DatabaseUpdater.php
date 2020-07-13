@@ -107,7 +107,7 @@ abstract class DatabaseUpdater {
 	protected $skipSchema = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param IMaintainableDatabase &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance|null $maintenance Maintenance object which created us

@@ -26,7 +26,7 @@ namespace Wikimedia\Rdbms;
  */
 class DBConnectionError extends DBExpectedError {
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param IDatabase|null $db Object throwing the error
 	 * @param string $error Error text
 	 */

@@ -167,7 +167,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	private $linkRenderer;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IContextSource|null $context
 	 * @param LinkRenderer|null $linkRenderer

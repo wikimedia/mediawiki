@@ -162,7 +162,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Title $title
 	 * @param FileRepo $repo

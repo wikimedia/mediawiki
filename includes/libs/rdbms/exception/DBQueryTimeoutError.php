@@ -30,7 +30,7 @@ namespace Wikimedia\Rdbms;
 class DBQueryTimeoutError extends DBQueryError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IDatabase $db
 	 * @param string $error

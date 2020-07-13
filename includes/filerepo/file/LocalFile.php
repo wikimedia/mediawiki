@@ -259,7 +259,7 @@ class LocalFile extends File {
 
 	/**
 	 * Do not call this except from inside a repo class.
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Title $title
 	 * @param FileRepo $repo

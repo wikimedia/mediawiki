@@ -47,7 +47,7 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 	 * If a 'doCachedWork' callback is provided, then execute() may wait for any prior
 	 * process in the pool to finish and reuse its cached result.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $type The class of actions to limit concurrency for
 	 * @param string $key

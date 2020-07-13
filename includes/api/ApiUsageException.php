@@ -33,7 +33,7 @@ class ApiUsageException extends MWException implements ILocalizedException {
 
 	/**
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 * @param ApiBase|null $module API module responsible for the error, if known
 	 * @param StatusValue $status Status holding errors
 	 * @param int $httpCode HTTP error code to use

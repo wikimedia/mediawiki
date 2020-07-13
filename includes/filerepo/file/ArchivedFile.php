@@ -100,7 +100,7 @@ class ArchivedFile {
 	protected $exists;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @throws MWException
 	 * @param Title $title
 	 * @param int $id

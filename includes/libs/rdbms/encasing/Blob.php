@@ -11,7 +11,7 @@ class Blob implements IBlob {
 	protected $data;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $data
 	 */
 	public function __construct( $data ) {

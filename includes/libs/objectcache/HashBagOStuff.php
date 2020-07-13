@@ -46,7 +46,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	public const KEY_CAS = 2;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
 	 * @codingStandardsIgnoreStart

@@ -233,7 +233,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 	}

@@ -43,7 +43,7 @@ class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param int $id User id
 	 * @param string $name Username
 	 */

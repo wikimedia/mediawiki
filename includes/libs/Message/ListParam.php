@@ -13,7 +13,7 @@ class ListParam extends MessageParam {
 	private $listType;
 
 	/**
-	 * @stable for calling.
+	 * @stable to call.
 	 *
 	 * @param string $listType One of the ListType constants.
 	 * @param (MessageParam|MessageValue|string|int|float)[] $elements Values in the list.

@@ -350,7 +350,7 @@ abstract class ContentHandler {
 	 * and a list of supported formats. Values for the parameters are typically
 	 * provided as literals by subclass's constructors.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $modelId (use CONTENT_MODEL_XXX constants).
 	 * @param string[] $formats List for supported serialization formats

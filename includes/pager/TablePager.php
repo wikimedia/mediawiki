@@ -36,7 +36,7 @@ abstract class TablePager extends IndexPager {
 	protected $mCurrentRow;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IContextSource|null $context
 	 * @param LinkRenderer|null $linkRenderer

@@ -41,7 +41,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	protected $help;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $name Button name
 	 * @param Message $label Button label
 	 * @param Message $help Button help

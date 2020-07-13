@@ -44,7 +44,7 @@ class RevisionSlots {
 	protected $slots;
 
 	/**
-	 * @stable for calling.
+	 * @stable to call.
 	 *
 	 * @param SlotRecord[]|callable $slots SlotRecords,
 	 *        or a callback that returns such a structure.

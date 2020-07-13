@@ -14,7 +14,7 @@ class PathConflict extends Exception {
 	public $existingUserData;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $template
 	 * @param mixed $userData

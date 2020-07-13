@@ -13,7 +13,7 @@ class MWUnknownContentModelException extends MWException {
 	private $modelId;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $modelId
 	 */
 	public function __construct( $modelId ) {

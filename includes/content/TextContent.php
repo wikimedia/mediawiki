@@ -44,7 +44,7 @@ class TextContent extends AbstractContent {
 	protected $mText;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $text
 	 * @param string $model_id
 	 * @throws MWException

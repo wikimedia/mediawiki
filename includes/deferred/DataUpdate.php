@@ -36,7 +36,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	protected $causeAgent = 'unknown';
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		// noop

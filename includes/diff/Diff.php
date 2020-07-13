@@ -45,7 +45,7 @@ class Diff {
 	/**
 	 * Computes diff between sequences of strings.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 * @todo Don't do work in the constructor, use a service to create diffs instead (T257472).
 	 *
 	 * @param string[] $from_lines An array of strings.
