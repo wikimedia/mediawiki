@@ -249,6 +249,5 @@
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
-	<exclude-pattern>AdminSettings\.php</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
 </ruleset>
