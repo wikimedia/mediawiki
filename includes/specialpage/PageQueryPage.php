@@ -36,7 +36,7 @@ abstract class PageQueryPage extends QueryPage {
 	 * like page existence and information for stub color and redirect hints.
 	 * This should be done for live data and cached data.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
@@ -48,7 +48,7 @@ abstract class PageQueryPage extends QueryPage {
 	/**
 	 * Format the result as a simple link to the page
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Skin $skin
 	 * @param object $row Result row

@@ -58,7 +58,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		return [];
@@ -66,7 +66,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function loadFromSubmission( array $data ) {
 		return true;
@@ -75,7 +75,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	/**
 	 * Indicate whether this request contains any state for the specified
 	 * action.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return bool
 	 */
@@ -93,7 +93,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	/**
 	 * Indicate whether this request contains state for the specified
 	 * action sufficient to replace other primary-required requests.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return bool
 	 */

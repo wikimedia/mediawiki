@@ -97,7 +97,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	/**
 	 * @todo change this code to work in one batch
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $lockSrv
 	 * @param array $pathsByType
 	 * @return StatusValue
@@ -115,7 +115,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		return StatusValue::newGood();
@@ -181,7 +181,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	/**
 	 * Do additional initialization for new lock DB connection
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $lockDb
 	 * @param IDatabase $db

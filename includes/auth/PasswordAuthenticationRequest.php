@@ -36,7 +36,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		if ( $this->action === AuthManager::ACTION_REMOVE ) {
@@ -83,7 +83,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function describeCredentials() {
 		return [

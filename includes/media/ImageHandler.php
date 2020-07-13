@@ -31,7 +31,7 @@
 abstract class ImageHandler extends MediaHandler {
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @return bool
 	 */
@@ -41,7 +41,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string[]
 	 */
 	public function getParamMap() {
@@ -50,7 +50,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function validateParam( $name, $value ) {
 		if ( in_array( $name, [ 'width', 'height' ] ) ) {
@@ -66,7 +66,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {
@@ -84,7 +84,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function parseParamString( $str ) {
 		$m = false;
@@ -97,7 +97,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function getScriptParams( $params ) {
 		return [ 'width' => $params['width'] ];
@@ -105,7 +105,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $image
 	 * @param array &$params
 	 * @return bool
@@ -212,7 +212,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $image
 	 * @param string $script
 	 * @param array $params
@@ -231,7 +231,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getImageSize( $image, $path ) {
 		Wikimedia\suppressWarnings();
@@ -246,7 +246,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * Intended for animated GIFs to multiply by the number of frames.
 	 *
 	 * If the file doesn't support a notion of "area" return 0.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @return int
@@ -257,7 +257,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @return string
 	 */
@@ -272,7 +272,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @return string
 	 */
@@ -295,7 +295,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @return string
 	 */
@@ -312,7 +312,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function sanitizeParamsForBucketing( $params ) {
 		$params = parent::sanitizeParamsForBucketing( $params );

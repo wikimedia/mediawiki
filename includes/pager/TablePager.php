@@ -119,7 +119,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getStartBody() {
@@ -171,7 +171,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getEndBody() {
@@ -189,7 +189,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
@@ -217,7 +217,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a class name to be applied to the given row.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param object $row The database result row
 	 * @return string
@@ -229,7 +229,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get attributes to be applied to the given row.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param object $row The database result row
 	 * @return array Array of attribute => value
@@ -256,7 +256,7 @@ abstract class TablePager extends IndexPager {
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $field The column
 	 * @param string $value The cell contents
@@ -268,7 +268,7 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getIndexField() {
 		return $this->mSort;
@@ -277,7 +277,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * TablePager relies on `mw-datatable` for styling, see T214208
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getTableClass() {
@@ -285,7 +285,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getNavClass() {
@@ -293,7 +293,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getSortHeaderClass() {
@@ -303,7 +303,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * A navigation bar with images
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
@@ -348,7 +348,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.24
 	 * @return string[]
 	 */

@@ -56,7 +56,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getUniqueId() {
 		return parent::getUniqueId() . ':' . $this->name;
@@ -64,7 +64,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		return [
@@ -92,7 +92,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @codeCoverageIgnore
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $data
 	 * @return AuthenticationRequest|static
 	 */

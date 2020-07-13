@@ -34,7 +34,7 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getAuthenticationRequests( $action, array $options ) {
 		return [];
@@ -42,7 +42,7 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testForAuthentication( array $reqs ) {
 		return \StatusValue::newGood();
@@ -50,14 +50,14 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
@@ -65,7 +65,7 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		return \StatusValue::newGood();
@@ -73,14 +73,14 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testForAccountLink( $user ) {
 		return \StatusValue::newGood();
@@ -88,7 +88,7 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAccountLink( $user, AuthenticationResponse $response ) {
 	}

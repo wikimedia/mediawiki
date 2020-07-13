@@ -84,7 +84,7 @@ abstract class AuthenticationRequest {
 	 * This value might be exposed to the user in web forms so it should not
 	 * contain private information.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	public function getUniqueId() {
@@ -136,7 +136,7 @@ abstract class AuthenticationRequest {
 	 * individual subclasses, but the contents of the array should be primitive types so that they
 	 * can be transformed into JSON or similar formats.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array A (possibly nested) array with primitive types
 	 */
 	public function getMetadata() {
@@ -151,7 +151,7 @@ abstract class AuthenticationRequest {
 	 * to $this->$key. Most subclasses won't need to override this; if you do override it,
 	 * make sure to always return false if self::getFieldInfo() returns an empty array.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $data Submitted data as an associative array (keys will correspond
 	 *   to getFieldInfo())
 	 * @return bool Whether the request data was successfully loaded
@@ -222,7 +222,7 @@ abstract class AuthenticationRequest {
 	 * and ACTION_REMOVE and for requests returned in
 	 * AuthenticationResponse::$linkRequest to create useful user interfaces.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return Message[] with the following keys:
 	 *  - provider: A Message identifying the service that provides

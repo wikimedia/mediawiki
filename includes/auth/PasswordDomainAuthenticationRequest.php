@@ -44,7 +44,7 @@ class PasswordDomainAuthenticationRequest extends PasswordAuthenticationRequest 
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		$ret = parent::getFieldInfo();
@@ -67,7 +67,7 @@ class PasswordDomainAuthenticationRequest extends PasswordAuthenticationRequest 
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function describeCredentials() {
 		return [

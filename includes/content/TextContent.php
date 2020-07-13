@@ -76,7 +76,7 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int $maxlength
 	 *
@@ -94,7 +94,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text's size in bytes.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return int
 	 */
@@ -108,7 +108,7 @@ class TextContent extends AbstractContent {
 	 * Returns true if this content is not a redirect, and $wgArticleCountMethod
 	 * is "any".
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param bool|null $hasLinks If it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
@@ -157,7 +157,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string The raw text.
 	 */
@@ -169,7 +169,7 @@ class TextContent extends AbstractContent {
 	 * Returns attempts to convert this content object to wikitext,
 	 * and then returns the text string. The conversion may be lossy.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @note this allows any text-based content to be transcluded as if it was wikitext.
 	 *
@@ -210,7 +210,7 @@ class TextContent extends AbstractContent {
 	 * At a minimum, subclasses should make sure to call TextContent::normalizeLineEndings()
 	 * either directly or part of Parser::preSaveTransform().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Title $title
 	 * @param User $user
@@ -228,7 +228,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Diff this content object with another content object.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Content $that The other content object to compare this content object to.
@@ -271,7 +271,7 @@ class TextContent extends AbstractContent {
 	 * Subclasses may override this to provide custom content processing.
 	 * For custom HTML generation alone, it is sufficient to override getHtml().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Title $title Context title for parsing
 	 * @param int $revId Revision ID (for {{REVISIONID}})
@@ -308,7 +308,7 @@ class TextContent extends AbstractContent {
 	 * If further information is to be derived from the content (such as
 	 * categories), the fillParserOutput() method can be overridden instead.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string An HTML representation of the content
 	 */
@@ -325,7 +325,7 @@ class TextContent extends AbstractContent {
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
 	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not

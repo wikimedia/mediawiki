@@ -38,7 +38,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 * Format and output report results using the given information plus
 	 * OutputPage
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use [unused]
@@ -71,7 +71,7 @@ abstract class ImageQueryPage extends QueryPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Skin $skin
 	 * @param object $result
@@ -85,7 +85,7 @@ abstract class ImageQueryPage extends QueryPage {
 	/**
 	 * Get additional HTML to be shown in a results' cell
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param object $row Result row
 	 * @return string

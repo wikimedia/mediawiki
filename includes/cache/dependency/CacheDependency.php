@@ -33,7 +33,7 @@ abstract class CacheDependency {
 
 	/**
 	 * Hook to perform any expensive pre-serialize loading of dependency values.
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function loadDependencyValues() {
 	}

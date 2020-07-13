@@ -46,7 +46,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Change the form descriptor that determines how a field will look in the authentication form.
 	 * Called from fieldInfoToFormDescriptor().
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param AuthenticationRequest[] $requests
 	 * @param array $fieldInfo Field information array (union of all
@@ -63,7 +63,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool|string
 	 */
 	protected function getLoginSecurityLevel() {
@@ -79,7 +79,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 *
 	 * Used to preserve POST data over a HTTP redirect.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $data
 	 * @param bool|null $wasPosted
@@ -94,7 +94,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string|null $subPage
 	 *
 	 * @return bool|void
@@ -230,7 +230,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 	/**
 	 * Allows blacklisting certain request types.
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array A list of AuthenticationRequest subclass names
 	 */
 	protected function getRequestBlacklist() {
@@ -240,7 +240,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Load or initialize $authAction, $authRequests and $subPage.
 	 * Subclasses should call this from execute() or otherwise ensure the variables are initialized.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $subPage Subpage of the special page.
 	 * @param string|null $authAction Override auth action specified in request (this is useful
 	 *    when the form needs to be changed from <action> to <action>_CONTINUE after a successful
@@ -509,7 +509,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Returns URL query parameters which can be used to reload the page (or leave and return) while
 	 * preserving all information that is necessary for authentication to continue. These parameters
 	 * will be preserved in the action URL of the form and in the return URL for redirect flow.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param bool $withToken Include CSRF token
 	 * @return array
 	 */
@@ -526,7 +526,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 	/**
 	 * Generates a HTMLForm descriptor array from a set of authentication requests.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param AuthenticationRequest[] $requests
 	 * @param string $action AuthManager action name (one of the AuthManager::ACTION_* constants)
 	 * @return array[]
@@ -541,7 +541,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param AuthenticationRequest[] $requests
 	 * @param string $action AuthManager action name (one of the AuthManager::ACTION_* constants)
 	 * @return HTMLForm
@@ -580,7 +580,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Providers using redirect flow (e.g. Google login) need their own submit buttons; if using
 	 * one of those custom buttons is the only way to proceed, there is no point in displaying the
 	 * default button which won't do anything useful.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param AuthenticationRequest[] $requests An array of AuthenticationRequests from which the
 	 *  form will be built
@@ -642,7 +642,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 	/**
 	 * Returns the CSRF token.
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Token
 	 */
 	protected function getToken() {
@@ -652,7 +652,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 	/**
 	 * Returns the name of the CSRF token (under which it should be found in the POST or GET data).
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getTokenName() {

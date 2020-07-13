@@ -293,7 +293,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * Get the a bitfield of extra features supported by the backend medium
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return int Bitfield of FileBackend::ATTR_* flags
 	 * @since 1.23

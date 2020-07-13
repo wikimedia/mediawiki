@@ -44,7 +44,7 @@ class MWException extends Exception {
 	/**
 	 * Whether to log this exception in the exception debug log.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @since 1.23
 	 * @return bool
@@ -56,7 +56,7 @@ class MWException extends Exception {
 	/**
 	 * Can the extension use the Message class/wfMessage to get i18n-ed messages?
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -105,7 +105,7 @@ class MWException extends Exception {
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string Html to output
 	 */
@@ -142,7 +142,7 @@ class MWException extends Exception {
 	 * If $wgShowExceptionDetails is true, return a text message with a
 	 * backtrace to the error.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -161,7 +161,7 @@ class MWException extends Exception {
 	/**
 	 * Return the title of the page when reporting this error in a HTTP response.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string
 	 */
@@ -171,7 +171,7 @@ class MWException extends Exception {
 
 	/**
 	 * Output the exception report using HTML.
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function reportHTML() {
 		global $wgOut, $wgSitename;
@@ -212,7 +212,7 @@ class MWException extends Exception {
 	 * Output a report about the exception and takes care of formatting.
 	 * It will be either HTML or plain text based on isCommandLine().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function report() {
 		global $wgMimeType;

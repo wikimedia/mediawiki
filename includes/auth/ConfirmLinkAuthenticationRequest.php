@@ -45,7 +45,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		$options = [];
@@ -69,7 +69,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getUniqueId() {
 		$ids = [];

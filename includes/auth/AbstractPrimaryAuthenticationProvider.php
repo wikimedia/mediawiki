@@ -35,7 +35,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 {
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $reqs
 	 *
@@ -47,14 +47,14 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testUserCanAuthenticate( $username ) {
 		// Assume it can authenticate if it exists
@@ -63,7 +63,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @note Reimplement this if you do anything other than
 	 *  User::getCanonicalName( $req->username ) to determine the user being
 	 *  authenticated.
@@ -75,7 +75,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 * @note Reimplement this if self::getAuthenticationRequests( AuthManager::ACTION_REMOVE )
 	 *  doesn't return requests that will revoke all access for the user.
 	 */
@@ -92,7 +92,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function providerAllowsPropertyChange( $property ) {
 		return true;
@@ -100,7 +100,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
@@ -108,7 +108,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function continuePrimaryAccountCreation( $user, $creator, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
@@ -116,7 +116,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function finishAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 		return null;
@@ -124,14 +124,14 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		return \StatusValue::newGood();
@@ -139,14 +139,14 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function autoCreatedAccount( $user, $source ) {
 	}
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function beginPrimaryAccountLink( $user, array $reqs ) {
 		if ( $this->accountCreationType() === self::TYPE_LINK ) {
@@ -160,7 +160,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function continuePrimaryAccountLink( $user, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
@@ -168,7 +168,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function postAccountLink( $user, AuthenticationResponse $response ) {
 	}

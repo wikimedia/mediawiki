@@ -36,7 +36,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	protected $mAddedRedirectParams = [];
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string|null $subpage
 	 */
 	public function execute( $subpage ) {
@@ -69,7 +69,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string|null $subpage
 	 * @return array|bool
 	 */
@@ -101,7 +101,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * a particular user of this wiki (e.g., if the redirect is to the
 	 * user page of a User). See T109724.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.27
 	 * @return bool
 	 */
@@ -110,7 +110,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	protected function showNoRedirectPage() {
 		$class = static::class;

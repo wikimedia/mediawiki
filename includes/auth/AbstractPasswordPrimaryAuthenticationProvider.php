@@ -142,7 +142,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	/**
 	 * Get password reset data, if any
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $username
 	 * @param mixed $data
 	 * @return object|null { 'hard' => bool, 'msg' => Message }
@@ -154,7 +154,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	/**
 	 * Get expiration date for a new password, if any
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $username
 	 * @return string|null
 	 */
@@ -170,7 +170,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $action
 	 * @param array $options
 	 *

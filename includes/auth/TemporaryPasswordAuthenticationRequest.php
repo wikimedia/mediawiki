@@ -41,7 +41,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getFieldInfo() {
 		return [
@@ -96,7 +96,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function describeCredentials() {
 		return [

@@ -157,7 +157,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param string|null $format
@@ -171,7 +171,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @return bool
@@ -185,7 +185,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * Subclasses may override this to implement (light weight) validation.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @return bool Always true.
@@ -208,7 +208,7 @@ abstract class AbstractContent implements Content {
 	 * and true for $that === this. It MUST also return false if $that does not have the same
 	 * content model.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Content|null $that
@@ -253,7 +253,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @note Do not call this method directly, call equals() instead.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Content $that
 	 * @return bool
@@ -274,7 +274,7 @@ abstract class AbstractContent implements Content {
 	 * They should however make sure to call SecondaryDataUpdates to give extensions
 	 * a chance to inject additional updates.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Title $title
@@ -342,7 +342,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * Subclasses that implement redirects should override this.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @return Title|null
@@ -383,7 +383,7 @@ abstract class AbstractContent implements Content {
 	 * This default implementation always returns $this.
 	 * Subclasses that implement redirects should override this.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Title $target
@@ -397,7 +397,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param string|int $sectionId
@@ -410,7 +410,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param string|int|null|bool $sectionId
@@ -425,7 +425,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Title $title
@@ -440,7 +440,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param string $header
@@ -453,7 +453,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Title $title
@@ -468,7 +468,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page
@@ -488,7 +488,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page
@@ -508,7 +508,7 @@ abstract class AbstractContent implements Content {
 	 * This default implementation always returns false. Subclasses may override
 	 * this to supply matching logic.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param MagicWord $word
@@ -525,7 +525,7 @@ abstract class AbstractContent implements Content {
 	 * This base implementation calls the hook ConvertContent to enable custom conversions.
 	 * Subclasses may override this to implement conversion for "their" content model.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $toModel
 	 * @param string $lossy
@@ -559,7 +559,7 @@ abstract class AbstractContent implements Content {
 	 * Subclasses that override getParserOutput() itself should take care to call the
 	 * ContentGetParserOutput hook.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @since 1.24
 	 *
@@ -607,7 +607,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * This placeholder implementation always throws an exception.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @since 1.24
 	 *

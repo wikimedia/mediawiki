@@ -217,7 +217,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::lockByType()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22
@@ -252,7 +252,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::unlockByType()
-	 * @stable for overriding
+	 * @stable to override
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22

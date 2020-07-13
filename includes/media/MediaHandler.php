@@ -120,7 +120,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File|FSFile $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
@@ -144,7 +144,7 @@ abstract class MediaHandler {
 	 * version 3 it might add to the end of the array the element 'foo=3'. if the core metadata
 	 * version is 2, the end version string would look like '2;foo=3'.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string Version string
 	 */
@@ -160,7 +160,7 @@ abstract class MediaHandler {
 	 *
 	 * By default just returns $metadata, but can be used to allow
 	 * media handlers to convert between metadata versions.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string|array $metadata Metadata array (serialized if string)
 	 * @param int $version Target version
@@ -181,7 +181,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a string describing the type of metadata, for display purposes.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @note This method is currently unused.
 	 * @param File $image
@@ -204,7 +204,7 @@ abstract class MediaHandler {
 	 *  triggering as bad metadata for a large number of files can cause
 	 *  performance problems.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $image
 	 * @param string $metadata The metadata in serialized form
 	 * @return bool|int
@@ -241,7 +241,7 @@ abstract class MediaHandler {
 	 * Note, if the file simply has no metadata, but the handler supports
 	 * this interface, it should return an empty array, not false.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return array|bool False if interface not supported
@@ -259,7 +259,7 @@ abstract class MediaHandler {
 	 *
 	 * Return false to fall back to the regular getTransform().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param string $script
@@ -274,7 +274,7 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does not
 	 * actually do the transform.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param string $dstPath Filesystem destination path
@@ -290,7 +290,7 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does the
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param string $dstPath Filesystem destination path
@@ -305,7 +305,7 @@ abstract class MediaHandler {
 	/**
 	 * Get the thumbnail extension and MIME type for a given source MIME type
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $ext Extension of original file
 	 * @param string $mime MIME type of original file
@@ -331,7 +331,7 @@ abstract class MediaHandler {
 	/**
 	 * True if the handled types can be transformed
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -344,7 +344,7 @@ abstract class MediaHandler {
 	 * True if handled types cannot be displayed directly in a browser
 	 * but can be rendered
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -356,7 +356,7 @@ abstract class MediaHandler {
 	/**
 	 * True if the type has multi-page capabilities
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -368,7 +368,7 @@ abstract class MediaHandler {
 	/**
 	 * Page count for a multi-page document, false if unsupported or unknown
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return int|false
@@ -380,7 +380,7 @@ abstract class MediaHandler {
 	/**
 	 * The material is vectorized and thus scaling is lossless
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -394,7 +394,7 @@ abstract class MediaHandler {
 	 * In particular, video material need not return true.
 	 * @note Before 1.20, this was a method of ImageHandler only
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -407,7 +407,7 @@ abstract class MediaHandler {
 	 * If the material is animated, we can animate the thumbnail
 	 * @since 1.20
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool If material is not animated, handler may return any value.
@@ -418,7 +418,7 @@ abstract class MediaHandler {
 
 	/**
 	 * False if the handler is disabled for all files
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -438,7 +438,7 @@ abstract class MediaHandler {
 	 *
 	 * @note For non-paged media, use getImageSize.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param int $page What page to get dimensions of
@@ -459,7 +459,7 @@ abstract class MediaHandler {
 	/**
 	 * Generic getter for text layer.
 	 * Currently overloaded by PDF and DjVu handlers
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param int $page Page number to get information for
@@ -518,7 +518,7 @@ abstract class MediaHandler {
 	 * should generate HTML instead. It can do all the formatting according
 	 * to some standard. That makes it possible to do things like visual
 	 * indication of grouped and chained streams in ogg container files.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image
 	 * @param bool|IContextSource $context Context to use (optional)
@@ -534,7 +534,7 @@ abstract class MediaHandler {
 	 *
 	 * This is used by the media handlers that use the FormatMetadata class
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $metadataArray
 	 * @param bool|IContextSource $context Context to use (optional)
@@ -566,7 +566,7 @@ abstract class MediaHandler {
 	 * Get a list of metadata items which should be displayed when
 	 * the metadata table is collapsed.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array Array of strings
 	 */
@@ -620,7 +620,7 @@ abstract class MediaHandler {
 	/**
 	 * Short description. Shown on Special:Search results.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return string
@@ -632,7 +632,7 @@ abstract class MediaHandler {
 	/**
 	 * Long description. Shown under image on image description page surounded by ().
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return string
@@ -685,7 +685,7 @@ abstract class MediaHandler {
 	/**
 	 * Shown in file history box on image description page.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return string Dimensions
@@ -701,7 +701,7 @@ abstract class MediaHandler {
 	 * in order to add some javascript to render a viewer.
 	 * See TimedMediaHandler or OggHandler for an example.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param Parser $parser
 	 * @param File $file
@@ -716,7 +716,7 @@ abstract class MediaHandler {
 	 * match the handler class, a Status object should be returned containing
 	 * relevant errors.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $fileName The local path to the file.
 	 * @return Status
@@ -729,7 +729,7 @@ abstract class MediaHandler {
 	 * Check for zero-sized thumbnails. These can be generated when
 	 * no disk space is available or some other error occurs
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $dstPath The location of the suspect file
 	 * @param int $retval Return value of some shell process, file will be deleted if this is non-zero
@@ -766,7 +766,7 @@ abstract class MediaHandler {
 	 * regenerate.
 	 *
 	 * @see LocalFile::purgeThumbnails
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array &$files
 	 * @param array $options Purge options. Currently will always be
@@ -779,7 +779,7 @@ abstract class MediaHandler {
 	/**
 	 * True if the handler can rotate the media
 	 * @since 1.24 non-static. From 1.21-1.23 was static
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -798,7 +798,7 @@ abstract class MediaHandler {
 	 *
 	 * For files we don't know, we return 0.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return int 0, 90, 180 or 270
@@ -830,7 +830,7 @@ abstract class MediaHandler {
 	/**
 	 * Get list of languages file can be viewed in.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return string[] Array of language codes, or empty array if unsupported.
@@ -843,7 +843,7 @@ abstract class MediaHandler {
 	/**
 	 * When overridden in a descendant class, returns a language code most suiting
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @since 1.32
 	 *
@@ -863,7 +863,7 @@ abstract class MediaHandler {
 	 * a valid language code. Otherwise can return null if files of this
 	 * type do not support alternative language renderings.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return string|null Language code or null if multi-language not supported for filetype.
@@ -879,7 +879,7 @@ abstract class MediaHandler {
 	 * File::getLength() existed for a long time, but was calling a method
 	 * that only existed in some subclasses of this class (The TMH ones).
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return float Length in seconds
@@ -891,7 +891,7 @@ abstract class MediaHandler {
 
 	/**
 	 * True if creating thumbnails from the file is large or otherwise resource-intensive.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $file
 	 * @return bool
@@ -903,7 +903,7 @@ abstract class MediaHandler {
 	/**
 	 * Returns whether or not this handler supports the chained generation of thumbnails according
 	 * to buckets
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 * @since 1.24
@@ -915,7 +915,7 @@ abstract class MediaHandler {
 	/**
 	 * Returns a normalised params array for which parameters have been cleaned up for bucketing
 	 * purposes
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $params
 	 * @return array
@@ -946,7 +946,7 @@ abstract class MediaHandler {
 	 *   ]
 	 *
 	 * Returns null if no warning is necessary.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @return array|null
 	 */
@@ -1002,7 +1002,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param array $metadata Contains this handler's unserialized getMetadata() for a file
 	 * @return array

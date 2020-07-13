@@ -68,7 +68,7 @@ class ErrorPageError extends MWException implements ILocalizedException {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param int $action
 	 *
 	 * @throws FatalError

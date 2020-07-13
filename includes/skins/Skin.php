@@ -170,7 +170,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
@@ -185,7 +185,7 @@ abstract class Skin extends ContextSource {
 	 * Any modules defined with the 'styles' key will be added as render blocking CSS via
 	 * Output::addModuleStyles. Similarly, each key should refer to a list of modules
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
@@ -694,7 +694,7 @@ abstract class Skin extends ContextSource {
 	 * Text with the permalink to the source page,
 	 * usually shown on the footer of a printed page
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string HTML text with an URL
 	 */
 	public function printSource() {
@@ -1610,7 +1610,7 @@ abstract class Skin extends ContextSource {
 	 * and can technically insert anything in here; skin creators are expected to handle
 	 * values described above.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array
 	 */

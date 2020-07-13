@@ -131,7 +131,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Initialize various variables and generate the template
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function outputPage() {
 		Profiler::instance()->setAllowOutput();

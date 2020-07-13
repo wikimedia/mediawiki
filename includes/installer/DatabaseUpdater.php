@@ -453,7 +453,7 @@ abstract class DatabaseUpdater {
 	 * This should be called after any request data has been imported, but before
 	 * any write operations to the database. The result should be passed to the DB
 	 * setSchemaVars() method.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return array
 	 * @since 1.28
@@ -609,7 +609,7 @@ abstract class DatabaseUpdater {
 	 * of this in 1.17 but we want to remain back-compatible for a while. So
 	 * load up these old global-based things into our update list.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getOldGlobalUpdates() {
@@ -920,7 +920,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Rename an index from an existing table
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use renameExtensionIndex instead!

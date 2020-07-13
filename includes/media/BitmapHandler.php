@@ -34,7 +34,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	/**
 	 * Returns which scaler type should be used. Creates parent directories
 	 * for $dstPath and returns 'client' on error
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $dstPath
 	 * @param bool $checkDstPath
@@ -65,7 +65,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function makeParamString( $params ) {
 		$res = parent::makeParamString( $params );
@@ -78,7 +78,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function parseParamString( $str ) {
 		$remainder = preg_replace( '/^interlaced-/', '', $str );
@@ -92,7 +92,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function validateParam( $name, $value ) {
 		if ( $name === 'interlace' ) {
@@ -103,7 +103,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $image
 	 * @param array &$params
 	 * @return bool
@@ -142,7 +142,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * Transform an image using ImageMagick
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
@@ -534,7 +534,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -559,7 +559,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @see $wgEnableAutoRotation
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool Whether auto rotation is enabled
 	 */
 	public function autoRotateEnabled() {
@@ -574,7 +574,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @param File $file
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90

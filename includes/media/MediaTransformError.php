@@ -72,7 +72,7 @@ class MediaTransformError extends MediaTransformOutput {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return int
 	 */

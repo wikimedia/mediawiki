@@ -36,7 +36,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 * Also supports only having a start or end timestamp.
 	 * Assumes that the start timestamp comes before the end timestamp.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $startStamp Timestamp of the beginning of the date range (or empty)
 	 * @param string $endStamp Timestamp of the end of the date range (or empty)
@@ -75,7 +75,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 * Takes ReverseChronologicalPager::getDateCond parameters and repurposes
 	 * them to work with timestamp-based getDateRangeCond.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param int $year Year up to which we want revisions
 	 * @param int $month Month up to which we want revisions
@@ -97,7 +97,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	/**
 	 * Build variables to use by the database wrapper.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit

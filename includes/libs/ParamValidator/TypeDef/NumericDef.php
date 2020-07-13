@@ -108,7 +108,7 @@ abstract class NumericDef extends TypeDef {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function normalizeSettings( array $settings ) {
 		if ( !isset( $settings[self::PARAM_MAX] ) ) {
@@ -126,7 +126,7 @@ abstract class NumericDef extends TypeDef {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
@@ -170,7 +170,7 @@ abstract class NumericDef extends TypeDef {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
@@ -187,7 +187,7 @@ abstract class NumericDef extends TypeDef {
 
 	/**
 	 * @inheritDoc
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );

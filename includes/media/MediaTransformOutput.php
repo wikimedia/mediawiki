@@ -81,7 +81,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Get the final extension of the thumbnail.
 	 * Returns false for scripted transformations.
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string|bool
 	 */
@@ -90,7 +90,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string|bool The thumbnail URL
 	 */
@@ -99,7 +99,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @return string|bool The permanent thumbnail storage path
 	 */
@@ -108,7 +108,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 *
 	 * @param string $storagePath The permanent storage path
 	 * @return void
