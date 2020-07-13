@@ -16,3 +16,18 @@ CREATE TABLE /*_*/updatelog (
   ul_value BLOB DEFAULT NULL,
   PRIMARY KEY(ul_key)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/actor (
+  actor_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+  actor_user INT UNSIGNED DEFAULT NULL,
+  actor_name VARBINARY(255) NOT NULL,
+  UNIQUE INDEX actor_user (actor_user),
+  UNIQUE INDEX actor_name (actor_name),
+  PRIMARY KEY(actor_id)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/user_former_groups (
+  ufg_user INT UNSIGNED DEFAULT 0 NOT NULL,
+  ufg_group VARBINARY(255) DEFAULT '' NOT NULL,
+  PRIMARY KEY(ufg_user, ufg_group)
+) /*$wgDBTableOptions*/;
