@@ -1136,7 +1136,7 @@
 	"prefs-help-signature": "Comments on talk pages should be signed with \"<nowiki>~~~~</nowiki>\", which will be converted into your signature and a timestamp.",
 	"badsig": "Invalid raw signature.\nCheck HTML tags.",
 	"badsightml": "Your signature contains invalid or deprecated HTML syntax:",
-	"badsiglinks": "Your signature must include a link to your user page, talk page or contributions. Please add it, for example: <code>$1</code>.",
+	"badsiglinks": "Your signature must include a link to your user page, talk page or contributions on this wiki. Please add it, for example: <code>$1</code>.",
 	"badsigsubst": "Your signature contains nested substitution (e.g. <code>subst:</code> or <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Your signature is too long.\nIt must not be more than $1 {{PLURAL:$1|character|characters}} long.",
 	"linter-pager-bogus-image-options-details": "Bogus file option",
