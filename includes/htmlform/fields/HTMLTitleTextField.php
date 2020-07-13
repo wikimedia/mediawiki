@@ -13,9 +13,13 @@ use MediaWiki\Widget\TitleInputWidget;
  * 'creatable' - Whether to validate the title is creatable (not a special page)
  * 'exists' - Whether to validate that the title already exists
  *
+ * @stable to extend
  * @since 1.26
  */
 class HTMLTitleTextField extends HTMLTextField {
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$params += [
 			'namespace' => false,

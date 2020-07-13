@@ -5,6 +5,8 @@ use MediaWiki\Widget\ExpiryInputWidget;
 /**
  * Expiry Field that allows the user to specify a precise date or a
  * relative date string.
+ *
+ * @stable to extend
  */
 class HTMLExpiryField extends HTMLFormField {
 
@@ -15,6 +17,8 @@ class HTMLExpiryField extends HTMLFormField {
 
 	/**
 	 * Relative Date Time Field.
+	 *
+	 * @stable to call
 	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {

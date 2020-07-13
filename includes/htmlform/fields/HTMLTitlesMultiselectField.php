@@ -17,9 +17,13 @@ use MediaWiki\Widget\TitlesMultiselectWidget;
  * - OOUI modules were adjusted for the TitlesMultiselectWidget
  * - The PHP version instantiates a MediaWiki\Widget\TitlesMultiselectWidget
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLTitlesMultiselectField extends HTMLTitleTextField {
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$params += [
 			// This overrides the default from HTMLTitleTextField

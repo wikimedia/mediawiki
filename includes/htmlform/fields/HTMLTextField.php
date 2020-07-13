@@ -1,5 +1,7 @@
 <?php
 
+use OOUI\Widget;
+
 /**
  * <input> field.
  *
@@ -7,6 +9,8 @@
  * recognized:
  *   autocomplete - HTML autocomplete value (a boolean for on/off or a string according to
  *     https://html.spec.whatwg.org/multipage/forms.html#autofill )
+ *
+ * @stable to extend
  */
 class HTMLTextField extends HTMLFormField {
 	protected $mPlaceholder = '';
@@ -15,6 +19,8 @@ class HTMLTextField extends HTMLFormField {
 	protected $autocomplete;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param array $params
 	 *   - type: HTML textfield type
 	 *   - size: field size in characters (defaults to 45)
@@ -37,6 +43,10 @@ class HTMLTextField extends HTMLFormField {
 		}
 	}
 
+	/**
+	 * @stable to override
+	 * @return int
+	 */
 	public function getSize() {
 		return $this->mParams['size'] ?? 45;
 	}
@@ -58,6 +68,10 @@ class HTMLTextField extends HTMLFormField {
 		return !( isset( $this->mParams['type'] ) && $this->mParams['type'] === 'password' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputHTML( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
@@ -140,6 +154,10 @@ class HTMLTextField extends HTMLFormField {
 		return $type;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputOOUI( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
@@ -204,12 +222,20 @@ class HTMLTextField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	/**
+	 * @stable to override
+	 *
+	 * @param array $params
+	 *
+	 * @return Widget
+	 */
 	protected function getInputWidget( $params ) {
 		return new OOUI\TextInputWidget( $params );
 	}
 
 	/**
 	 * Returns an array of data-* attributes to add to the field.
+	 * @stable to override
 	 *
 	 * @return array
 	 */

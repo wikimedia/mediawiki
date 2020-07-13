@@ -2,6 +2,7 @@
 
 /**
  * @newable
+ * @stable to extend
  */
 class HTMLFormFieldRequiredOptionsException extends MWException {
 

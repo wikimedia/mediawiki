@@ -12,6 +12,7 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  *
  * The result is the array of usernames
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {

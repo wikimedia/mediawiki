@@ -2,6 +2,8 @@
 
 /**
  * A field that will contain a numeric value
+ *
+ * @stable to extend
  */
 class HTMLFloatField extends HTMLTextField {
 	public function getSize() {
@@ -44,6 +46,10 @@ class HTMLFloatField extends HTMLTextField {
 		return true;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function getInputWidget( $params ) {
 		return new OOUI\NumberInputWidget( $params );
 	}

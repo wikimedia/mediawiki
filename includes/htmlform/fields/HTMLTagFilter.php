@@ -1,6 +1,8 @@
 <?php
 /**
  * Wrapper for ChangeTags::buildTagFilterSelector to use in HTMLForm
+ *
+ * @stable to extend
  */
 class HTMLTagFilter extends HTMLFormField {
 	protected $tagFilter;

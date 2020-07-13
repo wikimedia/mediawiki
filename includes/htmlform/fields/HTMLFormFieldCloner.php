@@ -34,6 +34,7 @@
  * additional (string) keys present with other types of values.
  *
  * @since 1.23
+ * @stable to extend
  */
 class HTMLFormFieldCloner extends HTMLFormField {
 	private static $counter = 0;
@@ -45,6 +46,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected $uniqueId;
 
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$this->uniqueId = static::class . ++self::$counter . 'x';
 		parent::__construct( $params );

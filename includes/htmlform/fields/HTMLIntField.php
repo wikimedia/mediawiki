@@ -2,8 +2,15 @@
 
 /**
  * A field that must contain a number
+ *
+ * @stable to extend
  */
 class HTMLIntField extends HTMLFloatField {
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
