@@ -24,6 +24,7 @@
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
  *
+ * @stable for subclassing
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
@@ -32,12 +33,15 @@ abstract class ChannelFeed extends FeedItem {
 	protected $templateParser;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param string|Title $title Feed's title
 	 * @param string $description
 	 * @param string $url URL uniquely designating the feed.
 	 * @param string $date Feed's date
 	 * @param string $author Author's user name
 	 * @param string $comments
+	 *
 	 */
 	public function __construct(
 		$title, $description, $url, $date = '', $author = '', $comments = ''
