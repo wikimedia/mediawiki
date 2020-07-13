@@ -86,12 +86,6 @@ class EntryPoint {
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
-		if ( !$conf->get( 'EnableRestAPI' ) ) {
-			wfHttpError( 403, 'Access Denied',
-				'Set $wgEnableRestAPI to true to enable the experimental REST API' );
-			return;
-		}
-
 		$request = new RequestFromGlobals( [
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
