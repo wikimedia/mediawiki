@@ -100,11 +100,13 @@
 			}
 
 			&:hover + label:before {
-				border-color: @colorProgressive;
+				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+				border-color: @color-primary;
 			}
 
 			&:active + label:before {
-				background-color: @colorProgressiveActive;
+				// FIXME: Replace with WikimediaUI Base `@background-color*` var when available.
+				background-color: @color-primary--active;
 				border-color: @border-color-input-binary--active;
 			}
 
@@ -118,7 +120,8 @@
 				}
 
 				&:hover + label:before {
-					border-color: @colorProgressiveHighlight;
+					// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+					border-color: @color-primary--hover;
 				}
 
 				&:active {

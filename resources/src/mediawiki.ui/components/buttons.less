@@ -101,23 +101,23 @@
 	//   <button class="mw-ui-button mw-ui-progressive" disabled>.mw-ui-progressive</button>
 	// </div>
 	&.mw-ui-progressive {
-		.mw-ui-button-colors-primary( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
+		.mw-ui-button-colors-primary( @color-primary, @color-primary--hover, @color-primary--active );
 
 		&.mw-ui-quiet {
-			color: @colorProgressive;
+			color: @color-primary;
 
 			&:hover {
 				background-color: transparent;
-				color: @colorProgressiveHighlight;
+				color: @color-primary--hover;
 			}
 
 			&:active {
-				color: @colorProgressiveActive;
+				color: @color-primary--active;
 			}
 
 			&:focus {
 				background-color: transparent;
-				color: @colorProgressive;
+				color: @color-primary--focus;
 			}
 		}
 	}
@@ -135,23 +135,23 @@
 	//   <button class="mw-ui-button mw-ui-destructive" disabled>.mw-ui-destructive</button>
 	// </div>
 	&.mw-ui-destructive {
-		.mw-ui-button-colors-primary( @colorDestructive, @colorDestructiveHighlight, @colorDestructiveActive );
+		.mw-ui-button-colors-primary( @color-destructive, @color-destructive--hover, @color-destructive--active );
 
 		&.mw-ui-quiet {
-			color: @colorDestructive;
+			color: @color-destructive;
 
 			&:hover {
 				background-color: transparent;
-				color: @colorDestructiveHighlight;
+				color: @color-destructive--hover;
 			}
 
 			&:active {
-				color: @colorDestructiveActive;
+				color: @color-destructive--active;
 			}
 
 			&:focus {
 				background-color: transparent;
-				color: @colorDestructive;
+				color: @color-destructive;
 			}
 		}
 	}

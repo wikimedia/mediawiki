@@ -105,16 +105,17 @@
 
 			// `:focus` has to come first, otherwise a specificity race with `:hover:focus` etc is necessary
 			&:focus + label:before {
-				border-color: @colorProgressive;
+				border-color: @border-color-base--focus;
 				box-shadow: @box-shadow-base--focus;
 			}
 
 			&:hover + label:before {
-				border-color: @colorProgressive;
+				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+				border-color: @color-primary--hover;
 			}
 
 			&:active + label:before {
-				background-color: @colorProgressiveActive;
+				background-color: @background-color-input-binary--active;
 				border-color: @border-color-input-binary--active;
 				box-shadow: @box-shadow-input-binary--active;
 			}
@@ -132,8 +133,9 @@
 				}
 
 				&:hover + label:before {
-					background-color: @colorProgressiveHighlight;
-					border-color: @colorProgressiveHighlight;
+					// FIXME: Replace with WikimediaUI Base vars when available.
+					background-color: @color-primary--hover;
+					border-color: @color-primary--hover;
 				}
 
 				&:active + label:before {
