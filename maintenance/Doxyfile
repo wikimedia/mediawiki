@@ -140,7 +140,6 @@ RECURSIVE              = YES
 EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php \
-                         AdminSettings.php \
                          .svn \
                          */.git/* \
                          */includes/libs/*/README.md \
