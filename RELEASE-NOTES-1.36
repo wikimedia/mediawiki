@@ -96,6 +96,9 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.36 ===
+* (T176526) EditPage::getContextTitle() will now throw an exception if a context
+  title was not set using setContextTitle(). Previously, this mis-use would only
+  cause a deprecation warning to be emitted.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
