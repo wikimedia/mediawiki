@@ -127,7 +127,7 @@ class BaseDump {
 			$this->close();
 			if ( count( $this->infiles ) ) {
 				$infile = array_shift( $this->infiles );
-				$this->reader->open( $infile );
+				$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
 				$this->atEnd = false;
 			}
 		}
