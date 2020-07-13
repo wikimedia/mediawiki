@@ -15,3 +15,15 @@ CREATE TABLE /*_*/updatelog (
   ul_value BLOB DEFAULT NULL,
   PRIMARY KEY(ul_key)
 );
+CREATE TABLE /*_*/actor (
+  actor_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  actor_user INTEGER UNSIGNED DEFAULT NULL,
+  actor_name BLOB NOT NULL
+);
+CREATE UNIQUE INDEX actor_user ON /*_*/actor (actor_user);
+CREATE UNIQUE INDEX actor_name ON /*_*/actor (actor_name);
+CREATE TABLE /*_*/user_former_groups (
+  ufg_user INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  ufg_group BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(ufg_user, ufg_group)
+);

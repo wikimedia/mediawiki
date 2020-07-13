@@ -60,16 +60,6 @@ CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
-CREATE SEQUENCE actor_actor_id_seq;
-CREATE TABLE actor (
-  actor_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('actor_actor_id_seq'),
-  actor_user INTEGER,
-  actor_name    TEXT     NOT NULL
-);
-ALTER SEQUENCE actor_actor_id_seq OWNED BY actor.actor_id;
-CREATE UNIQUE INDEX actor_user ON actor (actor_user);
-CREATE UNIQUE INDEX actor_name ON actor (actor_name);
-
 CREATE TABLE user_groups (
   ug_user    INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ug_group   TEXT         NOT NULL,
@@ -78,12 +68,6 @@ CREATE TABLE user_groups (
 );
 CREATE INDEX user_groups_group  ON user_groups (ug_group);
 CREATE INDEX user_groups_expiry ON user_groups (ug_expiry);
-
-CREATE TABLE user_former_groups (
-  ufg_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ufg_group  TEXT     NOT NULL
-);
-CREATE UNIQUE INDEX ufg_user_group ON user_former_groups (ufg_user, ufg_group);
 
 CREATE TABLE user_newtalk (
   user_id              INTEGER          NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
