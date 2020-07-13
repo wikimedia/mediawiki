@@ -23,7 +23,7 @@
 /**
  * An action which shows a form and does something based on the input from the form
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Actions
  */

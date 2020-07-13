@@ -25,7 +25,7 @@
  * Basic media transform error class
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {

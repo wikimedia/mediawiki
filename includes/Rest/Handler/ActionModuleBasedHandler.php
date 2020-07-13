@@ -24,7 +24,7 @@ use Wikimedia\Message\ScalarParam;
 /**
  * Base class for REST handlers that are implemented by mapping to an existing ApiModule.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class ActionModuleBasedHandler extends Handler {
 

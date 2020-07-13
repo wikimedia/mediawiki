@@ -23,7 +23,7 @@ namespace MediaWiki\Auth;
 
 /**
  * Returned from account creation to allow for logging into the created account
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

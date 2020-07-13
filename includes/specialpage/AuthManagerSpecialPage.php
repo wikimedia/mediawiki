@@ -12,7 +12,7 @@ use MediaWiki\Session\Token;
  * a set of AuthenticationRequest objects, submits the result to AuthManager and
  * partially handles the response.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class AuthManagerSpecialPage extends SpecialPage {
 	/** @var string[] The list of actions this special page deals with. Subclasses should override

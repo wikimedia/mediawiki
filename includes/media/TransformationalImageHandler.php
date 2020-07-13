@@ -31,7 +31,7 @@ use MediaWiki\Shell\Shell;
 /**
  * Handler for images that need to be transformed
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @since 1.24
  * @ingroup Media

@@ -22,7 +22,7 @@ use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Pager for filtering by a range of dates.
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class RangeChronologicalPager extends ReverseChronologicalPager {

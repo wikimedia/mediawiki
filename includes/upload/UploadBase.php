@@ -36,7 +36,7 @@ use MediaWiki\User\UserIdentity;
  * UploadBase and subclasses are the backend of MediaWiki's file uploads.
  * The frontends are formed by ApiUpload and SpecialUpload.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @author Brion Vibber
  * @author Bryan Tong Minh

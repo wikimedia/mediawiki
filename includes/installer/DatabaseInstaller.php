@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\LBFactorySingle;
 /**
  * Base class for DBMS-specific installation helper classes.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Installer
  * @since 1.17
  */

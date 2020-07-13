@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content handler for code content such as CSS, JavaScript, JSON, etc.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.24
  * @ingroup Content
  */

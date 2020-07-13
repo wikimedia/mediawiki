@@ -23,7 +23,7 @@ namespace MediaWiki\Auth;
 
 /**
  * AuthenticationRequest to ensure something with a username is present
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

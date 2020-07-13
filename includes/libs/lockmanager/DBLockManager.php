@@ -36,7 +36,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * Caching is used to avoid hitting servers that are down.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup LockManager
  * @since 1.19
  */

@@ -23,7 +23,7 @@ namespace Wikimedia\Rdbms;
 
 /**
  * @newable
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Database
  */
 class DBUnexpectedError extends DBError {

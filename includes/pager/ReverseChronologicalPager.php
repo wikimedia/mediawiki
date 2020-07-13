@@ -23,7 +23,7 @@ use Wikimedia\Timestamp\TimestampException;
 /**
  * Efficient paging for SQL queries.
  * IndexPager with a formatted navigation bar.
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {

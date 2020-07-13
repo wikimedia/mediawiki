@@ -23,7 +23,7 @@
 /**
  * An action which just does something, without showing a form first.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Actions
  */

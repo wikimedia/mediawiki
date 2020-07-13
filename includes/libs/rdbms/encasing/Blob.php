@@ -4,7 +4,7 @@ namespace Wikimedia\Rdbms;
 
 /**
  * @newable
- * @stable for subclassing
+ * @stable to extend
  */
 class Blob implements IBlob {
 	/** @var string */

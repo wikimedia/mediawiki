@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * It provides some common functionality such as constructing various SQL
  * queries.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup API
  */

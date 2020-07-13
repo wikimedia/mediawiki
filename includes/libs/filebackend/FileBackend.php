@@ -90,7 +90,7 @@ use Wikimedia\ScopedCallback;
  *
  * See [the architecture doc](@ref filebackendarch) for more information.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup FileBackend
  * @since 1.19

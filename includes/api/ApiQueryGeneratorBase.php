@@ -21,7 +21,7 @@
  */
 
 /**
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup API
  */

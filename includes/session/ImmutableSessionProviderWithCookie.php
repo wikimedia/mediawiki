@@ -34,7 +34,7 @@ use WebRequest;
  * not changing User" using a session cookie. This class implements such an
  * optional session cookie.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Session
  * @since 1.27
  */

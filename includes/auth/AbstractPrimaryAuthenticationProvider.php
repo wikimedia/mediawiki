@@ -26,7 +26,7 @@ use User;
 /**
  * A base class that implements some of the boilerplate for a PrimaryAuthenticationProvider
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

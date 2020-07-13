@@ -68,7 +68,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  *  getQueryInfo() and getIndexField(). Don't forget to call the parent
  *  constructor if you override it.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class IndexPager extends ContextSource implements Pager {

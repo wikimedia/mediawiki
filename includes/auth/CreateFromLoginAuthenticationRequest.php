@@ -28,7 +28,7 @@ namespace MediaWiki\Auth;
  * may be passed to AuthManager::beginAuthentication() or
  * AuthManager::beginAccountCreation() anyway.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */

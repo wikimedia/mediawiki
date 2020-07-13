@@ -23,7 +23,7 @@
 
 /**
  * IndexPager with an alphabetic list and a formatted navigation bar
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class AlphabeticPager extends IndexPager {

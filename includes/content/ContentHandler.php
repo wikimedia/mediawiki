@@ -52,7 +52,7 @@ use Wikimedia\Assert\Assert;
  * type), but wikitext content may be represented by a DOM or AST structure in
  * the future.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Content
  */
