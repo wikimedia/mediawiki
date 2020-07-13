@@ -5,7 +5,7 @@ namespace MediaWiki\Preferences\Hook;
 use User;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface GetPreferencesHook {

@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use PHPUnit\Framework\Test;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface MediaWikiPHPUnitTest__startTestHook {

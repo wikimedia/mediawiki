@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use ManualLogEntry;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ManualLogEntryBeforePublishHook {

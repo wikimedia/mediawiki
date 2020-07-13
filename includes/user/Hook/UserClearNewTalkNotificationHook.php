@@ -5,7 +5,7 @@ namespace MediaWiki\User\Hook;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UserClearNewTalkNotificationHook {

@@ -3,7 +3,7 @@
 namespace MediaWiki\Shell\Hook;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface WfShellWikiCmdHook {

@@ -6,7 +6,7 @@ use ChangesList;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ChangesListInitRowsHook {

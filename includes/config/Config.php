@@ -23,7 +23,7 @@
 /**
  * Interface for configuration instances
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @since 1.23
  */

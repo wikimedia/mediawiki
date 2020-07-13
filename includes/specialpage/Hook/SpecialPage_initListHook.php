@@ -4,7 +4,7 @@ namespace MediaWiki\SpecialPage\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialPage_initListHook {

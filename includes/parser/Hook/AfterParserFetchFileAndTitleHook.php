@@ -6,7 +6,7 @@ use ImageGalleryBase;
 use Parser;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface AfterParserFetchFileAndTitleHook {

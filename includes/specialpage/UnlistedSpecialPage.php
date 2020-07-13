@@ -24,7 +24,7 @@
 /**
  * Shortcut to construct a special page which is unlisted by default.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup SpecialPage
  */

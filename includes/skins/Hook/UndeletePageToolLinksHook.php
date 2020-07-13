@@ -6,7 +6,7 @@ use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UndeletePageToolLinksHook {

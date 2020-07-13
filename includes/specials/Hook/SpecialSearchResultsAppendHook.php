@@ -6,7 +6,7 @@ use OutputPage;
 use SpecialSearch;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialSearchResultsAppendHook {

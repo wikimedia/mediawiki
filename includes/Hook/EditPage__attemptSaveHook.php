@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
 use EditPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface EditPage__attemptSaveHook {

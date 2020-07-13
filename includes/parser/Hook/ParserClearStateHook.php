@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use Parser;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ParserClearStateHook {

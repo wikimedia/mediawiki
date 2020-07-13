@@ -5,7 +5,7 @@ namespace MediaWiki\Block\Hook;
 use MediaWiki\Block\DatabaseBlock;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface PerformRetroactiveAutoblockHook {

@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Base media handler class
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup Media
  */

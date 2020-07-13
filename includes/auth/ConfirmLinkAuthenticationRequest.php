@@ -22,7 +22,7 @@
 namespace MediaWiki\Auth;
 
 /**
- * @stable for subclassing
+ * @stable to extend
  */
 class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	/** @var AuthenticationRequest[] */

@@ -27,7 +27,7 @@ use MessageSpecifier;
  * frequently, so we try to give friendly error messages for them.
  *
  * @newable
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Database
  * @since 1.23
  */

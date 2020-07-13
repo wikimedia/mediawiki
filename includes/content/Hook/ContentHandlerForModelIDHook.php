@@ -5,7 +5,7 @@ namespace MediaWiki\Content\Hook;
 use ContentHandler;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ContentHandlerForModelIDHook {

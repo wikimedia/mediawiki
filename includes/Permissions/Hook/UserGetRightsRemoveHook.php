@@ -5,7 +5,7 @@ namespace MediaWiki\Permissions\Hook;
 use User;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UserGetRightsRemoveHook {

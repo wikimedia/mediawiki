@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup SpecialPage
  */

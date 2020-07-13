@@ -7,7 +7,7 @@ use stdClass;
 use XmlDumpWriter;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface XmlDumpWriterWriteRevisionHook {

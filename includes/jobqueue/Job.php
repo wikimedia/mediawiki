@@ -25,7 +25,7 @@
  * Class to both describe a background job and handle jobs.
  * To push jobs onto queues, use JobQueueGroup::singleton()->push();
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup JobQueue
  */

@@ -4,7 +4,7 @@ namespace MediaWiki\Languages\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface Language__getMessagesFileNameHook {

@@ -6,7 +6,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 /**
  * MediaWiki adaptation of StatsdDataFactory that provides buffering functionality.
  *
- * @stable for implementation
+ * @stable to implement
  *
  * @see BufferingStatsdDataFactory
  */

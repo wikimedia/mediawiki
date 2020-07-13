@@ -6,7 +6,7 @@ use Parser;
 use StripState;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ParserBeforeStripHook {

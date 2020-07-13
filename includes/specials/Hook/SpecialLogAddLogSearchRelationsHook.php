@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use WebRequest;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialLogAddLogSearchRelationsHook {

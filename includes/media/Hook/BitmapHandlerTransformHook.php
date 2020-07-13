@@ -7,7 +7,7 @@ use MediaTransformOutput;
 use TransformationalImageHandler;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface BitmapHandlerTransformHook {

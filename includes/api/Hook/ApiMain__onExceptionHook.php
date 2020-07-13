@@ -7,7 +7,7 @@ use ApiMain;
 use Throwable;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ApiMain__onExceptionHook {

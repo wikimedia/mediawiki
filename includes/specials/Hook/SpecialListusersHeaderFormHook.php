@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use UsersPager;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface SpecialListusersHeaderFormHook {

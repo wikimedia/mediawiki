@@ -5,7 +5,7 @@ namespace MediaWiki\Content\Hook;
 use Content;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ConvertContentHook {

@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Contain a class for special pages
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Search
  */
 abstract class SearchEngine {

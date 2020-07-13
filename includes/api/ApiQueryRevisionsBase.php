@@ -32,7 +32,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 /**
  * A base class for functions common to producing a list of revisions.
  *
- * @stable for subclassing
+ * @stable to extend
  *
  * @ingroup API
  */

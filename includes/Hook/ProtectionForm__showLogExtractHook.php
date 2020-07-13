@@ -7,7 +7,7 @@ use Article;
 use OutputPage;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface ProtectionForm__showLogExtractHook {

@@ -6,7 +6,7 @@ use MessageSpecifier;
 use UploadBase;
 
 /**
- * @stable for implementation
+ * @stable to implement
  * @ingroup Hooks
  */
 interface UploadVerifyFileHook {

@@ -34,7 +34,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * such as storeInternal(), copyInternal(), deleteInternal() and the like.
  * This class is also responsible for path resolution and sanitization.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup FileBackend
  * @since 1.19
  */

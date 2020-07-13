@@ -6,7 +6,7 @@
  * Specific engines should extend this class and at at least,
  * override the getMapping method, but can reuse other parts.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.28
  */
 abstract class SearchIndexFieldDefinition implements SearchIndexField {
