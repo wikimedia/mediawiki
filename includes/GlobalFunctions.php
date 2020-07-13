@@ -2453,6 +2453,12 @@ function wfWikiID() {
  * Note 2: use $this->getDB() in maintenance scripts that may be invoked by
  * updater to ensure that a proper database is being updated.
  *
+ * Note 3: When replacing calls to this with calls to methods on an injected
+ * LoadBalancer, LoadBalancer::getConnectionRef is more commonly needed than
+ * LoadBalancer::getMaintenanceConnectionRef, which is needed for more advanced
+ * administrative tasks. See the IMaintainableDatabase and IDatabase interfaces
+ * for details.
+ *
  * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
  *       on an injected instance of LoadBalancer.
  *
