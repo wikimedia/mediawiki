@@ -1657,6 +1657,7 @@ return [
 			'rcfilters-group-results-by-page',
 			'rcfilters-limit-title',
 			'rcfilters-limit-and-date-label',
+			'rcfilters-limit-and-date-popup-dialog-aria-label',
 			'rcfilters-date-popup-title',
 			'rcfilters-days-title',
 			'rcfilters-hours-title',

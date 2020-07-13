@@ -1487,6 +1487,7 @@
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Results to show",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|change|changes}}, $2",
+	"rcfilters-limit-and-date-popup-dialog-aria-label": "Filter results by number of changes and time period",
 	"rcfilters-date-popup-title": "Time period to search",
 	"rcfilters-days-title": "Recent days",
 	"rcfilters-hours-title": "Recent hours",
