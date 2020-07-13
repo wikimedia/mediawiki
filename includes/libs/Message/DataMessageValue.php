@@ -28,7 +28,7 @@ class DataMessageValue extends MessageValue {
 	private $data;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $key
 	 * @param (MessageParam|MessageValue|string|int|float)[] $params

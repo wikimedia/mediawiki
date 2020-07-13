@@ -333,7 +333,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Only public since 1.21
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Article|WikiPage|Page $page
 	 * 	Calling with anything other then Article is deprecated since 1.35

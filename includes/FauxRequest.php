@@ -38,7 +38,7 @@ class FauxRequest extends WebRequest {
 	protected $cookies = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values

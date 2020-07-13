@@ -33,7 +33,7 @@ class HttpError extends MWException {
 	private $httpCode, $header, $content;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param int $httpCode HTTP status code to send to the client
 	 * @param string|Message $content Content of the message
 	 * @param string|Message|null $header Content of the header (\<title\> and \<h1\>)

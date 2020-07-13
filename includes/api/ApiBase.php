@@ -204,7 +204,7 @@ abstract class ApiBase extends ContextSource {
 	private $mModuleSource = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names

@@ -111,7 +111,7 @@ class LogFormatter {
 	protected $parsedParameters;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param LogEntry $entry
 	 */

@@ -27,7 +27,7 @@ use Exception;
  */
 class ProcOpenError extends Exception {
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		parent::__construct( 'proc_open() returned error!' );

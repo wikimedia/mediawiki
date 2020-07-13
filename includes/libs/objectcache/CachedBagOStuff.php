@@ -41,7 +41,7 @@ class CachedBagOStuff extends BagOStuff {
 	protected $procCache;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param BagOStuff $backend Permanent backend to use
 	 * @param array $params Parameters for HashBagOStuff
 	 */

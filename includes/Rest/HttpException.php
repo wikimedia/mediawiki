@@ -15,7 +15,7 @@ class HttpException extends \Exception {
 	private $errorData = null;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $message
 	 * @param int $code

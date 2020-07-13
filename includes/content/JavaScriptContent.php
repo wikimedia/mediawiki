@@ -41,7 +41,7 @@ class JavaScriptContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string $text JavaScript code.
 	 * @param string $modelId the content model name
 	 */

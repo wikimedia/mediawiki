@@ -36,7 +36,7 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 	protected $params;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param IDatabase|null $db
 	 * @param string $error
 	 * @param array $params

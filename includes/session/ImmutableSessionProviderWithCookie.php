@@ -46,7 +46,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 	protected $sessionCookieOptions = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param array $params Keys include:
 	 *  - sessionCookieName: Session cookie name, if multiple sessions per
 	 *    client are to be supported.

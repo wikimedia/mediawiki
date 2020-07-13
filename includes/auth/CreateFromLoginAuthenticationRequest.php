@@ -42,7 +42,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	public $maybeLink = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param AuthenticationRequest|null $createRequest A request to use to
 	 *  begin creating the account
 	 * @param AuthenticationRequest[] $maybeLink Additional accounts to link

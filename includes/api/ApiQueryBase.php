@@ -45,7 +45,7 @@ abstract class ApiQueryBase extends ApiBase {
 	private $queryBuilder;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
 	 * @param string $paramPrefix

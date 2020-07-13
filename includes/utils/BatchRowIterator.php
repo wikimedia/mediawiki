@@ -89,7 +89,7 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $options = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param IDatabase $db The database to read from
 	 * @param string|array $table The name or names of the table to read from

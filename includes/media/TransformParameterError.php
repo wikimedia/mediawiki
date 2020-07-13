@@ -30,7 +30,7 @@
 class TransformParameterError extends MediaTransformError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $params
 	 */

@@ -465,7 +465,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Construct and initialise parent.
 	 * This is typically only called from Installer::getDBInstaller()
-	 * @stable for calling
+	 * @stable to call
 	 * @param WebInstaller $parent
 	 */
 	public function __construct( $parent ) {

@@ -56,7 +56,7 @@ class SlotRoleHandler {
 	private $contentModel;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $role The name of the slot role defined by this SlotRoleHandler. See
 	 *        SlotRoleRegistry::defineRole for more information.

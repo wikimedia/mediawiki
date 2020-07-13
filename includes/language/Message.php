@@ -239,7 +239,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected $message;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @since 1.17
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of
 	 * message keys to try and use the first non-empty message for, or a

@@ -26,7 +26,7 @@ class ZipDirectoryReaderError extends Exception {
 	protected $errorCode;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param mixed $code
 	 */

@@ -26,7 +26,7 @@ abstract class IteratorDecorator implements Iterator {
 	protected $iterator;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Iterator $iterator
 	 */

@@ -54,7 +54,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string|null $password
 	 */
 	public function __construct( $password = null ) {

@@ -35,7 +35,7 @@ class HtmlArmor {
 	private $value;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|null $value
 	 */

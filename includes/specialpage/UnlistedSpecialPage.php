@@ -31,7 +31,7 @@
 class UnlistedSpecialPage extends SpecialPage {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $name
 	 * @param string $restriction

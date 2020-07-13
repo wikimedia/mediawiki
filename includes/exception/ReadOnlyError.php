@@ -29,7 +29,7 @@
 class ReadOnlyError extends ErrorPageError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 */
 	public function __construct() {
 		parent::__construct(

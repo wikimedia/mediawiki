@@ -109,7 +109,7 @@ class TitleValue implements LinkTarget {
 	 * either from a database entry, or by a TitleParser. For constructing a TitleValue from user
 	 * input or external sources, use a TitleParser.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param int $namespace The namespace ID. This is not validated.
 	 * @param string $title The page title in either DBkey or text form. No normalization is applied

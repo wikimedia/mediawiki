@@ -75,7 +75,7 @@ abstract class LockManager {
 
 	/**
 	 * Construct a new instance from configuration
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config Parameters include:
 	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]

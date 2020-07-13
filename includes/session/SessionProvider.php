@@ -101,7 +101,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	protected $priority;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @note To fully initialize a SessionProvider, the setLogger(),
 	 *  setConfig(), setManager() and setHookContainer() methods must be
 	 *  called (and should be called in that order). Failure to do so is

@@ -11,7 +11,7 @@ class LocalizedHttpException extends HttpException {
 	private $messageValue;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param MessageValue $messageValue
 	 * @param int $code

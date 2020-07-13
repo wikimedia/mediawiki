@@ -73,7 +73,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @stable for calling.
+	 * @stable to call.
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.

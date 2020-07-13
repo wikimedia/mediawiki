@@ -31,7 +31,7 @@
 class TransformTooBigImageAreaError extends MediaTransformError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $params
 	 * @param int $maxImageArea

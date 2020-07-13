@@ -32,7 +32,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	public $confirmedLinkIDs = [];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param AuthenticationRequest[] $linkRequests A list of autolink requests
 	 *  which need to be confirmed.
 	 */

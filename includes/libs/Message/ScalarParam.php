@@ -13,7 +13,7 @@ class ScalarParam extends MessageParam {
 	/**
 	 * Construct a text parameter
 	 *
-	 * @stable for calling.
+	 * @stable to call.
 	 *
 	 * @param string $type One of the ParamType constants.
 	 * @param string|int|float|MessageValue $value

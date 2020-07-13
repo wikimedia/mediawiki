@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  */
 class UserBlockedError extends ErrorPageError {
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param AbstractBlock $block
 	 * @param User|null $user
 	 * @param Language|null $language

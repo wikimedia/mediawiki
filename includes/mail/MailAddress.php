@@ -48,7 +48,7 @@ class MailAddress {
 	public $address;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $address String with an email address
 	 * @param string|null $name Human-readable name if a string address is given

@@ -22,7 +22,7 @@ abstract class TypeDef {
 	protected $callbacks;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param Callbacks $callbacks
 	 */

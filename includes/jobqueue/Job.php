@@ -112,7 +112,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string $command
 	 * @param array|Title|null $params

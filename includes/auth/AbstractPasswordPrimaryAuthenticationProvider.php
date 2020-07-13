@@ -41,7 +41,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	private $passwordFactory = null;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param array $params Settings
 	 *  - authoritative: Whether this provider should ABSTAIN (false) or FAIL
 	 *    (true) on password failure

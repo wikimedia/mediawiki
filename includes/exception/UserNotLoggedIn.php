@@ -54,7 +54,7 @@
 class UserNotLoggedIn extends ErrorPageError {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @note The value of the $reasonMsg parameter must be set with the LoginFormValidErrorMessages
 	 * hook if you want the user to be automatically redirected to the login form.

@@ -79,7 +79,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
 	 *
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $config
 	 */

@@ -38,7 +38,7 @@ class SearchHighlighter {
 	protected $mCleanWikitext = true;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @warning If you pass false to this constructor, then
 	 *  the caller is responsible for HTML escaping.
 	 * @param bool $cleanupWikitext
