@@ -24,7 +24,7 @@
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
  *
- * @stable for subclassing
+ * @stable to extend
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
@@ -33,7 +33,7 @@ abstract class ChannelFeed extends FeedItem {
 	protected $templateParser;
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param string|Title $title Feed's title
 	 * @param string $description
@@ -107,6 +107,8 @@ abstract class ChannelFeed extends FeedItem {
 
 	/**
 	 * Return an internet media type to be sent in the headers.
+	 *
+	 * @stable to override
 	 *
 	 * @return string
 	 */

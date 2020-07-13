@@ -26,7 +26,7 @@ use Wikimedia\ObjectFactory;
  * cluster-wide IDs.
  *
  * @since 1.27
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class CentralIdLookup implements IDBAccessObject {
 	// Audience options for accessors
@@ -223,7 +223,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * Given a central user ID, return a local User object
 	 * @note Unlike nameFromCentralId(), this does guarantee that the local
 	 *  user exists and is attached to the central account.
-	 * @stable for overriding
+	 * @stable to override
 	 * @param int $id Central user ID
 	 * @param int|User $audience One of the audience constants, or a specific user
 	 * @param int $flags IDBAccessObject read flags
@@ -246,7 +246,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 
 	/**
 	 * Given a local User object, return the central ID
-	 * @stable for overriding
+	 * @stable to override
 	 * @note Unlike centralIdFromName(), this does guarantee that the local
 	 *  user is attached to the central account.
 	 * @param User $user Local user

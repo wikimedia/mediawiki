@@ -30,7 +30,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
  *
  * @ingroup JobQueue
  * @since 1.21
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class JobQueue {
 	/** @var string DB domain ID */
@@ -58,7 +58,7 @@ abstract class JobQueue {
 	protected const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param array $params
 	 * 	 - type : A job type
@@ -191,7 +191,7 @@ abstract class JobQueue {
 	/**
 	 * Find out if delayed jobs are supported for configuration validation
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return bool Whether delayed jobs are supported
 	 */
 	protected function supportsDelayedJobs() {
@@ -297,7 +297,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::getDelayedCount()
 	 * @return int
 	 */
@@ -321,7 +321,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::getAbandonedCount()
 	 * @return int
 	 */
@@ -485,7 +485,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::deduplicateRootJob()
 	 * @param IJobSpecification $job
 	 * @throws JobQueueError
@@ -527,7 +527,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::isRootJobOldDuplicate()
 	 * @param IJobSpecification $job
 	 * @return bool
@@ -578,7 +578,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::delete()
 	 * @throws JobQueueError
 	 */
@@ -599,7 +599,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::waitForBackups()
 	 * @return void
 	 */
@@ -616,7 +616,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::flushCaches()
 	 * @return void
 	 */
@@ -637,7 +637,7 @@ abstract class JobQueue {
 	 * Get an iterator to traverse over all delayed jobs in this queue.
 	 * Note: results may be stale if the queue is concurrently modified.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Iterator
 	 * @throws JobQueueError
 	 * @since 1.22
@@ -652,7 +652,7 @@ abstract class JobQueue {
 	 * Callers should be quick to iterator over it or few results
 	 * will be returned due to jobs being acknowledged and deleted
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Iterator
 	 * @throws JobQueueError
 	 * @since 1.26
@@ -664,7 +664,7 @@ abstract class JobQueue {
 	/**
 	 * Get an iterator to traverse over all abandoned jobs in this queue
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return Iterator
 	 * @throws JobQueueError
 	 * @since 1.25
@@ -676,7 +676,7 @@ abstract class JobQueue {
 	/**
 	 * Do not use this function outside of JobQueue/JobQueueGroup
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @return string
 	 * @since 1.22
 	 */
@@ -698,7 +698,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::getSiblingQueuesWithJobs()
 	 * @param array $types List of queues types
 	 * @return array|null (list of queue types) or null if unsupported
@@ -722,7 +722,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @stable for overriding
+	 * @stable to override
 	 * @see JobQueue::getSiblingQueuesSize()
 	 * @param array $types List of queues types
 	 * @return array|null (list of queue types) or null if unsupported
