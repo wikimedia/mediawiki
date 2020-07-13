@@ -77,16 +77,6 @@ CREATE TABLE user_newtalk (
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
 CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
 
-CREATE TABLE bot_passwords (
-  bp_user INTEGER NOT NULL,
-  bp_app_id TEXT NOT NULL,
-  bp_password TEXT NOT NULL,
-  bp_token TEXT NOT NULL,
-  bp_restrictions TEXT NOT NULL,
-  bp_grants TEXT NOT NULL,
-  PRIMARY KEY ( bp_user, bp_app_id )
-);
-
 CREATE SEQUENCE page_page_id_seq;
 CREATE TABLE page (
   page_id            INTEGER        NOT NULL  PRIMARY KEY DEFAULT nextval('page_page_id_seq'),

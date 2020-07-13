@@ -31,3 +31,13 @@ CREATE TABLE /*_*/user_former_groups (
   ufg_group VARBINARY(255) DEFAULT '' NOT NULL,
   PRIMARY KEY(ufg_user, ufg_group)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/bot_passwords (
+  bp_user INT UNSIGNED NOT NULL,
+  bp_app_id VARBINARY(32) NOT NULL,
+  bp_password TINYBLOB NOT NULL,
+  bp_token BINARY(32) DEFAULT '' NOT NULL,
+  bp_restrictions BLOB NOT NULL,
+  bp_grants BLOB NOT NULL,
+  PRIMARY KEY(bp_user, bp_app_id)
+) /*$wgDBTableOptions*/;
