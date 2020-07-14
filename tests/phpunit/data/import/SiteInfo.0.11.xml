@@ -1,0 +1,30 @@
+<test:data xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:test="http://www.mediawiki.org/xml/test/">
+	<siteinfo>
+		<sitename>{{site_name}}</sitename>
+		<dbname>{{site_db}}</dbname>
+		<base>{{site_base}}</base>
+		<generator>MediaWiki {{mw_version}}</generator>
+		<case>{{site_case}}</case>
+		<namespaces>
+			<namespace key="-2" case="{{site_case}}">Media</namespace>
+			<namespace key="-1" case="{{site_case}}">Special</namespace>
+			<namespace key="0" case="{{site_case}}"/>
+			<namespace key="1" case="{{site_case}}">Talk</namespace>
+			<namespace key="2" case="{{site_case}}">User</namespace>
+			<namespace key="3" case="{{site_case}}">User talk</namespace>
+			<namespace key="4" case="{{site_case}}">{{project_namespace}}</namespace>
+			<namespace key="5" case="{{site_case}}">{{project_namespace}} talk</namespace>
+			<namespace key="6" case="{{site_case}}">File</namespace>
+			<namespace key="7" case="{{site_case}}">File talk</namespace>
+			<namespace key="8" case="{{site_case}}">MediaWiki</namespace>
+			<namespace key="9" case="{{site_case}}">MediaWiki talk</namespace>
+			<namespace key="10" case="{{site_case}}">Template</namespace>
+			<namespace key="11" case="{{site_case}}">Template talk</namespace>
+			<namespace key="12" case="{{site_case}}">Help</namespace>
+			<namespace key="13" case="{{site_case}}">Help talk</namespace>
+			<namespace key="14" case="{{site_case}}">Category</namespace>
+			<namespace key="15" case="{{site_case}}">Category talk</namespace>
+			<test:end/> <!-- skip any extra namespaces -->
+		</namespaces>
+	</siteinfo>
+</test:data>

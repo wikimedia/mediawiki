@@ -1,0 +1,21 @@
+<test:data xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:test="http://www.mediawiki.org/xml/test/">
+<page>
+		<title>{{page1_title}}</title>
+		<ns>{{page1_namespace}}</ns>
+		<id>{{page1_pageid}}</id>
+		<revision>
+			<id>{{page1_rev1_id}}</id>
+			<timestamp>2020-07-14T09:48:44Z</timestamp>
+			<contributor>
+				<username>imported&gt;Admin</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev1_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="26" sha1="6nfnbjxiegpvuooe4zsuf5h1610qbrt" xml:space="preserve">Lorem ipsum dolor sit amet</text>
+			<sha1>6nfnbjxiegpvuooe4zsuf5h1610qbrt</sha1>
+		</revision>
+	</page>
+</test:data>
