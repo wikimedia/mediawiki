@@ -156,6 +156,7 @@ $wgAutoloadLocalClasses = [
 	'ApiUserrights' => __DIR__ . '/includes/api/ApiUserrights.php',
 	'ApiValidatePassword' => __DIR__ . '/includes/api/ApiValidatePassword.php',
 	'ApiWatch' => __DIR__ . '/includes/api/ApiWatch.php',
+	'ApiWatchlistTrait' => __DIR__ . '/includes/api/ApiWatchlistTrait.php',
 	'ArchivedFile' => __DIR__ . '/includes/filerepo/file/ArchivedFile.php',
 	'Argon2Password' => __DIR__ . '/includes/password/Argon2Password.php',
 	'ArrayDiffFormatter' => __DIR__ . '/includes/diff/ArrayDiffFormatter.php',

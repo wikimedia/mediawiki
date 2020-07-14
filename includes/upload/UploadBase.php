@@ -919,9 +919,15 @@ abstract class UploadBase {
 	 * @param User $user
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
+	 * @param string|null $watchlistExpiry Optional watchlist expiry timestamp in any format
+	 *   acceptable to wfTimestamp().
 	 * @return Status Indicating the whether the upload succeeded.
+	 *
+	 * @since 1.35 Accepts $watchlistExpiry parameter.
 	 */
-	public function performUpload( $comment, $pageText, $watch, $user, $tags = [] ) {
+	public function performUpload(
+		$comment, $pageText, $watch, $user, $tags = [], ?string $watchlistExpiry = null
+	) {
 		$this->getLocalFile()->load( File::READ_LATEST );
 		$props = $this->mFileProps;
 
@@ -950,7 +956,8 @@ abstract class UploadBase {
 				WatchAction::doWatch(
 					$this->getLocalFile()->getTitle(),
 					$user,
-					User::IGNORE_USER_RIGHTS
+					User::IGNORE_USER_RIGHTS,
+					$watchlistExpiry
 				);
 			}
 			$this->getHookRunner()->onUploadComplete( $this );
