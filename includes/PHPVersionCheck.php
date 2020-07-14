@@ -34,7 +34,7 @@
  */
 class PHPVersionCheck {
 	/* @var string The number of the MediaWiki version used. */
-	var $mwVersion = '1.35';
+	var $mwVersion = '1.36';
 
 	/* @var array A mapping of PHP functions to PHP extensions. */
 	var $functionsExtensionsMapping = array(

@@ -1,0 +1,124 @@
+= MediaWiki 1.36 =
+
+== MediaWiki 1.36.0-PRERELEASE ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.36 is an alpha-quality development branch, and is not recommended
+for use in production.
+
+== Upgrading notes for 1.36 ==
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions, including
+important information when upgrading from versions prior to 1.11.
+
+Some specific notes for MediaWiki 1.36 upgrades are below:
+
+* …
+
+For notes on 1.35.x and older releases, see HISTORY.
+
+=== Configuration changes for system administrators in 1.36 ===
+
+…
+
+==== New configuration ====
+* …
+
+==== Changed configuration ====
+* …
+
+==== Removed configuration ====
+* …
+
+=== New user-facing features in 1.36 ===
+* …
+
+=== New developer features in 1.36 ===
+* …
+
+=== External library changes in 1.36 ===
+* …
+
+==== New external libraries ====
+* …
+
+===== New development-only external libraries =====
+* …
+
+==== Changed external libraries ====
+* …
+
+===== Changed development-only external libraries =====
+* …
+
+==== Removed external libraries ====
+* …
+
+=== Bug fixes in 1.36 ===
+* …
+
+=== Action API changes in 1.36 ===
+* …
+
+=== Action API internal changes in 1.36 ===
+* …
+
+=== Languages updated in 1.36 ===
+MediaWiki supports over 350 languages. Many localisations are updated regularly.
+Below only new and removed languages are listed, as well as changes to languages
+because of Phabricator reports.
+
+* …
+
+=== Breaking changes in 1.36 ===
+* …
+
+=== Deprecations in 1.36 ===
+* …
+
+=== Other changes in 1.36 ===
+* …
+
+== Compatibility ==
+MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
+
+* ctype
+* dom
+* fileinfo
+* iconv
+* json
+* mbstring
+* xml
+
+MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
+but support for them is somewhat less mature.
+
+The supported versions are:
+
+* MySQL 5.5.8 or later
+* PostgreSQL 9.2 or later
+* SQLite 3.8.0 or later
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+       https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.freenode.net.

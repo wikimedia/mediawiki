@@ -4,7 +4,7 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.35 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.35 ==
@@ -82,7 +82,6 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgUseSameSiteLegacyCookies — This adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
-* …
 
 ==== Changed configuration ====
 * $wgResourceLoaderMaxage (T235314) — This configuration array controls the
@@ -126,7 +125,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   (e.g. [ '127.0.0.1' => 'bad-ip' ]) for $wgProxyList has been removed. This
   was deprecated since 1.30. Please convert these arrays to indexed/sequential
   ones (e.g. [ '127.0.0.1' ]).
-* …
 
 ==== Removed configuration ====
 * $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
@@ -166,7 +164,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   is now set true by default. The setting will be removed completely in 1.36.
 * $wgObjectCaches — The 'slaveOnly' option for SqlBagOStuff, deprecated in 1.34,
   was removed. Use 'replicaOnly' instead.
-* …
 
 === New user-facing features in 1.35 ===
 * (T204618) Whitelisted the aria-hidden HTML attribute for all elements in
@@ -184,7 +181,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   $wgInterwikiMagic=false
 * The form at ?action=watch has a new dropdown list to support expiry dates for
   watchlist items (if $wgWatchlistExpiry is true).
-* …
 
 === New developer features in 1.35 ===
 * A Docker based local development develpoment environment configuration is
@@ -244,10 +240,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   EditPageGetCheckboxesDefinition hook. Handlers of this hook are no longer
   restricted to defining checkboxes. See the documentation of
   EditPage::getCheckboxesDefinition() for more details.
-* …
+* New flag File::RENDER_TMP was added in order to allow
+  File::generateAndSaveThumb and File::trasform to render a thumbnail without
+  saving it to the storage.
 
 === External library changes in 1.35 ===
-* …
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
@@ -256,13 +253,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
-* …
 
 ===== New development-only external libraries =====
 * Added doctrine/dbal 2.10.2.
 * Added doctrine/sql-formatter 1.1.0.
 * Added pimple/pimple 3.3.0.
-* …
 
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.8.
@@ -284,7 +279,6 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated wikimedia/remex-html from 2.1.0 to 2.2.0.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated symfony/yaml from 3.4.28 to 5.0.5.
@@ -297,14 +291,12 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated composer/spdx-licenses from 1.5.1 to 1.5.3.
 * Updated monolog/monolog from 1.25.2 to 1.25.3.
 * Updated qunit from 2.9.1 to 2.10.0.
-* …
 
 ==== Removed external libraries ====
 * phpunit/php-invoker (dev-only).
   Removing this unbreaks development on Windows systems, in exchange for losing
   time limits in running unit tests.
 * The jquery.getAttrs module was removed.
-* …
 
 === Bug fixes in 1.35 ===
 * …
@@ -342,7 +334,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   - action=query&list=watchlistraw returns pages' watchlist expiry dates.
 * (T249526) action=login will now return Failed rather than NeedToken on
   session loss.
-* …
 
 === Action API internal changes in 1.35 ===
 * The Action API now uses the Wikimedia\ParamValidator library for parameter
@@ -365,7 +356,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   prefix.
 * (T245931) meta=siteinfo&siprop=interwikimap no longer reports language or
   extralanglink when $wgInterwikiMagic is false.
-* …
 
 === Languages updated in 1.35 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -380,7 +370,6 @@ because of Phabricator reports.
 * (T248299) Added language support for Inari Sami (smn).
 * (T251369) Added language support for Ladin (lld).
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
-* …
 
 === Breaking changes in 1.35 ===
 * MediaWiki now requires PHP 7.2.22 or above, to avoid segfaults (T228346).
@@ -1349,7 +1338,6 @@ because of Phabricator reports.
   HTTP/HTTPS wikis.
 * Skin::generateDebugHTML() has been hard deprecated. Call
   MWDebug::getHTMLDebugLog() directly.
-* …
 
 === Other changes in 1.35 ===
 * A new maintenance script is added (purgeExpiredWatchlistItems.php) with which
