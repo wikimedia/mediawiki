@@ -1181,7 +1181,7 @@
 										"name": {
 											"type": "string",
 											"description": "The name of the extension tag",
-											"required": "true"
+											"required": true
 										},
 										"handler": {
 											"description": "An object factory specification of a class extending Wikimedia\\Parsoid\\Ext\\ExtensionTagHandler"
