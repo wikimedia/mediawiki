@@ -1185,10 +1185,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$tables = array_merge( [ 'revision' ], $actorQuery['tables'], [ 'user' ] );
 
+		$revactor_actor = $actorQuery['fields']['rev_actor'];
 		$fields = [
 			'user_id' => $actorQuery['fields']['rev_user'],
 			'user_name' => $actorQuery['fields']['rev_user_text'],
-			'actor_id' => $actorQuery['fields']['rev_actor'],
+			'actor_id' => "MIN($revactor_actor)",
 			'user_real_name' => 'MIN(user_real_name)',
 			'timestamp' => 'MAX(rev_timestamp)',
 		];
