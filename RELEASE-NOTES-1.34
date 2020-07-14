@@ -5,6 +5,7 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.34.2 ===
+* (T257997) Undeprecate WebInstaller::getInfoBox().
 
 == MediaWiki 1.34.2 ==
 
@@ -704,7 +705,7 @@ because of Phabricator reports.
   the SpecialPage_initList hook or by adding to $wgSpecialPages) is now
   deprecated.
 * The 'jquery.tabIndex' module is deprecated.
-* WebInstaller::getInfoBox(), getWarningBox() and getErrorBox() are deprecated.
+* WebInstaller::getWarningBox() and getErrorBox() are deprecated.
   Use Html::errorBox() or Html::warningBox() instead.
 * Use of ActorMigration with 'ar_user', 'img_user', 'oi_user', 'fa_user',
   'rc_user', 'log_user', and 'ipb_by' is deprecated. Queries should be adjusted
