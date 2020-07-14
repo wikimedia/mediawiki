@@ -24,8 +24,11 @@
 
 namespace MediaWiki\Storage;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreRecord;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Builder class for the EditResult object.
@@ -62,16 +65,31 @@ class EditResultBuilder {
 	/** @var string[] */
 	private $softwareTags;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ServiceOptions */
+	private $options;
+
 	/**
 	 * EditResultBuilder constructor.
 	 *
 	 * @param RevisionStore $revisionStore
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ServiceOptions $options Options for this instance.
 	 */
-	public function __construct( RevisionStore $revisionStore, array $softwareTags ) {
+	public function __construct(
+		RevisionStore $revisionStore,
+		array $softwareTags,
+		ILoadBalancer $loadBalancer,
+		ServiceOptions $options
+	) {
 		$this->revisionStore = $revisionStore;
 		$this->softwareTags = $softwareTags;
+		$this->loadBalancer = $loadBalancer;
+		$this->options = $options;
 	}
 
 	/**
@@ -85,6 +103,9 @@ class EditResultBuilder {
 				'Revision was not set prior to building an EditResult'
 			);
 		}
+
+		// do a last-minute check if this was a manual revert
+		$this->detectManualRevert();
 
 		return new EditResult(
 			$this->isNew,
@@ -152,6 +173,92 @@ class EditResultBuilder {
 	 */
 	public function setOriginalRevisionId( $originalRevId ) {
 		$this->originalRevisionId = $originalRevId;
+	}
+
+	/**
+	 * If this edit was not already marked as a revert using EditResultBuilder::markAsRevert(),
+	 * tries to establish whether this was a manual revert, i.e. someone restored the page to
+	 * an exact previous state manually.
+	 *
+	 * If successful, mutates the builder accordingly.
+	 */
+	private function detectManualRevert() {
+		$searchRadius = $this->options->get( 'ManualRevertSearchRadius' );
+		if ( !$searchRadius ||
+			// we already marked this as a revert
+			$this->revertMethod !== null ||
+			// it's a null edit, nothing was reverted
+			$this->isNullEdit() ||
+			// we wouldn't be able to figure out what was the newest reverted edit
+			// this also discards new pages
+			!$this->revisionRecord->getParentId()
+		) {
+			return;
+		}
+
+		$revertedToRev = $this->findIdenticalRevision( $searchRadius );
+		if ( !$revertedToRev ) {
+			return;
+		}
+		$oldestReverted = $this->revisionStore->getNextRevision(
+			$revertedToRev,
+			RevisionStore::READ_LATEST
+		);
+		if ( !$oldestReverted ) {
+			return;
+		}
+
+		$this->setOriginalRevisionId( $revertedToRev->getId() );
+		$this->markAsRevert(
+			EditResult::REVERT_MANUAL,
+			$oldestReverted->getId(),
+			$this->revisionRecord->getParentId()
+		);
+	}
+
+	/**
+	 * Tries to find an identical revision to $this->revisionRecord in $searchRadius most
+	 * recent revisions of this page. The comparison is based on SHA1s of these revisions.
+	 *
+	 * @param int $searchRadius How many recent revisions should be checked
+	 *
+	 * @return RevisionStoreRecord|null
+	 */
+	private function findIdenticalRevision( int $searchRadius ) : ?RevisionStoreRecord {
+		// We use master just in case we encounter replication lag.
+		// This is mostly for cases where a revert is applied rapidly after someone saves
+		// the previous edit.
+		$db = $this->loadBalancer->getConnection( DB_MASTER );
+		$revQuery = $this->revisionStore->getQueryInfo();
+		$subquery = $db->buildSelectSubquery(
+			$revQuery['tables'],
+			$revQuery['fields'],
+			[ 'rev_page' => $this->revisionRecord->getPageId() ],
+			__METHOD__,
+			[
+				'ORDER BY' => [
+					'rev_timestamp DESC',
+					// for cases where there are multiple revs with same timestamp
+					'rev_id DESC'
+				],
+				'LIMIT' => $searchRadius,
+				// skip the most recent edit, we can't revert to it anyway
+				'OFFSET' => 1
+			],
+			$revQuery['joins']
+		);
+
+		// selectRow effectively uses LIMIT 1 clause, returning only the first result
+		$revisionRow = $db->selectRow(
+			[ 'recent_revs' => $subquery ],
+			'*',
+			[ 'rev_sha1' => $this->revisionRecord->getSha1() ],
+			__METHOD__
+		);
+
+		return $revisionRow ?
+			$this->revisionStore->newRevisionFromRow( $revisionRow )
+			: null;
 	}
 
 	/**

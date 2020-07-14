@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Debug\DeprecatablePropertyArray;
@@ -1844,7 +1845,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return PageUpdater
 	 */
 	public function newPageUpdater( User $user, RevisionSlotsUpdate $forUpdate = null ) {
-		global $wgAjaxEditStash, $wgUseAutomaticEditSummaries, $wgPageCreationLog;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$pageUpdater = new PageUpdater(
 			$user,
@@ -1854,12 +1855,18 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getRevisionStore(),
 			$this->getSlotRoleRegistry(),
 			$this->getContentHandlerFactory(),
-			$this->getHookContainer()
+			$this->getHookContainer(),
+			new ServiceOptions(
+				PageUpdater::CONSTRUCTOR_OPTIONS,
+				$config
+			)
 		);
 
-		$pageUpdater->setUsePageCreationLog( $wgPageCreationLog );
-		$pageUpdater->setAjaxEditStash( $wgAjaxEditStash );
-		$pageUpdater->setUseAutomaticEditSummaries( $wgUseAutomaticEditSummaries );
+		$pageUpdater->setUsePageCreationLog( $config->get( 'PageCreationLog' ) );
+		$pageUpdater->setAjaxEditStash( $config->get( 'AjaxEditStash' ) );
+		$pageUpdater->setUseAutomaticEditSummaries(
+			$config->get( 'UseAutomaticEditSummaries' )
+		);
 
 		return $pageUpdater;
 	}
