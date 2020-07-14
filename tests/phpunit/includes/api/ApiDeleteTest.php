@@ -17,8 +17,12 @@ class ApiDeleteTest extends ApiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'change_tag', 'change_tag_def', 'logging' ]
+			[ 'change_tag', 'change_tag_def', 'logging', 'watchlist', 'watchlist_expiry' ]
 		);
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
 	}
 
 	public function testDelete() {
@@ -190,10 +194,17 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertTrue( Title::newFromText( $name )->exists() );
 		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
 
-		$this->doApiRequestWithToken( [ 'action' => 'delete', 'title' => $name, 'watch' => '' ] );
+		$this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+			'watch' => '',
+			'watchlistexpiry' => '99990123000000',
+		] );
 
-		$this->assertFalse( Title::newFromText( $name )->exists() );
-		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
+		$title = Title::newFromText( $name );
+		$this->assertFalse( $title->exists() );
+		$this->assertTrue( $user->isWatched( $title ) );
+		$this->assertTrue( $user->isTempWatched( $title ) );
 	}
 
 	public function testDeleteUnwatch() {
@@ -205,7 +216,11 @@ class ApiDeleteTest extends ApiTestCase {
 		$user->addWatch( Title::newFromText( $name ) );
 		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
 
-		$this->doApiRequestWithToken( [ 'action' => 'delete', 'title' => $name, 'unwatch' => '' ] );
+		$this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+			'watchlist' => 'unwatch',
+		] );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );

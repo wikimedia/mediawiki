@@ -25,6 +25,15 @@
  */
 class ApiUndelete extends ApiBase {
 
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	public function execute() {
 		$this->useTransactionalTimeLimit();
 
@@ -83,7 +92,8 @@ class ApiUndelete extends ApiBase {
 				$this->getUser(), $params['reason'] );
 		}
 
-		$this->setWatch( $params['watchlist'], $titleObj );
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$this->setWatch( $params['watchlist'], $titleObj, null, $watchlistExpiry );
 
 		$info = [
 			'title' => $titleObj->getPrefixedText(),
@@ -121,16 +131,7 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
 			],
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
-		];
+		] + $this->getWatchlistParams();
 	}
 
 	public function needsToken() {

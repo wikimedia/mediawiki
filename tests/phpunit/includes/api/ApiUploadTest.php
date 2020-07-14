@@ -15,6 +15,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed[] = 'watchlist'; // This test might interfere with watchlists test.
+		$this->tablesUsed[] = 'watchlist_expiry';
 		$this->tablesUsed = array_merge( $this->tablesUsed, LocalFile::getQueryInfo()['tables'] );
 		$this->setService( 'RepoGroup', new RepoGroup(
 			[
@@ -30,6 +31,10 @@ class ApiUploadTest extends ApiUploadTestCase {
 			null
 		) );
 		$this->resetServices();
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
 	}
 
 	public function testUploadRequiresToken() {
@@ -48,10 +53,12 @@ class ApiUploadTest extends ApiUploadTestCase {
 		], null, self::$users['uploader']->getUser() );
 	}
 
-	public function testUpload() {
+	public function testUploadWithWatch() {
 		$fileName = 'TestUpload.jpg';
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
+		$title = Title::newFromText( $fileName, NS_FILE );
+		$user = self::$users['uploader']->getUser();
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 		list( $result ) = $this->doApiRequestWithToken( [
@@ -60,12 +67,15 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName",
-		], null, self::$users['uploader']->getUser() );
+			'watchlist' => 'watch',
+			'watchlistexpiry' => '99990123000000',
+		], null, $user );
 
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertTrue( $user->isTempWatched( $title ) );
 	}
 
 	public function testUploadZeroLength() {

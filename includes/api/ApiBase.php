@@ -52,6 +52,7 @@ use Wikimedia\Rdbms\IDatabase;
 abstract class ApiBase extends ContextSource {
 
 	use ApiBlockInfoTrait;
+	use ApiWatchlistTrait;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -1040,46 +1041,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Return true if we're to watch the page, false if not, null if no change.
-	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $titleObj The page under consideration
-	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
-	 *    If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
-	 * @return bool
-	 */
-	protected function getWatchlistValue( $watchlist, $titleObj, $userOption = null ) {
-		$userWatching = $this->getUser()->isWatched( $titleObj, User::IGNORE_USER_RIGHTS );
-
-		switch ( $watchlist ) {
-			case 'watch':
-				return true;
-
-			case 'unwatch':
-				return false;
-
-			case 'preferences':
-				# If the user is already watching, don't bother checking
-				if ( $userWatching ) {
-					return true;
-				}
-				# If no user option was passed, use watchdefault and watchcreations
-				if ( $userOption === null ) {
-					return $this->getUser()->getBoolOption( 'watchdefault' ) ||
-						$this->getUser()->getBoolOption( 'watchcreations' ) && !$titleObj->exists();
-				}
-
-				# Watch the article based on the user preference
-				return $this->getUser()->getBoolOption( $userOption );
-
-			case 'nochange':
-				return $userWatching;
-
-			default:
-				return $userWatching;
-		}
-	}
-
-	/**
 	 * Using the settings determine the value for the given parameter
 	 *
 	 * @param string $name Parameter name
@@ -1162,21 +1123,6 @@ abstract class ApiBase extends ContextSource {
 	 * @name   Utility methods
 	 * @{
 	 */
-
-	/**
-	 * Set a watch (or unwatch) based the based on a watchlist parameter.
-	 * @param string $watch Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $titleObj The article's title to change
-	 * @param string|null $userOption The user option to consider when $watch=preferences
-	 */
-	protected function setWatch( $watch, $titleObj, $userOption = null ) {
-		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
-		if ( $value === null ) {
-			return;
-		}
-
-		WatchAction::doWatchOrUnwatch( $value, $titleObj, $this->getUser() );
-	}
 
 	/**
 	 * Gets the user for whom to get the watchlist
