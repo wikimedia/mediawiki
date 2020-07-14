@@ -1035,6 +1035,7 @@
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
 					"type": "object",
+					"additionalProperties": false,
 					"properties": {
 						"value": {
 							"required": true
@@ -1059,7 +1060,7 @@
 							"type": ["string", "array"],
 							"description": "A description of the config setting, mostly for documentation/developers"
 						},
-						"decriptionmsg": {
+						"descriptionmsg": {
 							"type": "string",
 							"description": "The message key which should be used as a description for this configuration option in a user interface. If empty, description will be used."
 						},
