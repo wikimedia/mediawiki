@@ -1237,7 +1237,7 @@ return [
 	},
 
 	'UserFactory' => function ( MediaWikiServices $services ) : UserFactory {
-		return new UserFactory();
+		return new UserFactory( $services->getUserNameUtils() );
 	},
 
 	'UserGroupManager' => function ( MediaWikiServices $services ) : UserGroupManager {

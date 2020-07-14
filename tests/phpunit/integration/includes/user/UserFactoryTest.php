@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\IPUtils;
 
 /**
  * @covers \MediaWiki\User\UserFactory
@@ -11,20 +13,40 @@ use MediaWiki\User\UserIdentityValue;
  */
 class UserFactoryTest extends MediaWikiIntegrationTestCase {
 
+	private function getUserFactory() {
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		return new UserFactory( $userNameUtils );
+	}
+
 	public function testNewFromName() {
 		$name = 'UserFactoryTest1';
 
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 		$user = $factory->newFromName( $name );
 
 		$this->assertInstanceOf( User::class, $user );
 		$this->assertSame( $name, $user->getName() );
 	}
 
+	public function testNewAnonymous() {
+		$factory = $this->getUserFactory();
+		$anon = $factory->newAnonymous();
+		$this->assertInstanceOf( User::class, $anon );
+
+		$currentIp = IPUtils::sanitizeIP( $anon->getRequest()->getIP() );
+
+		// Unspecified name defaults to current user's IP address
+		$this->assertSame( $currentIp, $anon->getName() );
+
+		$name = '192.0.2.0';
+		$anonIpSpecified = $factory->newAnonymous( $name );
+		$this->assertSame( $name, $anonIpSpecified->getName() );
+	}
+
 	public function testNewFromId() {
 		$id = 98257;
 
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 		$user = $factory->newFromId( $id );
 
 		$this->assertInstanceOf( User::class, $user );
@@ -34,7 +56,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromActorId() {
 		$name = 'UserFactoryTest2';
 
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 		$user1 = $factory->newFromName( $name );
 		$user1->addToDatabase();
 
@@ -56,7 +78,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$actorId = 34562;
 
 		$userIdentity = new UserIdentityValue( $id, $name, $actorId );
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 
 		$user1 = $factory->newFromUserIdentity( $userIdentity );
 		$this->assertInstanceOf( User::class, $user1 );
@@ -72,7 +94,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromAnyId() {
 		$name = 'UserFactoryTest4';
 
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 		$user1 = $factory->newFromName( $name );
 		$user1->addToDatabase();
 
@@ -105,7 +127,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromConfirmationCode() {
 		$fakeCode = 'NotARealConfirmationCode';
 
-		$factory = new UserFactory();
+		$factory = $this->getUserFactory();
 
 		$user1 = $factory->newFromConfirmationCode( $fakeCode );
 		$this->assertNull(

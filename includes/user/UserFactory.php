@@ -36,6 +36,18 @@ use User;
 class UserFactory implements IDBAccessObject {
 
 	/**
+	 * @var UserNameUtils
+	 */
+	private $userNameUtils;
+
+	/**
+	 * @param UserNameUtils $userNameUtils
+	 */
+	public function __construct( UserNameUtils $userNameUtils ) {
+		$this->userNameUtils = $userNameUtils;
+	}
+
+	/**
 	 * @see User::newFromName
 	 * @param string $name
 	 * @param string $validate Validation strategy, one of the UserNameUtils::RIGOR_*
@@ -47,6 +59,24 @@ class UserFactory implements IDBAccessObject {
 		string $validate = UserNameUtils::RIGOR_VALID
 	) {
 		return User::newFromName( $name, $validate );
+	}
+
+	/**
+	 * Returns new anonymous User.
+	 * @param string|null $ip (optional)
+	 * @return User
+	 */
+	public function newAnonymous( $ip = null ) : User {
+		$user = new User();
+		if ( $ip ) {
+			$validIp = $this->userNameUtils->isIP( $ip );
+			if ( $validIp ) {
+				$user->setName( $ip );
+			} else {
+				throw new \InvalidArgumentException( 'Invalid IP address' );
+			}
+		}
+		return $user;
 	}
 
 	/**
