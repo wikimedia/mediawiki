@@ -1218,7 +1218,17 @@ class WebRequest {
 
 		// Break up string into pieces (languages and q factors)
 		if ( !preg_match_all(
-			'/([a-z]{1,8}(?:-[a-z]{1,8})*|\*)\s*(?:;\s*q\s*=\s*(1(?:\.0{0,3})?|0(?:\.[0-9]{0,3})?)?)?/',
+			'/
+				# a language code or a star is required
+				([a-z]{1,8}(?:-[a-z]{1,8})*|\*)
+				# from here everything is optional
+				\s*
+				(?:
+					# this accepts only numbers in the range ;q=0.000 to ;q=1.000
+					;\s*q\s*=\s*
+					(1(?:\.0{0,3})?|0(?:\.\d{0,3})?)?
+				)?
+			/x',
 			$acceptLang,
 			$matches,
 			PREG_SET_ORDER
@@ -1231,8 +1241,8 @@ class WebRequest {
 		foreach ( $matches as $match ) {
 			$languageCode = $match[1];
 			// When not present, the default value is 1
-			$qValue = $match[2] ?? 1;
-			if ( $qValue > 0 ) {
+			$qValue = (float)( $match[2] ?? 1.0 );
+			if ( $qValue ) {
 				$langs[$languageCode] = $qValue;
 			}
 		}
