@@ -3240,8 +3240,7 @@ ERROR;
 	 * @return string|bool String or false
 	 */
 	public static function extractSectionTitle( $text ) {
-		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
-		if ( !empty( $matches[2] ) ) {
+		if ( preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches ) ) {
 			return MediaWikiServices::getInstance()->getParser()
 				->stripSectionName( trim( $matches[2] ) );
 		} else {

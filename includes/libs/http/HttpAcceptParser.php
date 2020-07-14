@@ -31,10 +31,10 @@ class HttpAcceptParser {
 		$ret = [];
 
 		foreach ( $accepts as $i => $a ) {
-			preg_match( '!^([^\s/;]+)/([^;\s]+)\s*(?:;(.*))?$!D', trim( $a ), $matches );
-			if ( !$matches ) {
+			if ( !preg_match( '!^([^\s/;]+)/([^;\s]+)\s*(?:;(.*))?$!D', trim( $a ), $matches ) ) {
 				continue;
 			}
+
 			$q = 1;
 			$params = [];
 			if ( isset( $matches[3] ) ) {
