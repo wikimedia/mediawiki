@@ -513,7 +513,8 @@ class Article implements Page {
 				$this->mRevisionRecord->getId() );
 
 			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
-			$this->fetchResult = Status::newFatal( 'rev-deleted-text-permission' );
+			$this->fetchResult = Status::newFatal(
+				'rev-deleted-text-permission', $this->getTitle()->getPrefixedText() );
 			$this->applyContentOverride( $this->makeFetchErrorContent() );
 			return null;
 		}
@@ -1530,6 +1531,7 @@ class Article implements Page {
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
+		$titleText = $this->getTitle()->getPrefixedText();
 		// If the user is not allowed to see it...
 		if ( !RevisionRecord::userCanBitfield(
 			$this->mRevisionRecord->getVisibility(),
@@ -1537,7 +1539,7 @@ class Article implements Page {
 			$user
 		) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'rev-deleted-text-permission' );
+				[ 'rev-deleted-text-permission', $titleText ] );
 
 			return false;
 		// If the user needs to confirm that they want to see it...
@@ -1547,14 +1549,14 @@ class Article implements Page {
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				[ $msg, $link ] );
+			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", [ $msg, $link ] );
 
 			return false;
 		// We are allowed to see...
 		} else {
-			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
-				'rev-suppressed-text-view' : 'rev-deleted-text-view';
+			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
+				? [ 'rev-suppressed-text-view', $titleText ]
+				: [ 'rev-deleted-text-view', $titleText ];
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 
 			return true;
