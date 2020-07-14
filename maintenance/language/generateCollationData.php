@@ -221,8 +221,7 @@ class GenerateCollationData extends Maintenance {
 				continue;
 			}
 			foreach ( StringUtils::explode( '[', $allWeights ) as $weightStr ) {
-				preg_match_all( '/[*.]([0-9A-F]+)/', $weightStr, $m );
-				if ( !empty( $m[1] ) ) {
+				if ( preg_match_all( '/[*.]([0-9A-F]+)/', $weightStr, $m ) ) {
 					if ( $m[1][0] !== '0000' ) {
 						$primary .= '.' . $m[1][0];
 					}
