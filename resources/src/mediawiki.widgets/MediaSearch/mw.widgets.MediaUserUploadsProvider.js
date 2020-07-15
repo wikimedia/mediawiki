@@ -49,7 +49,7 @@
 	 */
 	mw.widgets.MediaUserUploadsProvider.prototype.setContinue = function ( continueData ) {
 		// Update the offset for next time
-		this.setOffset( continueData.gsroffset );
+		this.setOffset( continueData.gaicontinue );
 	};
 
 	/**
@@ -57,7 +57,9 @@
 	 */
 	mw.widgets.MediaUserUploadsProvider.prototype.sort = function ( results ) {
 		return results.sort( function ( a, b ) {
-			return a.timestamp - b.timestamp;
+			// timestamps are strings
+			return a.timestamp < b.timestamp ? 1 :
+				( a.timestamp === b.timestamp ? 0 : -1 );
 		} );
 	};
 
