@@ -34,6 +34,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$blob = wincache_ucache_get( $key );
@@ -42,7 +43,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$value = $this->unserialize( $blob );
-		if ( $value !== false ) {
+		if ( $getToken && $value !== false ) {
 			$casToken = (string)$blob; // don't bother hashing this
 		}
 
@@ -54,7 +55,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 			return false;
 		}
 
-		$curCasToken = null; // passed by reference
+		$curCasToken = self::PASS_BY_REF; // passed by reference
 		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( $casToken === $curCasToken ) {
 			$success = $this->set( $key, $value, $exptime, $flags );

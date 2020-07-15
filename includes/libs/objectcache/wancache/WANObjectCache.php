@@ -201,7 +201,7 @@ class WANObjectCache implements
 	/** @var string Default process cache name and max key count */
 	private const PC_PRIMARY = 'primary:1000';
 
-	/** @var int Idion for get()/getMulti() to return extra information by reference */
+	/** @var int Idiom for get()/getMulti() to return extra information by reference */
 	public const PASS_BY_REF = -1;
 
 	/** @var int Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */

@@ -137,6 +137,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$req = [
@@ -150,7 +151,9 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			if ( is_string( $rbody ) ) {
 				$value = $this->decodeBody( $rbody );
 				/// @FIXME: use some kind of hash or UUID header as CAS token
-				$casToken = ( $value !== false ) ? $rbody : null;
+				if ( $getToken && $value !== false ) {
+					$casToken = $rbody;
+				}
 
 				return $value;
 			}

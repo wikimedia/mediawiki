@@ -178,10 +178,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
+		$casToken = null;
+
 		$this->debug( "get($key)" );
 
 		$client = $this->acquireSyncClient();
-		if ( defined( Memcached::class . '::GET_EXTENDED' ) ) { // v3.0.0
+		// T257003: only require "gets" (instead of "get") when a CAS token is needed
+		if ( $getToken ) {
 			/** @noinspection PhpUndefinedClassConstantInspection */
 			$flags = Memcached::GET_EXTENDED;
 			$res = $client->get( $this->validateKeyEncoding( $key ), null, $flags );
@@ -193,7 +197,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$casToken = null;
 			}
 		} else {
-			$result = $client->get( $this->validateKeyEncoding( $key ), null, $casToken );
+			$result = $client->get( $this->validateKeyEncoding( $key ) );
 		}
 
 		return $this->checkResult( $key, $result );
@@ -327,7 +331,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$this->validateKeyEncoding( $key );
 		}
 
-		// The PECL implementation uses "gets" which works as well as a pipeline
+		// The PECL implementation uses multi-key "get"/"gets"; no need to pipeline.
+		// T257003: avoid Memcached::GET_EXTENDED; no tokens are needed and that requires "gets"
+		// https://github.com/libmemcached/libmemcached/blob/eda2becbec24363f56115fa5d16d38a2d1f54775/libmemcached/get.cc#L272
 		$result = $this->acquireSyncClient()->getMulti( $keys ) ?: [];
 
 		return $this->checkResult( false, $result );
