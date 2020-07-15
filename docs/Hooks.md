@@ -4,7 +4,8 @@ Hooks
 ## Introduction
 
 Hooks allow MediaWiki Core to call extensions or allow one extension to call
-another extension.
+another extension. For more information and a list of hooks, see
+https://www.mediawiki.org/wiki/Manual:Hooks
 
 Starting in MediaWiki 1.35, each hook called by MediaWiki Core has an
 associated interface with a single method. To call the hook, obtain a "hook
@@ -26,8 +27,6 @@ For example, if the hook is called `Mash`, we might have the interface:
     interface MashHook {
         public function onMash( $banana );
     }
-
-Hooks events can also be handled in the old way, as documented in hooks.txt.
 
 Hooks can be defined and called by extensions. The extension should define a
 hook interface for each hook, as described above.
