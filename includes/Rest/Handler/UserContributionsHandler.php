@@ -11,7 +11,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use RequestContext;
-use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -89,9 +88,7 @@ class UserContributionsHandler extends Handler {
 		if ( $this->userNameUtils->isIP( $name ) ) {
 			// Create an anonymous user instance for the given IP
 			// NOTE: We can't use a UserIdentityValue, because we might need the actor ID
-			// TODO: We should create UserFactory::newFromIpAddress() for this purpose (T257464)
-			$user = new User();
-			$user->setName( $name );
+			$user = $this->userFactory->newAnonymous( $name );
 			return $user;
 		}
 
