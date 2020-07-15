@@ -198,6 +198,7 @@
 	"config-admin-email-help": "Entrez une adresse de courriel ici pour vous permettre de recevoir des courriels d’autres utilisateurs du wiki, réinitialiser votre mot de passe et être informé des modifications apportées aux pages de votre liste de suivi. Vous pouvez laisser ce champ vide.",
 	"config-admin-error-user": "Erreur interne lors de la création d’un administrateur avec le nom « <nowiki>$1</nowiki> ».",
 	"config-admin-error-password": "Erreur interne lors de l’inscription d’un mot de passe pour l’administrateur « <nowiki>$1</nowiki> » : <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Mot de passe administrateur du wiki non valide : $1",
 	"config-admin-error-bademail": "Vous avez entré une adresse de courriel non valide.",
 	"config-subscribe": "Abonnez-vous à la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce liste de diffusion des annonces de nouvelles versions].",
 	"config-subscribe-help": "Il s’agit d’une liste de diffusion à faible volume utilisée pour annoncer les nouvelles versions, y compris les versions améliorant la sécurité du logiciel.\nVous devriez vous y abonner et mettre à jour votre version de MediaWiki lorsque de nouvelles versions sont publiées.",

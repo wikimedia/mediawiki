@@ -619,7 +619,7 @@
 	"rev-deleted-user": "(użytkowńik wyćepany)",
 	"rev-deleted-event": "(szkryflańy wyćepane)",
 	"rev-deleted-text-permission": "Wersyjo tyj zajty uostoua wyćepano a ńy je dostympna publičńy. Ščygůuy idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} rejeře wyćepań].",
-	"rev-deleted-text-view": "Ta wersyjo zajty uostoua wyćepano a ńy je dostympna publičńy.\nAtoli kej admińistrator {{GRAMMAR:MS.lp|{{SITENAME}}}} možeš jům uobejřeć.\nPowody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejeře wyćepań]",
+	"rev-deleted-text-view": "Ta wersyjo zajty uostoua wyćepano a ńy je dostympna publičńy.\nAtoli kej admińistrator {{GRAMMAR:MS.lp|{{SITENAME}}}} možeš jům uobejřeć.\nPowody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page=$1}} rejeře wyćepań]",
 	"rev-delundel": "pokŏż/skryj",
 	"rev-showdeleted": "ukoż",
 	"revisiondelete": "Wyćep/wćep nazod wersyje",

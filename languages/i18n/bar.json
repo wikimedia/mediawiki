@@ -462,7 +462,7 @@
 	"history-feed-item-nocomment": "$1 am $2",
 	"history-feed-empty": "Die angeforderte Seitn gibt's net.\nVielleicht is sie gelöscht oda verschom worn.\n[[Special:Search|Durchsuachan]] S' {{SITENAME}} für passende neie Seitn.",
 	"rev-deleted-text-permission": "<div class=\"mw-warning plainlinks\"> De Version is glöscht worn und is nimma öffentlich zum einseng.\nNähere Angaben zum Löschvorgang sowia a Begründung findn si im [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>",
-	"rev-deleted-text-view": "Dé Versión dodan is '''gléscht''' worn.\nDu kauhstas auhschauh, waunn du wüst. Nahernte Auhgoom steengern im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lésch-Logbiaché].",
+	"rev-deleted-text-view": "Dé Versión dodan is '''gléscht''' worn.\nDu kauhstas auhschauh, waunn du wüst. Nahernte Auhgoom steengern im [{{fullurl:{{#special:Log}}/delete|page=$1}} Lésch-Logbiaché].",
 	"rev-deleted-no-diff": "<div class=\"mw-warning plainlinks\">Du kannst diesen Unterschied nicht betrachten, da eine der Versionen aus den öffentlichen Archiven entfernt wurde.\nDetails stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>",
 	"rev-delundel": "zoagn / vastecka",
 	"revdelete-nooldid-title": "Koa Version ogem",

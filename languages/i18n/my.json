@@ -679,7 +679,7 @@
 	"rev-deleted-comment": "(တည်းဖြတ်မှုအတိုချုပ် ဖယ်ရှားပြီး)",
 	"rev-deleted-user": "(အသုံးပြုသူအမည် ဖယ်ရှားပြီး)",
 	"rev-deleted-event": "(အသေးစိတ် မှတ်တမ်း ဖယ်ရှားပြီးပြီ)",
-	"rev-deleted-text-permission": "ဤစာမျက်နှာ ရာဇဝင်များသည် <strong>ဖျက်ထားပြီး</strong>ဖြစ်သည်။\nအသေးစိတ်များကို [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ဖျက်ထားသည့် မှတ်တမ်း]တွင် တွေ့ရှိနိုင်ပါသည်။",
+	"rev-deleted-text-permission": "ဤစာမျက်နှာ ရာဇဝင်များသည် <strong>ဖျက်ထားပြီး</strong>ဖြစ်သည်။\nအသေးစိတ်များကို [{{fullurl:{{#Special:Log}}/delete|page=$1}} ဖျက်ထားသည့် မှတ်တမ်း]တွင် တွေ့ရှိနိုင်ပါသည်။",
 	"rev-deleted-unhide-diff": "ဤမူကွဲ၏ တည်းဖြတ်မူတစ်ခုအား <strong>ဖျက်ထားသည်</strong>။\nအသေးစိတ်ကို [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ဖျက်ထားသည့် မှတ်တမ်း]တွင် တွေ့ရှိနိုင်သည်။\nသင့်အနေဖြင့် ဆန္ဒရှိပါက [$1 ဤမူကွဲ]ကို ဆက်လက် ကြည့်ရှုနိုင်သည်။",
 	"rev-deleted-diff-view": "ဤမူကွဲ၏ တည်းဖြတ်မူတစ်ခုအား <strong>ဖျက်ထားသည်</strong>။\nဤမူကွဲကို ကြည့်ရှုနိုင်ပြီး အသေးစိတ်ကို [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ဖျက်ထားသည့် မှတ်တမ်း]တွင် တွေ့ရှိနိုင်သည်။",
 	"rev-delundel": "အမြင်ပုံစံ ပြောင်းလဲရန်",

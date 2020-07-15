@@ -594,7 +594,7 @@
 	"rev-deleted-comment": "(kurteya guherandinê hate jêbirin)",
 	"rev-deleted-user": "(navê bikarhêner hate jêbirin)",
 	"rev-deleted-event": "(dêtayên qeydê hate jêbirin)",
-	"rev-deleted-text-permission": "Guhertoya vê rûpelê <strong>hatiye jêbirin</strong>. Dêtayên vê di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qeyda jêbirinê] de dikarî bibînî.",
+	"rev-deleted-text-permission": "Guhertoya vê rûpelê <strong>hatiye jêbirin</strong>. Dêtayên vê di [{{fullurl:{{#Special:Log}}/suppress|page=$1}} qeyda jêbirinê] de dikarî bibînî.",
 	"rev-delundel": "xuyakirinê biguherîne",
 	"rev-showdeleted": "nîşan bide",
 	"revisiondelete": "Guhertoyan jê bibe/nebe",

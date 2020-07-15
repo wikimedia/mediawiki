@@ -39,6 +39,7 @@
 	"paramvalidator-help-multi-all": "Para especificar todos os valores, use <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Este parâmetro é obrigatório.",
 	"paramvalidator-help-type-boolean": "Tipo: {{PLURAL:$1|1=boleano|2=lista de booleanos}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Deve estar vazio|Pode estar vazio ou $1}}",
 	"paramvalidator-help-type-float": "Tipo: {{PLURAL:$1|1=flutuante|2=lista de flutuantes}}",
 	"paramvalidator-help-type-integer": "Tipo: {{PLURAL:$1|1=inteiro|2=lista de inteiros}}",
 	"paramvalidator-help-type-limit": "Tipo: número inteiro ou \"max\"",

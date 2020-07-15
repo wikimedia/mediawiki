@@ -187,6 +187,7 @@
 	"config-admin-email-help": "在此輸入的電子郵件信箱可用來接收 Wiki 上其他使用者所傳送的訊息、重設您的密碼與通知監視清單中頁面更動。您可將此欄位留空。",
 	"config-admin-error-user": "建立管理員帳號 \"<nowiki>$1</nowiki>\" 時發生內部錯誤。",
 	"config-admin-error-password": "設定管理員 \"<nowiki>$1</nowiki>\" 的密碼時發生內部錯誤：<pre>$2</pre>",
+	"config-admin-error-password-invalid": "無效 wiki 管理員密碼：$1",
 	"config-admin-error-bademail": "您輸入了不正確的電子郵件地址。",
 	"config-subscribe": "訂閱 [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 發佈公告郵寄清單]。",
 	"config-subscribe-help": "這是一個用於發佈公告的低郵件量郵寄清單，內容包括重要的安全公告。\n您應該訂閱它並在 MediaWiki 發佈新版的時候更新系統。",

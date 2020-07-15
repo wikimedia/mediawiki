@@ -597,7 +597,7 @@
 	"rev-deleted-user": "（用戶名已移除）",
 	"rev-deleted-event": "（日誌已刪除）",
 	"rev-deleted-text-permission": "Ke-vùn-chông siû-thin yí-kîn pûn-chhiùng kûng-khiung vùn-tóng chûng yì-chhù. Chhai [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} chhù-thet ngit-ki] chûng khó-nèn kiám-chhà to siòng-se ke sin-sit.",
-	"rev-deleted-text-view": "Ke-vùn-chông siû-thin yí-kîn pûn-chhiùng kûng-khiung vùn-tóng chûng yì-chhù. Chok-vi mióng-chham ke kón-lî-yèn, khó-yî kiám-chhà; Chhai[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} chhù-thet ngit-ki] chûng khó-nèn kiám-chhà to siòng-se ke sin-sit.",
+	"rev-deleted-text-view": "Ke-vùn-chông siû-thin yí-kîn pûn-chhiùng kûng-khiung vùn-tóng chûng yì-chhù. Chok-vi mióng-chham ke kón-lî-yèn, khó-yî kiám-chhà; Chhai[{{fullurl:{{#Special:Log}}/suppress|page=$1}} chhù-thet ngit-ki] chûng khó-nèn kiám-chhà to siòng-se ke sin-sit.",
 	"rev-delundel": "hien / ám",
 	"rev-showdeleted": "hien",
 	"revisiondelete": "刪除/恢復刪除修訂版本",

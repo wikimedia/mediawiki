@@ -13,6 +13,8 @@
 	"rest-nonexistent-title": "Le titre indiqué ($1) n’existe pas",
 	"rest-nonexistent-title-revision": "La version spécifiée ($1) n’existe pas pour la page spécifiée ($2)",
 	"rest-nonexistent-revision": "La version spécifiée ($1) n’existe pas",
+	"rest-nonexistent-user": "L’utilisateur spécifié ($1) n’existe pas",
+	"rest-invalid-user": "Le nom d’utilisateur spécifié ($1) n’est pas valide",
 	"rest-permission-denied-anon": "Non accessible par un utilisateur anonyme",
 	"rest-permission-denied-title": "L’utilisateur n’a pas le droit de lire le titre ($1)",
 	"rest-permission-denied-revision": "L’utilisateur n’a pas accès à la version demandée ($1).",

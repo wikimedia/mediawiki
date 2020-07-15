@@ -660,7 +660,7 @@
 	"rev-deleted-user": "(ਵਰਤੋਂਕਾਰ ਨਾਂ ਹਟਾਇਆ)",
 	"rev-deleted-event": "(ਲਾਗ ਵੇਰਵਾ ਹਟਾਇਆ ਗਿਆ)",
 	"rev-deleted-user-contribs": "[ਮੈਂਬਰ-ਨਾਂ ਜਾਂ IP ਪਤਾ ਹਟਾਇਆ - ਸੋਧ ਯੋਗਦਾਨਾਂ ਵਿਚੋਂ ਓਹਲੇ ਕੀਤੀ]",
-	"rev-deleted-text-permission": "ਸਫ਼ੇ ਦੀ ਇਹ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।",
+	"rev-deleted-text-permission": "ਸਫ਼ੇ ਦੀ ਇਹ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage=$1}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।",
 	"rev-deleted-text-unhide": "ਸਫ਼ੇ ਦੀ ਇਹ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।\nਜੇ ਤੁਸੀਂ ਅੱਗੇ ਵਧਣਾ ਚਾਹੋ ਤਾਂ ਹਾਲੇ ਵੀ [$1 ਇਹ ਰੀਵਿਜ਼ਨ ਵੇਖ] ਸਕਦੇ ਹੋ।",
 	"rev-deleted-no-diff": "ਤੁਸੀਂ ਇਹ ਫ਼ਰਕ ਨਹੀਂ ਵੇਖ ਸਕਦੇ ਕਿਉਂਕਿ ਇਹਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਰੀਵਿਜ਼ਨ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।\nਤਫ਼ਸੀਲ [{{fullurl:{{#Special:Log}}/delete|\npage={{FULLPAGENAMEE}}}} ਮਿਟਾਉਣ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ।",
 	"rev-suppressed-no-diff": "ਤੁਸੀਂ ਇਹ ਫ਼ਰਕ ਨਹੀਂ ਵੇਖ ਸਕਦੇ ਕਿਉਂਕਿ ਇਹਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਦੁਹਰਾਅ '''ਮਿਟਾਈ''' ਜਾ ਚੁੱਕੀ ਹੈ।",

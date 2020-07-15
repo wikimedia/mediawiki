@@ -496,7 +496,7 @@
 	"history-feed-title": "Taariikhda bedelyada",
 	"history-feed-empty": "Beyjka aad dooneyso majiro.\nWaxaa lagayaabaa in laga tirtiray wikigan, ama magacii laga badalay.\nIskuday in aad [[Special:Search|ka raadiso wikigaan]]  Beyjajka la heli karo oo cusub.",
 	"rev-deleted-user": "(magaca isticmaalaha waa laga saaray)",
-	"rev-deleted-text-permission": "Boggaan waa la  '''tirtiray'''.\nsababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qeybta tirtirda].",
+	"rev-deleted-text-permission": "Boggaan waa la  '''tirtiray'''.\nsababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page=$1}} qeybta tirtirda].",
 	"rev-delundel": "i'tus/qari",
 	"rev-showdeleted": "Itusi",
 	"revdelete-show-file-submit": "Haa",

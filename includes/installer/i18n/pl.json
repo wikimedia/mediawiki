@@ -190,6 +190,7 @@
 	"config-admin-email-help": "Wpisz adres e‐mail, aby mieć możliwość odbierania e‐maili od innych użytkowników wiki, zresetowania hasła oraz otrzymywania powiadomień o zmianach na stronach z listy obserwowanych. Możesz pozostawić to pole niewypełnione.",
 	"config-admin-error-user": "Błąd wewnętrzny podczas tworzenia konta administratora o nazwie „<nowiki>$1</nowiki>”.",
 	"config-admin-error-password": "Wewnętrzny błąd podczas ustawiania hasła dla administratora „<nowiki>$1</nowiki>”: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Nieprawidłowe hasło administratora wiki: $1",
 	"config-admin-error-bademail": "Wpisałeś nieprawidłowy adres e‐mail.",
 	"config-subscribe": "Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłoszeniami o nowych wersjach].",
 	"config-subscribe-help": "Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.\nPowinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.",
