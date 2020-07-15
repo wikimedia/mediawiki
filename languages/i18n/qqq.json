@@ -2241,6 +2241,7 @@
 	"statistics-pages": "Used in [[Special:Statistics]]\n{{Identical|Page}}",
 	"statistics-pages-desc": "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 	"statistics-files": "Used in [[Special:Statistics]].\n{{Identical|Uploaded file}}",
+	"statistics-files-desc": "Tooltip shown over ''Uploaded file'' (or as a note below it) in [[Special:Statistics]]",
 	"statistics-edits": "Used in [[Special:Statistics]]",
 	"statistics-edits-average": "Used in [[Special:Statistics]]",
 	"statistics-users": "Used in [[Special:Statistics]].",

@@ -2025,6 +2025,7 @@
 	"statistics-pages": "Pages",
 	"statistics-pages-desc": "All pages in the wiki, including talk pages, redirects, etc.",
 	"statistics-files": "Uploaded files",
+	"statistics-files-desc": "",
 	"statistics-edits": "Page edits since {{SITENAME}} was set up",
 	"statistics-edits-average": "Average edits per page",
 	"statistics-users": "Registered users",
