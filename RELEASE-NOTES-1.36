@@ -78,6 +78,8 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.36 ===
+* The global function `wfWaitForSlaves`, deprecated since 1.27 & hard-deprecated
+  since 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * …
 
 === Deprecations in 1.36 ===
