@@ -40,6 +40,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.36 ===
+* All HTML5 named entities are now accepted in wikitext.
 * …
 
 === New developer features in 1.36 ===
@@ -128,6 +129,7 @@ because of Phabricator reports.
 * Sanitizer::escapeIdReferenceList() has been deprecated; it will eventually
   be made private to the class, as it appears to have no uses outside the
   Sanitizer class.
+* Sanitizer::hackDocType() is deprecated; it will eventually be made private.
 * Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
   by reimplementing the method using the raw indicators data from
   OutputPage::getIndicators.
