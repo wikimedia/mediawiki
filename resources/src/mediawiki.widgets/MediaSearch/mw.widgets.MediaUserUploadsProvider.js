@@ -49,7 +49,7 @@
 	 */
 	mw.widgets.MediaUserUploadsProvider.prototype.setContinue = function ( continueData ) {
 		// Update the offset for next time
-		this.setOffset( continueData.gsroffset );
+		this.setOffset( continueData.gaicontinue );
 	};
 
 	/**
