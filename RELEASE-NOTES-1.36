@@ -47,6 +47,12 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.36 ===
+* Parser test files can now declare a dependency on a specific extension
+  being loaded, not just on the presence of a certain extension tag hook.
+  This is a better fit for extensions like TimedMediaHandler, which affect
+  the output but don't register parser hooks.  Use `extension:Foo` in
+  the `!! hooks` section of your parser test file to declare a dependency
+  on the `Foo` extension being loaded.
 * To expose code previously present in SpecialBlock/SpecialUnblock
   to other parts of the code, or to extensions,
   the new BlockUser and UnblockUser command objects were added.
