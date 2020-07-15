@@ -1107,7 +1107,10 @@ return [
 
 	/** @suppress PhanTypeInvalidCallableArrayKey */
 	'SkinFactory' => function ( MediaWikiServices $services ) : SkinFactory {
-		$factory = new SkinFactory( $services->getObjectFactory() );
+		$factory = new SkinFactory(
+			$services->getObjectFactory(),
+			(array)$services->getMainConfig()->get( 'SkipSkins' )
+		);
 
 		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
 
