@@ -131,6 +131,7 @@
 	"config-admin-password-blank": "Informez pasovorto por la konto di administrero.",
 	"config-admin-password-mismatch": "La pasovorti quin vu skribis ne esas identa.",
 	"config-admin-email": "E-postal adreso:",
+	"config-admin-error-password-invalid": "Pasovorto di wiki-administrero ($1) nevalida",
 	"config-admin-error-bademail": "Vu informis nevalida adreso di e-posto.",
 	"config-pingback": "Partigez informi pri ca instalo kun altra developeri de MediaWiki.",
 	"config-optional-continue": "Sendez plusa questioni a me.",

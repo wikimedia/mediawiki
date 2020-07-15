@@ -189,6 +189,7 @@
 	"config-admin-email-help": "Digite aqui um endereço de e-mail para permitir que você receba e-mail de outros usuários na wiki, refaça a sua senha, e seja notificado das mudanças das páginas que você vigia. Você pode deixar esse campo vazio.",
 	"config-admin-error-user": "Erro interno ao criar um administrador com o nome \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Erro interno ao configurar uma senha para o administrador \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Senha de administrador da wiki inválida: $1",
 	"config-admin-error-bademail": "Você digitou um endereço de e-mail inválido.",
 	"config-subscribe": "Inscrever-se na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de anúncios de laçamentos].",
 	"config-subscribe-help": "Esta é uma lista de discussão de baixo volume usada para anúncios de lançamento, incluindo importantes anúncios de segurança.\nVocê deve se inscrever e atualizar sua instalação do MediaWiki quando novas versões forem lançadas.",

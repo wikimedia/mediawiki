@@ -452,7 +452,7 @@
 	"rev-deleted-user": "（用戶名挪吥哩）",
 	"rev-deleted-event": "（項目挪吥哩）",
 	"rev-deleted-text-permission": "箇頁嗰改動從共用文檔挪吥嘞。到[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 刪除日誌] 裡度倷話伓定有詳細嗰資料。",
-	"rev-deleted-text-view": "箇頁嗰改動從共用文檔挪吥嘞。作為本站嗰管理員，倷查看得正；到[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 刪除日誌] 裡度有詳細嗰資料。",
+	"rev-deleted-text-view": "箇頁嗰改動從共用文檔挪吥嘞。作為本站嗰管理員，倷查看得正；到[{{fullurl:{{#Special:Log}}/suppress|page=$1}} 刪除日誌] 裡度有詳細嗰資料。",
 	"rev-delundel": "顯示/弆到",
 	"rev-showdeleted": "敨開",
 	"revisiondelete": "刪除/反刪除修改",

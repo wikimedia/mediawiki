@@ -461,7 +461,7 @@
 	"rev-deleted-user": "（用户名挪吥嘞）",
 	"rev-deleted-event": "（项目挪吥嘞）",
 	"rev-deleted-text-permission": "个页𠮶改动从共用文档挪吥嘞。到[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 删除日志] 里度倷话伓定有详细𠮶资料。",
-	"rev-deleted-text-view": "个页𠮶改动从共用文档挪吥嘞。作为本站𠮶管理员，倷查看得正；到[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 删除日志] 里度有详细𠮶资料。",
+	"rev-deleted-text-view": "个页𠮶改动从共用文档挪吥嘞。作为本站𠮶管理员，倷查看得正；到[{{fullurl:{{#Special:Log}}/suppress|page=$1}} 删除日志] 里度有详细𠮶资料。",
 	"rev-delundel": "显示/弆到",
 	"rev-showdeleted": "敨开",
 	"revisiondelete": "删除/反删除修改",

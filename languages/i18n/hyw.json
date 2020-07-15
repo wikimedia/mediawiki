@@ -979,6 +979,7 @@
 	"tag-filter": "[[Special:Tags|Պիտակներու]] զտիչ՝",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2",
 	"tag-mw-new-redirect": "Նոր վերայղում",
+	"tag-mw-undo": "Յետարկել",
 	"tags-active-yes": "Այո",
 	"tags-active-no": "Ոչ",
 	"tags-hitcount": "{{PLURAL:$1|փոփոխութիւն}}",

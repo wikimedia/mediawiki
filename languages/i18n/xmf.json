@@ -673,8 +673,8 @@
 	"rev-deleted-user": "(მომხმარებლის სახელი წაიშალა)",
 	"rev-deleted-event": "(ჟურნალის დეტალები წაშლილია)",
 	"rev-deleted-user-contribs": "[მომხმარებლის სახელი ან IP დამალულია. რეაქტირება ასევე დამალულია]",
-	"rev-deleted-text-permission": "გვერდის ეს ჩასწორება '''წაიშალა'''.\nგანმარტება შესაძლოა მოცემული იყოს [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} წაშლათა ჟურნალში].",
-	"rev-suppressed-text-permission": "გვერდის ეს ვერსია დამალულია. წაშლის ახსნა მოყვანილია [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} აკრძალვის ჟურნალში].",
+	"rev-deleted-text-permission": "გვერდის ეს ჩასწორება '''წაიშალა'''.\nგანმარტება შესაძლოა მოცემული იყოს [{{fullurl:{{#Special:Log}}/suppress|page=$1}} წაშლათა ჟურნალში].",
+	"rev-suppressed-text-permission": "გვერდის ეს ვერსია დამალულია. წაშლის ახსნა მოყვანილია [{{fullurl:{{#Special:Log}}/suppress|page=$1}} აკრძალვის ჟურნალში].",
 	"rev-deleted-text-unhide": "გვერდის ეს ვერსია '''წაიშალა'''.\nახსნა-განმარტება მოცემულია [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} წაშლის ჟურნალში].\nსურვილის შემთხვევაში თქვენ შეგიძლიათ [$1 იხილოთ აღნიშნული ვერსია].",
 	"rev-suppressed-text-unhide": "გვერდის ეს ვერსია '''დაიმალა'''.\nახსნა-განმარტება მოცემულია [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} დამალვის ჟურნალში].\nსურვილის შემთხვევაში თქვენ შეგიძლიათ [$1 იხილოთ აღნიშნული ვერსია].",
 	"rev-delundel": "ძირაფა/ტყობინაფა",
@@ -2068,6 +2068,7 @@
 	"special-characters-title-emdash": "გრძელი ტირე",
 	"special-characters-title-minus": "მინუსის ნიშანი",
 	"mw-widgets-mediasearch-input-placeholder": "მულტიმედიაშ გორუა",
+	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|თქვანი}} ბოლო ეხარგუეფი",
 	"mw-widgets-mediasearch-noresults": "შედეგი ვერ მოიძებნა",
 	"passwordpolicies-policyflag-forcechange": "მიშულაშ ბორჯის ითირას ოკო"
 }

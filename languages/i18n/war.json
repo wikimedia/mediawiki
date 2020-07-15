@@ -698,7 +698,7 @@
 	"rev-deleted-user": "(gintanggal an agnay hiton gumaramit)",
 	"rev-deleted-event": "(gintanggal an mga detalye han log)",
 	"rev-deleted-user-contribs": "[gintanggal an agnay-hit-gumaramit o IP address - an pagliwat in gintago tikang han mga amot]",
-	"rev-deleted-text-permission": "Ini nga rebisyon han pakli in '''ginpara'''.\nAn mga detalye in mabibilngan ha [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+	"rev-deleted-text-permission": "Ini nga rebisyon han pakli in '''ginpara'''.\nAn mga detalye in mabibilngan ha [{{fullurl:{{#Special:Log}}/delete|page=$1}} deletion log].",
 	"rev-suppressed-no-diff": "Diri mo makikita ini nga kaibhan tungod nga usa ha mga rebisyon in '''ginpara'''.",
 	"rev-delundel": "igpakita/igtago",
 	"rev-showdeleted": "igpakita",

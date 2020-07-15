@@ -11,6 +11,8 @@
 	"rest-nonexistent-title": "指定的標題「$1」不存在",
 	"rest-nonexistent-title-revision": "指定的修訂（$1）不存在指定頁面（$2）",
 	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
+	"rest-nonexistent-user": "指定的使用者（$1）不存在。",
+	"rest-invalid-user": "指定的使用者名稱（$1）無效。",
 	"rest-permission-denied-anon": "不可被匿名使用者存取",
 	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
 	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂（$1）",

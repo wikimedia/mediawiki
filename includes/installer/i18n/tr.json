@@ -187,6 +187,7 @@
 	"config-admin-email-help": "Vikide diğer kullanıcılardan e-posta almak, parolanızı sıfırlamak ve sizin izlediğiniz sayfalarda yapılan değişikliklerin bildirilmesini sağlamak için e-posta adresinizi girin. Bu alanı boş bırakabilirsiniz.",
 	"config-admin-error-user": "Bir hizmetli adı ile oluşturma sırasında iç hata \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Hizmetli \"<nowiki>$1</nowiki>\" için bir parola belirlerken iç hata oluştu: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Geçersiz viki hizmetli ğarolası: $1",
 	"config-admin-error-bademail": "Geçersiz e-posta adresi girdiniz.",
 	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sürüm duyuruları e-posta listesine] abone olun.",
 	"config-subscribe-help": "Bu, önemli güvenlik duyuruları dahil olmak üzere duyuru ilanlarında kullanılan düşük hacimli bir posta listesidir.\nAbone olmalısınız ve yeni sürümler çıktığında MediaWiki kurulumunuzu güncellemelisiniz.",

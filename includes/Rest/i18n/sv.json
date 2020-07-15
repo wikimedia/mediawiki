@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"McDutchie",
+			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
@@ -11,6 +12,9 @@
 	"rest-nonexistent-title": "Den angivna titeln ($1) finns inte.",
 	"rest-nonexistent-title-revision": "Den angivna sidversionen ($1) finns inte för den specificerade sidan ($2)",
 	"rest-nonexistent-revision": "Den angivna sidversionen ($1) finns inte",
+	"rest-nonexistent-user": "Den angivna användaren ($1) finns inte",
+	"rest-invalid-user": "Det angivna användarnamnet ($1) är ogiltigt",
+	"rest-permission-denied-anon": "Inte tillgänglig för anonyma användare",
 	"rest-permission-denied-title": "Användaren har inte behörighet att läsa titeln ($1)",
 	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1).",
 	"rest-pagehistory-incompatible-params": "Båda parametrarna \"older_than\" och \"newer_than\" kan inte specifieras",

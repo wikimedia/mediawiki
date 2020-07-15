@@ -561,7 +561,7 @@
 	"rev-deleted-user": "(nòm de ütènt scancelàt)",
 	"rev-deleted-event": "(asiù del log scancelàda)",
 	"rev-deleted-user-contribs": "[nòm ütènt o indirìs IP scancelàt - mudìfica scundìda de la crunulugìa]",
-	"rev-deleted-text-permission": "Questa version de la pagina l'è stada '''scancelada'''.\nPer infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
+	"rev-deleted-text-permission": "Questa version de la pagina l'è stada '''scancelada'''.\nPer infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page=$1}} register di scancelament].",
 	"rev-delundel": "fa vidè/scund",
 	"rev-showdeleted": "Fà ved",
 	"revisiondelete": "Scancèla o riprìstina versiù",
