@@ -103,6 +103,11 @@ Or more explicitly, by using an object instead of a string for the handler:
         }
     }
 
+Note that while your HookHandler class will implement an interface that ends
+with the word "Hook", in `extension.json` you should omit the word "Hook"
+from the key in the `Hooks` definition. For example, in the definitions above,
+the key must be "Mash", not "MashHook".
+
 Then the extension will define a handler class:
 
     namespace MediaWiki\Extension\FoodProcessor;
