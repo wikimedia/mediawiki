@@ -130,7 +130,7 @@ Template:3x_on_newline
 {{{1}}}
 !! endarticle
 
-// For Serbian; localize Template namespace
+# For Serbian; localize Template namespace
 !! article
 Шаблон:1x
 !! text
@@ -24175,8 +24175,8 @@ language=zh variant=zh-cn
 </dl>
 !! end
 
-// Note that parsoid does not protect colons unless language converter
-// markup is properly nested, because it is a backtracking parser.
+# Note that parsoid does not protect colons unless language converter
+# markup is properly nested, because it is a backtracking parser.
 !! test
 T153135: Unclosed markup in definition list (code coverage)
 !! options
@@ -33337,9 +33337,9 @@ PARSOID HAS A BUG HERE: T215628
 !! end
 
 ##########################################################################
-Tests demonstrating white-space insensitivity in input wikitext
-for wikitext headings, wikitext list items, and wikitext table captions,
-headings, and cells. HTML versions of the same should preserve whitespace.
+# Tests demonstrating white-space insensitivity in input wikitext
+# for wikitext headings, wikitext list items, and wikitext table captions,
+# headings, and cells. HTML versions of the same should preserve whitespace.
 ##########################################################################
 !! test
 Trim whitespace in wikitext headings, list items, table captions, headings, and cells
