@@ -110,6 +110,8 @@ because of Phabricator reports.
 * The following User methods, deprecated and moved to BlockManager in 1.34,
   were removed: isDnsBlacklisted, inDnsBlacklist, isLocallyBlockedProxy,
   trackBlockWithCookie.
+* Support for v1 of the parser tests file format has been removed; it was
+  deprecated in 1.35. (T174199)
 * …
 
 === Deprecations in 1.36 ===
@@ -134,6 +136,11 @@ because of Phabricator reports.
 === Other changes in 1.36 ===
 * The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
   It has had no effect since 1.35.
+* The implementation of TestFileReader::read has been changed to use
+  Parsoid's parser test file parser.  This should be compatible with
+  existing code, but it only supports version 2 of the test file
+  specification and may be more strict when parsing invalid input,
+  including duplicate tests.
 * …
 
 == Compatibility ==
