@@ -1759,6 +1759,7 @@ $wgAutoloadLocalClasses = [
 	'UzConverter' => __DIR__ . '/includes/language/converters/UzConverter.php',
 	'VFormHTMLForm' => __DIR__ . '/includes/htmlform/VFormHTMLForm.php',
 	'ValidateRegistrationFile' => __DIR__ . '/maintenance/validateRegistrationFile.php',
+	'Version' => __DIR__ . '/maintenance/version.php',
 	'VersionChecker' => __DIR__ . '/includes/registration/VersionChecker.php',
 	'ViewAction' => __DIR__ . '/includes/actions/ViewAction.php',
 	'ViewCLI' => __DIR__ . '/maintenance/view.php',
