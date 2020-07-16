@@ -1083,7 +1083,7 @@
 	"prefs-help-signature": "Komentari na stranicama za razgovor trebali bi biti potpisani s \"<nowiki>~~~~</nowiki>\" što će biti pretvoreno u Vaš potpis i datum.",
 	"badsig": "Kôd Vašeg potpisa nije valjan; provjerite HTML tagove.",
 	"badsightml": "Vaš potpis sadržava nevrijedeću ili zastarjelu sintaksu HTML-a:",
-	"badsiglinks": "Potpis mora uključivati poveznicu prema Vašoj suradničkoj stranici, suradničkoj stranici za razgovor ili doprinosima. Molimo Vas, dodajte ih, na primjer: <code>$1</code>.",
+	"badsiglinks": "Potpis mora uključivati poveznicu prema Vašoj suradničkoj stranici, suradničkoj stranici za razgovor ili doprinosima na ovome wikiju. Molimo Vas, dodajte ih, na primjer: <code>$1</code>.",
 	"badsigsubst": "Vaš potpis sadržava ugniježđenu supstituciju (npr. <code>subst:</code> ili <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Vaš je potpis predugačak.\nNe smije biti duži od $1 {{PLURAL:$1|znaka|znakova}}.",
 	"linter-pager-bogus-image-options-details": "Netočna opcija za prikaz datoteke",

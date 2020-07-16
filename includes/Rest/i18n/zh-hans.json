@@ -3,6 +3,7 @@
 		"authors": [
 			"500000000006城",
 			"A Chinese Wikipedian",
+			"SomeyaMako",
 			"VulpesVulpes825",
 			"铁桶"
 		]
@@ -13,6 +14,8 @@
 	"rest-nonexistent-title": "指定的标题($1)不存在",
 	"rest-nonexistent-title-revision": "指定的修订($1)对于指定的页面不存在($2)",
 	"rest-nonexistent-revision": "指定的修订($1)不存在",
+	"rest-nonexistent-user": "指定的用户（$1）不存在",
+	"rest-invalid-user": "指定的用户名（$1）无效",
 	"rest-permission-denied-title": "用户无权阅读标题($1)",
 	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
 	"rest-pagehistory-incompatible-params": "不能同时指定“旧的”和“新的”参数",

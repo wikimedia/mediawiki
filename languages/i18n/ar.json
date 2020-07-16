@@ -2127,7 +2127,7 @@
 	"apihelp-no-such-module": "الوحدة \"$1\" غير موجودة.",
 	"apisandbox": "ملعب API",
 	"apisandbox-jsonly": "الجافا سكريبت مطلوبة لاستخدام ملعب API",
-	"apisandbox-intro": "استخدم هذه الصفحة للتجربة ب<strong>MediaWiki web service API</strong>.\nارجع إلى [mw:Special:MyLanguage/API:Main page|توثيق الAPI]] للمزيد من التفاصيل حول استخدام الAPI. مثال: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query البحث عن عناوين الصفحات المطابقة لكلمة رئيسية معينة]. اختر فعلا لترى المزيد من الأمثلة.\n\nلاحظ أنه، على الرغم من أن هذا ملعب، فالأفعال التي تقوم بها على هذه الصفحة ربما تعدل الويكي.",
+	"apisandbox-intro": "استخدم هذه الصفحة لتجربة <strong>MediaWiki web service API</strong>.\nارجع إلى [[mw:Special:MyLanguage/API:Main page|توثيق الAPI]] للمزيد من التفاصيل حول استخدام الAPI. مثال: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query البحث عن عناوين الصفحات المطابقة لكلمة رئيسية معينة]. اختر فعلا لترى المزيد من الأمثلة.\n\nلاحظ أنه، على الرغم من أن هذا ملعب، فالأفعال التي تقوم بها على هذه الصفحة ربما تعدل الويكي.",
 	"apisandbox-submit": "عمل الطلب",
 	"apisandbox-reset": "إفراغ",
 	"apisandbox-retry": "إعادة المحاولة",
