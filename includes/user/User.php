@@ -51,10 +51,7 @@ use Wikimedia\ScopedCallback;
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  *
- * @newable
- * @note marked as newable in 1.35 because the canonical way to construct an
- *       anonymous (IP) user is to call the constructor directly. A factory
- *       method for that purpose should be added to TitleFactory, see T257464.
+ * @newable in 1.35 only, the constructor is @internal since 1.36
  */
 class User implements IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
@@ -222,9 +219,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Lightweight constructor for an anonymous user.
-	 * Use the User::newFrom* factory functions for other kinds of users.
 	 *
-	 * @stable to call
+	 * @stable to call since 1.35
+	 * @internal since 1.36, use the UserFactory service instead
+	 *
+	 * @see MediaWiki\User\UserFactory
 	 *
 	 * @see newFromName()
 	 * @see newFromId()

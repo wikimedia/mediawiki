@@ -83,6 +83,9 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* The User class, which was marked as @newable in 1.35, is no longer newable,
+  meaning that it is no longer safe to manually call the constructor via
+  `new User`. Instead, use the UserFactory service.
 * …
 
 === Other changes in 1.36 ===

@@ -28,7 +28,7 @@ use User;
 /**
  * Creates User objects.
  *
- * For now, there is nothing interesting in this class. It is meant for preventing static User
+ * For now, there is nothing much interesting in this class. It was meant for preventing static User
  * methods causing problems in unit tests.
  *
  * @since 1.35
@@ -49,6 +49,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromName
+	 *
+	 * @since 1.35
+	 *
 	 * @param string $name
 	 * @param string $validate Validation strategy, one of the UserNameUtils::RIGOR_*
 	 *  constants. For no validation, use UserNameUtils::RIGOR_NONE.
@@ -62,7 +65,10 @@ class UserFactory implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns new anonymous User.
+	 * Returns a new anonymous User
+	 *
+	 * @since 1.36
+	 *
 	 * @param string|null $ip (optional)
 	 * @return User
 	 */
@@ -81,6 +87,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromId
+	 *
+	 * @since 1.35
+	 *
 	 * @param int $id
 	 * @return User
 	 */
@@ -90,6 +99,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromActorId
+	 *
+	 * @since 1.35
+	 *
 	 * @param int $actorId
 	 * @return User
 	 */
@@ -99,6 +111,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromIdentity
+	 *
+	 * @since 1.35
+	 *
 	 * @param UserIdentity $userIdentity
 	 * @return User
 	 */
@@ -116,6 +131,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromAnyId
+	 *
+	 * @since 1.35
+	 *
 	 * @param ?int $userId
 	 * @param ?string $userName
 	 * @param ?int $actorId
@@ -133,6 +151,9 @@ class UserFactory implements IDBAccessObject {
 
 	/**
 	 * @see User::newFromConfirmationCode
+	 *
+	 * @since 1.35
+	 *
 	 * @param string $confirmationCode
 	 * @param int $flags
 	 * @return User|null
