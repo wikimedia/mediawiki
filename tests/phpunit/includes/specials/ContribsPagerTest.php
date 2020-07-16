@@ -25,6 +25,27 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ContribsPager::reallyDoQuery
+	 * Tests enabling/disabling ContribsPager::reallyDoQuery hook via the revisionsOnly option to restrict
+	 * extensions are able to insert their own revisions
+	 */
+	public function testRevisionsOnlyOption() {
+		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', function ( &$data ) {
+			$fakeRow = (object)[ 'rev_timestamp' => '20200717192356' ];
+			$fakeRowWrapper = new FakeResultWrapper( [ $fakeRow ] );
+			$data[] = $fakeRowWrapper;
+		} );
+
+		$allContribsPager = new ContribsPager( new RequestContext(), [] );
+		$allContribsResults = $allContribsPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
+		$this->assertEquals( $allContribsResults->numRows(), 1 );
+
+		$revOnlyPager = new ContribsPager( new RequestContext(), [ 'revisionsOnly' => true ] );
+		$revOnlyResults = $revOnlyPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
+		$this->assertEquals( $revOnlyResults->numRows(), 0 );
+	}
+
+	/**
 	 * @covers ContribsPager::processDateFilter
 	 * @dataProvider dateFilterOptionProcessingProvider
 	 * @param array $inputOpts Input options

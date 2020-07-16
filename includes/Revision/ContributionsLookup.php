@@ -89,6 +89,7 @@ class ContributionsLookup {
 		$pager = new ContribsPager( $context, [
 			'target' => $target->getName(),
 			'tagfilter' => $tag,
+			'revisionsOnly' => true
 		] );
 		$revisions = [];
 		$tags = [];
@@ -195,9 +196,6 @@ class ContributionsLookup {
 			[],
 			$query['join_conds']
 		);
-
-		// FIXME: this count does not include contributions that extensions would be injecting
-		//   via the ContribsPager__reallyDoQuery.
 
 		return (int)$count;
 	}

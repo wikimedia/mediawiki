@@ -178,6 +178,25 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
+	public function testGetListOfContributions_revisionOnly() {
+		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', function ( &$data ) {
+			$this->fail( 'ContribsPager::reallyDoQuery was not expected to be called' );
+		} );
+
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$performer = self::$testUser;
+
+		$segment =
+			$contributionsLookup->getContributions( self::$testUser, 2, $performer );
+
+		// Desc order comes back from db query
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
+	 */
 	public function testGetListOfRevisionsFilteredByTag() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
