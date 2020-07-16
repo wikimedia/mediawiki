@@ -1479,8 +1479,7 @@ abstract class Skin extends ContextSource {
 		if ( !$out->isPrintable() && ( $out->isArticle() || $title->isSpecialPage() ) ) {
 			$nav_urls['print'] = [
 				'text' => $this->msg( 'printableversion' )->text(),
-				'href' => $title->getLocalURL(
-					$request->appendQueryValue( 'printable', 'yes' ) )
+				'href' => 'javascript:print();'
 			];
 		}
 
