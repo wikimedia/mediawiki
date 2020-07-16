@@ -69,3 +69,8 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+/* Hide links which require JavaScript to work */
+.client-nojs #t-print {
+	display: none; /* T167956 */
+}

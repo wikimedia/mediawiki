@@ -388,6 +388,7 @@
 	"history_small": "Uncapitalized version of {{msg-mw|History short}}.\n\n{{Identical|History}}",
 	"updatedmarker": "Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it. This feature is used if [[mw:Manual:$wgShowUpdatedMarker|$wgShowUpdatedMarker]] is enabled.",
 	"printableversion": "Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].\n\nSee also:\n* {{msg-mw|Printableversion}}\n* {{msg-mw|Accesskey-t-print}}\n* {{msg-mw|Tooltip-t-print}}\n{{Identical|Printable version}}",
+	"printableversion-deprecated-warning": "A warning that shows on printableversion=yes which makes clear this feature is deprecated.",
 	"permalink": "Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]\n\nSee also:\n* {{msg-mw|Permalink}}\n* {{msg-mw|Accesskey-t-permalink}}\n* {{msg-mw|Tooltip-t-permalink}}\n{{Identical|Permalink}}",
 	"print": "{{Identical|Print}}",
 	"view": "The default text of the \"View\" or \"Read\" (Vector) views tab which represents the basic view for the page. Should be in the infinitive mood.\n\n{{Identical|View}}",
