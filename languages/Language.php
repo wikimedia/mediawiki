@@ -334,7 +334,7 @@ class Language {
 	 * Get a cached or new language object for a given language code
 	 * @deprecated since 1.35, use LanguageFactory
 	 * @param string $code
-	 * @throws MWException
+	 * @throws MWException if the language code is invalid
 	 * @return Language
 	 */
 	public static function factory( $code ) {
@@ -443,7 +443,8 @@ class Language {
 	 *
 	 * @param string $code
 	 *
-	 * @return bool
+	 * @return bool False if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
 	 */
 	public static function isValidCode( $code ) {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->isValidCode( $code );
@@ -728,7 +729,7 @@ class Language {
 	 * canonical ones defined in Namespace.php.
 	 *
 	 * @param string $text
-	 * @return int|bool An integer if $text is a valid value otherwise false
+	 * @return int|false An integer if $text is a valid value otherwise false
 	 */
 	public function getLocalNsIndex( $text ) {
 		$lctext = $this->lc( $text );
