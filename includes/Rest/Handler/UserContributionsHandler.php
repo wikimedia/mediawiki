@@ -32,7 +32,7 @@ class UserContributionsHandler extends Handler {
 	 */
 	private $userFactory;
 
-	/** Hard limit results to 20 revisions */
+	/** Hard limit results to 20 contributions */
 	private const MAX_LIMIT = 20;
 
 	/**
@@ -125,10 +125,10 @@ class UserContributionsHandler extends Handler {
 		$contributionsSegment =
 			$this->contributionsLookup->getContributions( $target, $limit, $performer, $segment, $tag );
 
-		$revisions = $this->getRevisionsList( $contributionsSegment );
+		$contributions = $this->getContributionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
 
-		$response = $urls + [ 'revisions' => $revisions ];
+		$response = $urls + [ 'contributions' => $contributions ];
 
 		return $response;
 	}
@@ -140,7 +140,7 @@ class UserContributionsHandler extends Handler {
 	 *
 	 * @return array[]
 	 */
-	private function getRevisionsList( ContributionsSegment $segment ) : array {
+	private function getContributionsList( ContributionsSegment $segment ) : array {
 		$revisionsData = [];
 		foreach ( $segment->getRevisions() as $revision ) {
 			$id = $revision->getId();
@@ -151,6 +151,9 @@ class UserContributionsHandler extends Handler {
 				"delta" => $segment->getDeltaForRevision( $id ) ,
 				"size" => $revision->getSize(),
 				"tags" => $segment->getTagsForRevision( $id ),
+				// Contribution type will always be MediaWiki revisions,
+				// until we can reliably include contributions from other sources. See T257839.
+				"type" => 'revision',
 				"page" => [
 					"id" => $revision->getPageId(),
 					"key" => $revision->getPageAsLinkTarget()->getDBkey(),

@@ -239,7 +239,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		RequestContext::getMain()->setUser( $user );
 
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [ 'mode' => 'user' ] );
-		$this->assertArrayHasKey( 'revisions', $data );
+		$this->assertArrayHasKey( 'contributions', $data );
 	}
 
 	public function makeMockUser( $name ) {
@@ -276,7 +276,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 				'older' => null,
 				'newer' => $basePath . '?limit=20',
 				'latest' => $basePath . '?limit=20',
-				'revisions' => []
+				'contributions' => []
 			]
 		];
 		yield [ 0,
@@ -288,7 +288,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 				'older' => null,
 				'newer' => $basePath . '?limit=20&tag=test',
 				'latest' => $basePath . '?limit=20&tag=test',
-				'revisions' => []
+				'contributions' => []
 			]
 		];
 		yield [ 1,
@@ -300,7 +300,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 				'older' => null,
 				'newer' => $basePath . '?limit=7&segment=after%7C20200101000001',
 				'latest' => $basePath . '?limit=7',
-				'revisions' => [
+				'contributions' => [
 					[
 						'id' => 1,
 						'comment' => 'Edit 1',
@@ -308,6 +308,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'delta' => 256,
 						'size' => 256,
 						'tags' => [ 'frob' ],
+						'type' => 'revision',
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',
@@ -326,7 +327,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 				'older' => $basePath . '?limit=20&tag=test&segment=before%7C20200101000004',
 				'newer' => $basePath . '?limit=20&tag=test&segment=after%7C20200101000005',
 				'latest' => $basePath . '?limit=20&tag=test',
-				'revisions' => [
+				'contributions' => [
 					[
 						'id' => 5,
 						'comment' => 'Edit 5',
@@ -334,6 +335,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'delta' => 256,
 						'size' => 256,
 						'tags' => [ 'frob', 'nitz' ],
+						'type' => 'revision',
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',
@@ -347,6 +349,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'delta' => null,
 						'size' => 256,
 						'tags' => [],
+						'type' => 'revision',
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',

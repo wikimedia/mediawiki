@@ -60,41 +60,42 @@ describe( 'GET contributions', () => {
 		const { status, body } = await client.get( endpoint, { limit } );
 		assert.equal( status, 200 );
 
-		// assert body has property revisions
-		assert.property( body, 'revisions' );
-		const { revisions } = body;
+		// assert body has property contributions
+		assert.property( body, 'contributions' );
+		const { contributions } = body;
 
-		// assert body.revisions is array
-		assert.isArray( revisions );
+		// assert body.contributions is array
+		assert.isArray( contributions );
 
-		// assert body.revisions length is limit
-		assert.lengthOf( revisions, limit );
+		// assert body.contributions length is limit
+		assert.lengthOf( contributions, limit );
 
 		const lastRevision = arnoldsRevisions[ arnoldsRevisions.length - 1 ];
 
-		// assert body.revisions object schema is correct
-		assert.hasAllDeepKeys( revisions[ 0 ], [
-			'id', 'comment', 'timestamp', 'delta', 'size', 'page', 'tags'
+		// assert body.contributions object schema is correct
+		assert.hasAllDeepKeys( contributions[ 0 ], [
+			'id', 'comment', 'timestamp', 'delta', 'size', 'page', 'tags', 'type'
 		] );
 
-		assert.equal( revisions[ 0 ].page.key, utils.dbkey( lastRevision.title ) );
-		assert.equal( revisions[ 0 ].page.title, lastRevision.title );
-		assert.equal( revisions[ 0 ].comment, lastRevision.param_summary );
-		assert.equal( revisions[ 0 ].timestamp, lastRevision.newtimestamp );
-		assert.equal( revisions[ 0 ].size, revisionText[ 5 ].length );
-		assert.equal( revisions[ 0 ].delta, expectedRevisionDeltas[ 5 ] );
-		assert.isOk( Date.parse( revisions[ 0 ].timestamp ) );
+		assert.equal( contributions[ 0 ].page.key, utils.dbkey( lastRevision.title ) );
+		assert.equal( contributions[ 0 ].page.title, lastRevision.title );
+		assert.equal( contributions[ 0 ].comment, lastRevision.param_summary );
+		assert.equal( contributions[ 0 ].timestamp, lastRevision.newtimestamp );
+		assert.equal( contributions[ 0 ].size, revisionText[ 5 ].length );
+		assert.equal( contributions[ 0 ].type, 'revision' );
+		assert.equal( contributions[ 0 ].delta, expectedRevisionDeltas[ 5 ] );
+		assert.isOk( Date.parse( contributions[ 0 ].timestamp ) );
 		assert.isNotOk( Date.parse( 'xyz' ) );
-		assert.isArray( revisions[ 0 ].tags );
+		assert.isArray( contributions[ 0 ].tags );
 
-		assert.isAbove( Date.parse( revisions[ 0 ].timestamp ),
-			Date.parse( revisions[ 1 ].timestamp ) );
+		assert.isAbove( Date.parse( contributions[ 0 ].timestamp ),
+			Date.parse( contributions[ 1 ].timestamp ) );
 
-		assert.equal( revisions[ 1 ].size, revisionText[ 4 ].length );
-		assert.equal( revisions[ 1 ].delta, expectedRevisionDeltas[ 4 ] );
+		assert.equal( contributions[ 1 ].size, revisionText[ 4 ].length );
+		assert.equal( contributions[ 1 ].delta, expectedRevisionDeltas[ 4 ] );
 
-		// assert body.revisions contains edits only by one user
-		revisions.forEach( ( rev ) => {
+		// assert body.contributions contains edits only by one user
+		contributions.forEach( ( rev ) => {
 			assert.property( arnoldsRevisions, rev.id );
 		} );
 	};
@@ -105,67 +106,67 @@ describe( 'GET contributions', () => {
 		const { status, body } = await client.get( endpoint, { tag: 'api-test' } );
 		assert.equal( status, 200 );
 
-		// assert body has property revisions
-		assert.property( body, 'revisions' );
-		const { revisions } = body;
+		// assert body has property contributions
+		assert.property( body, 'contributions' );
+		const { contributions } = body;
 
-		// assert body.revisions length
-		assert.lengthOf( revisions, taggedRevisions.length );
+		// assert body.contributions length
+		assert.lengthOf( contributions, taggedRevisions.length );
 
-		// assert that there are no more revisions found
+		// assert that there are no more contributions found
 		assert.propertyVal( body, 'older', null );
 
-		// assert body.revisions has the correct content
-		assert.equal( revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
-		assert.equal( revisions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
-		assert.equal( revisions[ 2 ].id, arnoldsEdits[ 1 ].newrevid );
+		// assert body.contributions has the correct content
+		assert.equal( contributions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
+		assert.equal( contributions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
+		assert.equal( contributions[ 2 ].id, arnoldsEdits[ 1 ].newrevid );
 	};
 
 	const testPagingForward = async ( client, endpoint ) => {
 		// get latest segment
 		const { body: latestSegment } = await client.get( endpoint, { limit } );
 		assert.property( latestSegment, 'older' );
-		assert.property( latestSegment, 'revisions' );
-		assert.isArray( latestSegment.revisions );
-		assert.lengthOf( latestSegment.revisions, 2 );
+		assert.property( latestSegment, 'contributions' );
+		assert.isArray( latestSegment.contributions );
+		assert.lengthOf( latestSegment.contributions, 2 );
 
-		// assert body.revisions has the correct content
-		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
-		assert.equal( latestSegment.revisions[ 1 ].id, arnoldsEdits[ 4 ].newrevid );
+		// assert body.contributions has the correct content
+		assert.equal( latestSegment.contributions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
+		assert.equal( latestSegment.contributions[ 1 ].id, arnoldsEdits[ 4 ].newrevid );
 
 		// Check whether the tags we applied manually are present.
 		// MediaWiki can add additional software tags (such as mw-manual-revert),
 		// hence the subarray check.
-		assert.includeMembers( latestSegment.revisions[ 0 ].tags, arnoldsTags[ 5 ] );
-		assert.includeMembers( latestSegment.revisions[ 1 ].tags, arnoldsTags[ 4 ] );
+		assert.includeMembers( latestSegment.contributions[ 0 ].tags, arnoldsTags[ 5 ] );
+		assert.includeMembers( latestSegment.contributions[ 1 ].tags, arnoldsTags[ 4 ] );
 
 		// get older segment, using full url
 		const req = clientFactory.getHttpClient( client );
 
 		const { body: olderSegment } = await req.get( latestSegment.older );
 		assert.property( olderSegment, 'older' );
-		assert.property( olderSegment, 'revisions' );
-		assert.isArray( olderSegment.revisions );
-		assert.lengthOf( olderSegment.revisions, 2 );
+		assert.property( olderSegment, 'contributions' );
+		assert.isArray( olderSegment.contributions );
+		assert.lengthOf( olderSegment.contributions, 2 );
 
-		// assert body.revisions has the correct content
-		assert.equal( olderSegment.revisions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
-		assert.equal( olderSegment.revisions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
+		// assert body.contributions has the correct content
+		assert.equal( olderSegment.contributions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
+		assert.equal( olderSegment.contributions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
 
-		assert.includeMembers( olderSegment.revisions[ 0 ].tags, arnoldsTags[ 3 ] );
-		assert.includeMembers( olderSegment.revisions[ 1 ].tags, arnoldsTags[ 2 ] );
+		assert.includeMembers( olderSegment.contributions[ 0 ].tags, arnoldsTags[ 3 ] );
+		assert.includeMembers( olderSegment.contributions[ 1 ].tags, arnoldsTags[ 2 ] );
 
 		// get the next older segment
 		const { body: finalSegment } = await req.get( olderSegment.older );
 		assert.propertyVal( finalSegment, 'older', null );
-		assert.property( finalSegment, 'revisions' );
-		assert.isArray( finalSegment.revisions );
-		assert.lengthOf( finalSegment.revisions, 1 );
+		assert.property( finalSegment, 'contributions' );
+		assert.isArray( finalSegment.contributions );
+		assert.lengthOf( finalSegment.contributions, 1 );
 
-		// assert body.revisions has the correct content
-		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
+		// assert body.contributions has the correct content
+		assert.equal( finalSegment.contributions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
-		assert.deepEqual( finalSegment.revisions[ 0 ].tags.sort(), arnoldsTags[ 1 ].sort() );
+		assert.deepEqual( finalSegment.contributions[ 0 ].tags.sort(), arnoldsTags[ 1 ].sort() );
 	};
 
 	const testPagingBackwards = async ( client, endpoint ) => {
@@ -221,15 +222,15 @@ describe( 'GET contributions', () => {
 		// get latest segment
 		const { body: latestSegment } = await client.get( endpoint, { limit: 2, tag: 'api-test' } );
 
-		// assert body.revisions has the latest revisions that have the "api-test" tag (odd edits)
-		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
-		assert.equal( latestSegment.revisions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
+		// assert body.contributions has latest contributions with the "api-test" tag (odd edits)
+		assert.equal( latestSegment.contributions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
+		assert.equal( latestSegment.contributions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
 
 		// get the final segment
 		const { body: finalSegment } = await req.get( latestSegment.older );
 
-		// assert body.revisions has the oldest revisions that have the "api-test" tag (odd edits)
-		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
+		// assert body.contributions has oldest contributions with the "api-test" tag (odd edits)
+		assert.equal( finalSegment.contributions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
 		const { body: latestSegment2 } = await req.get( finalSegment.newer );
 		assert.deepEqual( latestSegment, latestSegment2 );
@@ -253,9 +254,9 @@ describe( 'GET contributions', () => {
 			'POST'
 		);
 
-		// Users without appropriate permissions cannot see suppressed revisions (even their own)
+		// Users w/o appropriate permissions can't see suppressed contributions (even their own)
 		const { body: clientGetBody } = await client.get( endpoint );
-		assert.lengthOf( clientGetBody.revisions, 1 );
+		assert.lengthOf( clientGetBody.contributions, 1 );
 
 		await samAction.action( 'revisiondelete',
 			{
@@ -268,9 +269,9 @@ describe( 'GET contributions', () => {
 			'POST'
 		);
 
-		// Users with appropriate permissions can see suppressed revisions
+		// Users with appropriate permissions can see suppressed contributions
 		const { body: clientGetBody2 } = await client.get( endpoint );
-		assert.lengthOf( clientGetBody2.revisions, 2 );
+		assert.lengthOf( clientGetBody2.contributions, 2 );
 	};
 
 	describe( 'GET /me/contributions', () => {
@@ -315,8 +316,8 @@ describe( 'GET contributions', () => {
 			await testHasLatest( arnold, endpoint );
 		} );
 
-		it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
-			// Note that the suppressed revisions are Beth's contributions.
+		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed contributions are Beth's contributions.
 			await testSuppressedRevisions( beth, endpoint );
 		} );
 
@@ -366,8 +367,8 @@ describe( 'GET contributions', () => {
 			const response = await anon.get( xendpoint );
 			assert.equal( response.status, 200 );
 
-			assert.property( response.body, 'revisions' );
-			assert.deepEqual( response.body.revisions, [] );
+			assert.property( response.body, 'contributions' );
+			assert.deepEqual( response.body.contributions, [] );
 		} );
 
 		it( 'Anon gets a list of arnold\'s edits', async () => {
@@ -398,8 +399,8 @@ describe( 'GET contributions', () => {
 			await testHasLatest( anon, endpoint );
 		} );
 
-		it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
-			// Note that the suppressed revisions are Beth's contributions.
+		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed contributions are Beth's contributions.
 			const bethsEndpoint = `/user/${beth.username}/contributions`;
 			await testSuppressedRevisions( anon, bethsEndpoint );
 		} );

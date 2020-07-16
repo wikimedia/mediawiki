@@ -163,7 +163,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
-	public function testGetListOfRevisionsByUserIdentity() {
+	public function testGetContributionsByUserIdentity() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 		$performer = self::$testUser;
@@ -197,7 +197,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
-	public function testGetListOfRevisionsFilteredByTag() {
+	public function testGetContributionsFilteredByTag() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 
@@ -312,7 +312,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
-	public function testGetCountOfRevisionsByUserIdentity() {
+	public function testGetCountOfContributionsByUserIdentity() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$testUser );
@@ -322,7 +322,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
-	public function testGetCountOfRevisionsByUserAndTag() {
+	public function testGetCountOfContributionsByUserAndTag() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 		$count = $contributionsLookup->getContributionCount(
