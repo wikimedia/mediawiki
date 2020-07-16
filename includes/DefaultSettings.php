@@ -7482,9 +7482,11 @@ $wgUseTagFilter = true;
  * - 'mw-replace': Edit removes more than 90% of the content
  * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
  * - 'mw-undo': Edit made through an undo link
+ * - 'mw-manual-revert': Edit that restored the page to an exact previous state
  *
  * @var array
  * @since 1.31
+ * @since 1.36 Added 'mw-manual-revert'
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,
@@ -7495,6 +7497,7 @@ $wgSoftwareTags = [
 	'mw-replace' => true,
 	'mw-rollback' => true,
 	'mw-undo' => true,
+	'mw-manual-revert' => true,
 ];
 
 /**

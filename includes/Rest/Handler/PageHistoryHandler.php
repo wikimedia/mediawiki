@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class PageHistoryHandler extends SimpleHandler {
 	private const REVISIONS_RETURN_LIMIT = 20;
-	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback', 'mw-manual-revert' ];
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */

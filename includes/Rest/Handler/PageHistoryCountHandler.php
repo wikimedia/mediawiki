@@ -43,7 +43,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	private const MAX_AGE_200 = 60;
 
-	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback', 'mw-manual-revert' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;

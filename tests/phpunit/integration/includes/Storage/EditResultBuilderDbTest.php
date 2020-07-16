@@ -232,6 +232,11 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 			$er->getNewestRevertedRevisionId(),
 			'EditResult::getNewestRevertedRevisionId()'
 		);
+		$this->assertArrayEquals(
+			[ 'mw-manual-revert' ],
+			$er->getRevertTags(),
+			'EditResult::getRevertTags()'
+		);
 
 		// test the original revision referenced by this EditResult
 		$originalRev = $this->revisionStore->getRevisionById(
@@ -325,6 +330,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 			$er->getNewestRevertedRevisionId(),
 			'EditResult::getNewestRevertedRevisionId()'
 		);
+		$this->assertArrayEquals( [], $er->getRevertTags(), 'EditResult::getRevertTags()' );
 	}
 
 	/**
