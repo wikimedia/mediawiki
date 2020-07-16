@@ -28,7 +28,7 @@ describe( 'Page History', () => {
 		assert.equal( response.status, status, `Status of GET ${url}` );
 	}
 
-	const addEditInfo = ( editInfo, editBucket ) => {
+	const addEditInfo = ( editInfo, editBuckets ) => {
 		const obj = {
 			id: editInfo.newrevid,
 			comment: editInfo.param_summary,
@@ -37,9 +37,7 @@ describe( 'Page History', () => {
 		};
 
 		edits.all.unshift( obj );
-		if ( editBucket ) {
-			editBucket.unshift( obj );
-		}
+		editBuckets.forEach( ( editBucket ) => editBucket.unshift( obj ) );
 	};
 
 	before( async () => {
@@ -56,11 +54,11 @@ describe( 'Page History', () => {
 		anon.username = anonInfo.name;
 
 		// Create a page and make edits by various users and store edit information
-		addEditInfo( await alice.edit( title, { text: 'Counting 1', summary: 'creating page' } ), false );
-		addEditInfo( await anon.edit( title, { text: 'Counting 1 2', summary: 'anon edit 1' } ), edits.anon );
-		addEditInfo( await anon.edit( title, { text: 'Counting 1 2 3', summary: 'anon edit 2' } ), edits.anon );
-		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4', summary: 'bot edit 1' } ), edits.bot );
-		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4 5', summary: 'bot edit 2' } ), edits.bot );
+		addEditInfo( await alice.edit( title, { text: 'Counting 1', summary: 'creating page' } ), [] );
+		addEditInfo( await anon.edit( title, { text: 'Counting 1 2', summary: 'anon edit 1' } ), [ edits.anon ] );
+		addEditInfo( await anon.edit( title, { text: 'Counting 1 2 3', summary: 'anon edit 2' } ), [ edits.anon ] );
+		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4', summary: 'bot edit 1' } ), [ edits.bot ] );
+		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4 5', summary: 'bot edit 2' } ), [ edits.bot ] );
 
 		// Rollback edits by bot
 		const summary = 'revert edits by bot';
@@ -82,12 +80,17 @@ describe( 'Page History', () => {
 		await client.get( `/page/${title}/history/counts/edits` );
 		await utils.sleep();
 
-		addEditInfo( rollback, edits.reverts );
-		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4', summary: 'bot edit 3', minor: true } ), edits.bot );
-		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4 555', summary: 'bot edit 4' } ), edits.bot );
+		addEditInfo( rollback, [ edits.reverts ] );
+
+		// The bot manually reverts the page to bot edit 1
+		addEditInfo(
+			await bot.edit( title, { text: 'Counting 1 2 3 4', summary: 'bot edit 3', minor: true } ),
+			[ edits.bot, edits.reverts ]
+		);
+		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4 555', summary: 'bot edit 4' } ), [ edits.bot ] );
 
 		// Undo last edit
-		addEditInfo( await mindy.edit( title, { undo: edits.all[ 0 ].id } ), edits.reverts );
+		addEditInfo( await mindy.edit( title, { undo: edits.all[ 0 ].id } ), [ edits.reverts ] );
 
 	} );
 
@@ -229,7 +232,7 @@ describe( 'Page History', () => {
 		it( 'Should get total number of reverted edits', async () => {
 			const res = await client.get( `/page/${title}/history/counts/reverted` );
 
-			assert.deepEqual( res.body, { count: 2, limit: false } );
+			assert.deepEqual( res.body, { count: 3, limit: false } );
 			assert.equal( res.status, 200 );
 		} );
 	} );

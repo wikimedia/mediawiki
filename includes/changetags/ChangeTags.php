@@ -52,6 +52,7 @@ class ChangeTags {
 		'mw-replace',
 		'mw-rollback',
 		'mw-undo',
+		'mw-manual-revert',
 	];
 
 	/**
