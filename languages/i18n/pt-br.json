@@ -3503,6 +3503,8 @@
 	"tag-mw-rollback-description": "Edições que revertem edições anteriores usando o link de reversão",
 	"tag-mw-undo": "Desfazer",
 	"tag-mw-undo-description": "Edições que desfazem edições anteriores usando o link de desfazer",
+	"tag-mw-manual-revert": "Reversão manual",
+	"tag-mw-manual-revert-description": "Edições que restauram manualmente a página para um estado anterior exato",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.",
 	"tags-tag": "Nome da etiqueta",

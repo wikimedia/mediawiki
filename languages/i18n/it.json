@@ -1202,6 +1202,7 @@
 	"prefs-help-signature": "I commenti nelle pagine di discussione devono essere firmati con \"<nowiki>~~~~</nowiki>\" che verrà convertito nella propria firma seguita dalla data.",
 	"badsig": "Errore nella firma non standard, verificare i tag HTML.",
 	"badsightml": "La tua firma contiene sintassi HTML non valida o deprecata:",
+	"badsiglinks": "La tua firma deve includere un collegamento alla tua pagina utente, pagina di discussione o contributi in questo wiki. Cortesemente aggiungilo, per esempio: <code>$1</code>.",
 	"badsiglength": "La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"linter-pager-bogus-image-options-details": "Parametro di \"File:\" inesistente",
 	"linter-pager-deletable-table-tag-details": "Tag \"table\" che dovrebbe essere cancellato",

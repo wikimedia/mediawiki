@@ -3766,6 +3766,7 @@
 	"mw-widgets-dateinput-placeholder-day": "বববব-মম-দদ",
 	"mw-widgets-dateinput-placeholder-month": "বববব-মম",
 	"mw-widgets-mediasearch-input-placeholder": "মিডিয়ার জন্য অনুসন্ধান",
+	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|আপনার}} সাম্প্রতিক আপলোডগুলি",
 	"mw-widgets-mediasearch-noresults": "কোনো ফলাফল পাওয়া যায়নি।",
 	"mw-widgets-table-row-delete": "সারি মুছুন",
 	"mw-widgets-titleinput-description-new-page": "পাতা এখনো বিদ্যমান নয়",

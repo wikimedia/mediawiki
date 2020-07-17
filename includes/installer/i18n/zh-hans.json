@@ -27,6 +27,7 @@
 			"乌拉跨氪",
 			"列维劳德",
 			"水獭很懒",
+			"沈澄心",
 			"阿pp",
 			"아라"
 		]
@@ -192,6 +193,7 @@
 	"config-admin-email-help": "在这里输入电子邮件地址可以允许您收到来自本wiki其他用户的电子邮件，重置您的密码和收到您的监视列表中的页面的更改通知。您可以将该字段留空。",
 	"config-admin-error-user": "在创建用户名为“<nowiki>$1</nowiki>”的管理员帐号时发生内部错误。",
 	"config-admin-error-password": "在为管理员“<nowiki>$1</nowiki>”设置密码时发生内部错误：<pre>$2</pre>",
+	"config-admin-error-password-invalid": "无效wiki管理员密码：$1",
 	"config-admin-error-bademail": "您输入了无效的电子邮件地址。",
 	"config-subscribe": "订阅[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 发行公告邮件列表]。",
 	"config-subscribe-help": "此低流量的邮件列表仅用于发行公告，其中包括重要安全公告。请订阅该列表以便在新的版本推出时升级您的MediaWiki。",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Snævar",
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Þjarkur"
 		]
 	},
 	"config-desc": "Uppsetningarforrit fyrir MediaWiki",
@@ -30,7 +31,7 @@
 	"config-page-upgradedoc": "Uppfærsla",
 	"config-page-existingwiki": "Fyrirliggjandi wiki",
 	"config-restart": "Já, endurræsa",
-	"config-welcome-section-copyright": "=== Höfundarréttur og skilmálar ===\n\n$1\n\nÞetta er frjáls hugbúnaður; þú mátt dreifa honum og/eða breyta samkvæmt skilmálum í almenna GNU GPL notkunarleyfinu eins og það er gefið út af Frjálsu hugbúnaðarstofnuninni; annaðhvort útgáfu 2 af GPL-leyfinu, eða (ef þér sýnist svo) einhverri nýrri útgáfu leyfisins.\n\nHugbúnaði þessum er dreift í þeirri von að hann geti verið gagnlegur, en <strong>ÁN ALLRAR ÁBYRGÐAR</strong>; einnig án þeirrar ábyrgðar sem gefin er í skyn með <strong>SELJANLEIKA</strong> eða <strong>EIGINLEIKUM TIL TILTEKINNA NOTA</strong>. Sjá almenna GNU GPL notkunarleyfið fyrir nánari upplýsingar.\n\nÞað ætti að hafa fylgt afrit af almenna [$2 GNU GPL notkunarleyfinu] með forritinu; ef ekki skrifið þá Fjálsu hugbúnarstofnuninni: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, eða [https://www.gnu.org/copyleft/gpl.html lestu það á netinu].",
+	"config-welcome-section-copyright": "=== Höfundaréttur og skilmálar ===\n\n$1\n\nÞetta er frjáls hugbúnaður; þú mátt dreifa honum og/eða breyta samkvæmt skilmálum í almenna GNU GPL notkunarleyfinu eins og það er gefið út af Frjálsu hugbúnaðarstofnuninni; annaðhvort útgáfu 2 af GPL-leyfinu, eða (ef þér sýnist svo) einhverri nýrri útgáfu leyfisins.\n\nHugbúnaði þessum er dreift í þeirri von að hann geti verið gagnlegur, en <strong>ÁN ALLRAR ÁBYRGÐAR</strong>; einnig án þeirrar ábyrgðar sem gefin er í skyn með <strong>SELJANLEIKA</strong> eða <strong>EIGINLEIKUM TIL TILTEKINNA NOTA</strong>. Sjá almenna GNU GPL notkunarleyfið fyrir nánari upplýsingar.\n\nÞað ætti að hafa fylgt afrit af almenna [$2 GNU GPL notkunarleyfinu] með forritinu; ef ekki skrifið þá Fjálsu hugbúnarstofnuninni: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, eða [https://www.gnu.org/copyleft/gpl.html lestu það á netinu].",
 	"config-env-php": "PHP $1 er uppsett.",
 	"config-apc": "[https://www.php.net/apc APC] er uppsett",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] er uppsett",
