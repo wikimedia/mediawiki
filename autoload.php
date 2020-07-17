@@ -530,7 +530,6 @@ $wgAutoloadLocalClasses = [
 	'FileRepo' => __DIR__ . '/includes/filerepo/FileRepo.php',
 	'FindBadBlobs' => __DIR__ . '/maintenance/findBadBlobs.php',
 	'FindDeprecated' => __DIR__ . '/maintenance/findDeprecated.php',
-	'FindHooks' => __DIR__ . '/maintenance/findHooks.php',
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
 	'FindOrphanedFiles' => __DIR__ . '/maintenance/findOrphanedFiles.php',
 	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',

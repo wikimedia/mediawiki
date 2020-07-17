@@ -687,6 +687,7 @@ because of Phabricator reports.
   has been removed.
 * The populateContentModel.php maintenance script was removed. It has
   been replaced by the populateContentTables.php script.
+* The findHooks.php maintenance script, for the old hooks system, was removed.
 * …
 
 === Deprecations in 1.35 ===
