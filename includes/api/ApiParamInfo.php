@@ -167,9 +167,9 @@ class ApiParamInfo extends ApiBase {
 	 * @return string[]
 	 */
 	private function listAllSubmodules( ApiBase $module, $recursive ) {
+		$paths = [];
 		$manager = $module->getModuleManager();
 		if ( $manager ) {
-			$paths = [];
 			$names = $manager->getNames();
 			sort( $names );
 			foreach ( $names as $name ) {
