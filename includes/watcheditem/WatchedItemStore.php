@@ -1565,23 +1565,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
-
-		$result = $dbw->select(
-			'watchlist',
-			[ 'wl_user', 'wl_notificationtimestamp' ],
-			[
-				'wl_namespace' => $oldTarget->getNamespace(),
-				'wl_title' => $oldTarget->getDBkey(),
-			],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
-
+		$result = $this->fetchWatchedItemsForPage( $dbw, $oldTarget );
 		$newNamespace = $newTarget->getNamespace();
 		$newDBkey = $newTarget->getDBkey();
 
 		# Construct array to replace into the watchlist
 		$values = [];
+		$expiries = [];
 		foreach ( $result as $row ) {
 			$values[] = [
 				'wl_user' => $row->wl_user,
@@ -1589,19 +1579,113 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				'wl_title' => $newDBkey,
 				'wl_notificationtimestamp' => $row->wl_notificationtimestamp,
 			];
+
+			if ( $this->expiryEnabled && $row->we_expiry ) {
+				$expiries[$row->wl_user] = $row->we_expiry;
+			}
 		}
 
-		if ( !empty( $values ) ) {
-			# Perform replace
-			# Note that multi-row replace is very efficient for MySQL but may be inefficient for
-			# some other DBMSes, mostly due to poor simulation by us
-			$dbw->replace(
-				'watchlist',
-				[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
-				$values,
-				__METHOD__
-			);
+		if ( empty( $values ) ) {
+			return;
 		}
+
+		// Perform a replace on the watchlist table rows.
+		// Note that multi-row replace is very efficient for MySQL but may be inefficient for
+		// some other DBMSes, mostly due to poor simulation by us.
+		$dbw->replace(
+			'watchlist',
+			[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
+			$values,
+			__METHOD__
+		);
+
+		if ( $this->expiryEnabled ) {
+			$this->updateExpiriesAfterMove( $dbw, $expiries, $newNamespace, $newDBkey );
+		}
+	}
+
+	/**
+	 * @param IDatabase $dbw
+	 * @param LinkTarget $target
+	 * @return IResultWrapper
+	 */
+	private function fetchWatchedItemsForPage(
+		IDatabase $dbw,
+		LinkTarget $target
+	) : IResultWrapper {
+		$tables = [ 'watchlist' ];
+		$fields = [ 'wl_user', 'wl_notificationtimestamp' ];
+		$joins = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
+			$joins['watchlist_expiry'] = [ 'LEFT JOIN', [ 'wl_id = we_item' ] ];
+		}
+
+		return $dbw->select(
+			$tables,
+			$fields,
+			[
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+			],
+			__METHOD__,
+			[ 'FOR UPDATE' ],
+			$joins
+		);
+	}
+
+	/**
+	 * @param IDatabase $dbw
+	 * @param array $expiries
+	 * @param int $namespace
+	 * @param string $dbKey
+	 */
+	private function updateExpiriesAfterMove(
+		IDatabase $dbw,
+		array $expiries,
+		int $namespace,
+		string $dbKey
+	): void {
+		$method = __METHOD__;
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $dbw, $expiries, $namespace, $dbKey, $method ) {
+				// First fetch new wl_ids.
+				$res = $dbw->select(
+					'watchlist',
+					[ 'wl_user', 'wl_id' ],
+					[
+						'wl_namespace' => $namespace,
+						'wl_title' => $dbKey,
+					],
+					$method
+				);
+
+				// Build new array to INSERT into multiple rows at once.
+				$expiryData = [];
+				foreach ( $res as $row ) {
+					if ( !empty( $expiries[$row->wl_user] ) ) {
+						$expiryData[] = [
+							'we_item' => $row->wl_id,
+							'we_expiry' => $expiries[$row->wl_user],
+						];
+					}
+				}
+
+				// Batch the insertions.
+				$batches = array_chunk( $expiryData, $this->updateRowsPerQuery );
+				foreach ( $batches as $toInsert ) {
+					$dbw->insert(
+						'watchlist_expiry',
+						$toInsert,
+						$method
+					);
+				}
+			},
+			DeferredUpdates::POSTSEND,
+			$dbw
+		);
 	}
 
 	/**
