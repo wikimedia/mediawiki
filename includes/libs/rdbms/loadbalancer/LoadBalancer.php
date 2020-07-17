@@ -691,12 +691,11 @@ class LoadBalancer implements ILoadBalancer {
 			} else {
 				$ok = true; // no applicable loads
 			}
+			return $ok;
 		} finally {
 			// Restore the old position; this is used for throttling, not lag-protection
 			$this->waitForPos = $oldPos;
 		}
-
-		return $ok;
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
@@ -718,12 +717,11 @@ class LoadBalancer implements ILoadBalancer {
 					}
 				}
 			}
+			return $ok;
 		} finally {
 			// Restore the old position; this is used for throttling, not lag-protection
 			$this->waitForPos = $oldPos;
 		}
-
-		return $ok;
 	}
 
 	/**
@@ -1504,12 +1502,10 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		try {
-			$pos = $conn->getMasterPos();
+			return $conn->getMasterPos();
 		} finally {
 			$this->closeConnection( $conn );
 		}
-
-		return $pos;
 	}
 
 	public function getReplicaResumePos() {
