@@ -313,9 +313,8 @@ class MWDebug {
 	 *
 	 * @param string $msg The complete message including relevant caller information.
 	 * @param bool $sendToLog If true, the message will be sent to the debug
-	 *   toolbar, the debug log, and raised as a warning if indicated by
-	 *   $wgDevelopmentWarnings. If false, the message will only be sent to
-	 *   the debug toolbar.
+	 *   toolbar, the debug log, and raised as a warning to PHP. If false, the message
+	 *   will only be sent to the debug toolbar.
 	 * @param string $callerFunc The caller, for display in the debug toolbar's
 	 *   caller column.
 	 */
@@ -327,12 +326,7 @@ class MWDebug {
 		}
 
 		if ( $sendToLog ) {
-			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendMessage(
-				$msg,
-				'deprecated',
-				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
-			);
+			trigger_error( $msg, E_USER_DEPRECATED );
 		}
 
 		if ( self::$enabled ) {
@@ -414,7 +408,35 @@ class MWDebug {
 	 * @return string
 	 */
 	private static function formatCallerDescription( $msg, $caller ) {
+		// When changing this, update the below parseCallerDescription() method  as well.
 		return $msg . ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+	}
+
+	/**
+	 * Append a caller description to an error message
+	 *
+	 * @internal For use by MWExceptionHandler to override 'exception.file' in error logs.
+	 * @param string $msg Formatted message from formatCallerDescription() and getCallerDescription()
+	 * @return null|array<string,string> Null if unable to recognise all parts, or array with:
+	 *  - 'file': string of file path
+	 *  - 'line': string of line number
+	 *  - 'func': string of function or method name
+	 *  - 'message': Re-formatted version of $msg for use with ErrorException,
+	 *  so as to not include file/line twice.
+	 */
+	public static function parseCallerDescription( $msg ) {
+		$match = null;
+		preg_match( '/(.*) \[Called from ([^ ]+) in ([^ ]+) at line (\d+)\]$/', $msg, $match );
+		if ( $match ) {
+			return [
+				'message' => "{$match[1]} [Called from {$match[2]}]",
+				'func' => $match[2],
+				'file' => $match[3],
+				'line' => $match[4],
+			];
+		} else {
+			return null;
+		}
 	}
 
 	/**
