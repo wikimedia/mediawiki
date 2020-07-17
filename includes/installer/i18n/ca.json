@@ -175,6 +175,7 @@
 	"config-admin-email-help": "Introduïu una adreça electrònica a continuació per permetre rebre correu d'altres usuaris del wiki, reiniciar la contrasenya i rebre notificacions de les pàgines a la vostra llista de seguiment. Podeu deixar el camp en blanc.",
 	"config-admin-error-user": "S'ha produït un error intern en crear un administrador amb el nom «<nowiki>$1</nowiki>».",
 	"config-admin-error-password": "S'ha produït un error intern en definir una contrasenya per a l'administrador «<nowiki>$1</nowiki>»: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Contrasenya d'administració wiki no vàlida: $1",
 	"config-admin-error-bademail": "Heu introduït una adreça electrònica no vàlida.",
 	"config-subscribe": "Subscriu a la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce llista de correu d'anunci de noves versions].",
 	"config-subscribe-help": "És una llista de poc volum que s'utilitza per fer anuncis de noves versions, incloent-hi aquells de seguretat importants.\nCal que us hi subscriviu i actualitzeu la instal·lació de MediaWiki quan apareguin noves versions.",

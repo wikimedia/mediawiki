@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"Toniher"
+		]
+	},
+	"rest-nonexistent-title": "El títol especificat ($1) no existeix",
+	"rest-nonexistent-revision": "La revisió especificada ($1) no existeix",
+	"rest-nonexistent-user": "L'usuari especificat ($1) no existeix",
+	"rest-permission-denied-anon": "No accessible per a usuaris anònims",
+	"rest-pagehistory-param-range-error": "L'ID de la revisió ha de ser més gran que 0",
+	"rest-bad-content-model": "Model de contingut incorrecte: $1",
+	"rest-cannot-load-file": "No es pot carregar el fitxer corresponent al títol «$1»."
+}
