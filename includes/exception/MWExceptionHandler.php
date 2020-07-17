@@ -248,9 +248,22 @@ class MWExceptionHandler {
 				$severity = LogLevel::WARNING;
 				break;
 			case E_DEPRECATED:
+				$prefix = 'PHP Deprecated: ';
+				$severity = LogLevel::WARNING;
+				break;
 			case E_USER_DEPRECATED:
 				$prefix = 'PHP Deprecated: ';
 				$severity = LogLevel::WARNING;
+				$real = MWDebug::parseCallerDescription( $message );
+				if ( $real ) {
+					// Used by wfDeprecated(), MWDebug::deprecated()
+					// Apply caller offset from wfDeprecated() to the native error.
+					// This makes errors easier to aggregate and find in e.g. Kibana.
+					$file = $real['file'];
+					$line = $real['line'];
+					$message = $real['message'];
+					$prefix = '';
+				}
 				break;
 			default:
 				$prefix = 'PHP Unknown error: ';
