@@ -81,8 +81,8 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 		yield [ 'MissingMainTextField', 'MWException', '/^Missing text field in import.$/' ];
 		yield [ 'MissingSlotTextField', 'MWException', '/^Missing text field in import.$/' ];
 		yield [ 'MissingSlotRole', 'MWException', '/^Missing role for imported slot.$/' ];
-		yield [ 'UnknownSlotRole', 'PHPUnit\Framework\Error\Notice',
-			'/SlotRoleRegistry::getRoleHandler: known but undefined slot role/' ];
+		yield [ 'UndefinedSlotRole', 'MWException', '/^Undefined slot role .*$/' ];
+		yield [ 'UndefinedContentModel', 'MWException', '/not registered on this wiki/' ];
 	}
 
 	/**
