@@ -2682,11 +2682,24 @@ return [
 		],
 	],
 	'mediawiki.watchstar.widgets' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.watchstar.widgets",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.widgets",
 		'packageFiles' => [
-			'resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js',
+			'WatchlistExpiryWidget.js',
+			[ 'name' => 'data.json', 'callback' => function ( MessageLocalizer $messageLocalizer ) {
+				return WatchAction::getExpiryOptions( $messageLocalizer, false );
+			} ]
 		],
+		'styles' => 'WatchlistExpiryWidget.css',
 		'dependencies' => [
 			'oojs-ui'
+		],
+		'messages' => [
+			'addedwatchexpiry-options-label',
+			'addedwatchexpirytext',
+			'addedwatchexpirytext-talk',
+			'addedwatchindefinitelytext',
+			'addedwatchindefinitelytext-talk'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
