@@ -80,7 +80,7 @@ class PageUpdater {
 	/**
 	 * Options that have to be present in the ServiceOptions object passed to the constructor.
 	 *
-	 * @since 1.35
+	 * @since 1.36
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'ManualRevertSearchRadius'

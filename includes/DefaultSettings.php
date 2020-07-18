@@ -9621,7 +9621,7 @@ $wgWatchlistExpiryMaxDuration = '6 months';
  * See this document for a discussion on this topic:
  * https://meta.wikimedia.org/wiki/Research:Revert
  *
- * @since 1.35
+ * @since 1.36
  * @var int
  */
 $wgManualRevertSearchRadius = 15;
