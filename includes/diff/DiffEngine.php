@@ -412,41 +412,6 @@ class DiffEngine {
 		$this->added = $added;
 	}
 
-	private function diff_range( $from_lines, $to_lines ) {
-		// Diff and store locally
-		$this->diff( $from_lines, $to_lines );
-		unset( $from_lines, $to_lines );
-
-		$ranges = [];
-		$xi = $yi = 0;
-		while ( $xi < $this->m || $yi < $this->n ) {
-			// Matching "snake".
-			while ( $xi < $this->m && $yi < $this->n
-				&& !$this->removed[$xi]
-				&& !$this->added[$yi]
-			) {
-				++$xi;
-				++$yi;
-			}
-			// Find deletes & adds.
-			$xstart = $xi;
-			while ( $xi < $this->m && $this->removed[$xi] ) {
-				++$xi;
-			}
-
-			$ystart = $yi;
-			while ( $yi < $this->n && $this->added[$yi] ) {
-				++$yi;
-			}
-
-			if ( $xi > $xstart || $yi > $ystart ) {
-				$ranges[] = new RangeDifference( $xstart, $xi, $ystart, $yi );
-			}
-		}
-
-		return $ranges;
-	}
-
 	private function lcs_rec( $bottoml1, $topl1, $bottoml2, $topl2, &$V, &$snake ) {
 		// check that both sequences are non-empty
 		if ( $bottoml1 > $topl1 || $bottoml2 > $topl2 ) {
