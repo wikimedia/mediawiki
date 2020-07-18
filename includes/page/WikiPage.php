@@ -1970,7 +1970,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$revisionStore = $this->getRevisionStore();
-		$originalRevision = $revisionStore->getRevisionById( $originalRevId );
+		$originalRevision = $originalRevId ? $revisionStore->getRevisionById( $originalRevId ) : null;
 		if ( $originalRevision && $undidRevId !== 0 ) {
 			// Mark it as a revert if it's an undo
 			$oldestRevertedRev = $revisionStore->getNextRevision( $originalRevision );
