@@ -792,7 +792,8 @@ return [
 			true,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer(),
-			$services->getRevisionStore()
+			$services->getRevisionStore(),
+			$services->getSlotRoleRegistry()
 		);
 	},
 
@@ -1368,7 +1369,8 @@ return [
 			false,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer(),
-			$services->getRevisionStore()
+			$services->getRevisionStore(),
+			$services->getSlotRoleRegistry()
 		);
 	},
 
