@@ -590,12 +590,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	private static function formatErrorLevel( $errorLevel ) {
 		switch ( gettype( $errorLevel ) ) {
-		case 'integer':
-			return '0x' . strtoupper( dechex( $errorLevel ) );
-		case 'NULL':
-			return 'null';
-		default:
-			throw new MWException( 'Unexpected error level type ' . gettype( $errorLevel ) );
+			case 'integer':
+				return '0x' . strtoupper( dechex( $errorLevel ) );
+			case 'NULL':
+				return 'null';
+			default:
+				throw new MWException( 'Unexpected error level type ' . gettype( $errorLevel ) );
 		}
 	}
 
