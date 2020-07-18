@@ -3103,6 +3103,7 @@
 	"tooltip-ca-move": "Move this page",
 	"tooltip-ca-watch": "Add this page to your watchlist",
 	"tooltip-ca-unwatch": "Remove this page from your watchlist",
+	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|1 day|$1 days}} left. Click to remove this page from your watchlist.",
 	"tooltip-search": "Search {{SITENAME}}",
 	"tooltip-search-go": "Go to a page with this exact name if it exists",
 	"tooltip-search-fulltext": "Search the pages for this text",
