@@ -738,12 +738,6 @@ class ApiMain extends ApiBase {
 			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
 			$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
 			if ( $preflight ) {
-				// This is a CORS preflight request
-				if ( $requestedMethod !== 'POST' && $requestedMethod !== 'GET' ) {
-					// If method is not a case-sensitive match, do not set any additional headers and terminate.
-					$response->header( 'MediaWiki-CORS-Rejection: Unsupported method requested in preflight' );
-					return true;
-				}
 				// We allow the actual request to send the following headers
 				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
 				$allowedHeaders = $this->getConfig()->get( 'AllowedCorsHeaders' );
@@ -755,14 +749,8 @@ class ApiMain extends ApiBase {
 					$response->header( 'Access-Control-Allow-Headers: ' . $requestedHeaders );
 				}
 
-				// We only allow the actual request to be GET or POST
-				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
-			} elseif ( $request->getMethod() !== 'POST' && $request->getMethod() !== 'GET' ) {
-				// Unsupported non-preflight method, don't handle it as CORS
-				$response->header(
-					'MediaWiki-CORS-Rejection: Unsupported method for simple request or actual request'
-				);
-				return true;
+				// We only allow the actual request to be GET, POST, or HEAD
+				$response->header( 'Access-Control-Allow-Methods: POST, GET, HEAD' );
 			}
 
 			$response->header( "Access-Control-Allow-Origin: $allowOrigin" );
