@@ -697,6 +697,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'actor', 'actor_name', 'TEXT', '' ],
 			[ 'changeField', 'user_former_groups', 'ufg_group', 'TEXT', '' ],
 			[ 'dropFkey', 'user_former_groups', 'ufg_user' ],
+			[ 'setDefault', 'bot_passwords', 'bp_token', '' ],
 		];
 	}
 

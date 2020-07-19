@@ -93,5 +93,49 @@
 		],
 		"indexes": [],
 		"pk": [ "ufg_user", "ufg_group" ]
+	},
+	{
+		"name": "bot_passwords",
+		"comment": "This table contains a user's bot passwords: passwords that allow access to the account via the API with limited rights.",
+		"columns": [
+			{
+				"name": "bp_user",
+				"comment": "User ID obtained from CentralIdLookup.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "bp_app_id",
+				"comment": "Application identifier.",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "bp_password",
+				"comment": "Password hashes, like user.user_password.",
+				"type": "blob",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "bp_token",
+				"comment": "Like user.user_token",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "", "fixed": true }
+			},
+			{
+				"name": "bp_restrictions",
+				"comment": "JSON blob for MWRestrictions",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			},
+			{
+				"name": "bp_grants",
+				"comment": "Grants allowed to the account when authenticated with this bot-password",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "bp_user", "bp_app_id" ]
 	}
 ]
