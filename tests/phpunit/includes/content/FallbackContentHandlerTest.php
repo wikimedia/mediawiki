@@ -6,21 +6,21 @@ use MediaWiki\Revision\SlotRenderingProvider;
 /**
  * @group ContentHandler
  */
-class UnknownContentHandlerTest extends MediaWikiLangTestCase {
+class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 	/**
-	 * @covers UnknownContentHandler::supportsDirectEditing
+	 * @covers FallbackContentHandler::supportsDirectEditing
 	 */
 	public function testSupportsDirectEditing() {
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing supported' );
 	}
 
 	/**
-	 * @covers UnknownContentHandler::serializeContent
+	 * @covers FallbackContentHandler::serializeContent
 	 */
 	public function testSerializeContent() {
-		$handler = new UnknownContentHandler( 'horkyporky' );
-		$content = new UnknownContent( 'hello world', 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
+		$content = new FallbackContent( 'hello world', 'horkyporky' );
 
 		$this->assertEquals( 'hello world', $handler->serializeContent( $content ) );
 		$this->assertEquals(
@@ -30,10 +30,10 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContentHandler::unserializeContent
+	 * @covers FallbackContentHandler::unserializeContent
 	 */
 	public function testUnserializeContent() {
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$content = $handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getData() );
 
@@ -42,10 +42,10 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContentHandler::makeEmptyContent
+	 * @covers FallbackContentHandler::makeEmptyContent
 	 */
 	public function testMakeEmptyContent() {
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$content = $handler->makeEmptyContent();
 
 		$this->assertTrue( $content->isEmpty() );
@@ -64,10 +64,10 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsSupportedFormat
-	 * @covers UnknownContentHandler::isSupportedFormat
+	 * @covers FallbackContentHandler::isSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$this->assertEquals( $supported, $handler->isSupportedFormat( $format ) );
 	}
 
@@ -76,12 +76,12 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetSecondaryDataUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
-		$content = new UnknownContent( '', 'horkyporky' );
+		$content = new FallbackContent( '', 'horkyporky' );
 
 		/** @var SlotRenderingProvider $srp */
 		$srp = $this->createMock( SlotRenderingProvider::class );
 
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
 
 		$this->assertEquals( [], $updates );
@@ -93,7 +93,7 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 	public function testGetDeletionUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );
 
 		$this->assertEquals( [], $updates );
@@ -106,7 +106,7 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest() );
 
-		$handler = new UnknownContentHandler( 'horkyporky' );
+		$handler = new FallbackContentHandler( 'horkyporky' );
 		$slotDiffRenderer = $handler->getSlotDiffRenderer( $context );
 
 		$oldContent = $handler->unserializeContent( 'Foo' );

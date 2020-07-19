@@ -35,7 +35,7 @@
  *
  * @ingroup Content
  */
-class UnknownContent extends AbstractContent {
+class FallbackContent extends AbstractContent {
 
 	/** @var string */
 	private $data;
@@ -105,6 +105,15 @@ class UnknownContent extends AbstractContent {
 	}
 
 	/**
+	 * @param string|null $format
+	 *
+	 * @return string data of unknown format and meaning
+	 */
+	public function serialize( $format = null ) {
+		return $this->getData();
+	}
+
+	/**
 	 * Returns an empty string.
 	 *
 	 * @return string The raw text.
@@ -146,7 +155,7 @@ class UnknownContent extends AbstractContent {
 	}
 
 	protected function equalsInternal( Content $that ) {
-		if ( !$that instanceof UnknownContent ) {
+		if ( !$that instanceof FallbackContent ) {
 			return false;
 		}
 
@@ -154,3 +163,5 @@ class UnknownContent extends AbstractContent {
 	}
 
 }
+
+class_alias( FallbackContent::class, 'UnknownContent' );

@@ -32,6 +32,7 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DBAccessObjectUtils;
+use FallbackContent;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -1036,8 +1037,26 @@ class RevisionStore
 			}
 		}
 
+		$model = $slot->getModel();
+
+		// If the content model is not known, don't fail here (T220594, T220793, T228921)
+		if ( !$this->contentHandlerFactory->isDefinedModel( $model ) ) {
+			$this->logger->warning(
+				"Undefined content model '$model', falling back to UnknownContent",
+				[
+					'content_address' => $slot->getAddress(),
+					'rev_id' => $slot->getRevision(),
+					'role_name' => $slot->getRole(),
+					'model_name' => $model,
+					'trace' => wfBacktrace()
+				]
+			);
+
+			return new FallbackContent( $data, $model );
+		}
+
 		return $this->contentHandlerFactory
-			->getContentHandler( $slot->getModel() )
+			->getContentHandler( $model )
 			->unserializeContent( $data, $blobFormat );
 	}
 
