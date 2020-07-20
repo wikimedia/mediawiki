@@ -99,6 +99,7 @@
 	"config-admin-password-blank": "প্রশাসক অ্যাকাউন্টের জন্য পাসওয়ার্ড প্রবেশ করান।",
 	"config-admin-password-mismatch": "আপনি যে দুটি পাসওয়ার্ড দিয়েছেন তারা পরস্পর মেলেনি।",
 	"config-admin-email": "ইমেইল ঠিকানা:",
+	"config-admin-error-password-invalid": "উইকি প্রশাসক পাস‌ওয়ার্ড অবৈধ: $1",
 	"config-admin-error-bademail": "আপনি একটি অবৈধ ইমেল ঠিকানা দিয়েছেন।",
 	"config-optional-continue": "আরও প্রশ্ন জিজ্ঞেস করুন।",
 	"config-optional-skip": "আমি ইতিমধ্যেই বিরক্ত হয়ে গেছি, শুধু উইকিটি ইন্সটল করুন।",
