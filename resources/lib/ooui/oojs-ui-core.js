@@ -864,16 +864,16 @@ OO.ui.Element.static.gatherPreInfuseState = function () {
  * @return {HTMLDocument|null} Document object
  */
 OO.ui.Element.static.getDocument = function ( obj ) {
-	// jQuery - selections created "offscreen" won't have a context, so .context isn't reliable
-	return ( obj[ 0 ] && obj[ 0 ].ownerDocument ) ||
-		// Empty jQuery selections might have a context
-		obj.context ||
-		// HTMLElement
-		obj.ownerDocument ||
+	// HTMLElement
+	return obj.ownerDocument ||
 		// Window
 		obj.document ||
 		// HTMLDocument
 		( obj.nodeType === Node.DOCUMENT_NODE && obj ) ||
+		// jQuery - selections created "offscreen" won't have a context, so .context isn't reliable
+		( obj[ 0 ] && obj[ 0 ].ownerDocument ) ||
+		// Empty jQuery selections might have a context
+		obj.context ||
 		null;
 };
 
