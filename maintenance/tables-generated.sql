@@ -104,3 +104,12 @@ CREATE TABLE /*_*/change_tag (
   ),
   PRIMARY KEY(ct_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/content (
+  content_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+  content_size INT UNSIGNED NOT NULL,
+  content_sha1 VARBINARY(32) NOT NULL,
+  content_model SMALLINT UNSIGNED NOT NULL,
+  content_address VARBINARY(255) NOT NULL,
+  PRIMARY KEY(content_id)
+) /*$wgDBTableOptions*/;
