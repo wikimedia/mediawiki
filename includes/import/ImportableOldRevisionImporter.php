@@ -41,23 +41,19 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 * @param LoggerInterface $logger
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
-	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
-		SlotRoleRegistry $slotRoleRegistry = null
+		SlotRoleRegistry $slotRoleRegistry
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
-		// @todo: temporary - remove when FileImporter extension is updated
-		if ( !$slotRoleRegistry ) {
-			$slotRoleRegistry = \MediaWiki\MediaWikiServices::getInstance()->getSlotRoleRegistry();
-		}
 		$this->slotRoleRegistry = $slotRoleRegistry;
 	}
 
