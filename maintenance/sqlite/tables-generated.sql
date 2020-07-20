@@ -36,3 +36,9 @@ CREATE TABLE /*_*/bot_passwords (
   bp_grants BLOB NOT NULL,
   PRIMARY KEY(bp_user, bp_app_id)
 );
+CREATE TABLE /*_*/comment (
+  comment_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  comment_hash INTEGER NOT NULL, comment_text BLOB NOT NULL,
+  comment_data BLOB DEFAULT NULL
+);
+CREATE INDEX comment_hash ON /*_*/comment (comment_hash);
