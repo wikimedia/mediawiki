@@ -5,7 +5,6 @@ namespace MediaWiki\HookContainer {
 	use Psr\Container\ContainerInterface;
 	use UnexpectedValueException;
 	use Wikimedia\ObjectFactory;
-	use ExtensionRegistry;
 	use MediaWikiUnitTestCase;
 	use Wikimedia\ScopedCallback;
 	use Wikimedia\TestingAccessWrapper;
@@ -13,7 +12,7 @@ namespace MediaWiki\HookContainer {
 	class HookContainerTest extends MediaWikiUnitTestCase {
 
 		/*
-		 * Creates a new hook container with mocked ObjectFactory, ExtensionRegistry, and DeprecatedHooks
+		 * Creates a new hook container with StaticHookRegistry and mocked ObjectFactory
 		 */
 		private function newHookContainer(
 			$hooks = null, $deprecatedHooksArray = []
@@ -30,14 +29,6 @@ namespace MediaWiki\HookContainer {
 			$registry = new StaticHookRegistry( [], $hooks, $deprecatedHooksArray );
 			$hookContainer = new HookContainer( $registry, $mockObjectFactory );
 			return $hookContainer;
-		}
-
-		private function getMockExtensionRegistry( $hooks ) {
-			$mockRegistry = $this->createNoOpMock( ExtensionRegistry::class, [ 'getAttribute' ] );
-			$mockRegistry->method( 'getAttribute' )
-				->with( 'Hooks' )
-				->willReturn( $hooks );
-			return $mockRegistry;
 		}
 
 		private function getObjectFactory() {
