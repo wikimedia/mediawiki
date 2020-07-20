@@ -214,18 +214,6 @@ CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_t
 CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
-
-CREATE TABLE slots (
-  slot_revision_id INTEGER   NOT NULL,
-  slot_role_id     SMALLINT  NOT NULL,
-  slot_content_id  INTEGER   NOT NULL,
-  slot_origin      INTEGER   NOT NULL,
-  PRIMARY KEY (slot_revision_id, slot_role_id)
-);
-
-CREATE INDEX slot_revision_origin_role ON slots (slot_revision_id, slot_origin, slot_role_id);
-
-
 CREATE SEQUENCE content_content_id_seq;
 CREATE TABLE content (
   content_id      INTEGER   NOT NULL PRIMARY KEY DEFAULT nextval('content_content_id_seq'),

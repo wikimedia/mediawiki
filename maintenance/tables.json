@@ -171,5 +171,44 @@
 			{ "name": "comment_hash", "columns": [ "comment_hash" ], "unique": false }
 		],
 		"pk": [ "comment_id" ]
+	},
+	{
+		"name": "slots",
+		"comment": "Slots represent an n:m relation between revisions and content objects. A content object can have a specific \"role\" in one or more revisions. Each revision can have multiple content objects, each having a different role.",
+		"columns": [
+			{
+				"name": "slot_revision_id",
+				"comment": "reference to rev_id or ar_rev_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_role_id",
+				"comment": "reference to role_id",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_content_id",
+				"comment": "reference to content_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_origin",
+				"comment": "The revision ID of the revision that originated the slot's content. To find revisions that changed slots, look for slot_origin = slot_revision_id. TODO: Is that actually true? Rollback seems to violate it by setting slot_origin to an older rev_id. Undeletions could result in the same situation.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "slot_revision_origin_role",
+				"columns": [ "slot_revision_id", "slot_origin", "slot_role_id" ],
+				"comment": "Index for finding revisions that modified a specific slot",
+				"unique": false
+			}
+		],
+		"pk": [ "slot_revision_id", "slot_role_id" ]
 	}
 ]

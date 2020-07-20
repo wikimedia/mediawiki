@@ -42,3 +42,13 @@ CREATE TABLE /*_*/comment (
   comment_data BLOB DEFAULT NULL
 );
 CREATE INDEX comment_hash ON /*_*/comment (comment_hash);
+CREATE TABLE /*_*/slots (
+  slot_revision_id BIGINT UNSIGNED NOT NULL,
+  slot_role_id SMALLINT UNSIGNED NOT NULL,
+  slot_content_id BIGINT UNSIGNED NOT NULL,
+  slot_origin BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY(slot_revision_id, slot_role_id)
+);
+CREATE INDEX slot_revision_origin_role ON /*_*/slots (
+  slot_revision_id, slot_origin, slot_role_id
+);
