@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Psr\Log\NullLogger;
 
 /**
@@ -35,12 +36,14 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$revision = new WikiRevision( $services->getMainConfig() );
 		$revision->setTitle( $title );
 		$revision->setTags( $expectedTags );
-		$revision->setText( "dummy edit" );
+		$content = ContentHandler::makeContent( 'dummy edit', $title );
+		$revision->setContent( SlotRecord::MAIN, $content );
 
 		$importer = new ImportableOldRevisionImporter(
 			true,
 			new NullLogger(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$services->getRevisionStore()
 		);
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );

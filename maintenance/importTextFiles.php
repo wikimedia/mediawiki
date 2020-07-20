@@ -179,8 +179,8 @@ class ImportTextFiles extends Maintenance {
 							$oldRevRecord->getTimestamp(),
 							$bot,
 							'',
-							$oldContent ? $oldContent->getSize() : 0,
-							$rev->getContent()->getSize(),
+							$oldRevRecord->getSize(),
+							$rev->getSize(),
 							$newId,
 							// the pages don't need to be patrolled
 							1
@@ -195,7 +195,7 @@ class ImportTextFiles extends Maintenance {
 						$summary,
 						$bot,
 						'',
-						$rev->getContent()->getSize(),
+						$rev->getSize(),
 						$newId,
 						1
 					);

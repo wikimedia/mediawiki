@@ -65,6 +65,7 @@ class MutableRevisionSlots extends RevisionSlots {
 	 *        Signature: function ( MutableRevisionSlots ): void.
 	 */
 	public function __construct( array $slots = [], ?callable $resetCallback = null ) {
+		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 		parent::__construct( $slots );
 		$this->resetCallback = $resetCallback;
 	}

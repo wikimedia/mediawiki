@@ -19,7 +19,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 
 		if ( !$slotRoleRegistry->isDefinedRole( 'ImportExportTest' ) ) {
-			$slotRoleRegistry->defineRoleWithModel( 'ImportExportTest', CONTENT_MODEL_TEXT );
+			$slotRoleRegistry->defineRoleWithModel( 'ImportExportTest', CONTENT_MODEL_WIKITEXT );
 		}
 	}
 
@@ -180,17 +180,15 @@ class ImportExportTest extends MediaWikiLangTestCase {
 		return $vars;
 	}
 
-	/**
-	 * @return string
-	 */
-	private function getTempFile() {
-		return wfTempDir() . '/ImportExportTest-' . wfRandomString( 6 ) . '.xml';
-	}
-
 	public function provideImportExport() {
 		foreach ( XmlDumpWriter::$supportedSchemas as $schemaVersion ) {
 			yield [ 'Basic', $schemaVersion ];
 			yield [ 'Dupes', $schemaVersion ];
+			yield [ 'Slots', $schemaVersion ];
+			yield [ 'Interleaved', $schemaVersion ];
+			yield [ 'InterleavedMulti', $schemaVersion ];
+			yield [ 'MissingMainContentModel', $schemaVersion ];
+			yield [ 'MissingSlotContentModel', $schemaVersion ];
 		}
 	}
 
@@ -220,7 +218,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 		// write dump
 		$exporter = $this->getExporter( $schemaVersion );
 
-		$tmpFile = $this->getTempFile();
+		$tmpFile = $this->getNewTempFile();
 		$buffer = new DumpFileOutput( $tmpFile );
 
 		$exporter->setOutputSink( $buffer );
