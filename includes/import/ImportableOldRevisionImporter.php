@@ -2,6 +2,7 @@
 
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -31,21 +32,33 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private $revisionStore;
 
 	/**
+	 * @var SlotRoleRegistry
+	 */
+	private $slotRoleRegistry;
+
+	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
+	 * @param SlotRoleRegistry|null $slotRoleRegistry
 	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
 		ILoadBalancer $loadBalancer,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		SlotRoleRegistry $slotRoleRegistry = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
+		// @todo: temporary - remove when FileImporter extension is updated
+		if ( !$slotRoleRegistry ) {
+			$slotRoleRegistry = \MediaWiki\MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		}
+		$this->slotRoleRegistry = $slotRoleRegistry;
 	}
 
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
@@ -144,6 +157,10 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$originalRevision =
 			$prevRevRow ? $this->revisionStore->newRevisionFromRow( $prevRevRow ) : null;
 		foreach ( $importableRevision->getSlotRoles() as $role ) {
+			if ( !$this->slotRoleRegistry->isDefinedRole( $role ) ) {
+				throw new MWException( "Undefined slot role $role" );
+			}
+
 			$newContent = $importableRevision->getContent( $role );
 			if ( !$originalRevision || !$originalRevision->hasSlot( $role ) ) {
 				$revisionRecord->setContent( $role, $newContent );
