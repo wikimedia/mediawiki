@@ -1045,11 +1045,20 @@ class PageUpdater {
 			return $status;
 		}
 
-		$this->buildEditResult( $newRevisionRecord, false );
 		$now = $newRevisionRecord->getTimestamp();
 
 		// XXX: we may want a flag that allows a null revision to be forced!
 		$changed = $this->derivedDataUpdater->isChange();
+
+		// We build the EditResult before the $change if/else branch in order to pass
+		// the correct $newRevisionRecord to EditResultBuilder. In case this is a null
+		// edit, $newRevisionRecord will be later overridden to its parent revision, which
+		// would confuse EditResultBuilder.
+		if ( !$changed ) {
+			// This is a null edit, ensure original revision ID is set properly
+			$this->editResultBuilder->setOriginalRevisionId( $oldid );
+		}
+		$this->buildEditResult( $newRevisionRecord, false );
 
 		$dbw = $this->getDBConnectionRef( DB_MASTER );
 
