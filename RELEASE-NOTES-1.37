@@ -22,6 +22,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgBrowserFormatDetection - This setting allows the enabling or disabling
+of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Changed configuration ====
