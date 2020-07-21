@@ -259,6 +259,28 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->saveRevision( $summary );
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
+		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
+
+		$topRevisionId = $updater->getNewRevision()->getId();
+
+		// perform a null edit
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
+		$summary = CommentStoreComment::newUnsavedComment( 'null edit' );
+		$updater->saveRevision( $summary );
+
+		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
+		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
+		$this->assertTrue( $updater->isUnchanged(), 'isUnchanged()' );
+		$this->assertTrue(
+			$updater->getEditResult()->isNullEdit(),
+			'getEditResult()->isNullEdit()'
+		);
+		$this->assertSame(
+			$topRevisionId,
+			$updater->getEditResult()->getOriginalRevisionId(),
+			'getEditResult()->getOriginalRevisionId()'
+		);
 
 		// check site stats - this asserts that derived data updates where run.
 		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
