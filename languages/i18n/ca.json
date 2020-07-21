@@ -2901,6 +2901,7 @@
 	"tooltip-ca-move": "Reanomena aquesta pàgina",
 	"tooltip-ca-watch": "Afegiu aquesta pàgina a la vostra llista de seguiment",
 	"tooltip-ca-unwatch": "Suprimiu aquesta pàgina de la vostra llista de seguiment",
+	"tooltip-ca-unwatch-expiring": "Falten {{PLURAL:$1|1 day|$1 days}}. Cliqueu per a esborrar aquesta pàgina de la vostra llista de visualitzacions",
 	"tooltip-search": "Cerca a {{SITENAME}}",
 	"tooltip-search-go": "Vés a una pàgina amb aquest nom exacte si existeix",
 	"tooltip-search-fulltext": "Cerca aquest text a les pàgines",

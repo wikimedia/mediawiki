@@ -93,5 +93,83 @@
 		],
 		"indexes": [],
 		"pk": [ "ufg_user", "ufg_group" ]
+	},
+	{
+		"name": "bot_passwords",
+		"comment": "This table contains a user's bot passwords: passwords that allow access to the account via the API with limited rights.",
+		"columns": [
+			{
+				"name": "bp_user",
+				"comment": "User ID obtained from CentralIdLookup.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "bp_app_id",
+				"comment": "Application identifier.",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "bp_password",
+				"comment": "Password hashes, like user.user_password.",
+				"type": "blob",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "bp_token",
+				"comment": "Like user.user_token",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "", "fixed": true }
+			},
+			{
+				"name": "bp_restrictions",
+				"comment": "JSON blob for MWRestrictions",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			},
+			{
+				"name": "bp_grants",
+				"comment": "Grants allowed to the account when authenticated with this bot-password",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "bp_user", "bp_app_id" ]
+	},
+	{
+		"name": "comment",
+		"comment": "Edits, blocks, and other actions typically have a textual comment describing the action. They are stored here to reduce the size of the main tables, and to allow for deduplication. Deduplication is currently best-effort to avoid locking on inserts that would be required for strict deduplication. There MAY be multiple rows with the same comment_text and comment_data.",
+		"columns": [
+			{
+				"name": "comment_id",
+				"comment": "Unique ID to identify each comment",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "comment_hash",
+				"comment": "Hash of comment_text and comment_data, for deduplication",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "comment_text",
+				"comment": "Text comment summarizing the change. This text is shown in the history and other changes lists, rendered in a subset of wiki markup by Linker::formatComment(). Size limits are enforced at the application level, and should take care to crop UTF-8 strings appropriately.",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			},
+			{
+				"name": "comment_data",
+				"comment": "JSON data, intended for localizing auto-generated comments. This holds structured data that is intended to be used to provide localized versions of automatically-generated comments. When not empty, comment_text should be the generated comment localized using the wiki's content language.",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "comment_hash", "columns": [ "comment_hash" ], "unique": false }
+		],
+		"pk": [ "comment_id" ]
 	}
 ]

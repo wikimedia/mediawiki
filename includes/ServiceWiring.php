@@ -119,7 +119,7 @@ use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 return [
-	'ActorMigration' => function () : ActorMigration {
+	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
 		return new ActorMigration( SCHEMA_COMPAT_NEW );
 	},
 
@@ -161,7 +161,7 @@ return [
 		);
 	},
 
-	'BlockErrorFormatter' => function () : BlockErrorFormatter {
+	'BlockErrorFormatter' => function ( MediaWikiServices $services ) : BlockErrorFormatter {
 		return new BlockErrorFormatter();
 	},
 
@@ -273,8 +273,8 @@ return [
 		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ), $cache, $context );
 	},
 
-	'DateFormatterFactory' => function () : DateFormatterFactory {
-		return new DateFormatterFactory;
+	'DateFormatterFactory' => function ( MediaWikiServices $services ) : DateFormatterFactory {
+		return new DateFormatterFactory();
 	},
 
 	'DBLoadBalancer' => function ( MediaWikiServices $services ) : Wikimedia\Rdbms\ILoadBalancer {
@@ -366,7 +366,7 @@ return [
 
 		$cache = $services->getLocalServerObjectCache();
 		if ( $cache instanceof EmptyBagOStuff ) {
-			$cache = new HashBagOStuff;
+			$cache = new HashBagOStuff();
 		}
 
 		return new FileBackendGroup(
@@ -702,7 +702,7 @@ return [
 		);
 	},
 
-	'MessageFormatterFactory' => function () : IMessageFormatterFactory {
+	'MessageFormatterFactory' => function ( MediaWikiServices $services ) : IMessageFormatterFactory {
 		return new MessageFormatterFactory();
 	},
 
@@ -791,7 +791,9 @@ return [
 		return new ImportableOldRevisionImporter(
 			true,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$services->getRevisionStore(),
+			$services->getSlotRoleRegistry()
 		);
 	},
 
@@ -837,7 +839,7 @@ return [
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly
 			[ 'class' => Parser::class ],
-			// Plus a buch of actual config options
+			// Plus a bunch of actual config options
 			$services->getMainConfig()
 		);
 
@@ -1210,7 +1212,7 @@ return [
 		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
 	},
 
-	'TitleFactory' => function () : TitleFactory {
+	'TitleFactory' => function ( MediaWikiServices $services ) : TitleFactory {
 		return new TitleFactory();
 	},
 
@@ -1366,7 +1368,9 @@ return [
 		return new ImportableOldRevisionImporter(
 			false,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$services->getRevisionStore(),
+			$services->getSlotRoleRegistry()
 		);
 	},
 

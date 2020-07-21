@@ -77,16 +77,6 @@ CREATE TABLE user_newtalk (
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
 CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
 
-CREATE TABLE bot_passwords (
-  bp_user INTEGER NOT NULL,
-  bp_app_id TEXT NOT NULL,
-  bp_password TEXT NOT NULL,
-  bp_token TEXT NOT NULL,
-  bp_restrictions TEXT NOT NULL,
-  bp_grants TEXT NOT NULL,
-  PRIMARY KEY ( bp_user, bp_app_id )
-);
-
 CREATE SEQUENCE page_page_id_seq;
 CREATE TABLE page (
   page_id            INTEGER        NOT NULL  PRIMARY KEY DEFAULT nextval('page_page_id_seq'),
@@ -179,18 +169,6 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_flags  TEXT
 );
 ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
-
-
-CREATE SEQUENCE comment_comment_id_seq;
-CREATE TABLE comment (
-  comment_id   INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('comment_comment_id_seq'),
-  comment_hash INTEGER NOT NULL,
-  comment_text TEXT    NOT NULL,
-  comment_data TEXT
-);
-ALTER SEQUENCE comment_comment_id_seq OWNED BY comment.comment_id;
-CREATE INDEX comment_hash ON comment (comment_hash);
-
 
 CREATE SEQUENCE page_restrictions_pr_id_seq;
 CREATE TABLE page_restrictions (

@@ -1146,7 +1146,7 @@
 	"yournick": "새 서명:",
 	"prefs-help-signature": "토론 문서에 글을 쓴 후에는 마지막에 서명을 해야 합니다.  “<nowiki>~~~~</nowiki>” 기호를 추가하면 서명과 글 작성 시각이 자동으로 입력됩니다.",
 	"badsig": "서명이 잘못되었습니다.\nHTML 태그를 확인하세요.",
-	"badsiglinks": "당신의 서명에는 사용자 문서, 토론 문서 또는 기여 목록으로 향하는 링크가 있어야 합니다. 예를 들어, 다음과 같이 추가하십시오: <code>$1</code>",
+	"badsiglinks": "당신의 서명에는 이 위키에서의 당신의 사용자 문서, 토론 문서 또는 기여 목록으로 향하는 링크가 있어야 합니다. 예를 들어, 다음과 같이 추가하십시오: <code>$1</code>",
 	"badsiglength": "서명이 너무 깁니다.\n서명은 $1 {{PLURAL:$1|글자}}보다 짧아야 합니다.",
 	"linter-pager-bogus-image-options-details": "무효한 파일 옵션",
 	"linter-pager-deletable-table-tag-details": "삭제해야 하는 테이블 태그",

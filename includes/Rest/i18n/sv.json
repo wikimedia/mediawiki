@@ -26,7 +26,7 @@
 	"rest-compare-permission-denied": "Användaren har inte åtkomst till de begärda sidversionerna",
 	"rest-compare-nonexistent": "Sidversionen som angavs av parametern $1 finns inte.",
 	"rest-compare-inaccessible": "Sidversionen som angavs av parametern $1 är inte offentligt åtkomlig.",
-	"rest-compare-wrong-content": "$1platsen för sidversionen som specificeras av parametern $2 har en innehållstyp som inte kan omvandlas till text.",
+	"rest-compare-wrong-content": "$1-platsen för sidversionen som specificeras av parametern $2 har en innehållstyp som inte kan omvandlas till text.",
 	"rest-compare-wikidiff2": "Denna ändpunkt kräver wikidiff2 1.9.0 eller senare.",
 	"rest-pagehistorycount-too-many-revisions": "Den angivna titeln innehåller för många sidversioner för att hämta detta antal.",
 	"rest-search-error": "Fel uppstod när sökresultaten returnerades: $1",
@@ -34,5 +34,11 @@
 	"rest-no-revision": "Kunde inte hämta versionen för titeln $1",
 	"rest-media-too-many-links": "För många medialänkar hittades i titeln $1 ($2 är tillåtet)",
 	"rest-html-backend-error": "Kunde inte hämta Parsoid-HTML",
+	"rest-bad-json-body": "Dåligt innehåll i begäran, måste var ett JSON-objekt.",
+	"rest-json-body-parse-error": "Misslyckades att tolka innehållet i begäran som JSON: $1",
+	"rest-missing-body-field": "Det obligatoriskt fältet \"$1\" saknas från innehållet i begäran.",
+	"rest-bad-content-model": "Dålig innehållsmodell: $1",
+	"rest-update-cannot-create-page": "Sidan \"$1\" kan inte skapas eftersom den redan finns. För att uppdatera den befintliga sidan behöver du ange grundversionens ID i strukturen under nyckeln \"latest\" inuti innehållet i begäran.",
+	"rest-extraneous-csrf-token": "Främmande CSRF-nyckel hittades. CSRF-nycklar får inte användas tillsammans med autentiseringsmekaniker som OAuth som inte är säker mot CSRF-attacker.",
 	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in."
 }

@@ -4503,7 +4503,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		} elseif ( !$this->trxLevel() ) {
 			$this->queryLogger->error(
-				"$fname: no transaction to commit, something got out of sync" );
+				"$fname: no transaction to commit, something got out of sync",
+				[ 'exception' => new RuntimeException() ]
+			);
+
 			return; // nothing to do
 		} elseif ( $this->trxAutomatic ) {
 			throw new DBUnexpectedError(
