@@ -114,7 +114,7 @@ class DBConnRef implements IDatabase {
 			return $this->__call( __FUNCTION__, func_get_args() );
 		}
 		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
+		throw $this->getDomainChangeException();
 	}
 
 	public function dbSchema( $schema = null ) {
@@ -127,7 +127,7 @@ class DBConnRef implements IDatabase {
 			return $this->__call( __FUNCTION__, func_get_args() );
 		}
 		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
+		throw $this->getDomainChangeException();
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -136,7 +136,7 @@ class DBConnRef implements IDatabase {
 
 	public function setLBInfo( $nameOrArray, $value = null ) {
 		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Changing LB info is disallowed to enable reuse." );
+		throw $this->getDomainChangeException();
 	}
 
 	public function implicitOrderby() {
@@ -442,12 +442,12 @@ class DBConnRef implements IDatabase {
 
 	public function selectDB( $db ) {
 		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
+		throw $this->getDomainChangeException();
 	}
 
 	public function selectDomain( $domain ) {
 		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database selection is disallowed to enable reuse." );
+		throw $this->getDomainChangeException();
 	}
 
 	public function getDBname() {
@@ -781,6 +781,18 @@ class DBConnRef implements IDatabase {
 		if ( $this->role !== ILoadBalancer::DB_MASTER ) {
 			throw new DBReadOnlyRoleError( $this->conn, "Cannot write with role DB_REPLICA" );
 		}
+	}
+
+	/**
+	 * @return DBUnexpectedError
+	 */
+	protected function getDomainChangeException() {
+		return new DBUnexpectedError(
+			$this,
+			"Cannot directly change the selected DB domain; any underlying connection handle " .
+			"is owned by a LoadBalancer instance and possibly shared with other callers. " .
+			"LoadBalancer automatically manages DB domain re-selection of unused handles."
+		);
 	}
 
 	/**
