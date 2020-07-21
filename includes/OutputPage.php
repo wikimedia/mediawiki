@@ -3080,17 +3080,6 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
-		// This library is intended to run on older browsers that MediaWiki no longer
-		// supports as Grade A. For these Grade C browsers, we provide an experience
-		// using only HTML and CSS. But, where standards-compliant browsers are able to
-		// style unknown HTML elements without issue, old IE ignores these styles.
-		// The html5shiv library fixes that.
-		// Use an IE conditional comment to serve the script only to old IE
-		$shivUrl = $config->get( 'ResourceBasePath' ) . '/resources/lib/html5shiv/html5shiv.js';
-		$pieces[] = '<!--[if lt IE 9]>' .
-			Html::linkedScript( $shivUrl, $this->CSP->getNonce() ) .
-			'<![endif]-->';
-
 		$pieces[] = Html::closeElement( 'head' );
 
 		$bodyClasses = $this->mAdditionalBodyClasses;

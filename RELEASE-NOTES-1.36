@@ -59,6 +59,8 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* The html5shiv library has been removed, as support for Internet Explorer 8 has
+  been dropped.
 * …
 
 === Bug fixes in 1.36 ===
@@ -80,6 +82,7 @@ because of Phabricator reports.
 === Breaking changes in 1.36 ===
 * The global function `wfWaitForSlaves`, deprecated since 1.27 & hard-deprecated
   since 1.35, has been removed. Use LBFactory::waitForReplication() instead.
+* The support for IE8 has been dropped.
 * …
 
 === Deprecations in 1.36 ===
