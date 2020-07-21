@@ -939,7 +939,7 @@
 	"mergehistory-same-destination": "Jatorri eta helmugako orriak ezin dira berdinak izan",
 	"mergehistory-reason": "Arrazoia:",
 	"mergelog": "Bateratze erregistroa",
-	"revertmerge": "Bereiztu",
+	"revertmerge": "Desegin batzea",
 	"mergelogpagetext": "Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.",
 	"history-title": "«$1» orriaren historia berrikuspena",
 	"difference-title": "«$1»: berrikuspenen arteko aldeak",

@@ -265,7 +265,7 @@
 	"config-install-user-grant-failed": "Å gi tillatelse til brukeren «$1» mislyktes: $2",
 	"config-install-user-missing": "Den angitte brukeren \"$1\" finnes ikke.",
 	"config-install-user-missing-create": "Den angitte brukeren \"$1\" finnes ikke.\nVær vennlig å klikke i avkrysningsboksen \"opprett konto\" under hvis du ønsker å opprette denne.",
-	"config-install-tables": "Oppretter tabeller",
+	"config-install-tables": "Oppretter tabeller, første steg",
 	"config-install-tables-exist": "'''Advarsel:''' MediaWiki-tabellen ser ut til å finnes allerede.\nHopper derfor over opprettelsen.",
 	"config-install-tables-failed": "<strong>Feil:</strong> Opprettelsen av tabellen feilet med følgende melding: $1",
 	"config-install-interwiki": "Populerer standard interwiki-tabell",

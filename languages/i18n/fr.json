@@ -2437,7 +2437,7 @@
 	"addedwatchexpirytext": "«&nbsp;[[:$1]]&nbsp;» et sa page de discussion ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour $2.",
 	"addedwatchexpirytext-talk": "«&nbsp;[[:$1]]&nbsp;» et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour $2.",
 	"addedwatchindefinitelytext": "«&nbsp;[[:$1]]&nbsp;» et sa page de discussion ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] de manière permanente.",
-	"addedwatchindefinitelytext-talk": "«&nbsp;[[:$1]]&nbsp;» et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] en permanence.",
+	"addedwatchindefinitelytext-talk": "«&nbsp;[[:$1]]&nbsp;» et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] de manière permanente.",
 	"removewatch": "Supprimer de la liste de suivi",
 	"removedwatchtext": "La page « [[:$1]] » et sa page de discussion ont été retirées de votre [[Special:Watchlist|liste de suivi]].",
 	"removedwatchtext-talk": "« [[:$1]] » et sa page associée ont été supprimés de votre [[Special:Watchlist|liste de suivi]].",
