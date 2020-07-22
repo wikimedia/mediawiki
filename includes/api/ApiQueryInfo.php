@@ -638,7 +638,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		// and populate $this->restrictionTypes
 		$images = $others = [];
 		foreach ( $this->everything as $title ) {
-			if ( $title->getNamespace() == NS_FILE ) {
+			if ( $title->getNamespace() === NS_FILE ) {
 				$images[] = $title->getDBkey();
 			} else {
 				$others[] = $title;

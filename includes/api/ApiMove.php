@@ -69,7 +69,7 @@ class ApiMove extends ApiBase {
 		$toTalk = $toTitle->getTalkPageIfDefined();
 
 		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-		if ( $toTitle->getNamespace() == NS_FILE
+		if ( $toTitle->getNamespace() === NS_FILE
 			&& !$repoGroup->getLocalRepo()->findFile( $toTitle )
 			&& $repoGroup->findFile( $toTitle )
 		) {

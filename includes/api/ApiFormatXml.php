@@ -261,7 +261,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 			return;
 		}
-		if ( $nt->getNamespace() != NS_MEDIAWIKI ) {
+		if ( $nt->getNamespace() !== NS_MEDIAWIKI ) {
 			$this->addWarning( 'apiwarn-invalidxmlstylesheetns' );
 
 			return;

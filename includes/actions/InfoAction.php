@@ -387,7 +387,7 @@ class InfoAction extends FormlessAction {
 				[
 					'hidelinks' => 1,
 					'hidetrans' => 1,
-					'hideimages' => $title->getNamespace() == NS_FILE
+					'hideimages' => $title->getNamespace() === NS_FILE
 				]
 			),
 			$this->msg( 'pageinfo-redirects-value' )

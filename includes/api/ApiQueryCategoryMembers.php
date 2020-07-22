@@ -60,7 +60,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
-		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
+		if ( $categoryTitle->getNamespace() !== NS_CATEGORY ) {
 			$this->dieWithError( 'apierror-invalidcategory' );
 		}
 

@@ -334,7 +334,7 @@ class LinksUpdate extends DataUpdate {
 		$agent = $this->getCauseAgent();
 
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks', $action, $agent );
-		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+		if ( $this->mTitle->getNamespace() === NS_FILE ) {
 			// Process imagelinks in case the title is or was a redirect
 			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks', $action, $agent );
 		}

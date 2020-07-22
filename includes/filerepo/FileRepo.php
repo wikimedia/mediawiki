@@ -489,7 +489,7 @@ class FileRepo {
 			return false;
 		}
 		$redir = $this->checkRedirect( $title );
-		if ( $redir && $title->getNamespace() == NS_FILE ) {
+		if ( $redir && $title->getNamespace() === NS_FILE ) {
 			$img = $this->newFile( $redir );
 			if ( !$img ) {
 				return false;

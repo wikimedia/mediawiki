@@ -3259,7 +3259,7 @@ class OutputPage extends ContextSource {
 		$relevantTitle = $sk->getRelevantTitle();
 		$relevantUser = $sk->getRelevantUser();
 
-		if ( $ns == NS_SPECIAL ) {
+		if ( $ns === NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );

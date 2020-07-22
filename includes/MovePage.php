@@ -686,7 +686,7 @@ class MovePage {
 
 		// If it is a file then move it last.
 		// This is done after all database changes so that file system errors cancel the transaction.
-		if ( $this->oldTitle->getNamespace() == NS_FILE ) {
+		if ( $this->oldTitle->getNamespace() === NS_FILE ) {
 			$status = $this->moveFile( $this->oldTitle, $this->newTitle );
 			if ( !$status->isOK() ) {
 				$dbw->cancelAtomic( __METHOD__ );
@@ -831,7 +831,7 @@ class MovePage {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
+			if ( $this->oldTitle->getNamespace() === NS_CATEGORY
 				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
 			) {
 				$redirectContent = new WikitextContent(

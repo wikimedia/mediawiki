@@ -192,7 +192,7 @@ class Article implements Page {
 	 * @return Article
 	 */
 	public static function newFromTitle( $title, IContextSource $context ) {
-		if ( $title->getNamespace() == NS_MEDIA ) {
+		if ( $title->getNamespace() === NS_MEDIA ) {
 			// XXX: This should not be here, but where should it go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
@@ -320,7 +320,7 @@ class Article implements Page {
 	private function getSubstituteContent() {
 		# If this is a MediaWiki:x message, then load the messages
 		# and return the message value for x.
-		if ( $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
 			$text = $this->getTitle()->getDefaultMessageText();
 			if ( $text === false ) {
 				$text = '';
@@ -1000,7 +1000,7 @@ class Article implements Page {
 		$ns = $this->getTitle()->getNamespace();
 
 		# Don't index user and user talk pages for blocked users (T13443)
-		if ( ( $ns == NS_USER || $ns == NS_USER_TALK ) && !$this->getTitle()->isSubpage() ) {
+		if ( ( $ns === NS_USER || $ns === NS_USER_TALK ) && !$this->getTitle()->isSubpage() ) {
 			$specificTarget = null;
 			$vagueTarget = null;
 			$titleText = $this->getTitle()->getText();
@@ -1191,7 +1191,7 @@ class Article implements Page {
 	 */
 	public function showViewFooter() {
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-		if ( $this->getTitle()->getNamespace() == NS_USER_TALK
+		if ( $this->getTitle()->getNamespace() === NS_USER_TALK
 			&& IPUtils::isValid( $this->getTitle()->getText() )
 		) {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
@@ -1403,8 +1403,8 @@ class Article implements Page {
 		$services = MediaWikiServices::getInstance();
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
-		if ( $title->getNamespace() == NS_USER
-			|| $title->getNamespace() == NS_USER_TALK
+		if ( $title->getNamespace() === NS_USER
+			|| $title->getNamespace() === NS_USER_TALK
 		) {
 			$rootPart = explode( '/', $title->getText() )[0];
 			$user = User::newFromName( $rootPart, false /* allow IP users */ );

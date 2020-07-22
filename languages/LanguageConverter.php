@@ -1199,7 +1199,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
 	public function updateConversionTable( LinkTarget $linkTarget ) {
-		if ( $linkTarget->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $linkTarget->getNamespace() === NS_MEDIAWIKI ) {
 			$t = explode( '/', $linkTarget->getDBkey(), 3 );
 			$c = count( $t );
 			if ( $c > 1 && $t[0] == 'Conversiontable' ) {

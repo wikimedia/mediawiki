@@ -417,7 +417,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 				],
 				'ipb-prevent-user-talk-edit',
 			],
-			'Edit user talk page invalid with namespace restriction != NS_USER_TALK ' => [
+			'Edit user talk page invalid with namespace restriction !== NS_USER_TALK ' => [
 				[
 					'EditingRestriction' => 'partial',
 					'DisableUTEdit' => '1',
