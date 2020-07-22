@@ -6,10 +6,12 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use Exception;
+use FallbackContent;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JavaScriptContent;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\IncompleteRevisionException;
@@ -749,6 +751,34 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionById
+	 */
+	public function testGetRevisionById_undefinedContentModel() {
+		$page = $this->getTestPage();
+		$content = new WikitextContent( __METHOD__ );
+		$status = $page->doEditContent( $content, __METHOD__ );
+		/** @var RevisionRecord $revRecord */
+		$revRecord = $status->value['revision-record'];
+
+		$mockContentHandlerFactory =
+			$this->createNoOpMock( IContentHandlerFactory::class, [ 'isDefinedModel' ] );
+
+		$mockContentHandlerFactory->method( 'isDefinedModel' )
+			->willReturn( false );
+
+		$this->setService( 'ContentHandlerFactory', $mockContentHandlerFactory );
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$storeRecord = $store->getRevisionById( $revRecord->getId() );
+
+		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
+
+		$actualContent = $storeRecord->getSlot( SlotRecord::MAIN )->getContent();
+		$this->assertInstanceOf( FallbackContent::class, $actualContent );
+		$this->assertSame( __METHOD__, $actualContent->serialize() );
 	}
 
 	/**
