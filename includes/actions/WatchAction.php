@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * Page addition to a user's watchlist
@@ -179,8 +180,19 @@ class WatchAction extends FormAction {
 		if ( !$user->isLoggedIn() ) {
 			return Status::newGood();
 		}
-		$changingWatchStatus = $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) !== $watch;
-		if ( $expiry !== null || $changingWatchStatus ) {
+
+		// Only run doWatch() or doUnwatch() if there's been a change in the watched status.
+		$oldWatchedItem = MediaWikiServices::getInstance()->getWatchedItemStore()
+			->getWatchedItem( $user, $title );
+		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
+		if ( $oldWatchedItem && $expiry !== null ) {
+			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
+			$changingWatchStatus |=
+				ExpiryDef::normalizeExpiry( $oldWatchedItem->getExpiry() ) !==
+				ExpiryDef::normalizeExpiry( $expiry );
+		}
+
+		if ( $changingWatchStatus ) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {

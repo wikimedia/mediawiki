@@ -153,8 +153,8 @@ class ApiMoveTest extends ApiTestCase {
 		// Move to new location, without changing the watched state.
 		$this->doApiRequestWithToken( [
 			'action' => 'move',
-			'from' => $name,
-			'to' => "$name 2",
+			'from' => $title->getDBkey(),
+			'to' => $title2->getDBkey(),
 		] );
 
 		// New page should have the same expiry.
