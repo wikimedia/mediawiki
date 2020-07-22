@@ -189,6 +189,7 @@
 	"config-admin-email-help": "Voer hier een e-mailadres in om e-mail te kunnen ontvangen van andere gebruikers op de wiki, uw wachtwoord opnieuw in te kunnen stellen en op de hoogte te worden gehouden van wijzigingen van pagina's op uw volglijst. U kunt het veld leeg laten.",
 	"config-admin-error-user": "Interne fout bij het aanmaken van een beheerder met de naam \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interne fout bij het instellen van een wachtwoord voor de beheerder \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Ongeldig beheerderswachtwoord: $1",
 	"config-admin-error-bademail": "U hebt een ongeldig e-mailadres opgegeven.",
 	"config-subscribe": "Abonneren op de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailinglijst releaseaankondigen].",
 	"config-subscribe-help": "Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.\nAbonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.",

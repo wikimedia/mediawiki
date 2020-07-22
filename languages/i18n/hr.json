@@ -3335,7 +3335,7 @@
 	"logentry-rights-autopromote": "Suradničkom računu $1 {{GENDER:$2|automatski je promijenjeno članstvo|automatski su promijenjena članstva}} iz $4 u $5",
 	"logentry-upload-upload": "$1 је {{GENDER:$2|postavio|postavila}} $3",
 	"logentry-upload-overwrite": "$1 је {{GENDER:$2|postavio|postavila}} novu inačicu $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|postavio|postavila}} je $3 na stariju inačicu",
+	"logentry-upload-revert": "$1 {{GENDER:$2|vratio|vratila|vratila/vratio}} je $3 na stariju inačicu",
 	"log-name-managetags": "Evidencija upravljanja oznakama",
 	"log-description-managetags": "Na stranici se navodi upravljačke zadaće u svezi s [[Special:Tags|oznakama]]. Evidencija sadrži samo radnje koje su ručno izvršili administratori; oznake mogu biti stvorene ili obrisane programskom opremom wiki bez zapisa zabilježenog u ovoj evidenciji.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|stvorio|stvorila|stvorila/stvorio}} je oznaku »$4«",
