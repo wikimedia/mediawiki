@@ -239,7 +239,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			$repo->checkRedirect( $title )->getPrefixedText() );
 
 		$repo->invalidateImageRedirect( $title );
-		$repo->getMasterDB()->commit();
 
 		$this->markTestIncomplete(
 			"Can't figure out how to get image redirect validation to take effect" );
