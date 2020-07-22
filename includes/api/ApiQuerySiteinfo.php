@@ -111,7 +111,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$fit = $this->appendUploadDialog( $p );
 					break;
 				default:
-					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
+					Hooks::run( 'UseExternalQuerySiteInfo', [ $this ] );
+					if ( !isset($this->noErrors) ) {
+						ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
+					}
 			}
 			if ( !$fit ) {
 				// Abuse siprop as a query-continue parameter
