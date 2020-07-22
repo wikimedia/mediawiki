@@ -141,6 +141,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::onSuccess()
 	 */
 	public function testOnSuccessMainNamespaceTitle() {
+		/** @var MockObject|IContextSource $testContext */
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
 			->setMethods( [ 'msg' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
@@ -165,6 +166,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::onSuccess()
 	 */
 	public function testOnSuccessTalkPage() {
+		/** @var MockObject|IContextSource $testContext */
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
 			->setMethods( [ 'getOutput', 'msg' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
@@ -308,12 +310,38 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchSkipsIfAlreadyWatched() {
-		$user = $this->getUser();
+		$user = $this->getUser( true, '99990123000000' );
+
+		$user->addWatch( $this->watchAction->getTitle() );
 		$user->expects( $this->never() )->method( 'removeWatch' );
 		$user->expects( $this->never() )->method( 'addWatch' );
 
-		$status = WatchAction::doWatchOrUnwatch( true, $this->watchAction->getTitle(), $user );
+		$status = WatchAction::doWatchOrUnwatch(
+			true,
+			$this->watchAction->getTitle(),
+			$user,
+			'99990123000000' // Same expiry
+		);
+		$this->assertTrue( $status->isGood() );
+	}
 
+	/**
+	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
+	 */
+	public function testDoWatchOrUnwatchSkipsIfExpiryChanged() {
+		$user = $this->getUser( true, '99990123000000' );
+
+		$user->addWatch( $this->watchAction->getTitle() );
+		$user->expects( $this->never() )->method( 'removeWatch' );
+		$user->expects( $this->once() )->method( 'addWatch' );
+
+		$status = WatchAction::doWatchOrUnwatch(
+			true,
+			$this->watchAction->getTitle(),
+			$user,
+			'88880123000000' // Different expiry
+		);
 		$this->assertTrue( $status->isGood() );
 	}
 
@@ -353,6 +381,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDoWatchOrUnwatchUnwatchesIfUnwatch() {
 		$user = $this->getUser( true, true, [ 'editmywatchlist' ] );
+
 		$user->expects( $this->never() )->method( 'addWatch' );
 		$user->expects( $this->once() )
 			->method( 'removeWatch' )
@@ -368,7 +397,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetExpiryOptions() {
 		// Fake current time to be 2020-06-10T00:00:00Z
-		$fakeTime = ConvertibleTimestamp::setFakeTime( '20200610000000' );
+		ConvertibleTimestamp::setFakeTime( '20200610000000' );
 		$user = $this->getUser();
 		$target = new TitleValue( 0, 'SomeDbKey' );
 
@@ -449,9 +478,10 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param bool $isLoggedIn Whether the user should be "marked" as logged in
-	 * @param bool $isWatched The value any call to isWatched should return
+	 * @param bool|string $isWatched The value any call to isWatched should return.
+	 *   A string value is the expiry that should be used.
 	 * @param array $permissions The permissions of the user
-	 * @return MockObject
+	 * @return MockObject|User
 	 * @throws Exception
 	 */
 	private function getUser(
@@ -463,7 +493,23 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$user->method( 'getId' )->willReturn( 42 );
 		$user->method( 'isLoggedIn' )->willReturn( $isLoggedIn );
 		$user->method( 'isWatched' )->willReturn( $isWatched );
+
+		// Override WatchedItemStore to think the page is watched, if applicable.
+		if ( $isWatched ) {
+			$this->overrideMwServices();
+			$mock = $this->createMock( 'WatchedItemStore' );
+			$mock->method( 'getWatchedItem' )->willReturn( new WatchedItem(
+				$user,
+				$this->watchAction->getTitle(),
+				null,
+				is_string( $isWatched ) ? $isWatched : null
+			) );
+			$this->setService( 'WatchedItemStore', $mock );
+		}
+
+		// Note this must happen after calling $this->overrideMwServices().
 		$this->overrideUserPermissions( $user, $permissions );
+
 		return $user;
 	}
 
