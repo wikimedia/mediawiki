@@ -108,7 +108,8 @@ class CreationHandler extends EditHandler {
 			$response
 		);
 
-		$title = urlencode( $this->getTitleParameter() );
+		$title = $this->urlEncodeTitle( $actionModuleResult['edit']['title'] );
+
 		$url = $this->getRouter()->getRouteUrl( '/v1/page/' . $title );
 		$response->setHeader( 'Location', $url );
 	}
