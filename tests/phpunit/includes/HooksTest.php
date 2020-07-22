@@ -85,7 +85,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 			'No hooks registered'
 		);
 
-		$a = new NothingClass();
+		$a = [ new NothingClass(), 'someStatic' ];
 		$b = new NothingClass();
 
 		$wgHooks['MediaWikiHooksTest001'][] = $a;
@@ -98,7 +98,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$reset = $hookContainer->scopedRegister( 'MediaWikiHooksTest001', $b );
 		$this->assertSame(
 			[ $b, $a ],
-			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
 			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
 		);
 

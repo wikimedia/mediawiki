@@ -167,7 +167,7 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
-		public function testScopedRegister2() {
+		public function testScopedRegisterTwoHandlers() {
 			$hookContainer = $this->newHookContainer();
 			$called1 = $called2 = false;
 			$reset1 = $hookContainer->scopedRegister( 'MWTestHook',
@@ -195,6 +195,34 @@ namespace MediaWiki\HookContainer {
 			$hookContainer->run( 'MWTestHook' );
 			$this->assertFalse( $called1 );
 			$this->assertFalse( $called2 );
+		}
+
+		/**
+		 * Register handlers with scopedReigster() and register()
+		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 */
+		public function testHandlersRegisteredWithScopedRegisterAndRegister() {
+			$hookContainer = $this->newHookContainer();
+			$numCalls = 0;
+			$hookContainer->register( 'MWTestHook', function () use ( &$numCalls ) {
+				$numCalls++;
+			} );
+			$reset = $hookContainer->scopedRegister( 'MWTestHook', function () use ( &$numCalls ) {
+				$numCalls++;
+			} );
+
+			// handlers registered in 2 different ways
+			$this->assertCount( 2, $hookContainer->getLegacyHandlers( 'MWTestHook' ) );
+			$hookContainer->run( 'MWTestHook' );
+			$this->assertEquals( $numCalls, 2 );
+
+			// Remove one of the handlers that increments $called
+			ScopedCallback::consume( $reset );
+			$this->assertCount( 1, $hookContainer->getLegacyHandlers( 'MWTestHook' ) );
+
+			$numCalls = 0;
+			$hookContainer->run( 'MWTestHook' );
+			$this->assertEquals( $numCalls, 1 );
 		}
 
 		/**
@@ -402,9 +430,7 @@ namespace MediaWiki\HookContainer {
 			$deprecatedHooksArray = [
 				'FooActionComplete' => [ 'deprecatedVersion' => '1.35' ]
 			];
-
 			$hookContainer = $this->newHookContainer( $hooks, $deprecatedHooksArray );
-
 			$this->expectDeprecation();
 			$hookContainer->emitDeprecationWarnings();
 		}
@@ -427,9 +453,7 @@ namespace MediaWiki\HookContainer {
 					'silent' => true
 				]
 			];
-
 			$hookContainer = $this->newHookContainer( $hooks, $deprecatedHooksArray );
-
 			$hookContainer->emitDeprecationWarnings();
 			$this->assertTrue( true );
 		}
