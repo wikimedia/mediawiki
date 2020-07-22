@@ -143,7 +143,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function isExpired(): bool {
-		if ( null === $this->getExpiry() ) {
+		if ( $this->getExpiry() === null ) {
 			return false;
 		}
 
