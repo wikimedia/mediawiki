@@ -76,7 +76,7 @@ class AutoLoader {
 		if ( !$filename && strpos( $className, '\\' ) !== false ) {
 			// This class is namespaced, so try looking at the namespace map
 			$prefix = $className;
-			while ( false !== $pos = strrpos( $prefix, '\\' ) ) {
+			while ( ( $pos = strrpos( $prefix, '\\' ) ) !== false ) {
 				// Check to see if this namespace prefix is in the map
 				$prefix = substr( $className, 0, $pos + 1 );
 				if ( isset( self::$psr4Namespaces[$prefix] ) ) {

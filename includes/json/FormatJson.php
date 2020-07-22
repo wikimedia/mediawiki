@@ -206,7 +206,7 @@ class FormatJson {
 					$value, -1, $count );
 			if ( $count > 0 ) {
 				$result = json_decode( $value, $assoc );
-				if ( JSON_ERROR_NONE === json_last_error() ) {
+				if ( json_last_error() === JSON_ERROR_NONE ) {
 					// Report warning
 					$st = Status::newGood( $result );
 					$st->warning( wfMessage( 'json-warn-trailing-comma' )->numParams( $count ) );

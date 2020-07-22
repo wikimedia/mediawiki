@@ -1473,7 +1473,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserCssConfigPage() {
 		return (
-			NS_USER == $this->mNamespace
+			$this->mNamespace == NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_CSS )
 		);
@@ -1487,7 +1487,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserJsonConfigPage() {
 		return (
-			NS_USER == $this->mNamespace
+			$this->mNamespace == NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JSON )
 		);
@@ -1501,7 +1501,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserJsConfigPage() {
 		return (
-			NS_USER == $this->mNamespace
+			$this->mNamespace == NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 		);
@@ -1515,7 +1515,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteCssConfigPage() {
 		return (
-			NS_MEDIAWIKI == $this->mNamespace
+			$this->mNamespace == NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_CSS )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
@@ -1533,7 +1533,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteJsonConfigPage() {
 		return (
-			NS_MEDIAWIKI == $this->mNamespace
+			$this->mNamespace == NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_JSON )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
@@ -1551,7 +1551,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteJsConfigPage() {
 		return (
-			NS_MEDIAWIKI == $this->mNamespace
+			$this->mNamespace == NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content

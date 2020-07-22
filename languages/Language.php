@@ -2962,7 +2962,7 @@ class Language {
 
 			// Break down Hangul syllables to grab the first jamo
 			$code = mb_ord( $firstChar );
-			if ( $code < 0xac00 || 0xd7a4 <= $code ) {
+			if ( $code < 0xac00 || $code >= 0xd7a4 ) {
 				return $firstChar;
 			} elseif ( $code < 0xb098 ) {
 				return "\u{3131}";

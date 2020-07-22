@@ -192,7 +192,7 @@ class Article implements Page {
 	 * @return Article
 	 */
 	public static function newFromTitle( $title, IContextSource $context ) {
-		if ( NS_MEDIA == $title->getNamespace() ) {
+		if ( $title->getNamespace() == NS_MEDIA ) {
 			// XXX: This should not be here, but where should it go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
