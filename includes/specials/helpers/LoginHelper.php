@@ -59,7 +59,8 @@ class LoginHelper extends ContextSource {
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
 	 * @param string $returnTo
 	 * @param array|string $returnToQuery
-	 * @param bool $stickHTTPS Keep redirect link on HTTPS
+	 * @param bool $stickHTTPS Keep redirect link on HTTPS. Ignored (treated as
+	 *   true) if $wgForceHTTPS is true.
 	 */
 	public function showReturnToPage(
 		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
@@ -77,12 +78,14 @@ class LoginHelper extends ContextSource {
 
 		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 
-		if ( $config->get( 'SecureLogin' ) && !$stickHTTPS ) {
-			$options = [ 'http' ];
-			$proto = PROTO_HTTP;
-		} elseif ( $config->get( 'SecureLogin' ) ) {
+		if ( $config->get( 'ForceHTTPS' )
+			|| ( $config->get( 'SecureLogin' ) && $stickHTTPS )
+		) {
 			$options = [ 'https' ];
 			$proto = PROTO_HTTPS;
+		} elseif ( $config->get( 'SecureLogin' ) && !$stickHTTPS ) {
+			$options = [ 'http' ];
+			$proto = PROTO_HTTP;
 		} else {
 			$options = [];
 			$proto = PROTO_RELATIVE;

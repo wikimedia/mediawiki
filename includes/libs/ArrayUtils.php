@@ -182,4 +182,72 @@ class ArrayUtils {
 
 		return $ret;
 	}
+
+	/**
+	 * Make an array consisting of every combination of the elements of the
+	 * input arrays. Each element of the output array is an array with a number
+	 * of elements equal to the number of input parameters.
+	 *
+	 * In mathematical terms, this is an n-ary Cartesian product.
+	 *
+	 * For example, ArrayUtils::cartesianProduct( [ 1, 2 ], [ 'a', 'b' ] )
+	 * produces [ [ 1, 'a' ], [ 1, 'b' ], [ 2, 'a' ], [ 2, 'b' ] ]
+	 *
+	 * If any of the input arrays is empty, the result is the empty array [].
+	 * This is in keeping with the mathematical definition.
+	 *
+	 * If no parameters are given, the result is also the empty array.
+	 *
+	 * The array keys are ignored. This implementation uses the internal
+	 * pointers of the input arrays to keep track of the current position
+	 * without referring to the keys.
+	 *
+	 * @since 1.34.2
+	 *
+	 * @param array ...$inputArrays
+	 * @return array
+	 */
+	public static function cartesianProduct( ...$inputArrays ) {
+		$numInputs = count( $inputArrays );
+		if ( $numInputs === 0 ) {
+			return [];
+		}
+
+		// Reset the internal pointers
+		foreach ( $inputArrays as &$inputArray ) {
+			if ( !count( $inputArray ) ) {
+				return [];
+			}
+			reset( $inputArray );
+		}
+		unset( $inputArray );
+
+		$outputArrays = [];
+		$done = false;
+		while ( !$done ) {
+			// Construct the output array element
+			$element = [];
+			foreach ( $inputArrays as $paramIndex => $inputArray ) {
+				$element[] = current( $inputArray );
+			}
+			$outputArrays[] = $element;
+
+			// Increment the pointers starting from the least significant.
+			// If the least significant rolls over back to the start of the
+			// array, continue with the next most significant, and so on until
+			// that stops happening. If all pointers roll over, we are done.
+			$done = true;
+			for ( $paramIndex = $numInputs - 1; $paramIndex >= 0; $paramIndex-- ) {
+				next( $inputArrays[$paramIndex] );
+				if ( key( $inputArrays[$paramIndex] ) === null ) {
+					reset( $inputArrays[$paramIndex] );
+					// continue
+				} else {
+					$done = false;
+					break;
+				}
+			}
+		}
+		return $outputArrays;
+	}
 }
