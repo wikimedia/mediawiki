@@ -3819,7 +3819,6 @@
 	"version-variables": "{{Identical|Variable}}",
 	"version-editors": "Part of [[Special:Version]].\nThis message is followed by the list of installed extensions that provide an editor or enhance editing functionality.\n{{Identical|Editor}}",
 	"version-antispam": "Part of [[Special:Version]].\nThis message is followed by the list of SPAM prevention extensions.",
-	"version-database": "Database type",
 	"version-api": "{{optional}}",
 	"version-other": "{{Identical|Other}}",
 	"version-mediahandlers": "Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).\nThere are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.",

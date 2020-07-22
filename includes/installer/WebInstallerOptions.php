@@ -19,7 +19,6 @@
  * @ingroup Installer
  */
 
-use MediaWiki\Installer\Services\InstallerDBSupport;
 use Wikimedia\IPUtils;
 
 class WebInstallerOptions extends WebInstallerPage {
@@ -148,14 +147,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldsetEnd();
 		$this->addHTML( $skinHtml );
 
-		$extensions = array_filter(
-			$this->parent->findExtensions()->value,
-			function ( $extensionInfo ) {
-				return ( $extensionInfo['type'] ?? null )
-					!== InstallerDBSupport::EXTENSION_TYPE_DATABASE;
-			}
-		);
-
+		$extensions = $this->parent->findExtensions()->value;
 		'@phan-var array[] $extensions';
 		$dependencyMap = [];
 
@@ -190,7 +182,7 @@ class WebInstallerOptions extends WebInstallerPage {
 						'class' => 'config-ext-input'
 					];
 					$labelAttribs = [];
-
+					$fullDepList = [];
 					if ( isset( $info['requires']['extensions'] ) ) {
 						$dependencyMap[$ext]['extensions'] = $info['requires']['extensions'];
 						$labelAttribs['class'] = 'mw-ext-with-dependencies';
@@ -544,10 +536,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			if ( $this->getVar( "ext-$ext" ) ) {
 				$extsToInstall[] = $ext;
 			}
-		}
-		$dbext = $this->parent->getUsedExtensionName();
-		if ( $dbext ) {
-			$extsToInstall[] = $dbext;
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
 
