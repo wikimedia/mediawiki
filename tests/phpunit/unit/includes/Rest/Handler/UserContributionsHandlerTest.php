@@ -116,9 +116,11 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		}
 
 		$mockUserFactory = $this->createNoOpMock( UserFactory::class,
-			[ 'newFromName' ]
+			[ 'newFromName', 'newAnonymous' ]
 		);
 		$mockUserFactory->method( 'newFromName' )
+			->willReturnCallback( [ $this, 'makeMockUser' ] );
+		$mockUserFactory->method( 'newAnonymous' )
 			->willReturnCallback( [ $this, 'makeMockUser' ] );
 
 		$mockUserNameUtils = $this->createNoOpMock( UserNameUtils::class,
