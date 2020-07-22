@@ -18,7 +18,6 @@
  * @file
  * @ingroup Installer
  */
-use MediaWiki\Installer\Services\InstallerDBSupport;
 
 class WebInstallerDBConnect extends WebInstallerPage {
 
@@ -51,7 +50,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 
 		// Messages: config-dbsupport-mysql, config-dbsupport-postgres, config-dbsupport-sqlite
 		$dbSupport = '';
-		foreach ( InstallerDBSupport::getInstance()->getDatabases() as $type ) {
+		foreach ( Installer::getDBTypes() as $type ) {
 			$dbSupport .= wfMessage( "config-dbsupport-$type" )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
