@@ -24,7 +24,6 @@
  * @ingroup Installer
  */
 
-use MediaWiki\Installer\Services\InstallerDBSupport;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
@@ -101,9 +100,19 @@ abstract class Installer {
 	protected $parserOptions;
 
 	/**
-	 * @var InstallerDBSupport
+	 * Known database types. These correspond to the class names <type>Installer,
+	 * and are also MediaWiki database types valid for $wgDBtype.
+	 *
+	 * To add a new type, create a <type>Installer class and a Database<type>
+	 * class, and add a config-type-<type> message to MessagesEn.php.
+	 *
+	 * @var array
 	 */
-	protected $installerDbSupport;
+	protected static $dbTypes = [
+		'mysql',
+		'postgres',
+		'sqlite',
+	];
 
 	/**
 	 * A list of environment check methods called by doEnvironmentChecks().
@@ -397,6 +406,7 @@ abstract class Installer {
 	 */
 	public function __construct() {
 		global $wgMemc, $wgUser, $wgObjectCaches;
+
 		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
@@ -448,9 +458,7 @@ abstract class Installer {
 		$this->doEnvironmentPreps();
 
 		$this->compiledDBs = [];
-		$this->installerDbSupport = InstallerDBSupport::getInstance();
-
-		foreach ( $this->installerDbSupport->getDatabases() as $type ) {
+		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
 
 			if ( !$installer->isCompiled() ) {
@@ -467,13 +475,11 @@ abstract class Installer {
 
 	/**
 	 * Get a list of known DB types.
-	 * @deprecated since 1.35 use InstallerDBSupport::getDatabases instead
 	 *
 	 * @return array
 	 */
 	public static function getDBTypes() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return InstallerDBSupport::getInstance()->getDatabases();
+		return self::$dbTypes;
 	}
 
 	/**
@@ -555,16 +561,13 @@ abstract class Installer {
 
 	/**
 	 * Get the DatabaseInstaller class name for this type
-	 * @deprecated since 1.35 use InstallerDBSupport instead
 	 *
 	 * @param string $type database type ($wgDBtype)
 	 * @return string Class name
 	 * @since 1.30
 	 */
 	public static function getDBInstallerClass( $type ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		return InstallerDBSupport::getInstance()->getDBInstallerClass( $type );
+		return ucfirst( $type ) . 'Installer';
 	}
 
 	/**
@@ -579,8 +582,10 @@ abstract class Installer {
 			$type = $this->getVar( 'wgDBtype' );
 		}
 
+		$type = strtolower( $type );
+
 		if ( !isset( $this->dbInstallers[$type] ) ) {
-			$class = $this->installerDbSupport->getDBInstallerClass( $type );
+			$class = self::getDBInstallerClass( $type );
 			$this->dbInstallers[$type] = new $class( $this );
 		}
 
@@ -764,7 +769,7 @@ abstract class Installer {
 		$allNames = [];
 
 		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite
-		foreach ( $this->installerDbSupport->getDatabases() as $name ) {
+		foreach ( self::getDBTypes() as $name ) {
 			$allNames[] = wfMessage( "config-type-$name" )->text();
 		}
 
@@ -1861,19 +1866,5 @@ abstract class Installer {
 		Wikimedia\suppressWarnings();
 		set_time_limit( 0 );
 		Wikimedia\restoreWarnings();
-	}
-
-	/**
-	 * Return the name of the extension selected to provide the database or null
-	 * if the database is provided by core.
-	 *
-	 * @return string|null
-	 */
-	public function getUsedExtensionName() : ?string {
-		if ( empty( $this->settings['wgDBtype'] ) ) {
-			return null;
-		}
-		return $this->installerDbSupport
-			->getExtensionNameForDatabase( $this->settings['wgDBtype'] );
 	}
 }
