@@ -4,7 +4,7 @@ namespace Wikimedia\Http;
 
 /**
  * @internal
- * @since 1.34.2
+ * @since 1.34.3
  */
 class SetCookieCompat {
 	/**
