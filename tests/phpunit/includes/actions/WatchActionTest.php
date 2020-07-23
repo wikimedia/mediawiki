@@ -375,7 +375,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsNoExpiry = WatchAction::getExpiryOptions( $this->context, false );
 		$expectedNoExpiry = [
 			'options' => [
-				'Permanently' => 'infinite',
+				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
@@ -392,7 +392,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$expectedExpiryOneMonth = [
 			'options' => [
 				'30 days left' => '20200710000000',
-				'Permanently' => 'infinite',
+				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
@@ -409,7 +409,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$expectedOneWeek = [
 			'options' => [
 				'7 days left' => '20200617000000',
-				'Permanently' => 'infinite',
+				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
@@ -424,7 +424,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsNoExpiryWIFalse = WatchAction::getExpiryOptions( $this->context, true );
 		$expectedNoExpiryWIFalse = [
 			'options' => [
-				'Permanently' => 'infinite',
+				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
