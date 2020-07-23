@@ -9,8 +9,9 @@ class HTMLSelectNamespace extends HTMLFormField {
 	/** @var string|null */
 	protected $mAllValue;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );

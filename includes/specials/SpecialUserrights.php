@@ -36,7 +36,7 @@ class UserrightsPage extends SpecialPage {
 	 * @var null|string
 	 */
 	protected $mTarget;
-	/*
+	/**
 	 * @var null|User $mFetchedUser The user object of the target username or null.
 	 */
 	protected $mFetchedUser = null;
@@ -88,7 +88,6 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string|null $par String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
-	 * @suppress PhanUndeclaredMethod
 	 */
 	public function execute( $par ) {
 		$user = $this->getUser();

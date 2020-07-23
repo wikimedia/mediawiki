@@ -21,8 +21,9 @@ use MediaWiki\Widget\TitlesMultiselectWidget;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLTitlesMultiselectField extends HTMLTitleTextField {
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$params += [

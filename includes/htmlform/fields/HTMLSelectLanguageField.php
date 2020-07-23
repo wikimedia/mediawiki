@@ -9,8 +9,9 @@ use MediaWiki\MediaWikiServices;
  */
 class HTMLSelectLanguageField extends HTMLSelectField {
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );

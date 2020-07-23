@@ -16,8 +16,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	/** @var string[] */
 	private $mFlatOptions;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {

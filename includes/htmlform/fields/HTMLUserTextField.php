@@ -18,8 +18,9 @@ use Wikimedia\IPUtils;
  * @since 1.26
  */
 class HTMLUserTextField extends HTMLTextField {
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$params = wfArrayPlus2d( $params, [

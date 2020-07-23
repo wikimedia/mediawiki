@@ -1,7 +1,7 @@
 <?php
 
 class MockSearchResultSet extends SearchResultSet {
-	/*
+	/**
 	 * @var SearchResultSet[][] Map from result type to list of results for
 	 *  that type.
 	 */

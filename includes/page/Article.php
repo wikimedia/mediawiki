@@ -139,7 +139,7 @@ class Article implements Page {
 	 */
 	private $revisionStore;
 
-	/*
+	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
 	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). Normally loaded from the
