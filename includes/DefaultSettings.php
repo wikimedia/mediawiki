@@ -142,7 +142,7 @@ $wgServerName = false;
  * should also be configured to send Strict-Transport-Security response headers.
  *
  * @var bool
- * @since 1.34.2
+ * @since 1.34.3
  */
 $wgForceHTTPS = false;
 
@@ -6095,7 +6095,7 @@ $wgCookieHttpOnly = true;
  * This only applies to login cookies, since the correct value for other
  * cookies depends on what kind of cookie it is.
  *
- * @since 1.34.2
+ * @since 1.34.3
  * @var string|null
  */
 $wgCookieSameSite = null;
@@ -6105,7 +6105,7 @@ $wgCookieSameSite = null;
  * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
  * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
  *
- * @since 1.34.2
+ * @since 1.34.3
  * @var bool
  */
 $wgUseSameSiteLegacyCookies = false;
