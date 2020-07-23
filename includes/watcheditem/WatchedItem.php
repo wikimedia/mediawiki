@@ -173,4 +173,34 @@ class WatchedItem {
 
 		return (int)ceil( $diffInDays );
 	}
+
+	/**
+	 * Get days remaining until a watched item expires as a text.
+	 *
+	 * @since 1.35
+	 * @param MessageLocalizer $msgLocalizer
+	 * @param bool $isDropdownOption Whether the text is being displayed as a dropdown option.
+	 *             The text is different as a dropdown option from when it is used in other
+	 *             places as a watchlist indicator.
+	 * @return string days remaining text and '' if no expiration is present
+	 */
+	public function getExpiryInDaysText( MessageLocalizer $msgLocalizer, $isDropdownOption = false ): string {
+		$expiryInDays = $this->getExpiryInDays();
+		if ( $expiryInDays === null ) {
+			return '';
+		}
+
+		if ( $expiryInDays < 1 ) {
+			if ( $isDropdownOption ) {
+				return $msgLocalizer->msg( 'watchlist-expiry-hours-left' )->text();
+			}
+			return $msgLocalizer->msg( 'watchlist-expiring-hours-full-text' )->text();
+		}
+
+		if ( $isDropdownOption ) {
+			return $msgLocalizer->msg( 'watchlist-expiry-days-left', [ $expiryInDays ] )->text();
+		}
+
+		return $msgLocalizer->msg( 'watchlist-expiring-days-full-text', [ $expiryInDays ] )->text();
+	}
 }
