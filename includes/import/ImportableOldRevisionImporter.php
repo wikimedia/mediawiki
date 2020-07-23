@@ -150,8 +150,14 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		}
 		$revisionRecord->setUser( $revUser );
 
-		$originalRevision =
-			$prevRevRow ? $this->revisionStore->newRevisionFromRow( $prevRevRow ) : null;
+		$originalRevision = $prevRevRow
+			? $this->revisionStore->newRevisionFromRow(
+				$prevRevRow,
+				IDBAccessObject::READ_LATEST,
+				$importableRevision->getTitle()
+			)
+			: null;
+
 		foreach ( $importableRevision->getSlotRoles() as $role ) {
 			if ( !$this->slotRoleRegistry->isDefinedRole( $role ) ) {
 				throw new MWException( "Undefined slot role $role" );
