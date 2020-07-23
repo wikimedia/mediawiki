@@ -981,8 +981,9 @@ class LoadBalancer implements ILoadBalancer {
 			// DBConnRef already handles calling reuseConnection() and only passes the live
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
 			$this->connLogger->error(
-				__METHOD__ . ": got DBConnRef instance.\n" .
-				( new LogicException() )->getTraceAsString() );
+				__METHOD__ . ": got DBConnRef instance",
+				[ 'exception' => new RuntimeException() ]
+			);
 
 			return;
 		}
@@ -2272,7 +2273,7 @@ class LoadBalancer implements ILoadBalancer {
 						'dbserver' => $conn->getServer(),
 						'pos' => $pos,
 						'seconds' => round( $seconds, 6 ),
-						'trace' => ( new RuntimeException() )->getTraceAsString()
+						'exception' => new RuntimeException(),
 					]
 				);
 			} else {
@@ -2284,7 +2285,7 @@ class LoadBalancer implements ILoadBalancer {
 				__METHOD__ . ': could not get master pos for {dbserver}',
 				[
 					'dbserver' => $conn->getServer(),
-					'trace' => ( new RuntimeException() )->getTraceAsString()
+					'exception' => new RuntimeException(),
 				]
 			);
 		}
