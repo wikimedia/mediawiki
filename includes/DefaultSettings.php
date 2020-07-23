@@ -6538,21 +6538,6 @@ $wgCookieSetOnIpBlock = true;
 /** @} */ # end of cookie settings }
 
 /************************************************************************//**
- * @name   LaTeX (mathematical formulas)
- * @{
- */
-
-/**
- * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of
- * the MediaWiki package and have latex, dvips, gs (ghostscript), andconvert
- * (ImageMagick) installed and available in the PATH.
- * Please see math/README for more information.
- */
-$wgUseTeX = false;
-
-/** @} */ # end LaTeX }
-
-/************************************************************************//**
  * @name   Profiling, testing and debugging
  *
  * See $wgProfiler for how to enable profiling.
