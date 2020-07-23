@@ -46,6 +46,7 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - databaseFactory: DatabaseFactory object [optional]
 	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
 	 *  - defaultGroup: Default query group; the generic group if not specified [optional]
 	 *  - hostname : The name of the current server [optional]

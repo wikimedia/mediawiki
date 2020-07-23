@@ -47,6 +47,7 @@ interface ILBFactory {
 	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache instance [optional]
+	 *  - databaseFactory: DatabaseFactory instance [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - profiler: Callback that takes a section name argument and returns

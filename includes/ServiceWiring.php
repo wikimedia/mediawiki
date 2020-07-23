@@ -187,6 +187,7 @@ use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
@@ -524,6 +525,10 @@ return [
 		);
 	},
 
+	'DatabaseFactory' => static function ( MediaWikiServices $services ): DatabaseFactory {
+		return new DatabaseFactory();
+	},
+
 	'DateFormatterFactory' => static function ( MediaWikiServices $services ): DateFormatterFactory {
 		return new DateFormatterFactory();
 	},
@@ -590,7 +595,8 @@ return [
 			$srvCache,
 			$wanCache,
 			$services->getCriticalSectionProvider(),
-			$services->getStatsdDataFactory()
+			$services->getStatsdDataFactory(),
+			$services->getDatabaseFactory()
 		);
 	},
 
