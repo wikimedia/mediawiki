@@ -3295,7 +3295,6 @@
 	"version-variables": "Variáveis",
 	"version-editors": "Editores",
 	"version-antispam": "Prevenção contra spam",
-	"version-database": "Suporte de bases de dados personalizadas",
 	"version-other": "Diversos",
 	"version-mediahandlers": "Leitura e tratamento de multimédia",
 	"version-hooks": "Hooks",

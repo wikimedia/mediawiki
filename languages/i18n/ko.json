@@ -3273,7 +3273,6 @@
 	"version-variables": "변수",
 	"version-editors": "편집기",
 	"version-antispam": "스팸 막기",
-	"version-database": "사용자 지정 데이터베이스 지원",
 	"version-other": "기타",
 	"version-mediahandlers": "미디어 핸들러",
 	"version-hooks": "훅",

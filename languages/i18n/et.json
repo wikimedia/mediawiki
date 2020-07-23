@@ -3234,7 +3234,6 @@
 	"version-variables": "Muutujad",
 	"version-editors": "Toimetid",
 	"version-antispam": "Rämpsposti tõkestus",
-	"version-database": "Kohandatud andmebaasi tugi",
 	"version-other": "Muu",
 	"version-mediahandlers": "Failikäsitlejad",
 	"version-hooks": "Haagid",

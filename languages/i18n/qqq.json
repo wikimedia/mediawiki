@@ -1354,7 +1354,7 @@
 	"badsig": "Error message displayed when entering invalid signature in user preferences",
 	"badsightml": "Error message used on [[Special:Preferences]]. Followed by a bullet list of issues, each using a message like {{msg-mw|linter-category-missing-end-tag}}.",
 	"badsiglinks": "Error message used on [[Special:Preferences]].",
-	"badsigsubst": "Error message used on [[Special:Preferences]].\\n\\nParameters:\\n* $1 - example valid syntax, using the message {{msg-mw|signature}}",
+	"badsigsubst": "Error message used on [[Special:Preferences]].\n\nParameters:\n* $1 - example valid syntax, using the message {{msg-mw|signature}}",
 	"badsiglength": "Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long.\n\nParameters\n* $1 - the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character)",
 	"linter-pager-bogus-image-options-details": "Table column heading",
 	"linter-pager-deletable-table-tag-details": "Table column heading",

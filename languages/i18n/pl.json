@@ -3344,7 +3344,6 @@
 	"version-variables": "Zmienne",
 	"version-editors": "Edytory",
 	"version-antispam": "Ochrona przed spamem",
-	"version-database": "Niestandardowe wsparcie bazy danych",
 	"version-other": "Pozostałe",
 	"version-mediahandlers": "Wtyczki obsługi mediów",
 	"version-hooks": "Haki (ang. hooks)",
