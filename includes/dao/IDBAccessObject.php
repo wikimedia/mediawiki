@@ -62,7 +62,7 @@ interface IDBAccessObject {
 	/** @var int Read from the master/quorum */
 	public const READ_LATEST = 1;
 
-	/* @var int Read from the master/quorum and lock out other writers */
+	/** @var int Read from the master/quorum and lock out other writers */
 	public const READ_LOCKING = self::READ_LATEST | 2; // READ_LATEST (1) and "LOCK IN SHARE MODE" (2)
 
 	/** @var int Read from the master/quorum and lock out other writers and locking readers */

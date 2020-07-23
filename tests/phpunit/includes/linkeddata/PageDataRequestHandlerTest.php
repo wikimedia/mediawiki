@@ -217,7 +217,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		$output = $this->makeOutputPage( $params, $headers );
 		$request = $output->getRequest();
 
-		/* @var FauxResponse $response */
+		/** @var FauxResponse $response */
 		$response = $request->response();
 
 		// construct handler
@@ -298,7 +298,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		array $headers,
 		$expectedRedirectSuffix
 	) {
-		/* @var FauxResponse $response */
+		/** @var FauxResponse $response */
 		$output = $this->makeOutputPage( [], $headers );
 		$request = $output->getRequest();
 
