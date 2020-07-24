@@ -25,7 +25,8 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * This class handles the logic for the actor table migration.
+ * This class handles the logic for the actor table migration and should
+ * always be used in lieu of directly accessing database tables.
  *
  * This is not intended to be a long-term part of MediaWiki; it will be
  * deprecated and removed once actor migration is complete.
