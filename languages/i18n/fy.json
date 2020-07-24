@@ -2276,6 +2276,8 @@
 	"revdelete-restricted": "hat beheinings oplein oan behearders",
 	"revdelete-unrestricted": "hat beheinings foar behearders goedmakke",
 	"logentry-block-block": "$1 hat {{GENDER:$4|$3}} {{GENDER:$2|útsletten}} mei in ferfaltiid fan $5 $6",
+	"logentry-block-unblock": "$1 hat {{GENDER:$4|$3}} wer {{GENDER:$2|talitten}}",
+	"logentry-block-reblock": "$1 hat de útsluting fan {{GENDER:$4|$3}} {{GENDER:$2|oanpast}} mei in ferfaltiid fan $5 $6",
 	"logentry-partialblock-block-page": "de {{PLURAL:$1|side|siden}} $2",
 	"logentry-partialblock-block-ns": "de {{PLURAL:$1|nammeromte|nammeromten}} $2",
 	"logentry-partialblock-block": "$1 hat {{GENDER:$4|$3}} {{GENDER:$2|útsletten}} $7 te bewurkjen mei in ferfaltiid fan $5 $6",

@@ -582,7 +582,7 @@
 	"previewnote": "'''Ftakar li din hija biss dehra proviżorja.'''\nIt-tibdiliet tiegħek għadhom ma ġewx salvati!",
 	"continue-editing": "Mur fil-kaxxa tal-editjar",
 	"previewconflict": "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
-	"session_fail_preview": "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.\nJekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
+	"session_fail_preview": "Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.\n\nJekk jogħġbok, erġa' pprova. <strong>Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.</strong> Ara ukoll li l-browser tiegħek jaċċetta l-cookies minn dan is-sit.",
 	"session_fail_preview_html": "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.'''\n\n''Peress li fil-{{SITENAME}} huwa possibbli l-użu tal-HTML mingħajr limitazzjonijiet (''raw HTML''), id-dehra proviżorja tiġi moħbija bħala prekawzjoni kontra l-attakki tal-JavaScript.''\n\n'''Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' pprova. Jekk tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
 	"token_suffix_mismatch": "'''Il-modifika tiegħek ma ġietx aċċettata minħabba li klijent tiegħek tertaq l-karratri tal-ortografija fit-token tal-modifika.\nDin il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.'''",
 	"edit_form_incomplete": "'''Ċerti parti tal-formola tal-modifika ma laħqux is-server; iċċekkja jekk il-modifiki tiegħek humiex intatti u erġa' pprova.'''",
@@ -2142,7 +2142,7 @@
 	"import-nonewrevisions": "Ir-Reviżjonijiet kollha kienu importati preċedentament.",
 	"xml-error-string": "$1 fil-linja $2, kol $3 (byte $4): $5",
 	"import-upload": "Tella' data XML",
-	"import-token-mismatch": "Telfien tad-dati tas-sessjoni. Jekk jogħġbok erġa' pprova.",
+	"import-token-mismatch": "Telfien tad-data tas-sessjoni.\n\n'''Kun ċert li għadek imdaħħal u erġa' pprova'''.\n\nJekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.</strong> Ara ukoll li l-browser tiegħek jaċċetta l-cookies minn dan is-sit.",
 	"import-invalid-interwiki": "Ma jistax jiġi importat mill-wiki indikata.",
 	"import-error-edit": "Il-paġna \"$1\" ma ġietx  impurtata minħabba li mintix awtorizzat li timmodifikaha.",
 	"import-error-create": "Il-paġna \"$1\" ma ġietx  impurtata minħabba li mintix awtorizzat li toħloqha.",
@@ -2749,6 +2749,7 @@
 	"expand_templates_remove_nowiki": "Ħassar it-''tags'' <nowiki> fir-riżultat",
 	"expand_templates_generate_xml": "Uri siġra sintattika XML",
 	"expand_templates_preview": "Dehra proviżorja",
+	"expand_templates_preview_fail_html": "<em>Peress li huwa possibbli l-użu tal-HTML mingħajr limitazzjonijiet (''raw HTML'') fuq {{SITENAME}}, id-dehra proviżorja qed tiġi moħbija bħala prekawzjoni kontra l-attakki tal-JavaScript.</em>\n\n<strong>Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' pprova.</strong> Jekk tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol. Ara ukoll li l-browser tiegħek jaċċetta l-cookies minn dan is-sit.",
 	"pagelang-name": "Paġna",
 	"pagelang-language": "Lingwa",
 	"pagelang-select-lang": "Agħżel lingwa",
@@ -2802,5 +2803,7 @@
 	"mw-widgets-dateinput-placeholder-month": "SSSS-XX",
 	"mw-widgets-mediasearch-noresults": "L-ebda riżultat ma nstab.",
 	"date-range-from": "Mid-data:",
-	"date-range-to": "Sad-data:"
+	"date-range-to": "Sad-data:",
+	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessjonijiet ibbażati fuq cookie/s",
+	"sessionprovider-nocookies": "Aktar li mhux taċċetta cookies. Ikkonferma li qed taċċetta l-cookies u erġa' ibda."
 }

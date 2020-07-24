@@ -3,7 +3,8 @@
 		"authors": [
 			"Bikarhêner",
 			"George Animal",
-			"Ghybu"
+			"Ghybu",
+			"Guherto"
 		]
 	},
 	"config-desc": "Barkera MediaWikiyê",
@@ -30,14 +31,14 @@
 	"config-diff3-bad": "GNU diff3 nehate dîtin.",
 	"config-db-type": "Cureya danegehê:",
 	"config-db-wiki-settings": "Vî wîkîyê bide danasîn",
-	"config-db-name": "Navê danagehê:",
+	"config-db-name": "Navê danegehê (bê xeta):",
 	"config-db-install-account": "Hesabê bikarhêner bo avakirinê",
 	"config-db-username": "Navê bikarhêner bo danagehê:",
 	"config-db-password": "Şîfreya danegehê:",
 	"config-invalid-db-type": "Cureya danegehê ya nederbasdar",
 	"config-sqlite-readonly": "Dosyeya <code>$1</code> ne nivîsbar e.",
 	"config-db-web-account": "Hesabê danegehê bô têgihiştina tora înternetê",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (pêşniyarkirî)",
 	"config-site-name": "Navê wîkiyê:",
 	"config-site-name-blank": "Navê malperek têkeve.",
 	"config-ns-generic": "Proje",
