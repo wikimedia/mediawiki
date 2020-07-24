@@ -1063,13 +1063,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @since 1.35
 	 * @throws Exception If less.php encounters a parse error
 	 * @param string $style LESS source to compile
-	 * @param string $fileName File path of LESS source, used for resolving relative file paths
+	 * @param string $stylePath File path of LESS source, used for resolving relative file paths
 	 * @param ResourceLoaderContext $context Context in which to generate script
 	 * @return string CSS source
 	 */
-	protected function compileLessString( $style, $fileName, ResourceLoaderContext $context ) {
+	protected function compileLessString( $style, $stylePath, ResourceLoaderContext $context ) {
 		static $cache;
-
+		// @TODO: dependency injection
 		if ( !$cache ) {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 		}
@@ -1078,34 +1078,39 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Construct a cache key from a hash of the LESS source, and a hash digest
 		// of the LESS variables used for compilation.
 		ksort( $vars );
-		$varsHash = hash( 'md4', serialize( $vars ) );
-		$styleHash = hash( 'md4', $style );
-		$cacheKey = $cache->makeGlobalKey( 'resourceloader-less', $styleHash, $varsHash );
-		$cachedCompile = $cache->get( $cacheKey );
+		$key = $cache->makeGlobalKey(
+			'resourceloader-less',
+			'v1',
+			hash( 'md4', $style ),
+			hash( 'md4', serialize( $vars ) )
+		);
 
-		// If we got a cached value, we have to validate it by getting a
-		// checksum of all the files that were loaded by the parser and
-		// ensuring it matches the cached entry's.
-		if ( isset( $cachedCompile['hash'] ) ) {
-			$contentHash = FileContentsHasher::getFileContentsHash( $cachedCompile['files'] );
-			if ( $contentHash === $cachedCompile['hash'] ) {
-				$this->localFileRefs = array_merge( $this->localFileRefs, $cachedCompile['files'] );
-				return $cachedCompile['css'];
-			}
+		// If we got a cached value, we have to validate it by getting a checksum of all the
+		// files that were loaded by the parser and ensuring it matches the cached entry's.
+		$data = $cache->get( $key );
+		if (
+			!$data ||
+			$data['hash'] !== FileContentsHasher::getFileContentsHash( $data['files'] )
+		) {
+			$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
+			$css = $compiler->parse( $style, $stylePath )->getCss();
+			// T253055: store the implicit dependency paths in a form relative to any install
+			// path so that multiple version of the application can share the cache for identical
+			// less stylesheets. This also avoids churn during application updates.
+			$files = $compiler->AllParsedFiles();
+			$data = [
+				'css'   => $css,
+				'files' => ResourceLoaderModule::getRelativePaths( $files ),
+				'hash'  => FileContentsHasher::getFileContentsHash( $files )
+			];
+			$cache->set( $key, $data, $cache::TTL_DAY );
 		}
 
-		$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
-		$css = $compiler->parse( $style, $fileName )->getCss();
-		$files = $compiler->AllParsedFiles();
-		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
+		foreach ( ResourceLoaderModule::expandRelativePaths( $data['files'] ) as $path ) {
+			$this->localFileRefs[] = $path;
+		}
 
-		$cache->set( $cacheKey, [
-			'css'   => $css,
-			'files' => $files,
-			'hash'  => FileContentsHasher::getFileContentsHash( $files ),
-		], $cache::TTL_DAY );
-
-		return $css;
+		return $data['css'];
 	}
 
 	/**
