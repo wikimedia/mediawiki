@@ -64,20 +64,21 @@ class UserFactory implements IDBAccessObject {
 	/**
 	 * Returns a new anonymous User based on ip.
 	 *
-	 * @since 1.36
+	 * @since 1.35
 	 *
 	 * @param string|null $ip IP address
 	 * @return User
 	 */
 	public function newAnonymous( $ip = null ) : User {
-		$user = new User();
 		if ( $ip ) {
 			$validIp = $this->userNameUtils->isIP( $ip );
 			if ( $validIp ) {
-				$user->setName( $ip );
+				$user = $this->newFromName( $ip, UserNameUtils::RIGOR_NONE );
 			} else {
 				throw new \InvalidArgumentException( 'Invalid IP address' );
 			}
+		} else {
+			$user = new User();
 		}
 		return $user;
 	}

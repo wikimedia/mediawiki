@@ -168,9 +168,8 @@ class ReassignEdits extends Maintenance {
 	 */
 	private function initialiseUser( $username ) {
 		if ( User::isIP( $username ) ) {
-			$user = new User();
-			$user->setId( 0 );
-			$user->setName( $username );
+			$user = User::newFromName( $username, false );
+			$user->getActorId();
 		} else {
 			$user = User::newFromName( $username );
 			if ( !$user ) {
