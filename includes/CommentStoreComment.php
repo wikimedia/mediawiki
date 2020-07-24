@@ -1,7 +1,5 @@
 <?php
 /**
- * Value object for CommentStore
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +20,11 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * CommentStoreComment represents a comment stored by CommentStore. The fields
- * should be considered read-only.
+ * Value object for a comment stored by CommentStore.
+ *
+ * The fields should be considered read-only.
+ *
+ * @ingroup CommentStore
  * @since 1.30
  */
 class CommentStoreComment {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Manage storage of comments in the database
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,8 +22,21 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * CommentStore handles storage of comments (edit summaries, log reasons, etc)
- * in the database.
+ * @defgroup CommentStore CommentStore
+ *
+ * The Comment store in MediaWiki is responsible for storing edit summaries,
+ * log action comments and other such short strings (referred to as "comments").
+ *
+ * The CommentStore class handles the database abstraction for reading
+ * and writing comments, which are represented by CommentStoreComment objects.
+ *
+ * Data is internally stored in the `comment` table..
+ */
+
+/**
+ * Handle database storage of comments such as edit summaries and log reasons.
+ *
+ * @ingroup CommentStore
  * @since 1.30
  */
 class CommentStore {
