@@ -31,7 +31,7 @@
  *
  * @ingroup Content
  */
-class UnknownContentHandler extends ContentHandler {
+class FallbackContentHandler extends ContentHandler {
 
 	/**
 	 * Constructs an UnknownContentHandler. Since UnknownContentHandler can be registered
@@ -67,8 +67,8 @@ class UnknownContentHandler extends ContentHandler {
 	 * @return mixed
 	 */
 	public function serializeContent( Content $content, $format = null ) {
-		/** @var UnknownContent $content */
-		'@phan-var UnknownContent $content';
+		/** @var FallbackContent $content */
+		'@phan-var FallbackContent $content';
 		return $content->getData();
 	}
 
@@ -83,7 +83,7 @@ class UnknownContentHandler extends ContentHandler {
 	 * @return Content The UnknownContent object wrapping $data
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		return new UnknownContent( $blob, $this->getModelID() );
+		return new FallbackContent( $blob, $this->getModelID() );
 	}
 
 	/**
@@ -113,3 +113,5 @@ class UnknownContentHandler extends ContentHandler {
 		return new UnsupportedSlotDiffRenderer( $context );
 	}
 }
+
+class_alias( FallbackContentHandler::class, 'UnknownContentHandler' );

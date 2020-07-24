@@ -117,7 +117,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		}
 
 		try {
-			/* @var FauxResponse $response */
+			/** @var FauxResponse $response */
 			list( $output, $response ) = $this->executeSpecialPage( $subpage, $request );
 
 			$this->assertEquals( $expCode, $response->getStatusCode(), "status code" );

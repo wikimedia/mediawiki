@@ -21,9 +21,6 @@
 		<testsuite name="languages">
 			<directory>languages</directory>
 		</testsuite>
-		<testsuite name="rdbms">
-			<directory>includes/libs/rdbms</directory>
-		</testsuite>
 		<testsuite name="parsertests">
 			<file>suites/CoreParserTestSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>

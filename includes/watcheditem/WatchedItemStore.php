@@ -630,7 +630,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$watcherCounts = [];
 		foreach ( $targetsWithVisitThresholds as list( $target ) ) {
-			/* @var LinkTarget $target */
+			/** @var LinkTarget $target */
 			$watcherCounts[$target->getNamespace()][$target->getDBkey()] = 0;
 		}
 
@@ -659,7 +659,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				$missingTargets[] = $target;
 				continue;
 			}
-			/* @var LinkTarget $target */
+			/** @var LinkTarget $target */
 			$namespaceConds[$target->getNamespace()][] = $db->makeList( [
 				'wl_title = ' . $db->addQuotes( $target->getDBkey() ),
 				$db->makeList( [

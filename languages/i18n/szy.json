@@ -1220,6 +1220,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (piazih tu tatenga’ay [[Special:NewPages| baluhayay a kasabelih]])",
 	"recentchanges-submit": "paazih",
 	"rcfilters-activefilters": "pisaungayay a sebseb sakacucek",
+	"rcfilters-activefilters-hide": "midimut",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|tuki}}",
 	"rcfilters-quickfilters": "suped sebseb sakaluk",
 	"rcfilters-savedqueries-defaultlabel": "suped sebseb sakaluk",

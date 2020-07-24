@@ -24,10 +24,10 @@ use MediaWiki\Revision\RevisionRecord;
 
 class RCCacheEntryFactory {
 
-	/* @var IContextSource */
+	/** @var IContextSource */
 	private $context;
 
-	/* @var string[] */
+	/** @var string[] */
 	private $messages;
 
 	/**

@@ -33,10 +33,10 @@
  * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
  */
 class PHPVersionCheck {
-	/* @var string The number of the MediaWiki version used. */
+	/** @var string The number of the MediaWiki version used. */
 	var $mwVersion = '1.36';
 
-	/* @var array A mapping of PHP functions to PHP extensions. */
+	/** @var string[] A mapping of PHP functions to PHP extensions. */
 	var $functionsExtensionsMapping = array(
 		'mb_substr'   => 'mbstring',
 		'xml_parser_create' => 'xml',

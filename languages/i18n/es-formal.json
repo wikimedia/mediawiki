@@ -380,6 +380,7 @@
 	"tooltip-ca-history": "Versiones anteriores de esta página y sus autores",
 	"tooltip-ca-watch": "Añadir esta página a su lista de seguimiento",
 	"tooltip-ca-unwatch": "Quitar esta página de su lista de seguimiento",
+	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|Queda 1 día|Quedan $1 días}}. Pulse para quitar esta página de su lista de seguimiento.",
 	"tooltip-search": "Buscar en {{SITENAME}}",
 	"tooltip-search-go": "Visitar pagina con este nombre exactamente, si existe",
 	"tooltip-search-fulltext": "Busca este texto en las páginas",

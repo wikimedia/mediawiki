@@ -84,6 +84,12 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $hideMinor;
 
+	/**
+	 * @var bool Set to true to only include mediawiki revisions.
+	 * (restricts extensions from executing additional queries to include their own contributions)
+	 */
+	private $revisionsOnly;
+
 	private $preventClickjacking = false;
 
 	/**
@@ -112,6 +118,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->topOnly = !empty( $options['topOnly'] );
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
+		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
 		parent::__construct( $context, $linkRenderer );
 
@@ -200,8 +207,10 @@ class ContribsPager extends RangeChronologicalPager {
 		$data = [ $this->mDb->select(
 			$tables, $fields, $conds, $fname, $options, $join_conds
 		) ];
-		$this->getHookRunner()->onContribsPager__reallyDoQuery(
-			$data, $this, $offset, $limit, $order );
+		if ( !$this->revisionsOnly ) {
+			$this->getHookRunner()->onContribsPager__reallyDoQuery(
+				$data, $this, $offset, $limit, $order );
+		}
 
 		$result = [];
 

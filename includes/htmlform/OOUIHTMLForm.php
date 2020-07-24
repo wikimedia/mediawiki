@@ -30,8 +30,9 @@ class OOUIHTMLForm extends HTMLForm {
 	private $oouiErrors;
 	private $oouiWarnings;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );

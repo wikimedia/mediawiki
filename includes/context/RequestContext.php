@@ -336,8 +336,6 @@ class RequestContext implements IContextSource, MutableContext {
 	public function getLanguage() {
 		if ( $this->languageRecursion === true ) {
 			trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
-			$e = new Exception;
-			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
 			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
 			$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()

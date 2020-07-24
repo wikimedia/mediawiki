@@ -1083,6 +1083,7 @@
 	"pageinfo-title": "Macluumaad ku saabsan \"$1\"",
 	"pageinfo-header-basic": "Macluumaadka asaasiga ah",
 	"pageinfo-firstuser": "Bog abuuraha",
+	"pageinfo-hidden-categories": "Qarsoon {{PLURAL:$1|qeybta|qeybaha}} ($1)",
 	"pageinfo-toolboxlink": "Macluumad ku saabsan",
 	"previousdiff": "← Wax ka badalka duugga ah",
 	"nextdiff": "Wax ka badalka ugu cusub →",

@@ -3417,7 +3417,6 @@
 	"version-variables": "变量",
 	"version-editors": "编辑器",
 	"version-antispam": "垃圾阻止",
-	"version-database": "自定义数据库支持",
 	"version-other": "其他",
 	"version-mediahandlers": "媒体文件处理器",
 	"version-hooks": "钩",

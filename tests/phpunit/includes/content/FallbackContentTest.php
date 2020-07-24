@@ -3,18 +3,19 @@
 /**
  * @group ContentHandler
  */
-class UnknownContentTest extends MediaWikiLangTestCase {
+class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $data
-	 * @return UnknownContent
+	 *
+	 * @return FallbackContent
 	 */
 	public function newContent( $data, $type = 'xyzzy' ) {
-		return new UnknownContent( $data, $type );
+		return new FallbackContent( $data, $type );
 	}
 
 	/**
-	 * @covers UnknownContent::getParserOutput
+	 * @covers FallbackContent::getParserOutput
 	 */
 	public function testGetParserOutput() {
 		$this->setUserLang( 'en' );
@@ -32,7 +33,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::preSaveTransform
+	 * @covers FallbackContent::preSaveTransform
 	 */
 	public function testPreSaveTransform() {
 		$title = Title::newFromText( 'Test' );
@@ -45,7 +46,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::preloadTransform
+	 * @covers FallbackContent::preloadTransform
 	 */
 	public function testPreloadTransform() {
 		$title = Title::newFromText( 'Test' );
@@ -57,7 +58,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getRedirectTarget
+	 * @covers FallbackContent::getRedirectTarget
 	 */
 	public function testGetRedirectTarget() {
 		$content = $this->newContent( '#REDIRECT [[Horkyporky]]' );
@@ -65,7 +66,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::isRedirect
+	 * @covers FallbackContent::isRedirect
 	 */
 	public function testIsRedirect() {
 		$content = $this->newContent( '#REDIRECT [[Horkyporky]]' );
@@ -73,7 +74,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::isCountable
+	 * @covers FallbackContent::isCountable
 	 */
 	public function testIsCountable() {
 		$content = $this->newContent( '[[Horkyporky]]' );
@@ -81,7 +82,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getTextForSummary
+	 * @covers FallbackContent::getTextForSummary
 	 */
 	public function testGetTextForSummary() {
 		$content = $this->newContent( 'Horkyporky' );
@@ -89,7 +90,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getTextForSearchIndex
+	 * @covers FallbackContent::getTextForSearchIndex
 	 */
 	public function testGetTextForSearchIndex() {
 		$content = $this->newContent( 'Horkyporky' );
@@ -97,7 +98,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::copy
+	 * @covers FallbackContent::copy
 	 */
 	public function testCopy() {
 		$content = $this->newContent( 'hello world.' );
@@ -107,7 +108,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getSize
+	 * @covers FallbackContent::getSize
 	 */
 	public function testGetSize() {
 		$content = $this->newContent( 'hello world.' );
@@ -116,7 +117,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getData
+	 * @covers FallbackContent::getData
 	 */
 	public function testGetData() {
 		$content = $this->newContent( 'hello world.' );
@@ -125,7 +126,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getNativeData
+	 * @covers FallbackContent::getNativeData
 	 */
 	public function testGetNativeData() {
 		$content = $this->newContent( 'hello world.' );
@@ -134,7 +135,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getWikitextForTransclusion
+	 * @covers FallbackContent::getWikitextForTransclusion
 	 */
 	public function testGetWikitextForTransclusion() {
 		$content = $this->newContent( 'hello world.' );
@@ -143,7 +144,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getModel
+	 * @covers FallbackContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world.", 'horkyporky' );
@@ -152,7 +153,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::getContentHandler
+	 * @covers FallbackContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$this->mergeMwGlobalArrayValue(
@@ -162,7 +163,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 
 		$content = $this->newContent( "hello world.", 'horkyporky' );
 
-		$this->assertInstanceOf( UnknownContentHandler::class, $content->getContentHandler() );
+		$this->assertInstanceOf( FallbackContentHandler::class, $content->getContentHandler() );
 		$this->assertEquals( 'horkyporky', $content->getContentHandler()->getModelID() );
 	}
 
@@ -177,7 +178,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsEmpty
-	 * @covers UnknownContent::isEmpty
+	 * @covers       FallbackContent::isEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );
@@ -187,17 +188,17 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 
 	public function provideEquals() {
 		return [
-			[ new UnknownContent( "hallo", 'horky' ), null, false ],
-			[ new UnknownContent( "hallo", 'horky' ), new UnknownContent( "hallo", 'horky' ), true ],
-			[ new UnknownContent( "hallo", 'horky' ), new UnknownContent( "hallo", 'xyzzy' ), false ],
-			[ new UnknownContent( "hallo", 'horky' ), new JavaScriptContent( "hallo" ), false ],
-			[ new UnknownContent( "hallo", 'horky' ), new WikitextContent( "hallo" ), false ],
+			[ new FallbackContent( "hallo", 'horky' ), null, false ],
+			[ new FallbackContent( "hallo", 'horky' ), new FallbackContent( "hallo", 'horky' ), true ],
+			[ new FallbackContent( "hallo", 'horky' ), new FallbackContent( "hallo", 'xyzzy' ), false ],
+			[ new FallbackContent( "hallo", 'horky' ), new JavaScriptContent( "hallo" ), false ],
+			[ new FallbackContent( "hallo", 'horky' ), new WikitextContent( "hallo" ), false ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideEquals
-	 * @covers UnknownContent::equals
+	 * @covers       FallbackContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
@@ -233,7 +234,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::convert
+	 * @covers FallbackContent::convert
 	 */
 	public function testConvert() {
 		$content = $this->newContent( 'More horkyporky?' );
@@ -242,15 +243,10 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers UnknownContent::__construct
-	 * @covers UnknownContentHandler::serializeContent
+	 * @covers FallbackContent::__construct
+	 * @covers FallbackContentHandler::serializeContent
 	 */
 	public function testSerialize() {
-		$this->mergeMwGlobalArrayValue(
-			'wgContentHandlers',
-			[ 'horkyporky' => 'UnknownContentHandler' ]
-		);
-
 		$content = $this->newContent( 'Hörkypörky', 'horkyporky' );
 
 		$this->assertSame( 'Hörkypörky', $content->serialize() );

@@ -3381,7 +3381,7 @@
 	"logentry-rights-autopromote": "$1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|postavio|postavila}} je $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|postavio|postavila}} је novu verziju $3",
-	"logentry-upload-revert": "$1 {{GENDER:$2|postavio|postavila}} је $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|vratio|vratila|vratio/-la}} je $3 na staru verziju",
 	"log-name-managetags": "Zapisnik upravljanja oznaka",
 	"log-description-managetags": "Na stranici se navodi spisak izmjena u vezi s [[Special:Tags|oznakama]]. Zapisnik sadrži samo radnje koje su ručno izvršili administratori; ne nalaze se unosi za oznake koje je napravio ili izbrisao wiki softver.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|napravio|napravila}} je oznaku \"$4\"",

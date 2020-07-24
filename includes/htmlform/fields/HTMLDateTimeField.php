@@ -26,8 +26,9 @@ class HTMLDateTimeField extends HTMLTextField {
 
 	protected $mType = 'datetime';
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );

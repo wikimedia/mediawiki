@@ -226,6 +226,7 @@ define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );
 define( 'CONTENT_MODEL_CSS', 'css' );
 define( 'CONTENT_MODEL_TEXT', 'text' );
 define( 'CONTENT_MODEL_JSON', 'json' );
+define( 'CONTENT_MODEL_UNKNOWN', 'unknown' );
 /** @} */
 
 /** @{

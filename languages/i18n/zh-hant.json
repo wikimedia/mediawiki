@@ -3336,7 +3336,6 @@
 	"version-variables": "變數",
 	"version-editors": "編輯器",
 	"version-antispam": "垃圾訊息防止",
-	"version-database": "自定義資料庫支援",
 	"version-other": "其他",
 	"version-mediahandlers": "媒體處理器",
 	"version-hooks": "掛鉤",

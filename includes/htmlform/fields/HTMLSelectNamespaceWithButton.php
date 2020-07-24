@@ -8,8 +8,9 @@ class HTMLSelectNamespaceWithButton extends HTMLSelectNamespace {
 	/** @var HTMLFormFieldWithButton */
 	protected $mClassWithButton = null;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $info ) {
 		$this->mClassWithButton = new HTMLFormFieldWithButton( $info );

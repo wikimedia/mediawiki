@@ -3455,6 +3455,7 @@
 	"passwordpolicies-policy-minimalpasswordlength": "Passwuert muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passwuert kann net selwecht si wéi de Benotzernumm",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passwuert däerf keent sinn dat op der spezifescher Lëscht vun de Standard-Passwierder steet",
+	"passwordpolicies-policy-passwordcannotmatchdefaults": "Passwuert däerf keent sinn dat op der spezifescher Lëscht vun de Standard-Passwierder steet",
 	"passwordpolicies-policy-maximalpasswordlength": "Passwurt muss manner wéi {{PLURAL:$1|een|$1}} Zeeche laang sinn",
 	"paramvalidator-help-type-user-subtype-name": "Benotzernumm",
 	"paramvalidator-help-type-user-subtype-ip": "IP",

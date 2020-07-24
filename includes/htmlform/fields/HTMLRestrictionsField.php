@@ -17,8 +17,9 @@ use Wikimedia\IPUtils;
 class HTMLRestrictionsField extends HTMLTextAreaField {
 	protected const DEFAULT_ROWS = 5;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );

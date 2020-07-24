@@ -30,7 +30,7 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'slot-name-foo', $handler->getNameMessageKey() );
 
 		$title = $this->makeBlankTitleObject();
-		$this->assertSame( CONTENT_MODEL_TEXT, $handler->getDefaultModel( $title ) );
+		$this->assertSame( CONTENT_MODEL_UNKNOWN, $handler->getDefaultModel( $title ) );
 
 		$hints = $handler->getOutputLayoutHints();
 		$this->assertArrayHasKey( 'display', $hints );

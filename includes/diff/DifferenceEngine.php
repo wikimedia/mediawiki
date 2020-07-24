@@ -200,7 +200,8 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected $isSlotDiffRenderer = false;
 
-	/* A set of options that will be passed to the SlotDiffRenderer upon creation
+	/**
+	 * A set of options that will be passed to the SlotDiffRenderer upon creation
 	 * @var array
 	 */
 	private $slotDiffOptions = [];

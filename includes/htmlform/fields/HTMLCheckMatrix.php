@@ -33,8 +33,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		'columns'
 	];
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$missing = array_diff( self::$requiredParams, array_keys( $params ) );

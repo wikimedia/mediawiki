@@ -67,6 +67,34 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	}
 
 	/**
+	 * Returns a CentralIdLookup that is guaranteed to be non-local.
+	 * If no such guarantee can be made, returns null.
+	 *
+	 * If this function returns a non-null CentralIdLookup,
+	 * that lookup is expected to provide IDs that are shared with some set of other wikis.
+	 * However, you should still be cautious when using those IDs,
+	 * as they will not necessarily work with *all* other wikis,
+	 * and it can be hard to tell if another wiki is in the same set as this one or not.
+	 *
+	 * @return CentralIdLookup|null
+	 */
+	public static function factoryNonLocal(): ?self {
+		$centralIdLookup = self::factory();
+
+		if ( $centralIdLookup instanceof LocalIdLookup ) {
+			/*
+			 * A LocalIdLookup (which is the default) may actually be non-local,
+			 * if shared user tables are used.
+			 * However, we cannot know that here, so play it safe and refuse to return it.
+			 * See also T163277 and T170996.
+			 */
+			return null;
+		}
+
+		return $centralIdLookup;
+	}
+
+	/**
 	 * Reset internal cache for unit testing
 	 * @codeCoverageIgnore
 	 */

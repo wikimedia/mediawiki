@@ -208,7 +208,7 @@ class HookContainer implements SalvageableService {
 				unset( $this->legacyRegisteredHandlers[$hook] );
 			} );
 		}
-		$id = $this->nextScopedRegisterId++;
+		$id = 'TemporaryHook_' . $this->nextScopedRegisterId++;
 		$this->legacyRegisteredHandlers[$hook][$id] = $callback;
 		return new ScopedCallback( function () use ( $hook, $id ) {
 			unset( $this->legacyRegisteredHandlers[$hook][$id] );
