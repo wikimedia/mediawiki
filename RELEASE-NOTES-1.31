@@ -34,6 +34,8 @@ THIS IS NOT A RELEASE YET
   includes/DevelopmentSettings.php.
 * (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
   users.
+* (T258763, CVE-2020-17367, CVE-2020-17368) SECURITY: Prevent invoking
+  firejail's --output functionality.
 
 == MediaWiki 1.31.8 ==
 
