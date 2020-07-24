@@ -39,13 +39,6 @@
 	background-image: linear-gradient( transparent, transparent ), url( @svg );
 }
 
-// Deprecated in MW 1.35, see T248047. To be removed in MW 1.36.
-// Shorthand for background-image-svg. Use if your PNG and SVG have the same name
-// and only if you cannot use ResourceLoaderImage module for some particular reason.
-.background-image-svg-quick( @url ) {
-	.background-image-svg( ~'@{url}.svg', ~'@{url}.png' );
-}
-
 .list-style-image( @url ) {
 	list-style-image: url( @url );
 }
