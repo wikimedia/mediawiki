@@ -84,6 +84,8 @@ because of Phabricator reports.
 * The global function `wfWaitForSlaves`, deprecated since 1.27 & hard-deprecated
   since 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The support for IE8 has been dropped.
+* Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
+  deprecated since 1.35, has been removed.
 * …
 
 === Deprecations in 1.36 ===
