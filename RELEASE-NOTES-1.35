@@ -38,6 +38,8 @@ for use in production.
   Special:Contributions.
 * (T256171, CVE-2020-25815) SECURITY: Unescaped message used in HTML within
   LogEventsList.
+* (T258763, CVE-2020-17367, CVE-2020-17368) SECURITY: Prevent invoking
+  firejail's --output functionality.
 
 == MediaWiki 1.35.0-rc.3 ==
 
