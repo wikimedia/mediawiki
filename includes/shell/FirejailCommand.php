@@ -49,6 +49,38 @@ class FirejailCommand extends Command {
 	}
 
 	/**
+	 * Reject any parameters that start with --output to prevent
+	 * exploitation of a firejail RCE (CVE-2020-17367 and CVE-2020-17368)
+	 *
+	 * @param string|string[] ...$args
+	 * @return $this
+	 */
+	public function params( ...$args ): Command {
+		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
+			// If only one argument has been passed, and that argument is an array,
+			// treat it as a list of arguments
+			$args = reset( $args );
+		}
+		foreach ( $args as $arg ) {
+			if ( substr( $arg, 0, 8 ) === '--output' ) {
+				$ex = new RuntimeException(
+					'FirejailCommand does not support parameters that start with --output'
+				);
+				$this->logger->error(
+					'command tried to shell out with a parameter starting with --output',
+					[
+						'arg' => $arg,
+						'exception' => $ex
+					]
+				);
+				throw $ex;
+			}
+		}
+
+		return parent::params( ...$args );
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function whitelistPaths( array $paths ): Command {
