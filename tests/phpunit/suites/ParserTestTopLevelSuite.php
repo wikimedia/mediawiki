@@ -122,10 +122,11 @@ class ParserTestTopLevelSuite extends TestSuite {
 			$parserTestClassName = 'ParserTest_' .
 				preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
 
-			if ( isset( $testList[$parserTestClassName] ) ) {
+			$originalClassName = $parserTestClassName;
+			while ( isset( $testList[$parserTestClassName] ) ) {
 				// If there is a conflict, append a number.
 				$counter++;
-				$parserTestClassName .= $counter;
+				$parserTestClassName = $originalClassname . '_' . $counter;
 			}
 			$testList[$parserTestClassName] = true;
 
