@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Http\SetCookieCompat;
+
 /**
  * Allow programs to request this object from WebRequest::response()
  * and handle all outputting (or lack of outputting) via it.
@@ -32,6 +34,22 @@ class WebResponse {
 	 */
 	protected static $setCookies = [];
 
+	/** @var bool Used to disable setters before running jobs post-request (T191537) */
+	protected static $disableForPostSend = false;
+
+	/**
+	 * Disable setters for post-send processing
+	 *
+	 * After this call, self::setCookie(), self::header(), and
+	 * self::statusHeader() will log a warning and return without
+	 * setting cookies or headers.
+	 *
+	 * @since 1.31.9
+	 */
+	public static function disableForPostSend() {
+		self::$disableForPostSend = true;
+	}
+
 	/**
 	 * Output an HTTP header, wrapper for PHP's header()
 	 * @param string $string Header to output
@@ -39,6 +57,16 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
+		if ( self::$disableForPostSend ) {
+			wfDebugLog( 'header', 'ignored post-send header {header}', 'all', [
+				'header' => $string,
+				'replace' => $replace,
+				'http_response_code' => $http_response_code,
+				'exception' => new RuntimeException( 'Ignored post-send header' ),
+			] );
+			return;
+		}
+
 		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
 			header( $string, $replace, $http_response_code );
@@ -69,6 +97,14 @@ class WebResponse {
 	 * @param int $code Status code
 	 */
 	public function statusHeader( $code ) {
+		if ( self::$disableForPostSend ) {
+			wfDebugLog( 'header', 'ignored post-send status header {code}', 'all', [
+				'code' => $code,
+				'exception' => new RuntimeException( 'Ignored post-send status header' ),
+			] );
+			return;
+		}
+
 		HttpStatus::header( $code );
 	}
 
@@ -83,22 +119,29 @@ class WebResponse {
 
 	/**
 	 * Set the browser cookie
+	 *
 	 * @param string $name The name of the cookie.
 	 * @param string $value The value to be stored in the cookie.
 	 * @param int|null $expire Unix timestamp (in seconds) when the cookie should expire.
-	 *        0 (the default) causes it to expire $wgCookieExpiration seconds from now.
-	 *        null causes it to be a session cookie.
+	 *   - 0 (the default) causes it to expire $wgCookieExpiration seconds from now.
+	 *   - null causes it to be a session cookie.
 	 * @param array $options Assoc of additional cookie options:
-	 *     prefix: string, name prefix ($wgCookiePrefix)
-	 *     domain: string, cookie domain ($wgCookieDomain)
-	 *     path: string, cookie path ($wgCookiePath)
-	 *     secure: bool, secure attribute ($wgCookieSecure)
-	 *     httpOnly: bool, httpOnly attribute ($wgCookieHttpOnly)
+	 *   - prefix: string, name prefix ($wgCookiePrefix)
+	 *   - domain: string, cookie domain ($wgCookieDomain)
+	 *   - path: string, cookie path ($wgCookiePath)
+	 *   - secure: bool, secure attribute ($wgCookieSecure)
+	 *   - httpOnly: bool, httpOnly attribute ($wgCookieHttpOnly)
+	 *   - raw: bool, true to suppress encoding of the value
+	 *   - sameSite: string|null, SameSite attribute. May be "strict", "lax",
+	 *     "none", or null or "" for no attribute. (default absent)
+	 *   - sameSiteLegacy: bool|null, If true, SameSite=None cookies will be
+	 *     also be sent as a legacy cookie with an ss0 prefix
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
+		global $wgUseSameSiteLegacyCookies;
 
 		$options = array_filter( $options, function ( $a ) {
 			return $a !== null;
@@ -109,7 +152,18 @@ class WebResponse {
 			'secure' => $wgCookieSecure,
 			'httpOnly' => $wgCookieHttpOnly,
 			'raw' => false,
+			'sameSite' => '',
+			'sameSiteLegacy' => $wgUseSameSiteLegacyCookies
 		];
+
+		if ( strcasecmp( $options['sameSite'], 'none' ) === 0
+			&& !empty( $options['sameSiteLegacy'] )
+		) {
+			$legacyOptions = $options;
+			$legacyOptions['sameSiteLegacy'] = false;
+			$legacyOptions['sameSite'] = '';
+			$this->setCookie( "ss0-$name",  $value, $expire, $legacyOptions );
+		}
 
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie
@@ -117,45 +171,78 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
-		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
-
-		if ( Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
-			$cookie = $options['prefix'] . $name;
-			$data = [
-				'name' => (string)$cookie,
-				'value' => (string)$value,
-				'expire' => (int)$expire,
-				'path' => (string)$options['path'],
-				'domain' => (string)$options['domain'],
-				'secure' => (bool)$options['secure'],
-				'httpOnly' => (bool)$options['httpOnly'],
-			];
-
-			// Per RFC 6265, key is name + domain + path
-			$key = "{$data['name']}\n{$data['domain']}\n{$data['path']}";
-
-			// If this cookie name was in the request, fake an entry in
-			// self::$setCookies for it so the deleting check works right.
-			if ( isset( $_COOKIE[$cookie] ) && !array_key_exists( $key, self::$setCookies ) ) {
-				self::$setCookies[$key] = [];
-			}
-
-			// PHP deletes if value is the empty string; also, a past expiry is deleting
-			$deleting = ( $data['value'] === '' || $data['expire'] > 0 && $data['expire'] <= time() );
-
-			if ( $deleting && !isset( self::$setCookies[$key] ) ) { // isset( null ) is false
-				wfDebugLog( 'cookie', 'already deleted ' . $func . ': "' . implode( '", "', $data ) . '"' );
-			} elseif ( !$deleting && isset( self::$setCookies[$key] ) &&
-				self::$setCookies[$key] === [ $func, $data ]
-			) {
-				wfDebugLog( 'cookie', 'already set ' . $func . ': "' . implode( '", "', $data ) . '"' );
-			} else {
-				wfDebugLog( 'cookie', $func . ': "' . implode( '", "', $data ) . '"' );
-				if ( call_user_func_array( $func, array_values( $data ) ) ) {
-					self::$setCookies[$key] = $deleting ? null : [ $func, $data ];
-				}
-			}
+		if ( self::$disableForPostSend ) {
+			$prefixedName = $options['prefix'] . $name;
+			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
+				'cookie' => $prefixedName,
+				'data' => [
+					'name' => $prefixedName,
+					'value' => (string)$value,
+					'expire' => (int)$expire,
+					'path' => (string)$options['path'],
+					'domain' => (string)$options['domain'],
+					'secure' => (bool)$options['secure'],
+					'httpOnly' => (bool)$options['httpOnly'],
+					'sameSite' => (string)$options['sameSite']
+				],
+				'exception' => new RuntimeException( 'Ignored post-send cookie' ),
+			] );
+			return;
 		}
+
+		if ( !Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
+			return;
+		}
+
+		// Note: Don't try to move this earlier to reuse it for self::$disableForPostSend,
+		// we need to use the altered values from the hook here. (T198525)
+		$prefixedName = $options['prefix'] . $name;
+		$value = (string)$value;
+		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
+		$setOptions = [
+			'expires' => (int)$expire,
+			'path' => (string)$options['path'],
+			'domain' => (string)$options['domain'],
+			'secure' => (bool)$options['secure'],
+			'httponly' => (bool)$options['httpOnly'],
+			'samesite' => (string)$options['sameSite'],
+		];
+
+		// Per RFC 6265, key is name + domain + path
+		$key = "{$prefixedName}\n{$setOptions['domain']}\n{$setOptions['path']}";
+
+		// If this cookie name was in the request, fake an entry in
+		// self::$setCookies for it so the deleting check works right.
+		if ( isset( $_COOKIE[$prefixedName] ) && !array_key_exists( $key, self::$setCookies ) ) {
+			self::$setCookies[$key] = [];
+		}
+
+		// PHP deletes if value is the empty string; also, a past expiry is deleting
+		$deleting = ( $value === '' || $setOptions['expires'] > 0 && $setOptions['expires'] <= time() );
+
+		$logDesc = "$func: \"$prefixedName\", \"$value\", \"" .
+			implode( '", "', $setOptions ) . '"';
+		$optionsForDeduplication = [ $func, $prefixedName, $value, $setOptions ];
+
+		if ( $deleting && !isset( self::$setCookies[$key] ) ) { // isset( null ) is false
+			wfDebugLog( 'cookie', "already deleted $logDesc" );
+			return;
+		} elseif ( !$deleting && isset( self::$setCookies[$key] ) &&
+			self::$setCookies[$key] === $optionsForDeduplication
+		) {
+			wfDebugLog( 'cookie', "already set $logDesc" );
+			return;
+		}
+
+		wfDebugLog( 'cookie', $logDesc );
+		if ( $func === 'setrawcookie' ) {
+			// @phan-suppress-next-line PhanAccessMethodInternal
+			SetCookieCompat::setrawcookie( $prefixedName, $value, $setOptions );
+		} else {
+			// @phan-suppress-next-line PhanAccessMethodInternal
+			SetCookieCompat::setcookie( $prefixedName, $value, $setOptions );
+		}
+		self::$setCookies[$key] = $deleting ? null : $optionsForDeduplication;
 	}
 
 	/**

@@ -3440,7 +3440,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		global $wgSecureLogin;
+		global $wgForceHTTPS, $wgSecureLogin;
+		if ( $wgForceHTTPS ) {
+			return true;
+		}
 		if ( !$wgSecureLogin ) {
 			return false;
 		} else {

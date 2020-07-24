@@ -3,6 +3,15 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.8 ===
+* Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
+  and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
+  recommend this be set to true on pure HTTPS wikis.
+* Added $wgCookieSameSite, which allows login cookies to be sent with
+  SameSite=None. This is required for cross-site CentralAuth autologin after
+  Chrome 84.
+* Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
+  SameSite=None cookies for browsers which implemented an incompatible draft
+  version of the specification.
 
 == MediaWiki 1.31.8 ==
 
