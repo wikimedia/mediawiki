@@ -50,3 +50,14 @@ CREATE TABLE /*_*/comment (
   INDEX comment_hash (comment_hash),
   PRIMARY KEY(comment_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/slots (
+  slot_revision_id BIGINT UNSIGNED NOT NULL,
+  slot_role_id SMALLINT UNSIGNED NOT NULL,
+  slot_content_id BIGINT UNSIGNED NOT NULL,
+  slot_origin BIGINT UNSIGNED NOT NULL,
+  INDEX slot_revision_origin_role (
+    slot_revision_id, slot_origin, slot_role_id
+  ),
+  PRIMARY KEY(slot_revision_id, slot_role_id)
+) /*$wgDBTableOptions*/;
