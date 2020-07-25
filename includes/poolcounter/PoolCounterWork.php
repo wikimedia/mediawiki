@@ -159,11 +159,10 @@ abstract class PoolCounterWork {
 				/* no break */
 			case PoolCounter::LOCKED:
 				try {
-					$result = $this->doWork();
+					return $this->doWork();
 				} finally {
 					$this->poolCounter->release();
 				}
-				return $result;
 
 			case PoolCounter::DONE:
 				$result = $this->getCachedWork();
