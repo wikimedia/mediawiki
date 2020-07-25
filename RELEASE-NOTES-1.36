@@ -86,6 +86,8 @@ because of Phabricator reports.
 * The support for IE8 has been dropped.
 * Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
   deprecated since 1.35, has been removed.
+* The ResourceLoader module `mediawiki.legacy.oldshared` and its file
+  'oldshared.css', deprecated since 1.35 has been removed (T248357).
 * …
 
 === Deprecations in 1.36 ===
