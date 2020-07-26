@@ -1342,6 +1342,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Get a token to change current user's preferences.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Adds the current user's edit count.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Lists all rate limits applying to the current user.",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Lists all rate limits that would apply to the current user if they were not exempt from all ratelimits based on user rights or ip",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Adds the user's real name.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Adds the user's email address and email authentication date.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Echoes the <code>Accept-Language</code> header sent by the client in a structured format.",
