@@ -55,3 +55,13 @@ CREATE TABLE slots (
 CREATE INDEX slot_revision_origin_role ON slots (
   slot_revision_id, slot_origin, slot_role_id
 );
+CREATE TABLE site_stats (
+  ss_row_id INT NOT NULL,
+  ss_total_edits BIGINT DEFAULT NULL,
+  ss_good_articles BIGINT DEFAULT NULL,
+  ss_total_pages BIGINT DEFAULT NULL,
+  ss_users BIGINT DEFAULT NULL,
+  ss_active_users BIGINT DEFAULT NULL,
+  ss_images BIGINT DEFAULT NULL,
+  PRIMARY KEY(ss_row_id)
+);

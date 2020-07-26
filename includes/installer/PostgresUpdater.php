@@ -702,6 +702,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'slots', 'slot_revision_id', 'BIGINT', '' ],
 			[ 'changeField', 'slots', 'slot_content_id', 'BIGINT', '' ],
 			[ 'changeField', 'slots', 'slot_origin', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_total_edits', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_good_articles', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_total_pages', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_users', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_active_users', 'BIGINT', '' ],
+			[ 'changeField', 'site_stats', 'ss_images', 'BIGINT', '' ],
 		];
 	}
 

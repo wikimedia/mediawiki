@@ -210,5 +210,55 @@
 			}
 		],
 		"pk": [ "slot_revision_id", "slot_role_id" ]
+	},
+	{
+		"name": "site_stats",
+		"comment": "Contains a single row with some aggregate info on the state of the site.",
+		"columns": [
+			{
+				"name": "ss_row_id",
+				"comment": "The single row should contain 1 here.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "ss_total_edits",
+				"comment": "Total number of edits performed.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_good_articles",
+				"comment": "See SiteStatsInit::articles().",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_total_pages",
+				"comment": "Total pages, theoretically equal to SELECT COUNT(*) FROM page.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_users",
+				"comment": "Number of users, theoretically equal to SELECT COUNT(*) FROM user.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_active_users",
+				"comment": "Number of users that still edit.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_images",
+				"comment": "Number of images, equivalent to SELECT COUNT(*) FROM image.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			}
+		],
+		"indexes": [],
+		"pk": [ "ss_row_id" ]
 	}
 ]

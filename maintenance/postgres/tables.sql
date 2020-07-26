@@ -327,18 +327,6 @@ CREATE TABLE langlinks (
 CREATE UNIQUE INDEX langlinks_unique ON langlinks (ll_from,ll_lang);
 CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
 
-
-CREATE TABLE site_stats (
-  ss_row_id         INTEGER  NOT NULL  PRIMARY KEY DEFAULT 0,
-  ss_total_edits    INTEGER            DEFAULT NULL,
-  ss_good_articles  INTEGER            DEFAULT NULL,
-  ss_total_pages    INTEGER            DEFAULT NULL,
-  ss_users          INTEGER            DEFAULT NULL,
-  ss_active_users   INTEGER            DEFAULT NULL,
-  ss_images         INTEGER            DEFAULT NULL
-);
-
-
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
