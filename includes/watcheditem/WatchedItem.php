@@ -143,7 +143,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function isExpired(): bool {
-		if ( null === $this->getExpiry() ) {
+		if ( $this->getExpiry() === null ) {
 			return false;
 		}
 
@@ -159,9 +159,12 @@ class WatchedItem {
 	 * @return int
 	 */
 	public function getExpiryInDays(): int {
+		if ( $this->getExpiry() === null ) {
+			return 0;
+		}
+
 		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
 		$diffInSeconds = $unixTimeExpiry - wfTimestamp();
-
 		$diffInDays = $diffInSeconds / self::SECONDS_IN_A_DAY;
 
 		if ( $diffInDays < 1 ) {
