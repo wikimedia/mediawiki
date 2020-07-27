@@ -21,7 +21,6 @@ use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
-use User;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
@@ -121,13 +120,6 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			->method( 'equals' )
 			->willReturnCallback( function ( Title $other ) use ( $mock ) {
 				return $mock->getPrefixedText() === $other->getPrefixedText();
-			} );
-		$mock->expects( $this->any() )
-			->method( 'userCan' )
-			->willReturnCallback( function ( $perm, User $user ) use ( $mock ) {
-				return MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, $perm );
 			} );
 
 		return $mock;

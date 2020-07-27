@@ -91,6 +91,9 @@ because of Phabricator reports.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - Title::getUserPermissionsErrors
+  - Title::userCan
+  - Title::quickUserCan
   - WebRequest::getLimitOffset
   - All methods of the old SpecialPageFactory; the entire class was removed
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
