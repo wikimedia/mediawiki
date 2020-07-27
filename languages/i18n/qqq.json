@@ -3622,6 +3622,8 @@
 	"variantname-tg-cyrl": "{{optional}}",
 	"variantname-tg-latn": "{{optional}}",
 	"variantname-tg": "{{optional}}",
+	"variantname-tly-cyrl": "{{optional}}\nVariant Option for wikis with variants conversion enabled.",
+	"variantname-tly": "{{optional}}\nVariant Option for wikis with variants conversion enabled.",
 	"variantname-ike-cans": "{{optional}}",
 	"variantname-ike-latn": "{{optional}}",
 	"variantname-iu": "{{optional}}",

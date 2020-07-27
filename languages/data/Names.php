@@ -440,7 +440,8 @@ class Names {
 		'ti' => 'ትግርኛ', # Tigrinya
 		'tk' => 'Türkmençe', # Turkmen
 		'tl' => 'Tagalog', # Tagalog
-		'tly' => 'толышә зывон', # Talysh
+		'tly' => 'tolışi', # Talysh
+		'tly-cyrl' => 'толыши', # Talysh (Cyrillic)
 		'tn' => 'Setswana', # Setswana
 		'to' => 'lea faka-Tonga', # Tonga (Tonga Islands)
 		'tpi' => 'Tok Pisin', # Tok Pisin
