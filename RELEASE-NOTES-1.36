@@ -54,6 +54,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.8 to 1.10.9.
+* wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
 * …
 
 ===== Changed development-only external libraries =====
