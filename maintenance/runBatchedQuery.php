@@ -89,6 +89,7 @@ class RunBatchedQuery extends Maintenance {
 				$updateConds = array_merge( $where, [ "$key <= $end" ] );
 			} else {
 				$updateConds = $where;
+				$end = false;
 			}
 			if ( $prevEnd !== false ) {
 				$updateConds = array_merge( [ "$key > $prevEnd" ], $updateConds );
