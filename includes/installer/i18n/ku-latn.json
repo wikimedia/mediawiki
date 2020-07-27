@@ -28,7 +28,7 @@
 	"config-restart": "Erê, jinûve bide destpêkirin",
 	"config-apc": "[https://www.php.net/apc APC] hate avakirin",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] hate avakirin",
-	"config-diff3-bad": "GNU diff3 nehate dîtin.",
+	"config-diff3-bad": "GNU diff3 ne hate dîtin. Tu niha ne hewce yî serê xwe pê biêşînî lê problem bi guhertina re bêhtir karin çêbibin.",
 	"config-db-type": "Cureya danegehê:",
 	"config-db-wiki-settings": "Vî wîkîyê bide danasîn",
 	"config-db-name": "Navê danegehê (bê xeta):",

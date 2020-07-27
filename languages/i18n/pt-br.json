@@ -2542,7 +2542,7 @@
 	"protect-existing-expiry-infinity": "Tempo de expiração existente: infinito",
 	"protect-otherreason": "Outro motivo/motivo adicional:",
 	"protect-otherreason-op": "Outro motivo",
-	"protect-dropdown": "*Motivos comuns para proteção\n** Vandalismo excessivo\n** Inserção excessiva de ''spams''\n** Guerra de edições improdutiva\n** Página bastante acessada",
+	"protect-dropdown": "*Motivos comuns para proteção\n** Vandalismo excessivo\n** ''Spam'' excessivo\n** Guerra de edições\n** Página bastante acessada",
 	"protect-edit-reasonlist": "Editar motivos de proteções",
 	"protect-expiry-options": "1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite",
 	"restriction-type": "Permissão:",

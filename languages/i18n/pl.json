@@ -2502,7 +2502,7 @@
 	"protect-existing-expiry-infinity": "Obecny czas wygaśnięcia: nieskończony",
 	"protect-otherreason": "Inny lub dodatkowy powód:",
 	"protect-otherreason-op": "Inny powód",
-	"protect-dropdown": "*Najczęstsze powody zabezpieczenia\n** Częste wandalizmy\n** Częste spamowanie\n** Wojna edycyjna\n** Wygłupy",
+	"protect-dropdown": "*Najczęstsze powody zabezpieczenia\n** Częste wandalizmy\n** Częste spamowanie\n** Wojna edycyjna\n** Wygłupy\n** Popularna strona",
 	"protect-edit-reasonlist": "Edytuj listę przyczyn zabezpieczenia",
 	"protect-expiry-options": "1 godzina:1 hour,1 dzień:1 day,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite",
 	"restriction-type": "Ograniczenia:",

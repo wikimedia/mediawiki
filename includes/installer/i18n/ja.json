@@ -285,6 +285,7 @@
 	"config-install-user-grant-failed": "ユーザー「$1」に許可を与えることに失敗しました: $2",
 	"config-install-user-missing": "指定したユーザー「$1」は存在しません。",
 	"config-install-user-missing-create": "指定したユーザー「$1」は存在しません。\nアカウントを作成する場合は、下の「アカウント作成」をクリックしてください。",
+	"config-install-restore-services": "MediaWiki のサービスを復元しています",
 	"config-install-tables": "テーブルの作成、その1",
 	"config-install-tables-exist": "<strong>警告:</strong> MediaWiki テーブルは既に存在するようです。\n作成を省略します。",
 	"config-install-tables-failed": "<strong>エラー:</strong> テーブルの作成が、以下のエラーにより失敗しました: $1",
