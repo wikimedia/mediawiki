@@ -151,33 +151,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @throws MWException
 	 * @return WikiPage|WikiCategoryPage|WikiFilePage
+	 * @deprecated since 1.36, use WikiPageFactory::newFromTitle instead
 	 */
 	public static function factory( Title $title ) {
-		$ns = $title->getNamespace();
-
-		if ( $ns == NS_MEDIA ) {
-			throw new MWException( "NS_MEDIA is a virtual namespace; use NS_FILE." );
-		} elseif ( $ns < 0 ) {
-			throw new MWException( "Invalid or virtual namespace $ns given." );
-		}
-
-		$page = null;
-		if ( !Hooks::runner()->onWikiPageFactory( $title, $page ) ) {
-			return $page;
-		}
-
-		switch ( $ns ) {
-			case NS_FILE:
-				$page = new WikiFilePage( $title );
-				break;
-			case NS_CATEGORY:
-				$page = new WikiCategoryPage( $title );
-				break;
-			default:
-				$page = new WikiPage( $title );
-		}
-
-		return $page;
+		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 	}
 
 	/**
@@ -189,24 +166,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
 	 *
 	 * @return WikiPage|null
+	 * @deprecated since 1.36, use WikiPageFactory::newFromID instead
 	 */
 	public static function newFromID( $id, $from = 'fromdb' ) {
-		// page ids are never 0 or negative, see T63166
-		if ( $id < 1 ) {
-			return null;
-		}
-
-		$from = self::convertSelectType( $from );
-		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_REPLICA );
-		$pageQuery = self::getQueryInfo();
-		$row = $db->selectRow(
-			$pageQuery['tables'], $pageQuery['fields'], [ 'page_id' => $id ], __METHOD__,
-			[], $pageQuery['joins']
-		);
-		if ( !$row ) {
-			return null;
-		}
-		return self::newFromRow( $row, $from );
+		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id, $from );
 	}
 
 	/**
@@ -219,11 +182,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB
 	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
 	 * @return WikiPage
+	 * @deprecated since 1.36, use WikiPageFactory::newFromRow instead
 	 */
 	public static function newFromRow( $row, $from = 'fromdb' ) {
-		$page = self::factory( Title::newFromRow( $row ) );
-		$page->loadFromRow( $row, $from );
-		return $page;
+		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromRow( $row, $from );
 	}
 
 	/**
@@ -232,7 +194,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param object|string|int $type
 	 * @return mixed
 	 */
-	protected static function convertSelectType( $type ) {
+	public static function convertSelectType( $type ) {
 		switch ( $type ) {
 			case 'fromdb':
 				return self::READ_NORMAL;

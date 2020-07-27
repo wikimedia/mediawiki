@@ -81,6 +81,7 @@ use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -1360,6 +1361,14 @@ return [
 			$services->getRevisionLookup(),
 			$services->getTalkPageNotificationManager(),
 			$services->getWatchedItemStore()
+		);
+	},
+
+	'WikiPageFactory' => function ( MediaWikiServices $services ) : WikiPageFactory {
+		return new WikiPageFactory(
+			$services->getTitleFactory(),
+			new HookRunner( $services->getHookContainer() ),
+			$services->getDBLoadBalancer()
 		);
 	},
 
