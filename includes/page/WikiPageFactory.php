@@ -3,9 +3,9 @@
 namespace MediaWiki\Page;
 
 use DBAccessObjectUtils;
+use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\Hook\WikiPageFactoryHook;
-use MWException;
 use Title;
 use TitleFactory;
 use WikiCategoryPage;
@@ -48,15 +48,14 @@ class WikiPageFactory {
 	 * @param Title $title
 	 *
 	 * @return WikiPage
-	 * @throws MWException
 	 */
 	public function newFromTitle( Title $title ) {
 		$ns = $title->getNamespace();
 
 		if ( $ns == NS_MEDIA ) {
-			throw new MWException( "NS_MEDIA is a virtual namespace; use NS_FILE." );
+			throw new InvalidArgumentException( "NS_MEDIA is a virtual namespace; use NS_FILE." );
 		} elseif ( $ns < 0 ) {
-			throw new MWException( "Invalid or virtual namespace $ns given." );
+			throw new InvalidArgumentException( "Invalid or virtual namespace $ns given." );
 		}
 
 		$page = null;
@@ -83,7 +82,6 @@ class WikiPageFactory {
 	 *
 	 * @param LinkTarget $title
 	 *
-	 * @throws MWException
 	 * @return WikiPage
 	 */
 	public function newFromLinkTarget( LinkTarget $title ) {
@@ -100,7 +98,6 @@ class WikiPageFactory {
 	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
 	 *
 	 * @return WikiPage
-	 * @throws MWException
 	 */
 	public function newFromRow( $row, $from = 'fromdb' ) {
 		$page = $this->newFromTitle( $this->titleFactory->newFromRow( $row ) );
@@ -117,7 +114,6 @@ class WikiPageFactory {
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
 	 *
 	 * @return WikiPage|null Null when no page exists with that ID
-	 * @throws MWException
 	 */
 	public function newFromID( $id, $from = 'fromdb' ) {
 		// page ids are never 0 or negative, see T63166
