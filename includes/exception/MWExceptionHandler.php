@@ -300,15 +300,14 @@ class MWExceptionHandler {
 		self::$reservedMemory = null;
 
 		$lastError = error_get_last();
-		if ( $lastError !== null ) {
-			$level = $lastError['type'];
-			$message = $lastError['message'];
-			$file = $lastError['file'];
-			$line = $lastError['line'];
-		} else {
-			$level = 0;
-			$message = '';
+		if ( $lastError === null ) {
+			return false;
 		}
+
+		$level = $lastError['type'];
+		$message = $lastError['message'];
+		$file = $lastError['file'];
+		$line = $lastError['line'];
 
 		if ( !in_array( $level, self::$fatalErrorTypes ) ) {
 			// Only interested in fatal errors, others should have been
