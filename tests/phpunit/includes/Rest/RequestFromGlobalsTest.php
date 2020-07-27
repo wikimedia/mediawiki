@@ -50,6 +50,15 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $this->reqFromGlobals->getUri(), '/test.php' );
 	}
 
+	public function testGetUri2() {
+		$this->setServerVars( [
+			'REQUEST_URI' => '/test.php/page/1:1',
+			'SERVER_PORT' => 9412
+		] );
+
+		$this->assertEquals( $this->reqFromGlobals->getUri(), '//:9412/test.php/page/1:1' );
+	}
+
 	/**
 	 * @dataProvider provideGetProtocolVersion
 	 */
