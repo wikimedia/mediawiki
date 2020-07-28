@@ -95,6 +95,32 @@ abstract class Handler {
 	}
 
 	/**
+	 * URL-encode titles in a "pretty" way.
+	 *
+	 * Keeps intact ;@$!*(),~: (urlencode does not, but wfUrlencode does).
+	 * Encodes spaces as underscores (wfUrlencode does not).
+	 * Encodes slashes (wfUrlencode does not, but keeping them messes with REST pathes).
+	 * Encodes pluses (this is not necessary, and may change).
+	 *
+	 * @see wfUrlencode
+	 *
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	protected function urlEncodeTitle( $title ) {
+		$title = str_replace( ' ', '_', $title );
+		$title = urlencode( $title );
+
+		// %3B_a_%40_b_%24_c_%21_d_%2A_e_%28_f_%29_g_%2C_h_~_i_%3A
+		$replace = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%7E', '%3A' ];
+		$with = [ ';', '@', '$', '!', '*', '(', ')', ',', '~', ':' ];
+		$title = str_replace( $replace, $with, $title );
+
+		return $title;
+	}
+
+	/**
 	 * Get the current request. The return type declaration causes it to raise
 	 * a fatal error if init() has not yet been called.
 	 *
