@@ -52,7 +52,7 @@ class WatchedItemUnitTest extends MediaWikiIntegrationTestCase {
 		// Adding a watched item with no expiry
 		$permamentlyWatchedItem = new WatchedItem( $user, $target, null, null );
 		$days = $permamentlyWatchedItem->getExpiryInDays();
-		$this->assertSame( 0, $days );
+		$this->assertSame( null, $days );
 	}
 
 }
