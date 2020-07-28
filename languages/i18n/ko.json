@@ -2469,7 +2469,7 @@
 	"protect-existing-expiry-infinity": "기존 만료 시간: 무기한",
 	"protect-otherreason": "다른 이유/추가적인 이유:",
 	"protect-otherreason-op": "다른 이유",
-	"protect-dropdown": "*일반적인 보호 이유\n** 빈번한 훼손 행위\n** 빈번히 광고를 넣음\n** 비생산적인 편집 분쟁\n** 방문이 많은 문서",
+	"protect-dropdown": "*일반적인 보호 이유\n** 빈번한 훼손 행위\n** 빈번히 광고를 넣음\n** 편집 분쟁\n** 방문이 많은 문서",
 	"protect-edit-reasonlist": "보호 이유 편집하기",
 	"protect-expiry-options": "1시간:1 hour,1일:1 day,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite",
 	"restriction-type": "권한:",
