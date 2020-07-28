@@ -968,6 +968,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return true;
 		}
 
+		if ( ExpiryDef::expiryExceedsMax( $expiry, $this->maxExpiryDuration ) ) {
+			$expiry = ExpiryDef::normalizeExpiry( $this->maxExpiryDuration );
+		} else {
+			$expiry = ExpiryDef::normalizeExpiry( $expiry );
+		}
+
 		$rows = [];
 		$items = [];
 		foreach ( $targets as $target ) {
@@ -981,7 +987,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				$user,
 				$target,
 				null,
-				$expiry
+				wfIsInfinity( $expiry ) ? null : $expiry
 			);
 			$this->uncache( $user, $target );
 		}
@@ -1030,14 +1036,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $rows,
 		?string $expiry = null
 	): int {
-		if ( ExpiryDef::expiryExceedsMax( $expiry, $this->maxExpiryDuration ) ) {
-			$expiry = ExpiryDef::normalizeExpiry( $this->maxExpiryDuration );
-		} else {
-			$expiry = ExpiryDef::normalizeExpiry( $expiry );
-		}
-
 		if ( !$expiry ) {
-			// Either expiry was invalid or null (shouldn't change), 0 rows affected.
+			// if expiry is null (shouldn't change), 0 rows affected.
 			return 0;
 		}
 
