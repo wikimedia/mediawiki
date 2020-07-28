@@ -2,111 +2,17 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
-use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
 use RequestContext;
-use Wikimedia\Assert\Assert;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * @since 1.35
  */
-class UserContributionsHandler extends Handler {
-
-	/**
-	 * @var ContributionsLookup
-	 */
-	private $contributionsLookup;
-
-	/**
-	 * @var UserFactory
-	 */
-	private $userFactory;
-
-	/** Hard limit results to 20 contributions */
-	private const MAX_LIMIT = 20;
-
-	/**
-	 * @var bool User is requesting their own contributions
-	 */
-	private $me;
-
-	/**
-	 * @var UserNameUtils
-	 */
-	private $userNameUtils;
-
-	/**
-	 * @param ContributionsLookup $contributionsLookup
-	 * @param UserFactory $userFactory
-	 * @param UserNameUtils $userNameUtils
-	 */
-	public function __construct(
-		ContributionsLookup $contributionsLookup,
-		UserFactory $userFactory,
-		UserNameUtils $userNameUtils
-	) {
-		$this->contributionsLookup = $contributionsLookup;
-		$this->userFactory = $userFactory;
-		$this->userNameUtils = $userNameUtils;
-	}
-
-	protected function postInitSetup() {
-		$this->me = $this->getConfig()['mode'] === 'me';
-	}
-
-	/**
-	 * Returns the user who's contributions we are requesting.
-	 * Either me (requesting user) or another user.
-	 *
-	 * @return UserIdentity
-	 * @throws LocalizedHttpException
-	 */
-	private function getTargetUser() {
-		if ( $this->me ) {
-			$user = RequestContext::getMain()->getUser();
-			if ( $user->isAnon() ) {
-				throw new LocalizedHttpException(
-					new MessageValue( 'rest-permission-denied-anon' ), 401
-				);
-			}
-
-			return $user;
-		}
-
-		$name = $this->getValidatedParams()['name'] ?? null;
-		Assert::invariant( $name !== null, '"name" parameter must be given if mode is not "me"' );
-
-		if ( $this->userNameUtils->isIP( $name ) ) {
-			// Create an anonymous user instance for the given IP
-			// NOTE: We can't use a UserIdentityValue, because we might need the actor ID
-			$user = $this->userFactory->newAnonymous( $name );
-			return $user;
-		}
-
-		$user = $this->userFactory->newFromName( $name );
-		if ( !$user ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-invalid-user', [ $name ] ), 400
-			);
-		}
-
-		if ( !$user->isRegistered() ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-nonexistent-user', [ $user->getName() ] ), 404
-			);
-		}
-
-		return $user;
-	}
+class UserContributionsHandler extends AbstractContributionHandler {
 
 	/**
 	 * @return array|ResponseInterface
@@ -115,7 +21,6 @@ class UserContributionsHandler extends Handler {
 	public function execute() {
 		$performer = RequestContext::getMain()->getUser();
 		$target = $this->getTargetUser();
-
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
 		$tag = $this->getValidatedParams()['tag'];
@@ -190,7 +95,7 @@ class UserContributionsHandler extends Handler {
 			'name' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false
+				ParamValidator::PARAM_REQUIRED => $this->me === false
 			],
 			'limit' => [
 				self::PARAM_SOURCE => 'query',
@@ -198,7 +103,7 @@ class UserContributionsHandler extends Handler {
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => self::MAX_LIMIT,
 				IntegerDef::PARAM_MIN => 1,
-				IntegerDef::PARAM_MAX => self::MAX_LIMIT,
+				IntegerDef::PARAM_MAX => self::MAX_LIMIT
 			],
 			'segment' => [
 				self::PARAM_SOURCE => 'query',
@@ -210,7 +115,7 @@ class UserContributionsHandler extends Handler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => null,
+				ParamValidator::PARAM_DEFAULT => null
 			],
 		];
 	}

@@ -1,11 +1,11 @@
 'use strict';
 const { REST, assert, action, utils, clientFactory } = require( 'api-testing' );
 
-describe( 'GET /me/contributions/count', () => {
+describe( 'GET /contributions/count', () => {
 	const basePath = 'rest.php/coredev/v0';
-	let arnold;
-	let arnoldAction;
-	let samAction;
+	let arnold, beth;
+	let arnoldAction, bethAction, samAction;
+	let editToDelete;
 
 	before( async () => {
 		// Sam will be the same Sam for all tests, even in other files
@@ -14,7 +14,13 @@ describe( 'GET /me/contributions/count', () => {
 		// Arnold will be a different Arnold every time
 		arnoldAction = await action.getAnon();
 		await arnoldAction.account( 'Arnold_' );
+
+		// Beth will be a different Beth every time
+		bethAction = await action.getAnon();
+		await bethAction.account( 'Beth_' );
+
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
+		beth = clientFactory.getRESTClient( basePath, bethAction );
 
 		const oddEditsPage = utils.title( 'UserContribution_' );
 		const evenEditsPage = utils.title( 'UserContribution_' );
@@ -26,46 +32,37 @@ describe( 'GET /me/contributions/count', () => {
 		const bobAction = await action.bob();
 		await bobAction.edit( evenEditsPage, [ { summary: 'Bob made revision 1' } ] );
 
-		// arnold makes 2 edits
-		let page;
-		for ( let i = 1; i <= 2; i++ ) {
-			const oddEdit = i % 2;
-			const tags = oddEdit ? 'api-test' : null;
-			page = oddEdit ? oddEditsPage : evenEditsPage;
+		// arnold makes 2 edits. 1 with a tag, 1 without.
+		const tags = 'api-test';
+		await arnoldAction.edit( oddEditsPage, { tags } );
+		await utils.sleep();
+		await arnoldAction.edit( evenEditsPage, {} );
 
-			await arnoldAction.edit( page, { tags } );
-			await utils.sleep();
-		}
+		const pageDeleteRevs = utils.title( 'UserContribution_' );
+		editToDelete = await bethAction.edit( pageDeleteRevs, [ { text: 'Beth edit 1' } ] );
+		await bethAction.edit( pageDeleteRevs, [ { text: 'Beth edit 2' } ] );
 	} );
 
-	it( 'Returns status 401 for anon', async () => {
-		const anon = new REST( basePath );
-		const { status, body } = await anon.get( '/me/contributions/count' );
-		assert.equal( status, 401 );
-		assert.nestedProperty( body, 'messageTranslations' );
-	} );
+	const testGetContributionsCount = async ( client, endpoint ) => {
+		const { status, body } = await client.get( endpoint );
+		assert.equal( status, 200 );
+		assert.property( body, 'count' );
 
-	it( 'Returns status OK', async () => {
-		const response = await arnold.get( '/me/contributions/count' );
-		assert.equal( response.status, 200 );
-	} );
+		const { count } = body;
+		assert.deepEqual( count, 2 );
+	};
 
-	it( 'Returns the number of arnold\'s edits', async () => {
-		const { status, body } = await arnold.get( '/me/contributions/count' );
+	const testGetContributionsCountByTag = async ( client, endpoint ) => {
+		const { status, body } = await client.get( endpoint, { tag: 'api-test' } );
 		assert.equal( status, 200 );
 
-		// assert body has property count with the correct value
-		assert.propertyVal( body, 'count', 2 );
-	} );
+		const { count } = body;
+		assert.deepEqual( count, 1 );
+	};
 
-	it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
-		const { body: preDeleteBody } = await arnold.get( '/me/contributions/count' );
-		assert.propertyVal( preDeleteBody, 'count', 2 );
-
-		const pageToDelete = utils.title( 'UserContribution_' );
-
-		const editToDelete = await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 1' } ] );
-		await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 2' } ] );
+	const testSuppressedContributions = async ( client, endpoint ) => {
+		const { body: body } = await client.get( endpoint );
+		assert.deepEqual( body.count, 2 );
 
 		await samAction.action( 'revisiondelete',
 			{
@@ -78,9 +75,9 @@ describe( 'GET /me/contributions/count', () => {
 			'POST'
 		);
 
-		// Users without appropriate permissions cannot see suppressed revisions (even their own)
-		const { body: arnoldGetBody } = await arnold.get( '/me/contributions/count' );
-		assert.propertyVal( arnoldGetBody, 'count', 3 );
+		// Users w/o appropriate permissions should not have suppressed revisions included in count
+		const { body: suppressedRevBody } = await client.get( endpoint );
+		assert.deepEqual( suppressedRevBody.count, 1 );
 
 		await samAction.action( 'revisiondelete',
 			{
@@ -93,17 +90,73 @@ describe( 'GET /me/contributions/count', () => {
 			'POST'
 		);
 
-		// Users with appropriate permissions can see suppressed revisions
-		const { body: arnoldGetBody2 } = await arnold.get( '/me/contributions/count' );
-		assert.propertyVal( arnoldGetBody2, 'count', 4 );
+		const { body: unsuppressedRevBody } = await client.get( endpoint );
+		assert.deepEqual( unsuppressedRevBody.count, 2 );
+	};
+
+	describe( 'GET /me/contributions/count', () => {
+		const endpoint = '/me/contributions/count';
+
+		it( 'Returns status 404 for anon', async () => {
+			const anon = new REST( basePath );
+			const response = await anon.get( endpoint );
+			assert.equal( response.status, 401 );
+			assert.nestedProperty( response.body, 'messageTranslations' );
+		} );
+
+		it( 'Returns status OK', async () => {
+			const response = await arnold.get( endpoint );
+			assert.equal( response.status, 200 );
+		} );
+
+		it( 'Returns a list of another user\'s edits', async () => {
+			await testGetContributionsCount( arnold, endpoint );
+		} );
+
+		it( 'Returns edits filtered by tag', async () => {
+			await testGetContributionsCountByTag( arnold, endpoint );
+		} );
+
+		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed contributions are Beth's contributions.
+			await testSuppressedContributions( beth, endpoint );
+		} );
+
 	} );
 
-	it( 'Returns the number of arnold\'s edits filtered by tag', async () => {
-		const { status, body } = await arnold.get( '/me/contributions/count', { tag: 'api-test' } );
-		assert.equal( status, 200 );
+	describe( 'GET /user/{user}/contributions/count', () => {
+		let endpoint;
+		before( () => {
+			endpoint = `/user/${arnold.username}/contributions/count`;
+		} );
 
-		// assert body has property count with the correct number of tagged edits
-		assert.propertyVal( body, 'count', 1 );
+		it( 'Returns status 404 for unknown user', async () => {
+			const anon = new REST( basePath );
+			const unknownUser = `Unknown ${utils.uniq()}`;
+			const response = await anon.get( `/user/${unknownUser}/contributions/count` );
+			assert.equal( response.status, 404 );
+			assert.nestedProperty( response.body, 'messageTranslations' );
+		} );
+
+		it( 'Returns status OK', async () => {
+			const response = await arnold.get( endpoint );
+			assert.equal( response.status, 200 );
+		} );
+
+		it( 'Returns a list of another user\'s edits', async () => {
+			await testGetContributionsCount( beth, endpoint );
+		} );
+
+		it( 'Returns edits filtered by tag', async () => {
+			await testGetContributionsCountByTag( beth, endpoint );
+		} );
+
+		it( 'Does not return suppressed contributions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed contributions are Beth's contributions.
+			const bethsEndpoint = `/user/${beth.username}/contributions/count`;
+			await testSuppressedContributions( arnold, bethsEndpoint );
+		} );
+
 	} );
 
 } );
