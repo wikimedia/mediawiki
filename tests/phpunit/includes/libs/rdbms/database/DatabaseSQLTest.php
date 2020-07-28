@@ -1603,6 +1603,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $this->database->tableExists( "tmp_table_1", __METHOD__ ) );
 		$this->assertFalse( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
 		$this->assertFalse( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
+
+		$this->database->query( "DROP TEMPORARY TABLE IF EXISTS `tmp_table_4`,  `tmp_table_5`", __METHOD__ );
 	}
 
 	public function provideBuildSubstring() {

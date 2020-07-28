@@ -1124,7 +1124,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		static $regexes = null;
 		if ( $regexes === null ) {
 			// Regex with a group for quoted table 0 and a group for quoted tables 1..N
-			$qts = '(\w+|`\w+`|\'\w+\'|"\w+")(?:\s*,\s*(\w+|`\w+`|\'\w+\'|"\w+"))*';
+			$qts = '((?:\w+|`\w+`|\'\w+\'|"\w+")(?:\s*,\s*(?:\w+|`\w+`|\'\w+\'|"\w+"))*)';
 			// Regex to get query verb, table 0, and tables 1..N
 			$regexes = [
 				// DML write queries
@@ -1144,8 +1144,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $regexes as $regex ) {
 			if ( preg_match( $regex, $sql, $m, PREG_UNMATCHED_AS_NULL ) ) {
 				$queryVerb = $m[1];
-				$queryTables[] = trim( $m[2], "\"'`" );
-				foreach ( ( $m[3] ?? [] ) as $quotedTable ) {
+				$allTables = preg_split( '/\s*,\s*/', $m[2] );
+				foreach ( $allTables as $quotedTable ) {
 					$queryTables[] = trim( $quotedTable, "\"'`" );
 				}
 				break;
