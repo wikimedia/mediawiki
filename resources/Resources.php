@@ -1688,7 +1688,6 @@ return [
 			'rcfilters-invalid-filter',
 			'rcfilters-empty-filter',
 			'rcfilters-filterlist-title',
-			'rcfilters-filterlist-feedbacklink',
 			'rcfilters-filterlist-noresults',
 			'rcfilters-filterlist-whatsthis',
 			'rcfilters-highlightbutton-title',
