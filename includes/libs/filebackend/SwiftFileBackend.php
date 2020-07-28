@@ -207,14 +207,16 @@ class SwiftFileBackend extends FileBackendStore {
 			$contentHeaders[$name] = $value;
 		}
 		// By default, Swift has annoyingly low maximum header value limits
-		$maxLength = 255;
-		// @note: assume FileBackend::makeContentDisposition() already used
-		$offset = $maxLength - strlen( $contentHeaders['content-disposition'] );
-		if ( $offset < 0 ) {
-			$pos = strrpos( $contentHeaders['content-disposition'], ';', $offset );
-			$contentHeaders['content-disposition'] = $pos === false
-				? ''
-				: trim( substr( $contentHeaders['content-disposition'], 0, $pos ) );
+		if ( isset( $contentHeaders['content-disposition'] ) ) {
+			$maxLength = 255;
+			// @note: assume FileBackend::makeContentDisposition() already used
+			$offset = $maxLength - strlen( $contentHeaders['content-disposition'] );
+			if ( $offset < 0 ) {
+				$pos = strrpos( $contentHeaders['content-disposition'], ';', $offset );
+				$contentHeaders['content-disposition'] = $pos === false
+					? ''
+					: trim( substr( $contentHeaders['content-disposition'], 0, $pos ) );
+			}
 		}
 
 		return $contentHeaders;
