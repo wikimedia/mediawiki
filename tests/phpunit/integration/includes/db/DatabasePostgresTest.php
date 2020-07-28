@@ -59,6 +59,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * FIXME: See https://phabricator.wikimedia.org/T259084.
+	 * @group Broken
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreOld() {
@@ -81,6 +83,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * FIXME: See https://phabricator.wikimedia.org/T259084.
+	 * @group Broken
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreNew() {
@@ -145,6 +149,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * FIXME: See https://phabricator.wikimedia.org/T259084.
+	 * @group Broken
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreOld() {
@@ -167,6 +173,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * FIXME: See https://phabricator.wikimedia.org/T259084.
+	 * @group Broken
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreNew() {
