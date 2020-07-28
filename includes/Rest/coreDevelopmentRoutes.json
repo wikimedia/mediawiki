@@ -23,7 +23,20 @@
 		"path": "/coredev/v0/me/contributions/count",
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
-			"ContributionsLookup"
-		]
+			"ContributionsLookup",
+			"UserFactory",
+			"UserNameUtils"
+		],
+		"mode" : "me"
+	},
+	{
+		"path": "/coredev/v0/user/{name}/contributions/count",
+		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
+		"services": [
+			"ContributionsLookup",
+			"UserFactory",
+			"UserNameUtils"
+		],
+		"mode" : "user"
 	}
 ]

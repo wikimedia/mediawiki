@@ -141,7 +141,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 					"new" => true,
 					"result" => "Success",
 					"pageid" => 94542,
-					"title" => "Sandbox",
+					"title" => "Foo",
 					"contentmodel" => "wikitext",
 					"oldrevid" => 0,
 					"newrevid" => 371707,
@@ -193,7 +193,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 					"new" => true,
 					"result" => "Success",
 					"pageid" => 94542,
-					"title" => "Sandbox",
+					"title" => "Foo",
 					"contentmodel" => "wikitext",
 					"oldrevid" => 0,
 					"newrevid" => 371707,
@@ -244,7 +244,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 				"edit" => [
 					"result" => "Success",
 					"pageid" => 94542,
-					"title" => "Sandbox",
+					"title" => "Foo_bar",
 					"contentmodel" => "wikitext",
 					"oldrevid" => 371705,
 					"newrevid" => 371707,
@@ -296,7 +296,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 				"edit" => [
 					"result" => "Success",
 					"pageid" => 94542,
-					"title" => "Sandbox",
+					"title" => "Foo_bar",
 					"contentmodel" => "wikitext",
 					"oldrevid" => 371705,
 					"newrevid" => 371707,
@@ -348,7 +348,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 				"edit" => [
 					"result" => "Success",
 					"pageid" => 94542,
-					"title" => "Sandbox",
+					"title" => "Foo",
 					"contentmodel" => "wikitext",
 					"oldrevid" => 371705,
 					"newrevid" => 371707,
@@ -390,8 +390,8 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		// Check parameters passed to ApiEditPage by UpdateHandler based on $requestData
 		foreach ( $expectedActionParams as $key => $value ) {
 			$this->assertSame(
-				$handler->getApiMain()->getVal( $key ),
 				$value,
+				$handler->getApiMain()->getVal( $key ),
 				"ApiEditPage param: $key"
 			);
 		}

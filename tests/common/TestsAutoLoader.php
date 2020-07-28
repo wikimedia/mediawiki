@@ -235,6 +235,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Rest\Handler\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
 	'MediaWiki\Tests\Rest\Handler\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",
 	'MediaWiki\Tests\Rest\Handler\MediaTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/MediaTestTrait.php",
+	'MediaWiki\Tests\Rest\Handler\ContributionsTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ContributionsTestTrait.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",

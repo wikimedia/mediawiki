@@ -269,7 +269,6 @@ describe( 'GET contributions', () => {
 			'POST'
 		);
 
-		// Users with appropriate permissions can see suppressed contributions
 		const { body: clientGetBody2 } = await client.get( endpoint );
 		assert.lengthOf( clientGetBody2.contributions, 2 );
 	};

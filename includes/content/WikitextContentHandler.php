@@ -162,7 +162,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['defaultsort'] = $structure->getDefaultSort();
 
 		// Until we have full first-class content handler for files, we invoke it explicitly here
-		if ( NS_FILE == $page->getTitle()->getNamespace() ) {
+		if ( $page->getTitle()->getNamespace() == NS_FILE ) {
 			$fields = array_merge( $fields,
 					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine ) );
 		}
