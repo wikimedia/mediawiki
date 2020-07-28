@@ -685,12 +685,6 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 	}
 } )();
 
-/**
- * @var BagOStuff $wgMemc
- * @deprecated since 1.35, use the LocalServerObjectCache service instead
- */
-$wgMemc = ObjectCache::getLocalClusterInstance();
-
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();
 
