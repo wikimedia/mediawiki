@@ -511,6 +511,7 @@ class HookRunner implements
 	\MediaWiki\Session\Hook\UserSetCookiesHook,
 	\MediaWiki\Shell\Hook\WfShellWikiCmdHook,
 	\MediaWiki\Skins\Hook\SkinAfterPortletHook,
+	\MediaWiki\Skins\Hook\SkinPageReadyConfigHook,
 	\MediaWiki\SpecialPage\Hook\AuthChangeFormFieldsHook,
 	\MediaWiki\SpecialPage\Hook\ChangeAuthenticationDataAuditHook,
 	\MediaWiki\SpecialPage\Hook\ChangesListSpecialPageQueryHook,
@@ -3515,6 +3516,16 @@ class HookRunner implements
 		return $this->container->run(
 			'SiteNoticeBefore',
 			[ &$siteNotice, $skin ]
+		);
+	}
+
+	public function onSkinPageReadyConfig( ResourceLoaderContext $context,
+		array &$config
+	) : void {
+		$this->container->run(
+			'SkinPageReadyConfig',
+			[ $context, &$config ],
+			[ 'abortable' => false ]
 		);
 	}
 

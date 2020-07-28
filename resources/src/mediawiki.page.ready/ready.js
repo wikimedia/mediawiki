@@ -1,33 +1,41 @@
 var checkboxShift = require( './checkboxShift.js' );
+var config = require( './config.json' );
+
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var $sortable, $collapsible, $sortableAndCollapsible, dependencies;
+	var $sortable, $collapsible, $sortableAndCollapsible,
+		dependencies = [];
 
-	$collapsible = $content.find( '.mw-collapsible' );
-	$sortable = $content.find( 'table.sortable' );
-	$sortableAndCollapsible = $content.find( 'table.sortable.mw-collapsible' );
-
-	// Both modules are preloaded by Skin::getDefaultModules()
-	dependencies = [];
-	if ( $collapsible.length ) {
-		dependencies.push( 'jquery.makeCollapsible' );
+	if ( config.sortable && config.collapsible ) {
+		$sortableAndCollapsible = $content.find( 'table.sortable.mw-collapsible' );
 	}
-	if ( $sortable.length ) {
-		dependencies.push( 'jquery.tablesorter' );
-	}
-
-	mw.loader.using( dependencies ).then( function () {
-		// The two scripts only work correctly together when executed in this order (T64878)
-		if ( $sortableAndCollapsible.length ) {
-			$sortableAndCollapsible.tablesorter().makeCollapsible();
-		}
-		// These are no-ops when executed on elements that were already handled above
+	if ( config.sortable ) {
+		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
-			$collapsible.makeCollapsible();
+			dependencies.push( 'jquery.makeCollapsible' );
 		}
+	}
+	if ( config.collapsible ) {
+		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
-			$sortable.tablesorter();
+			dependencies.push( 'jquery.tablesorter' );
 		}
-	} );
+	}
+	if ( dependencies.length ) {
+		// Both modules are preloaded by Skin::getDefaultModules()
+		mw.loader.using( dependencies ).then( function () {
+			// The two scripts only work correctly together when executed in this order (T64878)
+			if ( $sortableAndCollapsible && $sortableAndCollapsible.length ) {
+				$sortableAndCollapsible.tablesorter().makeCollapsible();
+			}
+			// These are no-ops when executed on elements that were already handled above
+			if ( $collapsible && $collapsible.length ) {
+				$collapsible.makeCollapsible();
+			}
+			if ( $sortable && $sortable.length ) {
+				$sortable.tablesorter();
+			}
+		} );
+	}
 
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
