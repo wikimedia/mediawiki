@@ -65,11 +65,11 @@ class UserFactory implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns a new anonymous User
+	 * Returns a new anonymous User based on ip.
 	 *
 	 * @since 1.36
 	 *
-	 * @param string|null $ip (optional)
+	 * @param string|null $ip IP address
 	 * @return User
 	 */
 	public function newAnonymous( $ip = null ) : User {
