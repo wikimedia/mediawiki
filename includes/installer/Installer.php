@@ -405,7 +405,7 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgMemc, $wgUser, $wgObjectCaches;
+		global $wgUser, $wgObjectCaches;
 
 		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
@@ -431,7 +431,6 @@ abstract class Installer {
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
 		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
-		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
 
 		// Disable interwiki lookup, to avoid database access during parses
 		$mwServices->redefineService( 'InterwikiLookup', function () {
