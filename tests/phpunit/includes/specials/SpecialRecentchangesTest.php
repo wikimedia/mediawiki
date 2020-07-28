@@ -83,8 +83,13 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		// Force a past expiry date on the watchlist item.
 		$db = wfGetDB( DB_MASTER );
 		$queryConds = [ 'wl_namespace' => $testTitle->getNamespace(), 'wl_title' => $testTitle->getDBkey() ];
-		$watchedItemId = $db->selectField( 'watchlist', 'wl_id', $queryConds );
-		$db->update( 'watchlist_expiry', [ 'we_expiry' => '20200101000000' ], [ 'we_item' => $watchedItemId ] );
+		$watchedItemId = $db->selectField( 'watchlist', 'wl_id', $queryConds, __METHOD__ );
+		$db->update(
+			'watchlist_expiry',
+			[ 'we_expiry' => $db->timestamp( '20200101000000' ) ],
+			[ 'we_item' => $watchedItemId ],
+			__METHOD__
+		);
 
 		// Check that the page is still in RC, but that it's no longer watched.
 		$rc3 = new SpecialRecentChanges;
