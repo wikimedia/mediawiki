@@ -22,11 +22,6 @@
 			// Change state on every change of the watchthis checkbox.
 			watchThisWidget.on( 'change', function ( enabled ) {
 				watchlistExpiryWidget.setDisabled( !enabled );
-
-				// Reset the watchlist-expiry dropdown to the 'infinite' value
-				if ( watchlistExpiryWidget.isDisabled() ) {
-					watchlistExpiryWidget.setValue( 'infinite' );
-				}
 			} );
 		}
 	} );
