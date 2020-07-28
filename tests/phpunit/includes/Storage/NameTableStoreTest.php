@@ -424,6 +424,9 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTransactionRollbackWithInterference() {
+		// FIXME: https://phabricator.wikimedia.org/T259085
+		$this->markTestSkippedIfDbType( 'sqlite' );
+
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
 		// Two instances hitting the real database using separate caches.
