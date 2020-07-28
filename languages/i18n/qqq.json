@@ -1735,7 +1735,6 @@
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
 	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",
 	"rcfilters-filterlist-whatsthis": "Caption for the link that opens a popup with explanations about this filter group, explaining what it is and how it works.",
-	"rcfilters-filterlist-feedbacklink": "Caption for the link to the feedback page about the filters beta feature.",
 	"rcfilters-highlightbutton-title": "Title for the highlight button used to toggle the highlight feature on and off.",
 	"rcfilters-highlightmenu-title": "Title for the highlight menu used to select the highlight color for an individual filter.",
 	"rcfilters-highlightmenu-help": "Tooltip for the highlight menu for individual filters.",
