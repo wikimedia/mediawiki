@@ -45,6 +45,10 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 
 	public static function provider_testExtractPostableContentHeaders() {
 		return [
+			'empty' => [
+				[],
+				[]
+			],
 			[
 				[
 					'content-length' => 345,
