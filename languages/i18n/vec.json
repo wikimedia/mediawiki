@@ -1851,7 +1851,7 @@
 	"cantrollback": "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
 	"alreadyrolled": "No xè mìa posibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discusion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); cualcun altro gà xà modificà o efetuà el ripristino de sta voxe.\n\nL'ùltima modefega ƚa xe stà fata da [[User:$3|$3]] ([[User talk:$3|discusion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "El comento a la modifica el xera: <em>$1</em>.",
-	"revertpage": "Anuƚà ƚe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusion]]), riportà a ƚa version anteçedente de [[User:$1|$1]]",
+	"revertpage": "Desfà el cànbio de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusion]]) e riportà a ła version antesedente de [[User:$1|$1]]",
 	"revertpage-nouser": "Anulà le modìfeghe de (nome utente cavà), riportà a la version precedente de [[User:$1|$1]]",
 	"rollback-success": "Anuƚà ƚe modifighe de {{GENDER:$3|$1}};; pàgina riportà a ƚa ùltima version de {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Eròr de session",

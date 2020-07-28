@@ -53,7 +53,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Parser::braceSubstitution
-	 * @covers SpecialPageFactory::capturePath
+	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::capturePath
 	 */
 	public function testSpecialPageTransclusionRestoresGlobalState() {
 		$text = "{{Special:ApiHelp/help}}";

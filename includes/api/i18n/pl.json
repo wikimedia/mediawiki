@@ -900,7 +900,7 @@
 	"apiwarn-tokennotallowed": "Działanie „$1” jest niedozwolone dla bieżącego użytkownika.",
 	"apiwarn-validationfailed-keytoolong": "klucz zbyt długi (dozwolone nie więcej niż $1 bajtów).",
 	"apiwarn-validationfailed": "Błąd walidacji dla <kbd>$1</kbd>: $2",
-	"apiwarn-wgdebugapi": "<strong>Ostrzeżenie o zabezpieczeniach</strong>: włączone jest <var>$wgDebugAPI</var>.",
+	"apiwarn-wgdebugapi": "<strong>Ostrzeżenie o zabezpieczeniach:</strong> włączone jest <var>$wgDebugAPI</var>.",
 	"api-feed-error-title": "Błąd ($1)",
 	"api-exception-trace": "$1 w $2($3)\n$4",
 	"api-credits-header": "Twórcy",

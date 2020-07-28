@@ -386,22 +386,22 @@ class JobQueueDB extends JobQueue {
 				}
 			}
 
-			if ( $row ) { // claim the job
-				$dbw->update( 'job', // update by PK
-					[
-						'job_token' => $uuid,
-						'job_token_timestamp' => $dbw->timestamp(),
-						'job_attempts = job_attempts+1' ],
-					[ 'job_cmd' => $this->type, 'job_id' => $row->job_id, 'job_token' => '' ],
-					__METHOD__
-				);
-				// This might get raced out by another runner when claiming the previously
-				// selected row. The use of job_random should minimize this problem, however.
-				if ( !$dbw->affectedRows() ) {
-					$row = false; // raced out
-				}
-			} else {
-				break; // nothing to do
+			if ( !$row ) {
+				break;
+			}
+
+			$dbw->update( 'job', // update by PK
+				[
+					'job_token' => $uuid,
+					'job_token_timestamp' => $dbw->timestamp(),
+					'job_attempts = job_attempts+1' ],
+				[ 'job_cmd' => $this->type, 'job_id' => $row->job_id, 'job_token' => '' ],
+				__METHOD__
+			);
+			// This might get raced out by another runner when claiming the previously
+			// selected row. The use of job_random should minimize this problem, however.
+			if ( !$dbw->affectedRows() ) {
+				$row = false; // raced out
 			}
 		} while ( !$row );
 
@@ -455,16 +455,17 @@ class JobQueueDB extends JobQueue {
 					__METHOD__
 				);
 			}
+
+			if ( !$dbw->affectedRows() ) {
+				break;
+			}
+
 			// Fetch any row that we just reserved...
-			if ( $dbw->affectedRows() ) {
-				$row = $dbw->selectRow( 'job', self::selectFields(),
-					[ 'job_cmd' => $this->type, 'job_token' => $uuid ], __METHOD__
-				);
-				if ( !$row ) { // raced out by duplicate job removal
-					wfDebug( "Row deleted as duplicate by another process." );
-				}
-			} else {
-				break; // nothing to do
+			$row = $dbw->selectRow( 'job', self::selectFields(),
+				[ 'job_cmd' => $this->type, 'job_token' => $uuid ], __METHOD__
+			);
+			if ( !$row ) { // raced out by duplicate job removal
+				wfDebug( "Row deleted as duplicate by another process." );
 			}
 		} while ( !$row );
 

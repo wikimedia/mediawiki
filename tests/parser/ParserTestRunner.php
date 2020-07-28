@@ -202,9 +202,10 @@ class ParserTestRunner {
 			foreach ( $dirIterator as $fileInfo ) {
 				/** @var SplFileInfo $fileInfo */
 				if ( substr( $fileInfo->getFilename(), -4 ) === '.txt' ) {
-					$name = $info['name'] . $counter;
+					$name = $info['name'] . '_' . $counter;
 					while ( isset( $files[$name] ) ) {
-						$name = $info['name'] . '_' . $counter++;
+						$counter++;
+						$name = $info['name'] . '_' . $counter;
 					}
 					$files[$name] = $fileInfo->getPathname();
 				}

@@ -2416,7 +2416,7 @@
 	"protect-existing-expiry-infinity": "Obstoječ čas izteka: neskončno",
 	"protect-otherreason": "Drug/dodaten razlog:",
 	"protect-otherreason-op": "Drug razlog",
-	"protect-dropdown": "*Pogosti razlogi za zaščito\n** Prekomeren vandalizem\n** Vztrajno dodajanje reklamnih povezav\n** Neproduktivne urejevalske vojne\n** Zelo obiskana stran",
+	"protect-dropdown": "*Pogosti razlogi za zaščito\n** Prekomeren vandalizem\n** Vztrajno dodajanje reklamnih povezav\n** Urejevalske vojne\n** Zelo obiskana stran",
 	"protect-edit-reasonlist": "Uredi razloge zaščite",
 	"protect-expiry-options": "1 uro:1 hour,1 dan:1 day,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite",
 	"restriction-type": "Dovoljenje:",

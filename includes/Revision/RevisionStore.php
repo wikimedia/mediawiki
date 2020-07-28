@@ -1224,6 +1224,22 @@ class RevisionStore
 			$revQuery['joins']
 		);
 
+		if ( !$res->numRows() && !( $queryFlags & self::READ_LATEST ) ) {
+			// If we found no slots, try looking on the master database (T212428, T252156)
+			$this->logger->info(
+				__METHOD__ . ' falling back to READ_LATEST.',
+				[
+					'revid' => $revId,
+					'trace' => wfBacktrace( true )
+				]
+			);
+			return $this->loadSlotRecords(
+				$revId,
+				$queryFlags | self::READ_LATEST,
+				$title
+			);
+		}
+
 		$slots = $this->constructSlotRecords( $revId, $res, $queryFlags, $title );
 
 		return $slots;
@@ -1286,25 +1302,14 @@ class RevisionStore
 			$slots[$row->role_name] = new SlotRecord( $row, $contentCallback );
 		}
 
-		if ( !$slots && !( $queryFlags & self::READ_LATEST ) ) {
-			// If we found no slots, try looking on the master database (T212428, T252156)
-			$this->logger->info(
-				__METHOD__ . ' falling back to READ_LATEST.',
-				[ 'trace' => wfBacktrace() ]
-			);
-			return $this->constructSlotRecords(
-				$revId,
-				$slotRows,
-				$queryFlags | self::READ_LATEST,
-				$title,
-				$slotContents
-			);
-		}
-
 		if ( !isset( $slots[SlotRecord::MAIN] ) ) {
-			$this->logger->info(
-				__METHOD__ . ': Main slot of revision {revid} not found in database. See T212428.',
-				[ 'revid' => $revId, ]
+			$this->logger->error(
+				__METHOD__ . ': Main slot of revision not found in database. See T212428.',
+				[
+					'revid' => $revId,
+					'queryFlags' => $queryFlags,
+					'trace' => wfBacktrace( true )
+				]
 			);
 
 			throw new RevisionAccessException(

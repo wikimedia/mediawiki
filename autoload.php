@@ -1567,7 +1567,6 @@ $wgAutoloadLocalClasses = [
 	'SpecialPage' => __DIR__ . '/includes/specialpage/SpecialPage.php',
 	'SpecialPageAction' => __DIR__ . '/includes/actions/SpecialPageAction.php',
 	'SpecialPageData' => __DIR__ . '/includes/specials/SpecialPageData.php',
-	'SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory_deprecated.php',
 	'SpecialPageHistory' => __DIR__ . '/includes/specials/SpecialPageHistory.php',
 	'SpecialPageInfo' => __DIR__ . '/includes/specials/SpecialPageInfo.php',
 	'SpecialPageLanguage' => __DIR__ . '/includes/specials/SpecialPageLanguage.php',

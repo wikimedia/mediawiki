@@ -1512,6 +1512,7 @@
 	"mostinterwikis": "Pagini kun la maxima quanto di ligili interwiki",
 	"mostrevisions": "Pagini kun multa revizuri",
 	"prefixindex": "Omna pagini kun prefixo",
+	"prefixindex-namespace": "Omna pagini kun prefixo ($1 namespace)",
 	"prefixindex-submit": "Montrez",
 	"prefixindex-strip": "Celez la prefixo en la rezulti",
 	"shortpages": "Kurta pagini",
@@ -2412,6 +2413,7 @@
 	"changecredentials-submit": "Modifikar identifiko",
 	"removecredentials": "Removar permisi",
 	"removecredentials-submit": "Removar permisi",
+	"specialmute-label-mute-email": "Silencigez e-posti de ca {{GENDER:$1|uzero}}",
 	"mute-preferences": "Tacema preferaji",
 	"interfaceadmin-info": "$1\n\nPermisi por redaktar arkivi CSS/JS/JSON en la retsituo recente separesis de la permiso <code>editinterface</code>. Se vu ne savas pro quo vu recevis ca eroro-mesajo, videz [[mw:MediaWiki_1.32/interface-admin]].",
 	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''"

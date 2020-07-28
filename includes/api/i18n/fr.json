@@ -1858,7 +1858,7 @@
 	"apiwarn-validationfailed-cannotset": "ne peut pas être initialisé par ce module.",
 	"apiwarn-validationfailed-keytoolong": "clé trop longue (au plus $1 octets).",
 	"apiwarn-validationfailed": "Erreur de validation pour <kbd>$1</kbd>: $2",
-	"apiwarn-wgdebugapi": "<strong>Avertissement de sécurité</strong>: <var>$wgDebugAPI</var> est activé.",
+	"apiwarn-wgdebugapi": "<strong>Avertissement de sécurité :</strong> <var>$wgDebugAPI</var> est activé.",
 	"api-feed-error-title": "Erreur ($1)",
 	"api-usage-docref": "Voir $1 concernant l’utilisation de l’API.",
 	"api-usage-mailinglist-ref": "S’abonner à la liste de diffusion mediawiki-api-announce sur &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; pour les signalisations d’obsolescence de l’API ou de modifications en rupture.",

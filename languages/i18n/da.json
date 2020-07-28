@@ -738,6 +738,7 @@
 	"token_suffix_mismatch": "<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen.</strong>\nAfvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.",
 	"edit_form_incomplete": "<strong>Nogle dele af redigeringsformularen nåede ikke serveren; dobbelttjek, at redigeringerne er intakte, og prøv igen.</strong>",
 	"editing": "Redigerer $1",
+	"edit-textarea-aria-label": "Wikitekst kilde redigering",
 	"creating": "Opretter $1",
 	"editingsection": "Redigerer $1 (afsnit)",
 	"editingcomment": "Redigerer $1 (nyt afsnit)",

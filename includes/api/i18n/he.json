@@ -1839,7 +1839,7 @@
 	"apiwarn-validationfailed-cannotset": "לא יכולה להיות מוגדרת על־ידי המודול הזה.",
 	"apiwarn-validationfailed-keytoolong": "המפתח ארוך מדי (מותר לכתוב לא יותר מ־$1 בתים).",
 	"apiwarn-validationfailed": "שגיאה בבדיקת תקינות עבור <kbd>$1</kbd>: $2",
-	"apiwarn-wgdebugapi": "<strong>אזהרת אבטחה</strong>: <var dir=\"ltr\">$wgDebugAPI</var> מופעל.",
+	"apiwarn-wgdebugapi": "<strong>אזהרת אבטחה:</strong> <var dir=\"ltr\">$wgDebugAPI</var> מופעל.",
 	"api-feed-error-title": "שגיאה ($1)",
 	"api-usage-docref": "ר' $1 לשימוש ב־API.",
 	"api-usage-mailinglist-ref": "עשו מינוי לרשימת התפוצה mediawiki-api-announce בכתובת &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; בשביל הודעות על התיישנות API ושינויים שוברים.",

@@ -136,11 +136,10 @@ class RedisConnRef implements LoggerAwareInterface {
 			if ( $authError === self::AUTH_ERROR_PERMANENT ) {
 				throw new RedisException( "Failure reauthenticating to Redis." );
 			}
+			return $res;
 		} finally {
 			$this->postCallCleanup();
 		}
-
-		return $res;
 	}
 
 	/**

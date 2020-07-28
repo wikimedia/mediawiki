@@ -632,7 +632,8 @@ class EditPage implements IEditObject {
 			$revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel() :
 			false;
 		if ( $revContentModel && $revContentModel !== $this->contentModel ) {
-			$prevRev = null;
+			$prevRevRecord = null;
+			$prevContentModel = false;
 			if ( $this->undidRev ) {
 				$undidRevRecord = $this->revisionStore
 					->getRevisionById( $this->undidRev );
