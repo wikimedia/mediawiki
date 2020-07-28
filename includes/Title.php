@@ -1894,38 +1894,17 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return false|int
 	 */
 	private function findSubpageDivider( $text, $dir ) {
-		$top = strlen( $text ) - 1;
-		$bottom = 0;
-
-		while ( $bottom < $top && $text[$bottom] === '/' ) {
-			$bottom++;
-		}
-
-		if ( $top < $bottom ) {
-			return false;
-		}
-
 		if ( $dir > 0 ) {
-			$idx = $bottom;
-			while ( $idx <= $top && $text[$idx] !== '/' ) {
-				$idx++;
-			}
+			// Skip leading slashes, but keep the last one when there is nothing but slashes
+			$bottom = strspn( $text, '/', 0, -1 );
+			$idx = strpos( $text, '/', $bottom );
 		} else {
-			$idx = $top;
-			while ( $idx > $bottom && $text[$idx] !== '/' ) {
-				$idx--;
-			}
+			// Any slash from the end can be a divider, as subpage names can be empty
+			$idx = strrpos( $text, '/' );
 		}
 
-		if ( $idx < $bottom || $idx > $top ) {
-			return false;
-		}
-
-		if ( $idx < 1 ) {
-			return false;
-		}
-
-		return $idx;
+		// The first character can never be a divider, as that would result in an empty base
+		return $idx === 0 ? false : $idx;
 	}
 
 	/**

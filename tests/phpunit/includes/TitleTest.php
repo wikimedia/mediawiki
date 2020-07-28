@@ -491,6 +491,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ 'User:/', '/' ],
 			[ 'User://', '/' ],
 			[ 'User:/oops/', '/oops' ],
+			[ 'User:/indeed', '/indeed' ],
+			[ 'User://indeed', '/' ],
 			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba/Zamba/Mamba' ],
 			[ 'User://x//y//z//', '//x//y//z/' ],
 		];
@@ -564,6 +566,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ 'User:/', '/' ],
 			[ 'User://', '' ],
 			[ 'User:/oops/', '' ],
+			[ 'User:/indeed', '/indeed' ],
+			[ 'User://indeed', 'indeed' ],
 			[ 'User:/Ramba/Zamba/Mamba/', '' ],
 			[ 'User://x//y//z//', '' ],
 			[ 'Template:Foo', 'Foo' ]
