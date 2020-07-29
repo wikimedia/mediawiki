@@ -426,8 +426,6 @@ class HookRunner implements
 	\MediaWiki\Languages\Hook\Language__getMessagesFileNameHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererBeginHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererEndHook,
-	\MediaWiki\Linker\Hook\LinkBeginHook,
-	\MediaWiki\Linker\Hook\LinkEndHook,
 	\MediaWiki\Page\Hook\ArticleConfirmDeleteHook,
 	\MediaWiki\Page\Hook\ArticleDeleteAfterSuccessHook,
 	\MediaWiki\Page\Hook\ArticleDeleteCompleteHook,
@@ -2314,23 +2312,6 @@ class HookRunner implements
 		return $this->container->run(
 			'Language::getMessagesFileName',
 			[ $code, &$file ]
-		);
-	}
-
-	public function onLinkBegin( $skin, $target, &$html, &$customAttribs, &$query,
-		&$options, &$ret
-	) {
-		return $this->container->run(
-			'LinkBegin',
-			[ $skin, $target, &$html, &$customAttribs, &$query, &$options,
-				&$ret ]
-		);
-	}
-
-	public function onLinkEnd( $skin, $target, $options, &$html, &$attribs, &$ret ) {
-		return $this->container->run(
-			'LinkEnd',
-			[ $skin, $target, $options, &$html, &$attribs, &$ret ]
 		);
 	}
 
