@@ -1218,6 +1218,7 @@ class ParserTestRunner {
 			'archive', 'user_groups', 'page_props', 'category',
 			'slots', 'content', 'slot_roles', 'content_models',
 			'comment', 'revision_comment_temp', 'actor', 'revision_actor_temp',
+			'change_tag', 'change_tag_def',
 		];
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite' ] ) ) {
