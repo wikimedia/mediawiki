@@ -73,6 +73,10 @@ class CategoryFinder {
 	/** @var IDatabase Read-DB replica DB */
 	protected $dbr;
 
+	public function __construct() {
+		wfDeprecated( __METHOD__, '1.31' );
+	}
+
 	/**
 	 * Initializes the instance. Do this prior to calling run().
 	 * @param array $articleIds Array of article IDs
