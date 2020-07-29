@@ -51,6 +51,7 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
@@ -271,6 +272,22 @@ return [
 		}
 
 		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ), $cache, $context );
+	},
+
+	'DatabaseBlockStore' => function ( MediaWikiServices $services ) : DatabaseBlockStore {
+		return new DatabaseBlockStore(
+			new ServiceOptions(
+				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			LoggerFactory::getInstance( 'DatabaseBlockStore' ),
+			$services->getActorMigration(),
+			$services->getBlockRestrictionStore(),
+			$services->getCommentStore(),
+			$services->getHookContainer(),
+			$services->getDBLoadBalancer(),
+			$services->getReadOnlyMode()
+		);
 	},
 
 	'DateFormatterFactory' => function ( MediaWikiServices $services ) : DateFormatterFactory {
