@@ -8,7 +8,8 @@
  *     watch.updateWatchLink(
  *         $node,
  *         'watch',
- *         'loading'
+ *         'loading',
+ *          null
  *     );
  *
  * @class mw.plugin.page.watch.ajax
@@ -26,13 +27,22 @@
 	 * @param {jQuery} $link Anchor tag of (un)watch link
 	 * @param {string} action One of 'watch', 'unwatch'
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
+	 * @param {string} [expiry=null] the expiry date if a page is being watched temporarily.
+	 * Default is a null expiry
 	 */
-	function updateWatchLink( $link, action, state ) {
-		var msgKey, $li, otherAction;
+	function updateWatchLink( $link, action, state, expiry ) {
+		var msgKey, $li, otherAction, expiryDate,
+			tooltipAction = action,
+			daysLeftExpiry = null,
+			currentDate = new Date();
 
 		// A valid but empty jQuery object shouldn't throw a TypeError
 		if ( !$link.length ) {
 			return;
+		}
+
+		if ( expiry === undefined ) {
+			expiry = null;
 		}
 
 		// Invalid actions shouldn't silently turn the page in an unrecoverable state
@@ -52,14 +62,28 @@
 			$li.trigger( 'watchpage.mw', otherAction );
 		}
 
+		// Checking to see what if the expiry is set or indefinite to display the correct message
+		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
+			if ( expiry === null || expiry === 'infinity' ) {
+				tooltipAction = 'unwatch';
+			} else {
+				expiryDate = new Date( expiry );
+				// Using the Math.ceil function instead of floor so when, for example, a user selects one week
+				// the tooltip shows 7 days instead of 6 days (see Phab ticket T253936)
+				daysLeftExpiry = Math.ceil( ( expiryDate - currentDate ) / ( 1000 * 60 * 60 * 24 ) );
+				tooltipAction = 'unwatch-expiring';
+			}
+		}
+
 		$link
 			// The following messages can be used here:
 			// * watch
 			// * watching
 			// * unwatch
+			// * unwatch-expiring
 			// * unwatching
 			.text( mw.msg( msgKey ) )
-			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
+			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
@@ -78,6 +102,7 @@
 				$li.removeClass( 'mw-watchlink-temp' );
 			}
 		}
+
 	}
 
 	/**
@@ -173,7 +198,7 @@
 				return;
 			}
 
-			updateWatchLink( $link, action, 'loading' );
+			updateWatchLink( $link, action, 'loading', null );
 
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
@@ -207,6 +232,7 @@
 								watchlistPopup = new WatchlistExpiryWidget(
 									action,
 									title,
+									updateWatchLink,
 									{
 										// The following messages can be used here:
 										// * addedwatchindefinitelytext-talk

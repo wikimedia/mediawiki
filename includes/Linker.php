@@ -2298,9 +2298,25 @@ class Linker {
 	) {
 		$options = (array)$options;
 		$options[] = 'withaccess';
+		$tooltipTitle = $name;
+
+		// @since 1.35 - add a WatchlistExpiry feature flag to show new watchstar tooltip message
+		$skin = RequestContext::getMain()->getSkin();
+		$isWatchlistExpiryEnabled = $skin->getConfig()->get( 'WatchlistExpiry' );
+		if ( $name === 'ca-unwatch' && $isWatchlistExpiryEnabled ) {
+			$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+			$watchedItem = $watchStore->getWatchedItem( $skin->getUser(),
+				$skin->getRelevantTitle() );
+			if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
+				$diffInDays = $watchedItem->getExpiryInDays();
+				$msgParams = [ $diffInDays ];
+				// Resolves to tooltip-ca-unwatch-expiring message
+				$tooltipTitle = 'ca-unwatch-expiring';
+			}
+		}
 
 		$attribs = [
-			'title' => self::titleAttrib( $name, $options, $msgParams ),
+			'title' => self::titleAttrib( $tooltipTitle, $options, $msgParams ),
 			'accesskey' => self::accesskey( $name )
 		];
 		if ( $attribs['title'] === false ) {

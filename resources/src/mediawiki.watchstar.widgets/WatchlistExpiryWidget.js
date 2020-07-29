@@ -11,7 +11,7 @@
  * @param  {Object} config Configuration object
  */
 
-var WatchlistExpiryWidget = function ( action, pageTitle, config ) {
+var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, config ) {
 	var dataExpiryOptions = require( './data.json' ).options,
 		messageLabel, dropdownLabel,
 		expiryDropdown, onDropdownChange, api, $link, $li,
@@ -48,14 +48,13 @@ var WatchlistExpiryWidget = function ( action, pageTitle, config ) {
 			var notif = mw.notification;
 
 			if ( typeof $link !== 'undefined' ) {
-				$link.addClass( 'loading' )
-					.text( mw.msg( 'watching' ) );
+				$link.addClass( 'loading' );
 			}
 			// Pause the mw.notify so that we can wait for watch request to finish
 			notif.pause();
 			api = new mw.Api();
 			api.watch( pageTitle, value )
-				.done( function () {
+				.done( function ( watchResponse ) {
 					var message,
 						mwTitle = mw.Title.newFromText( pageTitle );
 					if ( mwTitle.isTalkPage() ) {
@@ -75,6 +74,7 @@ var WatchlistExpiryWidget = function ( action, pageTitle, config ) {
 					// Resume the mw.notify once the label has been updated
 					notif.resume();
 
+					updateWatchLink( $link, 'unwatch', 'idle', watchResponse.expiry );
 					if ( typeof $link !== 'undefined' ) {
 						$link.removeClass( 'loading' );
 					}
@@ -85,7 +85,6 @@ var WatchlistExpiryWidget = function ( action, pageTitle, config ) {
 						} else {
 							$li.addClass( 'mw-watchlink-temp' );
 						}
-						$link.text( mw.msg( 'unwatch' ) );
 					}
 
 					// Update the "Watch this page" checkbox on action=edit when the

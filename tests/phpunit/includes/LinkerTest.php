@@ -667,4 +667,44 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$out = Linker::link( $title );
 		$this->assertEquals( $expected, $out );
 	}
+
+	public static function provideTooltipAndAccesskeyAttribs() {
+		return [
+			'Watch no expiry' => [
+				'ca-watch', [], null, [ 'title' => 'Add this page to your watchlist [w]', 'accesskey' => 'w' ]
+			],
+			'Key does not exist' => [
+				'key-does-not-exist', [], null, []
+			],
+			'Unwatch no expiry' => [
+				'ca-unwatch', [], null, [ 'title' => 'Remove this page from your watchlist [w]',
+					'accesskey' => 'w' ]
+			],
+		];
+	}
+
+	/**
+	 * @covers Linker::tooltipAndAccesskeyAttribs
+	 * @dataProvider provideTooltipAndAccesskeyAttribs
+	 */
+	public function testTooltipAndAccesskeyAttribs( $name, $msgParams, $options, $expected ) {
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
+		$user = $this->createMock( User::class );
+		$user->method( 'isRegistered' )->willReturn( true );
+		$user->method( 'isLoggedIn' )->willReturn( true );
+
+		$title = SpecialPage::getTitleFor( 'Blankpage' );
+
+		$context = RequestContext::getMain();
+		$context->setTitle( $title );
+		$context->setUser( $user );
+
+		$watchedItemWithoutExpiry = new WatchedItem( $user, $title, null, null );
+
+		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
+
+		$this->assertEquals( $expected, $result );
+	}
 }
