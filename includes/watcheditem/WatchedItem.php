@@ -152,15 +152,15 @@ class WatchedItem {
 	}
 
 	/**
-	 * Function that returns how many days remain until a watched item will expire.
+	 * Get days remaining until a watched item expires.
 	 *
 	 * @since 1.35
 	 *
-	 * @return int
+	 * @return int|null days remaining or null if no expiration is present
 	 */
-	public function getExpiryInDays(): int {
+	public function getExpiryInDays(): ?int {
 		if ( $this->getExpiry() === null ) {
-			return 0;
+			return null;
 		}
 
 		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );

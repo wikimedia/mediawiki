@@ -63,12 +63,15 @@ class LocalSettingsGenerator {
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
+				'wgMetaNamespace', '_Logo', 'wgAuthenticationTokenVersion', 'wgPingback',
 			],
 			$db->getGlobalNames()
 		);
 
-		$unescaped = [ 'wgRightsIcon', 'wgLogo', '_Caches' ];
+		// The WebInstaller form field for "Logo" contains a literal "$wgResourceBasePath",
+		// and site admins are told in the help text that they can use $wgStylePath and $wgScriptPath
+		// within their input, such such treat this as raw PHP for now.
+		$unescaped = [ 'wgRightsIcon', '_Logo', '_Caches' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons',
@@ -342,9 +345,9 @@ ${serverSetting}
 ## The URL path to static resources (images, scripts, etc.)
 \$wgResourceBasePath = \$wgScriptPath;
 
-## The URL path to the logo.  Make sure you change this from the default,
+## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-\$wgLogo = \"{$this->values['wgLogo']}\";
+\$wgLogos = [ '1x' => \"{$this->values['_Logo']}\" ];
 
 ## UPO means: this is also a user preference option
 

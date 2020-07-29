@@ -38,7 +38,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * The following features are available:
 	 *
 	 * "logo":
-	 *     Adds CSS to style an element with class `mw-wiki-logo` using the value of wgLogo.
+	 *     Adds CSS to style an element with class `mw-wiki-logo` using the value of wgLogos['1x'].
 	 *     This is enabled by default if no features are added.
 	 *
 	 * "normalize":

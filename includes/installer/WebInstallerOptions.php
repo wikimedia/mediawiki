@@ -265,7 +265,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			'</div>' .
 			$this->parent->getTextBox( [
-				'var' => 'wgLogo',
+				'var' => '_Logo',
 				'label' => 'config-logo',
 				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
@@ -474,7 +474,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 */
 	public function submit() {
 		$this->parent->setVarsFromRequest( [ '_RightsProfile', '_LicenseCode',
-			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
+			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', '_Logo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons', 'wgDefaultSkin' ] );
@@ -484,6 +484,13 @@ class WebInstallerOptions extends WebInstallerPage {
 		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles ) ) {
 			reset( $this->parent->rightsProfiles );
 			$this->setVar( '_RightsProfile', key( $this->parent->rightsProfiles ) );
+		}
+
+		// If this is empty, either the default got lost internally
+		// or the user blanked it
+		if ( strval( $this->getVar( '_Logo' ) ) === '' ) {
+			$this->parent->showError( 'config-install-logo-blank' );
+			$retVal = false;
 		}
 
 		$code = $this->getVar( '_LicenseCode' );
