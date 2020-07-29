@@ -43,7 +43,15 @@ describe( 'POST /page', () => {
 
 	describe( 'successful operation', () => {
 		it( 'should create a page if it does not exist', async () => {
-			const title = utils.title( 'Edit Test ' );
+			const titleSuffix = utils.title();
+			const title = 'A B+C:D@E-' + titleSuffix;
+
+			// In "title style" encoding, spaces turn to underscores,
+			// colons are preserved, and slashes and pluses get encoded.
+			// FIXME: correct handling of encoded slashes depends on
+			//        the server setup and can't be tested reliably.
+			const encodedTitle = 'A_B%2BC:D@E-' + titleSuffix;
+
 			const reqBody = {
 				token: anonToken,
 				source: 'Lörem Ipsüm',
@@ -56,13 +64,12 @@ describe( 'POST /page', () => {
 			assert.equal( editStatus, 201 );
 
 			assert.nestedProperty( header, 'location' );
-			const encodedTitle = encodeURI( title );
-			const normalizedLocation = header.location.replace( /\+/g, '%20' );
-			assert.match( normalizedLocation, new RegExp( `^https?://.*/v1/page/${encodedTitle}$` ) );
+			const location = header.location;
+			assert.match( location, new RegExp( `^https?://.*/v1/page/${encodedTitle}$` ) );
 			checkEditResponse( title, reqBody, editBody );
 
 			// follow redirect
-			const { status: redirStatus, body: redirBody } = await supertest.agent( normalizedLocation ).get( '' );
+			const { status: redirStatus, body: redirBody } = await supertest.agent( location ).get( '' );
 			assert.equal( redirStatus, 200 );
 			checkSourceResponse( title, reqBody, redirBody );
 

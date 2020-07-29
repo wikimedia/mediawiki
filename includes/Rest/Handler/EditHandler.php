@@ -93,7 +93,7 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 			throw new HttpException( $data['edit']['result'], 409 );
 		}
 
-		$title = $this->titleParser->parseTitle( $this->getTitleParameter() );
+		$title = $this->titleParser->parseTitle( $data['edit']['title'] );
 
 		// This seems wasteful. This is the downside of delegating to the action API module:
 		// if we need additional data in the response, we have to load it.
