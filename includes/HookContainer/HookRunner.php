@@ -2720,10 +2720,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ) {
-		return $this->container->run(
+	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ) : void {
+		$this->container->run(
 			'OutputPageBodyAttributes',
-			[ $out, $sk, &$bodyAttrs ]
+			[ $out, $sk, &$bodyAttrs ],
+			[ 'abortable' => false ]
 		);
 	}
 
