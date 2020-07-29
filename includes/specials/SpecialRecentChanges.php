@@ -84,11 +84,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'queryCallable' => function ( $specialPageClassName, $context, IDatabase $dbr,
 				&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				sort( $selectedValues );
-				// Expired watchlist items stay in the DB after their expiry time until they're purged,
-				// so it's not enough to only check for wl_user.
-				$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
-				$notwatchedCond = "wl_user IS NULL OR ( we_expiry IS NOT NULL AND we_expiry < $quotedNow )";
-				$watchedCond = "wl_user IS NOT NULL AND ( we_expiry IS NULL OR we_expiry >= $quotedNow )";
+				$notwatchedCond = 'wl_user IS NULL';
+				$watchedCond = 'wl_user IS NOT NULL';
+				if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+					// Expired watchlist items stay in the DB after their expiry time until they're purged,
+					// so it's not enough to only check for wl_user.
+					$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
+					$notwatchedCond = "wl_user IS NULL OR ( we_expiry IS NOT NULL AND we_expiry < $quotedNow )";
+					$watchedCond = "wl_user IS NOT NULL AND ( we_expiry IS NULL OR we_expiry >= $quotedNow )";
+				}
 				$newCond = 'rc_timestamp >= wl_notificationtimestamp';
 
 				if ( $selectedValues === [ 'notwatched' ] ) {
