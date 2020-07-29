@@ -257,6 +257,7 @@
 	"config-install-user-grant-failed": "Granting permission to user \"$1\" failed: $2",
 	"config-install-user-missing": "The specified user \"$1\" does not exist.",
 	"config-install-user-missing-create": "The specified user \"$1\" does not exist.\nPlease click the \"create account\" checkbox below if you want to create it.",
+	"config-install-logo-blank": "Enter a valid logo URL.",
 	"config-install-restore-services": "Restoring mediawiki services",
 	"config-install-tables": "Creating tables, step one",
 	"config-install-tables-exist": "<strong>Warning:</strong> MediaWiki tables seem to already exist.\nSkipping creation.",
