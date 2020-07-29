@@ -81,11 +81,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				]
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+			'queryCallable' => function ( $specialPageClassName, $context, IDatabase $dbr,
 				&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				sort( $selectedValues );
-				$notwatchedCond = 'wl_user IS NULL';
-				$watchedCond = 'wl_user IS NOT NULL';
+				// Expired watchlist items stay in the DB after their expiry time until they're purged,
+				// so it's not enough to only check for wl_user.
+				$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
+				$notwatchedCond = "wl_user IS NULL OR ( we_expiry IS NOT NULL AND we_expiry < $quotedNow )";
+				$watchedCond = "wl_user IS NOT NULL AND ( we_expiry IS NULL OR we_expiry >= $quotedNow )";
 				$newCond = 'rc_timestamp >= wl_notificationtimestamp';
 
 				if ( $selectedValues === [ 'notwatched' ] ) {
@@ -302,8 +305,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// Exclude expired watchlist items.
 		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
 			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
-			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 	}
 
@@ -466,7 +469,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 			}
 
-			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
+			$watched = !empty( $obj->wl_user );
+			if ( $watched && $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+				$notExpired = $obj->we_expiry === null
+					|| MWTimestamp::convert( TS_UNIX, $obj->we_expiry ) > wfTimestamp();
+				$watched = $watched && $notExpired;
+			}
+			$changeLine = $list->recentChangesLine( $rc, $watched, $counter );
 			if ( $changeLine !== false ) {
 				$rclistOutput .= $changeLine;
 				--$limit;
