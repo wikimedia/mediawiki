@@ -26206,6 +26206,30 @@ Special:Foobar
 </p>
 !! end
 
+# {{=}} will be converted to a parser function which expands to `=`
+# If you have it defined as a Template that expands to `=` that's ok;
+# and using it explicitly as {{Template:=}} (regardless of what it
+# expands to) is also ok and will not generate a tracking category.
+# T91154
+!! test
+Using {{=}} when it expands to "=" should not create a tracking category
+!! wikitext
+This uses {{=}} and {{Template:=}}.
+!! html
+<p>This uses = and =.
+</p>
+!! end
+
+# Repeat the test, looking at categories.  Note: none should be emitted!
+!! test
+Using {{=}} when it expands to "=" should not create a tracking category (cat)
+!! options
+cat
+!! wikitext
+This uses {{=}} and {{Template:=}}.
+!! html/php
+!! end
+
 !!test
 T36939 - Case insensitive link parsing ([HttP://])
 !! wikitext

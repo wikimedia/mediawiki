@@ -49,6 +49,7 @@ class ParserTestRunner {
 	 */
 	private static $coreTestFiles = [
 		'parserTests.txt',
+		'pfeqParserTests.txt',
 		'extraParserTests.txt',
 	];
 
