@@ -11,9 +11,10 @@ statistics in processes where `$wgCommandLineMode` is true.
 
 #### `wanobjectcache.{kClass}.{cache_action_and_result}`
 
-Call counter from `WANObjectCache::getWithSetCallback()`.
+Upon cache access via `WANObjectCache::getWithSetCallback()`, this measures the time spent
+in that method.
 
-* Type: Counter.
+* Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
 * Variable `result`: One of:
   * `"hit.good"`,

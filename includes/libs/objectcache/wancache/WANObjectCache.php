@@ -1443,12 +1443,18 @@ class WANObjectCache implements
 				$this->worthRefreshPopular( $curInfo['asOf'], $ageNew, $hotTTR, $initialTime )
 			);
 			if ( !$preemptiveRefresh ) {
-				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+				$this->stats->timing(
+					"wanobjectcache.$kClass.hit.good",
+					1e3 * ( $this->getCurrentTime() - $initialTime )
+				);
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts, $cbParams ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
-				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
+				$this->stats->timing(
+					"wanobjectcache.$kClass.hit.refresh",
+					1e3 * ( $this->getCurrentTime() - $initialTime )
+				);
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			} else {
@@ -1475,7 +1481,10 @@ class WANObjectCache implements
 			$this->isVolatileValueAgeNegligible( $initialTime - $possInfo['asOf'] )
 		) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
-			$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
+			$this->stats->timing(
+				"wanobjectcache.$kClass.hit.volatile",
+				1e3 * ( $this->getCurrentTime() - $initialTime )
+			);
 
 			return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
 		}
@@ -1508,13 +1517,19 @@ class WANObjectCache implements
 		if ( $useRegenerationLock && !$hasLock ) {
 			if ( $this->isValid( $possValue, $possInfo['asOf'], $minAsOf ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
-				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
+				$this->stats->timing(
+					"wanobjectcache.$kClass.hit.stale",
+					1e3 * ( $this->getCurrentTime() - $initialTime )
+				);
 
 				return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
 			} elseif ( $busyValue !== null ) {
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 				$this->logger->debug( "fetchOrRegenerate($key): busy $miss" );
-				$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
+				$this->stats->timing(
+					"wanobjectcache.$kClass.$miss.busy",
+					1e3 * ( $this->getCurrentTime() - $initialTime )
+				);
 
 				return [ $this->resolveBusyValue( $busyValue ), $version, $curInfo['asOf'] ];
 			}
@@ -1573,7 +1588,10 @@ class WANObjectCache implements
 
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
-		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
+		$this->stats->timing(
+			"wanobjectcache.$kClass.$miss.compute",
+			1e3 * ( $this->getCurrentTime() - $initialTime )
+		);
 
 		return [ $value, $version, $curInfo['asOf'] ];
 	}
