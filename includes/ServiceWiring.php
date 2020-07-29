@@ -1004,7 +1004,7 @@ return [
 		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
 		$rl->register( $modules );
-		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner = new \MediaWiki\ResourceLoader\HookRunner( $services->getHookContainer() );
 		$hookRunner->onResourceLoaderRegisterModules( $rl );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
