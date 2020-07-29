@@ -11,10 +11,10 @@
 	$( function () {
 		var watchThisWidget, watchlistExpiryWidget;
 
-		if ( document.getElementById( 'wpWatchThisWidget' ) &&
+		if ( document.getElementById( 'wpWatchthisWidget' ) &&
 				document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
 
-			watchThisWidget = OO.ui.infuse( '#wpWatchThisWidget' );
+			watchThisWidget = OO.ui.infuse( '#wpWatchthisWidget' );
 			watchlistExpiryWidget = OO.ui.infuse( '#wpWatchlistExpiryWidget' );
 			// Set initial state to match the watchthis checkbox.
 			watchlistExpiryWidget.setDisabled( !watchThisWidget.isSelected() );
