@@ -98,6 +98,9 @@ because of Phabricator reports.
   deprecated since 1.35, has been removed.
 * The ResourceLoader module `mediawiki.legacy.oldshared` and its file
   'oldshared.css', deprecated since 1.35 has been removed (T248357).
+* The LinkBegin and LinkEnd hooks, deprecated in 1.28, have been removed. You
+  can instead use the HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
+  hooks, respectively.
 * …
 
 === Deprecations in 1.36 ===
