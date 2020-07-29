@@ -4,7 +4,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "me"
@@ -14,7 +13,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "user"
@@ -24,7 +22,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "me"
@@ -34,7 +31,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "user"
