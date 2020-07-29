@@ -880,6 +880,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\BaseTemplateToolboxHook' => __DIR__ . '/includes/skins/Hook/BaseTemplateToolboxHook.php',
 	'MediaWiki\\Hook\\BeforeParserFetchFileAndTitleHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchFileAndTitleHook.php',
 	'MediaWiki\\Hook\\BeforeParserFetchTemplateAndtitleHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchTemplateAndtitleHook.php',
+	'MediaWiki\\Hook\\BeforeParserFetchTemplateRevisionRecordHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchTemplateRevisionRecordHook.php',
 	'MediaWiki\\Hook\\BeforeParserrenderImageGalleryHook' => __DIR__ . '/includes/parser/Hook/BeforeParserrenderImageGalleryHook.php',
 	'MediaWiki\\Hook\\BeforeResetNotificationTimestampHook' => __DIR__ . '/includes/watcheditem/Hook/BeforeResetNotificationTimestampHook.php',
 	'MediaWiki\\Hook\\BeforeWelcomeCreationHook' => __DIR__ . '/includes/specials/Hook/BeforeWelcomeCreationHook.php',

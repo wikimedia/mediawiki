@@ -42,6 +42,7 @@ class DeprecatedHooks {
 		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'BaseTemplateToolbox' => [ 'deprecatedVersion' => '1.35' ],
 		'BeforeHttpsRedirect' => [ 'deprecatedVersion' => '1.35' ],
+		'BeforeParserFetchTemplateAndtitle' => [ 'deprecatedVersion' => '1.36' ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
 		'CanIPUseHTTPS' => [ 'deprecatedVersion' => '1.35' ],
 		'DiffRevisionTools' => [ 'deprecatedVersion => 1.35' ],

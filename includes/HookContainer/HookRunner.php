@@ -6,6 +6,8 @@ use Article;
 use Config;
 use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionRecord;
 use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
@@ -109,6 +111,7 @@ class HookRunner implements
 	\MediaWiki\Hook\BeforePageRedirectHook,
 	\MediaWiki\Hook\BeforeParserFetchFileAndTitleHook,
 	\MediaWiki\Hook\BeforeParserFetchTemplateAndtitleHook,
+	\MediaWiki\Hook\BeforeParserFetchTemplateRevisionRecordHook,
 	\MediaWiki\Hook\BeforeParserrenderImageGalleryHook,
 	\MediaWiki\Hook\BeforeResetNotificationTimestampHook,
 	\MediaWiki\Hook\BeforeWelcomeCreationHook,
@@ -1027,6 +1030,16 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeParserFetchTemplateAndtitle',
 			[ $parser, $title, &$skip, &$id ]
+		);
+	}
+
+	public function onBeforeParserFetchTemplateRevisionRecord(
+		?LinkTarget $contextTitle, LinkTarget $title,
+		bool &$skip, ?RevisionRecord &$revRecord
+	) {
+		return $this->container->run(
+			'BeforeParserFetchTemplateRevisionRecord',
+			[ $contextTitle, $title, &$skip, &$revRecord ]
 		);
 	}
 
