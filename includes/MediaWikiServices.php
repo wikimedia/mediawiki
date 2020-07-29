@@ -30,6 +30,7 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -653,6 +654,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCryptHKDF() : CryptHKDF {
 		return $this->getService( 'CryptHKDF' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return DatabaseBlockStore
+	 */
+	public function getDatabaseBlockStore() : DatabaseBlockStore {
+		return $this->getService( 'DatabaseBlockStore' );
 	}
 
 	/**
