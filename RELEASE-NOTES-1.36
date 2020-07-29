@@ -86,11 +86,13 @@ because of Phabricator reports.
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
   - All methods of the old SpecialPageFactory; the entire class was removed
-* The global function `wfWaitForSlaves`, deprecated since 1.27 & hard-deprecated
-  since 1.35, has been removed. Use LBFactory::waitForReplication() instead.
+* The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
+  in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
   Usage should generally be migrated to WANObjectCache, or if you really need
   the internal object, use ObjectCache::getLocalClusterInstance instead.
+* CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
+  has been removed.
 * The support for IE8 has been dropped.
 * Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
   deprecated since 1.35, has been removed.
