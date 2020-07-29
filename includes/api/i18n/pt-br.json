@@ -1838,7 +1838,7 @@
 	"apiwarn-validationfailed-cannotset": "não pode ser configurado por este módulo.",
 	"apiwarn-validationfailed-keytoolong": "chave muito longa (não é permitido mais de $1 bytes).",
 	"apiwarn-validationfailed": "Erro de validação para <kbd>$1</kbd>: $2",
-	"apiwarn-wgdebugapi": "<strong>Aviso de Segurança</strong>: <var>$wgDebugAPI</var> está ativado.",
+	"apiwarn-wgdebugapi": "<strong>Aviso de Segurança:</strong> <var>$wgDebugAPI</var> está ativado.",
 	"api-feed-error-title": "Erro ($1)",
 	"api-usage-docref": "Veja $1 para uso da API.",
 	"api-usage-mailinglist-ref": "Inscreva-se na lista de discussão mediawiki-api-announce em &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; Para aviso de depreciações de API e alterações.",

@@ -274,6 +274,7 @@
 	"config-install-user-grant-failed": "Die Gewährung der Berechtigung für Datenbankbenutzer „$1“ ist gescheitert: $2",
 	"config-install-user-missing": "Der angegebene Benutzer „$1“ ist nicht vorhanden.",
 	"config-install-user-missing-create": "Der angegebene Benutzer „$1“ ist nicht vorhanden.\nBitte das Auswahlkästchen „Benutzerkonto erstellen“ anklicken, sofern dieser erstellt werden soll.",
+	"config-install-logo-blank": "Gib eine gültige Logo-URL ein.",
 	"config-install-restore-services": "Wiederherstellung der MediaWiki-Dienste",
 	"config-install-tables": "Datentabellen werden erstellt, Schritt 1",
 	"config-install-tables-exist": "'''Warnung:''' Es wurden MediaWiki-Datentabellen gefunden.\nDie Erstellung wurde übersprungen.",
