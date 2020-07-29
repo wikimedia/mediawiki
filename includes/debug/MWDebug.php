@@ -611,7 +611,7 @@ class MWDebug {
 
 		$ret .= '</ul>' . "\n";
 
-		return $ret;
+		return Html::rawElement( 'div', [ 'id' => 'mw-html-debug-log' ], $ret );
 	}
 
 	/**
