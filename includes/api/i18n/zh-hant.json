@@ -1840,7 +1840,7 @@
 	"apiwarn-validationfailed-cannotset": "不能透過此模組設定。",
 	"apiwarn-validationfailed-keytoolong": "鍵太長（不允許超過 $1 位元組）。",
 	"apiwarn-validationfailed": "<kbd>$1</kbd>驗證錯誤：$2",
-	"apiwarn-wgdebugapi": "<strong>安全警告</strong>：<var>$wgDebugAPI</var> 已啟用。",
+	"apiwarn-wgdebugapi": "<strong>安全警告：</strong><var>$wgDebugAPI</var> 已啟用。",
 	"api-feed-error-title": "錯誤（$1）",
 	"api-usage-docref": "查看 $1 來了解 API 的使用。",
 	"api-usage-mailinglist-ref": "在 &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; 的 mediawiki-api-announce 郵件清單做出訂閱，來取得 API 棄用與重大修訂的通知。",
