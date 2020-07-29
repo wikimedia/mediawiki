@@ -9,21 +9,26 @@
 	 * selected state of the watchthis checkbox.
 	 */
 	$( function () {
-		var watchThisWidget = OO.ui.infuse( '#wpWatchthisWidget' ),
+		var watchThisWidget, watchlistExpiryWidget;
+
+		if ( document.getElementById( 'wpWatchThisWidget' ) &&
+				document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
+
+			watchThisWidget = OO.ui.infuse( '#wpWatchThisWidget' );
 			watchlistExpiryWidget = OO.ui.infuse( '#wpWatchlistExpiryWidget' );
+			// Set initial state to match the watchthis checkbox.
+			watchlistExpiryWidget.setDisabled( !watchThisWidget.isSelected() );
 
-		// Set initial state to match the watchthis checkbox.
-		watchlistExpiryWidget.setDisabled( !watchThisWidget.isSelected() );
+			// Change state on every change of the watchthis checkbox.
+			watchThisWidget.on( 'change', function ( enabled ) {
+				watchlistExpiryWidget.setDisabled( !enabled );
 
-		// Change state on every change of the watchthis checkbox.
-		watchThisWidget.on( 'change', function ( enabled ) {
-			watchlistExpiryWidget.setDisabled( !enabled );
-
-			// Reset the watchlist-expiry dropdown to the 'infinite' value
-			if ( watchlistExpiryWidget.isDisabled() ) {
-				watchlistExpiryWidget.setValue( 'infinite' );
-			}
-		} );
+				// Reset the watchlist-expiry dropdown to the 'infinite' value
+				if ( watchlistExpiryWidget.isDisabled() ) {
+					watchlistExpiryWidget.setValue( 'infinite' );
+				}
+			} );
+		}
 	} );
 
 }() );
