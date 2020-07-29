@@ -628,6 +628,8 @@ because of Phabricator reports.
   ->getMsg() instead.
 * QuickTemplate::msgWiki(), deprecated in 1.33, was removed. Use ->msg()
   instead.
+* WebInstaller::getErrorBox() and ::getWarningBox(), deprecated in 1.34,
+  were removed. Use Html::errorBox() or ::warningBox() instead.
 * SpecialVersion::getExtensionCredits() and SpecialVersion::getSkinCredits()
   have become private without deprecation.
 * As part of the migration to a new hook system (T240307), the following classes
