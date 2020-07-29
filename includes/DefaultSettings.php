@@ -4157,7 +4157,7 @@ $wgIncludeLegacyJavaScript = false;
  *     if ( mw.config.get('wgIsArticle') ) { ... }
  * @endcode
  */
-$wgLegacyJavaScriptGlobals = true;
+$wgLegacyJavaScriptGlobals = false;
 
 /**
  * ResourceLoader will not generate URLs whose query string is more than

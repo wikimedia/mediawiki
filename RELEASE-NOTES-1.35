@@ -118,7 +118,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   Configure the ParserFactory service in order to customize the Parser used.
 * $wgAutoloadAttemptLowercase — This has been deprecated, and the default value
   changed to false.
-* $wgAllowImageMoving - This configuration setting is now deprecated. Instead,
+* $wgAllowImageMoving — This configuration setting is now deprecated. Instead,
   use $wgGroupPermissions; e.g., to revoke sysops' ability to move images use
   $wgGroupPermissions['sysop']['movefile'] = false.
 * $wgAllowImageTag — This configuration is now deprecated; future parsers will
@@ -134,9 +134,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   (e.g. [ '127.0.0.1' => 'bad-ip' ]) for $wgProxyList has been removed. This
   was deprecated since 1.30. Please convert these arrays to indexed/sequential
   ones (e.g. [ '127.0.0.1' ]).
-* $wgShellRestrictionMethod - This now defaults to 'autodetect', which will
+* $wgShellRestrictionMethod — This now defaults to 'autodetect', which will
   enable sandboxing for shell commands using firejail, if it's installed. To
   disable restrictions, set it to false.
+* $wgLegacyJavaScriptGlobals – This deprecated setting now default to false,
+  instead of true, ahead of its planned removal.
 
 ==== Removed configuration ====
 * $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
