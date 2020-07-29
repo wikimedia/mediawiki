@@ -20,13 +20,11 @@
  */
 namespace MediaWiki\Linker;
 
-use DummyLinker;
 use Html;
 use HtmlArmor;
 use LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
 use Sanitizer;
@@ -75,13 +73,6 @@ class LinkRenderer {
 	 * @var NamespaceInfo
 	 */
 	private $nsInfo;
-
-	/**
-	 * Whether to run the legacy Linker hooks
-	 *
-	 * @var bool
-	 */
-	private $runLegacyBeginHook = true;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -160,13 +151,6 @@ class LinkRenderer {
 	}
 
 	/**
-	 * @param bool $run
-	 */
-	public function setRunLegacyBeginHook( $run ) {
-		$this->runLegacyBeginHook = $run;
-	}
-
-	/**
 	 * @param LinkTarget $target
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs
@@ -184,28 +168,6 @@ class LinkRenderer {
 		}
 	}
 
-	/**
-	 * Get the options in the legacy format
-	 *
-	 * @param bool $isKnown Whether the link is known or broken
-	 * @return array
-	 */
-	private function getLegacyOptions( $isKnown ) {
-		$options = [ 'stubThreshold' => $this->stubThreshold ];
-		if ( $this->forceArticlePath ) {
-			$options[] = 'forcearticlepath';
-		}
-		if ( $this->expandUrls === PROTO_HTTP ) {
-			$options[] = 'http';
-		} elseif ( $this->expandUrls === PROTO_HTTPS ) {
-			$options[] = 'https';
-		}
-
-		$options[] = $isKnown ? 'known' : 'broken';
-
-		return $options;
-	}
-
 	private function runBeginHook( LinkTarget $target, &$text, &$extraAttribs, &$query, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
@@ -213,56 +175,6 @@ class LinkRenderer {
 		) {
 			return $ret;
 		}
-
-		// Now run the legacy hook
-		return $this->runLegacyBeginHook( $target, $text, $extraAttribs, $query, $isKnown );
-	}
-
-	private function runLegacyBeginHook( LinkTarget $target, &$text, &$extraAttribs, &$query,
-		$isKnown
-	) {
-		if ( !$this->runLegacyBeginHook || !$this->hookContainer->isRegistered( 'LinkBegin' ) ) {
-			// Disabled, or nothing registered
-			return null;
-		}
-
-		$realOptions = $options = $this->getLegacyOptions( $isKnown );
-		$ret = null;
-		$dummy = new DummyLinker();
-		$title = Title::newFromLinkTarget( $target );
-		if ( $text !== null ) {
-			$realHtml = $html = HtmlArmor::getHtml( $text );
-		} else {
-			$realHtml = $html = null;
-		}
-		if ( !$this->hookRunner->onLinkBegin(
-			$dummy, $title, $html, $extraAttribs, $query, $options, $ret )
-		) {
-			return $ret;
-		}
-
-		if ( $html !== null && $html !== $realHtml ) {
-			// &$html was modified, so re-armor it as $text
-			$text = new HtmlArmor( $html );
-		}
-
-		// Check if they changed any of the options, hopefully not!
-		if ( $options !== $realOptions ) {
-			$factory = MediaWikiServices::getInstance()->getLinkRendererFactory();
-			// They did, so create a separate instance and have that take over the rest
-			$newRenderer = $factory->createFromLegacyOptions( $options );
-			// Don't recurse the hook...
-			$newRenderer->setRunLegacyBeginHook( false );
-			if ( in_array( 'known', $options, true ) ) {
-				return $newRenderer->makeKnownLink( $title, $text, $extraAttribs, $query );
-			} elseif ( in_array( 'broken', $options, true ) ) {
-				return $newRenderer->makeBrokenLink( $title, $text, $extraAttribs, $query );
-			} else {
-				return $newRenderer->makeLink( $title, $text, $extraAttribs, $query );
-			}
-		}
-
-		return null;
 	}
 
 	/**
@@ -398,21 +310,7 @@ class LinkRenderer {
 			return $ret;
 		}
 
-		$html = HtmlArmor::getHtml( $text );
-
-		// Run legacy hook
-		if ( $this->hookContainer->isRegistered( 'LinkEnd' ) ) {
-			$dummy = new DummyLinker();
-			$title = Title::newFromLinkTarget( $target );
-			$options = $this->getLegacyOptions( $isKnown );
-			if ( !$this->hookRunner->onLinkEnd(
-				$dummy, $title, $options, $html, $attribs, $ret )
-			) {
-				return $ret;
-			}
-		}
-
-		return Html::rawElement( 'a', $attribs, $html );
+		return Html::rawElement( 'a', $attribs, HtmlArmor::getHtml( $text ) );
 	}
 
 	/**

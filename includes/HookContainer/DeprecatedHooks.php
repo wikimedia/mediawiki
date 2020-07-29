@@ -53,8 +53,6 @@ class DeprecatedHooks {
 		'DiffViewHeader' => [ 'deprecatedVersion' => '1.35' ],
 		'HistoryRevisionTools' => [ 'deprecatedVersion => 1.35' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
-		'LinkBegin' => [ 'deprecatedVersion' => '1.28' ],
-		'LinkEnd' => [ 'deprecatedVersion' => '1.28' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'NewRevisionFromEditComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'PageContentInsertComplete' => [ 'deprecatedVersion' => '1.35' ],
