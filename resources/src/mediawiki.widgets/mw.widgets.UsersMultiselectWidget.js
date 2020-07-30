@@ -163,8 +163,12 @@
 					// Remove all items from menu add fill it with new
 					this.menu.clearItems();
 					this.menu.addItems( suggestions );
-					// Enable Narrator focus on menu item, see T250762.
-					this.menu.$focusOwner.attr( 'aria-activedescendant', suggestions[ 0 ].$element.attr( 'id' ) );
+
+					if ( suggestions.length ) {
+						// Enable Narrator focus on menu item, see T250762.
+						this.menu.$focusOwner.attr( 'aria-activedescendant', suggestions[ 0 ].$element.attr( 'id' ) );
+					}
+
 					// Make the menu visible; it might not be if it was previously empty
 					this.menu.toggle( true );
 
