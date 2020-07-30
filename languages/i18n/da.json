@@ -3140,6 +3140,7 @@
 	"tag-mw-replace-description": "Redigeringer som fjerner mere end 90% af indholdet på en side",
 	"tag-mw-rollback": "Tilbagerulning",
 	"tag-mw-undo": "Omgjort",
+	"tag-mw-manual-revert": "Manuel tilbagerulning",
 	"tags-title": "Tags",
 	"tags-intro": "Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.",
 	"tags-tag": "Tagnavn",

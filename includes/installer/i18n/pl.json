@@ -281,6 +281,7 @@
 	"config-install-user-grant-failed": "Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2",
 	"config-install-user-missing": "Nie istnieje konto użytkownika „$1”.",
 	"config-install-user-missing-create": "Określony użytkownik \"$1\" nie istnieje.\nKliknij poniższe pole wyboru „utwórz konto\" jeśli chcesz go utworzyć.",
+	"config-install-logo-blank": "Podaj poprawny adres URL dla logo.",
 	"config-install-restore-services": "Odtwarzanie usług MediaWiki",
 	"config-install-tables": "Tworzenie tabel, krok pierwszy",
 	"config-install-tables-exist": "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją.\nPomijam tworzenie tabel.",
