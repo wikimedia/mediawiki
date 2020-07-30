@@ -51,6 +51,7 @@ use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Revision\ContributionsLookup;
@@ -1368,6 +1369,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchlistNotificationManager() : WatchlistNotificationManager {
 		return $this->getService( 'WatchlistNotificationManager' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return WikiPageFactory
+	 */
+	public function getWikiPageFactory() : WikiPageFactory {
+		return $this->getService( 'WikiPageFactory' );
 	}
 
 	/**
