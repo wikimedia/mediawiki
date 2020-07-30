@@ -28,10 +28,10 @@
  */
 abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	public function __construct( array $params ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? 917504; // < 1MiB
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
-		$this->segmentationSize = $params['maxPreferedKeySize'] ?? 917504; // < 1MiB
 	}
 
 	/**
