@@ -55,9 +55,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   (equivalent to $wgLogo), and '1.5x', '2x', and 'svg' operating as before for
   $wgLogoHD. If $wgLogos is unset, $wgLogo and $wgLogoHD values are read for
   temporary backwards compatibility. (T232140)
-* $wgWatchlistExpiry — This enables the new watchlist expiry feature. The
-  database table (watchlist_expiry) for this is created regardless of this
-  setting, but all other aspects of the expiry feature are controlled by it.
+* $wgWatchlistExpiry — (EXPERIMENTAL) This enables the new watchlist expiry
+  feature. The database table (watchlist_expiry) for this is created regardless
+  of this setting, but all other aspects of the expiry feature are controlled
+  by it. Enabling in production is discouraged for the time being. A future
+  MediaWiki 1.35 release will advertise this feature once it is stable.
 * $wgWatchlistPurgeRate — This sets the chance of expired watchlist items being
   purged on each page edit. Only has effect if $wgWatchlistExpiry is true.
 * $wgWatchlistExpiryMaxDuration — This is the maximum definite relative duration
