@@ -278,6 +278,7 @@
 	"config-install-user-grant-failed": "授序權限給使用者 \"$1\" 失敗：$2",
 	"config-install-user-missing": "指定的使用者 \"$1\" 不存在。",
 	"config-install-user-missing-create": "指定的使用者 \"$1\" 不存在。\n若您想建立帳號，請勾選下方 \"建立帳號\" 核選方塊。",
+	"config-install-logo-blank": "輸入一個有效的標誌 URL。",
 	"config-install-restore-services": "恢復 mediawiki 服務",
 	"config-install-tables": "正在建立資料表，步驟一",
 	"config-install-tables-exist": "<strong>警告：</strong> MediaWiki 資料表已存在，略過建立資料表。",

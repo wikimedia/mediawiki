@@ -289,6 +289,7 @@
 	"config-install-user-grant-failed": "Échec lors de l’ajout de permissions à l’utilisateur « $1 » : $2",
 	"config-install-user-missing": "L’utilisateur « $1 » n’existe pas.",
 	"config-install-user-missing-create": "L’utilisateur « $1 » n’existe pas.\nVeuillez cocher la case « créer le compte » ci-dessous si vous voulez le créer.",
+	"config-install-logo-blank": "Saisir une URL de logo valide.",
 	"config-install-restore-services": "Restauration des services MediaWiki",
 	"config-install-tables": "Création des tables, première étape",
 	"config-install-tables-exist": "<strong>Avertissement :</strong> les tables MediaWiki semblent déjà exister.\nCréation omise.",
