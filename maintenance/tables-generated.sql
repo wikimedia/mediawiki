@@ -72,3 +72,11 @@ CREATE TABLE /*_*/site_stats (
   ss_images BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(ss_row_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/user_properties (
+  up_user INT UNSIGNED NOT NULL,
+  up_property VARBINARY(255) NOT NULL,
+  up_value BLOB DEFAULT NULL,
+  INDEX user_properties_property (up_property),
+  PRIMARY KEY(up_user, up_property)
+) /*$wgDBTableOptions*/;

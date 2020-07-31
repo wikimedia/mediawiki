@@ -65,3 +65,10 @@ CREATE TABLE site_stats (
   ss_images BIGINT DEFAULT NULL,
   PRIMARY KEY(ss_row_id)
 );
+CREATE TABLE user_properties (
+  up_user INT NOT NULL,
+  up_property TEXT NOT NULL,
+  up_value TEXT DEFAULT NULL,
+  PRIMARY KEY(up_user, up_property)
+);
+CREATE INDEX user_properties_property ON user_properties (up_property);

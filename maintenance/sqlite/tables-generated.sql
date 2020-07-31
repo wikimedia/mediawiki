@@ -62,3 +62,10 @@ CREATE TABLE /*_*/site_stats (
   ss_images BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(ss_row_id)
 );
+CREATE TABLE /*_*/user_properties (
+  up_user INTEGER UNSIGNED NOT NULL,
+  up_property BLOB NOT NULL,
+  up_value BLOB DEFAULT NULL,
+  PRIMARY KEY(up_user, up_property)
+);
+CREATE INDEX user_properties_property ON /*_*/user_properties (up_property);
