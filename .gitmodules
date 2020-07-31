@@ -1317,3 +1317,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Lingo
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/TwitterTag"]
+	path = extensions/TwitterTag
+	url = https://github.com/wikimedia/mediawiki-extensions-TwitterTag
+	branch = master
