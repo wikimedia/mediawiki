@@ -2962,7 +2962,7 @@ class Title implements LinkTarget, IDBAccessObject {
 					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 
-					$this->mCascadeRestriction |= $row->pr_cascade;
+					$this->mCascadeRestriction = $this->mCascadeRestriction || $row->pr_cascade;
 				}
 			}
 		}

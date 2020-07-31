@@ -1967,12 +1967,12 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function hasMasterChanges() {
-		$pending = 0;
+		$pending = false;
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$pending ) {
-			$pending |= $conn->writesOrCallbacksPending();
+			$pending = $pending || $conn->writesOrCallbacksPending();
 		} );
 
-		return (bool)$pending;
+		return $pending;
 	}
 
 	public function lastMasterChangeTimestamp() {
