@@ -2052,7 +2052,7 @@ class Language {
 			if ( $num >= $pow10 ) {
 				$s .= $table[$i][(int)floor( $num / $pow10 )];
 			}
-			$num = $num % $pow10;
+			$num %= $pow10;
 		}
 		return $s;
 	}
@@ -2115,7 +2115,7 @@ class Language {
 				}
 			}
 
-			$num = $num % $pow10;
+			$num %= $pow10;
 		}
 
 		$preTransformLength = count( $letters );
