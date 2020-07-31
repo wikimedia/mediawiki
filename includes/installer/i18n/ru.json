@@ -287,6 +287,7 @@
 	"config-install-user-grant-failed": "Ошибка предоставления прав пользователю «$1»: $2",
 	"config-install-user-missing": "Указанного пользователя «$1» не существует.",
 	"config-install-user-missing-create": "Указанного пользователя «$1» не существует.\nПожалуйста поставьте ниже отметку «Создать учётную запись», если вы хотите создать его.",
+	"config-install-logo-blank": "Введите действительный URL-адрес логотипа.",
 	"config-install-restore-services": "Восстановление сервисов MediaWiki",
 	"config-install-tables": "Создание таблиц, первый шаг",
 	"config-install-tables-exist": "'''Предупреждение''': таблицы MediaWiki, возможно, уже существуют.\nПропуск повторного создания.",

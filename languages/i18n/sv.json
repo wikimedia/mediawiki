@@ -3395,7 +3395,7 @@
 	"tag-mw-replace-description": "Redigeringar som tar bort mer än 90 % av innehållet",
 	"tag-mw-rollback": "Tillbakarullning",
 	"tag-mw-rollback-description": "Redigeringar som rullar tillbaka en tidigare redigering med tillbakarullningslänken",
-	"tag-mw-undo": "Ångra",
+	"tag-mw-undo": "Gör ogjord",
 	"tag-mw-undo-description": "Redigeringar som ångrar föregående redigeringar med ångralänken",
 	"tag-mw-manual-revert": "Manuell återställning",
 	"tag-mw-manual-revert-description": "Redigeringar som manuellt återställer sidan exakt till som den var tidigare",
