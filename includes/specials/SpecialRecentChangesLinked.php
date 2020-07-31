@@ -90,7 +90,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
-		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
+		$this->addWatchlistJoins( $dbr, $tables, $select, $join_conds, $conds );
 
 		// JOIN on page, used for 'last revision' filter highlight
 		$tables[] = 'page';
