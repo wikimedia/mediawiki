@@ -698,14 +698,6 @@ CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag(ct_rev_id,ct_tag_id);
 
 CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
-CREATE TABLE user_properties (
-  up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  up_property TEXT     NOT NULL,
-  up_value    TEXT
-);
-CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up_property);
-CREATE INDEX user_properties_property ON user_properties (up_property);
-
 CREATE TABLE l10n_cache (
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
