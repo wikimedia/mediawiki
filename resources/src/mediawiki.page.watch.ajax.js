@@ -247,8 +247,7 @@
 
 							mw.notify( watchlistPopup.$element, {
 								tag: 'watch-self',
-								autoHideSeconds: 'long',
-								autoHide: true
+								autoHideSeconds: 'short'
 							} );
 
 						} );
