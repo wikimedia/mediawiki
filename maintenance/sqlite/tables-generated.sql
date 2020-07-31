@@ -52,3 +52,13 @@ CREATE TABLE /*_*/slots (
 CREATE INDEX slot_revision_origin_role ON /*_*/slots (
   slot_revision_id, slot_origin, slot_role_id
 );
+CREATE TABLE /*_*/site_stats (
+  ss_row_id INTEGER UNSIGNED NOT NULL,
+  ss_total_edits BIGINT UNSIGNED DEFAULT NULL,
+  ss_good_articles BIGINT UNSIGNED DEFAULT NULL,
+  ss_total_pages BIGINT UNSIGNED DEFAULT NULL,
+  ss_users BIGINT UNSIGNED DEFAULT NULL,
+  ss_active_users BIGINT UNSIGNED DEFAULT NULL,
+  ss_images BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY(ss_row_id)
+);
