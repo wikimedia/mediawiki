@@ -22,6 +22,7 @@
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Use TablePager for prettified output. We have to pretend that we're
@@ -183,7 +184,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param string $offset
 	 * @param int $limit
 	 * @param bool $order
-	 * @return FakeResultWrapper
+	 * @return IResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
 		$asc = ( $order === self::QUERY_ASCENDING );
