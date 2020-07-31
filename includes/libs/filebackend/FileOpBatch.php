@@ -182,7 +182,7 @@ class FileOpBatch {
 				}
 			}
 			// Try to do all the operations concurrently...
-			$statuses = $statuses + $backend->executeOpHandlesInternal( $opHandles );
+			$statuses += $backend->executeOpHandlesInternal( $opHandles );
 			// Marshall and merge all the responses (blocking)...
 			foreach ( $performOpsBatch as $i => $fileOp ) {
 				if ( !isset( $status->success[$i] ) ) { // didn't already fail in precheck()

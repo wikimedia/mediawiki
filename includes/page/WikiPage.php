@@ -1919,7 +1919,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// checked for the EDIT_FORCE_BOT flag, which is currently in EditPage::attemptSave.
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( ( $flags & EDIT_MINOR ) && !$permissionManager->userHasRight( $user, 'minoredit' ) ) {
-			$flags = ( $flags & ~EDIT_MINOR );
+			$flags &= ~EDIT_MINOR;
 		}
 
 		$slotsUpdate = new RevisionSlotsUpdate();

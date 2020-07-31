@@ -473,7 +473,7 @@ class Xml {
 			$baseAttrs['class'] = 'mw-ui-button mw-ui-progressive';
 		}
 		// Any custom attributes will take precendence of anything in baseAttrs e.g. override the class
-		$attribs = $attribs + $baseAttrs;
+		$attribs += $baseAttrs;
 		return Html::element( 'input', $attribs );
 	}
 

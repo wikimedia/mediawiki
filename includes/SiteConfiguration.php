@@ -574,7 +574,7 @@ class SiteConfiguration {
 			if ( !is_array( $res ) ) {
 				throw new MWException( "Failed to unserialize configuration array." );
 			}
-			$this->cfgCache[$wiki] = $this->cfgCache[$wiki] + $res;
+			$this->cfgCache[$wiki] += $res;
 		}
 
 		return $multi ? $res : current( $res );
