@@ -61,3 +61,14 @@ CREATE TABLE /*_*/slots (
   ),
   PRIMARY KEY(slot_revision_id, slot_role_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/site_stats (
+  ss_row_id INT UNSIGNED NOT NULL,
+  ss_total_edits BIGINT UNSIGNED DEFAULT NULL,
+  ss_good_articles BIGINT UNSIGNED DEFAULT NULL,
+  ss_total_pages BIGINT UNSIGNED DEFAULT NULL,
+  ss_users BIGINT UNSIGNED DEFAULT NULL,
+  ss_active_users BIGINT UNSIGNED DEFAULT NULL,
+  ss_images BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY(ss_row_id)
+) /*$wgDBTableOptions*/;
