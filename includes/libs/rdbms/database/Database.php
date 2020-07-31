@@ -1256,9 +1256,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorTransaction = $this->trxLevel();
 
 		if ( $this->isWriteQuery( $sql, $flags ) ) {
-			// In theory, non-persistent writes are allowed in read-only mode, but due to things
-			// like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
-			$this->assertIsWritableMaster();
 			// Do not treat temporary table writes as "meaningful writes" since they are only
 			// visible to one session and are not permanent. Profile them as reads. Integration
 			// tests can override this behavior via $flags.
@@ -1268,9 +1265,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			foreach ( $tempTableChanges as list( $tmpType ) ) {
 				$isPermWrite = $isPermWrite || ( $tmpType !== self::$TEMP_NORMAL );
 			}
-			// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
-			if ( $isPermWrite && $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
-				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
+
+			// Permit temporary table writes on replica DB connections
+			// but require a writable master connection for any persistent writes.
+			if ( $isPermWrite ) {
+				$this->assertIsWritableMaster();
+
+				// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
+				if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
+					throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
+				}
 			}
 		} else {
 			// No permanent writes in this query
