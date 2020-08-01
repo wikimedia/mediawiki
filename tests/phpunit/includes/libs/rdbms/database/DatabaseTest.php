@@ -5,8 +5,10 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
@@ -772,5 +774,100 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			[ 'DELETE FROM baz', true ],
 			[ 'CREATE TABLE foobar', true ]
 		];
+	}
+
+	/**
+	 * @covers Database::executeQuery()
+	 * @covers Database::assertIsWritableMaster()
+	 */
+	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection(): void {
+		$this->expectException( DBReadOnlyRoleError::class );
+		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
+
+		$dbr = new DatabaseTestHelper(
+			__CLASS__ . '::' . $this->getName(),
+			[ 'topologyRole' => Database::ROLE_STREAMING_REPLICA ]
+		);
+
+		$dbr->query( "INSERT INTO test_table (a_column) VALUES ('foo');", __METHOD__ );
+	}
+
+	/**
+	 * @covers Database::executeQuery()
+	 * @covers Database::assertIsWritableMaster()
+	 */
+	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection(): void {
+		$dbr = new DatabaseTestHelper(
+			__CLASS__ . '::' . $this->getName(),
+			[ 'topologyRole' => Database::ROLE_STREAMING_REPLICA ]
+		);
+
+		$resCreate = $dbr->query(
+			"CREATE TEMPORARY TABLE temp_test_table (temp_column int);",
+			__METHOD__
+		);
+
+		$resModify = $dbr->query(
+			"INSERT INTO temp_test_table (temp_column) VALUES (42);",
+			__METHOD__
+		);
+
+		$this->assertInstanceOf( IResultWrapper::class, $resCreate );
+		$this->assertInstanceOf( IResultWrapper::class, $resModify );
+	}
+
+	/**
+	 * @covers Database::executeQuery()
+	 * @covers Database::assertIsWritableMaster()
+	 */
+	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection(): void {
+		$this->expectException( DBReadOnlyRoleError::class );
+		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
+
+		$dbr = new DatabaseTestHelper(
+			__CLASS__ . '::' . $this->getName(),
+			[ 'topologyRole' => Database::ROLE_STREAMING_REPLICA ]
+		);
+
+		$dbr->query(
+			"CREATE TEMPORARY TABLE temp_test_table (temp_column int);",
+			__METHOD__,
+			Database::QUERY_PSEUDO_PERMANENT
+		);
+	}
+
+	/**
+	 * @covers Database::executeQuery()
+	 * @covers Database::assertIsWritableMaster()
+	 */
+	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection(): void {
+		$dbr = new DatabaseTestHelper(
+			__CLASS__ . '::' . $this->getName(),
+			[ 'topologyRole' => Database::ROLE_STREAMING_MASTER ]
+		);
+
+		$res = $dbr->query( "INSERT INTO test_table (a_column) VALUES ('foo');", __METHOD__ );
+
+		$this->assertInstanceOf( IResultWrapper::class, $res );
+	}
+
+	/**
+	 * @covers Database::executeQuery()
+	 * @covers Database::assertIsWritableMaster()
+	 */
+	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet(): void {
+		$this->expectException( DBReadOnlyRoleError::class );
+		$this->expectDeprecationMessage( 'Cannot write; target role is DB_REPLICA' );
+
+		$dbr = new DatabaseTestHelper(
+			__CLASS__ . '::' . $this->getName(),
+			[ 'topologyRole' => Database::ROLE_STREAMING_MASTER ]
+		);
+
+		$dbr->query(
+			"INSERT INTO test_table (a_column) VALUES ('foo');",
+			__METHOD__,
+			Database::QUERY_REPLICA_ROLE
+		);
 	}
 }
