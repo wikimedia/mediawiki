@@ -37,7 +37,7 @@ use Monolog\Formatter\FormatterInterface;
  */
 class AvroFormatter implements FormatterInterface {
 	/**
-	 * @var Magic byte to encode schema revision id.
+	 * Magic byte to encode schema revision id.
 	 */
 	private const MAGIC = 0x0;
 	/**
