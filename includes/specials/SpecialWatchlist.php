@@ -110,11 +110,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		// Enable OOUI for the clock icon.
-		if ( $config->get( 'WatchlistExpiry' ) ) {
-			$output->enableOOUI();
-		}
-
 		parent::execute( $subpage );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {

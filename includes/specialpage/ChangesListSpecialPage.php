@@ -625,6 +625,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->considerActionsForDefaultSavedQuery( $subpage );
 
+		// Enable OOUI for the clock icon.
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$this->getOutput()->enableOOUI();
+		}
+
 		$opts = $this->getOptions();
 		try {
 			$rows = $this->getRows();
@@ -1763,7 +1768,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
 		// Watchlist expiry clock icon.
-		if ( $this->getName() === 'Watchlist' && $context->getConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( $context->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$widget = new IconWidget( [
 				'icon' => 'clock',
 				'classes' => [ 'mw-changesList-watchlistExpiry' ],
