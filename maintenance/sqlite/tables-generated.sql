@@ -69,3 +69,10 @@ CREATE TABLE /*_*/user_properties (
   PRIMARY KEY(up_user, up_property)
 );
 CREATE INDEX user_properties_property ON /*_*/user_properties (up_property);
+CREATE TABLE /*_*/log_search (
+  ls_field BLOB NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+);
+CREATE INDEX ls_log_id ON /*_*/log_search (ls_log_id);

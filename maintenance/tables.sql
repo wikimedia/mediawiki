@@ -1391,18 +1391,6 @@ CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 CREATE INDEX /*i*/log_type_action ON /*_*/logging (log_type, log_action, log_timestamp);
 
 
-CREATE TABLE /*_*/log_search (
-  -- The type of ID (rev ID, log ID, rev timestamp, username)
-  ls_field varbinary(32) NOT NULL,
-  -- The value of the ID
-  ls_value varchar(255) NOT NULL,
-  -- Key to log_id
-  ls_log_id int unsigned NOT NULL default 0,
-  PRIMARY KEY (ls_field,ls_value,ls_log_id)
-) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
-
-
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*_*/job (
   job_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
