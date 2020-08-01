@@ -88,3 +88,19 @@ CREATE TABLE /*_*/log_search (
   INDEX ls_log_id (ls_log_id),
   PRIMARY KEY(ls_field, ls_value, ls_log_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/change_tag (
+  ct_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  ct_rc_id INT UNSIGNED DEFAULT NULL,
+  ct_log_id INT UNSIGNED DEFAULT NULL,
+  ct_rev_id INT UNSIGNED DEFAULT NULL,
+  ct_params BLOB DEFAULT NULL,
+  ct_tag_id INT UNSIGNED NOT NULL,
+  UNIQUE INDEX change_tag_rc_tag_id (ct_rc_id, ct_tag_id),
+  UNIQUE INDEX change_tag_log_tag_id (ct_log_id, ct_tag_id),
+  UNIQUE INDEX change_tag_rev_tag_id (ct_rev_id, ct_tag_id),
+  INDEX change_tag_tag_id_id (
+    ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
+  ),
+  PRIMARY KEY(ct_id)
+) /*$wgDBTableOptions*/;

@@ -1540,29 +1540,6 @@ CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_pag
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
 
--- A table to track tags for revisions, logs and recent changes.
-CREATE TABLE /*_*/change_tag (
-  ct_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  -- RCID for the change
-  ct_rc_id int NULL,
-  -- LOGID for the change
-  ct_log_id int unsigned NULL,
-  -- REVID for the change
-  ct_rev_id int unsigned NULL,
-  -- Parameters for the tag; used by some extensions
-  ct_params blob NULL,
-  -- Foreign key to change_tag_def row
-  ct_tag_id int unsigned NOT NULL
-) /*$wgDBTableOptions*/;
-
-
-CREATE UNIQUE INDEX /*i*/change_tag_rc_tag_id ON /*_*/change_tag (ct_rc_id,ct_tag_id);
-CREATE UNIQUE INDEX /*i*/change_tag_log_tag_id ON /*_*/change_tag (ct_log_id,ct_tag_id);
-CREATE UNIQUE INDEX /*i*/change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id,ct_tag_id);
--- Covering index, so we can pull all the info only out of the index.
-CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
-
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
   -- Language code
