@@ -102,6 +102,8 @@ because of Phabricator reports.
 * The LinkBegin and LinkEnd hooks, deprecated in 1.28, have been removed. You
   can instead use the HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   hooks, respectively.
+* Skin::getDynamicStylesheetQuery() deprecated in 1.32, has been removed. You
+  should use action=raw&ctype=text/css directly.
 * …
 
 === Deprecations in 1.36 ===

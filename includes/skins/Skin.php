@@ -420,20 +420,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the query to generate a dynamic stylesheet
-	 *
-	 * @deprecated since 1.32 Use action=raw&ctype=text/css directly.
-	 * @return array
-	 */
-	public static function getDynamicStylesheetQuery() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return [
-				'action' => 'raw',
-				'ctype' => 'text/css',
-			];
-	}
-
-	/**
 	 * Hook point for adding style modules to OutputPage.
 	 *
 	 * @deprecated since 1.32 Use getDefaultModules() instead.
