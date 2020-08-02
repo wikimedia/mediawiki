@@ -67,6 +67,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.3 to 1.5.4.
+* doctrine/sql-formatter was upgraded from 1.1.0 to 1.1.1.
 * …
 
 ==== Removed external libraries ====
