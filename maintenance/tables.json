@@ -60,7 +60,7 @@
 				"name": "actor_user",
 				"comment": "Key to user.user_id, or NULL for anonymous edits",
 				"type": "integer",
-				"options": { "unsigned": true, "notNull": false }
+				"options": { "unsigned": true, "notnull": false }
 			},
 			{
 				"name": "actor_name",
