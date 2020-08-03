@@ -1321,3 +1321,7 @@
 	path = extensions/TwitterTag
 	url = https://github.com/wikimedia/mediawiki-extensions-TwitterTag
 	branch = master
+[submodule "extensions/MobileTabsPlugin"]
+	path = extensions/MobileTabsPlugin
+	url = https://github.com/fuerthwiki/MobileTabsPlugin
+	branch = master
