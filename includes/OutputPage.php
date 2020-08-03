@@ -3112,6 +3112,10 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] =
 			'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
+		if ( $sk->isResponsive() ) {
+			$bodyClasses[] = 'skin--responsive';
+		}
+
 		$bodyAttrs = [];
 		// While the implode() is not strictly needed, it's used for backwards compatibility
 		// (this used to be built as a string and hooks likely still expect that).
