@@ -674,6 +674,17 @@ interface IDatabase {
 	 *
 	 * Use an empty array, string, or IDatabase::ALL_ROWS to select all rows.
 	 *
+	 * You *can* put simple join conditions here, but this is strongly discouraged.
+	 * Instead of
+	 *
+	 *     // $conds...
+	 *     'rev_actor = actor_id',
+	 *
+	 * use (see below for $join_conds):
+	 *
+	 *     // $join_conds...
+	 *     'actor' => [ 'JOIN', 'rev_actor = actor_id' ],
+	 *
 	 * @param string $fname Caller function name
 	 *
 	 * @param string|array $options Query options
@@ -740,9 +751,9 @@ interface IDatabase {
 	 *
 	 * @param string|array $join_conds Join conditions
 	 *
-	 * Optional associative array of table-specific join conditions. In the
-	 * most common case, this is unnecessary, since the join condition can be
-	 * in $conds. However, it is useful for doing a LEFT JOIN.
+	 * Optional associative array of table-specific join conditions.
+	 * Simple conditions can also be specified in the regular $conds,
+	 * but this is strongly discouraged in favor of the more explicit syntax here.
 	 *
 	 * The key of the array contains the table name or alias. The value is an
 	 * array with two elements, numbered 0 and 1. The first gives the type of
