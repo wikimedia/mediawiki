@@ -376,7 +376,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 		parent::setMockTime( $time );
 		foreach ( $this->caches as $cache ) {
 			$cache->setMockTime( $time );
-			$cache->setMockTime( $time );
 		}
 	}
 }
