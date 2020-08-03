@@ -1679,7 +1679,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "编辑您的监视页面列表",
 	"rcfilters-watchlist-showupdated": "自更改发生以来，对您尚未访问的页面做出的更改以<strong>粗体</strong>显示，并带有实心圆形标记。",
 	"rcfilters-preference-label": "使用非JavaScript接口",
-	"rcfilters-preference-help": "加载不带过滤搜索或者高亮功能的近期更改",
+	"rcfilters-preference-help": "加载不带过滤搜索或者高亮功能的最近更改",
 	"rcfilters-watchlist-preference-label": "使用非JavaScript接口",
 	"rcfilters-watchlist-preference-help": "加载不带过滤搜索或者高亮功能的监视清单",
 	"rcfilters-filter-showlinkedfrom-label": "显示链接自该页面的页面上的更改",

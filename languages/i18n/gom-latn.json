@@ -940,6 +940,7 @@
 	"movepage-page-unmoved": "$1 hea panak $2 hanga halounk zaunk na.",
 	"movepage-max-pages": "Choddant chodd $1 {{PLURAL:$1|pan|panam}} halovpant aileant ani odik apoap halovpant ienvchim nant.",
 	"movelogpage": "Pan halovneancho sotr",
+	"movesubpage": "{{PLURAL:$1|Up-pan|Up-panam}}",
 	"movereason": "Karonn:",
 	"revertmove": "porti",
 	"export": "Panank niryat kor",

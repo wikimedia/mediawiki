@@ -280,6 +280,7 @@
 	"config-install-user-grant-failed": "A concessão de permissão para o usuário \"$1\" falhou: $2",
 	"config-install-user-missing": "O usuário especificado, \"$1\", não existe.",
 	"config-install-user-missing-create": "O usuário especificado \"$1\" não existe.\nPor favor, clique na opção de \"criar conta\" abaixo se você deseja criá-lo.",
+	"config-install-logo-blank": "Digite um URL de logotipo válido.",
 	"config-install-restore-services": "Restaurando serviços do MediaWiki",
 	"config-install-tables": "Criando tabelas, etapa um",
 	"config-install-tables-exist": "<strong>Aviso:</strong> As tabelas do MediaWiki parecem já existir.\nA criação das tabelas será pulada.",

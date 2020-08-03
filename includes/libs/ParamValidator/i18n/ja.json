@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kkairri"
+			"Kkairri",
+			"Omotecho"
 		]
 	},
+	"paramvalidator-badbool": "ブール変数\"$1\"に対する値\"$2\"が正しくありません。$3を真に、もしくは$5を偽にしてください。",
 	"paramvalidator-help-multi-max": "値の最大値は {{PLURAL:$1|$1}}（緩い制限が適用されるクライアントでは{{PLURAL:$2|$2}}）です。",
 	"paramvalidator-help-multi-max-simple": "値の最大値は {{PLURAL:$1|$1}} です。",
 	"paramvalidator-help-multi-all": "すべての値を指定するには、<kbd>$1</kbd>を用いてください。",

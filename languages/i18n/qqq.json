@@ -746,7 +746,7 @@
 	"pt-login": "Shown to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).\n{{Identical|Log in}}",
 	"pt-login-button": "Shown as the caption of the button at [[Special:UserLogin]].\n{{Identical|Log in}}",
 	"pt-login-continue-button": "Shown as the caption of the button at [[Special:UserLogin]] in second and later steps of a multipage login.",
-	"pt-createaccount": "Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.\n{{Identical|Create account}}",
+	"pt-createaccount": "Used on the top of the page for logged out users, where it appears next to {{msg-mw|pt-login}}, so consider making them similar.\n{{Identical|Create account}}",
 	"pt-userlogout": "{{Doc-actionlink}}\n{{Identical|Log out}}",
 	"pear-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message which is returned by PEAR mailer.",
 	"php-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message",
