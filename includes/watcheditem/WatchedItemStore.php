@@ -745,25 +745,35 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
-
+		$vars = [ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ];
 		$dbOptions = [];
+		$db = $this->getConnectionRef( $options['forWrite'] ? DB_MASTER : DB_REPLICA );
 		if ( array_key_exists( 'sort', $options ) ) {
 			Assert::parameter(
 				( in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ) ),
 				'$options[\'sort\']',
 				'must be SORT_ASC or SORT_DESC'
 			);
-			$dbOptions['ORDER BY'] = [
-				"wl_namespace {$options['sort']}",
-				"wl_title {$options['sort']}"
-			];
+			$dbOptions['ORDER BY'][] = "wl_namespace {$options['sort']}";
+			if ( $this->expiryEnabled
+				&& array_key_exists( 'sortByExpiry', $options )
+				&& $options['sortByExpiry']
+			) {
+				// Add `wl_has_expiry` column to allow sorting by watched titles that have an expiration date first.
+				$vars['wl_has_expiry'] = $db->conditional( 'we_expiry IS NULL', 0, 1 );
+				// Display temporarily watched titles first.
+				// Order by expiration date, with the titles that will expire soonest at the top.
+				$dbOptions['ORDER BY'][] = "wl_has_expiry DESC";
+				$dbOptions['ORDER BY'][] = "we_expiry ASC";
+			}
+
+			$dbOptions['ORDER BY'][] = "wl_title {$options['sort']}";
 		}
-		$db = $this->getConnectionRef( $options['forWrite'] ? DB_MASTER : DB_REPLICA );
 
 		$res = $this->fetchWatchedItems(
 			$db,
 			$user,
-			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			$vars,
 			$dbOptions
 		);
 
