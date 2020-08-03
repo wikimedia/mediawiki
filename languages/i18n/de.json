@@ -1179,7 +1179,7 @@
 	"prefs-help-signature": "Beiträge auf Diskussionsseiten sollten mit „<nowiki>~~~~</nowiki>“ signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.",
 	"badsig": "Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.",
 	"badsightml": "Deine Unterschrift enthält ungültige oder veraltete HTML-Syntax:",
-	"badsiglinks": "Deine Unterschrift muss einen Link zu deiner Benutzerseite, Diskussionsseite oder deinen Beiträgen in diesem Wiki enthalten. Bitte füge ihn hinzu, zum Beispiel: <code>$1<code>.",
+	"badsiglinks": "Deine Unterschrift muss einen Link zu deiner Benutzerseite, Diskussionsseite oder deinen Beiträgen in diesem Wiki enthalten. Bitte füge ihn hinzu, zum Beispiel: <code>$1</code>.",
 	"badsigsubst": "Deine Unterschrift enthält verschachtelte Ersetzungen (z.B. <code>subst:</code> oder <code><nowiki>~~~~~~</nowiki></code>).",
 	"badsiglength": "Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen}} lang sein.",
 	"linter-pager-bogus-image-options-details": "Fehlerhafte Dateioption",
