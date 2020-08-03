@@ -1286,7 +1286,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$hcu->purgeTitleUrls( $this->mTitle, $hcu::PURGE_PRESEND );
 
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI ) {
 			MediaWikiServices::getInstance()->getMessageCache()
 				->updateMessageOverride( $this->mTitle, $this->getContent() );
 		}
@@ -1455,7 +1455,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$success = true;
 		}
 
-		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
+		if ( $this->getTitle()->getNamespace() === NS_FILE ) {
 			MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 				->invalidateImageRedirect( $this->getTitle() );
 		}
@@ -3159,7 +3159,7 @@ class WikiPage implements Page, IDBAccessObject {
 		LinksUpdate::queueRecursiveJobsForTable(
 			$this->mTitle, 'templatelinks', 'delete-page', $causeAgent );
 		// Reparse any pages including this image
-		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+		if ( $this->mTitle->getNamespace() === NS_FILE ) {
 			LinksUpdate::queueRecursiveJobsForTable(
 				$this->mTitle, 'imagelinks', 'delete-page', $causeAgent );
 		}
@@ -3576,7 +3576,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 		JobQueueGroup::singleton()->lazyPush( $job );
 
-		if ( $title->getNamespace() == NS_CATEGORY ) {
+		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
 			// the category table row if necessary. Checking a replica DB is ok
 			// here, in the worst case it'll run an unnecessary recount job on
@@ -3607,12 +3607,12 @@ class WikiPage implements Page, IDBAccessObject {
 		InfoAction::invalidateCache( $title );
 
 		// Messages
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
 			$services->getMessageCache()->updateMessageOverride( $title, null );
 		}
 
 		// Images
-		if ( $title->getNamespace() == NS_FILE ) {
+		if ( $title->getNamespace() === NS_FILE ) {
 			$job = HTMLCacheUpdateJob::newForBacklinks(
 				$title,
 				'imagelinks',
@@ -3622,7 +3622,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// User talk pages
-		if ( $title->getNamespace() == NS_USER_TALK ) {
+		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
 			if ( $user ) {
 				MediaWikiServices::getInstance()

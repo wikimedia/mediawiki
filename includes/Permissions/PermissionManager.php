@@ -544,7 +544,7 @@ class PermissionManager {
 			if ( in_array( $name, $whiteListRead, true )
 				 || in_array( $dbName, $whiteListRead, true ) ) {
 				$whitelisted = true;
-			} elseif ( $title->getNamespace() == NS_MAIN ) {
+			} elseif ( $title->getNamespace() === NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $whiteListRead ) ) {
@@ -616,7 +616,7 @@ class PermissionManager {
 	 * @return bool
 	 */
 	private function isSameSpecialPage( $name, LinkTarget $page ) {
-		if ( $page->getNamespace() == NS_SPECIAL ) {
+		if ( $page->getNamespace() === NS_SPECIAL ) {
 			list( $thisName, /* $subpage */ ) =
 				$this->specialPageFactory->resolveAlias( $page->getDBkey() );
 			if ( $name == $thisName ) {
@@ -770,19 +770,19 @@ class PermissionManager {
 			}
 		} elseif ( $action == 'move' ) {
 			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
-				 && $title->getNamespace() == NS_USER && !$isSubPage ) {
+				 && $title->getNamespace() === NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-user-page' ];
 			}
 
 			// Check if user is allowed to move files if it's a file
-			if ( $title->getNamespace() == NS_FILE &&
+			if ( $title->getNamespace() === NS_FILE &&
 					!$this->userHasRight( $user, 'movefile' ) ) {
 				$errors[] = [ 'movenotallowedfile' ];
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
-			if ( $title->getNamespace() == NS_CATEGORY &&
+			if ( $title->getNamespace() === NS_CATEGORY &&
 					!$this->userHasRight( $user, 'move-categorypages' ) ) {
 				$errors[] = [ 'cant-move-category-page' ];
 			}
@@ -803,13 +803,13 @@ class PermissionManager {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
 			} elseif ( !$this->userHasRight( $user, 'move-rootuserpages' )
-				&& $title->getNamespace() == NS_USER
+				&& $title->getNamespace() === NS_USER
 				&& !$isSubPage
 			) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-user-page' ];
 			} elseif ( !$this->userHasRight( $user, 'move-categorypages' )
-				&& $title->getNamespace() == NS_CATEGORY
+				&& $title->getNamespace() === NS_CATEGORY
 			) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
@@ -1060,15 +1060,15 @@ class PermissionManager {
 
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
-		if ( $title->getNamespace() == NS_SPECIAL && $action !== 'createaccount' ) {
+		if ( $title->getNamespace() === NS_SPECIAL && $action !== 'createaccount' ) {
 			$errors[] = [ 'ns-specialprotected' ];
 		}
 
 		# Check $wgNamespaceProtection for restricted namespaces
 		if ( $this->isNamespaceProtected( $title->getNamespace(), $user ) ) {
-			$ns = $title->getNamespace() == NS_MAIN ?
+			$ns = $title->getNamespace() === NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $title->getNsText();
-			$errors[] = $title->getNamespace() == NS_MEDIAWIKI ?
+			$errors[] = $title->getNamespace() === NS_MEDIAWIKI ?
 				[ 'protectedinterface', $action ] : [ 'namespaceprotected', $ns, $action ];
 		}
 

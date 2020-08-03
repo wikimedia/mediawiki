@@ -105,7 +105,7 @@ class SearchNearMatcher {
 			}
 
 			# Try files if searching in the Media: namespace
-			if ( $title->getNamespace() == NS_MEDIA ) {
+			if ( $title->getNamespace() === NS_MEDIA ) {
 				$title = Title::makeTitle( NS_FILE, $title->getText() );
 			}
 
@@ -158,21 +158,21 @@ class SearchNearMatcher {
 
 		# Entering an IP address goes to the contributions page
 		if ( $this->config->get( 'EnableSearchContributorsByIP' ) ) {
-			if ( ( $title->getNamespace() == NS_USER && User::isIP( $title->getText() ) )
+			if ( ( $title->getNamespace() === NS_USER && User::isIP( $title->getText() ) )
 				|| User::isIP( trim( $searchterm ) ) ) {
 				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
 			}
 		}
 
 		# Entering a user goes to the user page whether it's there or not
-		if ( $title->getNamespace() == NS_USER ) {
+		if ( $title->getNamespace() === NS_USER ) {
 			return $title;
 		}
 
 		# Go to images that exist even if there's no local page.
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
-		if ( $title->getNamespace() == NS_FILE ) {
+		if ( $title->getNamespace() === NS_FILE ) {
 			$image = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 			if ( $image ) {
 				return $title;
@@ -181,7 +181,7 @@ class SearchNearMatcher {
 
 		# MediaWiki namespace? Page may be "implied" if not customized.
 		# Just return it, with caps forced as the message system likes it.
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
 			return Title::makeTitle( NS_MEDIAWIKI, $this->language->ucfirst( $title->getText() ) );
 		}
 

@@ -1038,7 +1038,7 @@ class EditPage implements IEditObject {
 			}
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
+			if ( ( $this->mTitle->mNamespace === NS_USER || $this->mTitle->mNamespace === NS_USER_TALK )
 				&& $this->mTitle->getText() == $user->getName()
 			) {
 				$this->allowBlankSummary = true;
@@ -1242,7 +1242,7 @@ class EditPage implements IEditObject {
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
 		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $this->section != 'new' ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section != 'new' ) {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
@@ -2057,7 +2057,7 @@ ERROR;
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_FILE &&
+		if ( $this->mTitle->getNamespace() === NS_FILE &&
 			$textbox_content->isRedirect() &&
 			!$this->permManager->userHasRight( $user, 'upload' )
 		) {
@@ -2699,7 +2699,7 @@ ERROR;
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
 		} else {
 			$msg = $contextTitle->exists()
-				|| ( $contextTitle->getNamespace() == NS_MEDIAWIKI
+				|| ( $contextTitle->getNamespace() === NS_MEDIAWIKI
 					&& $contextTitle->getDefaultMessageText() !== false
 				)
 				? 'editing'
@@ -2745,7 +2745,7 @@ ERROR;
 		$out = $this->context->getOutput();
 		$namespace = $this->mTitle->getNamespace();
 
-		if ( $namespace == NS_MEDIAWIKI ) {
+		if ( $namespace === NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$out->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
 			# If this is a default message (but not css, json, or js),
@@ -2761,7 +2761,7 @@ ERROR;
 						'translateinterface' );
 				}
 			}
-		} elseif ( $namespace == NS_FILE ) {
+		} elseif ( $namespace === NS_FILE ) {
 			# Show a hint to shared repo
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->mTitle );
 			if ( $file && !$file->isLocal() ) {
@@ -2783,7 +2783,7 @@ ERROR;
 
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist
 		# Show log extract when the user is currently blocked
-		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
+		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
@@ -3705,7 +3705,7 @@ ERROR;
 	public function showDiff() {
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && !$this->mTitle->exists() ) {
 			$oldtext = $this->mTitle->getDefaultMessageText();
 			if ( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';

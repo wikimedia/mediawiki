@@ -293,7 +293,7 @@ class WikiImporter {
 				!MediaWikiServices::getInstance()->getNamespaceInfo()->
 				hasSubpages( $title->getNamespace() )
 			) {
-				$displayNSText = $title->getNamespace() == NS_MAIN
+				$displayNSText = $title->getNamespace() === NS_MAIN
 					? wfMessage( 'blanknamespace' )->text()
 					: MediaWikiServices::getInstance()->getContentLanguage()->
 						getNsText( $title->getNamespace() );

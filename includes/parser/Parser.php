@@ -2532,7 +2532,7 @@ class Parser {
 			$noforce = ( substr( $origLink, 0, 1 ) !== ':' );
 
 			if ( $might_be_img ) { # if this is actually an invalid link
-				if ( $ns == NS_FILE && $noforce ) { # but might be an image
+				if ( $ns === NS_FILE && $noforce ) { # but might be an image
 					$found = false;
 					while ( true ) {
 						# look at the next 'line' to see if we can close it there
@@ -2614,7 +2614,7 @@ class Parser {
 					continue;
 				}
 
-				if ( $ns == NS_FILE ) {
+				if ( $ns === NS_FILE ) {
 					if ( !$this->badFileLookup->isBadFile( $nt->getDBkey(), $this->getTitle() ) ) {
 						if ( $wasblank ) {
 							# if no parameters were passed, $text
@@ -2634,7 +2634,7 @@ class Parser {
 							$this->makeImage( $nt, $text, $holders ) ) . $trail;
 						continue;
 					}
-				} elseif ( $ns == NS_CATEGORY ) {
+				} elseif ( $ns === NS_CATEGORY ) {
 					/**
 					 * Strip the whitespace Category links produce, see T2087
 					 */
@@ -2657,14 +2657,14 @@ class Parser {
 			# Self-link checking. For some languages, variants of the title are checked in
 			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
 			# for linking to a different variant.
-			if ( $ns != NS_SPECIAL && $nt->equals( $this->getTitle() ) && !$nt->hasFragment() ) {
+			if ( $ns !== NS_SPECIAL && $nt->equals( $this->getTitle() ) && !$nt->hasFragment() ) {
 				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
 
 			# NS_MEDIA is a pseudo-namespace for linking directly to a file
 			# @todo FIXME: Should do batch file existence checks, see comment below
-			if ( $ns == NS_MEDIA ) {
+			if ( $ns === NS_MEDIA ) {
 				# Give extensions a chance to select the file revision for us
 				$options = [];
 				$descQuery = false;
@@ -3663,7 +3663,7 @@ class Parser {
 					$text = false;
 					break;
 				}
-			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
+			} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
 				$message = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->
 					lcfirst( $title->getText() ) )->inContentLanguage();
 				if ( !$message->exists() ) {
@@ -4029,7 +4029,7 @@ class Parser {
 			$this->mShowToc = false;
 		}
 		if ( isset( $this->mDoubleUnderscores['hiddencat'] )
-			&& $this->getTitle()->getNamespace() == NS_CATEGORY
+			&& $this->getTitle()->getNamespace() === NS_CATEGORY
 		) {
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}

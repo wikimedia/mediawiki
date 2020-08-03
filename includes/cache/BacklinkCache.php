@@ -539,7 +539,7 @@ class BacklinkCache {
 			__METHOD__,
 			[ 'DISTINCT' ]
 		);
-		if ( $this->title->getNamespace() == NS_FILE ) {
+		if ( $this->title->getNamespace() === NS_FILE ) {
 			$resSets[] = $dbr->select(
 				[ 'imagelinks', 'page_restrictions', 'page' ],
 				[ 'page_namespace', 'page_title', 'page_id' ],

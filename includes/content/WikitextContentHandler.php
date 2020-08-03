@@ -55,7 +55,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$optionalColon = '';
 
 		$services = MediaWikiServices::getInstance();
-		if ( $destination->getNamespace() == NS_CATEGORY ) {
+		if ( $destination->getNamespace() === NS_CATEGORY ) {
 			$optionalColon = ':';
 		} else {
 			$iw = $destination->getInterwiki();
@@ -162,7 +162,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['defaultsort'] = $structure->getDefaultSort();
 
 		// Until we have full first-class content handler for files, we invoke it explicitly here
-		if ( $page->getTitle()->getNamespace() == NS_FILE ) {
+		if ( $page->getTitle()->getNamespace() === NS_FILE ) {
 			$fields = array_merge( $fields,
 					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine ) );
 		}

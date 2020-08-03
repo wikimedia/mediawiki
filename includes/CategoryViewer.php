@@ -378,10 +378,10 @@ class CategoryViewer extends ContextSource {
 					$this->prevPage[$type] = $humanSortkey;
 				}
 
-				if ( $title->getNamespace() == NS_CATEGORY ) {
+				if ( $title->getNamespace() === NS_CATEGORY ) {
 					$cat = Category::newFromRow( $row, $title );
 					$this->addSubcategoryObject( $cat, $humanSortkey, $row->page_len );
-				} elseif ( $title->getNamespace() == NS_FILE ) {
+				} elseif ( $title->getNamespace() === NS_FILE ) {
 					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
 					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );

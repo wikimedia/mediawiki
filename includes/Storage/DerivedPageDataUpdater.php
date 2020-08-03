@@ -1543,7 +1543,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
 		if ( $this->options['changed']
-			&& $title->getNamespace() == NS_USER_TALK
+			&& $title->getNamespace() === NS_USER_TALK
 			&& $shortTitle != $legacyUser->getTitleKey()
 			&& !( $this->revision->isMinor() && MediaWikiServices::getInstance()
 					->getPermissionManager()
@@ -1572,7 +1572,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			}
 		}
 
-		if ( $title->getNamespace() == NS_MEDIAWIKI
+		if ( $title->getNamespace() === NS_MEDIAWIKI
 			&& $this->getRevisionSlotsUpdate()->isModifiedSlot( SlotRecord::MAIN )
 		) {
 			$mainContent = $this->isContentDeleted() ? null : $this->getRawContent( SlotRecord::MAIN );

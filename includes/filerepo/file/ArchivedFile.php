@@ -180,7 +180,7 @@ class ArchivedFile {
 			throw new MWException( "No specific information for retrieving archived file" );
 		}
 
-		if ( !$this->title || $this->title->getNamespace() == NS_FILE ) {
+		if ( !$this->title || $this->title->getNamespace() === NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_REPLICA );
 			$fileQuery = self::getQueryInfo();

@@ -104,7 +104,7 @@ class ImagePage extends Article {
 			$this->getContext()->getUser()->getOption( 'diffonly' )
 		);
 
-		if ( $this->getTitle()->getNamespace() != NS_FILE || ( $diff !== null && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $diffOnly ) ) {
 			parent::view();
 			return;
 		}
@@ -112,7 +112,7 @@ class ImagePage extends Article {
 		$this->loadFile();
 
 		if (
-			$this->getTitle()->getNamespace() == NS_FILE
+			$this->getTitle()->getNamespace() === NS_FILE
 			&& $this->getFile()->getRedirected()
 		) {
 			if (

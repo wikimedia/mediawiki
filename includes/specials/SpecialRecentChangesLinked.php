@@ -129,7 +129,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			return false;
 		}
 
-		if ( $ns == NS_CATEGORY && !$showlinkedto ) {
+		if ( $ns === NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
 			// XXX: should try to make this less kludgy
 			$link_tables = [ 'categorylinks' ];
@@ -138,7 +138,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			// for now, always join on these tables; really should be configurable as in whatlinkshere
 			$link_tables = [ 'pagelinks', 'templatelinks' ];
 			// imagelinks only contains links to pages in NS_FILE
-			if ( $ns == NS_FILE || !$showlinkedto ) {
+			if ( $ns === NS_FILE || !$showlinkedto ) {
 				$link_tables[] = 'imagelinks';
 			}
 		}

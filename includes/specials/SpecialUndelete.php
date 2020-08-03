@@ -1256,7 +1256,7 @@ class SpecialUndelete extends SpecialPage {
 
 	private function undelete() {
 		if ( $this->getConfig()->get( 'UploadMaintenance' )
-			&& $this->mTargetObj->getNamespace() == NS_FILE
+			&& $this->mTargetObj->getNamespace() === NS_FILE
 		) {
 			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );
 		}

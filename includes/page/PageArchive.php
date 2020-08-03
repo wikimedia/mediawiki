@@ -222,7 +222,7 @@ class PageArchive {
 	 * @todo Does this belong in Image for fuller encapsulation?
 	 */
 	public function listFiles() {
-		if ( $this->title->getNamespace() != NS_FILE ) {
+		if ( $this->title->getNamespace() !== NS_FILE ) {
 			return null;
 		}
 
@@ -521,7 +521,7 @@ class PageArchive {
 		$restoreText = $restoreAll || !empty( $timestamps );
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 
-		if ( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
+		if ( $restoreFiles && $this->title->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
 			$img = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 				->newFile( $this->title );
@@ -886,7 +886,7 @@ class PageArchive {
 			$this->getHookRunner()->onArticleUndelete(
 				$this->title, $created, $comment, $oldPageId, $restoredPages );
 
-			if ( $this->title->getNamespace() == NS_FILE ) {
+			if ( $this->title->getNamespace() === NS_FILE ) {
 				$job = HTMLCacheUpdateJob::newForBacklinks(
 					$this->title,
 					'imagelinks',

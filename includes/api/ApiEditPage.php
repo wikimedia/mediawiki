@@ -152,7 +152,7 @@ class ApiEditPage extends ApiBase {
 			$content = $pageObj->getContent();
 
 			if ( !$content ) {
-				if ( $titleObj->getNamespace() == NS_MEDIAWIKI ) {
+				if ( $titleObj->getNamespace() === NS_MEDIAWIKI ) {
 					# If this is a MediaWiki:x message, then load the messages
 					# and return the message value for x.
 					$text = $titleObj->getDefaultMessageText();

@@ -88,7 +88,7 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
 			// in wikitext links to tell Parser to make a direct file link
-			if ( $ret !== null && $ret->getNamespace() == NS_MEDIA ) {
+			if ( $ret !== null && $ret->getNamespace() === NS_MEDIA ) {
 				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
 			}
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
