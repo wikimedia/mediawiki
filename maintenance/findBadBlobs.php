@@ -428,7 +428,7 @@ class FindBadBlobs extends Maintenance {
 			$this->handleStatus( $archiveResult );
 
 			// don't use array_merge, since it will re-index
-			$revisions = $revisions + array_filter( $archiveResult->value );
+			$revisions += array_filter( $archiveResult->value );
 		}
 
 		return $revisions;

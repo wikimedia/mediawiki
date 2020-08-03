@@ -403,7 +403,7 @@ TXT;
 			}
 		}
 
-		$level = $level + 1;
+		$level++;
 		$text .= "{$pad}#{$level} {main}";
 
 		return $text;

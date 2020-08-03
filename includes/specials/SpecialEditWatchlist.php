@@ -63,9 +63,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private $watchedItemStore;
 
+	/** @var bool Watchlist Expiry flag */
+	private $isWatchlistExpiryEnabled;
+
 	public function __construct( WatchedItemStoreInterface $watchedItemStore ) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
 		$this->watchedItemStore = $watchedItemStore;
+		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
 	/**
@@ -415,9 +419,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getWatchlistInfo() {
 		$titles = [];
 		$services = MediaWikiServices::getInstance();
+		$options = [ 'sort' => WatchedItemStore::SORT_ASC ];
+
+		if ( $this->isWatchlistExpiryEnabled ) {
+			$options[ 'sortByExpiry'] = true;
+		}
 
 		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
-			$this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ]
+			$this->getUser(), $options
 		);
 
 		$lb = new LinkBatch();
@@ -427,7 +436,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
 			$lb->add( $namespace, $dbKey );
 			if ( !$services->getNamespaceInfo()->isTalk( $namespace ) ) {
-				$titles[$namespace][$dbKey] = 1;
+				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDays();
 			}
 		}
 
@@ -610,12 +619,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = [];
-
-			foreach ( array_keys( $pages ) as $dbkey ) {
+			foreach ( $pages as $dbkey => $expiryDays ) {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
-					$text = $this->buildRemoveLine( $title );
+					$text = $this->buildRemoveLine( $title, $expiryDays );
 					$options[$text] = $title->getPrefixedText();
 					$count++;
 				}
@@ -672,9 +680,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
 	 * @param Title $title
+	 * @param int|null $expiryDays Number of days a title has remaining in a user's watchlist. If int is passed
+	 *                 then include a message that states the time remaining in a watchlist.
 	 * @return string
 	 */
-	private function buildRemoveLine( $title ) {
+	private function buildRemoveLine( $title, ?int $expiryDays = null ): string {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
@@ -708,8 +718,18 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		}
 
+		$watchlistExpiringMessage = '';
+		if ( $this->isWatchlistExpiryEnabled && $expiryDays !== null ) {
+			$watchlistExpiringMessage = Html::element( 'span', [ 'class' => 'watchlistexpiry-msg' ],
+					$expiryDays > 0 ?
+					$this->msg( 'watchlist-expiring-msg', $expiryDays )->text() :
+					$this->msg( 'watchlist-expiring-hours-msg' )->text()
+			);
+		}
+
 		return $link . ' ' .
-			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped();
+			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped() .
+			$watchlistExpiringMessage;
 	}
 
 	/**

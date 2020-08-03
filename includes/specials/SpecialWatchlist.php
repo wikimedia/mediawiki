@@ -110,11 +110,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		// Enable OOUI for the clock icon.
-		if ( $config->get( 'WatchlistExpiry' ) ) {
-			$output->enableOOUI();
-		}
-
 		parent::execute( $subpage );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
@@ -347,7 +342,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$allBooleansFalse[ $filter->getName() ] = false;
 			}
 
-			$params = $params + $allBooleansFalse;
+			$params += $allBooleansFalse;
 		}
 
 		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization

@@ -575,7 +575,7 @@ class ChangesList extends ContextSource {
 
 		// Watchlist expiry icon.
 		$watchlistExpiry = '';
-		if ( $this->isWatchlist() && isset( $rc->watchlistExpiry ) && $rc->watchlistExpiry ) {
+		if ( isset( $rc->watchlistExpiry ) && $rc->watchlistExpiry ) {
 			$watchlistExpiry = $this->getWatchlistExpiry( $rc );
 		}
 

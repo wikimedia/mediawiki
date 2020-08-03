@@ -1371,7 +1371,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		// Do all the async ops that can be done concurrently...
 		foreach ( $fileOpHandles as $fileHandleBatch ) {
-			$statuses = $statuses + $this->executeOpHandlesInternal( $fileHandleBatch );
+			$statuses += $this->executeOpHandlesInternal( $fileHandleBatch );
 		}
 		// Marshall and merge all the responses...
 		foreach ( $statuses as $index => $subStatus ) {

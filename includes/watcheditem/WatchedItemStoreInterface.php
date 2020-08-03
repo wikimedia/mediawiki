@@ -137,13 +137,16 @@ interface WatchedItemStoreInterface {
 	public function loadWatchedItem( UserIdentity $user, LinkTarget $target );
 
 	/**
-	 * @since 1.31
+	 * @since 1.31 Method Added
+	 * @since 1.35 Allows 'sortByExpiry' as a key in $options
 	 *
 	 * @param UserIdentity $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
 	 *        'sort' => string optional sorting by namespace ID and title
 	 *                     one of the self::SORT_* constants
+	 *        'sortByExpiry' => bool optional sorts by expiration date, with the titles
+	 *                     that will expire soonest at the top.
 	 *
 	 * @return WatchedItem[]
 	 */

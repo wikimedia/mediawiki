@@ -45,7 +45,8 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 			classes: [ 'mw-watchexpiry' ]
 		} );
 		onDropdownChange = function ( value ) {
-			var notif = mw.notification;
+			var notif = mw.notification,
+				optionSelectedLabel = expiryDropdown.dropdownWidget.label;
 
 			if ( typeof $link !== 'undefined' ) {
 				$link.addClass( 'loading' );
@@ -69,7 +70,7 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 					// * addedwatchexpirytext-talk
 					// * addedwatchexpirytext
 					messageLabel.setLabel(
-						mw.message( message, mwTitle.getPrefixedText(), value ).parseDom()
+						mw.message( message, mwTitle.getPrefixedText(), optionSelectedLabel ).parseDom()
 					);
 					// Resume the mw.notify once the label has been updated
 					notif.resume();
