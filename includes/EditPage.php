@@ -1295,22 +1295,7 @@ class EditPage implements IEditObject {
 						] ) );
 						return false;
 					} else {
-						$handler = $this->contentHandlerFactory
-							->getContentHandler( $undorev->getSlot(
-								SlotRecord::MAIN,
-								RevisionRecord::RAW
-							)->getModel() );
-						$currentContent = $this->page->getRevisionRecord()
-							->getContent( SlotRecord::MAIN );
-						$undoContent = $undorev->getContent( SlotRecord::MAIN );
-						$undoAfterContent = $oldrev->getContent( SlotRecord::MAIN );
-						$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undorev->getId();
-						$content = $handler->getUndoContent(
-							$currentContent,
-							$undoContent,
-							$undoAfterContent,
-							$undoIsLatest
-						);
+						$content = $this->getUndoContent( $undorev, $oldrev );
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
@@ -1461,6 +1446,36 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Returns the result of a three-way merge when undoing changes.
+	 *
+	 * @param RevisionRecord $undoRev Newest revision being undone. Corresponds to `undo`
+	 *        URL parameter.
+	 * @param RevisionRecord $oldRev Revision that is being restored. Corresponds to
+	 *        `undoafter` URL parameter.
+	 *
+	 * @return Content|false
+	 */
+	private function getUndoContent( RevisionRecord $undoRev, RevisionRecord $oldRev ) {
+		$handler = $this->contentHandlerFactory
+			->getContentHandler( $undoRev->getSlot(
+				SlotRecord::MAIN,
+				RevisionRecord::RAW
+			)->getModel() );
+		$currentContent = $this->page->getRevisionRecord()
+			->getContent( SlotRecord::MAIN );
+		$undoContent = $undoRev->getContent( SlotRecord::MAIN );
+		$undoAfterContent = $oldRev->getContent( SlotRecord::MAIN );
+		$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undoRev->getId();
+
+		return $handler->getUndoContent(
+			$currentContent,
+			$undoContent,
+			$undoAfterContent,
+			$undoIsLatest
+		);
 	}
 
 	/**
@@ -2446,15 +2461,23 @@ ERROR;
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $markAsBot ? EDIT_FORCE_BOT : 0 );
 
+		$isUndo = false;
+		if ( $this->undidRev ) {
+			// As the user can change the edit's content before saving, we only mark
+			// "clean" undos as reverts. This is to avoid abuse by marking irrelevant
+			// edits as undos.
+			$isUndo = $this->isUndoClean( $content );
+		}
+
 		$doEditStatus = $this->page->doEditContent(
 			$content,
 			$this->summary,
 			$flags,
-			$this->undoAfter ?: false,
+			$isUndo && $this->undoAfter ? $this->undoAfter : false,
 			$user,
 			$content->getDefaultFormat(),
 			$this->changeTags,
-			$this->undidRev
+			$isUndo ? $this->undidRev : 0
 		);
 
 		if ( !$doEditStatus->isOK() ) {
@@ -2492,6 +2515,52 @@ ERROR;
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Does sanity checks and compares the automatically generated undo content with the
+	 * one that was submitted by the user. If they match, the undo is considered "clean".
+	 * Otherwise there is no guarantee if anything was reverted at all, as the user could
+	 * even swap out entire content.
+	 *
+	 * @param Content $content
+	 *
+	 * @return bool
+	 */
+	private function isUndoClean( Content $content ) : bool {
+		// Check whether the undo was "clean", that is the user has not modified
+		// the automatically generated content.
+		$undoRev = $this->revisionStore->getRevisionById( $this->undidRev );
+		if ( $undoRev === null ) {
+			return false;
+		}
+
+		if ( $this->undoAfter ) {
+			$oldRev = $this->revisionStore->getRevisionById( $this->undoAfter );
+		} else {
+			$oldRev = $this->revisionStore->getPreviousRevision( $undoRev );
+		}
+
+		// Sanity checks
+		if ( $oldRev === null ||
+			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
+			$oldRev->isDeleted( RevisionRecord::DELETED_TEXT )
+		) {
+			return false;
+		}
+
+		$undoContent = $this->getUndoContent( $undoRev, $oldRev );
+
+		// Do a pre-save transform on the retrieved undo content
+		$user = $this->context->getUser();
+		$parserOptions = ParserOptions::newFromUserAndLang(
+			$user, MediaWikiServices::getInstance()->getContentLanguage() );
+		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
+
+		if ( $undoContent && $undoContent->equals( $content ) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
