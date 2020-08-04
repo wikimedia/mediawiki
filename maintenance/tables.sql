@@ -1516,30 +1516,6 @@ CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_pag
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
 
--- Table for storing localisation data
-CREATE TABLE /*_*/l10n_cache (
-  -- Language code
-  lc_lang varbinary(35) NOT NULL,
-  -- Cache key
-  lc_key varchar(255) NOT NULL,
-  -- Value
-  lc_value mediumblob NOT NULL,
-  PRIMARY KEY (lc_lang, lc_key)
-) /*$wgDBTableOptions*/;
-
--- Table caching which local files a module depends on that aren't
--- registered directly, used for fast retrieval of file dependency.
--- Currently only used for tracking images that CSS depends on
-CREATE TABLE /*_*/module_deps (
-  -- Module name
-  md_module varbinary(255) NOT NULL,
-  -- Module context vary (includes skin and language; called "md_skin" for legacy reasons)
-  md_skin varbinary(32) NOT NULL,
-  -- JSON blob with file dependencies
-  md_deps mediumblob NOT NULL,
-  PRIMARY KEY (md_module,md_skin)
-) /*$wgDBTableOptions*/;
-
 -- Holds all the sites known to the wiki.
 CREATE TABLE /*_*/sites (
   -- Numeric id of the site

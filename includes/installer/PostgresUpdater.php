@@ -712,6 +712,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'user_properties', 'user_properties_pkey', 'patch-user_properties-pk.sql' ],
 			[ 'changeField', 'log_search', 'ls_value', 'VARCHAR(255)', '' ],
 			[ 'changeField', 'content', 'content_id', 'BIGINT', '' ],
+			[ 'changeField', 'l10n_cache', 'lc_value', 'TEXT', '' ],
+			[ 'changeField', 'l10n_cache', 'lc_key', 'VARCHAR(255)', '' ],
+			[ 'addIndex', 'l10n_cache', 'l10n_cache_pkey', 'patch-l10n_cache-pk.sql' ],
+			[ 'addIndex', 'module_deps', 'module_deps_pkey', 'patch-module_deps-pk.sql' ],
 		];
 	}
 

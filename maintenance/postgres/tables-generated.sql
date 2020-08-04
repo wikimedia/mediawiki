@@ -102,3 +102,15 @@ CREATE TABLE content (
   content_address TEXT NOT NULL,
   PRIMARY KEY(content_id)
 );
+CREATE TABLE l10n_cache (
+  lc_lang TEXT NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value TEXT NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+);
+CREATE TABLE module_deps (
+  md_module TEXT NOT NULL,
+  md_skin TEXT NOT NULL,
+  md_deps TEXT NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+);

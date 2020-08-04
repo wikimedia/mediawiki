@@ -662,13 +662,6 @@ ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
-CREATE TABLE l10n_cache (
-  lc_lang   TEXT  NOT NULL,
-  lc_key    TEXT  NOT NULL,
-  lc_value  BYTEA NOT NULL
-);
-CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
-
 CREATE TABLE iwlinks (
   iwl_from    INTEGER  NOT NULL DEFAULT 0,
   iwl_prefix  TEXT     NOT NULL DEFAULT '',
@@ -677,13 +670,6 @@ CREATE TABLE iwlinks (
 CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
 CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
-
-CREATE TABLE module_deps (
-  md_module  TEXT  NOT NULL,
-  md_skin    TEXT  NOT NULL,
-  md_deps    TEXT  NOT NULL
-);
-CREATE UNIQUE INDEX md_module_skin ON module_deps (md_module, md_skin);
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (
