@@ -673,23 +673,6 @@ ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
-CREATE SEQUENCE change_tag_ct_id_seq;
-CREATE TABLE change_tag (
-  ct_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq'),
-  ct_rc_id   INTEGER      NULL,
-  ct_log_id  INTEGER      NULL,
-  ct_rev_id  INTEGER      NULL,
-  ct_params  TEXT         NULL,
-  ct_tag_id  INTEGER  NOT NULL
-);
-ALTER SEQUENCE change_tag_ct_id_seq OWNED BY change_tag.ct_id;
-
-CREATE UNIQUE INDEX change_tag_rc_tag_id ON change_tag(ct_rc_id,ct_tag_id);
-CREATE UNIQUE INDEX change_tag_log_tag_id ON change_tag(ct_log_id,ct_tag_id);
-CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag(ct_rev_id,ct_tag_id);
-
-CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
 CREATE TABLE l10n_cache (
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,

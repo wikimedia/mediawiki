@@ -79,3 +79,18 @@ CREATE TABLE log_search (
   PRIMARY KEY(ls_field, ls_value, ls_log_id)
 );
 CREATE INDEX ls_log_id ON log_search (ls_log_id);
+CREATE TABLE change_tag (
+  ct_id SERIAL NOT NULL,
+  ct_rc_id INT DEFAULT NULL,
+  ct_log_id INT DEFAULT NULL,
+  ct_rev_id INT DEFAULT NULL,
+  ct_params TEXT DEFAULT NULL,
+  ct_tag_id INT NOT NULL,
+  PRIMARY KEY(ct_id)
+);
+CREATE UNIQUE INDEX change_tag_rc_tag_id ON change_tag (ct_rc_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_log_tag_id ON change_tag (ct_log_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag (ct_rev_id, ct_tag_id);
+CREATE INDEX change_tag_tag_id_id ON change_tag (
+  ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
+);
