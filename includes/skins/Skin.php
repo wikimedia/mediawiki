@@ -148,6 +148,7 @@ abstract class Skin extends ContextSource {
 	 *  `scripts` represents an array of ResourceLoader script modules
 	 *  and `styles` represents
 	 *  an array of ResourceLoader style modules to load on all pages.
+	 *  `responsive` indicates if a viewport meta tag should be set.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -170,11 +171,33 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Indicates if this skin is responsive.
+	 * Responsive skins have skin--responsive added to <body> by OutputPage,
+	 * and a viewport <meta> tag set by Skin::initPage.
+	 *
+	 * @since 1.36
+	 * @stable to override
+	 * @return bool
+	 */
+	public function isResponsive() {
+		return $this->options['responsive'] ?? false;
+	}
+
+	/**
 	 * @stable to override
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
 		$this->preloadExistence();
+
+		if ( $this->isResponsive() ) {
+			$out->addMeta(
+				'viewport',
+				'width=device-width, initial-scale=1.0, ' .
+				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
+			);
+
+		}
 	}
 
 	/**
