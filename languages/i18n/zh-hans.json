@@ -794,7 +794,7 @@
 	"userpage-userdoesnotexist": "用户账户“$1”没有注册。请在创建/编辑本页前检查。",
 	"userpage-userdoesnotexist-view": "用户账户“$1”没有被注册。",
 	"blocked-notice-logextract": "这位用户目前被封禁。以下提供最近的封禁日志以供参考：",
-	"clearyourcache": "<strong>注意：</strong>在保存之后，您可能需要清除浏览器缓存才能看到所作出的变更的影响。\n* <strong>Firefox或Safari：</strong>按住<em>Shift</em>的同时单击<em>刷新</em>，或按<em>Ctrl-F5</em>或<em>Ctrl-R</em>（Mac为<em>⌘-R</em>）\n* <strong>Google Chrome：</strong>按<em>Ctrl-Shift-R</em>（Mac为<em>⌘-Shift-R</em>）\n* <strong>Internet Explorer：</strong>按住<em>Ctrl</em>的同时单击<em>刷新</em>，或按<em>Ctrl-F5</em>\n* <strong>Opera：</strong>前往<em>菜单 → 设置</em>（Mac为<em>Opera → Preferences</em>），然后<em>隐私和安全 → 清除浏览数据 → 缓存的图片和文件</em>。",
+	"clearyourcache": "<strong>注意：</strong>在保存之后，您可能需要清除浏览器缓存才能看到所作出的变更的影响。\n* <strong>Firefox或Safari：</strong>按住<em>Shift</em>的同时单击<em>刷新</em>，或按<em>Ctrl-F5</em>或<em>Ctrl-R</em>（Mac为<em>⌘-R</em>）\n* <strong>Google Chrome：</strong>按<em>Ctrl-Shift-R</em>（Mac为<em>⌘-Shift-R</em>）\n* <strong>Internet Explorer / Edge：</strong>按住<em>Ctrl</em>的同时单击<em>刷新</em>，或按<em>Ctrl-F5</em>\n* <strong>Opera：</strong>前往<em>菜单 → 设置</em>（Mac为<em>Opera → Preferences</em>），然后<em>隐私和安全 → 清除浏览数据 → 缓存的图片和文件</em>。",
 	"usercssyoucanpreview": "<strong>提示：</strong>在保存前请用“{{int:showpreview}}”按钮来测试您新的CSS。",
 	"userjsonyoucanpreview": "<strong>提示：</strong>在保存前请用“{{int:showpreview}}”按钮来测试您新的JSON。",
 	"userjsyoucanpreview": "<strong>提示：</strong>在保存前请用“{{int:showpreview}}”按钮来测试您新的JavaScript。",

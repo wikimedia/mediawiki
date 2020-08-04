@@ -2394,6 +2394,8 @@
 	"notanarticle": "Não é uma página de conteúdo",
 	"notvisiblerev": "Edição eliminada",
 	"watchlist-details": "{{PLURAL:$1|$1 página está|$1 páginas estão}} na sua lista de páginas vigiadas (incluindo páginas de discussão).",
+	"watchlist-expiring-msg": "{{PLURAL:$1|$1 dia|$1 dias}} deixado na sua página vigiada.",
+	"watchlist-expiring-hours-msg": "Faltam algumas horas",
 	"wlheader-enotif": "A notificação por email encontra-se ativada.",
 	"wlheader-showupdated": "As páginas modificadas desde a sua última visita são mostradas em <strong>negrito</strong>.",
 	"wlnote": "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas <strong>$1</strong> alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas <strong>$2</strong> horas}} até $3, $4.",

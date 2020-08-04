@@ -1542,6 +1542,7 @@
 	"listfiles-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
 	"imgfile": "fil",
 	"listfiles": "Filliste",
+	"listfiles_subpage": "Opplastingar av $1",
 	"listfiles_thumb": "Miniatyrbilete",
 	"listfiles_date": "Dato",
 	"listfiles_name": "Namn",

@@ -2384,6 +2384,8 @@
 	"notanarticle": "İçerik sayfası değil",
 	"notvisiblerev": "Farklı bir kullanıcının son revizyonu silindi",
 	"watchlist-details": "İzleme listenizde $1 sayfa (tartışma sayfaları dahil) yer almaktadır.",
+	"watchlist-expiring-msg": "İzleme listenizde {{PLURAL:$1|1 gün|$1 gün}} kaldı",
+	"watchlist-expiring-hours-msg": "Birkaç saat kaldı",
 	"wlheader-enotif": "E-posta bildirimi etkin.",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar <strong>kalın</strong> gösterilmiştir.",
 	"wlnote": "$3 $4 tarihinden itibariyle son {{PLURAL:$2|bir saatte|<strong>$2</strong> saatte}} yapılan {{PLURAL:$1|son değişiklik|son <strong>$1</strong> değişiklik}} aşağıdadır.",

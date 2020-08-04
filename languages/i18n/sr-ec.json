@@ -200,7 +200,7 @@
 	"variants": "Варијанте",
 	"navigation-heading": "Мени за навигацију",
 	"errorpagetitle": "Грешка",
-	"returnto": "Назад на страницу „$1”.",
+	"returnto": "Назад на страницу $1.",
 	"tagline": "Извор: {{SITENAME}}",
 	"help": "Помоћ",
 	"help-mediawiki": "Помоћ о Медијавикију",
