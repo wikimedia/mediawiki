@@ -822,6 +822,7 @@ class ParserTestRunner {
 		wfDebug( __METHOD__ . ": running {$test['desc']}" );
 		$opts = $this->parseOptions( $test['options'] );
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
 			return false; // Skip test.
 		}
 		$teardownGuard = $this->perTestSetup( $test );
