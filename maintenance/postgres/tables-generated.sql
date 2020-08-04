@@ -72,3 +72,10 @@ CREATE TABLE user_properties (
   PRIMARY KEY(up_user, up_property)
 );
 CREATE INDEX user_properties_property ON user_properties (up_property);
+CREATE TABLE log_search (
+  ls_field TEXT NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+);
+CREATE INDEX ls_log_id ON log_search (ls_log_id);

@@ -582,14 +582,6 @@ CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
 CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
 CREATE INDEX logging_type_action ON logging (log_type, log_action, log_timestamp);
 
-CREATE TABLE log_search (
-  ls_field   TEXT     NOT NULL,
-  ls_value   TEXT     NOT NULL,
-  ls_log_id  INTEGER  NOT NULL DEFAULT 0,
-  PRIMARY KEY (ls_field,ls_value,ls_log_id)
-);
-CREATE INDEX ls_log_id ON log_search (ls_log_id);
-
 
 CREATE SEQUENCE job_job_id_seq;
 CREATE TABLE job (

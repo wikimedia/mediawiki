@@ -80,3 +80,11 @@ CREATE TABLE /*_*/user_properties (
   INDEX user_properties_property (up_property),
   PRIMARY KEY(up_user, up_property)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/log_search (
+  ls_field VARBINARY(32) NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INT UNSIGNED DEFAULT 0 NOT NULL,
+  INDEX ls_log_id (ls_log_id),
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+) /*$wgDBTableOptions*/;

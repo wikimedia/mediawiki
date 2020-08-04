@@ -288,5 +288,32 @@
 			{ "name": "user_properties_property", "columns": [ "up_property" ], "unique": false }
 		],
 		"pk": [ "up_user", "up_property" ]
+	},
+	{
+		"name": "log_search",
+		"columns": [
+			{
+				"name": "ls_field",
+				"comment": "The type of ID (rev ID, log ID, rev timestamp, username)",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "ls_value",
+				"comment": "The value of the ID",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ls_log_id",
+				"comment": "Key to log_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ls_log_id", "columns": [ "ls_log_id" ], "unique": false }
+		],
+		"pk": [ "ls_field", "ls_value", "ls_log_id" ]
 	}
 ]
