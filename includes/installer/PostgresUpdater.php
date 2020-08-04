@@ -711,6 +711,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropFkey', 'user_properties', 'up_user' ],
 			[ 'addIndex', 'user_properties', 'user_properties_pkey', 'patch-user_properties-pk.sql' ],
 			[ 'changeField', 'log_search', 'ls_value', 'VARCHAR(255)', '' ],
+			[ 'changeField', 'content', 'content_id', 'BIGINT', '' ],
 		];
 	}
 

@@ -94,3 +94,11 @@ CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag (ct_rev_id, ct_tag_id);
 CREATE INDEX change_tag_tag_id_id ON change_tag (
   ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
 );
+CREATE TABLE content (
+  content_id BIGSERIAL NOT NULL,
+  content_size INT NOT NULL,
+  content_sha1 TEXT NOT NULL,
+  content_model SMALLINT NOT NULL,
+  content_address TEXT NOT NULL,
+  PRIMARY KEY(content_id)
+);

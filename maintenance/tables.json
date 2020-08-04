@@ -368,5 +368,43 @@
 			}
 		],
 		"pk": [ "ct_id" ]
+	},
+	{
+		"name": "content",
+		"comment": "The content table represents content objects. It's primary purpose is to provide the necessary meta-data for loading and interpreting a serialized data blob to create a content object.",
+		"columns": [
+			{
+				"name": "content_id",
+				"comment": "ID of the content object",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "content_size",
+				"comment": "Nominal size of the content object (not necessarily of the serialized blob)",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_sha1",
+				"comment": "Nominal hash of the content object (not necessarily of the serialized blob)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "content_model",
+				"comment": "reference to model_id. Note the content format isn't specified; it should be assumed to be in the default format for the model unless auto-detected otherwise.",
+				"type": "smallint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_address",
+				"comment": "URL-like address of the content blob",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "content_id" ]
 	}
 ]

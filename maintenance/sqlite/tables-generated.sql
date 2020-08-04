@@ -89,3 +89,9 @@ CREATE UNIQUE INDEX change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id, ct_tag_
 CREATE INDEX change_tag_tag_id_id ON /*_*/change_tag (
   ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
 );
+CREATE TABLE /*_*/content (
+  content_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  content_size INTEGER UNSIGNED NOT NULL,
+  content_sha1 BLOB NOT NULL, content_model SMALLINT UNSIGNED NOT NULL,
+  content_address BLOB NOT NULL
+);
