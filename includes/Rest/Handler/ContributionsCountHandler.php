@@ -36,7 +36,7 @@ class ContributionsCountHandler extends AbstractContributionHandler {
 			]
 		];
 		if ( $this->me === false ) {
-			$settings['name'] = [
+			$settings['user'] = [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_TYPE => 'user',

@@ -78,12 +78,12 @@ class UserContributionsHandler extends AbstractContributionHandler {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
 		/* @var UserIdentity $user */
-		$user = $this->getValidatedParams()['name'] ?? null;
+		$user = $this->getValidatedParams()['user'] ?? null;
 		$name = $user ? $user->getName() : null;
 
 		$urls = [];
 		$query = [ 'limit' => $limit, 'tag' => $tag ];
-		$pathParams = [ 'name' => $name ];
+		$pathParams = [ 'user' => $name ];
 
 		if ( $segment->isOldest() ) {
 			$urls['older'] = null;
@@ -120,7 +120,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 			],
 		];
 		if ( $this->me === false ) {
-			$settings['name'] = [
+			$settings['user'] = [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_TYPE => 'user',
