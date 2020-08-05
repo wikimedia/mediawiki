@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A special page that lists autoblocks
@@ -31,8 +31,16 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAutoblockList extends SpecialPage {
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'AutoblockList' );
+
+		$this->permManager = $permManager;
 	}
 
 	/**
@@ -83,10 +91,7 @@ class SpecialAutoblockList extends SpecialPage {
 			'ipb_parent_block_id IS NOT NULL'
 		];
 		# Is the user allowed to see hidden blocks?
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->permManager->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 

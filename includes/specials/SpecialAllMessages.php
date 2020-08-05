@@ -20,7 +20,6 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * Use this special page to get a list of the MediaWiki system messages.
@@ -30,8 +29,16 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAllMessages extends SpecialPage {
 
-	public function __construct() {
+	/** @var Language */
+	private $contentLang;
+
+	/**
+	 * @param Language $contentLang
+	 */
+	public function __construct( Language $contentLang ) {
 		parent::__construct( 'Allmessages' );
+
+		$this->contentLang = $contentLang;
 	}
 
 	/**
@@ -51,14 +58,14 @@ class SpecialAllMessages extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:System message' );
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+		$contLangCode = $this->contentLang->getCode();
 		$lang = $this->getLanguage();
 
 		$opts = new FormOptions();
 
 		$opts->add( 'prefix', '' );
 		$opts->add( 'filter', 'all' );
-		$opts->add( 'lang', $contLang );
+		$opts->add( 'lang', $contLangCode );
 		$opts->add( 'limit', 50 );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
