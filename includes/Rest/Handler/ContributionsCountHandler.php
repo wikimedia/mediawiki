@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use RequestContext;
@@ -26,19 +27,24 @@ class ContributionsCountHandler extends AbstractContributionHandler {
 	}
 
 	public function getParamSettings() {
-		return [
+		$settings = [
 			'tag' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => null,
-			],
-			'name' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => $this->me === false
-			],
+			]
 		];
+		if ( $this->me === false ) {
+			$settings['name'] = [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip' ],
+			];
+		}
+		return $settings;
 	}
 
 }

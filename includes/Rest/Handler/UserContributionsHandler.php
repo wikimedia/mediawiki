@@ -2,9 +2,12 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\ContributionsSegment;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
+use MediaWiki\User\UserIdentity;
 use RequestContext;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -74,7 +77,10 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	private function constructURLs( ContributionsSegment $segment ) {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
-		$name = $this->getValidatedParams()['name'];
+		/* @var UserIdentity $user */
+		$user = $this->getValidatedParams()['name'] ?? null;
+		$name = $user ? $user->getName() : null;
+
 		$urls = [];
 		$query = [ 'limit' => $limit, 'tag' => $tag ];
 		$pathParams = [ 'name' => $name ];
@@ -91,12 +97,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	}
 
 	public function getParamSettings() {
-		return [
-			'name' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => $this->me === false
-			],
+		$settings = [
 			'limit' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
@@ -118,6 +119,16 @@ class UserContributionsHandler extends AbstractContributionHandler {
 				ParamValidator::PARAM_DEFAULT => null
 			],
 		];
+		if ( $this->me === false ) {
+			$settings['name'] = [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip' ],
+			];
+		}
+		return $settings;
 	}
 
 }

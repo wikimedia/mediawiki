@@ -59,8 +59,7 @@ trait HandlerTestTrait {
 	 * @param array $config
 	 * @param array $hooks Hook overrides
 	 */
-	private function initHandler( Handler $handler, RequestInterface $request,
-		$config = [], $hooks = []
+	private function initHandler( Handler $handler, RequestInterface $request, $config = [], $hooks = []
 	) {
 		$formatter = $this->createMock( ITextFormatter::class );
 		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
@@ -88,24 +87,44 @@ trait HandlerTestTrait {
 	 * Calls validate() on the Handler, with an appropriate Validator supplied.
 	 *
 	 * @param Handler $handler
+	 * @param null|Validator $validator
+	 * @throws HttpException
 	 */
-	private function validateHandler( Handler $handler ) {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan', 'userHasRight' ]
-		);
-		$permissionManager->method( 'userCan' )->willReturn( true );
-		$permissionManager->method( 'userHasRight' )->willReturn( true );
+	private function validateHandler( Handler $handler, Validator $validator = null ) {
+		if ( !$validator ) {
+			/** @var PermissionManager|MockObject $permissionManager */
+			$permissionManager = $this->createNoOpMock(
+				PermissionManager::class, [ 'userCan', 'userHasRight' ]
+			);
+			$permissionManager->method( 'userCan' )->willReturn( true );
+			$permissionManager->method( 'userHasRight' )->willReturn( true );
 
-		/** @var ServiceContainer|MockObject $serviceContainer */
-		$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
-		$objectFactory = new ObjectFactory( $serviceContainer );
+			/** @var ServiceContainer|MockObject $serviceContainer */
+			$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
+			$objectFactory = new ObjectFactory( $serviceContainer );
 
-		$user = new UserIdentityValue( 0, 'Fake User', 0 );
-		$validator =
-			new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
-
+			$user = new UserIdentityValue( 0, 'Fake User', 0 );
+			$validator = new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
+		}
 		$handler->validate( $validator );
+	}
+
+	/**
+	 * Creates a mock Validator to bypass actual request query, path, and/or body param validation
+	 *
+	 * @param array $queryPathParams
+	 * @param array $bodyParams
+	 * @return Validator|MockObject
+	 */
+	private function getMockValidator( array $queryPathParams, array $bodyParams ) {
+		$validator = $this->createNoOpMock( Validator::class, [ 'validateParams', 'validateBody' ] );
+		if ( $queryPathParams ) {
+			$validator->method( 'validateParams' )->willReturn( $queryPathParams );
+		}
+		if ( $bodyParams ) {
+			$validator->method( 'validateBody' )->willReturn( $bodyParams );
+		}
+		return $validator;
 	}
 
 	/**
@@ -115,17 +134,23 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks Hook overrides
-	 *
+	 * @param array $validatedParams Path/query params to return as already valid
+	 * @param array $validatedBody Body params to return as already valid
 	 * @return ResponseInterface
 	 */
 	private function executeHandler( Handler $handler, RequestInterface $request,
-		$config = [], $hooks = []
+		$config = [], $hooks = [], $validatedParams = [], $validatedBody = []
 	) {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
 		$this->initHandler( $handler, $request, $config, $hooks );
-		$this->validateHandler( $handler );
+		$validator = null;
+		if ( $validatedParams || $validatedBody ) {
+			/** @var Validator|MockObject $validator */
+			$validator = $this->getMockValidator( $validatedParams, $validatedBody );
+		}
+		$this->validateHandler( $handler, $validator );
 
 		// Check conditional request headers
 		$earlyResponse = $handler->checkPreconditions();
@@ -159,9 +184,11 @@ trait HandlerTestTrait {
 		Handler $handler,
 		RequestInterface $request,
 		$config = [],
-		$hooks = []
+		$hooks = [],
+		$validatedParams = [],
+		$validatedBody = []
 	) {
-		$response = $this->executeHandler( $handler, $request, $config, $hooks );
+		$response = $this->executeHandler( $handler, $request, $config, $hooks, $validatedParams, $validatedBody );
 
 		$this->assertTrue(
 			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,
