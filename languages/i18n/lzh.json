@@ -840,7 +840,7 @@
 	"badsiglength": "署名宜簡，勿逾$1字。",
 	"yourgender": "性別︰",
 	"gender-unknown": "以性別中立之代詞相稱",
-	"gender-notknown": "不明或非二元",
+	"gender-notknown": "非二元或保密",
 	"gender-male": "男",
 	"gender-female": "女",
 	"email": "郵",

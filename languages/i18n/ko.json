@@ -730,7 +730,7 @@
 	"userpage-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.\n이 문서를 만들거나 편집하기 전에 계정이 존재하는지 확인해주세요.",
 	"userpage-userdoesnotexist-view": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.",
 	"blocked-notice-logextract": "이 사용자는 현재 차단되어 있습니다.\n해당 사용자의 최신 차단 기록을 참조하십시오:",
-	"clearyourcache": "<strong>참고:</strong> 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 새로 고쳐야 합니다.\n* <strong>파이어폭스 / 사파리</strong>: <em>Shift</em> 키를 누르면서 새로 고침을 클릭하거나, <em>Ctrl-F5</em> 또는 <em>Ctrl-R</em>을 입력 (Mac에서는 <em>⌘-R</em>)\n* <strong>구글 크롬</strong>: <em>Ctrl-Shift-R</em>키를 입력 (Mac에서는 <em>⌘-Shift-R</em>)\n* <strong>인터넷 익스플로러</strong>: <em>Ctrl</em> 키를 누르면서 새로 고침을 클릭하거나, <em>Ctrl-F5</em>를 입력.\n* <strong>오페라:</strong> <em>메뉴 → 설정</em>(맥의 경우 <em>오페라 → 환경 설정</em>)으로 이동한 다음 <em>개인 정보 보호 및 보안 → 검색 데이터 지우기 → 캐시한 영상 및 파일</em>을 누름.",
+	"clearyourcache": "<strong>참고:</strong> 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 새로 고쳐야 합니다.\n* <strong>파이어폭스 / 사파리</strong>: <em>Shift</em> 키를 누르면서 새로 고침을 클릭하거나, <em>Ctrl-F5</em> 또는 <em>Ctrl-R</em>을 입력 (Mac에서는 <em>⌘-R</em>)\n* <strong>구글 크롬</strong>: <em>Ctrl-Shift-R</em>키를 입력 (Mac에서는 <em>⌘-Shift-R</em>)\n* <strong>인터넷 익스플로러 / 엣지</strong>: <em>Ctrl</em> 키를 누르면서 새로 고침을 클릭하거나, <em>Ctrl-F5</em>를 입력.\n* <strong>오페라:</strong> <em>메뉴 → 설정</em>(맥의 경우 <em>오페라 → 환경 설정</em>)으로 이동한 다음 <em>개인 정보 보호 및 보안 → 검색 데이터 지우기 → 캐시한 영상 및 파일</em>을 누름.",
 	"usercssyoucanpreview": "'''안내''': CSS 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",
 	"userjsonyoucanpreview": "<strong>안내:</strong> 새로운 JSON을 저장하기 전에 \"{{int:showpreview}}\" 버튼을 통해 작동을 확인해주세요.",
 	"userjsyoucanpreview": "'''안내''': 자바스크립트 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",

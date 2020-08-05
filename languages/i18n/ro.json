@@ -3302,7 +3302,7 @@
 	"tag-mw-rollback-description": "Modificările care anulează retroactiv modificările anterioare utilizând linkul de redirecționare",
 	"tag-mw-undo": "Anulare",
 	"tag-mw-undo-description": "Modificările care anulează editările anterioare folosind linkul anulează",
-	"tag-mw-manual-revert": "Revenire manuală",
+	"tag-mw-manual-revert": "Anulare manuală",
 	"tags-title": "Etichete",
 	"tags-intro": "Această pagină afișează etichetele, inclusiv semnificația lor, pe care software-ul le poate folosi la marcarea modificărilor.",
 	"tags-tag": "Numele etichetei",
