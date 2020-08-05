@@ -1559,10 +1559,26 @@ class RevisionStore
 			$rev = new RevisionStoreCacheRecord(
 				function ( $revId ) use ( $queryFlags ) {
 					$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-					return $this->fetchRevisionRowFromConds(
+					$row = $this->fetchRevisionRowFromConds(
 						$db,
 						[ 'rev_id' => intval( $revId ) ]
 					);
+					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
+						// If we found no slots, try looking on the master database (T259738)
+						$this->logger->info(
+							 'RevisionStoreCacheRecord refresh callback  falling back to READ_LATEST.',
+							[
+								'revid' => $revId,
+								'trace' => wfBacktrace( true )
+							]
+						);
+						$dbw = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
+						return $this->fetchRevisionRowFromConds(
+							$dbw,
+							[ 'rev_id' => intval( $revId ) ]
+						);
+					}
+					return $row;
 				},
 				$title, $user, $comment, $row, $slots, $this->dbDomain
 			);
