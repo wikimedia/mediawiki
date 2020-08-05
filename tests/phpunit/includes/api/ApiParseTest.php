@@ -156,7 +156,7 @@ class ApiParseTest extends ApiTestCase {
 	 * @todo Should this code be in MediaWikiIntegrationTestCase or something?
 	 */
 	protected function setupSkin() {
-		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );
+		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ), [] );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
 				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )

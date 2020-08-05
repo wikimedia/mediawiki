@@ -582,13 +582,15 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 */
 	public function testSkins( $code ) {
 		$data = $this->doQuery( 'skins', $code !== null ? [ 'siinlanguagecode' => $code ] : [] );
-
-		$expectedAllowed = Skin::getAllowedSkins();
+		$services = MediaWikiServices::getInstance();
+		$skinFactory = $services->getSkinFactory();
+		$skinNames = $skinFactory->getSkinNames();
+		$expectedAllowed = $skinFactory->getAllowedSkins();
 		$expectedDefault = Skin::normalizeKey( 'default' );
+		$languageNameUtils = $services->getLanguageNameUtils();
 
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$i = 0;
-		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+		foreach ( $skinNames as $name => $displayName ) {
 			$this->assertSame( $name, $data[$i]['code'] );
 
 			$msg = wfMessage( "skinname-$name" );

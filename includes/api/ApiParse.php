@@ -865,6 +865,8 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+
 		return [
 			'title' => null,
 			'text' => [
@@ -949,7 +951,7 @@ class ApiParse extends ApiBase {
 			'sectionpreview' => false,
 			'disabletoc' => false,
 			'useskin' => [
-				ApiBase::PARAM_TYPE => array_keys( Skin::getAllowedSkins() ),
+				ApiBase::PARAM_TYPE => array_keys( $skinFactory->getAllowedSkins() ),
 			],
 			'contentformat' => [
 				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),

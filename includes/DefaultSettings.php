@@ -3467,7 +3467,7 @@ $wgFallbackSkin = 'fallback';
  * via the `useskin` query parameter. To uninstall a skin, remove its inclusion
  * from LocalSettings.php.
  *
- * @see Skin::getAllowedSkins
+ * @see SkinFactory::getAllowedSkins
  */
 $wgSkipSkins = [];
 

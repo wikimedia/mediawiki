@@ -50,7 +50,6 @@ use ParserOptions;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use Skin;
 use SpecialPage;
 use Status;
 use Title;
@@ -1393,8 +1392,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
 		// Only show skins that aren't disabled
-		$validSkinNames = Skin::getAllowedSkins();
-		$allInstalledSkins = Skin::getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$validSkinNames = $skinFactory->getAllowedSkins();
+		$allInstalledSkins = $skinFactory->getSkinNames();
 
 		// Display the installed skin the user has specifically requested via useskin=….
 		$useSkin = $context->getRequest()->getRawVal( 'useskin' );

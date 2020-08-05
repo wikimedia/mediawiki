@@ -787,10 +787,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendSkins( $property ) {
+		$services = MediaWikiServices::getInstance();
 		$data = [];
-		$allowed = Skin::getAllowedSkins();
+		$allowed = $services->getSkinFactory()->getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$languageNameUtils = $services->getLanguageNameUtils();
+
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$msg = $this->msg( "skinname-{$name}" );
 			$code = $this->getParameter( 'inlanguagecode' );
