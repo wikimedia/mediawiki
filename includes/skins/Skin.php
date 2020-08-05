@@ -2090,10 +2090,13 @@ abstract class Skin extends ContextSource {
 	 * identifiers, values: contents) internally ordered by keys.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.36.
 	 * @param array $indicators
 	 * @return string HTML
 	 */
 	final public function getIndicatorsHTML( $indicators ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$out = "<div class=\"mw-indicators mw-body-content\">\n";
 		foreach ( $this->getIndicatorsData( $indicators ) as $indicatorData ) {
 			$out .= Html::rawElement(

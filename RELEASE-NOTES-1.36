@@ -117,6 +117,9 @@ because of Phabricator reports.
   `new User`. Instead, use the UserFactory service.
 * Use of the `preprocessor=Preprocessor_DOM` option in parser test files has
   been deprecated.  Preprocessor_DOM was removed in 1.35.
+* Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
+  by reimplementing the method using the raw indicators data from
+  OutputPage::getIndicators.
 * …
 
 === Other changes in 1.36 ===
