@@ -70,7 +70,10 @@ class ApiParamValidator {
 				'defaultFormat' => TS_MW,
 			] ],
 		],
-		'user' => [ 'class' => UserDef::class ],
+		'user' => [
+			'class' => UserDef::class,
+			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
+		],
 		'upload' => [ 'class' => UploadDef::class ],
 	];
 
