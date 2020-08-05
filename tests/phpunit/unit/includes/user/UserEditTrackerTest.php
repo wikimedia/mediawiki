@@ -31,30 +31,20 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				$this->equalTo( $methodName )
 			)
 			->willReturn( $editCount );
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getConnectionRef', '__destruct' ] )
-			->getMockForAbstractClass();
+		$loadBalancer = $this->createMock( LoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )
 			->with( DB_REPLICA )
 			->willReturn( $database );
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->exactly( 4 ) )
+		$user = $this->createMock( UserIdentity::class );
+		$user->expects( $this->any() )
 			->method( 'getId' )
-			->will(
-				$this->onConsecutiveCalls(
-					$userId,
-					$userId,
-					$userId,
-					$userId
-				)
-			);
+			->willReturn( $userId );
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 		$this->assertSame(
 			$editCount,
 			$tracker->getUserEditCount( $user )
@@ -73,19 +63,16 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::getUserEditCount';
 
 		$actorMigration = $this->createMock( ActorMigration::class );
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ '__destruct' ] )
-			->getMockForAbstractClass();
+		$loadBalancer = $this->createMock( LoadBalancer::class );
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
+		$user = $this->createMock( UserIdentity::class );
 		$user->expects( $this->once() )
 			->method( 'getId' )
 			->willReturn( $userId );
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
@@ -103,18 +90,10 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName2 = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 17;
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->exactly( 3 ) )
+		$user = $this->createMock( UserIdentity::class );
+		$user->expects( $this->any() )
 			->method( 'getId' )
-			->will(
-				$this->onConsecutiveCalls(
-					$userId,
-					$userId,
-					$userId
-				)
-			);
+			->willReturn( $userId );
 
 		$database1 = $this->createMock( Database::class );
 		$database1->expects( $this->once() )
@@ -145,35 +124,17 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 			)
 			->willReturn( $editCount );
 
-		$database3 = $this->createMock( Database::class );
-		$database3->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				$this->equalTo( 'user' ),
-				$this->equalTo( [ 'user_editcount' => $editCount ] ),
-				$this->equalTo( [
-					'user_id' => $userId,
-					'user_editcount IS NULL OR user_editcount < ' . $editCount
-				] ),
-				$this->equalTo( $methodName2 )
-			);
-
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getConnectionRef', '__destruct' ] )
-			->getMockForAbstractClass();
-		$loadBalancer->expects( $this->exactly( 3 ) )
+		$loadBalancer = $this->createMock( LoadBalancer::class );
+		$loadBalancer->expects( $this->exactly( 2 ) )
 			->method( 'getConnectionRef' )
 			->withConsecutive(
 				[ DB_REPLICA ],
-				[ DB_REPLICA ],
-				[ DB_MASTER ]
+				[ DB_REPLICA ]
 			)
 			->will(
 				$this->onConsecutiveCalls(
 					$database1,
-					$database2,
-					$database3
+					$database2
 				)
 			);
 		$actorMigration = $this->createMock( ActorMigration::class );
@@ -192,7 +153,18 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				]
 			] );
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+		$jobQueueGroup->expects( $this->once() )
+			->method( 'push' )
+			->willReturnCallback( function ( IJobSpecification $job ) use ( $user, $editCount ): void {
+				$this->assertEquals( 'userEditCountInit', $job->getType() );
+				$this->assertEquals( [
+					'userId' => $user->getId(),
+					'editCount' => $editCount
+				], $job->getParams() );
+			} );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 		$this->assertSame(
 			$editCount,
 			$tracker->getUserEditCount( $user )
@@ -206,10 +178,8 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 341;
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
+		$user = $this->createMock( UserIdentity::class );
+		$user->expects( $this->any() )
 			->method( 'getId' )
 			->willReturn( $userId );
 
@@ -231,35 +201,11 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 			)
 			->willReturn( $editCount );
 
-		$database2 = $this->createMock( Database::class );
-		$database2->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				$this->equalTo( 'user' ),
-				$this->equalTo( [ 'user_editcount' => $editCount ] ),
-				$this->equalTo( [
-					'user_id' => $userId,
-					'user_editcount IS NULL OR user_editcount < ' . $editCount
-				] ),
-				$this->equalTo( $methodName )
-			);
-
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getConnectionRef', '__destruct' ] )
-			->getMockForAbstractClass();
-		$loadBalancer->expects( $this->exactly( 2 ) )
+		$loadBalancer = $this->createMock( LoadBalancer::class );
+		$loadBalancer->expects( $this->any() )
 			->method( 'getConnectionRef' )
-			->withConsecutive(
-				[ DB_REPLICA ],
-				[ DB_MASTER ]
-			)
-			->will(
-				$this->onConsecutiveCalls(
-					$database1,
-					$database2
-				)
-			);
+			->with( DB_REPLICA )
+			->willReturn( $database1 );
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$actorMigration->expects( $this->once() )
 			->method( 'getWhere' )
@@ -276,7 +222,18 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				]
 			] );
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+		$jobQueueGroup->expects( $this->once() )
+			->method( 'push' )
+			->willReturnCallback( function ( IJobSpecification $job ) use ( $user, $editCount ): void {
+				$this->assertEquals( 'userEditCountInit', $job->getType() );
+				$this->assertEquals( [
+					'userId' => $user->getId(),
+					'editCount' => $editCount
+				], $job->getParams() );
+			} );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 		$this->assertSame(
 			$editCount,
 			$tracker->initializeUserEditCount( $user )
@@ -292,9 +249,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::getUserEditTimestamp';
 		$actorId = 982110;
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
+		$user = $this->createMock( UserIdentity::class );
 		$user->expects( $this->once() )
 			->method( 'getId' )
 			->willReturn( 1 );
@@ -321,10 +276,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				] )
 			)
 			->willReturn( $dbTime );
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getConnectionRef', '__destruct' ] )
-			->getMockForAbstractClass();
+		$loadBalancer = $this->createMock( LoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
 			->method( 'getConnectionRef' )
 			->with( DB_REPLICA )
@@ -346,7 +298,9 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				]
 			] );
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 		if ( $type === 'first' ) {
 			$ret = $tracker->getFirstEditTimestamp( $user );
 		} else {
@@ -371,43 +325,35 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 
 	public function testGetEditTimestamp_anon() {
 		$actorMigration = $this->createMock( ActorMigration::class );
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ '__destruct' ] )
-			->getMockForAbstractClass();
+		$loadBalancer = $this->createMock( LoadBalancer::class );
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
+		$user = $this->createMock( UserIdentity::class );
 		$user->expects( $this->exactly( 2 ) )
 			->method( 'getId' )
 			->will(
 				$this->onConsecutiveCalls( 0, 0 )
 			);
 
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 		$this->assertFalse( $tracker->getFirstEditTimestamp( $user ) );
 		$this->assertFalse( $tracker->getLatestEditTimestamp( $user ) );
 	}
 
 	public function testClearUserEditCache() {
 		$actorMigration = $this->createMock( ActorMigration::class );
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ '__destruct' ] )
-			->getMockForAbstractClass();
-		$tracker = new UserEditTracker( $actorMigration, $loadBalancer );
+		$loadBalancer = $this->createMock( LoadBalancer::class );
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
-		$anon = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'isRegistered' ] )
-			->getMockForAbstractClass();
+		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
+
+		$anon = $this->createMock( UserIdentity::class );
 		$anon->expects( $this->once() )
 			->method( 'isRegistered' )
 			->willReturn( false );
 
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'isRegistered', 'getId' ] )
-			->getMockForAbstractClass();
+		$user = $this->createMock( UserIdentity::class );
 		$user->expects( $this->once() )
 			->method( 'isRegistered' )
 			->willReturn( true );

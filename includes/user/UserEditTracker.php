@@ -4,6 +4,8 @@ namespace MediaWiki\User;
 
 use ActorMigration;
 use InvalidArgumentException;
+use JobQueueGroup;
+use JobSpecification;
 use MWTimestamp;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -25,6 +27,9 @@ class UserEditTracker {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * @var array
 	 *
@@ -36,13 +41,16 @@ class UserEditTracker {
 	/**
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
+	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
 		ActorMigration $actorMigration,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		JobQueueGroup $jobQueueGroup
 	) {
 		$this->actorMigration = $actorMigration;
 		$this->loadBalancer = $loadBalancer;
+		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**
@@ -102,15 +110,18 @@ class UserEditTracker {
 			$actorWhere['joins']
 		);
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
-		$dbw->update(
-			'user',
-			[ 'user_editcount' => $count ],
-			[
-				'user_id' => $user->getId(),
-				'user_editcount IS NULL OR user_editcount < ' . $count
-			],
-			__METHOD__
+		// (T259719) Defer updating the edit count via a job
+		$this->jobQueueGroup->push(
+			new JobSpecification(
+				'userEditCountInit',
+				[
+					'userId' => $user->getId(),
+					'editCount' => $count,
+				],
+				[
+					'removeDuplicates' => true,
+				]
+			)
 		);
 
 		return $count;
