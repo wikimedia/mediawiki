@@ -7031,16 +7031,6 @@ $wgDisableInternalSearch = false;
 $wgSearchForwardUrl = null;
 
 /**
- * Search form behavior.
- * - true = use Go & Search buttons
- * - false = use Go button & Advanced search link
- *
- * @deprecated since 1.35. Individual skin may optionally continue
- * supporting it as a local skin config variable.
- */
-$wgUseTwoButtonsSearchForm = true;
-
-/**
  * Array of namespaces to generate a Google sitemap for when the
  * maintenance/generateSitemap.php script is run, or false if one is to be
  * generated for all namespaces.
