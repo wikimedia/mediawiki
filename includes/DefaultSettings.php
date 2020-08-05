@@ -7973,6 +7973,7 @@ $wgJobClasses = [
 	'userOptionsUpdate' => UserOptionsUpdateJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 	'null' => NullJob::class,
+	'userEditCountInit' => UserEditCountInitJob::class,
 ];
 
 /**

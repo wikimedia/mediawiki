@@ -1253,9 +1253,12 @@ return [
 	},
 
 	'UserEditTracker' => function ( MediaWikiServices $services ) : UserEditTracker {
+		$jobQueueGroup = JobQueueGroup::singleton();
+
 		return new UserEditTracker(
 			$services->getActorMigration(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$jobQueueGroup
 		);
 	},
 
