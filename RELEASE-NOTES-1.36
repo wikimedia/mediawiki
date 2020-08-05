@@ -35,6 +35,8 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
+* $wgUseTwoButtonsSearchForm - This setting, deprecated in 1.35, has been
+  removed.
 * …
 
 === New user-facing features in 1.36 ===
