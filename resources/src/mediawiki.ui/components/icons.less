@@ -6,15 +6,6 @@
 @width-icon--legacy: @size-icon + @margin-icon;
 @size-icon--large: ( @size-icon * 1.75) + @margin-icon;
 
-// Mixins
-.mixin-mw-ui-icon-bgimage( @iconSvg, @iconPng ) {
-	&.mw-ui-icon {
-		&:before {
-			.background-image-svg( @iconSvg, @iconPng );
-		}
-	}
-}
-
 // Icons
 //
 // To use icons you must be using a browser that supports pseudo elements.
