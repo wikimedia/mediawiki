@@ -182,6 +182,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	) {
 		$needActors = [];
 		$countActors = 0;
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 
 		$keep = [];
 		foreach ( $rows as $index => $row ) {
@@ -191,7 +192,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				// if we have a usable name here, it means they didn't run
 				// maintenance/cleanupUsersWithNoId.php
 				$name = $row->$nameField;
-				if ( User::isUsableName( $name ) ) {
+				if ( $userNameUtils->isUsable( $name ) ) {
 					if ( !isset( $complainedAboutUsers[$name] ) ) {
 						$complainedAboutUsers[$name] = true;
 						$this->error(

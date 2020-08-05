@@ -148,6 +148,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$countAssigned = 0;
 		$countPrefixed = 0;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
@@ -167,7 +168,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			// Update the existing rows
 			foreach ( $res as $row ) {
 				$name = $row->$nameField;
-				if ( $row->$idField || !User::isUsableName( $name ) ) {
+				if ( $row->$idField || !$userNameUtils->isUsable( $name ) ) {
 					continue;
 				}
 
