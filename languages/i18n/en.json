@@ -3180,6 +3180,7 @@
 	"others": "others",
 	"siteusers": "{{SITENAME}} {{PLURAL:$2|{{GENDER:$1|user}}|users}} $1",
 	"anonusers": "{{SITENAME}} anonymous {{PLURAL:$2|user|users}} $1",
+	"interwikiusers": "external {{PLURAL:$2|user|users}} $1",
 	"creditspage": "Page credits",
 	"nocredits": "There is no credits info available for this page.",
 	"spamprotectiontitle": "Spam protection filter",

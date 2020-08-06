@@ -130,6 +130,7 @@ class CreditsAction extends FormlessAction {
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];
+		$iw_users = [];
 
 		# Sift for real versus user names
 		/** @var User $user */
@@ -142,6 +143,8 @@ class CreditsAction extends FormlessAction {
 				} else {
 					$user_names[] = $link;
 				}
+			} elseif ( ExternalUserNames::isExternal( $user ) ) {
+				$iw_users[] = $this->link( $user );
 			} else {
 				$anon_ips[] = $this->link( $user );
 			}
@@ -159,7 +162,14 @@ class CreditsAction extends FormlessAction {
 			$real = false;
 		}
 
-		# "ThisSite user(s) A, B and C"
+		# "...anonymous/this site/external user(s) A, B and C"
+		if ( count( $iw_users ) ) {
+			$iw_user = $this->msg( 'interwikiusers' )->rawParams( $lang->listToText( $iw_users ) )->params(
+				count( $iw_users ) )->escaped();
+		} else {
+			$iw_user = false;
+		}
+
 		if ( count( $user_names ) ) {
 			$user = $this->msg( 'siteusers' )->rawParams( $lang->listToText( $user_names ) )->params(
 				count( $user_names ) )->escaped();
@@ -176,7 +186,7 @@ class CreditsAction extends FormlessAction {
 
 		# This is the big list, all mooshed together. We sift for blank strings
 		$fulllist = [];
-		foreach ( [ $real, $user, $anon, $others_link ] as $s ) {
+		foreach ( [ $real, $iw_user, $user, $anon, $others_link ] as $s ) {
 			if ( $s !== false ) {
 				array_push( $fulllist, $s );
 			}
@@ -206,9 +216,14 @@ class CreditsAction extends FormlessAction {
 			$real = $user->getName();
 		}
 
-		$page = $user->isAnon()
-			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
-			: $user->getUserPage();
+		$iwUser = ExternalUserNames::isExternal( $user );
+		if ( $iwUser ) {
+			$page = ExternalUserNames::getUserLinkTitle( $user );
+		} elseif ( $user->isAnon() ) {
+			$page = SpecialPage::getTitleFor( 'Contributions', $user->getName() );
+		} else {
+			$page = $user->getUserPage();
+		}
 
 		return MediaWikiServices::getInstance()
 			->getLinkRenderer()->makeLink( $page, $real );
