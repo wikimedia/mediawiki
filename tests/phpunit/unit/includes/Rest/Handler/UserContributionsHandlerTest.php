@@ -154,7 +154,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$username = 'Arnold';
 		$user = $this->makeMockUser( $username );
 		$validatedParams = [
-			'name' => null,
+			'user' => null,
 			'limit' => $queryParams['limit'] ?? self::DEFAULT_LIMIT,
 			'tag' => $queryParams['tag'] ?? null,
 			'segment' => $queryParams['segment'] ?? '',
@@ -177,12 +177,12 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$target = new UserIdentityValue( 7, $username, 7 );
 		$performer = $this->makeMockUser( 'Arnold' );
 		$request = new RequestData( [
-			'pathParams' => [ 'name' => $target->getName() ],
+			'pathParams' => [ 'user' => $target->getName() ],
 			'queryParams' => $queryParams ]
 		);
 		$validatedParams =
 			[
-				'name' => $target,
+				'user' => $target,
 				'limit' => $queryParams['limit'] ?? self::DEFAULT_LIMIT,
 				'tag' => $queryParams['tag'] ?? null,
 				'segment' => $queryParams['segment'] ?? '',
@@ -219,9 +219,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatUnknownUserReturns404() {
 		$handler = $this->newHandler();
 		$username = 'UNKNOWN';
-		$request = new RequestData( [ 'pathParams' => [ 'name' => $username ] ] );
+		$request = new RequestData( [ 'pathParams' => [ 'user' => $username ] ] );
 		$validatedParams = [
-			'name' => $this->makeMockUser( $username ),
+			'user' => $this->makeMockUser( $username ),
 			'limit' => self::DEFAULT_LIMIT,
 			'tag' => null,
 			'segment' => ''
@@ -238,10 +238,10 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatIpUserReturns200() {
 		$handler = $this->newHandler();
 		$username = '127.0.0.1';
-		$requestData = [ 'pathParams' => [ 'name' => $username ] ];
+		$requestData = [ 'pathParams' => [ 'user' => $username ] ];
 		$request = new RequestData( $requestData );
 		$validatedParams = [
-			'name' => $this->makeMockUser( $username ),
+			'user' => $this->makeMockUser( $username ),
 			'limit' => self::DEFAULT_LIMIT,
 			'tag' => null,
 			'segment' => ''
@@ -367,7 +367,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$user = $this->makeMockUser( 'Arnold' );
 		RequestContext::getMain()->setUser( $user );
 		$validatedParams = [
-			'name' => null,
+			'user' => null,
 			'limit' => $query['limit'] ?? self::DEFAULT_LIMIT,
 			'tag' => $query['tag'] ?? null,
 			'segment' => $query['segment'] ?? '',

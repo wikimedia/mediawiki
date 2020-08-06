@@ -9,7 +9,7 @@
 		"mode" : "me"
 	},
 	{
-		"path": "/coredev/v0/user/{name}/contributions",
+		"path": "/coredev/v0/user/{user}/contributions",
 		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
 		"services": [
 			"ContributionsLookup",
@@ -27,7 +27,7 @@
 		"mode" : "me"
 	},
 	{
-		"path": "/coredev/v0/user/{name}/contributions/count",
+		"path": "/coredev/v0/user/{user}/contributions/count",
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
 			"ContributionsLookup",
