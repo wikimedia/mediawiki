@@ -295,7 +295,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:01Z',
 						'delta' => 256,
 						'size' => 256,
-						'tags' => [ 'frob' ],
+						'tags' => [ [ 'text' => 'frob' ] ],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
@@ -322,7 +322,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:05Z',
 						'delta' => 256,
 						'size' => 256,
-						'tags' => [ 'frob', 'nitz' ],
+						'tags' => [ [ 'text' => 'frob' ], [ 'text' => 'nitz' ] ],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,

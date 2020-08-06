@@ -49,13 +49,17 @@ class UserContributionsHandler extends AbstractContributionHandler {
 		$revisionsData = [];
 		foreach ( $segment->getRevisions() as $revision ) {
 			$id = $revision->getId();
+			$tags = array_map( function ( $tag ) {
+				return [ 'text' => $tag ];
+			}, $segment->getTagsForRevision( $id ) );
+
 			$revisionsData[] = [
 				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
 				"delta" => $segment->getDeltaForRevision( $id ) ,
 				"size" => $revision->getSize(),
-				"tags" => $segment->getTagsForRevision( $id ),
+				"tags" => $tags,
 				// Contribution type will always be MediaWiki revisions,
 				// until we can reliably include contributions from other sources. See T257839.
 				"type" => 'revision',
