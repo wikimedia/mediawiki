@@ -21,6 +21,7 @@
  */
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\EditResult;
 use Wikimedia\IPUtils;
 
 /**
@@ -123,6 +124,11 @@ class RecentChange implements Taggable {
 	 * @var array List of tags to apply
 	 */
 	private $tags = [];
+
+	/**
+	 * @var EditResult|null EditResult associated with the edit
+	 */
+	private $editResult = null;
 
 	/**
 	 * @var array Array of change types
@@ -395,9 +401,29 @@ class RecentChange implements Taggable {
 		# Notify extensions
 		Hooks::runner()->onRecentChange_save( $this );
 
+		// Apply revert tags (if needed)
+		if ( $this->editResult !== null && count( $this->editResult->getRevertTags() ) ) {
+			ChangeTags::addTags(
+				$this->editResult->getRevertTags(),
+				$this->mAttribs['rc_id'],
+				$this->mAttribs['rc_this_oldid'],
+				$this->mAttribs['rc_logid'],
+				FormatJson::encode( $this->editResult ),
+				$this
+			);
+		}
+
 		if ( count( $this->tags ) ) {
-			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],
-				$this->mAttribs['rc_this_oldid'], $this->mAttribs['rc_logid'], null, $this );
+			// $this->tags may contain revert tags we already applied above, they will
+			// just be ignored.
+			ChangeTags::addTags(
+				$this->tags,
+				$this->mAttribs['rc_id'],
+				$this->mAttribs['rc_this_oldid'],
+				$this->mAttribs['rc_logid'],
+				null,
+				$this
+			);
 		}
 
 		if ( $send === self::SEND_FEED ) {
@@ -624,6 +650,8 @@ class RecentChange implements Taggable {
 	/**
 	 * Makes an entry in the database corresponding to an edit
 	 *
+	 * @since 1.36 Added $editResult parameter
+	 *
 	 * @param string $timestamp
 	 * @param Title $title
 	 * @param bool $minor
@@ -638,12 +666,15 @@ class RecentChange implements Taggable {
 	 * @param int $newId
 	 * @param int $patrol
 	 * @param array $tags
+	 * @param EditResult|null $editResult EditResult associated with this edit. Can be safely
+	 *  skipped if the edit is not a revert. Used only for marking revert tags.
+	 *
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
 		$timestamp, $title, $minor, $user, $comment, $oldId, $lastTimestamp,
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
-		$tags = []
+		$tags = [], EditResult $editResult = null
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -686,8 +717,9 @@ class RecentChange implements Taggable {
 		];
 
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $rc, $tags ) {
+			function () use ( $rc, $tags, $editResult ) {
 				$rc->addTags( $tags );
+				$rc->setEditResult( $editResult );
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
@@ -1180,5 +1212,16 @@ class RecentChange implements Taggable {
 		} else {
 			$this->tags = array_merge( $tags, $this->tags );
 		}
+	}
+
+	/**
+	 * Sets the EditResult associated with the edit.
+	 *
+	 * @since 1.36
+	 *
+	 * @param EditResult|null $editResult
+	 */
+	public function setEditResult( ?EditResult $editResult ) {
+		$this->editResult = $editResult;
 	}
 }

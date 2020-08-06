@@ -4,10 +4,13 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use Content;
+use DeferredUpdates;
+use FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\EditResult;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use RecentChange;
@@ -39,6 +42,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->tablesUsed[] = 'logging';
 		$this->tablesUsed[] = 'recentchanges';
+		$this->tablesUsed[] = 'change_tag';
 	}
 
 	private function getDummyTitle( $method ) {
@@ -287,6 +291,72 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $stats, 'site_stats' );
 		$this->assertSame( $oldStats->ss_total_pages + 0, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 2, (int)$stats->ss_total_edits );
+	}
+
+	public function testRevert() {
+		// Setup a page with some edits
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$summary = CommentStoreComment::newUnsavedComment( '1' );
+		$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
+		$updater->saveRevision( $summary );
+		$revId1 = $updater->getNewRevision()->getId();
+
+		$summary = CommentStoreComment::newUnsavedComment( '2' );
+		$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '2' ) );
+		$updater->saveRevision( $summary );
+		$revId2 = $updater->getNewRevision()->getId();
+
+		// Perform a rollback
+		$updater = $page->newPageUpdater( $this->getTestSysop()->getUser() );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
+		$updater->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId2 );
+		$updater->setOriginalRevisionId( $revId1 );
+		$summary = CommentStoreComment::newUnsavedComment( 'revert' );
+		$updater->saveRevision( $summary );
+
+		// Do some basic assertions on PageUpdater
+		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
+		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
+
+		$editResult = $updater->getEditResult();
+		$this->assertNotNull( $editResult, 'getEditResult()' );
+		$this->assertTrue( $editResult->isRevert(), 'EditResult::isRevert()' );
+		$this->assertTrue( $editResult->isExactRevert(), 'EditResult::isExactRevert()' );
+		$this->assertSame(
+			$revId1,
+			$editResult->getOriginalRevisionId(),
+			'EditResult::getOriginalRevisionId()'
+		);
+		$this->assertSame(
+			EditResult::REVERT_ROLLBACK,
+			$editResult->getRevertMethod(),
+			'EditResult::getRevertMethod()'
+		);
+		$this->assertSame(
+			$revId2,
+			$editResult->getOldestRevertedRevisionId(),
+			'EditResult::getOldestRevertedRevisionId()'
+		);
+		$this->assertSame(
+			$revId2,
+			$editResult->getNewestRevertedRevisionId(),
+			'EditResult::getNewestRevertedRevisionId()'
+		);
+
+		// Ensure all deferred updates are run
+		DeferredUpdates::doUpdates();
+
+		// Retrieve the mw-rollback change tag and verify it
+		$newRevId = $updater->getNewRevision()->getId();
+		$this->assertSelect(
+			'change_tag',
+			'ct_params',
+			[ 'ct_rev_id' => $newRevId ],
+			[ [ FormatJson::encode( $editResult ) ] ]
+		);
 	}
 
 	/**
