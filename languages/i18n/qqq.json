@@ -2511,7 +2511,7 @@
 	"categoriesfrom": "Used as label for the input box in [[Special:Categories]].\n\nThis message follows the fieldset label {{msg-mw|categories}}, and is followed by the input box.",
 	"deletedcontributions": "The message is shown as a link on [[Special:SpecialPages]] to [[Special:DeletedContributions]].\n\n{{Identical|Deleted user contributions}}",
 	"deletedcontributions-summary": "{{doc-specialpagesummary|deletedcontributions}}",
-	"deletedcontributions-title": "Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.\n\n{{Identical|Deleted user contributions}}",
+	"deletedcontributions-title": "Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.\n\nParameters:\n* $1 - the username\n\n{{Identical|Deleted user contributions}}",
 	"sp-deletedcontributions-contribs": "Link to user's contributions on [[Special:DeletedContributions]].\n{{Identical|Contribution}}",
 	"linksearch": "Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.\n\n{{Identical|External link}}",
 	"linksearch-summary": "{{doc-specialpagesummary|linksearch}}",
