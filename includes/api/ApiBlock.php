@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
@@ -78,7 +79,8 @@ class ApiBlock extends ApiBase {
 			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
 			if ( $type === DatabaseBlock::TYPE_USER &&
-				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $params['user'] ) )
+				( $target->isAnon() /* doesn't exist */ ||
+					!MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $params['user'] ) )
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
 			}
