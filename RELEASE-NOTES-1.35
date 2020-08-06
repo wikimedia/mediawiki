@@ -1,11 +1,31 @@
 = MediaWiki 1.35 =
 
-== MediaWiki 1.35.0-rc.0 ==
-
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
+
+== MediaWiki 1.35.0-rc.1 ==
+
+=== Changes since MediaWiki 1.35.0-rc.0 ===
+* (T252136) Fix RecentChanges watchlist filters when WatchlistExpiry is off.
+* (T258662) Update time period for watchlist expiry pop-up.
+* (T258443) Fix expiry dropdown not getting disabled on edit page.
+* (T259398) Add license information for promise-polyfill.
+* Remove executable bit from scripts without shebang.
+* (T256526) Fix bold of watched items on Special:RecentChangesLinked.
+* (T259060) Edit page expiry dropdown should keep state after
+  disabling/enabling.
+* (T259009) Translate expiry period in pop-up message for watchlist expiry.
+* (T258310) Add watchlist clock icon to RecentChanges.
+* (T259362) Permit temporary table writes on replica DB connections.
+* (T250214) Add UI support in Special:EditWatchlist for watchlist expiry.
+* (T72470) Disable wgLegacyJavaScriptGlobals by default.
+* (T130906) Add Edge to MediaWiki:Clearyourcache.
+* (T257279) Add mediawiki.ui Less variable deprecation note.
+* (T249521) Fixed reassignEdits.php to work with anonymous users.
+
+== MediaWiki 1.35.0-rc.0 ==
 
 == Upgrading notes for 1.35 ==
 1.35 requires PHP 7.2.22 or above (up from 7.2.9), to avoid segfaults (T228346).
@@ -35,6 +55,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.35 ===
 
+* (T72470) $wgLegacyJavaScriptGlobals is now false by default. This feature
+  will be completely removed in a later MediaWiki release.
 * …
 
 ==== New configuration ====
