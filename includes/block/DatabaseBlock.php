@@ -1368,7 +1368,9 @@ class DatabaseBlock extends AbstractBlock {
 			$user = User::newFromName( $user, false );
 		}
 
-		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
+		if ( $user->isAnon() &&
+			MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $user->getName() )
+		) {
 			// Temporarily log some block details to debug T192964
 			$logger = LoggerFactory::getInstance( 'BlockManager' );
 			$logger->warning(
