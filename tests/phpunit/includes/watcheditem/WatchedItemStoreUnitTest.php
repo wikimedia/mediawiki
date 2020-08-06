@@ -897,17 +897,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_namespace' => 0,
 					'wl_title' => 'Old_Title',
 				],
-				'WatchedItemStore::duplicateEntry',
-				[ 'FOR UPDATE' ]
+				'WatchedItemStore::fetchWatchedItemsForPage',
+				[ 'FOR UPDATE' ],
+				[ 'watchlist_expiry' => [ 'LEFT JOIN', [ 'wl_id = we_item' ] ] ]
 			)
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
@@ -921,19 +919,22 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 	public function testDuplicateEntry_somethingToDuplicate() {
 		$fakeRows = [
-			$this->getFakeRow( [ 'wl_user' => '1', 'wl_notificationtimestamp' => '20151212010101' ] ),
-			$this->getFakeRow( [ 'wl_user' => '2', 'wl_notificationtimestamp' => null ] ),
+			$this->getFakeRow( [
+				'wl_user' => '1',
+				'wl_notificationtimestamp' => '20151212010101',
+			] ),
+			$this->getFakeRow( [
+				'wl_user' => '2',
+				'wl_notificationtimestamp' => null,
+			] ),
 		];
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->at( 0 ) )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
 				[
 					'wl_namespace' => 0,
 					'wl_title' => 'Old_Title',
@@ -966,7 +967,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
+			'cache' => $mockCache,
+			'expiryEnabled' => false,
+		] );
 
 		$store->duplicateEntry(
 			new TitleValue( 0, 'Old_Title' ),
@@ -979,11 +984,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->at( 0 ) )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_namespace' => 0,
 					'wl_title' => 'Old_Title',
@@ -993,11 +995,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->at( 1 ) )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_namespace' => 1,
 					'wl_title' => 'Old_Title',
@@ -1032,18 +1031,19 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		LinkTarget $newTarget
 	) {
 		$fakeRows = [
-			$this->getFakeRow( [ 'wl_user' => '1', 'wl_notificationtimestamp' => '20151212010101' ] ),
+			$this->getFakeRow( [
+				'wl_user' => '1',
+				'wl_notificationtimestamp' => '20151212010101',
+				'we_expiry' => null,
+			] ),
 		];
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->at( 0 ) )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
 				[
 					'wl_namespace' => $oldTarget->getNamespace(),
 					'wl_title' => $oldTarget->getDBkey(),
@@ -1068,11 +1068,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->at( 2 ) )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[
-					'wl_user',
-					'wl_notificationtimestamp',
-				],
+				[ 'watchlist' ],
+				[ 'wl_user', 'wl_notificationtimestamp' ],
 				[
 					'wl_namespace' => $oldTarget->getNamespace() + 1,
 					'wl_title' => $oldTarget->getDBkey(),
@@ -1099,7 +1096,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockCache->expects( $this->never() )->method( 'get' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
+			'cache' => $mockCache,
+			'expiryEnabled' => false,
+		] );
 
 		$store->duplicateAllAssociatedEntries(
 			$oldTarget,
