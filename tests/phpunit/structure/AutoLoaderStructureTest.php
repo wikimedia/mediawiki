@@ -156,4 +156,19 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $oldAutoload, $newAutoload, 'autoload.php does not match' .
 			' output of generateLocalAutoload.php script.' );
 	}
+
+	/**
+	 * Verify that all the directories specified for PSR-4 autoloading
+	 * actually exist, to prevent situations like T259448
+	 */
+	public function testAutoloadNamespaces() {
+		$missing = [];
+		foreach ( AutoLoader::$psr4Namespaces as $ns => $path ) {
+			if ( !is_dir( $path ) ) {
+				$missing[] = "Directory $path for namespace $ns does not exist";
+			}
+		}
+
+		$this->assertSame( [], $missing );
+	}
 }
