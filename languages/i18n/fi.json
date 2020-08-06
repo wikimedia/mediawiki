@@ -2297,6 +2297,7 @@
 	"notanarticle": "Ei ole sivu",
 	"notvisiblerev": "Versio on poistettu",
 	"watchlist-details": "Tarkkailulistallasi on {{PLURAL:$1|$1 sivu|$1 sivua}} (keskustelusivut mukaan lukien).",
+	"watchlist-expiring-hours-msg": "Muutama tunti jäljellä",
 	"wlheader-enotif": "Sähköposti-ilmoitus on käytössä.",
 	"wlheader-showupdated": "Sivut, joita on muokattu viimeisen käyntisi jälkeen, on <strong>lihavoitu</strong>.",
 	"wlnote": "Alla {{PLURAL:$1|on viimeisin muutos|ovat viimeisimmät <strong>$1</strong> muutosta}} edellisen {{PLURAL:$2|tunnin|<strong>$2</strong> tunnin}} ajalta $3 kello $4 lukien.",
