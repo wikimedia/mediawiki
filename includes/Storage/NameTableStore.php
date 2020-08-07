@@ -216,7 +216,7 @@ class NameTableStore {
 	 *
 	 * @note This should only be called in situations where the local cache has been detected
 	 * to be out of sync with the database. There should be no reason to call this method
-	 * from outside the NameTabelStore during normal operation. This method may however be
+	 * from outside the NameTableStore during normal operation. This method may however be
 	 * useful in unit tests.
 	 *
 	 * @param int $connFlags ILoadBalancer::CONN_XXX flags. Optional.
