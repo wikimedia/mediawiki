@@ -344,6 +344,8 @@ abstract class Skin extends ContextSource {
 	 * @return int
 	 */
 	public function getRevisionId() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->getRevisionId();
 	}
 
@@ -354,6 +356,8 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isRevisionCurrent() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->isRevisionCurrent();
 	}
 
