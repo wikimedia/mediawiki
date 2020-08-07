@@ -336,9 +336,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$vals['user'] = $recentChangeInfo['rc_user_text'];
 				}
 
-				if ( !$recentChangeInfo['rc_user'] ) {
-					$vals['anon'] = true;
-				}
+				$vals['anon'] = $recentChangeInfo['rc_user'] == 0;
 			}
 		}
 
