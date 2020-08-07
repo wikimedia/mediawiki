@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
@@ -51,10 +53,14 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 */
 	public $mRange;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param ImagePage $imagePage
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $imagePage ) {
+	public function __construct( $imagePage, LinkBatchFactory $linkBatchFactory = null ) {
 		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = $imagePage->getTitle()->createFragmentTarget( 'filehistory' );
@@ -71,6 +77,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 				$this->mDefaultLimit,
 				''
 			);
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	/**
@@ -108,7 +115,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if ( count( $this->mHist ) ) {
 			if ( $this->mImg->isLocal() ) {
 				// Do a batch existence check for user pages and talkpages
-				$linkBatch = new LinkBatch();
+				$linkBatch = $this->linkBatchFactory->newLinkBatch();
 				for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 					$file = $this->mHist[$i];
 					$user = $file->getUser( 'text' );

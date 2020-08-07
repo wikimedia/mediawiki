@@ -19,6 +19,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -38,7 +39,16 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @var int */
 	private $maxTimestamp;
 
-	public function __construct( SpecialMergeHistory $form, $conds, Title $source, Title $dest ) {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	public function __construct(
+		SpecialMergeHistory $form,
+		$conds,
+		Title $source,
+		Title $dest,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->articleID = $source->getArticleID();
@@ -53,12 +63,13 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->maxTimestamp = $maxtimestamp;
 
 		parent::__construct( $form->getContext() );
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	protected function getStartBody() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
-		$batch = new LinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		# Give some pointers to make (last) links
 		$this->mForm->prevId = [];
 		$rev_id = null;

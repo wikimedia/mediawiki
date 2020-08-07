@@ -19,11 +19,12 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-
 class NewPagesPager extends ReverseChronologicalPager {
 
 	/**
@@ -36,14 +37,23 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected $mForm;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param SpecialNewpages $form
 	 * @param FormOptions $opts
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $form, FormOptions $opts ) {
+	public function __construct(
+		$form,
+		FormOptions $opts,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
 		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
 		$this->opts = $opts;
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	public function getQueryInfo() {
@@ -166,7 +176,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 	protected function getStartBody() {
 		# Do a batch existence check on pages
-		$linkBatch = new LinkBatch();
+		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
 			$linkBatch->add( NS_USER, $row->rc_user_text );
 			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );

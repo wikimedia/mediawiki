@@ -811,7 +811,8 @@ class SpecialUndelete extends SpecialPage {
 
 		# Batch existence check on user and talk pages
 		if ( $haveRevisions ) {
-			$batch = new LinkBatch();
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$batch = $linkBatchFactory->newLinkBatch();
 			foreach ( $revisions as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->ar_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->ar_user_text ) );
@@ -820,7 +821,8 @@ class SpecialUndelete extends SpecialPage {
 			$revisions->seek( 0 );
 		}
 		if ( $haveFiles ) {
-			$batch = new LinkBatch();
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$batch = $linkBatchFactory->newLinkBatch();
 			foreach ( $files as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->fa_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->fa_user_text ) );

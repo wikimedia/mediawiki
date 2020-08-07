@@ -541,8 +541,8 @@ class InfoAction extends FormlessAction {
 			->getRevisionLookup()
 			->getFirstRevision( $this->getTitle() );
 		$lastRev = $this->getWikiPage()->getRevisionRecord();
-		$batch = new LinkBatch;
-
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		if ( $firstRev ) {
 			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $firstRevUser ) {

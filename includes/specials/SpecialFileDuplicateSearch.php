@@ -186,7 +186,8 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	}
 
 	private function doBatchLookups( $list ) {
-		$batch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		/** @var File $file */
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );

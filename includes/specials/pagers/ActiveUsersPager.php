@@ -19,6 +19,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -54,9 +55,14 @@ class ActiveUsersPager extends UsersPager {
 	/**
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( ?IContextSource $context, FormOptions $opts ) {
-		parent::__construct( $context );
+	public function __construct(
+		?IContextSource $context,
+		FormOptions $opts,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
+		parent::__construct( $context, null, null, $linkBatchFactory );
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
 		$this->requestedUser = '';

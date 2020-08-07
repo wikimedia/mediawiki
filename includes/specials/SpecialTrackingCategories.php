@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that displays list of tracking categories
  * Tracking categories allow pages with certain characteristics to be tracked.
@@ -62,7 +64,8 @@ class SpecialTrackingCategories extends SpecialPage {
 		$trackingCategories = new TrackingCategories( $this->getConfig() );
 		$categoryList = $trackingCategories->getTrackingCategories();
 
-		$batch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		foreach ( $categoryList as $catMsg => $data ) {
 			$batch->addObj( $data['msg'] );
 			foreach ( $data['cats'] as $catTitle ) {

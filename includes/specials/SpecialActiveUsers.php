@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:Activeusers
  *
@@ -56,7 +58,11 @@ class SpecialActiveUsers extends SpecialPage {
 			$opts->setValue( 'username', $par );
 		}
 
-		$pager = new ActiveUsersPager( $this->getContext(), $opts );
+		$pager = new ActiveUsersPager(
+			$this->getContext(),
+			$opts,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$usersBody = $pager->getBody();
 
 		$this->buildForm();

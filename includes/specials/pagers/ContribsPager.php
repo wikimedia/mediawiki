@@ -19,10 +19,7 @@
  * @ingroup Pager
  */
 
-/**
- * Pager for Special:Contributions
- * @ingroup Pager
- */
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -31,6 +28,10 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * Pager for Special:Contributions
+ * @ingroup Pager
+ */
 class ContribsPager extends RangeChronologicalPager {
 
 	/**
@@ -102,8 +103,14 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $templateParser;
 
-	public function __construct( IContextSource $context, array $options,
-		LinkRenderer $linkRenderer = null
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	public function __construct(
+		IContextSource $context,
+		array $options,
+		LinkRenderer $linkRenderer = null,
+		LinkBatchFactory $linkBatchFactory = null
 	) {
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
@@ -148,6 +155,7 @@ class ContribsPager extends RangeChronologicalPager {
 		// with extra user based indexes or partioning by user.
 		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 		$this->templateParser = new TemplateParser();
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	public function getDefaultQuery() {
@@ -494,7 +502,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->mResult->seek( 0 );
 		$parentRevIds = [];
 		$this->mParentLens = [];
-		$batch = new LinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		$isIpRange = $this->isQueryableRange( $this->target );
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {

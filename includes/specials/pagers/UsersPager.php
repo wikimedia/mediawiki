@@ -23,6 +23,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -57,13 +58,22 @@ class UsersPager extends AlphabeticPager {
 	/** @var string */
 	protected $requestedUser;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param IContextSource|null $context
 	 * @param array|null $par (Default null)
 	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( IContextSource $context = null, $par = null, $including = null ) {
+	public function __construct(
+		IContextSource $context = null,
+		$par = null,
+		$including = null,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -108,6 +118,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		parent::__construct();
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	/**
@@ -251,7 +262,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	protected function doBatchLookups() {
-		$batch = new LinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		$userIds = [];
 		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
