@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
@@ -153,6 +154,19 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		return $mock;
 	}
 
+	/**
+	 * @return MockObject|LinkBatchFactory
+	 */
+	private function getMockLinkBatchFactory( $mockDb ) {
+		return new LinkBatchFactory(
+			$this->createMock( LinkCache::class ),
+			$this->createMock( TitleFormatter::class ),
+			$this->createMock( Language::class ),
+			$this->createMock( GenderCache::class ),
+			$this->getMockLoadBalancer( $mockDb )
+		);
+	}
+
 	private function getFakeRow( array $rowValues ) {
 		$fakeRow = (object)[];
 		foreach ( $rowValues as $valueName => $value ) {
@@ -182,17 +196,19 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
 		] );
 
+		$db = $mocks['db'] ?? $this->getMockDb();
 		return new WatchedItemStore(
 			$options,
 			$mocks['lbFactory'] ??
-				$this->getMockLBFactory( $mocks['db'] ?? $this->getMockDb() ),
+				$this->getMockLBFactory( $db ),
 			$mocks['queueGroup'] ?? $this->getMockJobQueueGroup(),
 			new HashBagOStuff(),
 			$mocks['cache'] ?? $this->getMockCache(),
 			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
 			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$this->getMockLinkBatchFactory( $db )
 		);
 	}
 

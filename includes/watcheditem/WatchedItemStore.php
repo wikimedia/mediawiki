@@ -1,6 +1,7 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -114,6 +115,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $hookRunner;
 
 	/**
+	 * @var LinkBatchFactory
+	 */
+	private $linkBatchFactory;
+
+	/**
 	 * @var string|null Maximum configured relative expiry.
 	 */
 	private $maxExpiryDuration;
@@ -128,6 +134,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
 	 * @param HookContainer $hookContainer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -138,7 +145,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -157,6 +165,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->linkBatchFactory = $linkBatchFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -553,7 +562,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
 		}
 
-		$lb = new LinkBatch( $targets );
+		$lb = $this->linkBatchFactory->newLinkBatch( $targets );
 
 		$tables = [ 'watchlist' ];
 		$conds = [ $lb->constructSet( 'wl', $dbr ) ];
@@ -678,7 +687,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		if ( $missingTargets ) {
-			$lb = new LinkBatch( $missingTargets );
+			$lb = $this->linkBatchFactory->newLinkBatch( $missingTargets );
 			$conds[] = $lb->constructSet( 'wl', $db );
 		}
 
@@ -916,7 +925,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$lb = new LinkBatch( $targetsToLoad );
+		$lb = $this->linkBatchFactory->newLinkBatch( $targetsToLoad );
 		$res = $dbr->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],

@@ -1360,7 +1360,8 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getLinkBatchFactory()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 
