@@ -306,6 +306,7 @@ class Names {
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
 		'mr' => 'मराठी', # Marathi
+		'mrh' => 'Mara', # Mara
 		'mrj' => 'кырык мары', # Hill Mari
 		'ms' => 'Bahasa Melayu', # Malay
 		'mt' => 'Malti', # Maltese
