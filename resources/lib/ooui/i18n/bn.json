@@ -32,5 +32,6 @@
 	"ooui-selectfile-not-supported": "চিত্র নির্বাচন সমর্থিত নয়",
 	"ooui-selectfile-placeholder": "কোন চিত্র নির্বাচিত হয়নি",
 	"ooui-selectfile-dragdrop-placeholder": "এখানে ফাইল ছাড়ুন",
+	"ooui-popup-widget-close-button-aria-label": "বন্ধ",
 	"ooui-field-help": "সাহায্য"
 }
