@@ -67,7 +67,9 @@ class TemplatesOnThisPageFormatter {
 		}
 
 		# Do a batch existence check
-		( new LinkBatch( $templates ) )->execute();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch( $templates );
+		$batch->execute();
 
 		# Construct the HTML
 		$outText = '<div class="mw-templatesUsedExplanation">';

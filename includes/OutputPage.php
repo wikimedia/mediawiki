@@ -1415,7 +1415,8 @@ class OutputPage extends ContextSource {
 	protected function addCategoryLinksToLBAndGetResult( array $categories ) {
 		# Add the links to a LinkBatch
 		$arr = [ NS_CATEGORY => $categories ];
-		$lb = new LinkBatch;
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setArray( $arr );
 
 		# Fetch existence plus the hiddencat property

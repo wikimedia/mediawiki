@@ -179,7 +179,8 @@ class LinkHolderArray {
 		}
 
 		$colours = [];
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$services = MediaWikiServices::getInstance();
+		$linkCache = $services->getLinkCache();
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
 
@@ -191,7 +192,8 @@ class LinkHolderArray {
 		$linkcolour_ids = [];
 
 		# Generate query
-		$lb = new LinkBatch();
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
 
 		foreach ( $this->internals as $ns => $entries ) {
@@ -343,7 +345,8 @@ class LinkHolderArray {
 	 * @param array &$colours
 	 */
 	protected function doVariants( &$colours ) {
-		$linkBatch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$linkBatch = $linkBatchFactory->newLinkBatch();
 		$variantMap = []; // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();

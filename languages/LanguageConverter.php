@@ -889,7 +889,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
 		$disableLinkConversion = $wgDisableLangConversion
 			|| $wgDisableTitleConversion;
-		$linkBatch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$linkBatch = $linkBatchFactory->newLinkBatch();
 
 		$ns = NS_MAIN;
 
