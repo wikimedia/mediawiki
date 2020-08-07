@@ -620,7 +620,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Get protections for missing titles
 		if ( count( $this->missing ) ) {
 			$this->resetQueryParams();
-			$lb = new LinkBatch( $this->missing );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $this->missing );
 			$this->addTables( 'protected_titles' );
 			$this->addFields( [ 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ] );
 			$this->addWhere( $lb->constructSet( 'pt', $db ) );
@@ -650,7 +651,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
-			$lb = new LinkBatch( $others );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
 			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
@@ -723,7 +725,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// Construct a custom WHERE clause that matches
 		// all titles in $getTitles
-		$lb = new LinkBatch( $getTitles );
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch( $getTitles );
 		$this->resetQueryParams();
 		$this->addTables( 'page' );
 		$this->addFields( [ 'page_title', 'page_namespace', 'page_id' ] );
@@ -870,7 +873,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$titlesWithThresholds = [];
 		if ( $this->titles ) {
-			$lb = new LinkBatch( $this->titles );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $this->titles );
 
 			// Fetch last edit timestamps for pages
 			$this->resetQueryParams();
