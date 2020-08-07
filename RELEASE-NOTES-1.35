@@ -24,6 +24,9 @@ for use in production.
 * (T130906) Add Edge to MediaWiki:Clearyourcache.
 * (T257279) Add mediawiki.ui Less variable deprecation note.
 * (T249521) Fixed reassignEdits.php to work with anonymous users.
+* (T259448) Fix Circular dependency when creating service in
+  DBLoadBalancerFactory.
+* (T257259) Default to using watchlist expiry of old page when moving pages.
 
 == MediaWiki 1.35.0-rc.0 ==
 
