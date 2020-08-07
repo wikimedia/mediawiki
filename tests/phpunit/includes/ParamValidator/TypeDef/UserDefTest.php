@@ -9,7 +9,6 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers MediaWiki\ParamValidator\TypeDef\UserDef
@@ -113,7 +112,7 @@ class UserDefTest extends TypeDefTestCase {
 			} else {
 				$obj = $userFactory->newFromName( $expect );
 			}
-			$fakeTime = ConvertibleTimestamp::setFakeTime( '20200804000000' );
+
 			yield "$key, returning object" => [ $input, $obj, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		}
 
