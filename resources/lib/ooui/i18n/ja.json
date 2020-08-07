@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bonfire12",
 			"Fryed-peach",
 			"Los688",
 			"Miya",
@@ -33,5 +34,6 @@
 	"ooui-selectfile-not-supported": "ファイルの選択はサポートされていません",
 	"ooui-selectfile-placeholder": "ファイルが選択されていません",
 	"ooui-selectfile-dragdrop-placeholder": "ファイルをここにドロップ",
+	"ooui-popup-widget-close-button-aria-label": "閉じる",
 	"ooui-field-help": "ヘルプ"
 }

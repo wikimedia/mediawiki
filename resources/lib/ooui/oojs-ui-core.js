@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.40.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:31:58Z
+ * Date: 2020-08-05T21:21:44Z
  */
 ( function ( OO ) {
 
@@ -5872,7 +5872,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 				// Bind a keydown event to the last focusable element
 				// If user presses the tab key on this item, dismiss the popup and
 				// take focus back to the caller, ideally the caller implements this functionality
-				// This is to prevent illogical focus order, which is a common accessibility pitfall.
+				// This is to prevent illogical focus order, a common accessibility pitfall.
 				// Alternative Fix: Implement focus trap for popup widget.
 				$lastFocusableElement.on( 'keydown', this.onTabKeyDownHandler );
 			}
@@ -8041,7 +8041,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			Array.isArray( selected ) ? selected[ 0 ] : selected
 		);
 
-	if ( !this.isDisabled() && this.isVisible() ) {
+	if ( !this.isDisabled() && this.isVisible() && this.getVisibleItems().length ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.TAB:
 				if ( currentItem ) {
@@ -8073,6 +8073,17 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			e.stopPropagation();
 		}
 	}
+};
+
+/**
+ * Return the visible items in the menu.
+ *
+ * @return {OO.ui.MenuOptionWidget[]} Visible items
+ */
+OO.ui.MenuSelectWidget.prototype.getVisibleItems = function () {
+	return this.getItems().filter( function ( item ) {
+		return item.isVisible();
+	} );
 };
 
 /**

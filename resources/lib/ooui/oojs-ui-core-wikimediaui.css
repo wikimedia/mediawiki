@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.40.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:32:25Z
+ * Date: 2020-08-05T21:22:12Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -66,7 +66,7 @@
 }
 .oo-ui-buttonElement.oo-ui-labelElement > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
 }
 .oo-ui-buttonElement.oo-ui-labelElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   padding-right: 2.14285714em;
@@ -124,7 +124,7 @@
   border-color: transparent;
   border-style: solid;
   border-width: 1px;
-  padding: 6px 6px;
+  padding: 5px 6px;
 }
 .oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-left: 2.14285714em;
@@ -138,7 +138,7 @@
 }
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
   padding-left: 6px;
-  padding-top: 6px;
+  padding-top: 5px;
 }
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement.oo-ui-iconElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
   padding-left: 2.14285714em;
@@ -247,8 +247,8 @@
   padding-bottom: 0;
 }
 .oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   background-color: #c8ccd1;
@@ -655,10 +655,12 @@
 .oo-ui-actionFieldLayout.oo-ui-fieldLayout-align-top {
   max-width: 50em;
 }
-.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget:not( .oo-ui-textInputWidget ) {
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input > .oo-ui-widget {
   margin-right: 8px;
 }
-.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget.oo-ui-textInputWidget > .oo-ui-inputWidget-input {
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input > .oo-ui-widget.oo-ui-textInputWidget > .oo-ui-inputWidget-input,
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input > .oo-ui-widget .oo-ui-dropdownWidget-handle,
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input > .oo-ui-widget .oo-ui-tagMultiselectWidget-handle {
   border-radius: 2px 0 0 2px;
   position: relative;
 }
@@ -837,7 +839,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 
 .oo-ui-decoratedOptionWidget {
-  padding: 7px 12px;
+  padding: 6px 12px;
   line-height: 1;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement {
@@ -847,7 +849,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   left: 0.78571429em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-labelElement-label {
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement {
   padding-right: 2.14285714em;
@@ -1234,19 +1236,16 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: width 100ms, height 100ms, left 100ms;
   transition: width 100ms, height 100ms, left 100ms;
 }
-.oo-ui-popupWidget-head {
-  position: relative;
-  overflow: auto;
-}
 .oo-ui-popupWidget-head > .oo-ui-iconElement-icon {
   left: 0.78571429em;
+  height: 2.02857143em;
 }
 .oo-ui-popupWidget-head > .oo-ui-iconElement-noIcon + .oo-ui-labelElement-label {
   margin-left: 12px;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
   margin: 9px 12px 9px 2.64285714em;
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
   right: 0;
@@ -1258,7 +1257,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.42857143em;
 }
 .oo-ui-popupWidget-body-padded {
-  margin: 0 12px 6px;
+  margin: 0 12px 5px;
 }
 .oo-ui-popupWidget-body-padded > :first-child {
   margin-top: 0;
@@ -1322,9 +1321,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #72777d;
   border-style: solid;
   border-radius: 2px;
-  border-width: 0;
-}
-:root .oo-ui-checkboxInputWidget [type='checkbox'] + span {
   border-width: 1px;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:checked:not( :indeterminate ) + span {
@@ -1461,7 +1457,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: inherit;
   font-family: inherit;
   height: 1.5em;
-  padding: 6px 12px;
+  padding: 5px 12px;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled {
   background-color: #f8f9fa;
@@ -1532,8 +1528,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-style: solid;
   border-radius: 100%;
   border-width: 0;
-}
-:root .oo-ui-radioInputWidget [type='radio'] + span {
   border-width: 1px;
 }
 .oo-ui-radioInputWidget [type='radio'] + span:before {
@@ -1678,10 +1672,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 0;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 6px 8px;
+  padding: 5px 8px;
   font-size: inherit;
   font-family: inherit;
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
 }
 .oo-ui-textInputWidget input {
   height: 2.28571429em;
@@ -1849,7 +1843,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-menuSectionOptionWidget {
   color: #72777d;
-  padding: 6px 12px 4px;
+  padding: 5px 12px 4px;
   font-weight: bold;
 }
 .oo-ui-menuSectionOptionWidget.oo-ui-widget-enabled {
@@ -1903,7 +1897,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   min-height: 2.28571429em;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 6px 2.14285714em 6px 12px;
+  padding: 5px 2.14285714em 5px 12px;
   line-height: 1;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
@@ -1913,7 +1907,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   right: 11px;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
 }
 .oo-ui-dropdownWidget.oo-ui-iconElement .oo-ui-dropdownWidget-handle {
   padding-left: 2.71428571em;

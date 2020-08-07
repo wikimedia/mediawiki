@@ -4,6 +4,7 @@
 			"Bluyten",
 			"Breghtje",
 			"Catrope",
+			"Dutchy45",
 			"Flightmare",
 			"Gloria sah",
 			"Hansmuller",
@@ -40,5 +41,6 @@
 	"ooui-selectfile-not-supported": "Selectie van een bestand wordt niet ondersteund",
 	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd",
 	"ooui-selectfile-dragdrop-placeholder": "Sleep hier een bestand heen",
+	"ooui-popup-widget-close-button-aria-label": "Sluiten",
 	"ooui-field-help": "Hulp"
 }

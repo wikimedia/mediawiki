@@ -39,5 +39,6 @@
 	"ooui-selectfile-not-supported": "無法支援所選擇的檔案",
 	"ooui-selectfile-placeholder": "尚未選擇檔案",
 	"ooui-selectfile-dragdrop-placeholder": "拖曳檔案到此處",
+	"ooui-popup-widget-close-button-aria-label": "關閉",
 	"ooui-field-help": "說明"
 }

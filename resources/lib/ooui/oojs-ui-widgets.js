@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.40.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:31:58Z
+ * Date: 2020-08-05T21:21:44Z
  */
 ( function ( OO ) {
 
@@ -5417,22 +5417,33 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
  */
 OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config ) {
-	var $autoCloseIgnore = $( [] );
+	var options, selected, configCopy,
+		$autoCloseIgnore = $( [] );
+
 	config = config || {};
 
 	// Ensure that any pre-selected items exist as menu options,
 	// so that they can be added as tags from #setValue
-	config.options = config.options || [];
-	config.selected = config.selected || [];
-	config.selected.forEach( function ( title ) {
-		config.options.push( {
-			data: title,
-			label: title
-		} );
-	} );
+	options = config.options || [];
+	selected = config.selected || [];
+	options = options.concat(
+		selected.map( function ( option ) {
+			if ( typeof option === 'string' ) {
+				return {
+					data: option,
+					label: option
+				};
+			}
+			return option;
+		} )
+	);
+
+	configCopy = OO.copy( config );
+	configCopy.options = options;
+	configCopy.selected = selected;
 
 	// Parent constructor
-	OO.ui.MenuTagMultiselectWidget.super.call( this, config );
+	OO.ui.MenuTagMultiselectWidget.super.call( this, configCopy );
 
 	$autoCloseIgnore = $autoCloseIgnore.add( this.$group );
 	if ( this.hasInput ) {
@@ -5457,7 +5468,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		$overlay: this.$overlay,
 		disabled: this.isDisabled()
 	}, config.menu ) );
-	this.addOptions( config.options || [] );
+	this.addOptions( options );
 
 	// Events
 	this.menu.connect( this, {
@@ -5481,8 +5492,8 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	this.menu.$focusOwner.removeAttr( 'aria-expanded' );
 	// TagMultiselectWidget already does this, but it doesn't work right because this.menu is
 	// not yet set up while the parent constructor runs, and #getAllowedValues rejects everything.
-	if ( config.selected.length > 0 ) {
-		this.setValue( config.selected );
+	if ( selected.length > 0 ) {
+		this.setValue( selected );
 	}
 };
 
@@ -5688,18 +5699,6 @@ OO.ui.MenuTagMultiselectWidget.prototype.getTagInfoFromInput = function () {
 };
 
 /**
- * Return the visible items in the menu. This is mainly used for when
- * the menu is filtering results.
- *
- * @return {OO.ui.MenuOptionWidget[]} Visible results
- */
-OO.ui.MenuTagMultiselectWidget.prototype.getMenuVisibleItems = function () {
-	return this.menu.getItems().filter( function ( menuItem ) {
-		return menuItem.isVisible();
-	} );
-};
-
-/**
  * Create the menu for this widget. This is in a separate method so that
  * child classes can override this without polluting the constructor with
  * unnecessary extra objects that will be overidden.
@@ -5712,15 +5711,23 @@ OO.ui.MenuTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfi
 };
 
 /**
- * Add options to the menu
+ * Add options to the menu, ensuring that they are unique by data.
  *
  * @param {Object[]} menuOptions Object defining options
  */
 OO.ui.MenuTagMultiselectWidget.prototype.addOptions = function ( menuOptions ) {
 	var widget = this,
-		items = menuOptions.map( function ( obj ) {
-			return widget.createMenuOptionWidget( obj.data, obj.label, obj.icon );
-		} );
+		optionsData = [],
+		items = [];
+
+	menuOptions.forEach( function ( obj ) {
+		if ( optionsData.indexOf( obj.data ) === -1 ) {
+			optionsData.push( obj.data );
+			items.push(
+				widget.createMenuOptionWidget( obj.data, obj.label, obj.icon )
+			);
+		}
+	} );
 
 	this.menu.addItems( items );
 };
