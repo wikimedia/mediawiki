@@ -8,6 +8,7 @@
 .* export-ignore
 *.htaccess -export-ignore
 package.json export-ignore
+package-lock.json export-ignore
 Gruntfile.js export-ignore
 Gemfile* export-ignore
 vendor/pear/net_smtp/README.rst export-ignore
