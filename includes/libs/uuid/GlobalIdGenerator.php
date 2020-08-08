@@ -111,7 +111,7 @@ class GlobalIdGenerator {
 
 	/**
 	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay(), or
-	 *  for sub classes, a seqencial array like (time, offsetCounter).
+	 *  for sub classes, a sequential array like (time, offsetCounter).
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
