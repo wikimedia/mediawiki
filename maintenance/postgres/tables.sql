@@ -234,16 +234,6 @@ ALTER SEQUENCE content_models_model_id_seq OWNED BY content_models.model_id;
 CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
 
-CREATE TABLE redirect (
-  rd_from       INTEGER  NOT NULL PRIMARY KEY REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rd_namespace  SMALLINT NOT NULL,
-  rd_title      TEXT     NOT NULL,
-  rd_interwiki  TEXT     NULL,
-  rd_fragment   TEXT     NULL
-);
-CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
-
-
 CREATE TABLE pagelinks (
   pl_from       INTEGER   NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   pl_from_namespace INTEGER NOT NULL DEFAULT 0,

@@ -114,3 +114,12 @@ CREATE TABLE module_deps (
   md_deps TEXT NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 );
+CREATE TABLE redirect (
+  rd_from INT DEFAULT 0 NOT NULL,
+  rd_namespace INT DEFAULT 0 NOT NULL,
+  rd_title TEXT DEFAULT '' NOT NULL,
+  rd_interwiki VARCHAR(32) DEFAULT NULL,
+  rd_fragment TEXT DEFAULT NULL,
+  PRIMARY KEY(rd_from)
+);
+CREATE INDEX rd_ns_title ON redirect (rd_namespace, rd_title, rd_from);

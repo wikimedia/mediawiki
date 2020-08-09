@@ -107,3 +107,12 @@ CREATE TABLE /*_*/module_deps (
   md_deps BLOB NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 );
+CREATE TABLE /*_*/redirect (
+  rd_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  rd_namespace INTEGER DEFAULT 0 NOT NULL,
+  rd_title BLOB DEFAULT '' NOT NULL,
+  rd_interwiki VARCHAR(32) DEFAULT NULL,
+  rd_fragment BLOB DEFAULT NULL,
+  PRIMARY KEY(rd_from)
+);
+CREATE INDEX rd_ns_title ON /*_*/redirect (rd_namespace, rd_title, rd_from);

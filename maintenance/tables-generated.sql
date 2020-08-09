@@ -127,3 +127,13 @@ CREATE TABLE /*_*/module_deps (
   md_deps MEDIUMBLOB NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/redirect (
+  rd_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  rd_namespace INT DEFAULT 0 NOT NULL,
+  rd_title VARBINARY(255) DEFAULT '' NOT NULL,
+  rd_interwiki VARCHAR(32) DEFAULT NULL,
+  rd_fragment VARBINARY(255) DEFAULT NULL,
+  INDEX rd_ns_title (rd_namespace, rd_title, rd_from),
+  PRIMARY KEY(rd_from)
+) /*$wgDBTableOptions*/;
