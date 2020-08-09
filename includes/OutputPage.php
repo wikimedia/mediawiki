@@ -2982,7 +2982,6 @@ class OutputPage extends ContextSource {
 				'noscript',
 				'user.styles',
 			] );
-			$this->getSkin()->setupSkinUserCss( $this );
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];

@@ -10,7 +10,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetDefaultModules() {
 		$skin = $this->getMockBuilder( Skin::class )
-			->setMethods( [ 'outputPage', 'setupSkinUserCss' ] )
+			->setMethods( [ 'outputPage' ] )
 			->getMock();
 
 		$modules = $skin->getDefaultModules();
