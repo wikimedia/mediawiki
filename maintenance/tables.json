@@ -1521,6 +1521,65 @@
 			{ "name": "job_timestamp", "columns": [ "job_timestamp" ], "unique": false }
 		],
 		"pk": [ "job_id" ]
+	},
+	{
+		"name": "slot_roles",
+		"comment": "Normalization table for role names",
+		"columns": [
+			{
+				"name": "role_id",
+				"type": "integer",
+				"options": { "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "role_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64}
+			}
+		],
+		"indexes": [
+			{
+				"name": "role_name",
+				"columns": [ "role_name" ],
+				"comment": "Index for looking of the internal ID of for a name",
+				"unique": true
+			}
+		],
+		"pk": [ "role_id" ]
+	},
+	{
+		"name": "content_models",
+		"comment": "Normalization table for content model names",
+		"columns": [
+			{
+				"name": "model_id",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"autoincrement": true
+				}
+			},
+			{
+				"name": "model_name",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"length": 64
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "model_name",
+				"columns": [
+					"model_name"
+				],
+				"comment": "Index for looking of the internal ID of for a name",
+				"unique": true
+			}
+		],
+		"pk": [
+			"model_id"
+		]
 	}
-
 ]

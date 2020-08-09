@@ -824,6 +824,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgIndex', 'job', 'job_cmd_namespace_title' ],
 			[ 'addPgIndex', 'job', 'job_cmd', '(job_cmd, job_namespace, job_title, job_params)' ],
 			[ 'renameIndex', 'job', 'job_timestamp_idx', 'job_timestamp' ],
+			[ 'changeField', 'slot_roles', 'role_id', 'INTEGER', '' ],
+			[ 'changeField', 'content_models', 'model_id', 'INTEGER', '' ],
 		];
 	}
 
