@@ -406,5 +406,57 @@
 		],
 		"indexes": [],
 		"pk": [ "content_id" ]
+	},
+	{
+		"name": "l10n_cache",
+		"comment": "Table for storing localisation data",
+		"columns": [
+			{
+				"name": "lc_lang",
+				"comment": "Language code",
+				"type": "binary",
+				"options": { "notnull": true, "length": 35 }
+			},
+			{
+				"name": "lc_key",
+				"comment": "Cache key",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "lc_value",
+				"comment": "Value",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "lc_lang", "lc_key" ]
+	},
+	{
+		"name": "module_deps",
+		"comment": "Table caching which local files a module depends on that aren't registered directly, used for fast retrieval of file dependency. Currently only used for tracking images that CSS depends on",
+		"columns": [
+			{
+				"name": "md_module",
+				"comment": "Module name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "md_skin",
+				"comment": "Module context vary (includes skin and language; called \"md_skin\" for legacy reasons)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "md_deps",
+				"comment": "JSON blob with file dependencies",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "md_module", "md_skin" ]
 	}
 ]

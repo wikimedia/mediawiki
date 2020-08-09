@@ -113,3 +113,17 @@ CREATE TABLE /*_*/content (
   content_address VARBINARY(255) NOT NULL,
   PRIMARY KEY(content_id)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/l10n_cache (
+  lc_lang VARBINARY(35) NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value MEDIUMBLOB NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/module_deps (
+  md_module VARBINARY(255) NOT NULL,
+  md_skin VARBINARY(32) NOT NULL,
+  md_deps MEDIUMBLOB NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+) /*$wgDBTableOptions*/;

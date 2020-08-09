@@ -95,3 +95,15 @@ CREATE TABLE /*_*/content (
   content_sha1 BLOB NOT NULL, content_model SMALLINT UNSIGNED NOT NULL,
   content_address BLOB NOT NULL
 );
+CREATE TABLE /*_*/l10n_cache (
+  lc_lang BLOB NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value BLOB NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+);
+CREATE TABLE /*_*/module_deps (
+  md_module BLOB NOT NULL,
+  md_skin BLOB NOT NULL,
+  md_deps BLOB NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+);
