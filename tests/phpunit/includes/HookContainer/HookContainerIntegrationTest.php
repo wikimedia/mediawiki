@@ -90,6 +90,47 @@ namespace MediaWiki\HookContainer {
 			ScopedCallback::consume( $reset2 );
 			ScopedCallback::consume( $reset3 );
 		}
+
+		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer
+		 */
+		public function testValidServiceInjection() {
+			$handler = [
+				'handler' => [
+					'name' => 'FooExtension-Mash',
+					'class' => 'FooExtension\\ServiceHooks',
+					'services' => [ 'ReadOnlyMode' ]
+				],
+				'extensionPath' => '/path/to/extension.json'
+			];
+			$hooks = [ 'Mash' => [ $handler ] ];
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
+			$arg = 0;
+			$ret = $hookContainer->run( 'Mash', [ &$arg ] );
+			$this->assertTrue( $ret );
+			$this->assertSame( 1, $arg );
+		}
+
+		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer
+		 */
+		public function testInvalidServiceInjection() {
+			$handler = [
+				'handler' => [
+					'name' => 'FooExtension-Mash',
+					'class' => 'FooExtension\\ServiceHooks',
+					'services' => [ 'ReadOnlyMode' ]
+				],
+				'extensionPath' => '/path/to/extension.json'
+			];
+			$hooks = [ 'Mash' => [ $handler ] ];
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
+			$this->expectException( \UnexpectedValueException::class );
+			$arg = 0;
+			$hookContainer->run( 'Mash', [ &$arg ], [ 'noServices' => true ] );
+		}
 	}
 }
 
@@ -99,6 +140,16 @@ namespace FooExtension {
 
 		public function onFooHook( &$numHandlersRun ) {
 			$numHandlersRun++;
+		}
+	}
+
+	class ServiceHooks {
+		public function __construct( \ReadOnlyMode $readOnlyMode ) {
+		}
+
+		public function onMash( &$arg ) {
+			$arg++;
+			return true;
 		}
 	}
 

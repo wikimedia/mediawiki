@@ -117,6 +117,31 @@ Then the extension will define a handler class:
         }
     }
 
+## Service dependencies
+
+The ObjectFactory specification in HookHandlers can contain a list of services
+which should be instantiated and provided to the constructor or factory
+function for the handler. For example:
+
+    "HookHandlers": {
+        "main": {
+            "class": "MediaWiki\\Extension\\FoodProcessor\\HookHandler",
+            "services": [ "ReadOnlyMode" ]
+        }
+    }
+
+However, care should be taken with this feature. Some services have expensive
+constructors, so requesting them when handling commonly-called hooks may damage
+performance. Also, some services may not be safe to construct from within a hook
+call.
+
+The safest pattern for service injection is to use a separate handler for each
+hook, and to inject only the services needed by that hook.
+
+Calling a hook with the `noServices` option disables service injection. If a
+handler for such a hook specifies services, an exception will be thrown when
+the hook is called.
+
 ## Returning and aborting
 
 If a hook handler returns false, HookContainer will stop iterating through the

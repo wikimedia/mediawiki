@@ -2391,7 +2391,8 @@ class HookRunner implements
 	public function onLoadExtensionSchemaUpdates( $updater ) {
 		return $this->container->run(
 			'LoadExtensionSchemaUpdates',
-			[ $updater ]
+			[ $updater ],
+			[ 'noServices' => true ]
 		);
 	}
 
