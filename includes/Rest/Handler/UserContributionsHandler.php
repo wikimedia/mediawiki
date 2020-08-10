@@ -49,17 +49,17 @@ class UserContributionsHandler extends AbstractContributionHandler {
 		$revisionsData = [];
 		foreach ( $segment->getRevisions() as $revision ) {
 			$id = $revision->getId();
-			$tags = array_map( function ( $tag ) {
-				return [ 'text' => $tag ];
-			}, $segment->getTagsForRevision( $id ) );
-
+			$tags = [];
+			foreach ( $segment->getTagsForRevision( $id ) as $tag => $message ) {
+				$tags[ $tag ] = [ 'name' => $tag, 'description' => $message->parse(), 'key' => $message->getKey() ];
+			}
 			$revisionsData[] = [
 				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
 				"delta" => $segment->getDeltaForRevision( $id ) ,
 				"size" => $revision->getSize(),
-				"tags" => $tags,
+				"tags" => ( $tags === [] ) ? null : $tags,
 				// Contribution type will always be MediaWiki revisions,
 				// until we can reliably include contributions from other sources. See T257839.
 				"type" => 'revision',
@@ -78,7 +78,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	 *
 	 * @return string[]
 	 */
-	private function constructURLs( ContributionsSegment $segment ) {
+	private function constructURLs( ContributionsSegment $segment ) : array {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
 		/* @var UserIdentity $user */

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Revision;
 
+use ChangeTags;
 use ContribsPager;
 use FauxRequest;
 use MediaWiki\User\UserIdentity;
@@ -38,7 +39,7 @@ class ContributionsLookup {
 	 * The value for the offset is opaque and is ultimately supplied by ContribsPager::getPagingQueries().
 	 * @return array
 	 */
-	private function getPagerParams( int $limit, string $segment ) {
+	private function getPagerParams( int $limit, string $segment ): array {
 		$dir = 'next';
 		$seg = explode( '|', $segment, 2 );
 		if ( count( $seg ) > 1 ) {
@@ -104,8 +105,10 @@ class ContributionsLookup {
 				// TODO: pre-load title batch?
 				$revision = $this->revisionStore->newRevisionFromRow( $row, 0 );
 				$revisions[] = $revision;
-				$tags[ $row->rev_id ] =
-					$row->ts_tags ? explode( ',', $row->ts_tags ) : [];
+				if ( $row->ts_tags ) {
+					$tagNames = explode( ',', $row->ts_tags );
+					$tags[ $row->rev_id ] = $this->getContributionTags( $tagNames );
+				}
 			}
 		}
 
@@ -131,7 +134,22 @@ class ContributionsLookup {
 		if ( $paramArr['dir'] === 'prev' ) {
 			$revisions = array_reverse( $revisions );
 		}
-		return new ContributionsSegment( $revisions, $tags, $before, $after,  $deltas, $flags );
+		return new ContributionsSegment( $revisions, $tags, $before, $after, $deltas, $flags );
+	}
+
+	/**
+	 * @param string[] $tagNames Array of tag names
+	 * @return array Associative array mapping tag name to a Message object containing the tag's display value
+	 */
+	private function getContributionTags( array $tagNames ): array {
+		$tagMetadata = [];
+		foreach ( $tagNames as $name ) {
+			$tagDisplay = ChangeTags::tagShortDescriptionMessage( $name, RequestContext::getMain() );
+			if ( $tagDisplay ) {
+				$tagMetadata[$name] = $tagDisplay;
+			}
+		}
+		return $tagMetadata;
 	}
 
 	/**
@@ -141,7 +159,7 @@ class ContributionsLookup {
 	 *  If revision is the first on a page, delta is revision size.
 	 *  If parent revision is unknown, delta is null.
 	 */
-	private function getContributionDeltas( $revisions ) {
+	private function getContributionDeltas( $revisions ): array {
 		// SpecialContributions uses the size of the revision if the parent revision is unknown. Cases include:
 		// - revision has been deleted
 		// - parent rev id has not been populated (this is the case for very old revisions)
