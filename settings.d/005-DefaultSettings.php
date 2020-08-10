@@ -25,10 +25,22 @@ $GLOBALS['wgVerifyMimeType'] = false;
 $GLOBALS['wgAllowJavaUploads'] = true;
 $GLOBALS['wgParserCacheType'] = CACHE_NONE;
 
-/*
-* Allow authentication extensions like "Auth_remoteuser", "SimpleSAMLphp" or
-* "LDAPAuthentication2" to create users.
-*/
+/**
+ * Allow authentication extensions like "Auth_remoteuser", "SimpleSAMLphp" or
+ * "LDAPAuthentication2" to create users.
+ */
 $GLOBALS['wgExtensionFunctions'][] = function() {
 	$GLOBALS['wgGroupPermissions']['*']['autocreateaccount'] = true;
+};
+
+/**
+ * ERM20479: Prevent unregulated access to logs
+ */
+$GLOBALS['wgExtensionFunctions'][] = function() {
+	$logKeys = $GLOBALS['wgLogTypes'];
+	foreach ( $logKeys as $logKey ) {
+		if ( !isset( $GLOBALS['wgLogRestrictions'][$logKey] ) ) {
+			$GLOBALS['wgLogRestrictions'][$logKey] = 'wikiadmin';
+		}
+	}
 };
