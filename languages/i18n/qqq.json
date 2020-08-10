@@ -2601,6 +2601,8 @@
 	"addedwatchtext-talk": "Message shown after clicking on the {{msg-mw|Watch}} tab in a talk namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext-talk}}\n* {{msg-mw|Addedwatchtext}}",
 	"addedwatchtext-short": "Explanation shown when watching item from [[Special:UnwatchedPages]].\n\nSee also:\n* {{msg-mw|Removedwatchtext-short}}\n* {{msg-mw|Addedwatchtext}}",
 	"addedwatchexpiry-options-label": "Text for watchlist expiry dropdown shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page.",
+	"addedwatchexpiryhours": "Message shown after selecting to watch an article page temporarily and there is less than one day until the expiry time.\n\nParameter:\n* $1 - article title",
+	"addedwatchexpiryhours-talk": "Message shown after selecting to watch a talk page temporarily and there is less than one day until the expiry time.\n\nParameter:\n* $1 - talk page title",
 	"addedwatchexpirytext": "Message shown after selecting to watch a page temporarily. A selection is made from the watchlist expiry dropdown options in the pop up. Parameters:\n* $1 - page title\n* $2 - the expiry selected",
 	"addedwatchexpirytext-talk": "Message shown after selecting to watch a talk page temporarily. A selection is made from the watchlist expiry dropdown options in the pop up. Parameters:\n* $1 - page title\n* $2 - the expiry selected",
 	"addedwatchindefinitelytext": "Message shown after selecting to watch a page indefinitely. The selection is made from the watchlist expiry dropdown options in the pop up. Parameters:\n* $1 - page title",

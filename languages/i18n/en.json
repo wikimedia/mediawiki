@@ -2385,6 +2385,8 @@
 	"addedwatchtext-talk": "\"[[:$1]]\" and its associated page have been added to your [[Special:Watchlist|watchlist]].",
 	"addedwatchtext-short": "The page \"$1\" has been added to your watchlist.",
 	"addedwatchexpiry-options-label": "Watchlist time period:",
+	"addedwatchexpiryhours": "\"[[:$1]]\" and its discussion page have been added to your [[Special:Watchlist|watchlist]] for a few hours.",
+	"addedwatchexpiryhours-talk": "\"[[:$1]]\" and its associated page have been added to your [[Special:Watchlist|watchlist]] for a few hours.",
 	"addedwatchexpirytext": "\"[[:$1]]\" and its discussion page have been added to your [[Special:Watchlist|watchlist]] for $2.",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" and its associated page have been added to your [[Special:Watchlist|watchlist]] for $2.",
 	"addedwatchindefinitelytext": "\"[[:$1]]\" and its discussion page have been added to your [[Special:Watchlist|watchlist]] permanently.",
