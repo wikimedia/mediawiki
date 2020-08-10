@@ -2564,7 +2564,7 @@
 	"blockiptext": "Tällä toiminnolla voit estää käyttäjänimeä tai IP-osoitetta muokkaamasta.<br />\nTällainen muokkausesto pitäisi asettaa vain vandalismin torjumiseksi ja [[{{MediaWiki:Policy-url}}|käytännön]] mukaisesti.\nKirjoita eston syy alla olevaan kenttään.\nVoit estää IP-osoiteavaruuksia käyttämällä [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntaksia; suurin sallittu alue on /$1 protokollalle IPv4 ja /$2 protokollalle IPv6.",
 	"ipaddressorusername": "IP-osoite tai käyttäjänimi:",
 	"ipbreason": "Syy:",
-	"ipbreason-dropdown": "*Yleiset estosyyt\n** Väärän tiedon lisääminen\n** Sisällön poistaminen\n** Mainoslinkkien lisääminen\n** Sotkeminen tai roskan lisääminen\n** Häiriköinti\n** Useamman käyttäjätunnuksen väärinkäyttö\n** Sopimaton käyttäjänimi",
+	"ipbreason-dropdown": "*Yleiset estosyyt\n** Väärän tiedon lisääminen\n** Sisällön poistaminen\n** Mainoslinkkien lisääminen\n** Sotkeminen tai roskan lisääminen\n** Häiriköinti\n** Usean käyttäjätunnuksen väärinkäyttö\n** Sopimaton käyttäjänimi",
 	"ipb-hardblock": "Sovella tämän IP-osoitteen estoa myös sisäänkirjautuneisiin käyttäjiin",
 	"ipbcreateaccount": "Tunnusten luominen",
 	"ipbemailban": "Sähköpostin lähettäminen",

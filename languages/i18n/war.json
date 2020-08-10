@@ -60,6 +60,8 @@
 	"tog-norollbackdiff": "Ayaw igpakita an kaiban kahuman himoa an rollback",
 	"tog-useeditwarning": "Pasabti ako kun nabaya ako hin ginliwat ng pakli nga waray katipig an mga pagbag-o",
 	"tog-prefershttps": "Gamit pirmi hin sigurado nga pagkonektar samtang nakalog-in",
+	"tog-showrollbackconfirmation": "Igpakita an pankompirma nga prompt kun napidlit ka hin rollback nga sumpay",
+	"tog-requireemail": "Igpadangat an password reset email la kun an email address ngan username in ginhatag ngaduha.",
 	"underline-always": "Pirme",
 	"underline-never": "Diri",
 	"underline-default": "An panmutos o pandalikyat nga aada-nga-daan",

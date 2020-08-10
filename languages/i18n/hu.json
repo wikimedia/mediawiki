@@ -2285,6 +2285,8 @@
 	"notanarticle": "Nem szócikk",
 	"notvisiblerev": "A változat törölve lett",
 	"watchlist-details": "$1 lap van a figyelőlistádon, a vitalapokat külön nem számolva.",
+	"watchlist-expiring-msg": "{{PLURAL:$1|Egy nap|$1 nap}} maradt a figyelőlistádon",
+	"watchlist-expiring-hours-msg": "Pár óra van hátra",
 	"wlheader-enotif": "Az e-mailen keresztül történő értesítés engedélyezve.",
 	"wlheader-showupdated": "Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagítva''' láthatók.",
 	"wlnote": "Alább {{PLURAL:$1|az utolsó változás|az utolsó <strong>$1</strong> változás}} látható az elmúlt {{PLURAL:$2|órában|<strong>$2</strong> órában}}, $3 $4-kor.",

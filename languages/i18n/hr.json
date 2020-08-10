@@ -2993,6 +2993,7 @@
 	"watchlistedit-clear-submit": "Izbriši popis praćenja (ovo je nepovratno!)",
 	"watchlistedit-clear-done": "Vaš je popis praćenja obrisan.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 je stranica uklonjena|$1 su stranice ukonjene}}:",
+	"watchlistedit-too-many": "Previše stranica za prikaz za ovaj ispis.",
 	"watchlisttools-clear": "Isprazni popis praćenja",
 	"watchlisttools-view": "Pregled promjena praćenih stranica",
 	"watchlisttools-edit": "Pregled i uređivanje praćenih stranica",

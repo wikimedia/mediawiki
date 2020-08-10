@@ -270,7 +270,7 @@
 	"collapsible-expand": "схьаяста",
 	"confirmable-confirm": "Лаьий {{GENDER:$1|хьуна}}?",
 	"confirmable-yes": "ХӀаъ",
-	"confirmable-no": "ХӀахӀа",
+	"confirmable-no": "ХӀан-хӀа",
 	"thisisdeleted": "Хьажа я меттахӀоттае $1?",
 	"viewdeleted": "Хьожий $1?",
 	"restorelink": "{{PLURAL:$1|1=$1 дӀадаьккхина нийсдар|$1 дӀадяхна нийсдарш}}",

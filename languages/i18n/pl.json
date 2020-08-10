@@ -3034,7 +3034,6 @@
 	"others": "inni",
 	"siteusers": "{{PLURAL:$2|użytkownik|użytkownicy}} {{GRAMMAR:D.lp|{{SITENAME}}}}{{PLURAL:$2||:}} $1",
 	"anonusers": "{{PLURAL:$2|niezalogowany użytkownik|niezalogowani użytkownicy}} {{GRAMMAR:D.lp|{{SITENAME}}}}{{PLURAL:$2||:}} $1",
-	"interwikiusers": "{{PLURAL:$2|zewnętrzny użytkownik|zewnętrzni użytkownicy}}: $1",
 	"creditspage": "Autorzy",
 	"nocredits": "Brak informacji o autorach tej strony.",
 	"spamprotectiontitle": "Filtr antyspamowy",

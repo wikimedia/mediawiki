@@ -3046,7 +3046,6 @@
 	"others": "anderen",
 	"siteusers": "{{PLURAL:$2|{{GENDER:$1|Benutzer|Benutzerin}}|Benutzer}} $1",
 	"anonusers": "{{PLURAL:$2|unangemeldetem|unangemeldeten}} {{PLURAL:$2|Benutzer|Benutzern}} $1",
-	"interwikiusers": "{{PLURAL:$2|externer Benutzer}} $1",
 	"creditspage": "Seitenzuschreibung",
 	"nocredits": "Für diese Seite sind keine Zuschreibungen vorhanden.",
 	"spamprotectiontitle": "Spamschutzfilter",

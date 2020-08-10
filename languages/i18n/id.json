@@ -3,6 +3,7 @@
 		"authors": [
 			"-iNu-",
 			"Ahdan",
+			"Akmaie Ajam",
 			"Albertus Aditya",
 			"Aldnonymous",
 			"Anakmalaysia",
@@ -2317,6 +2318,8 @@
 	"notanarticle": "Bukan sebuah halaman isi",
 	"notvisiblerev": "Revisi telah dihapus",
 	"watchlist-details": "Terdapat {{PLURAL:$1|$1 halaman|$1 halaman}} di daftar pantauan Anda, (termasuk halaman pembicaraan).",
+	"watchlist-expiring-msg": "{{PLURAL:$1|1 hari|$1 hari}} tersisa di daftar pemantauan anda.",
+	"watchlist-expiring-hours-msg": "Beberapa jam tersisa",
 	"wlheader-enotif": "Notifikasi surel diaktifkan.",
 	"wlheader-showupdated": "Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''.",
 	"wlnote": "Di bawah ini adalah {{PLURAL:$1|perubahan|<strong>$1</strong> perubahan}} terakhir dalam {{PLURAL:$2|jam|<strong>$2</strong> jam}}, per $3, $4.",

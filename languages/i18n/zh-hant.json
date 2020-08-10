@@ -3047,7 +3047,6 @@
 	"others": "其他",
 	"siteusers": "{{SITENAME}}{{PLURAL:$2|使用者}}$1",
 	"anonusers": "{{SITENAME}}匿名{{PLURAL:$2|使用者}}$1",
-	"interwikiusers": "外部{{PLURAL:$2|使用者}}$1",
 	"creditspage": "頁面製作群",
 	"nocredits": "此頁面沒有製作群資訊。",
 	"spamprotectiontitle": "垃圾連結過濾器",
