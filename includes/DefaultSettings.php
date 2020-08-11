@@ -9611,6 +9611,16 @@ $wgWatchlistExpiryMaxDuration = '6 months';
 $wgManualRevertSearchRadius = 15;
 
 /**
+ * Allow anonymous cross origin requests.
+ *
+ * This should be disabled for intranet sites (sites behind a firewall).
+ *
+ * @since 1.36
+ * @var bool
+ */
+$wgAllowCrossOrigin = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
