@@ -28,9 +28,9 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
 use Sanitizer;
-use SpecialPage;
 use Title;
 use TitleFormatter;
+use TitleValue;
 
 /**
  * Class that generates HTML <a> links for pages.
@@ -360,7 +360,11 @@ class LinkRenderer {
 				$target->getDBkey()
 			);
 			if ( $name ) {
-				return SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
+				return new TitleValue(
+					NS_SPECIAL,
+					$this->specialPageFactory->getLocalNameFor( $name, $subpage ),
+					$target->getFragment()
+				);
 			}
 		}
 
