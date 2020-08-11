@@ -43,4 +43,5 @@ $GLOBALS['wgExtensionFunctions'][] = function() {
 			$GLOBALS['wgLogRestrictions'][$logKey] = 'wikiadmin';
 		}
 	}
+	unset( $GLOBALS['wgLogRestrictions'][''] );
 };
