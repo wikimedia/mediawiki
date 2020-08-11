@@ -1013,7 +1013,7 @@
 	"nextn-title": "$1 {{PLURAL:$1|resultat|resultats}} següents",
 	"shown-title": "Mostra $1 {{PLURAL:$1|resultat|resultats}} per pàgina",
 	"viewprevnext": "Mostra ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "'''Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki'''",
+	"searchmenu-exists": "<strong>Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki.</strong> {{PLURAL:$2|0=|Vegeu també els altres resultats de cerca trobats.}}",
 	"searchmenu-new": "<strong>Crea la pàgina «[[:$1]]» en aquest wiki!</strong> {{PLURAL:$2|0=|Vegeu també la pàgina trobada amb la cerca.|Vegeu també els resultats de cerca trobats.}}",
 	"searchprofile-articles": "Pàgines de contingut",
 	"searchprofile-images": "Multimèdia",

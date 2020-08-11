@@ -979,7 +979,7 @@
 	"nextn-title": "{{PLURAL:$1|următorul|următoarele}} $1 {{PLURAL:$1|rezultat|rezultate}}",
 	"shown-title": "Arată $1 {{PLURAL:$1|rezultat|rezultate}} pe pagină",
 	"viewprevnext": "Vezi ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "'''Există o pagină cu titlul „[[:$1]]'” pe acest site.'''",
+	"searchmenu-exists": "<strong>Există o pagină cu titlul „[[:$1]]” pe acest site.</strong>",
 	"searchmenu-new": "<strong>'''Creați pagina „[[:$1]]” pe acest wiki!'''</strong> {{PLURAL:$2|0=|Vedeți, de asemenea, pagina găsită în urma căutării dumneavoastră.|Vedeți, de asemenea, rezultatele căutării.}}",
 	"searchprofile-articles": "Pagini cu conținut",
 	"searchprofile-images": "Multimedia",

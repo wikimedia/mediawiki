@@ -875,7 +875,7 @@
 	"nextn-title": "Əvvəlki bir $1 {{PLURAL:$1|nəticə|nəticə}}",
 	"shown-title": "Səhifə üçün $1 {{PLURAL:$1|nəticə|nəticəyə}} bax",
 	"viewprevnext": "Göstər ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "</strong>Bu vikidə \"[[:$1]]\" adında səhifə mövcuddur.</strong> {{PLURAL:$2|0=|Həmçinin tapılmış digər axtarış nəticələrinə də baxın.}}",
+	"searchmenu-exists": "<strong>Bu vikidə \"[[:$1]]\" adında səhifə mövcuddur.</strong> {{PLURAL:$2|0=|Həmçinin tapılmış digər axtarış nəticələrinə də baxın.}}",
 	"searchmenu-new": "<strong>Bu viki-layihədə \"[[:$1]]\" səhifəsini yaradın!</strong> {{PLURAL:$2|0=|Həmçinin, axtarışınız əsasında çıxan səhifəyə baxın.|Həmçinin, axtarışınız əsasında çıxan nəticələrə baxın.}}",
 	"searchprofile-articles": "Məzmun səhifələri",
 	"searchprofile-images": "Multimedia",
