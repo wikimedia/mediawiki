@@ -33,7 +33,7 @@
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.8",
 		"pear/net_smtp": "1.9.1",
-		"php": ">=7.2.22",
+		"php": ">=7.3.19",
 		"psr/container": "1.0.0",
 		"psr/log": "1.1.3",
 		"ralouphie/getallheaders": "3.0.3",

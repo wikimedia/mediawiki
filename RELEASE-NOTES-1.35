@@ -5,6 +5,11 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
+== MediaWiki 1.35.0-unreleased ==
+
+=== Changes since MediaWiki 1.35.0-rc.2 ===
+* (T257879) Drop PHP 7.2 support; require 7.3.19
+
 == MediaWiki 1.35.0-rc.2 ==
 
 === Changes since MediaWiki 1.35.0-rc.1 ===
@@ -61,7 +66,7 @@ for use in production.
 == MediaWiki 1.35.0-rc.0 ==
 
 == Upgrading notes for 1.35 ==
-1.35 requires PHP 7.2.22 or above (up from 7.2.9), to avoid segfaults (T228346).
+1.35 requires PHP 7.3.19 or above (up from 7.2.9). (T257879)
 
 1.35 has several database changes since 1.34, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
@@ -441,7 +446,7 @@ because of Phabricator reports.
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
 
 === Breaking changes in 1.35 ===
-* MediaWiki now requires PHP 7.2.22 or above, to avoid segfaults (T228346).
+* MediaWiki no longer supports PHP 7.2; use PHP 7.3.19+ (T228346, T257879).
 * ResourceLoader::getLessVars(), deprecated in 1.32, was removed.
   Use ResourceLoaderModule::getLessVars() instead.
 * The jquery.tabIndex module, deprecated in 1.34, has been removed.
@@ -1463,7 +1468,7 @@ because of Phabricator reports.
   on a custom port other than 5432.
 
 == Compatibility ==
-MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
+MediaWiki 1.35 requires PHP 7.3.19 or later, and the following PHP extensions:
 
 * ctype
 * dom
