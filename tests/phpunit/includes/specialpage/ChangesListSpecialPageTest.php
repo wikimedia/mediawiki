@@ -123,7 +123,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilter() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace = '0'",
+				'rc_namespace = 0',
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -135,7 +135,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterInversion() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace != '0'",
+				'rc_namespace != 0',
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -148,7 +148,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultiple() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace IN ('1','2','3')",
+				'rc_namespace IN (1,2,3)',
 			],
 			[
 				'namespace' => '1;2;3',
@@ -160,7 +160,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociated() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace IN (0,'1','4',5,6,'7')",
+				'rc_namespace IN (0,1,4,5,6,7)',
 			],
 			[
 				'namespace' => '1;4;7',
@@ -173,7 +173,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterAssociatedSpecial() {
 		$this->assertConditions(
 			[ # expected
-			  "rc_namespace IN ('-1',0,'1')",
+			  'rc_namespace IN (-1,0,1)',
 			],
 			[
 				'namespace' => '1;-1',
@@ -186,7 +186,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociatedInvert() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace NOT IN ('2','3',8,'9')",
+				'rc_namespace NOT IN (2,3,8,9)',
 			],
 			[
 				'namespace' => '2;3;9',
@@ -200,7 +200,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleInvert() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace NOT IN ('1','2','3')",
+				'rc_namespace NOT IN (1,2,3)',
 			],
 			[
 				'namespace' => '1;2;3',
@@ -220,6 +220,34 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'namespace' => 'all-contents',
 			],
 			"rc conditions with all-contents"
+		);
+	}
+
+	public function testRcNsFilterInvalid() {
+		$this->assertConditions(
+			[ # expected
+			],
+			[
+				'namespace' => 'invalid',
+			],
+			"rc conditions with invalid namespace"
+		);
+	}
+
+	public function testRcNsFilterPartialInvalid() {
+		$namespaces = array_merge(
+			[ 1 ],
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces()
+		);
+		sort( $namespaces );
+		$this->assertConditions(
+			[ # expected
+				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
+			],
+			[
+				'namespace' => 'all-contents;1;invalid',
+			],
+			"rc conditions with invalid namespace"
 		);
 	}
 
