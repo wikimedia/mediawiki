@@ -10,7 +10,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetDefaultModules() {
 		$skin = $this->getMockBuilder( Skin::class )
-			->setMethods( [ 'outputPage', 'setupSkinUserCss' ] )
+			->setMethods( [ 'outputPage' ] )
 			->getMock();
 
 		$modules = $skin->getDefaultModules();
@@ -26,11 +26,12 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'outputPage' ] )
 			->getMock();
 
-		$this->setService( 'SkinFactory', new SkinFactory(
-			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
-		) );
-		$this->setMwGlobals( 'wgSkipSkins', [] );
+		$factory = new SkinFactory(
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
+		);
 
+		$this->setService( 'SkinFactory', $factory );
+		$this->setMwGlobals( 'wgSkipSkins', [] );
 		$this->assertEquals( [], $skin->getAllowedSkins() );
 	}
 
@@ -45,7 +46,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		};
 
 		$sf = new SkinFactory(
-			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
 		);
 		$sf->register( 'foo', 'Foo', $noop );
 		$sf->register( 'apioutput', 'ApiOutput', $noop );
@@ -60,5 +61,33 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			[ 'foo' => 'Foo', 'bar' => 'Barbar' ],
 			$skin->getAllowedSkins()
 		);
+	}
+
+	/**
+	 * @covers Skin::isResponsive
+	 *
+	 * @dataProvider provideSkinResponsiveOptions
+	 *
+	 * @param array $options
+	 * @param bool $expected
+	 */
+	public function testIsResponsive( array $options, bool $expected ) {
+		$skin = new class( $options ) extends Skin {
+			/**
+			 * @inheritDoc
+			 */
+			public function outputPage() {
+			}
+		};
+
+		$this->assertSame( $expected, $skin->isResponsive() );
+	}
+
+	public function provideSkinResponsiveOptions() : array {
+		return [
+			'responsive not set' => [ [], false ],
+			'responsive false' => [ [ 'responsive' => false ], false ],
+			'responsive true' => [ [ 'responsive' => true ], true ]
+		];
 	}
 }

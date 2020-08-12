@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"David1010",
+			"Narazeni",
 			"Silovan"
 		]
 	},
@@ -20,5 +21,6 @@
 	"ooui-selectfile-button-select": "გეგშაგორით ფაილი",
 	"ooui-selectfile-not-supported": "ფაილიშ აშაგორუა ვა რე ხენწყილი",
 	"ooui-selectfile-placeholder": "ფაილი ვა რე გიშაგორილი",
-	"ooui-selectfile-dragdrop-placeholder": "ქინაჸათით ფაილი ათაქ"
+	"ooui-selectfile-dragdrop-placeholder": "ქინაჸათით ფაილი ათაქ",
+	"ooui-popup-widget-close-button-aria-label": "კილუა"
 }

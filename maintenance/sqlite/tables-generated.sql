@@ -69,3 +69,41 @@ CREATE TABLE /*_*/user_properties (
   PRIMARY KEY(up_user, up_property)
 );
 CREATE INDEX user_properties_property ON /*_*/user_properties (up_property);
+CREATE TABLE /*_*/log_search (
+  ls_field BLOB NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+);
+CREATE INDEX ls_log_id ON /*_*/log_search (ls_log_id);
+CREATE TABLE /*_*/change_tag (
+  ct_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  ct_rc_id INTEGER UNSIGNED DEFAULT NULL,
+  ct_log_id INTEGER UNSIGNED DEFAULT NULL,
+  ct_rev_id INTEGER UNSIGNED DEFAULT NULL,
+  ct_params BLOB DEFAULT NULL, ct_tag_id INTEGER UNSIGNED NOT NULL
+);
+CREATE UNIQUE INDEX change_tag_rc_tag_id ON /*_*/change_tag (ct_rc_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_log_tag_id ON /*_*/change_tag (ct_log_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id, ct_tag_id);
+CREATE INDEX change_tag_tag_id_id ON /*_*/change_tag (
+  ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
+);
+CREATE TABLE /*_*/content (
+  content_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  content_size INTEGER UNSIGNED NOT NULL,
+  content_sha1 BLOB NOT NULL, content_model SMALLINT UNSIGNED NOT NULL,
+  content_address BLOB NOT NULL
+);
+CREATE TABLE /*_*/l10n_cache (
+  lc_lang BLOB NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value BLOB NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+);
+CREATE TABLE /*_*/module_deps (
+  md_module BLOB NOT NULL,
+  md_skin BLOB NOT NULL,
+  md_deps BLOB NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+);

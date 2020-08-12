@@ -78,10 +78,15 @@
 		$link
 			// The following messages can be used here:
 			// * watch
+			// * tooltip-ca-watch
 			// * watching
+			// * tooltip-ca-watching
 			// * unwatch
+			// * tooltip-ca-unwatch
 			// * unwatch-expiring
+			// * tooltip-ca-unwatch-expiring
 			// * unwatching
+			// * tooltip-ca-unwatching
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()

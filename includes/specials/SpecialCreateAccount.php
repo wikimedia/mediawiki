@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Implements Special:CreateAccount
@@ -42,8 +43,16 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		'authform-wrongtoken' => 'sessionfailure',
 	];
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'CreateAccount' );
+
+		$this->permManager = $permManager;
 	}
 
 	public function doesWrites() {
@@ -51,15 +60,11 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	public function isRestricted() {
-		return !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->groupHasPermission( '*', 'createaccount' );
+		return !$this->permManager->groupHasPermission( '*', 'createaccount' );
 	}
 
 	public function userCanExecute( User $user ) {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $user, 'createaccount' );
+		return $this->permManager->userHasRight( $user, 'createaccount' );
 	}
 
 	public function checkPermissions() {

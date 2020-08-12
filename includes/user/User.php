@@ -34,7 +34,6 @@ use MediaWiki\Session\Token;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -1234,17 +1233,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Set the 'BlockID' cookie depending on block type and user authentication status.
-	 *
-	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead
-	 */
-	public function trackBlockWithCookie() {
-		wfDeprecated( __METHOD__, '1.34' );
-		// Obsolete.
-		// MediaWiki::preOutputCommit() handles this whenever possible.
-	}
-
-	/**
 	 * Load user data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
@@ -1617,94 +1605,6 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
-	}
-
-	/**
-	 * Whether the given IP is in a DNS blacklist.
-	 *
-	 * @deprecated since 1.34 Use BlockManager::isDnsBlacklisted.
-	 * @param string $ip IP to check
-	 * @param bool $checkWhitelist Whether to check the whitelist first
-	 * @return bool True if blacklisted.
-	 */
-	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getBlockManager()
-			->isDnsBlacklisted( $ip, $checkWhitelist );
-	}
-
-	/**
-	 * Whether the given IP is in a given DNS blacklist.
-	 *
-	 * @deprecated since 1.34 Check via BlockManager::isDnsBlacklisted instead.
-	 * @param string $ip IP to check
-	 * @param string|array $bases Array of Strings: URL of the DNS blacklist
-	 * @return bool True if blacklisted.
-	 */
-	public function inDnsBlacklist( $ip, $bases ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		$found = false;
-		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
-		if ( IPUtils::isIPv4( $ip ) ) {
-			// Reverse IP, T23255
-			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
-
-			foreach ( (array)$bases as $base ) {
-				// Make hostname
-				// If we have an access key, use that too (ProjectHoneypot, etc.)
-				$basename = $base;
-				if ( is_array( $base ) ) {
-					if ( count( $base ) >= 2 ) {
-						// Access key is 1, base URL is 0
-						$host = "{$base[1]}.$ipReversed.{$base[0]}";
-					} else {
-						$host = "$ipReversed.{$base[0]}";
-					}
-					$basename = $base[0];
-				} else {
-					$host = "$ipReversed.$base";
-				}
-
-				// Send query
-				$ipList = gethostbynamel( $host );
-
-				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $basename!" );
-					$found = true;
-					break;
-				}
-
-				wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
-			}
-		}
-
-		return $found;
-	}
-
-	/**
-	 * Check if an IP address is in the local proxy list
-	 *
-	 * @deprecated since 1.34 Use BlockManager::getUserBlock instead.
-	 * @param string $ip
-	 * @return bool
-	 */
-	public static function isLocallyBlockedProxy( $ip ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		global $wgProxyList;
-
-		if ( !$wgProxyList ) {
-			return false;
-		}
-
-		if ( !is_array( $wgProxyList ) ) {
-			// Load values from the specified file
-			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
-		}
-
-		$proxyListIPSet = new IPSet( $wgProxyList );
-		return $proxyListIPSet->match( $ip );
 	}
 
 	/**

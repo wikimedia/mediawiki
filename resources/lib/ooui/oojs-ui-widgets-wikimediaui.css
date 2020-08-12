@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.40.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:32:25Z
+ * Date: 2020-08-05T21:22:12Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -536,7 +536,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 0.85714286em 12px;
+  padding: 0.78571429em 12px;
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
@@ -672,8 +672,8 @@
 }
 .oo-ui-tabOptionWidget > .oo-ui-labelElement-label {
   color: inherit;
-  padding: 6px 5px;
-  line-height: 1.28571429em;
+  padding: 5px 5px;
+  line-height: 1.42857143em;
   text-decoration: inherit;
 }
 .oo-ui-tabSelectWidget-mobile .oo-ui-tabOptionWidget:last-child {
@@ -686,7 +686,7 @@
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
   border-bottom: 2px solid transparent;
-  padding: 6px 5px 4px;
+  padding: 5px 5px 3px;
   -webkit-transition: border-color 100ms;
   -moz-transition: border-color 100ms;
   transition: border-color 100ms;
@@ -800,10 +800,10 @@
   box-sizing: border-box;
   height: 2.14285714em;
   border: 0;
-  padding: 6px 0 6px 0.57142857em;
+  padding: 5px 0 5px 0.57142857em;
   font-family: inherit;
   font-size: inherit;
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
   vertical-align: top;
 }
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-webkit-input-placeholder {

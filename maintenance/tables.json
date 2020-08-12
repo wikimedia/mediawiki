@@ -288,5 +288,175 @@
 			{ "name": "user_properties_property", "columns": [ "up_property" ], "unique": false }
 		],
 		"pk": [ "up_user", "up_property" ]
+	},
+	{
+		"name": "log_search",
+		"columns": [
+			{
+				"name": "ls_field",
+				"comment": "The type of ID (rev ID, log ID, rev timestamp, username)",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "ls_value",
+				"comment": "The value of the ID",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ls_log_id",
+				"comment": "Key to log_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ls_log_id", "columns": [ "ls_log_id" ], "unique": false }
+		],
+		"pk": [ "ls_field", "ls_value", "ls_log_id" ]
+	},
+	{
+		"name": "change_tag",
+		"comment": "A table to track tags for revisions, logs and recent changes",
+		"columns": [
+			{
+				"name": "ct_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ct_rc_id",
+				"comment": "RCID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_log_id",
+				"comment": "LOGID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_rev_id",
+				"comment": "REVID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_params",
+				"comment": "Parameters for the tag; used by some extensions",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_tag_id",
+				"comment": "Foreign key to change_tag_def row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{
+				"name": "change_tag_tag_id_id",
+				"comment": "Covering index, so we can pull all the info only out of the index.",
+				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ct_id" ]
+	},
+	{
+		"name": "content",
+		"comment": "The content table represents content objects. It's primary purpose is to provide the necessary meta-data for loading and interpreting a serialized data blob to create a content object.",
+		"columns": [
+			{
+				"name": "content_id",
+				"comment": "ID of the content object",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "content_size",
+				"comment": "Nominal size of the content object (not necessarily of the serialized blob)",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_sha1",
+				"comment": "Nominal hash of the content object (not necessarily of the serialized blob)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "content_model",
+				"comment": "reference to model_id. Note the content format isn't specified; it should be assumed to be in the default format for the model unless auto-detected otherwise.",
+				"type": "smallint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_address",
+				"comment": "URL-like address of the content blob",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "content_id" ]
+	},
+	{
+		"name": "l10n_cache",
+		"comment": "Table for storing localisation data",
+		"columns": [
+			{
+				"name": "lc_lang",
+				"comment": "Language code",
+				"type": "binary",
+				"options": { "notnull": true, "length": 35 }
+			},
+			{
+				"name": "lc_key",
+				"comment": "Cache key",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "lc_value",
+				"comment": "Value",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "lc_lang", "lc_key" ]
+	},
+	{
+		"name": "module_deps",
+		"comment": "Table caching which local files a module depends on that aren't registered directly, used for fast retrieval of file dependency. Currently only used for tracking images that CSS depends on",
+		"columns": [
+			{
+				"name": "md_module",
+				"comment": "Module name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "md_skin",
+				"comment": "Module context vary (includes skin and language; called \"md_skin\" for legacy reasons)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "md_deps",
+				"comment": "JSON blob with file dependencies",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "md_module", "md_skin" ]
 	}
 ]

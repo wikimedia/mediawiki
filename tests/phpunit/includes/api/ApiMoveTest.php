@@ -132,6 +132,36 @@ class ApiMoveTest extends ApiTestCase {
 		$this->assertTrue( $this->getTestSysop()->getUser()->isTempWatched( $title2 ) );
 	}
 
+	public function testMoveWithWatchUnchanged(): void {
+		$name = ucfirst( __FUNCTION__ );
+		$this->createPage( $name );
+		$title = Title::newFromText( $name );
+		$title2 = Title::newFromText( "$name 2" );
+		$user = $this->getTestSysop()->getUser();
+
+		// Temporarily watch the page.
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => $name,
+			'expiry' => '99990123000000',
+		] );
+
+		// Fetched stored expiry (maximum duration may override '99990123000000').
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$expiry = $store->getWatchedItem( $user, $title )->getExpiry();
+
+		// Move to new location, without changing the watched state.
+		$this->doApiRequestWithToken( [
+			'action' => 'move',
+			'from' => $name,
+			'to' => "$name 2",
+		] );
+
+		// New page should have the same expiry.
+		$expiry2 = $store->getWatchedItem( $user, $title2 )->getExpiry();
+		$this->assertSame( wfTimestamp( TS_MW, $expiry ), $expiry2 );
+	}
+
 	public function testMoveNonexistent() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "The page you specified doesn't exist." );

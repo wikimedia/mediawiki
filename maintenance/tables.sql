@@ -493,30 +493,6 @@ CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
 CREATE UNIQUE INDEX /*i*/ar_revid_uniq ON /*_*/archive (ar_rev_id);
 
 --
--- The content table represents content objects. It's primary purpose is to provide the necessary
--- meta-data for loading and interpreting a serialized data blob to create a content object.
---
-CREATE TABLE /*_*/content (
-
-  -- ID of the content object
-  content_id bigint unsigned PRIMARY KEY AUTO_INCREMENT,
-
-  -- Nominal size of the content object (not necessarily of the serialized blob)
-  content_size int unsigned NOT NULL,
-
-  -- Nominal hash of the content object (not necessarily of the serialized blob)
-  content_sha1 varbinary(32) NOT NULL,
-
-  -- reference to model_id. Note the content format isn't specified; it should
-  -- be assumed to be in the default format for the model unless auto-detected
-  -- otherwise.
-  content_model smallint unsigned NOT NULL,
-
-  -- URL-like address of the content blob
-  content_address varbinary(255) NOT NULL
-) /*$wgDBTableOptions*/;
-
---
 -- Normalization table for role names
 --
 CREATE TABLE /*_*/slot_roles (
@@ -1391,18 +1367,6 @@ CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 CREATE INDEX /*i*/log_type_action ON /*_*/logging (log_type, log_action, log_timestamp);
 
 
-CREATE TABLE /*_*/log_search (
-  -- The type of ID (rev ID, log ID, rev timestamp, username)
-  ls_field varbinary(32) NOT NULL,
-  -- The value of the ID
-  ls_value varchar(255) NOT NULL,
-  -- Key to log_id
-  ls_log_id int unsigned NOT NULL default 0,
-  PRIMARY KEY (ls_field,ls_value,ls_log_id)
-) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
-
-
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*_*/job (
   job_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -1551,53 +1515,6 @@ CREATE TABLE /*_*/page_props (
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
-
--- A table to track tags for revisions, logs and recent changes.
-CREATE TABLE /*_*/change_tag (
-  ct_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  -- RCID for the change
-  ct_rc_id int NULL,
-  -- LOGID for the change
-  ct_log_id int unsigned NULL,
-  -- REVID for the change
-  ct_rev_id int unsigned NULL,
-  -- Parameters for the tag; used by some extensions
-  ct_params blob NULL,
-  -- Foreign key to change_tag_def row
-  ct_tag_id int unsigned NOT NULL
-) /*$wgDBTableOptions*/;
-
-
-CREATE UNIQUE INDEX /*i*/change_tag_rc_tag_id ON /*_*/change_tag (ct_rc_id,ct_tag_id);
-CREATE UNIQUE INDEX /*i*/change_tag_log_tag_id ON /*_*/change_tag (ct_log_id,ct_tag_id);
-CREATE UNIQUE INDEX /*i*/change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id,ct_tag_id);
--- Covering index, so we can pull all the info only out of the index.
-CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
-
--- Table for storing localisation data
-CREATE TABLE /*_*/l10n_cache (
-  -- Language code
-  lc_lang varbinary(35) NOT NULL,
-  -- Cache key
-  lc_key varchar(255) NOT NULL,
-  -- Value
-  lc_value mediumblob NOT NULL,
-  PRIMARY KEY (lc_lang, lc_key)
-) /*$wgDBTableOptions*/;
-
--- Table caching which local files a module depends on that aren't
--- registered directly, used for fast retrieval of file dependency.
--- Currently only used for tracking images that CSS depends on
-CREATE TABLE /*_*/module_deps (
-  -- Module name
-  md_module varbinary(255) NOT NULL,
-  -- Module context vary (includes skin and language; called "md_skin" for legacy reasons)
-  md_skin varbinary(32) NOT NULL,
-  -- JSON blob with file dependencies
-  md_deps mediumblob NOT NULL,
-  PRIMARY KEY (md_module,md_skin)
-) /*$wgDBTableOptions*/;
 
 -- Holds all the sites known to the wiki.
 CREATE TABLE /*_*/sites (

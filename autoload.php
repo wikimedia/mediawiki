@@ -1743,6 +1743,7 @@ $wgAutoloadLocalClasses = [
 	'UserBlockedError' => __DIR__ . '/includes/exception/UserBlockedError.php',
 	'UserCache' => __DIR__ . '/includes/cache/UserCache.php',
 	'UserDupes' => __DIR__ . '/maintenance/userDupes.inc',
+	'UserEditCountInitJob' => __DIR__ . '/includes/jobqueue/jobs/UserEditCountInitJob.php',
 	'UserEditCountUpdate' => __DIR__ . '/includes/deferred/UserEditCountUpdate.php',
 	'UserGroupExpiryJob' => __DIR__ . '/includes/jobqueue/jobs/UserGroupExpiryJob.php',
 	'UserGroupMembership' => __DIR__ . '/includes/user/UserGroupMembership.php',

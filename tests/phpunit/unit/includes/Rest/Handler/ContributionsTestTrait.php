@@ -6,17 +6,14 @@ use User;
 
 trait ContributionsTestTrait {
 
+	/**
+	 * @param string $name
+	 * @return bool|User
+	 */
 	public function makeMockUser( $name ) {
 		$isIP = ( $name === '127.0.0.1' );
-		$isBad = ( $name === 'B/A/D' );
 		$isUnknown = ( $name === 'UNKNOWN' );
-		$isAnon = $isIP || $isBad || $isUnknown;
-
-		if ( $isBad ) {
-			// per the contract of UserFactory::newFromName
-			return false;
-		}
-
+		$isAnon = $isIP || $isUnknown;
 		$user = $this->createNoOpMock(
 			User::class,
 			[ 'isAnon', 'getId', 'getName', 'isRegistered' ]
@@ -25,6 +22,7 @@ trait ContributionsTestTrait {
 		$user->method( 'isRegistered' )->willReturn( !$isAnon );
 		$user->method( 'getId' )->willReturn( $isAnon ? 0 : 7 );
 		$user->method( 'getName' )->willReturn( $name );
+
 		return $user;
 	}
 }

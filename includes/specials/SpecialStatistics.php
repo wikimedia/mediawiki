@@ -39,6 +39,7 @@ class SpecialStatistics extends SpecialPage {
 
 	public function execute( $par ) {
 		$this->setHeaders();
+		$this->outputHeader();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		$this->edits = SiteStats::edits();
@@ -144,7 +145,7 @@ class SpecialStatistics extends SpecialPage {
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'MediaStatistics' ),
 				$this->msg( 'statistics-files' )->text() ),
 				$this->getLanguage()->formatNum( $this->images ),
-				[ 'class' => 'mw-statistics-files' ] );
+				[ 'class' => 'mw-statistics-files' ], 'statistics-files-desc' );
 		}
 
 		return $pageStatsHtml;

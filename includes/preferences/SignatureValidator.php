@@ -81,6 +81,10 @@ class SignatureValidator {
 			$messages = '';
 
 			foreach ( $lintErrors as $error ) {
+				if ( $error['type'] === 'multiple-unclosed-formatting-tags' ) {
+					// Always appears with 'missing-end-tag', we can ignore it to simplify the error message
+					continue;
+				}
 				if ( in_array( $error['type'], $allowedLintErrors, true ) ) {
 					continue;
 				}
@@ -131,7 +135,7 @@ class SignatureValidator {
 
 			if ( $messages && $this->localizer ) {
 				$errors[] = $this->localizer->msg( 'badsightml' )->parse() .
-					Html::rawElement( 'ul', [], $messages );
+					Html::rawElement( 'ol', [], $messages );
 			}
 		}
 
@@ -312,6 +316,8 @@ class SignatureValidator {
 		} elseif ( $type === 'misc-tidy-replacement-issues' ) {
 			/* There will be a 'subtype' param to disambiguate */
 			return Html::element( 'code', [], $params['subtype'] );
+		} elseif ( $type === 'missing-end-tag' ) {
+			return Html::element( 'code', [], '</' . $params['name'] . '>' );
 		} elseif ( isset( $params['name'] ) ) {
 			return Html::element( 'code', [], $params['name'] );
 		}

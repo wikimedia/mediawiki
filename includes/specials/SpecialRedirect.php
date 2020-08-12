@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A special page that redirects to: the user for a numeric user id,
@@ -50,10 +50,23 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected $mValue;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/**
+	 * @param PermissionManager $permManager
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct( PermissionManager $permManager, RepoGroup $repoGroup ) {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;
+
+		$this->permManager = $permManager;
+		$this->repoGroup = $repoGroup;
 	}
 
 	/**
@@ -83,8 +96,8 @@ class SpecialRedirect extends FormSpecialPage {
 			// Message: redirect-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
-		if ( $user->isHidden() && !MediaWikiServices::getInstance()->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
+		if ( $user->isHidden() &&
+			!$this->permManager->userHasRight( $this->getUser(), 'hideuser' )
 		) {
 			throw new PermissionsError( null, [ 'badaccess-group0' ] );
 		}
@@ -110,7 +123,7 @@ class SpecialRedirect extends FormSpecialPage {
 		} catch ( MalformedTitleException $e ) {
 			return Status::newFatal( $e->getMessageObject() );
 		}
-		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+		$file = $this->repoGroup->findFile( $title );
 
 		if ( !$file || !$file->exists() ) {
 			// Message: redirect-not-exists

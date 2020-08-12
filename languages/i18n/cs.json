@@ -3396,7 +3396,7 @@
 	"tag-mw-rollback-description": "Editace, jimiž byly předchozí editace vráceny zpět pomocí rychlého revertu",
 	"tag-mw-undo": "Vrácení zpět",
 	"tag-mw-undo-description": "Editace, jimiž se ruší předchozí editace pomocí odkazu „zrušit editaci“",
-	"tag-mw-manual-revert": "Ruční vrácení zpět",
+	"tag-mw-manual-revert": "ruční vrácení zpět",
 	"tag-mw-manual-revert-description": "Editace, které ručně obnovují stránku do předchozí stavu",
 	"tags-title": "Značky",
 	"tags-intro": "Tato stránka obsahuje seznam značek, kterými může software označovat jednotlivé editace, a jejich významy.",

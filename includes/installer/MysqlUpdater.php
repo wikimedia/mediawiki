@@ -1272,6 +1272,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'table' => 'page_restrictions', 'field' => 'pr_user' ],
 			[ 'table' => 'user_newtalk', 'field' => 'user_id' ],
 			[ 'table' => 'user_properties', 'field' => 'up_user' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_rc_id' ]
 		];
 
 		foreach ( $sync as $s ) {

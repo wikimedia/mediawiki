@@ -1038,7 +1038,7 @@ class EditPage implements IEditObject {
 			}
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
+			if ( ( $this->mTitle->mNamespace === NS_USER || $this->mTitle->mNamespace === NS_USER_TALK )
 				&& $this->mTitle->getText() == $user->getName()
 			) {
 				$this->allowBlankSummary = true;
@@ -1242,7 +1242,7 @@ class EditPage implements IEditObject {
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
 		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $this->section != 'new' ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section != 'new' ) {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
@@ -1295,22 +1295,7 @@ class EditPage implements IEditObject {
 						] ) );
 						return false;
 					} else {
-						$handler = $this->contentHandlerFactory
-							->getContentHandler( $undorev->getSlot(
-								SlotRecord::MAIN,
-								RevisionRecord::RAW
-							)->getModel() );
-						$currentContent = $this->page->getRevisionRecord()
-							->getContent( SlotRecord::MAIN );
-						$undoContent = $undorev->getContent( SlotRecord::MAIN );
-						$undoAfterContent = $oldrev->getContent( SlotRecord::MAIN );
-						$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undorev->getId();
-						$content = $handler->getUndoContent(
-							$currentContent,
-							$undoContent,
-							$undoAfterContent,
-							$undoIsLatest
-						);
+						$content = $this->getUndoContent( $undorev, $oldrev );
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
@@ -1461,6 +1446,36 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Returns the result of a three-way merge when undoing changes.
+	 *
+	 * @param RevisionRecord $undoRev Newest revision being undone. Corresponds to `undo`
+	 *        URL parameter.
+	 * @param RevisionRecord $oldRev Revision that is being restored. Corresponds to
+	 *        `undoafter` URL parameter.
+	 *
+	 * @return Content|false
+	 */
+	private function getUndoContent( RevisionRecord $undoRev, RevisionRecord $oldRev ) {
+		$handler = $this->contentHandlerFactory
+			->getContentHandler( $undoRev->getSlot(
+				SlotRecord::MAIN,
+				RevisionRecord::RAW
+			)->getModel() );
+		$currentContent = $this->page->getRevisionRecord()
+			->getContent( SlotRecord::MAIN );
+		$undoContent = $undoRev->getContent( SlotRecord::MAIN );
+		$undoAfterContent = $oldRev->getContent( SlotRecord::MAIN );
+		$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undoRev->getId();
+
+		return $handler->getUndoContent(
+			$currentContent,
+			$undoContent,
+			$undoAfterContent,
+			$undoIsLatest
+		);
 	}
 
 	/**
@@ -2057,7 +2072,7 @@ ERROR;
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_FILE &&
+		if ( $this->mTitle->getNamespace() === NS_FILE &&
 			$textbox_content->isRedirect() &&
 			!$this->permManager->userHasRight( $user, 'upload' )
 		) {
@@ -2446,15 +2461,23 @@ ERROR;
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $markAsBot ? EDIT_FORCE_BOT : 0 );
 
+		$isUndo = false;
+		if ( $this->undidRev ) {
+			// As the user can change the edit's content before saving, we only mark
+			// "clean" undos as reverts. This is to avoid abuse by marking irrelevant
+			// edits as undos.
+			$isUndo = $this->isUndoClean( $content );
+		}
+
 		$doEditStatus = $this->page->doEditContent(
 			$content,
 			$this->summary,
 			$flags,
-			$this->undoAfter ?: false,
+			$isUndo && $this->undoAfter ? $this->undoAfter : false,
 			$user,
 			$content->getDefaultFormat(),
 			$this->changeTags,
-			$this->undidRev
+			$isUndo ? $this->undidRev : 0
 		);
 
 		if ( !$doEditStatus->isOK() ) {
@@ -2492,6 +2515,52 @@ ERROR;
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Does sanity checks and compares the automatically generated undo content with the
+	 * one that was submitted by the user. If they match, the undo is considered "clean".
+	 * Otherwise there is no guarantee if anything was reverted at all, as the user could
+	 * even swap out entire content.
+	 *
+	 * @param Content $content
+	 *
+	 * @return bool
+	 */
+	private function isUndoClean( Content $content ) : bool {
+		// Check whether the undo was "clean", that is the user has not modified
+		// the automatically generated content.
+		$undoRev = $this->revisionStore->getRevisionById( $this->undidRev );
+		if ( $undoRev === null ) {
+			return false;
+		}
+
+		if ( $this->undoAfter ) {
+			$oldRev = $this->revisionStore->getRevisionById( $this->undoAfter );
+		} else {
+			$oldRev = $this->revisionStore->getPreviousRevision( $undoRev );
+		}
+
+		// Sanity checks
+		if ( $oldRev === null ||
+			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
+			$oldRev->isDeleted( RevisionRecord::DELETED_TEXT )
+		) {
+			return false;
+		}
+
+		$undoContent = $this->getUndoContent( $undoRev, $oldRev );
+
+		// Do a pre-save transform on the retrieved undo content
+		$user = $this->context->getUser();
+		$parserOptions = ParserOptions::newFromUserAndLang(
+			$user, MediaWikiServices::getInstance()->getContentLanguage() );
+		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
+
+		if ( $undoContent && $undoContent->equals( $content ) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -2699,7 +2768,7 @@ ERROR;
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
 		} else {
 			$msg = $contextTitle->exists()
-				|| ( $contextTitle->getNamespace() == NS_MEDIAWIKI
+				|| ( $contextTitle->getNamespace() === NS_MEDIAWIKI
 					&& $contextTitle->getDefaultMessageText() !== false
 				)
 				? 'editing'
@@ -2745,7 +2814,7 @@ ERROR;
 		$out = $this->context->getOutput();
 		$namespace = $this->mTitle->getNamespace();
 
-		if ( $namespace == NS_MEDIAWIKI ) {
+		if ( $namespace === NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$out->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
 			# If this is a default message (but not css, json, or js),
@@ -2761,7 +2830,7 @@ ERROR;
 						'translateinterface' );
 				}
 			}
-		} elseif ( $namespace == NS_FILE ) {
+		} elseif ( $namespace === NS_FILE ) {
 			# Show a hint to shared repo
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->mTitle );
 			if ( $file && !$file->isLocal() ) {
@@ -2783,7 +2852,7 @@ ERROR;
 
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist
 		# Show log extract when the user is currently blocked
-		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
+		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
@@ -3705,7 +3774,7 @@ ERROR;
 	public function showDiff() {
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+		if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && !$this->mTitle->exists() ) {
 			$oldtext = $this->mTitle->getDefaultMessageText();
 			if ( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';

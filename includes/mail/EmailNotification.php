@@ -135,7 +135,7 @@ class EmailNotification {
 						->getPermissionManager()
 						->userHasRight( $editor, 'nominornewtalk' ) )
 			) {
-				$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
+				$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 				if ( $wgEnotifUserTalk
 					&& $isUserTalkPage
 					&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
@@ -201,7 +201,7 @@ class EmailNotification {
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 
-		$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
+		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 
 		$this->title = $title;
 		$this->timestamp = $timestamp;
@@ -275,7 +275,7 @@ class EmailNotification {
 	 */
 	private function canSendUserTalkEmail( $editor, $title, $minorEdit ) {
 		global $wgEnotifUserTalk, $wgBlockDisablesLogin;
-		$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
+		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 
 		if ( $wgEnotifUserTalk && $isUserTalkPage ) {
 			$targetUser = User::newFromName( $title->getText() );

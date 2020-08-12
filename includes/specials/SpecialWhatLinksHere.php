@@ -113,7 +113,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );
 		$hidetrans = $this->opts->getValue( 'hidetrans' );
-		$hideimages = $target->getNamespace() != NS_FILE || $this->opts->getValue( 'hideimages' );
+		$hideimages = $target->getNamespace() !== NS_FILE || $this->opts->getValue( 'hideimages' );
 
 		// For historical reasons `pagelinks` always contains an entry for the redirect target.
 		// So we only need to query `redirect` if `pagelinks` isn't being queried.
@@ -594,7 +594,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$links = [];
 		$types = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
-		if ( $this->target->getNamespace() == NS_FILE ) {
+		if ( $this->target->getNamespace() === NS_FILE ) {
 			$types[] = 'hideimages';
 		}
 

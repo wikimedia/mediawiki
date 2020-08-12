@@ -54,11 +54,15 @@ class SkinMustache extends SkinTemplate {
 		$out = $this->getOutput();
 		$tp = $this->getTemplateParser();
 		$template = $this->options['template'] ?? 'skin';
+		$data = $this->getTemplateData();
 
+		// T259955: OutputPage::headElement must be called last (after getTemplateData)
+		// as it calls OutputPage::getRlClient, which freezes the ResourceLoader
+		// modules queue for the current page load.
 		$html = $out->headElement( $this );
-		$html .= $tp->processTemplate( $template, $this->getTemplateData() );
-		$html .= $this->tailElement( $out );
 
+		$html .= $tp->processTemplate( $template, $data );
+		$html .= $this->tailElement( $out );
 		return $html;
 	}
 
@@ -74,6 +78,9 @@ class SkinMustache extends SkinTemplate {
 	 * Plain strings are prefixed with 'html-', plain arrays with 'array-'
 	 * and complex array data with 'data-'. 'is-' and 'has-' prefixes can
 	 * be used for boolean variables.
+	 * Messages are prefixed with 'msg-', followed by their message key.
+	 * All messages specified in the skin option 'messages' will be available
+	 * under 'msg-MESSAGE-NAME'.
 	 *
 	 * @return array Data for a mustache template
 	 */
@@ -97,6 +104,10 @@ class SkinMustache extends SkinTemplate {
 			'html-undelete-link' => $this->prepareUndeleteLink(),
 			'html-user-language-attributes' => $this->prepareUserLanguageAttributes(),
 		];
+
+		foreach ( $this->options['messages'] ?? [] as $message ) {
+			$data["msg-{$message}"] = $this->msg( $message )->text();
+		}
 
 		return $data;
 	}

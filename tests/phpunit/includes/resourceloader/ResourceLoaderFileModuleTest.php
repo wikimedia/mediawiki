@@ -11,9 +11,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$skinFactory = new SkinFactory( new ObjectFactory(
-			$this->createMock( ContainerInterface::class )
-		) );
+		$skinFactory = new SkinFactory(
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
+		);
 		// The empty spec shouldn't matter since this test should never call it
 		$skinFactory->register(
 			'fakeskin',

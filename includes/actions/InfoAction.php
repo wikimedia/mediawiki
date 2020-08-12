@@ -387,7 +387,7 @@ class InfoAction extends FormlessAction {
 				[
 					'hidelinks' => 1,
 					'hidetrans' => 1,
-					'hideimages' => $title->getNamespace() == NS_FILE
+					'hideimages' => $title->getNamespace() === NS_FILE
 				]
 			),
 			$this->msg( 'pageinfo-redirects-value' )
@@ -881,72 +881,6 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function getPageTitle() {
 		return $this->msg( 'pageinfo-title', $this->getTitle()->getPrefixedText() )->text();
-	}
-
-	/**
-	 * Get a list of contributors of $article
-	 * @return string Html
-	 */
-	protected function getContributors() {
-		$contributors = $this->getWikiPage()->getContributors();
-		$real_names = [];
-		$user_names = [];
-		$anon_ips = [];
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
-		# Sift for real versus user names
-		/** @var User $user */
-		foreach ( $contributors as $user ) {
-			$page = $user->isAnon()
-				? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
-				: $user->getUserPage();
-
-			$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
-			if ( $user->getId() == 0 ) {
-				$anon_ips[] = $linkRenderer->makeLink( $page, $user->getName() );
-			} elseif ( !in_array( 'realname', $hiddenPrefs ) && $user->getRealName() ) {
-				$real_names[] = $linkRenderer->makeLink( $page, $user->getRealName() );
-			} else {
-				$user_names[] = $linkRenderer->makeLink( $page, $user->getName() );
-			}
-		}
-
-		$lang = $this->getLanguage();
-
-		$real = $lang->listToText( $real_names );
-
-		# "ThisSite user(s) A, B and C"
-		if ( count( $user_names ) ) {
-			$user = $this->msg( 'siteusers' )
-				->rawParams( $lang->listToText( $user_names ) )
-				->params( count( $user_names ) )->escaped();
-		} else {
-			$user = false;
-		}
-
-		if ( count( $anon_ips ) ) {
-			$anon = $this->msg( 'anonusers' )
-				->rawParams( $lang->listToText( $anon_ips ) )
-				->params( count( $anon_ips ) )->escaped();
-		} else {
-			$anon = false;
-		}
-
-		# This is the big list, all mooshed together. We sift for blank strings
-		$fulllist = [];
-		foreach ( [ $real, $user, $anon ] as $s ) {
-			if ( $s !== '' ) {
-				array_push( $fulllist, $s );
-			}
-		}
-
-		$count = count( $fulllist );
-
-		# "Based on work by ..."
-		return $count
-			? $this->msg( 'othercontribs' )->rawParams(
-				$lang->listToText( $fulllist ) )->params( $count )->escaped()
-			: '';
 	}
 
 	/**

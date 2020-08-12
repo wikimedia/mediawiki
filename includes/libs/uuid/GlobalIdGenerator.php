@@ -63,6 +63,12 @@ class GlobalIdGenerator {
 	public const QUICK_VOLATILE = 1; // use an APC like in-memory counter if available
 
 	/**
+	 * Avoid using __CLASS__ so namespace separators aren't interpreted
+	 * as path components on Windows (T259693)
+	 */
+	private const FILE_PREFIX = 'mw-GlobalIdGenerator';
+
+	/**
 	 * @param string $tempDirectory A writable temporary directory
 	 * @param BagOStuff $srvCache A server-local APC-like cache instance
 	 * @param callback $shellCallback A callback that takes a shell command and returns the output
@@ -72,12 +78,12 @@ class GlobalIdGenerator {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
 		$this->tmpDir = $tempDirectory;
-		$this->nodeIdFile = $tempDirectory . '/mw-' . __CLASS__ . '-UID-nodeid';
+		$this->nodeIdFile = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-nodeid';
 		// If different processes run as different users, they may have different temp dirs.
 		// This is dealt with by initializing the clock sequence number and counters randomly.
-		$this->lockFile88 = $tempDirectory . '/mw-' . __CLASS__ . '-UID-88';
-		$this->lockFile128 = $tempDirectory . '/mw-' . __CLASS__ . '-UID-128';
-		$this->lockFileUUID = $tempDirectory . '/mw-' . __CLASS__ . '-UUID-128';
+		$this->lockFile88 = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-88';
+		$this->lockFile128 = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-128';
+		$this->lockFileUUID = $tempDirectory . '/' . self::FILE_PREFIX . '-UUID-128';
 
 		$this->srvCache = $srvCache;
 		$this->shellCallback = $shellCallback;
@@ -111,7 +117,7 @@ class GlobalIdGenerator {
 
 	/**
 	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay(), or
-	 *  for sub classes, a seqencial array like (time, offsetCounter).
+	 *  for sub classes, a sequential array like (time, offsetCounter).
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
@@ -380,7 +386,7 @@ class GlobalIdGenerator {
 
 		// Note: use of fmod() avoids "division by zero" on 32 bit machines
 		if ( $counter === null ) {
-			$path = $this->tmpDir . '/mw-' . __CLASS__ . '-' . rawurlencode( $bucket ) . '-48';
+			$path = $this->tmpDir . '/' . self::FILE_PREFIX . '-' . rawurlencode( $bucket ) . '-48';
 			// Get the UID lock file handle
 			if ( isset( $this->fileHandles[$path] ) ) {
 				$handle = $this->fileHandles[$path];

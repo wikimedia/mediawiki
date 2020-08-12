@@ -2982,7 +2982,6 @@ class OutputPage extends ContextSource {
 				'noscript',
 				'user.styles',
 			] );
-			$this->getSkin()->setupSkinUserCss( $this );
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
@@ -3111,6 +3110,10 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 		$bodyClasses[] =
 			'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+
+		if ( $sk->isResponsive() ) {
+			$bodyClasses[] = 'skin--responsive';
+		}
 
 		$bodyAttrs = [];
 		// While the implode() is not strictly needed, it's used for backwards compatibility
@@ -3259,7 +3262,7 @@ class OutputPage extends ContextSource {
 		$relevantTitle = $sk->getRelevantTitle();
 		$relevantUser = $sk->getRelevantUser();
 
-		if ( $ns == NS_SPECIAL ) {
+		if ( $ns === NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );

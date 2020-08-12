@@ -200,7 +200,7 @@ abstract class File implements IDBAccessObject {
 		$ret = $title;
 		if ( $ret instanceof Title ) {
 			# Normalize NS_MEDIA -> NS_FILE
-			if ( $ret->getNamespace() == NS_MEDIA ) {
+			if ( $ret->getNamespace() === NS_MEDIA ) {
 				$ret = Title::makeTitleSafe( NS_FILE, $ret->getDBkey() );
 			# Sanity check the title namespace
 			} elseif ( $ret->getNamespace() !== NS_FILE ) {

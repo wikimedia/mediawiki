@@ -2,9 +2,11 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
+use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -14,6 +16,15 @@ use Wikimedia\ParamValidator\ValidationException;
 class UserDefTest extends TypeDefTestCase {
 
 	protected static $testClass = UserDef::class;
+
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new static::$testClass(
+			$callbacks,
+			MediaWikiServices::getInstance()->getUserFactory(),
+			MediaWikiServices::getInstance()->getTitleFactory(),
+			MediaWikiServices::getInstance()->getUserNameUtils()
+		);
+	}
 
 	private $wgHooks = null;
 
@@ -69,6 +80,7 @@ class UserDefTest extends TypeDefTestCase {
 			'No interwiki prefixes' => [ '', 'interwiki:Foo', null ],
 			'No fragment in IP' => [ '', '192.168.0.256#', null ],
 		];
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		foreach ( $data as $key => [ $type, $input, $expect ] ) {
 			$ex = new ValidationException(
 				DataMessageValue::new( 'paramvalidator-baduser', [], 'baduser' ),
@@ -93,8 +105,14 @@ class UserDefTest extends TypeDefTestCase {
 				$ex,
 				[ UserDef::PARAM_ALLOWED_USER_TYPES => $types ],
 			];
+			if ( $type === 'ip' ) {
+				$obj = $userFactory->newAnonymous( $expect );
+			} elseif ( $type === 'interwiki' || $type === 'cidr' ) {
+				$obj = $userFactory->newFromAnyId( 0, $expect, null );
+			} else {
+				$obj = $userFactory->newFromName( $expect );
+			}
 
-			$obj = $type === 'name' ? User::newFromName( $expect ) : User::newFromAnyId( 0, $expect, null );
 			yield "$key, returning object" => [ $input, $obj, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		}
 

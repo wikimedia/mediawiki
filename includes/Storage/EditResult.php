@@ -24,6 +24,8 @@
 
 namespace MediaWiki\Storage;
 
+use JsonSerializable;
+
 /**
  * Object for storing information about the effects of an edit.
  *
@@ -33,12 +35,14 @@ namespace MediaWiki\Storage;
  *
  * @since 1.35
  */
-class EditResult {
+class EditResult implements JsonSerializable {
 
 	// revert methods
 	public const REVERT_UNDO = 1;
 	public const REVERT_ROLLBACK = 2;
 	public const REVERT_MANUAL = 3;
+
+	private const SERIALIZATION_FORMAT_VERSION = '1';
 
 	/** @var bool */
 	private $isNew;
@@ -96,6 +100,39 @@ class EditResult {
 		$this->isExactRevert = $isExactRevert;
 		$this->isNullEdit = $isNullEdit;
 		$this->revertTags = $revertTags;
+	}
+
+	/**
+	 * Recreate the EditResult object from its array representation.
+	 *
+	 * This must ONLY be used for deserializing EditResult objects serialized using
+	 * EditResult::jsonSerialize(). The structure of the array may change without prior
+	 * notice.
+	 *
+	 * For constructing EditResult objects from scratch use EditResultBuilder.
+	 *
+	 * @see EditResult::jsonSerialize()
+	 *
+	 * @param array $a
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{isNew:bool,originalRevisionId:bool|int,revertMethod:int|null,newestRevertedRevId:int|null,oldestRevertedRevId:int|null,isExactRevert:bool,isNullEdit:bool,revertTags:string[],version:string} $a
+	 * @codingStandardsIgnoreEnd
+	 *
+	 * @return EditResult
+	 *
+	 * @since 1.36
+	 */
+	public static function newFromArray( array $a ) {
+		return new self(
+			$a['isNew'],
+			$a['originalRevisionId'],
+			$a['revertMethod'],
+			$a['oldestRevertedRevId'],
+			$a['newestRevertedRevId'],
+			$a['isExactRevert'],
+			$a['isNullEdit'],
+			$a['revertTags']
+		);
 	}
 
 	/**
@@ -222,5 +259,31 @@ class EditResult {
 	 */
 	public function getRevertTags() : array {
 		return $this->revertTags;
+	}
+
+	/**
+	 * Returns an array representing the EditResult object.
+	 *
+	 * @see EditResult::newFromArray()
+	 *
+	 * @return array
+	 * @codingStandardsIgnoreStart
+	 * @phan-return array{isNew:bool,originalRevisionId:bool|int,revertMethod:int|null,newestRevertedRevId:int|null,oldestRevertedRevId:int|null,isExactRevert:bool,isNullEdit:bool,revertTags:string[],version:string}
+	 * @codingStandardsIgnoreEnd
+	 *
+	 * @since 1.36
+	 */
+	public function jsonSerialize() {
+		return [
+			'isNew' => $this->isNew,
+			'originalRevisionId' => $this->originalRevisionId,
+			'revertMethod' => $this->revertMethod,
+			'newestRevertedRevId' => $this->newestRevertedRevId,
+			'oldestRevertedRevId' => $this->oldestRevertedRevId,
+			'isExactRevert' => $this->isExactRevert,
+			'isNullEdit' => $this->isNullEdit,
+			'revertTags' => $this->revertTags,
+			'version' => self::SERIALIZATION_FORMAT_VERSION
+		];
 	}
 }

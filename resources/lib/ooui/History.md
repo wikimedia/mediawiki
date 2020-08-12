@@ -1,4 +1,36 @@
 # OOUI Release History
+## v0.40.1 / 2020-08-05
+### Styles
+* ActionFieldLayout: Fix input margin styles (Ed Sanders)
+
+### Code
+* PopupWidget: Follow-up I42584a6: Fix styling of PopupWidget head in WMUI (Ed Sanders)
+* MenuSelectWidget: Don't handle keydown if no items are visible (Thalia Chan)
+* MenuTagMultiselectWidget: Don't modify `config` object (Thalia Chan)
+* MenuTagMultiselectWidget: Fix handling of options configs (Thalia Chan)
+* build: Fix build step glob in 'imagesThemes' task (Volker E.)
+* build: Update devDependencies to latest (Volker E.)
+* demos: Fix ActionFieldLayout + Dropdown demo (Ed Sanders)
+
+
+## v0.40.0 / 2020-07-30
+### Breaking changes
+* [BREAKING CHANGE] build: Remove PNG fallback, composition and optimization (Volker E.)
+
+### Styles
+* WikimediaUI theme: Increase `@line-height-base` to `20px` equivalent (Volker E.)
+* WikimediaUI theme: Remove IE 8 workaround (Volker E.)
+* WikimediaUI theme: Replace `@color-progressive` with `@color-primary` var (Volker E.)
+* styles: Remove outdated comment (Volker E.)
+
+### Code
+* Element: Avoid crash when `getDocument()` is called with `window` (Bartosz Dziewoński)
+* OO.ui.PopupWidget: Reword a comment to fit within max line length (Thalia Chan)
+* build: Bump 'cssmin' compatibility version to 'ie9' (Volker E.)
+* build: Updating grunt to 1.2.1 (libraryupgrader)
+* build: Updating lodash to 4.17.19 (libraryupgrader)
+
+
 ## v0.39.3 / 2020-07-09
 ### Styles
 * WikimediaUI theme: Add button focus for Windows high contrast mode (bkudiess-msft)

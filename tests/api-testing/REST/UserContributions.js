@@ -34,7 +34,8 @@ describe( 'GET contributions', () => {
 		const evenEditsPage = utils.title( 'UserContribution_' );
 
 		// Create a tag.
-		await action.makeTag( 'api-test' );
+		const tag = 'api-test';
+		await action.makeTag( tag );
 
 		// Beth makes 2 edits, the first one is later suppressed
 		const pageToDelete = utils.title( 'UserContribution_' );
@@ -45,9 +46,9 @@ describe( 'GET contributions', () => {
 		let page;
 		for ( let i = 1; i <= 5; i++ ) {
 			const oddEdit = i % 2;
-			const tags = oddEdit ? 'api-test' : null;
+			const tags = oddEdit ? tag : null;
 			page = oddEdit ? oddEditsPage : evenEditsPage;
-			arnoldsTags[ i ] = tags ? tags.split( '|' ) : [];
+			arnoldsTags[ i ] = tags ? [ tags ] : [];
 
 			const revData = await arnoldAction.edit( page, { text: revisionText[ i ], tags } );
 			await utils.sleep();
@@ -136,9 +137,12 @@ describe( 'GET contributions', () => {
 
 		// Check whether the tags we applied manually are present.
 		// MediaWiki can add additional software tags (such as mw-manual-revert),
-		// hence the subarray check.
-		assert.includeMembers( latestSegment.contributions[ 0 ].tags, arnoldsTags[ 5 ] );
-		assert.includeMembers( latestSegment.contributions[ 1 ].tags, arnoldsTags[ 4 ] );
+		// hence the inclusion check and not equality check.
+		const latestSegmentTags = latestSegment.contributions[ 0 ].tags.map( ( tag ) => tag.text );
+		assert.includeMembers( latestSegmentTags, arnoldsTags[ 5 ] );
+
+		const latestSegmentTags2 = latestSegment.contributions[ 1 ].tags.map( ( tag ) => tag.text );
+		assert.includeMembers( latestSegmentTags2, arnoldsTags[ 4 ] );
 
 		// get older segment, using full url
 		const req = clientFactory.getHttpClient( client );
@@ -153,8 +157,11 @@ describe( 'GET contributions', () => {
 		assert.equal( olderSegment.contributions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
 		assert.equal( olderSegment.contributions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
 
-		assert.includeMembers( olderSegment.contributions[ 0 ].tags, arnoldsTags[ 3 ] );
-		assert.includeMembers( olderSegment.contributions[ 1 ].tags, arnoldsTags[ 2 ] );
+		const olderSegmentTags = olderSegment.contributions[ 0 ].tags.map( ( tag ) => tag.text );
+		assert.includeMembers( olderSegmentTags, arnoldsTags[ 3 ] );
+
+		const olderSegmentTags2 = olderSegment.contributions[ 1 ].tags.map( ( tag ) => tag.text );
+		assert.includeMembers( olderSegmentTags2, arnoldsTags[ 2 ] );
 
 		// get the next older segment
 		const { body: finalSegment } = await req.get( olderSegment.older );
@@ -166,7 +173,8 @@ describe( 'GET contributions', () => {
 		// assert body.contributions has the correct content
 		assert.equal( finalSegment.contributions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
-		assert.deepEqual( finalSegment.contributions[ 0 ].tags.sort(), arnoldsTags[ 1 ].sort() );
+		const finalSegmentTags = olderSegment.contributions[ 0 ].tags.map( ( tag ) => tag.text );
+		assert.includeMembers( finalSegmentTags, arnoldsTags[ 1 ] );
 	};
 
 	const testPagingBackwards = async ( client, endpoint ) => {

@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Let users change their email address.
@@ -35,8 +36,16 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 */
 	private $status;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
+
+		$this->permManager = $permManager;
 	}
 
 	public function doesWrites() {
@@ -76,9 +85,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$services->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmyprivateinfo' )
-		) {
+		if ( !$this->permManager->userHasRight( $this->getUser(), 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

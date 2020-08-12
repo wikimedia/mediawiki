@@ -170,12 +170,12 @@ class MovePageForm extends UnlistedSpecialPage {
 				'movepagetext-noredirectsupport' );
 		}
 
-		if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
+		if ( $this->oldTitle->getNamespace() === NS_USER && !$this->oldTitle->isSubpage() ) {
 			$out->wrapWikiMsg(
 				"<div class=\"warningbox mw-moveuserpage-warning\">\n$1\n</div>",
 				'moveuserpage-warning'
 			);
-		} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
+		} elseif ( $this->oldTitle->getNamespace() === NS_CATEGORY ) {
 			$out->wrapWikiMsg(
 				"<div class=\"warningbox mw-movecategorypage-warning\">\n$1\n</div>",
 				'movecategorypage-warning'
@@ -553,7 +553,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Show a warning if the target file exists on a shared repo
 		$repoGroup = $services->getRepoGroup();
-		if ( $nt->getNamespace() == NS_FILE
+		if ( $nt->getNamespace() === NS_FILE
 			&& !( $this->moveOverShared && $this->permManager->userHasRight( $user, 'reupload-shared' ) )
 			&& !$repoGroup->getLocalRepo()->findFile( $nt )
 			&& $repoGroup->findFile( $nt )
@@ -585,7 +585,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$reason = $this->msg( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
 
 			// Delete an associated image if there is
-			if ( $nt->getNamespace() == NS_FILE ) {
+			if ( $nt->getNamespace() === NS_FILE ) {
 				$file = $repoGroup->getLocalRepo()->newFile( $nt );
 				$file->load( File::READ_LATEST );
 				if ( $file->exists() ) {

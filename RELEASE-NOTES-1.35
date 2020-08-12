@@ -1,11 +1,34 @@
 = MediaWiki 1.35 =
 
-== MediaWiki 1.35.0-rc.0 ==
-
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
+
+== MediaWiki 1.35.0-rc.1 ==
+
+=== Changes since MediaWiki 1.35.0-rc.0 ===
+* (T252136) Fix RecentChanges watchlist filters when WatchlistExpiry is off.
+* (T258662) Update time period for watchlist expiry pop-up.
+* (T258443) Fix expiry dropdown not getting disabled on edit page.
+* (T259398) Add license information for promise-polyfill.
+* Remove executable bit from scripts without shebang.
+* (T256526) Fix bold of watched items on Special:RecentChangesLinked.
+* (T259060) Edit page expiry dropdown should keep state after
+  disabling/enabling.
+* (T259009) Translate expiry period in pop-up message for watchlist expiry.
+* (T258310) Add watchlist clock icon to RecentChanges.
+* (T259362) Permit temporary table writes on replica DB connections.
+* (T250214) Add UI support in Special:EditWatchlist for watchlist expiry.
+* (T72470) Disable wgLegacyJavaScriptGlobals by default.
+* (T130906) Add Edge to MediaWiki:Clearyourcache.
+* (T257279) Add mediawiki.ui Less variable deprecation note.
+* (T249521) Fixed reassignEdits.php to work with anonymous users.
+* (T259448) Fix Circular dependency when creating service in
+  DBLoadBalancerFactory.
+* (T257259) Default to using watchlist expiry of old page when moving pages.
+
+== MediaWiki 1.35.0-rc.0 ==
 
 == Upgrading notes for 1.35 ==
 1.35 requires PHP 7.2.22 or above (up from 7.2.9), to avoid segfaults (T228346).
@@ -35,6 +58,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.35 ===
 
+* (T72470) $wgLegacyJavaScriptGlobals is now false by default. This feature
+  will be completely removed in a later MediaWiki release.
 * …
 
 ==== New configuration ====
@@ -118,7 +143,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   Configure the ParserFactory service in order to customize the Parser used.
 * $wgAutoloadAttemptLowercase — This has been deprecated, and the default value
   changed to false.
-* $wgAllowImageMoving - This configuration setting is now deprecated. Instead,
+* $wgAllowImageMoving — This configuration setting is now deprecated. Instead,
   use $wgGroupPermissions; e.g., to revoke sysops' ability to move images use
   $wgGroupPermissions['sysop']['movefile'] = false.
 * $wgAllowImageTag — This configuration is now deprecated; future parsers will
@@ -134,9 +159,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   (e.g. [ '127.0.0.1' => 'bad-ip' ]) for $wgProxyList has been removed. This
   was deprecated since 1.30. Please convert these arrays to indexed/sequential
   ones (e.g. [ '127.0.0.1' ]).
-* $wgShellRestrictionMethod - This now defaults to 'autodetect', which will
+* $wgShellRestrictionMethod — This now defaults to 'autodetect', which will
   enable sandboxing for shell commands using firejail, if it's installed. To
   disable restrictions, set it to false.
+* $wgLegacyJavaScriptGlobals – This deprecated setting now default to false,
+  instead of true, ahead of its planned removal.
 
 ==== Removed configuration ====
 * $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
@@ -1359,6 +1386,10 @@ because of Phabricator reports.
   MWDebug::getHTMLDebugLog() directly.
 * ExternalStoreDB::getSlave(), soft deprecated in 1.34, was hard deprecated.
   Use ExternalStoreDB::getReplica() instead.
+* Less variables in mediawiki.ui/variables.less file that don't follow the
+  standard variable naming scheme (compare WikimediaUI Base) including
+  `@colorGray* variables have been deprecated. New variables are in place and
+  aliases have been set. Replace occurrences and use the new variables instead.
 
 === Other changes in 1.35 ===
 * A new maintenance script is added (purgeExpiredWatchlistItems.php) with which
@@ -1398,6 +1429,8 @@ because of Phabricator reports.
   Note that archive.ar_user, archive.ar_user_text, and archive.ar_comment
   had already been removed in previous releases.
 * The printableversion has been marked as deprecated per T167956.
+* (T30162, T245387) The installer supports using a Postgres server running
+  on a custom port other than 5432.
 
 == Compatibility ==
 MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:

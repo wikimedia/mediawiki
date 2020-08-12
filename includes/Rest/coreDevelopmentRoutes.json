@@ -4,17 +4,15 @@
 		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "me"
 	},
 	{
-		"path": "/coredev/v0/user/{name}/contributions",
+		"path": "/coredev/v0/user/{user}/contributions",
 		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "user"
@@ -24,17 +22,15 @@
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "me"
 	},
 	{
-		"path": "/coredev/v0/user/{name}/contributions/count",
+		"path": "/coredev/v0/user/{user}/contributions/count",
 		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
 		"services": [
 			"ContributionsLookup",
-			"UserFactory",
 			"UserNameUtils"
 		],
 		"mode" : "user"

@@ -2,9 +2,12 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\ContributionsSegment;
+// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
+use MediaWiki\User\UserIdentity;
 use RequestContext;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -46,13 +49,17 @@ class UserContributionsHandler extends AbstractContributionHandler {
 		$revisionsData = [];
 		foreach ( $segment->getRevisions() as $revision ) {
 			$id = $revision->getId();
+			$tags = array_map( function ( $tag ) {
+				return [ 'text' => $tag ];
+			}, $segment->getTagsForRevision( $id ) );
+
 			$revisionsData[] = [
 				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
 				"delta" => $segment->getDeltaForRevision( $id ) ,
 				"size" => $revision->getSize(),
-				"tags" => $segment->getTagsForRevision( $id ),
+				"tags" => $tags,
 				// Contribution type will always be MediaWiki revisions,
 				// until we can reliably include contributions from other sources. See T257839.
 				"type" => 'revision',
@@ -74,10 +81,13 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	private function constructURLs( ContributionsSegment $segment ) {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
-		$name = $this->getValidatedParams()['name'];
+		/* @var UserIdentity $user */
+		$user = $this->getValidatedParams()['user'] ?? null;
+		$name = $user ? $user->getName() : null;
+
 		$urls = [];
 		$query = [ 'limit' => $limit, 'tag' => $tag ];
-		$pathParams = [ 'name' => $name ];
+		$pathParams = [ 'user' => $name ];
 
 		if ( $segment->isOldest() ) {
 			$urls['older'] = null;
@@ -91,12 +101,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	}
 
 	public function getParamSettings() {
-		return [
-			'name' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => $this->me === false
-			],
+		$settings = [
 			'limit' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
@@ -118,6 +123,16 @@ class UserContributionsHandler extends AbstractContributionHandler {
 				ParamValidator::PARAM_DEFAULT => null
 			],
 		];
+		if ( $this->me === false ) {
+			$settings['user'] = [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip' ],
+			];
+		}
+		return $settings;
 	}
 
 }

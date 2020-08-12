@@ -55,7 +55,7 @@ class ApiDelete extends ApiBase {
 		$titleObj = $pageObj->getTitle();
 		if ( !$pageObj->exists() &&
 			// @phan-suppress-next-line PhanUndeclaredMethod
-			!( $titleObj->getNamespace() == NS_FILE && self::canDeleteFile( $pageObj->getFile() ) )
+			!( $titleObj->getNamespace() === NS_FILE && self::canDeleteFile( $pageObj->getFile() ) )
 		) {
 			$this->dieWithError( 'apierror-missingtitle' );
 		}
@@ -75,7 +75,7 @@ class ApiDelete extends ApiBase {
 			}
 		}
 
-		if ( $titleObj->getNamespace() == NS_FILE ) {
+		if ( $titleObj->getNamespace() === NS_FILE ) {
 			$status = self::deleteFile(
 				$pageObj,
 				$user,

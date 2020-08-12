@@ -30,5 +30,6 @@
 	"ooui-selectfile-button-select": "Vælg en fil",
 	"ooui-selectfile-placeholder": "Ingen filer er valgt",
 	"ooui-selectfile-dragdrop-placeholder": "Smid filen her",
+	"ooui-popup-widget-close-button-aria-label": "Luk",
 	"ooui-field-help": "Hjælp"
 }

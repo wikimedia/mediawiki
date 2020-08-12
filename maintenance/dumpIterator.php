@@ -48,7 +48,7 @@ abstract class DumpIterator extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !( $this->hasOption( 'file' ) ^ $this->hasOption( 'dump' ) ) ) {
+		if ( !( $this->hasOption( 'file' ) xor $this->hasOption( 'dump' ) ) ) {
 			$this->fatalError( "You must provide a file or dump" );
 		}
 

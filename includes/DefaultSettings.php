@@ -3467,7 +3467,7 @@ $wgFallbackSkin = 'fallback';
  * via the `useskin` query parameter. To uninstall a skin, remove its inclusion
  * from LocalSettings.php.
  *
- * @see Skin::getAllowedSkins
+ * @see SkinFactory::getAllowedSkins
  */
 $wgSkipSkins = [];
 
@@ -4161,7 +4161,7 @@ $wgIncludeLegacyJavaScript = false;
  *     if ( mw.config.get('wgIsArticle') ) { ... }
  * @endcode
  */
-$wgLegacyJavaScriptGlobals = true;
+$wgLegacyJavaScriptGlobals = false;
 
 /**
  * ResourceLoader will not generate URLs whose query string is more than
@@ -7031,16 +7031,6 @@ $wgDisableInternalSearch = false;
 $wgSearchForwardUrl = null;
 
 /**
- * Search form behavior.
- * - true = use Go & Search buttons
- * - false = use Go button & Advanced search link
- *
- * @deprecated since 1.35. Individual skin may optionally continue
- * supporting it as a local skin config variable.
- */
-$wgUseTwoButtonsSearchForm = true;
-
-/**
  * Array of namespaces to generate a Google sitemap for when the
  * maintenance/generateSitemap.php script is run, or false if one is to be
  * generated for all namespaces.
@@ -7983,6 +7973,7 @@ $wgJobClasses = [
 	'userOptionsUpdate' => UserOptionsUpdateJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 	'null' => NullJob::class,
+	'userEditCountInit' => UserEditCountInitJob::class,
 ];
 
 /**
@@ -9618,6 +9609,16 @@ $wgWatchlistExpiryMaxDuration = '6 months';
  * @var int
  */
 $wgManualRevertSearchRadius = 15;
+
+/**
+ * Allow anonymous cross origin requests.
+ *
+ * This should be disabled for intranet sites (sites behind a firewall).
+ *
+ * @since 1.36
+ * @var bool
+ */
+$wgAllowCrossOrigin = false;
 
 /**
  * For really cool vim folding this needs to be at the end:

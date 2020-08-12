@@ -14,6 +14,7 @@
 			"Sayginer",
 			"Talha Samil Cakir",
 			"TurkishStyles",
+			"Uncitoyen",
 			"Uğurkent"
 		]
 	},
@@ -35,5 +36,6 @@
 	"ooui-selectfile-not-supported": "Dosya seçimi desteklenmiyor",
 	"ooui-selectfile-placeholder": "Herhangi bir dosya seçilmedi",
 	"ooui-selectfile-dragdrop-placeholder": "Dosyayı buraya aç",
+	"ooui-popup-widget-close-button-aria-label": "Kapat",
 	"ooui-field-help": "Yardım"
 }

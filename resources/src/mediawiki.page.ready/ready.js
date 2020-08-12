@@ -129,7 +129,7 @@ function loadSearchModule( moduleName ) {
 
 	// Load the module now if the search input is already focused,
 	// because the user started typing before the JavaScript arrived.
-	if ( isSearchInput( document.activeElement ) ) {
+	if ( document.activeElement && isSearchInput( document.activeElement ) ) {
 		mw.loader.load( moduleName );
 	}
 }

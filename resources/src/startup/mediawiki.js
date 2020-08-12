@@ -21,7 +21,7 @@
 	 * This function implements the 32-bit version of FNV-1.
 	 * It is equivalent to hash( 'fnv132', ... ) in PHP, except
 	 * its output is base 36 rather than hex.
-	 * See <https://en.wikipedia.org/wiki/FNV_hash_function>
+	 * See <https://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function>
 	 *
 	 * @private
 	 * @param {string} str String to hash

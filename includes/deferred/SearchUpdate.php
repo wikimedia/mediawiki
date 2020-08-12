@@ -215,7 +215,7 @@ class SearchUpdate implements DeferrableUpdate {
 
 		$t = preg_replace( "/\\s+/", ' ', $t );
 
-		if ( $ns == NS_FILE ) {
+		if ( $ns === NS_FILE ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
 		}
 

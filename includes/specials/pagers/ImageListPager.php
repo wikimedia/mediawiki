@@ -322,7 +322,7 @@ class ImageListPager extends TablePager {
 	 * @param int $offset
 	 * @param int $limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
-	 * @return FakeResultWrapper
+	 * @return IResultWrapper
 	 * @throws MWException
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
@@ -365,7 +365,7 @@ class ImageListPager extends TablePager {
 	 * @param IResultWrapper $res2
 	 * @param int $limit
 	 * @param bool $ascending See note about $asc in $this->reallyDoQuery
-	 * @return FakeResultWrapper $res1 and $res2 combined
+	 * @return IResultWrapper $res1 and $res2 combined
 	 */
 	protected function combineResult( $res1, $res2, $limit, $ascending ) {
 		$res1->rewind();

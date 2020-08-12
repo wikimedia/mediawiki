@@ -214,17 +214,6 @@ CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_t
 CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
-CREATE SEQUENCE content_content_id_seq;
-CREATE TABLE content (
-  content_id      INTEGER   NOT NULL PRIMARY KEY DEFAULT nextval('content_content_id_seq'),
-  content_size    INTEGER   NOT NULL,
-  content_sha1    TEXT      NOT NULL,
-  content_model   SMALLINT  NOT NULL,
-  content_address TEXT      NOT NULL
-);
-ALTER SEQUENCE content_content_id_seq OWNED BY content.content_id;
-
-
 CREATE SEQUENCE slot_roles_role_id_seq;
 CREATE TABLE slot_roles (
   role_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('slot_roles_role_id_seq'),
@@ -582,14 +571,6 @@ CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
 CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
 CREATE INDEX logging_type_action ON logging (log_type, log_action, log_timestamp);
 
-CREATE TABLE log_search (
-  ls_field   TEXT     NOT NULL,
-  ls_value   TEXT     NOT NULL,
-  ls_log_id  INTEGER  NOT NULL DEFAULT 0,
-  PRIMARY KEY (ls_field,ls_value,ls_log_id)
-);
-CREATE INDEX ls_log_id ON log_search (ls_log_id);
-
 
 CREATE SEQUENCE job_job_id_seq;
 CREATE TABLE job (
@@ -681,30 +662,6 @@ ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
-CREATE SEQUENCE change_tag_ct_id_seq;
-CREATE TABLE change_tag (
-  ct_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq'),
-  ct_rc_id   INTEGER      NULL,
-  ct_log_id  INTEGER      NULL,
-  ct_rev_id  INTEGER      NULL,
-  ct_params  TEXT         NULL,
-  ct_tag_id  INTEGER  NOT NULL
-);
-ALTER SEQUENCE change_tag_ct_id_seq OWNED BY change_tag.ct_id;
-
-CREATE UNIQUE INDEX change_tag_rc_tag_id ON change_tag(ct_rc_id,ct_tag_id);
-CREATE UNIQUE INDEX change_tag_log_tag_id ON change_tag(ct_log_id,ct_tag_id);
-CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag(ct_rev_id,ct_tag_id);
-
-CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
-CREATE TABLE l10n_cache (
-  lc_lang   TEXT  NOT NULL,
-  lc_key    TEXT  NOT NULL,
-  lc_value  BYTEA NOT NULL
-);
-CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
-
 CREATE TABLE iwlinks (
   iwl_from    INTEGER  NOT NULL DEFAULT 0,
   iwl_prefix  TEXT     NOT NULL DEFAULT '',
@@ -713,13 +670,6 @@ CREATE TABLE iwlinks (
 CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
 CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
-
-CREATE TABLE module_deps (
-  md_module  TEXT  NOT NULL,
-  md_skin    TEXT  NOT NULL,
-  md_deps    TEXT  NOT NULL
-);
-CREATE UNIQUE INDEX md_module_skin ON module_deps (md_module, md_skin);
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (

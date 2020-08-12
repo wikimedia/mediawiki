@@ -757,4 +757,20 @@
 		} );
 	} );
 
+	QUnit.test( 'makeTitle for non existent namespace', function ( assert ) {
+		var title, title2;
+		this.sandbox.stub( mw.config, 'get' )
+			.withArgs( 'wgFormattedNamespaces' ).returns( {
+				4: 'NoTalk'
+			} )
+			.withArgs( 'wgCaseSensitiveNamespaces' ).returns( [] )
+			.withArgs( 'wgNamespaceIds' ).returns( {
+				notalk: 4
+			} );
+		title = mw.Title.makeTitle( 4, 'Text' );
+		title2 = mw.Title.makeTitle( 5, 'Text' );
+		assert.strictEqual( title.getPrefixedDb(), 'NoTalk:Text' );
+		assert.strictEqual( title2, null, 'Namespace 5 is unknown' );
+	} );
+
 }() );

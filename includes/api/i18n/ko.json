@@ -907,6 +907,7 @@
 	"apiwarn-notfile": "\"$1\"은(는) 파일이 아닙니다.",
 	"apiwarn-unsupportedarray": "<var>$1</var> 변수는 지원되지 않는 PHP 배열 문법을 사용합니다.",
 	"apiwarn-validationfailed-keytoolong": "키가 너무 깁니다. ($1 바이트 이상 허용하지 않습니다)",
+	"apiwarn-wgdebugapi": "<strong>보안 경고:</strong> <var>$wgDebugAPI</var>가 활성화되었습니다.",
 	"api-feed-error-title": "오류 ($1)",
 	"api-usage-docref": "API 사용법을 보려면 $1을(를) 참고하십시오.",
 	"api-credits-header": "크레딧",

@@ -14,3 +14,31 @@ include /etc/firejail/mediawiki.local
 
 # Include any global firejail customizations.
 include /etc/firejail/globals.local
+
+# Drop all capabilities
+caps.drop all
+
+# Disallow system directories
+blacklist /sbin
+blacklist /usr/sbin
+blacklist /usr/local/sbin
+# /run typically contains many exploitable UNIX sockets
+blacklist /run
+
+# Disallow system files
+blacklist /etc/shadow
+blacklist /etc/ssh
+blacklist /root
+
+# Disallow system management
+blacklist ${PATH}/umount
+blacklist ${PATH}/mount
+blacklist ${PATH}/fusermount
+blacklist ${PATH}/su
+blacklist ${PATH}/sudo
+blacklist ${PATH}/xinput
+blacklist ${PATH}/evtest
+blacklist ${PATH}/xev
+blacklist ${PATH}/strace
+blacklist ${PATH}/nc
+blacklist ${PATH}/ncat

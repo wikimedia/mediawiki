@@ -3,12 +3,14 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
+use MediaWiki\User\UserFactory;
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use MediaWiki\User\UserIdentity;
-use Title;
-use User;
+use MediaWiki\User\UserNameUtils;
+use TitleFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 
@@ -51,12 +53,40 @@ class UserDef extends TypeDef {
 	 */
 	public const PARAM_RETURN_OBJECT = 'param-return-object';
 
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/**
+	 * @param Callbacks $callbacks
+	 * @param UserFactory $userFactory
+	 * @param TitleFactory $titleFactory
+	 * @param UserNameUtils $userNameUtils
+	 */
+	public function __construct(
+		Callbacks $callbacks,
+		UserFactory $userFactory,
+		TitleFactory $titleFactory,
+		UserNameUtils $userNameUtils
+	) {
+		parent::__construct( $callbacks );
+		$this->userFactory = $userFactory;
+		$this->titleFactory = $titleFactory;
+		$this->userNameUtils = $userNameUtils;
+	}
+
 	public function validate( $name, $value, array $settings, array $options ) {
 		list( $type, $user ) = $this->processUser( $value );
 
 		if ( !$user || !in_array( $type, $settings[self::PARAM_ALLOWED_USER_TYPES], true ) ) {
 			$this->failure( 'baduser', $name, $value, $settings, $options );
 		}
+
 		return empty( $settings[self::PARAM_RETURN_OBJECT] ) ? $user->getName() : $user;
 	}
 
@@ -132,20 +162,21 @@ class UserDef extends TypeDef {
 	private function processUser( string $value ) : array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
-			return [ 'id', User::newFromId( $m[1] ) ];
+			return [ 'id', $this->userFactory->newFromId( $m[1] ) ];
+
 		}
 
 		// An interwiki username?
 		if ( ExternalUserNames::isExternal( $value ) ) {
-			$name = User::getCanonicalName( $value, false );
+			$name = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_NONE );
 			return [
 				'interwiki',
-				is_string( $name ) ? User::newFromAnyId( 0, $value, null ) : null
+				is_string( $name ) ? $this->userFactory->newFromAnyId( 0, $value, null ) : null
 			];
 		}
 
 		// A valid user name?
-		$user = User::newFromName( $value, 'valid' );
+		$user = $this->userFactory->newFromName( $value, 'valid' );
 		if ( $user ) {
 			return [ 'name', $user ];
 		}
@@ -155,9 +186,10 @@ class UserDef extends TypeDef {
 		if ( strpos( $value, '#' ) !== false ) {
 			return [ '', null ];
 		}
-		$t = Title::newFromText( $value ); // In case of explicit "User:" prefix, sigh.
+
+		$t = $this->titleFactory->newFromText( $value );
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) { // likely
-			$t = Title::newFromText( "User:$value" );
+			$t = $this->titleFactory->newFromText( "User:$value" );
 		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
 			// If it wasn't a valid User-namespace title, fail.
@@ -174,12 +206,12 @@ class UserDef extends TypeDef {
 			// addresses.
 			preg_match( "/^$b\.$b\.$b\.xxx$/D", $value )
 		) {
-			return [ 'ip', User::newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
+			return [ 'ip', $this->userFactory->newAnonymous( IPUtils::sanitizeIP( $value ) ) ];
 		}
 
 		// A range?
 		if ( IPUtils::isValidRange( $value ) ) {
-			return [ 'cidr', User::newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
+			return [ 'cidr', $this->userFactory->newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
 		}
 
 		// Fail.

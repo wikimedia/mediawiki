@@ -10,6 +10,7 @@
 			"Magol",
 			"Milicevic01",
 			"Per",
+			"Sabelöga",
 			"Sendelbach",
 			"Skalman",
 			"Warrakkk",
@@ -34,5 +35,6 @@
 	"ooui-selectfile-not-supported": "Filval stöds inte",
 	"ooui-selectfile-placeholder": "Ingen fil är vald",
 	"ooui-selectfile-dragdrop-placeholder": "Släpp filen här",
+	"ooui-popup-widget-close-button-aria-label": "Stäng",
 	"ooui-field-help": "Hjälp"
 }

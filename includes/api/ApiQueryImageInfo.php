@@ -527,6 +527,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 								$mto->getExtension(), $file->getMimeType(), $thumbParams );
 							$vals['thumbmime'] = $mime;
 						}
+						// Report srcset parameters
+						Linker::processResponsiveImages( $file, $mto, [
+							'width' => $vals['thumbwidth'],
+							'height' => $vals['thumbheight']
+						] + $thumbParams );
+						foreach ( $mto->responsiveUrls as $density => $url ) {
+							$vals['responsiveUrls'][$density] = wfExpandUrl( $url, PROTO_CURRENT );
+						}
 					} elseif ( $mto && $mto->isError() ) {
 						/** @var MediaTransformError $mto */
 						'@phan-var MediaTransformError $mto';

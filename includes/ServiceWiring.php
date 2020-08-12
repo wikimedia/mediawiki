@@ -1127,7 +1127,10 @@ return [
 
 	/** @suppress PhanTypeInvalidCallableArrayKey */
 	'SkinFactory' => function ( MediaWikiServices $services ) : SkinFactory {
-		$factory = new SkinFactory( $services->getObjectFactory() );
+		$factory = new SkinFactory(
+			$services->getObjectFactory(),
+			(array)$services->getMainConfig()->get( 'SkipSkins' )
+		);
 
 		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
 
@@ -1250,9 +1253,12 @@ return [
 	},
 
 	'UserEditTracker' => function ( MediaWikiServices $services ) : UserEditTracker {
+		$jobQueueGroup = JobQueueGroup::singleton();
+
 		return new UserEditTracker(
 			$services->getActorMigration(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$jobQueueGroup
 		);
 	},
 

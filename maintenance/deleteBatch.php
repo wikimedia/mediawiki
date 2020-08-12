@@ -101,7 +101,7 @@ class DeleteBatch extends Maintenance {
 			}
 
 			$this->output( $title->getPrefixedText() );
-			if ( $title->getNamespace() == NS_FILE ) {
+			if ( $title->getNamespace() === NS_FILE ) {
 				$img = MediaWikiServices::getInstance()->getRepoGroup()->findFile(
 					$title, [ 'ignoreRedirect' => true ]
 				);

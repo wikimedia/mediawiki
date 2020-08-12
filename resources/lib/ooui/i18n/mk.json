@@ -24,5 +24,6 @@
 	"ooui-selectfile-not-supported": "Изборот на податотеки не е поддржан",
 	"ooui-selectfile-placeholder": "Немате одбрано податотека",
 	"ooui-selectfile-dragdrop-placeholder": "Тука пуштете ја податотеката",
+	"ooui-popup-widget-close-button-aria-label": "Затвори",
 	"ooui-field-help": "Помош"
 }

@@ -2499,6 +2499,104 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionIdsBetween
+	 */
+	public function testGetRevisionIdsBetween() {
+		$NUM = 5;
+		$MAX = 1;
+		$page = $this->getTestPage( __METHOD__ );
+		$revisions = [];
+		$revisionIds = [];
+		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
+			$editStatus = $this->editPage( $page->getTitle()->getPrefixedDBkey(), 'Revision ' . $revNum );
+			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$newRevision = $editStatus->getValue()['revision-record'];
+			/** @var RevisionRecord $newRevision */
+			$revisions[] = $newRevision;
+			$revisionIds[] = $newRevision->getId();
+		}
+
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertArrayEquals(
+			[],
+			$revisionStore->getRevisionIdsBetween( $page->getId(), $revisions[0], $revisions[0] ),
+			false,
+			false,
+			'Must return an empty array if the same old and new revisions provided'
+		);
+		$this->assertArrayEquals(
+			[],
+			$revisionStore->getRevisionIdsBetween( $page->getId(), $revisions[0], $revisions[1] ),
+			false,
+			false,
+			'Must return an empty array if the consecutive old and new revisions provided'
+		);
+		$this->assertArrayEquals(
+			array_slice( $revisionIds, 1, -2 ),
+			$revisionStore->getRevisionIdsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2] ),
+			false,
+			false,
+			'The result is non-inclusive on both ends if both beginning and end are provided'
+		);
+		$this->assertArrayEquals(
+			array_slice( $revisionIds, 1, -1 ),
+			$revisionStore->getRevisionIdsBetween(
+				$page->getId(),
+				$revisions[0],
+				$revisions[$NUM - 2],
+				null,
+				'include_new'
+			),
+			'The inclusion string options are respected'
+		);
+		$this->assertArrayEquals(
+			array_slice( $revisionIds, 0, -1 ),
+			$revisionStore->getRevisionIdsBetween(
+				$page->getId(),
+				$revisions[0],
+				$revisions[$NUM - 2],
+				null,
+				[ 'include_both' ]
+			),
+			false,
+			false,
+			'The inclusion array options are respected'
+		);
+		$this->assertArrayEquals(
+			array_slice( $revisionIds, 1 ),
+			$revisionStore->getRevisionIdsBetween( $page->getId(), $revisions[0] ),
+			false,
+			false,
+			'The result is inclusive on the end if the end is omitted'
+		);
+
+		$this->assertArrayEquals(
+			array_reverse( array_slice( $revisionIds, 1, -2 ) ),
+			$revisionStore->getRevisionIdsBetween(
+				$page->getId(),
+				$revisions[0],
+				$revisions[$NUM - 2],
+				null,
+				[],
+				RevisionStore::ORDER_NEWEST_TO_OLDEST
+			),
+			true,
+			false,
+			'$order parameter is respected'
+		);
+		$this->assertSame(
+			$MAX + 1, // Returns array of length $max + 1 to detect truncation.
+			count( $revisionStore->getRevisionIdsBetween(
+				$page->getId(),
+				$revisions[0],
+				$revisions[$NUM - 1],
+				$MAX
+			) ),
+			'$max is incremented to detect truncation'
+		);
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
 	 */
 	public function testCountRevisionsBetween() {
@@ -2593,6 +2691,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideBetweenMethodNames() {
+		yield [ 'getRevisionIdsBetween' ];
 		yield [ 'countRevisionsBetween' ];
 		yield [ 'countAuthorsBetween' ];
 		yield [ 'getAuthorsBetween' ];
@@ -2601,6 +2700,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideBetweenMethodNames
 	 *
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionIdsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::getAuthorsBetween
@@ -2625,6 +2725,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideBetweenMethodNames
 	 *
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionIdsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
 	 * @covers \MediaWiki\Revision\RevisionStore::getAuthorsBetween

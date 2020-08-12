@@ -103,7 +103,12 @@ class SpecialPageFactory {
 		// Authentication
 		'Userlogin' => \SpecialUserLogin::class,
 		'Userlogout' => \SpecialUserLogout::class,
-		'CreateAccount' => \SpecialCreateAccount::class,
+		'CreateAccount' => [
+			'class' => \SpecialCreateAccount::class,
+			'services' => [
+				'PermissionManager',
+			]
+		],
 		'LinkAccounts' => \SpecialLinkAccounts::class,
 		'UnlinkAccounts' => \SpecialUnlinkAccounts::class,
 		'ChangeCredentials' => \SpecialChangeCredentials::class,
@@ -119,10 +124,20 @@ class SpecialPageFactory {
 		],
 		'Unblock' => \SpecialUnblock::class,
 		'BlockList' => \SpecialBlockList::class,
-		'AutoblockList' => \SpecialAutoblockList::class,
+		'AutoblockList' => [
+			'class' => \SpecialAutoblockList::class,
+			'services' => [
+				'PermissionManager',
+			],
+		],
 		'ChangePassword' => \SpecialChangePassword::class,
 		'BotPasswords' => \SpecialBotPasswords::class,
-		'PasswordReset' => \SpecialPasswordReset::class,
+		'PasswordReset' => [
+			'class' => \SpecialPasswordReset::class,
+			'services' => [
+				'PasswordReset'
+			]
+		],
 		'DeletedContributions' => \SpecialDeletedContributions::class,
 		'Preferences' => \SpecialPreferences::class,
 		'ResetTokens' => \SpecialResetTokens::class,
@@ -139,7 +154,12 @@ class SpecialPageFactory {
 				'WatchedItemStore'
 			]
 		],
-		'PasswordPolicies' => \SpecialPasswordPolicies::class,
+		'PasswordPolicies' => [
+			'class' => \SpecialPasswordPolicies::class,
+			'services' => [
+				'NamespaceInfo'
+			]
+		],
 
 		// Recent changes and logs
 		'Newimages' => \SpecialNewFiles::class,
@@ -161,9 +181,19 @@ class SpecialPageFactory {
 		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
 
 		// Data and tools
-		'ApiSandbox' => \SpecialApiSandbox::class,
+		'ApiSandbox' => [
+			'class' => \SpecialApiSandbox::class,
+			'services' => [
+				'PermissionManager',
+			],
+		],
 		'Statistics' => \SpecialStatistics::class,
-		'Allmessages' => \SpecialAllMessages::class,
+		'Allmessages' => [
+			'class' => \SpecialAllMessages::class,
+			'services' => [
+				'ContentLanguage'
+			]
+		],
 		'Version' => \SpecialVersion::class,
 		'Lockdb' => \SpecialLockdb::class,
 		'Unlockdb' => \SpecialUnlockdb::class,
@@ -227,7 +257,13 @@ class SpecialPageFactory {
 		'AllMyUploads' => \SpecialAllMyUploads::class,
 		'NewSection' => \SpecialNewSection::class,
 		'PermanentLink' => \SpecialPermanentLink::class,
-		'Redirect' => \SpecialRedirect::class,
+		'Redirect' => [
+			'class' => \SpecialRedirect::class,
+			'services' => [
+				'PermissionManager',
+				'RepoGroup'
+			]
+		],
 		'Revisiondelete' => [
 			'class' => \SpecialRevisionDelete::class,
 			'services' => [
@@ -319,12 +355,22 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'EmailAuthentication' ) ) {
-				$this->list['Confirmemail'] = \SpecialConfirmEmail::class;
+				$this->list['Confirmemail'] = [
+					'class' => \SpecialConfirmEmail::class,
+					'services' => [
+						'PermissionManager',
+					]
+				];
 				$this->list['Invalidateemail'] = \SpecialEmailInvalidate::class;
 			}
 
 			if ( $this->options->get( 'EnableEmail' ) ) {
-				$this->list['ChangeEmail'] = \SpecialChangeEmail::class;
+				$this->list['ChangeEmail'] = [
+					'class' => \SpecialChangeEmail::class,
+					'services' => [
+						'PermissionManager',
+					],
+				];
 			}
 
 			if ( $this->options->get( 'EnableJavaScriptTest' ) ) {

@@ -5,6 +5,7 @@ namespace MediaWiki\Rest;
 use ExtensionRegistry;
 use IContextSource;
 use MediaWiki;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Validator\Validator;
@@ -22,6 +23,13 @@ class EntryPoint {
 	private $router;
 	/** @var RequestContext */
 	private $context;
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var array */
+	private const CONSTRUCTOR_OPTIONS = [
+		'AllowCrossOrigin',
+	];
 
 	/**
 	 * @param IContextSource $context
@@ -96,7 +104,9 @@ class EntryPoint {
 			$context,
 			$request,
 			$wgRequest->response(),
-			$router );
+			$router,
+			new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $conf )
+		);
 		$entryPoint->execute();
 	}
 
@@ -120,12 +130,13 @@ class EntryPoint {
 	}
 
 	public function __construct( RequestContext $context, RequestInterface $request,
-		WebResponse $webResponse, Router $router
+		WebResponse $webResponse, Router $router, ServiceOptions $options
 	) {
 		$this->context = $context;
 		$this->request = $request;
 		$this->webResponse = $webResponse;
 		$this->router = $router;
+		$this->options = $options;
 	}
 
 	public function execute() {
@@ -136,6 +147,10 @@ class EntryPoint {
 			'HTTP/' . $response->getProtocolVersion() . ' ' .
 			$response->getStatusCode() . ' ' .
 			$response->getReasonPhrase() );
+
+		if ( $this->options->get( 'AllowCrossOrigin' ) ) {
+			$this->webResponse->header( 'Access-Control-Allow-Origin: *' );
+		}
 
 		foreach ( $response->getRawHeaderLines() as $line ) {
 			$this->webResponse->header( $line );

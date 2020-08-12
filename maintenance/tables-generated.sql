@@ -80,3 +80,50 @@ CREATE TABLE /*_*/user_properties (
   INDEX user_properties_property (up_property),
   PRIMARY KEY(up_user, up_property)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/log_search (
+  ls_field VARBINARY(32) NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INT UNSIGNED DEFAULT 0 NOT NULL,
+  INDEX ls_log_id (ls_log_id),
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/change_tag (
+  ct_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  ct_rc_id INT UNSIGNED DEFAULT NULL,
+  ct_log_id INT UNSIGNED DEFAULT NULL,
+  ct_rev_id INT UNSIGNED DEFAULT NULL,
+  ct_params BLOB DEFAULT NULL,
+  ct_tag_id INT UNSIGNED NOT NULL,
+  UNIQUE INDEX change_tag_rc_tag_id (ct_rc_id, ct_tag_id),
+  UNIQUE INDEX change_tag_log_tag_id (ct_log_id, ct_tag_id),
+  UNIQUE INDEX change_tag_rev_tag_id (ct_rev_id, ct_tag_id),
+  INDEX change_tag_tag_id_id (
+    ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
+  ),
+  PRIMARY KEY(ct_id)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/content (
+  content_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+  content_size INT UNSIGNED NOT NULL,
+  content_sha1 VARBINARY(32) NOT NULL,
+  content_model SMALLINT UNSIGNED NOT NULL,
+  content_address VARBINARY(255) NOT NULL,
+  PRIMARY KEY(content_id)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/l10n_cache (
+  lc_lang VARBINARY(35) NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value MEDIUMBLOB NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/module_deps (
+  md_module VARBINARY(255) NOT NULL,
+  md_skin VARBINARY(32) NOT NULL,
+  md_deps MEDIUMBLOB NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+) /*$wgDBTableOptions*/;

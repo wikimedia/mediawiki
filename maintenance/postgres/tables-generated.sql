@@ -72,3 +72,45 @@ CREATE TABLE user_properties (
   PRIMARY KEY(up_user, up_property)
 );
 CREATE INDEX user_properties_property ON user_properties (up_property);
+CREATE TABLE log_search (
+  ls_field TEXT NOT NULL,
+  ls_value VARCHAR(255) NOT NULL,
+  ls_log_id INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+);
+CREATE INDEX ls_log_id ON log_search (ls_log_id);
+CREATE TABLE change_tag (
+  ct_id SERIAL NOT NULL,
+  ct_rc_id INT DEFAULT NULL,
+  ct_log_id INT DEFAULT NULL,
+  ct_rev_id INT DEFAULT NULL,
+  ct_params TEXT DEFAULT NULL,
+  ct_tag_id INT NOT NULL,
+  PRIMARY KEY(ct_id)
+);
+CREATE UNIQUE INDEX change_tag_rc_tag_id ON change_tag (ct_rc_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_log_tag_id ON change_tag (ct_log_id, ct_tag_id);
+CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag (ct_rev_id, ct_tag_id);
+CREATE INDEX change_tag_tag_id_id ON change_tag (
+  ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
+);
+CREATE TABLE content (
+  content_id BIGSERIAL NOT NULL,
+  content_size INT NOT NULL,
+  content_sha1 TEXT NOT NULL,
+  content_model SMALLINT NOT NULL,
+  content_address TEXT NOT NULL,
+  PRIMARY KEY(content_id)
+);
+CREATE TABLE l10n_cache (
+  lc_lang TEXT NOT NULL,
+  lc_key VARCHAR(255) NOT NULL,
+  lc_value TEXT NOT NULL,
+  PRIMARY KEY(lc_lang, lc_key)
+);
+CREATE TABLE module_deps (
+  md_module TEXT NOT NULL,
+  md_skin TEXT NOT NULL,
+  md_deps TEXT NOT NULL,
+  PRIMARY KEY(md_module, md_skin)
+);

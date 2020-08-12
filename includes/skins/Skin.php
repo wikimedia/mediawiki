@@ -148,6 +148,7 @@ abstract class Skin extends ContextSource {
 	 *  `scripts` represents an array of ResourceLoader script modules
 	 *  and `styles` represents
 	 *  an array of ResourceLoader style modules to load on all pages.
+	 *  `responsive` indicates if a viewport meta tag should be set.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -170,11 +171,33 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Indicates if this skin is responsive.
+	 * Responsive skins have skin--responsive added to <body> by OutputPage,
+	 * and a viewport <meta> tag set by Skin::initPage.
+	 *
+	 * @since 1.36
+	 * @stable to override
+	 * @return bool
+	 */
+	public function isResponsive() {
+		return $this->options['responsive'] ?? false;
+	}
+
+	/**
 	 * @stable to override
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
 		$this->preloadExistence();
+
+		if ( $this->isResponsive() ) {
+			$out->addMeta(
+				'viewport',
+				'width=device-width, initial-scale=1.0, ' .
+				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
+			);
+
+		}
 	}
 
 	/**
@@ -321,6 +344,8 @@ abstract class Skin extends ContextSource {
 	 * @return int
 	 */
 	public function getRevisionId() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->getRevisionId();
 	}
 
@@ -331,6 +356,8 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isRevisionCurrent() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->isRevisionCurrent();
 	}
 
@@ -426,7 +453,7 @@ abstract class Skin extends ContextSource {
 	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		// Stub.
+		wfDeprecated( __METHOD__, '1.32' );
 	}
 
 	/**
@@ -2067,10 +2094,13 @@ abstract class Skin extends ContextSource {
 	 * identifiers, values: contents) internally ordered by keys.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.36.
 	 * @param array $indicators
 	 * @return string HTML
 	 */
 	final public function getIndicatorsHTML( $indicators ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$out = "<div class=\"mw-indicators mw-body-content\">\n";
 		foreach ( $this->getIndicatorsData( $indicators ) as $indicatorData ) {
 			$out .= Html::rawElement(

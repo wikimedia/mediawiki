@@ -1,0 +1,31 @@
+# Changes
+DELETE {
+?category ?x ?y
+} WHERE {
+   ?category ?x ?y
+   VALUES ?category {
+     <http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L2> <http://acme.test/wiki/Category:CategoryChangesAsRdfTest_Page> <http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L1>
+   }
+};
+INSERT DATA {
+
+<http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L2> a mediawiki:Category ;
+	rdfs:label "CategoryChangesAsRdfTest L2" ;
+	mediawiki:pages "0"^^xsd:integer ;
+	mediawiki:subcategories "1"^^xsd:integer .
+
+<http://acme.test/wiki/Category:CategoryChangesAsRdfTest_Page> a mediawiki:Category ;
+	rdfs:label "CategoryChangesAsRdfTest Page" ;
+	mediawiki:pages "0"^^xsd:integer ;
+	mediawiki:subcategories "0"^^xsd:integer .
+
+<http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L1> a mediawiki:Category ;
+	rdfs:label "CategoryChangesAsRdfTest L1" ;
+	mediawiki:pages "0"^^xsd:integer ;
+	mediawiki:subcategories "1"^^xsd:integer .
+
+<http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L2> mediawiki:isInCategory <http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L1> .
+
+<http://acme.test/wiki/Category:CategoryChangesAsRdfTest_Page> mediawiki:isInCategory <http://acme.test/wiki/Category:CategoryChangesAsRdfTest_L2> .
+
+};

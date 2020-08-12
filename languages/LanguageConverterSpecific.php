@@ -38,7 +38,7 @@ abstract class LanguageConverterSpecific extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
+			if ( $ns === NS_USER || $ns === NS_USER_TALK ) {
 				return;
 			}
 		}

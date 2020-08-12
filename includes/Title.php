@@ -376,7 +376,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		// Title normalization and parsing can become expensive on pages with many
 		// links, so we can save a little time by caching them.
 		// In theory these are value objects and won't get changed...
-		if ( $defaultNamespace == NS_MAIN ) {
+		if ( $defaultNamespace === NS_MAIN ) {
 			$t = $titleCache->get( $text );
 			if ( $t ) {
 				return $t;
@@ -390,7 +390,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$dbKeyForm = strtr( $filteredText, ' ', '_' );
 
 		$t->secureAndSplit( $dbKeyForm, (int)$defaultNamespace );
-		if ( $defaultNamespace == NS_MAIN ) {
+		if ( $defaultNamespace === NS_MAIN ) {
 			$titleCache->set( $text, $t );
 		}
 		return $t;
@@ -1239,7 +1239,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isSpecialPage() {
-		return $this->mNamespace == NS_SPECIAL;
+		return $this->mNamespace === NS_SPECIAL;
 	}
 
 	/**
@@ -1400,7 +1400,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function isConversionTable() {
 		// @todo ConversionTable should become a separate content model.
 
-		return $this->mNamespace == NS_MEDIAWIKI &&
+		return $this->mNamespace === NS_MEDIAWIKI &&
 			strpos( $this->getText(), 'Conversiontable/' ) === 0;
 	}
 
@@ -1473,7 +1473,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserCssConfigPage() {
 		return (
-			$this->mNamespace == NS_USER
+			$this->mNamespace === NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_CSS )
 		);
@@ -1487,7 +1487,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserJsonConfigPage() {
 		return (
-			$this->mNamespace == NS_USER
+			$this->mNamespace === NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JSON )
 		);
@@ -1501,7 +1501,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isUserJsConfigPage() {
 		return (
-			$this->mNamespace == NS_USER
+			$this->mNamespace === NS_USER
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 		);
@@ -1515,7 +1515,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteCssConfigPage() {
 		return (
-			$this->mNamespace == NS_MEDIAWIKI
+			$this->mNamespace === NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_CSS )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
@@ -1533,7 +1533,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteJsonConfigPage() {
 		return (
-			$this->mNamespace == NS_MEDIAWIKI
+			$this->mNamespace === NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_JSON )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
@@ -1551,7 +1551,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function isSiteJsConfigPage() {
 		return (
-			$this->mNamespace == NS_MEDIAWIKI
+			$this->mNamespace === NS_MEDIAWIKI
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
@@ -2525,7 +2525,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$types = self::getFilteredRestrictionTypes( $this->exists() );
 
-		if ( $this->mNamespace != NS_FILE ) {
+		if ( $this->mNamespace !== NS_FILE ) {
 			# Remove the upload restriction for non-file titles
 			$types = array_diff( $types, [ 'upload' ] );
 		}
@@ -2755,7 +2755,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$dbr = wfGetDB( DB_REPLICA );
 
-		if ( $this->mNamespace == NS_FILE ) {
+		if ( $this->mNamespace === NS_FILE ) {
 			$tables = [ 'imagelinks', 'page_restrictions' ];
 			$where_clauses = [
 				'il_to' => $this->mDbkeyform,
@@ -2962,7 +2962,7 @@ class Title implements LinkTarget, IDBAccessObject {
 					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 
-					$this->mCascadeRestriction |= $row->pr_cascade;
+					$this->mCascadeRestriction = $this->mCascadeRestriction || $row->pr_cascade;
 				}
 			}
 		}
@@ -3173,7 +3173,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
 				__METHOD__
 			);
-			if ( $this->mNamespace == NS_FILE ) {
+			if ( $this->mNamespace === NS_FILE ) {
 				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
 					[ 'fa_name' => $this->mDbkeyform ],
 					__METHOD__
@@ -3197,7 +3197,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			[ 'ar_namespace' => $this->mNamespace, 'ar_title' => $this->mDbkeyform ],
 			__METHOD__
 		);
-		if ( !$deleted && $this->mNamespace == NS_FILE ) {
+		if ( !$deleted && $this->mNamespace === NS_FILE ) {
 			$deleted = (bool)$dbr->selectField( 'filearchive', '1',
 				[ 'fa_name' => $this->mDbkeyform ],
 				__METHOD__
@@ -4090,7 +4090,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return true;
 		}
 
-		if ( $this->mNamespace == NS_MEDIAWIKI ) {
+		if ( $this->mNamespace === NS_MEDIAWIKI ) {
 			$services = MediaWikiServices::getInstance();
 			// If the page doesn't exist but is a known system message, default
 			// message content will be displayed, same for language subpages-
@@ -4145,7 +4145,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string|bool
 	 */
 	public function getDefaultMessageText() {
-		if ( $this->mNamespace != NS_MEDIAWIKI ) { // Just in case
+		if ( $this->mNamespace !== NS_MEDIAWIKI ) { // Just in case
 			return false;
 		}
 
@@ -4214,7 +4214,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			'pagelinks',
 			[ 'causeAction' => 'page-touch' ]
 		);
-		if ( $this->mNamespace == NS_CATEGORY ) {
+		if ( $this->mNamespace === NS_CATEGORY ) {
 			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 				$this,
 				'categorylinks',

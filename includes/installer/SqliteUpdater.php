@@ -295,7 +295,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
-			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ]
+			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
+			[ 'modifyField', 'content', 'content_id', 'patch-content-content_id-fix_not_null.sql' ],
 		];
 	}
 

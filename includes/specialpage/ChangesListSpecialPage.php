@@ -1537,31 +1537,43 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$namespaces = $this->expandSymbolicNamespaceFilters( $namespaces );
 
-			if ( $opts[ 'associated' ] ) {
-				$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-				$associatedNamespaces = array_map(
-					function ( $ns ) use ( $namespaceInfo ){
-						return $namespaceInfo->getAssociated( $ns );
-					},
-					array_filter(
-						$namespaces,
-						function ( $ns ) use ( $namespaceInfo ) {
-							return $namespaceInfo->hasTalkNamespace( $ns );
-						}
-					)
-				);
-				$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
-			}
+			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+			$namespaces = array_filter(
+				$namespaces,
+				function ( $ns ) use ( $namespaceInfo ) {
+					return $namespaceInfo->exists( $ns );
+				}
+			);
 
-			if ( count( $namespaces ) === 1 ) {
-				$operator = $opts[ 'invert' ] ? '!=' : '=';
-				$value = $dbr->addQuotes( reset( $namespaces ) );
-			} else {
-				$operator = $opts[ 'invert' ] ? 'NOT IN' : 'IN';
-				sort( $namespaces );
-				$value = '(' . $dbr->makeList( $namespaces ) . ')';
+			if ( $namespaces !== [] ) {
+				// Namespaces are just ints, use them as int when acting with the database
+				$namespaces = array_map( 'intval', $namespaces );
+
+				if ( $opts[ 'associated' ] ) {
+					$associatedNamespaces = array_map(
+						function ( $ns ) use ( $namespaceInfo ){
+							return $namespaceInfo->getAssociated( $ns );
+						},
+						array_filter(
+							$namespaces,
+							function ( $ns ) use ( $namespaceInfo ) {
+								return $namespaceInfo->hasTalkNamespace( $ns );
+							}
+						)
+					);
+					$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
+				}
+
+				if ( count( $namespaces ) === 1 ) {
+					$operator = $opts[ 'invert' ] ? '!=' : '=';
+					$value = $dbr->addQuotes( reset( $namespaces ) );
+				} else {
+					$operator = $opts[ 'invert' ] ? 'NOT IN' : 'IN';
+					sort( $namespaces );
+					$value = '(' . $dbr->makeList( $namespaces ) . ')';
+				}
+				$conds[] = "rc_namespace $operator $value";
 			}
-			$conds[] = "rc_namespace $operator $value";
 		}
 
 		// Calculate cutoff

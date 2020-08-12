@@ -997,7 +997,7 @@ abstract class UploadBase {
 		 * and that the namespace prefix needs to be stripped of.
 		 */
 		$title = Title::newFromText( $this->mDesiredDestName );
-		if ( $title && $title->getNamespace() == NS_FILE ) {
+		if ( $title && $title->getNamespace() === NS_FILE ) {
 			$this->mFilteredName = $title->getDBkey();
 		} else {
 			$this->mFilteredName = $this->mDesiredDestName;

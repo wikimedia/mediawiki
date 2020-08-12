@@ -349,7 +349,7 @@ class LocalRepo extends FileRepo {
 			$title = File::normalizeTitle( $dbKey );
 			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
 
-			if ( $redir && $redir->getNamespace() == NS_FILE ) {
+			if ( $redir && $redir->getNamespace() === NS_FILE ) {
 				$file = $this->newFile( $redir );
 				if ( $file && $fileMatchesSearch( $file, $search ) ) {
 					$file->redirectedFrom( $title->getDBkey() );

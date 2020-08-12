@@ -1131,7 +1131,8 @@ class PageUpdater {
 					$newRevisionRecord->getSize(),
 					$newRevisionRecord->getId(),
 					$this->rcPatrolStatus,
-					$tags
+					$tags,
+					$editResult
 				);
 			}
 
