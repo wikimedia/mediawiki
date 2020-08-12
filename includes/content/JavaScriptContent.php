@@ -60,8 +60,13 @@ class JavaScriptContent extends TextContent {
 	 * @return JavaScriptContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		// @todo Make pre-save transformation optional for script pages
-		// See T34858
+		// @todo Make pre-save transformation optional for script pages (T34858)
+
+		if ( !$user->getBoolOption( 'pst-cssjs' ) ) {
+			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
+			$popts = clone $popts;
+			$popts->setPreSaveTransform( false );
+		}
 
 		$text = $this->getText();
 		$pst = MediaWikiServices::getInstance()->getParser()
