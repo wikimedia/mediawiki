@@ -1117,6 +1117,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/changesrc',
 		];
+		$defaultPreferences['pst-cssjs'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-rc-collapsed'] = [
 			'type' => 'api',
 		];

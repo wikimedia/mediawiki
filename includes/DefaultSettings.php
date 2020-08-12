@@ -5284,6 +5284,7 @@ $wgDefaultUserOptions = [
 	'minordefault' => 0,
 	'newpageshidepatrolled' => 0,
 	'nickname' => '',
+	'pst-cssjs' => 1,
 	'norollbackdiff' => 0,
 	'numberheadings' => 0,
 	'previewonfirst' => 0,
