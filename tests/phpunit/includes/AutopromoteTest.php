@@ -7,7 +7,7 @@ use MediaWiki\User\UserEditTracker;
  */
 class AutopromoteTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * T157718: Verify Autopromote does not perform edit count lookup if requirement is 0 or invalid
+	 * Autopromote must not perform edit count lookup if requirement is 0 or invalid (T157718).
 	 *
 	 * @see Autopromote::getAutopromoteGroups()
 	 * @dataProvider provideEditCountsAndRequirements
