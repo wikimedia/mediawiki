@@ -104,8 +104,9 @@ because of Phabricator reports.
 * The LinkBegin and LinkEnd hooks, deprecated in 1.28, have been removed. You
   can instead use the HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   hooks, respectively.
-* Skin::getDynamicStylesheetQuery() deprecated in 1.32, has been removed. You
+* Skin::getDynamicStylesheetQuery(), deprecated in 1.32, has been removed. You
   should use action=raw&ctype=text/css directly.
+* Skin::makeI18nUrl(), deprecated in 1.35, has been removed.
 * The following User methods, deprecated and moved to BlockManager in 1.34,
   were removed: isDnsBlacklisted, inDnsBlacklist, isLocallyBlockedProxy,
   trackBlockWithCookie.
