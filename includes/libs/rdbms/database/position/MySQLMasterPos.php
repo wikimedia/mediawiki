@@ -270,13 +270,13 @@ class MySQLMasterPos implements DBMasterPos {
 			$ignore = false;
 			// Filter out GTIDs from non-active replication domains
 			if ( $this->style === self::GTID_MARIA && $this->activeDomain !== null ) {
-				$ignore |= ( $domain !== $this->activeDomain );
+				$ignore = $ignore || ( $domain !== $this->activeDomain );
 			}
 			// Likewise for GTIDs from non-active replication origin servers
 			if ( $this->style === self::GTID_MARIA && $this->activeServerId !== null ) {
-				$ignore |= ( $server !== $this->activeServerId );
+				$ignore = $ignore || ( $server !== $this->activeServerId );
 			} elseif ( $this->style === self::GTID_MYSQL && $this->activeServerUUID !== null ) {
-				$ignore |= ( $server !== $this->activeServerUUID );
+				$ignore = $ignore || ( $server !== $this->activeServerUUID );
 			}
 
 			if ( !$ignore ) {
