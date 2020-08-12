@@ -1,122 +1,18 @@
-[submodule "extensions/CategoryTree"]
-	path = extensions/CategoryTree
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTree
-	branch = REL1_35
-[submodule "extensions/Cite"]
-	path = extensions/Cite
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite
-	branch = REL1_35
-[submodule "extensions/CiteThisPage"]
-	path = extensions/CiteThisPage
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CiteThisPage
-	branch = REL1_35
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeEditor
-	branch = REL1_35
-[submodule "extensions/ConfirmEdit"]
-	path = extensions/ConfirmEdit
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ConfirmEdit
-	branch = REL1_35
-[submodule "extensions/Gadgets"]
-	path = extensions/Gadgets
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Gadgets
-	branch = REL1_35
-[submodule "extensions/ImageMap"]
-	path = extensions/ImageMap
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ImageMap
-	branch = REL1_35
-[submodule "extensions/InputBox"]
-	path = extensions/InputBox
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/InputBox
-	branch = REL1_35
-[submodule "extensions/Interwiki"]
-	path = extensions/Interwiki
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Interwiki
-	branch = REL1_35
-[submodule "extensions/LocalisationUpdate"]
-	path = extensions/LocalisationUpdate
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/LocalisationUpdate
-	branch = REL1_35
-[submodule "extensions/MultimediaViewer"]
-	path = extensions/MultimediaViewer
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MultimediaViewer
-	branch = REL1_35
-[submodule "extensions/Nuke"]
-	path = extensions/Nuke
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Nuke
-	branch = REL1_35
-[submodule "extensions/OATHAuth"]
-	path = extensions/OATHAuth
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/OATHAuth
-	branch = REL1_35
-[submodule "extensions/PageImages"]
-	path = extensions/PageImages
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages
 	branch = REL1_35
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ParserFunctions
 	branch = REL1_35
-[submodule "extensions/PdfHandler"]
-	path = extensions/PdfHandler
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PdfHandler
-	branch = REL1_35
-[submodule "extensions/Poem"]
-	path = extensions/Poem
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Poem
-	branch = REL1_35
-[submodule "extensions/Renameuser"]
-	path = extensions/Renameuser
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Renameuser
-	branch = REL1_35
-[submodule "extensions/ReplaceText"]
-	path = extensions/ReplaceText
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ReplaceText
-	branch = REL1_35
-[submodule "extensions/Scribunto"]
-	path = extensions/Scribunto
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto
-	branch = REL1_35
-[submodule "extensions/SecureLinkFixer"]
-	path = extensions/SecureLinkFixer
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SecureLinkFixer
-	branch = REL1_35
-[submodule "extensions/SpamBlacklist"]
-	path = extensions/SpamBlacklist
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SpamBlacklist
-	branch = REL1_35
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SyntaxHighlight_GeSHi
 	branch = REL1_35
-[submodule "extensions/TemplateData"]
-	path = extensions/TemplateData
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData
-	branch = REL1_35
-[submodule "extensions/TextExtracts"]
-	path = extensions/TextExtracts
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts
-	branch = REL1_35
-[submodule "extensions/TitleBlacklist"]
-	path = extensions/TitleBlacklist
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TitleBlacklist
-	branch = REL1_35
-[submodule "extensions/VisualEditor"]
-	path = extensions/VisualEditor
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor
-	branch = REL1_35
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiEditor
-	branch = REL1_35
-[submodule "skins/MonoBook"]
-	path = skins/MonoBook
-	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MonoBook
-	branch = REL1_35
-[submodule "skins/Timeless"]
-	path = skins/Timeless
-	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
 	branch = REL1_35
 [submodule "skins/Vector"]
 	path = skins/Vector
