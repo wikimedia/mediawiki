@@ -1,7 +1,16 @@
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeEditor
 	branch = REL1_35
+[submodule "extensions/FundraisingEmailUnsubscribe"]
+	path = extensions/FundraisingEmailUnsubscribe
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingEmailUnsubscribe.git
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ParserFunctions
@@ -21,4 +30,4 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
-	branch = REL1_35
+	branch = fundraising/REL1_31
