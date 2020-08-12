@@ -24,6 +24,7 @@ $GLOBALS['wgUrlProtocols'][] = "file://";
 $GLOBALS['wgVerifyMimeType'] = false;
 $GLOBALS['wgAllowJavaUploads'] = true;
 $GLOBALS['wgParserCacheType'] = CACHE_NONE;
+$GLOBALS['wgMetaNamespace'] = "Site";
 
 /**
  * Allow authentication extensions like "Auth_remoteuser", "SimpleSAMLphp" or
