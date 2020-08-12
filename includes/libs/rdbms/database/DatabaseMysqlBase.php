@@ -918,7 +918,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
 			$this->replLogger->error(
-				"An error occurred while waiting for replication to reach {raw_pos}",
+				"An error occurred while waiting for replication to reach {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
@@ -929,7 +929,7 @@ abstract class DatabaseMysqlBase extends Database {
 			);
 		} elseif ( $status < 0 ) {
 			$this->replLogger->error(
-				"Timed out waiting for replication to reach {raw_pos}",
+				"Timed out waiting for replication to reach {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
@@ -941,7 +941,7 @@ abstract class DatabaseMysqlBase extends Database {
 			);
 		} elseif ( $status >= 0 ) {
 			$this->replLogger->debug(
-				"Replication has reached {raw_pos}",
+				"Replication has reached {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
