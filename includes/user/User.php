@@ -3195,11 +3195,9 @@ class User implements IDBAccessObject, UserIdentity {
 		?string $expiry = null
 	) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
-				$this,
-				[ $title->getSubjectPage(), $title->getTalkPage() ],
-				$expiry
-			);
+			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+			$store->addWatch( $this, $title->getSubjectPage(), $expiry );
+			$store->addWatch( $this, $title->getTalkPage(), $expiry );
 		}
 		$this->invalidateCache();
 	}
