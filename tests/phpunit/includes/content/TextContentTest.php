@@ -31,17 +31,9 @@ class TextContentTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
 			],
-			'wgTidyConfig' => [ 'driver' => 'RemexHtml' ],
 			'wgCapitalLinks' => true,
 			'wgHooks' => [], // bypass hook ContentGetParserOutput that force custom rendering
 		] );
-
-		MWTidy::destroySingleton();
-	}
-
-	protected function tearDown() : void {
-		MWTidy::destroySingleton();
-		parent::tearDown();
 	}
 
 	/**

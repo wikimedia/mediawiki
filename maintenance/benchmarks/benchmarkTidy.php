@@ -27,10 +27,6 @@ class BenchmarkTidy extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'file', 'Path to file containing the input text', false, true );
-		$this->addOption( 'driver', 'The Tidy driver name, or false to use the configured instance',
-			false,  true );
-		$this->addOption( 'tidy-config', 'JSON encoded value for the tidy configuration array',
-			false, true );
 	}
 
 	public function execute() {
@@ -39,24 +35,11 @@ class BenchmarkTidy extends Benchmarker {
 		if ( $html === false ) {
 			$this->fatalError( "Unable to open input file" );
 		}
-		if ( $this->hasOption( 'driver' ) || $this->hasOption( 'tidy-config' ) ) {
-			$config = json_decode( $this->getOption( 'tidy-config', '{}' ), true );
-			if ( !is_array( $config ) ) {
-				$this->fatalError( "Invalid JSON tidy config" );
-			}
-			$config += [ 'driver' => $this->getOption( 'driver', 'RemexHtml' ) ];
-			$driver = MWTidy::factory( $config );
-		} else {
-			$driver = MWTidy::singleton();
-			if ( !$driver ) {
-				$this->fatalError( "Tidy disabled or not installed" );
-			}
-		}
 
-		$this->benchmark( $driver, $html );
+		$this->benchmark( $html );
 	}
 
-	private function benchmark( $driver, $html ) {
+	private function benchmark( $html ) {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$times = [];
 		$innerCount = 10;
@@ -64,7 +47,7 @@ class BenchmarkTidy extends Benchmarker {
 		for ( $j = 1; $j <= $outerCount; $j++ ) {
 			$t = microtime( true );
 			for ( $i = 0; $i < $innerCount; $i++ ) {
-				$driver->tidy( $html );
+				MWTidy::tidy( $html );
 				print $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 			}
 			$t = ( ( microtime( true ) - $t ) / $innerCount ) * 1000;

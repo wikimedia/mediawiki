@@ -97,6 +97,8 @@ because of Phabricator reports.
   has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
+* All methods of MWTidy except for MW::tidy() have been removed.  These
+  were either @internal or deprecated in 1.35.
 * The support for IE8 has been dropped.
 * Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
   deprecated since 1.35, has been removed.
