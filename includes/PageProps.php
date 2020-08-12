@@ -19,6 +19,10 @@
  *
  * @file
  */
+
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -28,35 +32,47 @@ use Wikimedia\ScopedCallback;
  */
 class PageProps {
 
-	/**
-	 * @var PageProps
-	 */
-	private static $instance;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** Cache parameters */
+	private const CACHE_TTL = 10; // integer; TTL in seconds
+	private const CACHE_SIZE = 100; // integer; max cached pages
+
+	/** @var MapCacheLRU */
+	private $cache = null;
 
 	/**
 	 * Overrides the default instance of this class
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
-	 * If this method is used it MUST also be called with null after a test to ensure a new
-	 * default instance is created next time getInstance is called.
-	 *
 	 * @since 1.27
+	 * @deprecated since 1.36
 	 *
-	 * @param PageProps|null $store
+	 * @param PageProps $store
 	 *
 	 * @return ScopedCallback to reset the overridden value
 	 * @throws MWException
 	 */
-	public static function overrideInstance( PageProps $store = null ) {
+	public static function overrideInstance( PageProps $store ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new MWException(
 				'Cannot override ' . __CLASS__ . 'default instance in operation.'
 			);
 		}
-		$previousValue = self::$instance;
-		self::$instance = $store;
-		return new ScopedCallback( function () use ( $previousValue ) {
-			self::$instance = $previousValue;
+
+		MediaWikiServices::getInstance()->redefineService(
+			'PageProps',
+			function () use ( $store ) {
+				return $store;
+			}
+		);
+
+		return new ScopedCallback( function () {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'PageProps' );
 		} );
 	}
 
@@ -64,23 +80,19 @@ class PageProps {
 	 * @return PageProps
 	 */
 	public static function getInstance() {
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getPageProps();
 	}
 
-	/** Cache parameters */
-	private const CACHE_TTL = 10; // integer; TTL in seconds
-	private const CACHE_SIZE = 100; // integer; max cached pages
-
-	/** Property cache */
-	private $cache = null;
-
 	/**
-	 * Create a PageProps object
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	private function __construct() {
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
+	) {
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
 		$this->cache = new MapCacheLRU( self::CACHE_SIZE );
 	}
 
@@ -138,7 +150,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$result = $dbr->select(
 				'page_props',
 				[
@@ -196,7 +208,7 @@ class PageProps {
 		}
 
 		if ( $queryIDs != [] ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$result = $dbr->select(
 				'page_props',
 				[
@@ -241,7 +253,7 @@ class PageProps {
 	private function getGoodIDs( $titles ) {
 		$result = [];
 		if ( is_array( $titles ) ) {
-			( new LinkBatch( $titles ) )->execute();
+			$this->linkBatchFactory->newLinkBatch( $titles )->execute();
 
 			foreach ( $titles as $title ) {
 				$pageID = $title->getArticleID();

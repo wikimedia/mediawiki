@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\ScopedCallback;
 
 class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
@@ -27,11 +26,9 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $title, 'hiddencat' )
 			->will( $this->returnValue( [] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertFalse( $categoryPage->isHidden() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	public function provideCategoryContent() {
@@ -55,11 +52,9 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $categoryTitle, 'hiddencat' )
 			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertEquals( $isHidden, $categoryPage->isHidden() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -75,11 +70,9 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $title, 'expectunusedcategory' )
 			->will( $this->returnValue( [] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertFalse( $categoryPage->isExpectedUnusedCategory() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 
 	/**
@@ -97,10 +90,8 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 			->with( $categoryTitle, 'expectunusedcategory' )
 			->will( $this->returnValue( $returnValue ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$this->assertEquals( $isExpectedUnusedCategory, $categoryPage->isExpectedUnusedCategory() );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 }

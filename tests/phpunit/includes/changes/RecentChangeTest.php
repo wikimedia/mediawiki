@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\ScopedCallback;
 
 /**
  * @group Database
@@ -207,7 +206,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			->with( $categoryTitle, 'hiddencat' )
 			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] ) );
 
-		$scopedOverride = PageProps::overrideInstance( $pageProps );
+		$this->setService( 'PageProps', $pageProps );
 
 		$rc = RecentChange::newForCategorization(
 			'0',
@@ -222,7 +221,5 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
-
-		ScopedCallback::consume( $scopedOverride );
 	}
 }
