@@ -58,7 +58,6 @@ class DeprecatedHooks {
 		'PageContentInsertComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'PageContentSaveComplete' => [ 'deprecatedVersion' => '1.35' ],
-		'ParserBeforeTidy' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserFetchTemplate' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserSectionCreate' => [ 'deprecatedVersion' => '1.35' ],

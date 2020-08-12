@@ -971,7 +971,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\ParserBeforeInternalParseHook' => __DIR__ . '/includes/parser/Hook/ParserBeforeInternalParseHook.php',
 	'MediaWiki\\Hook\\ParserBeforePreprocessHook' => __DIR__ . '/includes/parser/Hook/ParserBeforePreprocessHook.php',
 	'MediaWiki\\Hook\\ParserBeforeStripHook' => __DIR__ . '/includes/parser/Hook/ParserBeforeStripHook.php',
-	'MediaWiki\\Hook\\ParserBeforeTidyHook' => __DIR__ . '/includes/parser/Hook/ParserBeforeTidyHook.php',
 	'MediaWiki\\Hook\\ParserCacheSaveCompleteHook' => __DIR__ . '/includes/parser/Hook/ParserCacheSaveCompleteHook.php',
 	'MediaWiki\\Hook\\ParserClearStateHook' => __DIR__ . '/includes/parser/Hook/ParserClearStateHook.php',
 	'MediaWiki\\Hook\\ParserClonedHook' => __DIR__ . '/includes/parser/Hook/ParserClonedHook.php',
