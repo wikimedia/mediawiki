@@ -11,7 +11,7 @@ use Skin;
 interface SkinAddFooterLinksHook {
 	/**
 	 * This hook is called when generating the code used to display the
-	 * footer. Skins
+	 * footer.
 	 *
 	 * @since 1.35
 	 *
