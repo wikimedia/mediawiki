@@ -670,7 +670,7 @@
 	"blockedtext-composite-reason": "Postoji više blokada Vašega računa i/ili IP-adrese",
 	"whitelistedittext": "Za uređivanje stranice molimo $1.",
 	"confirmedittext": "Morate potvrditi Vašu adresu e-pošte prije nego što Vam bude omogućeno uređivanje. Molim unesite i ovjerite Vašu adresu e-pošte u [[Special:Preferences|suradničkim postavkama]].",
-	"nosuchsectiontitle": "Ne mogu pronaći odlomak",
+	"nosuchsectiontitle": "Nije moguće pronaći odlomak",
 	"nosuchsectiontext": "Pokušali ste uređivati odlomak koji ne postoji.\nMožda je premješten ili izbrisan dok ste pregledavali stranicu.",
 	"loginreqtitle": "Nužna prijava",
 	"loginreqlink": "prijavite se",
