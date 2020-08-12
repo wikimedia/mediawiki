@@ -1152,6 +1152,10 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function escapeIdInternal( $id, $mode ) {
+		// Truncate overly-long IDs.  This isn't an HTML limit, it's just
+		// griefer protection. [T251506]
+		$id = mb_substr( $id, 0, 1024 );
+
 		switch ( $mode ) {
 			case 'html5':
 				// html5 spec says ids must not have any of the following:
@@ -1182,6 +1186,7 @@ class Sanitizer {
 	 * to match ids escaped by the escapeIdForAttribute() function.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.36. Unused outside this class, will be made private.
 	 *
 	 * @param string $referenceString Space delimited list of ids
 	 * @return string
