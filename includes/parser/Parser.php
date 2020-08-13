@@ -1676,10 +1676,6 @@ class Parser {
 
 		$text = $this->mStripState->unstripNoWiki( $text );
 
-		if ( $isMain ) {
-			$this->hookRunner->onParserBeforeTidy( $this, $text );
-		}
-
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		# Clean up special characters, only run once, after doBlockLevels

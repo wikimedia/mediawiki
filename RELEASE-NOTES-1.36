@@ -96,6 +96,7 @@ because of Phabricator reports.
 * CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
   has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
+* The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * The support for IE8 has been dropped.
 * Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
   deprecated since 1.35, has been removed.
@@ -117,6 +118,8 @@ because of Phabricator reports.
   `new User`. Instead, use the UserFactory service.
 * Use of the `preprocessor=Preprocessor_DOM` option in parser test files has
   been deprecated.  Preprocessor_DOM was removed in 1.35.
+* ParserOptions::setTidy() has been deprecated.  It has had no effect since
+  1.35.
 * Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
   by reimplementing the method using the raw indicators data from
   OutputPage::getIndicators.
@@ -126,6 +129,8 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.36 ===
+* The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
+  It has had no effect since 1.35.
 * …
 
 == Compatibility ==
