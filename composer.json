@@ -88,6 +88,12 @@
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
 	},
+	"repositories": [
+                {
+                        "type": "git",
+                        "url": "https://github.com/ejegg/login-and-pay-with-amazon-sdk-php"
+                }
+        ],
 	"replace": {
 		"symfony/polyfill-ctype": "1.99",
 		"symfony/polyfill-mbstring": "1.99"
@@ -140,7 +146,8 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/*/composer.json"
 			],
 			"merge-dev": false
 		}
