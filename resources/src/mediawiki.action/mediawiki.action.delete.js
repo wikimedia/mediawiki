@@ -1,5 +1,5 @@
 /*!
- * Scripts for action=delete at domready
+ * Javascript for action=delete and Special:RevisionDelete at domready
  */
 ( function () {
 	$( function () {
@@ -10,6 +10,7 @@
 			reason = OO.ui.infuse( $( '#wpReason' ).closest( '.oo-ui-widget' ) ),
 			filterFunction = function ( input ) {
 				// Should be built the same as in Article::delete()
+				// and SpecialRevisionDelete::submit()
 				var comment = reasonList.getValue();
 				if ( comment === 'other' ) {
 					comment = input;
