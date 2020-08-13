@@ -120,6 +120,9 @@ because of Phabricator reports.
   been deprecated.  Preprocessor_DOM was removed in 1.35.
 * ParserOptions::setTidy() has been deprecated.  It has had no effect since
   1.35.
+* Sanitizer::escapeIdReferenceList() has been deprecated; it will eventually
+  be made private to the class, as it appears to have no uses outside the
+  Sanitizer class.
 * Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
   by reimplementing the method using the raw indicators data from
   OutputPage::getIndicators.
