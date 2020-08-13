@@ -295,25 +295,14 @@ class ParserOptions {
 
 	/**
 	 * Use tidy to cleanup output HTML?
-	 * @return bool
-	 * @deprecated since 1.35; tidy is always enabled
-	 */
-	public function getTidy() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->getOption( 'tidy' );
-	}
-
-	/**
-	 * Use tidy to cleanup output HTML?
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 * @deprecated since 1.35; tidy is always enabled so this has no effect
 	 */
 	public function setTidy( $x ) {
-		if ( !$x ) {
-			wfDeprecatedMsg( 'Disabling tidy is deprecated since MediaWiki 1.33', '1.33' );
-		}
-		return $this->setOptionLegacy( 'tidy', $x );
+		wfDeprecated( __METHOD__, '1.35' );
+		// This has no effect.
+		return null;
 	}
 
 	/**
@@ -1175,7 +1164,6 @@ class ParserOptions {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
 			self::$defaults = [
 				'dateformat' => null,
-				'tidy' => true,
 				'interfaceMessage' => false,
 				'targetLanguage' => null,
 				'removeComments' => true,
@@ -1277,6 +1265,7 @@ class ParserOptions {
 		$options = array_keys( $this->options );
 		$options = array_diff( $options, [
 			'enableLimitReport', // only affects HTML comments
+			'tidy', // Has no effect since 1.35; removed in 1.36
 		] );
 		foreach ( $options as $option ) {
 			// Resolve any lazy options
