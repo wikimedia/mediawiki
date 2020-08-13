@@ -2598,6 +2598,7 @@
 	"blockipsuccesssub": "Blokkering utført",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] har blitt blokkert.<br />\nSe [[Special:BlockList|blokkeringslisten]] for alle blokkeringer.",
 	"ipb-empty-block": "Den angitte blokkeringen har ingen aktive begrensninger.",
+	"ipb-block-not-found": "«$1» kan ha blitt blokkert eller avblokkert nylig. Prøv igjen om noen minutter.",
 	"ipb-blockingself": "Du er i ferd med å blokkere deg selv! Er du sikker på at du vil gjøre det?",
 	"ipb-confirmhideuser": "Du er i ferd med å blokkere en bruker med «skjul bruker» aktivert. Dette vil skjule brukerens navn i alle lister og loggoppføringer. Er du sikker på at du vil gjøre dette?",
 	"ipb-confirmaction": "Marker feltet «{{int:ipb-confirm}}» nederst om du er sikker på at du virkelig vil gjøre det.",
