@@ -51,6 +51,15 @@ class ImageListPager extends TablePager {
 
 	protected $mTableName = 'image';
 
+	/**
+	 * The unique sort fields for the sort options for unique pagniate
+	 */
+	private const INDEX_FIELDS = [
+		'img_timestamp' => [ 'img_timestamp', 'img_name' ],
+		'img_name' => [ 'img_name' ],
+		'img_size' => [ 'img_size', 'img_name' ],
+	];
+
 	public function __construct( IContextSource $context, $userName, $search,
 		$including, $showAll, LinkRenderer $linkRenderer
 	) {
@@ -205,7 +214,7 @@ class ImageListPager extends TablePager {
 		if ( $this->mIncluding ) {
 			return false;
 		}
-		$sortable = [ 'img_timestamp', 'img_name', 'img_size' ];
+		$sortable = array_keys( self::INDEX_FIELDS );
 		/* For reference, the indicies we can use for sorting are:
 		 * On the image table: img_user_timestamp/img_usertext_timestamp/img_actor_timestamp,
 		 * img_size, img_timestamp
@@ -341,10 +350,12 @@ class ImageListPager extends TablePager {
 
 		# Hacky...
 		$oldIndex = $this->mIndexField;
-		if ( substr( $this->mIndexField, 0, 4 ) !== 'img_' ) {
-			throw new MWException( "Expected to be sorting on an image table field" );
+		foreach ( $this->mIndexField as &$index ) {
+			if ( substr( $index, 0, 4 ) !== 'img_' ) {
+				throw new MWException( "Expected to be sorting on an image table field" );
+			}
+			$index = 'oi_' . substr( $index, 4 );
 		}
-		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
 			$this->buildQueryInfo( $offset, $limit, $order );
@@ -374,7 +385,7 @@ class ImageListPager extends TablePager {
 		$topRes2 = $res2->next();
 		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
-			if ( strcmp( $topRes1->{$this->mIndexField}, $topRes2->{$this->mIndexField} ) > 0 ) {
+			if ( strcmp( $topRes1->{$this->mIndexField[0]}, $topRes2->{$this->mIndexField[0]} ) > 0 ) {
 				if ( !$ascending ) {
 					$resultArray[] = $topRes1;
 					$topRes1 = $res1->next();
@@ -402,6 +413,10 @@ class ImageListPager extends TablePager {
 		}
 
 		return new FakeResultWrapper( $resultArray );
+	}
+
+	public function getIndexField() {
+		return [ self::INDEX_FIELDS[$this->mSort] ];
 	}
 
 	public function getDefaultSort() {
