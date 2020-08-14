@@ -33,7 +33,7 @@
 	"apihelp-edit-param-sectiontitle": "Naujo skyriaus pavadinimas.",
 	"apihelp-edit-param-text": "Puslapio turinys.",
 	"apihelp-edit-param-summary": "Keitimo santrauka. Taip pat sekcijos pavadinimas, kai $1section=new ir $1sectiontitle yra nenustatytas.",
-	"apihelp-edit-param-minor": "Smulkus pakeitimas.",
+	"apihelp-edit-param-minor": "Šį redagavimą žymėti kaip nežymų pakeitimą.",
 	"apihelp-edit-param-notminor": "Nesmulkus pakeitimas.",
 	"apihelp-edit-param-bot": "Pažymėti šį pakeitimą kaip roboto pakeitimą.",
 	"apihelp-edit-param-createonly": "Neredaguoti puslapio jei jis jau egzistuoja.",
