@@ -1745,7 +1745,7 @@ CREATE TABLE /*_*/sites (
   site_id                    INT UNSIGNED        NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Global identifier for the site, ie 'enwiktionary'
-  site_global_key            varbinary(32)       NOT NULL,
+  site_global_key            varbinary(64)       NOT NULL,
 
   -- Type of the site, ie 'mediawiki'
   site_type                  varbinary(32)       NOT NULL,
