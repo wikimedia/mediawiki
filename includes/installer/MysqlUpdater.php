@@ -440,6 +440,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doLanguageLinksLengthSync' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
+			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
 
 			// 1.36
 			[ 'modifyField', 'redirect', 'rd_title', 'patch-redirect-rd_title-varbinary.sql' ],
