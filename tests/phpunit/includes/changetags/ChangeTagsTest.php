@@ -40,7 +40,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$filter_tag,
 		$useTags,
 		$avoidReopeningTables,
-		$modifiedQuery
+		$modifiedQuery,
+		$exclude = false
 	) {
 		$this->setMwGlobals( 'wgUseTagFilter', $useTags );
 
@@ -66,7 +67,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			$origQuery['conds'],
 			$origQuery['join_conds'],
 			$origQuery['options'],
-			$filter_tag
+			$filter_tag,
+			$exclude
 		);
 		if ( !isset( $modifiedQuery['exception'] ) ) {
 			$this->assertArrayEquals(
@@ -274,6 +276,26 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC', 'DISTINCT' ],
 				]
+			],
+			'recentchanges query with exclusive multiple tag filter' => [
+				[
+					'tables' => [ 'recentchanges' ],
+					'fields' => [ 'rc_id', 'rc_timestamp' ],
+					'conds' => [ "rc_timestamp > '20170714183203'" ],
+					'join_conds' => [],
+					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
+				],
+				[ 'foo', 'bar' ],
+				true, // tag filtering enabled
+				false, // not avoiding reopening tables
+				[
+					'tables' => [ 'recentchanges', 'change_tag' ],
+					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'change_tag.ct_tag_id IS NULL' ],
+					'join_conds' => [ 'change_tag' => [ 'LEFT JOIN', [ 'ct_rc_id=rc_id', 'ct_tag_id' => [ 1, 2 ] ] ] ],
+					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
+				],
+				true // exclude
 			],
 			'recentchanges query with multiple tag filter that already has DISTINCT' => [
 				[
