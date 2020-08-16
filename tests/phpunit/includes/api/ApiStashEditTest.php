@@ -379,7 +379,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->doStashOld( $user );
 
 		// Now let's also increment our editcount
-		$this->editPage( ucfirst( __FUNCTION__ ), '' );
+		$this->editPage( ucfirst( __FUNCTION__ ), '', '', NS_MAIN, $user );
 
 		$user->clearInstanceCache();
 		$this->assertFalse( $this->doCheckCache( $user ),
