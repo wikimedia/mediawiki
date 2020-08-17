@@ -41,6 +41,11 @@ class BatchRowWriter {
 	protected $clusterName;
 
 	/**
+	 * For debugging which method is using this class.
+	 */
+	protected $caller;
+
+	/**
 	 * @param IDatabase $db The database to write to
 	 * @param string $table The name of the table to update
 	 * @param string|false $clusterName A cluster name valid for use with LBFactory
@@ -49,6 +54,19 @@ class BatchRowWriter {
 		$this->db = $db;
 		$this->table = $table;
 		$this->clusterName = $clusterName;
+	}
+
+	/**
+	 * Use ->setCaller( __METHOD__ ) to indicate which code is using this
+	 * class. Only used in debugging output.
+	 * @since 1.36
+	 *
+	 * @param string $caller
+	 * @return self
+	 */
+	public function setCaller( $caller ) {
+		$this->caller = $caller;
+		return $this;
 	}
 
 	/**
@@ -62,12 +80,17 @@ class BatchRowWriter {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
+		$caller = __METHOD__;
+		if ( (string)$this->caller !== '' ) {
+			$caller .= " (for {$this->caller})";
+		}
+
 		foreach ( $updates as $update ) {
 			$this->db->update(
 				$this->table,
 				$update['changes'],
 				$update['primaryKey'],
-				__METHOD__
+				$caller
 			);
 		}
 
