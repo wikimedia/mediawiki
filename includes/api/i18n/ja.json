@@ -1023,7 +1023,7 @@
 	"api-help-datatype-expiry": "期間は、相対値（例えば、<kbd>5 months</kbd> や <kbd>2 weeks</kbd>）または絶対値（例えば、<kbd>2014-09-18T12:34:56Z</kbd>）のどちらかで指定します。期間を定めない場合は、<kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> または <kbd>never</kbd> を用います。",
 	"api-help-param-type-limit": "型: 整数または <kbd>max</kbd>",
 	"api-help-param-type-presenceboolean": "型: 真偽値 ([[Special:ApiHelp/main#main/datatype/boolean|詳細]])",
-	"api-help-param-type-enum": "{{PLURAL:$1|1=値 (次の値のいずれか1つ)|2=値 (<kbd>{{!}}</kbd>もしくは[[Special:ApiHelp/main#main/datatypes|別の文字列]]で区切る)}}: $2",
+	"api-help-param-type-enum": "{{PLURAL:$1|1=値 (次の値のいずれか1つ)|2=値 (<kbd>{{!}}</kbd> または[[Special:ApiHelp/main#main/datatypes|別の文字列]]で区切る)}}: $2",
 	"api-help-param-multi-separate": "複数の値は <kbd>|</kbd> もしくは[[Special:ApiHelp/main#main/datatypes|代わりの文字]]で区切ってください。",
 	"api-help-param-multi-all": "すべての値を指定するには、<kbd>$1</kbd>を用いてください。",
 	"api-help-param-default-empty": "既定値: <span class=\"apihelp-empty\">(空)</span>",

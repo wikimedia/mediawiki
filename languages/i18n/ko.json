@@ -3376,6 +3376,7 @@
 	"tag-mw-undo": "편집 취소",
 	"tag-mw-undo-description": "편집 취소 링크를 사용하여 이전 편집을 취소하는 편집",
 	"tag-mw-manual-revert": "수동 되돌리기",
+	"tag-mw-manual-revert-description": "문서를 수동으로 정확히 이전의 상태로 복구한 편집",
 	"tags-title": "태그",
 	"tags-intro": "이 문서는 소프트웨어에서 편집에 대해 표시하는 태그와 그 의미를 설명하는 목록입니다.",
 	"tags-tag": "태그 이름",
