@@ -2545,7 +2545,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 				$revisions[0],
 				$revisions[$NUM - 2],
 				null,
-				'include_new'
+				RevisionStore::INCLUDE_NEW
 			),
 			'The inclusion string options are respected'
 		);
@@ -2556,7 +2556,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 				$revisions[0],
 				$revisions[$NUM - 2],
 				null,
-				[ 'include_both' ]
+				[ RevisionStore::INCLUDE_BOTH ]
 			),
 			false,
 			false,
@@ -2622,11 +2622,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			'The count is non-inclusive on both ends if both beginning and end are provided' );
 		$this->assertEquals( $NUM - 2,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2],
-				null, 'include_new' ),
+				null, RevisionStore::INCLUDE_NEW ),
 			'The count string options are respected' );
 		$this->assertEquals( $NUM - 1,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2],
-				null, [ 'include_both' ] ),
+				null, [ RevisionStore::INCLUDE_BOTH ] ),
 			'The count array options are respected' );
 		$this->assertEquals( $NUM - 1,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0] ),

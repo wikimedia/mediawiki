@@ -23,6 +23,7 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -1837,7 +1838,7 @@ abstract class Skin extends ContextSource {
 						$latestRev,
 						null,
 						10,
-						'include_new'
+						RevisionStore::INCLUDE_NEW
 					);
 				}
 			} else {
