@@ -3292,7 +3292,7 @@ class OutputPage extends ContextSource {
 
 		// Internal variables for MediaWiki core
 		$vars = [
-			// @internal For mediawiki.page.startup
+			// @internal For mediawiki.page.ready
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 
 			// @internal For jquery.tablesorter
