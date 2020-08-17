@@ -4641,7 +4641,6 @@ $wgAllowImageTag = false;
  * Setting this to null will use default settings.
  *
  * Keys include:
- *  - driver: formerly used to select a postprocessor; now ignored.
  *  - treeMutationTrace: a boolean to turn on Remex tracing
  *  - serializerTrace: a boolean to turn on Remex tracing
  *  - mungerTrace: a boolean to turn on Remex tracing
@@ -4652,7 +4651,7 @@ $wgAllowImageTag = false;
  * Overriding the default configuration is strongly discouraged in
  * production.
  */
-$wgTidyConfig = [ 'driver' => 'RemexHtml' ];
+$wgTidyConfig = [];
 
 /**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.

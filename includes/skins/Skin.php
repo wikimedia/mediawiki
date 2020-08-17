@@ -1232,19 +1232,6 @@ abstract class Skin extends ContextSource {
 	 * @param string $name
 	 * @param string|array $urlaction
 	 * @return string
-	 * @deprecated since 1.35, no longer used
-	 */
-	public static function makeI18nUrl( $name, $urlaction = '' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$title = Title::newFromText( wfMessage( $name )->inContentLanguage()->text() );
-		self::checkTitle( $title, $name );
-		return $title->getLocalURL( $urlaction );
-	}
-
-	/**
-	 * @param string $name
-	 * @param string|array $urlaction
-	 * @return string
 	 */
 	public static function makeUrl( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
