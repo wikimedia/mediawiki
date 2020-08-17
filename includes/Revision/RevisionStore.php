@@ -1211,7 +1211,7 @@ class RevisionStore
 	 * @return SlotRecord[]
 	 */
 	private function loadSlotRecords( $revId, $queryFlags, Title $title ) {
-		$revQuery = self::getSlotsQueryInfo( [ 'content' ] );
+		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		$db = $this->getDBConnectionRef( $dbMode );
@@ -1888,7 +1888,7 @@ class RevisionStore
 		}
 
 		// We need to set the `content` flag to join in content meta-data
-		$slotQueryInfo = self::getSlotsQueryInfo( [ 'content' ] );
+		$slotQueryInfo = $this->getSlotsQueryInfo( [ 'content' ] );
 		$revIdField = $slotQueryInfo['keys']['rev_id'];
 		$slotQueryConds = [ $revIdField => $revIds ];
 
