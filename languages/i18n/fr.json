@@ -2450,7 +2450,7 @@
 	"notvisiblerev": "La dernière version relue par un utilisateur différent a été supprimée",
 	"watchlist-details": "{{PLURAL:$1|$1 page est|$1 pages sont}} dans votre liste de suivi (plus les pages de discussion).",
 	"watchlist-expiring-msg": "{{PLURAL:$1|1 jour restant|$1 jours restants}} dans votre liste de suivi",
-	"watchlist-expiring-hours-msg": "Quelques heures restantes",
+	"watchlist-expiring-hours-msg": "Reste quelques heures",
 	"wlheader-enotif": "La notification par courriel est activée.",
 	"wlheader-showupdated": "Les pages qui ont été modifiées depuis votre dernière visite sont affichées en <strong>gras</strong>.",
 	"wlnote": "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les <strong>$1</strong> dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les <strong>$2</strong> dernières heures}} jusqu’au $3 à $4.",

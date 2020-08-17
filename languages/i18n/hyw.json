@@ -177,7 +177,7 @@
 	"pool-timeout": "Արգելափակման ժամկէտը սպառուած է",
 	"pool-errorunknown": "Անյայտ սխալ",
 	"poolcounter-usage-error": "Օգտագործման սխալ. $1",
-	"aboutsite": "{{SITENAME}}-ի մասին",
+	"aboutsite": "{{SITENAME}}յի մասին",
 	"aboutpage": "Project:Ուիքիփետիայի Մասին",
 	"copyright": "Բովանդակութիւնը առկայ է $1 ներքոյ, եթէ այլ բան նշուած չէ։",
 	"copyrightpage": "{{ns:project}}:Հեղինակային իրաւունքներ",

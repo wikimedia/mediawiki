@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Albertas",
 			"Aswanas",
 			"Audriusa",
@@ -3088,7 +3089,7 @@
 	"specialpages-group-spam": "Šlamšto valdymo priemonės",
 	"specialpages-group-developer": "Kūrėjo įrankai",
 	"blankpage": "Tuščias puslapis",
-	"intentionallyblankpage": "Šis puslapis specialiai paliktas tuščias",
+	"intentionallyblankpage": "Šis puslapis specialiai paliktas tuščias.",
 	"external_image_whitelist": " #Palikite šią eilutę, tokią kokia yra <pre>\n#Įrašykite standartinių išraiškų fragmentus (tik dalį tarp //)\n#Juos bus bandoma sutapdinti su išorinių paveikslėlių adresais\n#Tie, kurie sutaps, bus rodomi kaip paveikslėliai, o kiti bus rodomi tik kaip nuorodos\n#Raidžių dydis nėra svarbus\n#Eilutės, prasidedančios # yra komentarai\n\n#Įterpkite visus standartinių išraiškų fragmentus prieš šią eilutę. Palikite šią eilutę, tokią kokia yra </pre>",
 	"tags": "Leistinos keitimų žymės",
 	"tag-filter": "[[Special:Tags|Žymų]] filtras:",
