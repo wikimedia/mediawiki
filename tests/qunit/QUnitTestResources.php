@@ -18,7 +18,6 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.page.ready',
-			'mediawiki.page.startup',
 			'sinonjs',
 		],
 		'targets' => [ 'desktop', 'mobile' ],

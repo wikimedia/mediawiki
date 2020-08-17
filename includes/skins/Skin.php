@@ -231,12 +231,10 @@ abstract class Skin extends ContextSource {
 			],
 			'core' => [
 				'site',
-				'mediawiki.page.startup',
-			],
-			// modules that enhance the content in some way
-			'content' => [
 				'mediawiki.page.ready',
 			],
+			// modules that enhance the content in some way
+			'content' => [],
 			// modules relating to search functionality
 			'search' => [],
 			// Skins can register their own scripts

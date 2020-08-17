@@ -132,8 +132,7 @@ class WatchAction extends FormAction {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
 			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
-			$diffInDays = $watchedItem->getExpiryInDays();
-			$daysLeft = $msgLocalizer->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
+			$daysLeft = $watchedItem->getExpiryInDaysText( $msgLocalizer, true );
 			$expiryOptions = array_merge(
 				[ $daysLeft => $expiry->getTimestamp( TS_MW ) ],
 				$expiryOptions

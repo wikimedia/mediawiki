@@ -820,7 +820,7 @@ class ParserTestRunner {
 	 */
 	public function runTest( $test ) {
 		wfDebug( __METHOD__ . ": running {$test['desc']}" );
-		$opts = $this->parseOptions( $test['options'] );
+		$opts = $test['options'];
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
 			return false; // Skip test.
@@ -975,105 +975,11 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Given the options string, return an associative array of options.
-	 * @todo Move this to TestFileReader
-	 *
-	 * @param string $instring
-	 * @return array
-	 */
-	private function parseOptions( $instring ) {
-		$opts = [];
-		// foo
-		// foo=bar
-		// foo="bar baz"
-		// foo=[[bar baz]]
-		// foo=bar,"baz quux"
-		// foo={...json...}
-		$defs = '(?(DEFINE)
-			(?<qstr>					# Quoted string
-				"
-				(?:[^\\\\"] | \\\\.)*
-				"
-			)
-			(?<json>
-				\{		# Open bracket
-				(?:
-					[^"{}] |				# Not a quoted string or object, or
-					(?&qstr) |				# A quoted string, or
-					(?&json)				# A json object (recursively)
-				)*
-				\}		# Close bracket
-			)
-			(?<value>
-				(?:
-					(?&qstr)			# Quoted val
-				|
-					\[\[
-						[^]]*			# Link target
-					\]\]
-				|
-					[\w-]+				# Plain word
-				|
-					(?&json)			# JSON object
-				)
-			)
-		)';
-		$regex = '/' . $defs . '\b
-			(?<k>[\w-]+)				# Key
-			\b
-			(?:\s*
-				=						# First sub-value
-				\s*
-				(?<v>
-					(?&value)
-					(?:\s*
-						,				# Sub-vals 1..N
-						\s*
-						(?&value)
-					)*
-				)
-			)?
-			/x';
-		$valueregex = '/' . $defs . '(?&value)/x';
-
-		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
-			foreach ( $matches as $bits ) {
-				$key = strtolower( $bits['k'] );
-				if ( !isset( $bits['v'] ) ) {
-					$opts[$key] = true;
-				} else {
-					preg_match_all( $valueregex, $bits['v'], $vmatches );
-					$opts[$key] = array_map( [ $this, 'cleanupOption' ], $vmatches[0] );
-					if ( count( $opts[$key] ) == 1 ) {
-						$opts[$key] = $opts[$key][0];
-					}
-				}
-			}
-		}
-		return $opts;
-	}
-
-	private function cleanupOption( $opt ) {
-		if ( substr( $opt, 0, 1 ) == '"' ) {
-			return stripcslashes( substr( $opt, 1, -1 ) );
-		}
-
-		if ( substr( $opt, 0, 2 ) == '[[' ) {
-			return substr( $opt, 2, -2 );
-		}
-
-		if ( substr( $opt, 0, 1 ) == '{' ) {
-			return FormatJson::decode( $opt, true );
-		}
-		return $opt;
-	}
-
-	/**
 	 * Do any required setup which is dependent on test options.
 	 *
 	 * @see staticSetup() for more information about setup/teardown
 	 *
-	 * @param array $test Test info supplied by TestFileReader
+	 * @param array|ParserTest $test Test info supplied by TestFileReader
 	 * @param callable|null $nextTeardown
 	 * @return ScopedCallback
 	 */
@@ -1083,8 +989,8 @@ class ParserTestRunner {
 		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
 		$teardown[] = $this->markSetupDone( 'perTestSetup' );
 
-		$opts = $this->parseOptions( $test['options'] );
-		$config = $test['config'];
+		$opts = is_array( $test ) ? $test['options'] : $test->options;
+		$config = is_array( $test ) ? $test['config'] : $test->config;
 
 		// Find out values for some special options.
 		$langCode =

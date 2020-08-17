@@ -1,13 +1,19 @@
 var checkboxShift = require( './checkboxShift.js' );
 var config = require( './config.json' );
 
-mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var $sortable, $collapsible, $sortableAndCollapsible,
-		dependencies = [];
-
-	if ( config.sortable && config.collapsible ) {
-		$sortableAndCollapsible = $content.find( 'table.sortable.mw-collapsible' );
+// Break out of framesets
+if ( mw.config.get( 'wgBreakFrames' ) ) {
+	// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
+	// it works only comparing to window.self or window.window (https://stackoverflow.com/q/4850978/319266)
+	if ( window.top !== window.self ) {
+		// Un-trap us from framesets
+		window.top.location.href = location.href;
 	}
+}
+
+mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	var $sortable, $collapsible,
+		dependencies = [];
 	if ( config.sortable ) {
 		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
@@ -23,16 +29,15 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	if ( dependencies.length ) {
 		// Both modules are preloaded by Skin::getDefaultModules()
 		mw.loader.using( dependencies ).then( function () {
-			// The two scripts only work correctly together when executed in this order (T64878)
-			if ( $sortableAndCollapsible && $sortableAndCollapsible.length ) {
-				$sortableAndCollapsible.tablesorter().makeCollapsible();
-			}
-			// These are no-ops when executed on elements that were already handled above
-			if ( $collapsible && $collapsible.length ) {
-				$collapsible.makeCollapsible();
-			}
+			// For tables that are both sortable and collapsible,
+			// it must be made sortable first and collapsible second.
+			// This is because jquery.tablesorter stumbles on the
+			// elements inserted by jquery.makeCollapsible (T64878)
 			if ( $sortable && $sortable.length ) {
 				$sortable.tablesorter();
+			}
+			if ( $collapsible && $collapsible.length ) {
+				$collapsible.makeCollapsible();
 			}
 		} );
 	}
@@ -46,6 +51,24 @@ $( function () {
 
 	// Add accesskey hints to the tooltips
 	$( '[accesskey]' ).updateTooltipAccessKeys();
+
+	/**
+	 * Fired when wiki content is being added to the DOM
+	 *
+	 * It is encouraged to fire it before the main DOM is changed (when $content
+	 * is still detached).  However, this order is not defined either way, so you
+	 * should only rely on $content itself.
+	 *
+	 * This includes the ready event on a page load (including post-edit loads)
+	 * and when content has been previewed with LivePreview.
+	 *
+	 * @event wikipage_content
+	 * @member mw.hook
+	 * @param {jQuery} $content The most appropriate element containing the content,
+	 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
+	 *   root)
+	 */
+	mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 
 	$nodes = $( '.catlinks[data-mw="interface"]' );
 	if ( $nodes.length ) {
@@ -65,6 +88,21 @@ $( function () {
 		 *   such as .catlinks
 		 */
 		mw.hook( 'wikipage.categories' ).fire( $nodes );
+	}
+
+	$nodes = $( 'table.diff[data-mw="interface"]' );
+	if ( $nodes.length ) {
+		/**
+		 * Fired when the diff is added to a page containing a diff
+		 *
+		 * Similar to the {@link mw.hook#event-wikipage_content wikipage.content hook}
+		 * $diff may still be detached when the hook is fired.
+		 *
+		 * @event wikipage_diff
+		 * @member mw.hook
+		 * @param {jQuery} $diff The root element of the MediaWiki diff (`table.diff`).
+		 */
+		mw.hook( 'wikipage.diff' ).fire( $nodes.eq( 0 ) );
 	}
 
 	$( '#t-print a' ).on( 'click', function ( e ) {

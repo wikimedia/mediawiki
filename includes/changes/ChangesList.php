@@ -594,12 +594,11 @@ class ChangesList extends ContextSource {
 		if ( $item->isExpired() ) {
 			return '';
 		}
-		$daysLeft = $item->getExpiryInDays();
-		$daysLeftMsg = $this->msg( 'watchlist-expires-in', $daysLeft );
+		$daysLeftText = $item->getExpiryInDaysText( $this->getContext() );
 		// Matching widget is also created in ChangesListSpecialPage, for the legend.
 		$widget = new IconWidget( [
 			'icon' => 'clock',
-			'title' => $daysLeftMsg->text(),
+			'title' => $daysLeftText,
 			'classes' => [ 'mw-changesList-watchlistExpiry' ],
 		] );
 		// Add labels for assistive technologies.
