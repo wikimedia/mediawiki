@@ -85,6 +85,11 @@ class RevisionStore
 	public const ORDER_OLDEST_TO_NEWEST = 'ASC';
 	public const ORDER_NEWEST_TO_OLDEST = 'DESC';
 
+	// Constants for get(...)Between methods
+	public const INCLUDE_OLD = 'include_old';
+	public const INCLUDE_NEW = 'include_new';
+	public const INCLUDE_BOTH = 'include_both';
+
 	/**
 	 * @var SqlBlobStore
 	 */
@@ -3047,9 +3052,9 @@ class RevisionStore
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param string|array $options Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @return array
 	 */
 	private function getRevisionLimitConditions(
@@ -3061,13 +3066,13 @@ class RevisionStore
 		$options = (array)$options;
 		$oldCmp = '>';
 		$newCmp = '<';
-		if ( in_array( 'include_old', $options ) ) {
+		if ( in_array( self::INCLUDE_OLD, $options ) ) {
 			$oldCmp = '>=';
 		}
-		if ( in_array( 'include_new', $options ) ) {
+		if ( in_array( self::INCLUDE_NEW, $options ) ) {
 			$newCmp = '<=';
 		}
-		if ( in_array( 'include_both', $options ) ) {
+		if ( in_array( self::INCLUDE_BOTH, $options ) ) {
 			$oldCmp = '>=';
 			$newCmp = '<=';
 		}
@@ -3099,9 +3104,9 @@ class RevisionStore
 	 * @param int|null $max Limit of Revisions to count, will be incremented by
 	 *  one to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @param string|null $order The direction in which the revisions should be sorted.
 	 *  Possible values:
 	 *   - RevisionStore::ORDER_OLDEST_TO_NEWEST
@@ -3125,10 +3130,10 @@ class RevisionStore
 		$this->assertRevisionParameter( 'new', $pageId, $new );
 
 		$options = (array)$options;
-		$includeOld = in_array( 'include_old', $options ) ||
-			in_array( 'include_both', $options );
-		$includeNew = in_array( 'include_new', $options ) ||
-			in_array( 'include_both', $options );
+		$includeOld = in_array( self::INCLUDE_OLD, $options ) ||
+			in_array( self::INCLUDE_BOTH, $options );
+		$includeNew = in_array( self::INCLUDE_NEW, $options ) ||
+			in_array( self::INCLUDE_BOTH, $options );
 
 		// No DB query needed if old and new are the same revision.
 		// Can't check for consecutive revisions with 'getParentId' for a similar
@@ -3179,9 +3184,9 @@ class RevisionStore
 	 * @param User|null $user the user who's access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return UserIdentity[] Names of revision authors in the range
@@ -3250,9 +3255,9 @@ class RevisionStore
 	 * @param User|null $user the user who's access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return int Number of revisions authors in the range.
@@ -3283,9 +3288,9 @@ class RevisionStore
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
