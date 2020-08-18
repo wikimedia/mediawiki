@@ -123,7 +123,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			->say( 'cc', 'license' )->is( $licenseUrl )
 			->say( 'schema', 'softwareVersion' )->value( CategoriesRdf::FORMAT_VERSION )
 			->say( 'schema', 'dateModified' )
-				->value( wfTimestamp( TS_ISO_8601, $timestamp ), 'xsd', 'dateTime' )
+			->value( wfTimestamp( TS_ISO_8601, $timestamp ), 'xsd', 'dateTime' )
 			->say( 'schema', 'isPartOf' )->is( wfExpandUrl( '/', PROTO_CANONICAL ) )
 			->say( 'owl', 'imports' )->is( CategoriesRdf::OWL_URL );
 	}
