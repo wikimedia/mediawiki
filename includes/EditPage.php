@@ -886,8 +886,9 @@ class EditPage implements IEditObject {
 	protected function isWrongCaseUserConfigPage() {
 		if ( $this->mTitle->isUserConfigPage() ) {
 			$name = $this->mTitle->getSkinFromConfigSubpage();
+			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 			$skins = array_merge(
-				array_keys( Skin::getSkinNames() ),
+				array_keys( $skinFactory->getSkinNames() ),
 				[ 'common' ]
 			);
 			return !in_array( $name, $skins )

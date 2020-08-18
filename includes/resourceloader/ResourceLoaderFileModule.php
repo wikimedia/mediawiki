@@ -852,8 +852,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array A list of file paths collated by media type
 	 */
 	protected function getAllSkinStyleFiles() {
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		$styleFiles = [];
-		$internalSkinNames = array_keys( Skin::getSkinNames() );
+
+		$internalSkinNames = array_keys( $skinFactory->getSkinNames() );
 		$internalSkinNames[] = 'default';
 
 		foreach ( $internalSkinNames as $internalSkinName ) {

@@ -62,9 +62,13 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the set of available skins.
+	 *
+	 * @deprecated since 1.36. Use SkinFactory::getSkinNames() instead.
 	 * @return array Associative array of strings
 	 */
 	public static function getSkinNames() {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		return $skinFactory->getSkinNames();
 	}
@@ -73,23 +77,16 @@ abstract class Skin extends ContextSource {
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
-	 * @return string[]
+	 *
 	 * @since 1.23
+	 * @deprecated since 1.36. Use SkinFactory::getAllowedSkins() instead.
+	 * @return string[]
 	 */
 	public static function getAllowedSkins() {
-		global $wgSkipSkins;
+		wfDeprecated( __METHOD__, '1.36' );
 
-		$allowedSkins = self::getSkinNames();
-
-		// Internal skins not intended for general use
-		unset( $allowedSkins['fallback'] );
-		unset( $allowedSkins['apioutput'] );
-
-		foreach ( $wgSkipSkins as $skip ) {
-			unset( $allowedSkins[$skip] );
-		}
-
-		return $allowedSkins;
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		return $skinFactory->getAllowedSkins();
 	}
 
 	/**
@@ -104,7 +101,8 @@ abstract class Skin extends ContextSource {
 	public static function normalizeKey( $key ) {
 		global $wgDefaultSkin, $wgFallbackSkin;
 
-		$skinNames = self::getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$skinNames = $skinFactory->getSkinNames();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
