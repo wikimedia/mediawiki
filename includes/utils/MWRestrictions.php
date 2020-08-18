@@ -18,6 +18,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use Wikimedia\IPSet;
+
 /**
  * A class to check request restrictions expressed as a JSON object
  */
@@ -131,17 +133,12 @@ class MWRestrictions {
 	}
 
 	/**
-	 * Test an IP address
+	 * Test if an IP address is allowed by the restrictions
 	 * @param string $ip
 	 * @return bool
 	 */
 	public function checkIP( $ip ) {
-		foreach ( $this->ipAddresses as $range ) {
-			if ( \IP::isInRange( $ip, $range ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		$set = new IPSet( $this->ipAddresses );
+		return $set->match( $ip );
 	}
 }
