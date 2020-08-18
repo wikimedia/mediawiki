@@ -458,5 +458,41 @@
 		],
 		"indexes": [],
 		"pk": [ "md_module", "md_skin" ]
+	},
+	{
+		"name": "redirect",
+		"comment": "For each redirect, this table contains exactly one row defining its target.\nRedirect targets are key to page_namespace/page_title of the target page.\nThe target page may or may not exist, and due to renames\nand deletions may refer to different page records as time\ngoes by.",
+		"columns": [
+			{
+				"name": "rd_from",
+				"comment": "Key to the page_id of the redirect page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "rd_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "rd_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "rd_interwiki",
+				"type": "string",
+				"options": { "notnull": false, "length": 32, "default": null }
+			},
+			{
+				"name": "rd_fragment",
+				"type": "binary",
+				"options": { "notnull": false, "length": 255, "default": null }
+			}
+		],
+		"indexes": [
+			{ "name": "rd_ns_title", "columns": [ "rd_namespace", "rd_title", "rd_from" ], "unique": false }
+		],
+		"pk": [ "rd_from" ]
 	}
 ]

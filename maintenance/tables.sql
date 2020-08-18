@@ -1422,24 +1422,6 @@ CREATE TABLE /*_*/querycache_info (
 ) /*$wgDBTableOptions*/;
 
 
--- For each redirect, this table contains exactly one row defining its target
-CREATE TABLE /*_*/redirect (
-  -- Key to the page_id of the redirect page
-  rd_from int unsigned NOT NULL default 0 PRIMARY KEY,
-
-  -- Key to page_namespace/page_title of the target page.
-  -- The target page may or may not exist, and due to renames
-  -- and deletions may refer to different page records as time
-  -- goes by.
-  rd_namespace int NOT NULL default 0,
-  rd_title varchar(255) binary NOT NULL default '',
-  rd_interwiki varchar(32) default NULL,
-  rd_fragment varchar(255) binary default NULL
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
-
-
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
 CREATE TABLE /*_*/querycachetwo (
   -- A key name, generally the base name of of the special page.
