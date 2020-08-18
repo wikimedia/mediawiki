@@ -65,13 +65,20 @@
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
 			if ( expiry === null || expiry === 'infinity' ) {
+				// Resolves to tooltip-ca-unwatch message
 				tooltipAction = 'unwatch';
 			} else {
 				expiryDate = new Date( expiry );
 				// Using the Math.ceil function instead of floor so when, for example, a user selects one week
 				// the tooltip shows 7 days instead of 6 days (see Phab ticket T253936)
 				daysLeftExpiry = Math.ceil( ( expiryDate - currentDate ) / ( 1000 * 60 * 60 * 24 ) );
-				tooltipAction = 'unwatch-expiring';
+				if ( daysLeftExpiry > 0 ) {
+					// Resolves to tooltip-ca-unwatch-expiring message
+					tooltipAction = 'unwatch-expiring';
+				} else {
+					// Resolves to tooltip-ca-unwatch-expiring-hours message
+					tooltipAction = 'unwatch-expiring-hours';
+				}
 			}
 		}
 
@@ -80,7 +87,9 @@
 			// * watch
 			// * watching
 			// * unwatch
-			// * unwatch-expiring
+			// * tooltip-ca-unwatch
+			// * tooltip-ca-unwatch-expiring
+			// * tooltip-ca-unwatch-expiring-hours
 			// * unwatching
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
