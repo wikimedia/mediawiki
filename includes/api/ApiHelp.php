@@ -121,9 +121,6 @@ class ApiHelp extends ApiBase {
 			'mediawiki.hlist',
 			'mediawiki.apipretty',
 		] );
-		if ( !empty( $options['toc'] ) ) {
-			$out->addModuleStyles( 'mediawiki.toc.styles' );
-		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
 		$services = MediaWikiServices::getInstance();
