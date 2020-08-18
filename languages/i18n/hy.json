@@ -768,7 +768,7 @@
 	"searchprofile-everything-tooltip": "Որոնել բոլոր էջերում (այդ թվում քննարկման)",
 	"searchprofile-advanced-tooltip": "Որոնել նշված անվանատարածքներում",
 	"search-result-size": "$1 ({{PLURAL:$2|1 բառ|$2 բառ}})",
-	"search-result-category-size": "{{PLURAL:$1|անդամ}} ({{PLURAL:$2|ենթակատեգորիա}}, {{PLURAL:$3|նիշք}})",
+	"search-result-category-size": "{{PLURAL:$1|էջ}} ({{PLURAL:$2|ենթակատեգորիա}}, {{PLURAL:$3|նիշք}})",
 	"search-redirect": "(վերահղում $1 էջից)",
 	"search-section": "(բաժին $1)",
 	"search-category": "(կատեգորիա  $1)",
