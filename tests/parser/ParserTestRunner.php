@@ -786,6 +786,9 @@ class ParserTestRunner {
 			}
 		}
 
+		// Clean up
+		$this->cleanupArticles( $testFileInfo['articles'] );
+
 		return $ok;
 	}
 
@@ -1540,6 +1543,23 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 
 		$this->executeSetupSnippets( $teardown );
+	}
+
+	/**
+	 * Remove articles from the test DB.  This prevents independent parser
+	 * test files from having conflicts when they choose the same names
+	 * for article or template test fixtures.
+	 *
+	 * @param array $articles Article info array from TestFileReader
+	 */
+	public function cleanupArticles( $articles ) {
+		$user = RequestContext::getMain()->getUser();
+		foreach ( $articles as $info ) {
+			$name = self::chomp( $info['name'] );
+			$title = Title::newFromText( $name );
+			$page = WikiPage::factory( $title );
+			$page->doDeleteArticleReal( 'cleaning up', $user );
+		}
 	}
 
 	/**
