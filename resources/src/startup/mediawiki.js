@@ -1238,17 +1238,17 @@
 						$CODE.profileScriptEnd();
 						setAndPropagate( module, 'ready' );
 					};
-					nestedAddScript = function ( arr, callback, i ) {
+					nestedAddScript = function ( arr, callback, j ) {
 						// Recursively call queueModuleScript() in its own callback
 						// for each element of arr.
-						if ( i >= arr.length ) {
+						if ( j >= arr.length ) {
 							// We're at the end of the array
 							callback();
 							return;
 						}
 
-						queueModuleScript( arr[ i ], module, function () {
-							nestedAddScript( arr, callback, i + 1 );
+						queueModuleScript( arr[ j ], module, function () {
+							nestedAddScript( arr, callback, j + 1 );
 						} );
 					};
 
@@ -1824,8 +1824,8 @@
 							source: 'store-eval'
 						} );
 						// For any failed ones, fallback to requesting from network
-						failed = storedNames.filter( function ( module ) {
-							return registry[ module ].state === 'loading';
+						failed = storedNames.filter( function ( name ) {
+							return registry[ name ].state === 'loading';
 						} );
 						batchRequest( failed );
 					} );
@@ -2289,9 +2289,9 @@
 								encodedScript = '{' +
 									'main:' + JSON.stringify( descriptor.script.main ) + ',' +
 									'files:{' +
-									Object.keys( descriptor.script.files ).map( function ( key ) {
-										var value = descriptor.script.files[ key ];
-										return JSON.stringify( key ) + ':' +
+									Object.keys( descriptor.script.files ).map( function ( file ) {
+										var value = descriptor.script.files[ file ];
+										return JSON.stringify( file ) + ':' +
 											( typeof value === 'function' ? value : JSON.stringify( value ) );
 									} ).join( ',' ) +
 									'}}';
