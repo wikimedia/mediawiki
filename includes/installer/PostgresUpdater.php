@@ -716,6 +716,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'l10n_cache', 'lc_key', 'VARCHAR(255)', '' ],
 			[ 'addIndex', 'l10n_cache', 'l10n_cache_pkey', 'patch-l10n_cache-pk.sql' ],
 			[ 'addIndex', 'module_deps', 'module_deps_pkey', 'patch-module_deps-pk.sql' ],
+			[ 'changeField', 'redirect', 'rd_namespace', 'INT', 'rd_namespace::INT DEFAULT 0' ],
+			[ 'setDefault', 'redirect', 'rd_title', '' ],
+			[ 'setDefault', 'redirect', 'rd_from', 0 ],
+			[ 'dropFkey', 'redirect', 'rd_from' ],
+			[ 'changeField', 'redirect', 'rd_interwiki', 'VARCHAR(32)', '' ],
 		];
 	}
 
