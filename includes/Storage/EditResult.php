@@ -204,8 +204,9 @@ class EditResult implements JsonSerializable {
 	 * An edit is considered a revert if it either:
 	 * - Restores the page to an exact previous state (rollbacks, manual reverts and some undos).
 	 *   E.g. for edits A B C D, edits C and D are reverted.
-	 * - Undoes some edits made previously, but automatic conflict resolution is done and
-	 *   possibly additional changes are made by the reverting user (undo).
+	 * - Undoes some edits made previously, not necessarily restoring the page to an exact
+	 *   previous state (undo). It is guaranteed that the revert was a "clean" result of a
+	 *   three-way merge and no additional changes were made by the reverting user.
 	 *   E.g. for edits A B C D, edits B and C are reverted.
 	 *
 	 * To check whether the edit was an exact revert, please use the isExactRevert() method.
