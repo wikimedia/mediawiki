@@ -2337,7 +2337,6 @@
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Bu səhifə keşdən (cache) silinsin?",
 	"confirm-watch-button": "OK",
-	"watchlist-expires-in": "İzləmə siyahısına {{PLURAL:$1|$1 gün|$1 gün}} qaldı",
 	"watchlist-expires-in-aria-label": "Son izləmə siyahısı maddəsi",
 	"confirm-unwatch-button": "OK",
 	"confirm-rollback-button": "Oldu",
