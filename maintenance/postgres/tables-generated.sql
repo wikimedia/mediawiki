@@ -123,3 +123,15 @@ CREATE TABLE redirect (
   PRIMARY KEY(rd_from)
 );
 CREATE INDEX rd_ns_title ON redirect (rd_namespace, rd_title, rd_from);
+CREATE TABLE pagelinks (
+  pl_from INT DEFAULT 0 NOT NULL,
+  pl_namespace INT DEFAULT 0 NOT NULL,
+  pl_title TEXT DEFAULT '' NOT NULL,
+  pl_from_namespace INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(pl_from, pl_namespace, pl_title)
+);
+CREATE INDEX pl_namespace ON pagelinks (pl_namespace, pl_title, pl_from);
+CREATE INDEX pl_backlinks_namespace ON pagelinks (
+  pl_from_namespace, pl_namespace,
+  pl_title, pl_from
+);
