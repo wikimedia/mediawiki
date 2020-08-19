@@ -8,6 +8,7 @@ use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;
+use Message;
 use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -41,16 +42,24 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	private const TAG1 = 'test-ContributionsLookup-1';
 	private const TAG2 = 'test-ContributionsLookup-2';
+	private const TAG3 = 'test-ContributionsLookup-3';
+
+	private const TAG_DISPLAY = 'ContributionsLookup Tag Display Text';
 
 	public function setUp() : void {
 		parent::setUp();
 
 		// Work around T256006
 		ChangeTags::$avoidReopeningTablesForTesting = true;
+
+		// MessageCache needs to be explicitly enabled to load changetag display text.
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 	}
 
 	public function tearDown() : void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
+		MediaWikiServices::getInstance()->getMessageCache()->disable();
+
 		parent::tearDown();
 	}
 
@@ -90,10 +99,17 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			if ( !$tags ) {
 				continue;
 			}
-
 			$revId = self::$storedRevisions[$idx]->getId();
 			ChangeTags::addTags( $tags, null, $revId );
 		}
+
+		// Pages at MediaWiki:tag-{tag_name} override any tag display text
+		$this->insertPage( "tag-" . self::TAG1, "''" . self::TAG_DISPLAY . "''", NS_MEDIAWIKI );
+		$this->insertPage( "tag-" . self::TAG2, "''" . self::TAG_DISPLAY . "''", NS_MEDIAWIKI );
+
+		// Add a 3rd disabled tag (empty string as display name equates to disabled tag)
+		ChangeTags::addTags( [ self::TAG3 ], null, $revId );
+		$this->insertPage( "tag-" . self::TAG3, '', NS_MEDIAWIKI );
 
 		ConvertibleTimestamp::setFakeTime( false );
 	}
@@ -380,8 +396,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		// FIXME: fails under postgres, see T195807
 		if ( $this->db->getType() !== 'postgres' ) {
 			$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
-			$this->assertArrayEquals( $expectedTags, $actualTags );
+
+			// Tag 3 was disabled and should not be included in results
+			$this->assertArrayNotHasKey( self::TAG3, $actualTags );
+			foreach ( $actualTags as $tagName => $actualTag ) {
+				$this->assertContains( $tagName, $expectedTags );
+				$this->assertInstanceOf( Message::class, $actualTag );
+				$this->assertEquals( $actualTag->parse(), "<i>" . self::TAG_DISPLAY . "</i>" );
+				$this->assertEquals( $actualTag->text(), "''" . self::TAG_DISPLAY . "''" );
+			}
 		}
 	}
-
 }
