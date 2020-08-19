@@ -273,10 +273,6 @@ class ApiCSPReport extends ApiBase {
 		return true;
 	}
 
-	public function isWriteMode() {
-		return false;
-	}
-
 	/**
 	 * Mark as internal. This isn't meant to be used by normal api users
 	 * @return bool
