@@ -137,3 +137,16 @@ CREATE TABLE /*_*/redirect (
   INDEX rd_ns_title (rd_namespace, rd_title, rd_from),
   PRIMARY KEY(rd_from)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE /*_*/pagelinks (
+  pl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  pl_namespace INT DEFAULT 0 NOT NULL,
+  pl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  pl_from_namespace INT DEFAULT 0 NOT NULL,
+  INDEX pl_namespace (pl_namespace, pl_title, pl_from),
+  INDEX pl_backlinks_namespace (
+    pl_from_namespace, pl_namespace,
+    pl_title, pl_from
+  ),
+  PRIMARY KEY(pl_from, pl_namespace, pl_title)
+) /*$wgDBTableOptions*/;

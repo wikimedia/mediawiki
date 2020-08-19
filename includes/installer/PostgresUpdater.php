@@ -247,7 +247,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'ipblocks', 'ipb_parent_block_id', '(ipb_parent_block_id)' ],
 			[ 'addPgIndex', 'oldimage', 'oi_sha1', '(oi_sha1)' ],
 			[ 'addPgIndex', 'page', 'page_mediawiki_title', '(page_title) WHERE page_namespace = 8' ],
-			[ 'addPgIndex', 'pagelinks', 'pagelinks_title', '(pl_title)' ],
 			[ 'addPgIndex', 'page_props', 'pp_propname_page', '(pp_propname, pp_page)' ],
 			[ 'ifFieldExists', 'revision', 'rev_text_id',
 				'addPgIndex', 'revision', 'rev_text_id_idx', '(rev_text_id)' ],
@@ -271,12 +270,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'ifTableNotExists', 'actor', 'addPgIndex', 'logging', 'logging_user_text_time',
 				'(log_user_text, log_timestamp)' ],
 
-			[ 'checkIndex', 'pagelink_unique', [
-				[ 'pl_from', 'int4_ops', 'btree', 0 ],
-				[ 'pl_namespace', 'int2_ops', 'btree', 0 ],
-				[ 'pl_title', 'text_ops', 'btree', 0 ],
-			],
-				'CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)' ],
 			[ 'checkIndex', 'cl_sortkey', [
 				[ 'cl_to', 'text_ops', 'btree', 0 ],
 				[ 'cl_sortkey', 'text_ops', 'btree', 0 ],
@@ -721,6 +714,14 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'redirect', 'rd_from', 0 ],
 			[ 'dropFkey', 'redirect', 'rd_from' ],
 			[ 'changeField', 'redirect', 'rd_interwiki', 'VARCHAR(32)', '' ],
+			[ 'dropFkey', 'pagelinks', 'pl_from' ],
+			[ 'changeField', 'pagelinks', 'pl_namespace', 'INT', 'pl_namespace::INT DEFAULT 0' ],
+			[ 'setDefault', 'pagelinks', 'pl_title', '' ],
+			[ 'addPgIndex', 'pagelinks', 'pl_namespace', '(pl_namespace,pl_title,pl_from)' ],
+			[ 'addPgIndex', 'pagelinks', 'pl_backlinks_namespace',
+				'(pl_from_namespace,pl_namespace,pl_title,pl_from)' ],
+			[ 'dropPgIndex', 'pagelinks', 'pagelink_unique' ],
+			[ 'dropPgIndex', 'pagelinks', 'pagelinks_title' ],
 		];
 	}
 
