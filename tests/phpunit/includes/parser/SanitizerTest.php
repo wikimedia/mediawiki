@@ -273,6 +273,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdReferenceList
 	 */
 	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
+		$this->hideDeprecated( 'Sanitizer::escapeIdReferenceList' );
 		$this->assertEquals(
 			Sanitizer::escapeIdReferenceList( $referenceList ),
 			Sanitizer::escapeIdForAttribute( $id1 )
