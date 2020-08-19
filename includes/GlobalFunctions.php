@@ -2231,6 +2231,7 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
  * @return string Unified diff of $before and $after
  */
 function wfDiff( $before, $after, $params = '-u' ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	if ( $before == $after ) {
 		return '';
 	}
