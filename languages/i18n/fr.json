@@ -3062,7 +3062,7 @@
 	"tooltip-ca-move": "Renommer cette page",
 	"tooltip-ca-watch": "Ajouter cette page à votre liste de suivi",
 	"tooltip-ca-unwatch": "Retirer cette page de votre liste de suivi",
-	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|1 jour restant|$1 jours restants}}. Cliquez pour retirer cette page de votre liste de suivi.",
+	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|1 jour restant|$1 jours restants}}. Cliquez pour retirer.",
 	"tooltip-search": "Rechercher dans {{SITENAME}}",
 	"tooltip-search-go": "Accédez à une page du même nom si elle existe",
 	"tooltip-search-fulltext": "Rechercher les pages comportant ce texte.",
