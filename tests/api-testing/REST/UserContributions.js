@@ -49,8 +49,7 @@ describe( 'GET contributions', () => {
 			const oddEdit = i % 2;
 			const tags = oddEdit ? tag : null;
 			page = oddEdit ? oddEditsPage : evenEditsPage;
-			arnoldsTags[ i ] = oddEdit ? { name: tag, description: `tag-${tagDisplay}`, key: `<i>${tagDisplay}</i>` } : {};
-
+			arnoldsTags[ i ] = oddEdit ? [ { name: tag, description: `<i>${tagDisplay}</i>` } ] : [];
 			const revData = await arnoldAction.edit( page, { text: revisionText[ i ], tags } );
 			await utils.sleep();
 			arnoldsRevisions[ revData.newrevid ] = revData;
@@ -88,10 +87,7 @@ describe( 'GET contributions', () => {
 		assert.equal( contributions[ 0 ].delta, expectedRevisionDeltas[ 5 ] );
 		assert.isOk( Date.parse( contributions[ 0 ].timestamp ) );
 		assert.isNotOk( Date.parse( 'xyz' ) );
-
-		assert.property( contributions[ 0 ].tags[ 'user-contribs-api-test' ], 'name' );
-		assert.property( contributions[ 0 ].tags[ 'user-contribs-api-test' ], 'description' );
-		assert.property( contributions[ 0 ].tags[ 'user-contribs-api-test' ], 'key' );
+		assert.isArray( contributions[ 0 ].tags );
 
 		assert.isAbove( Date.parse( contributions[ 0 ].timestamp ),
 			Date.parse( contributions[ 1 ].timestamp ) );
@@ -142,11 +138,11 @@ describe( 'GET contributions', () => {
 		// Check whether the tags we applied manually are present.
 		// MediaWiki can add additional software tags (such as mw-manual-revert),
 		// hence the inclusion check and not equality check.
-		const latestSegmentTags = latestSegment.contributions[ 0 ].tags;
-		assert.hasAnyKeys( latestSegmentTags, arnoldsTags[ 5 ].name );
+		const latestSegmentTag = latestSegment.contributions[ 0 ].tags.find( ( tag ) => tag.name === 'user-contribs-api-test' );
+		assert.propertyVal( latestSegmentTag, 'description', arnoldsTags[ 5 ][ 0 ].description );
 
-		const latestSegmentTags2 = latestSegment.contributions[ 1 ].tags;
-		assert.equal( latestSegmentTags2, null );
+		const latestSegmentTag2 = latestSegment.contributions[ 1 ].tags.find( ( tag ) => tag.name === 'user-contribs-api-test' );
+		assert.isUndefined( latestSegmentTag2 );
 
 		// get older segment, using full url
 		const req = clientFactory.getHttpClient( client );
@@ -161,11 +157,13 @@ describe( 'GET contributions', () => {
 		assert.equal( olderSegment.contributions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
 		assert.equal( olderSegment.contributions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
 
-		const olderSegmentTags = olderSegment.contributions[ 0 ].tags;
-		assert.hasAnyKeys( olderSegmentTags, arnoldsTags[ 3 ].name );
+		// ensure first edit has tags and correct property values
+		const olderSegmentTag = olderSegment.contributions[ 0 ].tags.find( ( tag ) => tag.name === 'user-contribs-api-test' );
+		assert.propertyVal( olderSegmentTag, 'description', arnoldsTags[ 3 ][ 0 ].description );
 
-		const olderSegmentTags2 = olderSegment.contributions[ 1 ].tags;
-		assert.equal( olderSegmentTags2, null );
+		// ensure second edit does not have tags
+		const olderSegmentTag2 = latestSegment.contributions[ 1 ].tags.find( ( tag ) => tag.name === 'user-contribs-api-test' );
+		assert.isUndefined( olderSegmentTag2 );
 
 		// get the next older segment
 		const { body: finalSegment } = await req.get( olderSegment.older );
@@ -177,9 +175,8 @@ describe( 'GET contributions', () => {
 		// assert body.contributions has the correct content
 		assert.equal( finalSegment.contributions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
-		const finalSegmentTags = olderSegment.contributions[ 0 ].tags;
-		assert.hasAnyKeys( finalSegmentTags, arnoldsTags[ 1 ].name );
-		assert.isDefined( finalSegmentTags );
+		const finalSegmentTags = olderSegment.contributions[ 0 ].tags.find( ( tag ) => tag.name === 'user-contribs-api-test' );
+		assert.propertyVal( finalSegmentTags, 'description', arnoldsTags[ 1 ][ 0 ].description );
 	};
 
 	const testPagingBackwards = async ( client, endpoint ) => {
