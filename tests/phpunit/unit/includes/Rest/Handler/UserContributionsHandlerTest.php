@@ -12,6 +12,7 @@ use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
+use Message;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
@@ -54,8 +55,16 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributions' ]
 		);
-
 		$fakeRevisions = $this->makeFakeRevisions( $numRevisions, 2 );
+		foreach ( $tags as $revId => $tagArray ) {
+			$tags[ $revId ] = [];
+			foreach ( $tagArray as $name ) {
+				$mockMessage = $this->createNoOpMock( Message::class, [ 'parse', 'getKey' ] );
+				$mockMessage->method( 'parse' )->willReturn( "<i>$name</i>" );
+				$mockMessage->method( 'getKey' )->willReturn( "tag-$name" );
+				$tags[ $revId ][ $name ] = $mockMessage;
+			}
+		}
 		$fakeSegment = $this->makeSegment( $fakeRevisions, $tags, $deltas, $flags );
 		$mockContributionsLookup->method( 'getContributions' )->willReturn( $fakeSegment );
 
@@ -295,7 +304,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:01Z',
 						'delta' => 256,
 						'size' => 256,
-						'tags' => [ [ 'text' => 'frob' ] ],
+						'tags' => [
+							'frob' => [ 'name' => 'frob', 'description' => '<i>frob</i>', 'key' => 'tag-frob' ]
+						],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
@@ -322,7 +333,10 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:05Z',
 						'delta' => 256,
 						'size' => 256,
-						'tags' => [ [ 'text' => 'frob' ], [ 'text' => 'nitz' ] ],
+						'tags' => [
+							'frob' => [ 'name' => 'frob', 'description' => '<i>frob</i>', 'key' => 'tag-frob' ],
+							'nitz' => [ 'name' => 'nitz', 'description' => '<i>nitz</i>', 'key' => 'tag-nitz' ]
+						],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
@@ -336,7 +350,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:04Z',
 						'delta' => null,
 						'size' => 256,
-						'tags' => [],
+						'tags' => null,
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
