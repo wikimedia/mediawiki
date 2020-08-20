@@ -16,6 +16,14 @@
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwHandlerFactory"
 	},
 	{
+		"path": "/mock/RouterTest/throwRedirect",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwRedirectHandlerFactory"
+	},
+	{
+		"path": "/mock/RouterTest/throwWrapped",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwWrappedHandlerFactory"
+	},
+	{
 		"path": "/mock/MWBasicRequestAuthorizerTest/write",
 		"factory": "MediaWiki\\Tests\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
 	}

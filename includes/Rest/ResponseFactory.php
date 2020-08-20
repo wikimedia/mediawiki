@@ -210,15 +210,24 @@ class ResponseFactory {
 				$exception->getMessageValue(),
 				(array)$exception->getErrorData()
 			);
+		} elseif ( $exception instanceof ResponseException ) {
+			return $exception->getResponse();
+		} elseif ( $exception instanceof RedirectException ) {
+			$response = $this->createRedirectBase( $exception->getTarget() );
+			$response->setStatus( $exception->getCode() );
 		} elseif ( $exception instanceof HttpException ) {
-			// FIXME can HttpException represent 2xx or 3xx responses?
-			$response = $this->createHttpError(
-				$exception->getCode(),
-				array_merge(
-					[ 'message' => $exception->getMessage() ],
-					(array)$exception->getErrorData()
-				)
-			);
+			if ( in_array( $exception->getCode(), [ 204, 304 ], true ) ) {
+				$response = $this->create();
+				$response->setStatus( $exception->getCode() );
+			} else {
+				$response = $this->createHttpError(
+					$exception->getCode(),
+					array_merge(
+						[ 'message' => $exception->getMessage() ],
+						(array)$exception->getErrorData()
+					)
+				);
+			}
 		} else {
 			$response = $this->createHttpError( 500, [
 				'message' => 'Error: exception of type ' . get_class( $exception ),
