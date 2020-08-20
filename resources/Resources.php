@@ -1476,6 +1476,7 @@ return [
 				Config $config
 			) {
 				$readyConfig = [
+					'search' => true,
 					'collapsible' => true,
 					'sortable' => true,
 				];
