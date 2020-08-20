@@ -58,6 +58,9 @@ THIS IS NOT A RELEASE YET
   'style' attribute.
 * (T115888, CVE-2020-25828) SECURITY: mediawiki.js: Escape HTML in
   mw.message( ... ).parse().
+* (T260485, CVE-2020-25869) SECURITY: ActorMigration: Load user from the correct
+  database.
+* (T260485, CVE-2020-25869) SECURITY: ensure actor ID from correct wiki is used.
 
 == MediaWiki 1.34.2 ==
 
