@@ -4483,6 +4483,7 @@ ERROR;
 				'value-attr' => 'value',
 				'class' => DropdownInputWidget::class,
 				'options' => $options,
+				'invisibleLabel' => true,
 			];
 		}
 		return $fieldDefs;
@@ -4535,6 +4536,7 @@ ERROR;
 					'label' => new OOUI\HtmlSnippet( $this->context->msg( $options['label-message'] )->parse() ),
 					'title' => $title,
 					'id' => $options['label-id'] ?? null,
+					'invisibleLabel' => $options['invisibleLabel'] ?? null,
 				]
 			);
 		}
