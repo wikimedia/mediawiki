@@ -96,17 +96,19 @@ class GenerateSchemaSql extends Maintenance {
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
-		$sql = str_replace( "; CREATE ", ";\nCREATE ", $sql );
+		$sql = str_replace( "; CREATE ", ";\n\nCREATE ", $sql );
+		$sql = str_replace( ";\n\nCREATE TABLE ", ";\n\n\nCREATE TABLE ", $sql );
 		$sql = str_replace(
 			"\n" . '/*$wgDBTableOptions*/' . ";",
-			' /*$wgDBTableOptions*/;' . "\n",
+			' /*$wgDBTableOptions*/;',
 			$sql
 		);
 		$sql = str_replace(
 			"\n" . '/*$wgDBTableOptions*/' . "\n;",
-			' /*$wgDBTableOptions*/;' . "\n",
+			' /*$wgDBTableOptions*/;',
 			$sql
 		);
+		$sql .= "\n";
 
 		file_put_contents( $sqlPath, $sql );
 	}
