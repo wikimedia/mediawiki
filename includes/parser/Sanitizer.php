@@ -1708,7 +1708,7 @@ class Sanitizer {
 			'table'      => $merge( $common,
 								[ 'summary', 'width', 'border', 'frame',
 										'rules', 'cellspacing', 'cellpadding',
-										'align', 'bgcolor',
+										'align', 'bgcolor', # align is deprecated
 								] ),
 
 			# 11.2.2
@@ -1747,17 +1747,17 @@ class Sanitizer {
 			'track'      => $merge( $common, [ 'type', 'src', 'srclang', 'kind', 'label' ] ),
 
 			# 15.2.1
-			'tt'         => $common,
+			'tt'         => $common, # deprecated
 			'b'          => $common,
 			'i'          => $common,
 			'big'        => $common,
 			'small'      => $common,
-			'strike'     => $common,
+			'strike'     => $common, # deprecated
 			's'          => $common,
 			'u'          => $common,
 
 			# 15.2.2
-			'font'       => $merge( $common, [ 'size', 'color', 'face' ] ),
+			'font'       => $merge( $common, [ 'size', 'color', 'face' ] ), # deprecated
 			# basefont
 
 			# 15.3
