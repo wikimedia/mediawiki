@@ -2476,7 +2476,7 @@
 	"revdelete-summary-unhid": "تبدیلی دا خلاصہ ظاہر بݨ ڳیا",
 	"revdelete-uname-unhid": "ورتݨ ناں ظاہر بݨ ڳیا",
 	"logentry-partialblock-block-page": "\n{{PLURAL:$1|ورقہ|ورقے}} $2",
-	"logentry-move-move": "$1 {{GENDER:$2|پلٹی}} ورقہ $3 توں $4",
+	"logentry-move-move": "$1 {{GENDER:$2|ٹوریا ڳیا}} ورقہ $3 توں $4",
 	"logentry-move-move-noredirect": "$1 نے $3 کوں $4 آلے پاسے ریڈائرکٹ کیتے ٻاڄھ {{GENDER:$2|منتقل کیتے}}",
 	"logentry-move-move_redir": "$1 نے رجوع مکرر ہٹا تے ورقہ $3 کوں $4 آلے پاسے {{GENDER:$2|منتقل کیتا}}",
 	"logentry-patrol-patrol-auto": "$1 نے ورقہ $3 دے نسخہ $4 کوں خودکار طور تے گشت کیتا ہویا {{GENDER:$2|نشان زد کیتا}}",
