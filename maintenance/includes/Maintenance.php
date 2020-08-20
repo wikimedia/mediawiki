@@ -1613,16 +1613,16 @@ abstract class Maintenance {
 	private static function readlineEmulation( $prompt ) {
 		$bash = ExecutableFinder::findInDefaultPaths( 'bash' );
 		if ( !wfIsWindows() && $bash ) {
-			$retval = false;
 			$encPrompt = Shell::escape( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
-			$encCommand = Shell::escape( $command );
-			$line = Shell::escape( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
+			$result = Shell::command( $bash, '-c', $command )
+				->passStdin()
+				->forwardStderr()
+				->execute();
 
-			// @phan-suppress-next-line PhanImpossibleCondition,PhanSuspiciousValueComparison
-			if ( $retval == 0 ) {
-				return $line;
-			} elseif ( $retval == 127 ) {
+			if ( $result->getExitCode() == 0 ) {
+				return $result->getStdout();
+			} elseif ( $result->getExitCode() == 127 ) {
 				// Couldn't execute bash even though we thought we saw it.
 				// Shell probably spit out an error message, sorry :(
 				// Fall through to fgets()...
@@ -1664,6 +1664,7 @@ abstract class Maintenance {
 		// options. Linux and Mac OS X both have "stty size" which does the
 		// job directly.
 		$result = Shell::command( 'stty', 'size' )
+			->passStdin()
 			->execute();
 		if ( $result->getExitCode() !== 0 ) {
 			return $default;
