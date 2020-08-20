@@ -97,6 +97,7 @@ class GenerateSchemaSql extends Maintenance {
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
 		$sql = str_replace( "; CREATE ", ";\n\nCREATE ", $sql );
+		$sql = str_replace( ";\n\nCREATE TABLE ", ";\n\n\nCREATE TABLE ", $sql );
 		$sql = str_replace(
 			"\n" . '/*$wgDBTableOptions*/' . ";",
 			' /*$wgDBTableOptions*/;',

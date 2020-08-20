@@ -11,11 +11,13 @@ CREATE TABLE /*_*/site_identifiers (
   PRIMARY KEY(si_type, si_key)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/updatelog (
   ul_key VARCHAR(255) NOT NULL,
   ul_value BLOB DEFAULT NULL,
   PRIMARY KEY(ul_key)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/actor (
   actor_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
@@ -26,11 +28,13 @@ CREATE TABLE /*_*/actor (
   PRIMARY KEY(actor_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/user_former_groups (
   ufg_user INT UNSIGNED DEFAULT 0 NOT NULL,
   ufg_group VARBINARY(255) DEFAULT '' NOT NULL,
   PRIMARY KEY(ufg_user, ufg_group)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/bot_passwords (
   bp_user INT UNSIGNED NOT NULL,
@@ -42,6 +46,7 @@ CREATE TABLE /*_*/bot_passwords (
   PRIMARY KEY(bp_user, bp_app_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/comment (
   comment_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
   comment_hash INT NOT NULL,
@@ -50,6 +55,7 @@ CREATE TABLE /*_*/comment (
   INDEX comment_hash (comment_hash),
   PRIMARY KEY(comment_id)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/slots (
   slot_revision_id BIGINT UNSIGNED NOT NULL,
@@ -62,6 +68,7 @@ CREATE TABLE /*_*/slots (
   PRIMARY KEY(slot_revision_id, slot_role_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/site_stats (
   ss_row_id INT UNSIGNED NOT NULL,
   ss_total_edits BIGINT UNSIGNED DEFAULT NULL,
@@ -73,6 +80,7 @@ CREATE TABLE /*_*/site_stats (
   PRIMARY KEY(ss_row_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/user_properties (
   up_user INT UNSIGNED NOT NULL,
   up_property VARBINARY(255) NOT NULL,
@@ -81,6 +89,7 @@ CREATE TABLE /*_*/user_properties (
   PRIMARY KEY(up_user, up_property)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/log_search (
   ls_field VARBINARY(32) NOT NULL,
   ls_value VARCHAR(255) NOT NULL,
@@ -88,6 +97,7 @@ CREATE TABLE /*_*/log_search (
   INDEX ls_log_id (ls_log_id),
   PRIMARY KEY(ls_field, ls_value, ls_log_id)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/change_tag (
   ct_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
@@ -105,6 +115,7 @@ CREATE TABLE /*_*/change_tag (
   PRIMARY KEY(ct_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/content (
   content_id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
   content_size INT UNSIGNED NOT NULL,
@@ -114,6 +125,7 @@ CREATE TABLE /*_*/content (
   PRIMARY KEY(content_id)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/l10n_cache (
   lc_lang VARBINARY(35) NOT NULL,
   lc_key VARCHAR(255) NOT NULL,
@@ -121,12 +133,14 @@ CREATE TABLE /*_*/l10n_cache (
   PRIMARY KEY(lc_lang, lc_key)
 ) /*$wgDBTableOptions*/;
 
+
 CREATE TABLE /*_*/module_deps (
   md_module VARBINARY(255) NOT NULL,
   md_skin VARBINARY(32) NOT NULL,
   md_deps MEDIUMBLOB NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/redirect (
   rd_from INT UNSIGNED DEFAULT 0 NOT NULL,
@@ -137,6 +151,7 @@ CREATE TABLE /*_*/redirect (
   INDEX rd_ns_title (rd_namespace, rd_title, rd_from),
   PRIMARY KEY(rd_from)
 ) /*$wgDBTableOptions*/;
+
 
 CREATE TABLE /*_*/pagelinks (
   pl_from INT UNSIGNED DEFAULT 0 NOT NULL,

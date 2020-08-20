@@ -13,11 +13,13 @@ CREATE INDEX site_ids_site ON site_identifiers (si_site);
 
 CREATE INDEX site_ids_key ON site_identifiers (si_key);
 
+
 CREATE TABLE updatelog (
   ul_key VARCHAR(255) NOT NULL,
   ul_value TEXT DEFAULT NULL,
   PRIMARY KEY(ul_key)
 );
+
 
 CREATE TABLE actor (
   actor_id BIGSERIAL NOT NULL,
@@ -30,11 +32,13 @@ CREATE UNIQUE INDEX actor_user ON actor (actor_user);
 
 CREATE UNIQUE INDEX actor_name ON actor (actor_name);
 
+
 CREATE TABLE user_former_groups (
   ufg_user INT DEFAULT 0 NOT NULL,
   ufg_group TEXT DEFAULT '' NOT NULL,
   PRIMARY KEY(ufg_user, ufg_group)
 );
+
 
 CREATE TABLE bot_passwords (
   bp_user INT NOT NULL,
@@ -46,6 +50,7 @@ CREATE TABLE bot_passwords (
   PRIMARY KEY(bp_user, bp_app_id)
 );
 
+
 CREATE TABLE comment (
   comment_id BIGSERIAL NOT NULL,
   comment_hash INT NOT NULL,
@@ -55,6 +60,7 @@ CREATE TABLE comment (
 );
 
 CREATE INDEX comment_hash ON comment (comment_hash);
+
 
 CREATE TABLE slots (
   slot_revision_id BIGINT NOT NULL,
@@ -68,6 +74,7 @@ CREATE INDEX slot_revision_origin_role ON slots (
   slot_revision_id, slot_origin, slot_role_id
 );
 
+
 CREATE TABLE site_stats (
   ss_row_id INT NOT NULL,
   ss_total_edits BIGINT DEFAULT NULL,
@@ -79,6 +86,7 @@ CREATE TABLE site_stats (
   PRIMARY KEY(ss_row_id)
 );
 
+
 CREATE TABLE user_properties (
   up_user INT NOT NULL,
   up_property TEXT NOT NULL,
@@ -88,6 +96,7 @@ CREATE TABLE user_properties (
 
 CREATE INDEX user_properties_property ON user_properties (up_property);
 
+
 CREATE TABLE log_search (
   ls_field TEXT NOT NULL,
   ls_value VARCHAR(255) NOT NULL,
@@ -96,6 +105,7 @@ CREATE TABLE log_search (
 );
 
 CREATE INDEX ls_log_id ON log_search (ls_log_id);
+
 
 CREATE TABLE change_tag (
   ct_id SERIAL NOT NULL,
@@ -117,6 +127,7 @@ CREATE INDEX change_tag_tag_id_id ON change_tag (
   ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
 );
 
+
 CREATE TABLE content (
   content_id BIGSERIAL NOT NULL,
   content_size INT NOT NULL,
@@ -126,6 +137,7 @@ CREATE TABLE content (
   PRIMARY KEY(content_id)
 );
 
+
 CREATE TABLE l10n_cache (
   lc_lang TEXT NOT NULL,
   lc_key VARCHAR(255) NOT NULL,
@@ -133,12 +145,14 @@ CREATE TABLE l10n_cache (
   PRIMARY KEY(lc_lang, lc_key)
 );
 
+
 CREATE TABLE module_deps (
   md_module TEXT NOT NULL,
   md_skin TEXT NOT NULL,
   md_deps TEXT NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 );
+
 
 CREATE TABLE redirect (
   rd_from INT DEFAULT 0 NOT NULL,
@@ -150,6 +164,7 @@ CREATE TABLE redirect (
 );
 
 CREATE INDEX rd_ns_title ON redirect (rd_namespace, rd_title, rd_from);
+
 
 CREATE TABLE pagelinks (
   pl_from INT DEFAULT 0 NOT NULL,

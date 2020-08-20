@@ -13,11 +13,13 @@ CREATE INDEX site_ids_site ON /*_*/site_identifiers (si_site);
 
 CREATE INDEX site_ids_key ON /*_*/site_identifiers (si_key);
 
+
 CREATE TABLE /*_*/updatelog (
   ul_key VARCHAR(255) NOT NULL,
   ul_value BLOB DEFAULT NULL,
   PRIMARY KEY(ul_key)
 );
+
 
 CREATE TABLE /*_*/actor (
   actor_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -29,11 +31,13 @@ CREATE UNIQUE INDEX actor_user ON /*_*/actor (actor_user);
 
 CREATE UNIQUE INDEX actor_name ON /*_*/actor (actor_name);
 
+
 CREATE TABLE /*_*/user_former_groups (
   ufg_user INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ufg_group BLOB DEFAULT '' NOT NULL,
   PRIMARY KEY(ufg_user, ufg_group)
 );
+
 
 CREATE TABLE /*_*/bot_passwords (
   bp_user INTEGER UNSIGNED NOT NULL,
@@ -45,6 +49,7 @@ CREATE TABLE /*_*/bot_passwords (
   PRIMARY KEY(bp_user, bp_app_id)
 );
 
+
 CREATE TABLE /*_*/comment (
   comment_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   comment_hash INTEGER NOT NULL, comment_text BLOB NOT NULL,
@@ -52,6 +57,7 @@ CREATE TABLE /*_*/comment (
 );
 
 CREATE INDEX comment_hash ON /*_*/comment (comment_hash);
+
 
 CREATE TABLE /*_*/slots (
   slot_revision_id BIGINT UNSIGNED NOT NULL,
@@ -65,6 +71,7 @@ CREATE INDEX slot_revision_origin_role ON /*_*/slots (
   slot_revision_id, slot_origin, slot_role_id
 );
 
+
 CREATE TABLE /*_*/site_stats (
   ss_row_id INTEGER UNSIGNED NOT NULL,
   ss_total_edits BIGINT UNSIGNED DEFAULT NULL,
@@ -76,6 +83,7 @@ CREATE TABLE /*_*/site_stats (
   PRIMARY KEY(ss_row_id)
 );
 
+
 CREATE TABLE /*_*/user_properties (
   up_user INTEGER UNSIGNED NOT NULL,
   up_property BLOB NOT NULL,
@@ -85,6 +93,7 @@ CREATE TABLE /*_*/user_properties (
 
 CREATE INDEX user_properties_property ON /*_*/user_properties (up_property);
 
+
 CREATE TABLE /*_*/log_search (
   ls_field BLOB NOT NULL,
   ls_value VARCHAR(255) NOT NULL,
@@ -93,6 +102,7 @@ CREATE TABLE /*_*/log_search (
 );
 
 CREATE INDEX ls_log_id ON /*_*/log_search (ls_log_id);
+
 
 CREATE TABLE /*_*/change_tag (
   ct_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -112,12 +122,14 @@ CREATE INDEX change_tag_tag_id_id ON /*_*/change_tag (
   ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
 );
 
+
 CREATE TABLE /*_*/content (
   content_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   content_size INTEGER UNSIGNED NOT NULL,
   content_sha1 BLOB NOT NULL, content_model SMALLINT UNSIGNED NOT NULL,
   content_address BLOB NOT NULL
 );
+
 
 CREATE TABLE /*_*/l10n_cache (
   lc_lang BLOB NOT NULL,
@@ -126,12 +138,14 @@ CREATE TABLE /*_*/l10n_cache (
   PRIMARY KEY(lc_lang, lc_key)
 );
 
+
 CREATE TABLE /*_*/module_deps (
   md_module BLOB NOT NULL,
   md_skin BLOB NOT NULL,
   md_deps BLOB NOT NULL,
   PRIMARY KEY(md_module, md_skin)
 );
+
 
 CREATE TABLE /*_*/redirect (
   rd_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
@@ -143,6 +157,7 @@ CREATE TABLE /*_*/redirect (
 );
 
 CREATE INDEX rd_ns_title ON /*_*/redirect (rd_namespace, rd_title, rd_from);
+
 
 CREATE TABLE /*_*/pagelinks (
   pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
