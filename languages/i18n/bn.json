@@ -2883,7 +2883,7 @@
 	"tooltip-ca-move": "পাতাটি স্থানান্তর করুন",
 	"tooltip-ca-watch": "এই পাতাটি আপনার নজরতালিকায় যোগ করুন",
 	"tooltip-ca-unwatch": "এই পাতাটি আপনার নজরতালিকা থেকে সরিয়ে ফেলুন",
-	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|১ দিন|$1 দিন}} বাকি। এই পাতাটি আপনার নজরতালিকা থেকে মুছতে ক্লিক করুন।",
+	"tooltip-ca-unwatch-expiring": "আপনার নজরতালিকায় {{PLURAL:$1|১ দিন|$1 দিন}} বাকি। এটি মুছতে ক্লিক করুন।",
 	"tooltip-search": "{{SITENAME}} অনুসন্ধান",
 	"tooltip-search-go": "যদি থাকে, তবে ঠিক এই নামের পাতায় চলো",
 	"tooltip-search-fulltext": "এই লেখার জন্য পাতাগুলিতে অনুসন্ধান করুন",

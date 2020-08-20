@@ -2172,6 +2172,7 @@
 	"notanarticle": "Ikke en artikel",
 	"notvisiblerev": "Versionen er blevet slettet",
 	"watchlist-details": "{{PLURAL:$1|$1 side er|$1 sider er}} på din overvågningsliste (plus diskussionssider).",
+	"watchlist-expiry-hours-left": "Få timer tilbage",
 	"wlheader-enotif": "E-mail-underretning er slået til.",
 	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med <strong>fed skrift</strong>.",
 	"wlnote": "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste <strong>$1</strong> ændringer}} i {{PLURAL:$2|den sidste time|de sidste <strong>$2</strong> timer}} op til den $3 kl. $4.",
