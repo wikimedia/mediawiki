@@ -182,6 +182,23 @@ class ActorMigration {
 	}
 
 	/**
+	 * Get actor ID from UserIdentity, if it exists
+	 */
+	private function getExistingActorId( IDatabase $dbw, UserIdentity $user ) {
+		$row = $dbw->selectRow(
+			'actor',
+			[ 'actor_id' ],
+			[ 'actor_name' => $user->getName() ],
+			__METHOD__
+		);
+		if ( $row === false ) {
+			return false;
+		}
+
+		return $row->actor_id;
+	}
+
+	/**
 	 * Get UPDATE fields for the actor
 	 *
 	 * @param IDatabase $dbw Database to use for creating an actor ID, if necessary
@@ -202,11 +219,18 @@ class ActorMigration {
 			$ret[$text] = $user->getName();
 		}
 		if ( $this->stage >= MIGRATION_WRITE_BOTH ) {
-			// We need to be able to assign an actor ID if none exists
-			if ( !$user instanceof User && !$user->getActorId() ) {
-				$user = User::newFromAnyId( $user->getId(), $user->getName(), null );
+			// UBN fix for T260485 - do not let User object to handle existing actor IDs
+			// TODO: Make User object wiki-aware and let it handle all cases.
+			$existingActorId = $this->getExistingActorId( $dbw, $user );
+			if ( $existingActorId !== false ) {
+				$ret[$actor] = $existingActorId;
+			} else {
+				// We need to be able to assign an actor ID if none exists
+				if ( !$user instanceof User && !$user->getActorId() ) {
+					$user = User::newFromAnyId( $user->getId(), $user->getName(), null );
+				}
+				$ret[$actor] = $user->getActorId( $dbw );
 			}
-			$ret[$actor] = $user->getActorId( $dbw );
 		}
 		return $ret;
 	}
