@@ -2649,7 +2649,7 @@
 	"blockipsuccesssub": "De blokkering is ingesteld",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />\nZie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.",
 	"ipb-empty-block": "De opgegeven blokkade legt geen beperkingen op.",
-	"ipb-block-not-found": "\"$1\" is mogelijk recentelijk geblokkeerd of gedeblokkeerd. Probeer het over een paar minuten opnieuw.",
+	"ipb-block-not-found": "Het blokkeren was niet mogelijk, maar er is geen bestaande blokkade voor \"$1\". Als dit probleem zich blijft voordoen, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users meldt dit dan hier].",
 	"ipb-blockingself": "U staat op het punt uzelf te blokkeren. Weet u zeker dat u dat wilt doen?",
 	"ipb-confirmhideuser": "U staat op het punt een verborgen gebruiker te blokkeren. Hiermee wordt de gebruikersnaam in alle lijsten en logboekregels verborgen. Weet u het zeker?",
 	"ipb-confirmaction": "Weet u zeker dat u dit wilt doen? Selecteer dan het selectievakje \"{{int:ipb-confirm}}\" hieronder.",
