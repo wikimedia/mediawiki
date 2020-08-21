@@ -327,6 +327,7 @@ $wgAutoloadLocalClasses = [
 	'CoreParserFunctions' => __DIR__ . '/includes/parser/CoreParserFunctions.php',
 	'CoreTagHooks' => __DIR__ . '/includes/parser/CoreTagHooks.php',
 	'CreateAndPromote' => __DIR__ . '/maintenance/createAndPromote.php',
+	'CreateBotPassword' => __DIR__ . '/maintenance/createBotPassword.php',
 	'CreateCommonPasswordCdb' => __DIR__ . '/maintenance/createCommonPasswordCdb.php',
 	'CreateFileOp' => __DIR__ . '/includes/libs/filebackend/fileop/CreateFileOp.php',
 	'CreditsAction' => __DIR__ . '/includes/actions/CreditsAction.php',
