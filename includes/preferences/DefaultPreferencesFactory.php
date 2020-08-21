@@ -92,8 +92,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	private $hookRunner;
 
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'AllowRequiringEmailForResets',

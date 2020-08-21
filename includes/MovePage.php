@@ -106,6 +106,9 @@ class MovePage {
 	 */
 	private $hookRunner;
 
+	/**
+	 * @internal For use by MovePageTest
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];

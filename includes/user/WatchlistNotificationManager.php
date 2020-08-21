@@ -39,6 +39,9 @@ use WatchedItemStoreInterface;
  */
 class WatchlistNotificationManager {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'UseEnotif',
 		'ShowUpdatedMarker',

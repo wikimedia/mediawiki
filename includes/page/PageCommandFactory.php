@@ -75,6 +75,9 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];

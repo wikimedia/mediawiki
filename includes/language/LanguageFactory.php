@@ -65,8 +65,7 @@ class LanguageFactory {
 	private $parentLangCache = [];
 
 	/**
-	 * @since 1.35
-	 * @var array
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DummyLanguageCodes',

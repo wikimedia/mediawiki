@@ -26,7 +26,7 @@ use Wikimedia\ScopedCallback;
 class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
 
 	/**
-	 * @since 1.35
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'UpdateRowsPerQuery',
