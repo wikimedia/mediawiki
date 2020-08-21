@@ -24,6 +24,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
@@ -967,6 +968,8 @@ class SpecialBlock extends FormSpecialPage {
 				# be sure the user is blocked by now it should work for our purposes
 				$currentBlock = DatabaseBlock::newFromTarget( $target );
 				if ( !$currentBlock instanceof DatabaseBlock ) {
+					$logger = LoggerFactory::getInstance( 'BlockManager' );
+					$logger->warning( 'Block could not be inserted. No existing block was found.' );
 					return [ [ 'ipb-block-not-found', $block->getTarget() ] ];
 				}
 				if ( $block->equals( $currentBlock ) ) {
