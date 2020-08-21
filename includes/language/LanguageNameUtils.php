@@ -75,6 +75,9 @@ class LanguageNameUtils {
 	 */
 	private $validCodeCache = [];
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'ExtraLanguageNames',
 		'UsePigLatinVariant',

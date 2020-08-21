@@ -63,7 +63,7 @@ class FileBackendGroup {
 	private $objectFactory;
 
 	/**
-	 * @internal
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DirectoryMode',

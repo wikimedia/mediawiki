@@ -41,6 +41,9 @@ use Wikimedia\Message\MessageValue;
  */
 class UserNameUtils {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'MaxNameChars',
 		'ReservedUsernames',

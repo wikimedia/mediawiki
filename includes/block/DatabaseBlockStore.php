@@ -46,6 +46,9 @@ class DatabaseBlockStore {
 	/** @var ServiceOptions */
 	private $options;
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'PutIPinRC',
 		'BlockDisablesLogin',

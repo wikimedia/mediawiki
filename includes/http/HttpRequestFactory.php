@@ -41,6 +41,9 @@ class HttpRequestFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'HTTPTimeout',
 		'HTTPConnectTimeout',

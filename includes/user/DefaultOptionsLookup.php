@@ -34,6 +34,9 @@ use Wikimedia\Assert\Assert;
  */
 class DefaultOptionsLookup extends UserOptionsLookup {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DefaultSkin',
 		'DefaultUserOptions',

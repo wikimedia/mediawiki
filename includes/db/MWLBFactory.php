@@ -36,8 +36,7 @@ abstract class MWLBFactory {
 	private static $loggedDeprecations = [];
 
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
 		'DBcompress',

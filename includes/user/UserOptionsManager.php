@@ -43,6 +43,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class UserOptionsManager extends UserOptionsLookup {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'HiddenPrefs'
 	];
