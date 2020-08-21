@@ -3202,7 +3202,7 @@
 	"autosumm-replace": "Obsah stránky nahrazen textem „$1“",
 	"autoredircomment": "přesměrování na [[$1]]",
 	"autosumm-removed-redirect": "Zrušeno přesměrování na [[$1]]",
-	"autosumm-changed-redirect-target": "Cíl přesměrování změněn z [[$1]] na [[$2]]",
+	"autosumm-changed-redirect-target": "cíl přesměrování změněn z [[$1]] na [[$2]]",
 	"autosumm-new": "Založena nová stránka s textem „$1“",
 	"autosumm-newblank": "Založena prázdná stránka",
 	"size-bytes": "$1 {{PLURAL:$1|bajt|bajty|bajtů}}",

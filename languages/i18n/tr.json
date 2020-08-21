@@ -3920,7 +3920,7 @@
 	"log-action-filter-delete-delete_redir": "Yönlendirme üzerine yazma",
 	"log-action-filter-delete-restore": "Sayfa silmeyi geri al",
 	"log-action-filter-delete-event": "Günlük silme",
-	"log-action-filter-delete-revision": "Gözden geçirmenin silinmesi",
+	"log-action-filter-delete-revision": "Revizyon silme",
 	"log-action-filter-import-interwiki": "Vikiarası içe aktarma",
 	"log-action-filter-import-upload": "XML yüklemesine göre içe aktar",
 	"log-action-filter-managetags-create": "Etiket oluşturma",
