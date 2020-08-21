@@ -31,6 +31,11 @@ class BotPassword implements IDBAccessObject {
 
 	public const APPID_MAXLENGTH = 32;
 
+	/**
+	 * Minimum length for a bot password
+	 */
+	public const PASSWORD_MINLENGTH = 32;
+
 	/** @var bool */
 	private $isSaved;
 
@@ -405,7 +410,7 @@ class BotPassword implements IDBAccessObject {
 	 */
 	public static function generatePassword( $config ) {
 		return PasswordFactory::generateRandomPasswordString(
-			max( 32, $config->get( 'MinimalPasswordLength' ) ) );
+			max( self::PASSWORD_MINLENGTH, $config->get( 'MinimalPasswordLength' ) ) );
 	}
 
 	/**
@@ -420,16 +425,16 @@ class BotPassword implements IDBAccessObject {
 	public static function canonicalizeLoginData( $username, $password ) {
 		$sep = self::getSeparator();
 		// the strlen check helps minimize the password information obtainable from timing
-		if ( strlen( $password ) >= 32 && strpos( $username, $sep ) !== false ) {
+		if ( strlen( $password ) >= self::PASSWORD_MINLENGTH && strpos( $username, $sep ) !== false ) {
 			// the separator is not valid in new usernames but might appear in legacy ones
-			if ( preg_match( '/^[0-9a-w]{32,}$/', $password ) ) {
+			if ( preg_match( '/^[0-9a-w]{' . self::PASSWORD_MINLENGTH . ',}$/', $password ) ) {
 				return [ $username, $password ];
 			}
-		} elseif ( strlen( $password ) > 32 && strpos( $password, $sep ) !== false ) {
+		} elseif ( strlen( $password ) > self::PASSWORD_MINLENGTH && strpos( $password, $sep ) !== false ) {
 			$segments = explode( $sep, $password );
 			$password = array_pop( $segments );
 			$appId = implode( $sep, $segments );
-			if ( preg_match( '/^[0-9a-w]{32,}$/', $password ) ) {
+			if ( preg_match( '/^[0-9a-w]{' . self::PASSWORD_MINLENGTH . ',}$/', $password ) ) {
 				return [ $username . $sep . $appId, $password ];
 			}
 		}
