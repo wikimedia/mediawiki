@@ -781,6 +781,7 @@ function wfUrlProtocolsWithoutProtRel() {
  *       be an empty string for protocol-relative URLs.
  *   - delimiter: either '://', ':' or '//'. Always present.
  *   - host: domain name / IP. Always present, but could be an empty string, e.g. for file: URLs.
+ *   - port: port number. Will be missing when port is not explicitly specified.
  *   - user: user name, e.g. for HTTP Basic auth URLs such as http://user:pass@example.com/
  *       Missing when there is no username.
  *   - pass: password, same as above.
