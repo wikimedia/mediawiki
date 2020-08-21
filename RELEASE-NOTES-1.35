@@ -5,6 +5,36 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
+== MediaWiki 1.35.0-rc.2 ==
+
+=== Changes since MediaWiki 1.35.0-rc.1 ===
+* (T259693) uuid: Fix filenames on Windows.
+* Remove Gruntfile.js and package-lock.json from the tarball.
+* firejail: Strengthen by copying from Wikimedia's profile.
+* (T260059) ResourceLoaderOOUIImageModule: loadOOUIDefinition() may return
+  false.
+* (T30162, T245387) The installer supports using a Postgres server running
+  on a custom port other than 5432.
+* (T260201) Support private wikis in Parsoid zero configuration mode.
+* Fix bad use of `|=` PHP bit operation where `= … ||` bool is intended.
+* (T259212) SpecialBlock: Show error if a block could not be inserted or found.
+* (T255842) UserOptionsManager: fix options reset.
+* (T258649) WatchAction: avoid unnecessary UPDATEs when expiry is unchanged.
+* (T250851) Allow skins to override mediawiki.page.ready initialisation.
+* (T250851) mediawiki.page.ready: Allow skins to disable search lazy load.
+* (T253135, T255632) Update language in watchlist expiry.
+* Use IPset in MWRestrictions::checkIP.
+* (T259564) Fix race condition on edit page.
+* (T260759) Hide watchlist expiry label in edit form.
+* mime: Fix docs of MIME_EXTENSIONS, they're arrays, not space-seperated.
+* (T260031) Add application/font-sfnt to MimeMap for ttf files.
+* (T259379) WatchedItemStore: Cache single WatchedItems with preexisting expiry.
+* Add a maintenance script to create bot passwords.
+* (T201269) Add Traditional Chinese zh-hant as fallback for Amis (ami).
+* Improve wfParseUrl docs.
+* (T251038) Add multi index fields in ImageListPager for unique paginate.
+* (T259916) Guard against 'Widget not found' error.
+
 == MediaWiki 1.35.0-rc.1 ==
 
 === Changes since MediaWiki 1.35.0-rc.0 ===
