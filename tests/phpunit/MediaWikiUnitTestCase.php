@@ -60,6 +60,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			'wgAutoloadAttemptLowercase',
 			'wgLegalTitleChars',
 			'wgDevelopmentWarnings',
+			// Dependency of wfParseUrl()
+			'wgUrlProtocols',
 		];
 	}
 

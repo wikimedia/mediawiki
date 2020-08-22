@@ -25,6 +25,7 @@ use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -735,8 +736,8 @@ class ApiMain extends ApiBase {
 			}
 
 			$config = $this->getConfig();
-			$matchedOrigin = count( $origins ) === 1 && self::matchOrigin(
-				$originParam,
+			$origin = Origin::parseHeaderList( $origins );
+			$matchedOrigin = $origin->match(
 				$config->get( 'CrossSiteAJAXdomains' ),
 				$config->get( 'CrossSiteAJAXdomainExceptions' )
 			);
@@ -802,31 +803,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Attempt to match an Origin header against a set of rules and a set of exceptions
-	 * @param string $value Origin header
-	 * @param array $rules Set of wildcard rules
-	 * @param array $exceptions Set of wildcard rules
-	 * @return bool True if $value matches a rule in $rules and doesn't match
-	 *    any rules in $exceptions, false otherwise
-	 */
-	protected static function matchOrigin( $value, $rules, $exceptions ) {
-		foreach ( $rules as $rule ) {
-			if ( preg_match( self::wildcardToRegex( $rule ), $value ) ) {
-				// Rule matches, check exceptions
-				foreach ( $exceptions as $exc ) {
-					if ( preg_match( self::wildcardToRegex( $exc ), $value ) ) {
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Attempt to validate the value of Access-Control-Request-Headers against a list
 	 * of headers that we allow the follow up request to send.
 	 *
@@ -852,25 +828,6 @@ class ApiMain extends ApiBase {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Helper function to convert wildcard string into a regex
-	 * '*' => '.*?'
-	 * '?' => '.'
-	 *
-	 * @param string $wildcard String with wildcards
-	 * @return string Regular expression
-	 */
-	protected static function wildcardToRegex( $wildcard ) {
-		$wildcard = preg_quote( $wildcard, '/' );
-		$wildcard = str_replace(
-			[ '\*', '\?' ],
-			[ '.*?', '.' ],
-			$wildcard
-		);
-
-		return "/^https?:\/\/$wildcard$/";
 	}
 
 	/**

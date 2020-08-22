@@ -57,13 +57,13 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	public function testWrongMethod() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
-			'method' => 'OPTIONS'
+			'method' => 'TRACE'
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 405, $response->getStatusCode() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
-		$this->assertSame( 'GET', $response->getHeaderLine( 'Allow' ) );
+		$this->assertSame( 'HEAD, GET', $response->getHeaderLine( 'Allow' ) );
 	}
 
 	public function testHeadToGet() {

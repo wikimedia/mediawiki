@@ -23,28 +23,23 @@ class EntryPoint {
 	private $router;
 	/** @var RequestContext */
 	private $context;
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var array */
-	private const CONSTRUCTOR_OPTIONS = [
-		'AllowCrossOrigin',
-	];
+	/** @var CorsUtils */
+	private $cors;
 
 	/**
 	 * @param IContextSource $context
 	 * @param RequestInterface $request
+	 * @param ResponseFactory $responseFactory
+	 * @param CorsUtils $cors
 	 * @return Router
 	 */
 	private static function createRouter(
-		IContextSource $context, RequestInterface $request
+		IContextSource $context, RequestInterface $request, ResponseFactory $responseFactory, CorsUtils $cors
 	): Router {
 		global $IP;
 
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
-
-		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
 
 		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
@@ -66,7 +61,7 @@ class EntryPoint {
 			$val = "$IP/$val";
 		} );
 
-		return new Router(
+		return ( new Router(
 			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			$conf->get( 'CanonicalServer' ),
@@ -77,7 +72,7 @@ class EntryPoint {
 			$objectFactory,
 			$restValidator,
 			$services->getHookContainer()
-		);
+		) )->setCors( $cors );
 	}
 
 	public static function main() {
@@ -98,14 +93,24 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
-		$router = self::createRouter( $context, $request );
+		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
+
+		$cors = new CorsUtils(
+			new ServiceOptions(
+				CorsUtils::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$responseFactory,
+			$context->getUser()
+		);
+
+		$router = self::createRouter( $context, $request, $responseFactory, $cors );
 
 		$entryPoint = new self(
 			$context,
 			$request,
 			$wgRequest->response(),
 			$router,
-			new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $conf )
+			$cors
 		);
 		$entryPoint->execute();
 	}
@@ -130,27 +135,26 @@ class EntryPoint {
 	}
 
 	public function __construct( RequestContext $context, RequestInterface $request,
-		WebResponse $webResponse, Router $router, ServiceOptions $options
+		WebResponse $webResponse, Router $router, CorsUtils $cors
 	) {
 		$this->context = $context;
 		$this->request = $request;
 		$this->webResponse = $webResponse;
 		$this->router = $router;
-		$this->options = $options;
+		$this->cors = $cors;
 	}
 
 	public function execute() {
 		ob_start();
-		$response = $this->router->execute( $this->request );
+		$response = $this->cors->modifyResponse(
+			$this->request,
+			$this->router->execute( $this->request )
+		);
 
 		$this->webResponse->header(
 			'HTTP/' . $response->getProtocolVersion() . ' ' .
 			$response->getStatusCode() . ' ' .
 			$response->getReasonPhrase() );
-
-		if ( $this->options->get( 'AllowCrossOrigin' ) ) {
-			$this->webResponse->header( 'Access-Control-Allow-Origin: *' );
-		}
 
 		foreach ( $response->getRawHeaderLines() as $line ) {
 			$this->webResponse->header( $line );

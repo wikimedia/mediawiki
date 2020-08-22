@@ -5,9 +5,9 @@ namespace MediaWiki\Tests\Rest;
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Uri;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
@@ -15,9 +15,9 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\User\UserIdentity;
 use Psr\Container\ContainerInterface;
 use RequestContext;
-use User;
 use WebResponse;
 use Wikimedia\ObjectFactory;
 
@@ -35,6 +35,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
 		$permissionManager = $this->createMock( PermissionManager::class );
+		$user = $this->createMock( UserIdentity::class );
 
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
@@ -45,7 +46,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, new User ),
+			new Validator( $objectFactory, $permissionManager, $request, $user ),
 			$this->createHookContainer()
 		);
 	}
@@ -54,6 +55,14 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 		return $this->getMockBuilder( WebResponse::class )
 			->setMethods( [ 'header' ] )
 			->getMock();
+	}
+
+	private function createCorsUtils() {
+		$cors = $this->createMock( CorsUtils::class );
+		$cors->method( 'modifyResponse' )
+			->will( $this->returnArgument( 1 ) );
+
+		return $cors;
 	}
 
 	public static function mockHandlerHeader() {
@@ -76,12 +85,13 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			);
 
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/header' ) ] );
+
 		$entryPoint = new EntryPoint(
 			RequestContext::getMain(),
 			$request,
 			$webResponse,
 			$this->createRouter( $request ),
-			$this->createMock( ServiceOptions::class )
+			$this->createCorsUtils()
 		);
 		$entryPoint->execute();
 		$this->assertTrue( true );
@@ -109,7 +119,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			$request,
 			$this->createWebResponse(),
 			$this->createRouter( $request ),
-			$this->createMock( ServiceOptions::class )
+			$this->createCorsUtils()
 		);
 		ob_start();
 		$entryPoint->execute();
