@@ -179,3 +179,15 @@ CREATE TABLE /*_*/templatelinks (
   ),
   PRIMARY KEY(tl_from, tl_namespace, tl_title)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/imagelinks (
+  il_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  il_to VARBINARY(255) DEFAULT '' NOT NULL,
+  il_from_namespace INT DEFAULT 0 NOT NULL,
+  INDEX il_to (il_to, il_from),
+  INDEX il_backlinks_namespace (
+    il_from_namespace, il_to, il_from
+  ),
+  PRIMARY KEY(il_from, il_to)
+) /*$wgDBTableOptions*/;

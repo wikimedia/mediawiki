@@ -367,7 +367,6 @@ class PostgresUpdater extends DatabaseUpdater {
 				'mwuser(user_id) ON DELETE SET NULL' ],
 			[ 'ifTableNotExists', 'actor', 'changeFkeyDeferrable', 'image', 'img_user',
 				'mwuser(user_id) ON DELETE SET NULL' ],
-			[ 'changeFkeyDeferrable', 'imagelinks', 'il_from', 'page(page_id) ON DELETE CASCADE' ],
 			[ 'ifTableNotExists', 'actor', 'changeFkeyDeferrable', 'ipblocks', 'ipb_by',
 				'mwuser(user_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'ipblocks', 'ipb_user', 'mwuser(user_id) ON DELETE SET NULL' ],
@@ -727,6 +726,12 @@ class PostgresUpdater extends DatabaseUpdater {
 				'(tl_from_namespace,tl_namespace,tl_title,tl_from)' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_unique' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_from' ],
+			[ 'dropFkey', 'imagelinks', 'il_from' ],
+			[ 'setDefault', 'imagelinks', 'il_to', '' ],
+			[ 'addPgIndex', 'imagelinks', 'il_to', '(il_to, il_from)' ],
+			[ 'addPgIndex', 'imagelinks', 'il_backlinks_namespace',
+				'(il_from_namespace, il_to, il_from)' ],
+			[ 'dropPgIndex', 'imagelinks', 'il_from' ],
 		];
 	}
 

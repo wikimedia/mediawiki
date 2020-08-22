@@ -234,13 +234,6 @@ ALTER SEQUENCE content_models_model_id_seq OWNED BY content_models.model_id;
 CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
 
-CREATE TABLE imagelinks (
-  il_from  INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  il_from_namespace INTEGER NOT NULL DEFAULT 0,
-  il_to    TEXT     NOT NULL
-);
-CREATE UNIQUE INDEX il_from ON imagelinks (il_to,il_from);
-
 CREATE TABLE categorylinks (
   cl_from           INTEGER      NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   cl_to             TEXT         NOT NULL,
