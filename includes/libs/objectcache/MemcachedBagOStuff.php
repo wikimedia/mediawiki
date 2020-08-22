@@ -27,11 +27,24 @@
  * @ingroup Cache
  */
 abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
+	/** @var string Routing prefix appended to keys during operations */
+	protected $routingPrefix;
+
+	/**
+	 * @param array $params Additional parameters include:
+	 *   - routingPrefix: a routing prefix of the form "<datacenter>/<cluster>/" used to convey
+	 *      the location/strategy to use for handling keys accessed from this instance. The prefix
+	 *      is prepended to keys during cache operations. The memcached proxy must preserve these
+	 *      prefixes in any responses that include requested keys (e.g. get/gets). The proxy is
+	 *      also assumed to strip the routing prefix from the stored key name, which allows for
+	 *      unprefixed access. This can be used with mcrouter. [optional]
+	 */
 	public function __construct( array $params ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? 917504; // < 1MiB
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
+		$this->routingPrefix = $params['routingPrefix'] ?? '';
 	}
 
 	/**
@@ -88,6 +101,42 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 		if ( preg_match( '/[^\x21-\x7e]+/', $key ) ) {
 			throw new Exception( "Key contains invalid characters: $key" );
 		}
+
+		return $key;
+	}
+
+	/**
+	 * @param string $key
+	 * @return string
+	 */
+	protected function validateKeyAndPrependRoute( $key ) {
+		$this->validateKeyEncoding( $key );
+
+		if ( $this->routingPrefix === '' ) {
+			return $key;
+		}
+
+		if ( $key[0] === '/' ) {
+			throw new RuntimeException( "Key '$key' already contains a route." );
+		}
+
+		return $this->routingPrefix . $key;
+	}
+
+	/**
+	 * @param string $key
+	 * @return string
+	 */
+	protected function stripRouteFromKey( $key ) {
+		if ( $this->routingPrefix === '' ) {
+			return $key;
+		}
+
+		$prefixLength = strlen( $this->routingPrefix );
+		if ( substr( $key, 0, $prefixLength ) === $this->routingPrefix ) {
+			return substr( $key, $prefixLength );
+		}
+
 		return $key;
 	}
 
