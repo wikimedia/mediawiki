@@ -91,6 +91,7 @@ because of Phabricator reports.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - RecentChange::markPatrolled
   - Title::getUserPermissionsErrors
   - Title::userCan
   - Title::quickUserCan
