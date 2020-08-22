@@ -739,6 +739,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the latest revision
+	 * @since 1.32
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecord() {
