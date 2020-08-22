@@ -88,6 +88,7 @@ because of Phabricator reports.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - WebRequest::getLimitOffset
   - All methods of the old SpecialPageFactory; the entire class was removed
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
