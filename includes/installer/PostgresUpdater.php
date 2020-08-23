@@ -225,7 +225,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'revision', 'rev_deleted', 'smallint', 'rev_deleted::smallint DEFAULT 0' ],
 			[ 'changeField', 'revision', 'rev_minor_edit', 'smallint',
 				'rev_minor_edit::smallint DEFAULT 0' ],
-			[ 'changeField', 'templatelinks', 'tl_namespace', 'smallint', 'tl_namespace::smallint' ],
 			[ 'changeField', 'user_newtalk', 'user_ip', 'text', 'host(user_ip)' ],
 			[ 'changeField', 'uploadstash', 'us_image_bits', 'smallint', '' ],
 
@@ -251,7 +250,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'ifFieldExists', 'revision', 'rev_text_id',
 				'addPgIndex', 'revision', 'rev_text_id_idx', '(rev_text_id)' ],
 			[ 'addPgIndex', 'recentchanges', 'rc_timestamp_bot', '(rc_timestamp) WHERE rc_bot = 0' ],
-			[ 'addPgIndex', 'templatelinks', 'templatelinks_from', '(tl_from)' ],
 			[ 'addPgIndex', 'watchlist', 'wl_user', '(wl_user)' ],
 			[ 'addPgIndex', 'watchlist', 'wl_user_notificationtimestamp',
 				'(wl_user, wl_notificationtimestamp)' ],
@@ -394,7 +392,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeFkeyDeferrable', 'revision', 'rev_page', 'page (page_id) ON DELETE CASCADE' ],
 			[ 'ifFieldExists', 'revision', 'rev_text_id',
 				'changeFkeyDeferrable', 'revision', 'rev_user', 'mwuser(user_id) ON DELETE RESTRICT' ],
-			[ 'changeFkeyDeferrable', 'templatelinks', 'tl_from', 'page(page_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'user_groups', 'ug_user', 'mwuser(user_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'user_newtalk', 'user_id', 'mwuser(user_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'user_properties', 'up_user',
@@ -722,6 +719,14 @@ class PostgresUpdater extends DatabaseUpdater {
 				'(pl_from_namespace,pl_namespace,pl_title,pl_from)' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelink_unique' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelinks_title' ],
+			[ 'dropFkey', 'templatelinks', 'tl_from' ],
+			[ 'changeField', 'templatelinks', 'tl_namespace', 'INT', 'tl_namespace::INT DEFAULT 0' ],
+			[ 'setDefault', 'templatelinks', 'tl_title', '' ],
+			[ 'addPgIndex', 'templatelinks', 'tl_namespace', '(tl_namespace,tl_title,tl_from)' ],
+			[ 'addPgIndex', 'templatelinks', 'tl_backlinks_namespace',
+				'(tl_from_namespace,tl_namespace,tl_title,tl_from)' ],
+			[ 'dropPgIndex', 'templatelinks', 'templatelinks_unique' ],
+			[ 'dropPgIndex', 'templatelinks', 'templatelinks_from' ],
 		];
 	}
 

@@ -299,6 +299,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'content', 'content_id', 'patch-content-content_id-fix_not_null.sql' ],
 			[ 'modifyField', 'redirect', 'rd_title', 'patch-redirect-rd_title-varbinary.sql' ],
 			[ 'modifyField', 'pagelinks', 'pl_title', 'patch-pagelinks-pl_title-varbinary.sql' ],
+			[ 'modifyField', 'templatelinks', 'tl_title', 'patch-templatelinks-tl_title-varbinary.sql' ],
 		];
 	}
 

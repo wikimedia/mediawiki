@@ -165,3 +165,17 @@ CREATE TABLE /*_*/pagelinks (
   ),
   PRIMARY KEY(pl_from, pl_namespace, pl_title)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/templatelinks (
+  tl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  tl_namespace INT DEFAULT 0 NOT NULL,
+  tl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  tl_from_namespace INT DEFAULT 0 NOT NULL,
+  INDEX tl_namespace (tl_namespace, tl_title, tl_from),
+  INDEX tl_backlinks_namespace (
+    tl_from_namespace, tl_namespace,
+    tl_title, tl_from
+  ),
+  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+) /*$wgDBTableOptions*/;
