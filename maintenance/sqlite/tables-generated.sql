@@ -189,3 +189,17 @@ CREATE INDEX tl_backlinks_namespace ON /*_*/templatelinks (
   tl_from_namespace, tl_namespace,
   tl_title, tl_from
 );
+
+
+CREATE TABLE /*_*/imagelinks (
+  il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  il_to BLOB DEFAULT '' NOT NULL,
+  il_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY(il_from, il_to)
+);
+
+CREATE INDEX il_to ON /*_*/imagelinks (il_to, il_from);
+
+CREATE INDEX il_backlinks_namespace ON /*_*/imagelinks (
+  il_from_namespace, il_to, il_from
+);
