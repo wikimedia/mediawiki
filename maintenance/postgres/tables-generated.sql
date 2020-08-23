@@ -180,3 +180,19 @@ CREATE INDEX pl_backlinks_namespace ON pagelinks (
   pl_from_namespace, pl_namespace,
   pl_title, pl_from
 );
+
+
+CREATE TABLE templatelinks (
+  tl_from INT DEFAULT 0 NOT NULL,
+  tl_namespace INT DEFAULT 0 NOT NULL,
+  tl_title TEXT DEFAULT '' NOT NULL,
+  tl_from_namespace INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+);
+
+CREATE INDEX tl_namespace ON templatelinks (tl_namespace, tl_title, tl_from);
+
+CREATE INDEX tl_backlinks_namespace ON templatelinks (
+  tl_from_namespace, tl_namespace,
+  tl_title, tl_from
+);
