@@ -507,13 +507,15 @@ abstract class Action implements MessageLocalizer {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		$msg = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->lc(
-			self::getActionName( $this->getContext() )
-			) . '-helppage' );
+		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		$target = $lang->lc( self::getActionName( $this->getContext() ) . '-helppage' );
+		$msg = $this->msg( $target );
 
 		if ( !$msg->isDisabled() ) {
-			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$this->getOutput()->addHelpLink( $helpUrl, true );
+			$title = Title::newFromText( $msg->plain() );
+			if ( $title instanceof Title ) {
+				$this->getOutput()->addHelpLink( $title->getLocalURL(), true );
+			}
 		} else {
 			$this->getOutput()->addHelpLink( $to, $overrideBaseUrl );
 		}

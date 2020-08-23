@@ -1797,14 +1797,14 @@ class Article implements Page {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		$msg = wfMessage(
-			'namespace-' . $this->getTitle()->getNamespace() . '-helppage'
-		);
-
 		$out = $this->getContext()->getOutput();
+		$msg = $out->msg( 'namespace-' . $this->getTitle()->getNamespace() . '-helppage' );
+
 		if ( !$msg->isDisabled() ) {
-			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$out->addHelpLink( $helpUrl, true );
+			$title = Title::newFromText( $msg->plain() );
+			if ( $title instanceof Title ) {
+				$out->addHelpLink( $title->getLocalURL(), true );
+			}
 		} else {
 			$out->addHelpLink( $to, $overrideBaseUrl );
 		}
