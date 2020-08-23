@@ -196,3 +196,17 @@ CREATE INDEX tl_backlinks_namespace ON templatelinks (
   tl_from_namespace, tl_namespace,
   tl_title, tl_from
 );
+
+
+CREATE TABLE imagelinks (
+  il_from INT DEFAULT 0 NOT NULL,
+  il_to TEXT DEFAULT '' NOT NULL,
+  il_from_namespace INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(il_from, il_to)
+);
+
+CREATE INDEX il_to ON imagelinks (il_to, il_from);
+
+CREATE INDEX il_backlinks_namespace ON imagelinks (
+  il_from_namespace, il_to, il_from
+);
