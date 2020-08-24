@@ -559,7 +559,7 @@
 	"resetpass_submit": "Chọn mật khẩu và đăng nhập",
 	"changepassword-success": "Mật khẩu của bạn đã được thay đổi.",
 	"changepassword-throttled": "Bạn đã thử đăng nhập gần đây nhiều lần quá. Xin chờ $1 trước khi bạn thử lần nữa.",
-	"botpasswords": "Mật khẩu Bot",
+	"botpasswords": "Mật khẩu bot",
 	"botpasswords-summary": "<em>Mật khẩu bot</em> cho phép truy cập một tài khoản người dùng qua API mà không sử dụng thông tin chứng nhận chính của tài khoản. Các quyền người dùng có thể bị hạn chế khi đăng nhập dùng mật khẩu bot.\n\nNếu bạn không hiểu tại sao cần sử dụng mật khẩu bot, có lẽ bạn không nên sử dụng nó. Không ai bao giờ có lý do chính đáng để yêu cầu bạn tạo ra một mật khẩu bot và cung cấp nó cho họ.",
 	"botpasswords-disabled": "Mật khẩu bot bị vô hiệu hóa.",
 	"botpasswords-no-central-id": "Để sử dụng mật khẩu bot, bạn phải đăng nhập vào một tài khoản tập trung.",

@@ -33,6 +33,7 @@
 			"ka.wikipedia.org sysops",
 			"לערי ריינהארט",
 			"გიორგიმელა",
+			"Გიო ოქრო",
 			"아라"
 		]
 	},
@@ -199,7 +200,7 @@
 	"history": "გვერდის ისტორია",
 	"history_short": "ისტორია",
 	"history_small": "ისტორია",
-	"updatedmarker": "განახლდა ჩემი ბოლო შემოსვლის შემდეგ",
+	"updatedmarker": "განახლდა თქვენი ბოლო შემოსვლის შემდეგ",
 	"printableversion": "დასაბეჭდი ვერსია",
 	"permalink": "მუდმივი ბმული",
 	"print": "ამობეჭდე",
@@ -3015,6 +3016,7 @@
 	"autosumm-replace": "შინაარსი შეიცვალა „$1“-ით",
 	"autoredircomment": "გადამისამართება [[$1]]-ზე",
 	"autosumm-removed-redirect": "წაშლილი გადამისამართება [[$1]]",
+	"autosumm-changed-redirect-target": "გადამისამართების სამიზნის შეცვლა „[[$1]]“-დან „[[$2]]“-ზე",
 	"autosumm-new": "ახალი გვერდი: $1",
 	"autosumm-newblank": "ცარიელი გვერდი შეიქმნა",
 	"size-bytes": "$1 ბ",

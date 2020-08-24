@@ -1726,7 +1726,7 @@
 	"confirmdeletetext": "Jy ståt up et punt een syde en de geskydenisse dervan vord te smyten.\nBevästig hyrunder dat dit inderdåd de bedoling is, dat jy de gevolgen dervan begrypet en dat jy in oavereynstemming mid et [[{{MediaWiki:Policy-url}}|beleid]] handelet.",
 	"actioncomplete": "Uutvoord",
 	"actionfailed": "De haandeling is mislokt.",
-	"deletedtext": "t Artikel \"$1\" is vortedaon. Zie de \"$2\" veur n lieste van ziejen die as lest vortedaon bin.",
+	"deletedtext": "\"$1\" is vordsmeaten. See et \"$2\" vöär en oaversicht van syden dee kortens vordsmeaten bint.",
 	"dellogpage": "Vordsmytlogbook",
 	"dellogpagetext": "Hieronder steet n lieste van ziejen en bestaanden die as lest vortedaon bin.",
 	"deletionlog": "Vortdologboek",

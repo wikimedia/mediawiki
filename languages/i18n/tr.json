@@ -2682,7 +2682,7 @@
 	"blockipsuccesssub": "Engelleme başarılı oldu",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] engellendi.<br />\nEngellemeleri gözden geçirmek için [[Special:BlockList|engel listesine]] bakınız.",
 	"ipb-empty-block": "Gönderilen engelde hiçbir kısıtlama etkinleştirilmedi.",
-	"ipb-block-not-found": "\"$1\" yakın zamanda engellenmiş veya engeli kaldırılmış olabilir. Lütfen birkaç dakika içinde tekrar deneyin.",
+	"ipb-block-not-found": "Engel yapılamadı, ancak \"$1\" için mevcut engel bulunamadı. Bu sorun devam ederse, lütfen [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users bunu bildirin].",
 	"ipb-blockingself": "Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?",
 	"ipb-confirmhideuser": "\"Kullanıcıyı gizle\" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?",
 	"ipb-confirmaction": "Bunu gerçekten yapmak istediğinize eminseniz, lütfen en alttaki \"{{int:ipb-confirm}}\" alanını işaretleyin.",
