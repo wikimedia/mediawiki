@@ -124,7 +124,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	public function testProcessUnblockErrorsUnblockSelf() {
 		$performer = $this->getTestSysop()->getUser();
 
-		$this->overrideUserPermissions( $performer, [ 'unblockself' => false ] );
+		$this->overrideUserPermissions( $performer, [ 'block', 'unblockself' => false ] );
 
 		// Blocker must be different user for unblock self to be disallowed
 		$blocker = $this->getTestUser()->getUser();
