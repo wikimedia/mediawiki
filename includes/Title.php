@@ -675,8 +675,11 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @param int $id The page_id of the article
 	 * @return string|null An object representing the article, or null if no such article was found
+	 * @deprecated since 1.36, use Title::newFromID( $id )->getPrefixedDBkey() instead.
 	 */
 	public static function nameOf( $id ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$s = $dbr->selectRow(
