@@ -835,6 +835,7 @@
 	"undo-summary-username-hidden": "Undo revision $1 by a hidden user",
 	"createaccount-hook-aborted": "$1",
 	"viewpagelogs": "View logs for this page",
+	"viewpagelogs-lowercase": "view logs for this page",
 	"nohistory": "There is no edit history for this page.",
 	"currentrev": "Latest revision",
 	"currentrev-asof": "Latest revision as of $1",

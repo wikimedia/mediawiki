@@ -741,8 +741,19 @@ abstract class Skin extends ContextSource {
 						$this->msg( 'restorelink' )->numParams( $n )->text() )
 					)->escaped();
 
-				// Allow extensions to add more links
 				$links = [];
+				// Add link to page logs, unless we're on the history page (which
+				// already has one)
+				if ( $action !== 'history' ) {
+					$links[] = $linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'Log' ),
+						$this->msg( 'viewpagelogs-lowercase' )->text(),
+						[],
+						[ 'page' => $title->getPrefixedText() ]
+					);
+				}
+
+				// Allow extensions to add more links
 				$this->getHookRunner()->onUndeletePageToolLinks(
 					$this->getContext(), $linkRenderer, $links );
 
@@ -753,6 +764,7 @@ abstract class Skin extends ContextSource {
 							->rawParams( $this->getLanguage()->pipeList( $links ) )
 							->escaped();
 				}
+
 				return Html::rawElement( 'div', [ 'class' => 'mw-undelete-subtitle' ], $subtitle );
 			}
 		}
