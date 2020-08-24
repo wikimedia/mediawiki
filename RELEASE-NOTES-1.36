@@ -137,6 +137,8 @@ because of Phabricator reports.
 * The PageProps class was converted to a service. PageProps::overrideInstance
   was deprecated, and MediaWikiServices::redefineService should be used
   instead.
+* Title::nameOf() is deprecated; use Title::newFromID()->getPrefixedDBkey()
+  instead.
 * …
 
 === Other changes in 1.36 ===
