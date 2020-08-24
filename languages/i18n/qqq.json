@@ -627,6 +627,7 @@
 	"userlogin-yourpassword-ph": "Placeholder text in login form for password field.\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Enter password}}",
 	"createacct-yourpassword-ph": "Placeholder text in create account form for password field.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Enter password}}",
 	"yourpasswordagain": "Label for field to re-enter password.",
+	"createacct-useuniquepass": "In create account form, help text to tell the use to use a unique password.",
 	"createacct-yourpasswordagain": "In create account form, label for field to re-enter password\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Confirm password}}",
 	"createacct-yourpasswordagain-ph": "Placeholder text in create account form for re-enter password field.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]",
 	"userlogin-remembermypassword": "The text for a check box in [[Special:UserLogin]].",
