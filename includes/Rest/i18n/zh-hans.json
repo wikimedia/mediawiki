@@ -3,6 +3,7 @@
 		"authors": [
 			"500000000006城",
 			"A Chinese Wikipedian",
+			"Hzy980512",
 			"SomeyaMako",
 			"VulpesVulpes825",
 			"铁桶"
@@ -16,6 +17,7 @@
 	"rest-nonexistent-revision": "指定的修订($1)不存在",
 	"rest-nonexistent-user": "指定的用户（$1）不存在",
 	"rest-invalid-user": "指定的用户名（$1）无效",
+	"rest-permission-denied-anon": "匿名用户无法访问",
 	"rest-permission-denied-title": "用户无权阅读标题($1)",
 	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
 	"rest-pagehistory-incompatible-params": "不能同时指定“旧的”和“新的”参数",
@@ -33,5 +35,13 @@
 	"rest-search-error": "返回搜索结果时出错：$1",
 	"rest-page-source-type-error": "不支持请求的页面源的内容类型",
 	"rest-no-revision": "无法检索标题$1的修订",
-	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）"
+	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）",
+	"rest-html-backend-error": "无法抓取 Parsoid HTML",
+	"rest-bad-json-body": "无效请求正文，其必须是 JSON 对象。",
+	"rest-json-body-parse-error": "将请求正文解析成 JSON 时失败：$1",
+	"rest-missing-body-field": "请求正文缺失必填变量“$1”。",
+	"rest-bad-content-model": "无效内容模块：$1",
+	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订 ID。",
+	"rest-extraneous-csrf-token": "发现外来的 CSRF 令牌。当使用如 OAuth 之类的抵抗 CSRF 攻击的验证机制时不能使用 CSRF 令牌。",
+	"rest-cannot-load-file": "无法加载标题为“$1”的文件。"
 }

@@ -2458,7 +2458,7 @@
 	"revertpage-nouser": "Annullate le modifiche di un utente nascosto, riportata alla versione precedente di {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Annullate le modifiche di {{GENDER:$3|$1}}; pagina riportata all'ultima versione di {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Sessione fallita",
-	"sessionfailure": "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Invia nuovamente il modulo.",
+	"sessionfailure": "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito come precauzione contro il dirottamento di sessione. Invia nuovamente il modulo.",
 	"changecontentmodel": "Modifica il modello di contenuto di una pagina",
 	"changecontentmodel-legend": "Modifica il modello di contenuto",
 	"changecontentmodel-title-label": "Titolo della pagina:",
