@@ -141,6 +141,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$tsField = 'rev_timestamp';
 		$pageField = 'rev_page';
+
+		$ignoreIndex = [
+			// T224017: `rev_timestamp` is never the correct index to use for this module, but
+			// MariaDB sometimes insists on trying to use it anyway. Tell it not to.
+			// Last checked with MariaDB 10.4.13
+			'revision' => 'rev_timestamp',
+		];
+		$useIndex = [];
+
 		if ( $params['user'] !== null ) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
@@ -329,7 +338,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+			} else {
+				// T258480: MariaDB ends up using rev_page_actor_timestamp in some cases here.
+				// Last checked with MariaDB 10.4.13
+				// Unless we are filtering by user (see above), we always want to use the
+				// "history" index on the revision table, namely page_timestamp.
+				$useIndex['revision'] = 'page_timestamp';
 			}
+
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)
 				if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
@@ -392,9 +408,11 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 
-		// T224017: `rev_timestamp` is never the correct index to use for this module, but
-		// MariaDB (10.1.37-39) sometimes insists on trying to use it anyway. Tell it not to.
-		$this->addOption( 'IGNORE INDEX', [ 'revision' => 'rev_timestamp' ] );
+		$this->addOption( 'IGNORE INDEX', $ignoreIndex );
+
+		if ( $useIndex ) {
+			$this->addOption( 'USE INDEX', $useIndex );
+		}
 
 		$count = 0;
 		$generated = [];
