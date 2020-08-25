@@ -296,6 +296,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
+
+			// 1.36
 			[ 'modifyField', 'content', 'content_id', 'patch-content-content_id-fix_not_null.sql' ],
 			[ 'modifyField', 'redirect', 'rd_title', 'patch-redirect-rd_title-varbinary.sql' ],
 			[ 'modifyField', 'pagelinks', 'pl_title', 'patch-pagelinks-pl_title-varbinary.sql' ],
