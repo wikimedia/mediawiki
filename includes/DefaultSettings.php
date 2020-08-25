@@ -7792,11 +7792,11 @@ $wgEnableParserLimitReporting = true;
  *
  * For example for 'foobarskin' where the PHP class is 'MediaWiki\Skins\FooBar\FooBarSkin' set:
  *
- * @par extension.json Example:
+ * @par skin.json Example:
  * @code
  * "ValidSkinNames": {
  * 	"foobarskin": {
- * 		"displayname": "FooBarSkin"
+ * 		"displayname": "FooBarSkin",
  * 		"class": "MediaWiki\\Skins\\FooBar\\FooBarSkin"
  * 	}
  * }
