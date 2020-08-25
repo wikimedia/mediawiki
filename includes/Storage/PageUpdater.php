@@ -1352,7 +1352,6 @@ class PageUpdater {
 				$hints['causeAction'] = 'edit-page';
 				$hints['causeAgent'] = $user->getName();
 
-				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				$editResult = $this->getEditResult();
 
 				// Update links tables, site stats, etc.
@@ -1380,6 +1379,7 @@ class PageUpdater {
 					return;
 				}
 
+				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				if ( $created ) {
 					// Trigger post-create hook
