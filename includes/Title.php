@@ -162,7 +162,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/** @var int The page length, 0 for special pages */
 	protected $mLength = -1;
 
-	/** @var null Is the article at this title a redirect? */
+	/** @var null|bool Is the article at this title a redirect? */
 	public $mRedirect = null;
 
 	/** @var bool Whether a page has any subpages */
