@@ -84,7 +84,10 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $performer );
 		$result = $this->newSpecialPage()->processUnblock(
-			[ 'Target' => $target ],
+			[
+				'Target' => $target,
+				'Reason' => '',
+			],
 			$context
 		);
 
@@ -96,21 +99,21 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		return [
 			'Target is not blocked' => [
 				[
-					'permissions' => [ 'hideuser' ],
+					'permissions' => [ 'block', 'hideuser' => true ],
 				],
 				'ipb_cant_unblock',
 			],
 			'Wrong permissions for unhiding user' => [
 				[
 					'block' => true,
-					'permissions' => [ 'hideuser' => false ],
+					'permissions' => [ 'block', 'hideuser' => false ],
 				],
-				'unblock-hideuser',
+				'badaccess-group0',
 			],
 			'Delete block failed' => [
 				[
 					'block' => true,
-					'permissions' => [ 'hideuser' ],
+					'permissions' => [ 'block', 'hideuser' ],
 					'readOnly' => true,
 				],
 				'ipb_cant_unblock',
@@ -137,10 +140,18 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $performer );
 
-		$this->expectException( ErrorPageError::class );
 		$result = $this->newSpecialPage()->processUnblock(
-			[ 'Target' => $performer ],
+			[
+				'Target' => $performer,
+				'Reason' => ''
+			],
 			$context
+		);
+		$this->assertContains(
+			'ipbnounblockself',
+			array_map( function ( $el ) {
+				return $el[0];
+			}, $result )
 		);
 	}
 }
