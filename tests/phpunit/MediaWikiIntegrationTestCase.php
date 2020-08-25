@@ -668,22 +668,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Remove handlers set by setTemporaryHook()
 		$this->temporaryHookHandlers = [];
 		$this->temporaryHookScopes = [];
-
-		$this->restoreLegacyRegisteredHookHandlers();
-	}
-
-	/**
-	 * Restore handlers that were registered if setTemporaryHook() overrides them.
-	 * @since 1.35
-	 *
-	 */
-	private function restoreLegacyRegisteredHookHandlers() {
-		$originalHandlers = $this->localServices->getHookContainer()->getOriginalHooksForTest();
-		foreach ( $originalHandlers as $hook => $ogHandlers ) {
-			foreach ( $ogHandlers as $handler ) {
-				$this->localServices->getHookContainer()->register( $hook, $handler );
-			}
-		}
 	}
 
 	/**
