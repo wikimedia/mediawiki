@@ -93,7 +93,14 @@ class ApiMain extends ApiBase {
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
 		'block' => ApiBlock::class,
-		'unblock' => ApiUnblock::class,
+		'unblock' => [
+			'class' => ApiUnblock::class,
+			'services' => [
+				'BlockPermissionCheckerFactory',
+				'UnblockUserFactory',
+				'PermissionManager'
+			]
+		],
 		'move' => ApiMove::class,
 		'edit' => ApiEditPage::class,
 		'upload' => ApiUpload::class,

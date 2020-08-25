@@ -67,6 +67,28 @@ class BlockPermissionChecker {
 	}
 
 	/**
+	 * Check base permission of the unblock
+	 *
+	 * @since 1.36
+	 * @param bool $checkHideuser
+	 * @return bool|string
+	 */
+	public function checkBasePermissions( $checkHideuser = false ) {
+		if ( !$this->permissionManager->userHasRight( $this->performer, 'block' ) ) {
+			return 'badaccess-group0';
+		}
+
+		if (
+			$checkHideuser &&
+			!$this->permissionManager->userHasRight( $this->performer, 'hideuser' )
+		) {
+			return 'badaccess-group0';
+		}
+
+		return true;
+	}
+
+	/**
 	 * Checks block-related permissions (doesn't check any other permissions)
 	 *
 	 * T17810: Sitewide blocked admins should not be able to block/unblock

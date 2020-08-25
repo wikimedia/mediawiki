@@ -44,6 +44,9 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.36 ===
+* A new UnblockUser service was introduced that can be used for
+  unblocking users. This was done to expose code previously present
+  in SpecialUnblock to other parts of the code, or to extensions.
 * …
 
 === External library changes in 1.36 ===
@@ -117,6 +120,10 @@ because of Phabricator reports.
   trackBlockWithCookie.
 * Support for v1 of the parser tests file format has been removed; it was
   deprecated in 1.35. (T174199)
+* SpecialUnblockUser::processUIUnblock() has a different return
+  value (previously, array of messages or a boolean value, now,
+  a Status object). This function was also marked as @internal and is no
+  longer safe to call it publicly.
 * …
 
 === Deprecations in 1.36 ===
@@ -139,6 +146,8 @@ because of Phabricator reports.
   instead.
 * Title::nameOf() is deprecated; use Title::newFromID()->getPrefixedDBkey()
   instead.
+* SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
+  service instead.
 * …
 
 === Other changes in 1.36 ===
