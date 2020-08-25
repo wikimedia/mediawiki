@@ -173,6 +173,8 @@ because of Phabricator reports.
   instead.
 * SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
   service instead.
+* Deprecated MediaWikiIntegrationtestCase::removeTemporaryHook() in favor of
+  MediaWikiIntegrationtestCase::clearHook().
 * Skin::getSearchLink(), also exposed as 'searchaction' option in SkinTemplate,
   has been deprecated. Use Title or SpecialPage methods directly.
 * Skin::getAllowedSkins and ::getSkinNames have been deprecated. Use their
