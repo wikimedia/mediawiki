@@ -23,6 +23,8 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -79,6 +81,9 @@ class MergeHistory {
 	/** @var SpamChecker */
 	private $spamChecker;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
 	 * MergeHistoryFactory service
@@ -92,6 +97,7 @@ class MergeHistory {
 	 * @param RevisionStore|null $revisionStore
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param SpamChecker|null $spamChecker
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		Title $source,
@@ -102,7 +108,8 @@ class MergeHistory {
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
 		WatchedItemStoreInterface $watchedItemStore = null,
-		SpamChecker $spamChecker = null
+		SpamChecker $spamChecker = null,
+		HookContainer $hookContainer = null
 	) {
 		if ( $loadBalancer === null ) {
 			wfDeprecatedMsg( 'Direct construction of ' . __CLASS__ .
@@ -115,6 +122,7 @@ class MergeHistory {
 			$revisionStore = $services->getRevisionStore();
 			$watchedItemStore = $services->getWatchedItemStore();
 			$spamChecker = $services->getSpamChecker();
+			$hookContainer = $services->getHookContainer();
 		}
 
 		// Save the parameters
@@ -129,6 +137,7 @@ class MergeHistory {
 		$this->revisionStore = $revisionStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->spamChecker = $spamChecker;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -432,7 +441,7 @@ class MergeHistory {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		Hooks::runner()->onArticleMergeComplete( $this->source, $this->dest );
+		$this->hookRunner->onArticleMergeComplete( $this->source, $this->dest );
 
 		$this->dbw->endAtomic( __METHOD__ );
 
