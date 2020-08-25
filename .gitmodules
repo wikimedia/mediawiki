@@ -1325,3 +1325,7 @@
 	path = extensions/MobileTabsPlugin
 	url = https://github.com/fuerthwiki/MobileTabsPlugin
 	branch = master
+[submodule "skins/Medik"]
+	path = skins/Medik
+	url = https://bitbucket.org/wikiskripta/medik
+	branch = master
