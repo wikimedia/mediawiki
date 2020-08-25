@@ -500,6 +500,7 @@
 	"userlogin-yourpassword-ph": "Gib dein Passwort ein",
 	"createacct-yourpassword-ph": "Gib dein Passwort ein",
 	"yourpasswordagain": "Passwort wiederholen:",
+	"createacct-useuniquepass": "Es wird empfohlen, ein eindeutiges Passwort zu verwenden, das du auf keiner anderen Website verwendest.",
 	"createacct-yourpasswordagain": "Passwort bestätigen",
 	"createacct-yourpasswordagain-ph": "Gib das Passwort erneut ein",
 	"userlogin-remembermypassword": "Angemeldet bleiben",

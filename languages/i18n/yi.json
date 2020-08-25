@@ -2944,6 +2944,7 @@
 	"logentry-newusers-autocreate": "באַניצער קאנטע $1 {{GENDER:$2|געשאפן}} אויטאמאטיש",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|האט באוועגט}} די באשיצן שטעלונגען פֿון $4 צו $3",
 	"logentry-protect-protect": "$1 {{GENDER:$2|האט געשיצט}} דעם בלאַט $3 $4",
+	"logentry-protect-modify": "$1 {{GENDER:$2|האט געענדערט}} שיץ־ניווא פֿארן בלאט $3 $4",
 	"logentry-rights-rights": "$1 האָט {{GENDER:$2|געביטן}} גרופּע מיטגלידערשאַפט פאַר {{GENDER:$6|$3}} פון $4 אויף $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|האט געביטן}} גרופע מיטגלידערשאפט פאר $3",
 	"logentry-rights-autopromote": "$1 אויטאמאטיש  {{GENDER:$2|פראמאווירט}} פון $4 צו $5",
