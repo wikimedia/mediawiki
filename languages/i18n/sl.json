@@ -410,6 +410,7 @@
 	"userlogin-yourpassword-ph": "Vnesi svoje geslo",
 	"createacct-yourpassword-ph": "Vnesite geslo",
 	"yourpasswordagain": "Ponovno vpišite geslo",
+	"createacct-useuniquepass": "Priporočamo uporabo izvirnega gesla, ki ga ne uporabljate na nobeni drugi spletni strani.",
 	"createacct-yourpasswordagain": "Potrdite geslo",
 	"createacct-yourpasswordagain-ph": "Ponovno vnesite geslo",
 	"userlogin-remembermypassword": "Zapomni si me",

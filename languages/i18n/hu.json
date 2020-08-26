@@ -446,6 +446,7 @@
 	"userlogin-yourpassword-ph": "Add meg a jelszavad",
 	"createacct-yourpassword-ph": "Add meg a jelszavad",
 	"yourpasswordagain": "Jelszavad ismét:",
+	"createacct-useuniquepass": "Javasolt olyan egyedi jelszó használata, amit nem használsz más weboldalon.",
 	"createacct-yourpasswordagain": "Új jelszó megerősítése",
 	"createacct-yourpasswordagain-ph": "Írd be a jelszót újra",
 	"userlogin-remembermypassword": "Maradjak bejelentkezve",

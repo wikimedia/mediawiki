@@ -575,6 +575,7 @@
 	"userlogin-yourpassword-ph": "Entrez votre mot de passe",
 	"createacct-yourpassword-ph": "Entrez un mot de passe",
 	"yourpasswordagain": "Confirmez le mot de passe :",
+	"createacct-useuniquepass": "Il est recommandé d’utiliser un mot de passe unique que vous n’utilisez pas sur d&autres sites web.",
 	"createacct-yourpasswordagain": "Confirmez le mot de passe",
 	"createacct-yourpasswordagain-ph": "Entrez à nouveau le mot de passe",
 	"userlogin-remembermypassword": "Garder ma session active",

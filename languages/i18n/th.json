@@ -1418,6 +1418,7 @@
 	"rcfilters-advancedfilters": "ตัวกรองขั้นสูง",
 	"rcfilters-limit-title": "ผลลัพธ์ที่แสดง",
 	"rcfilters-limit-and-date-label": "$1 การเปลี่ยนแปลง, $2",
+	"rcfilters-limit-and-date-popup-dialog-aria-label": "กรองผลลัพธ์ตามการเปลี่ยนแปลงและข่วงเวลา",
 	"rcfilters-date-popup-title": "ระยะเวลาที่ค้นหา",
 	"rcfilters-days-title": "วันล่าสุด",
 	"rcfilters-hours-title": "ชั่วโมงล่าสุด",
