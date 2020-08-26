@@ -327,12 +327,12 @@ class LogPage {
 	 * @param Title $target
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMessage function
-	 * @param null|int|User $doer The user doing the action.
-	 *        null defaults $wgUser, and is deprecated since 1.35
+	 * @param int|User $doer The user doing the action, or their user id
 	 *
 	 * @return int The log_id of the inserted log entry
 	 */
-	public function addEntry( $action, $target, $comment, $params = [], $doer = null ) {
+	public function addEntry( $action, $target, $comment, $params, $doer ) {
+		// FIXME $params is only documented to accept an array
 		if ( !is_array( $params ) ) {
 			$params = [ $params ];
 		}
@@ -349,11 +349,7 @@ class LogPage {
 		$this->comment = $comment;
 		$this->params = self::makeParamBlob( $params );
 
-		if ( $doer === null ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$doer = $wgUser;
-		} elseif ( !is_object( $doer ) ) {
+		if ( !is_object( $doer ) ) {
 			$doer = User::newFromId( $doer );
 		}
 
