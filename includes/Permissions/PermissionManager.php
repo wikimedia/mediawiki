@@ -222,11 +222,9 @@ class PermissionManager {
 	/**
 	 * Can $user perform $action on a page?
 	 *
-	 * The method is intended to replace Title::userCan()
+	 * The method replaced Title::userCan()
 	 * The $user parameter need to be superseded by UserIdentity value in future
 	 * The $title parameter need to be superseded by PageIdentity value in future
-	 *
-	 * @see Title::userCan()
 	 *
 	 * @param string $action
 	 * @param User $user
