@@ -3,9 +3,7 @@
  */
 ( function () {
 	$( function () {
-		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
-			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
-			$widget = $( '#wpComment' ).closest( '.oo-ui-widget' ),
+		var $widget = $( '#wpComment' ).closest( '.oo-ui-widget' ),
 			wpComment;
 
 		if ( !$widget.length ) {
@@ -23,11 +21,6 @@
 			} );
 		} );
 
-		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
-		if ( summaryCodePointLimit ) {
-			mw.widgets.visibleCodePointLimit( wpComment, summaryCodePointLimit );
-		} else if ( summaryByteLimit ) {
-			mw.widgets.visibleByteLimit( wpComment, summaryByteLimit );
-		}
+		mw.widgets.visibleCodePointLimit( wpComment, mw.config.get( 'wgCommentCodePointLimit' ) );
 	} );
 }() );

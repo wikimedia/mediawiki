@@ -18,8 +18,6 @@
 
 	$( function () {
 		var wpSummary, editBox, scrollTop, $editForm,
-			summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
-			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
 			$wpSummary = $( '#wpSummaryWidget' );
 
 		// The summary field might not be there, e.g. when extensions replace it
@@ -27,15 +25,7 @@
 			wpSummary = OO.ui.infuse( $wpSummary );
 
 			// Show a byte-counter to users with how many bytes are left for their edit summary.
-			// TODO: This looks a bit weird, as there is no unit in the UI, just numbers; showing
-			// 'bytes' confused users in testing, and showing 'chars' would be a lie. See T42035.
-			// (Showing 'chars' is still confusing with the code point limit, since it's not obvious
-			// that e.g. combining diacritics or zero-width punctuation count as characters.)
-			if ( summaryCodePointLimit ) {
-				mw.widgets.visibleCodePointLimit( wpSummary, summaryCodePointLimit );
-			} else if ( summaryByteLimit ) {
-				mw.widgets.visibleByteLimit( wpSummary, summaryByteLimit );
-			}
+			mw.widgets.visibleCodePointLimit( wpSummary, mw.config.get( 'wgCommentCodePointLimit' ) );
 		}
 
 		// Restore the edit box scroll state following a preview operation,
