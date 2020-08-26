@@ -154,7 +154,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->watchedItemStore,
-			$this->spamChecker
+			$this->spamChecker,
+			$this->hookContainer
 		);
 	}
 
