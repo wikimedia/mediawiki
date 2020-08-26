@@ -831,9 +831,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @deprecated since 1.36.
 	 * @return string
 	 */
 	protected function getSearchLink() {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$searchPage = SpecialPage::getTitleFor( 'Search' );
 		return $searchPage->getLocalURL();
 	}
