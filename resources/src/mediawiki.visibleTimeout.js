@@ -1,6 +1,6 @@
 ( function () {
 	var hidden, visibilityChange,
-		nextVisibleTimeoutId = 0,
+		nextVisibleTimeoutId = 1,
 		activeTimeouts = {},
 		document = window.document,
 		init = function ( overrideDoc ) {
