@@ -63,6 +63,8 @@ if ( $__useReadline ) {
 	readline_read_history( $__historyFile );
 }
 
+Hooks::runner()->onMaintenanceShellStart();
+
 $__e = null; // PHP exception
 while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 	if ( !$__ignoreErrors && $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {

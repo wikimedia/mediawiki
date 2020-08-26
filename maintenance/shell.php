@@ -78,6 +78,8 @@ class MediaWikiShell extends Maintenance {
 			$this->setupLegacy();
 		}
 
+		Hooks::runner()->onMaintenanceShellStart();
+
 		$shell->run();
 	}
 
