@@ -14,7 +14,9 @@
 			'focus.lengthLimit',
 			'blur.lengthLimit'
 		].join( ' ' ),
+		// eslint-disable-next-line mediawiki/valid-package-file-require
 		trimByteLength = require( 'mediawiki.String' ).trimByteLength,
+		// eslint-disable-next-line mediawiki/valid-package-file-require
 		trimCodePointLength = require( 'mediawiki.String' ).trimCodePointLength;
 
 	/**

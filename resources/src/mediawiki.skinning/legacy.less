@@ -28,6 +28,24 @@
 	direction: rtl;
 }
 
+/* Most input fields should be in site direction */
+textarea,
+input {
+	// Doubling of `dir` attribute selector increases specificity to allow
+	// attributes to override content and/or site directionality. See T260993.
+	.sitedir-ltr &,
+	&[ dir='ltr' ][ dir='ltr' ] {
+		/* @noflip */
+		direction: ltr;
+	}
+
+	.sitedir-rtl &,
+	&[ dir='rtl' ][ dir='rtl' ] {
+		/* @noflip */
+		direction: rtl;
+	}
+}
+
 .mw-userlink {
 	// Word-break overlong user names, see T237230.
 	// FIXME: This property is introduced now, but will be separated in a follow-up
@@ -55,23 +73,6 @@ input[ type='button' ],
 input[ type='reset' ],
 input[ type='file' ] {
 	direction: ltr;
-}
-
-/* Most input fields should be in site direction */
-textarea[ dir='ltr' ],
-input[ dir='ltr' ],
-.sitedir-ltr textarea,
-.sitedir-ltr input {
-	/* @noflip */
-	direction: ltr;
-}
-
-textarea[ dir='rtl' ],
-input[ dir='rtl' ],
-.sitedir-rtl textarea,
-.sitedir-rtl input {
-	/* @noflip */
-	direction: rtl;
 }
 
 /* Default style for semantic tags */

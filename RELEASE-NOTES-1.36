@@ -148,6 +148,8 @@ because of Phabricator reports.
   instead.
 * SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
   service instead.
+* Skin::getSearchLink(), also exposed as 'searchaction' option in SkinTemplate,
+  has been deprecated. Use Title or SpecialPage methods directly.
 * …
 
 === Other changes in 1.36 ===
