@@ -149,10 +149,16 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					$styles[$mediaType] = [];
 				}
 				foreach ( $files as $filepath ) {
-					$styles[$mediaType][] = new ResourceLoaderFilePath(
-						$filepath,
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
+					// Use array_unshift to prepend the feature files to the list of styles.
+					// This ensures that their styles can be overridden in skin stylesheets
+					// without overqualifying the selectors.
+					array_unshift(
+						$styles[$mediaType],
+						new ResourceLoaderFilePath(
+							$filepath,
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						)
 					);
 				}
 			}
