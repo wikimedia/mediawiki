@@ -304,9 +304,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:01Z',
 						'delta' => 256,
 						'size' => 256,
-						'tags' => [
-							'frob' => [ 'name' => 'frob', 'description' => '<i>frob</i>', 'key' => 'tag-frob' ]
-						],
+						'tags' => [ [ 'name' => 'frob', 'description' => '<i>frob</i>' ] ],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
@@ -334,8 +332,8 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'delta' => 256,
 						'size' => 256,
 						'tags' => [
-							'frob' => [ 'name' => 'frob', 'description' => '<i>frob</i>', 'key' => 'tag-frob' ],
-							'nitz' => [ 'name' => 'nitz', 'description' => '<i>nitz</i>', 'key' => 'tag-nitz' ]
+							[ 'name' => 'frob', 'description' => '<i>frob</i>' ],
+							[ 'name' => 'nitz', 'description' => '<i>nitz</i>' ]
 						],
 						'type' => 'revision',
 						'page' => [
@@ -350,7 +348,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'timestamp' => '2020-01-01T00:00:04Z',
 						'delta' => null,
 						'size' => 256,
-						'tags' => null,
+						'tags' => [],
 						'type' => 'revision',
 						'page' => [
 							'id' => 1,
