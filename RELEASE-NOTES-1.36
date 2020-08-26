@@ -101,6 +101,7 @@ because of Phabricator reports.
 * CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
   has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
+* Parser::setFunctionTagHook(), deprecated in 1.35, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * All methods of MWTidy except for MW::tidy() have been removed.  These
   were either @internal or deprecated in 1.35.
