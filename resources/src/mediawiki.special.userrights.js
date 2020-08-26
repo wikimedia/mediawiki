@@ -2,6 +2,7 @@
  * JavaScript for Special:UserRights
  */
 ( function () {
+	// eslint-disable-next-line mediawiki/valid-package-file-require
 	var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' ),
 		$wpReason = $( '#wpReason' );
 
