@@ -437,6 +437,7 @@
 	"userlogin-yourpassword-ph": "יש להקליד את הסיסמה",
 	"createacct-yourpassword-ph": "יש להקליד סיסמה",
 	"yourpasswordagain": "חזרה על הסיסמה:",
+	"createacct-useuniquepass": "מומלץ להשתמש בסיסמה ייחודית שלא השתמשת בה בשום אתר אחר.",
 	"createacct-yourpasswordagain": "אימות הסיסמה",
 	"createacct-yourpasswordagain-ph": "יש להקליד את הסיסמה שנית",
 	"userlogin-remembermypassword": "לזכור שנכנסתי",
