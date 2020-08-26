@@ -150,6 +150,8 @@ because of Phabricator reports.
   service instead.
 * Skin::getSearchLink(), also exposed as 'searchaction' option in SkinTemplate,
   has been deprecated. Use Title or SpecialPage methods directly.
+* Skin::getAllowedSkins and ::getSkinNames have been deprecated. Use their
+  respective equivalents in SkinFactory instead.
 * …
 
 === Other changes in 1.36 ===

@@ -88,7 +88,9 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$this->format = $request->getRawVal( 'format' );
 
 		$this->skin = $request->getRawVal( 'skin' );
-		$skinnames = Skin::getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$skinnames = $skinFactory->getSkinNames();
+
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
 			// The 'skin' parameter is required. (Not yet enforced.)
 			// For requests without a known skin specified,

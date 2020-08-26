@@ -792,8 +792,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$allowed = $services->getSkinFactory()->getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		$languageNameUtils = $services->getLanguageNameUtils();
+		$skinNames = $services->getSkinFactory()->getSkinNames();
 
-		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+		foreach ( $skinNames as $name => $displayName ) {
 			$msg = $this->msg( "skinname-{$name}" );
 			$code = $this->getParameter( 'inlanguagecode' );
 			if ( $code && $languageNameUtils->isValidCode( $code ) ) {
