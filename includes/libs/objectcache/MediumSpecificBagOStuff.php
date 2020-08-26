@@ -293,7 +293,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			}
 
 			// Derive the new value from the old value
-			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
+			$value = $callback( $this, $key, $currentValue, $exptime );
 			$keyWasNonexistant = ( $currentValue === false );
 			$valueMatchesOldValue = ( $value === $currentValue );
 			unset( $currentValue ); // free RAM in case the value is large

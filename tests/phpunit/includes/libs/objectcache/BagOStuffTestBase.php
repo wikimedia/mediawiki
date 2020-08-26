@@ -71,7 +71,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 		$calls = 0;
 		$casRace = false; // emulate a race
-		$callback = function ( BagOStuff $cache, $key, $oldVal ) use ( &$calls, &$casRace ) {
+		$callback = function ( BagOStuff $cache, $key, $oldVal, &$expiry ) use ( &$calls, &$casRace ) {
 			++$calls;
 			if ( $casRace ) {
 				// Uses CAS instead?
