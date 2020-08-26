@@ -56,25 +56,12 @@ class FileDeleteForm {
 	private $oldimage = '';
 
 	/**
-	 * Option to pass a user added in 1.35
-	 * Constructing without passing a user is hard deprecated in 1.35
-	 *
 	 * @param LocalFile $file File object we're deleting
-	 * @param User|null $user
+	 * @param User $user
 	 */
-	public function __construct( $file, $user = null ) {
+	public function __construct( $file, User $user ) {
 		$this->title = $file->getTitle();
 		$this->file = $file;
-
-		if ( $user === null ) {
-			wfDeprecatedMsg(
-				'Construction of ' . __CLASS__ . ' without a $user parameter ' .
-				'was deprecated in MediaWiki 1.35',
-				'1.35'
-			);
-			global $wgUser;
-			$user = $wgUser;
-		}
 		$this->user = $user;
 	}
 
