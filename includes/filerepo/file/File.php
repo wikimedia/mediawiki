@@ -2035,29 +2035,6 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Delete all versions of the file.
 	 *
-	 * @deprecated since 1.35, use deleteFile instead
-	 *
-	 * Moves the files into an archive directory (or deletes them)
-	 * and removes the database rows.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress Hide content from sysops?
-	 * @param User|null $user
-	 * @return Status
-	 * STUB
-	 * Overridden by LocalFile
-	 * @stable to override
-	 */
-	public function delete( $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->readOnlyError();
-	}
-
-	/**
-	 * Delete all versions of the file.
-	 *
 	 * @since 1.35
 	 *
 	 * Moves the files into an archive directory (or deletes them)
