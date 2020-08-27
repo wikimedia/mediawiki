@@ -39,6 +39,9 @@ class UnblockUser {
 	/* @var BlockPermissionChecker */
 	private $blockPermissionChecker;
 
+	/* @var DatabaseBlockStore */
+	private $blockStore;
+
 	/* @var HookRunner */
 	private $hookRunner;
 
@@ -62,6 +65,7 @@ class UnblockUser {
 
 	/**
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param DatabaseBlockStore $blockStore
 	 * @param HookContainer $hookContainer
 	 * @param User|string $target
 	 * @param User $performer
@@ -70,6 +74,7 @@ class UnblockUser {
 	 */
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		DatabaseBlockStore $blockStore,
 		HookContainer $hookContainer,
 		$target,
 		User $performer,
@@ -82,6 +87,7 @@ class UnblockUser {
 				$target,
 				$performer
 			);
+		$this->blockStore = $blockStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Process params
@@ -166,7 +172,7 @@ class UnblockUser {
 			return $status;
 		}
 
-		$deleteBlockStatus = $this->block->delete();
+		$deleteBlockStatus = $this->blockStore->deleteBlock( $this->block );
 		if ( !$deleteBlockStatus ) {
 			$status->fatal( 'ipb_cant_unblock', $this->block->getTarget() );
 			return $status;

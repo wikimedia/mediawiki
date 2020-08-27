@@ -1331,7 +1331,7 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );
@@ -1390,7 +1390,7 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );

@@ -205,6 +205,7 @@ class ApiMoveTest extends ApiTestCase {
 	public function testMoveWhileBlocked() {
 		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Sanity check' );
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),
 			'by' => self::$users['sysop']->getUser()->getId(),
@@ -213,7 +214,7 @@ class ApiMoveTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 
 		$name = ucfirst( __FUNCTION__ );
 		$id = $this->createPage( $name );
@@ -229,7 +230,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			self::$users['sysop']->getUser()->clearInstanceCache();
 			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
 		}

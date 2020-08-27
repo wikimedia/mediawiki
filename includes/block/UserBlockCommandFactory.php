@@ -31,19 +31,27 @@ class UserBlockCommandFactory implements UnblockUserFactory {
 	private $blockPermissionCheckerFactory;
 
 	/**
+	 * @var DatabaseBlockStore
+	 */
+	private $blockStore;
+
+	/**
 	 * @var HookContainer
 	 */
 	private $hookContainer;
 
 	/**
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param DatabaseBlockStore $blockStore
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		DatabaseBlockStore $blockStore,
 		HookContainer $hookContainer
 	) {
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
+		$this->blockStore = $blockStore;
 		$this->hookContainer = $hookContainer;
 	}
 
@@ -63,6 +71,7 @@ class UserBlockCommandFactory implements UnblockUserFactory {
 	) : UnblockUser {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
+			$this->blockStore,
 			$this->hookContainer,
 			$target,
 			$performer,

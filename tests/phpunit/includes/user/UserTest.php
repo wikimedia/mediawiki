@@ -1299,7 +1299,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $blocker );
-		$res = $block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$res = $blockStore->insertBlock( $block );
 		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
@@ -1312,7 +1313,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $res['id'], $user->getBlockId() );
 
 		// Unblock
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
@@ -1332,19 +1333,20 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$ipBlock = new Block( [
 			'address' => $user->getRequest()->getIP(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'createAccount' => true,
 		] );
-		$ipBlock->insert();
+		$blockStore->insertBlock( $ipBlock );
 
 		$userBlock = new Block( [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'createAccount' => false,
 		] );
-		$userBlock->insert();
+		$blockStore->insertBlock( $userBlock );
 
 		$block = $user->getBlock();
 		$this->assertInstanceOf( CompositeBlock::class, $block );
@@ -1397,12 +1399,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1501,13 +1504,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $blockFromEmail, $user->isBlockedFromEmailuser() );
 			$this->assertSame( !$blockFromAccountCreation, $user->isAllowedToCreateAccount() );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1533,12 +1537,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $this->user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expected, $this->user->isBlockedFromUpload() );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 

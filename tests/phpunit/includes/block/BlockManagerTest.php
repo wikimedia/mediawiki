@@ -75,11 +75,12 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
 			'by' => $this->sysopId,
 		], $options['blockOptions'] ) );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 
 		$user = $options['loggedIn'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
@@ -89,7 +90,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			$user->getRequest()
 		) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -105,11 +106,12 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
 			'by' => $this->sysopId,
 		], $options['blockOptions'] ) );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 
 		$user = $options['loggedIn'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
@@ -124,7 +126,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			$user->getRequest()->response()->getCookies()
 		);
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	public static function provideBlocksForShouldApplyCookieBlock() {

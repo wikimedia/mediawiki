@@ -33,11 +33,12 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @throws MWException
 	 */
 	private function addBlockForUser( User $user ) {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
 		$oldBlock = DatabaseBlock::newFromTarget( $user->getName() );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
-			$oldBlock->delete();
+			$blockStore->deleteBlock( $oldBlock );
 		}
 
 		$blockOptions = [
@@ -49,7 +50,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		];
 		$block = new DatabaseBlock( $blockOptions );
 
-		$block->insert();
+		$blockStore->insertBlock( $block );
 		// save up ID for use in assertion. Since ID is an autoincrement,
 		// its value might change depending on the order the tests are run.
 		// ApiBlockTest insert its own blocks!
@@ -139,13 +140,14 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::newFromTarget
 	 */
 	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blocker = $this->getTestSysop()->getUser();
 
 		foreach ( $targets as $target ) {
 			$block = new DatabaseBlock();
 			$block->setTarget( $target );
 			$block->setBlocker( $blocker );
-			$block->insert();
+			$blockStore->insertBlock( $block );
 		}
 
 		// Should find the block with the narrowest range
@@ -157,7 +159,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		foreach ( $targets as $target ) {
 			$block = DatabaseBlock::newFromTarget( $target );
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -245,7 +247,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'byText' => 'm>MetaWikiUser',
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		// Reload block from DB
 		$userBlock = DatabaseBlock::newFromTarget( $username );
@@ -269,14 +271,17 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * TODO: Move to DatabaseBlockStoreTest
+	 *
 	 * @covers ::insert
 	 */
 	public function testCrappyCrossWikiBlocks() {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
 		$oldBlock = DatabaseBlock::newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
-			$oldBlock->delete();
+			$blockStore->deleteBlock( $oldBlock );
 		}
 
 		// Local perspective (blockee on current wiki)...
@@ -300,7 +305,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		];
 		$block = new DatabaseBlock( $blockOptions );
 
-		$res = $block->insert( $this->db );
+		$res = $blockStore->insertBlock( $block, $this->db );
 		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 
 		$user = null; // clear
@@ -365,6 +370,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			],
 		];
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
 			$target = $insBlock['target'];
@@ -383,7 +389,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
 			$block->isHardblock( $insBlock['isHardblock'] );
 			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
-			$block->insert();
+			$blockStore->insertBlock( $block );
 		}
 	}
 
@@ -458,7 +464,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'by' => $sysop->getId(),
 			'expiry' => 'infinity',
 		] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$blockQuery = DatabaseBlock::getQueryInfo();
 		$row = $this->db->select(
@@ -476,7 +483,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertEquals( $block->getBy(), $sysop->getId() );
 		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -536,6 +543,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::insert
 	 */
 	public function testRestrictionsFromDatabase() {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -548,20 +556,23 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$page = $this->getExistingTestPage( 'Foo' );
 		$restriction = new PageRestriction( 0, $page->getId() );
 		$block->setRestrictions( [ $restriction ] );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 
 		// Refresh the block from the database.
 		$block = DatabaseBlock::newFromID( $block->getId() );
 		$restrictions = $block->getRestrictions();
 		$this->assertCount( 1, $restrictions );
 		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
+	 * TODO: Move to DatabaseBlockStoreTest
+	 *
 	 * @covers ::insert
 	 */
 	public function testInsertExistingBlock() {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -574,7 +585,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$page = $this->getExistingTestPage( 'Foo' );
 		$restriction = new PageRestriction( 0, $page->getId() );
 		$block->setRestrictions( [ $restriction ] );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 
 		// Insert the block again, which should result in a failure
 		$result = $block->insert();
@@ -590,7 +601,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		);
 		$this->assertSame( 0, $count );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -609,7 +620,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage( 'Foo' )->getTitle();
 
@@ -619,7 +632,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$title = $user->getTalkPage();
 		$this->assertTrue( $block->appliesToTitle( $title ) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -638,7 +651,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
 		$pageBar = $this->getExistingTestPage( 'Bar' );
@@ -652,7 +667,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
 		$this->assertTrue( $block->appliesToTitle( $pageJohn->getTitle() ) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -672,7 +687,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage()->getTitle();
 
@@ -680,7 +697,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -699,7 +716,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage()->getTitle();
 
@@ -711,7 +730,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**
@@ -730,7 +749,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_MAIN );
 		$this->getBlockRestrictionStore()->insert( [ $namespaceRestriction ] );
@@ -738,7 +759,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
 		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 	/**

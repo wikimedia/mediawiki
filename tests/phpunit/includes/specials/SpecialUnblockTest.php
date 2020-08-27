@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -70,7 +71,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 				'by' => $performer->getId(),
 				'hideName' => true,
 			] );
-			$block->insert();
+			MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		}
 
 		if ( !empty( $options['readOnly'] ) ) {
@@ -135,7 +136,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			'by' => $blocker->getId(),
 			'address' => $performer,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $performer );

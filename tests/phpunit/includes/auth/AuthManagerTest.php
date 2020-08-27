@@ -1500,10 +1500,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$oldBlock = DatabaseBlock::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
-			$oldBlock->delete();
+			$blockStore->deleteBlock( $oldBlock );
 		}
 		$blockOptions = [
 			'address' => 'UTBlockee',
@@ -1514,7 +1515,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			'createAccount' => true,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 		$this->resetServices();
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( $user );
@@ -1530,7 +1531,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			'sitewide' => false,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 		$scopeVariable = new ScopedCallback( [ $block, 'delete' ] );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );

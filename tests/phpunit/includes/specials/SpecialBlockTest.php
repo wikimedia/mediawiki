@@ -107,7 +107,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			new PageRestriction( 0, 999999 ),
 		] );
 
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		// Refresh the block from the database.
 		$block = DatabaseBlock::newFromTarget( $block->getTarget() );
@@ -179,7 +179,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'sitewide' => 0,
 			'enableAutoblock' => false,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$page = $this->newSpecialPage();
 		$reason = 'test';
@@ -585,7 +585,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'by' => $performer->getId(),
 			'hideName' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		// Matches the existing block
 		$defaultData = [
@@ -734,6 +734,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * TODO: Move to BlockPermissionCheckerTest
+	 *
 	 * @dataProvider provideCheckUnblockSelf
 	 * @covers ::checkUnblockSelf
 	 */
@@ -773,7 +775,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'enableAutoblock' => true,
 		] );
 
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertSame(
 			SpecialBlock::checkUnblockSelf( $adjustTarget, $adjustPerformer ),
@@ -810,7 +812,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'enableAutoblock' => true,
 		] );
 
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		return $block;
 	}

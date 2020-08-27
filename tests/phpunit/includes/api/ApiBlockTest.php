@@ -3,6 +3,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -102,7 +103,7 @@ class ApiBlockTest extends ApiTestCase {
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->doBlock( [], $blocked );
 	}

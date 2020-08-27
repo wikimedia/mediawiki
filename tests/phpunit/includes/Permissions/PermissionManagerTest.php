@@ -1427,7 +1427,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $blocker );
-		$res = $block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$res = $blockStore->insertBlock( $block );
 		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
@@ -1437,7 +1438,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->isBlockedFrom( $user, $ut ) );
 
 		// Unblock
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
@@ -1490,13 +1491,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expect, MediaWikiServices::getInstance()->getPermissionManager()
 				->isBlockedFrom( $user, $title ) );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 

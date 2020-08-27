@@ -949,7 +949,8 @@ class SpecialBlock extends FormSpecialPage {
 
 		$priorBlock = null;
 		# Try to insert block. Is there a conflicting block?
-		$status = $block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$status = $blockStore->insertBlock( $block );
 		if ( !$status ) {
 			# Indicates whether the user is confirming the block and is aware of
 			# the conflict (did not change the block target in the meantime)
@@ -1005,7 +1006,7 @@ class SpecialBlock extends FormSpecialPage {
 					$blockRestrictionStore->setBlockId( $currentBlock->getId(), $restrictions )
 				);
 
-				$status = $currentBlock->update();
+				$blockStore->updateBlock( $currentBlock );
 				// TODO handle failure
 
 				$logaction = 'reblock';
