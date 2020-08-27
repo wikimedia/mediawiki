@@ -1329,3 +1329,7 @@
 	path = skins/Medik
 	url = https://bitbucket.org/wikiskripta/medik
 	branch = master
+[submodule "extensions/JsCalendar"]
+	path = extensions/JsCalendar
+	url = https://github.com/edwardspec/mediawiki-extension-JsCalendar
+	branch = master
