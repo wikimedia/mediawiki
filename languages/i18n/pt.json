@@ -483,6 +483,7 @@
 	"userlogin-yourpassword-ph": "Introduza a sua palavra-passe",
 	"createacct-yourpassword-ph": "Introduza uma palavra-passe",
 	"yourpasswordagain": "Repita a palavra-passe:",
+	"createacct-useuniquepass": "Recomenda-se usar uma palavra-passe única que não esteja a usar em nenhum outro site da Internet.",
 	"createacct-yourpasswordagain": "Confirme a palavra-passe",
 	"createacct-yourpasswordagain-ph": "Introduza a palavra-passe novamente",
 	"userlogin-remembermypassword": "Manter-me autenticado",

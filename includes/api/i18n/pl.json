@@ -789,7 +789,7 @@
 	"api-pageset-param-redirects-generator": "Automatycznie rozwiązuj przekierowania ze stron podanych w <var>$1titles</var>, <var>$1pageids</var>, oraz <var>$1revids</var>, a także ze stron zwróconych przez <var>$1generator</var>.",
 	"api-pageset-param-converttitles": "Konwertuj tytuły do innych wariantów, jeżeli trzeba. Będzie działać tylko wtedy, gdy język zawartości wiki będzie wspierał konwersje wariantów. Języki, które wspierają konwersję wariantów to m.in. $1.",
 	"api-help-title": "Pomoc MediaWiki API",
-	"api-help-lead": "To jest automatycznie wygenerowana strona dokumentacji MediaWiki API.\n\nDokumentacja i przykłady: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_pag",
+	"api-help-lead": "To jest automatycznie wygenerowana strona dokumentacji MediaWiki API.\n\nDokumentacja i przykłady: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Moduł główny",
 	"api-help-undocumented-module": "Brak dokumentacji dla modułu $1.",
 	"api-help-flag-deprecated": "Ten moduł jest przestarzały.",

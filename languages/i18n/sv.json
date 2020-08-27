@@ -480,6 +480,7 @@
 	"userlogin-yourpassword-ph": "Ange ditt lösenord",
 	"createacct-yourpassword-ph": "Ange ett lösenord",
 	"yourpasswordagain": "Upprepa lösenord:",
+	"createacct-useuniquepass": "Det rekommenderas att du använder ett unikt lösenord som du inte använder på någon annan webbplats.",
 	"createacct-yourpasswordagain": "Bekräfta lösenordet",
 	"createacct-yourpasswordagain-ph": "Ange lösenordet igen",
 	"userlogin-remembermypassword": "Håll mig inloggad",

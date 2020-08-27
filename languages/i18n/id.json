@@ -3440,6 +3440,7 @@
 	"tag-mw-rollback-description": "Suntingan yang membatalkan suntingan sebelumnya menggunakan pranala batalkan",
 	"tag-mw-undo": "Pembatalan",
 	"tag-mw-undo-description": "Suntingan yang membatalkan suntingan sebelumnya dengan tombol kembalikan",
+	"tag-mw-manual-revert": "Pengembalian manual",
 	"tags-title": "Tanda",
 	"tags-intro": "Halaman ini berisi daftar tag yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.",
 	"tags-tag": "Nama tag",
