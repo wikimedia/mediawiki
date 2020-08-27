@@ -80,19 +80,6 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
-	 * @deprecated since 1.35, use deleteFile instead
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param User|null $user
-	 * @return Status
-	 * @throws MWException
-	 */
-	public function delete( $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->readOnlyError();
-	}
-
-	/**
 	 * @param string $reason
 	 * @param User $user
 	 * @param bool $suppress
