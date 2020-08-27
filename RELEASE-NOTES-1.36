@@ -91,6 +91,10 @@ because of Phabricator reports.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - File::delete
+  - ForeignDBFile::delete
+  - LocalFile::delete
+  - LocalFile::deleteOld
   - PageArchive::undelete
   - RecentChange::markPatrolled
   - Title::getUserPermissionsErrors
