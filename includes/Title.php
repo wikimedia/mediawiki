@@ -4146,17 +4146,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @deprecated since 1.35
 	 *
-	 * @param User|null $user (null defaults to global $wgUser, and is deprecated since 1.35)
+	 * @param User $user
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
-	public function getNotificationTimestamp( $user = null ) {
-		// Assume current user if none given
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
-
+	public function getNotificationTimestamp( User $user ) {
 		return MediaWikiServices::getInstance()
 			->getWatchlistNotificationManager()
 			->getTitleNotificationTimestamp( $user, $this );
