@@ -550,6 +550,7 @@
 	"userlogin-yourpassword-ph": "Введите свой пароль",
 	"createacct-yourpassword-ph": "Введите пароль",
 	"yourpasswordagain": "Повторный набор пароля:",
+	"createacct-useuniquepass": "Рекомендуем использовать уникальный пароль, который вы не используете на других сайтах.",
 	"createacct-yourpasswordagain": "Подтвердите пароль",
 	"createacct-yourpasswordagain-ph": "Введите пароль ещё раз",
 	"userlogin-remembermypassword": "Оставаться в системе",

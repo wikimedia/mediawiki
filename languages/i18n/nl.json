@@ -498,6 +498,7 @@
 	"userlogin-yourpassword-ph": "Geef uw wachtwoord op",
 	"createacct-yourpassword-ph": "Geef een wachtwoord op",
 	"yourpasswordagain": "Geef uw wachtwoord opnieuw in:",
+	"createacct-useuniquepass": "U wordt aangeraden om een uniek wachtwoord te gebruiken dat u niet op een andere website gebruikt.",
 	"createacct-yourpasswordagain": "Bevestig wachtwoord",
 	"createacct-yourpasswordagain-ph": "Geef het wachtwoord opnieuw in",
 	"userlogin-remembermypassword": "Aangemeld blijven",
