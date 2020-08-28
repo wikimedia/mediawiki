@@ -51,7 +51,9 @@ $extensionsToIconKeys = [
     'SemanticMediaWiki' => 'semanticmediawiki',
 ];
 foreach($extensionsToIconKeys as $extensionNameFE => $iconKeyFE){
-    if(!class_exists( $extensionNameFE )){
+    if( !class_exists($extensionNameFE)
+        && array_key_exists($iconKeyFE, $GLOBALS['wgFooterIcons']['poweredby'])
+    ){
         unset($GLOBALS['wgFooterIcons']['poweredby'][$iconKeyFE]);
     }
 }
