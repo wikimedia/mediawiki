@@ -1736,7 +1736,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
 	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
+	 *
 	 * @return bool True if a rate limiter was tripped
+	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
@@ -1769,6 +1771,28 @@ class User implements IDBAccessObject, UserIdentity {
 			// "shared anon" limit, for all anons combined
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
+			}
+		} else {
+			// "global per name" limit, across sites
+			if ( isset( $limits['user-global'] ) ) {
+				$lookup = CentralIdLookup::factoryNonLocal();
+
+				$centralId = $lookup
+					? $lookup->centralIdFromLocalUser( $this, CentralIdLookup::AUDIENCE_RAW )
+					: 0;
+
+				if ( $centralId ) {
+					// We don't have proper realms, use provider ID.
+					$realm = $lookup->getProviderId();
+
+					$globalKey = $cache->makeGlobalKey( 'limiter', $action, 'user-global',
+						$realm, $centralId );
+				} else {
+					// Fall back to a local key for a local ID
+					$globalKey = $cache->makeKey( 'limiter', $action, 'user-global',
+						'local', $id );
+				}
+				$keys[$globalKey] = $limits['user-global'];
 			}
 		}
 
