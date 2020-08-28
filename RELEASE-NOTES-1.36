@@ -169,6 +169,8 @@ because of Phabricator reports.
   has been deprecated. Use Title or SpecialPage methods directly.
 * Skin::getAllowedSkins and ::getSkinNames have been deprecated. Use their
   respective equivalents in SkinFactory instead.
+* The RollbackComplete hook has been deprecated, use the PageSaveComplete hook
+  instead.
 * …
 
 === Other changes in 1.36 ===
