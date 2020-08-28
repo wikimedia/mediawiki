@@ -1,5 +1,5 @@
 #!/bin/sh
-for SCRIPT in _bluespice/pre-autoload-dump.d/*
+for SCRIPT in _bluespice/pre-autoload-dump.d/*.sh
 do
 	if [ -f $SCRIPT -a -x $SCRIPT ]
 	then
