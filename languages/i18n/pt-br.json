@@ -522,6 +522,7 @@
 	"userlogin-yourpassword-ph": "Digite sua senha",
 	"createacct-yourpassword-ph": "Digite uma senha",
 	"yourpasswordagain": "Redigite sua senha",
+	"createacct-useuniquepass": "Recomenda-se usar uma palavra-passe única que não esteja a usar em nenhum outro site da internet.",
 	"createacct-yourpasswordagain": "Confirmar senha",
 	"createacct-yourpasswordagain-ph": "Digite a senha novamente",
 	"userlogin-remembermypassword": "Mantenha-me conectado(a)",
