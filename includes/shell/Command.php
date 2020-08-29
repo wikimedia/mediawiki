@@ -349,6 +349,10 @@ class Command {
 			$cmd .= ' 2>&1';
 		}
 
+		if ( wfIsWindows() ) {
+			$cmd = 'cmd.exe /c "' . $cmd . '"';
+		}
+
 		return [ $cmd, $useLogPipe ];
 	}
 
@@ -389,7 +393,16 @@ class Command {
 		}
 		$pipes = null;
 		$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
-		$proc = proc_open( $cmd, $desc, $pipes );
+		$proc = null;
+
+		if ( wfIsWindows() ) {
+			// Windows Shell bypassed, but command run is "cmd.exe /C "{$cmd}"
+			// This solves some shell parsing issues, see T207248
+			$proc = proc_open( $cmd, $desc, $pipes, null, null, [ 'bypass_shell' => true ] );
+		} else {
+			$proc = proc_open( $cmd, $desc, $pipes );
+		}
+
 		if ( !$proc ) {
 			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
 			throw new ProcOpenError();
