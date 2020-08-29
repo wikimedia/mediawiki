@@ -273,14 +273,6 @@ CREATE INDEX externallinks_index   ON externallinks (el_index);
 CREATE INDEX el_index_60           ON externallinks (el_index_60, el_id);
 CREATE INDEX el_from_index_60      ON externallinks (el_from, el_index_60, el_id);
 
-CREATE TABLE langlinks (
-  ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ll_lang    TEXT,
-  ll_title   TEXT
-);
-CREATE UNIQUE INDEX langlinks_unique ON langlinks (ll_from,ll_lang);
-CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
-
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),

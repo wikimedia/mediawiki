@@ -619,5 +619,38 @@
 			}
 		],
 		"pk": [ "il_from", "il_to" ]
+	},
+	{
+		"name": "langlinks",
+		"comment": "Track interlanguage links.",
+		"columns": [
+			{
+				"name": "ll_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "ll_lang",
+				"type": "binary",
+				"comment": "Language code of the target",
+				"options": { "notnull": true, "length": 35, "default": "" }
+			},
+			{
+				"name": "ll_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ll_lang",
+				"columns": [ "ll_lang", "ll_title" ],
+				"comment": "Index for ApiQueryLangbacklinks",
+				"unique": false
+			}
+		],
+		"pk": [ "ll_from", "ll_lang" ]
 	}
 ]

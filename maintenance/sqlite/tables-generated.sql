@@ -203,3 +203,13 @@ CREATE INDEX il_to ON /*_*/imagelinks (il_to, il_from);
 CREATE INDEX il_backlinks_namespace ON /*_*/imagelinks (
   il_from_namespace, il_to, il_from
 );
+
+
+CREATE TABLE /*_*/langlinks (
+  ll_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  ll_lang BLOB DEFAULT '' NOT NULL,
+  ll_title BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(ll_from, ll_lang)
+);
+
+CREATE INDEX ll_lang ON /*_*/langlinks (ll_lang, ll_title);
