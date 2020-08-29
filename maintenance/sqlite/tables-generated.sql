@@ -213,3 +213,15 @@ CREATE TABLE /*_*/langlinks (
 );
 
 CREATE INDEX ll_lang ON /*_*/langlinks (ll_lang, ll_title);
+
+
+CREATE TABLE /*_*/iwlinks (
+  iwl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  iwl_prefix BLOB DEFAULT '' NOT NULL,
+  iwl_title BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+);
+
+CREATE INDEX iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
+
+CREATE INDEX iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, iwl_title);

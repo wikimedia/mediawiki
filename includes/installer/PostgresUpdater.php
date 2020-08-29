@@ -740,6 +740,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'langlinks', 'll_title', '' ],
 			[ 'changeNullableField', 'langlinks', 'll_lang', 'NOT NULL', true ],
 			[ 'changeNullableField', 'langlinks', 'll_title', 'NOT NULL', true ],
+			[ 'addIndex', 'iwlinks', 'iwlinks_pkey', 'patch-iwlinks-pk.sql' ],
 		];
 	}
 
