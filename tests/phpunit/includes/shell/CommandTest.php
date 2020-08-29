@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Shell\Command;
+use MediaWiki\Shell\Shell;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -177,5 +178,18 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command->input( '' );
 		$result = $command->execute();
 		$this->assertSame( '', $result->getStdout() );
+	}
+
+	/**
+	 * Ensure that it's possible to disable the default shell restrictions
+	 * @see T257278
+	 */
+	public function testDisablingRestrictions() {
+		$command = TestingAccessWrapper::newFromObject( new Command() );
+		// As CommandFactory does for the firejail case:
+		$command->restrict( Shell::RESTRICT_DEFAULT );
+		// Disable restrictions
+		$command->restrict( Shell::RESTRICT_NONE );
+		$this->assertSame( 0, $command->restrictions );
 	}
 }
