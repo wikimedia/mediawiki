@@ -141,6 +141,9 @@ because of Phabricator reports.
   value (previously, array of messages or a boolean value, now,
   a Status object). This function was also marked as @internal and is no
   longer safe to call it publicly.
+* mw.Title.getDotExtension() from the 'mediawiki.Title' module was removed
+  without deprecation. You should use mw.Title.getExtension() and prepend
+  the dot if need be.
 * …
 
 === Deprecations in 1.36 ===
