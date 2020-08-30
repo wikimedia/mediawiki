@@ -216,7 +216,6 @@
 		assert.strictEqual( title.getName(), 'Foo_bar' );
 		assert.strictEqual( title.getNameText(), 'Foo bar' );
 		assert.strictEqual( title.getExtension(), 'JPG' );
-		assert.strictEqual( title.getDotExtension(), '.JPG' );
 		assert.strictEqual( title.getMain(), 'Foo_bar.JPG' );
 		assert.strictEqual( title.getMainText(), 'Foo bar.JPG' );
 		assert.strictEqual( title.getPrefixedDb(), 'File:Foo_bar.JPG' );
@@ -231,7 +230,6 @@
 		assert.strictEqual( title.getName(), '' );
 		assert.strictEqual( title.getNameText(), '' );
 		assert.strictEqual( title.getExtension(), 'foo' );
-		assert.strictEqual( title.getDotExtension(), '.foo' );
 		assert.strictEqual( title.getMain(), '.foo' );
 		assert.strictEqual( title.getMainText(), '.foo' );
 		assert.strictEqual( title.getPrefixedDb(), '.foo' );
