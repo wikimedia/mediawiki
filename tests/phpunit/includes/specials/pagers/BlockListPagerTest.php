@@ -214,7 +214,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ) );
 		}
 
-		// Test Sitewide Blocks.
+		// Test sitewide blocks.
 		$row = (object)[
 			'ipb_address' => '127.0.0.1',
 			'by_user_name' => 'Admin',
@@ -231,7 +231,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$target = '127.0.0.1';
 
-		// Test Partial Blocks Blocks.
+		// Test partial blocks.
 		$block = new DatabaseBlock( [
 			'address' => $target,
 			'by' => $this->getTestSysop()->getUser()->getId(),
