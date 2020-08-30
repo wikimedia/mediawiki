@@ -576,7 +576,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setRestrictions( [ $restriction ] );
 		$block->insert();
 
-		// Insert the block again, which should result in a failur
+		// Insert the block again, which should result in a failure
 		$result = $block->insert();
 
 		$this->assertFalse( $result );
