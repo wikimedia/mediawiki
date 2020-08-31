@@ -2394,7 +2394,7 @@
 	"wlheader-enotif": "E-posta bildirimi etkin.",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar <strong>kalın</strong> gösterilmiştir.",
 	"wlnote": "$3 $4 tarihinden itibariyle son {{PLURAL:$2|bir saatte|<strong>$2</strong> saatte}} yapılan {{PLURAL:$1|son değişiklik|son <strong>$1</strong> değişiklik}} aşağıdadır.",
-	"watchlist-hide": "Gizle",
+	"watchlist-hide": "Şunları gizle",
 	"watchlist-submit": "Göster",
 	"wlshowtime": "Gösterilecek zaman aralığı:",
 	"wlshowhideminor": "küçük değişiklikler",
