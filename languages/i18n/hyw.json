@@ -6,7 +6,8 @@
 			"Azniv Stepanian",
 			"Kareyac",
 			"Rajemian",
-			"Դավիթ Սարոյան"
+			"Դավիթ Սարոյան",
+			"Շահէն"
 		]
 	},
 	"tog-underline": "Ընդգծել յղումները․",
@@ -19,6 +20,7 @@
 	"tog-watchlisthideown": "Թաքցնել իմ խմբագրումները հսկացանկէն",
 	"tog-watchlisthidebots": "Խմբագրումներս թաքցնել հսկացանկէն",
 	"tog-watchlisthideminor": "Խմբագրումներս թաքցնել հսկացանկէն",
+	"tog-showhiddencats": "Ցուցադրել թաքնուած ստորոգութիւնները",
 	"underline-always": "Միշտ",
 	"underline-never": "Երբեք",
 	"editfont-serif": "Սերիֆ տառատեսակ",
@@ -524,7 +526,7 @@
 	"prefs-signature": "Ստորագրութիւն",
 	"prefs-editor": "Խմբագրող",
 	"prefs-preview": "Կանխաստուգել",
-	"userrights": "Մասնակիցների իրաւունքների կառավարում",
+	"userrights": "Մասնակիցներու իրաւունքներու կառավարում",
 	"group": "Խումբ.",
 	"group-user": "Մասնակիցներ",
 	"group-bot": "Մեքենայիկներ",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
-			"Hzy980512"
+			"Hzy980512",
+			"Shirayuki"
 		]
 	},
 	"rest-prefix-mismatch": "リクエストされたパス ($1) は REST API ルートパス ($2) 内にありませんでした",
@@ -16,7 +17,7 @@
 	"rest-permission-denied-anon": "匿名ユーザーはアクセスできません",
 	"rest-permission-denied-title": "ユーザーはタイトル（$1）の読み取り権限を持っていません",
 	"rest-permission-denied-revision": "ユーザーはリクエストした版（$1）にアクセスできません",
-	"rest-pagehistory-incompatible-params": "パラメータ「older_than」と「newer_than」を同時に指定することができません",
+	"rest-pagehistory-incompatible-params": "パラメータ「older_than」と「newer_than」を同時に指定できません",
 	"rest-pagehistory-param-range-error": "リビジョン ID は 0 より大きくなければなりません",
 	"rest-pagehistory-timestamp-error": "指定した版（$1）のタイムスタンプを取得できません",
 	"rest-pagehistorycount-type-unrecognized": "指定した計数タイプ（$1）は無効です",

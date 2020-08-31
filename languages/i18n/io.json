@@ -1805,7 +1805,7 @@
 	"undeleteextrahelp": "Por restaurar omna historio de la pagino, desselektez omna buxi e kliktez <strong><em>{{int:undeletebtn}}</em></strong>.\nPor selektar quala modifiki restauresos, markizez la buxi korespondanta a la revizi por restaurar, e kliktez <strong><em>{{int:undeletebtn}}</em></strong>.",
 	"undeleterevisions": "$1 {{PLURAL:$1|revizo|revizi}} efacita",
 	"undeletehistory": "Se vu restauros la pagino, omna antea revizi restauresos en la korespondanta historiala pagino.\nSe nova pagino kun la sama titulo kreesis pos l'efaco, la restaurita revizuri aparos en lua historiala pagino.",
-	"undeleterevdel": "La restauro ne facesos se to produktos partala o totala efaco de la maxim recenta revizo.\nCa kazi, vu mustas desselektar o trovar la maxim recenta versiono efacita.",
+	"undeleterevdel": "La restauro ne facesos se to produktos partal o total efaco de la maxim recenta revizo.\nCakaze, vu mustas desselektar o desvelizar la maxim recenta versiono efacita.",
 	"undeletehistorynoadmin": "Ica pagino efacesis.\nLa motivo por l'efaco montresas en la rezumo adinfre, kune la detaligo dil uzeri qui redaktis la pagino ante lua efaco.\nLa kompleta texto di ca revizi efacita esas videbla nur por l'administreri.",
 	"undelete-revision": "Yen l'efacita revizo di $1 (skribita en $4, ye $5 kloki) da $3:",
 	"undeleterevision-missing": "Nevalida o mankanta revizo.\nSive vu skribis la ligilo nekorekte, sive la revizo restauresis o removesis del arkivo.",

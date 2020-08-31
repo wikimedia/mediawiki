@@ -148,7 +148,7 @@
 	"category-empty": "''Pe òua sta categorîa a no contegne pàgine ò file murtimediæ.''",
 	"hidden-categories": "{{PLURAL:$1|Categoria ascoza|Categorie ascoze}}",
 	"hidden-category-category": "Categorîe ascôse",
-	"category-subcat-count": "{{PLURAL:$2|Sta categoria a contegne sôlo 'na sottocategoria, chi de segoito.|Sta categoria a contegne {{PLURAL:$1|a sottocategoria indicâ|e $1 sottocategorie indicæ}} di segoito, pe in totale de $2.}}",
+	"category-subcat-count": "{{PLURAL:$2|Sta categoria chì a contegne sôlo 'na sottocategoria, chì aprœuvo.|Sta categoria chie a contegne {{PLURAL:$1|a sottocategoria indicâ|e $1 sottocategorie indicæ}} chì aprœuvo, pe 'n totale de $2.}}",
 	"category-subcat-count-limited": "'Sta categorîa a contegne {{PLURAL:$1|ûnn-a sottocategorîa, indicaa|$1 sottocategorîe, indicæ}} chì inzû.",
 	"category-article-count": "{{PLURAL:$2|Questa categoria a contegne solo sta pagina chì.|Questa categoria a contegne {{PLURAL:$1|a pagina indicâ|e $1 pagine indicæ}} chì de sotta , insce 'n totale de $2.}}",
 	"category-article-count-limited": "'Sta categorîa a contegne {{PLURAL:$1|'sta paggina|'ste $1 paggine}}.",

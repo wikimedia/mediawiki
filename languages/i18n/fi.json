@@ -3382,6 +3382,8 @@
 	"tag-mw-rollback-description": "Muokkaukset, jotka palauttavat edelliset muokkaukset takaisinvetolinkillä",
 	"tag-mw-undo": "Kumoaminen",
 	"tag-mw-undo-description": "Muokkaukset, jotka kumoavat edelliset muokkaukset kumoamislinkillä",
+	"tag-mw-manual-revert": "Muokkaamalla palautettu",
+	"tag-mw-manual-revert-description": "Muokkaukset, joissa sivu palautetaan käsin aikaisemmin esiintyneeseen versioon",
 	"tags-title": "Merkkaukset",
 	"tags-intro": "Tämä sivu luetteloi ne merkkaukset (''engl.'' tags), joilla ohjelmisto voi merkitä muokkauksia, ja mitä ne tarkoittavat.",
 	"tags-tag": "Merkkauksen nimi",
