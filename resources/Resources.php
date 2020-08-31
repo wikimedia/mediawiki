@@ -2241,6 +2241,7 @@ return [
 		],
 		'dependencies' => [
 			'jquery.lengthLimit',
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.special.search' => [
