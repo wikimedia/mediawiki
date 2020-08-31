@@ -498,6 +498,8 @@ because of Phabricator reports.
 * The following classes have been hard deprecated: CachedAction,
   SpecialCachedPage, CacheHelper, ICacheHelper. They were unused in MediaWiki
   ecosystem, so no replacement was provided.
+* The ProtectionForm::buildForm hook has been deprecated. Please use the
+  ProtectionFormAddFormFields hook instead.
 * …
 
 === Other changes in 1.36 ===

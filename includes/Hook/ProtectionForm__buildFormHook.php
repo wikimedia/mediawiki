@@ -9,7 +9,7 @@ use Article;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "ProtectionForm::buildForm" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.36, use ProtectionFormAddFormFields
  * @ingroup Hooks
  */
 interface ProtectionForm__buildFormHook {
