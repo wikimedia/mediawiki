@@ -2186,42 +2186,9 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( !$this->mActorId && $dbw ) {
-			$q = [
-				'actor_user' => $this->getId() ?: null,
-				'actor_name' => (string)$this->getName(),
-			];
-			if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
-				throw new CannotCreateActorException(
-					'Cannot create an actor for a usable name that is not an existing user: ' .
-						"user_id={$this->getId()} user_name=\"{$this->getName()}\""
-				);
-			}
-			if ( $q['actor_name'] === '' ) {
-				throw new CannotCreateActorException(
-					'Cannot create an actor for a user with no name: ' .
-						"user_id={$this->getId()} user_name=\"{$this->getName()}\""
-				);
-			}
-			$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
-			if ( $dbw->affectedRows() ) {
-				$this->mActorId = (int)$dbw->insertId();
-			} else {
-				// Outdated cache?
-				// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-				$this->mActorId = (int)$dbw->selectField(
-					'actor',
-					'actor_id',
-					$q,
-					__METHOD__,
-					[ 'LOCK IN SHARE MODE' ]
-				);
-				if ( !$this->mActorId ) {
-					throw new CannotCreateActorException(
-						"Failed to create actor ID for " .
-							"user_id={$this->getId()} user_name=\"{$this->getName()}\""
-					);
-				}
-			}
+			$migration = MediaWikiServices::getInstance()->getActorMigration();
+			$this->mActorId = $migration->getNewActorId( $dbw, $this );
+
 			$this->invalidateCache();
 			$this->setItemLoaded( 'actor' );
 		}

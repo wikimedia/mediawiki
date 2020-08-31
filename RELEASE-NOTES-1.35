@@ -46,6 +46,7 @@ for use in production.
   mw.message( ... ).parse().
 * (T260485, CVE-2020-25869) SECURITY: ActorMigration: Load user from the correct
   database.
+* (T260485, CVE-2020-25869) SECURITY: ensure actor ID from correct wiki is used.
 
 == MediaWiki 1.35.0-rc.3 ==
 
