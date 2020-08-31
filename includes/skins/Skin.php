@@ -1235,11 +1235,13 @@ abstract class Skin extends ContextSource {
 	 * @param string $name
 	 * @param string|array $urlaction
 	 * @return string
+	 * @deprecated since 1.36. Use Title methods directly.
 	 */
 	public static function makeUrl( $name, $urlaction = '' ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$title = Title::newFromText( $name );
 		self::checkTitle( $title, $name );
-
 		return $title->getLocalURL( $urlaction );
 	}
 
@@ -1253,7 +1255,9 @@ abstract class Skin extends ContextSource {
 		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
-			return self::makeUrl( $name );
+			$title = Title::newFromText( $name );
+			self::checkTitle( $title, $name );
+			return $title->getLocalURL();
 		}
 	}
 

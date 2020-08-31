@@ -866,13 +866,14 @@ class SpecialPage implements MessageLocalizer {
 			return;
 		}
 
-		$msg = $this->msg(
-			MediaWikiServices::getInstance()->getContentLanguage()->lc( $this->getName() ) .
-			'-helppage' );
+		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		$msg = $this->msg( $lang->lc( $this->getName() ) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
-			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$this->getOutput()->addHelpLink( $helpUrl, true );
+			$title = Title::newFromText( $msg->plain() );
+			if ( $title instanceof Title ) {
+				$this->getOutput()->addHelpLink( $title->getLocalURL(), true );
+			}
 		} else {
 			$this->getOutput()->addHelpLink( $to, $overrideBaseUrl );
 		}
