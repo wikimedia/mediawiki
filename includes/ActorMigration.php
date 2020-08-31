@@ -238,8 +238,8 @@ class ActorMigration {
 	/**
 	 * Get actor ID from UserIdentity, if it exists
 	 */
-	private function getExistingActorId( IDatabase $dbw, UserIdentity $user ) {
-		$row = $dbw->selectRow(
+	public function getExistingActorId( IDatabase $db, UserIdentity $user ) {
+		$row = $db->selectRow(
 			'actor',
 			[ 'actor_id' ],
 			[ 'actor_name' => $user->getName() ],
@@ -249,7 +249,61 @@ class ActorMigration {
 			return false;
 		}
 
-		return $row->actor_id;
+		return (int)$row->actor_id;
+	}
+
+	/**
+	 * Attempt to assign an actor ID to the given user.
+	 * If it is already assigned, return the existing ID.
+	 *
+	 * @since 1.34.3
+	 *
+	 * @param IDatabase $dbw
+	 * @param UserIdentity $user
+	 *
+	 * @return int The new actor ID
+	 */
+	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
+		$q = [
+			'actor_user' => $user->getId() ?: null,
+			'actor_name' => (string)$user->getName(),
+		];
+		if ( $q['actor_user'] === null && User::isUsable( $q['actor_name'] ) ) {
+			throw new CannotCreateActorException(
+				'Cannot create an actor for a usable name that is not an existing user: ' .
+				"user_id={$user->getId()} user_name=\"{$user->getName()}\""
+			);
+		}
+		if ( $q['actor_name'] === '' ) {
+			throw new CannotCreateActorException(
+				'Cannot create an actor for a user with no name: ' .
+				"user_id={$user->getId()} user_name=\"{$user->getName()}\""
+			);
+		}
+
+		$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
+
+		if ( $dbw->affectedRows() ) {
+			$actorId = (int)$dbw->insertId();
+		} else {
+			// Outdated cache?
+			// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
+			$actorId = (int)$dbw->selectField(
+				'actor',
+				'actor_id',
+				$q,
+				__METHOD__,
+				[ 'LOCK IN SHARE MODE' ]
+			);
+			if ( !$actorId ) {
+				throw new CannotCreateActorException(
+					"Failed to create actor ID for " .
+					"user_id={$user->getId()} user_name=\"{$user->getName()}\""
+				);
+			}
+		}
+
+		return $actorId;
 	}
 
 	/**
@@ -275,17 +329,13 @@ class ActorMigration {
 			$ret[$text] = $user->getName();
 		}
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			// UBN fix for T260485 - do not let User object to handle existing actor IDs
-			// TODO: Make User object wiki-aware and let it handle all cases.
+			// NOTE: Don't use $user->getActorId(), since that may be for the wrong wiki (T260485)
+			// TODO: Make User object wiki-aware and let it handle all cases (T260933)
 			$existingActorId = $this->getExistingActorId( $dbw, $user );
 			if ( $existingActorId !== false ) {
 				$ret[$actor] = $existingActorId;
 			} else {
-				// We need to be able to assign an actor ID if none exists
-				if ( !$user instanceof User && !$user->getActorId() ) {
-					$user = User::newFromAnyId( $user->getId(), $user->getName(), null );
-				}
-				$ret[$actor] = $user->getActorId( $dbw );
+				$ret[$actor] = $this->getNewActorId( $dbw, $user );
 			}
 		}
 		return $ret;
