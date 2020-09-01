@@ -2,17 +2,22 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use BagOStuff;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
+use JobQueueGroup;
 use LinksUpdate;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWikiIntegrationTestCase;
 use MWCallableUpdate;
@@ -1115,6 +1120,76 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
+	}
+
+	public function provideEnqueueRevertedTagUpdateJob() {
+		return [
+			'approved' => [ true, 1 ],
+			'not approved' => [ false, 0 ]
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeEnqueueRevertedTagUpdateJob
+	 * @dataProvider provideEnqueueRevertedTagUpdateJob
+	 *
+	 * @param bool $approved
+	 * @param int $queueSize
+	 */
+	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
+		$page = $this->getPage( __METHOD__ );
+
+		$content = [ 'main' => new WikitextContent( '1' ) ];
+		$rev = $this->createRevision( $page, '', $content );
+		$editResult = new EditResult(
+			false,
+			10,
+			EditResult::REVERT_ROLLBACK,
+			11,
+			12,
+			true,
+			false,
+			[ 'mw-rollback' ]
+		);
+
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+
+		$updater->prepareUpdate( $rev, [
+			'editResult' => $editResult,
+			'approved' => $approved
+		] );
+		$updater->doUpdates();
+
+		$services = MediaWikiServices::getInstance();
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+			)
+		);
+
+		if ( $approved ) {
+			$this->assertNull(
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should not be cached when the revert is approved'
+			);
+		} else {
+			$this->assertEquals(
+				$editResult,
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should be cached when the revert is not approved'
+			);
+		}
+
+		$jobQueueGroup = JobQueueGroup::singleton();
+		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );
+		$this->assertSame(
+			$queueSize,
+			$jobQueue->getSize()
+		);
 	}
 
 	/**

@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
@@ -1704,6 +1705,15 @@ class WikiPage implements Page, IDBAccessObject {
 		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
 
 		$services = MediaWikiServices::getInstance();
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
@@ -1715,7 +1725,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
 			$this->getContentHandlerFactory(),
-			$this->getHookContainer()
+			$this->getHookContainer(),
+			$editResultCache
 		);
 
 		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
@@ -1823,7 +1834,8 @@ class WikiPage implements Page, IDBAccessObject {
 			new ServiceOptions(
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$config
-			)
+			),
+			ChangeTags::getSoftwareTags()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $config->get( 'PageCreationLog' ) );

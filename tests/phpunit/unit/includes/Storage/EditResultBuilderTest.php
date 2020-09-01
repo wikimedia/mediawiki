@@ -9,7 +9,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWiki\Storage\PageUpdateException;
-use MediaWiki\Storage\PageUpdater;
 use MediaWikiUnitTestCase;
 use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -362,7 +361,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			->willReturn( $originalRevisionRecord );
 
 		$options = new ServiceOptions(
-			PageUpdater::CONSTRUCTOR_OPTIONS,
+			EditResultBuilder::CONSTRUCTOR_OPTIONS,
 			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
 		);
 

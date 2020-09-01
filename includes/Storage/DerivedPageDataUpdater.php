@@ -60,6 +60,7 @@ use Psr\Log\NullLogger;
 use RecentChangesUpdateJob;
 use RefreshSecondaryDataUpdate;
 use ResourceLoaderWikiModule;
+use RevertedTagUpdateJob;
 use Revision;
 use SearchUpdate;
 use SiteStatsUpdate;
@@ -165,6 +166,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * Stores (most of) the $options parameter of prepareUpdate().
 	 * @see prepareUpdate()
+	 *
+	 * @codingStandardsIgnoreStart
+	 * @phan-var array{changed:bool,created:bool,moved:bool,restored:bool,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult,approved:bool}
+	 * @codingStandardsIgnoreEnd
 	 */
 	private $options = [
 		'changed' => true,
@@ -182,6 +187,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// to make the life of prepareUpdate() callers easier.
 		'causeAction' => null,
 		'causeAgent' => null,
+		'editResult' => null,
+		'approved' => false,
 	];
 
 	/**
@@ -275,10 +282,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		],
 	];
 
-	/**
-	 * @var IContentHandlerFactory
-	 */
+	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
+
+	/** @var EditResultCache */
+	private $editResultCache;
 
 	/**
 	 * @param WikiPage $wikiPage ,
@@ -292,6 +300,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param ILBFactory $loadbalancerFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
+	 * @param EditResultCache $editResultCache
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -304,7 +313,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		EditResultCache $editResultCache
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -320,6 +330,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->editResultCache = $editResultCache;
 
 		$this->logger = new NullLogger();
 	}
@@ -1098,6 +1109,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *    matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *    for the time until caches have been changed to store RenderedRevision states instead
 	 *    of ParserOutput objects. (default: null) (since 1.33)
+	 *  - editResult: EditResult object created during the update. Required to perform reverted
+	 *    tag update using RevertedTagUpdateJob. (default: null) (since 1.36)
+	 *  - approved: whether the edit is somehow "approved" and the RevertedTagUpdateJob should
+	 *    be scheduled right away. Required only if EditResult::isRevert() is true. (boolean,
+	 *    default: false) (since 1.36)
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
 		if ( isset( $options['oldrevision'] ) && $options['oldrevision'] instanceof Revision ) {
@@ -1119,6 +1135,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			|| $options['triggeringUser'] instanceof UserIdentity,
 			'$options["triggeringUser"]',
 			'must be a UserIdentity'
+		);
+		Assert::parameter(
+			!isset( $options['editResult'] )
+			|| $options['editResult'] instanceof EditResult,
+			'$options["editResult"]',
+			'must be an EditResult'
 		);
 
 		if ( !$revision->getId() ) {
@@ -1601,7 +1623,42 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$this->loadbalancerFactory->getLocalDomainID()
 		);
 
+		// Schedule a deferred update for marking reverted edits if applicable.
+		$this->maybeEnqueueRevertedTagUpdateJob();
+
 		$this->doTransition( 'done' );
+	}
+
+	/**
+	 * If the edit was a revert and it is considered "approved", enqueues the
+	 * RevertedTagUpdateJob for it. If the edit is not yet approved, the EditResult is
+	 * persisted in cache for later use.
+	 */
+	private function maybeEnqueueRevertedTagUpdateJob() {
+		if ( $this->options['editResult'] === null ) {
+			return;
+		}
+
+		$editResult = $this->options['editResult'];
+		if ( !$editResult->isRevert() ) {
+			return;
+		}
+
+		if ( $this->options['approved'] ) {
+			// Enqueue the job
+			$this->jobQueueGroup->lazyPush(
+				RevertedTagUpdateJob::newSpec(
+					$this->revision->getId(),
+					$this->options['editResult']
+				)
+			);
+		} else {
+			// Cache EditResult for later use
+			$this->editResultCache->set(
+				$this->revision->getId(),
+				$this->options['editResult']
+			);
+		}
 	}
 
 	/**

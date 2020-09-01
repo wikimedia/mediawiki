@@ -38,6 +38,10 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class EditResultBuilder {
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'ManualRevertSearchRadius',
+	];
+
 	/**
 	 * A mapping from EditResult's revert methods to relevant change tags.
 	 * For use by getRevertTags()
@@ -96,6 +100,8 @@ class EditResultBuilder {
 		ILoadBalancer $loadBalancer,
 		ServiceOptions $options
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		$this->revisionStore = $revisionStore;
 		$this->softwareTags = $softwareTags;
 		$this->loadBalancer = $loadBalancer;

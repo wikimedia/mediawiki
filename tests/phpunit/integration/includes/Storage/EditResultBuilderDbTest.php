@@ -13,7 +13,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
-use MediaWiki\Storage\PageUpdater;
 use MediaWikiIntegrationTestCase;
 use Title;
 use WikiPage;
@@ -343,7 +342,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	private function getEditResultBuilder( int $manualRevertSearchRadius = 15 ) {
 		$services = MediaWikiServices::getInstance();
 		$options = new ServiceOptions(
-			PageUpdater::CONSTRUCTOR_OPTIONS,
+			EditResultBuilder::CONSTRUCTOR_OPTIONS,
 			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
 		);
 
