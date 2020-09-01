@@ -177,14 +177,14 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return bool|null|string
+	 * @return string|false
 	 */
 	public function getMetadata() {
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return serialize( self::parseMetadata( $this->mInfo['metadata'] ) );
 		}
 
-		return null;
+		return false;
 	}
 
 	/**
