@@ -45,5 +45,20 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 			$htmlCache->getUrls( $title ),
 			'all urls for a user js page'
 		);
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getInternalURL' )->will( $this->returnCallback( function ( $query = '' ) {
+			return 'https://test/?title=MediaWiki:Example.js' . ( $query !== '' ? "&$query" : '' );
+		} ) );
+		$title->method( 'isSiteJsConfigPage' )->willReturn( true );
+		$this->assertEquals(
+			[
+				'https://test/?title=MediaWiki:Example.js',
+				'https://test/?title=MediaWiki:Example.js&action=history',
+				'https://test/?title=MediaWiki:Example.js&action=raw&ctype=text/javascript',
+			],
+			$htmlCache->getUrls( $title ),
+			'all urls for a site js page'
+		);
 	}
 }
