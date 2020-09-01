@@ -1332,6 +1332,7 @@
 	"grant-editpage": "Muokata olemassa olevia sivuja",
 	"grant-editprotected": "Muokata suojattuja sivuja",
 	"grant-highvolume": "Suorittaa paljon muokkauksia",
+	"grant-mergehistory": "Yhdistä sivujen muutoshistoriat",
 	"grant-oversight": "Piilottaa käyttäjiä ja häivyttää yksittäisiä versioita",
 	"grant-patrol": "Tarkastaa sivuihin tehtyjä muutoksia",
 	"grant-privateinfo": "Päästä näkemään yksityiset tiedot",
