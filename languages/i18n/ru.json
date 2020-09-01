@@ -4117,7 +4117,7 @@
 	"pageid": "ID страницы $1",
 	"interfaceadmin-info": "$1\n\nПрава на редактирование общесайтных CSS/JS/JSON-файлов были недавно вынесены из права <code>editinterface</code>. Если вы не понимаете, почему вы наткнулись на эту ошибку, см. [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt; теги могут быть использованы только в пределах обычных страниц.",
-	"gotointerwiki": "Покидаем {{grammar:accusative|{{SITENAME}}}}...",
+	"gotointerwiki": "Покидаем {{grammar:accusative|{{SITENAME}}}}…",
 	"gotointerwiki-invalid": "Указан некорректный заголовок.",
 	"gotointerwiki-external": "Вы покидаете {{grammar:accusative|{{SITENAME}}}} для посещения стороннего сайта [[$2]].\n\n'''[$1 Перейти на $1]'''",
 	"undelete-cantedit": "Вы не можете восстановить эту страницу, поскольку у вас недостаточно прав для её редактирования.",

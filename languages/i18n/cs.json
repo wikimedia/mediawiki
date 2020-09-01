@@ -3509,6 +3509,7 @@
 	"diff-form-oldid": "ID staré revize (nepovinné)",
 	"diff-form-revid": "ID revize se změnou",
 	"diff-form-submit": "Zobrazit rozdíly",
+	"diff-form-other-revid": "ID revize",
 	"permanentlink": "Trvalý odkaz",
 	"permanentlink-revid": "ID revize",
 	"permanentlink-submit": "Přejít na revizi",

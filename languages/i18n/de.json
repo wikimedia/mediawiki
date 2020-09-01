@@ -3439,6 +3439,8 @@
 	"tag-mw-undo-description": "Bearbeitungen, die frühere Versionen mit dem Link „Rückgängig machen“ zurücksetzen",
 	"tag-mw-manual-revert": "Manuelle Zurücksetzung",
 	"tag-mw-manual-revert-description": "Bearbeitungen, die die Seite manuell in einen exakten vorherigen Zustand zurücksetzen",
+	"tag-mw-reverted": "Zurückgesetzt",
+	"tag-mw-reverted-description": "Bearbeitungen, die später durch eine andere Bearbeitung rückgängig gemacht wurden",
 	"tags-title": "Markierungen",
 	"tags-intro": "Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet wurden, sowie deren Bedeutung. \n\nBei entsprechender Einstellung können die Missbrauchfilter beliebige Markierungen in die Versionsgeschichte setzen. Man kann die Versionsgeschichte dann nach den Markierungen filtern.",
 	"tags-tag": "Markierungsname",
