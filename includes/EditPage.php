@@ -2270,7 +2270,6 @@ ERROR;
 
 			# Article exists. Check for edit conflict.
 
-			$this->page->clear(); # Force reload of dates, etc.
 			$timestamp = $this->page->getTimestamp();
 			$latest = $this->page->getLatest();
 
