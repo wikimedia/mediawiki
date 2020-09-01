@@ -617,6 +617,14 @@ class RecentChange implements Taggable {
 		// to make sure that the Patrol link isn't visible any longer!
 		$this->getTitle()->invalidateCache();
 
+		// Enqueue a reverted tag update (in case the edit was a revert)
+		$revisionId = $this->getAttribute( 'rc_this_oldid' );
+		if ( $revisionId ) {
+			$revertedTagUpdateManager =
+				MediaWikiServices::getInstance()->getRevertedTagUpdateManager();
+			$revertedTagUpdateManager->approveRevertedTagForRevision( $revisionId );
+		}
+
 		return $dbw->affectedRows();
 	}
 

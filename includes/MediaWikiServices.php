@@ -69,6 +69,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -1106,6 +1107,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getResourceLoader() : ResourceLoader {
 		return $this->getService( 'ResourceLoader' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return RevertedTagUpdateManager
+	 */
+	public function getRevertedTagUpdateManager() : RevertedTagUpdateManager {
+		return $this->getService( 'RevertedTagUpdateManager' );
 	}
 
 	/**

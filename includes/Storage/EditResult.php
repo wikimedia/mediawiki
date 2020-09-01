@@ -109,6 +109,9 @@ class EditResult implements JsonSerializable {
 	 * EditResult::jsonSerialize(). The structure of the array may change without prior
 	 * notice.
 	 *
+	 * Any changes to the format are guaranteed to be backwards-compatible, so this
+	 * method will work fine with old serialized EditResults.
+	 *
 	 * For constructing EditResult objects from scratch use EditResultBuilder.
 	 *
 	 * @see EditResult::jsonSerialize()
