@@ -512,11 +512,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		if ( $user->getOption( 'watchlistunwatchlinks' ) ) {
 			$list->setChangeLinePrefixer( function ( RecentChange $rc, ChangesList $cl, $grouped ) {
+				$unwatch = $this->msg( 'watchlist-unwatch' )->text();
 				// Don't show unwatch link if the line is a grouped log entry using EnhancedChangesList,
 				// since EnhancedChangesList groups log entries by performer rather than by target article
 				if ( $rc->mAttribs['rc_type'] == RC_LOG && $cl instanceof EnhancedChangesList &&
 					$grouped ) {
-					return '';
+					return "<span style='visibility:hidden'>$unwatch</span>\u{00A0}";
 				} else {
 					$unwatchTooltipMessage = 'tooltip-ca-unwatch';
 					$diffInDays = null;
@@ -536,7 +537,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 					return $this->getLinkRenderer()
 							->makeKnownLink( $rc->getTitle(),
-								$this->msg( 'watchlist-unwatch' )->text(), [
+								$unwatch, [
 									'class' => 'mw-unwatch-link',
 									'title' => $this->msg( $unwatchTooltipMessage, [ $diffInDays ] )->text()
 								], [ 'action' => 'unwatch' ] ) . "\u{00A0}";
