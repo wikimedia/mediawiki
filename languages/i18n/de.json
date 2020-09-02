@@ -2444,7 +2444,7 @@
 	"rollbackfailed": "Zurücksetzen gescheitert",
 	"rollback-missingparam": "In der Anfrage fehlen erforderliche Parameter.",
 	"rollback-missingrevision": "Die Versionsdaten konnten nicht geladen werden.",
-	"cantrollback": "Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.",
+	"cantrollback": "Die Änderung kann nicht zurückgesetzt werden. Der letzte Beitragende ist der einzige Autor dieser Seite.",
 	"alreadyrolled": "Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da bereits ein anderer Benutzer die Seite geändert hat.\n\nDie letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Die Änderungszusammenfassung lautet: <em>$1</em>.",
 	"revertpage": "Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurden auf die letzte Version von [[User:$1|$1]] zurückgesetzt",

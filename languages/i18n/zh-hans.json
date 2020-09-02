@@ -3526,6 +3526,8 @@
 	"tag-mw-undo-description": "使用撤销链接撤销上一次编辑的编辑",
 	"tag-mw-manual-revert": "手动回退",
 	"tag-mw-manual-revert-description": "手动将页面还原到先前某个状态的编辑",
+	"tag-mw-reverted": "已回退",
+	"tag-mw-reverted-description": "过后被另一编辑回退了的编辑",
 	"tags-title": "标签",
 	"tags-intro": "本页面列出了软件可能用于标记编辑的标签和它们的含义。",
 	"tags-tag": "标签名称",

@@ -2228,7 +2228,7 @@
 	"year": "由呢一年 (同更早):",
 	"date": "開始日期（同更早之前）：",
 	"sp-contributions-blocklog": "封鎖日誌",
-	"sp-contributions-suppresslog": "壓制咗{{GENDER:$1|user}}嘅用戶貢獻",
+	"sp-contributions-suppresslog": "壓制咗嘅用戶貢獻",
 	"sp-contributions-deleted": "刪除咗嘅用戶貢獻",
 	"sp-contributions-uploads": "上載紀錄",
 	"sp-contributions-logs": "日誌",
