@@ -49,8 +49,9 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 				optionSelectedLabel = expiryDropdown.dropdownWidget.label;
 
 			if ( typeof $link !== 'undefined' ) {
-				$link.addClass( 'loading' );
+				updateWatchLink( $link, 'watch', 'loading' );
 			}
+
 			// Pause the mw.notify so that we can wait for watch request to finish
 			notif.pause();
 			api = new mw.Api();
@@ -76,9 +77,6 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 					notif.resume();
 
 					updateWatchLink( $link, 'unwatch', 'idle', watchResponse.expiry );
-					if ( typeof $link !== 'undefined' ) {
-						$link.removeClass( 'loading' );
-					}
 
 					if ( typeof $li !== 'undefined' ) {
 						if ( value === 'infinite' ) {
@@ -110,6 +108,10 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 
 		expiryDropdown.on( 'change', onDropdownChange );
 		this.$element.append( dropdownLabel.$element, expiryDropdown.$element );
+	} else {
+		if ( typeof $li !== 'undefined' ) {
+			$li.removeClass( 'mw-watchlink-temp' );
+		}
 	}
 };
 

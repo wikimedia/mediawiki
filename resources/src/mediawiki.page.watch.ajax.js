@@ -98,22 +98,16 @@
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
-		// Most common ID style
-		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
-			$li.prop( 'id', 'ca-' + action );
-		}
-
 		if ( state === 'loading' ) {
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
 
-			// Remove the half-star class that might have been added by SkinTemplate.
-			if ( action === 'unwatch' ) {
-				$li.removeClass( 'mw-watchlink-temp' );
+			// Most common ID style
+			if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
+				$li.prop( 'id', 'ca-' + action );
 			}
 		}
-
 	}
 
 	/**
