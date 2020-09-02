@@ -1333,3 +1333,7 @@
 	path = extensions/JsCalendar
 	url = https://github.com/edwardspec/mediawiki-extension-JsCalendar
 	branch = master
+[submodule "skins/Cosmos"]
+	path = skins/Cosmos
+	url = https://github.com/Universal-Omega/MediaWiki-Cosmos-skin
+	branch = REL1_34
