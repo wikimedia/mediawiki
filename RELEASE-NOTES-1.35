@@ -5,6 +5,16 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
+== MediaWiki 1.35.0-rc.3 ==
+
+=== Changes since MediaWiki 1.35.0-rc.2 ===
+* (T258662) mediawiki.visibleTimeout: Update the nextVisibleTimeoutId value.
+* Ensure Parsoid doesn't throw when <ref> is used w/o Cite installed.
+* Remove maintenance/createCommonPasswordCdb.php.
+* (T260468) Increase "sites.site_global_key" to varbinary(64).
+* (T183759) Fix shell edge-cases in Windows.
+* (T257879) Drop PHP 7.2 support; require 7.3.19.
+
 == MediaWiki 1.35.0-rc.2 ==
 
 === Changes since MediaWiki 1.35.0-rc.1 ===
