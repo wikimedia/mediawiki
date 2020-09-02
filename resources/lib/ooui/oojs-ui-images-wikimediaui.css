@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.1
+ * OOUI v0.40.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-08-05T21:22:12Z
+ * Date: 2020-09-02T15:43:15Z
  */
 .oo-ui-icon-arrowNext {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/arrowNext-ltr.svg);
@@ -2552,6 +2552,15 @@
 }
 .oo-ui-image-progressive.oo-ui-icon-stop {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/stop-progressive.svg);
+}
+.oo-ui-icon-volumeUp {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeUp-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-volumeUp {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeUp-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-volumeUp {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeUp-ltr-progressive.svg);
 }
 .oo-ui-icon-zoomIn {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/zoomIn.svg);
