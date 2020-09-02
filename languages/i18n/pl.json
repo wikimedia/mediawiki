@@ -3455,6 +3455,8 @@
 	"tag-mw-undo-description": "Edycje, które są wycofaniem poprzednich edycji przy użyciu linku „anuluj edycję”",
 	"tag-mw-manual-revert": "Ręczne wycofanie zmian",
 	"tag-mw-manual-revert-description": "Edycje, które ręcznie przywracają stronę do dokładnie takiego stanu, w jakim się wcześniej znajdowała",
+	"tag-mw-reverted": "Wycofane",
+	"tag-mw-reverted-description": "Edycje, które później zostały wycofane przez inną edycję",
 	"tags-title": "Znaczniki",
 	"tags-intro": "Na tej stronie znajduje się lista znaczników, którymi oprogramowanie może oznaczyć edycje, oraz ich opisy.",
 	"tags-tag": "Nazwa znacznika",

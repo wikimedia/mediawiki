@@ -3427,6 +3427,7 @@
 	"tag-mw-undo": "Annulla",
 	"tag-mw-undo-description": "Modifiche che annullano le modifiche precedenti utilizzando il collegamento \"Annulla\"",
 	"tag-mw-manual-revert": "Ripristino manuale",
+	"tag-mw-reverted": "Annullato",
 	"tags-title": "Etichette",
 	"tags-intro": "Questa pagina elenca le etichette che il software potrebbe associare a una modifica e il loro significato.",
 	"tags-tag": "Nome dell'etichetta",

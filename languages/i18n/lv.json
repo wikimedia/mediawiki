@@ -556,6 +556,8 @@
 	"botpasswords-label-resetpassword": "Atiestatīt paroli",
 	"botpasswords-label-grants-column": "Piešķirts",
 	"botpasswords-bad-appid": "Bota nosaukums \"$1\" nav derīgs.",
+	"botpasswords-insert-failed": "Neizdevās pievienot bota nosaukumu \"$1\". Vai tas jau ir pievienots?",
+	"botpasswords-update-failed": "Neizdevās izmainīt bota nosaukumu \"$1\". Vai tas ticis dzēsts?",
 	"botpasswords-created-title": "Bota parole izveidota",
 	"botpasswords-updated-title": "Bota parole atjaunināta",
 	"botpasswords-deleted-title": "Bota parole dzēsta",
