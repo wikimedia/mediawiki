@@ -153,9 +153,47 @@ class WatchAction extends FormAction {
 		$form->setTokenSalt( 'watch' );
 	}
 
+	/**
+	 * Show one of 8 possible success messages.
+	 * The messages are:
+	 * 1. addedwatchtext
+	 * 2. addedwatchtext-talk
+	 * 3. addedwatchindefinitelytext
+	 * 4. addedwatchindefinitelytext-talk
+	 * 5. addedwatchexpirytext
+	 * 6. addedwatchexpirytext-talk
+	 * 7. addedwatchexpiryhours
+	 * 8. addedwatchexpiryhours-talk
+	 */
 	public function onSuccess() {
 		$msgKey = $this->getTitle()->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
-		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText() );
+		$expiryLabel = null;
+		$submittedExpiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		if ( $submittedExpiry ) {
+			// We can't use $this->watcheditem to get the expiry because it's not been saved at this
+			// point in the request and so its values are those from before saving.
+			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry );
+			$expiryLabel = $submittedExpiry;
+
+			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
+			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );
+			$defaultLabels = array_keys( static::getExpiryOptions( $this->getContext(), null )['options'] );
+			if ( $expiryDays && !in_array( $submittedExpiry, $defaultLabels ) ) {
+				$expiryLabel = $this->getContext()->msg( 'days', $expiryDays );
+			}
+
+			// Determine which message to use, depending on whether this is a talk page or not
+			// and whether an expiry was selected.
+			$isTalk = $this->getTitle()->isTalkPage();
+			if ( wfIsInfinity( $expiry ) ) {
+				$msgKey = $isTalk ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+			} elseif ( $expiryDays > 0 ) {
+				$msgKey = $isTalk ? 'addedwatchexpirytext-talk' : 'addedwatchexpirytext';
+			} elseif ( $expiryDays < 1 ) {
+				$msgKey = $isTalk ? 'addedwatchexpiryhours-talk' : 'addedwatchexpiryhours';
+			}
+		}
+		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText(), $expiryLabel );
 	}
 
 	/**
