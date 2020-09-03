@@ -327,9 +327,10 @@
 					notif.close();
 				}
 			} )
-			// Stop click events from <a> tags from propogating to prevent clicking.
-			// on links from hiding a notification.
-			.on( 'click', 'a', function ( e ) {
+			// Stop click events from <a> and <select> tags from propagating to prevent clicks
+			// from hiding a notification. stopPropagation() bubbles up, not down,
+			// hence this should not conflict with OOUI's own click handlers.
+			.on( 'click', 'a, select, .oo-ui-dropdownInputWidget', function ( e ) {
 				e.stopPropagation();
 			} );
 
