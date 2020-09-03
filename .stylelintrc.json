@@ -1,7 +1,7 @@
 {
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
-		"selector-class-pattern": "^((mw|oo-ui)-|(wikitable|(toc(|toggle|hidden))|client-(no)?js)$)",
+		"selector-class-pattern": "^((mw|oo-ui)-|(wikitable|(toc(|toggle|hidden))|client-(no)?js)|sitedir-(ltr|rtl)$)",
 		"no-descending-specificity": null,
 		"selector-max-id": null
 	}
