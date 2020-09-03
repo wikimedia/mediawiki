@@ -3486,6 +3486,8 @@
 	"tag-mw-undo-description": "Geri al bağlantısını kullanarak geçmiş değişiklikleri geri alan değişikliler",
 	"tag-mw-manual-revert": "Elle geri alma",
 	"tag-mw-manual-revert-description": "Sayfayı manüel olarak önceki durumuna döndüren düzenlemeler",
+	"tag-mw-reverted": "Geri alındı",
+	"tag-mw-reverted-description": "Daha sonra farklı bir düzenlemeyle geri alınan düzenlemeler",
 	"tags-title": "Etiketler",
 	"tags-intro": "Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.",
 	"tags-tag": "Etiket adı",

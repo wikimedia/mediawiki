@@ -2285,7 +2285,7 @@
 	"listgrants-grant": "Toestemming",
 	"listgrants-rights": "Rechten",
 	"trackingcategories": "Volgcategorieën",
-	"trackingcategories-summary": "Op deze pagina worden volgcategorieën weergegeven die automatisch worden gevuld door de MediaWiki software. De namen van de categorieën kunnen gewijzigd worden door de bijbehorende systeemberichten in de naamruimte \"{{ns:8}}\" bij te werken.",
+	"trackingcategories-summary": "Op deze pagina worden volgcategorieën weergegeven die automatisch worden gevuld door de MediaWiki-software. De namen van de categorieën kunnen gewijzigd worden door de bijbehorende systeemberichten in de naamruimte \"{{ns:8}}\" bij te werken.",
 	"trackingcategories-msg": "Volgcategorie",
 	"trackingcategories-name": "Berichtnaam",
 	"trackingcategories-desc": "Opnamecriteria",
