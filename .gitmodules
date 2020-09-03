@@ -1337,3 +1337,7 @@
 	path = skins/Cosmos
 	url = https://github.com/Universal-Omega/MediaWiki-Cosmos-skin
 	branch = REL1_34
+[submodule "extensions/Arrays"]
+	path = extensions/Arrays
+	url = https://github.com/wikimedia/mediawiki-extensions-Arrays
+	branch = REL1_34
