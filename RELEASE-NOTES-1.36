@@ -176,6 +176,8 @@ because of Phabricator reports.
 * The RollbackComplete hook has been deprecated, use the PageSaveComplete hook
   instead.
 * Skin::makeUrl() has been deprecated. Title methods should be used instead.
+* Skin::privacyLink(), Skin::disclaimerLink() and Skin::aboutLink() have been
+  deprecated. Please use Skin::footerLink() instead.
 * …
 
 === Other changes in 1.36 ===

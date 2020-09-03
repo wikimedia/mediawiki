@@ -1034,18 +1034,30 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Returns an HTML link for use in the footer
-	 * @param string $desc The i18n message key for the link text
-	 * @param string $page The i18n message key for the page to link to
+	 * Given a pair of message keys for link and text label,
+	 * return an HTML link for use in the footer.
+	 *
+	 * @param string $desc The i18n message key for the link text.
+	 * 		The content of this message will be the visibile text label.
+	 * 		If this is set to nonexisting message key or the message is
+	 * 		disabled, the link will not be generated, empty string will
+	 * 		be returned in the stead.
+	 * @param string $page The i18n message key for the page to link to.
+	 * 		The content of this message will be the destination page for
+	 * 		the footer link. Given a messsage key 'Privacypage' with content
+	 * 		'Project:Privacy policy', the link will lead to the wiki page with
+	 * 		the title of the content.
+	 *
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
 		$title = $this->footerLinkTitle( $desc, $page );
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		if ( !$title ) {
 			return '';
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return $linkRenderer->makeKnownLink(
 			$title,
 			$this->msg( $desc )->text()
@@ -1058,7 +1070,7 @@ abstract class Skin extends ContextSource {
 	 * @return Title|null
 	 */
 	private function footerLinkTitle( $desc, $page ) {
-		// If the link description has been set to "-" in the default language,
+		// If the link description has been disabled in the default language,
 		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.
 			return null;
@@ -1080,9 +1092,9 @@ abstract class Skin extends ContextSource {
 	public function getSiteFooterLinks() {
 		$callback = function () {
 			return [
-				'privacy' => $this->privacyLink(),
-				'about' => $this->aboutLink(),
-				'disclaimer' => $this->disclaimerLink()
+				'privacy' => $this->footerLink( 'privacy', 'privacypage' ),
+				'about' => $this->footerLink( 'aboutsite', 'aboutpage' ),
+				'disclaimer' => $this->footerLink( 'disclaimers', 'disclaimerpage' )
 			];
 		};
 
@@ -1110,25 +1122,34 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Gets the link to the wiki's privacy policy page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function privacyLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'privacy', 'privacypage' );
 	}
 
 	/**
 	 * Gets the link to the wiki's about page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function aboutLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'aboutsite', 'aboutpage' );
 	}
 
 	/**
 	 * Gets the link to the wiki's general disclaimers page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function disclaimerLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'disclaimers', 'disclaimerpage' );
 	}
 
