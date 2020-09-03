@@ -561,18 +561,18 @@ class PageArchive {
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
 
-		$page = $dbw->selectRow( 'page',
-			[ 'page_id', 'page_latest' ],
-			[ 'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey() ],
-			__METHOD__,
-			[ 'FOR UPDATE' ] // lock page
-		);
-
-		if ( $page ) {
-			$makepage = false;
+		if ( $article->exists() ) {
 			# Page already exists. Import the history, and if necessary
 			# we'll update the latest revision field in the record.
+			$makepage = false;
+
+			$page = $dbw->selectRow( 'page',
+				[ 'page_id', 'page_latest' ],
+				[ 'page_namespace' => $this->title->getNamespace(),
+					'page_title' => $this->title->getDBkey() ],
+				__METHOD__,
+				[ 'FOR UPDATE' ] // lock page for WikiPage::updateRevisionOn call
+			);
 
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
