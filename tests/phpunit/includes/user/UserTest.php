@@ -2290,7 +2290,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers User::pingLimiter
 	 */
-	public function testPingLimiter() {
+	public function testPingLimiterHook() {
 		$this->setMwGlobals( [
 			'wgRateLimits' => [
 				'edit' => [
@@ -2331,6 +2331,88 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$this->user->pingLimiter( 'FakeActionWithNoRateLimit' ),
 			'Actions with no rate limit set do not trip the rate limiter'
 		);
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiterWithStaleCache() {
+		global $wgMainCacheType;
+
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'user' => [ 1, 60 ],
+				],
+			],
+		] );
+
+		$cacheTime = 1600000000.0;
+		$appTime = 1600000000;
+		$cache = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $cache;
+
+		$cache->setMockTime( $cacheTime ); // this is a reference!
+		MWTimestamp::setFakeTime( function () use ( &$appTime ) {
+			return (int)$appTime;
+		} );
+
+		$this->assertFalse( $this->user->pingLimiter(), 'limit not reached' );
+		$this->assertTrue( $this->user->pingLimiter(), 'limit reached' );
+
+		// Make it so that rate limits are expired according to MWTimestamp::time(),
+		// but not according to $cache->getCurrentTime(), emulating the conditions
+		// that trigger T246991.
+		$cacheTime += 10;
+		$appTime += 100;
+
+		$this->assertFalse( $this->user->pingLimiter(), 'limit expired' );
+		$this->assertTrue( $this->user->pingLimiter(), 'limit functional after expiry' );
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiterRate() {
+		global $wgMainCacheType;
+
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'user' => [ 3, 60 ],
+				],
+			],
+		] );
+
+		$fakeTime = 1600000000;
+		$cache = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $cache;
+
+		$cache->setMockTime( $fakeTime ); // this is a reference!
+		MWTimestamp::setFakeTime( function () use ( &$fakeTime ) {
+			return (int)$fakeTime;
+		} );
+
+		// The limit is 3 per 60 second. Do 5 edits at an emulated 50 second interval.
+		// They should all pass. This tests that the counter doesn't just keeps increasing
+		// but gets reset in an appropriate way.
+		$this->assertFalse( $this->user->pingLimiter(), 'first ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'second ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'third ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'fourth ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'fifth ping should pass' );
 	}
 
 	private function newFakeUser( $name, $ip, $id ) {

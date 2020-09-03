@@ -1640,6 +1640,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
+		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'ratelimit' );
+
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !$this->getHookRunner()->onPingLimiter( $this, $action, $result, $incrBy ) ) {
@@ -1660,6 +1662,8 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $limits['&can-bypass'] && !$this->isPingLimitable() ) {
 			return false;
 		}
+
+		$logger->debug( __METHOD__ . ": limiting $action rate for {$this->getName()}" );
 
 		$keys = [];
 		$id = $this->getId();
@@ -1740,7 +1744,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// that $userLimit is also a bool here.
 			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $max, $period ) = $userLimit;
-			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s" );
+			$logger->debug( __METHOD__ . ": effective user limit: $max in {$period}s" );
 			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
@@ -1768,28 +1772,89 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 		}
 
+		// XXX: We may want to use $cache->getCurrentTime() here, but that would make it
+		//      harder to test for T246991. Also $cache->getCurrentTime() is documented
+		//      as being for testing only, so it apparently should not be called here.
+		$now = MWTimestamp::time();
+		$clockFudge = 3; // avoid log spam when a clock is slightly off
+
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
-			// phan is confused because &can-bypass's value is a bool, so it assumes
-			// that $userLimit is also a bool here.
-			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
-			list( $max, $period ) = $limit;
-			$summary = "(limit $max in {$period}s)";
-			$count = $cache->get( $key );
-			// Already pinged?
-			if ( $count && $count >= $max ) {
-				wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
-					"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
-				$triggered = true;
-			} else {
-				wfDebug( __METHOD__ . ": adding record for $key $summary" );
-				if ( $incrBy > 0 ) {
-					$cache->add( $key, 0, intval( $period ) ); // first ping
+
+			// Do the update in a merge callback, for atomicity.
+			// To use merge(), we need to explicitly track the desired expiry timestamp.
+			// This tracking was introduced to investigate T246991. Once it is no longer needed,
+			// we could go back to incrWithInit(), though that has more potential for race
+			// conditions between the get() and incrWithInit() calls.
+			$cache->merge(
+				$key,
+				function ( $cache, $key, $data, &$expiry )
+					use ( $action, $logger, &$triggered, $now, $clockFudge, $limit, $incrBy )
+				{
+					// phan is confused because &can-bypass's value is a bool, so it assumes
+					// that $userLimit is also a bool here.
+					// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
+					list( $max, $period ) = $limit;
+
+					$expiry = $now + (int)$period;
+					$count = 0;
+
+					// Already pinged?
+					if ( $data ) {
+						// NOTE: in order to investigate T246991, we write the expiry time
+						//       into the payload, along with the count.
+						$fields = explode( '|', $data );
+						$storedCount = (int)( $fields[0] ?? 0 );
+						$storedExpiry = (int)( $fields[1] ?? PHP_INT_MAX );
+
+						// Found a stale entry. This should not happen!
+						if ( $storedExpiry < ( $now + $clockFudge ) ) {
+							$logger->info(
+								'User::pingLimiter: '
+								. 'Stale rate limit entry, cache key failed to expire (T246991)',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $storedCount,
+									'key' => $key,
+									'expiry' => MWTimestamp::convert( TS_DB, $storedExpiry ),
+								]
+							);
+						} else {
+							// NOTE: We'll keep the original expiry when bumping counters,
+							//       resulting in a kind of fixed-window throttle.
+							$expiry = min( $storedExpiry, $now + (int)$period );
+							$count = $storedCount;
+						}
+					}
+
+					// Limit exceeded!
+					if ( $count >= $max ) {
+						if ( !$triggered ) {
+							$logger->info(
+								'User::pingLimiter: User tripped rate limit',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'ip' => $this->getRequest()->getIP(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $count,
+									'key' => $key
+								]
+							);
+						}
+
+						$triggered = true;
+					}
+
+					$count += $incrBy;
+					$data = "$count|$expiry";
+					return $data;
 				}
-			}
-			if ( $incrBy > 0 ) {
-				$cache->incrWithInit( $key, (int)$period, $incrBy, $incrBy );
-			}
+			);
 		}
 
 		return $triggered;
