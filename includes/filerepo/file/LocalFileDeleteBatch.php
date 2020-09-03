@@ -55,53 +55,20 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * @param File $file
-	 * @param string|User $param2
-	 * @param bool|string $param3
-	 * @param User|null|bool $param4
-	 *
-	 * Old signature: $file, $reason = '', $suppress = false, $user = null
-	 * New signature: $file, $user, $reason = '', $suppress = false
-	 *
-	 * See T245710 for more
+	 * @param User $user
+	 * @param string $reason
+	 * @param bool $suppress
 	 */
 	public function __construct(
 		File $file,
-		$param2 = '',
-		$param3 = '',
-		$param4 = false
+		User $user,
+		$reason = '',
+		$suppress = false
 	) {
 		$this->file = $file;
-
-		if ( $param2 instanceof User ) {
-			// New signature
-			$user = $param2;
-			$reason = $param3;
-			$suppress = $param4;
-		} else {
-			// Old signature
-			wfDeprecatedMsg(
-				'Construction of ' . __CLASS__ . ' without passing a user as ' .
-				'the second parameter was deprecated in MediaWiki 1.35. ' .
-				'See T245710 for more',
-				'1.35'
-			);
-
-			$reason = $param2;
-
-			// Suppress defaults to false if not provided
-			$suppress = ( $param3 === '' ? false : $param3 );
-
-			if ( $param4 === false ) {
-				global $wgUser;
-				$user = $wgUser;
-			} else {
-				$user = $param4;
-			}
-		}
-
+		$this->user = $user;
 		$this->reason = $reason;
 		$this->suppress = $suppress;
-		$this->user = $user;
 		$this->status = $file->repo->newGood();
 	}
 
