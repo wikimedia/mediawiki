@@ -362,7 +362,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$success = false;
 		} else {
 			// Derive the new value from the old value
-			$value = call_user_func( $callback, $this, $key, $currentValue, $exptime );
+			$value = $callback( $this, $key, $currentValue, $exptime );
 			if ( $value === false ) {
 				$success = true; // do nothing
 			} else {
