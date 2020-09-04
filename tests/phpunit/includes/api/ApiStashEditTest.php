@@ -231,6 +231,20 @@ class ApiStashEditTest extends ApiTestCase {
 		], null, 'editconflict' );
 	}
 
+	public function testMidEditContentModelMismatch() {
+		$name = ucfirst( __FUNCTION__ );
+		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, $name ) );
+
+		$content = new CssContent( 'Css' );
+		$revRecord = $page->doEditContent( $content, '' )->value['revision-record'];
+		$page->doEditContent( new WikitextContent( 'Text' ), '' );
+
+		$this->setExpectedApiException(
+			[ 'apierror-contentmodel-mismatch', 'wikitext', 'css' ]
+		);
+		$this->doStash( [ 'title' => $name, 'baserevid' => $revRecord->getId() ] );
+	}
+
 	public function testDeletedRevision() {
 		$name = ucfirst( __FUNCTION__ );
 		$oldRevRecord = $this->editPage( $name, 'A' )->value['revision-record'];

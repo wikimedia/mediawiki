@@ -1647,6 +1647,7 @@
 	"apierror-compare-relative-to-nothing": "{{doc-apierror}}",
 	"apierror-contentserializationexception": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception text, may end with punctuation. Currently this is probably English, hopefully we'll fix that in the future.",
 	"apierror-contenttoobig": "{{doc-apierror}}\n\nParameters:\n* $1 - Maximum article size in kilobytes.",
+	"apierror-contentmodel-mismatch": "{{doc-apierror}}\n\nParameters:\n* $1 content model of the old revision\n* $2 - content model of the current revision.",
 	"apierror-copyuploadbaddomain": "{{doc-apierror}}",
 	"apierror-copyuploadbadurl": "{{doc-apierror}}",
 	"apierror-create-titleexists": "{{doc-apierror}}",

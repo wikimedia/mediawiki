@@ -115,9 +115,24 @@ class ApiStashEdit extends ApiBase {
 				if ( !$baseContent || !$currentContent ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
 				}
-				$content = $this->getContentHandlerFactory()
-					->getContentHandler( $baseContent->getModel() )
-					->merge3( $baseContent, $editContent, $currentContent );
+
+				$baseModel = $baseContent->getModel();
+				$currentModel = $currentContent->getModel();
+
+				// T255700: Put this in try-block because if the models of these three Contents
+				// happen to not be identical, the ContentHandler may throw exception here.
+				try {
+					$content = $this->getContentHandlerFactory()
+						->getContentHandler( $baseModel )
+						->merge3( $baseContent, $editContent, $currentContent );
+				} catch ( Exception $e ) {
+					$this->dieWithException( $e, [
+						'wrap' => ApiMessage::create(
+							[ 'apierror-contentmodel-mismatch', $currentModel, $baseModel ]
+						)
+					] );
+				}
+
 			}
 		} else {
 			// New pages: use the user-provided content model
