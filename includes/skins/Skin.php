@@ -507,10 +507,12 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * URL to the default square logo (1x key)
-	 * Please use ResourceLoaderSkinModule::getAvailableLogos
+	 *
+	 * @deprecated since 1.36, please use ResourceLoaderSkinModule::getAvailableLogos
 	 * @return string
 	 */
 	protected function getLogo() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 	}
 
@@ -984,7 +986,7 @@ abstract class Skin extends ContextSource {
 		$mptitle = Title::newMainPage();
 		$url = ( is_object( $mptitle ) ? htmlspecialchars( $mptitle->getLocalURL() ) : '' );
 
-		$logourl = $this->getLogo();
+		$logourl = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 		return "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
 	}
 
