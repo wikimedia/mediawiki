@@ -55,7 +55,18 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'REQUEST_URI' => ':8434/test.php/page/1:1',
 		] );
 
-		$this->assertEquals( $this->reqFromGlobals->getUri(), '//:8434/test.php/page/1:1' );
+		$this->assertEquals( $this->reqFromGlobals->getUri(), '/test.php/page/1:1' );
+	}
+
+	public function testGetUri3() {
+		$this->setServerVars( [
+			'REQUEST_URI' => '/w/rest.php/sandbox.semantic-mediawiki.org:8142/v3/page/html/Berlin',
+		] );
+
+		$this->assertEquals(
+			$this->reqFromGlobals->getUri(),
+			'/w/rest.php/sandbox.semantic-mediawiki.org:8142/v3/page/html/Berlin'
+		);
 	}
 
 	/**

@@ -841,6 +841,7 @@ class RecentChange implements Taggable {
 		switch ( $type . '-' . $action ) {
 			case 'delete-delete':
 			case 'delete-delete_redir':
+			case 'delete-delete_redir2':
 				$pageStatus = 'deleted';
 				break;
 			case 'move-move':

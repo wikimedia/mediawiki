@@ -205,29 +205,37 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
-		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
-			&& $this->permManager->quickUserCan( 'delete', $user, $newTitle )
-		) {
-			$out->wrapWikiMsg(
-				"<div class='warningbox'>\n$1\n</div>\n",
-				[ 'delete_and_move_text', $newTitle->getPrefixedText() ]
-			);
-			$deleteAndMove = true;
-			$err = [];
-		}
-
-		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
-			&& $this->permManager->userHasRight( $user, 'reupload-shared' )
-		) {
-			$out->wrapWikiMsg(
-				"<div class='warningbox'>\n$1\n</div>\n",
-				[
-					'move-over-sharedrepo',
-					$newTitle->getPrefixedText()
-				]
-			);
-			$moveOverShared = true;
-			$err = [];
+		if ( count( $err ) == 1 && isset( $err[0][0] ) ) {
+			if ( $err[0][0] == 'articleexists'
+				&& $this->permManager->quickUserCan( 'delete', $user, $newTitle )
+			) {
+				$out->wrapWikiMsg(
+					"<div class='warningbox'>\n$1\n</div>\n",
+					[ 'delete_and_move_text', $newTitle->getPrefixedText() ]
+				);
+				$deleteAndMove = true;
+				$err = [];
+			} elseif ( $err[0][0] == 'redirectexists' && (
+				// Any user that can delete normally can also delete a redirect here
+				$this->permManager->quickUserCan( 'delete-redirect', $user, $newTitle ) ||
+				$this->permManager->quickUserCan( 'delete', $user, $newTitle ) )
+			) {
+				$out->wrapWikiMsg(
+					"<div class='warningbox'>\n$1\n</div>\n",
+					[ 'delete_redirect_and_move_text', $newTitle->getPrefixedText() ]
+				);
+				$deleteAndMove = true;
+				$err = [];
+			} elseif ( $err[0][0] == 'file-exists-sharedrepo'
+				&& $this->permManager->userHasRight( $user, 'reupload-shared' )
+			) {
+				$out->wrapWikiMsg(
+					"<div class='warningbox'>\n$1\n</div>\n",
+					[ 'move-over-sharedrepo', $newTitle->getPrefixedText() ]
+				);
+				$moveOverShared = true;
+				$err = [];
+			}
 		}
 
 		$oldTalk = $this->oldTitle->getTalkPage();
@@ -387,8 +395,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $this->permManager->userHasRight( $user, 'suppressredirect' )
-		) {
+		if ( $this->permManager->userHasRight( $user, 'suppressredirect' ) ) {
 			if ( $handlerSupportsRedirects ) {
 				$isChecked = $this->leaveRedirect;
 				$isDisabled = false;
@@ -565,12 +572,30 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Delete to make way if requested
 		if ( $this->deleteAndMove ) {
-			$permErrors = $this->permManager->getPermissionErrors( 'delete', $user, $nt );
-			if ( count( $permErrors ) ) {
-				# Only show the first error
-				$this->showForm( $permErrors, true );
+			$redir2 = $nt->isSingleRevRedirect();
 
-				return;
+			$permErrors = $this->permManager->getPermissionErrors(
+				$redir2 ? 'delete-redirect' : 'delete',
+				$user, $nt
+			);
+			if ( count( $permErrors ) ) {
+				if ( $redir2 ) {
+					if ( count( $this->permManager->getPermissionErrors( 'delete', $user, $nt ) ) ) {
+						// Cannot delete-redirect, or delete normally
+						// Only show the first error
+						$this->showForm( $permErrors, true );
+						return;
+					} else {
+						// Cannot delete-redirect, but can delete normally,
+						// so log as a normal deletion
+						$redir2 = false;
+					}
+				} else {
+					// Cannot delete normally
+					// Only show first error
+					$this->showForm( $permErrors, true );
+					return;
+				}
 			}
 
 			$page = WikiPage::factory( $nt );
@@ -593,10 +618,11 @@ class MovePageForm extends UnlistedSpecialPage {
 				}
 			}
 
+			$error = ''; // passed by ref
+			$deletionLog = $redir2 ? 'delete_redir2' : 'delete';
 			$deleteStatus = $page->doDeleteArticleReal(
-				$reason,
-				$user,
-				/* suppress */ false
+				$reason, $user, false, null, $error,
+				null, [], $deletionLog
 			);
 			if ( !$deleteStatus->isGood() ) {
 				$this->showForm( $deleteStatus->getErrorsArray() );

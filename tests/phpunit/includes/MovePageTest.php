@@ -494,4 +494,44 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $id, $toTitle->getArticleID() );
 	}
+
+	/**
+	 * Test redirect handling
+	 *
+	 * @covers MovePage::isValidMove
+	 */
+	public function testRedirects() {
+		$this->editPage( 'ExistentRedirect', '#REDIRECT [[Existent]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent' ),
+			Title::newFromText( 'ExistentRedirect' )
+		);
+		$this->assertSame(
+			[],
+			$mp->isValidMove()->getErrorsArray(),
+			'Sanity check - can move over normal redirect'
+		);
+
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent2' ),
+			Title::newFromText( 'ExistentRedirect3' )
+		);
+		$this->assertSame(
+			[ [ 'redirectexists', 'ExistentRedirect3' ] ],
+			$mp->isValidMove()->getErrorsArray(),
+			'Cannot move over redirect with a different target'
+		);
+
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent2]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent' ),
+			Title::newFromText( 'ExistentRedirect3' )
+		);
+		$this->assertSame(
+			[ [ 'articleexists', 'ExistentRedirect3' ] ],
+			$mp->isValidMove()->getErrorsArray(),
+			'Multi-revision redirects count as articles'
+		);
+	}
 }
