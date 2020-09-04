@@ -70,7 +70,8 @@ class WatchAction extends FormAction {
 
 	public function onSubmit( $data ) {
 		$expiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
-		return self::doWatch( $this->getTitle(), $this->getUser(), User::CHECK_USER_RIGHTS, $expiry );
+		// Even though we're never unwatching here, use doWatchOrUnwatch() because it also checks for changed expiry.
+		return self::doWatchOrUnwatch( true, $this->getTitle(), $this->getUser(), $expiry );
 	}
 
 	protected function checkCanExecute( User $user ) {
@@ -134,10 +135,10 @@ class WatchAction extends FormAction {
 			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
 			$daysLeft = $watchedItem->getExpiryInDaysText( $msgLocalizer, true );
 			$expiryOptions = array_merge(
-				[ $daysLeft => $expiry->getTimestamp( TS_MW ) ],
+				[ $daysLeft => $expiry->getTimestamp( TS_ISO_8601 ) ],
 				$expiryOptions
 			);
-			$default = $expiry->getTimestamp( TS_MW );
+			$default = $expiry->getTimestamp( TS_ISO_8601 );
 		}
 		return [
 			'options' => $expiryOptions,
@@ -186,7 +187,7 @@ class WatchAction extends FormAction {
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
-			$changingWatchStatus |=
+			$changingWatchStatus = $changingWatchStatus ||
 				ExpiryDef::normalizeExpiry( $oldWatchedItem->getExpiry() ) !==
 				ExpiryDef::normalizeExpiry( $expiry );
 		}
