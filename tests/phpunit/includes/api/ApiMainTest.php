@@ -17,8 +17,10 @@ class ApiMainTest extends ApiTestCase {
 	 * Test that the API will accept a FauxRequest and execute.
 	 */
 	public function testApi() {
+		$fauxRequest = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
+		$fauxRequest->setRequestURL( 'https://' );
 		$api = new ApiMain(
-			new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] )
+			$fauxRequest
 		);
 		$api->execute();
 		$data = $api->getResult()->getResultData();

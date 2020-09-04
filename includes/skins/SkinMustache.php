@@ -38,6 +38,13 @@ class SkinMustache extends SkinTemplate {
 	 *   represents a single menu.
 	 */
 	protected function getPortletData( $name, array $items ) {
+		// Monobook and Vector historically render this portal as an element with ID p-cactions
+		// This inconsistency is regretful from a code point of view
+		// However this ensures compatibility with gadgets.
+		// In future we should port p-#cactions to #p-actions and drop this rename.
+		if ( $name === 'actions' ) {
+			$name = 'cactions';
+		}
 		$id = Sanitizer::escapeIdForAttribute( "p-$name" );
 		$data = [
 			'id' => $id,
@@ -69,9 +76,28 @@ class SkinMustache extends SkinTemplate {
 			$data['html-items'] .= $this->makeListItem( $key, $item );
 		}
 
+		$data['label'] = $this->getPortletLabel( $name );
 		$data['class'] .= ( count( $items ) === 0 && $content === '' )
 			? ' emptyPortlet' : '';
 		return $data;
+	}
+
+	/**
+	 * @param string $name of the portal e.g. p-personal the name is personal.
+	 * @return string that is human readable corresponding to the menu
+	 */
+	private function getPortletLabel( $name ) {
+		// For historic reasons for some menu items,
+		// there is no language key corresponding with its menu key.
+		$mappings = [
+			'tb' => 'toolbox',
+			'personal' => 'personaltools',
+			'lang' => 'otherlanguages',
+		];
+		$msgObj = $this->msg( $mappings[ $name ] ?? $name );
+		// If no message exists fallback to plain text (T252727)
+		$labelText = $msgObj->exists() ? $msgObj->text() : $name;
+		return $labelText;
 	}
 
 	/**
@@ -154,8 +180,60 @@ class SkinMustache extends SkinTemplate {
 		foreach ( $this->options['messages'] ?? [] as $message ) {
 			$data["msg-{$message}"] = $this->msg( $message )->text();
 		}
+		return $data + $this->getPortletsTemplateData();
+	}
 
-		return $data;
+	/**
+	 * @return array of portlet data for all portlets
+	 */
+	private function getPortletsTemplateData() {
+		$portlets = [];
+		$contentNavigation = $this->buildContentNavigationUrls();
+		$sidebar = [];
+		$sidebarData = $this->buildSidebar();
+		foreach ( $sidebarData as $name => $items ) {
+			if ( is_array( $items ) ) {
+				// Numeric strings gets an integer when set as key, cast back - T73639
+				$name = (string)$name;
+				switch ( $name ) {
+					// ignore search
+					case 'SEARCH':
+						break;
+					// Map toolbox to `tb` id.
+					case 'TOOLBOX':
+						$sidebar[] = $this->getPortletData( 'tb', $items );
+						break;
+					// Languages is no longer be tied to sidebar
+					case 'LANGUAGES':
+						// The language portal will be added provided either
+						// languages exist or there is a value in html-after-portal
+						// for example to show the add language wikidata link (T252800)
+						$portal = $this->getPortletData( 'lang', $items );
+						if ( count( $items ) || $portal['html-after-portal'] ) {
+							$portlets['data-languages'] = $portal;
+						}
+						break;
+					default:
+						$sidebar[] = $this->getPortletData( $name, $items );
+						break;
+				}
+			}
+		}
+		foreach ( $contentNavigation as $name => $items ) {
+			$portlets['data-' . $name] = $this->getPortletData( $name, $items );
+		}
+		$portlets['data-personal'] = $this->getPortletData( 'personal',
+			self::getPersonalToolsForMakeListItem(
+				$this->buildPersonalUrls()
+			)
+		);
+		return [
+			'data-portlets' => $portlets,
+			'data-portlets-sidebar' => [
+				'data-portlets-first' => $sidebar[0] ?? null,
+				'array-portlets-rest' => array_slice( $sidebar, 1 ),
+			],
+		];
 	}
 
 	/**

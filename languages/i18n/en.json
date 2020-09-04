@@ -195,6 +195,7 @@
 	"talk": "Discussion",
 	"views": "Views",
 	"toolbox": "Tools",
+	"cactions": "More",
 	"tool-link-userrights": "Change {{GENDER:$1|user}} groups",
 	"tool-link-userrights-readonly": "View {{GENDER:$1|user}} groups",
 	"tool-link-emailuser": "Email this {{GENDER:$1|user}}",
