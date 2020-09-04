@@ -2679,6 +2679,7 @@
 	"tag-filter": "[[Special:Tags|টেগ]] ছেকনী:",
 	"tag-filter-submit": "সংশোধন",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|টেগ্‌}}]]: $2",
+	"tag-mw-reverted": "উলটিওৱা হৈছে",
 	"tags-title": "টেগসমূহ",
 	"tags-intro": "ছফ্টৱেৰে সম্পাদনা চিহ্নিত কৰিব পৰা টেগসমূহ আৰু সেইবোৰৰ অৰ্থ এই পৃষ্ঠাত তালিকাভুক্ত কৰা হৈছে।",
 	"tags-tag": "টেগ নাম",
