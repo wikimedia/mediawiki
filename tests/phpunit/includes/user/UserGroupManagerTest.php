@@ -588,7 +588,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetUserAutopromoteEditCount() {
-		yield 'Successfull promote'	=> [
+		yield 'Successfull promote' => [
 			5, true, 10, [ 'test_autoconfirmed' ]
 		];
 		yield 'Required edit count negative' => [

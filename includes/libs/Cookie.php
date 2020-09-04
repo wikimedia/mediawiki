@@ -28,7 +28,7 @@ class Cookie {
 	protected $path;
 	protected $domain;
 	protected $isSessionKey = true;
-	// TO IMPLEMENT	 protected $secure
+	// TO IMPLEMENT  protected $secure
 	// TO IMPLEMENT? protected $maxAge (add onto expires)
 	// TO IMPLEMENT? protected $version
 	// TO IMPLEMENT? protected $comment
