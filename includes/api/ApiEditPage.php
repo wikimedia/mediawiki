@@ -368,7 +368,7 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSection'] = '';
 		}
 
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj, $user );
 		$watchlistExpiry = $params['watchlistexpiry'] ?? null;
 
 		// Deprecated parameters
