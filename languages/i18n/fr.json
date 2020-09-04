@@ -2435,6 +2435,8 @@
 	"addedwatchtext-talk": "« [[:$1]] » et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]].",
 	"addedwatchtext-short": "La page « $1 » a été ajoutée à votre liste de suivi.",
 	"addedwatchexpiry-options-label": "Durée de la liste de suivi :",
+	"addedwatchexpiryhours": "« [[:$1]] » et sa page de discussion ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour quelques heures.",
+	"addedwatchexpiryhours-talk": "« [[:$1]] » et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour quelques heures.",
 	"addedwatchexpirytext": "«&nbsp;[[:$1]]&nbsp;» et sa page de discussion ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour $2.",
 	"addedwatchexpirytext-talk": "«&nbsp;[[:$1]]&nbsp;» et sa page associée ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] pour $2.",
 	"addedwatchindefinitelytext": "«&nbsp;[[:$1]]&nbsp;» et sa page de discussion ont été ajoutés à votre [[Special:Watchlist|liste de suivi]] de manière permanente.",

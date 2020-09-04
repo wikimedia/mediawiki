@@ -2254,6 +2254,8 @@
 	"addedwatchtext-talk": "»[[:$1]]« in pripadajočo stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]].",
 	"addedwatchtext-short": "Stran »$1« smo dodali na vaš spisek nadzorov.",
 	"addedwatchexpiry-options-label": "Časovno obdobje spiska nadzorov:",
+	"addedwatchexpiryhours": "»[[:$1]]« in pripadajočo pogovorno stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]] za nekaj ur.",
+	"addedwatchexpiryhours-talk": "»[[:$1]]« in pripadajočo stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]] za nekaj ur.",
 	"addedwatchexpirytext": "»[[:$1]]« in pripadajočo pogovorno stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]] za $2.",
 	"addedwatchexpirytext-talk": "»[[:$1]]« in pripadajočo stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]] za $2.",
 	"addedwatchindefinitelytext": "»[[:$1]]« in pripadajočo pogovorno stran smo trajno dodali na vaš [[Special:Watchlist|spisek nadzorov]].",

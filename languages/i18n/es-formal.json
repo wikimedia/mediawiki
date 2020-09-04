@@ -365,6 +365,8 @@
 	"whatlinkshere": "Lo que enlaza aquí",
 	"ipblocklist": "Usuarios bloqueados",
 	"contribslink": "contribuciones",
+	"sorbsreason": "Su dirección IP está catalogada como <em>proxy</em> abierto en la DNSBL que utiliza {{SITENAME}}.",
+	"sorbs_create_account_reason": "Su dirección IP está catalogada como <em>proxy</em> abierto en la DNSBL que utiliza {{SITENAME}}. No se puede crear una cuenta.",
 	"articleexists": "Ya existe una página con ese nombre, o el nombre que ha escogido no es válido.\nPor favor, elija otro nombre.",
 	"thumbnail-more": "Aumentar",
 	"tooltip-pt-userpage": "Su página de {{GENDER:|usuario|usuaria}}",
