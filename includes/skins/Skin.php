@@ -1023,9 +1023,13 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Gets the link to the wiki's main page.
+	 *
+	 * @deprecated since 1.36
 	 * @return string
 	 */
 	public function mainPageLink() {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$s = $linkRenderer->makeKnownLink(
 			Title::newMainPage(),
