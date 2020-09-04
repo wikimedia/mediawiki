@@ -91,7 +91,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
-		return $this->client->cas( $casToken, $routeKey,	$value, $this->fixExpiry( $exptime ) );
+		return $this->client->cas( $casToken, $routeKey, $value, $this->fixExpiry( $exptime ) );
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {

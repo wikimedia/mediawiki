@@ -853,7 +853,7 @@ class FSFileBackend extends FileBackendStore {
 		// https://manpages.debian.org/buster/coreutils/mv.1.en.html
 		// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
 		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
-		$encDst	= escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+		$encDst = escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
 		if ( $this->os === 'Windows' ) {
 			$writeCmd = "MOVE /Y $encSrc $encDst 2>&1";
 			$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
