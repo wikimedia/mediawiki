@@ -43,7 +43,7 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	 *     translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
 	 *     `precision`)
 	 *   - string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
-	 *   - string $config['mustBeAfter']	Validates the date to be after this.
+	 *   - string $config['mustBeAfter'] Validates the date to be after this.
 	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
 	 *   - string $config['mustBeBefore'] Validates the date to be before this.
 	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
