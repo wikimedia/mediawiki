@@ -535,10 +535,15 @@ return [
 	},
 
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
+		// Database layer may be disabled, so processing without database connection
+		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
+			? null
+			: $services->getDBLoadBalancer();
 		return new LinkCache(
 			$services->getTitleFormatter(),
 			$services->getMainWANObjectCache(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$dbLoadBalancer
 		);
 	},
 

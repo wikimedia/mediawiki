@@ -144,7 +144,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$nsInfo = $services->getNamespaceInfo();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();
-		$linkCache = new LinkCache( $titleFormatter, $wanCache, $nsInfo );
+		$loadBalancer = $services->getDBLoadBalancer();
+		$linkCache = new LinkCache( $titleFormatter, $wanCache, $nsInfo, $loadBalancer );
 		$foobarTitle = new TitleValue( NS_MAIN, 'FooBar' );
 		$redirectTitle = new TitleValue( NS_MAIN, 'Redirect' );
 		$userTitle = new TitleValue( NS_USER, 'Someuser' );
