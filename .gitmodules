@@ -1345,3 +1345,7 @@
 	path = extensions/RightFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-RightFunctions
 	branch = REL1_34
+[submodule "extensions/DeleteUserPages"]
+	path = extensions/DeleteUserPages
+	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages.git
+	branch = REL1_34
