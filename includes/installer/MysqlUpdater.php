@@ -449,6 +449,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'imagelinks', 'il_to', 'patch-imagelinks-il_to-varbinary.sql' ],
 			[ 'modifyField', 'langlinks', 'll_title', 'patch-langlinks-ll_title-varbinary.sql' ],
 			[ 'modifyField', 'iwlinks', 'iwl_title', 'patch-iwlinks-iwl_title-varbinary.sql' ],
+			[ 'modifyField', 'category', 'cat_title', 'patch-category-cat_title-varbinary.sql' ],
 		];
 	}
 

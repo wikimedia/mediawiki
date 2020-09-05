@@ -232,3 +232,17 @@ CREATE TABLE iwlinks (
 CREATE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
 
 CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
+
+
+CREATE TABLE category (
+  cat_id SERIAL NOT NULL,
+  cat_title TEXT NOT NULL,
+  cat_pages INT DEFAULT 0 NOT NULL,
+  cat_subcats INT DEFAULT 0 NOT NULL,
+  cat_files INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(cat_id)
+);
+
+CREATE UNIQUE INDEX cat_title ON category (cat_title);
+
+CREATE INDEX cat_pages ON category (cat_pages);
