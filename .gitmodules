@@ -1321,31 +1321,39 @@
 	path = extensions/TwitterTag
 	url = https://github.com/wikimedia/mediawiki-extensions-TwitterTag
 	branch = master
+	ignore = dirty
 [submodule "extensions/MobileTabsPlugin"]
 	path = extensions/MobileTabsPlugin
 	url = https://github.com/fuerthwiki/MobileTabsPlugin
 	branch = master
+	ignore = dirty
 [submodule "skins/Medik"]
 	path = skins/Medik
 	url = https://bitbucket.org/wikiskripta/medik
 	branch = master
+	ignore = dirty
 [submodule "extensions/JsCalendar"]
 	path = extensions/JsCalendar
 	url = https://github.com/edwardspec/mediawiki-extension-JsCalendar
 	branch = master
+	ignore = dirty
 [submodule "skins/Cosmos"]
 	path = skins/Cosmos
 	url = https://github.com/Universal-Omega/MediaWiki-Cosmos-skin
 	branch = REL1_34
+	ignore = dirty
 [submodule "extensions/Arrays"]
 	path = extensions/Arrays
 	url = https://github.com/wikimedia/mediawiki-extensions-Arrays
 	branch = REL1_34
+	ignore = dirty
 [submodule "extensions/RightFunctions"]
 	path = extensions/RightFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-RightFunctions
 	branch = REL1_34
+	ignore = dirty
 [submodule "extensions/DeleteUserPages"]
 	path = extensions/DeleteUserPages
 	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages.git
 	branch = REL1_34
+	ignore = dirty
