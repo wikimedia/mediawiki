@@ -545,6 +545,7 @@
 	"botpasswords-newpassword": "Dat neit Passwuert fir sech mat <strong>$1</strong> anzeloggen ass <strong>$2</strong>.\n<em>Versuergt dat fir sech spéider dorop ze referéieren.</em><br />(Fir al Botten déi verlaangen datt de Login-Numm d'selwecht ass wéi den spéidere Benotzernumm, kënnt Dir och <strong>$3</strong> als Benotzernumm benotzten a(n) <strong>$4</strong> als Passwuert.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider ass net disponibel.",
 	"botpasswords-not-exist": "De Benotzer \"$1\" huet kee Botpasswuert mam Numm \"$2\".",
+	"botpasswords-needs-reset": "D'Botpasswuert fir de Bot-Numm \"$2\" vum {{GENDER:$1|vum Benotzer|vun der Benotzerin}} ''$1'' muss zréckgesat ginn.",
 	"botpasswords-locked": "Dir kënnt Iech net mat engem Bot-Passwuert alogge well Äre Benotzerkont gespaart ass.",
 	"resetpass_forbidden": "Passwierder kënnen net geännert ginn.",
 	"resetpass_forbidden-reason": "Passwierder kënnen net geännert ginn: $1",

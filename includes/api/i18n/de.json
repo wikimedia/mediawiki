@@ -1158,6 +1158,7 @@
 	"apierror-compare-notext": "Der Parameter <var>$1</var> kann nicht ohne <var>$2</var> verwendet werden.",
 	"apierror-compare-notorevision": "Keine Version „to“. <var>torev</var>, <var>totitle</var> oder <var>toid</var> angeben.",
 	"apierror-compare-relative-to-deleted": "<kbd>torelative=$1</kbd> kann nicht relativ zu einer gelöschten Version verwendet werden.",
+	"apierror-contentmodel-mismatch": "Der von dir angegebene Inhalt hat das Inhaltsmodell <kbd>$1</kbd>, das sich vom aktuellen Inhaltsmodell der Seite <kbd>$2</kbd> unterscheidet.",
 	"apierror-emptypage": "Das Erstellen neuer leerer Seiten ist nicht erlaubt.",
 	"apierror-filedoesnotexist": "Die Datei ist nicht vorhanden.",
 	"apierror-import-unknownerror": "Unbekannter Fehler beim Importieren: $1.",

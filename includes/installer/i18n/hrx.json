@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Iohanen",
 			"Macofe",
 			"Paul Beppler"
 		]
@@ -11,7 +12,7 @@
 	"config-localsettings-upgrade": "En Datei <code>LocalSettings.php</code> woard gefund.\nUm die vorhandne Installation aktualisiere zu könne, muss der Parameter sein Weart <code>$wgUpgradeKey</code> im follichende Ingäbfeld oongeb sin.\nDer Parameterweart befindt sich in der Datei <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "En Datei <code><code>LocalSettings.php</code></code> woard gefund.\nUm die vorhandne Installation se aktualisiere, muss die Datei <code>update.php</code> ausgefüahrt sin.",
 	"config-localsettings-key": "Aktualisierungsschlüssel:",
-	"config-localsettings-badkey": "Der angebne Aktualisierungsschlüssel ist falsch.",
+	"config-localsettings-badkey": "De angebne Aktualisierungsschlissel is falsch.",
 	"config-upgrade-key-missing": "En MediaWiki-Installation woard gefund.\nUm die vorhandne Installation aktualisiere zu könne, muss die unne oongebne Codezeil in die Datei <code>LocalSettings.php</code> an sein End ingefücht sin:\n\n$1",
 	"config-localsettings-incomplete": "Die vorhandne Datei <code>LocalSettings.php</code> scheint unvollständig zu sin.\nDie Variable <code>$1</code> woard net definiert.\nDie Datei <code>LocalSettings.php</code> muss entsprechend geännert sin, so dass sie definiert ist. Klick donoh uff „{{int:Config-continue}}“.",
 	"config-localsettings-connection-error": "Beim Verbinnungsversuch zur Datenbank ist, unner Verwennung von der in der Datei <code>LocalSettings.php</code> hinnerlehte Instellunge, en Fehler uffgetret. Die Instellunge müsse korrischiert sin. Donoh kann en erneiter Versuch unternomm sin. \n\n$1",
@@ -43,10 +44,12 @@
 	"config-welcome": "=== Prüfung von die Installationsumgebung ===\nDie Basisprüfunge were jetzt doorrichgefüahrt, um festzustelle, ob die Installationsumgebung für MediaWiki geeichnet ist.\nNotier die Informatione und geb se an, sofern du Hellf beim Installiere  benötichst.",
 	"config-welcome-section-copyright": "=== Lizenz und Nutzungsbedingunge ===\n\n$1\n\nDas Programm ist freie Software, d. h. es kann, gemäss den Bedingunge der von der Free Software Foundation veröffentlichte ''GNU General Public License'', weiterverteilt und/oder modifiziert sin. Dabei kann die Version 2, orrer noh eichnem Ermess, jede neuire Version von der Lizenz verwennet sin.\n\nDas Programm weard in der Hoffnung verteilt, dass das nützlich sein weard, dennoch '''ohne jechliche Garantie''' und sogoor ohne die implizierte Garantie von ener '''Marrektgängigkeit''' orrer '''Eichnung für en bestimmte Zweck'''. Hierzu sind weitre Hinweise in der ''GNU General Public License'' enthalt.\n\nEn [$2 Kopie von der GNU General Public License] sollt zusammer mit dem Programm verteilt woard sin. Sofern das net der Fall woar, kann en Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich verlangt sin orrer uff ehre Website [https://www.gnu.org/copyleft/gpl.html online gelesen] sin.",
 	"config-sidebar": "* [https://www.mediawiki.org/wiki/MediaWiki/de Website von MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/de Benutzeroonleitung]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents/de Administratorenoonleitung]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/de Häifig gestellte Frache]\n----\n* <doclink href=Readme>Lies mich</doclink>\n* <doclink href=ReleaseNotes>Versionsinformatione</doclink>\n* <doclink href=Copying>Lizenzbestimmunge</doclink>\n* <doclink href=UpgradeDoc>Aktualisierung</doclink>",
+	"config-sidebar-license": "Kopieere",
+	"config-sidebar-upgrade": "Aktualiseere",
 	"config-env-good": "Die Installationsumgebung woard geprüft.\nMediaWiki kann installiert sin.",
 	"config-env-bad": "Die Installationsumgebung woard geprüft.\nMediaWiki kann net installiert sin.",
 	"config-env-php": "Die Skriptsproch „PHP“ ($1) ist installiert.",
-	"config-unicode-using-intl": "Zur  Unicode-Normalisierung weard die [https://pecl.php.net/intl PECL-Erweiterung intl] ingesetzt.",
+	"config-unicode-using-intl": "Zur  Unicode-Normalisierung werd die [https://php.net/manual/de/book.intl.php PHP-Erweiderung intl] ingesetzt.",
 	"config-unicode-pure-php-warning": "'''Warnung:''' Die [https://pecl.php.net/intl PECL-Erweiterung intl] ist für die Unicode-Normalisierung net verfüchbar, so dass stattdessen die langsame pure-PHP-Implementierung genutzt weard.\nSofern en Webseit mit grosser Benutzeranzoohl betrieb weard, sollte weitre Informatione uff der Webseite [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-Normalisierung (en)] geles sin.",
 	"config-unicode-update-warning": "'''Warnung:''' Die installierte Version von der Unicode-Normalisierungswrappers nutzt en ältre Version von der [http://site.icu-project.org/ ICU-Projekts] sein Bibliothek.\nDie sollte [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations aktualisiert] sin, sofern uff die Verwennung von Unicode Wert geleht weard.",
 	"config-no-db": "Es konnt ken adäquater Datenbanktreiwer gefund sin. Es muss doher en Datenbanktreiwer für PHP installiert sin.\nDie folchende Datebanksysteme werre unnerstützt: $1\n\nWenn du PHP sellebst kompiliert host, konfigurier es erneit mit en aktiviert Datebankclient, zum Beispiel dorrich Verwennung von <code>./configure --with-mysqli</code>.\nWenn du PHP von en Debian- orrer Ubuntu-Paket installiert host, dann musst du ooch beispielsweis das <code>php-mysql</code>-Paket installiere.",
