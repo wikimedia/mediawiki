@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that list protected titles from creation
  *
@@ -46,7 +48,16 @@ class SpecialProtectedtitles extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$NS = $request->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedTitlesPager( $this, [], $type, $level, $NS, $sizetype, $size );
+		$pager = new ProtectedTitlesPager(
+			$this,
+			[],
+			$type,
+			$level,
+			$NS,
+			$sizetype,
+			$size,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -95,7 +96,11 @@ class SpecialAutoblockList extends SpecialPage {
 			$conds['ipb_deleted'] = 0;
 		}
 
-		return new BlockListPager( $this, $conds );
+		return new BlockListPager(
+			$this,
+			$conds,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 	}
 
 	/**

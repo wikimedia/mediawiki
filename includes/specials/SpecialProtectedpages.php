@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists protected pages
  *
@@ -63,7 +65,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$indefOnly,
 			$cascadeOnly,
 			$noRedirect,
-			$this->getLinkRenderer()
+			$this->getLinkRenderer(),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(

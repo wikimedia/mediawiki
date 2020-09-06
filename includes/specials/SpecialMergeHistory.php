@@ -195,7 +195,11 @@ class SpecialMergeHistory extends SpecialPage {
 
 		# List all stored revisions
 		$revisions = new MergeHistoryPager(
-			$this, [], $this->mTargetObj, $this->mDestObj
+			$this,
+			[],
+			$this->mTargetObj,
+			$this->mDestObj,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 		$haveRevisions = $revisions->getNumRows() > 0;
 

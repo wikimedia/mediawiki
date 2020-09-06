@@ -825,7 +825,8 @@ abstract class QueryPage extends SpecialPage {
 			return;
 		}
 
-		$batch = new LinkBatch;
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $ns ?? $row->namespace, $row->title );
 		}

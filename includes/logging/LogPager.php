@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -62,6 +63,9 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var LogEventsList */
 	public $mLogEventsList;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param LogEventsList $list
 	 * @param string|array $types Log types to show
@@ -75,10 +79,12 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $tagFilter Tag
 	 * @param string $action Specific action (subtype) requested
 	 * @param int $logId Log entry ID, to limit to a single log entry.
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
-		$tagFilter = '', $action = '', $logId = 0
+		$tagFilter = '', $action = '', $logId = 0,
+		LinkBatchFactory $linkBatchFactory = null
 	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
@@ -93,6 +99,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitAction( $action );
 		$this->getDateCond( $year, $month, $day );
 		$this->mTagFilter = $tagFilter;
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 
 		$this->mDb = wfGetDB( DB_REPLICA, 'logpager' );
 	}
@@ -397,7 +404,7 @@ class LogPager extends ReverseChronologicalPager {
 	protected function getStartBody() {
 		# Do a link batch query
 		if ( $this->getNumRows() > 0 ) {
-			$lb = new LinkBatch;
+			$lb = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $this->mResult as $row ) {
 				$lb->add( $row->log_namespace, $row->log_title );
 				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );

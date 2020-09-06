@@ -202,7 +202,11 @@ class SpecialBlockList extends SpecialPage {
 			$conds['ipb_sitewide'] = 0;
 		}
 
-		return new BlockListPager( $this, $conds );
+		return new BlockListPager(
+			$this,
+			$conds,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 	}
 
 	/**

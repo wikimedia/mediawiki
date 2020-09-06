@@ -807,7 +807,10 @@ EOT
 	protected function imageHistory() {
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
-		$pager = new ImageHistoryPseudoPager( $this );
+		$pager = new ImageHistoryPseudoPager(
+			$this,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$out->addHTML( $pager->getBody() );
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 

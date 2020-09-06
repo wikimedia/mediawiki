@@ -892,7 +892,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addWikiMsg( $wikiMsg, $this->getLanguage()->formatNum( $pagecount ) );
 		$out->addHTML( "<ul>\n" );
 
-		$linkBatch = new LinkBatch( $subpages );
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$linkBatch = $linkBatchFactory->newLinkBatch( $subpages );
 		$linkBatch->setCaller( __METHOD__ );
 		$linkBatch->execute();
 		$linkRenderer = $this->getLinkRenderer();

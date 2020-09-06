@@ -21,6 +21,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -54,6 +55,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
@@ -61,6 +65,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param string $tagFilter
 	 * @param array $conds
 	 * @param string $day
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
@@ -68,7 +73,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$month = '',
 		$tagFilter = '',
 		array $conds = [],
-		$day = ''
+		$day = '',
+		LinkBatchFactory $linkBatchFactory = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
@@ -77,6 +83,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	// For hook compatibility...
@@ -150,7 +157,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Do a link batch query
 		$this->mResult->seek( 0 );
-		$batch = new LinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		$revIds = [];
 		foreach ( $this->mResult as $row ) {
 			if ( $row->rev_parent_id ) {

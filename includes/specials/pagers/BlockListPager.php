@@ -19,18 +19,19 @@
  * @ingroup Pager
  */
 
-/**
- * @ingroup Pager
- */
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * @ingroup Pager
+ */
 class BlockListPager extends TablePager {
 
 	protected $conds;
@@ -42,14 +43,23 @@ class BlockListPager extends TablePager {
 	 */
 	protected $restrictions = [];
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param SpecialPage $page
 	 * @param array $conds
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $page, $conds ) {
+	public function __construct(
+		$page,
+		$conds,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
 		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	protected function getFieldNames() {
@@ -420,8 +430,9 @@ class BlockListPager extends TablePager {
 	 * @param IResultWrapper $result
 	 */
 	public function preprocessResults( $result ) {
+		$services = MediaWikiServices::getInstance();
 		# Do a link batch query
-		$lb = new LinkBatch;
+		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
 
 		$partialBlocks = [];
@@ -442,7 +453,7 @@ class BlockListPager extends TablePager {
 		if ( $partialBlocks ) {
 			// Mutations to the $row object are not persisted. The restrictions will
 			// need be stored in a separate store.
-			$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+			$blockRestrictionStore = $services->getBlockRestrictionStore();
 			$this->restrictions = $blockRestrictionStore->loadByBlockId( $partialBlocks );
 
 			foreach ( $this->restrictions as $restriction ) {

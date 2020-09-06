@@ -24,6 +24,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -57,7 +58,8 @@ class SpecialUnwatchedPages extends QueryPage {
 			return;
 		}
 
-		$batch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 		}

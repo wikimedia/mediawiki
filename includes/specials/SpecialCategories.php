@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup SpecialPage
  */
@@ -45,7 +47,8 @@ class SpecialCategories extends SpecialPage {
 		$cap = new CategoryPager(
 			$this->getContext(),
 			$from,
-			$this->getLinkRenderer()
+			$this->getLinkRenderer(),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 		$cap->doQuery();
 

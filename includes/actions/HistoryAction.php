@@ -299,7 +299,15 @@ class HistoryAction extends FormlessAction {
 			$m = '';
 			$d = '';
 		}
-		$pager = new HistoryPager( $this, $y, $m, $tagFilter, $conds, $d );
+		$pager = new HistoryPager(
+			$this,
+			$y,
+			$m,
+			$tagFilter,
+			$conds,
+			$d,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .

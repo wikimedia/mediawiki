@@ -679,7 +679,21 @@ class LogEventsList extends ContextSource {
 
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $context, $linkRenderer, $flags );
-		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
+		$pager = new LogPager(
+			$loglist,
+			$types,
+			$user,
+			$page,
+			'',
+			$conds,
+			false,
+			false,
+			false,
+			'',
+			'',
+			0,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
 			$pager->mLimit = 50;
