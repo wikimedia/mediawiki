@@ -20,10 +20,10 @@ class HistoryPage extends Page {
 
 	toggleRollbackConfirmationSetting( enable ) {
 		Util.waitForModuleState( 'mediawiki.api', 'ready', 5000 );
-		return browser.execute( function ( enable ) {
+		return browser.execute( function ( en ) {
 			return new mw.Api().saveOption(
 				'showrollbackconfirmation',
-				enable ? '1' : '0'
+				en ? '1' : '0'
 			);
 		}, enable );
 	}

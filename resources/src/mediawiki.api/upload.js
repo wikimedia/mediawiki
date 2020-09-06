@@ -38,10 +38,7 @@
 	 * @return {string}
 	 */
 	function getFirstKey( obj ) {
-		var key;
-		for ( key in obj ) {
-			return key;
-		}
+		return obj[ Object.keys( obj )[ 0 ] ];
 	}
 
 	/**
