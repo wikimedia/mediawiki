@@ -168,7 +168,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		// We need a custom WHERE clause that matches all titles.
 		if ( $mode == 'revs' ) {
-			$lb = new LinkBatch( $titles );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $titles );
 			$where = $lb->constructSet( 'ar', $db );
 			$this->addWhere( $where );
 		} elseif ( $mode == 'all' ) {

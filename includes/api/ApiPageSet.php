@@ -1160,8 +1160,9 @@ class ApiPageSet extends ApiBase {
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
-		$linkBatch = new LinkBatch();
 		$services = MediaWikiServices::getInstance();
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$linkBatch = $linkBatchFactory->newLinkBatch();
 		$contLang = $services->getContentLanguage();
 
 		$titleObjects = [];

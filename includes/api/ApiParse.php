@@ -747,7 +747,8 @@ class ApiParse extends ApiBase {
 		}
 
 		// Fetch hiddencat property
-		$lb = new LinkBatch;
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setArray( [ NS_CATEGORY => $links ] );
 		$db = $this->getDB();
 		$res = $db->select( [ 'page', 'page_props' ],

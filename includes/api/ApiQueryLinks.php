@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query module to list all wiki links on a given set of pages.
  *
@@ -90,7 +92,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			// Filter the titles in PHP so our ORDER BY bug avoidance below works right.
 			$filterNS = $params['namespace'] ? array_flip( $params['namespace'] ) : false;
 
-			$lb = new LinkBatch;
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch();
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
 				if ( !$title ) {
