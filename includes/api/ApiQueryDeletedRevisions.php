@@ -113,7 +113,8 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			] );
 		} else {
 			// We need a custom WHERE clause that matches all titles.
-			$lb = new LinkBatch( $pageSet->getGoodAndMissingTitles() );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $pageSet->getGoodAndMissingTitles() );
 			$where = $lb->constructSet( 'ar', $db );
 			$this->addWhere( $where );
 		}

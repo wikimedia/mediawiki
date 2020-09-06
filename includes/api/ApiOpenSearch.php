@@ -137,7 +137,8 @@ class ApiOpenSearch extends ApiBase {
 		if ( $resolveRedir ) {
 			// Query for redirects
 			$redirects = [];
-			$lb = new LinkBatch( $titles );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $titles );
 			if ( !$lb->isEmpty() ) {
 				$db = $this->getDB();
 				$res = $db->select(
