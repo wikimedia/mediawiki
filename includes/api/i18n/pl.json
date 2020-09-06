@@ -845,6 +845,7 @@
 	"apierror-cantview-deleted-description": "Nie masz uprawnień do podglądu opisów usuniętych plików.",
 	"apierror-cantview-deleted-metadata": "Nie masz uprawnień do podglądu metadanych usuniętych plików.",
 	"apierror-cantview-deleted-revision-content": "Nie masz uprawnień do podglądu treści usuniętych wersji.",
+	"apierror-contentmodel-mismatch": "Dostarczona treść posiada model zawartości <kbd>$1</kbd>, który różni się od obecnego modelu zawartości strony – <kbd>$2</kbd>.",
 	"apierror-exceptioncaught": "[$1] Stwierdzono wyjątek: $2",
 	"apierror-filedoesnotexist": "Plik nie istnieje.",
 	"apierror-import-unknownerror": "Nieznany błąd podczas importowania: $1.",

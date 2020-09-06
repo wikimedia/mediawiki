@@ -597,9 +597,11 @@
 	"group-sysop-member": "{{GENDER:$1|bewitend|bewiticge}}",
 	"group-suppress-member": "{{GENDER:$1|uncūþ}}",
 	"grouppage-sysop": "{{ns:project}}:Bewitendas",
+	"right-delete-redirect": "Ahwite anfealde adihtunga onwendunga",
 	"newuserlogpage": "Brūcenda scieppunge ealdhord",
 	"rightslog": "Brūcenda riht cranic",
 	"action-edit": "adihtan þisne tramet",
+	"action-delete-redirect": "Oferwrite anfeald adihtungwendunga",
 	"nchanges": "$1 {{PLURAL:$1|andwendung|andwendunga}}",
 	"enhancedrc-history": "stǣr",
 	"recentchanges": "Nīwa andwendunga",
@@ -1037,5 +1039,6 @@
 	"special-characters-group-greek": "Grēcisc",
 	"special-characters-group-cyrillic": "Cyrillisc",
 	"special-characters-group-arabic": "Arabisc",
-	"special-characters-group-persian": "Perseanisc"
+	"special-characters-group-persian": "Perseanisc",
+	"log-action-filter-delete-delete_redir2": "Eftwende oferwrite"
 }

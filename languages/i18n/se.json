@@ -308,6 +308,8 @@
 	"minoredit": "Dát lea unna rievdadus",
 	"watchthis": "Lasit čuovvunlistui",
 	"savearticle": "Vurke siiddu",
+	"publishchanges": "Almmut rievdadusaid",
+	"publishchanges-start": "Almmut rievdadusaid…",
 	"preview": "Siiddu ovdalgihtiigeahččan",
 	"showpreview": "Geahča ovdalgiihtii",
 	"showdiff": "Čájet rievdadusaid",
@@ -544,6 +546,7 @@
 	"upload-file-error": "Stuorra feaila",
 	"upload-misc-error": "Feaila",
 	"upload-dialog-title": "Lasit fiilla",
+	"upload-form-label-own-work": "Dát lea mu iežan bargu",
 	"upload-curl-error6": "Čujuhus ii doaimma",
 	"license": "Liseansa:",
 	"license-header": "Liseansa",
@@ -995,5 +998,7 @@
 	"logentry-newusers-create": "$1 ráhkadii dovddaldaga",
 	"logentry-newusers-autocreate": "Dovddaldat $1 {{GENDER:$2|ráhkaduvvui}} automáhtalaččat",
 	"rightsnone": "(eai rievttit)",
-	"searchsuggest-search": "Oza"
+	"searchsuggest-search": "Oza",
+	"mw-widgets-mediasearch-input-placeholder": "Oza miediaid",
+	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten"
 }

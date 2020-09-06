@@ -1688,7 +1688,7 @@
 	"recentchanges-label-unpatrolled": "Tooltip for {{msg-mw|unpatrolledletter}}",
 	"recentchanges-label-plusminus": "Legend item for plus/minus.\n\nPreceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.",
 	"recentchanges-legend-heading": "Used as a heading for legend box on [[Special:RecentChanges]] and [[Special:Watchlist]].\n{{Identical|Legend}}",
-	"recentchanges-legend-newpage": "{{doc-important|Do not translate <code>Special:NewPages</code>.}} (But ''do'' translate \"list of new pages\".)\n\nUsed as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-newpage}}.",
+	"recentchanges-legend-newpage": "{{doc-important|Do not translate <code>Special:NewPages</code>.}} (But ''do'' translate \"list of new pages\".)\n\n{{doc-important|Do not translate <code><nowiki>{{int:recentchanges-label-newpage}}</nowiki></code>.}} Just copy it to the translation. It will show up as {{msg-mw|recentchanges-label-newpage}}.\n\nThis message is used as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-newpage}}.",
 	"recentchanges-legend-minor": "Used as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-minor}}.",
 	"recentchanges-legend-bot": "Used as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-bot}}.",
 	"recentchanges-legend-unpatrolled": "Used as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-unpatrolled}}.",

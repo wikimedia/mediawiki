@@ -1645,6 +1645,7 @@
 	"apierror-compare-relative-to-nothing": "אין גרסת \"from\" עבור <var>torelative</var> שתהיה יחסית.",
 	"apierror-contentserializationexception": "הסדרת התוכן נכשלה: $1",
 	"apierror-contenttoobig": "התוכן שסיפקת חורג מגודל הערך המרבי של {{PLURAL:$1|קילובייט אחד|$1 קילובייטים}}.",
+	"apierror-contentmodel-mismatch": "התוכן שסיפקת משתייך למודל התוכן <kbd>$1</kbd>, ששונה ממודל התוכן הנוכחי של הדף שהוא <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "העלאות לפי URL אינם מורשות מהתחום הזה.",
 	"apierror-copyuploadbadurl": "העלאה אינה מותרת מה־URL הזה.",
 	"apierror-create-titleexists": "כותרות קיימות אינם יכולות מוגנות עם <kbd>create</kbd>.",

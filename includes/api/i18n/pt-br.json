@@ -1644,6 +1644,7 @@
 	"apierror-compare-relative-to-nothing": "Nenhuma revisão 'from' para <var>torelative</var> para ser relativa à.",
 	"apierror-contentserializationexception": "Falha na serialização de conteúdo: $1",
 	"apierror-contenttoobig": "O conteúdo fornecido excede o limite de tamanho do artigo de $1 {{PLURAL: $1|kilobyte|kilobytes}}.",
+	"apierror-contentmodel-mismatch": "O conteúdo que forneceu tem o modelo de conteúdo <kbd>$1</kbd>, que é diferente do modelo de conteúdo atual da página, <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Os uploads por URL não são permitidos deste domínio.",
 	"apierror-copyuploadbadurl": "Envio não permitido a partir deste URL.",
 	"apierror-create-titleexists": "Os títulos existentes não podem ser protegidos com <kbd>create</kbd>.",
