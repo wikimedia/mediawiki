@@ -622,9 +622,11 @@ SPARQL;
 						continue;
 					}
 					$this->writeCategoryData( $row );
-					$pages[$row->page_id] = $row->rc_title;
-					$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
-					$this->processed[$row->page_id] = true;
+					if ( $row->page_id ) {
+						$pages[$row->page_id] = $row->rc_title;
+						$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
+						$this->processed[$row->page_id] = true;
+					}
 				}
 			}
 
@@ -666,9 +668,9 @@ SPARQL;
 						continue;
 					}
 					$this->writeCategoryData( $row );
-					$pages[$row->page_id] = $row->rc_title;
-					$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 					if ( $row->page_id ) {
+						$pages[$row->page_id] = $row->rc_title;
+						$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 						$this->processed[$row->page_id] = true;
 					}
 					$processedTitle[$row->rc_title] = true;
