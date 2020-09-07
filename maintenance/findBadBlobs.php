@@ -123,19 +123,7 @@ class FindBadBlobs extends Maintenance {
 			}
 		}
 
-		return $this->normalizeIds( $opt );
-	}
-
-	/**
-	 * @param string $text
-	 *
-	 * @return int[]
-	 */
-	private function normalizeIds( $text ) {
-		$ids = preg_split( '/[\s,;:]+/', $text );
-		return array_map( function ( $id ) {
-			return (int)$id;
-		}, $ids );
+		return $this->parseIntList( $opt );
 	}
 
 	/**
