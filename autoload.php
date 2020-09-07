@@ -1819,6 +1819,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\LightweightObjectStore\\StorageAwareness' => __DIR__ . '/includes/libs/objectcache/utils/StorageAwareness.php',
 	'Wikimedia\\Mime\\MimeMap' => __DIR__ . '/includes/libs/mime/MimeMap.php',
 	'Wikimedia\\Mime\\MimeMapMinimal' => __DIR__ . '/includes/libs/mime/MimeMapMinimal.php',
+	'Wikimedia\\NonSerializable\\NonSerializableTrait' => __DIR__ . '/includes/libs/NonSerializableTrait.php',
 	'Wikimedia\\Rdbms\\AtomicSectionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/utils/AtomicSectionIdentifier.php',
 	'Wikimedia\\Rdbms\\Blob' => __DIR__ . '/includes/libs/rdbms/encasing/Blob.php',
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',

@@ -127,6 +127,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		return $page;
 	}
 
+	public function testSerialization_fails() {
+		$this->expectException( LogicException::class );
+		$page = $this->createPage( __METHOD__, __METHOD__ );
+		serialize( $page );
+	}
+
 	/**
 	 * @covers WikiPage::prepareContentForEdit
 	 */

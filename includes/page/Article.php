@@ -31,6 +31,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\IPUtils;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -45,6 +46,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class Article implements Page {
 	use ProtectedHookAccessorTrait;
+	use NonSerializableTrait;
 
 	/**
 	 * @var IContextSource|null The context this Article is executed in.

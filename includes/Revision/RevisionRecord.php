@@ -25,7 +25,6 @@ namespace MediaWiki\Revision;
 use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
-use LogicException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -33,6 +32,7 @@ use MWException;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * Page revision base class.
@@ -44,6 +44,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionRecord
  */
 abstract class RevisionRecord {
+	use NonSerializableTrait;
 
 	// RevisionRecord deletion constants
 	public const DELETED_TEXT = 1;
@@ -107,15 +108,6 @@ abstract class RevisionRecord {
 
 		// XXX: this is a sensible default, but we may not have a Title object here in the future.
 		$this->mPageId = $title->getArticleID();
-	}
-
-	/**
-	 * Implemented to defy serialization.
-	 *
-	 * @throws LogicException always
-	 */
-	public function __sleep() {
-		throw new LogicException( __CLASS__ . ' is not serializable.' );
 	}
 
 	/**

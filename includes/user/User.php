@@ -35,6 +35,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
@@ -54,6 +55,7 @@ use Wikimedia\ScopedCallback;
  */
 class User implements IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
+	use NonSerializableTrait;
 
 	/**
 	 * Number of characters required for the user_token field.

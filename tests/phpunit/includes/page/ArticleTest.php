@@ -66,4 +66,12 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( -8, $this->article->getPage()->ext_someNewProperty,
 			"Article get/set magic on new field" );
 	}
+
+	/**
+	 * @covers Article::__sleep
+	 */
+	public function testSerialization_fails() {
+		$this->expectException( LogicException::class );
+		serialize( $this->article );
+	}
 }
