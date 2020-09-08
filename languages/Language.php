@@ -3243,8 +3243,8 @@ class Language {
 
 	/**
 	 * Normally we output all numbers in plain en_US style, that is
-	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	 * point twohundredthirtyfive. However this is not suitable for all
+	 * 293,291.235 for two hundred ninety-three thousand two hundred ninety-one
+	 * point two hundred thirty-five. However this is not suitable for all
 	 * languages, some such as Bengali (bn) want ২,৯৩,২৯১.২৩৫ and others such as
 	 * Icelandic just want to use commas instead of dots, and dots instead
 	 * of commas like "293.291,235".
@@ -3329,12 +3329,25 @@ class Language {
 	 * @return string
 	 */
 	public function commafy( $number ) {
-		$digitGroupingPattern = $this->digitGroupingPattern();
-		$minimumGroupingDigits = $this->minimumGroupingDigits();
-		if ( $number === null ) {
+		// Validate the input argument.
+		if ( $number === null || $number === '' ) {
 			return '';
 		}
+		if ( !is_string( $number ) ) {
+			$number = (string)$number;
+		}
+		$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
+		if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
+			wfDeprecated( __METHOD__ . ' with a non-numeric string', '1.36' );
+			// For backwards-compat, return commafy piecewise on the valid
+			// numbers in the string.
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) {
+				return $this->commafy( $m[0] );
+			}, $number );
+		}
 
+		$digitGroupingPattern = $this->digitGroupingPattern();
+		$minimumGroupingDigits = $this->minimumGroupingDigits();
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
 			// Default grouping is at thousands, use the same for ###,###,### pattern too.
 			// In some languages it's conventional not to insert a thousands separator
@@ -3351,9 +3364,9 @@ class Language {
 			}
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
 		} else {
-			// Ref: http://cldr.unicode.org/translation/number-patterns
+			// Ref: http://cldr.unicode.org/translation/numbers-currency/number-patterns
 			$sign = "";
-			if ( intval( $number ) < 0 ) {
+			if ( substr( $number, 0, 1 ) === '-' ) {
 				// For negative numbers apply the algorithm like positive number and add sign.
 				$sign = "-";
 				$number = substr( $number, 1 );
@@ -3361,7 +3374,7 @@ class Language {
 			$integerPart = [];
 			$decimalPart = [];
 			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $number, $integerPart );
+			preg_match( "/^\d+/", $number, $integerPart );
 			preg_match( "/\.\d*/", $number, $decimalPart );
 			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
 			if ( $groupedNumber === $number ) {
