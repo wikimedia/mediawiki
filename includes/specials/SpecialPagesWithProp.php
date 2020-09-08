@@ -109,15 +109,13 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = HTMLForm::factory( 'ooui', $fields, $context );
-
-		$form->setMethod( 'get' );
-		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
-		$form->setWrapperLegendMsg( 'pageswithprop-legend' );
-		$form->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() );
-		$form->setSubmitTextMsg( 'pageswithprop-submit' );
-
-		$form->prepareForm();
+		$form = HTMLForm::factory( 'ooui', $fields, $context )
+			->setMethod( 'get' )
+			->setSubmitCallback( [ $this, 'onSubmit' ] )
+			->setWrapperLegendMsg( 'pageswithprop-legend' )
+			->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() )
+			->setSubmitTextMsg( 'pageswithprop-submit' )
+			->prepareForm();
 		$form->displayForm( false );
 		if ( $propname !== '' && $propname !== null ) {
 			$form->trySubmit();
