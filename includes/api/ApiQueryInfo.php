@@ -112,7 +112,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ self::class, 'getImportToken' ],
 			'watch' => [ self::class, 'getWatchToken' ],
 		];
-		$this->getHookRunner()->onAPIQueryInfoTokens( $this->tokenFunctions );
+		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}

@@ -111,6 +111,12 @@ because of Phabricator reports.
    - LogPage::addEntry (also accepts user id instead)
    - PatrolLog::record
    - Title::getNotificationTimestamp (though the entire method is deprecated)
+* The following hooks have been removed:
+   - APIQueryInfoTokens
+   - APIQueryRecentChangesTokens
+   - APIQueryRevisionsTokens
+   - APIQueryUsersTokens
+   - ApiTokensGetTokenTypes
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.

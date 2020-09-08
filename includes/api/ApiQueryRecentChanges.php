@@ -69,7 +69,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->tokenFunctions = [
 			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
-		$this->getHookRunner()->onAPIQueryRecentChangesTokens( $this->tokenFunctions );
+		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}

@@ -35,11 +35,6 @@ class DeprecatedHooks {
 	 */
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
-		'APIQueryInfoTokens' => [ 'deprecatedVersion' => '1.24' ],
-		'APIQueryRecentChangesTokens' => [ 'deprecatedVersion' => '1.24' ],
-		'APIQueryRevisionsTokens' => [ 'deprecatedVersion' => '1.24' ],
-		'APIQueryUsersTokens' => [ 'deprecatedVersion' => '1.24' ],
-		'ApiTokensGetTokenTypes' => [ 'deprecatedVersion' => '1.24' ],
 		'ArticleEditUpdates' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleEditUpdatesDeleteFromRecentchanges' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleRevisionUndeleted' => [ 'deprecatedVersion' => '1.35' ],

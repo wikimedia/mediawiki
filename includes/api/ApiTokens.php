@@ -68,7 +68,7 @@ class ApiTokens extends ApiBase {
 		foreach ( $names as $name ) {
 			$types[$name] = [ ApiQueryInfo::class, 'get' . ucfirst( $name ) . 'Token' ];
 		}
-		$this->getHookRunner()->onApiTokensGetTokenTypes( $types );
+		// TODO update to inject a user following removal of token hook
 
 		// For forwards-compat, copy any token types from ApiQueryTokens that
 		// we don't already have something for.
