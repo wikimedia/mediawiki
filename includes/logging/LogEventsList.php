@@ -426,7 +426,7 @@ class LogEventsList extends ContextSource {
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
 		);
-		$attribs['class'] = implode( ' ', $classes );
+		$attribs['class'] = $classes;
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}

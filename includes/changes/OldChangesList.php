@@ -67,7 +67,7 @@ class OldChangesList extends ChangesList {
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		$html = $this->getHighlightsContainerDiv() . $html;
-		$attribs['class'] = implode( ' ', $classes );
+		$attribs['class'] = $classes;
 
 		return $dateheader . Html::rawElement( 'li', $attribs, $html ) . "\n";
 	}

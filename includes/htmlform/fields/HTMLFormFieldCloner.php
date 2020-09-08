@@ -327,17 +327,13 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		if ( $displayFormat !== 'raw' ) {
-			$classes = [
-				'mw-htmlform-cloner-row',
-			];
+			$classes = [ 'mw-htmlform-cloner-row' ];
 
 			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
 			}
 
-			$attribs = [
-				'class' => implode( ' ', $classes ),
-			];
+			$attribs = [ 'class' => $classes ];
 
 			if ( $displayFormat === 'table' ) {
 				$html = Html::rawElement( 'table',
@@ -449,15 +445,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$html .= $fieldHtml;
 		}
 
-		$classes = [
-			'mw-htmlform-cloner-row',
-		];
-
-		$attribs = [
-			'class' => implode( ' ', $classes ),
-		];
-
-		$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
+		$html = Html::rawElement( 'div', [ 'class' => 'mw-htmlform-cloner-row' ], "\n$html\n" );
 
 		$html .= $hidden;
 
