@@ -296,7 +296,7 @@
 	"variants": "变种",
 	"navigation-heading": "导航菜单",
 	"errorpagetitle": "错误",
-	"returnto": "返回至$1。",
+	"returnto": "返回至“$1”。",
 	"tagline": "来自{{SITENAME}}",
 	"help": "帮助",
 	"help-mediawiki": "MediaWiki帮助",

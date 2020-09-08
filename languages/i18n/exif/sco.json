@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Avicennasis",
-			"John Reid"
+			"John Reid",
+			"MJL"
 		]
 	},
 	"exif-imagewidth": "Width",
@@ -46,7 +47,7 @@
 	"exif-datetimedigitized": "Date n time o deegeetisin",
 	"exif-subsectime": "DateTime subseiconts",
 	"exif-subsectimeoriginal": "DateTimeOreeginal subseiconts",
-	"exif-subsectimedigitized": "DateTimeDeegeetized subseiconts",
+	"exif-subsectimedigitized": "DateTimeDigitised subseiconts",
 	"exif-exposuretime": "Exposure time",
 	"exif-exposuretime-format": "$1 sec ($2)",
 	"exif-fnumber": "F Nummer",
