@@ -210,3 +210,15 @@ CREATE TABLE /*_*/iwlinks (
   INDEX iwl_prefix_from_title (iwl_prefix, iwl_from, iwl_title),
   PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/category (
+  cat_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  cat_title VARBINARY(255) NOT NULL,
+  cat_pages INT DEFAULT 0 NOT NULL,
+  cat_subcats INT DEFAULT 0 NOT NULL,
+  cat_files INT DEFAULT 0 NOT NULL,
+  UNIQUE INDEX cat_title (cat_title),
+  INDEX cat_pages (cat_pages),
+  PRIMARY KEY(cat_id)
+) /*$wgDBTableOptions*/;

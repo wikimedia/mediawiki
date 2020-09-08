@@ -607,18 +607,6 @@ CREATE TABLE protected_titles (
   PRIMARY KEY (pt_namespace, pt_title)
 );
 
-CREATE SEQUENCE category_cat_id_seq;
-CREATE TABLE category (
-  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_cat_id_seq'),
-  cat_title    TEXT     NOT NULL,
-  cat_pages    INTEGER  NOT NULL  DEFAULT 0,
-  cat_subcats  INTEGER  NOT NULL  DEFAULT 0,
-  cat_files    INTEGER  NOT NULL  DEFAULT 0
-);
-ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
-CREATE UNIQUE INDEX category_title ON category(cat_title);
-CREATE INDEX category_pages ON category(cat_pages);
-
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (
