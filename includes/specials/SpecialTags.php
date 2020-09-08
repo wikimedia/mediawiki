@@ -386,15 +386,15 @@ class SpecialTags extends SpecialPage {
 			'required' => true,
 		];
 
-		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
-		$form->setAction( $this->getPageTitle( 'delete' )->getLocalURL() );
-		// @phan-suppress-next-line PhanUndeclaredProperty
-		$form->tagAction = 'delete'; // custom property on HTMLForm object
-		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
-		$form->setSubmitTextMsg( 'tags-delete-submit' );
-		$form->setSubmitDestructive(); // nasty!
-		$form->addPreText( $preText );
-		$form->show();
+		HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+			->setAction( $this->getPageTitle( 'delete' )->getLocalURL() )
+			->setSubmitCallback( function ( $data, $form ) {
+				return $this->processTagForm( $data, $form, 'delete' );
+			} )
+			->setSubmitTextMsg( 'tags-delete-submit' )
+			->setSubmitDestructive()
+			->addPreText( $preText )
+			->show();
 	}
 
 	protected function showActivateDeactivateForm( $tag, $activate ) {
@@ -439,35 +439,36 @@ class SpecialTags extends SpecialPage {
 			'required' => true,
 		];
 
-		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
-		$form->setAction( $this->getPageTitle( $actionStr )->getLocalURL() );
-		// @phan-suppress-next-line PhanUndeclaredProperty
-		$form->tagAction = $actionStr;
-		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
-		// tags-activate-submit, tags-deactivate-submit
-		$form->setSubmitTextMsg( "tags-$actionStr-submit" );
-		$form->addPreText( $preText );
-		$form->show();
+		HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+			->setAction( $this->getPageTitle( $actionStr )->getLocalURL() )
+			->setSubmitCallback( function ( $data, $form ) use ( $actionStr ) {
+				return $this->processTagForm( $data, $form, $actionStr );
+			} )
+			// tags-activate-submit, tags-deactivate-submit
+			->setSubmitTextMsg( "tags-$actionStr-submit" )
+			->addPreText( $preText )
+			->show();
 	}
 
 	/**
 	 * @param array $data
 	 * @param HTMLForm $form
+	 * @param string $action
 	 * @return bool
-	 * @suppress PhanUndeclaredProperty $form->tagAction
 	 */
-	public function processTagForm( array $data, HTMLForm $form ) {
+	public function processTagForm( array $data, HTMLForm $form, string $action ) {
 		$context = $form->getContext();
 		$out = $context->getOutput();
 
 		$tag = $data['HiddenTag'];
-		$status = call_user_func( [ ChangeTags::class, "{$form->tagAction}TagWithChecks" ],
+		// activateTagWithChecks, deactivateTagWithChecks, deleteTagWithChecks
+		$status = call_user_func( [ ChangeTags::class, "{$action}TagWithChecks" ],
 			$tag, $data['Reason'], $context->getUser(), true );
 
 		if ( $status->isGood() ) {
 			$out->redirect( $this->getPageTitle()->getLocalURL() );
 			return true;
-		} elseif ( $status->isOK() && $form->tagAction === 'delete' ) {
+		} elseif ( $status->isOK() && $action === 'delete' ) {
 			// deletion succeeded, but hooks raised a warning
 			$out->addWikiTextAsInterface( $this->msg( 'tags-delete-warnings-after-delete', $tag,
 				count( $status->getWarningsArray() ) )->text() . "\n" .
