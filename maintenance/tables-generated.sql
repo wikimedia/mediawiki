@@ -191,3 +191,22 @@ CREATE TABLE /*_*/imagelinks (
   ),
   PRIMARY KEY(il_from, il_to)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/langlinks (
+  ll_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  ll_lang VARBINARY(35) DEFAULT '' NOT NULL,
+  ll_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX ll_lang (ll_lang, ll_title),
+  PRIMARY KEY(ll_from, ll_lang)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/iwlinks (
+  iwl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  iwl_prefix VARBINARY(20) DEFAULT '' NOT NULL,
+  iwl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX iwl_prefix_title_from (iwl_prefix, iwl_title, iwl_from),
+  INDEX iwl_prefix_from_title (iwl_prefix, iwl_from, iwl_title),
+  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+) /*$wgDBTableOptions*/;

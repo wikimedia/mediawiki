@@ -734,6 +734,15 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'imagelinks', 'il_backlinks_namespace',
 				'(il_from_namespace, il_to, il_from)' ],
 			[ 'dropPgIndex', 'imagelinks', 'il_from' ],
+			[ 'dropFkey', 'langlinks', 'll_from' ],
+			[ 'addIndex', 'langlinks', 'langlinks_pkey', 'patch-langlinks-pk.sql' ],
+			[ 'renameIndex', 'langlinks', 'langlinks_lang_title', 'll_lang' ],
+			[ 'setDefault', 'langlinks', 'll_lang', '' ],
+			[ 'setDefault', 'langlinks', 'll_from', 0 ],
+			[ 'setDefault', 'langlinks', 'll_title', '' ],
+			[ 'changeNullableField', 'langlinks', 'll_lang', 'NOT NULL', true ],
+			[ 'changeNullableField', 'langlinks', 'll_title', 'NOT NULL', true ],
+			[ 'addIndex', 'iwlinks', 'iwlinks_pkey', 'patch-iwlinks-pk.sql' ],
 		];
 	}
 

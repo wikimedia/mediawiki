@@ -273,14 +273,6 @@ CREATE INDEX externallinks_index   ON externallinks (el_index);
 CREATE INDEX el_index_60           ON externallinks (el_index_60, el_id);
 CREATE INDEX el_from_index_60      ON externallinks (el_from, el_index_60, el_id);
 
-CREATE TABLE langlinks (
-  ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ll_lang    TEXT,
-  ll_title   TEXT
-);
-CREATE UNIQUE INDEX langlinks_unique ON langlinks (ll_from,ll_lang);
-CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
-
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
@@ -627,14 +619,6 @@ ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
-CREATE TABLE iwlinks (
-  iwl_from    INTEGER  NOT NULL DEFAULT 0,
-  iwl_prefix  TEXT     NOT NULL DEFAULT '',
-  iwl_title   TEXT     NOT NULL DEFAULT ''
-);
-CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
-CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
-CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (
