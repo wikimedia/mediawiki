@@ -63,11 +63,11 @@ class SpecialUnblock extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'unblockip' ) );
 		$out->addModules( [ 'mediawiki.userSuggest' ] );
 
-		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() );
-		$form->setWrapperLegendMsg( 'unblockip' );
-		$form->setSubmitCallback( [ __CLASS__, 'processUIUnblock' ] );
-		$form->setSubmitTextMsg( 'ipusubmit' );
-		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
+		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() )
+			->setWrapperLegendMsg( 'unblockip' )
+			->setSubmitCallback( [ __CLASS__, 'processUIUnblock' ] )
+			->setSubmitTextMsg( 'ipusubmit' )
+			->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
 		if ( $form->show() ) {
 			switch ( $this->type ) {

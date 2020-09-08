@@ -125,8 +125,7 @@ class SpecialProtectedpages extends SpecialPage {
 				'name' => 'size',
 			]
 		];
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedpages' )
 			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );
