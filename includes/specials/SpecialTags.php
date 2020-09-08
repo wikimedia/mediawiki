@@ -103,13 +103,13 @@ class SpecialTags extends SpecialPage {
 				],
 			];
 
-			$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
-			$form->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
-			$form->setWrapperLegendMsg( 'tags-create-heading' );
-			$form->setHeaderText( $this->msg( 'tags-create-explanation' )->parseAsBlock() );
-			$form->setSubmitCallback( [ $this, 'processCreateTagForm' ] );
-			$form->setSubmitTextMsg( 'tags-create-submit' );
-			$form->show();
+			HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+				->setAction( $this->getPageTitle( 'create' )->getLocalURL() )
+				->setWrapperLegendMsg( 'tags-create-heading' )
+				->setHeaderText( $this->msg( 'tags-create-explanation' )->parseAsBlock() )
+				->setSubmitCallback( [ $this, 'processCreateTagForm' ] )
+				->setSubmitTextMsg( 'tags-create-submit' )
+				->show();
 
 			// If processCreateTagForm generated a redirect, there's no point
 			// continuing with this, as the user is just going to end up getting sent
@@ -321,13 +321,13 @@ class SpecialTags extends SpecialPage {
 				$out->parseAsInterface( $status->getWikiText() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
-			$subform = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
-			$subform->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
-			$subform->setWrapperLegendMsg( 'tags-create-heading' );
-			$subform->setHeaderText( $headerText );
-			$subform->setSubmitCallback( [ $this, 'processCreateTagForm' ] );
-			$subform->setSubmitTextMsg( 'htmlform-yes' );
-			$subform->show();
+			HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+				->setAction( $this->getPageTitle( 'create' )->getLocalURL() )
+				->setWrapperLegendMsg( 'tags-create-heading' )
+				->setHeaderText( $headerText )
+				->setSubmitCallback( [ $this, 'processCreateTagForm' ] )
+				->setSubmitTextMsg( 'htmlform-yes' )
+				->show();
 
 			$out->addBacklinkSubtitle( $this->getPageTitle() );
 			return true;

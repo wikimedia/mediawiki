@@ -137,8 +137,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			'levelmenu' => $this->getLevelMenu( $level )
 		];
 
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedtitles' )
 			->setSubmitText( $this->msg( 'protectedtitles-submit' )->text() );
