@@ -191,3 +191,12 @@ CREATE TABLE /*_*/imagelinks (
   ),
   PRIMARY KEY(il_from, il_to)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/langlinks (
+  ll_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  ll_lang VARBINARY(35) DEFAULT '' NOT NULL,
+  ll_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX ll_lang (ll_lang, ll_title),
+  PRIMARY KEY(ll_from, ll_lang)
+) /*$wgDBTableOptions*/;

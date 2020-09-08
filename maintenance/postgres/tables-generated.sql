@@ -210,3 +210,13 @@ CREATE INDEX il_to ON imagelinks (il_to, il_from);
 CREATE INDEX il_backlinks_namespace ON imagelinks (
   il_from_namespace, il_to, il_from
 );
+
+
+CREATE TABLE langlinks (
+  ll_from INT DEFAULT 0 NOT NULL,
+  ll_lang TEXT DEFAULT '' NOT NULL,
+  ll_title TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(ll_from, ll_lang)
+);
+
+CREATE INDEX ll_lang ON langlinks (ll_lang, ll_title);
