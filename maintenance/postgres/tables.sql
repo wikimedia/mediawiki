@@ -619,14 +619,6 @@ ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
-CREATE TABLE iwlinks (
-  iwl_from    INTEGER  NOT NULL DEFAULT 0,
-  iwl_prefix  TEXT     NOT NULL DEFAULT '',
-  iwl_title   TEXT     NOT NULL DEFAULT ''
-);
-CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
-CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
-CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (
