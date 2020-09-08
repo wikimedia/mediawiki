@@ -574,35 +574,6 @@ CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 -- Used when updating collation (e.g. updateCollation.php)
 CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
---
--- Track all existing categories. Something is a category if 1) it has an entry
--- somewhere in categorylinks, or 2) it has a description page. Categories
--- might not have corresponding pages, so they need to be tracked separately.
---
-CREATE TABLE /*_*/category (
-  -- Primary key
-  cat_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-
-  -- Name of the category, in the same form as page_title (with underscores).
-  -- If there is a category page corresponding to this category, by definition,
-  -- it has this name (in the Category namespace).
-  cat_title varchar(255) binary NOT NULL,
-
-  -- The numbers of member pages (including categories and media), subcatego-
-  -- ries, and Image: namespace members, respectively.  These are signed to
-  -- make underflow more obvious.  We make the first number include the second
-  -- two for better sorting: subtracting for display is easy, adding for order-
-  -- ing is not.
-  cat_pages int signed NOT NULL default 0,
-  cat_subcats int signed NOT NULL default 0,
-  cat_files int signed NOT NULL default 0
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/cat_title ON /*_*/category (cat_title);
-
--- For Special:Mostlinkedcategories
-CREATE INDEX /*i*/cat_pages ON /*_*/category (cat_pages);
-
 
 --
 -- Track links to external URLs

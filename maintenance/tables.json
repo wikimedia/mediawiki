@@ -691,5 +691,52 @@
 			}
 		],
 		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
+	},
+	{
+		"name": "category",
+		"comment": "Track all existing categories. Something is a category if 1) it has an entry somewhere in categorylinks, or 2) it has a description page. Categories might not have corresponding pages, so they need to be tracked separately. The numbers of member pages (including categories and media), subcategories, and Image: namespace members, respectively are included in this table too.  These are signed to make underflow more obvious.  We make the first number include the second two for better sorting: subtracting for display is easy, adding for ordering is not.",
+		"columns": [
+			{
+				"name": "cat_id",
+				"comment": "Primary key",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "cat_title",
+				"type": "binary",
+				"comment": "Name of the category, in the same form as page_title (with underscores). If there is a category page corresponding to this category, by definition, it has this name (in the Category namespace).",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "cat_pages",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_subcats",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_files",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "cat_title",
+				"columns": [ "cat_title" ],
+				"unique": true
+			},
+			{
+				"name": "cat_pages",
+				"columns": [ "cat_pages" ],
+				"comment": "For Special:Mostlinkedcategories",
+				"unique": false
+			}
+		],
+		"pk": [ "cat_id" ]
 	}
 ]

@@ -1630,9 +1630,8 @@ abstract class Skin extends ContextSource {
 	 *     - For it to work, a skin must add custom support for it.
 	 *   - a message name (e.g. 'navigation'), the message should be HTML-escaped by the skin
 	 *   - plain text, which should be HTML-escaped by the skin
-	 * - content is the contents of the portlet. It is either:
-	 *   - HTML text (<ul><li>...</li>...</ul>)
-	 *   - array of link data in a format accepted by BaseTemplate::makeListItem()
+	 * - content is the contents of the portlet. This must be array of link data in a format
+	 * 		accepted by self::makeListItem().
 	 *   - (for a magic string as a key, any value)
 	 *
 	 * Note that extensions can control the sidebar contents using the SkinBuildSidebar hook
