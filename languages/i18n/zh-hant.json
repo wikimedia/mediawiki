@@ -269,7 +269,7 @@
 	"variants": "變體",
 	"navigation-heading": "導覽選單",
 	"errorpagetitle": "錯誤",
-	"returnto": "返回「$1」頁面",
+	"returnto": "返回到「$1」。",
 	"tagline": "出自{{SITENAME}}",
 	"help": "說明",
 	"help-mediawiki": "有關 MediaWiki 的說明",

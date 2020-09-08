@@ -1664,6 +1664,7 @@
 	"apierror-compare-relative-to-nothing": "Pas de révision 'depuis' pour <var>torelative</var> à laquelle se rapporter.",
 	"apierror-contentserializationexception": "Échec de sérialisation du contenu : $1",
 	"apierror-contenttoobig": "Le contenu que vous avez fourni dépasse la limite de taille d’un article, qui est de $1 {{PLURAL:$1|kilooctet|kilooctets}}.",
+	"apierror-contentmodel-mismatch": "Le contenu que vous avez fourni utilise le modèle de contenu <kbd>$1</kbd>, alors que le modèle de contenu actuel de la page est <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Les téléversements par URL ne sont pas autorisés depuis ce domaine.",
 	"apierror-copyuploadbadurl": "Les téléversements ne sont pas autorisés depuis cette URL.",
 	"apierror-create-titleexists": "Les titres existants ne peuvent pas être protégés avec <kbd>create</kbd>.",
