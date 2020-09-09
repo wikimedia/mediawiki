@@ -492,6 +492,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideSectionEdit() {
+		$title = 'EditPageTest_testSectionEdit';
+		$title2 = Title::newFromText( __FUNCTION__ );
+		$title2->setContentModel( CONTENT_MODEL_CSS );
 		$text = 'Intro
 
 == one ==
@@ -519,6 +522,7 @@ hello
 
 		return [
 			[ # 0
+				$title,
 				$text,
 				'',
 				'hello',
@@ -527,6 +531,7 @@ hello
 			],
 
 			[ # 1
+				$title,
 				$text,
 				'1',
 				$sectionOne,
@@ -535,11 +540,21 @@ hello
 			],
 
 			[ # 2
+				$title,
 				$text,
 				'new',
 				'hello',
 				'new section',
 				$textWithNewSectionAdded,
+			],
+
+			[ # 3 Section edit not supported
+				$title2,
+				$text,
+				'1',
+				'hello',
+				'',
+				'',
 			],
 		];
 	}
@@ -548,16 +563,21 @@ hello
 	 * @dataProvider provideSectionEdit
 	 * @covers EditPage
 	 */
-	public function testSectionEdit( $base, $section, $text, $summary, $expected ) {
+	public function testSectionEdit( $title, $base, $section, $text, $summary, $expected ) {
 		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => $summary,
 			'wpSection' => $section,
 		];
 
-		$this->assertEdit( 'EditPageTest_testSectionEdit', $base, null, $edit,
-			EditPage::AS_SUCCESS_UPDATE, $expected,
-			"expected successful update of section" );
+		$msg = "expected successful update of section";
+		$result = EditPage::AS_SUCCESS_UPDATE;
+
+		if ( $title instanceof Title ) {
+			$result = null;
+			$this->expectException( ErrorPageError::class );
+		}
+		$this->assertEdit( $title, $base, null, $edit, $result, $expected, $msg );
 	}
 
 	public static function provideConflictDetection() {
@@ -948,4 +968,5 @@ hello
 			],
 		];
 	}
+
 }
