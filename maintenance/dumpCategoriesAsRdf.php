@@ -160,7 +160,9 @@ class DumpCategoriesAsRdf extends Maintenance {
 					(int)$row->cat_pages - (int)$row->cat_subcats - (int)$row->cat_files,
 					(int)$row->cat_subcats
 				);
-				$pages[$row->page_id] = $row->page_title;
+				if ( $row->page_id ) {
+					$pages[$row->page_id] = $row->page_title;
+				}
 			}
 
 			foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
