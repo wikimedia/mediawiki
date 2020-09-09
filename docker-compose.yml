@@ -7,27 +7,28 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.5.0
+    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.6.1
+    working_dir: '/var/www/html/w'
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
     volumes:
-      - ./:/var/www/html:cached
+      - ./:/var/www/html/w:cached
     environment:
-      COMPOSER_CACHE_DIR: '/var/www/html/cache/composer'
+      COMPOSER_CACHE_DIR: '/var/www/html/w/cache/composer'
       MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
-      MW_SCRIPT_PATH: ''
-      MW_DBPATH: '/var/www/html/cache/sqlite'
+      MW_SCRIPT_PATH: '/w'
+      MW_DBPATH: '/var/www/html/w/cache/sqlite'
       MW_DBTYPE: 'sqlite'
       MW_LANG: 'en'
       MW_USER: 'admin'
       MW_PASS: 'dockerpass'
       MW_SITENAME: 'MediaWiki'
-      MW_LOG_DIR: /var/www/html/cache
+      MW_LOG_DIR: /var/www/html/w/cache
       XDEBUG_CONFIG: ${XDEBUG_CONFIG}
   mediawiki-jobrunner:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-jobrunner:0.0.1
+    image: docker-registry.wikimedia.org/dev/stretch-php72-jobrunner:0.1.0
     volumes:
-      - ./:/var/www/html:cached
+      - ./:/var/www/html/w:cached
     environment:
-      MW_LOG_DIR: /var/www/html/cache
-      MW_INSTALL_PATH: /var/www/html
+      MW_LOG_DIR: /var/www/html/w/cache
+      MW_INSTALL_PATH: /var/www/html/w
