@@ -15,18 +15,23 @@ namespace MediaWiki\HookContainer {
 		 * Creates a new hook container with StaticHookRegistry and mocked ObjectFactory
 		 */
 		private function newHookContainer(
-			$hooks = null, $deprecatedHooksArray = []
+			$oldHooks = null, $newHooks = null, $deprecatedHooksArray = []
 		) {
-			if ( $hooks === null ) {
+			if ( $oldHooks === null ) {
+				$oldHooks[ 'FoobarActionComplete' ][] = function ( &$called ) {
+					$called[] = 11;
+				};
+			}
+			if ( $newHooks === null ) {
 				$handler = [ 'handler' => [
 					'name' => 'FooExtension-FooActionHandler',
 					'class' => 'FooExtension\\Hooks',
 					'services' => [] ]
 				];
-				$hooks = [ 'FooActionComplete' => [ $handler ] ];
+				$newHooks = [ 'FooActionComplete' => [ $handler ] ];
 			}
 			$mockObjectFactory = $this->getObjectFactory();
-			$registry = new StaticHookRegistry( [], $hooks, $deprecatedHooksArray );
+			$registry = new StaticHookRegistry( $oldHooks, $newHooks, $deprecatedHooksArray );
 			$hookContainer = new HookContainer( $registry, $mockObjectFactory );
 			return $hookContainer;
 		}
@@ -124,11 +129,10 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'TestHook' ) );
 
 			$accessibleHookContainer = $this->newHookContainer();
-			$testingAccessHookContainer = TestingAccessWrapper::newFromObject( $accessibleHookContainer );
 
-			$this->assertFalse( $testingAccessHookContainer->isRegistered( 'TestHook' ) );
-			$testingAccessHookContainer->salvage( $hookContainer );
-			$this->assertTrue( $testingAccessHookContainer->isRegistered( 'TestHook' ) );
+			$this->assertFalse( $accessibleHookContainer->isRegistered( 'TestHook' ) );
+			$accessibleHookContainer->salvage( $hookContainer );
+			$this->assertTrue( $accessibleHookContainer->isRegistered( 'TestHook' ) );
 		}
 
 		/**
@@ -249,7 +253,7 @@ namespace MediaWiki\HookContainer {
 			$fakeDeprecatedHooks = [
 				'FooActionCompleteDeprecated' => [ 'deprecatedVersion' => '1.35' ]
 			];
-			$hookContainer = $this->newHookContainer( $hooks, $fakeDeprecatedHooks );
+			$hookContainer = $this->newHookContainer( [], $hooks, $fakeDeprecatedHooks );
 			$handlers = $hookContainer->getHandlers( $hook );
 			$this->assertArrayEquals(
 				$handlers,
@@ -322,7 +326,7 @@ namespace MediaWiki\HookContainer {
 				'class' => 'FooExtension\\Hooks',
 				'services' => [] ]
 			];
-			$hookContainer = $this->newHookContainer( [ 'InvalidReturnHandler' => [ $handler ] ] );
+			$hookContainer = $this->newHookContainer( [], [ 'InvalidReturnHandler' => [ $handler ] ] );
 			$this->expectException( UnexpectedValueException::class );
 			$this->expectExceptionMessage(
 				"Invalid return from onInvalidReturnHandler for " .
@@ -357,7 +361,7 @@ namespace MediaWiki\HookContainer {
 					$handler3
 				]
 			];
-			$hookContainer = $this->newHookContainer( $hooks );
+			$hookContainer = $this->newHookContainer( [], $hooks );
 			$called = [];
 			$ret = $hookContainer->run( 'Abort', [ &$called ] );
 			$this->assertFalse( $ret );
@@ -379,6 +383,7 @@ namespace MediaWiki\HookContainer {
 				]
 			];
 			$hookContainer = $this->newHookContainer(
+				[],
 				[ 'FooActionComplete' => [ $handler ] ],
 				$fakeDeprecatedHooks );
 			$hookContainer->register( 'FooActionComplete', new FooClass() );
@@ -410,7 +415,7 @@ namespace MediaWiki\HookContainer {
 				'services' => [] ]
 			];
 			$hookContainer = $this->newHookContainer(
-				[ 'InvalidReturnHandler' => [ $handler ] ] );
+				[], [ 'InvalidReturnHandler' => [ $handler ] ] );
 			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->run( 'InvalidReturnHandler' );
 		}
@@ -430,7 +435,7 @@ namespace MediaWiki\HookContainer {
 			$deprecatedHooksArray = [
 				'FooActionComplete' => [ 'deprecatedVersion' => '1.35' ]
 			];
-			$hookContainer = $this->newHookContainer( $hooks, $deprecatedHooksArray );
+			$hookContainer = $this->newHookContainer( [], $hooks, $deprecatedHooksArray );
 			$this->expectDeprecation();
 			$hookContainer->emitDeprecationWarnings();
 		}
@@ -453,9 +458,122 @@ namespace MediaWiki\HookContainer {
 					'silent' => true
 				]
 			];
-			$hookContainer = $this->newHookContainer( $hooks, $deprecatedHooksArray );
+			$hookContainer = $this->newHookContainer( [], $hooks, $deprecatedHooksArray );
 			$hookContainer->emitDeprecationWarnings();
 			$this->assertTrue( true );
+		}
+
+		/**
+		 * @covers       \MediaWiki\HookContainer\HookContainer::clear
+		 */
+		public function testClear() {
+			// Register handlers in three different ways
+			$hookContainer = $this->newHookContainer(
+				[ 'Increment' => [ [ new \FooExtension\Hooks(), 'onIncrement' ] ] ],
+				[ 'Increment' => [ [ 'handler' => [
+					'name' => 'TestIncrement',
+					'class' => 'FooExtension\Hooks'
+				] ] ] ]
+			);
+			$hookContainer->register( 'Increment', function ( &$count ) {
+				$count++;
+			} );
+
+			// Sanity check: all three handlers should be called initially.
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( 3, $count );
+			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
+
+			$hookContainer->clear( 'Increment' );
+
+			// both handlers should now be disabled
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( 0, $count );
+			$this->assertFalse( $hookContainer->isRegistered( 'Increment' ) );
+
+			// When adding a handler again...
+			$hookContainer->register( 'Increment', function ( &$count ) {
+				$count = 11;
+			} );
+
+			// ...the new handler should be called, but not the old ones.
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( 11, $count );
+			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
+		}
+
+		/**
+		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 */
+		public function testScopedHandlerWithReplace() {
+			$hookContainer = $this->newHookContainer(
+				[ 'Increment' => [ [ new \FooExtension\Hooks(), 'onIncrement' ] ] ],
+				[ 'Increment' => [ [ 'handler' => [
+					'name' => 'TestIncrement',
+					'class' => 'FooExtension\Hooks'
+				] ] ] ]
+			);
+			$hookContainer->register( 'Increment', function ( &$count ) {
+				$count++;
+			} );
+
+			// Sanity check: both handlers should be called initially.
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( 3, $count );
+			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
+
+			// Adding a scoped handler, with the $replace flag set.
+			$scope1 = $hookContainer->scopedRegister( 'Increment', function ( &$count ) {
+				$count -= 3;
+			}, true );
+
+			// original handlers should now be disabled, the scoped handler active
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( -3, $count );
+			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
+
+			// Adding another permanent handler should work...
+			$hookContainer->register( 'Increment', function ( &$count ) {
+				$count++;
+			} );
+
+			// ...so that now the temporary and the permanent handler are called.
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( -2, $count );
+
+			// Adding another scoped handler, with the $replace flag set.
+			$scope2 = $hookContainer->scopedRegister( 'Increment', function ( &$count ) {
+				$count -= 10;
+			}, true );
+
+			// Only the new scoped callback should now be active
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( -10, $count );
+
+			// After consuming the first scoped callback, the second one still overrides...
+			ScopedCallback::consume( $scope1 );
+
+			// ...so that still only the new scoped callback should now be active
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( -10, $count );
+
+			// After also consuming the second scoped callback,
+			// all four permanent handlers should be active,
+			// since all scoped callbacks are out of the way.
+			ScopedCallback::consume( $scope2 );
+
+			$count = 0;
+			$hookContainer->run( 'Increment', [ &$count ] );
+			$this->assertSame( 4, $count );
+			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
 		}
 	}
 
@@ -501,6 +619,10 @@ namespace FooExtension {
 
 		public function onInvalidReturnHandler() {
 			return 123;
+		}
+
+		public function onIncrement( &$count ) {
+			$count++;
 		}
 	}
 
