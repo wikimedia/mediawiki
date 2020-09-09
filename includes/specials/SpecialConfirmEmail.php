@@ -158,7 +158,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	private function attemptConfirm( $code ) {
-		$user = User::newFromConfirmationCode( $code, User::READ_EXCLUSIVE );
+		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 
@@ -172,8 +172,9 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			return;
 		}
 
-		$user->confirmEmail();
-		$user->saveSettings();
+		$userLatest = $user->getInstanceForUpdate();
+		$userLatest->confirmEmail();
+		$userLatest->saveSettings();
 		$message = $this->getUser()->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
 		$this->getOutput()->addWikiMsg( $message );
 
