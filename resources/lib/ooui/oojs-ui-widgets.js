@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.1
+ * OOUI v0.40.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-08-05T21:21:44Z
+ * Date: 2020-09-02T15:42:49Z
  */
 ( function ( OO ) {
 
@@ -1402,11 +1402,17 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.mixin.GroupElement );
  * @fires visibleItemChange
  */
 OO.ui.StackLayout.prototype.onScroll = function () {
-	var currentRect,
-		len = this.items.length,
-		currentIndex = this.items.indexOf( this.currentItem ),
-		newIndex = currentIndex,
-		containerRect = this.$element[ 0 ].getBoundingClientRect();
+	var currentRect, currentIndex, newIndex, containerRect,
+		len = this.items.length;
+
+	if ( !this.currentItem ) {
+		// onScroll should never be triggered while there are no items, but this event is debounced.
+		return;
+	}
+
+	currentIndex = this.items.indexOf( this.currentItem );
+	newIndex = currentIndex;
+	containerRect = this.$element[ 0 ].getBoundingClientRect();
 
 	if ( !containerRect || ( !containerRect.top && !containerRect.bottom ) ) {
 		// Can't get bounding rect, possibly not attached.
@@ -3228,7 +3234,7 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	this.$grip.addClass( 'oo-ui-toggleSwitchWidget-grip' );
 	this.$element
 		.addClass( 'oo-ui-toggleSwitchWidget' )
-		.attr( 'role', 'checkbox' )
+		.attr( 'role', 'switch' )
 		.append( this.$glow, this.$grip );
 };
 
@@ -4365,7 +4371,7 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *  additions. If 'tagLimit' is unset or is 0, an unlimited number of items can be
  *  added.
  * @cfg {boolean} [allowReordering=true] Allow reordering of the items
- * @cfg {Object[]|String[]} [selected] A set of selected tags. If given,
+ * @cfg {Object[]|string[]} [selected] A set of selected tags. If given,
  *  these will appear in the tag list on initialization, as long as they
  *  pass the validity tests.
  */
@@ -4584,21 +4590,22 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyPress = function ( e ) {
 OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
 	var movement, direction,
 		widget = this,
-		withMetaKey = e.metaKey || e.ctrlKey,
-		isMovementInsideInput = function ( direction ) {
-			var inputRange = widget.input.getRange(),
-				inputValue = widget.hasInput && widget.input.getValue();
+		withMetaKey = e.metaKey || e.ctrlKey;
 
-			if ( direction === 'forwards' && inputRange.to > inputValue.length - 1 ) {
-				return false;
-			}
+	function isMovementInsideInput( dir ) {
+		var inputRange = widget.input.getRange(),
+			inputValue = widget.hasInput && widget.input.getValue();
 
-			if ( direction === 'backwards' && inputRange.from <= 0 ) {
-				return false;
-			}
+		if ( dir === 'forwards' && inputRange.to > inputValue.length - 1 ) {
+			return false;
+		}
 
-			return true;
-		};
+		if ( dir === 'backwards' && inputRange.from <= 0 ) {
+			return false;
+		}
+
+		return true;
+	}
 
 	if ( !this.isDisabled() ) {
 		// 'keypress' event is not triggered for Backspace key

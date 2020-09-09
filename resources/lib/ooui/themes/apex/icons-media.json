@@ -47,6 +47,12 @@
 		"stop": {
 			"file": "../wikimediaui/images/icons/stop.svg"
 		},
+		"volumeUp": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/volumeUp-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/volumeUp-rtl.svg"
+			}
+		},
 		"zoomIn": {
 			"file": "../wikimediaui/images/icons/zoomIn.svg"
 		},

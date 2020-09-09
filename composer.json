@@ -29,7 +29,7 @@
 		"ext-xml": "*",
 		"guzzlehttp/guzzle": "6.5.4",
 		"liuggio/statsd-php-client": "1.0.18",
-		"oojs/oojs-ui": "0.40.1",
+		"oojs/oojs-ui": "0.40.3",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.9",
 		"pear/net_smtp": "1.9.1",

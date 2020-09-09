@@ -1,7 +1,7 @@
 /**
- * WikimediaUI Base v0.16.0
+ * WikimediaUI Base v0.17.0
  * Wikimedia Foundation user interface base variables
- * https://gerrit.wikimedia.org/r/plugins/gitiles/wikimedia-ui-base/
+ * https://gerrit.wikimedia.org/g/wikimedia-ui-base/
  *
  * See also https://design.wikimedia.org/style-guide/
  */
@@ -60,6 +60,14 @@
 @wmui-color-green50:  #00af89; // = HSB 167°, 100%, 69%
 @wmui-color-green90:  #d5fdf4; // = HSB 166°, 16%, 99%
 
+// Modifier colors, not part of official palette, limited to interaction state usage.
+@wmui-color-base10--lighten: #404244;
+@wmui-color-accent50--lighten: #447ff5; // = `lighten( @color-primary, 3 )`
+@wmui-color-red50--lighten: #ff4242; // ~= `filter: brightness( 120% )`
+@wmui-color-green50--lighten: #1c6665;
+@wmui-color-purple50: #6b4ba1;
+
+// From here on no static color values, only variable references.
 // Background Colors
 @background-color-base:           @wmui-color-base100;
 @background-color-base--hover:    @wmui-color-base80;
@@ -86,13 +94,12 @@
 @background-color-warning--framed: @wmui-color-yellow90;
 @background-color-success--framed: @wmui-color-green90;
 @background-color-notice--framed: @wmui-color-base80;
-// Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 8
-@background-color-highlight:      rgba( 255, 182, 13, 0.4 );
-@background-color-highlight--fallback: #ffe29e;
+// Highlight Colors for text highlighting, think metaphorically text marker
+@background-color-highlight:      rgba( 255, 182, 13, 0.4 ); // Equals to `#ffe29e` on `#fff` background.
 
 // Foreground Colors
 @color-base:                      @wmui-color-base10;
-@color-base--hover:               #404244;
+@color-base--hover:               @wmui-color-base10--lighten;
 @color-base--active:              @wmui-color-base0;
 @color-base--inverted:            @wmui-color-base100;
 @color-base--emphasized:          @wmui-color-base0;
@@ -104,18 +111,18 @@
 @background-color-primary:        @wmui-color-accent90;
 @background-color-primary--hover: rgba( 41, 98, 204, 0.1 );
 @color-primary:                   @wmui-color-accent50;
-@color-primary--hover:            #447ff5; // = `lighten( @color-primary, 3 )`
+@color-primary--hover:            @wmui-color-accent50--lighten;
 @color-primary--active:           @wmui-color-accent30;
 @color-primary--focus:            @color-primary;
 // 'Destructive' Color, Background Color and states
 @background-color-destructive:    @wmui-color-red90;
 @color-destructive:               @wmui-color-red50;
-@color-destructive--hover:        #ff4242;
+@color-destructive--hover:        @wmui-color-red50--lighten;
 @color-destructive--active:       @wmui-color-red30;
 @color-destructive--focus:        @color-destructive;
 // Secondary Color and states (links only)
 @color-secondary:                 @wmui-color-green50;
-@color-secondary--hover:          #1c6665;
+@color-secondary--hover:          @wmui-color-green50--lighten;
 @color-secondary--active:         @wmui-color-green30;
 @color-secondary--focus:          @color-secondary;
 // User system messages (errors, warnings, successes, notices)
@@ -175,6 +182,7 @@
 @border-color-base:               @wmui-color-base50;
 @border-color-base--hover:        @wmui-color-base50;
 @border-color-base--active:       @wmui-color-base30;
+@border-color-base--focus:        @color-primary--focus;
 @border-color-base--disabled:     @wmui-color-base70;
 @border-color-filled--disabled:   @color-filled--disabled;
 @border-color-primary--active:    @color-primary--active;
@@ -194,7 +202,17 @@
 @border-radius-base:              2px;
 @border-radius-circle:            50%;
 
+// Paddings
+@padding-base:                    @padding-vertical-base @padding-horizontal-base;
+@padding-input-text:              @padding-vertical-base @padding-horizontal-input-text;
+@padding-horizontal-base:         12px;
+// Must be < `8` as it cuts off scripts like Burmese. Directly connected to `line-height` further down.
+@padding-vertical-base:           5px;
+@padding-horizontal-input-text:   8px;
+
 // Box Shadows
+// Base `box-shadow` set to `transparent` for transition purpose.
+@box-shadow-base:                 inset 0 0 0 1px transparent;
 @box-shadow-base--focus:          inset 0 0 0 1px @wmui-color-accent50;
 @box-shadow-primary--focus:       inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
 @box-shadow-inset--inverted:      inset 0 0 0 1px @color-base--inverted;
@@ -202,6 +220,10 @@
 @box-shadow-card:                 0 1px 1px rgba( 0, 0, 0, 0.15 );
 @box-shadow-dialog:               0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
 @box-shadow-menu:                 @box-shadow-dialog;
+
+// Outlines
+// Enable Windows high contrast mode on certain widgets, that have default outlines overridden.
+@outline-base--focus:             @border-width-base @border-style-base transparent;
 
 
 // == Typography incl. print properties ==
