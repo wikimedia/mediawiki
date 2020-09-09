@@ -108,6 +108,7 @@ because of Phabricator reports.
   previously hard deprecated, and support for now passing a User has now
   been removed:
    - FileDeleteForm::__construct
+   - FileDeleteForm::doDelete
    - LocalFileDeleteBatch::__construct
    - LogPage::addEntry (also accepts user id instead)
    - PatrolLog::record
