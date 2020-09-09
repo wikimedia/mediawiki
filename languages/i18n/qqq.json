@@ -967,7 +967,7 @@
 	"nocreatetext": "Used as error message.\n\nParameters:\n* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description\n* $2 - an URL to the same\n\nSee also:\n* {{msg-mw|Nocreate-loggedin}}\n* {{msg-mw|Whitelistedittext}}\n* {{msg-mw|Uploadnologintext}}\n* {{msg-mw|Loginreqpagetext}}",
 	"nocreate-loggedin": "Used as error message.\n\nSee also:\n* {{msg-mw|Nocreatetext}}",
 	"sectioneditnotsupported-title": "Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].",
-	"sectioneditnotsupported-text": "I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].",
+	"sectioneditnotsupported-text": "Text of an error message, which appears when someone tries to edit a section on a page with content model that does not support section edit like CSS pages or on old revision of a page. More explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].",
 	"modeleditnotsupported-title": "Page title used on the edit page when editing is not supported for the page's content model.",
 	"modeleditnotsupported-text": "Error message show on the edit page when editing is not supported for the page's content model..\n\nParameters:\n* $1 - the name of the content model.",
 	"permissionserrors": "Used as title of error message.\n\nSee also:\n* {{msg-mw|loginreqtitle}}\n{{Identical|Permission error}}",

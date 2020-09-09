@@ -751,7 +751,7 @@
 	"nocreatetext": "{{SITENAME}} has restricted the ability to create new pages.\nYou can go back and edit an existing page, or [[Special:UserLogin|log in or create an account]].",
 	"nocreate-loggedin": "You do not have permission to create new pages.",
 	"sectioneditnotsupported-title": "Section editing not supported",
-	"sectioneditnotsupported-text": "Section editing is not supported in this page.",
+	"sectioneditnotsupported-text": "Section editing is not supported in this page or is disabled for this view.",
 	"modeleditnotsupported-title": "Editing not supported",
 	"modeleditnotsupported-text": "Editing is not supported for content model $1.",
 	"permissionserrors": "Permission error",
