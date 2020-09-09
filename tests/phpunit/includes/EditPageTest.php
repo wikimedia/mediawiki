@@ -935,16 +935,16 @@ hello
 				'options' => $standardOptions,
 			],
 			'watched with current selected' => [
-				'existingExpiry' => '20200505120001',
-				'postVal' => '20200505120001',
-				'result' => '20200505120001',
-				'options' => array_merge( [ '20200505120001' ], $standardOptions ),
+				'existingExpiry' => '2020-05-05T12:00:01Z',
+				'postVal' => '2020-05-05T12:00:01Z',
+				'result' => '2020-05-05T12:00:01Z',
+				'options' => array_merge( [ '2020-05-05T12:00:01Z' ], $standardOptions ),
 			],
 			'watched with 1 week selected' => [
-				'existingExpiry' => '20200505120002',
+				'existingExpiry' => '2020-05-05T12:00:02Z',
 				'postVal' => '1 week',
 				'result' => '1 week',
-				'options' => array_merge( [ '20200505120002' ], $standardOptions ),
+				'options' => array_merge( [ '2020-05-05T12:00:02Z' ], $standardOptions ),
 			],
 		];
 	}
