@@ -2866,6 +2866,7 @@
 	"feedback-useragent": "وەکیلی بەکارھێنەر:",
 	"searchsuggest-search": "لە {{SITENAME}}دا بگەڕێ",
 	"searchsuggest-containing": "بە لەبەرگرتنەوەی ...",
+	"api-clientside-error-noconnect": "نەتواندرا پەیوەندی بە ڕاژەکارەکەوە بکرێت. دڵنیا ببە لەوەی کە بە ئینتەرنێتەوە پەیوەستیت و دووبارە ھەوڵ بدەرەوە.",
 	"api-error-unknownerror": "ھەڵەی نەزانراو: «$1».",
 	"duration-seconds": "$1 {{PLURAL:$1|چرکە|چرکە}}",
 	"duration-minutes": "$1 {{PLURAL:$1|خولەک|خولەک}}",
