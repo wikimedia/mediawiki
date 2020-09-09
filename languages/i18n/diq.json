@@ -734,7 +734,7 @@
 	"templatesusedpreview": "{{PLURAL:$1|Sablon|Sabloni}}  ke na verqayt de xebetnayê:",
 	"templatesusedsection": "{{PLURAL:$1|Template|Templateyan}}  ke na qısım de xebetniyenê:",
 	"template-protected": "(şeveknaye)",
-	"template-semiprotected": "(nim-şeveknaye)",
+	"template-semiprotected": "(nêm-şeveknaye)",
 	"hiddencategories": "Ena per de {{PLURAL:$1|1 kategoriyo nımıte|$1 kategoriyê nımıtey}} muhtewa benê:",
 	"edittools": "<!-- Beno ke no metın bınê formanê vurnayışi û barkerdışi de bımocniyo. -->",
 	"edittools-upload": "-",
