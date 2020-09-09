@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.1
+ * OOUI v0.40.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-08-05T21:21:44Z
+ * Date: 2020-09-02T15:42:49Z
  */
 ( function ( OO ) {
 
@@ -196,6 +196,7 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 		return obj[ fallback ];
 	}
 	// First existing language
+	// eslint-disable-next-line no-unreachable-loop
 	for ( lang in obj ) {
 		return obj[ lang ];
 	}
@@ -421,8 +422,9 @@ OO.ui.deferMsg = function () {
  *
  * If the message is a function it will be executed, otherwise it will pass through directly.
  *
- * @param {Function|string} msg Deferred message, or message text
- * @return {string} Resolved message
+ * @param {Function|string|Mixed} msg
+ * @return {string|Mixed} Resolved message when there was something to resolve, pass through
+ *  otherwise
  */
 OO.ui.resolveMsg = function ( msg ) {
 	if ( typeof msg === 'function' ) {
@@ -734,9 +736,9 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 			domPromise.done( data.restorePreInfuseState.bind( data, state ) );
 			infusedChildren = $elem.data( 'ooui-infused-children' );
 			if ( infusedChildren && infusedChildren.length ) {
-				infusedChildren.forEach( function ( data ) {
-					var state = data.constructor.static.gatherPreInfuseState( $elem, data );
-					domPromise.done( data.restorePreInfuseState.bind( data, state ) );
+				infusedChildren.forEach( function ( childData ) {
+					var childState = childData.constructor.static.gatherPreInfuseState( $elem, childData );
+					domPromise.done( childData.restorePreInfuseState.bind( childData, childState ) );
 				} );
 			}
 		}
@@ -2797,8 +2799,8 @@ OO.initClass( OO.ui.mixin.LabelElement );
 
 /**
  * The label text. The label can be specified as a plaintext string, a function that will
- * produce a string in the future, or `null` for no label. The static value will
- * be overridden if a label is specified with the #label config option.
+ * produce a string (will be resolved on construction time), or `null` for no label. The static
+ * value will be overridden if a label is specified with the #label config option.
  *
  * @static
  * @inheritable
@@ -2869,7 +2871,9 @@ OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare
 /* Methods */
 
 /**
- * Set the label element.
+ * Replace the wrapper element (an empty `<span>` by default) with another one (e.g. an
+ * `<a href="…">`), without touching the label's content. This is the same as using the "$label"
+ * config on construction time.
  *
  * If an element is already set, it will be cleaned up before setting up the new element.
  *
@@ -2897,10 +2901,14 @@ OO.ui.mixin.LabelElement.prototype.setLabelId = function ( id ) {
 };
 
 /**
- * Set the label.
+ * Replace both the visible content of the label (same as #setLabelContent) as well as the value
+ * returned by #getLabel, without touching the label's wrapper element. This is the same as using
+ * the "label" config on construction time.
  *
  * An empty string will result in the label being hidden. A string containing only whitespace will
  * be converted to a single `&nbsp;`.
+ *
+ * To change the wrapper element, use #setLabelElement or the "$label" config.
  *
  * @param {jQuery|string|OO.ui.HtmlSnippet|Function|null} label Label nodes; text; a function that
  *  returns nodes or text; or null for no label
@@ -2908,7 +2916,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelId = function ( id ) {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
-	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
+	label = OO.ui.resolveMsg( label );
 	label = ( ( typeof label === 'string' || label instanceof $ ) && label.length ) || ( label instanceof OO.ui.HtmlSnippet && label.toString().length ) ? label : null;
 
 	if ( this.label !== label ) {
@@ -2965,23 +2973,25 @@ OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function (
 };
 
 /**
- * Get the label.
+ * Get the label's value as provided via #setLabel or the "label" config. Note this is not
+ * necessarily the same as the label's visible content when #setLabelContent was used.
  *
- * @return {jQuery|string|Function|null} Label nodes; text; a function that returns nodes or
- *  text; or null for no label
+ * @return {jQuery|string|null} Label nodes; text; or null for no label
  */
 OO.ui.mixin.LabelElement.prototype.getLabel = function () {
 	return this.label;
 };
 
 /**
- * Set the content of the label.
+ * Replace the visible content of the label, without touching it's wrapper element. Note this is not
+ * the same as using the "label" config on construction time. #setLabelContent does not change the
+ * value returned by #getLabel.
  *
- * Do not call this method until after the label element has been set by #setLabelElement.
+ * To change the value as well, use #setLabel or the "label" config. To change the wrapper element,
+ * use #setLabelElement or the "$label" config.
  *
  * @private
- * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
- *  text; or null for no label
+ * @param {jQuery|string|null} label Label nodes; text; or null for no label
  */
 OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
 	if ( typeof label === 'string' ) {
@@ -3606,7 +3616,7 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
-	title = typeof title === 'function' ? OO.ui.resolveMsg( title ) : title;
+	title = OO.ui.resolveMsg( title );
 	title = typeof title === 'string' ? title : null;
 
 	if ( this.title !== title ) {
@@ -3741,7 +3751,8 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKeyedElement = function ( $acc
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
-	accessKey = typeof accessKey === 'string' ? OO.ui.resolveMsg( accessKey ) : null;
+	accessKey = OO.ui.resolveMsg( accessKey );
+	accessKey = typeof accessKey === 'string' ? accessKey : null;
 
 	if ( this.accessKey !== accessKey ) {
 		if ( this.$accessKeyed ) {
@@ -5591,6 +5602,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 	this.onTabKeyDownHandler = this.onTabKeyDown.bind( this );
+	this.onShiftTabKeyDownHandler = this.onShiftTabKeyDown.bind( this );
 
 	// Initialization
 	this.setSize( config.width, config.height );
@@ -5775,6 +5787,19 @@ OO.ui.PopupWidget.prototype.onTabKeyDown = function ( e ) {
 };
 
 /**
+ * Handles Shift + Tab key down events.
+ *
+ * @private
+ * @param {KeyboardEvent} e Key down event
+ */
+OO.ui.PopupWidget.prototype.onShiftTabKeyDown = function ( e ) {
+	if ( e.shiftKey && e.which === OO.ui.Keys.TAB ) {
+		e.preventDefault();
+		this.toggle( false );
+	}
+};
+
+/**
  * Show, hide, or toggle the visibility of the anchor.
  *
  * @param {boolean} [show] Show anchor, omit to toggle
@@ -5835,7 +5860,7 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	var change, normalHeight, oppositeHeight, normalWidth,
-		oppositeWidth, $lastFocusableElement;
+		oppositeWidth, $firstFocusableElement, $lastFocusableElement;
 	show = show === undefined ? !this.isVisible() : !!show;
 
 	change = show !== this.isVisible();
@@ -5861,20 +5886,22 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	if ( change ) {
 		this.togglePositioning( show && !!this.$floatableContainer );
 
-		// Find the last focusable element in the popup widget
+		// Find the first and last focusable element in the popup widget
 		$lastFocusableElement = OO.ui.findFocusable( this.$element, true );
+		$firstFocusableElement = OO.ui.findFocusable( this.$element, false );
 
 		if ( show ) {
 			if ( this.autoClose ) {
 				this.bindDocumentMouseDownListener();
 				this.bindDocumentKeyDownListener();
 
-				// Bind a keydown event to the last focusable element
+				// Bind a keydown event to the first and last focusable element
 				// If user presses the tab key on this item, dismiss the popup and
 				// take focus back to the caller, ideally the caller implements this functionality
 				// This is to prevent illogical focus order, a common accessibility pitfall.
 				// Alternative Fix: Implement focus trap for popup widget.
 				$lastFocusableElement.on( 'keydown', this.onTabKeyDownHandler );
+				$firstFocusableElement.on( 'keydown', this.onShiftTabKeyDownHandler );
 			}
 			this.updateDimensions();
 			this.toggleClipping( true );
@@ -5932,8 +5959,9 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
-				// Remove binded keydown event from the last focusable element when popup closes
+				// Remove binded keydown event from the first and last focusable elements when popup closes
 				$lastFocusableElement.off( 'keydown', this.onTabKeyDownHandler );
+				$firstFocusableElement.off( 'keydown', this.onShiftTabKeyDownHandler );
 
 				this.unbindDocumentMouseDownListener();
 				this.unbindDocumentKeyDownListener();
@@ -7466,14 +7494,14 @@ OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
  * otherwise, no items will be selected.
  * If no item is given, all selected items will be unselected.
  *
- * @param {OO.ui.OptionWidget} [item] Item to unselect
+ * @param {OO.ui.OptionWidget} [unselectedItem] Item to unselect
  * @fires select
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
-OO.ui.SelectWidget.prototype.unselectItem = function ( item ) {
-	if ( item ) {
-		item.setSelected( false );
+OO.ui.SelectWidget.prototype.unselectItem = function ( unselectedItem ) {
+	if ( unselectedItem ) {
+		unselectedItem.setSelected( false );
 	} else {
 		this.items.forEach( function ( item ) {
 			if ( item.isSelected() ) {
@@ -9444,9 +9472,12 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.AccessKeyedElement );
  * @inheritdoc
  */
 OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+	var $input = $( node ).find( '.oo-ui-inputWidget-input' );
 	config = OO.ui.InputWidget.super.static.reusePreInfuseDOM( node, config );
 	// Reusing `$input` lets browsers preserve inputted values across page reloads, see T114134.
-	config.$input = $( node ).find( '.oo-ui-inputWidget-input' );
+	if ( $input.length ) {
+		config.$input = $input;
+	}
 	return config;
 };
 
@@ -9455,7 +9486,7 @@ OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
  */
 OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.InputWidget.super.static.gatherPreInfuseState( node, config );
-	if ( config.$input && config.$input.length ) {
+	if ( config.$input ) {
 		state.value = config.$input.val();
 		// Might be better in TabIndexedElement, but it's awkward to do there because
 		// mixins are awkward
@@ -9763,9 +9794,7 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
-	if ( typeof label === 'function' ) {
-		label = OO.ui.resolveMsg( label );
-	}
+	label = OO.ui.resolveMsg( label );
 
 	if ( this.useInputTag ) {
 		// Discard non-plaintext labels
@@ -9901,7 +9930,9 @@ OO.ui.CheckboxInputWidget.static.tagName = 'span';
  */
 OO.ui.CheckboxInputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.CheckboxInputWidget.super.static.gatherPreInfuseState( node, config );
-	state.checked = config.$input.prop( 'checked' );
+	if ( config.$input ) {
+		state.checked = config.$input.prop( 'checked' );
+	}
 	return state;
 };
 
@@ -10394,7 +10425,9 @@ OO.ui.RadioInputWidget.static.tagName = 'span';
  */
 OO.ui.RadioInputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.RadioInputWidget.super.static.gatherPreInfuseState( node, config );
-	state.checked = config.$input.prop( 'checked' );
+	if ( config.$input ) {
+		state.checked = config.$input.prop( 'checked' );
+	}
 	return state;
 };
 
@@ -11815,7 +11848,9 @@ OO.inheritClass( OO.ui.MultilineTextInputWidget, OO.ui.TextInputWidget );
  */
 OO.ui.MultilineTextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.MultilineTextInputWidget.super.static.gatherPreInfuseState( node, config );
-	state.scrollTop = config.$input.scrollTop();
+	if ( config.$input ) {
+		state.scrollTop = config.$input.scrollTop();
+	}
 	return state;
 };
 
@@ -12133,6 +12168,18 @@ OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.ComboBoxInputWidget.prototype.onEdit = function () {
+	// Parent method
+	OO.ui.ComboBoxInputWidget.super.prototype.onEdit.apply( this, arguments );
+
+	if ( !this.menu.isVisible() && !this.isDisabled() && this.isVisible() ) {
+		this.menu.toggle( true );
+	}
+};
+
+/**
  * Handle input change events.
  *
  * @private
@@ -12144,10 +12191,6 @@ OO.ui.ComboBoxInputWidget.prototype.onInputChange = function ( value ) {
 	this.menu.selectItem( match );
 	if ( this.menu.findHighlightedItem() ) {
 		this.menu.highlightItem( match );
-	}
-
-	if ( !this.isDisabled() ) {
-		this.menu.toggle( true );
 	}
 };
 
@@ -13715,7 +13758,7 @@ OO.ui.SelectFileInputWidget.prototype.getFilename = function () {
 OO.ui.SelectFileInputWidget.prototype.setValue = function ( value ) {
 	if ( value === undefined ) {
 		// Called during init, don't replace value if just infusing.
-		return;
+		return this;
 	}
 	if ( value ) {
 		// We need to update this.value, but without trying to modify
@@ -13724,10 +13767,11 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( value ) {
 			this.value = value;
 			this.emit( 'change', this.value );
 		}
+		return this;
 	} else {
 		this.currentFiles = [];
 		// Parent method
-		OO.ui.SelectFileInputWidget.super.prototype.setValue.call( this, '' );
+		return OO.ui.SelectFileInputWidget.super.prototype.setValue.call( this, '' );
 	}
 };
 

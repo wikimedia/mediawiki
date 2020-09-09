@@ -10,6 +10,7 @@
 			"Matěj Suchánek",
 			"Michaelbrabec",
 			"Mormegil",
+			"Patriccck",
 			"Polda18",
 			"Tchoř",
 			"Vojtěch Dostál",
@@ -34,5 +35,6 @@
 	"ooui-selectfile-not-supported": "Výběr souboru není podporován",
 	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor",
 	"ooui-selectfile-dragdrop-placeholder": "Umístěte soubor sem",
+	"ooui-popup-widget-close-button-aria-label": "Zavřít",
 	"ooui-field-help": "Pomoc"
 }
