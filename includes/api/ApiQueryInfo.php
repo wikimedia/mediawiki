@@ -84,7 +84,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func($pageid, $title)
+	 * The prototype for a token function is func( User $user )
 	 * it should return a token or false (permission denied)
 	 * @deprecated since 1.24
 	 * @return array [ tokenname => function ]
@@ -112,7 +112,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ self::class, 'getImportToken' ],
 			'watch' => [ self::class, 'getWatchToken' ],
 		];
-		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}
@@ -132,13 +131,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 *
 	 * Only for the tokens that all use User::getEditToken
 	 *
+	 * @param User $user
 	 * @param string $right Right needed (edit/delete/block/etc.)
 	 * @return string|false
 	 */
-	private static function getUserToken( string $right ) {
-		global $wgUser;
-		$user = $wgUser;
-
+	private static function getUserToken( User $user, string $right ) {
 		if ( !MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->userHasRight( $user, $right )
@@ -156,54 +153,65 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getEditToken( $pageid, $title ) {
-		return self::getUserToken( 'edit' );
+	public static function getEditToken( User $user ) {
+		return self::getUserToken( $user, 'edit' );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getDeleteToken( $pageid, $title ) {
-		return self::getUserToken( 'delete' );
+	public static function getDeleteToken( User $user ) {
+		return self::getUserToken( $user, 'delete' );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getProtectToken( $pageid, $title ) {
-		return self::getUserToken( 'protect' );
+	public static function getProtectToken( User $user ) {
+		return self::getUserToken( $user, 'protect' );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getMoveToken( $pageid, $title ) {
-		return self::getUserToken( 'move' );
+	public static function getMoveToken( User $user ) {
+		return self::getUserToken( $user, 'move' );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getBlockToken( $pageid, $title ) {
-		return self::getUserToken( 'block' );
+	public static function getBlockToken( User $user ) {
+		return self::getUserToken( $user, 'block' );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getUnblockToken( $pageid, $title ) {
+	public static function getUnblockToken( User $user ) {
 		// Currently, this is exactly the same as the block token
-		return self::getBlockToken( $pageid, $title );
+		return self::getBlockToken( $user );
 	}
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getEmailToken( $pageid, $title ) {
-		global $wgUser;
-		$user = $wgUser;
-
+	public static function getEmailToken( User $user ) {
 		if ( !$user->canSendEmail() || $user->isBlockedFromEmailuser() ) {
 			return false;
 		}
@@ -218,11 +226,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getImportToken( $pageid, $title ) {
-		global $wgUser;
-		$user = $wgUser;
-
+	public static function getImportToken( User $user ) {
 		if ( !MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->userHasAnyRight( $user, 'import', 'importupload' ) ) {
@@ -239,11 +246,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getWatchToken( $pageid, $title ) {
-		global $wgUser;
-		$user = $wgUser;
-
+	public static function getWatchToken( User $user ) {
 		if ( !$user->isLoggedIn() ) {
 			return false;
 		}
@@ -258,11 +264,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * @deprecated since 1.24
+	 * @internal
+	 * @param User $user
 	 */
-	public static function getOptionsToken( $pageid, $title ) {
-		global $wgUser;
-		$user = $wgUser;
-
+	public static function getOptionsToken( User $user ) {
 		if ( !$user->isLoggedIn() ) {
 			return false;
 		}
@@ -412,7 +417,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
 			foreach ( $this->params['token'] as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $pageid, $title );
+				$val = call_user_func( $tokenFunctions[$t], $this->getUser() );
 				if ( $val === false ) {
 					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 				} else {
