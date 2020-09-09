@@ -184,6 +184,7 @@ because of Phabricator reports.
 * Skin::privacyLink(), Skin::disclaimerLink() and Skin::aboutLink() have been
   deprecated. Please use Skin::footerLink() instead.
 * Skin::getLogo() has been deprecated. Use ResourceLoaderSkinModule instead.
+* Skin::mainPageLink() has been deprecated. Use LinkRenderer service instead.
 * …
 
 === Other changes in 1.36 ===
