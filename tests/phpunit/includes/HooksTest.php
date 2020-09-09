@@ -97,7 +97,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		);
 		$reset = $hookContainer->scopedRegister( 'MediaWikiHooksTest001', $b );
 		$this->assertSame(
-			[ $b, $a ],
+			[ $a, $b ],
 			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
 			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
 		);
