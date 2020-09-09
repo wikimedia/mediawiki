@@ -55,11 +55,11 @@
 		$li = $link.closest( 'li' );
 
 		// Trigger a 'watchpage' event for this List item.
-		// Announce the otherAction value as the first param.
+		// Announce the otherAction value and expiry as params.
 		// Used to monitor the state of watch link.
 		// TODO: Revise when system wide hooks are implemented
-		if ( state === undefined ) {
-			$li.trigger( 'watchpage.mw', otherAction );
+		if ( state !== 'loading' ) {
+			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
 		}
 
 		// Checking to see what if the expiry is set or indefinite to display the correct message
