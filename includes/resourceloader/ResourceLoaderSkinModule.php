@@ -119,13 +119,56 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	/** @var string[] */
 	private $features;
 
+	/** @var array */
+	private const DEFAULT_FEATURES = [
+		'logo' => false,
+		'content' => false,
+		'interface' => false,
+		'elements' => false,
+		'legacy' => false,
+		'i18n-ordered-lists' => false,
+		'i18n-all-lists-margins' => false,
+		'i18n-headings' => false,
+	];
+
 	public function __construct(
 		array $options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
-		$this->features = $options['features'] ?? [ 'logo', 'legacy' ];
+		$features = $options['features'] ??
+			// For historic reasons if nothing is declared logo and legacy features are enabled.
+			[
+				'logo' => true,
+				'legacy' => true
+			];
+		$enabledFeatures = [];
+		$compatibilityMode = false;
+		foreach ( $features as $key => $enabled ) {
+			if ( is_bool( $enabled ) ) {
+				$enabledFeatures[$key] = $enabled;
+			} else {
+				// operating in array mode.
+				$enabledFeatures[$enabled] = true;
+				$compatibilityMode = true;
+			}
+		}
+		// If the module didn't specify an option use the default features values.
+		// This allows new features to be turned on automatically.
+		if ( !$compatibilityMode ) {
+			foreach ( self::DEFAULT_FEATURES as $key => $enabled ) {
+				if ( !isset( $enabledFeatures[$key] ) ) {
+					$enabledFeatures[$key] = $enabled;
+				}
+			}
+		}
+		$this->features = array_filter(
+			array_keys( $enabledFeatures ),
+			function ( $key ) use ( $enabledFeatures ) {
+				return $enabledFeatures[ $key ];
+			}
+		);
 	}
 
 	/**
