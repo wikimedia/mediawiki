@@ -1398,6 +1398,7 @@
 	"prefs-advancedediting": "Used in [[Special:Preferences]], tab \"Editing\".\nThis used to say \"Advanced options\", the key name is a left over from that.",
 	"prefs-developertools": "Used in [[Special:Preferences]], tab \"Editing\".",
 	"prefs-editor": "Used in [[Special:Preferences]], tab \"Editing\" ({{int:prefs-editing}}).\n\n{{Identical|Editor}}",
+	"prefs-discussion": "Used in [[Special:Preferences]], tab \"Editing\" ({{int:prefs-editing}}).\n\nThis should use label we use for talk/discussion pages: {{msg-mw|talk}}",
 	"prefs-preview": "Used in [[Special:Preferences]], tab \"Editing\".\n{{Identical|Preview}}",
 	"prefs-advancedrc": "Used in [[Special:Preferences]], tab \"Recent changes\".\n{{Identical|Advanced options}}",
 	"prefs-advancedrendering": "Used in [[Special:Preferences]], tab \"Appearance\".\n{{Identical|Advanced options}}",
