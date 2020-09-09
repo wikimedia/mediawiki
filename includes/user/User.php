@@ -666,10 +666,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $flags User::READ_* bitfield
 	 * @return User|null
 	 */
-	public static function newFromConfirmationCode( $code, $flags = 0 ) {
-		$db = ( $flags & self::READ_LATEST ) == self::READ_LATEST
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_REPLICA );
+	public static function newFromConfirmationCode( $code, $flags = self::READ_NORMAL ) {
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = wfGetDB( $index );
 
 		$id = $db->selectField(
 			'user',
@@ -678,7 +677,8 @@ class User implements IDBAccessObject, UserIdentity {
 				'user_email_token' => md5( $code ),
 				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
 			],
-			__METHOD__
+			__METHOD__,
+			$options
 		);
 
 		return $id ? self::newFromId( $id ) : null;
@@ -3414,19 +3414,14 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $flags Bitfield of User:READ_* constants; useful for existence checks
 	 * @return int
 	 */
-	public function idForName( $flags = 0 ) {
+	public function idForName( $flags = self::READ_NORMAL ) {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) {
 			return 0;
 		}
 
-		$db = ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_REPLICA );
-
-		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? [ 'LOCK IN SHARE MODE' ]
-			: [];
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = wfGetDB( $index );
 
 		$id = $db->selectField( 'user',
 			'user_id', [ 'user_name' => $s ], __METHOD__, $options );
