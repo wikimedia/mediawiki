@@ -216,7 +216,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->newMainLB();
 		$db = $lb->getConnection( DB_REPLICA );
 
@@ -235,6 +235,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'TEST', $value, 'Copied Data' );
 	}
 
+	/**
+	 * @covers MediaWikiIntegrationTestCase::resetServices
+	 */
 	public function testResetServices() {
 		$services = MediaWikiServices::getInstance();
 
@@ -243,6 +246,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$this->setService( 'ReadOnlyMode', $myReadOnlyMode );
+		$this->setTemporaryHook( 'MyTestHook', function ( &$n ) {
+			$n++;
+		}, true );
 
 		// sanity check
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
@@ -263,14 +269,73 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		// the actual test: change config, reset services.
 		$this->setMwGlobals( 'wgLanguageCode', 'qqx' );
+		$this->resetServices();
 
 		// the overridden service instance should still be there
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
+
+		// the temporary hook should still be there
+		$this->assertTrue(
+			$this->getServiceContainer()->getHookContainer()->isRegistered( 'MyTestHook' )
+		);
 
 		// our custom service should have been re-created with the new language code
 		$dummy2 = $services->getService( '_TEST_ResetService_Dummy' );
 		$this->assertNotSame( $dummy2, $dummy );
 		$this->assertSame( 'qqx', $dummy2->lang );
+	}
+
+	/**
+	 * @covers MediaWikiIntegrationTestCase::getServiceContainer
+	 */
+	public function testGetServiceContainer() {
+		$this->assertSame( MediaWikiServices::getInstance(), $this->getServiceContainer() );
+	}
+
+	/**
+	 * @covers MediaWikiIntegrationTestCase::setTemporaryHook
+	 * @covers MediaWikiIntegrationTestCase::clearHook
+	 */
+	public function testSetTemporaryHook() {
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
+		$name = 'MWITCT_Dummy_Hook';
+
+		$inc = function ( &$n ) {
+			$n++;
+		};
+
+		// add two handlers
+		$this->setTemporaryHook( $name, $inc, false );
+		$this->setTemporaryHook( $name, $inc, false );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 2, $count );
+
+		// replace existing hooks
+		$this->setTemporaryHook( $name, $inc );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 1, $count );
+
+		// clear all hooks
+		$this->clearHook( $name );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 0, $count );
+
+		// Put back a hook handler, so we can check in testSetTemporaryHookGetsReset
+		// that hooks get reset between tests.
+		$this->setTemporaryHook( $name, $inc );
+		$this->assertTrue( $hookContainer->isRegistered( 'MWITCT_Dummy_Hook' ) );
+	}
+
+	public function testSetTemporaryHookGetsReset() {
+		// We just check here that the hook we added in testSetTemporaryHook() is no longer present.
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
+		$this->assertFalse( $hookContainer->isRegistered( 'MWITCT_Dummy_Hook' ) );
 	}
 
 }
