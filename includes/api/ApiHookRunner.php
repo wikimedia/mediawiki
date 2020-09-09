@@ -33,18 +33,13 @@ class ApiHookRunner implements
 	Hook\ApiQueryBaseBeforeQueryHook,
 	Hook\ApiQueryBaseProcessRowHook,
 	Hook\APIQueryGeneratorAfterExecuteHook,
-	Hook\APIQueryInfoTokensHook,
-	Hook\APIQueryRecentChangesTokensHook,
-	Hook\APIQueryRevisionsTokensHook,
 	Hook\APIQuerySiteInfoGeneralInfoHook,
 	Hook\APIQuerySiteInfoStatisticsInfoHook,
 	Hook\ApiQueryTokensRegisterTypesHook,
-	Hook\APIQueryUsersTokensHook,
 	Hook\ApiQueryWatchlistExtractOutputDataHook,
 	Hook\ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook,
 	Hook\ApiQuery__moduleManagerHook,
 	Hook\ApiRsdServiceApisHook,
-	Hook\ApiTokensGetTokenTypesHook,
 	Hook\ApiValidatePasswordHook,
 	Hook\RequestHasSameOriginSecurityHook,
 	\MediaWiki\Hook\EditFormPreloadTextHook,
@@ -216,27 +211,6 @@ class ApiHookRunner implements
 		);
 	}
 
-	public function onAPIQueryInfoTokens( &$tokenFunctions ) {
-		return $this->container->run(
-			'APIQueryInfoTokens',
-			[ &$tokenFunctions ]
-		);
-	}
-
-	public function onAPIQueryRecentChangesTokens( &$tokenFunctions ) {
-		return $this->container->run(
-			'APIQueryRecentChangesTokens',
-			[ &$tokenFunctions ]
-		);
-	}
-
-	public function onAPIQueryRevisionsTokens( &$tokenFunctions ) {
-		return $this->container->run(
-			'APIQueryRevisionsTokens',
-			[ &$tokenFunctions ]
-		);
-	}
-
 	public function onAPIQuerySiteInfoGeneralInfo( $module, &$results ) {
 		return $this->container->run(
 			'APIQuerySiteInfoGeneralInfo',
@@ -255,13 +229,6 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'ApiQueryTokensRegisterTypes',
 			[ &$salts ]
-		);
-	}
-
-	public function onAPIQueryUsersTokens( &$tokenFunctions ) {
-		return $this->container->run(
-			'APIQueryUsersTokens',
-			[ &$tokenFunctions ]
 		);
 	}
 
@@ -294,13 +261,6 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'ApiRsdServiceApis',
 			[ &$apis ]
-		);
-	}
-
-	public function onApiTokensGetTokenTypes( &$tokenTypes ) {
-		return $this->container->run(
-			'ApiTokensGetTokenTypes',
-			[ &$tokenTypes ]
 		);
 	}
 

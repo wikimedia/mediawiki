@@ -63,7 +63,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->tokenFunctions = [
 			'rollback' => [ self::class, 'getRollbackToken' ]
 		];
-		$this->getHookRunner()->onAPIQueryRevisionsTokens( $this->tokenFunctions );
+		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}
@@ -453,6 +453,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 								$revision
 							);
 						} else {
+							// TODO update following removal of token hook
 							// Token function added via APIQueryRevisionsTokens,
 							// Hook is hard deprecated, so any use of
 							// Revision objects is okay
