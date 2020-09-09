@@ -3176,6 +3176,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
+	 *  namespace
 	 */
 	public function addWatch(
 		$title,
@@ -3196,6 +3198,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title of the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
+	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
+	 *  namespace
 	 */
 	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
