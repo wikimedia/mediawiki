@@ -87,6 +87,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmitHookAborted() {
+		// Change the context to have a logged in user with correct permission.
+		$testContext = new DerivativeContext( $this->watchAction->getContext() );
+		$testContext->setUser( $this->getUser( true, true, [ 'editmywatchlist' ] ) );
+		$this->watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
+
 		Hooks::register( 'WatchArticle', function () {
 			return false;
 		} );
@@ -420,14 +428,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneMonth = WatchAction::getExpiryOptions( $this->context, $watchedItemMonth );
 		$expectedExpiryOneMonth = [
 			'options' => [
-				'30 days left' => '20200710000000',
+				'30 days left' => '2020-07-10T00:00:00Z',
 				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '20200710000000'
+			'default' => '2020-07-10T00:00:00Z'
 		];
 
 		$this->assertSame( $expectedExpiryOneMonth, $optionsExpiryOneMonth );
@@ -437,14 +445,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneWeek = WatchAction::getExpiryOptions( $this->context, $watchedItemWeek );
 		$expectedOneWeek = [
 			'options' => [
-				'7 days left' => '20200617000000',
+				'7 days left' => '2020-06-17T00:00:00Z',
 				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '20200617000000'
+			'default' => '2020-06-17T00:00:00Z'
 		];
 
 		$this->assertSame( $expectedOneWeek, $optionsExpiryOneWeek );
