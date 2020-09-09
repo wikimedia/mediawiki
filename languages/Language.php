@@ -3253,11 +3253,17 @@ class Language {
 	 *
 	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
 	 *  of decimal places) numeric string. Any non-string will be cast to string.
-	 * @param bool $noSeparators Set to true for special numbers like dates
+	 * @param bool|null $noSeparators Set to true for special numbers like dates
 	 *     (deprecated: use ::formatNumNoSeparators instead of this param)
 	 * @return string
 	 */
-	public function formatNum( $number, $noSeparators = false ) {
+	public function formatNum( $number, $noSeparators = null ) {
+		if ( $noSeparators !== null ) {
+			wfDeprecated( __METHOD__ . ' with $noSeparators parameter', '1.36' );
+		} else {
+			// The legacy default value.
+			$noSeparators = false;
+		}
 		return $this->formatNumInternal( (string)$number, false, $noSeparators );
 	}
 
