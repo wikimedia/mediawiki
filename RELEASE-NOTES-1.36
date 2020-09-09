@@ -110,6 +110,7 @@ because of Phabricator reports.
    - FileDeleteForm::__construct
    - FileDeleteForm::doDelete
    - LocalFileDeleteBatch::__construct
+   - LogEventsList::getExcludeClause (only needed for the 'user' audience)
    - LogPage::addEntry (also accepts user id instead)
    - PatrolLog::record
    - Title::getNotificationTimestamp (though the entire method is deprecated)
