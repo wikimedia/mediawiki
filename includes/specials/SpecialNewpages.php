@@ -460,8 +460,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			ARRAY_FILTER_USE_KEY
 		);
 
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
+		if ( $classes ) {
+			$attribs['class'] = $classes;
 		}
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
