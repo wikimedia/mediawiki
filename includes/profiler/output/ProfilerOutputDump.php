@@ -18,8 +18,6 @@
  * @file
  */
 
-use MediaWiki\Logger\LoggerFactory;
-
 /**
  * Dump profiler data in a ".xhprof" file.
  *
@@ -43,8 +41,7 @@ class ProfilerOutputDump extends ProfilerOutput {
 
 	public function log( array $stats ) {
 		if ( !$this->collector instanceof ProfilerXhprof ) {
-			$logger = LoggerFactory::getInstance( 'profiler' );
-			$logger->error( 'ProfilerOutputDump must be used with ProfilerXhprof' );
+			$this->logger->error( 'ProfilerOutputDump must be used with ProfilerXhprof' );
 			return;
 		}
 		$data = $this->collector->getRawData();

@@ -17,6 +17,9 @@
  *
  * @file
  */
+
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\ScopedCallback;
 
@@ -39,6 +42,8 @@ abstract class Profiler {
 	protected $context = null;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+	/** @var LoggerInterface */
+	protected $logger;
 	/** @var bool */
 	private $allowOutput = false;
 
@@ -54,6 +59,7 @@ abstract class Profiler {
 		}
 		$this->params = $params;
 		$this->trxProfiler = new TransactionProfiler();
+		$this->logger = LoggerFactory::getInstance( 'profiler' );
 	}
 
 	/**
@@ -139,8 +145,8 @@ abstract class Profiler {
 		if ( $this->context ) {
 			return $this->context;
 		} else {
-			wfDebug( __METHOD__ . " called and \$context is null. " .
-				"Return RequestContext::getMain(); for sanity" );
+			$this->logger->warning( __METHOD__ . " called before setContext, " .
+				"fallback to RequestContext::getMain()." );
 			return RequestContext::getMain();
 		}
 	}
