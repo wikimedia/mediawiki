@@ -506,24 +506,14 @@ class LogEventsList extends ContextSource {
 	 * @param stdClass $row
 	 * @param string|array $type
 	 * @param string|array $action
-	 * @param string $right (deprecated since 1.35)
 	 * @return bool
 	 */
-	public static function typeAction( $row, $type, $action, $right = '' ) {
-		if ( $right !== '' ) {
-			wfDeprecated( __METHOD__ . ' with a right specified', '1.35' );
-		}
+	public static function typeAction( $row, $type, $action ) {
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
 		if ( $match ) {
 			$match = is_array( $action ) ?
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
-			if ( $match && $right ) {
-				global $wgUser;
-				$match = MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $wgUser, $right );
-			}
 		}
 
 		return $match;

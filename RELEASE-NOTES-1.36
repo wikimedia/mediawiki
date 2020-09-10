@@ -120,6 +120,10 @@ because of Phabricator reports.
    - APIQueryRevisionsTokens
    - APIQueryUsersTokens
    - ApiTokensGetTokenTypes
+* LogEventsList::typeAction previously accepted an optional right parameter,
+  and checked if the context user ($wgUser) had that right. Passing a right
+  was hard deprecated in 1.35, and support for passing a right has now been
+  removed.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
