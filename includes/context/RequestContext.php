@@ -330,17 +330,15 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Get the Language object.
 	 * Initialization of user or request objects can depend on this.
 	 * @return Language
-	 * @throws Exception
+	 * @throws LogicException
 	 * @since 1.19
 	 */
 	public function getLanguage() {
 		if ( $this->languageRecursion === true ) {
-			trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
+			throw new LogicException( 'Recursion detected' );
+		}
 
-			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
-			$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $code );
-		} elseif ( $this->lang === null ) {
+		if ( $this->lang === null ) {
 			$this->languageRecursion = true;
 
 			try {
