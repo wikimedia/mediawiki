@@ -14,13 +14,13 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	var $sortable, $collapsible,
 		dependencies = [];
-	if ( config.sortable ) {
+	if ( config.collapsible ) {
 		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
 			dependencies.push( 'jquery.makeCollapsible' );
 		}
 	}
-	if ( config.collapsible ) {
+	if ( config.sortable ) {
 		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
 			dependencies.push( 'jquery.tablesorter' );
