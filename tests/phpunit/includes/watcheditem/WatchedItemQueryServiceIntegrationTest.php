@@ -11,8 +11,9 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 
 	protected function setUp(): void {
 		parent::setUp();
-		self::$users[ 'WatchedItemQueryServiceIntegrationTestUser' ]
-			= new TestUser( 'WatchedItemQueryServiceIntegrationTestUser' );
+
+		$this->tablesUsed[] = 'watchlist';
+		$this->tablesUsed[] = 'watchlist_expiry';
 
 		$this->setMwGlobals( 'wgWatchlistExpiry', true );
 	}
@@ -20,7 +21,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	public function testGetWatchedItemsForUser(): void {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
-		$user = self::$users[ 'WatchedItemQueryServiceIntegrationTestUser' ]->getUser();
+		$user = self::getTestUser()->getUser();
 		$initialCount = count( $store->getWatchedItemsForUser( $user ) );
 
 		// Add two watched items, one of which is already expired, and check that only 1 is returned.
@@ -34,7 +35,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 			'1 week ago'
 		);
 		$result1 = $queryService->getWatchedItemsForUser( $user );
-		$this->assertCount( $initialCount + 1, $result1 );
+		$this->assertCount( $initialCount + 1, $result1, "User ID: " . $user->getId() );
 
 		// Add another of each type of item, and make sure the new results are as expected.
 		$store->addWatch(
@@ -72,7 +73,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 		$this->setMwGlobals( 'wgWatchlistExpiry', false );
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
-		$user = self::$users[ 'WatchedItemQueryServiceIntegrationTestUser' ]->getUser();
+		$user = self::getTestUser()->getUser();
 		$initialCount = count( $store->getWatchedItemsForUser( $user ) );
 		$store->addWatch( $user, new TitleValue( 0, __METHOD__ ), '1 week ago' );
 		$result = $queryService->getWatchedItemsForUser( $user );
@@ -82,7 +83,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	public function testGetWatchedItemsWithRecentChangeInfo_watchlistExpiry(): void {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
-		$user = self::$users[ 'WatchedItemQueryServiceIntegrationTestUser' ]->getUser();
+		$user = self::getTestUser()->getUser();
 		$options = [];
 		$startFrom = null;
 		$initialCount = count( $queryService->getWatchedItemsWithRecentChangeInfo( $user,
