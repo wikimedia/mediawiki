@@ -525,15 +525,10 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCan( $row, $field, User $user = null ) {
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
+	public static function userCan( $row, $field, User $user ) {
 		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
 			self::userCanViewLogType( $row->log_type, $user );
 	}
@@ -544,16 +539,11 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
+	public static function userCanBitfield( $bitfield, $field, User $user ) {
 		if ( $bitfield & $field ) {
-			if ( $user === null ) {
-				wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-				global $wgUser;
-				$user = $wgUser;
-			}
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permissions = [ 'suppressrevision', 'viewsuppressed' ];
 			} else {
@@ -573,15 +563,10 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as restricted log type.
 	 *
 	 * @param stdClass $type
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCanViewLogType( $type, User $user = null ) {
-		if ( $user === null ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
+	public static function userCanViewLogType( $type, User $user ) {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 		if ( isset( $logRestrictions[$type] ) && !MediaWikiServices::getInstance()
 				->getPermissionManager()
