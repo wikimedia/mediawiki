@@ -705,13 +705,28 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function checkCss( $value ) {
+		global $wgEnableHydraFeatures;
 		$value = self::normalizeCss( $value );
 
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ||
 			strpos( $value, \UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
 			return '/* invalid control char */';
-		} elseif ( preg_match(
+		/** Fandom change begin -- we need to remove "| var\s*\(" on GP wikis **/
+		} elseif ( empty( $wgEnableHydraFeatures ) && preg_match(
+			'! expression
+				| filter\s*:
+				| accelerator\s*:
+				| -o-link\s*:
+				| -o-link-source\s*:
+				| -o-replace\s*:
+				| url\s*\(
+				| image\s*\(
+				| image-set\s*\(
+				| attr\s*\([^)]+[\s,]+url
+			!ix', $value ) ) {
+			return '/* insecure input */';
+		} elseif ( !empty( $wgEnableHydraFeatures ) && preg_match(
 			'! expression
 				| accelerator\s*:
 				| -o-link\s*:
@@ -725,6 +740,7 @@ class Sanitizer {
 			!ix', $value ) ) {
 			return '/* insecure input */';
 		}
+		/** Fandom change end **/
 		return $value;
 	}
 
