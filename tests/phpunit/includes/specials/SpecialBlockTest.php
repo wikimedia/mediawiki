@@ -360,6 +360,115 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * @dataProvider provideProcessFormUserTalkEditFlag
+	 * @covers ::processForm()
+	 */
+	public function testProcessFormUserTalkEditFlag( $options, $expected ) {
+		$this->setMwGlobals( [
+			'wgBlockAllowsUTEdit' => $options['configAllowsUserTalkEdit'],
+		] );
+
+		$performer = $this->getTestSysop()->getUser();
+		$target = $this->getTestUser()->getUser();
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $performer );
+
+		$data = [
+			'Target' => $target,
+			'PreviousTarget' => $target,
+			'Expiry' => 'infinity',
+			'CreateAccount' => '0',
+			'DisableEmail' => '0',
+			'HardBlock' => '0',
+			'AutoBlock' => '0',
+			'Watch' => '0',
+			'Confirm' => '1',
+			'DisableUTEdit' => $options['optionBlocksUserTalkEdit'],
+		];
+
+		if ( !$options['userTalkNamespaceBlocked'] ) {
+			$data['EditingRestriction'] = 'partial';
+			$data['PageRestrictions'] = '';
+			$data['NamespaceRestrictions'] = '';
+		}
+
+		$result = $this->newSpecialPage()->processForm(
+			$data,
+			$context
+		);
+
+		if ( $expected === 'ipb-prevent-user-talk-edit' ) {
+			$this->assertSame( $expected, $result[0] );
+		} else {
+			$block = DatabaseBlock::newFromTarget( $target );
+			$this->assertSame( $expected, $block->isUsertalkEditAllowed() );
+		}
+	}
+
+	/**
+	 * Test cases for whether own user talk edit is allowed, with different combinations of:
+	 * - whether user talk namespace blocked
+	 * - config BlockAllowsUTEdit true/false
+	 * - block option specifying whether to block own user talk edit
+	 * For more about the desired behaviour, see T252892.
+	 *
+	 * @return array
+	 */
+	public function provideProcessFormUserTalkEditFlag() {
+		return [
+			'Always allowed if user talk namespace not blocked' => [
+				[
+					'userTalkNamespaceBlocked' => false,
+					'configAllowsUserTalkEdit' => true,
+					'optionBlocksUserTalkEdit' => false,
+				],
+				true,
+			],
+			'Always allowed if user talk namespace not blocked (config is false)' => [
+				[
+					'userTalkNamespaceBlocked' => false,
+					'configAllowsUserTalkEdit' => false,
+					'optionBlocksUserTalkEdit' => false,
+				],
+				true,
+			],
+			'Error if user talk namespace not blocked, but option blocks user talk edit' => [
+				[
+					'userTalkNamespaceBlocked' => false,
+					'configAllowsUserTalkEdit' => true,
+					'optionBlocksUserTalkEdit' => true,
+				],
+				'ipb-prevent-user-talk-edit',
+			],
+			'Always blocked if user talk namespace blocked and wgBlockAllowsUTEdit is false' => [
+				[
+					'userTalkNamespaceBlocked' => true,
+					'configAllowsUserTalkEdit' => false,
+					'optionBlocksUserTalkEdit' => false,
+				],
+				false,
+			],
+			'Option used if user talk namespace blocked and config is true (blocked)' => [
+				[
+					'userTalkNamespaceBlocked' => true,
+					'configAllowsUserTalkEdit' => true,
+					'optionBlocksUserTalkEdit' => true,
+				],
+				false,
+			],
+			'Option used if user talk namespace blocked and config is true (not blocked)' => [
+				[
+					'userTalkNamespaceBlocked' => true,
+					'configAllowsUserTalkEdit' => true,
+					'optionBlocksUserTalkEdit' => false,
+				],
+				true,
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideProcessFormErrors
 	 * @covers ::processForm()
 	 */
