@@ -108,7 +108,9 @@ because of Phabricator reports.
   previously hard deprecated, and support for now passing a User has now
   been removed:
    - FileDeleteForm::__construct
+   - FileDeleteForm::doDelete
    - LocalFileDeleteBatch::__construct
+   - LogEventsList::getExcludeClause (only needed for the 'user' audience)
    - LogPage::addEntry (also accepts user id instead)
    - PatrolLog::record
    - Title::getNotificationTimestamp (though the entire method is deprecated)
@@ -118,6 +120,10 @@ because of Phabricator reports.
    - APIQueryRevisionsTokens
    - APIQueryUsersTokens
    - ApiTokensGetTokenTypes
+* LogEventsList::typeAction previously accepted an optional right parameter,
+  and checked if the context user ($wgUser) had that right. Passing a right
+  was hard deprecated in 1.35, and support for passing a right has now been
+  removed.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.

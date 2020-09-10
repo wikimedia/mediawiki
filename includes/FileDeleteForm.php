@@ -166,21 +166,14 @@ class FileDeleteForm {
 	 * @param ?string &$oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
-	 * @param User|null $user User object performing the request (null defaults to $wgUser
-	 *        and is deprecated as of 1.35)
+	 * @param User $user
 	 * @param array $tags Tags to apply to the deletion action
 	 * @throws MWException
 	 * @return Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
-		$suppress, User $user = null, $tags = []
+		$suppress, User $user, $tags = []
 	) {
-		if ( $user === null ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
-
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOldFile( $oldimage, $reason, $user, $suppress );

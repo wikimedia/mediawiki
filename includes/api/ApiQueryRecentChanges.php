@@ -49,13 +49,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	/**
 	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func($pageid, $title, $rc)
+	 * The prototype for a token function is func( User $user, $rc)
 	 * it should return a token or false (permission denied)
 	 * @deprecated since 1.24
 	 * @return array [ tokenname => function ]
 	 */
 	protected function getTokenFunctions() {
-		// Don't call the hooks twice
 		if ( isset( $this->tokenFunctions ) ) {
 			return $this->tokenFunctions;
 		}
@@ -69,30 +68,27 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->tokenFunctions = [
 			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
-		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}
 
 	/**
 	 * @deprecated since 1.24
-	 * @param int $pageid
-	 * @param Title $title
+	 * @internal
+	 * @param User $user
 	 * @param RecentChange|null $rc
 	 * @return bool|string
 	 */
-	public static function getPatrolToken( $pageid, $title, $rc = null ) {
-		global $wgUser;
-
+	public static function getPatrolToken( User $user, $rc = null ) {
 		$validTokenUser = false;
 
 		if ( $rc ) {
-			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
+			if ( ( $user->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
+				( $user->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
 			) {
 				$validTokenUser = true;
 			}
-		} elseif ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+		} elseif ( $user->useRCPatrol() || $user->useNPPatrol() ) {
 			$validTokenUser = true;
 		}
 
@@ -101,7 +97,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			static $cachedPatrolToken = null;
 
 			if ( $cachedPatrolToken === null ) {
-				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+				$cachedPatrolToken = $user->getEditToken( 'patrol' );
 			}
 
 			return $cachedPatrolToken;
@@ -678,8 +674,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $this->token !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
-					$title, RecentChange::newFromRow( $row ) );
+				$val = call_user_func(
+					$tokenFunctions[$t],
+					$this->getUser(),
+					RecentChange::newFromRow( $row )
+				);
 				if ( $val === false ) {
 					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 				} else {

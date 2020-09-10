@@ -506,24 +506,14 @@ class LogEventsList extends ContextSource {
 	 * @param stdClass $row
 	 * @param string|array $type
 	 * @param string|array $action
-	 * @param string $right (deprecated since 1.35)
 	 * @return bool
 	 */
-	public static function typeAction( $row, $type, $action, $right = '' ) {
-		if ( $right !== '' ) {
-			wfDeprecated( __METHOD__ . ' with a right specified', '1.35' );
-		}
+	public static function typeAction( $row, $type, $action ) {
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
 		if ( $match ) {
 			$match = is_array( $action ) ?
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
-			if ( $match && $right ) {
-				global $wgUser;
-				$match = MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $wgUser, $right );
-			}
 		}
 
 		return $match;
@@ -810,20 +800,17 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User|null $user User to check, required when audience isn't public
 	 * @return string|bool String on success, false on failure.
+	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
 		global $wgLogRestrictions;
 
 		if ( $audience != 'public' && $user === null ) {
-			wfDeprecated(
-				__METHOD__ .
-				' using a non-public audience without passing a $user parameter',
-				'1.35'
+			throw new InvalidArgumentException(
+				'A User object must be given when checking for a user audience.'
 			);
-			global $wgUser;
-			$user = $wgUser;
 		}
 
 		// Reset the array, clears extra "where" clauses when $par is used
