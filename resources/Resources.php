@@ -2713,6 +2713,7 @@ return [
 			'oojs-ui'
 		],
 		'messages' => [
+			'accesskey-ca-watch',
 			'addedwatchexpiry-options-label',
 			'addedwatchexpirytext',
 			'addedwatchexpirytext-talk',
