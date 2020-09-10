@@ -340,6 +340,8 @@
 	"login-throttled": "Слер ӧткӱре кӧп системага кирерге албаданганар.\nСакып алар эмеш оноҥ такып кирип кӧрӧр.",
 	"login-abort-generic": "Системага эрчимдӱ кириш болбоды",
 	"loginlanguagelabel": "Тил: $1",
+	"pt-login": "Кирер",
+	"pt-createaccount": "Аккаунт эдип алар",
 	"resetpass_announce": "Email ажыра аткарган кыска ӧйгӧ берилген код ло киргенер.\nКеректи учына јетиргизерге, слер јаҥы јажыт сӧс кийдирер учурлу бери:",
 	"resetpass_header": "Аккаунттыҥ јажыт сӧзин солыыры",
 	"oldpassword": "Эски јажыт сӧс:",
@@ -395,7 +397,7 @@
 	"nextn-title": "Ээчий $1 {{PLURAL:$1|результат|результаттар}}",
 	"shown-title": "Бир бӱкте $1 {{PLURAL:$1|результатты|результаттарды}} кӧргӱзер",
 	"viewprevnext": "Кӧрӧр ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-new": "'''Бу викиде \"[[:$1]]\" бӱкти тӧзӧӧр!'''",
+	"searchmenu-new": "<strong>Бӱкти эдип алар\"[[:$1]]\" бу вики проектте!</strong> {{PLURAL:$2|0=|Слердиҥ бедреш турултазы аайынча бедрелген бӱкти анай ок кӧруп ийегер.|See also the search results found.}}",
 	"searchprofile-articles": "Тӧс учурлу бӱктер",
 	"searchprofile-images": "Мультимедиа",
 	"searchprofile-everything": "Бастыразында",
@@ -432,6 +434,7 @@
 	"minoreditletter": "к",
 	"newpageletter": "Ј",
 	"boteditletter": "б",
+	"rc-change-size-new": "$1 {{PLURAL:$1|байт|байттар}} Кубултаныҥ кийнинде кеми",
 	"rc-enhanced-expand": "Чокымдада кӧргӱзер",
 	"recentchangeslinked": "Тудуш солынталар",
 	"recentchangeslinked-toolbox": "Тудуш солынталар",
@@ -560,5 +563,6 @@
 	"namespacesall": "бастыра",
 	"monthsall": "бастыра",
 	"specialpages": "Аҥылу бӱктер",
-	"tag-filter": "[[Special:Tags|Тегтердиҥ]] фильтры:"
+	"tag-filter": "[[Special:Tags|Тегтердиҥ]] фильтры:",
+	"searchsuggest-search": "Бедреер {{SITENAME}}"
 }

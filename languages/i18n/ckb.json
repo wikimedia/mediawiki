@@ -1894,6 +1894,7 @@
 	"delete-warning-toobig": "ئەم پەڕەیە مێژوویەکی دەستکاریی زۆر گەورەی ھەیە، زۆرتر لە $1 {{PLURAL:$1|پێداچوونەوە}}.\nسڕینەوەی ئەو پەڕەیە لەوانەی کارەکانی بنکەدراوەی {{SITENAME}} تووشی کێشە بکات؛\nبە سەرنجەوە بچۆ پێشەوە.",
 	"deleteprotected": "تۆ ناتوانیت ئەم پەڕەیە بسڕیتەوە لەبەرئەوەی پارێزراوە.",
 	"deleting-backlinks-warning": "'''ئاگاداری:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|پەڕەکانی تر]] بەم پەڕەیەی دەتەوێ بیسڕییەوە بەستەر دراوە.",
+	"deleting-subpages-warning": "<strong>ئاگاداری:</strong> ئەو پەڕەی کە دەتەوێ بیسڕییەوە [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|ژێرپەڕەیەکی|$1 ژێرپەڕەی|51=سەروو ٥١ ژێرپەڕەی}}]] ھەیە.",
 	"rollback": "گەڕاندنەوەی دەستکارییەکان",
 	"rollback-confirmation-no": "پاشگەزبوونەوە",
 	"rollbacklink": "گەڕاندنەوە",

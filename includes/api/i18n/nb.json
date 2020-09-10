@@ -1635,6 +1635,7 @@
 	"apierror-compare-relative-to-nothing": "Ingen «from»-revisjon som <var>torelative</var> kan være relativ til.",
 	"apierror-contentserializationexception": "Innholdsserialisering feliet: $1",
 	"apierror-contenttoobig": "Innholdet du oppga overskrider artikkelstørrelsesgrensen på $1 {{PLURAL:$1|kilobyte}}.",
+	"apierror-contentmodel-mismatch": "Innholdet du oppga har innholdsmodellen <kbd>$1</kbd>, som er forskjellig fra sidens gjeldende innholdsmodell, <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Opplasting via URL tillates ikke fra dette domenet.",
 	"apierror-copyuploadbadurl": "Opplasting tillates ikke fra denne URL-en.",
 	"apierror-create-titleexists": "Eksisterende titler kan ikke beskyttes med <kbd>create</kbd>.",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Iohanen",
 			"Paul Beppler"
 		]
 	},
@@ -14,8 +15,8 @@
 	"exif-planarconfiguration": "Dateausrichtung",
 	"exif-ycbcrsubsampling": "Subsampling Rate von Y bis C",
 	"exif-ycbcrpositioning": "Y und C Positionierung",
-	"exif-xresolution": "Horizontale Auflösung",
-	"exif-yresolution": "Vertikale Auflösung",
+	"exif-xresolution": "Horizontal Ufflosung",
+	"exif-yresolution": "Vertikal Ufflosung",
 	"exif-stripoffsets": "Bilddate-Versatz",
 	"exif-rowsperstrip": "Oonzoohl Zeile por Streife",
 	"exif-stripbytecounts": "Bytes por komprimiertem Streif",
@@ -34,7 +35,7 @@
 	"exif-copyright": "Uarheberrechte (Copyright halter)",
 	"exif-exifversion": "Exif-Version",
 	"exif-flashpixversion": "nterstützte Flashpix-Version",
-	"exif-colorspace": "Farrebraum",
+	"exif-colorspace": "Faarrebraum",
 	"exif-componentsconfiguration": "Bedeitung einzelner Komponente",
 	"exif-compressedbitsperpixel": "Komprimierte Bits por Pixel",
 	"exif-pixelxdimension": "Bildbreit",
