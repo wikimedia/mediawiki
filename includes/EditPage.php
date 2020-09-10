@@ -3715,13 +3715,10 @@ ERROR;
 	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
-		$classes = [];
+		$attribs = [ 'id' => 'wikiPreview' ];
 		if ( $isOnTop ) {
-			$classes[] = 'ontop';
+			$attribs['class'] = 'ontop';
 		}
-
-		$attribs = [ 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) ];
-
 		if ( $this->formtype != 'preview' ) {
 			$attribs['style'] = 'display: none;';
 		}

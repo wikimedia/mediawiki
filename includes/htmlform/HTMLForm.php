@@ -1803,9 +1803,7 @@ class HTMLForm extends ContextSource {
 			$classes[] = 'mw-htmlform-nolabel';
 		}
 
-		$attribs = [
-			'class' => implode( ' ', $classes ),
-		];
+		$attribs = [ 'class' => $classes ];
 
 		if ( $sectionName ) {
 			$attribs['id'] = Sanitizer::escapeIdForAttribute( $sectionName );

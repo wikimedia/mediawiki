@@ -131,7 +131,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				$link = $this->getLinkRenderer()->makeKnownLink( $title, $desc );
 				$out->addHTML( Html::rawElement(
 						'li',
-						[ 'class' => implode( ' ', $pageClasses ) ],
+						[ 'class' => $pageClasses ],
 						$link
 					) . "\n" );
 			}
