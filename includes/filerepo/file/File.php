@@ -2275,10 +2275,10 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User $user User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user = null ) {
+	public function userCan( $field, User $user ) {
 		return true;
 	}
 

@@ -586,18 +586,12 @@ class ArchivedFile {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
 	 * @param int $field
-	 * @param null|User $user User object to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user = null ) {
+	public function userCan( $field, User $user ) {
 		$this->load();
 		$title = $this->getTitle();
-
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
 
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
