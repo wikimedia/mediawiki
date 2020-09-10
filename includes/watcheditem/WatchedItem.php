@@ -159,11 +159,25 @@ class WatchedItem {
 	 * @return int|null days remaining or null if no expiration is present
 	 */
 	public function getExpiryInDays(): ?int {
-		if ( $this->getExpiry() === null ) {
+		return self::calculateExpiryInDays( $this->getExpiry() );
+	}
+
+	/**
+	 * Get the number of days remaining until the given expiry time.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string|null $expiry The expiry to calculate from, in any format
+	 * supported by MWTimestamp::convert().
+	 *
+	 * @return int|null The remaining number of days or null if $expiry is null.
+	 */
+	public static function calculateExpiryInDays( ?string $expiry ): ?int {
+		if ( $expiry === null ) {
 			return null;
 		}
 
-		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
+		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $expiry );
 		$diffInSeconds = $unixTimeExpiry - wfTimestamp();
 		$diffInDays = $diffInSeconds / self::SECONDS_IN_A_DAY;
 
