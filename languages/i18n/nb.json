@@ -757,7 +757,7 @@
 	"nocreatetext": "{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:UserLogin|logge inn eller opprette en ny konto]].",
 	"nocreate-loggedin": "Du har ikke tillatelse til å opprette sider.",
 	"sectioneditnotsupported-title": "Seksjonsredigering støttes ikke",
-	"sectioneditnotsupported-text": "Seksjonsredigering støttes ikke på denne siden.",
+	"sectioneditnotsupported-text": "Seksjonsredigering støttes ikke på denne siden, eller er slått av for denne visningen.",
 	"modeleditnotsupported-title": "Redigering støttes ikke",
 	"modeleditnotsupported-text": "Redigering støttes ikke for innholdsmodellen $1.",
 	"permissionserrors": "Tillatelsesfeil",

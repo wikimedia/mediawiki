@@ -810,7 +810,7 @@
 	"nocreatetext": "Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].",
 	"nocreate-loggedin": "Du hast nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.",
 	"sectioneditnotsupported-title": "Die Bearbeitung von Abschnitten wird nicht unterstützt",
-	"sectioneditnotsupported-text": "Die Bearbeitung von Abschnitten wird auf dieser Seite nicht unterstützt.",
+	"sectioneditnotsupported-text": "Die Bearbeitung von Abschnitten wird auf dieser Seite nicht unterstützt oder für diese Ansicht abgeschaltet.",
 	"modeleditnotsupported-title": "Bearbeiten nicht möglich",
 	"modeleditnotsupported-text": "Das Bearbeiten wird für Seiten des Inhaltsmodells $1 nicht unterstützt.",
 	"permissionserrors": "Berechtigungsfehler",
