@@ -2710,53 +2710,21 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
-	 * backwards compatibility, if you care about error reporting you should use
-	 * doDeleteArticleReal() instead.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * Deletes the article with database consistency, writes logs, purges caches
-	 *
-	 * @param string $reason Delete reason for deletion log
-	 * @param bool $suppress Suppress all revisions and log the deletion in
-	 *        the suppression log instead of the deletion log
-	 * @param int|null $u1 Unused
-	 * @param bool|null $u2 Unused
-	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $user The deleting user
-	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return bool True if successful
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user,
-			[], 'delete', $immediate );
-
-		// Returns true if the page was actually deleted, or is scheduled for deletion
-		return $status->isOK();
-	}
-
-	/**
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @since 1.19
 	 * @since 1.35 Signature changed, user moved to second parameter to prepare for requiring
-	 *             a user to be passed; not passing a user is deprecated since 1.35
+	 *             a user to be passed
+	 * @since 1.36 User second parameter is required
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param user|bool $user The deleting user (not passing a user is deprecated since 1.35)
-	 * @param bool|null $suppress Suppress all revisions and log the deletion in
+	 * @param User $deleter The deleting user
+	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
-	 * @param bool|null $u2 Unused
+	 * @param bool|null $u1 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $deleter The deleting user in the old signature, unused in the new
+	 * @param User|null $u2 Unused
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
@@ -2767,25 +2735,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
-		$reason, $user = false, $suppress = false, $u2 = null, &$error = '', User $deleter = null,
+		$reason, User $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
 		wfDebug( __METHOD__ );
-
-		if ( $user instanceof User ) {
-			$deleter = $user;
-		} else {
-			wfDeprecated(
-				__METHOD__ . ' without passing a User as the second parameter',
-				'1.35'
-			);
-			$suppress = $user;
-			if ( $deleter === null ) {
-				global $wgUser;
-				$deleter = $wgUser;
-			}
-		}
-		unset( $user );
 
 		$status = Status::newGood();
 

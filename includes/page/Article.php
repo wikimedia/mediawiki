@@ -2434,30 +2434,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::doDeleteArticleReal
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param int|null $u1
-	 * @param bool|null $u2
-	 * @param array|string &$error
-	 * @param User|null $user
-	 * @param array $tags
-	 * @param bool $immediate
-	 * @return Status
-	 */
-	public function doDeleteArticleReal(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$tags = [], $immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->doDeleteArticleReal(
-			$reason, $suppress, $u1, $u2, $error, $user, $tags, 'delete', $immediate
-		);
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::doDeleteUpdates instead
 	 * @see WikiPage::doDeleteUpdates
 	 * @param int $id
@@ -3149,26 +3125,6 @@ class Article implements Page {
 			$reason,
 			$this->getContext()->getUser()
 		);
-	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::doDeleteArticleReal instead
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param int|null $u1 Unused
-	 * @param bool|null $u2 Unused
-	 * @param string &$error
-	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', $immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error,
-			null, $immediate );
 	}
 
 	/**
