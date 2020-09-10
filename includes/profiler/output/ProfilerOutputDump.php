@@ -18,15 +18,15 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Dump profiler data in a ".xhprof" file.
  *
  * @ingroup Profiler
  * @since 1.25
- * @property ProfilerXhprof $collector
  */
 class ProfilerOutputDump extends ProfilerOutput {
-
 	protected $suffix = ".xhprof";
 
 	/**
@@ -42,6 +42,11 @@ class ProfilerOutputDump extends ProfilerOutput {
 	}
 
 	public function log( array $stats ) {
+		if ( !$this->collector instanceof ProfilerXhprof ) {
+			$logger = LoggerFactory::getInstance( 'profiler' );
+			$logger->error( 'ProfilerOutputDump must be used with ProfilerXhprof' );
+			return;
+		}
 		$data = $this->collector->getRawData();
 		$filename = sprintf( "%s/%s.%s%s",
 			$this->params['outputDir'],
