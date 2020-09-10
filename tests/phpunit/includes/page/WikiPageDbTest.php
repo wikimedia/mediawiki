@@ -441,15 +441,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * Undeletion is covered in PageArchiveTest::testUndeleteRevisions()
 	 * TODO: Revision deletion
 	 *
-	 * @covers WikiPage::doDeleteArticle
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
-	public function testDoDeleteArticle() {
-		$this->hideDeprecated( 'WikiPage::doDeleteArticle' );
-		$this->hideDeprecated(
-			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
-		);
-
+	public function testDoDeleteArticleReal() {
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -457,7 +451,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 		$id = $page->getId();
 
-		$page->doDeleteArticle( "testing deletion" );
+		$page->doDeleteArticleReal( "testing deletion", $this->getTestSysop()->getUser() );
 
 		$this->assertFalse(
 			$page->getTitle()->getArticleID() > 0,
@@ -498,10 +492,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticleReal_user0() {
-		$this->hideDeprecated(
-			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
-		);
-
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -509,14 +499,16 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 		$id = $page->getId();
 
+		$deleter = $this->getTestSysop()->getUser();
+
 		$errorStack = '';
 		$status = $page->doDeleteArticleReal(
 			/* reason */ "testing user 0 deletion",
+			/* deleter */ $deleter,
 			/* suppress */ false,
 			/* unused 1 */ null,
-			/* unused 2 */ null,
 			/* errorStack */ $errorStack,
-			null
+			/* unused 2 */ null
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
@@ -537,8 +529,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'delete',
 				'delete',
 				'testing user 0 deletion',
-				null,
-				'127.0.0.1',
+				$deleter->getId(),
+				$deleter->getName(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
