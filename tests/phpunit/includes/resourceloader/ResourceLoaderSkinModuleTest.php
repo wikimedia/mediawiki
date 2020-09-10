@@ -400,7 +400,7 @@ CSS
 		$ctx = $this->createMock( ResourceLoaderContext::class );
 		$module = new ResourceLoaderSkinModule(
 			[
-				'features' => [ 'normalize' ],
+				'features' => [ 'normalize', 'elements' ],
 				'styles' => [
 					'test.styles/styles.css' => [
 						'media' => 'screen'
@@ -419,6 +419,11 @@ CSS
 			'screen' => [
 				new ResourceLoaderFilePath(
 					$featureFiles['normalize']['screen'][0],
+					$defaultLocalBasePath,
+					$defaultRemoteBasePath
+				),
+				new ResourceLoaderFilePath(
+					$featureFiles['elements']['screen'][0],
 					$defaultLocalBasePath,
 					$defaultRemoteBasePath
 				),

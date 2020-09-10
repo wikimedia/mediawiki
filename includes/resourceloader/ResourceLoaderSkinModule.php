@@ -183,28 +183,25 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
 			ResourceLoaderFileModule::extractBasePaths();
 
+		$featureFilePaths = [];
+
 		foreach ( $this->features as $feature ) {
 			if ( !isset( self::FEATURE_FILES[$feature] ) ) {
 				throw new InvalidArgumentException( "Feature `$feature` is not recognised" );
 			}
 			foreach ( self::FEATURE_FILES[$feature] as $mediaType => $files ) {
-				if ( !isset( $styles[$mediaType] ) ) {
-					$styles[$mediaType] = [];
-				}
 				foreach ( $files as $filepath ) {
-					// Use array_unshift to prepend the feature files to the list of styles.
-					// This ensures that their styles can be overridden in skin stylesheets
-					// without overqualifying the selectors.
-					array_unshift(
-						$styles[$mediaType],
-						new ResourceLoaderFilePath(
-							$filepath,
-							$defaultLocalBasePath,
-							$defaultRemoteBasePath
-						)
+					$featureFilePaths[$mediaType][] = new ResourceLoaderFilePath(
+						$filepath,
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
 					);
 				}
 			}
+		}
+
+		foreach ( $featureFilePaths as $mediaType => $paths ) {
+			$styles[$mediaType] = array_merge( $paths, $styles[$mediaType] ?? [] );
 		}
 
 		return $styles;
