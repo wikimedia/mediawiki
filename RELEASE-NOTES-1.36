@@ -93,6 +93,8 @@ because of Phabricator reports.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - Article::doDeleteArticle
+  - Article::doDeleteArticleReal
   - File::delete
   - ForeignDBFile::delete
   - LocalFile::delete
@@ -103,10 +105,11 @@ because of Phabricator reports.
   - Title::quickUserCan
   - Title::userCan
   - WebRequest::getLimitOffset
+  - WikiPage::doDeleteArticle
   - All methods of the old SpecialPageFactory; the entire class was removed
 * Multiple methods previously had optional User parameters, with fallbacks
   to the $wgUser global variable. Not passing a User to those methods was
-  previously hard deprecated, and support for now passing a User has now
+  previously hard deprecated, and support for not passing a User has now
   been removed:
    - ArchivedFile::userCan
    - File::userCan
@@ -131,6 +134,11 @@ because of Phabricator reports.
   and checked if the context user ($wgUser) had that right. Passing a right
   was hard deprecated in 1.35, and support for passing a right has now been
   removed.
+* WikiPage::doDeleteArticleReal previously accepted an optional user as its
+  fifth parameter, and fell back to $wgUser if not user was provided. The
+  signature changed to have the user as the second parameter, and the old
+  signature was hard deprecated in 1.35. Support for the old signature has
+  now been removed.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
