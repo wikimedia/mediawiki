@@ -286,11 +286,17 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, $overlay,
+		var $overlay,
+			minTopOffset = mw.util.$content.offset().top,
 			isFloating = false;
 
+		/**
+		 * Called when the window scrolls to change the notification area
+		 * between fixed and absolute positioned, depending on how far from the
+		 * top the viewport is.
+		 */
 		function updateAreaMode() {
-			var shouldFloat = window.pageYOffset > offset.top;
+			var shouldFloat = window.pageYOffset > minTopOffset;
 			if ( isFloating === shouldFloat ) {
 				return;
 			}
@@ -298,6 +304,10 @@
 			$area
 				.toggleClass( 'mw-notification-area-floating', isFloating )
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
+			// Make sure the top of the notification area is never higher than the top of $content.
+			rAF( function () {
+				$area.css( 'top', isFloating ? '' : minTopOffset );
+			} );
 		}
 
 		// Look for a preset notification area in the skin.
@@ -309,7 +319,7 @@
 			$overlay = $( '<div>' ).addClass( 'mw-notification-area-overlay' );
 			// Append the notification area to the overlay wrapper area
 			$overlay.append( $area );
-			mw.util.$content.prepend( $overlay );
+			mw.util.$content.before( $overlay );
 		}
 		$area
 			.addClass( 'mw-notification-area-layout' )
@@ -339,7 +349,10 @@
 		// computation from offset()/getBoundingClientRect().
 		rAF( function () {
 			var notif;
-			offset = $area.offset();
+
+			// Recalculate the top offset, and set it.
+			minTopOffset = Math.max( minTopOffset, $area.offset().top );
+			$area.css( 'top', minTopOffset );
 
 			// Initial mode (reads, and then maybe writes)
 			updateAreaMode();
