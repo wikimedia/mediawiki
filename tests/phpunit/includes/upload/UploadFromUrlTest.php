@@ -1,6 +1,9 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\NullLogger;
 
 /**
  * @group large
@@ -27,6 +30,89 @@ class UploadFromUrlTest extends ApiTestCase {
 		) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}
+
+		$this->installMockHttp();
+	}
+
+	/**
+	 * @param null|string|array| $request
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	protected function installMockHttp( $request = null ) {
+		$options = new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, [
+			'HTTPTimeout' => 1,
+			'HTTPConnectTimeout' => 1,
+			'HTTPMaxTimeout' => 1,
+			'HTTPMaxConnectTimeout' => 1,
+		] );
+
+		$mockHttpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
+			->setConstructorArgs( [ $options, new NullLogger() ] )
+			->onlyMethods( [ 'create' ] )
+			->getMock();
+
+		if ( $request === null ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willThrowException( new LogicException( 'No Fake MWHttpRequest provided!' ) );
+		} elseif ( $request instanceof MWHttpRequest ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturn( $request );
+		} elseif ( is_callable( $request ) ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturnCallback( $request );
+		} elseif ( is_array( $request ) ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturnOnConsecutiveCalls( $request );
+		} elseif ( is_string( $request ) ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturn( $this->makeFakeHttpRequest( $request ) );
+		}
+
+		$this->setService( 'HttpRequestFactory', function () use ( $mockHttpRequestFactory ) {
+			return $mockHttpRequestFactory;
+		} );
+	}
+
+	/**
+	 * @param string $body
+	 * @param int $status
+	 * @param array $headers
+	 *
+	 * @return MWHttpRequest
+	 */
+	private function makeFakeHttpRequest( $body = 'Lorem Ipsum', $statusCode = 200, $headers = [] ) {
+		$options = [
+			'timeout' => 1,
+			'connectTimeout' => 1,
+		];
+
+		$mockHttpRequest = $this->getMockBuilder( MWHttpRequest::class )
+			->setConstructorArgs( [ 'http://www.example.com/test.png', $options ] )
+			->onlyMethods( [ 'execute', 'setCallback' ] )
+			->getMock();
+
+		$dataCallback = null;
+		$mockHttpRequest->method( 'setCallback' )
+			->willReturnCallback(
+				function ( $callback ) use ( &$dataCallback ) {
+					$dataCallback = $callback;
+				}
+			);
+
+		$status = Status::newGood( $statusCode );
+		$mockHttpRequest->method( 'execute' )
+			->willReturnCallback(
+				function () use ( &$dataCallback, $body, $status ) {
+					if ( $dataCallback ) {
+						$dataCallback( $this, $body );
+					}
+					return $status;
+				}
+			);
+
+		return $mockHttpRequest;
 	}
 
 	/**
@@ -161,6 +247,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSyncDownload( $data ) {
+		$file = __DIR__ . '/../../data/upload/png-plain.png';
+		$this->installMockHttp( file_get_contents( $file ) );
+
 		$token = $this->user->getEditToken();
 
 		$this->user->addGroup( 'users' );
