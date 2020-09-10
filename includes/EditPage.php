@@ -2558,6 +2558,9 @@ ERROR;
 		}
 
 		$undoContent = $this->getUndoContent( $undoRev, $oldRev );
+		if ( !$undoContent ) {
+			return false;
+		}
 
 		// Do a pre-save transform on the retrieved undo content
 		$user = $this->context->getUser();
@@ -2565,7 +2568,7 @@ ERROR;
 			$user, MediaWikiServices::getInstance()->getContentLanguage() );
 		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
 
-		if ( $undoContent && $undoContent->equals( $content ) ) {
+		if ( $undoContent->equals( $content ) ) {
 			return true;
 		}
 		return false;

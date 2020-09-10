@@ -79,7 +79,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->tokenFunctions = [
 			'userrights' => [ self::class, 'getUserrightsToken' ],
 		];
-		$this->getHookRunner()->onAPIQueryUsersTokens( $this->tokenFunctions );
+		// TODO update to inject a user following removal of token hook
 
 		return $this->tokenFunctions;
 	}
