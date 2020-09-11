@@ -1882,35 +1882,11 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * Record a file upload in the upload log and the image table
-	 * @stable to override
-	 * STUB
-	 * Overridden by LocalFile
-	 * @deprecated since 1.35
-	 * @param string $oldver
-	 * @param string $desc
-	 * @param string $license
-	 * @param string $copyStatus
-	 * @param string $source
-	 * @param bool $watch
-	 * @param string|bool $timestamp
-	 * @param null|User $user User object or null to use $wgUser
-	 * @return bool
-	 * @throws MWException
-	 */
-	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false, User $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->readOnlyError();
-	}
-
-	/**
 	 * Move or copy a file to its public location. If a file exists at the
 	 * destination, move it to an archive. Returns a Status object with
 	 * the archive name in the "value" member on success.
 	 *
-	 * The archive name should be passed through to recordUpload for database
+	 * The archive name should be passed through to recordUpload3 for database
 	 * registration.
 	 *
 	 * Options to $options include:
