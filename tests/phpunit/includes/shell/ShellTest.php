@@ -2,7 +2,6 @@
 
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Shell\Shell
@@ -65,14 +64,12 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf( Command::class, $command );
 
-		$wrapper = TestingAccessWrapper::newFromObject( $command );
-
 		if ( wfIsWindows() ) {
-			$this->assertEquals( $expectedWin, $wrapper->command );
+			$this->assertEquals( $expectedWin, $command->getCommandString() );
 		} else {
-			$this->assertEquals( $expected, $wrapper->command );
+			$this->assertEquals( $expected, $command->getCommandString() );
 		}
-		$this->assertSame( 0, $wrapper->restrictions & Shell::NO_LOCALSETTINGS );
+		$this->assertSame( [], $command->getDisallowedPaths() );
 	}
 
 	public function provideMakeScriptCommand() {

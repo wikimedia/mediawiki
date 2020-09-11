@@ -81,6 +81,10 @@ this is no longer recommended and the option has been removed.
   the Unicode NFC normalization done on inputs of type 'string', so it more
   suitable when the input is binary or may contain deprecated Unicode
   sequences or characters (such as U+2001) that should be passed unmodified.
+* A new abstraction for running shell commands has been introduced, called
+  BoxedCommand. A BoxedCommand object can be obtained with
+  MediaWikiServices::getInstance()->getCommandFactory()->createBoxed().
+  (T260330)
 * …
 
 === External library changes in 1.36 ===
@@ -88,6 +92,7 @@ this is no longer recommended and the option has been removed.
 
 ==== New external libraries ====
 * Added pear/net_url2 2.2.2.
+* Added wikimedia/shellbox
 * …
 
 ===== New development-only external libraries =====
@@ -366,6 +371,9 @@ because of Phabricator reports.
   in public MediaWiki-related git, was removed.
 * Passing Title as a second parameter to RevisionStore::getPreviousRevision and
   getNextRevision, hard deprecated since 1.31, was prohibited.
+* The internal class FirejailCommand was removed.
+* Command::execute() now returns a Shellbox\Command\UnboxedResult instead of a
+  MediaWiki\Shell\Result. Any type hints should be updated.
 * …
 
 === Deprecations in 1.36 ===
@@ -506,6 +514,9 @@ because of Phabricator reports.
   ProtectionFormAddFormFields hook instead.
 * RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
   MutableRevisionRecord should be constructed directly via constructor.
+* Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
+  now implemented as an Executor option.
+* Command::restrict() is deprecated. Instead use the new separate accessors.
 * …
 
 === Other changes in 1.36 ===
