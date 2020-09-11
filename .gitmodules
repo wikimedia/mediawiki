@@ -1362,3 +1362,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages.git
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/NumberText"]
+	path = extensions/NumberText
+	url = https://github.com/wikimedia/mediawiki-extensions-Numbertext.git
+	branch = REL1_34
+	ignore = dirty
