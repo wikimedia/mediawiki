@@ -381,7 +381,7 @@ class HistoryAction extends FormlessAction {
 	 * @param string $type Feed type
 	 */
 	private function feed( $type ) {
-		if ( !FeedUtils::checkFeedOutput( $type ) ) {
+		if ( !FeedUtils::checkFeedOutput( $type, $this->getOutput() ) ) {
 			return;
 		}
 		$request = $this->getRequest();

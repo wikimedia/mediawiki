@@ -35,19 +35,28 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
+	 * @since 1.36 $output parameter added
+	 *
 	 * @param string $type Feed type, as requested by the user
+	 * @param OutputPage|null $output Null falls back to $wgOut
 	 * @return bool
 	 */
-	public static function checkFeedOutput( $type ) {
-		global $wgOut, $wgFeed, $wgFeedClasses;
+	public static function checkFeedOutput( $type, $output = null ) {
+		global $wgFeed, $wgFeedClasses;
+
+		if ( $output === null ) {
+			// Todo update GoogleNewsSitemap and deprecate
+			global $wgOut;
+			$output = $wgOut;
+		}
 
 		if ( !$wgFeed ) {
-			$wgOut->addWikiMsg( 'feed-unavailable' );
+			$output->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
 		if ( !isset( $wgFeedClasses[$type] ) ) {
-			$wgOut->addWikiMsg( 'feed-invalid' );
+			$output->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
 
