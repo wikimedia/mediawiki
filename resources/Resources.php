@@ -1974,6 +1974,17 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.changeslist.watchlistexpiry' => [
+		'scripts' => 'resources/src/mediawiki.special.changeslist.watchlistexpiry/watchlistexpiry.js',
+		'styles' => 'resources/src/mediawiki.special.changeslist.watchlistexpiry/watchlistexpiry.less',
+		'messages' => [
+			'parentheses',
+			'watchlist-expiry-days-left',
+			'watchlist-expiry-hours-left',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [ 'mediawiki.special' ],
+	],
 	'mediawiki.special.changeslist.enhanced' => [
 		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.less',
 	],
