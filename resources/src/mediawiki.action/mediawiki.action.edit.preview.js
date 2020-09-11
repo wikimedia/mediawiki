@@ -292,17 +292,19 @@
 		// TODO: Make the server output these always (in a hidden state), so we don't
 		// have to fish and (hopefully) put them in the right place (since skins
 		// can change where they are output).
+		// FIXME: This is prone to breaking any time Vector's HTML for portals change.
 
 		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) && mw.config.get( 'skin' ) === 'vector' ) {
 			$( '.portal' ).last().after(
 				$( '<div>' ).attr( {
-					class: 'portal',
+					class: 'vector-menu vector-menu-portal portal',
 					id: 'p-lang',
 					role: 'navigation',
 					'aria-labelledby': 'p-lang-label'
 				} )
 					.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )
-					.append( $( '<div>' ).addClass( 'body' ).append( '<ul>' ) )
+					.append( $( '<div>' ).addClass( 'body vector-menu-content' ) )
+					.append( $( '<ul>' ).addClass( 'vector-menu-content-list' ) )
 			);
 		}
 
