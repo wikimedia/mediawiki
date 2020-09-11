@@ -96,9 +96,12 @@ because of Phabricator reports.
   - Article::doDeleteArticle
   - Article::doDeleteArticleReal
   - File::delete
+  - File::recordUpload
   - ForeignDBFile::delete
+  - ForeignDBFile::recordUpload
   - LocalFile::delete
   - LocalFile::deleteOld
+  - LocalFile::recordUpload
   - PageArchive::undelete
   - RecentChange::markPatrolled
   - Title::getUserPermissionsErrors

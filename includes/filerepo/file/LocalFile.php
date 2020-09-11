@@ -1449,40 +1449,6 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
-	 * @param string $oldver
-	 * @param string $desc
-	 * @param string $license
-	 * @param string $copyStatus
-	 * @param string $source
-	 * @param bool $watch
-	 * @param string|bool $timestamp
-	 * @param User|null $user User object or null to use $wgUser
-	 * @return bool
-	 */
-	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
-
-		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user )->isOK() ) {
-			return false;
-		}
-
-		if ( $watch ) {
-			$user->addWatch( $this->getTitle() );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Record a file upload in the upload log and the image table
 	 * @deprecated since 1.35 (hard deprecated since 1.36)
 	 * @param string $oldver
 	 * @param string $comment
