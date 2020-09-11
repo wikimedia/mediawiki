@@ -1234,36 +1234,54 @@ class ParserTestRunner {
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		# note that the size/width/height/bits/etc of the file
 		# are actually set by inspecting the file itself; the arguments
-		# to recordUpload2 have no effect.  That said, we try to make things
+		# to recordUpload3 have no effect.  That said, we try to make things
 		# match up so it is less confusing to readers of the code & tests.
-		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', [
-			'size' => 7881,
-			'width' => 1941,
-			'height' => 220,
-			'bits' => 8,
-			'media_type' => MEDIATYPE_BITMAP,
-			'mime' => 'image/jpeg',
-			'metadata' => serialize( [] ),
-			'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20010115123500' ), $user );
+		$image->recordUpload3(
+			'',
+			'Upload of some lame file', 'Some lame file',
+			$user,
+			[
+				'size' => 7881,
+				'width' => 1941,
+				'height' => 220,
+				'bits' => 8,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/jpeg',
+				'metadata' => serialize( [] ),
+				'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
 
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
 		# again, note that size/width/height below are ignored; see above.
-		$image->recordUpload2( '', 'Upload of some lame thumbnail', 'Some lame thumbnail', [
-			'size' => 22589,
-			'width' => 135,
-			'height' => 135,
-			'bits' => 8,
-			'media_type' => MEDIATYPE_BITMAP,
-			'mime' => 'image/png',
-			'metadata' => serialize( [] ),
-			'sha1' => Wikimedia\base_convert( '2', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20130225203040' ), $user );
+		$image->recordUpload3(
+			'',
+			'Upload of some lame thumbnail',
+			'Some lame thumbnail',
+			$user,
+			[
+				'size' => 22589,
+				'width' => 135,
+				'height' => 135,
+				'bits' => 8,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/png',
+				'metadata' => serialize( [] ),
+				'sha1' => Wikimedia\base_convert( '2', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20130225203040' )
+		);
 
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
-		$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', [
+		$image->recordUpload3(
+			'',
+			'Upload of some lame SVG',
+			'Some lame SVG',
+			$user,
+			[
 				'size'        => 12345,
 				'width'       => 240,
 				'height'      => 180,
@@ -1283,58 +1301,86 @@ class ParserTestRunner {
 				] ),
 				'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists'  => true
-		], $this->db->timestamp( '20010115123500' ), $user );
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
-		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', [
-			'size' => 12345,
-			'width' => 320,
-			'height' => 240,
-			'bits' => 24,
-			'media_type' => MEDIATYPE_BITMAP,
-			'mime' => 'image/jpeg',
-			'metadata' => serialize( [] ),
-			'sha1' => Wikimedia\base_convert( '3', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20010115123500' ), $user );
+		$image->recordUpload3(
+			'',
+			'zomgnotcensored',
+			'Borderline image',
+			$user,
+			[
+				'size' => 12345,
+				'width' => 320,
+				'height' => 240,
+				'bits' => 24,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/jpeg',
+				'metadata' => serialize( [] ),
+				'sha1' => Wikimedia\base_convert( '3', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
 
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Video.ogv' ) );
-		$image->recordUpload2( '', 'A pretty movie', 'Will it play', [
-			'size' => 12345,
-			'width' => 320,
-			'height' => 240,
-			'bits' => 0,
-			'media_type' => MEDIATYPE_VIDEO,
-			'mime' => 'application/ogg',
-			'metadata' => serialize( [] ),
-			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20010115123500' ), $user );
+		$image->recordUpload3(
+			'',
+			'A pretty movie',
+			'Will it play',
+			$user,
+			[
+				'size' => 12345,
+				'width' => 320,
+				'height' => 240,
+				'bits' => 0,
+				'media_type' => MEDIATYPE_VIDEO,
+				'mime' => 'application/ogg',
+				'metadata' => serialize( [] ),
+				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
 
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
-		$image->recordUpload2( '', 'An awesome hitsong', 'Will it play', [
-			'size' => 12345,
-			'width' => 0,
-			'height' => 0,
-			'bits' => 0,
-			'media_type' => MEDIATYPE_AUDIO,
-			'mime' => 'application/ogg',
-			'metadata' => serialize( [] ),
-			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20010115123500' ), $user );
+		$image->recordUpload3(
+			'',
+			'An awesome hitsong',
+			'Will it play',
+			$user,
+			[
+				'size' => 12345,
+				'width' => 0,
+				'height' => 0,
+				'bits' => 0,
+				'media_type' => MEDIATYPE_AUDIO,
+				'mime' => 'application/ogg',
+				'metadata' => serialize( [] ),
+				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
 
 		# A DjVu file
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
-		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', [
-			'size' => 3249,
-			'width' => 2480,
-			'height' => 3508,
-			'bits' => 0,
-			'media_type' => MEDIATYPE_BITMAP,
-			'mime' => 'image/vnd.djvu',
-			'metadata' => '<?xml version="1.0" ?>
+		$image->recordUpload3(
+			'',
+			'Upload a DjVu',
+			'A DjVu',
+			$user,
+			[
+				'size' => 3249,
+				'width' => 2480,
+				'height' => 3508,
+				'bits' => 0,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/vnd.djvu',
+				'metadata' => '<?xml version="1.0" ?>
 <!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
 <DjVuXML>
 <HEAD></HEAD>
@@ -1360,9 +1406,11 @@ class ParserTestRunner {
 </OBJECT>
 </BODY>
 </DjVuXML>',
-			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
-			'fileExists' => true
-		], $this->db->timestamp( '20010115123600' ), $user );
+				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123600' )
+		);
 
 		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}

@@ -180,6 +180,8 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* LocalFile::recordUpload2, soft deprecated in 1.35, now emits deprecation
+  warnings. Use ::recordUpload3 instead.
 * The User class, which was marked as @newable in 1.35, is no longer newable,
   meaning that it is no longer safe to manually call the constructor via
   `new User`. Instead, use the UserFactory service.

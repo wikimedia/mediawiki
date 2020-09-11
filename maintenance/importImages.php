@@ -271,16 +271,18 @@ class ImportImages extends Maintenance {
 					/* find user directly from source wiki, through MW's API */
 					$real_user = $this->getFileUserFromSourceWiki( $sourceWikiUrl, $base );
 					if ( $real_user === false ) {
-						$wgUser = $user;
+						// don't change $wgUser
 					} else {
-						$wgUser = User::newFromName( $real_user );
-						if ( $wgUser === false ) {
+						$realUser = User::newFromName( $real_user );
+						if ( $realUser === false ) {
 							# user does not exist in target wiki
 							$this->output(
 								"failed: user '$real_user' does not exist in target wiki."
 							);
 							continue;
 						}
+						$wgUser = $realUser;
+						$user = $realUser;
 					}
 				} else {
 					# Find comment text
@@ -309,7 +311,7 @@ class ImportImages extends Maintenance {
 				# Import the file
 				if ( $this->hasOption( 'dry' ) ) {
 					$this->output(
-						" publishing {$file} by '{$wgUser->getName()}', comment '$commentText'... "
+						" publishing {$file} by '{$user->getName()}', comment '$commentText'... "
 					);
 				} else {
 					$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
@@ -341,10 +343,11 @@ class ImportImages extends Maintenance {
 
 				if ( $this->hasOption( 'dry' ) ) {
 					$this->output( "done.\n" );
-				} elseif ( $image->recordUpload2(
+				} elseif ( $image->recordUpload3(
 					$archive->value,
 					$summary,
 					$commentText,
+					$user,
 					$props,
 					$timestamp
 				)->isOK() ) {
