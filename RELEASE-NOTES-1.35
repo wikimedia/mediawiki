@@ -95,17 +95,12 @@ and updates may be required to any custom extensions.
 See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
-Some specific notes for MediaWiki 1.35 upgrades are below:
-
-* …
-
 For notes on 1.34.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.35 ===
 
 * (T72470) $wgLegacyJavaScriptGlobals is now false by default. This feature
   will be completely removed in a later MediaWiki release.
-* …
 
 ==== New configuration ====
 * $wgDiffEngine — This can be used to specify the difference engine to use,
@@ -381,9 +376,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   Removing this unbreaks development on Windows systems, in exchange for losing
   time limits in running unit tests.
 * The jquery.getAttrs module was removed.
-
-=== Bug fixes in 1.35 ===
-* …
 
 === Action API changes in 1.35 ===
 * The 'suggest' parameter of action=opensearch has been deprecated.
