@@ -3,7 +3,6 @@
 use Composer\Semver\Semver;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -168,9 +167,8 @@ class ExtensionRegistry {
 
 		$mtime = $wgExtensionInfoMTime;
 		if ( $mtime === false ) {
-			AtEase::suppressWarnings();
-			$mtime = filemtime( $path );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$mtime = @filemtime( $path );
 			// @codeCoverageIgnoreStart
 			if ( $mtime === false ) {
 				$err = error_get_last();
