@@ -95,6 +95,10 @@ because of Phabricator reports.
   - ApiTestCase::doLogin
   - Article::doDeleteArticle
   - Article::doDeleteArticleReal
+  - Article::getComment
+  - Article::getCreator
+  - Article::getUser
+  - Article::getUserText
   - File::delete
   - File::recordUpload
   - ForeignDBFile::delete

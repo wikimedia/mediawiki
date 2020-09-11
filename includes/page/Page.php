@@ -23,7 +23,6 @@
  * @deprecated since 1.35, Use WikiPage or Article instead
  *
  * @method array getActionOverrides()
- * @method string getUserText($audience=1,User $user=null)
  * @method string getTimestamp()
  * @method Title getTitle()
  */
