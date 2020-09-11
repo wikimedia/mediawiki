@@ -720,7 +720,7 @@
 	"nocreatetext": "{{SITENAME}} ima omejeno zmožnost za ustvarjanje novih strani.\nLahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:UserLogin|prijavite ali ustvarite račun]].",
 	"nocreate-loggedin": "Za ustvarjanje novih strani nimate dovoljenja.",
 	"sectioneditnotsupported-title": "Urejanje razdelkov ni podprto",
-	"sectioneditnotsupported-text": "Urejanje razdelkov ni podprto na tej strani.",
+	"sectioneditnotsupported-text": "Urejanje razdelkov na tej strani ni podprto ali pa je onemogočeno za ta pogled.",
 	"modeleditnotsupported-title": "Urejanje ni podprto",
 	"modeleditnotsupported-text": "Urejanje ni podprto za model vsebine $1.",
 	"permissionserrors": "Napaka dovoljenja",

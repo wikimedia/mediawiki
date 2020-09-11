@@ -708,7 +708,7 @@
 	"nocreatetext": "{{SITENAME}} apribojo galimybę kurti naujus puslapius.\nJūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin|prisijungti arba sukurti paskyrą]].",
 	"nocreate-loggedin": "Jūs neturite teisės kurti puslapius.",
 	"sectioneditnotsupported-title": "Skyrių redagavimas nepalaikomas",
-	"sectioneditnotsupported-text": "Šiame puslapyje skyrių redagavimas nepalaikomas.",
+	"sectioneditnotsupported-text": "Šiame puslapyje skyrių redagavimas nepalaikomas arba neleidžiamas šiame peržiūros režime.",
 	"permissionserrors": "Teisių klaida",
 	"permissionserrorstext": "Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:",
 	"permissionserrorstext-withaction": "Jūs neturite leidimo $2 dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:",

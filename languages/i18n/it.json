@@ -834,7 +834,7 @@
 	"nocreatetext": "La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:UserLogin|entrare o registrarsi]].",
 	"nocreate-loggedin": "Non si dispone dei permessi necessari a creare nuove pagine.",
 	"sectioneditnotsupported-title": "Modifica delle sezioni non supportata",
-	"sectioneditnotsupported-text": "La modifica delle sezioni non è supportata in questa pagina.",
+	"sectioneditnotsupported-text": "La modifica delle sezioni non è supportata in questa pagina o è disabilitata per questa visualizzazione.",
 	"modeleditnotsupported-title": "Modifica non supportata",
 	"modeleditnotsupported-text": "La modifica per il modello di contenuto $1 non è supportata.",
 	"permissionserrors": "Permessi non sufficienti",

@@ -886,7 +886,7 @@
 	"nocreatetext": "{{SITENAME}} a restreint la possibilité de créer de nouvelles pages.\nVous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].",
 	"nocreate-loggedin": "Vous n’avez pas la permission de créer de nouvelles pages.",
 	"sectioneditnotsupported-title": "Modification de section non prise en charge",
-	"sectioneditnotsupported-text": "La modification d’une section n’est pas prise en charge pour cette page.",
+	"sectioneditnotsupported-text": "La modification d’une section n’est pas prise en charge pour cette page ou n'est pas autorisée dans cette vue.",
 	"modeleditnotsupported-title": "Modification non prise en charge",
 	"modeleditnotsupported-text": "La modification n’est pas prise en charge pour le modèle de contenu $1.",
 	"permissionserrors": "Erreur de permissions",

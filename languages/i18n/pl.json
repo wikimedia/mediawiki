@@ -808,7 +808,7 @@
 	"nocreatetext": "W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.\nMożesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować się lub utworzyć konto]].",
 	"nocreate-loggedin": "Nie masz uprawnień do tworzenia nowych stron.",
 	"sectioneditnotsupported-title": "Edycja sekcji nie jest obsługiwana",
-	"sectioneditnotsupported-text": "Edycja sekcji na tej stronie nie jest obsługiwana.",
+	"sectioneditnotsupported-text": "Edytowanie sekcji nie jest wspierane na tej stronie, lub zostało wyłączone dla tego widoku.",
 	"modeleditnotsupported-title": "Edytowanie nie jest wspierane",
 	"modeleditnotsupported-text": "Edytowanie dla modulu zawartości $1 nie jest wspierane.",
 	"permissionserrors": "Błąd uprawnień",

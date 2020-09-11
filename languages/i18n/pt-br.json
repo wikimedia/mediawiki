@@ -833,7 +833,7 @@
 	"nocreatetext": "{{SITENAME}} tem restringida a habilidade de criar novas páginas.\nVolte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].",
 	"nocreate-loggedin": "Você não possui permissão para criar novas páginas.",
 	"sectioneditnotsupported-title": "Edição por seções não suportada",
-	"sectioneditnotsupported-text": "Edição por seções não suportada nesta página.",
+	"sectioneditnotsupported-text": "A edição da seção não é compatível com esta página ou está desativada para esta visualização.",
 	"modeleditnotsupported-title": "Edição não suportada",
 	"modeleditnotsupported-text": "A edição não é suportada para o modelo de conteúdo $1.",
 	"permissionserrors": "Erro de permissão",
