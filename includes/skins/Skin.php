@@ -251,7 +251,7 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['content'][] = 'jquery.tablesorter.styles';
 		}
 
-		// Preload jquery.makeCollapsible for mediawiki.page.ready
+		// Preload jquery.makeCollapsible
 		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
 			$modules['styles']['content'][] = 'jquery.makeCollapsible.styles';
