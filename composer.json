@@ -33,6 +33,7 @@
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.9",
 		"pear/net_smtp": "1.9.2",
+		"pear/net_url2": "2.2.2",
 		"php": ">=7.2.22",
 		"psr/container": "1.0.0",
 		"psr/log": "1.1.3",

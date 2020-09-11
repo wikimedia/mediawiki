@@ -3974,6 +3974,7 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
+		// This MUST match the equivalent logic in CSSMin::remapOne()
 		$hash = md5_file( "$localPath/$file" );
 		if ( $hash === false ) {
 			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );

@@ -332,6 +332,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$remoteBasePath = (string)$options['remoteBasePath'];
 		}
 
+		if ( $remoteBasePath === '' ) {
+			// If MediaWiki is installed at the document root (not recommended),
+			// then wgScriptPath is set to the empty string by the installer to
+			// ensure safe concatenating of file paths (avoid "/" + "/foo" being "//foo").
+			// However, this also means the path itself can be an invalid URI path,
+			// as those must start with a slash. Within ResourceLoader, we will not
+			// do such primitive/unsafe slash concatenation and use URI resolution
+			// instead, so beyond this point, to avoid fatal errors in CSSMin::resolveUrl(),
+			// do a best-effort support for docroot installs by casting this to a slash.
+			$remoteBasePath = '/';
+		}
+
 		return [ $localBasePath, $remoteBasePath ];
 	}
 
