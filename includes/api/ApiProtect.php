@@ -113,7 +113,7 @@ class ApiProtect extends ApiBase {
 
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
-		$this->setWatch( $watch, $titleObj, 'watchdefault', $watchlistExpiry );
+		$this->setWatch( $watch, $titleObj, $user, 'watchdefault', $watchlistExpiry );
 
 		$status = $pageObj->doUpdateRestrictions(
 			$protections,
