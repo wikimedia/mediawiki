@@ -65,9 +65,9 @@
 		"zordius/lightncandy": "1.2.5"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.3",
+		"composer/spdx-licenses": "1.5.4",
 		"doctrine/dbal": "2.10.2",
-		"doctrine/sql-formatter": "1.1.0",
+		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"johnkary/phpunit-speedtrap": "^3.1",
