@@ -30,6 +30,11 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 			Type::addType( TimestampType::TIMESTAMP, TimestampType::class );
 		}
 		$this->platform->registerDoctrineTypeMapping( 'Timestamp', TimestampType::TIMESTAMP );
+
+		if ( !Type::hasType( TinyIntType::TINYINT ) ) {
+			Type::addType( TinyIntType::TINYINT, TinyIntType::class );
+		}
+		$this->platform->registerDoctrineTypeMapping( 'Tinyint', TinyIntType::TINYINT );
 	}
 
 	/**
