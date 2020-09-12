@@ -66,7 +66,7 @@
 	},
 	"require-dev": {
 		"composer/spdx-licenses": "1.5.4",
-		"doctrine/dbal": "2.10.2",
+		"doctrine/dbal": "2.10.4",
 		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
