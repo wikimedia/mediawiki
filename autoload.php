@@ -1881,6 +1881,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\SelectQueryBuilder' => __DIR__ . '/includes/libs/rdbms/querybuilder/SelectQueryBuilder.php',
 	'Wikimedia\\Rdbms\\SessionConsistentConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/SessionConsistentConnectionManager.php',
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
+	'Wikimedia\\Rdbms\\TimestampType' => __DIR__ . '/includes/libs/rdbms/database/TimestampType.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
