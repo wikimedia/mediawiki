@@ -237,3 +237,12 @@ CREATE TABLE /*_*/category (
 CREATE UNIQUE INDEX cat_title ON /*_*/category (cat_title);
 
 CREATE INDEX cat_pages ON /*_*/category (cat_pages);
+
+
+CREATE TABLE /*_*/watchlist_expiry (
+  we_item INTEGER UNSIGNED NOT NULL,
+  we_expiry BLOB NOT NULL,
+  PRIMARY KEY(we_item)
+);
+
+CREATE INDEX we_expiry ON /*_*/watchlist_expiry (we_expiry);

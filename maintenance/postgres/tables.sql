@@ -631,11 +631,3 @@ CREATE INDEX site_language ON sites (site_language);
 CREATE INDEX site_protocol ON sites (site_protocol);
 CREATE INDEX site_domain ON sites (site_domain);
 CREATE INDEX site_forward ON sites (site_forward);
-
-CREATE SEQUENCE watchlist_expiry_we_item_seq;
-CREATE TABLE watchlist_expiry (
-  we_item   INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('watchlist_expiry_we_item_seq'),
-  we_expiry TIMESTAMPTZ NOT NULL
-);
-ALTER SEQUENCE watchlist_expiry_we_item_seq OWNED BY watchlist_expiry.we_item;
-CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);
