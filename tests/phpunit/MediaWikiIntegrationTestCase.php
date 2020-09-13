@@ -1338,7 +1338,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Note data added by this method may be removed by resetDB() depending on
 	 * the contents of $tablesUsed.
 	 *
-	 * To add additional data between test function runs, override prepareDB().
+	 * To add additional data between test function runs, override addDBData().
 	 *
 	 * @see addDBData()
 	 * @see resetDB()
