@@ -243,7 +243,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$block->setRestrictions( [
 			new PageRestriction( 0, $page->getId() ),
 		] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$result = $this->db->select( 'ipblocks', [ '*' ], [ 'ipb_id' => $block->getId() ] );
 
@@ -262,6 +263,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
 
 		// Delete the block and the restrictions.
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 }

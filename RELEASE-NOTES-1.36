@@ -207,6 +207,10 @@ because of Phabricator reports.
   instead.
 * Title::nameOf() is deprecated; use Title::newFromID()->getPrefixedDBkey()
   instead.
+* DatabaseBlock::insert, DatabaseBlock::update, DatabaseBlock::purgeExpired and
+  DatabaseBlock::delete are deprecated. Use DatabaseBlockStore::insertBlock,
+  DatabaseBlockStore::updateBlock, DatabaseBlockStore::purgeExpiredBlocks and
+  DatabaseBlockStore::deleteBlock instead.
 * SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
   service instead.
 * Deprecated MediaWikiIntegrationtestCase::removeTemporaryHook() in favor of

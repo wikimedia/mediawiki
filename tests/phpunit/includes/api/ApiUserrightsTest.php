@@ -134,12 +134,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		global $wgUser;
 
 		$block = new DatabaseBlock( [ 'address' => $wgUser, 'by' => $wgUser->getId(), ] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doSuccessfulRightsChange();
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			$wgUser->clearInstanceCache();
 		}
 	}
@@ -150,12 +151,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setPermissions( true, true );
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId() ] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doFailedRightsChange( 'You have been blocked from editing.' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();
 		}
 	}

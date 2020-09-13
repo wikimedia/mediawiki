@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -1493,7 +1494,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1506,7 +1508,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			self::$users['sysop']->getUser()->clearInstanceCache();
 		}
 	}

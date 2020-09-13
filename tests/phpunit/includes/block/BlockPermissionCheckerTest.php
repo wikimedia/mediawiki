@@ -61,7 +61,7 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertEquals(
 			'ipbblocked',
@@ -84,7 +84,7 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertTrue(
 			$this->factory->newBlockPermissionChecker(
@@ -106,7 +106,7 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertEquals(
 			'ipbnounblockself',
@@ -130,7 +130,7 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertTrue(
 			$this->factory->newBlockPermissionChecker(
@@ -155,7 +155,7 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertTrue(
 			$this->factory->newBlockPermissionChecker(

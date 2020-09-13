@@ -850,7 +850,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$block->setTarget( $blockedUser );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->isSitewide( true );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
 			$manager->getUserAutopromoteGroups( $blockedUser ) );
 	}

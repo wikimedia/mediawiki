@@ -1483,6 +1483,7 @@ return [
 	'_UserBlockCommandFactory' => function ( MediaWikiServices $services ) : UserBlockCommandFactory {
 		return new UserBlockCommandFactory(
 			$services->getBlockPermissionCheckerFactory(),
+			$services->getDatabaseBlockStore(),
 			$services->getHookContainer()
 		);
 	},

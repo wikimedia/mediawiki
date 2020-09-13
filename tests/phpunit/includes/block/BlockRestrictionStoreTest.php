@@ -593,7 +593,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		return $block;
 	}

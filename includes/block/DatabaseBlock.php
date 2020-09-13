@@ -481,6 +481,7 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Delete the row from the IP blocks table.
 	 *
+	 * @deprecated since 1.36 Use DatabaseBlockStore::deleteBlock instead.
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -494,6 +495,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
+	 * @deprecated since 1.36 Use DatabaseBlockStore::insertBlock instead.
 	 * @param IDatabase|null $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
@@ -508,6 +510,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first.
 	 *
+	 * @deprecated since 1.36 Use DatabaseBlockStore::updateBlock instead.
 	 * @return bool|array False on failure, array on success:
 	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
@@ -637,7 +640,9 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		# Insert the block...
-		$status = $autoblock->insert();
+		$status = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock(
+			$autoblock
+		);
 		return $status
 			? $status['id']
 			: false;
@@ -853,6 +858,8 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Purge expired blocks from the ipblocks table
+	 *
+	 * @deprecated since 1.36 Use DatabaseBlockStore::purgeExpiredBlocks instead.
 	 */
 	public static function purgeExpired() {
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->purgeExpiredBlocks();

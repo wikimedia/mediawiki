@@ -49,7 +49,7 @@ class UnblockUserTest extends MediaWikiTestCase {
 			'address' => $this->user->getName(),
 			'by' => $this->performer->getId()
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertInstanceOf( DatabaseBlock::class, $this->user->getBlock() );
 		$status = $this->unblockUserFactory->newUnblockUser(

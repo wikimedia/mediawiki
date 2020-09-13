@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -113,7 +114,8 @@ class ApiQueryInfoTest extends ApiTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -126,7 +128,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 				'intestactionsdetail' => 'full',
 		], null, false, $badActor );
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 
 		$this->assertArrayHasKey( 'query', $data );
 		$this->assertArrayHasKey( 'pages', $data['query'] );
