@@ -1796,6 +1796,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
+			'mediawiki.Uri',
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
