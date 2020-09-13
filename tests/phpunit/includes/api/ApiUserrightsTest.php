@@ -131,9 +131,9 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testBlockedWithUserrights() {
-		global $wgUser;
+		$user = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [ 'address' => $wgUser, 'by' => $wgUser->getId(), ] );
+		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId(), ] );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
@@ -141,7 +141,7 @@ class ApiUserrightsTest extends ApiTestCase {
 			$this->doSuccessfulRightsChange();
 		} finally {
 			$blockStore->deleteBlock( $block );
-			$wgUser->clearInstanceCache();
+			$user->clearInstanceCache();
 		}
 	}
 
