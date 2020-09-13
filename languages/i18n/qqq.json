@@ -1052,6 +1052,7 @@
 	"undo-summary-username-hidden": "Edit summary for an undo action where the username of the old revision is hidden.\n\nParameters:\n* $1 - the revision ID being undone\nSee also:\n* {{msg-mw|Undo-summary}}",
 	"createaccount-hook-aborted": "Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}",
 	"viewpagelogs": "Link displayed in history of pages",
+	"viewpagelogs-lowercase": "Link displayed on pages with deleted history, after the link to view deleted revisions. Should lead with a lowercase letter, as this is listed together with other links added by extensions, which should also begin with a lowercase letter for consistency.",
 	"nohistory": "Message shown when there are no history to list. See [{{canonicalurl:x|action=history}} example history].\n----\nAlso used as title of error message when the feed is empty. See [{{canonicalurl:x|action=history&feed=atom}} example feed].\n\nSee the error message:\n* {{msg-mw|history-feed-empty}}",
 	"currentrev": "Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.\n{{Identical|Current revision}}",
 	"currentrev-asof": "Used on a difference page when comparing the current versions of a page with each other.\n\nSee {{msg-mw|Revisionasof}} for the message for non-current version.\n\nParameters:\n* $1 - a date and time\n* $2 - (Optional) a date\n* $3 - (Optional) a time",
