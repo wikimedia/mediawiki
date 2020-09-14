@@ -57,6 +57,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return array
 	 */
 	public function getToolbox() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		$toolbox = $this->getSkin()->makeToolbox(
 			$this->data['nav_urls'],
 			$this->data['feeds']
@@ -129,7 +131,7 @@ abstract class BaseTemplate extends QuickTemplate {
 						'id' => 'p-tb',
 						'header' => $msgObj->exists() ? $msgObj->text() : 'toolbox',
 						'generated' => false,
-						'content' => $this->getToolbox(),
+						'content' => $content,
 					];
 					break;
 				case 'LANGUAGES':
