@@ -86,7 +86,6 @@ class NamespaceInfo {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'AllowImageMoving',
 		'CanonicalNamespaceNames',
 		'CapitalLinkOverrides',
 		'CapitalLinks',
@@ -159,13 +158,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
-		if ( !$this->options->get( 'AllowImageMoving' ) ) {
-			wfDeprecatedMsg( 'Setting $wgAllowImageMoving to false was deprecated in MediaWiki 1.35',
-				'1.35', false, false );
-		}
-
-		$result = $index >= NS_MAIN &&
-			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) );
+		$result = $index >= NS_MAIN;
 
 		/**
 		 * @since 1.20
