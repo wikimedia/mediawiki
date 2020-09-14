@@ -2801,6 +2801,7 @@
 	"tag-mw-rollback-description": "Endringar som rullar attende tidlegare endringar ved hjelp av attenderullingslenkja",
 	"tag-mw-undo": "Endringsfjerning",
 	"tag-mw-undo-description": "Endringar som fjernar tidlegare endringar med fjernelenkja",
+	"tag-mw-manual-revert": "Manuell attenderulling",
 	"tags-title": "Merke",
 	"tags-intro": "Denne sida listar opp merka som programvara kan merkja ei endring med, og kva desse tyder.",
 	"tags-tag": "Merkenamn",

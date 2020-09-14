@@ -3108,7 +3108,7 @@
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 （可以用）",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 （<strong>唔可以用</strong>）",
 	"mediastatistics": "媒體統計",
-	"mediastatistics-summary": "關於已上載檔案類型嘅統計資料。呢版淨係統計檔案嘅最新版本，唔包舊版本同刪咗嘅版本。",
+	"mediastatistics-summary": "關於上載咗嘅檔案類型嘅統計資料。呢版淨係統計檔案嘅最新版本，唔包舊版本同刪咗嘅版本。",
 	"mediastatistics-table-mimetype": "MIME類型",
 	"mediastatistics-table-extensions": "可以用嘅副檔名",
 	"mediastatistics-table-count": "快勞數",
