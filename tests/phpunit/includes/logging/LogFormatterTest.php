@@ -55,7 +55,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			'wgLogTypes' => [ 'phpunit' ],
 			'wgLogActionsHandlers' => [ 'phpunit/test' => LogFormatter::class,
 				'phpunit/param' => LogFormatter::class ],
-			'wgUser' => User::newFromName( 'Testuser' ),
 		] );
 
 		$this->user = User::newFromName( 'Testuser' );
