@@ -756,7 +756,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param int $audience One of:
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to $wgUser
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
@@ -799,20 +799,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return int User ID for the user that made the last article revision
 	 */
 	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revUser = $this->mLastRevision->getUser( $audience, $user );
 			return $revUser ? $revUser->getId() : 0;
 		} else {
@@ -827,20 +820,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		if ( $revRecord ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			return $revRecord->getUser( $audience, $user );
 		} else {
 			return null;
@@ -853,20 +839,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string Username of the user that made the last article revision
 	 */
 	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revUser = $this->mLastRevision->getUser( $audience, $user );
 			return $revUser ? $revUser->getName() : '';
 		} else {
@@ -880,21 +859,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string|null Comment stored for the last article revision, or null if the specified
 	 *  audience does not have access to the comment.
 	 */
 	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revComment = $this->mLastRevision->getComment( $audience, $user );
 			return $revComment ? $revComment->text : '';
 		} else {
