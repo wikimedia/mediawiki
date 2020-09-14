@@ -1366,3 +1366,4 @@
 	path = extensions/Linter
 	url = https://github.com/wikimedia/mediawiki-extensions-Linter
 	branch = REL1_34
+	ignore = dirty
