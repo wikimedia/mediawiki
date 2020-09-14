@@ -222,8 +222,8 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit || ( $wgEnotifMinorEdits && !MediaWikiServices::getInstance()
-				   ->getPermissionManager()
-				   ->userHasRight( $editor, 'nominornewtalk' ) )
+				->getPermissionManager()
+				->userHasRight( $editor, 'nominornewtalk' ) )
 		) {
 			if ( $wgEnotifUserTalk
 				&& $isUserTalkPage
