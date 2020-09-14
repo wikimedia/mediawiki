@@ -1362,3 +1362,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages.git
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/Linter"]
+	path = extensions/Linter
+	url = https://github.com/wikimedia/mediawiki-extensions-Linter
+	branch = REL1_34
