@@ -2539,19 +2539,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::getComment
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return string|null
-	 */
-	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getComment( $audience, $user );
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::getContentHandler instead
 	 * @see WikiPage::getContentHandler
 	 * @return ContentHandler
@@ -2579,19 +2566,6 @@ class Article implements Page {
 	public function getContributors() {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getContributors();
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::getCreator
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return User|null
-	 */
-	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getCreator( $audience, $user );
 	}
 
 	/**
@@ -2727,30 +2701,6 @@ class Article implements Page {
 	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getUndoContent( $undo, $undoafter );
-	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::getUser instead
-	 * @see WikiPage::getUser
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return int
-	 */
-	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getUser( $audience, $user );
-	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::getUserText instead
-	 * @see WikiPage::getUserText
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return string
-	 */
-	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getUserText( $audience, $user );
 	}
 
 	/**
