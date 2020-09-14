@@ -105,6 +105,7 @@ because of Phabricator reports.
   - Article::getCreator
   - Article::getUser
   - Article::getUserText
+  - Article::insertProtectNullRevision
   - File::delete
   - File::recordUpload
   - ForeignDBFile::delete
@@ -119,6 +120,7 @@ because of Phabricator reports.
   - Title::userCan
   - WebRequest::getLimitOffset
   - WikiPage::doDeleteArticle
+  - WikiPage::insertProtectNullRevision
   - All methods of the old SpecialPageFactory; the entire class was removed
 * Multiple methods previously had optional User parameters, with fallbacks
   to the $wgUser global variable. Not passing a User to those methods was

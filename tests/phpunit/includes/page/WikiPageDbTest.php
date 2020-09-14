@@ -1893,69 +1893,6 @@ more stuff
 		$this->assertNull( WikiPage::newFromID( 2147483647 ) );
 	}
 
-	public function provideTestInsertProtectNullRevision() {
-		// phpcs:disable Generic.Files.LineLength
-		yield [
-			'goat-message-key',
-			[ 'edit' => 'sysop' ],
-			[ 'edit' => '20200101040404' ],
-			false,
-			'Goat Reason',
-			'(goat-message-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
-		];
-		yield [
-			'goat-key',
-			[ 'edit' => 'sysop', 'move' => 'something' ],
-			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
-			false,
-			'Goat Goat',
-			'(goat-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
-		];
-		// phpcs:enable
-	}
-
-	/**
-	 * @dataProvider provideTestInsertProtectNullRevision
-	 * @covers WikiPage::insertProtectNullRevision
-	 * @covers WikiPage::protectDescription
-	 *
-	 * @param string $revCommentMsg
-	 * @param array $limit
-	 * @param array $expiry
-	 * @param bool $cascade
-	 * @param string $reason
-	 * @param string $expectedComment
-	 */
-	public function testInsertProtectNullRevision(
-		$revCommentMsg,
-		array $limit,
-		array $expiry,
-		$cascade,
-		$reason,
-		$expectedComment
-	) {
-		$this->hideDeprecated( 'Revision::getComment' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'WikiPage::insertProtectNullRevision' );
-		$this->setContentLang( 'qqx' );
-
-		$page = $this->createPage( __METHOD__, 'Goat' );
-
-		$user = $this->getTestSysop()->getUser();
-
-		$result = $page->insertProtectNullRevision(
-			$revCommentMsg,
-			$limit,
-			$expiry,
-			$cascade,
-			$reason,
-			$user
-		);
-
-		$this->assertTrue( $result instanceof Revision );
-		$this->assertSame( $expectedComment, $result->getComment( RevisionRecord::RAW ) );
-	}
-
 	/**
 	 * @covers WikiPage::updateRevisionOn
 	 */
