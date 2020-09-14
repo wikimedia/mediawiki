@@ -39,7 +39,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private const DEFAULT_OPTIONS = [
-		'AllowImageMoving' => true,
 		'CanonicalNamespaceNames' => [
 			NS_TALK => 'Talk',
 			NS_USER => 'User',
@@ -119,14 +118,9 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param bool $expected
 	 * @param int $ns
-	 * @param bool $allowImageMoving
 	 */
-	public function testIsMovable( $expected, $ns, $allowImageMoving = true ) {
-		if ( $allowImageMoving === false ) {
-			$this->filterDeprecated( '/Setting \$wgAllowImageMoving to false/' );
-		}
-
-		$obj = $this->newObj( [ 'AllowImageMoving' => $allowImageMoving ] );
+	public function testIsMovable( $expected, $ns ) {
+		$obj = $this->newObj();
 		$this->assertSame( $expected, $obj->isMovable( $ns ) );
 	}
 
@@ -138,10 +132,8 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 			'Nonexistent even namespace' => [ true, 1234 ],
 			'Nonexistent odd namespace' => [ true, 12345 ],
 
-			'Media with image moving' => [ false, NS_MEDIA, true ],
-			'Media with no image moving' => [ false, NS_MEDIA, false ],
-			'File with image moving' => [ true, NS_FILE, true ],
-			'File with no image moving' => [ false, NS_FILE, false ],
+			'Media' => [ false, NS_MEDIA ],
+			'File' => [ true, NS_FILE ],
 		];
 	}
 

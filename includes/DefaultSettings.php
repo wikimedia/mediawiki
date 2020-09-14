@@ -469,15 +469,6 @@ $wgEnableUploads = false;
 $wgUploadStashMaxAge = 6 * 3600; // 6 hours
 
 /**
- * Allows to move images and other media files
- *
- * @deprecated since 1.35, use group permission settings instead.
- * (eg $wgGroupPermissions['sysop']['movefile'] = false; to revoke the
- * ability from sysops)
- */
-$wgAllowImageMoving = true;
-
-/**
  * Enable deferred upload tasks that use the job queue.
  * Only enable this if job runners are set up for both the
  * 'AssembleUploadChunks' and 'PublishStashedFile' job types.
