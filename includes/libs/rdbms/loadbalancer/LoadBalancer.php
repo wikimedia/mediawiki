@@ -413,11 +413,11 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param array $loads
-	 * @param bool|string $domain Domain to get non-lagged for
+	 * @param string $domain Resolved DB domain
 	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
 	 * @return bool|int|string
 	 */
-	private function getRandomNonLagged( array $loads, $domain = false, $maxLag = INF ) {
+	private function getRandomNonLagged( array $loads, string $domain, $maxLag = INF ) {
 		$lags = $this->getLagTimes( $domain );
 
 		# Unset excessively lagged servers
@@ -500,12 +500,13 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getReaderIndex( $group = false, $domain = false ) {
+		$domain = $this->resolveDomainID( $domain );
+		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
+
 		if ( $this->getServerCount() == 1 ) {
 			// Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
 		}
-
-		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
 
 		$index = $this->getExistingReaderIndex( $group );
 		if ( $index >= 0 ) {
@@ -578,10 +579,10 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param array $loads List of server weights
-	 * @param string|bool $domain
+	 * @param string $domain Resolved DB domain
 	 * @return array (reader index, lagged replica mode) or (false, false) on failure
 	 */
-	private function pickReaderIndex( array $loads, $domain = false ) {
+	private function pickReaderIndex( array $loads, string $domain ) {
 		if ( $loads === [] ) {
 			throw new InvalidArgumentException( "Server configuration array is empty" );
 		}
@@ -614,7 +615,9 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $i === false && count( $currentLoads ) ) {
 					// All replica DBs lagged. Switch to read-only mode
 					$this->replLogger->error(
-						__METHOD__ . ": all replica DBs lagged. Switch to read-only mode" );
+						__METHOD__ . ": all replica DBs lagged. Switch to read-only mode",
+						[ 'db_domain' => $domain ]
+					);
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -635,7 +638,10 @@ class LoadBalancer implements ILoadBalancer {
 			// Get a connection to this server without triggering other server connections
 			$conn = $this->getServerConnection( $i, $domain, self::CONN_SILENCE_ERRORS );
 			if ( !$conn ) {
-				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
+				$this->connLogger->warning(
+					__METHOD__ . ": Failed connecting to $i/{db_domain}",
+					[ 'db_domain' => $domain ]
+				);
 				unset( $currentLoads[$i] ); // avoid this server next iteration
 				$i = false;
 				continue;
@@ -643,7 +649,7 @@ class LoadBalancer implements ILoadBalancer {
 
 			// Decrement reference counter, we are finished with this connection.
 			// It will be incremented for the caller later.
-			if ( $domain !== false ) {
+			if ( !$this->localDomain->equals( $domain ) ) {
 				$this->reuseConnection( $conn );
 			}
 
@@ -653,7 +659,10 @@ class LoadBalancer implements ILoadBalancer {
 
 		// If all servers were down, quit now
 		if ( $currentLoads === [] ) {
-			$this->connLogger->error( __METHOD__ . ": all servers down" );
+			$this->connLogger->error(
+				__METHOD__ . ": all servers down",
+				[ 'db_domain' => $domain ]
+			);
 		}
 
 		return [ $i, $laggedReplicaMode ];
@@ -985,7 +994,7 @@ class LoadBalancer implements ILoadBalancer {
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
 			$this->connLogger->error(
 				__METHOD__ . ": got DBConnRef instance",
-				[ 'exception' => new RuntimeException() ]
+				[ 'db_domain' => $conn->getDomainID(), 'exception' => new RuntimeException() ]
 			);
 
 			return;
@@ -1218,7 +1227,10 @@ class LoadBalancer implements ILoadBalancer {
 				$this->conns[$connInUseKey][$i][$conn->getDomainID()] = $conn;
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 			} else {
-				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
+				$this->connLogger->warning(
+					__METHOD__ . ": connection error for $i/{db_domain}",
+					[ 'db_domain' => $domain ]
+				);
 				$this->errorConnection = $conn;
 				$conn = false;
 			}
@@ -1351,7 +1363,8 @@ class LoadBalancer implements ILoadBalancer {
 				[
 					'connections' => $count,
 					'dbserver' => $conn->getServer(),
-					'masterdb' => $this->getMasterServerName()
+					'masterdb' => $this->getMasterServerName(),
+					'db_domain' => $domain->getId()
 				]
 			);
 		}
@@ -1784,7 +1797,7 @@ class LoadBalancer implements ILoadBalancer {
 						"$fname: found writes pending ($fnames).",
 						[
 							'db_server' => $conn->getServer(),
-							'db_name' => $conn->getDBname(),
+							'db_domain' => $conn->getDomainID(),
 							'exception' => new RuntimeException()
 						]
 					);
@@ -2005,8 +2018,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getLaggedReplicaMode( $domain = false ) {
+		$domain = $this->resolveDomainID( $domain );
+
 		if ( $this->laggedReplicaMode ) {
-			return true; // stay in lagged replica mode
+			// Stay in lagged replica mode once it is observed on any domain
+			return true;
 		}
 
 		if ( $this->hasStreamingReplicaServers() ) {
@@ -2181,6 +2197,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getMaxLag( $domain = false ) {
+		$domain = $this->resolveDomainID( $domain );
+
 		$host = '';
 		$maxLag = -1;
 		$maxIndex = 0;
@@ -2200,6 +2218,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getLagTimes( $domain = false ) {
+		$domain = $this->resolveDomainID( $domain );
+
 		if ( !$this->hasReplicaServers() ) {
 			return [ $this->getWriterIndex() => 0 ]; // no replication = no lag
 		}
@@ -2274,6 +2294,7 @@ class LoadBalancer implements ILoadBalancer {
 					__METHOD__ . ': timed out waiting on {dbserver} pos {pos} [{seconds}s]',
 					[
 						'dbserver' => $conn->getServer(),
+						'db_domain' => $conn->getDomainID(),
 						'pos' => $pos,
 						'seconds' => round( $seconds, 6 ),
 						'exception' => new RuntimeException(),
@@ -2288,6 +2309,7 @@ class LoadBalancer implements ILoadBalancer {
 				__METHOD__ . ': could not get master pos for {dbserver}',
 				[
 					'dbserver' => $conn->getServer(),
+					'db_domain' => $conn->getDomainID(),
 					'exception' => new RuntimeException(),
 				]
 			);
