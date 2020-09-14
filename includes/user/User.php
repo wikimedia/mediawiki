@@ -4398,30 +4398,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Add a newuser log entry for this user.
-	 * Before 1.19 the return value was always true.
-	 *
-	 * @deprecated since 1.27, AuthManager handles logging
-	 * @param string|bool $action Account creation type.
-	 *   - String, one of the following values:
-	 *     - 'create' for an anonymous user creating an account for himself.
-	 *       This will force the action's performer to be the created user itself,
-	 *       no matter the value of $wgUser
-	 *     - 'create2' for a logged in user creating an account for someone else
-	 *     - 'byemail' when the created user will receive its password by e-mail
-	 *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
-	 *   - Boolean means whether the account was created by e-mail (deprecated):
-	 *     - true will be converted to 'byemail'
-	 *     - false will be converted to 'create' if this object is the same as
-	 *       $wgUser and to 'create2' otherwise
-	 * @param string $reason User supplied reason
-	 * @return bool true
-	 */
-	public function addNewUserLogEntry( $action = false, $reason = '' ) {
-		return true; // disabled
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new user object.
 	 * @since 1.31
