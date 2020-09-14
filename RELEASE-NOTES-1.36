@@ -156,6 +156,7 @@ because of Phabricator reports.
   signature changed to have the user as the second parameter, and the old
   signature was hard deprecated in 1.35. Support for the old signature has
   now been removed.
+* User::addNewUserLogEntry, deprecated since 1.27, was removed.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
