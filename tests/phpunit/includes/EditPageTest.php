@@ -148,8 +148,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		if ( $user == null ) {
-			$user = $GLOBALS['wgUser'];
+			$user = $this->getTestUser()->getUser();
 		} else {
+			// TODO remove this
 			$this->setMwGlobals( 'wgUser', $user );
 		}
 
@@ -812,7 +813,7 @@ hello
 	 * @covers EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$edit = [
 			'wpTextbox1' => serialize( 'non-text content' ),
@@ -841,7 +842,7 @@ hello
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
@@ -868,7 +869,7 @@ hello
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
