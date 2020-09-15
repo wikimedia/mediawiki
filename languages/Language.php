@@ -2152,10 +2152,14 @@ class Language {
 	 * @return int
 	 */
 	public function userAdjust( $ts, $tz = false ) {
-		global $wgUser, $wgLocalTZoffset;
+		global $wgLocalTZoffset;
 
 		if ( $tz === false ) {
-			$tz = $wgUser->getOption( 'timecorrection' );
+			$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+			$tz = $optionsLookup->getOption(
+				RequestContext::getMain()->getUser(),
+				'timecorrection'
+			);
 		}
 
 		$data = explode( '|', $tz, 3 );
@@ -2231,11 +2235,11 @@ class Language {
 	 * @return string
 	 */
 	public function dateFormat( $usePrefs = true ) {
-		global $wgUser;
-
 		if ( is_bool( $usePrefs ) ) {
 			if ( $usePrefs ) {
-				$datePreference = $wgUser->getDatePreference();
+				$datePreference = RequestContext::getMain()
+					->getUser()
+					->getDatePreference();
 			} else {
 				$datePreference = (string)User::getDefaultOption( 'date' );
 			}
