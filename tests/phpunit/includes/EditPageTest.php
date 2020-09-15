@@ -149,9 +149,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $user == null ) {
 			$user = $this->getTestUser()->getUser();
-		} else {
-			// TODO remove this
-			$this->setMwGlobals( 'wgUser', $user );
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {
