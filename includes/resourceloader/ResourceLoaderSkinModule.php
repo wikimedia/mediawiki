@@ -61,6 +61,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     as it is normally styled, while leaving the rest of the skin up to the skin
 	 *     implementation.
 	 *
+	 * "content-media":
+	 *     Styles for the new media structure on wikis where $wgUseNewMediaStructure is enabled.
+	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
+	 *
 	 * "content-links":
 	 *     The skin will apply optional styling rules to links to provide icons for different file types.
 	 *
@@ -96,6 +100,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'content' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.less' ],
+		],
+		'content-media' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
 		],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
@@ -137,6 +144,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	private const DEFAULT_FEATURES = [
 		'logo' => false,
 		'content' => false,
+		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'content-links' => false,
 		'interface' => false,
 		'elements' => false,
@@ -182,7 +190,16 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		if ( !$compatibilityMode ) {
 			foreach ( self::DEFAULT_FEATURES as $key => $enabled ) {
 				if ( !isset( $enabledFeatures[$key] ) ) {
-					$enabledFeatures[$key] = $enabled;
+					if ( $key === 'content-media' ) {
+						// Only ship this by default if enabled, since it's going
+						// to be adding some unnecessary overhead where unused.
+						// Also, assume that if a skin is being picky about which
+						// features it wants, it'll pull this in when it's ready
+						// for it.
+						$enabledFeatures[$key] = (bool)$this->getConfig()->get( 'UseNewMediaStructure' );
+					} else {
+						$enabledFeatures[$key] = $enabled;
+					}
 				}
 			}
 		}

@@ -120,17 +120,21 @@ CSS
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
 			->setMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
+			->disableOriginalConstructor()
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )
 			->willReturn( $parent );
-		$module->expects( $this->once() )->method( 'getConfig' )
-			->willReturn( new HashConfig() );
+		$module->expects( $this->any() )->method( 'getConfig' )
+			->willReturn( new HashConfig( [
+				'UseNewMediaStructure' => true,
+			] ) );
 		$module->expects( $this->once() )->method( 'getLogoData' )
 			->willReturn( $logo );
 
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 
+		$module->__construct();
 		$this->assertEquals(
 			$expected,
 			$module->getStyles( $ctx )
