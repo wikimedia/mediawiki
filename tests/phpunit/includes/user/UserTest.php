@@ -89,7 +89,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setSessionUser( User $user, WebRequest $request ) {
-		$this->setMwGlobals( 'wgUser', $user );
 		RequestContext::getMain()->setUser( $user );
 		RequestContext::getMain()->setRequest( $request );
 		TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
