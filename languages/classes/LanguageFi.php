@@ -84,7 +84,7 @@ class LanguageFi extends Language {
 
 	/**
 	 * @param string $str
-	 * @param User|null $user User object to use timezone from or null for $wgUser
+	 * @param User|null $user User object to use timezone from or null, ignored
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string
 	 */
