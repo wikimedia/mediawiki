@@ -5,6 +5,8 @@ namespace MediaWiki\Tests\Rest;
 use ArrayIterator;
 use InvalidArgumentException;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\RedirectException;
+use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\ITextFormatter;
@@ -50,45 +52,75 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 2, $response->getBody()->getSize() );
 	}
 
-	public function testCreateNoContent() {
+	public function provideUseException() {
+		return [ [ false ], [ true ] ];
+	}
+
+	/** @dataProvider provideUseException */
+	public function testCreateNoContent( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createNoContent();
+		$response = $useException ?
+			$rf->createFromException( new HttpException( '', 204 ) ) :
+			$rf->createNoContent();
 		$this->assertSame( [], $response->getHeader( 'Content-Type' ) );
 		$this->assertSame( 0, $response->getBody()->getSize() );
 		$this->assertSame( 204, $response->getStatusCode() );
 	}
 
-	public function testCreatePermanentRedirect() {
+	/** @dataProvider provideUseException */
+	public function testCreatePermanentRedirect( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createPermanentRedirect( 'http://www.example.com/' );
+		$response = $useException ?
+			$rf->createFromException( new RedirectException(
+				301, 'http://www.example.com/'
+			) ) :
+			$rf->createPermanentRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 301, $response->getStatusCode() );
 	}
 
-	public function testCreateLegacyTemporaryRedirect() {
+	/** @dataProvider provideUseException */
+	public function testCreateLegacyTemporaryRedirect( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createLegacyTemporaryRedirect( 'http://www.example.com/' );
+		$response = $useException ?
+			$rf->createFromException( new RedirectException(
+				302, 'http://www.example.com/'
+			) ) :
+			$rf->createLegacyTemporaryRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 302, $response->getStatusCode() );
 	}
 
-	public function testCreateTemporaryRedirect() {
+	/** @dataProvider provideUseException */
+	public function testCreateTemporaryRedirect( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createTemporaryRedirect( 'http://www.example.com/' );
+		$response = $useException ?
+			$rf->createFromException( new RedirectException(
+				307, 'http://www.example.com/'
+			) ) :
+			$rf->createTemporaryRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 307, $response->getStatusCode() );
 	}
 
-	public function testCreateSeeOther() {
+	/** @dataProvider provideUseException */
+	public function testCreateSeeOther( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createSeeOther( 'http://www.example.com/' );
+		$response = $useException ?
+			$rf->createFromException( new RedirectException(
+				303, 'http://www.example.com/'
+			) ) :
+			$rf->createSeeOther( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 303, $response->getStatusCode() );
 	}
 
-	public function testCreateNotModified() {
+	/** @dataProvider provideUseException */
+	public function testCreateNotModified( $useException ) {
 		$rf = $this->createResponseFactory();
-		$response = $rf->createNotModified();
+		$response = $useException ?
+			$rf->createFromException( new HttpException( '', 304 ) ) :
+			$rf->createNotModified();
 		$this->assertSame( 0, $response->getBody()->getSize() );
 		$this->assertSame( 304, $response->getStatusCode() );
 	}
@@ -130,6 +162,13 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 500, $data['httpCode'] );
 		$this->assertSame( 'Error: exception of type Exception', $data['message'] );
+	}
+
+	public function testCreateFromExceptionWrapped() {
+		$rf = $this->createResponseFactory();
+		$wrapped = $rf->create();
+		$response = $rf->createFromException( new ResponseException( $wrapped ) );
+		$this->assertSame( $wrapped, $response );
 	}
 
 	public static function provideCreateFromReturnValue() {
