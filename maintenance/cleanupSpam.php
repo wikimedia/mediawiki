@@ -118,7 +118,7 @@ class CleanupSpam extends Maintenance {
 						$row->el_from,
 						$spec,
 						$prot,
-						$wgUser
+						$user
 					);
 				}
 			}
