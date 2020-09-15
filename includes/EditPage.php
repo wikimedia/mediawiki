@@ -520,16 +520,12 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the context title object.
 	 *
-	 * If not set, $wgTitle will be returned, but this is deprecated. This will
-	 * throw an exception.
-	 *
+	 * @throws RuntimeException if no context title was set
 	 * @return Title
 	 */
 	public function getContextTitle() {
 		if ( $this->mContextTitle === null ) {
-			wfDeprecated( get_class( $this ) . '::getContextTitle called with no title set', '1.32' );
-			global $wgTitle;
-			return $wgTitle;
+			throw new RuntimeException( "EditPage does not have a context title set" );
 		} else {
 			return $this->mContextTitle;
 		}
