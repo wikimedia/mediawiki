@@ -2968,6 +2968,8 @@ class Parser {
 
 		$profileSection = null; // profile templates
 
+		$sawDeprecatedTemplateEquals = false; // T91154
+
 		# SUBST
 		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !$found ) {
@@ -3158,6 +3160,17 @@ class Parser {
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
+						if (
+							$title->getNamespace() === NS_TEMPLATE &&
+							$title->getDBkey() === '=' &&
+							$originalTitle === '='
+						) {
+							// Note that we won't get here if `=` is evaluated
+							// (in the future) as a parser function, nor if
+							// the Template namespace is given explicitly,
+							// ie `{{Template:=}}`.  Only `{{=}}` triggers.
+							$sawDeprecatedTemplateEquals = true; // T91154
+						}
 					}
 				}
 
@@ -3226,6 +3239,15 @@ class Parser {
 
 		if ( $profileSection ) {
 			$this->mProfiler->scopedProfileOut( $profileSection );
+		}
+		if (
+			$sawDeprecatedTemplateEquals &&
+			$this->mStripState->unstripBoth( $text ) !== '='
+		) {
+			// T91154: {{=}} is deprecated when it doesn't expand to `=`;
+			// use {{Template:=}} if you must.
+			$this->addTrackingCategory( 'template-equals-category' );
+			$this->mOutput->addWarning( wfMessage( 'template-equals-warning' )->text() );
 		}
 
 		# Replace raw HTML by a placeholder
