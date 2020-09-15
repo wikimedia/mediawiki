@@ -168,7 +168,6 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			\TestUser::setPasswordForUser( $user, 'UTNormalUserPassword' );
 			$user->saveSettings();
 		}
-		$this->setMwGlobals( [ 'wgUser' => $user ] );
 		\RequestContext::getMain()->setUser( $user );
 		$newuser = \User::newFromName( 'RandomUser' );
 
