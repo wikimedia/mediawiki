@@ -251,6 +251,10 @@ because of Phabricator reports.
 === Other changes in 1.36 ===
 * The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
   It has had no effect since 1.35.
+* A future release of MediaWiki will make {{=}} a built-in parser function,
+  for use when automatically escaping the `=` character in template arguments.
+  A tracking category and parser warning have been added to this release when
+  {{=}} is used and it expands to something other than `=`.
 * The implementation of TestFileReader::read has been changed to use
   Parsoid's parser test file parser.  This should be compatible with
   existing code, but it only supports version 2 of the test file
