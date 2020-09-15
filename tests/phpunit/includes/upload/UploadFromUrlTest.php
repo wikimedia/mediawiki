@@ -35,7 +35,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	/**
-	 * @param null|string|array| $request
+	 * @param null|string|array|callable|MWHttpRequest $request
 	 *
 	 * @return void
 	 * @throws Exception
@@ -54,8 +54,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			->getMock();
 
 		if ( $request === null ) {
-			$mockHttpRequestFactory->method( 'create' )
-				->willThrowException( new LogicException( 'No Fake MWHttpRequest provided!' ) );
+			$mockHttpRequestFactory->expects( $this->never() )->method( 'create' );
 		} elseif ( $request instanceof MWHttpRequest ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturn( $request );
@@ -64,7 +63,7 @@ class UploadFromUrlTest extends ApiTestCase {
 				->willReturnCallback( $request );
 		} elseif ( is_array( $request ) ) {
 			$mockHttpRequestFactory->method( 'create' )
-				->willReturnOnConsecutiveCalls( $request );
+				->willReturnOnConsecutiveCalls( ...$request );
 		} elseif ( is_string( $request ) ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturn( $this->makeFakeHttpRequest( $request ) );
@@ -83,15 +82,16 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @return MWHttpRequest
 	 */
 	private function makeFakeHttpRequest( $body = 'Lorem Ipsum', $statusCode = 200, $headers = [] ) {
-		$options = [
-			'timeout' => 1,
-			'connectTimeout' => 1,
-		];
+		$mockHttpRequest = $this->createNoOpMock(
+			MWHttpRequest::class,
+			[ 'execute', 'setCallback', 'isRedirect', 'getFinalUrl' ]
+		);
 
-		$mockHttpRequest = $this->getMockBuilder( MWHttpRequest::class )
-			->setConstructorArgs( [ 'http://www.example.com/test.png', $options ] )
-			->onlyMethods( [ 'execute', 'setCallback' ] )
-			->getMock();
+		$mockHttpRequest->method( 'isRedirect' )->willReturn(
+			$statusCode >= 300 && $statusCode < 400
+		);
+
+		$mockHttpRequest->method( 'getFinalUrl' )->willReturn( $headers[ 'Location' ] ?? '' );
 
 		$dataCallback = null;
 		$mockHttpRequest->method( 'setCallback' )
@@ -243,6 +243,18 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( $exception, "Got exception" );
 	}
 
+	private function assertUploadOk( UploadBase $upload ) {
+		$verificationResult = $upload->verifyUpload();
+
+		if ( $verificationResult['status'] !== UploadBase::OK ) {
+			$this->fail(
+				'Upload verification returned ' . $upload->getVerificationErrorCode(
+					$verificationResult['status']
+				)
+			);
+		}
+	}
+
 	/**
 	 * @depends testClearQueue
 	 */
@@ -283,4 +295,40 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertFalse( $t->exists(), "File '$name' was deleted" );
 	}
+
+	public function testUploadFromUrl() {
+		$file = __DIR__ . '/../../data/upload/png-plain.png';
+		$this->installMockHttp( file_get_contents( $file ) );
+
+		$upload = new UploadFromUrl();
+		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
+		$status = $upload->fetchFile();
+
+		$this->assertTrue( $status->isOK() );
+		$this->assertUploadOk( $upload );
+	}
+
+	public function testUploadFromUrlWithRedirect() {
+		$file = __DIR__ . '/../../data/upload/png-plain.png';
+		$this->installMockHttp( [
+			// First response is a redirect
+			$this->makeFakeHttpRequest(
+				'Blaba',
+				302,
+				[ 'Location' => 'http://static.example.com/files/test.png' ]
+			),
+			// Second response is a file
+			$this->makeFakeHttpRequest(
+				file_get_contents( $file )
+			),
+		] );
+
+		$upload = new UploadFromUrl();
+		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
+		$status = $upload->fetchFile();
+
+		$this->assertTrue( $status->isOK() );
+		$this->assertUploadOk( $upload );
+	}
+
 }
