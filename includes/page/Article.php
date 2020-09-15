@@ -2726,26 +2726,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * @see WikiPage::insertProtectNullRevision
-	 * @deprecated since 1.35, use WikiPage::insertNullProtectionRevision instead
-	 * @param string $revCommentMsg
-	 * @param array $limit
-	 * @param array $expiry
-	 * @param int $cascade
-	 * @param string $reason
-	 * @param User|null $user
-	 * @return Revision|null
-	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit,
-		array $expiry, $cascade, $reason, $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->insertProtectNullRevision( $revCommentMsg, $limit,
-			$expiry, $cascade, $reason, $user
-		);
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::insertRedirect instead
 	 * @see WikiPage::insertRedirect
 	 * @return Title|null

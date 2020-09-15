@@ -2480,38 +2480,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Insert a new null revision for this page.
 	 *
-	 * @deprecated since 1.35, use insertNullProtectionRevision instead
-	 *
-	 * @param string $revCommentMsg Comment message key for the revision
-	 * @param array $limit Set of restriction keys
-	 * @param array $expiry Per restriction type expiration
-	 * @param int $cascade Set to false if cascading protection isn't allowed.
-	 * @param string $reason
-	 * @param User|null $user User to attribute to, or null for $wgUser (deprecated since 1.35)
-	 * @return Revision|null Null on error
-	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit,
-		array $expiry, $cascade, $reason, $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		$nullRevRecord = $this->insertNullProtectionRevision(
-			$revCommentMsg,
-			$limit,
-			$expiry,
-			(bool)$cascade,
-			$reason,
-			$user
-		);
-		return $nullRevRecord ? new Revision( $nullRevRecord ) : null;
-	}
-
-	/**
-	 * Insert a new null revision for this page.
+	 * @since 1.35
 	 *
 	 * @param string $revCommentMsg Comment message key for the revision
 	 * @param array $limit Set of restriction keys
