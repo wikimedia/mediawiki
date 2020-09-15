@@ -325,11 +325,17 @@ return [
 			$wanCache = WANObjectCache::newEmpty(); // T141804: handle cases like CACHE_DB
 		}
 
+		$srvCache = $services->getLocalServerObjectCache();
+		if ( $srvCache instanceof EmptyBagOStuff ) {
+			// Use process cache if the main stash is disabled
+			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
-			$services->getLocalServerObjectCache(),
+			$srvCache,
 			$stash,
 			$wanCache
 		);
