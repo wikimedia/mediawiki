@@ -2337,6 +2337,8 @@
 	"trackingcategories-desc": "Category inclusion criteria",
 	"restricted-displaytitle-ignored": "Pages with ignored display titles",
 	"restricted-displaytitle-ignored-desc": "The page has an ignored <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> because it is not equivalent to the page's actual title.",
+	"nonnumeric-formatnum": "Pages with non-numeric formatnum arguments",
+	"nonnumeric-formatnum-desc": "The page contains a non-numeric argument to the formatnum parser function.",
 	"noindex-category-desc": "The page is not indexed by robots because it has the magic word <code><nowiki>__NOINDEX__</nowiki></code> on it and is in a namespace where that flag is allowed.",
 	"index-category-desc": "The page has a <code><nowiki>__INDEX__</nowiki></code> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn't be.",
 	"post-expand-template-inclusion-category-desc": "The page size is bigger than <code>$wgMaxArticleSize</code> after expanding all the templates, so some templates were not expanded.",
