@@ -243,6 +243,9 @@ because of Phabricator reports.
   deprecated. Please use Skin::footerLink() instead.
 * Skin::getLogo() has been deprecated. Use ResourceLoaderSkinModule instead.
 * Skin::mainPageLink() has been deprecated. Use LinkRenderer service instead.
+* BaseTemplate::getToolbox() method has been hard deprecated. The toolbox data
+  is now available in a sidebar data array which you can get from any class
+  that's extending QuickTemplate class.
 * …
 
 === Other changes in 1.36 ===

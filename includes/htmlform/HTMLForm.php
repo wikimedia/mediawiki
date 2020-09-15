@@ -1084,6 +1084,10 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
 
+		if ( $this->mCollapsible ) {
+			$this->getOutput()->addModules( 'jquery.makeCollapsible' );
+		}
+
 		$html = ''
 			. $this->getErrorsOrWarnings( $submitResult, 'error' )
 			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
