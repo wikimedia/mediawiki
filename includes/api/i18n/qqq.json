@@ -1258,6 +1258,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "{{doc-apihelp-paramvalue|query+userinfo|prop|preferencestoken}}\n{{doc-important|You can translate the word \"Deprecated\", but please do not alter the <code><nowiki>class=\"apihelp-deprecated\"</nowiki></code> attribute}}",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "{{doc-apihelp-paramvalue|query+userinfo|prop|editcount}}",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "{{doc-apihelp-paramvalue|query+userinfo|prop|ratelimits}}",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "{{doc-apihelp-paramvalue|query+userinfo|prop|theoreticalratelimits}}",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "{{doc-apihelp-paramvalue|query+userinfo|prop|realname}}",
 	"apihelp-query+userinfo-paramvalue-prop-email": "{{doc-apihelp-paramvalue|query+userinfo|prop|email}}",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "{{doc-apihelp-paramvalue|query+userinfo|prop|acceptlang}}",
