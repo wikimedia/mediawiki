@@ -890,6 +890,7 @@
 	"undo-summary-import2": "Geïmporteerde versie $1 van gebruiker $2 ongedaan gemaakt",
 	"undo-summary-username-hidden": "Versie $1 door een verborgen gebruiker ongedaan gemaakt",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
+	"viewpagelogs-lowercase": "logboek voor deze pagina bekijken",
 	"nohistory": "Deze pagina is niet bewerkt.",
 	"currentrev": "Huidige versie",
 	"currentrev-asof": "Huidige versie van $2 om $3",

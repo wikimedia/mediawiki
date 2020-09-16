@@ -3742,7 +3742,7 @@
 	"log-action-filter-delete-delete": "Ștergere a paginii",
 	"log-action-filter-delete-delete_redir": "Suprascriere redirecționare",
 	"log-action-filter-delete-restore": "Recuperare a paginii",
-	"log-action-filter-delete-event": "Ștergere a logului",
+	"log-action-filter-delete-event": "Ștergere a jurnalului",
 	"log-action-filter-delete-revision": "Ștergere a reviziei",
 	"log-action-filter-import-interwiki": "Import transwiki",
 	"log-action-filter-import-upload": "Import prin încărcare de XML",
