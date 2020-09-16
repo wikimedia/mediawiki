@@ -129,8 +129,6 @@ because of Phabricator reports.
   to the $wgUser global variable. Not passing a User to those methods was
   previously hard deprecated, and support for not passing a User has now
   been removed:
-   - ArchivedFile::userCan
-   - File::userCan
    - FileDeleteForm::__construct
    - FileDeleteForm::doDelete
    - LocalFileDeleteBatch::__construct
@@ -139,7 +137,6 @@ because of Phabricator reports.
    - LogEventsList::userCanBitfield
    - LogEventsList::userCanViewLogType
    - LogPage::addEntry (also accepts user id instead)
-   - OldLocalFile::userCan
    - PatrolLog::record
    - Title::getNotificationTimestamp (though the entire method is deprecated)
    - WikiPage::getComment (only needed for the FOR_THIS_USER audience)
@@ -260,6 +257,10 @@ because of Phabricator reports.
   existing code, but it only supports version 2 of the test file
   specification and may be more strict when parsing invalid input,
   including duplicate tests.
+* The SkinLessImportPaths attribute was added, allowing skins to add a
+  directory to the import path for LESS stylesheets. Skins can use this
+  to provide a custom version of mediawiki.skin.variables.less, setting
+  skin-specific values for certain LESS variables.
 * …
 
 == Compatibility ==

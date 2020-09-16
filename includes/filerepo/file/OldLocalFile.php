@@ -380,12 +380,17 @@ class OldLocalFile extends LocalFile {
 	 * field of this image file, if it's marked as deleted.
 	 *
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, User $user = null ) {
 		$this->load();
 
+		if ( !$user ) {
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
+			global $wgUser;
+			$user = $wgUser;
+		}
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
 			$field,
