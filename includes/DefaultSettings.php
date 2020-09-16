@@ -6246,6 +6246,9 @@ $wgGrantPermissions['highvolume']['apihighlimits'] = true;
 $wgGrantPermissions['highvolume']['noratelimit'] = true;
 $wgGrantPermissions['highvolume']['markbotedits'] = true;
 
+$wgGrantPermissions['import']['import'] = true;
+$wgGrantPermissions['import']['importupload'] = true;
+
 $wgGrantPermissions['editpage']['edit'] = true;
 $wgGrantPermissions['editpage']['minoredit'] = true;
 $wgGrantPermissions['editpage']['applychangetags'] = true;
@@ -6367,6 +6370,7 @@ $wgGrantPermissionGroups = [
 	'oversight'           => 'administration',
 	'createaccount'       => 'administration',
 	'mergehistory'        => 'administration',
+	'import'              => 'administration',
 
 	'highvolume'          => 'high-volume',
 
