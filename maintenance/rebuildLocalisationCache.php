@@ -86,22 +86,24 @@ class RebuildLocalisationCache extends Maintenance {
 			$conf['storeDirectory'] = $this->getOption( 'outdir' );
 		}
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
+		$services = MediaWikiServices::getInstance();
 		$lc = new LocalisationCacheBulkLoad(
 			new ServiceOptions(
 				LocalisationCache::CONSTRUCTOR_OPTIONS,
 				$conf,
-				MediaWikiServices::getInstance()->getMainConfig()
+				$services->getMainConfig()
 			),
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
-			[ function () {
-				MediaWikiServices::getInstance()->getResourceLoader()
-					->getMessageBlobStore()->clear();
+			[ function () use ( $services ) {
+				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 			} ],
-			MediaWikiServices::getInstance()->getLanguageNameUtils()
+			$services->getLanguageNameUtils()
 		);
 
-		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$allCodes = array_keys( $services
+			->getLanguageNameUtils()
+			->getLanguageNames( null, 'mwfile' ) );
 		if ( $this->hasOption( 'lang' ) ) {
 			# Validate requested languages
 			$codes = array_intersect( $allCodes,
