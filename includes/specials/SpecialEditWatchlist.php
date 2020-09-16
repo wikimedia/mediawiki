@@ -725,7 +725,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( $this->isWatchlistExpiryEnabled && $expiryDaysText ) {
 			$watchlistExpiringMessage = Html::element(
 				'span',
-				[ 'class' => 'watchlistexpiry-msg' ],
+				[ 'class' => 'mw-watchlistexpiry-msg' ],
 				$expiryDaysText
 			);
 		}

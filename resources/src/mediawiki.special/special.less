@@ -4,8 +4,6 @@
 @import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins.less';
 
-/* stylelint-disable selector-class-pattern */
-
 /* Special:AllMessages */
 /* Visually hide repeating text, but leave in for better form navigation on screen readers */
 .mw-special-Allmessages .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
@@ -19,18 +17,22 @@
 	background-color: #eaf3ff;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 #mw-allmessagestable .am_default {
 	background-color: #fcffc4;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 #mw-allmessagestable tbody:hover .am_default {
 	background-color: #faff90;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 #mw-allmessagestable .am_actual {
 	background-color: #e2ffe2;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 #mw-allmessagestable tbody:hover .am_actual {
 	background-color: #b1ffb1;
 }
@@ -56,6 +58,7 @@
 	margin-bottom: 0;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .allpagesredirect {
 	font-style: italic;
 }
@@ -94,12 +97,13 @@
 }
 
 /* Special:EditWatchlist */
+/* stylelint-disable-next-line selector-class-pattern */
 .watchlistredir {
 	font-style: italic;
 }
 
 /* Special:EditWatchlist */
-.watchlistexpiry-msg {
+.mw-watchlistexpiry-msg {
 	margin-left: 0.3em;
 	color: @color-base--subtle;
 }
@@ -120,6 +124,7 @@
 	vertical-align: top;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .listgrouprights-revoked {
 	text-decoration: line-through;
 }
@@ -169,6 +174,7 @@
 	vertical-align: top;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .passwordpolicies-policy-flags {
 	font-size: 90%;
 }
