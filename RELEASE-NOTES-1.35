@@ -1017,6 +1017,7 @@ because of Phabricator reports.
   - FileDeleteForm::doDelete
   - OldLocalFile::userCan
   - ArchivedFile::userCan
+  - File::userCan
 * The following functions all accept an optional audience parameter and
   an optional user parameter. If the audience is FOR_THIS_USER and no
   user is passed, they fallback to $wgUser. Not passing a user when

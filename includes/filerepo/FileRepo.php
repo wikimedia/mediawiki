@@ -471,11 +471,12 @@ class FileRepo {
 			if ( $img ) {
 				$img->load( $flags );
 				if ( $img->exists() ) {
+					global $wgUser;
 					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 						return $img; // always OK
 					} elseif ( !empty( $options['private'] ) &&
 						$img->userCan( File::DELETED_FILE,
-							$options['private'] instanceof User ? $options['private'] : null
+							$options['private'] instanceof User ? $options['private'] : $wgUser
 						)
 					) {
 						return $img;
@@ -573,11 +574,12 @@ class FileRepo {
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
 			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
+				global $wgUser;
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
 				} elseif ( !empty( $options['private'] ) &&
 					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : null
+						$options['private'] instanceof User ? $options['private'] : $wgUser
 					)
 				) {
 					return $img;
