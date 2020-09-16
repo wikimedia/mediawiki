@@ -32,7 +32,7 @@ class ResponseFactory {
 	/**
 	 * Encode a stdClass object or array to a JSON string
 	 *
-	 * @param array|stdClass $value
+	 * @param array|stdClass|\JsonSerializable $value
 	 * @return string
 	 * @throws JsonEncodingException
 	 */
@@ -55,7 +55,7 @@ class ResponseFactory {
 
 	/**
 	 * Create a successful JSON response.
-	 * @param array|stdClass $value JSON value
+	 * @param array|stdClass|\JsonSerializable $value JSON value
 	 * @param string|null $contentType HTTP content type (should be 'application/json+...')
 	 *   or null for plain 'application/json'
 	 * @return Response
