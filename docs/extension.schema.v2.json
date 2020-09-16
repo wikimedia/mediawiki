@@ -440,6 +440,10 @@
 			"type": "object",
 			"description": "ResourceLoader sources to register"
 		},
+		"SkinLessImportPaths": {
+			"type": "object",
+			"description": "Path to the skin-specific LESS import directory, keyed by skin name. Can be used to define skin-specific LESS variables."
+		},
 		"QUnitTestModule": {
 			"type": "object",
 			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true.",

@@ -1076,15 +1076,26 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 		}
 
+		$skinName = $context->getSkin();
+		$skinImportPaths = ExtensionRegistry::getInstance()->getAttribute( 'SkinLessImportPaths' );
+		$importDirs = [];
+		if ( isset( $skinImportPaths[ $skinName ] ) ) {
+			$importDirs[] = $skinImportPaths[ $skinName ];
+		}
+
 		$vars = $this->getLessVars( $context );
 		// Construct a cache key from a hash of the LESS source, and a hash digest
 		// of the LESS variables used for compilation.
 		ksort( $vars );
+		$compilerParams = [
+			'vars' => $vars,
+			'importDirs' => $importDirs,
+		];
 		$key = $cache->makeGlobalKey(
 			'resourceloader-less',
 			'v1',
 			hash( 'md4', $style ),
-			hash( 'md4', serialize( $vars ) )
+			hash( 'md4', serialize( $compilerParams ) )
 		);
 
 		// If we got a cached value, we have to validate it by getting a checksum of all the
@@ -1094,7 +1105,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			!$data ||
 			$data['hash'] !== FileContentsHasher::getFileContentsHash( $data['files'] )
 		) {
-			$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
+			$compiler = $context->getResourceLoader()->getLessCompiler( $vars, $importDirs );
+
 			$css = $compiler->parse( $style, $stylePath )->getCss();
 			// T253055: store the implicit dependency paths in a form relative to any install
 			// path so that multiple version of the application can share the cache for identical

@@ -1906,10 +1906,11 @@ MESSAGE;
 	 * @param array $vars Associative array of variables that should be used
 	 *  for compilation. Since 1.32, this method no longer automatically includes
 	 *  global LESS vars from ResourceLoader::getLessVars (T191937).
+	 * @param array $importDirs Additional directories to look in for @import (since 1.36)
 	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public function getLessCompiler( $vars = [] ) {
+	public function getLessCompiler( array $vars = [], array $importDirs = [] ) {
 		global $IP;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
@@ -1918,11 +1919,12 @@ MESSAGE;
 			throw new MWException( 'MediaWiki requires the less.php parser' );
 		}
 
+		$importDirs[] = "$IP/resources/src/mediawiki.less";
+
 		$parser = new Less_Parser;
 		$parser->ModifyVars( $vars );
-		$parser->SetImportDirs( [
-			"$IP/resources/src/mediawiki.less/" => '',
-		] );
+		// SetImportDirs expects an array like [ 'path1' => '', 'path2' => '' ]
+		$parser->SetImportDirs( array_fill_keys( $importDirs, '' ) );
 		$parser->SetOption( 'relativeUrls', false );
 
 		return $parser;

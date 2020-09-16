@@ -59,6 +59,7 @@ class ExtensionRegistry {
 	private const LAZY_LOADED_ATTRIBUTES = [
 		'TrackingCategories',
 		'QUnitTestModules',
+		'SkinLessImportPaths',
 	];
 
 	/**
