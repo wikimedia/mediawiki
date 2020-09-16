@@ -261,9 +261,10 @@ class LocalRepo extends FileRepo {
 
 		$fileMatchesSearch = function ( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
+			global $wgUser;
 			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
 				? $search['private']
-				: null;
+				: $wgUser;
 
 			return (
 				$file->exists() &&
