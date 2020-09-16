@@ -107,8 +107,6 @@ because of Phabricator reports.
   to the $wgUser global variable. Not passing a User to those methods was
   previously hard deprecated, and support for now passing a User has now
   been removed:
-   - ArchivedFile::userCan
-   - File::userCan
    - FileDeleteForm::__construct
    - FileDeleteForm::doDelete
    - LocalFileDeleteBatch::__construct
@@ -117,7 +115,6 @@ because of Phabricator reports.
    - LogEventsList::userCanBitfield
    - LogEventsList::userCanViewLogType
    - LogPage::addEntry (also accepts user id instead)
-   - OldLocalFile::userCan
    - PatrolLog::record
    - Title::getNotificationTimestamp (though the entire method is deprecated)
 * The following hooks have been removed:
