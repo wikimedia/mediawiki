@@ -1360,6 +1360,7 @@
 	"grant-editpage": "Edit existing pages",
 	"grant-editprotected": "Edit protected pages",
 	"grant-highvolume": "High-volume editing",
+	"grant-import": "Import revisions",
 	"grant-mergehistory": "Merge page histories",
 	"grant-oversight": "Hide users and suppress revisions",
 	"grant-patrol": "Patrol changes to pages",
