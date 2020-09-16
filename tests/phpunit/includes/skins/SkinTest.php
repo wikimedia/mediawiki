@@ -35,11 +35,18 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $skin->isResponsive() );
 	}
 
-	public function provideSkinResponsiveOptions() : array {
-		return [
-			'responsive not set' => [ [], false ],
-			'responsive false' => [ [ 'responsive' => false ], false ],
-			'responsive true' => [ [ 'responsive' => true ], true ]
+	public function provideSkinResponsiveOptions() {
+		yield 'responsive not set' => [
+			[ 'name' => 'test' ],
+			false
+		];
+		yield 'responsive false' => [
+			[ 'name' => 'test', 'responsive' => false ],
+			false
+		];
+		yield 'responsive true' => [
+			[ 'name' => 'test', 'responsive' => true ],
+			true
 		];
 	}
 }

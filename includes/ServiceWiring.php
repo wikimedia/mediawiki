@@ -1180,6 +1180,7 @@ return [
 			} else {
 				$displayName = $skin;
 				$spec = [
+					'name' => $name,
 					'class' => "Skin$skin"
 				];
 			}
@@ -1191,6 +1192,7 @@ return [
 			'class' => SkinFallback::class,
 			'args' => [
 				[
+					'name' => 'fallback',
 					'styles' => [ 'mediawiki.skinning.interface' ],
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
@@ -1201,6 +1203,7 @@ return [
 			'class' => SkinApi::class,
 			'args' => [
 				[
+					'name' => 'apioutput',
 					'styles' => [ 'mediawiki.skinning.interface' ],
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
