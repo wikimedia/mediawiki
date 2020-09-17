@@ -3441,6 +3441,8 @@
 	"tag-mw-undo-description": "使用復原連結來復原上一筆編輯的編輯數",
 	"tag-mw-manual-revert": "手動回退",
 	"tag-mw-manual-revert-description": "手動將頁面還原到先前某個狀態的編輯",
+	"tag-mw-reverted": "已被回退",
+	"tag-mw-reverted-description": "被之後另一個編輯回退的編輯",
 	"tags-title": "標籤",
 	"tags-intro": "此頁面列出所有可用來標示編輯內容的標籤以及這些標籤所代表的意思。",
 	"tags-tag": "標籤名稱",
