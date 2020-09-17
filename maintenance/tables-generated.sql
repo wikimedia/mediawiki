@@ -222,3 +222,11 @@ CREATE TABLE /*_*/category (
   INDEX cat_pages (cat_pages),
   PRIMARY KEY(cat_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/watchlist_expiry (
+  we_item INT UNSIGNED NOT NULL,
+  we_expiry BINARY(14) NOT NULL,
+  INDEX we_expiry (we_expiry),
+  PRIMARY KEY(we_item)
+) /*$wgDBTableOptions*/;

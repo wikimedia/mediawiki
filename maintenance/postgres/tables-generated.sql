@@ -246,3 +246,12 @@ CREATE TABLE category (
 CREATE UNIQUE INDEX cat_title ON category (cat_title);
 
 CREATE INDEX cat_pages ON category (cat_pages);
+
+
+CREATE TABLE watchlist_expiry (
+  we_item INT NOT NULL,
+  we_expiry TIMESTAMPTZ NOT NULL,
+  PRIMARY KEY(we_item)
+);
+
+CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);

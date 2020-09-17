@@ -738,5 +738,31 @@
 			}
 		],
 		"pk": [ "cat_id" ]
+	},
+	{
+		"name": "watchlist_expiry",
+		"comment": "Allows setting an expiry for watchlist items.",
+		"columns": [
+			{
+				"name": "we_item",
+				"comment": "Key to watchlist.wl_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "we_expiry",
+				"type": "mwtimestamp",
+				"comment": "Expiry time",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "we_expiry",
+				"columns": [ "we_expiry" ],
+				"unique": false
+			}
+		],
+		"pk": [ "we_item" ]
 	}
 ]
