@@ -21,6 +21,23 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers HashBagOStuff::__construct
 	 */
+	public function testQoS() {
+		$bag = new HashBagOStuff();
+
+		$this->assertSame(
+			BagOStuff::QOS_DURABILITY_SCRIPT,
+			$bag->getQoS( BagOStuff::ATTR_DURABILITY )
+		);
+
+		$this->assertSame(
+			BagOStuff::QOS_LOCALITY_PROC,
+			$bag->getQoS( BagOStuff::ATTR_LOCALITY )
+		);
+	}
+
+	/**
+	 * @covers HashBagOStuff::__construct
+	 */
 	public function testConstructBadZero() {
 		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => 0 ] );

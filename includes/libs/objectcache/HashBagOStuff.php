@@ -62,6 +62,9 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		if ( $this->maxCacheKeys <= 0 ) {
 			throw new InvalidArgumentException( '$maxKeys parameter must be above zero' );
 		}
+
+		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SCRIPT;
+		$this->attrMap[self::ATTR_LOCALITY] = self::QOS_LOCALITY_PROC;
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
