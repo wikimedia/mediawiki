@@ -404,48 +404,13 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgUser, $wgObjectCaches;
-
 		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
-		// Reset all services and inject config overrides
-		MediaWikiServices::resetGlobalInstance( $installerConfig );
+		$this->resetMediaWikiServices( $installerConfig );
 
-		// Don't attempt to load user language options (T126177)
-		// This will be overridden in the web installer with the user-specified language
-		RequestContext::getMain()->setLanguage( 'en' );
-
-		// Disable all global services, since we don't have any configuration yet!
+		// Disable all storage services, since we don't have any configuration yet!
 		MediaWikiServices::disableStorageBackend();
-
-		$mwServices = MediaWikiServices::getInstance();
-
-		// Disable i18n cache
-		$mwServices->getLocalisationCache()->disableBackend();
-
-		// Clear language cache so the old i18n cache doesn't sneak back in
-		Language::$mLangObjCache = [];
-
-		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
-		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
-
-		// Disable interwiki lookup, to avoid database access during parses
-		$mwServices->redefineService( 'InterwikiLookup', function () {
-			return new NullInterwikiLookup();
-		} );
-		// Disable user options database fetching, only rely on default options.
-		$mwServices->redefineService(
-			'UserOptionsLookup',
-			function ( MediaWikiServices $services ) {
-				return $services->get( '_DefaultOptionsLookup' );
-			}
-		);
-
-		$user = User::newFromId( 0 );
-		$wgUser = $user;
-		RequestContext::getMain()->setUser( $user );
 
 		$this->settings = $this->internalDefaults;
 
@@ -466,9 +431,82 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
+	}
+
+	/**
+	 * Reset the global service container and associated global state
+	 * to accommodate different stages of the installation.
+	 * @since 1.35
+	 *
+	 * @param Config|null $installerConfig Config override. If null, the previous
+	 *        config will be inherited.
+	 * @param array $serviceOverrides Service definition overrides. Values can be null to
+	 *        disable specific overrides that would be applied per default, namely
+	 *        'InterwikiLookup' and 'UserOptionsLookup'.
+	 *
+	 * @return MediaWikiServices
+	 * @throws MWException
+	 */
+	public function resetMediaWikiServices( Config $installerConfig = null, $serviceOverrides = [] ) {
+		global $wgUser, $wgObjectCaches, $wgLang;
+
+		$serviceOverrides += [
+			// Disable interwiki lookup, to avoid database access during parses
+			'InterwikiLookup' => function () {
+				return new NullInterwikiLookup();
+			},
+
+			// Disable user options database fetching, only rely on default options.
+			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
+				return $services->get( '_DefaultOptionsLookup' );
+			}
+		];
+
+		$lang = $this->getVar( '_UserLang', 'en' );
+
+		// Reset all services and inject config overrides
+		MediaWikiServices::resetGlobalInstance( $installerConfig );
+
+		$mwServices = MediaWikiServices::getInstance();
+
+		foreach ( $serviceOverrides as $name => $callback ) {
+			// Skip if the caller set $callback to null
+			// to suppress default overrides.
+			if ( $callback ) {
+				$mwServices->redefineService( $name, $callback );
+			}
+		}
+
+		// Disable i18n cache
+		$mwServices->getLocalisationCache()->disableBackend();
+
+		// Clear language cache so the old i18n cache doesn't sneak back in
+		Language::$mLangObjCache = [];
+
+		// Set a fake user.
+		// Note that this will reset the context's language,
+		// so set the user before setting the language.
+		$user = User::newFromId( 0 );
+		$wgUser = $user;
+
+		RequestContext::getMain()->setUser( $user );
+
+		// Don't attempt to load user language options (T126177)
+		// This will be overridden in the web installer with the user-specified language
+		// Ensure $wgLang does not have a reference to a stale LocalisationCache instance
+		// (T241638, T261081)
+		RequestContext::getMain()->setLanguage( $lang );
+		$wgLang = RequestContext::getMain()->getLanguage();
+
+		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
+		// SqlBagOStuff will then throw since we just disabled wfGetDB)
+		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
+
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised
 		$this->setParserLanguage( $mwServices->getLanguageFactory()->getLanguage( 'en' ) );
+
+		return $mwServices;
 	}
 
 	/**
@@ -1653,13 +1691,11 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function restoreServices() {
-		MediaWikiServices::resetGlobalInstance();
-		MediaWikiServices::getInstance()->redefineService(
-			'UserOptionsLookup',
-			function ( MediaWikiServices $services ) {
+		$this->resetMediaWikiServices( null, [
+			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
 				return $services->get( 'UserOptionsManager' );
 			}
-		);
+		] );
 		return Status::newGood();
 	}
 
