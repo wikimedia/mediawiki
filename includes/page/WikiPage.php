@@ -3951,4 +3951,18 @@ class WikiPage implements Page, IDBAccessObject {
 		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle() );
 	}
 
+	/**
+	 * Ensure consistency when unserializing.
+	 * @note WikiPage objects should never be serialized in the first place.
+	 * But some extensions like AbuseFilter did (see T213006),
+	 * and we need to be able to read old data (see T187153).
+	 */
+	public function __wakeup() {
+		// Make sure we re-fetch the latest state from the database.
+		// In particular, the latest revision may have changed.
+		// As a side-effect, this makes sure mLastRevision doesn't
+		// end up being an instance of the old Revision class (see T259181).
+		$this->clear();
+	}
+
 }
