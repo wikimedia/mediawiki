@@ -90,6 +90,7 @@ class SkinMustache extends SkinTemplate {
 		$bodyContent = $out->getHTML() . "\n" . $printSource;
 
 		$data = [
+			'data-logos' => $this->getLogoData(),
 			// Array objects
 			'array-indicators' => $this->getIndicatorsData( $out->getIndicators() ),
 			// Data objects
@@ -110,6 +111,27 @@ class SkinMustache extends SkinTemplate {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * @return array of logo data localised to the current language variant
+	 */
+	private function getLogoData() : array {
+		$logoData = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
+		// check if the logo supports variants
+		$variantsLogos = $logoData['variants'] ?? null;
+		if ( $variantsLogos ) {
+			$preferred = $this->getOutput()->getTitle()
+				->getPageViewLanguage()->getCode();
+			$variantOverrides = $variantsLogos[$preferred] ?? null;
+			// Overrides the logo
+			if ( $variantOverrides ) {
+				foreach ( $variantOverrides as $key => $val ) {
+					$logoData[$key] = $val;
+				}
+			}
+		}
+		return $logoData;
 	}
 
 	/**
