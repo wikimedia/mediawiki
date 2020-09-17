@@ -59,7 +59,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessUnblockErrors
-	 * @covers ::processUnblock()
+	 * @covers ::processUIUnblock()
 	 */
 	public function testProcessUnblockErrors( $options, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -76,24 +76,20 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 		if ( !empty( $options['readOnly'] ) ) {
 			$this->setMwGlobals( [ 'wgReadOnly' => true ] );
+			$this->expectException( ReadOnlyError::class );
 		}
 
 		if ( isset( $options['permissions'] ) ) {
 			$this->overrideUserPermissions( $performer, $options['permissions'] );
 		}
 
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setUser( $performer );
-		$result = $this->newSpecialPage()->processUnblock(
-			[
-				'Target' => $target,
-				'Reason' => '',
-			],
-			$context
-		);
+		$request = new FauxRequest( [
+			'wpTarget' => $target,
+			'wpReason' => '',
+		], true );
+		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertSame( $expected, $error );
+		$this->assertStringContainsString( $expected, $html );
 	}
 
 	public function provideProcessUnblockErrors() {
@@ -123,7 +119,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processUnblock()
+	 * @covers ::processUIUnblock()
 	 */
 	public function testProcessUnblockErrorsUnblockSelf() {
 		$performer = $this->getTestSysop()->getUser();
@@ -138,21 +134,12 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		] );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setUser( $performer );
+		$request = new FauxRequest( [
+			'wpTarget' => $performer->getName(),
+			'wpReason' => '',
+		], true );
+		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
-		$result = $this->newSpecialPage()->processUnblock(
-			[
-				'Target' => $performer,
-				'Reason' => ''
-			],
-			$context
-		);
-		$this->assertContains(
-			'ipbnounblockself',
-			array_map( function ( $el ) {
-				return $el[0];
-			}, $result )
-		);
+		$this->assertStringContainsString( 'ipbnounblockself', $html );
 	}
 }
