@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -116,6 +117,20 @@ class ApiOptions extends ApiBase {
 					} else {
 						$validation = true;
 					}
+
+					LoggerFactory::getInstance( 'api-warning' )->info(
+						'ApiOptions: Setting userjs option',
+						[
+							'phab' => 'T259073',
+							'OptionName' => substr( $key, 255 ),
+							'OptionValue' => substr( $value, 255 ),
+							'OptionSize' => strlen( $value ),
+							'OptionValidation' => $validation,
+							'UserId' => $user->getId(),
+							'RequestIP' => $this->getRequest()->getIP(),
+							'RequestUA' => $this->getRequest()->getHeader( 'User-Agent' )
+						]
+					);
 					break;
 				case 'special':
 					$validation = $this->msg( 'apiwarn-validationfailed-cannotset' );
