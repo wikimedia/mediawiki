@@ -87,7 +87,7 @@ class BlockPermissionChecker {
 			$checkHideuser &&
 			!$this->permissionManager->userHasRight( $this->performer, 'hideuser' )
 		) {
-			return 'badaccess-group0';
+			return 'unblock-hideuser';
 		}
 
 		return true;
