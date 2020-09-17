@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserIdentity;
 use User;
 
 /**
@@ -44,7 +45,7 @@ class BlockPermissionCheckerFactory {
 	}
 
 	/**
-	 * @param User|string|int $target Target of the validated block
+	 * @param UserIdentity|string|null $target Target of the validated block; may be null if unknown
 	 * @param User $performer Performer of the validated block
 	 *
 	 * @return BlockPermissionChecker

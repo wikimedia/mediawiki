@@ -37,7 +37,7 @@ use User;
  */
 class BlockPermissionChecker {
 	/**
-	 * @var UserIdentity|string Block target
+	 * @var UserIdentity|string|null Block target or null when unknown
 	 */
 	private $target;
 
@@ -56,6 +56,11 @@ class BlockPermissionChecker {
 	 */
 	private $permissionManager;
 
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param UserIdentity|string|null $target
+	 * @param User $performer
+	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		$target,
