@@ -31,29 +31,32 @@ class EmptyUserGroup extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Remove all users from a given user group' );
 		$this->addArg( 'group', 'Group to be removed', true );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
 		$group = $this->getArg( 0 );
-
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
 
-		$users = User::findUsersByGroup( $group );
+		$totalCount = 0;
+		$this->output( "Removing users from $group...\n" );
+		while ( true ) {
+			$users = User::findUsersByGroup( $group, $this->getBatchSize() );
+			if ( iterator_count( $users ) === 0 ) {
+				break;
+			}
 
-		$count = iterator_count( $users );
-
-		$this->output( "Removing $count users from $group..." );
-
-		/**
-		 * @var User $user
-		 */
-		foreach ( $users as $user ) {
-			$user->removeGroup( $group );
-
+			foreach ( $users as $user ) {
+				$totalCount += (int)$userGroupManager->removeUserFromGroup( $user, $group );
+			}
 			$lb->waitForReplication();
 		}
-
-		$this->output( " Done!\n" );
+		if ( $totalCount ) {
+			$this->output( "  ...done! Removed $totalCount users in total.\n" );
+		} else {
+			$this->output( "  ...nothing to do, group was empty.\n" );
+		}
 	}
 }
 
