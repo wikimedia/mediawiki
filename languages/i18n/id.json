@@ -3450,7 +3450,7 @@
 	"tag-mw-undo": "Pembatalan",
 	"tag-mw-undo-description": "Suntingan yang membatalkan suntingan sebelumnya dengan tombol kembalikan",
 	"tag-mw-manual-revert": "Pengembalian manual",
-	"tag-mw-reverted": "$1 Dikembalikan",
+	"tag-mw-reverted": "Dikembalikan",
 	"tag-mw-reverted-description": "$1 Hasil edit yang kemudian dikembalikan dengan hasil edit lainnya",
 	"tags-title": "Tanda",
 	"tags-intro": "Halaman ini berisi daftar tag yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.",

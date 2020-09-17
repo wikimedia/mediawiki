@@ -1254,6 +1254,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Mevcut kullanıcının tercihlerini değiştirmek için bir anahtar alın.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Geçerli kullanıcının düzenleme sayısını ekler.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Geçerli kullanıcıya uygulanan tüm ücret sınırlarını listeler.",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Kullanıcı hakları veya IP'ye dayalı olarak tüm hız sınırlamalarından muaf tutulmamış olsaydı, geçerli kullanıcı için geçerli olacak tüm hız sınırlarını listeler",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Kullanıcının gerçek adını ekler.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Kullanıcının e-posta adresini ve e-posta kimlik doğrulama tarihini ekler.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "İstemci tarafından yapılandırılmış bir biçimde gönderilen <code>Accept-Language</code> başlığını yankılar.",
