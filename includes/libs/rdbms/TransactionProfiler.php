@@ -232,12 +232,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
 			$this->logger->warning(
-				"Query affected $n row(s):\n" . self::queryString( $query ) . "\n" .
-				( new RuntimeException() )->getTraceAsString() );
+				"Query affected $n row(s):\n" . self::queryString( $query ) . "\n",
+				[ 'exception' => new RuntimeException() ]
+			);
 		} elseif ( !$isWrite && $n > $this->expect['readQueryRows'] ) {
 			$this->logger->warning(
-				"Query returned $n row(s):\n" . self::queryString( $query ) . "\n" .
-				( new RuntimeException() )->getTraceAsString() );
+				"Query returned $n row(s):\n" . self::queryString( $query ) . "\n",
+				[ 'exception' => new RuntimeException() ]
+			);
 		}
 
 		// Report when too many writes/queries happen...
@@ -367,14 +369,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 
 		$this->logger->warning(
-			"Expectation ({measure} <= {max}) by {by} not met (actual: {actual}):\n{query}\n" .
-			( new RuntimeException() )->getTraceAsString(),
+			"Expectation ({measure} <= {max}) by {by} not met (actual: {actual}):\n{query}\n",
 			[
 				'measure' => $expect,
 				'max' => $this->expect[$expect],
 				'by' => $this->expectBy[$expect],
 				'actual' => $actual,
-				'query' => self::queryString( $query )
+				'query' => self::queryString( $query ),
+				'exception' => new RuntimeException()
 			]
 		);
 	}
