@@ -169,19 +169,19 @@ class WatchAction extends FormAction {
 	public function onSuccess() {
 		$msgKey = $this->getTitle()->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
 		$expiryLabel = null;
-		$submittedExpiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		$submittedExpiry = $this->getContext()->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
 		if ( $submittedExpiry ) {
 			// We can't use $this->watcheditem to get the expiry because it's not been saved at this
 			// point in the request and so its values are those from before saving.
 			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry );
-			$expiryLabel = $submittedExpiry;
 
 			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
 			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );
-			$defaultLabels = array_keys( static::getExpiryOptions( $this->getContext(), null )['options'] );
-			if ( $expiryDays && !in_array( $submittedExpiry, $defaultLabels ) ) {
-				$expiryLabel = $this->getContext()->msg( 'days', $expiryDays );
-			}
+			$defaultLabels = static::getExpiryOptions( $this->getContext(), null )['options'];
+			$localizedExpiry = array_search( $submittedExpiry, $defaultLabels );
+			$expiryLabel = $expiryDays && $localizedExpiry === false
+				? $this->getContext()->msg( 'days', $expiryDays )->text()
+				: $localizedExpiry;
 
 			// Determine which message to use, depending on whether this is a talk page or not
 			// and whether an expiry was selected.
