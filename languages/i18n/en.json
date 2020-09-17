@@ -3624,6 +3624,7 @@
 	"duplicate-displaytitle": "<strong>Warning:</strong> Display title \"$2\" overrides earlier display title \"$1\".",
 	"restricted-displaytitle": "<strong>Warning:</strong> Display title \"$1\" was ignored since it is not equivalent to the page's actual title.",
 	"invalid-indicator-name": "<strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.",
+	"invalid-langconvert-attrs": "<strong>Error:</strong> Langconvert tag's <code>from</code> and <code>to</code> attributes must not be empty and must contain codes for convertible variants of the same language.",
 	"version": "Version",
 	"version-summary": "",
 	"version-extensions": "Installed extensions",
