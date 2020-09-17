@@ -246,3 +246,16 @@ CREATE TABLE /*_*/watchlist_expiry (
 );
 
 CREATE INDEX we_expiry ON /*_*/watchlist_expiry (we_expiry);
+
+
+CREATE TABLE /*_*/change_tag_def (
+  ctd_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  ctd_name BLOB NOT NULL, ctd_user_defined SMALLINT NOT NULL,
+  ctd_count BIGINT UNSIGNED DEFAULT 0 NOT NULL
+);
+
+CREATE UNIQUE INDEX ctd_name ON /*_*/change_tag_def (ctd_name);
+
+CREATE INDEX ctd_count ON /*_*/change_tag_def (ctd_count);
+
+CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);

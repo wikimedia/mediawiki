@@ -246,19 +246,6 @@ CREATE TABLE categorylinks (
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
 CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
 
-CREATE SEQUENCE change_tag_def_ctd_id_seq;
-CREATE TABLE change_tag_def (
-    ctd_id int NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_def_ctd_id_seq'),
-    ctd_name TEXT NOT NULL,
-    ctd_user_defined SMALLINT NOT NULL DEFAULT 0,
-    ctd_count INTEGER NOT NULL DEFAULT 0
-);
-ALTER SEQUENCE change_tag_def_ctd_id_seq OWNED BY change_tag_def.ctd_id;
-
-CREATE UNIQUE INDEX ctd_name ON change_tag_def (ctd_name);
-CREATE INDEX ctd_count ON change_tag_def (ctd_count);
-CREATE INDEX ctd_user_defined ON change_tag_def (ctd_user_defined);
-
 CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE externallinks (
   el_id       INTEGER     NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq'),
