@@ -1079,15 +1079,6 @@ CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 -- ApiQueryWatchlistRaw changed filter
 CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
 
--- Allows setting an expiry for watchlist items.
-CREATE TABLE /*_*/watchlist_expiry (
-  -- Key to watchlist.wl_id
-  we_item int unsigned NOT NULL PRIMARY KEY,
-  -- Expiry time
-  we_expiry binary(14) NOT NULL
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/we_expiry ON /*_*/watchlist_expiry (we_expiry);
 
 --
 -- When using the default MySQL search backend, page titles
@@ -1404,21 +1395,5 @@ CREATE INDEX /*i*/sites_language ON /*_*/sites (site_language);
 CREATE INDEX /*i*/sites_protocol ON /*_*/sites (site_protocol);
 CREATE INDEX /*i*/sites_domain ON /*_*/sites (site_domain);
 CREATE INDEX /*i*/sites_forward ON /*_*/sites (site_forward);
-
--- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
-CREATE TABLE /*_*/change_tag_def (
-    -- Numerical ID of the tag (ct_tag_id refers to this)
-    ctd_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    -- Symbolic name of the tag (what would previously be put in ct_tag)
-    ctd_name varbinary(255) NOT NULL,
-    -- Whether this tag was defined manually by a privileged user using Special:Tags
-    ctd_user_defined tinyint(1) NOT NULL,
-    -- Number of times this tag was used
-    ctd_count bigint unsigned NOT NULL default 0
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/ctd_name ON /*_*/change_tag_def (ctd_name);
-CREATE INDEX /*i*/ctd_count ON /*_*/change_tag_def (ctd_count);
-CREATE INDEX /*i*/ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 
 -- vim: sw=2 sts=2 et

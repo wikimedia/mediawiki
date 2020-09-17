@@ -738,5 +738,68 @@
 			}
 		],
 		"pk": [ "cat_id" ]
+	},
+	{
+		"name": "watchlist_expiry",
+		"comment": "Allows setting an expiry for watchlist items.",
+		"columns": [
+			{
+				"name": "we_item",
+				"comment": "Key to watchlist.wl_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "we_expiry",
+				"type": "mwtimestamp",
+				"comment": "Expiry time",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "we_expiry",
+				"columns": [ "we_expiry" ],
+				"unique": false
+			}
+		],
+		"pk": [ "we_item" ]
+	},
+	{
+		"name": "change_tag_def",
+		"comment": "Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag",
+		"columns": [
+			{
+				"name": "ctd_id",
+				"comment": "Numerical ID of the tag (ct_tag_id refers to this)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ctd_name",
+				"comment": "Symbolic name of the tag (what would previously be put in ct_tag)",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ctd_user_defined",
+				"comment": "Whether this tag was defined manually by a privileged user using Special:Tags",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "ctd_count",
+				"comment": "Number of times this tag was used",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ctd_name", "columns": [ "ctd_name" ], "unique": true },
+			{ "name": "ctd_count", "columns": [ "ctd_count" ], "unique": false },
+			{ "name": "ctd_user_defined", "columns": [ "ctd_user_defined" ], "unique": false }
+		],
+		"pk": [ "ctd_id" ]
 	}
+
 ]

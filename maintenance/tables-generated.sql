@@ -222,3 +222,23 @@ CREATE TABLE /*_*/category (
   INDEX cat_pages (cat_pages),
   PRIMARY KEY(cat_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/watchlist_expiry (
+  we_item INT UNSIGNED NOT NULL,
+  we_expiry BINARY(14) NOT NULL,
+  INDEX we_expiry (we_expiry),
+  PRIMARY KEY(we_item)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/change_tag_def (
+  ctd_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  ctd_name VARBINARY(255) NOT NULL,
+  ctd_user_defined TINYINT(1) NOT NULL,
+  ctd_count BIGINT UNSIGNED DEFAULT 0 NOT NULL,
+  UNIQUE INDEX ctd_name (ctd_name),
+  INDEX ctd_count (ctd_count),
+  INDEX ctd_user_defined (ctd_user_defined),
+  PRIMARY KEY(ctd_id)
+) /*$wgDBTableOptions*/;

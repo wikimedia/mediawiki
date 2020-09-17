@@ -745,6 +745,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'iwlinks', 'iwlinks_pkey', 'patch-iwlinks-pk.sql' ],
 			[ 'renameIndex', 'category', 'category_title', 'cat_title' ],
 			[ 'renameIndex', 'category', 'category_pages', 'cat_pages' ],
+			[ 'dropSequence', 'watchlist_expiry', 'watchlist_expiry_we_item_seq' ],
+			[ 'changeField', 'change_tag_def', 'ctd_count', 'BIGINT', 'ctd_count::BIGINT DEFAULT 0' ],
+			[ 'dropDefault', 'change_tag_def', 'ctd_user_defined' ],
 		];
 	}
 
