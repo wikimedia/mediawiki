@@ -729,6 +729,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @par Example
 	 * @code
 	 *     protected function setUp() : void {
+	 *         parent::setUp();
 	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
 	 *     }
 	 *
