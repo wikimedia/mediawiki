@@ -75,7 +75,7 @@
 		"mediawiki/mediawiki-codesniffer": "31.0.0",
 		"mediawiki/mediawiki-phan-config": "0.10.2",
 		"monolog/monolog": "~1.25.3",
-		"nikic/php-parser": "4.4.0",
+		"nikic/php-parser": "4.9.1",
 		"nmred/kafka-php": "0.1.5",
 		"php-parallel-lint/php-console-highlighter": "0.5",
 		"php-parallel-lint/php-parallel-lint": "1.2.0",
