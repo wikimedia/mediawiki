@@ -109,7 +109,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 					'block' => true,
 					'permissions' => [ 'block', 'hideuser' => false ],
 				],
-				'badaccess-group0',
+				'unblock-hideuser',
 			],
 			'Delete block failed' => [
 				[
