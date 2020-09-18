@@ -253,6 +253,8 @@ because of Phabricator reports.
   Use UserGroupManager instead.
 * SpecialBlock::canBlockEmail has been deprecated. Please use
   BlockPermissionChecker::checkEmailPermissions instead.
+* SpecialBlock::checkUnblockSelf has been deprecated. Please use
+  BlockPermissionChecker::checkBlockPermissions instead.
 * …
 
 === Other changes in 1.36 ===
