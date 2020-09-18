@@ -1414,6 +1414,7 @@
 	"grant-editpage": "Modifica pagine esistenti",
 	"grant-editprotected": "Modifica pagine protette",
 	"grant-highvolume": "Modifiche massive",
+	"grant-import": "Importa versioni",
 	"grant-mergehistory": "Unisce cronologie",
 	"grant-oversight": "Nasconde utenti e sopprime le versioni",
 	"grant-patrol": "Segna le modifiche alle pagine come verificate",

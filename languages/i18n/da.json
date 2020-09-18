@@ -3142,6 +3142,7 @@
 	"tag-mw-rollback": "Tilbagerulning",
 	"tag-mw-undo": "Omgjort",
 	"tag-mw-manual-revert": "Manuel tilbagerulning",
+	"tag-mw-reverted": "Tilbagerullet",
 	"tags-title": "Tags",
 	"tags-intro": "Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.",
 	"tags-tag": "Tagnavn",

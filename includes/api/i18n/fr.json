@@ -1277,6 +1277,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Obtenir un jeton pour modifier les préférences de l’utilisateur actuel.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Ajoute le compteur de modifications de l’utilisateur actuel.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Liste toutes les limites de débit s’appliquant à l’utilisateur actuel.",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Liste toutes les limites de taux qui s’appliqueraient à l’utilisateur actuel s’il n’était pas exempté de toutes les limites de débit d’après ses droits utilisateur ou son adresse IP",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Ajoute le vrai nom de l’utilisateur actuel.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Ajoute l’adresse de courriel de l’utilisateur et sa date d’authentification.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Renvoie en écho l’entête <code>Accept-Language</code> envoyé par le client dans un format structuré.",

@@ -900,6 +900,7 @@
 	"undo-summary-import2": "$2による $1 の取り込み版を取り消し",
 	"undo-summary-username-hidden": "秘匿された利用者による版 $1 を取り消し",
 	"viewpagelogs": "このページの記録を表示",
+	"viewpagelogs-lowercase": "このページの記録を表示",
 	"nohistory": "このページには編集履歴がありません。",
 	"currentrev": "最新版",
 	"currentrev-asof": "$1時点における最新版",
