@@ -21,11 +21,15 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that list newly created pages
@@ -42,8 +46,59 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected $showNavigation = false;
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param CommentStore $commentStore
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionLookup $revisionLookup
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ActorMigration $actorMigration
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		CommentStore $commentStore,
+		IContentHandlerFactory $contentHandlerFactory,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		RevisionLookup $revisionLookup,
+		NamespaceInfo $namespaceInfo,
+		ActorMigration $actorMigration
+	) {
 		parent::__construct( 'Newpages' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->commentStore = $commentStore;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->revisionLookup = $revisionLookup;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->actorMigration = $actorMigration;
 	}
 
 	/**
@@ -162,7 +217,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$pager = new NewPagesPager(
 			$this,
 			$this->opts,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->namespaceInfo,
+			$this->actorMigration
 		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
@@ -329,7 +389,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	private function revisionFromRcResult( stdClass $result, Title $title ) : RevisionRecord {
 		$revRecord = new MutableRevisionRecord( $title );
 		$revRecord->setComment(
-			CommentStore::getStore()->getComment( 'rc_comment', $result )
+			$this->commentStore->getComment( 'rc_comment', $result )
 		);
 		$revRecord->setVisibility( (int)$result->rc_deleted );
 
@@ -389,9 +449,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		if ( MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $title->getContentModel() )
+		if ( $this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 			->supportsDirectEditing()
 		) {
 			$linkArr[] = $linkRenderer->makeKnownLink(
@@ -505,7 +563,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$pager = new NewPagesPager(
 			$this,
 			$this->opts,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->namespaceInfo,
+			$this->actorMigration
 		);
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
@@ -551,9 +614,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemDesc( $row ) {
-		$revisionRecord = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getRevisionById( $row->rev_id );
+		$revisionRecord = $this->revisionLookup->getRevisionById( $row->rev_id );
 		if ( !$revisionRecord ) {
 			return '';
 		}
@@ -576,10 +637,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	private function canAnonymousUsersCreatePages() {
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
-			$pm->groupHasPermission( '*', 'createtalk' )
-		);
+		return $this->permissionManager->groupHasPermission( '*', 'createpage' ) ||
+			$this->permissionManager->groupHasPermission( '*', 'createtalk' );
 	}
 
 	protected function getGroupName() {

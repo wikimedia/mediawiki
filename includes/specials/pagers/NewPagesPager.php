@@ -20,7 +20,10 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
@@ -40,20 +43,48 @@ class NewPagesPager extends ReverseChronologicalPager {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
 	/**
 	 * @param SpecialNewpages $form
 	 * @param FormOptions $opts
-	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param HookContainer $hookContainer
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ActorMigration $actorMigration
 	 */
 	public function __construct(
 		$form,
 		FormOptions $opts,
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory,
+		HookContainer $hookContainer,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $namespaceInfo,
+		ActorMigration $actorMigration
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
 		$this->opts = $opts;
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->permissionManager = $permissionManager;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->actorMigration = $actorMigration;
 	}
 
 	public function getQueryInfo() {
@@ -75,12 +106,12 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		if ( $user ) {
-			$conds[] = ActorMigration::newMigration()->getWhere(
-				$this->mDb, 'rc_user', User::newFromName( $user->getText(), false ), false
+			$conds[] = $this->actorMigration->getWhere(
+				$this->getDatabase(), 'rc_user', User::newFromName( $user->getText(), false ), false
 			)['conds'];
 		} elseif ( $this->canAnonymousUsersCreatePages() && $this->opts->getValue( 'hideliu' ) ) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds[] = ActorMigration::newMigration()->isAnon( $rcQuery['fields']['rc_user'] );
+			$conds[] = $this->actorMigration->isAnon( $rcQuery['fields']['rc_user'] );
 		}
 
 		$conds = array_merge( $conds, $this->getNamespaceCond() );
@@ -106,7 +137,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		] );
 		$join_conds = [ 'page' => [ 'JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
 
-		$this->getHookRunner()->onSpecialNewpagesConditions(
+		$this->hookRunner->onSpecialNewpagesConditions(
 			$this, $this->opts, $conds, $tables, $fields, $join_conds );
 
 		$info = [
@@ -131,10 +162,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	private function canAnonymousUsersCreatePages() {
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
-			$pm->groupHasPermission( '*', 'createtalk' )
-		);
+		return $this->permissionManager->groupHasPermission( '*', 'createpage' ) ||
+			$this->permissionManager->groupHasPermission( '*', 'createtalk' );
 	}
 
 	// Based on ContribsPager.php
@@ -156,13 +185,14 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$eq_op = $invert ? '!=' : '=';
 		$bool_op = $invert ? 'AND' : 'OR';
 
-		$selectedNS = $this->mDb->addQuotes( $namespace );
+		$dbr = $this->getDatabase();
+		$selectedNS = $dbr->addQuotes( $namespace );
 		if ( !$associated ) {
 			return [ "rc_namespace $eq_op $selectedNS" ];
 		}
 
-		$associatedNS = $this->mDb->addQuotes(
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $namespace )
+		$associatedNS = $dbr->addQuotes(
+			$this->namespaceInfo->getAssociated( $namespace )
 		);
 		return [
 			"rc_namespace $eq_op $selectedNS " .

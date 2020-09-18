@@ -280,7 +280,19 @@ class SpecialPageFactory {
 		'Newimages' => \SpecialNewFiles::class,
 		'Log' => \SpecialLog::class,
 		'Watchlist' => \SpecialWatchlist::class,
-		'Newpages' => \SpecialNewpages::class,
+		'Newpages' => [
+			'class' => \SpecialNewpages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'CommentStore',
+				'ContentHandlerFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'RevisionLookup',
+				'NamespaceInfo',
+				'ActorMigration',
+			]
+		],
 		'Recentchanges' => \SpecialRecentChanges::class,
 		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
 		'Tags' => [
