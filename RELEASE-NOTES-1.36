@@ -67,6 +67,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated OOUI from 0.39.3 to 0.40.3.
 * Updated jquery.client from 2.0.2 to 3.0.0.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.0.1.
+* Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * …
 
 ===== Changed development-only external libraries =====
