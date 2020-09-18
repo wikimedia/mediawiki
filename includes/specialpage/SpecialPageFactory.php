@@ -277,7 +277,16 @@ class SpecialPageFactory {
 		],
 
 		// Recent changes and logs
-		'Newimages' => \SpecialNewFiles::class,
+		'Newimages' => [
+			'class' => \SpecialNewFiles::class,
+			'services' => [
+				'MimeAnalyzer',
+				'PermissionManager',
+				'ActorMigration',
+				'DBLoadBalancer',
+				'ContentLanguage',
+			]
+		],
 		'Log' => \SpecialLog::class,
 		'Watchlist' => \SpecialWatchlist::class,
 		'Newpages' => \SpecialNewpages::class,

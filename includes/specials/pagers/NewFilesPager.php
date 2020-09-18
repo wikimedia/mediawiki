@@ -19,12 +19,13 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * @ingroup Pager
  */
-use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
-
 class NewFilesPager extends RangeChronologicalPager {
 
 	/**
@@ -37,17 +38,42 @@ class NewFilesPager extends RangeChronologicalPager {
 	 */
 	protected $opts;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserCache */
+	private $userCache;
+
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
+	 * @param PermissionManager $permissionManager
+	 * @param ActorMigration $actorMigration
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserCache $userCache
 	 */
-	public function __construct( IContextSource $context, FormOptions $opts,
-		LinkRenderer $linkRenderer
+	public function __construct(
+		IContextSource $context,
+		FormOptions $opts,
+		LinkRenderer $linkRenderer,
+		PermissionManager $permissionManager,
+		ActorMigration $actorMigration,
+		ILoadBalancer $loadBalancer,
+		UserCache $userCache
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+
 		parent::__construct( $context, $linkRenderer );
 
 		$this->opts = $opts;
+		$this->permissionManager = $permissionManager;
+		$this->actorMigration = $actorMigration;
+		$this->userCache = $userCache;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
 		$startTimestamp = '';
@@ -64,7 +90,8 @@ class NewFilesPager extends RangeChronologicalPager {
 	public function getQueryInfo() {
 		$opts = $this->opts;
 		$conds = [];
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
+		$dbr = $this->getDatabase();
+		$actorQuery = $this->actorMigration->getJoin( 'img_user' );
 		$tables = [ 'image' ] + $actorQuery['tables'];
 		$fields = [ 'img_name', 'img_timestamp' ] + $actorQuery['fields'];
 		$options = [];
@@ -72,17 +99,14 @@ class NewFilesPager extends RangeChronologicalPager {
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
-			$conds[] = ActorMigration::newMigration()
-				->getWhere( wfGetDB( DB_REPLICA ), 'img_user', User::newFromName( $user, false ) )['conds'];
+			$conds[] = $this->actorMigration
+				->getWhere( $dbr, 'img_user', User::newFromName( $user, false ) )['conds'];
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
-			$groupsWithBotPermission = MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = $this->permissionManager->getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
-				$dbr = wfGetDB( DB_REPLICA );
 				$tables[] = 'user_groups';
 				$conds[] = 'ug_group IS NULL';
 				$jconds['user_groups'] = [
@@ -119,7 +143,6 @@ class NewFilesPager extends RangeChronologicalPager {
 
 		$likeVal = $opts->getValue( 'like' );
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $likeVal !== '' ) {
-			$dbr = wfGetDB( DB_REPLICA );
 			$likeObj = Title::newFromText( $likeVal );
 			if ( $likeObj instanceof Title ) {
 				$like = $dbr->buildLike(
@@ -177,26 +200,24 @@ class NewFilesPager extends RangeChronologicalPager {
 			$userIds[] = $row->img_user;
 		}
 		// Do a link batch query for names and userpages
-		UserCache::singleton()->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
 	}
 
 	public function formatRow( $row ) {
-		$name = $row->img_name;
-		$username = UserCache::singleton()->getUserName( $row->img_user, $row->img_user_text );
+		$username = $this->userCache->getUserName( $row->img_user, $row->img_user_text );
 
-		$title = Title::makeTitle( NS_FILE, $name );
 		if ( ExternalUserNames::isExternal( $username ) ) {
 			$ul = htmlspecialchars( $username );
 		} else {
 			$ul = $this->getLinkRenderer()->makeLink(
-				Title::makeTitle( NS_USER, $username ),
+				new TitleValue( NS_USER, $username ),
 				$username
 			);
 		}
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
 		$this->gallery->add(
-			$title,
+			Title::makeTitle( NS_FILE, $row->img_name ),
 			"$ul<br />\n<i>"
 				. htmlspecialchars( $time )
 				. "</i><br />\n",
