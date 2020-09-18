@@ -3922,8 +3922,6 @@ ERROR;
 	 * @return string HTML
 	 */
 	public static function getPreviewLimitReport( ParserOutput $output = null ) {
-		global $wgLang;
-
 		if ( !$output || !$output->getLimitReportData() ) {
 			return '';
 		}
@@ -3951,7 +3949,7 @@ ERROR;
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
 						Html::rawElement( 'td', null,
-							$wgLang->formatNum( $valueMsg->params( $value )->parse() )
+							$valueMsg->numParams( $value )->parse()
 						) .
 						Html::closeElement( 'tr' );
 				}

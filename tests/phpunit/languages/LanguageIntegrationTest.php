@@ -1673,6 +1673,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	public function testFormatNum(
 		$translateNumerals, $langCode, $number, $nocommafy, $expected
 	) {
+		$this->hideDeprecated( 'Language::commafy with a non-numeric string' );
 		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
 		$lang = Language::factory( $langCode );
 		$formattedNum = $lang->formatNum( $number, $nocommafy );
@@ -1686,10 +1687,22 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ true, 'en', 101, true, '101' ],
 			[ false, 'en', 103, false, '103' ],
 			[ false, 'en', 104, true, '104' ],
-			[ true, 'en', '105', false, '105' ],
-			[ true, 'en', '106', true, '106' ],
-			[ false, 'en', '107', false, '107' ],
-			[ false, 'en', '108', true, '108' ],
+			[ true, 'kn', '1050', false, '೧,೦೫೦' ],
+			[ true, 'kn', '1060', true, '೧೦೬೦' ],
+			[ false, 'kn', '1070', false, '1,070' ],
+			[ false, 'kn', '1080', true, '1080' ],
+			[ true, 'kn', '.1090', false, '.೧೦೯೦' ],
+
+			// Make sure non-numeric strings are not destroyed
+			[ false, 'en', 'The number is 1234', false, 'The number is 1,234' ],
+			[ false, 'en', '1234 is the number', false, '1,234 is the number' ],
+			[ false, 'de', '.', false, ',' ],
+			[ false, 'de', ',', false, '.' ],
+
+			/** @see https://phabricator.wikimedia.org/T237467 */
+			[ false, 'kn', "೭\u{FFFD}0", false, "೭\u{FFFD}0" ],
+			[ false, 'kn', "-೭\u{FFFD}0", false, "-೭\u{FFFD}0" ],
+			[ false, 'kn', "-1೭\u{FFFD}0", false, "-1೭\u{FFFD}0" ],
 		];
 	}
 
@@ -1722,6 +1735,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideCommafyData
 	 */
 	public function testCommafy( $number, $numbersWithCommas ) {
+		$this->hideDeprecated( 'Language::commafy with a non-numeric string' );
 		$this->assertEquals(
 			$numbersWithCommas,
 			$this->getLang()->commafy( $number ),
@@ -1748,6 +1762,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 1000000.0001, '1,000,000.0001' ],
 			[ '200000000000000000000', '200,000,000,000,000,000,000' ],
 			[ '-200000000000000000000', '-200,000,000,000,000,000,000' ],
+			[ '1.', '1.' ],
+			[ '-.1', '-.1' ],
+			[ '-0', '-0' ],
+
+			// Make sure non-numeric strings are not destroyed
+			// (But these will trigger deprecation warnings)
+			[ 'The number is 1234', 'The number is 1,234' ],
+			[ '1234 is the number', '1,234 is the number' ],
+			[ '.', '.' ],
+			[ ',', ',' ],
+			[ '-', '-' ],
+			[ 'abcdefg', 'abcdefg' ],
+			[ 'dontBeF00led.2', 'dontBeF00led.2' ],
 		];
 	}
 
