@@ -122,7 +122,7 @@
 		]
 	},
 	"scripts": {
-		"lint": "parallel-lint --exclude vendor",
+		"lint": "parallel-lint --exclude vendor .",
 		"phpcs": "phpcs -p -s",
 		"fix": "phpcbf -p",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
