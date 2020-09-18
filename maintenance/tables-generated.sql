@@ -242,3 +242,12 @@ CREATE TABLE /*_*/change_tag_def (
   INDEX ctd_user_defined (ctd_user_defined),
   PRIMARY KEY(ctd_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/ipblocks_restrictions (
+  ir_ipb_id INT NOT NULL,
+  ir_type TINYINT(1) NOT NULL,
+  ir_value INT NOT NULL,
+  INDEX ir_type_value (ir_type, ir_value),
+  PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
+) /*$wgDBTableOptions*/;
