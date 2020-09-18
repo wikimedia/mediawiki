@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * Special page to allow managing user group membership
@@ -42,8 +43,17 @@ class UserrightsPage extends SpecialPage {
 	protected $mFetchedUser = null;
 	protected $isself = false;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	public function __construct() {
 		parent::__construct( 'Userrights' );
+
+		// TODO inject this, but this class is extended (even though it shouldn't be, T263207)
+		// TODO don't hard code false, use interwiki domains. See T14518
+		$this->userGroupManager = MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( false );
 	}
 
 	public function doesWrites() {
@@ -675,7 +685,7 @@ class UserrightsPage extends SpecialPage {
 		$isUserInstance = $user instanceof User;
 
 		if ( $isUserInstance ) {
-			foreach ( Autopromote::getAutopromoteGroups( $user ) as $group ) {
+			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
 				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
 					'html', $user->getName() );
@@ -807,7 +817,11 @@ class UserrightsPage extends SpecialPage {
 	 * @return array Array of groups that may be edited.
 	 */
 	protected static function getAllGroups() {
-		return User::getAllGroups();
+		// TODO don't hard code false here (refers to local domain). See T14518
+		return MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( false )
+			->listAllGroups();
 	}
 
 	/**
