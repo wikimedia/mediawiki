@@ -142,23 +142,24 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @since 1.31
-	 * @param string|null|array $options Options for the skin can be an array since 1.35.
-	 *  When an array is passed `name` represents skinname,
-	 *  `scripts` represents an array of ResourceLoader script modules
-	 *  and `styles` represents
-	 *  an array of ResourceLoader style modules to load on all pages.
+	 * @param string|array|null $options Options for the skin can be an array since 1.35.
+	 *  When a string is passed, it's the skinname.
+	 *  When an array is passed;
+	 *  `name` key represents the skinname, defaults to $wgDefaultSkin if not provided
+	 *  `scripts` represents an array of ResourceLoader script modules and
+	 *  `styles` represents an array of ResourceLoader style modules to load on all pages.
 	 *  `responsive` indicates if a viewport meta tag should be set.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
 			$this->skinname = $options;
 		} elseif ( $options ) {
-			$this->options = $options;
 			$name = $options['name'] ?? null;
-			// Note: skins might override the public $skinname method instead
-			if ( $name ) {
-				$this->skinname = $name;
+			if ( !$name ) {
+				throw new SkinException( 'Skin name must be specified' );
 			}
+			$this->options = $options;
+			$this->skinname = $name;
 		}
 	}
 
