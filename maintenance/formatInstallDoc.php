@@ -64,7 +64,7 @@ class FormatInstallDoc extends Maintenance {
 
 		if ( $this->hasOption( 'html' ) ) {
 			$parser = MediaWikiServices::getInstance()->getParser();
-			$opt = new ParserOptions;
+			$opt = ParserOptions::newFromAnon();
 			$title = Title::newFromText( 'Text file' );
 			$out = $parser->parse( $outText, $title, $opt );
 			$outText = "<html><body>\n" . $out->getText() . "\n</body></html>\n";

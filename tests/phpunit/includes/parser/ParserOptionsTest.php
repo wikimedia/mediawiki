@@ -345,7 +345,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetSpeculativeRevid() {
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 
 		$this->assertFalse( $options->getSpeculativeRevId() );
 

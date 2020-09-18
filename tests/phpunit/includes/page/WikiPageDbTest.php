@@ -1065,7 +1065,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function testGetParserOutput_nonexisting() {
 		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
 
-		$opt = new ParserOptions();
+		$opt = ParserOptions::newFromAnon();
 		$po = $page->getParserOutput( $opt );
 
 		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing pages." );
@@ -1077,7 +1077,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function testGetParserOutput_badrev() {
 		$page = $this->createPage( __METHOD__, 'dummy', CONTENT_MODEL_WIKITEXT );
 
-		$opt = new ParserOptions();
+		$opt = ParserOptions::newFromAnon();
 		$po = $page->getParserOutput( $opt, $page->getLatest() + 1234 );
 
 		// @todo would be neat to also test deleted revision

@@ -456,7 +456,9 @@ just a test"
 
 		$content = new WikitextContent( '~~~~' );
 		$pstContent = $content->preSaveTransform(
-			$titleObj, $this->getTestUser()->getUser(), new ParserOptions()
+			$titleObj,
+			$this->getTestUser()->getUser(),
+			ParserOptions::newFromAnon()
 		);
 
 		$this->assertTrue( $pstContent->getParserOutput( $titleObj )->getFlag( 'user-signature' ) );
