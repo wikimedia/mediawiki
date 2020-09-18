@@ -85,21 +85,19 @@ class ParserCache {
 	 *
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
-	 * @param HookContainer|null $hookContainer
+	 * @param HookContainer $hookContainer
 	 * @param IBufferingStatsdDataFactory|null $stats
 	 * @throws MWException
 	 */
 	public function __construct(
 		BagOStuff $cache,
-		$cacheEpoch = '20030516000000',
-		HookContainer $hookContainer = null,
+		$cacheEpoch,
+		HookContainer $hookContainer,
 		IBufferingStatsdDataFactory $stats = null
 	) {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
-		$this->hookRunner = new HookRunner(
-			$hookContainer ?: MediaWikiServices::getInstance()->getHookContainer()
-		);
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = $stats ?: MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 

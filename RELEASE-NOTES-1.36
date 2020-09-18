@@ -197,6 +197,7 @@ because of Phabricator reports.
 * Removed HookContainer::getOriginalHooksForTest() without deprecation.
   This method was introduced in 1.35 for internal use, and appears unused
   outside of MediaWiki core.
+* ParserCache::__construct() now requires three parameters.
 * …
 
 === Deprecations in 1.36 ===
