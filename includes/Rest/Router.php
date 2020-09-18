@@ -5,7 +5,6 @@ namespace MediaWiki\Rest;
 use AppendIterator;
 use BagOStuff;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -71,12 +70,12 @@ class Router {
 	 * @param BasicAuthorizerInterface $basicAuth
 	 * @param ObjectFactory $objectFactory
 	 * @param Validator $restValidator
-	 * @param HookContainer|null $hookContainer
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
 		BagOStuff $cacheBag, ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth, ObjectFactory $objectFactory,
-		Validator $restValidator, HookContainer $hookContainer = null
+		Validator $restValidator, HookContainer $hookContainer
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -87,11 +86,6 @@ class Router {
 		$this->basicAuth = $basicAuth;
 		$this->objectFactory = $objectFactory;
 		$this->restValidator = $restValidator;
-
-		if ( !$hookContainer ) {
-			// b/c for OAuth extension
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
 		$this->hookContainer = $hookContainer;
 	}
 

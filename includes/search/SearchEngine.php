@@ -871,6 +871,9 @@ abstract class SearchEngine {
 	 */
 	protected function getHookContainer() : HookContainer {
 		if ( !$this->hookContainer ) {
+			// This shouldn't be hit in core, but it is needed for CirrusSearch
+			// which commonly creates a CirrusSearch object without cirrus being
+			// configured in $wgSearchType/$wgSearchTypeAlternatives.
 			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		return $this->hookContainer;

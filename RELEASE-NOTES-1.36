@@ -197,6 +197,7 @@ because of Phabricator reports.
 * Removed HookContainer::getOriginalHooksForTest() without deprecation.
   This method was introduced in 1.35 for internal use, and appears unused
   outside of MediaWiki core.
+* ParserCache::__construct() now requires three parameters.
 * …
 
 === Deprecations in 1.36 ===
@@ -243,6 +244,8 @@ because of Phabricator reports.
 * BaseTemplate::getToolbox() method has been hard deprecated. The toolbox data
   is now available in a sidebar data array which you can get from any class
   that's extending QuickTemplate class.
+* Constructing a DefaultPreferencesFactory, LinkHolderArray or PasswordReset
+  without a $hookContainer parameter is deprecated.
 * …
 
 === Other changes in 1.36 ===
