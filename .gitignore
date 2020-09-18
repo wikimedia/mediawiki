@@ -61,7 +61,6 @@ phpunit.xml
 .api-testing.config.json
 
 # Composer
-/composer.lock
 /composer.local.json
 /composer.phar
 
