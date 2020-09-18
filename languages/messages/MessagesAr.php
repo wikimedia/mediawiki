@@ -8,7 +8,6 @@
  *
  */
 
-$linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
 
 $rtl = true;
@@ -445,9 +444,26 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'بدون_إنترويكي' ],
 ];
 
+$linkPrefixExtension = true;
+
 /**
  * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
  * the first group, and the remainder of the string as the second group. Modified to match
  * Arabic trails too.
  */
-$linkTrail = '/^([a-zء-ي]+)(.*)$/sDu';
+// The prefix set also needs to include diacritics, as these can be added
+// to letters, but keep them as letters.
+// These are from the "Extend" group in Unicode:
+// https://www.unicode.org/Public/13.0.0/ucd/auxiliary/WordBreakProperty.txt
+$arabicCombiningDiacritics =
+	'\\x{0610}-\\x{061A}' .
+	'\\x{064B}-\\x{065F}' .
+	'\\x{0670}' .
+	'\\x{06D6}-\\x{06DC}' .
+	'\\x{06DF}-\\x{06E4}' .
+	'\\x{06E7}' .
+	'\\x{06E8}' .
+	'\\x{06EA}-\\x{06ED}';
+
+$linkTrail = '/^([a-zء-ي' . $arabicCombiningDiacritics . ']+)(.*)$/sDu';
+$linkPrefixCharset = 'a-zA-Zء-ي' . $arabicCombiningDiacritics;

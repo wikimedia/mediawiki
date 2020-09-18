@@ -27976,19 +27976,6 @@ parsoid=html2wt
 </p>
 !! end
 
-!! test
-Links 16. Link prefix using unicode \x{...} escapes (T235563)
-!! options
-language=ar
-!! wikitext
-Nominated–[[Nineteentwentythree]]
-!! html/php
-<p><a href="/index.php?title=Nineteentwentythree&amp;action=edit&amp;redlink=1" class="new" title="Nineteentwentythree (الصفحة غير موجودة)">Nominated–Nineteentwentythree</a>
-</p>
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Nineteentwentythree" title="Nineteentwentythree" data-parsoid='{"stx":"simple","a":{"href":"./Nineteentwentythree"},"sa":{"href":"Nineteentwentythree"},"prefix":"Nominated–"}' class="new">Nominated–Nineteentwentythree</a></p>
-!! end
-
 # This example actually from lnwiki, but arwiki has the same link
 # prefix and equivalent link trail for this purpose.
 !! test
