@@ -285,7 +285,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 				$reason,
 			],
 			'Confirm' => '1',
-			'CreateAccount' => '0',
+			'CreateAccount' => '1',
 			'DisableUTEdit' => '0',
 			'DisableEmail' => '0',
 			'HardBlock' => '0',
@@ -304,6 +304,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
+		$this->assertTrue( $block->isCreateAccountBlocked() );
 		$this->assertCount( 2, $block->getRestrictions() );
 		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
@@ -320,6 +321,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
+		$this->assertTrue( $block->isCreateAccountBlocked() );
 		$this->assertCount( 1, $block->getRestrictions() );
 		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
@@ -335,6 +337,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
+		$this->assertTrue( $block->isCreateAccountBlocked() );
 		$this->assertSame( [], $block->getRestrictions() );
 
 		// Change to sitewide.
