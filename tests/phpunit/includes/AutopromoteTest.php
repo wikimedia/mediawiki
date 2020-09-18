@@ -6,6 +6,7 @@ use MediaWiki\User\UserEditTracker;
  * @covers Autopromote
  */
 class AutopromoteTest extends MediaWikiIntegrationTestCase {
+
 	/**
 	 * T157718: Verify Autopromote does not perform edit count lookup if requirement is 0 or invalid
 	 *
@@ -15,6 +16,8 @@ class AutopromoteTest extends MediaWikiIntegrationTestCase {
 	 * @param int $requirement edit count required to autopromote user
 	 */
 	public function testEditCountLookupIsSkippedIfRequirementIsZero( $editCount, $requirement ) {
+		$this->hideDeprecated( 'Autopromote::getAutopromoteGroups' );
+
 		$this->setMwGlobals( [
 			'wgAutopromote' => [
 				'autoconfirmed' => [ APCOND_EDITCOUNT, $requirement ]
