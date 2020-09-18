@@ -186,6 +186,10 @@ return [
 		MediaWikiServices $services
 	) : BlockPermissionCheckerFactory {
 		return new BlockPermissionCheckerFactory(
+			new ServiceOptions(
+				BlockPermissionCheckerFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
 			$services->getPermissionManager()
 		);
 	},

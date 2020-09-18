@@ -1144,15 +1144,16 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Can we do an email block?
+	 *
+	 * @deprecated since 1.36, use BlockPermissionChecker service instead
 	 * @param UserIdentity $user The sysop wanting to make a block
 	 * @return bool
 	 */
 	public static function canBlockEmail( UserIdentity $user ) {
-		global $wgEnableUserEmail;
-
-		return ( $wgEnableUserEmail && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'blockemail' ) );
+		return MediaWikiServices::getInstance()
+			->getBlockPermissionCheckerFactory()
+			->newBlockPermissionChecker( null, User::newFromIdentity( $user ) )
+			->checkEmailPermissions();
 	}
 
 	/**

@@ -164,4 +164,32 @@ class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 			)->checkBlockPermissions()
 		);
 	}
+
+	/**
+	 * @covers ::checkEmailPermissions
+	 */
+	public function testCheckEmailPermissionOkay() {
+		$this->assertTrue(
+			$this->factory->newBlockPermissionChecker(
+				null,
+				$this->sysop
+			)
+			->checkEmailPermissions()
+		);
+	}
+
+	/**
+	 * @covers ::checkEmailPermissions
+	 */
+	public function testCheckEmailPermissionNoPermission() {
+		$this->overrideUserPermissions( $this->sysop, [ 'blockemail' => false ] );
+
+		$this->assertFalse(
+			$this->factory->newBlockPermissionChecker(
+				null,
+				$this->sysop
+			)
+			->checkEmailPermissions()
+		);
+	}
 }
