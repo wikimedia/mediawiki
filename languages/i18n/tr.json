@@ -158,7 +158,7 @@
 	"tog-norollbackdiff": "Eski hâline getirdikten sonra farkı gösterme",
 	"tog-useeditwarning": "Bir düzenleme sayfasından değişiklikleri kaydetmeden ayrılırken beni uyar",
 	"tog-prefershttps": "Oturum açıkken her zaman güvenli bir bağlantı kullan",
-	"tog-showrollbackconfirmation": "Geri alma bağlantısına tıkladığınızda bir onay istemi gösterin",
+	"tog-showrollbackconfirmation": "Geri döndür bağlantısına tıklanınca bir onay istemi göster",
 	"tog-requireemail": "‎Parola sıfırlama e-postalarını yalnızca hem e-posta adresi hem de kullanıcı adı sağlandığında gönderin.‎",
 	"underline-always": "Her zaman",
 	"underline-never": "Asla",

@@ -1646,6 +1646,7 @@
 	"apierror-compare-relative-to-nothing": "沒有相關 <var>torelative</var> 的 'from' 修訂。",
 	"apierror-contentserializationexception": "內容序列化失敗：$1",
 	"apierror-contenttoobig": "您所提供的內容超出條目的 $1 {{PLURAL:$1|位元組|位元組}}限制。",
+	"apierror-contentmodel-mismatch": "您提供的內容具有 <kbd>$1</kbd> 內容模組，該模組與頁面 <kbd>$2</kbd> 目前的內容模組不同。",
 	"apierror-copyuploadbaddomain": "不允許從此網域來透過 URL 上傳。",
 	"apierror-copyuploadbadurl": "不允許從此 URL 來上傳。",
 	"apierror-create-titleexists": "現有標題不能以 <kbd>create</kbd> 來保護。",
