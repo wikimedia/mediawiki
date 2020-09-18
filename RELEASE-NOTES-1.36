@@ -66,7 +66,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
 * Updated OOUI from 0.39.3 to 0.40.3.
 * Updated jquery.client from 2.0.2 to 3.0.0.
-* Updated guzzlehttp/guzzle from 6.5.4 to 6.5.5.
+* Updated guzzlehttp/guzzle from 6.5.4 to 7.0.1.
 * …
 
 ===== Changed development-only external libraries =====
