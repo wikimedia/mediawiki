@@ -381,7 +381,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'Target' => $target,
 			'PreviousTarget' => $target,
 			'Expiry' => 'infinity',
-			'CreateAccount' => '0',
+			'CreateAccount' => '1',
 			'DisableEmail' => '0',
 			'HardBlock' => '0',
 			'AutoBlock' => '0',
