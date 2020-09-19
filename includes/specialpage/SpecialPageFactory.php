@@ -457,7 +457,15 @@ class SpecialPageFactory {
 				'ContentHandlerFactory',
 			]
 		],
-		'MergeHistory' => \SpecialMergeHistory::class,
+		'MergeHistory' => [
+			'class' => \SpecialMergeHistory::class,
+			'services' => [
+				'MergeHistoryFactory',
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+				'RevisionStore',
+			]
+		],
 		'ExpandTemplates' => [
 			'class' => \SpecialExpandTemplates::class,
 			'services' => [

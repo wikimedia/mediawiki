@@ -20,7 +20,8 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
@@ -42,18 +43,32 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/**
+	 * @param SpecialMergeHistory $form
+	 * @param array $conds
+	 * @param Title $source
+	 * @param Title $dest
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
+	 */
 	public function __construct(
 		SpecialMergeHistory $form,
 		$conds,
 		Title $source,
 		Title $dest,
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->articleID = $source->getArticleID();
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$maxtimestamp = $dbr->selectField(
 			'revision',
 			'MIN(rev_timestamp)',
@@ -62,8 +77,11 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		);
 		$this->maxTimestamp = $maxtimestamp;
 
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $dbr;
 		parent::__construct( $form->getContext() );
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->revisionStore = $revisionStore;
 	}
 
 	protected function getStartBody() {
@@ -99,15 +117,12 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
+		$dbr = $this->getDatabase();
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
-		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
+		$conds[] = "rev_timestamp < " . $dbr->addQuotes( $this->maxTimestamp );
 
-		// TODO inject a RevisionStore into SpecialMergeHistory and pass it to
-		// the MergeHistoryPager constructor
-		$revQuery = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		return [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
