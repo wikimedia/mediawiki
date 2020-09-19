@@ -433,3 +433,15 @@ CREATE INDEX el_index ON /*_*/externallinks (el_index);
 CREATE INDEX el_index_60 ON /*_*/externallinks (el_index_60, el_id);
 
 CREATE INDEX el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
+
+
+CREATE TABLE /*_*/ip_changes (
+  ipc_rev_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  ipc_rev_timestamp BLOB NOT NULL,
+  ipc_hex BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(ipc_rev_id)
+);
+
+CREATE INDEX ipc_rev_timestamp ON /*_*/ip_changes (ipc_rev_timestamp);
+
+CREATE INDEX ipc_hex_time ON /*_*/ip_changes (ipc_hex, ipc_rev_timestamp);

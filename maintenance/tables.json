@@ -1321,5 +1321,34 @@
 			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false }
 		],
 		"pk": [ "el_id" ]
+	},
+	{
+		"name": "ip_changes",
+		"comment": "Every time an edit by a logged out user is saved, a row is created in ip_changes. This stores the IP as a hex representation so that we can more easily find edits within an IP range.",
+		"columns": [
+			{
+				"name": "ipc_rev_id",
+				"comment": "Foreign key to the revision table, also serves as the unique primary key",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "ipc_rev_timestamp",
+				"comment": "The timestamp of the revision",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ipc_hex",
+				"comment": "Hex representation of the IP address, as returned by Wikimedia\\IPUtils::toHex() For IPv4 it will resemble: ABCD1234 For IPv6: v6-ABCD1234000000000000000000000000 BETWEEN is then used to identify revisions within a given range",
+				"type": "binary",
+				"options": { "length": 35, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "ipc_rev_timestamp", "columns": [ "ipc_rev_timestamp" ], "unique": false },
+			{ "name": "ipc_hex_time", "columns": [ "ipc_hex", "ipc_rev_timestamp" ], "unique": false }
+		],
+		"pk": [ "ipc_rev_id" ]
 	}
 ]

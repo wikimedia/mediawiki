@@ -405,3 +405,13 @@ CREATE TABLE /*_*/externallinks (
   INDEX el_from_index_60 (el_from, el_index_60, el_id),
   PRIMARY KEY(el_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/ip_changes (
+  ipc_rev_id INT UNSIGNED DEFAULT 0 NOT NULL,
+  ipc_rev_timestamp BINARY(14) NOT NULL,
+  ipc_hex VARBINARY(35) DEFAULT '' NOT NULL,
+  INDEX ipc_rev_timestamp (ipc_rev_timestamp),
+  INDEX ipc_hex_time (ipc_hex, ipc_rev_timestamp),
+  PRIMARY KEY(ipc_rev_id)
+) /*$wgDBTableOptions*/;

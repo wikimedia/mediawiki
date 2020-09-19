@@ -311,6 +311,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'watchlist', 'wl_title', 'patch-watchlist-wl_title-varbinary.sql' ],
 			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
 			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
+			[ 'modifyField', 'ip_changes', 'ipc_rev_timestamp',  'patch-ip_changes-pc_rev_timestamp-drop-default.sql' ]
 		];
 	}
 

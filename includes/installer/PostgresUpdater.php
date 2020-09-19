@@ -808,6 +808,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'externallinks', 'externallinks_from_to', 'el_from' ],
 			[ 'renameIndex', 'externallinks', 'externallinks_index', 'el_index' ],
 			[ 'addPgIndex', 'externallinks', 'el_to', '(el_to, el_from)' ],
+			[ 'dropSequence', 'ip_changes', 'ip_changes_ipc_rev_id_seq' ],
+			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
+			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
 		];
 	}
 
