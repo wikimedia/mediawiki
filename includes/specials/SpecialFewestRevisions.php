@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -32,8 +31,13 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @author Martin Drashkov
  */
 class SpecialFewestRevisions extends QueryPage {
-	public function __construct( $name = 'Fewestrevisions' ) {
-		parent::__construct( $name );
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( 'Fewestrevisions' );
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function isExpensive() {
@@ -53,8 +57,7 @@ class SpecialFewestRevisions extends QueryPage {
 				'value' => 'COUNT(*)',
 			],
 			'conds' => [
-				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getContentNamespaces(),
+				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_id = rev_page',
 				'page_is_redirect = 0',
 			],
