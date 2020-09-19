@@ -1167,6 +1167,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *   or username/IP address, or null when the target is not known yet (e.g. when
 	 *   displaying Special:Block)
 	 * @param User $performer User doing the request
+	 * @deprecated since 1.36, use BlockPermissionChecker instead
 	 * @return bool|string True or error message key
 	 */
 	public static function checkUnblockSelf( $target, User $performer ) {
