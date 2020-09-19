@@ -19,14 +19,17 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -46,20 +49,53 @@ class BlockListPager extends TablePager {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @param SpecialPage $page
 	 * @param array $conds
-	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param ActorMigration $actorMigration
+	 * @param CommentStore $commentStore
 	 */
 	public function __construct(
 		$page,
 		$conds,
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory,
+		BlockRestrictionStore $blockRestrictionStore,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		SpecialPageFactory $specialPageFactory,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore
 	) {
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->permissionManager = $permissionManager;
+		$this->specialPageFactory = $specialPageFactory;
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
 	}
 
 	protected function getFieldNames() {
@@ -154,25 +190,22 @@ class BlockListPager extends TablePager {
 					$value,
 					/* User preference timezone */true
 				) );
-				if ( MediaWikiServices::getInstance()
-						->getPermissionManager()
-						->userHasRight( $this->getUser(), 'block' )
-				) {
+				if ( $this->permissionManager->userHasRight( $this->getUser(), 'block' ) ) {
 					$links = [];
 					if ( $row->ipb_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
-							SpecialPage::getTitleFor( 'Unblock' ),
+							$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
 							$msg['unblocklink'],
 							[],
 							[ 'wpTarget' => "#{$row->ipb_id}" ]
 						);
 					} else {
 						$links[] = $linkRenderer->makeKnownLink(
-							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
+							$this->specialPageFactory->getTitleForAlias( 'Unblock/' . $row->ipb_address ),
 							$msg['unblocklink']
 						);
 						$links[] = $linkRenderer->makeKnownLink(
-							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
+							$this->specialPageFactory->getTitleForAlias( 'Block/' . $row->ipb_address ),
 							$msg['change-blocklink']
 						);
 					}
@@ -211,7 +244,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$value = CommentStore::getStore()->getComment( 'ipb_reason', $row )->text;
+				$value = $this->commentStore->getComment( 'ipb_reason', $row )->text;
 				$formatted = Linker::formatComment( $value );
 				break;
 
@@ -305,7 +338,7 @@ class BlockListPager extends TablePager {
 						'li',
 						[],
 						$linkRenderer->makeLink(
-							SpecialPage::getTitleValueFor( 'Allpages' ),
+							$this->specialPageFactory->getTitleForAlias( 'Allpages' ),
 							$text,
 							[],
 							[
@@ -342,8 +375,8 @@ class BlockListPager extends TablePager {
 	}
 
 	public function getQueryInfo() {
-		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
+		$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
+		$actorQuery = $this->actorMigration->getJoin( 'ipb_by' );
 
 		$info = [
 			'tables' => array_merge(
@@ -378,10 +411,7 @@ class BlockListPager extends TablePager {
 		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
 
 		# Is the user allowed to see hidden blocks?
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$info['conds']['ipb_deleted'] = 0;
 		}
 
@@ -430,7 +460,6 @@ class BlockListPager extends TablePager {
 	 * @param IResultWrapper $result
 	 */
 	public function preprocessResults( $result ) {
-		$services = MediaWikiServices::getInstance();
 		# Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
@@ -453,8 +482,7 @@ class BlockListPager extends TablePager {
 		if ( $partialBlocks ) {
 			// Mutations to the $row object are not persisted. The restrictions will
 			// need be stored in a separate store.
-			$blockRestrictionStore = $services->getBlockRestrictionStore();
-			$this->restrictions = $blockRestrictionStore->loadByBlockId( $partialBlocks );
+			$this->restrictions = $this->blockRestrictionStore->loadByBlockId( $partialBlocks );
 
 			foreach ( $this->restrictions as $restriction ) {
 				if ( $restriction->getType() === PageRestriction::TYPE ) {
