@@ -195,7 +195,18 @@ class SpecialPageFactory {
 		'Tags' => \SpecialTags::class,
 
 		// Media reports and uploads
-		'Listfiles' => \SpecialListFiles::class,
+		'Listfiles' => [
+			'class' => \SpecialListFiles::class,
+			'services' => [
+				'RepoGroup',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'Filepath' => \SpecialFilepath::class,
 		'MediaStatistics' => \SpecialMediaStatistics::class,
 		'MIMEsearch' => \SpecialMIMESearch::class,
