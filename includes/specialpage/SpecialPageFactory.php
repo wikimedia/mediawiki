@@ -74,7 +74,13 @@ class SpecialPageFactory {
 		'Longpages' => \SpecialLongPages::class,
 		'Ancientpages' => \SpecialAncientPages::class,
 		'Lonelypages' => \SpecialLonelyPages::class,
-		'Fewestrevisions' => \SpecialFewestRevisions::class,
+		'Fewestrevisions' => [
+			'class' => \SpecialFewestRevisions::class,
+			'services' => [
+				// Same as for Mostrevisions
+				'NamespaceInfo',
+			]
+		],
 		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
@@ -213,7 +219,13 @@ class SpecialPageFactory {
 		'Mostlinked' => \SpecialMostLinked::class,
 		'Mostlinkedtemplates' => \SpecialMostLinkedTemplates::class,
 		'Mostcategories' => \SpecialMostCategories::class,
-		'Mostrevisions' => \SpecialMostRevisions::class,
+		'Mostrevisions' => [
+			'class' => \SpecialMostRevisions::class,
+			'services' => [
+				// Same as for Fewestrevisions
+				'NamespaceInfo',
+			]
+		],
 
 		// Page tools
 		'ComparePages' => \SpecialComparePages::class,

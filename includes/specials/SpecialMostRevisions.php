@@ -25,8 +25,9 @@
  */
 
 class SpecialMostRevisions extends SpecialFewestRevisions {
-	public function __construct( $name = 'Mostrevisions' ) {
-		parent::__construct( $name );
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( $namespaceInfo );
+		$this->mName = 'Mostrevisions';
 	}
 
 	protected function sortDescending() {
