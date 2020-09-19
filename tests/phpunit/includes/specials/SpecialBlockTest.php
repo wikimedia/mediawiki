@@ -751,6 +751,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$expectedResult,
 		$reason
 	) {
+		$this->hideDeprecated( 'SpecialBlock::checkUnblockSelf' );
+
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
