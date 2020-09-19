@@ -37,6 +37,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
 	 * @param User  $blocker     User to do the blocking, null to pick
 	 *                           arbitrarily
+	 * @return array result of doApiRequest
 	 */
 	private function doBlock( array $extraParams = [], User $blocker = null ) {
 		if ( $blocker === null ) {
@@ -339,5 +340,22 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "Range blocks larger than /16 are not allowed." );
 		$this->doBlock();
+	}
+
+	public function testBlockByIdReturns() {
+		// See T189073 and Ifdced735b694b85116cb0e43dadbfa8e4cdb8cab for context
+		$userId = $this->mUser->getId();
+
+		$res = $this->doBlock(
+			[ 'userid' => $userId ]
+		);
+
+		$blockResult = $res[0]['block'];
+
+		$this->assertArrayHasKey( 'user', $blockResult );
+		$this->assertSame( $this->mUser->getName(), $blockResult['user'] );
+
+		$this->assertArrayHasKey( 'userID', $blockResult );
+		$this->assertSame( $userId, $blockResult['userID'] );
 	}
 }
