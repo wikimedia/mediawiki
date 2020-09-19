@@ -7,6 +7,7 @@ use IContextSource;
 use MediaWiki;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Validator\Validator;
 use RequestContext;
@@ -41,8 +42,11 @@ class EntryPoint {
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
-		$authorizer = new MWBasicAuthorizer( $context->getUser(),
-			$services->getPermissionManager() );
+		$authorizer = new CompoundAuthorizer();
+		$authorizer
+			->addAuthorizer( new MWBasicAuthorizer( $context->getUser(),
+				$services->getPermissionManager() ) )
+			->addAuthorizer( $cors );
 
 		$objectFactory = $services->getObjectFactory();
 		$restValidator = new Validator( $objectFactory,
