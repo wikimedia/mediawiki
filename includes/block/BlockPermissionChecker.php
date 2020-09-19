@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use User;
@@ -42,7 +43,7 @@ class BlockPermissionChecker {
 	private $target;
 
 	/**
-	 * @var int $targetType One of AbstractBlock::TYPE_* constants
+	 * @var int|null $targetType One of AbstractBlock::TYPE_* constants, or null when unknown
 	 */
 	private $targetType = null;
 
@@ -52,20 +53,36 @@ class BlockPermissionChecker {
 	private $performer;
 
 	/**
+	 * @internal only for use by ServiceWiring and BlockPermissionCheckerFactory
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		'EnableUserEmail',
+	];
+
+	/**
+	 * @var ServiceOptions
+	 */
+	private $options;
+
+	/**
 	 * @var PermissionManager
 	 */
 	private $permissionManager;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
 	 * @param UserIdentity|string|null $target
 	 * @param User $performer
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		PermissionManager $permissionManager,
 		$target,
 		User $performer
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		list( $this->target, $this->targetType ) = AbstractBlock::parseTarget( $target );
 		$this->performer = $performer;
@@ -145,5 +162,16 @@ class BlockPermissionChecker {
 
 		// User is blocked and no exception took effect
 		return 'ipbblocked';
+	}
+
+	/**
+	 * Check permission to block emailing
+	 *
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function checkEmailPermissions() {
+		return $this->options->get( 'EnableUserEmail' ) &&
+			$this->permissionManager->userHasRight( $this->performer, 'blockemail' );
 	}
 }

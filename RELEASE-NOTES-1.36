@@ -251,6 +251,8 @@ because of Phabricator reports.
   without a $hookContainer parameter is deprecated.
 * Autopromote class, soft deprecated since 1.35, now emits deprecation warnings.
   Use UserGroupManager instead.
+* SpecialBlock::canBlockEmail has been deprecated. Please use
+  BlockPermissionChecker::checkEmailPermissions instead.
 * …
 
 === Other changes in 1.36 ===
