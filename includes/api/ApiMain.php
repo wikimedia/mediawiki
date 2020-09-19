@@ -92,7 +92,12 @@ class ApiMain extends ApiBase {
 		'delete' => ApiDelete::class,
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
-		'block' => ApiBlock::class,
+		'block' => [
+			'class' => ApiBlock::class,
+			'services' => [
+				'BlockPermissionCheckerFactory',
+			]
+		],
 		'unblock' => [
 			'class' => ApiUnblock::class,
 			'services' => [
