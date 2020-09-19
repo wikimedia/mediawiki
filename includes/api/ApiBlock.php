@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -33,6 +34,24 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 class ApiBlock extends ApiBase {
 
 	use ApiBlockInfoTrait;
+
+	/** @var BlockPermissionCheckerFactory */
+	private $blockPermissionCheckerFactory;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	) {
+		parent::__construct( $main, $action );
+
+		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
+	}
 
 	/**
 	 * Blocks the user specified in the parameters for the given expiry, with the
@@ -97,7 +116,15 @@ class ApiBlock extends ApiBase {
 			 !$this->getPermissionManager()->userHasRight( $user, 'hideuser' ) ) {
 			$this->dieWithError( 'apierror-canthide' );
 		}
-		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
+		if (
+			$params['noemail'] &&
+			!$this->blockPermissionCheckerFactory
+				->newBlockPermissionChecker(
+					$params['user'],
+					$this->getUser()
+				)
+				->checkEmailPermissions()
+		) {
 			$this->dieWithError( 'apierror-cantblock-email' );
 		}
 
