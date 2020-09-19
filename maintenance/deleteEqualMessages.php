@@ -65,7 +65,11 @@ class DeleteEqualMessages extends Maintenance {
 		$messageNames = array_map( [ $contLang, 'ucfirst' ], $messageNames );
 
 		$statuses = AllMessagesTablePager::getCustomisedStatuses(
-			$messageNames, $langCode, $nonContentLanguage );
+			$messageNames,
+			$langCode,
+			$nonContentLanguage,
+			$this->getDB( DB_REPLICA )
+		);
 		// getCustomisedStatuses is stripping the sub page from the page titles, add it back
 		$titleSuffix = $nonContentLanguage ? "/$langCode" : '';
 
