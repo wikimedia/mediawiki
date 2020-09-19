@@ -131,7 +131,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			],
 
 			'user' => [
-				'class' => 'HTMLUserTextField',
+				'class' => HTMLUserTextField::class,
 				'label-message' => 'newimages-user',
 				'name' => 'user',
 			],

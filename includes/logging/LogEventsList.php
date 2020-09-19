@@ -218,7 +218,7 @@ class LogEventsList extends ContextSource {
 			}
 		}
 		return [
-			'class' => 'HTMLMultiSelectField',
+			'class' => HTMLMultiSelectField::class,
 			'label-message' => 'logeventslist-more-filters',
 			'flatlist' => true,
 			'options' => $options,
@@ -255,7 +255,7 @@ class LogEventsList extends ContextSource {
 		$typesByName = [ '' => $public ] + $typesByName;
 
 		return [
-			'class' => 'HTMLSelectField',
+			'class' => HTMLSelectField::class,
 			'name' => 'type',
 			'options' => array_flip( $typesByName ),
 			'default' => $queryType,
@@ -268,7 +268,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getUserInputDesc( $user ) {
 		return [
-			'class' => 'HTMLUserTextField',
+			'class' => HTMLUserTextField::class,
 			'label-message' => 'specialloguserlabel',
 			'name' => 'user',
 			'default' => $user,
@@ -281,7 +281,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getTitleInputDesc( $title ) {
 		return [
-			'class' => 'HTMLTitleTextField',
+			'class' => HTMLTitleTextField::class,
 			'label-message' => 'speciallogtitlelabel',
 			'name' => 'page',
 			'required' => false
@@ -342,7 +342,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		return [
-			'class' => 'HTMLSelectField',
+			'class' => HTMLSelectField::class,
 			'name' => 'subtype',
 			'options-messages' => $actionOptions,
 			'default' => $action,
