@@ -20,7 +20,10 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserGroupManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * This class is used to get a list of active users. The ones with specials
@@ -56,13 +59,30 @@ class ActiveUsersPager extends UsersPager {
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
 	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param HookContainer $hookContainer
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		?IContextSource $context,
 		FormOptions $opts,
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory,
+		HookContainer $hookContainer,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		UserGroupManager $userGroupManager
 	) {
-		parent::__construct( $context, null, null, $linkBatchFactory );
+		parent::__construct(
+			$context,
+			null,
+			null,
+			$linkBatchFactory,
+			$hookContainer,
+			$permissionManager,
+			$loadBalancer,
+			$userGroupManager
+		);
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
 		$this->requestedUser = '';
@@ -132,10 +152,7 @@ class ActiveUsersPager extends UsersPager {
 			] ];
 			$conds['ug2.ug_user'] = null;
 		}
-		if ( !MediaWikiServices::getInstance()
-				  ->getPermissionManager()
-				  ->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->canSeeHideuser() ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ], __METHOD__
 				) . ')';
@@ -187,7 +204,7 @@ class ActiveUsersPager extends UsersPager {
 			'limit' => intval( $limit ),
 			'order' => $dir,
 			'conds' =>
-				$offset != '' ? [ $this->mIndexField . $operator . $this->mDb->addQuotes( $offset ) ] : [],
+				$offset != '' ? [ $this->mIndexField . $operator . $this->getDatabase()->addQuotes( $offset ) ] : [],
 		] );
 
 		$tables = $info['tables'];

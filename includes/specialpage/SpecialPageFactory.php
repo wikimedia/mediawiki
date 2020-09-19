@@ -117,7 +117,15 @@ class SpecialPageFactory {
 		'RemoveCredentials' => \SpecialRemoveCredentials::class,
 
 		// Users and rights
-		'Activeusers' => \SpecialActiveUsers::class,
+		'Activeusers' => [
+			'class' => \SpecialActiveUsers::class,
+			'services' => [
+				'LinkBatchFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'UserGroupManager',
+			]
+		],
 		'Block' => [
 			'class' => \SpecialBlock::class,
 			'services' => [
@@ -168,7 +176,15 @@ class SpecialPageFactory {
 		'Contributions' => \SpecialContributions::class,
 		'Listgrouprights' => \SpecialListGroupRights::class,
 		'Listgrants' => \SpecialListGrants::class,
-		'Listusers' => \SpecialListUsers::class,
+		'Listusers' => [
+			'class' => \SpecialListUsers::class,
+			'services' => [
+				'LinkBatchFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'UserGroupManager',
+			]
+		],
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
 		'Userrights' => \UserrightsPage::class,
