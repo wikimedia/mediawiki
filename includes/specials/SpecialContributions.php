@@ -582,7 +582,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$request = $this->getRequest();
 		$nsFilters = $request->getArray( 'wpfilters' );
 		$fields['nsFilters'] = [
-			'class' => 'HTMLMultiSelectField',
+			'class' => HTMLMultiSelectField::class,
 			'label' => '',
 			'name' => 'wpfilters',
 			'flatlist' => true,

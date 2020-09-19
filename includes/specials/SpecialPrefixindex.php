@@ -114,12 +114,12 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'default' => $namespace,
 			],
 			'hidedirects' => [
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'name' => 'hideredirects',
 				'label-message' => 'allpages-hide-redirects',
 			],
 			'stripprefix' => [
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'name' => 'stripprefix',
 				'label-message' => 'prefixindex-strip',
 			],

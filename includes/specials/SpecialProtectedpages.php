@@ -110,7 +110,7 @@ class SpecialProtectedpages extends SpecialPage {
 			'typemenu' => $this->getTypeMenu( $type ),
 			'levelmenu' => $this->getLevelMenu( $level ),
 			'filters' => [
-				'class' => 'HTMLMultiSelectField',
+				'class' => HTMLMultiSelectField::class,
 				'label' => $this->msg( 'protectedpages-filters' )->text(),
 				'flatlist' => true,
 				'options-messages' => [
