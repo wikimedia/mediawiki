@@ -120,7 +120,17 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Protectedpages' => \SpecialProtectedpages::class,
+		'Protectedpages' => [
+			'class' => \SpecialProtectedpages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'UserCache',
+			]
+		],
 		'Protectedtitles' => \SpecialProtectedtitles::class,
 		'Shortpages' => [
 			'class' => \SpecialShortPages::class,
