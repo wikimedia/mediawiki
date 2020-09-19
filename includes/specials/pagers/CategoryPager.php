@@ -79,7 +79,7 @@ class CategoryPager extends AlphabeticPager {
 		$this->mResult->rewind();
 
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( new TitleValue( NS_CATEGORY, $row->cat_title ) );
+			$batch->add( NS_CATEGORY, $row->cat_title );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
