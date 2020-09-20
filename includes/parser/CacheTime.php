@@ -27,32 +27,47 @@
  * @ingroup Parser
  */
 class CacheTime {
+	use DeprecationHelper;
+
 	/**
 	 * @var string[] ParserOptions which have been taken into account to produce output.
 	 */
-	public $mUsedOptions;
+	private $mUsedOptions;
 
 	/**
-	 * @var string|null Compatibility check
+	 * @var true[] List of ParserOptions (stored in the keys).
 	 */
-	public $mVersion = Parser::VERSION;
+	protected $mAccessedOptions = [];
+
+	/**
+	 * @var string Compatibility check
+	 */
+	private $mVersion = Parser::VERSION;
 
 	/**
 	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
-	public $mCacheTime = '';
+	private $mCacheTime = '';
 
 	/**
 	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
 	 * ParserCache.
 	 */
-	public $mCacheExpiry = null;
+	private $mCacheExpiry = null;
 
 	/**
 	 * @var int|null Revision ID that was parsed
 	 */
-	public $mCacheRevisionId = null;
+	private $mCacheRevisionId = null;
+
+	public function __construct() {
+		$this->deprecatePublicProperty( 'mUsedOptions', '1.36', __CLASS__ );
+		$this->deprecatePublicProperty( 'mVersion', '1.36', __CLASS__ );
+		$this->deprecatePublicProperty( 'mCacheTime', '1.36', __CLASS__ );
+		$this->deprecatePublicProperty( 'mCacheExpiry', '1.36', __CLASS__ );
+		$this->deprecatePublicProperty( 'mCacheRevisionId', '1.36', __CLASS__ );
+	}
 
 	/**
 	 * @return string TS_MW timestamp
@@ -192,5 +207,33 @@ class CacheTime {
 	public function isDifferentRevision( $id ) {
 		$cached = $this->getCacheRevisionId();
 		return $cached !== null && $id !== $cached;
+	}
+
+	/**
+	 * Returns the options from its ParserOptions which have been taken
+	 * into account to produce this output.
+	 * @return string[]
+	 */
+	public function getUsedOptions() {
+		// If this is set, the CacheTime public property was used
+		// to set the field, thus nothing else could've set mAccessedOptions
+		if ( isset( $this->mUsedOptions ) ) {
+			return $this->mUsedOptions;
+		}
+
+		if ( !isset( $this->mAccessedOptions ) ) {
+			return [];
+		}
+		return array_keys( $this->mAccessedOptions );
+	}
+
+	/**
+	 * Sets the list of accessed ParserOptions which have been taken
+	 * into account to produce the output stored under this key.
+	 * @param array $options the list of options
+	 */
+	public function setUsedOptions( array $options ) {
+		$this->mAccessedOptions = array_flip( $options );
+		$this->mAccessedOptions = array_fill_keys( array_keys( $this->mAccessedOptions ), true );
 	}
 }
