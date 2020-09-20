@@ -2251,13 +2251,10 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user = null ) {
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-		}
+	public function userCan( $field, User $user ) {
 		return true;
 	}
 
