@@ -189,6 +189,8 @@ class SpecialUnblock extends SpecialPage {
 	 * @return array|bool [ [ message key, parameters ] ] on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		if ( !isset( $data['Tags'] ) ) {
 			$data['Tags'] = [];
 		}
