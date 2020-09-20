@@ -559,8 +559,16 @@ class FileRepo {
 	 * @param string $sha1 Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile().
 	 * @return File|bool False on failure
+	 * @throws InvalidArgumentException if the `private` option is set and not a User object
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' called with the `private` option set to something ' .
+				'other than a User object'
+			);
+		}
+
 		$time = $options['time'] ?? false;
 		# First try to find a matching current version of a file...
 		if ( !$this->fileFactoryKey ) {
@@ -574,13 +582,12 @@ class FileRepo {
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
 			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
-				global $wgUser;
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : $wgUser
-					)
+				} elseif (
+					// If its not empty, its a User object
+					!empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE, $options['private'] )
 				) {
 					return $img;
 				}
