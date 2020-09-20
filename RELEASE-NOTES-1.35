@@ -921,6 +921,10 @@ because of Phabricator reports.
         No replacement; MediaHandler provides for customizable media rendering
     - ParserBeforeTidy
         Use ParserAfterTidy instead to avoid exposing internal half-parsed state
+    - ParserBeforeStrip
+        No replacement; stripping is no longer supported.
+    - ParserAfterStrip
+        No replacement; stripping is no longer supported.
   - The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
     Parser::Title() have been deprecated; use the appropriate Parser::get* or
     Parser::set* methods instead.
