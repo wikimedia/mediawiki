@@ -3,6 +3,8 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.8 ===
+* In the web installer, use secure session cookies.
+* (T257207) shell: Expand documentation in firejail.profile.
 * Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
   and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
   recommend this be set to true on pure HTTPS wikis.
@@ -12,8 +14,26 @@ THIS IS NOT A RELEASE YET
 * Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
+* (T191537) Disable WebResponse setters for post-send processing.
+* (T198525) WebReponse: Use values altered in 'WebResponseSetCookie' hook.
+* Fix runBatchedQuery.php for no result from select.
+* (T130906) Add Edge to MediaWiki:Clearyourcache.
+* Use IPset in MWRestrictions::checkIP.
+* (T260031) Add application/font-sfnt to MimeMap for ttf files.
+* shell: Make ->restrict( RESTRICT_NONE ) actually work.
+* (T183759) Fixes shell edge-cases in Windows.
+* (T258390) Add CentralIdLookup::factoryNonLocal().
+* (T246991) User: Fix pingLimiter() to use makeGlobalKey() for global rate
+  limits.
+* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T246991) User: enforce pingLimiter() expiry time.
+* (T260232) don't include null page ids in query list for category dumps.
+* (T251506) Sanitizer: Truncate IDs to a reasonable length.
+* Explicitly wrap some XML calls in libxml_disable_entity_loader().
 * (T263455 T247285) Set EnableJavaScriptTest to true in
   includes/DevelopmentSettings.php.
+* (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
+  users.
 
 == MediaWiki 1.31.8 ==
 
