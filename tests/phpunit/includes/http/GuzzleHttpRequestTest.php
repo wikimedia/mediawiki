@@ -181,6 +181,31 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 			$request->getHeader( 'Content-Type' )[0] );
 	}
 
+	/**
+	 * Test POSTed multipart request body with custom content type
+	 */
+	public function testPostBodyContentType() {
+		$container = [];
+		$history = Middleware::history( $container );
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
+		$stack->push( $history );
+		$boundary = 'boundary';
+		$client = new GuzzleHttpRequest( $this->exampleUrl, [
+				'method' => 'POST',
+				'handler' => $stack,
+				'postData' => new \GuzzleHttp\Psr7\MultipartStream( [ [
+					'name' => 'a',
+					'contents' => 'b'
+				] ] ),
+			] + $this->timeoutOptions );
+		$client->setHeader( 'Content-Type', 'text/mwtest' );
+		$client->execute();
+
+		$request = $container[0]['request'];
+		$this->assertEquals( 'text/mwtest',
+			$request->getHeader( 'Content-Type' )[0] );
+	}
+
 	/*
 	 * Test that cookies from CookieJar were sent in the outgoing request.
 	 */
