@@ -55,3 +55,9 @@ unset( $logDir );
 
 // Disable rate-limiting
 $wgRateLimits = [];
+
+global $wgEnableJavaScriptTest;
+
+// Enable Special:JavaScriptTest and allow `npm run qunit` to work
+// https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
+$wgEnableJavaScriptTest = true;
