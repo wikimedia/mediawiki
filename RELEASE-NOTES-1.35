@@ -5,6 +5,31 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
+=== Changes since MediaWiki 1.35.0-rc.3 ===
+* (T261258) Remove checks for ancient ImageMagick versions in BitmapHandler.
+* (T260232) Don't include null page ids in query list for category dumps.
+* (T260009) Check existing watchitem when saving action=watch.
+* (T259055) Correct success messages for action=watch.
+* mediawiki.page.ready: Simpler tablesorter/makeCollapsible call.
+* mediawiki.page.ready: Fix skin override config flags, wrong way round.
+* (T262175, T248512) Remove requirement for ApiWatchlistTrait to be in ApiBase.
+* (T259053, T260434) Watchlist: Fix updateWatchLink removing css class when
+  action=watch.
+* (T261901, T261476) mediawiki.notification: Don't close notif when clicking
+  <select> element.
+* (T251506) Sanitizer: Truncate IDs to a reasonable length.
+* (T259452) Parsoid updated to v0.12.0.
+* (T261970) watch.ajax: Add expiry support to watchpage.mw event.
+* (T262900) Fix failure of rebuildLocalisationCache.php due to ResourceLoader
+  hook.
+* (T263014) Hard deprecate File::userCan() with $user=null.
+* (T262547) Use localized success message after watching via action=watch.
+* (T201491) Fix typo 'Watchlst' in `apihelp-edit-param-watchlistexpiry`.
+* (T261081) Installer: consistently reset Language objects.
+* (T250449, T250450) Installer: consistently reset Language objects.
+* Explicitly wrap some XML calls in libxml_disable_entity_loader().
+* (T262934) Ensure dropdown label is always on its own line.
+
 == MediaWiki 1.35.0-rc.3 ==
 
 === Changes since MediaWiki 1.35.0-rc.2 ===
