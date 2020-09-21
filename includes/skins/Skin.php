@@ -430,11 +430,14 @@ abstract class Skin extends ContextSource {
 	abstract public function outputPage();
 
 	/**
+	 * @deprecated since 1.36. Use ResourceLoader::makeInlineScript() directly.
 	 * @param array $data
 	 * @param string|null $nonce OutputPage->getCSP()->getNonce()
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeVariablesScript( $data, $nonce = null ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		if ( $data ) {
 			return ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( $data ),

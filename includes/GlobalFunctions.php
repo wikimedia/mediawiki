@@ -1310,7 +1310,13 @@ function wfReportTime( $nonce = null ) {
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
 	}
-	return Skin::makeVariablesScript( $reportVars, $nonce );
+
+	return (
+		ResourceLoader::makeInlineScript(
+			ResourceLoader::makeConfigSetScript( $reportVars ),
+			$nonce
+		)
+	);
 }
 
 /**
