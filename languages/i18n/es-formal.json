@@ -231,6 +231,7 @@
 	"userlogin-yourpassword-ph": "Escriba su contraseña",
 	"createacct-yourpassword-ph": "Escriba una contraseña",
 	"yourpasswordagain": "Escriba la contraseña otra vez:",
+	"createacct-useuniquepass": "Se recomienda emplear una contraseña única que no utilice en ningún otro sitio web.",
 	"createacct-yourpasswordagain": "Confirme la contraseña",
 	"createacct-yourpasswordagain-ph": "Escriba la contraseña otra vez",
 	"yourdomainname": "Su dominio:",

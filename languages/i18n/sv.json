@@ -871,6 +871,7 @@
 	"undo-summary-import2": "Ångra importerad version $1 av användare $2",
 	"undo-summary-username-hidden": "Gör version $1 av en dold användare ogjord",
 	"viewpagelogs": "Visa loggar för denna sida",
+	"viewpagelogs-lowercase": "visa loggar för denna sida",
 	"nohistory": "Den här sidan har ingen versionshistorik.",
 	"currentrev": "Nuvarande version",
 	"currentrev-asof": "Nuvarande version från $1",

@@ -3382,7 +3382,7 @@
 	"tag-mw-blank-description": "Muokkaukset, jotka tyhjentävät sivun",
 	"tag-mw-replace": "Korvattu",
 	"tag-mw-replace-description": "Muokkaukset, joissa on poistettu yli 90 % sivun sisällöstä",
-	"tag-mw-rollback": "Palautettu takaisin",
+	"tag-mw-rollback": "Takaisinpalautus",
 	"tag-mw-rollback-description": "Muokkaukset, jotka palauttavat edelliset muokkaukset takaisinvetolinkillä",
 	"tag-mw-undo": "Kumoaminen",
 	"tag-mw-undo-description": "Muokkaukset, jotka kumoavat edelliset muokkaukset kumoamislinkillä",

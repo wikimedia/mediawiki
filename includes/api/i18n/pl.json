@@ -820,7 +820,7 @@
 	"api-help-examples": "{{PLURAL:$1|Przykład|Przykłady}}:",
 	"api-help-permissions": "{{PLURAL:$2|Uprawnienie|Uprawnienia}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Przydzielone dla}}: $2",
-	"api-help-right-apihighlimits": "Użyj wyższych limitów w zapytaniach API (dla zapytań powolnych: $1; dla zapytań szbkich: $2). Limity zapytań powolnych są także stosowane dla parametrów z podanymi wieloma wartościami.",
+	"api-help-right-apihighlimits": "Użyj wyższych limitów w zapytaniach API (dla zapytań powolnych: $1; dla zapytań szybkich: $2). Limity zapytań powolnych są także stosowane dla parametrów z podanymi wieloma wartościami.",
 	"api-help-open-in-apisandbox": "<small>[otwórz w brudnopisie]</small>",
 	"api-help-authmanagerhelper-request": "Użyj tego żądania poświadczeń za pośrednictwem <samp>id</samp> od <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> z <kbd>amirequestsfor=$1</kbd>.",
 	"api-help-authmanagerhelper-additional-params": "Ten moduł akceptuje dodatkowe parametry, w zależności od dostępnych żądań poświadczeń. Użyj <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> z <kbd>amirequestsfor=$1</kbd> (lub poprzednią odpowiedzią tego modułu, jeśli dotyczy) aby określić dostępne żądania i pola, których używają.",

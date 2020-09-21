@@ -886,6 +886,7 @@
 	"post-expand-template-inclusion-category": "Páginas com excesso de predefinições",
 	"post-expand-template-argument-warning": "Aviso: Esta página contém pelo menos um argumento de predefinição com um tamanho muito grande.\nEstes argumentos foram omitidos.",
 	"post-expand-template-argument-category": "Páginas com argumentos de predefinições descartados",
+	"template-equals-category": "Páginas que usam = como uma predefinição",
 	"parser-template-loop-warning": "Ciclo de predefinições detectado: [[$1]]",
 	"template-loop-category": "Páginas com loops de predefinição",
 	"template-loop-category-desc": "A página contém um loop de predefinição, ou seja, uma predefinição que se chama recursivamente.",
