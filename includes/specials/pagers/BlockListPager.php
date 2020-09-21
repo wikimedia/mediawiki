@@ -177,11 +177,11 @@ class BlockListPager extends TablePager {
 						);
 					}
 					$formatted .= ' ' . Html::rawElement(
-							'span',
-							[ 'class' => 'mw-blocklist-actions' ],
-							$this->msg( 'parentheses' )->rawParams(
-								$language->pipeList( $links ) )->escaped()
-						);
+						'span',
+						[ 'class' => 'mw-blocklist-actions' ],
+						$this->msg( 'parentheses' )->rawParams(
+							$language->pipeList( $links ) )->escaped()
+					);
 				}
 				if ( $value !== 'infinity' ) {
 					$timestamp = new MWTimestamp( $value );
@@ -248,16 +248,16 @@ class BlockListPager extends TablePager {
 				}
 
 				$formatted = Html::rawElement(
-						'ul',
-						[],
-						implode( '', array_map( function ( $prop ) {
-							return Html::rawElement(
-								'li',
-								[],
-								$prop
-							);
-						}, $properties ) )
-					);
+					'ul',
+					[],
+					implode( '', array_map( function ( $prop ) {
+						return Html::rawElement(
+							'li',
+							[],
+							$prop
+						);
+					}, $properties ) )
+				);
 				break;
 
 			default:
