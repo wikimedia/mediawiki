@@ -218,6 +218,12 @@ abstract class PoolCounter {
 		return $type . ':' . ( hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots );
 	}
 
+	/**
+	 * Is fast stale mode (T250248) enabled? This may be overridden by the
+	 * PoolCounterWork subclass.
+	 *
+	 * @return bool
+	 */
 	public function isFastStaleEnabled() {
 		return $this->fastStale;
 	}
