@@ -36,8 +36,12 @@ class ExportTest extends MediaWikiLangTestCase {
 		$exporter->pageByTitle( $title );
 		$exporter->closeStream();
 
+		$oldDisable = libxml_disable_entity_loader( true );
+
 		// This throws error if invalid xml output
 		$xmlObject = simplexml_load_string( $sink );
+
+		libxml_disable_entity_loader( $oldDisable );
 
 		/**
 		 * Check namespaces match xml
