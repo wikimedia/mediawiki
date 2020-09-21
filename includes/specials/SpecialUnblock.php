@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 
@@ -47,7 +48,7 @@ class SpecialUnblock extends SpecialPage {
 		$this->checkPermissions();
 		$this->checkReadOnly();
 
-		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
+		list( $this->target, $this->type ) = $this->getTargetAndType( $par, $this->getRequest() );
 		$this->block = DatabaseBlock::newFromTarget( $this->target );
 		if ( $this->target instanceof User ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
@@ -86,6 +87,34 @@ class SpecialUnblock extends SpecialPage {
 					break;
 			}
 		}
+	}
+
+	/**
+	 * Get the target and type, given the request and the subpage parameter.
+	 * Several parameters are handled for backwards compatability. 'wpTarget' is
+	 * prioritized, since it matches the HTML form.
+	 *
+	 * @param string $par Subpage parameter
+	 * @param WebRequest $request
+	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
+	 * @phan-return array{0:User|string|null,1:int|null}
+	 */
+	private function getTargetAndType( string $par, WebRequest $request ) {
+		$possibleTargets = [
+			$request->getVal( 'wpTarget', null ),
+			$par,
+			$request->getVal( 'ip', null ),
+			// B/C @since 1.18
+			$request->getVal( 'wpBlockAddress', null ),
+		];
+		foreach ( $possibleTargets as $possibleTarget ) {
+			$targetAndType = AbstractBlock::parseTarget( $possibleTarget );
+			// If type is not null then target is valid
+			if ( $targetAndType[ 1 ] !== null ) {
+				break;
+			}
+		}
+		return $targetAndType;
 	}
 
 	protected function getFields() {

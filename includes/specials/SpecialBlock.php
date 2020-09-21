@@ -631,6 +631,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * Several parameters are handled for backwards compatability. 'wpTarget' is
 	 * prioritized, since it matches the HTML form.
 	 *
+	 * @deprecated since 1.36. Use AbstractBlock::parseTarget directly instead.
+	 *
 	 * @param string $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
