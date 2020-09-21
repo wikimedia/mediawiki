@@ -804,6 +804,69 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideGetTargetAndType
+	 * @covers ::getTargetAndType
+	 */
+	public function testGetTargetAndType( $par, $requestData, $expectedTarget ) {
+		$request = $requestData ? new FauxRequest( $requestData ) : null;
+		$page = $this->newSpecialPage();
+		list( $target, $type ) = $page->getTargetAndType( $par, $request );
+		$this->assertSame( $target, $expectedTarget );
+	}
+
+	public function provideGetTargetAndType() {
+		$invalidTarget = '';
+		return [
+			'Choose \'wpTarget\' parameter first' => [
+				'2.2.2.0/24',
+				[
+					'wpTarget' => '1.1.1.0/24',
+					'ip' => '3.3.3.0/24',
+					'wpBlockAddress' => '4.4.4.0/24',
+				],
+				'1.1.1.0/24',
+			],
+			'Choose subpage parameter second' => [
+				'2.2.2.0/24',
+				[
+					'wpTarget' => $invalidTarget,
+					'ip' => '3.3.3.0/24',
+					'wpBlockAddress' => '4.4.4.0/24',
+				],
+				'2.2.2.0/24',
+			],
+			'Choose \'ip\' parameter third' => [
+				$invalidTarget,
+				[
+					'wpTarget' => $invalidTarget,
+					'ip' => '3.3.3.0/24',
+					'wpBlockAddress' => '4.4.4.0/24',
+				],
+				'3.3.3.0/24',
+			],
+			'Choose \'wpBlockAddress\' parameter fourth' => [
+				$invalidTarget,
+				[
+					'wpTarget' => $invalidTarget,
+					'ip' => $invalidTarget,
+					'wpBlockAddress' => '4.4.4.0/24',
+				],
+				'4.4.4.0/24',
+			],
+			'No web request' => [
+				'2.2.2.0/24',
+				false,
+				'2.2.2.0/24',
+			],
+			'No valid request data or subpage parameter' => [
+				null,
+				[],
+				null,
+			],
+		];
+	}
+
 	protected function insertBlock() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
