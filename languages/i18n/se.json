@@ -529,7 +529,7 @@
 	"ignorewarning": "Vurke fuolatkeahttá varuhusas",
 	"minlength1": "Fiilla namas ferte leat unnimustá okta mearka.",
 	"badfilename": "Fiila namma lea rievdaduvvon. Ođđa namma lea \"$1\".",
-	"filetype-missing": "Fiillas vailui fiilageažus – ovdamearkkan <tt>.jpg</tt>.",
+	"filetype-missing": "Fiillas váilu fiilageažus – ovdamearkkan <tt>.jpg</tt>.",
 	"large-file": "Fiilla max. sturrodat lea $1. Fiila man lasihit lea $2.",
 	"largefileserver": "Dát fiila lea menddo stuoris.",
 	"uploadwarning": "Lasihanvaruhus",
