@@ -5,6 +5,10 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.34.2 ===
+* In the web installer, use secure session cookies.
+* Make UsersPager::requestedGroup public.
+* (T257407) Split patch-drop-user-fields.sql into patch per table.
+* (T257356) Split patch-drop-comment-fields.sql into patch per table.
 * (T257997) Undeprecate WebInstaller::getInfoBox().
 * Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
   and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
@@ -15,10 +19,35 @@ THIS IS NOT A RELEASE YET
 * Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
+* (T257207) shell: Expand documentation in firejail.profile.
 * (T246135) Give the "remember me" checkbox a specific CSS class so skins
   like Minerva can only hide that checkbox.
+* (T256287) rdbms: improve DBConnRef domain selection exception message.
+* (T248191, T259123) phpunit: Acknowledge known dberror from
+  SpecialPageFatalTest.
+* (T256394, T259123) Cleanup up excess commit() call in LocalRepoTest.
+* Fix runBatchedQuery.php for no result from select.
+* (T130906) Add Edge to MediaWiki:Clearyourcache.
+* (T249521) reassignEdits: Update script to use User::newFromName for anon
+  users.
+* (T172060) GlobalFunctions: Use php_uname instead of posix_uname.
+* Use IPset in MWRestrictions::checkIP.
+* (T260031) Add application/font-sfnt to MimeMap for ttf files.
+* shell: Make ->restrict( RESTRICT_NONE ) actually work.
+* (T183759) Fixes shell edge-cases in Windows.
+* (T258390) Add CentralIdLookup::factoryNonLocal().
+* (T246991) User: Fix pingLimiter() to use makeGlobalKey() for global rate
+  limits.
+* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T246991) User: enforce pingLimiter() expiry time.
+* (T260232) don't include null page ids in query list for category dumps.
+* (T251506) Sanitizer: Truncate IDs to a reasonable length.
+* (T262900) Fix failure of rebuildLocalisationCache.php due to RL hook.
+* Explicitly wrap some XML calls in libxml_disable_entity_loader().
 * (T263455 T247285) Set EnableJavaScriptTest to true in
   includes/DevelopmentSettings.php.
+* (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
+  users.
 
 == MediaWiki 1.34.2 ==
 
