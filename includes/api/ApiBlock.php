@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
@@ -93,7 +94,7 @@ class ApiBlock extends ApiBase {
 				$params['user'] = $username;
 			}
 		} else {
-			list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
+			list( $target, $type ) = AbstractBlock::parseTarget( $params['user'] );
 
 			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
@@ -165,7 +166,7 @@ class ApiBlock extends ApiBase {
 		$res = [];
 
 		$res['user'] = $params['user'];
-		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
+		list( $target, /*...*/ ) = AbstractBlock::parseTarget( $params['user'] );
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
 		$block = DatabaseBlock::newFromTarget( $target, null, true );
