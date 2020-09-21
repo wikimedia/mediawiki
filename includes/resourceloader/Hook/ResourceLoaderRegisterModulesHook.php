@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\ResourceLoader\Hook;
 
 use ResourceLoader;
 
 /**
  * @stable to implement
- * @ingroup Hooks
+ * @ingroup ResourceLoaderHooks
  */
 interface ResourceLoaderRegisterModulesHook {
 	/**
