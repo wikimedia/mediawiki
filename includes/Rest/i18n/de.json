@@ -38,5 +38,6 @@
 	"rest-bad-content-model": "Schlechtes Inhaltsmodell: $1",
 	"rest-update-cannot-create-page": "Die Seite „$1“ kann nicht erstellt werden, da sie bereits existiert. Um die bestehende Seite zu aktualisieren, gib die Basis-Versions-ID in der Struktur unter dem Schlüssel „latest“ im Hauptteil der Anfrage an.",
 	"rest-extraneous-csrf-token": "Fremdes CSRF-Token gefunden. CSRF-Token dürfen nicht verwendet werden, wenn Authentifizierungsmechanismen wie OAuth verwendet werden, die gegen CSRF-Angriffe sicher sind.",
-	"rest-cannot-load-file": "Die Datei von „$1“ kann nicht geladen werden."
+	"rest-cannot-load-file": "Die Datei von „$1“ kann nicht geladen werden.",
+	"rest-cross-origin-anon-write": "Anonyme Cross-Origin-Schreibanfragen sind nicht erlaubt"
 }
