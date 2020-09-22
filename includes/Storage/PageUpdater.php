@@ -758,36 +758,6 @@ class PageUpdater {
 			$useStashed
 		);
 
-		// TODO: don't force initialization here!
-		// This is a hack to work around the fact that late initialization of the ParserOutput
-		// causes ApiFlowEditHeaderTest::testCache to fail. Whether that failure indicates an
-		// actual problem, or is just an issue with the test setup, remains to be determined
-		// [dk, 2018-03].
-		// Anomie said in 2018-03:
-		/*
-			I suspect that what's breaking is this:
-
-			The old version of WikiPage::doEditContent() called prepareContentForEdit() which
-			generated the ParserOutput right then, so when doEditUpdates() gets called from the
-			DeferredUpdate scheduled by WikiPage::doCreate() there's no need to parse. I note
-			there's a comment there that says "Get the pre-save transform content and final
-			parser output".
-			The new version of WikiPage::doEditContent() makes a PageUpdater and calls its
-			saveRevision(), which calls DerivedPageDataUpdater::prepareContent() and
-			PageUpdater::doCreate() without ever having to actually generate a ParserOutput.
-			Thus, when DerivedPageDataUpdater::doUpdates() is called from the DeferredUpdate
-			scheduled by PageUpdater::doCreate(), it does find that it needs to parse at that point.
-
-			And the order of operations in that Flow test is presumably:
-
-			- Create a page with a call to WikiPage::doEditContent(), in a way that somehow avoids
-			processing the DeferredUpdate.
-			- Set up the "no set!" mock cache in Flow\Tests\Api\ApiTestCase::expectCacheInvalidate()
-			- Then, during the course of doing that test, a $db->commit() results in the
-			DeferredUpdates being run.
-		 */
-		$this->derivedDataUpdater->getCanonicalParserOutput();
-
 		// Trigger pre-save hook (using provided edit summary)
 		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
 		$hookStatus = Status::newGood( [] );
