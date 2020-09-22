@@ -1689,11 +1689,21 @@ class ParserTestRunner {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
 		$parser->firstCallInit(); // make sure hooks are loaded.
+		if ( preg_match( '/^extension:(.*)$/', $name, $matches ) ) {
+			$extName = $matches[1];
+			if ( ExtensionRegistry::getInstance()->isLoaded( $extName ) ) {
+				return true;
+			} else {
+				$this->recorder->warning( "   Skipping this test suite because it requires the '$extName' " .
+					"extension, which isn't loaded." );
+				return false;
+			}
+		}
 		if ( isset( $parser->mTagHooks[$name] ) ) {
 			return true;
 		} else {
-			$this->recorder->warning( "   This test suite requires the '$name' hook " .
-				"extension, skipping." );
+			$this->recorder->warning( "   Skpping this test suite because it requires the '$name' hook, " .
+				"which isn't provided by any loaded extension." );
 			return false;
 		}
 	}
