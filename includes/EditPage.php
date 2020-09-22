@@ -3943,14 +3943,19 @@ ERROR;
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
 				if ( !$valueMsg->exists() ) {
-					$valueMsg = new RawMessage( '$1' );
+					// This is formatted raw, not as localized number.
+					// If you want the parameter formatted as a number,
+					// define the `$key-value` message.
+					$valueMsg = ( new RawMessage( '$1' ) )->params( $value );
+				} else {
+					// If you define the `$key-value` or `$key-value-html`
+					// message then the argument *must* be numeric.
+					$valueMsg = $valueMsg->numParams( $value );
 				}
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null,
-							$valueMsg->numParams( $value )->parse()
-						) .
+						Html::rawElement( 'td', null, $valueMsg->parse() ) .
 						Html::closeElement( 'tr' );
 				}
 			}
