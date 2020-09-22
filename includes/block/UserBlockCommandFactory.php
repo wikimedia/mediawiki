@@ -21,38 +21,105 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerInterface;
 use User;
 
-class UserBlockCommandFactory implements UnblockUserFactory {
+class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/**
 	 * @var BlockPermissionCheckerFactory
 	 */
 	private $blockPermissionCheckerFactory;
 
-	/**
-	 * @var DatabaseBlockStore
-	 */
-	private $blockStore;
-
-	/**
-	 * @var HookContainer
-	 */
+	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var DatabaseBlockStore */
+	private $blockStore;
+
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
+	 * @internal Use only in ServiceWiring
+	 */
+	public const CONSTRUCTOR_OPTIONS = BlockUser::CONSTRUCTOR_OPTIONS;
+
+	/**
+	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param DatabaseBlockStore $blockStore
-	 * @param HookContainer $hookContainer
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
+		ServiceOptions $options,
+		HookContainer $hookContainer,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		DatabaseBlockStore $blockStore,
-		HookContainer $hookContainer
+		BlockRestrictionStore $blockRestrictionStore,
+		LoggerInterface $logger
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
+		$this->options = $options;
+		$this->hookContainer = $hookContainer;
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
 		$this->blockStore = $blockStore;
-		$this->hookContainer = $hookContainer;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->logger = $logger;
+	}
+
+	/**
+	 * Create BlockUser
+	 *
+	 * @param string|UserIdentity $target Target of the block
+	 * @param User $performer Performer of the block
+	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
+	 * @param string $reason Reason of the block
+	 * @param array $blockOptions Block options
+	 * @param array $blockRestrictions Block restrictions
+	 * @param array|null $tags Tags that should be assigned to the log entry
+	 *
+	 * @return BlockUser
+	 */
+	public function newBlockUser(
+		$target,
+		User $performer,
+		string $expiry,
+		string $reason = '',
+		array $blockOptions = [],
+		array $blockRestrictions = [],
+		$tags = []
+	) : BlockUser {
+		if ( $tags === null ) {
+			$tags = [];
+		}
+
+		return new BlockUser(
+			$this->options,
+			$this->blockRestrictionStore,
+			$this->blockPermissionCheckerFactory,
+			$this->hookContainer,
+			$this->blockStore,
+			$this->logger,
+			$target,
+			$performer,
+			$expiry,
+			$reason,
+			$blockOptions,
+			$blockRestrictions,
+			$tags
+		);
 	}
 
 	/**

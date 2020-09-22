@@ -47,9 +47,10 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.36 ===
-* A new UnblockUser service was introduced that can be used for
-  unblocking users. This was done to expose code previously present
-  in SpecialUnblock to other parts of the code, or to extensions.
+* To expose code previously present in SpecialBlock/SpecialUnblock
+  to other parts of the code, or to extensions,
+  the new BlockUser and UnblockUser command objects were added.
+  Use the BlockUserFactory and UnblockUserFactory services to create them.
 * …
 
 === External library changes in 1.36 ===
@@ -260,6 +261,8 @@ because of Phabricator reports.
   BlockPermissionChecker::checkEmailPermissions instead.
 * SpecialBlock::checkUnblockSelf has been deprecated. Please use
   BlockPermissionChecker::checkBlockPermissions instead.
+* SpecialBlock::parseExpiryInput was deprecated - use
+  BlockUser::parseExpiryInput instead.
 * …
 
 === Other changes in 1.36 ===
