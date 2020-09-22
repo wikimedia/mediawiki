@@ -3,6 +3,7 @@
 		"authors": [
 			"DannyS712",
 			"Fitoschido",
+			"Hello903hello",
 			"Impersonator 1",
 			"Kaganer",
 			"LNDDYL",
@@ -1037,7 +1038,7 @@
 	"ipaddressorusername": "IP地址或用戶名:",
 	"ipbreason": "原因:",
 	"ipbreason-dropdown": "*一般嗰封鎖原因\n** 緊編寫假嗰內容\n** 刪卟文章內容\n** 亂加外部連結\n** 寫冇油鹽嗰話\n** 嚇人／騷擾別嗰\n** 濫用帳號\n** 亂起用戶名",
-	"ipbcreateaccount": "防止開新帳號",
+	"ipbcreateaccount": "開新帳號",
 	"ipbemailban": "防止用戶發email",
 	"ipbenableautoblock": "自動封鎖箇隻用戶最晏嗰IP，同後來佢編寫用過嗰地址",
 	"ipbsubmit": "封鎖箇隻地址",
