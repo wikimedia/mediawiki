@@ -30,6 +30,51 @@ class SkinMustache extends SkinTemplate {
 	private $templateParser = null;
 
 	/**
+	 * @since 1.36
+	 * @stable for overriding
+	 * @param string $name of the portal e.g. p-personal the name is personal.
+	 * @param array $items that are accepted input to Skin::makeListItem
+	 * @return array data that can be passed to a Mustache template that
+	 *   represents a single menu.
+	 */
+	protected function getPortletData( $name, array $items ) {
+		$id = Sanitizer::escapeIdForAttribute( "p-$name" );
+		$data = [
+			'id' => $id,
+			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
+			'html-tooltip' => Linker::tooltip( $id ),
+			'html-items' => '',
+			// Will be populated by SkinAfterPortlet hook.
+			'html-after-portal' => '',
+		];
+		// Run the SkinAfterPortlet
+		// hook and if content is added appends it to the html-after-portal
+		// for output.
+		// Currently in production this supports the wikibase 'edit' link.
+		$content = $this->getAfterPortlet( $name );
+		if ( $content !== '' ) {
+			$data['html-after-portal'] = Html::rawElement(
+				'div',
+				[
+					'class' => [
+						'after-portlet',
+						Sanitizer::escapeClass( "after-portlet-$name" ),
+					],
+				],
+				$content
+			);
+		}
+
+		foreach ( $items as $key => $item ) {
+			$data['html-items'] .= $this->makeListItem( $key, $item );
+		}
+
+		$data['class'] .= ( count( $items ) === 0 && $content === '' )
+			? ' emptyPortlet' : '';
+		return $data;
+	}
+
+	/**
 	 * Get the template parser, it will be lazily created if not already set.
 	 * The template directory is defined in the skin options passed to
 	 * the class constructor.
