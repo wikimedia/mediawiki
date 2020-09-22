@@ -224,7 +224,8 @@
 				.done( function ( watchResponse ) {
 					var message,
 						watchlistPopup = null,
-						otherAction = action === 'watch' ? 'unwatch' : 'watch';
+						otherAction = action === 'watch' ? 'unwatch' : 'watch',
+						notifyPromise;
 
 					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
@@ -240,7 +241,7 @@
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
-						mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
+						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
@@ -264,7 +265,6 @@
 								tag: 'watch-self',
 								autoHideSeconds: 'short'
 							} );
-
 						} );
 					} else {
 						// The following messages can be used here:
@@ -272,14 +272,21 @@
 						// * addedwatchtext
 						// * removedwatchtext-talk
 						// * removedwatchtext
-						mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-							tag: 'watch-self'
-						} );
+						notifyPromise = mw.notify(
+							mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
+								tag: 'watch-self'
+							}
+						);
 					}
 
-					// Set link to opposite
-					updateWatchLink( $link, otherAction );
-					callback( $link, watchResponse.watched === true );
+					// The notifications are stored as a promise and the watch link is only updated
+					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
+					// OOUI could cause a race condition and the link is updated before the popup
+					// actually is shown. See T263135
+					notifyPromise.then( function () {
+						updateWatchLink( $link, otherAction );
+						callback( $link, watchResponse.watched === true );
+					} );
 				} )
 				.fail( function ( code, data ) {
 					var $msg;
