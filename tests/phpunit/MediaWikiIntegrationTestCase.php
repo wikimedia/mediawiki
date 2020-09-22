@@ -657,6 +657,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// If anything faked the time, reset it
 		ConvertibleTimestamp::setFakeTime( false );
+		// If anything changed the content language, we need to
+		// reset the SpecialPageFactory.
+		MediaWikiServices::getInstance()->resetServiceForTesting(
+			'SpecialPageFactory'
+		);
 	}
 
 	/**
