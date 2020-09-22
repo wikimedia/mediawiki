@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
@@ -17,24 +19,27 @@ use Wikimedia\TestingAccessWrapper;
 class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	/** @var Router */
-	private static $router;
+	private $router;
 
 	/**
 	 * Initialize/fetch the Router instance for testing
 	 * @return Router
 	 */
-	private static function getRouter() {
-		if ( !self::$router ) {
+	private function getRouter() {
+		if ( !$this->router ) {
 			$context = new DerivativeContext( RequestContext::getMain() );
 			$context->setLanguage( 'en' );
 			$context->setTitle(
 				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for RestStructureTest' )
 			);
 
-			self::$router = TestingAccessWrapper::newFromClass( EntryPoint::class )
-				->createRouter( $context, new RequestData() );
+			$responseFactory = $this->createNoOpMock( ResponseFactory::class );
+			$cors = $this->createNoOpMock( CorsUtils::class );
+
+			$this->router = TestingAccessWrapper::newFromClass( EntryPoint::class )
+				->createRouter( $context, new RequestData(), $responseFactory, $cors );
 		}
-		return self::$router;
+		return $this->router;
 	}
 
 	/**
@@ -42,7 +47,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	 * @param array $spec
 	 */
 	public function testPathParameters( array $spec ) : void {
-		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$request = new RequestData();
 		$handler = $router->createHandler( $request, $spec );
 		$params = $handler->getParamSettings();
@@ -78,8 +83,8 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->addToAssertionCount( 1 );
 	}
 
-	public static function providePathParameters() : Iterator {
-		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+	public function providePathParameters() : Iterator {
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 
 		foreach ( $router->getAllRoutes() as $spec ) {
 			$method = $spec['method'] ?? 'GET';
@@ -98,7 +103,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	public function testParameters( array $spec, string $name, $settings ) : void {
 		static $sources = [ 'path', 'query', 'post' ];
 
-		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$request = new RequestData();
 
 		$dataName = $this->dataName();
@@ -145,8 +150,8 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function provideParameters() : Iterator {
-		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+	public function provideParameters() : Iterator {
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$request = new RequestData();
 
 		foreach ( $router->getAllRoutes() as $spec ) {
@@ -162,7 +167,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRoutePathAndMethodForDuplicates() {
-		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$routes = [];
 
 		foreach ( $router->getAllRoutes() as $spec ) {

@@ -9639,6 +9639,22 @@ $wgAllowCrossOrigin = false;
 $wgRevertedTagMaxDepth = 15;
 
 /**
+ * Allows authenticated cross-origin requests to the REST API with session cookies.
+ *
+ * With this option enabled, any orgin specified in $wgCrossSiteAJAXdomains may send session cookies
+ * for authorization in the REST API.
+ *
+ * There is a performance impact by enabling this option. Therefore, it should be left disabled for
+ * most wikis and clients should instead use OAuth to make cross-origin authenticated requests.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
+ *
+ * @since 1.36
+ * @var bool
+ */
+$wgRestAllowCrossOriginCookieAuth = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
