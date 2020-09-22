@@ -800,6 +800,39 @@
 			{ "name": "ctd_user_defined", "columns": [ "ctd_user_defined" ], "unique": false }
 		],
 		"pk": [ "ctd_id" ]
+	},
+	{
+		"name": "ipblocks_restrictions",
+		"comment": "Partial Block Restrictions",
+		"columns": [
+			{
+				"name": "ir_ipb_id",
+				"comment": "The ipb_id from ipblocks",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			},
+			{
+				"name": "ir_type",
+				"comment": "The restriction type id.",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "ir_value",
+				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ir_type_value",
+				"comment": "Index to query restrictions by the page or namespace.",
+				"columns": [ "ir_type", "ir_value" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ir_ipb_id", "ir_type", "ir_value" ]
 	}
 
 ]

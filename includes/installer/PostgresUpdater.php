@@ -748,6 +748,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropSequence', 'watchlist_expiry', 'watchlist_expiry_we_item_seq' ],
 			[ 'changeField', 'change_tag_def', 'ctd_count', 'BIGINT', 'ctd_count::BIGINT DEFAULT 0' ],
 			[ 'dropDefault', 'change_tag_def', 'ctd_user_defined' ],
+			[ 'dropFkey', 'ipblocks_restrictions', 'ir_ipb_id' ],
 		];
 	}
 

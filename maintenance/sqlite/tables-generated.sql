@@ -259,3 +259,13 @@ CREATE UNIQUE INDEX ctd_name ON /*_*/change_tag_def (ctd_name);
 CREATE INDEX ctd_count ON /*_*/change_tag_def (ctd_count);
 
 CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
+
+
+CREATE TABLE /*_*/ipblocks_restrictions (
+  ir_ipb_id INTEGER NOT NULL,
+  ir_type SMALLINT NOT NULL,
+  ir_value INTEGER NOT NULL,
+  PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
+);
+
+CREATE INDEX ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);

@@ -287,15 +287,6 @@ CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
 
-CREATE TABLE ipblocks_restrictions (
-  ir_ipb_id INTEGER  NOT NULL REFERENCES ipblocks(ipb_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ir_type   SMALLINT NOT NULL,
-  ir_value  INTEGER  NOT NULL,
-  PRIMARY KEY (ir_ipb_id, ir_type, ir_value)
-);
-CREATE INDEX /*i*/ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);
-
-
 CREATE TABLE image (
   img_name         TEXT      NOT NULL  PRIMARY KEY,
   img_size         INTEGER   NOT NULL,
