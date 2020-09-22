@@ -3,76 +3,90 @@
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi;
-use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\Test;
-use PHPUnit\Framework\TestListener;
-use PHPUnit\Framework\TestListenerDefaultImplementation;
-use PHPUnit\Framework\Warning;
+use PHPUnit\Runner\AfterIncompleteTestHook;
+use PHPUnit\Runner\AfterRiskyTestHook;
+use PHPUnit\Runner\AfterSkippedTestHook;
+use PHPUnit\Runner\AfterTestErrorHook;
+use PHPUnit\Runner\AfterTestFailureHook;
+use PHPUnit\Runner\AfterTestHook;
+use PHPUnit\Runner\AfterTestWarningHook;
+use PHPUnit\Runner\BeforeTestHook;
 
 /**
  * Replaces the logging SPI on each test run. This allows
  * another component (the printer) to fetch the logs when
  * reporting why a test failed.
  */
-class MediaWikiLoggerPHPUnitTestListener implements TestListener {
-	use TestListenerDefaultImplementation;
-
+class MediaWikiLoggerPHPUnitExtension implements
+	BeforeTestHook,
+	AfterRiskyTestHook,
+	AfterIncompleteTestHook,
+	AfterSkippedTestHook,
+	AfterTestErrorHook,
+	AfterTestWarningHook,
+	AfterTestFailureHook,
+	AfterTestHook
+{
+	/**
+	 * @var string[]
+	 * @todo Can we avoid global state?
+	 */
+	public static $testsCollection;
 	/** @var Spi|null */
 	private $originalSpi;
 	/** @var Spi|null */
 	private $spi;
 
 	/**
-	 * A test started.
-	 *
-	 * @param Test $test
+	 * @inheritDoc
 	 */
-	public function startTest( Test $test ) : void {
+	public function executeBeforeTest( string $test ): void {
 		$this->lastTestLogs = null;
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
 	}
 
-	public function addRiskyTest( Test $test, Throwable $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterRiskyTest( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addIncompleteTest( Test $test, Throwable $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterIncompleteTest( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addSkippedTest( Test $test, Throwable $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterSkippedTest( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addError( Test $test, Throwable $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterTestError( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addWarning( Test $test, Warning $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterTestWarning( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addFailure( Test $test, AssertionFailedError $e, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterTestFailure( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	private function augmentTestWithLogs( Test $test ) {
+	private function augmentTestWithLogs( string $test ) {
 		if ( $this->spi ) {
 			$logs = $this->spi->getLogs();
 			$formatted = $this->formatLogs( $logs );
-			$test->_formattedMediaWikiLogs = $formatted;
+			self::$testsCollection[$test] = $formatted;
 		}
 	}
 
-	/**
-	 * A test ended.
-	 *
-	 * @param Test $test
-	 * @param float $time
-	 */
-	public function endTest( Test $test, $time ) : void {
+	/** @inheritDoc */
+	public function executeAfterTest( string $test, float $time ): void {
 		LoggerFactory::registerProvider( $this->originalSpi );
 		$this->originalSpi = null;
 		$this->spi = null;
@@ -103,4 +117,5 @@ class MediaWikiLoggerPHPUnitTestListener implements TestListener {
 		}
 		return implode( "\n", $message );
 	}
+
 }

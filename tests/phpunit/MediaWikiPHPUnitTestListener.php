@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestListener;
 use PHPUnit\Framework\TestListenerDefaultImplementation;
 use PHPUnit\Framework\TestSuite;
 
+/**
+ * @todo Use TestHook interfaces. But there seems to be no replacement for start/endTestSuite!
+ */
 class MediaWikiPHPUnitTestListener implements TestListener {
 	use TestListenerDefaultImplementation;
 
