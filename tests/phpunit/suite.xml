@@ -9,6 +9,7 @@
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	forceCoversAnnotation="true"
+	failOnWarning="true"
 	stopOnFailure="false"
 	failOnRisky="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
@@ -89,4 +90,7 @@
 			</arguments>
 		</listener>
 	</listeners>
+	<extensions>
+		<extension class="MediaWikiLoggerPHPUnitExtension" />
+	</extensions>
 </phpunit>

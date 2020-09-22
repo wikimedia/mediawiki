@@ -914,6 +914,14 @@ class RevisionStore
 		);
 
 		if ( !$pageLatest ) {
+			$id = $title->getArticleID( self::READ_EXCLUSIVE );
+			$msg = 'T235589: Failed to select table row during null revision creation' .
+				" Page id '$pageId' does not exist. Maybe it is different from '$id'?";
+			$this->logger->error(
+				$msg,
+				[ 'exception' => new RuntimeException( $msg ) ]
+			);
+
 			return null;
 		}
 
@@ -1040,7 +1048,10 @@ class RevisionStore
 				$data = $this->blobStore->getBlob( $address, $queryFlags );
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
-					"Failed to load data blob from $address: " . $e->getMessage(), 0, $e
+					"Failed to load data blob from $address: " . $e->getMessage() . '. '
+						. 'If this problem persist, use the findBadBlobs maintenance script '
+						. 'to investigate the issue and mark bad blobs.',
+					0, $e
 				);
 			}
 		}

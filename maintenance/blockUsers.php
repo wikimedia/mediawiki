@@ -119,6 +119,8 @@ class BlockUsers extends Maintenance {
 	 * @throws MWException
 	 */
 	private function blockUsers( $users, $performer, $reason, $reblock ) {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+
 		foreach ( $users as $name ) {
 			$user = User::newFromName( $name );
 
@@ -149,9 +151,9 @@ class BlockUsers extends Maintenance {
 			$block->setExpiry( SpecialBlock::parseExpiryInput( 'infinity' ) );
 
 			if ( $priorBlock === null ) {
-				$success = $block->insert();
+				$success = $blockStore->insertBlock( $block );
 			} else {
-				$success = $block->update();
+				$success = $blockStore->updateBlock( $block );
 			}
 
 			if ( $success ) {

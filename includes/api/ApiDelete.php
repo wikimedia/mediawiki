@@ -103,7 +103,7 @@ class ApiDelete extends ApiBase {
 		}
 
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
-		$this->setWatch( $watch, $titleObj, 'watchdeletion', $watchlistExpiry );
+		$this->setWatch( $watch, $titleObj, $user, 'watchdeletion', $watchlistExpiry );
 
 		$r = [
 			'title' => $titleObj->getPrefixedText(),

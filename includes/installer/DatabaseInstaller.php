@@ -21,7 +21,6 @@
  * @ingroup Installer
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -397,14 +396,13 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
-
-		MediaWikiServices::resetGlobalInstance();
-		$services = MediaWikiServices::getInstance();
-
 		$connection = $status->value;
-		$services->redefineService( 'DBLoadBalancerFactory', function () use ( $connection ) {
-			return LBFactorySingle::newFromConnection( $connection );
-		} );
+
+		$this->parent->resetMediaWikiServices( null, [
+			'DBLoadBalancerFactory' => function () use ( $connection ) {
+				return LBFactorySingle::newFromConnection( $connection );
+			}
+		] );
 	}
 
 	/**

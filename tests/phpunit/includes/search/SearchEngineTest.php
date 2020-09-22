@@ -246,6 +246,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Category:Search is not search',
 				[ NS_CATEGORY ],
 			],
+			'Copy-pasted wikilinks with invalid characters will still find the page' => [
+				'[[smithee]]',
+				'Smithee',
+				[ NS_MAIN ],
+			],
 		];
 	}
 

@@ -63,36 +63,39 @@ trait ApiWatchlistTrait {
 	/**
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param string $watch Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $titleObj The article's title to change
+	 * @param Title $title The article's title to change
+	 * @param User $user The user to set watch/unwatch for
 	 * @param string|null $userOption The user option to consider when $watch=preferences
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 */
 	protected function setWatch(
 		string $watch,
-		Title $titleObj,
+		Title $title,
+		User $user,
 		?string $userOption = null,
 		?string $expiry = null
 	): void {
-		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );
-		WatchAction::doWatchOrUnwatch( $value, $titleObj, $this->getUser(), $expiry );
+		$value = $this->getWatchlistValue( $watch, $title, $user, $userOption );
+		WatchAction::doWatchOrUnwatch( $value, $title, $user, $expiry );
 	}
 
 	/**
 	 * Return true if we're to watch the page, false if not.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $titleObj The page under consideration
+	 * @param Title $title The page under consideration
+	 * @param User $user The user get the the value for.
 	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
-	 *    If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
+	 *    If not set will use watchdefault always and watchcreations if $title doesn't exist.
 	 * @return bool
 	 */
 	protected function getWatchlistValue(
 		string $watchlist,
-		Title $titleObj,
+		Title $title,
+		User $user,
 		?string $userOption = null
 	): bool {
-		$user = $this->getUser();
-		$userWatching = $user->isWatched( $titleObj, User::IGNORE_USER_RIGHTS );
+		$userWatching = $user->isWatched( $title, User::IGNORE_USER_RIGHTS );
 
 		switch ( $watchlist ) {
 			case 'watch':
@@ -110,7 +113,7 @@ trait ApiWatchlistTrait {
 				if ( $userOption === null ) {
 					return $user->getBoolOption( 'watchdefault' ) ||
 						$user->getBoolOption( 'watchcreations' ) &&
-						!$titleObj->exists();
+						!$title->exists();
 				}
 
 				// Watch the article based on the user preference
@@ -137,12 +140,4 @@ trait ApiWatchlistTrait {
 
 		return $watchlistExpiry;
 	}
-
-	/**
-	 * Implemented by ApiBase. We do this because otherwise Phan would complain
-	 * about calls to $this->getUser() in this trait, since it doesn't infer that
-	 * classes using the trait are also extending ApiBase.
-	 * @return User
-	 */
-	abstract protected function getUser();
 }

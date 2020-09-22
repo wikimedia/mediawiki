@@ -218,7 +218,7 @@ class LogEventsList extends ContextSource {
 			}
 		}
 		return [
-			'class' => 'HTMLMultiSelectField',
+			'class' => HTMLMultiSelectField::class,
 			'label-message' => 'logeventslist-more-filters',
 			'flatlist' => true,
 			'options' => $options,
@@ -255,7 +255,7 @@ class LogEventsList extends ContextSource {
 		$typesByName = [ '' => $public ] + $typesByName;
 
 		return [
-			'class' => 'HTMLSelectField',
+			'class' => HTMLSelectField::class,
 			'name' => 'type',
 			'options' => array_flip( $typesByName ),
 			'default' => $queryType,
@@ -268,7 +268,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getUserInputDesc( $user ) {
 		return [
-			'class' => 'HTMLUserTextField',
+			'class' => HTMLUserTextField::class,
 			'label-message' => 'specialloguserlabel',
 			'name' => 'user',
 			'default' => $user,
@@ -281,7 +281,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getTitleInputDesc( $title ) {
 		return [
-			'class' => 'HTMLTitleTextField',
+			'class' => HTMLTitleTextField::class,
 			'label-message' => 'speciallogtitlelabel',
 			'name' => 'page',
 			'required' => false
@@ -342,7 +342,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		return [
-			'class' => 'HTMLSelectField',
+			'class' => HTMLSelectField::class,
 			'name' => 'subtype',
 			'options-messages' => $actionOptions,
 			'default' => $action,
@@ -426,7 +426,7 @@ class LogEventsList extends ContextSource {
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
 		);
-		$attribs['class'] = implode( ' ', $classes );
+		$attribs['class'] = $classes;
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
@@ -506,24 +506,14 @@ class LogEventsList extends ContextSource {
 	 * @param stdClass $row
 	 * @param string|array $type
 	 * @param string|array $action
-	 * @param string $right (deprecated since 1.35)
 	 * @return bool
 	 */
-	public static function typeAction( $row, $type, $action, $right = '' ) {
-		if ( $right !== '' ) {
-			wfDeprecated( __METHOD__ . ' with a right specified', '1.35' );
-		}
+	public static function typeAction( $row, $type, $action ) {
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
 		if ( $match ) {
 			$match = is_array( $action ) ?
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
-			if ( $match && $right ) {
-				global $wgUser;
-				$match = MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $wgUser, $right );
-			}
 		}
 
 		return $match;
@@ -535,15 +525,10 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCan( $row, $field, User $user = null ) {
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
+	public static function userCan( $row, $field, User $user ) {
 		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
 			self::userCanViewLogType( $row->log_type, $user );
 	}
@@ -554,16 +539,11 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
+	public static function userCanBitfield( $bitfield, $field, User $user ) {
 		if ( $bitfield & $field ) {
-			if ( $user === null ) {
-				wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-				global $wgUser;
-				$user = $wgUser;
-			}
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permissions = [ 'suppressrevision', 'viewsuppressed' ];
 			} else {
@@ -583,15 +563,10 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as restricted log type.
 	 *
 	 * @param stdClass $type
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User $user User to check
 	 * @return bool
 	 */
-	public static function userCanViewLogType( $type, User $user = null ) {
-		if ( $user === null ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
+	public static function userCanViewLogType( $type, User $user ) {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 		if ( isset( $logRestrictions[$type] ) && !MediaWikiServices::getInstance()
 				->getPermissionManager()
@@ -679,7 +654,21 @@ class LogEventsList extends ContextSource {
 
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $context, $linkRenderer, $flags );
-		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
+		$pager = new LogPager(
+			$loglist,
+			$types,
+			$user,
+			$page,
+			'',
+			$conds,
+			false,
+			false,
+			false,
+			'',
+			'',
+			0,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
 			$pager->mLimit = 50;
@@ -796,20 +785,17 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
+	 * @param User|null $user User to check, required when audience isn't public
 	 * @return string|bool String on success, false on failure.
+	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
 		global $wgLogRestrictions;
 
 		if ( $audience != 'public' && $user === null ) {
-			wfDeprecated(
-				__METHOD__ .
-				' using a non-public audience without passing a $user parameter',
-				'1.35'
+			throw new InvalidArgumentException(
+				'A User object must be given when checking for a user audience.'
 			);
-			global $wgUser;
-			$user = $wgUser;
 		}
 
 		// Reset the array, clears extra "where" clauses when $par is used

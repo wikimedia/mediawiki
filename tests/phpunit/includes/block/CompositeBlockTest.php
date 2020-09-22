@@ -28,8 +28,9 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 
-		$userBlock->insert();
-		$ipBlock->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $userBlock );
+		$blockStore->insertBlock( $ipBlock );
 
 		return [
 			'user' => $userBlock,
@@ -38,8 +39,9 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	}
 
 	private function deleteBlocks( $blocks ) {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		foreach ( $blocks as $block ) {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 

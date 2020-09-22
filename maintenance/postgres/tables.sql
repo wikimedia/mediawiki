@@ -233,21 +233,6 @@ ALTER SEQUENCE content_models_model_id_seq OWNED BY content_models.model_id;
 
 CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
-CREATE TABLE templatelinks (
-  tl_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  tl_from_namespace INTEGER NOT NULL DEFAULT 0,
-  tl_namespace  SMALLINT NOT NULL,
-  tl_title      TEXT     NOT NULL
-);
-CREATE UNIQUE INDEX templatelinks_unique ON templatelinks (tl_namespace,tl_title,tl_from);
-CREATE INDEX templatelinks_from          ON templatelinks (tl_from);
-
-CREATE TABLE imagelinks (
-  il_from  INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  il_from_namespace INTEGER NOT NULL DEFAULT 0,
-  il_to    TEXT     NOT NULL
-);
-CREATE UNIQUE INDEX il_from ON imagelinks (il_to,il_from);
 
 CREATE TABLE categorylinks (
   cl_from           INTEGER      NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
@@ -260,19 +245,6 @@ CREATE TABLE categorylinks (
 );
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
 CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
-
-CREATE SEQUENCE change_tag_def_ctd_id_seq;
-CREATE TABLE change_tag_def (
-    ctd_id int NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_def_ctd_id_seq'),
-    ctd_name TEXT NOT NULL,
-    ctd_user_defined SMALLINT NOT NULL DEFAULT 0,
-    ctd_count INTEGER NOT NULL DEFAULT 0
-);
-ALTER SEQUENCE change_tag_def_ctd_id_seq OWNED BY change_tag_def.ctd_id;
-
-CREATE UNIQUE INDEX ctd_name ON change_tag_def (ctd_name);
-CREATE INDEX ctd_count ON change_tag_def (ctd_count);
-CREATE INDEX ctd_user_defined ON change_tag_def (ctd_user_defined);
 
 CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE externallinks (
@@ -287,14 +259,6 @@ CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
 CREATE INDEX el_index_60           ON externallinks (el_index_60, el_id);
 CREATE INDEX el_from_index_60      ON externallinks (el_from, el_index_60, el_id);
-
-CREATE TABLE langlinks (
-  ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ll_lang    TEXT,
-  ll_title   TEXT
-);
-CREATE UNIQUE INDEX langlinks_unique ON langlinks (ll_from,ll_lang);
-CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
 
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
@@ -630,26 +594,6 @@ CREATE TABLE protected_titles (
   PRIMARY KEY (pt_namespace, pt_title)
 );
 
-CREATE SEQUENCE category_cat_id_seq;
-CREATE TABLE category (
-  cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_cat_id_seq'),
-  cat_title    TEXT     NOT NULL,
-  cat_pages    INTEGER  NOT NULL  DEFAULT 0,
-  cat_subcats  INTEGER  NOT NULL  DEFAULT 0,
-  cat_files    INTEGER  NOT NULL  DEFAULT 0
-);
-ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
-CREATE UNIQUE INDEX category_title ON category(cat_title);
-CREATE INDEX category_pages ON category(cat_pages);
-
-CREATE TABLE iwlinks (
-  iwl_from    INTEGER  NOT NULL DEFAULT 0,
-  iwl_prefix  TEXT     NOT NULL DEFAULT '',
-  iwl_title   TEXT     NOT NULL DEFAULT ''
-);
-CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
-CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
-CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 CREATE SEQUENCE sites_site_id_seq;
 CREATE TABLE sites (
@@ -674,11 +618,3 @@ CREATE INDEX site_language ON sites (site_language);
 CREATE INDEX site_protocol ON sites (site_protocol);
 CREATE INDEX site_domain ON sites (site_domain);
 CREATE INDEX site_forward ON sites (site_forward);
-
-CREATE SEQUENCE watchlist_expiry_we_item_seq;
-CREATE TABLE watchlist_expiry (
-  we_item   INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('watchlist_expiry_we_item_seq'),
-  we_expiry TIMESTAMPTZ NOT NULL
-);
-ALTER SEQUENCE watchlist_expiry_we_item_seq OWNED BY watchlist_expiry.we_item;
-CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -57,9 +58,16 @@ trait ApiBlockInfoTrait {
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
 		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$vals['blockpartial'] = !$block->isSitewide();
+		$vals['blocknocreate'] = $block->isCreateAccountBlocked();
+
 		if ( $block instanceof SystemBlock ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
 		}
+
+		if ( $block instanceof DatabaseBlock ) {
+			$vals['blockanononly'] = !$block->isHardblock();
+		}
+
 		return $vals;
 	}
 

@@ -19,6 +19,9 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Pager
  */
@@ -40,6 +43,9 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	/** @var int|null */
 	private $namespace;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param SpecialProtectedtitles $form
 	 * @param array $conds
@@ -48,21 +54,30 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @param int|null $namespace
 	 * @param string|null $sizetype
 	 * @param int|null $size
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $form, $conds, $type, $level, $namespace,
-		$sizetype = '', $size = 0
+	public function __construct(
+		$form,
+		$conds,
+		$type,
+		$level,
+		$namespace,
+		$sizetype = '',
+		$size = 0,
+		LinkBatchFactory $linkBatchFactory = null
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->level = $level;
 		$this->namespace = $namespace;
 		parent::__construct( $form->getContext() );
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	protected function getStartBody() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
-		$lb = new LinkBatch;
+		$lb = $this->linkBatchFactory->newLinkBatch();
 
 		foreach ( $this->mResult as $row ) {
 			$lb->add( $row->pt_namespace, $row->pt_title );

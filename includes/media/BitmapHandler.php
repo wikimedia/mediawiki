@@ -176,10 +176,10 @@ class BitmapHandler extends TransformationalImageHandler {
 			) {
 				$sharpen = [ '-sharpen', $wgSharpenParameter ];
 			}
-			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
-				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
-				$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
-			}
+
+			// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
+			$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
+
 			if ( $wgJpegPixelFormat ) {
 				$factors = $this->imageMagickSubsampling( $wgJpegPixelFormat );
 				$subsampling = [ '-sampling-factor', implode( ',', $factors ) ];
@@ -199,14 +199,14 @@ class BitmapHandler extends TransformationalImageHandler {
 			} elseif ( $this->isAnimatedImage( $image ) ) {
 				// Coalesce is needed to scale animated GIFs properly (T3017).
 				$animation_pre = [ '-coalesce' ];
+
 				// We optimize the output, but -optimize is broken,
-				// use optimizeTransparency instead (T13822)
-				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
-					$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
-				}
+				// use optimizeTransparency instead (T13822). Version >= IM 6.3.5
+				$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
 			}
-			if ( $params['interlace'] && version_compare( $this->getMagickVersion(), "6.3.4" ) >= 0
-				&& !$this->isAnimatedImage( $image ) ) { // interlacing animated GIFs is a bad idea
+			if ( $params['interlace'] && !$this->isAnimatedImage( $image ) ) {
+				// Version >= IM 6.3.4
+				// interlacing animated GIFs is a bad idea
 				$animation_post[] = '-interlace';
 				$animation_post[] = 'GIF';
 			}
@@ -222,19 +222,6 @@ class BitmapHandler extends TransformationalImageHandler {
 				'-layers', 'merge',
 				'-background', 'white',
 			];
-			Wikimedia\suppressWarnings();
-			$xcfMeta = unserialize( $image->getMetadata() );
-			Wikimedia\restoreWarnings();
-			if ( $xcfMeta
-				&& isset( $xcfMeta['colorType'] )
-				&& $xcfMeta['colorType'] === 'greyscale-alpha'
-				&& version_compare( $this->getMagickVersion(), "6.8.9-3" ) < 0
-			) {
-				// T68323 - Greyscale images not rendered properly.
-				// So only take the "red" channel.
-				$channelOnly = [ '-channel', 'R', '-separate' ];
-				$animation_pre = array_merge( $animation_pre, $channelOnly );
-			}
 		}
 
 		// Use one thread only, to avoid deadlock bugs on OOM
@@ -335,10 +322,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					$im = $im->coalesceImages();
 				}
 				// GIF interlacing is only available since 6.3.4
-				$v = Imagick::getVersion();
-				preg_match( '/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v );
-
-				if ( $params['interlace'] && version_compare( $v[1], '6.3.4' ) >= 0 ) {
+				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_GIF );
 				}
 			}

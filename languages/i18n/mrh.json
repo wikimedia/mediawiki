@@ -3,6 +3,7 @@
 		"authors": [
 			"Kiathy",
 			"Laitei",
+			"Teitei",
 			"Teitei Para"
 		]
 	},
@@ -111,7 +112,7 @@
 	"hidden-category-category": "Phozy nyu",
 	"category-subcat-count": "{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}",
 	"category-article-count": "{{PLURAL:$2|This category contains only the following page.|The following {{PLURAL:$1|page is|$1 pages are}} in this category, out of $2 total.}}",
-	"category-file-count": "{{PLURAL:$2|This category contains only the following file.|The following {{PLURAL:$1|file is|$1 files are}} in this category, out of $2 total.}}",
+	"category-file-count": "{{PLURAL:$2|He pho lia he a ry liata faih a y.|A ry liata he pho lia a zydua sa$2 {{PLURAL:$1|faih|$1 faihzy}} a y.}}",
 	"listingcontinuesabbrev": "cont.",
 	"noindex-category": "Index hawpa châhmia yvei",
 	"broken-file-category": "Faih link raopazy nata châhmiazy",

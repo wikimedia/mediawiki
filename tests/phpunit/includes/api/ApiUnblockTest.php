@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -32,7 +33,7 @@ class ApiUnblockTest extends ApiTestCase {
 			'address' => $this->blockee->getName(),
 			'by' => $this->blocker->getId(),
 		] );
-		$result = $block->insert();
+		$result = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );
 		$blockFromDB = DatabaseBlock::newFromID( $result['id'] );
 		$this->assertTrue( $blockFromDB !== null, 'Could not retrieve block' );
@@ -98,7 +99,7 @@ class ApiUnblockTest extends ApiTestCase {
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->doUnblock();
 	}
@@ -108,7 +109,7 @@ class ApiUnblockTest extends ApiTestCase {
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
 		] );
-		$result = $block->insert();
+		$result = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );
 
 		$this->doUnblock( [ 'user' => $this->blocker->getName() ] );

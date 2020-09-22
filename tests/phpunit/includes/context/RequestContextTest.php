@@ -66,7 +66,6 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		];
 		// importScopedSession() sets these variables
 		$this->setMwGlobals( [
-			'wgUser' => new User,
 			'wgRequest' => new FauxRequest,
 		] );
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context

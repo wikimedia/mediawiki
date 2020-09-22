@@ -90,18 +90,22 @@ class ApiFeedContributions extends ApiBase {
 		$params['end'] = '';
 		$params = ContribsPager::processDateFilter( $params );
 
-		$pager = new ContribsPager( $this->getContext(), [
-			'target' => $target,
-			'namespace' => $params['namespace'],
-			'start' => $params['start'],
-			'end' => $params['end'],
-			'tagFilter' => $params['tagfilter'],
-			'deletedOnly' => $params['deletedonly'],
-			'topOnly' => $params['toponly'],
-			'newOnly' => $params['newonly'],
-			'hideMinor' => $params['hideminor'],
-			'showSizeDiff' => $params['showsizediff'],
-		] );
+		$pager = new ContribsPager(
+			$this->getContext(), [
+				'target' => $target,
+				'namespace' => $params['namespace'],
+				'start' => $params['start'],
+				'end' => $params['end'],
+				'tagFilter' => $params['tagfilter'],
+				'deletedOnly' => $params['deletedonly'],
+				'topOnly' => $params['toponly'],
+				'newOnly' => $params['newonly'],
+				'hideMinor' => $params['hideminor'],
+				'showSizeDiff' => $params['showsizediff'],
+			],
+			MediaWikiServices::getInstance()->getLinkRenderer(),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
 		if ( $pager->getLimit() > $feedLimit ) {

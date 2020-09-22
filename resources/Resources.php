@@ -54,18 +54,31 @@ return [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'legacy' => true,
+		],
 	],
 	'mediawiki.skinning.content' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'content' => true,
+			'legacy' => true,
+		],
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content', 'interface', 'logo', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'content' => true,
+			'interface' => true,
+			'logo' => true,
+			'legacy' => true,
+		],
 	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1483,11 +1496,6 @@ return [
 			'logging-out-notify'
 		]
 	],
-	'mediawiki.page.startup' => [
-		// TODO: Keep for HTML cache compat until 2020-08-21.
-		'dependencies' => [ 'mediawiki.page.ready' ],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.page.watch.ajax' => [
 		'localBasePath' => "$IP/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
@@ -1796,6 +1804,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
+			'mediawiki.Uri',
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
@@ -2239,7 +2248,9 @@ return [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'legacy' ],
+		'features' => [
+			'legacy' => true,
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 

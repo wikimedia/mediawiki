@@ -255,7 +255,13 @@ abstract class PrefixSearch {
 			}
 
 			$title = Title::makeTitleSafe( $namespace, $search );
-			// Why does the prefix default to empty?
+			if ( !$title ) {
+				$title = Title::makeTitleSafe(
+					$namespace,
+					// Don't just ignore input like "[[Foo]]", but try to search for "Foo"
+					preg_replace( MediaWikiTitleCodec::getTitleInvalidRegex(), '', $search )
+				);
+			}
 			$prefix = $title ? $title->getDBkey() : '';
 			$prefixes[$prefix][] = $namespace;
 		}

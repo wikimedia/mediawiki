@@ -213,7 +213,8 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'day' ),
 			$opts->getValue( 'tagfilter' ),
 			$opts->getValue( 'subtype' ),
-			$opts->getValue( 'logid' )
+			$opts->getValue( 'logid' ),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );

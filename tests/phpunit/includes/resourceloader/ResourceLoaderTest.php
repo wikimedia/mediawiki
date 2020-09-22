@@ -9,6 +9,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
+			'wgSkinLessVariablesImportPaths' => [],
 			'wgShowExceptionDetails' => true,
 		] );
 	}
@@ -282,6 +283,52 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		] );
 		$css = $lc->parseFile( "$basePath/module/use-import-dir.less" )->getCss();
 		$this->assertStringEqualsFile( "$basePath/module/styles.css", $css );
+	}
+
+	public static function provideMediaWikiVariablesCases() {
+		$basePath = __DIR__ . '/../../data/less';
+		return [
+			[
+				'config' => [],
+				'importPaths' => [],
+				'skin' => 'fallback',
+				'expected' => "$basePath/use-variables-default.css",
+			],
+			[
+				'config' => [
+					'wgValidSkinNames' => [
+						// Required to make ResourceLoaderContext::getSkin work
+						'example' => 'Example',
+					],
+				],
+				'importPaths' => [
+					'example' => "$basePath/testvariables/",
+				],
+				'skin' => 'example',
+				'expected' => "$basePath/use-variables-test.css",
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideMediaWikiVariablesCases
+	 * @covers ResourceLoader::getLessCompiler
+	 * @covers ResourceLoaderFileModule::compileLessFile
+	 */
+	public function testMediawikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
+		$this->setMwGlobals( $config );
+		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
+		// Reset Skin::getSkinNames for ResourceLoaderContext
+		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'SkinFactory' );
+
+		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/less',
+			'styles' => [ 'use-variables.less' ],
+		] );
+		$module->setName( 'test.less' );
+		$styles = $module->getStyles( $context );
+		$this->assertStringEqualsFile( $expectedFile, $styles['all'] );
 	}
 
 	public static function providePackedModules() {

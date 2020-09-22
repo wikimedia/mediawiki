@@ -91,7 +91,7 @@ class TestFileReader {
 
 		$tests[] = [
 			'test' => $t->testName,
-			'desc' => ( $t->comment ?? '' ) . $t->testName,
+			'desc' => $t->testName,
 			'input' => $t->wikitext,
 			'result' => $t->legacyHtml,
 			'options' => $t->options,

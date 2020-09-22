@@ -41,4 +41,8 @@ class ParserTestFileSuite extends TestSuite {
 	protected function setUp() : void {
 		$this->ptRunner->addArticles( $this->ptFileInfo[ 'articles'] );
 	}
+
+	protected function tearDown() : void {
+		$this->ptRunner->cleanupArticles( $this->ptFileInfo[ 'articles'] );
+	}
 }

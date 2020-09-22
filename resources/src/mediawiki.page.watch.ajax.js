@@ -55,11 +55,11 @@
 		$li = $link.closest( 'li' );
 
 		// Trigger a 'watchpage' event for this List item.
-		// Announce the otherAction value as the first param.
+		// Announce the otherAction value and expiry as params.
 		// Used to monitor the state of watch link.
 		// TODO: Revise when system wide hooks are implemented
-		if ( state === undefined ) {
-			$li.trigger( 'watchpage.mw', otherAction );
+		if ( state !== 'loading' ) {
+			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
 		}
 
 		// Checking to see what if the expiry is set or indefinite to display the correct message
@@ -98,22 +98,16 @@
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
-		// Most common ID style
-		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
-			$li.prop( 'id', 'ca-' + action );
-		}
-
 		if ( state === 'loading' ) {
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
 
-			// Remove the half-star class that might have been added by SkinTemplate.
-			if ( action === 'unwatch' ) {
-				$li.removeClass( 'mw-watchlink-temp' );
+			// Most common ID style
+			if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
+				$li.prop( 'id', 'ca-' + action );
 			}
 		}
-
 	}
 
 	/**
@@ -219,13 +213,19 @@
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
 
-			api = new mw.Api();
+			// Preload watchlist expiry widget so it runs in parallel
+			// with the api call
+			if ( isWatchlistExpiryEnabled ) {
+				mw.loader.load( 'mediawiki.watchstar.widgets' );
+			}
 
+			api = new mw.Api();
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
 					var message,
 						watchlistPopup = null,
-						otherAction = action === 'watch' ? 'unwatch' : 'watch';
+						otherAction = action === 'watch' ? 'unwatch' : 'watch',
+						notifyPromise;
 
 					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
@@ -241,7 +241,7 @@
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
-						mw.loader.using( 'mediawiki.watchstar.widgets' ).done( function ( require ) {
+						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
@@ -265,7 +265,6 @@
 								tag: 'watch-self',
 								autoHideSeconds: 'short'
 							} );
-
 						} );
 					} else {
 						// The following messages can be used here:
@@ -273,14 +272,21 @@
 						// * addedwatchtext
 						// * removedwatchtext-talk
 						// * removedwatchtext
-						mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-							tag: 'watch-self'
-						} );
+						notifyPromise = mw.notify(
+							mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
+								tag: 'watch-self'
+							}
+						);
 					}
 
-					// Set link to opposite
-					updateWatchLink( $link, otherAction );
-					callback( $link, watchResponse.watched === true );
+					// The notifications are stored as a promise and the watch link is only updated
+					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
+					// OOUI could cause a race condition and the link is updated before the popup
+					// actually is shown. See T263135
+					notifyPromise.then( function () {
+						updateWatchLink( $link, otherAction );
+						callback( $link, watchResponse.watched === true );
+					} );
 				} )
 				.fail( function ( code, data ) {
 					var $msg;

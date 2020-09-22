@@ -89,7 +89,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setSessionUser( User $user, WebRequest $request ) {
-		$this->setMwGlobals( 'wgUser', $user );
 		RequestContext::getMain()->setUser( $user );
 		RequestContext::getMain()->setRequest( $request );
 		TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
@@ -358,7 +357,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 
 		// let the user have a few (3) edits
-		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
+		$page = WikiPage::factory( Title::makeTitle( NS_HELP, 'UserTest_EditCount' ) );
 		for ( $i = 0; $i < 3; $i++ ) {
 			$page->doEditContent(
 				ContentHandler::makeContent( (string)$i, $page->getTitle() ),
@@ -1299,7 +1298,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $blocker );
-		$res = $block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$res = $blockStore->insertBlock( $block );
 		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
@@ -1312,7 +1312,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $res['id'], $user->getBlockId() );
 
 		// Unblock
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
@@ -1332,19 +1332,20 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$ipBlock = new Block( [
 			'address' => $user->getRequest()->getIP(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'createAccount' => true,
 		] );
-		$ipBlock->insert();
+		$blockStore->insertBlock( $ipBlock );
 
 		$userBlock = new Block( [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'createAccount' => false,
 		] );
-		$userBlock->insert();
+		$blockStore->insertBlock( $userBlock );
 
 		$block = $user->getBlock();
 		$this->assertInstanceOf( CompositeBlock::class, $block );
@@ -1397,12 +1398,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1501,13 +1503,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $blockFromEmail, $user->isBlockedFromEmailuser() );
 			$this->assertSame( !$blockFromAccountCreation, $user->isAllowedToCreateAccount() );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1533,12 +1536,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $this->user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expected, $this->user->isBlockedFromUpload() );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1975,8 +1979,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWatchlist() {
 		$user = $this->user;
-		$specialTitle = Title::newFromText( 'Special:Version' );
-		$articleTitle = Title::newFromText( 'FooBar' );
+		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
 
 		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
@@ -1999,6 +2003,24 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$user->isTempWatched( $articleTitle, 'The article has been tempoarily watched' )
 		);
+	}
+
+	/**
+	 * @covers User::addWatch
+	 */
+	public function testAddSpecialPageToWatchlist() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$this->expectException( MWException::class );
+		$this->user->addWatch( $title );
+	}
+
+	/**
+	 * @covers User::removeWatch
+	 */
+	public function testRemoveSpecialPageFromWatchlist() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$this->expectException( MWException::class );
+		$this->user->removeWatch( $title );
 	}
 
 	/**
@@ -2290,7 +2312,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers User::pingLimiter
 	 */
-	public function testPingLimiter() {
+	public function testPingLimiterHook() {
 		$this->setMwGlobals( [
 			'wgRateLimits' => [
 				'edit' => [
@@ -2331,6 +2353,206 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$this->user->pingLimiter( 'FakeActionWithNoRateLimit' ),
 			'Actions with no rate limit set do not trip the rate limiter'
 		);
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiterWithStaleCache() {
+		global $wgMainCacheType;
+
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'user' => [ 1, 60 ],
+				],
+			],
+		] );
+
+		$cacheTime = 1600000000.0;
+		$appTime = 1600000000;
+		$cache = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $cache;
+
+		$cache->setMockTime( $cacheTime ); // this is a reference!
+		MWTimestamp::setFakeTime( function () use ( &$appTime ) {
+			return (int)$appTime;
+		} );
+
+		$this->assertFalse( $this->user->pingLimiter(), 'limit not reached' );
+		$this->assertTrue( $this->user->pingLimiter(), 'limit reached' );
+
+		// Make it so that rate limits are expired according to MWTimestamp::time(),
+		// but not according to $cache->getCurrentTime(), emulating the conditions
+		// that trigger T246991.
+		$cacheTime += 10;
+		$appTime += 100;
+
+		$this->assertFalse( $this->user->pingLimiter(), 'limit expired' );
+		$this->assertTrue( $this->user->pingLimiter(), 'limit functional after expiry' );
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiterRate() {
+		global $wgMainCacheType;
+
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'user' => [ 3, 60 ],
+				],
+			],
+		] );
+
+		$fakeTime = 1600000000;
+		$cache = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $cache;
+
+		$cache->setMockTime( $fakeTime ); // this is a reference!
+		MWTimestamp::setFakeTime( function () use ( &$fakeTime ) {
+			return (int)$fakeTime;
+		} );
+
+		// The limit is 3 per 60 second. Do 5 edits at an emulated 50 second interval.
+		// They should all pass. This tests that the counter doesn't just keeps increasing
+		// but gets reset in an appropriate way.
+		$this->assertFalse( $this->user->pingLimiter(), 'first ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'second ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'third ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'fourth ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $this->user->pingLimiter(), 'fifth ping should pass' );
+	}
+
+	private function newFakeUser( $name, $ip, $id ) {
+		$req = new FauxRequest();
+		$req->setIP( $ip );
+
+		$user = User::newFromName( $name, false );
+
+		$access = TestingAccessWrapper::newFromObject( $user );
+		$access->mRequest = $req;
+		$access->mId = $id;
+		$access->setItemLoaded( 'id' );
+
+		$this->overrideUserPermissions( $user, [
+			'noratelimit' => false,
+		] );
+
+		return $user;
+	}
+
+	private function newFakeAnon( $ip ) {
+		return $this->newFakeUser( $ip, $ip, 0 );
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiterGlobal() {
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'anon' => [ 1, 60 ],
+				],
+				'purge' => [
+					'ip' => [ 1, 60 ],
+					'subnet' => [ 1, 60 ],
+				],
+				'rollback' => [
+					'user' => [ 1, 60 ],
+				],
+				'move' => [
+					'user-global' => [ 1, 60 ],
+				],
+				'delete' => [
+					'ip-all' => [ 1, 60 ],
+					'subnet-all' => [ 1, 60 ],
+				],
+			],
+		] );
+
+		// Set up a fake cache for storing limits
+		$cache = new HashBagOStuff( [ 'keyspace' => 'xwiki' ] );
+
+		global $wgMainCacheType;
+		ObjectCache::$instances[$wgMainCacheType] = $cache;
+
+		$cacheAccess = TestingAccessWrapper::newFromObject( $cache );
+		$cacheAccess->keyspace = 'xwiki';
+
+		$this->installMockContralIdProvider();
+
+		// Set up some fake users
+		$anon1 = $this->newFakeAnon( '1.2.3.4' );
+		$anon2 = $this->newFakeAnon( '1.2.3.8' );
+		$anon3 = $this->newFakeAnon( '6.7.8.9' );
+		$anon4 = $this->newFakeAnon( '6.7.8.1' );
+
+		// The mock ContralIdProvider uses the local id MOD 10 as the global ID.
+		// So Frank has global ID 11, and Jane has global ID 56.
+		// Kara's global ID is 0, which means no global ID.
+		$frankX1 = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
+		$frankX2 = $this->newFakeUser( 'Frank', '1.2.3.8', 111 );
+		$frankY1 = $this->newFakeUser( 'Frank', '1.2.3.4', 211 );
+		$janeX1 = $this->newFakeUser( 'Jane', '1.2.3.4', 456 );
+		$janeX3 = $this->newFakeUser( 'Jane', '6.7.8.9', 456 );
+		$janeY1 = $this->newFakeUser( 'Jane', '1.2.3.4', 756 );
+		$karaX1 = $this->newFakeUser( 'Kara', '5.5.5.5', 100 );
+		$karaY1 = $this->newFakeUser( 'Kara', '5.5.5.5', 200 );
+
+		// Test limits on wiki X
+		$this->assertFalse( $anon1->pingLimiter( 'edit' ), 'First anon edit' );
+		$this->assertTrue( $anon2->pingLimiter( 'edit' ), 'Second anon edit' );
+
+		$this->assertFalse( $anon1->pingLimiter( 'purge' ), 'Anon purge' );
+		$this->assertTrue( $anon1->pingLimiter( 'purge' ), 'Anon purge via same IP' );
+
+		$this->assertFalse( $anon3->pingLimiter( 'purge' ), 'Anon purge via different subnet' );
+		$this->assertTrue( $anon2->pingLimiter( 'purge' ), 'Anon purge via same subnet' );
+
+		$this->assertFalse( $frankX1->pingLimiter( 'rollback' ), 'First rollback' );
+		$this->assertTrue( $frankX2->pingLimiter( 'rollback' ), 'Second rollback via different IP' );
+		$this->assertFalse( $janeX1->pingLimiter( 'rollback' ), 'Rlbk by different user, same IP' );
+
+		$this->assertFalse( $frankX1->pingLimiter( 'move' ), 'First move' );
+		$this->assertTrue( $frankX2->pingLimiter( 'move' ), 'Second move via different IP' );
+		$this->assertFalse( $janeX1->pingLimiter( 'move' ), 'Move by different user, same IP' );
+		$this->assertFalse( $karaX1->pingLimiter( 'move' ), 'Move by another user' );
+		$this->assertTrue( $karaX1->pingLimiter( 'move' ), 'Second move by another user' );
+
+		$this->assertFalse( $frankX1->pingLimiter( 'delete' ), 'First delete' );
+		$this->assertTrue( $janeX1->pingLimiter( 'delete' ), 'Delete via same IP' );
+
+		$this->assertTrue( $frankX2->pingLimiter( 'delete' ), 'Delete via same subnet' );
+		$this->assertFalse( $janeX3->pingLimiter( 'delete' ), 'Delete via different subnet' );
+
+		// Now test how limits carry over to wiki Y
+		$cacheAccess->keyspace = 'ywiki';
+
+		$this->assertFalse( $anon3->pingLimiter( 'edit' ), 'Anon edit on wiki Y' );
+		$this->assertTrue( $anon4->pingLimiter( 'purge' ), 'Anon purge on wiki Y, same subnet' );
+		$this->assertFalse( $frankY1->pingLimiter( 'rollback' ), 'Rollback on wiki Y, same name' );
+		$this->assertTrue( $frankY1->pingLimiter( 'move' ), 'Move on wiki Y, same name' );
+		$this->assertTrue( $janeY1->pingLimiter( 'move' ), 'Move on wiki Y, different user' );
+		$this->assertTrue( $frankY1->pingLimiter( 'delete' ), 'Delete on wiki Y, same IP' );
+
+		// For a user without a global ID, user-global acts as a local restriction
+		$this->assertFalse( $karaY1->pingLimiter( 'move' ), 'Move by another user' );
+		$this->assertTrue( $karaY1->pingLimiter( 'move' ), 'Second move by another user' );
 	}
 
 	private function doTestNewTalk( User $user ) {
@@ -2399,5 +2621,28 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $userTalk->getLocalURL(), $links[0]['link'] );
 		$this->assertSame( $firstRevRecord->getId(), $links[0]['rev']->getId() );
 		$this->assertSame( $firstRevRecord->getId(), $user->getNewMessageRevisionId() );
+	}
+
+	private function installMockContralIdProvider() {
+		$mockCentralIdLookup = $this->createNoOpMock(
+			CentralIdLookup::class,
+			[ 'centralIdFromLocalUser', 'getProviderId' ]
+		);
+
+		$mockCentralIdLookup->method( 'centralIdFromLocalUser' )
+			->willReturnCallback( function ( User $user ) {
+				return $user->getId() % 100;
+			} );
+
+		$this->setMwGlobals( [
+			'wgCentralIdLookupProvider' => 'test',
+			'wgCentralIdLookupProviders' => [
+				'test' => [
+					'factory' => function () use ( $mockCentralIdLookup ) {
+						return $mockCentralIdLookup;
+					}
+				]
+			]
+		] );
 	}
 }

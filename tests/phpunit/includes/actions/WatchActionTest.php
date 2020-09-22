@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -87,6 +89,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmitHookAborted() {
+		// Change the context to have a logged in user with correct permission.
+		$testContext = new DerivativeContext( $this->watchAction->getContext() );
+		$testContext->setUser( $this->getUser( true, true, [ 'editmywatchlist' ] ) );
+		$this->watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
+
 		Hooks::register( 'WatchArticle', function () {
 			return false;
 		} );
@@ -187,6 +197,112 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( '<p>addedwatchtext-talk
 </p>', $testOutput->getHTML() );
+	}
+
+	/**
+	 * @dataProvider provideOnSuccessDifferentMessages
+	 */
+	public function testOnSuccessDifferentMessages(
+		$watchlistExpiry, $msg, $prefixedTitle, $submittedExpiry, $expiryLabel
+	) {
+		// Fake current time to be 2020-09-17 12:00:00 UTC.
+		ConvertibleTimestamp::setFakeTime( '20200917120000' );
+
+		// WatchlistExpiry feature flag.
+		$this->setMwGlobals( 'wgWatchlistExpiry', $watchlistExpiry );
+
+		// Set up context, request, and output.
+		/** @var MockObject|IContextSource $testContext */
+		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->onlyMethods( [ 'getOutput', 'getRequest', 'getLanguage' ] )
+			->setConstructorArgs( [ $this->watchAction->getContext() ] )
+			->getMock();
+		/** @var MockObject|OutputPage $testOutput */
+		$testOutput = $this->createMock( OutputPage::class );
+		$testOutput->expects( $this->once() )
+			->method( 'addWikiMsg' )
+			->with( $msg, $prefixedTitle, $expiryLabel );
+		$testContext->method( 'getOutput' )->willReturn( $testOutput );
+		// Set language to anything non-English/default, to catch assumptions.
+		$langDe = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
+		$testContext->method( 'getLanguage' )->willReturn( $langDe );
+		/** @var MockObject|WebRequest $testRequest */
+		$testRequest = $this->createMock( WebRequest::class );
+		$testRequest->expects( $this->once() )
+			->method( 'getText' )
+			->willReturn( $submittedExpiry );
+		$testContext->method( 'getRequest' )->willReturn( $testRequest );
+
+		// Call the onSuccess method, and the above mocks will confirm it's correct.
+		/** @var WatchAction $watchAction */
+		$watchAction = TestingAccessWrapper::newFromObject(
+			new WatchAction(
+				Article::newFromTitle( Title::newFromText( $prefixedTitle ), $testContext ),
+				$testContext
+			)
+		);
+		$watchAction->onSuccess();
+	}
+
+	public function provideOnSuccessDifferentMessages() {
+		return [
+			[
+				'wgWatchlistExpiry' => false,
+				'msg' => 'addedwatchtext',
+				'prefixedTitle' => 'Foo',
+				'submittedExpiry' => null,
+				'expiryLabel' => null,
+			],
+			[
+				'wgWatchlistExpiry' => false,
+				'msg' => 'addedwatchtext-talk',
+				'prefixedTitle' => 'Talk:Foo',
+				'submittedExpiry' => null,
+				'expiryLabel' => null,
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchindefinitelytext',
+				'prefixedTitle' => 'Foo',
+				'submittedExpiry' => 'infinite',
+				'expiryLabel' => 'Dauerhaft',
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchindefinitelytext-talk',
+				'prefixedTitle' => 'Talk:Foo',
+				'submittedExpiry' => 'infinite',
+				'expiryLabel' => 'Dauerhaft',
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchexpirytext',
+				'prefixedTitle' => 'Foo',
+				'submittedExpiry' => '1 week',
+				'expiryLabel' => '1 Woche',
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchexpirytext-talk',
+				'prefixedTitle' => 'Talk:Foo',
+				'submittedExpiry' => '1 week',
+				'expiryLabel' => '1 Woche',
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchexpiryhours',
+				'prefixedTitle' => 'Foo',
+				'submittedExpiry' => '2020-09-17T14:00:00Z',
+				'expiryLabel' => null,
+			],
+			[
+				'wgWatchlistExpiry' => true,
+				'msg' => 'addedwatchexpiryhours-talk',
+				'prefixedTitle' => 'Talk:Foo',
+				'submittedExpiry' => '2020-09-17T14:00:00Z',
+				'expiryLabel' => null,
+			],
+		];
 	}
 
 	/**
@@ -420,14 +536,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneMonth = WatchAction::getExpiryOptions( $this->context, $watchedItemMonth );
 		$expectedExpiryOneMonth = [
 			'options' => [
-				'30 days left' => '20200710000000',
+				'30 days left' => '2020-07-10T00:00:00Z',
 				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '20200710000000'
+			'default' => '2020-07-10T00:00:00Z'
 		];
 
 		$this->assertSame( $expectedExpiryOneMonth, $optionsExpiryOneMonth );
@@ -437,14 +553,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneWeek = WatchAction::getExpiryOptions( $this->context, $watchedItemWeek );
 		$expectedOneWeek = [
 			'options' => [
-				'7 days left' => '20200617000000',
+				'7 days left' => '2020-06-17T00:00:00Z',
 				'Permanent' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '20200617000000'
+			'default' => '2020-06-17T00:00:00Z'
 		];
 
 		$this->assertSame( $expectedOneWeek, $optionsExpiryOneWeek );

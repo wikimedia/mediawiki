@@ -7,8 +7,10 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
@@ -55,13 +57,13 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	public function testWrongMethod() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
-			'method' => 'OPTIONS'
+			'method' => 'TRACE'
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 405, $response->getStatusCode() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
-		$this->assertSame( 'GET', $response->getHeaderLine( 'Allow' ) );
+		$this->assertSame( 'HEAD, GET', $response->getHeaderLine( 'Allow' ) );
 	}
 
 	public function testHeadToGet() {
@@ -90,6 +92,24 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		};
 	}
 
+	public static function throwRedirectHandlerFactory() {
+		return new class extends Handler {
+			public function execute() {
+				throw new RedirectException( 301, 'http://example.com' );
+			}
+		};
+	}
+
+	public static function throwWrappedHandlerFactory() {
+		return new class extends Handler {
+			public function execute() {
+				$response = $this->getResponseFactory()->create();
+				$response->setStatus( 200 );
+				throw new ResponseException( $response );
+			}
+		};
+	}
+
 	public function testException() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
 		$router = $this->createRouter( $request );
@@ -99,6 +119,21 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 'Mock error', $data['message'] );
+	}
+
+	public function testRedirectException() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throwRedirect' ) ] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 301, $response->getStatusCode() );
+		$this->assertSame( 'http://example.com', $response->getHeaderLine( 'Location' ) );
+	}
+
+	public function testResponseException() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throwWrapped' ) ] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testBasicAccess() {

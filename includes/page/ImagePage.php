@@ -807,7 +807,10 @@ EOT
 	protected function imageHistory() {
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
-		$pager = new ImageHistoryPseudoPager( $this );
+		$pager = new ImageHistoryPseudoPager(
+			$this,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$out->addHTML( $pager->getBody() );
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
@@ -1016,7 +1019,12 @@ EOT
 		}
 		'@phan-var LocalFile $file';
 
-		$deleter = new FileDeleteForm( $file, $this->getContext()->getUser() );
+		$context = $this->getContext();
+		$deleter = new FileDeleteForm(
+			$file,
+			$context->getUser(),
+			$context->getOutput()
+		);
 		$deleter->execute();
 	}
 

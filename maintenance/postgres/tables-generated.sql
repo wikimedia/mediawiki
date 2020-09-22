@@ -180,3 +180,93 @@ CREATE INDEX pl_backlinks_namespace ON pagelinks (
   pl_from_namespace, pl_namespace,
   pl_title, pl_from
 );
+
+
+CREATE TABLE templatelinks (
+  tl_from INT DEFAULT 0 NOT NULL,
+  tl_namespace INT DEFAULT 0 NOT NULL,
+  tl_title TEXT DEFAULT '' NOT NULL,
+  tl_from_namespace INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+);
+
+CREATE INDEX tl_namespace ON templatelinks (tl_namespace, tl_title, tl_from);
+
+CREATE INDEX tl_backlinks_namespace ON templatelinks (
+  tl_from_namespace, tl_namespace,
+  tl_title, tl_from
+);
+
+
+CREATE TABLE imagelinks (
+  il_from INT DEFAULT 0 NOT NULL,
+  il_to TEXT DEFAULT '' NOT NULL,
+  il_from_namespace INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(il_from, il_to)
+);
+
+CREATE INDEX il_to ON imagelinks (il_to, il_from);
+
+CREATE INDEX il_backlinks_namespace ON imagelinks (
+  il_from_namespace, il_to, il_from
+);
+
+
+CREATE TABLE langlinks (
+  ll_from INT DEFAULT 0 NOT NULL,
+  ll_lang TEXT DEFAULT '' NOT NULL,
+  ll_title TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(ll_from, ll_lang)
+);
+
+CREATE INDEX ll_lang ON langlinks (ll_lang, ll_title);
+
+
+CREATE TABLE iwlinks (
+  iwl_from INT DEFAULT 0 NOT NULL,
+  iwl_prefix TEXT DEFAULT '' NOT NULL,
+  iwl_title TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+);
+
+CREATE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
+
+CREATE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
+
+
+CREATE TABLE category (
+  cat_id SERIAL NOT NULL,
+  cat_title TEXT NOT NULL,
+  cat_pages INT DEFAULT 0 NOT NULL,
+  cat_subcats INT DEFAULT 0 NOT NULL,
+  cat_files INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(cat_id)
+);
+
+CREATE UNIQUE INDEX cat_title ON category (cat_title);
+
+CREATE INDEX cat_pages ON category (cat_pages);
+
+
+CREATE TABLE watchlist_expiry (
+  we_item INT NOT NULL,
+  we_expiry TIMESTAMPTZ NOT NULL,
+  PRIMARY KEY(we_item)
+);
+
+CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);
+
+
+CREATE TABLE change_tag_def (
+  ctd_id SERIAL NOT NULL,
+  ctd_name TEXT NOT NULL,
+  ctd_user_defined SMALLINT NOT NULL,
+  ctd_count BIGINT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(ctd_id)
+);
+
+CREATE UNIQUE INDEX ctd_name ON change_tag_def (ctd_name);
+
+CREATE INDEX ctd_count ON change_tag_def (ctd_count);
+
+CREATE INDEX ctd_user_defined ON change_tag_def (ctd_user_defined);

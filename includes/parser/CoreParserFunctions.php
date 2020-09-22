@@ -297,9 +297,25 @@ class CoreParserFunctions {
 		) {
 			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
 		} else {
-			$func = [ $parser->getFunctionLang(), 'formatNum' ];
+			$func = self::getLegacyFormatNum( $parser );
 		}
 		return $parser->markerSkipCallback( $num, $func );
+	}
+
+	private static function getLegacyFormatNum( $parser ) {
+		// For historic reasons, the formatNum parser function will
+		// take arguments which are not actually formatted numbers,
+		// which then trigger deprecation warnings in commafy.  Instead
+		// emit a tracking category instead to allow linting.
+		$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
+		return function ( $number ) use ( $parser, $validNumberRe ) {
+			if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
+				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
+			}
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $parser ) {
+				return $parser->getFunctionLang()->formatNum( $m[0] );
+			}, $number );
+		};
 	}
 
 	/**

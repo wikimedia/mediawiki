@@ -25,6 +25,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup SpecialPage
  */
@@ -41,7 +43,12 @@ class SpecialListUsers extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$up = new UsersPager( $this->getContext(), $par, $this->including() );
+		$up = new UsersPager(
+			$this->getContext(),
+			$par,
+			$this->including(),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();

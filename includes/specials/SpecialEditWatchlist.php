@@ -329,7 +329,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function showTitles( $titles, &$output ) {
 		$talk = $this->msg( 'talkpagelinktext' )->text();
 		// Do a batch existence check
-		$batch = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		if ( count( $titles ) >= 100 ) {
 			$output = $this->msg( 'watchlistedit-too-many' )->parse();
 			return;
@@ -429,7 +430,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->getUser(), $options
 		);
 
-		$lb = new LinkBatch();
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$context = $this->getContext();
 
 		foreach ( $watchedItems as $watchedItem ) {
@@ -723,7 +725,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( $this->isWatchlistExpiryEnabled && $expiryDaysText ) {
 			$watchlistExpiringMessage = Html::element(
 				'span',
-				[ 'class' => 'watchlistexpiry-msg' ],
+				[ 'class' => 'mw-watchlistexpiry-msg' ],
 				$expiryDaysText
 			);
 		}

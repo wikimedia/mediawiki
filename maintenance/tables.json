@@ -537,5 +537,269 @@
 			}
 		],
 		"pk": [ "pl_from", "pl_namespace", "pl_title" ]
+	},
+	{
+		"name": "templatelinks",
+		"comment": "Track template inclusions. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
+		"columns": [
+			{
+				"name": "tl_from",
+				"comment": "Key to the page_id of the page containing the link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "tl_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for this page",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "tl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "tl_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tl_namespace",
+				"columns": [ "tl_namespace", "tl_title", "tl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "tl_backlinks_namespace",
+				"columns": [ "tl_from_namespace", "tl_namespace", "tl_title", "tl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "tl_from", "tl_namespace", "tl_title" ]
+	},
+	{
+		"name": "imagelinks",
+		"comment": "Track links to images *used inline* We don't distinguish live from broken links here, so they do not need to be changed on upload/removal.",
+		"columns": [
+			{
+				"name": "il_from",
+				"comment": "Key to page_id of the page containing the image / media link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "il_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for this page",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "il_to",
+				"type": "binary",
+				"comment": "Filename of target image. This is also the page_title of the file's description page; all such pages are in namespace 6 (NS_FILE).",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "il_to",
+				"columns": [ "il_to", "il_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere and file description page local usage",
+				"unique": false
+			},
+			{
+				"name": "il_backlinks_namespace",
+				"columns": [ "il_from_namespace", "il_to", "il_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "il_from", "il_to" ]
+	},
+	{
+		"name": "langlinks",
+		"comment": "Track interlanguage links.",
+		"columns": [
+			{
+				"name": "ll_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "ll_lang",
+				"type": "binary",
+				"comment": "Language code of the target",
+				"options": { "notnull": true, "length": 35, "default": "" }
+			},
+			{
+				"name": "ll_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ll_lang",
+				"columns": [ "ll_lang", "ll_title" ],
+				"comment": "Index for ApiQueryLangbacklinks",
+				"unique": false
+			}
+		],
+		"pk": [ "ll_from", "ll_lang" ]
+	},
+	{
+		"name": "iwlinks",
+		"comment": "Track inline interwiki links",
+		"columns": [
+			{
+				"name": "iwl_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "iwl_prefix",
+				"type": "binary",
+				"comment": "Interwiki prefix code of the target",
+				"options": { "notnull": true, "length": 20, "default": "" }
+			},
+			{
+				"name": "iwl_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "iwl_prefix_title_from",
+				"columns": [ "iwl_prefix", "iwl_title", "iwl_from" ],
+				"comment": "Index for ApiQueryIWBacklinks",
+				"unique": false
+			},
+			{
+				"name": "iwl_prefix_from_title",
+				"columns": [ "iwl_prefix", "iwl_from", "iwl_title" ],
+				"comment": "Index for ApiQueryIWLinks",
+				"unique": false
+			}
+		],
+		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
+	},
+	{
+		"name": "category",
+		"comment": "Track all existing categories. Something is a category if 1) it has an entry somewhere in categorylinks, or 2) it has a description page. Categories might not have corresponding pages, so they need to be tracked separately. The numbers of member pages (including categories and media), subcategories, and Image: namespace members, respectively are included in this table too.  These are signed to make underflow more obvious.  We make the first number include the second two for better sorting: subtracting for display is easy, adding for ordering is not.",
+		"columns": [
+			{
+				"name": "cat_id",
+				"comment": "Primary key",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "cat_title",
+				"type": "binary",
+				"comment": "Name of the category, in the same form as page_title (with underscores). If there is a category page corresponding to this category, by definition, it has this name (in the Category namespace).",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "cat_pages",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_subcats",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_files",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "cat_title",
+				"columns": [ "cat_title" ],
+				"unique": true
+			},
+			{
+				"name": "cat_pages",
+				"columns": [ "cat_pages" ],
+				"comment": "For Special:Mostlinkedcategories",
+				"unique": false
+			}
+		],
+		"pk": [ "cat_id" ]
+	},
+	{
+		"name": "watchlist_expiry",
+		"comment": "Allows setting an expiry for watchlist items.",
+		"columns": [
+			{
+				"name": "we_item",
+				"comment": "Key to watchlist.wl_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "we_expiry",
+				"type": "mwtimestamp",
+				"comment": "Expiry time",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "we_expiry",
+				"columns": [ "we_expiry" ],
+				"unique": false
+			}
+		],
+		"pk": [ "we_item" ]
+	},
+	{
+		"name": "change_tag_def",
+		"comment": "Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag",
+		"columns": [
+			{
+				"name": "ctd_id",
+				"comment": "Numerical ID of the tag (ct_tag_id refers to this)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ctd_name",
+				"comment": "Symbolic name of the tag (what would previously be put in ct_tag)",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ctd_user_defined",
+				"comment": "Whether this tag was defined manually by a privileged user using Special:Tags",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "ctd_count",
+				"comment": "Number of times this tag was used",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ctd_name", "columns": [ "ctd_name" ], "unique": true },
+			{ "name": "ctd_count", "columns": [ "ctd_count" ], "unique": false },
+			{ "name": "ctd_user_defined", "columns": [ "ctd_user_defined" ], "unique": false }
+		],
+		"pk": [ "ctd_id" ]
 	}
+
 ]

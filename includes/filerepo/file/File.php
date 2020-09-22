@@ -1882,35 +1882,11 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * Record a file upload in the upload log and the image table
-	 * @stable to override
-	 * STUB
-	 * Overridden by LocalFile
-	 * @deprecated since 1.35
-	 * @param string $oldver
-	 * @param string $desc
-	 * @param string $license
-	 * @param string $copyStatus
-	 * @param string $source
-	 * @param bool $watch
-	 * @param string|bool $timestamp
-	 * @param null|User $user User object or null to use $wgUser
-	 * @return bool
-	 * @throws MWException
-	 */
-	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false, User $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->readOnlyError();
-	}
-
-	/**
 	 * Move or copy a file to its public location. If a file exists at the
 	 * destination, move it to an archive. Returns a Status object with
 	 * the archive name in the "value" member on success.
 	 *
-	 * The archive name should be passed through to recordUpload for database
+	 * The archive name should be passed through to recordUpload3 for database
 	 * registration.
 	 *
 	 * Options to $options include:
@@ -2029,29 +2005,6 @@ abstract class File implements IDBAccessObject {
 	 * @return Status
 	 */
 	public function move( $target ) {
-		$this->readOnlyError();
-	}
-
-	/**
-	 * Delete all versions of the file.
-	 *
-	 * @deprecated since 1.35, use deleteFile instead
-	 *
-	 * Moves the files into an archive directory (or deletes them)
-	 * and removes the database rows.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress Hide content from sysops?
-	 * @param User|null $user
-	 * @return Status
-	 * STUB
-	 * Overridden by LocalFile
-	 * @stable to override
-	 */
-	public function delete( $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
 
@@ -2298,10 +2251,13 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
+		if ( !$user ) {
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
+		}
 		return true;
 	}
 

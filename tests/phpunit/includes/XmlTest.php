@@ -535,6 +535,27 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers Xml::listDropDownOptions
+	 */
+	public function testListDropDownOptionsOthers() {
+		// Do not use the value for 'other' as option group - T251351
+		$this->assertEquals(
+			[
+				'other reasons' => 'other',
+				'Foo 1' => 'Foo 1',
+				'Example' => 'Example',
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			],
+			Xml::listDropDownOptions(
+				"* other reasons\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				[ 'other' => 'other reasons' ]
+			)
+		);
+	}
+
+	/**
 	 * @covers Xml::listDropDownOptionsOoui
 	 */
 	public function testListDropDownOptionsOoui() {

@@ -111,14 +111,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::undelete
+	 * @covers PageArchive::undeleteAsUser
 	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
-		// TODO: Replace deprecated PageArchive::undelete with ::undeleteAsUser
-		$this->hideDeprecated( 'PageArchive::undelete' );
-
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// First make sure old revisions are archived
@@ -143,7 +140,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$this->archivedPage->undelete( [] );
+		$this->archivedPage->undeleteAsUser( [], $this->getTestSysop()->getUser() );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();

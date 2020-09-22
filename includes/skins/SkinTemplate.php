@@ -38,12 +38,6 @@ use MediaWiki\MediaWikiServices;
  */
 class SkinTemplate extends Skin {
 	/**
-	 * @var string Name of our skin, it probably needs to be all lower case.
-	 *   Child classes should override the default.
-	 */
-	public $skinname = 'monobook';
-
-	/**
 	 * @var string For QuickTemplate, the name of the subclass which will
 	 *   actually fill the template.  Child classes should override the default.
 	 */
@@ -350,7 +344,11 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
-		$tpl->set( 'searchaction', $this->getSearchLink() );
+
+		// Deprecated since 1.36
+		$searchLink = SpecialPage::getTitleFor( 'Search' )->getLocalURL();
+		$tpl->set( 'searchaction', $searchLink );
+
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );

@@ -1635,9 +1635,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
 	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
+	 *
 	 * @return bool True if a rate limiter was tripped
+	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
+		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'ratelimit' );
+
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !$this->getHookRunner()->onPingLimiter( $this, $action, $result, $incrBy ) ) {
@@ -1659,6 +1663,8 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
+		$logger->debug( __METHOD__ . ": limiting $action rate for {$this->getName()}" );
+
 		$keys = [];
 		$id = $this->getId();
 		$isNewbie = $this->isNewbie();
@@ -1668,6 +1674,28 @@ class User implements IDBAccessObject, UserIdentity {
 			// "shared anon" limit, for all anons combined
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
+			}
+		} else {
+			// "global per name" limit, across sites
+			if ( isset( $limits['user-global'] ) ) {
+				$lookup = CentralIdLookup::factoryNonLocal();
+
+				$centralId = $lookup
+					? $lookup->centralIdFromLocalUser( $this, CentralIdLookup::AUDIENCE_RAW )
+					: 0;
+
+				if ( $centralId ) {
+					// We don't have proper realms, use provider ID.
+					$realm = $lookup->getProviderId();
+
+					$globalKey = $cache->makeGlobalKey( 'limiter', $action, 'user-global',
+						$realm, $centralId );
+				} else {
+					// Fall back to a local key for a local ID
+					$globalKey = $cache->makeKey( 'limiter', $action, 'user-global',
+						'local', $id );
+				}
+				$keys[$globalKey] = $limits['user-global'];
 			}
 		}
 
@@ -1716,7 +1744,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// that $userLimit is also a bool here.
 			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $max, $period ) = $userLimit;
-			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s" );
+			$logger->debug( __METHOD__ . ": effective user limit: $max in {$period}s" );
 			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
@@ -1744,28 +1772,89 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 		}
 
+		// XXX: We may want to use $cache->getCurrentTime() here, but that would make it
+		//      harder to test for T246991. Also $cache->getCurrentTime() is documented
+		//      as being for testing only, so it apparently should not be called here.
+		$now = MWTimestamp::time();
+		$clockFudge = 3; // avoid log spam when a clock is slightly off
+
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
-			// phan is confused because &can-bypass's value is a bool, so it assumes
-			// that $userLimit is also a bool here.
-			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
-			list( $max, $period ) = $limit;
-			$summary = "(limit $max in {$period}s)";
-			$count = $cache->get( $key );
-			// Already pinged?
-			if ( $count && $count >= $max ) {
-				wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
-					"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
-				$triggered = true;
-			} else {
-				wfDebug( __METHOD__ . ": adding record for $key $summary" );
-				if ( $incrBy > 0 ) {
-					$cache->add( $key, 0, intval( $period ) ); // first ping
+
+			// Do the update in a merge callback, for atomicity.
+			// To use merge(), we need to explicitly track the desired expiry timestamp.
+			// This tracking was introduced to investigate T246991. Once it is no longer needed,
+			// we could go back to incrWithInit(), though that has more potential for race
+			// conditions between the get() and incrWithInit() calls.
+			$cache->merge(
+				$key,
+				function ( $cache, $key, $data, &$expiry )
+					use ( $action, $logger, &$triggered, $now, $clockFudge, $limit, $incrBy )
+				{
+					// phan is confused because &can-bypass's value is a bool, so it assumes
+					// that $userLimit is also a bool here.
+					// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
+					list( $max, $period ) = $limit;
+
+					$expiry = $now + (int)$period;
+					$count = 0;
+
+					// Already pinged?
+					if ( $data ) {
+						// NOTE: in order to investigate T246991, we write the expiry time
+						//       into the payload, along with the count.
+						$fields = explode( '|', $data );
+						$storedCount = (int)( $fields[0] ?? 0 );
+						$storedExpiry = (int)( $fields[1] ?? PHP_INT_MAX );
+
+						// Found a stale entry. This should not happen!
+						if ( $storedExpiry < ( $now + $clockFudge ) ) {
+							$logger->info(
+								'User::pingLimiter: '
+								. 'Stale rate limit entry, cache key failed to expire (T246991)',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $storedCount,
+									'key' => $key,
+									'expiry' => MWTimestamp::convert( TS_DB, $storedExpiry ),
+								]
+							);
+						} else {
+							// NOTE: We'll keep the original expiry when bumping counters,
+							//       resulting in a kind of fixed-window throttle.
+							$expiry = min( $storedExpiry, $now + (int)$period );
+							$count = $storedCount;
+						}
+					}
+
+					// Limit exceeded!
+					if ( $count >= $max ) {
+						if ( !$triggered ) {
+							$logger->info(
+								'User::pingLimiter: User tripped rate limit',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'ip' => $this->getRequest()->getIP(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $count,
+									'key' => $key
+								]
+							);
+						}
+
+						$triggered = true;
+					}
+
+					$count += $incrBy;
+					$data = "$count|$expiry";
+					return $data;
 				}
-			}
-			if ( $incrBy > 0 ) {
-				$cache->incrWithInit( $key, (int)$period, $incrBy, $incrBy );
-			}
+			);
 		}
 
 		return $triggered;
@@ -3087,6 +3176,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
+	 *  namespace
 	 */
 	public function addWatch(
 		$title,
@@ -3107,6 +3198,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title of the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
+	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
+	 *  namespace
 	 */
 	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
@@ -4302,30 +4395,6 @@ class User implements IDBAccessObject, UserIdentity {
 		$key = "grant-$grant";
 		$msg = wfMessage( $key );
 		return $msg->isDisabled() ? $grant : $msg->text();
-	}
-
-	/**
-	 * Add a newuser log entry for this user.
-	 * Before 1.19 the return value was always true.
-	 *
-	 * @deprecated since 1.27, AuthManager handles logging
-	 * @param string|bool $action Account creation type.
-	 *   - String, one of the following values:
-	 *     - 'create' for an anonymous user creating an account for himself.
-	 *       This will force the action's performer to be the created user itself,
-	 *       no matter the value of $wgUser
-	 *     - 'create2' for a logged in user creating an account for someone else
-	 *     - 'byemail' when the created user will receive its password by e-mail
-	 *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
-	 *   - Boolean means whether the account was created by e-mail (deprecated):
-	 *     - true will be converted to 'byemail'
-	 *     - false will be converted to 'create' if this object is the same as
-	 *       $wgUser and to 'create2' otherwise
-	 * @param string $reason User supplied reason
-	 * @return bool true
-	 */
-	public function addNewUserLogEntry( $action = false, $reason = '' ) {
-		return true; // disabled
 	}
 
 	/**

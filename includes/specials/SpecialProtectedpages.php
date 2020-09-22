@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists protected pages
  *
@@ -63,7 +65,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$indefOnly,
 			$cascadeOnly,
 			$noRedirect,
-			$this->getLinkRenderer()
+			$this->getLinkRenderer(),
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(
@@ -107,7 +110,7 @@ class SpecialProtectedpages extends SpecialPage {
 			'typemenu' => $this->getTypeMenu( $type ),
 			'levelmenu' => $this->getLevelMenu( $level ),
 			'filters' => [
-				'class' => 'HTMLMultiSelectField',
+				'class' => HTMLMultiSelectField::class,
 				'label' => $this->msg( 'protectedpages-filters' )->text(),
 				'flatlist' => true,
 				'options-messages' => [
@@ -122,8 +125,7 @@ class SpecialProtectedpages extends SpecialPage {
 				'name' => 'size',
 			]
 		];
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedpages' )
 			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );

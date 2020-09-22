@@ -142,7 +142,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	protected function setElement( $index, $value ) {
 		if ( !$this->hasValidType( $value ) ) {
 			throw new InvalidArgumentException(
-				'Can only add '	. $this->getObjectType() . ' implementing objects to '
+				'Can only add ' . $this->getObjectType() . ' implementing objects to '
 				. static::class . '.'
 			);
 		}

@@ -657,7 +657,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				return;
 			}
 
-			$batch = new LinkBatch;
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$batch = $linkBatchFactory->newLinkBatch();
 			foreach ( $rows as $row ) {
 				$batch->add( NS_USER, $row->rc_user_text );
 				$batch->add( NS_USER_TALK, $row->rc_user_text );

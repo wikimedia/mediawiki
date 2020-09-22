@@ -59,13 +59,12 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	/**
 	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func($user)
+	 * The prototype for a token function is func( User $actingUser, $targetUser )
 	 * it should return a token or false (permission denied)
 	 * @deprecated since 1.24
 	 * @return array Array of tokenname => function
 	 */
 	protected function getTokenFunctions() {
-		// Don't call the hooks twice
 		if ( isset( $this->tokenFunctions ) ) {
 			return $this->tokenFunctions;
 		}
@@ -79,22 +78,21 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->tokenFunctions = [
 			'userrights' => [ self::class, 'getUserrightsToken' ],
 		];
-		$this->getHookRunner()->onAPIQueryUsersTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
 
 	/**
 	 * @deprecated since 1.24
-	 * @param User $user
+	 * @internal
+	 * @param User $actingUser
+	 * @param User|UserRightsProxy $targetUser
 	 * @return string
 	 */
-	public static function getUserrightsToken( $user ) {
-		global $wgUser;
-
+	public static function getUserrightsToken( User $actingUser, $targetUser ) {
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
-		return $wgUser->getEditToken( $user->getName() );
+		return $actingUser->getEditToken( $targetUser->getName() );
 	}
 
 	public function execute() {
@@ -261,7 +259,11 @@ class ApiQueryUsers extends ApiQueryBase {
 				if ( $params['token'] !== null ) {
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
-						$val = call_user_func( $tokenFunctions[$t], $user );
+						$val = call_user_func(
+							$tokenFunctions[$t],
+							$this->getUser(),
+							$user
+						);
 						if ( $val === false ) {
 							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {
@@ -290,7 +292,11 @@ class ApiQueryUsers extends ApiQueryBase {
 							$tokenFunctions = $this->getTokenFunctions();
 
 							foreach ( $params['token'] as $t ) {
-								$val = call_user_func( $tokenFunctions[$t], $iwUser );
+								$val = call_user_func(
+									$tokenFunctions[$t],
+									$this->getUser(),
+									$iwUser
+								);
 								if ( $val === false ) {
 									$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 								} else {

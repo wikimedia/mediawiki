@@ -245,13 +245,13 @@ class ImageBuilder extends Maintenance {
 				'(recovered file, missing upload log entry)'
 			);
 			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
-			$status = $file->recordUpload2(
+			$status = $file->recordUpload3(
 				'',
 				'(recovered file, missing upload log entry)',
 				$pageText,
+				$user,
 				false,
-				$timestamp,
-				$user
+				$timestamp
 			);
 			if ( !$status->isOK() ) {
 				$this->output( "Error uploading file $fullpath\n" );

@@ -299,7 +299,15 @@ class HistoryAction extends FormlessAction {
 			$m = '';
 			$d = '';
 		}
-		$pager = new HistoryPager( $this, $y, $m, $tagFilter, $conds, $d );
+		$pager = new HistoryPager(
+			$this,
+			$y,
+			$m,
+			$tagFilter,
+			$conds,
+			$d,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .
@@ -373,7 +381,7 @@ class HistoryAction extends FormlessAction {
 	 * @param string $type Feed type
 	 */
 	private function feed( $type ) {
-		if ( !FeedUtils::checkFeedOutput( $type ) ) {
+		if ( !FeedUtils::checkFeedOutput( $type, $this->getOutput() ) ) {
 			return;
 		}
 		$request = $this->getRequest();

@@ -1822,7 +1822,7 @@
 	"htmlform-no": "ಇಲ್ಲ",
 	"htmlform-yes": "ಹೌದು",
 	"htmlform-title-not-exists": "$1 ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.",
-	"logentry-delete-delete": "$1 {{GENDER:$2|ಅಳಿಸಲಾಯಿತು}} ಪುಟ $3",
+	"logentry-delete-delete": "$1 ಅವರಿಂದ $3 ಪುಟ {{GENDER:$2|ಅಳಿಸಲಾಯಿತು}}",
 	"revdelete-restricted": "ನಿರ್ವಾಹಕರಿಗೆ ನಿಬಂಧನೆಗಳನ್ನು ಅನ್ವಯಿಸಲಾಯಿತು",
 	"revdelete-unrestricted": "ನಿರ್ವಾಹಕರ ನಿಬಂಧನೆಗಳನ್ನು ತೆಗೆಯಲಾಯಿತು",
 	"logentry-move-move": "$1 $3 ಪುಟವನ್ನು $4 ಕ್ಕೆ {{GENDER:$2|ಸರಿಸಿದ್ದಾರೆ}}",

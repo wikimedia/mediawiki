@@ -255,7 +255,7 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mPreventClickjacking = true;
 
-	/** @var int To include the variable {{REVISIONID}} */
+	/** @var int|null To include the variable {{REVISIONID}} */
 	private $mRevisionId = null;
 
 	/** @var string */
@@ -1685,7 +1685,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the displayed revision ID
 	 *
-	 * @return int
+	 * @return int|null
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;

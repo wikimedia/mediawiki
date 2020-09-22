@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.1
+ * OOUI v0.40.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-08-05T21:22:12Z
+ * Date: 2020-09-02T15:43:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1748,7 +1748,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input:focus ~ .oo-ui-indicatorElement-indicator {
   opacity: 1;
 }
-.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input[readonly] {
+.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input[readonly]:not( .oo-ui-pendingElement-pending ) {
   background-color: #f8f9fa;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled:hover .oo-ui-inputWidget-input {

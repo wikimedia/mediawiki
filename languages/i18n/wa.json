@@ -575,7 +575,7 @@
 	"shown-title": "Mostrer $1 rizultat{{PLURAL:$1||s}} par pådje",
 	"viewprevnext": "Vey ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "<strong>Gn a ddja ene pådje lomêye «&#x202F;[[:$1]]&#x202F;» so ç’&nbsp;wiki ci</strong>\n{{PLURAL:$2|0=|Loukîz eto les otes adierças k’&nbsp; stî trovés.}}",
-	"searchmenu-new": "<strong>Ahiver lvpådje «&#x202F;[[:$1]]&#x202F;» so ç’&nbsp;wiki ci&#x202F;!</strong>\n{{PLURAL:$2|0=|Loukîz eto l’&nbsp;pådje trovêye pa vosse cweraedje.|Loukîz eto li rzultat di vosse cweraedje.}}",
+	"searchmenu-new": "<strong>Ahiver l’&nbsp;pådje «&#x202F;[[:$1]]&#x202F;» so ç’&nbsp;wiki ci&#x202F;!</strong>\n{{PLURAL:$2|0=|Loukîz eto l’&nbsp;pådje trovêye pa vosse cweraedje.|Loukîz eto li rzultat di vosse cweraedje.}}",
 	"searchprofile-articles": "Pådjes di contnou",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Tote li waibe",

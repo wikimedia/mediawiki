@@ -356,35 +356,35 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Bad blob address: tt:this_will_not_exist'
+					'Bad blob address: tt:this_will_not_exist. Use findBadBlobs.php to remedy.'
 				]
 			],
 			[
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Bad blob address: tt:0'
+					'Bad blob address: tt:0. Use findBadBlobs.php to remedy.'
 				]
 			],
 			[
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Bad blob address: tt:-1'
+					'Bad blob address: tt:-1. Use findBadBlobs.php to remedy.'
 				]
 			],
 			[
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Unknown blob address schema: bla'
+					'Unknown blob address schema: bla. Use findBadBlobs.php to remedy.'
 				]
 			],
 			[
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Unable to fetch blob at tt:1000'
+					'Unable to fetch blob at tt:1000. Use findBadBlobs.php to remedy.'
 				]
 			]
 		], $result->getErrors() );
@@ -411,7 +411,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Bad blob address: tt:this_will_not_exist_too'
+					'Bad blob address: tt:this_will_not_exist_too. Use findBadBlobs.php to remedy.'
 				]
 			],
 		], $result->getErrors() );

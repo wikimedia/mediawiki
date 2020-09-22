@@ -30,7 +30,9 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -68,6 +70,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -551,6 +554,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlockRestrictionStore() : BlockRestrictionStore {
 		return $this->getService( 'BlockRestrictionStore' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return BlockUserFactory
+	 */
+	public function getBlockUserFactory() : BlockUserFactory {
+		return $this->getService( 'BlockUserFactory' );
 	}
 
 	/**
@@ -1108,6 +1119,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.36
+	 * @return RevertedTagUpdateManager
+	 */
+	public function getRevertedTagUpdateManager() : RevertedTagUpdateManager {
+		return $this->getService( 'RevertedTagUpdateManager' );
+	}
+
+	/**
 	 * @since 1.31
 	 * @return RevisionFactory
 	 */
@@ -1282,6 +1301,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser() : TitleParser {
 		return $this->getService( 'TitleParser' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UnblockUserFactory
+	 */
+	public function getUnblockUserFactory() : UnblockUserFactory {
+		return $this->getService( 'UnblockUserFactory' );
 	}
 
 	/**

@@ -76,6 +76,8 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * as they will not necessarily work with *all* other wikis,
 	 * and it can be hard to tell if another wiki is in the same set as this one or not.
 	 *
+	 * @since 1.35
+	 *
 	 * @return CentralIdLookup|null
 	 */
 	public static function factoryNonLocal(): ?self {

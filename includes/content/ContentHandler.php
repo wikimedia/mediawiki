@@ -137,7 +137,7 @@ abstract class ContentHandler {
 	 * @throws MWException If model ID or format is not supported or if the text can not be
 	 * unserialized using the format.
 	 * @throws MWContentSerializationException
-	 * @return Content A Content object representing the text.	 *
+	 * @return Content A Content object representing the text.
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {

@@ -273,6 +273,7 @@ class ApiEditPage extends ApiBase {
 				}
 				// Override content model with model of undid revision.
 				$contentModel = $newContent->getModel();
+				$undoContentModel = true;
 			}
 			$params['text'] = $newContent->serialize( $contentFormat );
 			// If no summary was given and we only undid one rev,
@@ -368,7 +369,7 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSection'] = '';
 		}
 
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj, $user );
 		$watchlistExpiry = $params['watchlistexpiry'] ?? null;
 
 		// Deprecated parameters
@@ -422,9 +423,26 @@ class ApiEditPage extends ApiBase {
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 
+		// T255700: Ensure content models of the base content
+		// and fetched revision remain the same before attempting to save.
+		$editRevId = $requestArray['editRevId'] ?? false;
+		$baseRev = $revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
+		$baseContentModel = $baseRev
+			? $baseRev->getContent( SlotRecord::MAIN )->getModel()
+			: $pageObj->getContentModel();
+
+		// However, allow the content models to possibly differ if we are intentionally
+		// changing them or we are doing an undo edit that is reverting content model change.
+		$contentModelsCanDiffer = $params['contentmodel'] || isset( $undoContentModel );
+
+		if ( !$contentModelsCanDiffer && $contentModel !== $baseContentModel ) {
+			$this->dieWithError( [ 'apierror-contentmodel-mismatch', $contentModel, $baseContentModel ] );
+		}
+
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
+
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;

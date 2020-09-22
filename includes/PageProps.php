@@ -120,7 +120,7 @@ class PageProps {
 	 * returned. An empty array will be returned if no matching properties
 	 * were found.
 	 *
-	 * @param Title[]|Title $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @param string[]|string $propertyNames
 	 * @return array associative array mapping page ID to property value
 	 */
@@ -191,7 +191,7 @@ class PageProps {
 	 * will always be returned. An empty array will be returned if no
 	 * matching properties were found.
 	 *
-	 * @param Title[]|Title $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @return array associative array mapping page ID to property value array
 	 */
 	public function getAllProperties( $titles ) {
@@ -247,12 +247,12 @@ class PageProps {
 	}
 
 	/**
-	 * @param Title[]|Title $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @return array array of good page IDs
 	 */
 	private function getGoodIDs( $titles ) {
 		$result = [];
-		if ( is_array( $titles ) ) {
+		if ( is_iterable( $titles ) ) {
 			$this->linkBatchFactory->newLinkBatch( $titles )->execute();
 
 			foreach ( $titles as $title ) {

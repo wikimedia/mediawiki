@@ -3,6 +3,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -36,6 +37,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
 	 * @param User  $blocker     User to do the blocking, null to pick
 	 *                           arbitrarily
+	 * @return array result of doApiRequest
 	 */
 	private function doBlock( array $extraParams = [], User $blocker = null ) {
 		if ( $blocker === null ) {
@@ -102,7 +104,7 @@ class ApiBlockTest extends ApiTestCase {
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->doBlock( [], $blocked );
 	}
@@ -180,7 +182,7 @@ class ApiBlockTest extends ApiTestCase {
 	public function testBlockWithProhibitedHide() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			"You don't have permission to hide user names from the block log."
+			"You are not allowed to execute the action you have requested."
 		);
 
 		$this->doBlock( [ 'hidename' => '' ] );
@@ -338,5 +340,22 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "Range blocks larger than /16 are not allowed." );
 		$this->doBlock();
+	}
+
+	public function testBlockByIdReturns() {
+		// See T189073 and Ifdced735b694b85116cb0e43dadbfa8e4cdb8cab for context
+		$userId = $this->mUser->getId();
+
+		$res = $this->doBlock(
+			[ 'userid' => $userId ]
+		);
+
+		$blockResult = $res[0]['block'];
+
+		$this->assertArrayHasKey( 'user', $blockResult );
+		$this->assertSame( $this->mUser->getName(), $blockResult['user'] );
+
+		$this->assertArrayHasKey( 'userID', $blockResult );
+		$this->assertSame( $userId, $blockResult['userID'] );
 	}
 }

@@ -126,14 +126,12 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		$htmlForm = HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' );
-
-		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
-		$htmlForm->setSubmitDestructive();
-		$htmlForm->setSubmitCallback( [ $this, 'submitReset' ] );
-		$htmlForm->suppressReset();
-
-		$htmlForm->show();
+		HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' )
+			->setSubmitTextMsg( 'restoreprefs' )
+			->setSubmitDestructive()
+			->setSubmitCallback( [ $this, 'submitReset' ] )
+			->suppressReset()
+			->show();
 	}
 
 	public function submitReset( $formData ) {

@@ -14,13 +14,18 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	var $sortable, $collapsible,
 		dependencies = [];
-	if ( config.sortable ) {
-		$collapsible = $content.find( '.mw-collapsible' );
-		if ( $collapsible.length ) {
-			dependencies.push( 'jquery.makeCollapsible' );
+	if ( config.collapsible ) {
+		if ( mw.loader.getState( 'jquery.makeCollapsible' ) === 'registered' &&
+			$content.find( '.mw-collapsible' ).length
+		) {
+			// The module 'jquery.makeCollapsible' gets normally loaded by
+			// Skin::getDefaultModules() when there is a 'mw-collapsible' in the content.
+			// Because of any case this is not happened. Load the module now.
+			mw.loader.load( 'jquery.makeCollapsible' );
+			mw.log.warn( 'Module jquery.makeCollapsible is not preloaded.' );
 		}
 	}
-	if ( config.collapsible ) {
+	if ( config.sortable ) {
 		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
 			dependencies.push( 'jquery.tablesorter' );

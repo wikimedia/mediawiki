@@ -23,10 +23,8 @@
  *
  * @ingroup Profiler
  * @since 1.25
- * @property ProfilerXhprof $collector
  */
 class ProfilerOutputDump extends ProfilerOutput {
-
 	protected $suffix = ".xhprof";
 
 	/**
@@ -42,6 +40,10 @@ class ProfilerOutputDump extends ProfilerOutput {
 	}
 
 	public function log( array $stats ) {
+		if ( !$this->collector instanceof ProfilerXhprof ) {
+			$this->logger->error( 'ProfilerOutputDump must be used with ProfilerXhprof' );
+			return;
+		}
 		$data = $this->collector->getRawData();
 		$filename = sprintf( "%s/%s.%s%s",
 			$this->params['outputDir'],

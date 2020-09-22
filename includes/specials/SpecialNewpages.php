@@ -159,7 +159,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$out->setFeedAppendQuery( wfArrayToCgi( $allValues ) );
 		}
 
-		$pager = new NewPagesPager( $this, $this->opts );
+		$pager = new NewPagesPager(
+			$this,
+			$this->opts,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
 
@@ -456,8 +460,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			ARRAY_FILTER_USE_KEY
 		);
 
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
+		if ( $classes ) {
+			$attribs['class'] = $classes;
 		}
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
@@ -498,7 +502,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getPageTitle()->getFullURL()
 		);
 
-		$pager = new NewPagesPager( $this, $this->opts );
+		$pager = new NewPagesPager(
+			$this,
+			$this->opts,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
 

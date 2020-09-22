@@ -19,6 +19,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 
@@ -26,6 +27,9 @@ class ProtectedPagesPager extends TablePager {
 
 	public $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/**
 	 * @param SpecialPage $form
@@ -39,10 +43,21 @@ class ProtectedPagesPager extends TablePager {
 	 * @param bool $cascadeonly
 	 * @param bool $noredirect
 	 * @param LinkRenderer $linkRenderer
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $form, $conds, $type, $level, $namespace,
-		$sizetype, $size, $indefonly, $cascadeonly, $noredirect,
-		LinkRenderer $linkRenderer
+	public function __construct(
+		$form,
+		$conds,
+		$type,
+		$level,
+		$namespace,
+		$sizetype,
+		$size,
+		$indefonly,
+		$cascadeonly,
+		$noredirect,
+		LinkRenderer $linkRenderer,
+		LinkBatchFactory $linkBatchFactory = null
 	) {
 		parent::__construct( $form->getContext(), $linkRenderer );
 		$this->mConds = $conds;
@@ -54,11 +69,12 @@ class ProtectedPagesPager extends TablePager {
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;
+		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
 	}
 
 	public function preprocessResults( $result ) {
 		# Do a link batch query
-		$lb = new LinkBatch;
+		$lb = $this->linkBatchFactory->newLinkBatch();
 		$userids = [];
 
 		foreach ( $result as $row ) {

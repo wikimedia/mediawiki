@@ -173,3 +173,89 @@ CREATE INDEX pl_backlinks_namespace ON /*_*/pagelinks (
   pl_from_namespace, pl_namespace,
   pl_title, pl_from
 );
+
+
+CREATE TABLE /*_*/templatelinks (
+  tl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  tl_namespace INTEGER DEFAULT 0 NOT NULL,
+  tl_title BLOB DEFAULT '' NOT NULL,
+  tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+);
+
+CREATE INDEX tl_namespace ON /*_*/templatelinks (tl_namespace, tl_title, tl_from);
+
+CREATE INDEX tl_backlinks_namespace ON /*_*/templatelinks (
+  tl_from_namespace, tl_namespace,
+  tl_title, tl_from
+);
+
+
+CREATE TABLE /*_*/imagelinks (
+  il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  il_to BLOB DEFAULT '' NOT NULL,
+  il_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY(il_from, il_to)
+);
+
+CREATE INDEX il_to ON /*_*/imagelinks (il_to, il_from);
+
+CREATE INDEX il_backlinks_namespace ON /*_*/imagelinks (
+  il_from_namespace, il_to, il_from
+);
+
+
+CREATE TABLE /*_*/langlinks (
+  ll_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  ll_lang BLOB DEFAULT '' NOT NULL,
+  ll_title BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(ll_from, ll_lang)
+);
+
+CREATE INDEX ll_lang ON /*_*/langlinks (ll_lang, ll_title);
+
+
+CREATE TABLE /*_*/iwlinks (
+  iwl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  iwl_prefix BLOB DEFAULT '' NOT NULL,
+  iwl_title BLOB DEFAULT '' NOT NULL,
+  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+);
+
+CREATE INDEX iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
+
+CREATE INDEX iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, iwl_title);
+
+
+CREATE TABLE /*_*/category (
+  cat_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  cat_title BLOB NOT NULL, cat_pages INTEGER DEFAULT 0 NOT NULL,
+  cat_subcats INTEGER DEFAULT 0 NOT NULL,
+  cat_files INTEGER DEFAULT 0 NOT NULL
+);
+
+CREATE UNIQUE INDEX cat_title ON /*_*/category (cat_title);
+
+CREATE INDEX cat_pages ON /*_*/category (cat_pages);
+
+
+CREATE TABLE /*_*/watchlist_expiry (
+  we_item INTEGER UNSIGNED NOT NULL,
+  we_expiry BLOB NOT NULL,
+  PRIMARY KEY(we_item)
+);
+
+CREATE INDEX we_expiry ON /*_*/watchlist_expiry (we_expiry);
+
+
+CREATE TABLE /*_*/change_tag_def (
+  ctd_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  ctd_name BLOB NOT NULL, ctd_user_defined SMALLINT NOT NULL,
+  ctd_count BIGINT UNSIGNED DEFAULT 0 NOT NULL
+);
+
+CREATE UNIQUE INDEX ctd_name ON /*_*/change_tag_def (ctd_name);
+
+CREATE INDEX ctd_count ON /*_*/change_tag_def (ctd_count);
+
+CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);

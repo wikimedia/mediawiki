@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -58,7 +59,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessUnblockErrors
-	 * @covers ::processUnblock()
+	 * @covers ::processUIUnblock()
 	 */
 	public function testProcessUnblockErrors( $options, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -70,47 +71,46 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 				'by' => $performer->getId(),
 				'hideName' => true,
 			] );
-			$block->insert();
+			MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		}
 
 		if ( !empty( $options['readOnly'] ) ) {
 			$this->setMwGlobals( [ 'wgReadOnly' => true ] );
+			$this->expectException( ReadOnlyError::class );
 		}
 
 		if ( isset( $options['permissions'] ) ) {
 			$this->overrideUserPermissions( $performer, $options['permissions'] );
 		}
 
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setUser( $performer );
-		$result = $this->newSpecialPage()->processUnblock(
-			[ 'Target' => $target ],
-			$context
-		);
+		$request = new FauxRequest( [
+			'wpTarget' => $target,
+			'wpReason' => '',
+		], true );
+		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
-		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
-		$this->assertSame( $expected, $error );
+		$this->assertStringContainsString( $expected, $html );
 	}
 
 	public function provideProcessUnblockErrors() {
 		return [
 			'Target is not blocked' => [
 				[
-					'permissions' => [ 'hideuser' ],
+					'permissions' => [ 'block', 'hideuser' => true ],
 				],
 				'ipb_cant_unblock',
 			],
 			'Wrong permissions for unhiding user' => [
 				[
 					'block' => true,
-					'permissions' => [ 'hideuser' => false ],
+					'permissions' => [ 'block', 'hideuser' => false ],
 				],
 				'unblock-hideuser',
 			],
 			'Delete block failed' => [
 				[
 					'block' => true,
-					'permissions' => [ 'hideuser' ],
+					'permissions' => [ 'block', 'hideuser' ],
 					'readOnly' => true,
 				],
 				'ipb_cant_unblock',
@@ -119,12 +119,12 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processUnblock()
+	 * @covers ::processUIUnblock()
 	 */
 	public function testProcessUnblockErrorsUnblockSelf() {
 		$performer = $this->getTestSysop()->getUser();
 
-		$this->overrideUserPermissions( $performer, [ 'unblockself' => false ] );
+		$this->overrideUserPermissions( $performer, [ 'block', 'unblockself' => false ] );
 
 		// Blocker must be different user for unblock self to be disallowed
 		$blocker = $this->getTestUser()->getUser();
@@ -132,15 +132,14 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			'by' => $blocker->getId(),
 			'address' => $performer,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setUser( $performer );
+		$request = new FauxRequest( [
+			'wpTarget' => $performer->getName(),
+			'wpReason' => '',
+		], true );
+		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
-		$this->expectException( ErrorPageError::class );
-		$result = $this->newSpecialPage()->processUnblock(
-			[ 'Target' => $performer ],
-			$context
-		);
+		$this->assertStringContainsString( 'ipbnounblockself', $html );
 	}
 }

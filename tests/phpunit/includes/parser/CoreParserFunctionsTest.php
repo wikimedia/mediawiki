@@ -18,7 +18,7 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 		$escapedName = wfEscapeWikiText( '*Female' );
 		$msg2 = ( new RawMessage( '{{GENDER:' . $escapedName . '|m|f|o}}' ) )
 			->parse();
-		$this->assertEquals( $msg, 'f', 'Works escaped' );
+		$this->assertEquals( $msg2, 'f', 'Works escaped' );
 	}
 
 	public function provideTalkpagename() {

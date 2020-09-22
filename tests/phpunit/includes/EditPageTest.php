@@ -148,9 +148,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		if ( $user == null ) {
-			$user = $GLOBALS['wgUser'];
-		} else {
-			$this->setMwGlobals( 'wgUser', $user );
+			$user = $this->getTestUser()->getUser();
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {
@@ -492,6 +490,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideSectionEdit() {
+		$title = 'EditPageTest_testSectionEdit';
+		$title2 = Title::newFromText( __FUNCTION__ );
+		$title2->setContentModel( CONTENT_MODEL_CSS );
 		$text = 'Intro
 
 == one ==
@@ -519,6 +520,7 @@ hello
 
 		return [
 			[ # 0
+				$title,
 				$text,
 				'',
 				'hello',
@@ -527,6 +529,7 @@ hello
 			],
 
 			[ # 1
+				$title,
 				$text,
 				'1',
 				$sectionOne,
@@ -535,11 +538,21 @@ hello
 			],
 
 			[ # 2
+				$title,
 				$text,
 				'new',
 				'hello',
 				'new section',
 				$textWithNewSectionAdded,
+			],
+
+			[ # 3 Section edit not supported
+				$title2,
+				$text,
+				'1',
+				'hello',
+				'',
+				'',
 			],
 		];
 	}
@@ -548,16 +561,21 @@ hello
 	 * @dataProvider provideSectionEdit
 	 * @covers EditPage
 	 */
-	public function testSectionEdit( $base, $section, $text, $summary, $expected ) {
+	public function testSectionEdit( $title, $base, $section, $text, $summary, $expected ) {
 		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => $summary,
 			'wpSection' => $section,
 		];
 
-		$this->assertEdit( 'EditPageTest_testSectionEdit', $base, null, $edit,
-			EditPage::AS_SUCCESS_UPDATE, $expected,
-			"expected successful update of section" );
+		$msg = "expected successful update of section";
+		$result = EditPage::AS_SUCCESS_UPDATE;
+
+		if ( $title instanceof Title ) {
+			$result = null;
+			$this->expectException( ErrorPageError::class );
+		}
+		$this->assertEdit( $title, $base, null, $edit, $result, $expected, $msg );
 	}
 
 	public static function provideConflictDetection() {
@@ -792,7 +810,7 @@ hello
 	 * @covers EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$edit = [
 			'wpTextbox1' => serialize( 'non-text content' ),
@@ -821,7 +839,7 @@ hello
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
@@ -848,7 +866,7 @@ hello
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
@@ -935,17 +953,18 @@ hello
 				'options' => $standardOptions,
 			],
 			'watched with current selected' => [
-				'existingExpiry' => '20200505120001',
-				'postVal' => '20200505120001',
-				'result' => '20200505120001',
-				'options' => array_merge( [ '20200505120001' ], $standardOptions ),
+				'existingExpiry' => '2020-05-05T12:00:01Z',
+				'postVal' => '2020-05-05T12:00:01Z',
+				'result' => '2020-05-05T12:00:01Z',
+				'options' => array_merge( [ '2020-05-05T12:00:01Z' ], $standardOptions ),
 			],
 			'watched with 1 week selected' => [
-				'existingExpiry' => '20200505120002',
+				'existingExpiry' => '2020-05-05T12:00:02Z',
 				'postVal' => '1 week',
 				'result' => '1 week',
-				'options' => array_merge( [ '20200505120002' ], $standardOptions ),
+				'options' => array_merge( [ '2020-05-05T12:00:02Z' ], $standardOptions ),
 			],
 		];
 	}
+
 }

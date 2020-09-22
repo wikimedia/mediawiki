@@ -37,6 +37,9 @@ For notes on 1.35.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgUseTwoButtonsSearchForm - This setting, deprecated in 1.35, has been
   removed.
+* $wgAllowImageMoving - This setting, deprecated in 1.35, has been removed.
+  Use group permission settings instead. For example, to prevent sysops
+  from moving files, set `$wgGroupPermissions['sysop']['movefile'] = false;`
 * …
 
 === New user-facing features in 1.36 ===
@@ -44,6 +47,10 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.36 ===
+* To expose code previously present in SpecialBlock/SpecialUnblock
+  to other parts of the code, or to extensions,
+  the new BlockUser and UnblockUser command objects were added.
+  Use the BlockUserFactory and UnblockUserFactory services to create them.
 * …
 
 === External library changes in 1.36 ===
@@ -58,9 +65,17 @@ For notes on 1.35.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.8 to 1.10.9.
 * wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
+* Updated OOUI from 0.39.3 to 0.40.3.
+* Updated jquery.client from 2.0.2 to 3.0.0.
+* Updated guzzlehttp/guzzle from 6.5.4 to 7.0.1.
+* Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * …
 
 ===== Changed development-only external libraries =====
+* Updated composer/spdx-licenses from 1.5.3 to 1.5.4.
+* doctrine/sql-formatter was upgraded from 1.1.0 to 1.1.1.
+* doctrine/dbal was upgraded from 2.10.2 to 2.10.4.
+* Updated nikic/php-parser from 4.4.0 to 4.10.0.
 * …
 
 ==== Removed external libraries ====
@@ -85,10 +100,69 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.36 ===
+* (T176526) EditPage::getContextTitle() will now throw an exception if a context
+  title was not set using setContextTitle(). Previously, this mis-use would only
+  cause a deprecation warning to be emitted.
 * Multiple methods that fell back to the $wgUser global variable were
   individually hard deprecated previously. The following have now been removed:
   - ApiTestCase::doLogin
+  - Article::doDeleteArticle
+  - Article::doDeleteArticleReal
+  - Article::getComment
+  - Article::getCreator
+  - Article::getUser
+  - Article::getUserText
+  - Article::insertProtectNullRevision
+  - File::delete
+  - File::recordUpload
+  - ForeignDBFile::delete
+  - ForeignDBFile::recordUpload
+  - LocalFile::delete
+  - LocalFile::deleteOld
+  - LocalFile::recordUpload
+  - PageArchive::undelete
+  - RecentChange::markPatrolled
+  - Title::getUserPermissionsErrors
+  - Title::quickUserCan
+  - Title::userCan
+  - WebRequest::getLimitOffset
+  - WikiPage::doDeleteArticle
+  - WikiPage::insertProtectNullRevision
   - All methods of the old SpecialPageFactory; the entire class was removed
+* Multiple methods previously had optional User parameters, with fallbacks
+  to the $wgUser global variable. Not passing a User to those methods was
+  previously hard deprecated, and support for not passing a User has now
+  been removed:
+   - FileDeleteForm::__construct
+   - FileDeleteForm::doDelete
+   - LocalFileDeleteBatch::__construct
+   - LogEventsList::getExcludeClause (only needed for the 'user' audience)
+   - LogEventsList::userCan
+   - LogEventsList::userCanBitfield
+   - LogEventsList::userCanViewLogType
+   - LogPage::addEntry (also accepts user id instead)
+   - PatrolLog::record
+   - Title::getNotificationTimestamp (though the entire method is deprecated)
+   - WikiPage::getComment (only needed for the FOR_THIS_USER audience)
+   - WikiPage::getCreator (only needed for the FOR_THIS_USER audience)
+   - WikiPage::getUser (only needed for the FOR_THIS_USER audience)
+   - WikiPage::getUserText (only needed for the FOR_THIS_USER audience)
+* The following hooks have been removed:
+   - APIQueryInfoTokens
+   - APIQueryRecentChangesTokens
+   - APIQueryRevisionsTokens
+   - APIQueryUsersTokens
+   - ApiTokensGetTokenTypes
+* LogEventsList::typeAction previously accepted an optional right parameter,
+  and checked if the context user ($wgUser) had that right. Passing a right
+  was hard deprecated in 1.35, and support for passing a right has now been
+  removed.
+* WikiPage::doDeleteArticleReal previously accepted an optional user as its
+  fifth parameter, and fell back to $wgUser if not user was provided. The
+  signature changed to have the user as the second parameter, and the old
+  signature was hard deprecated in 1.35. Support for the old signature has
+  now been removed.
+* User::addNewUserLogEntry, deprecated since 1.27, was removed.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
@@ -97,6 +171,7 @@ because of Phabricator reports.
 * CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
   has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
+* Parser::setFunctionTagHook(), deprecated in 1.35, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * All methods of MWTidy except for MW::tidy() have been removed.  These
   were either @internal or deprecated in 1.35.
@@ -116,9 +191,23 @@ because of Phabricator reports.
   trackBlockWithCookie.
 * Support for v1 of the parser tests file format has been removed; it was
   deprecated in 1.35. (T174199)
+* SpecialUnblockUser::processUIUnblock() has a different return
+  value (previously, array of messages or a boolean value, now,
+  a Status object). This function was also marked as @internal and is no
+  longer safe to call it publicly.
+* mw.Title.getDotExtension() from the 'mediawiki.Title' module was removed
+  without deprecation. You should use mw.Title.getExtension() and prepend
+  the dot if need be.
+* Removed HookContainer::getOriginalHooksForTest() without deprecation.
+  This method was introduced in 1.35 for internal use, and appears unused
+  outside of MediaWiki core.
+* ParserCache::__construct() now requires three parameters.
+* Message->getFormat(), deprecated in 1.29, has been removed.
 * …
 
 === Deprecations in 1.36 ===
+* LocalFile::recordUpload2, soft deprecated in 1.35, now emits deprecation
+  warnings. Use ::recordUpload3 instead.
 * The User class, which was marked as @newable in 1.35, is no longer newable,
   meaning that it is no longer safe to manually call the constructor via
   `new User`. Instead, use the UserFactory service.
@@ -133,19 +222,65 @@ because of Phabricator reports.
 * Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
   by reimplementing the method using the raw indicators data from
   OutputPage::getIndicators.
+* Skin::makeVariablesScript() has been deprecated. Use
+  ResourceLoader::makeInlineScript() instead.
 * The PageProps class was converted to a service. PageProps::overrideInstance
   was deprecated, and MediaWikiServices::redefineService should be used
   instead.
+* Title::nameOf() is deprecated; use Title::newFromID()->getPrefixedDBkey()
+  instead.
+* DatabaseBlock::insert, DatabaseBlock::update, DatabaseBlock::purgeExpired and
+  DatabaseBlock::delete are deprecated. Use DatabaseBlockStore::insertBlock,
+  DatabaseBlockStore::updateBlock, DatabaseBlockStore::purgeExpiredBlocks and
+  DatabaseBlockStore::deleteBlock instead.
+* SpecialBlock::getTargetAndType is deprecated. Call AbstractBlock::parseTarget
+  directly instead.
+* SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
+  service instead.
+* Deprecated MediaWikiIntegrationtestCase::removeTemporaryHook() in favor of
+  MediaWikiIntegrationtestCase::clearHook().
+* Skin::getSearchLink(), also exposed as 'searchaction' option in SkinTemplate,
+  has been deprecated. Use Title or SpecialPage methods directly.
+* Skin::getAllowedSkins and ::getSkinNames have been deprecated. Use their
+  respective equivalents in SkinFactory instead.
+* The RollbackComplete hook has been deprecated, use the PageSaveComplete hook
+  instead.
+* Skin::makeUrl() has been deprecated. Title methods should be used instead.
+* Skin::privacyLink(), Skin::disclaimerLink() and Skin::aboutLink() have been
+  deprecated. Please use Skin::footerLink() instead.
+* Skin::getLogo() has been deprecated. Use ResourceLoaderSkinModule instead.
+* Skin::mainPageLink() has been deprecated. Use LinkRenderer service instead.
+* BaseTemplate::getToolbox() method has been hard deprecated. The toolbox data
+  is now available in a sidebar data array which you can get from any class
+  that's extending QuickTemplate class.
+* Constructing a DefaultPreferencesFactory, LinkHolderArray or PasswordReset
+  without a $hookContainer parameter is deprecated.
+* Autopromote class, soft deprecated since 1.35, now emits deprecation warnings.
+  Use UserGroupManager instead.
+* SpecialBlock::canBlockEmail has been deprecated. Please use
+  BlockPermissionChecker::checkEmailPermissions instead.
+* SpecialBlock::checkUnblockSelf has been deprecated. Please use
+  BlockPermissionChecker::checkBlockPermissions instead.
+* SpecialBlock::parseExpiryInput was deprecated - use
+  BlockUser::parseExpiryInput instead.
 * …
 
 === Other changes in 1.36 ===
 * The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
   It has had no effect since 1.35.
+* A future release of MediaWiki will make {{=}} a built-in parser function,
+  for use when automatically escaping the `=` character in template arguments.
+  A tracking category and parser warning have been added to this release when
+  {{=}} is used and it expands to something other than `=`.
 * The implementation of TestFileReader::read has been changed to use
   Parsoid's parser test file parser.  This should be compatible with
   existing code, but it only supports version 2 of the test file
   specification and may be more strict when parsing invalid input,
   including duplicate tests.
+* The SkinLessImportPaths attribute was added, allowing skins to add a
+  directory to the import path for LESS stylesheets. Skins can use this
+  to provide a custom version of mediawiki.skin.variables.less, setting
+  skin-specific values for certain LESS variables.
 * …
 
 == Compatibility ==

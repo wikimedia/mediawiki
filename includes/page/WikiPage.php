@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
@@ -739,6 +740,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the latest revision
+	 * @since 1.32
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecord() {
@@ -754,7 +756,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param int $audience One of:
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to $wgUser
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
@@ -797,20 +799,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return int User ID for the user that made the last article revision
 	 */
 	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revUser = $this->mLastRevision->getUser( $audience, $user );
 			return $revUser ? $revUser->getId() : 0;
 		} else {
@@ -825,20 +820,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		if ( $revRecord ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			return $revRecord->getUser( $audience, $user );
 		} else {
 			return null;
@@ -851,20 +839,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string Username of the user that made the last article revision
 	 */
 	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revUser = $this->mLastRevision->getUser( $audience, $user );
 			return $revUser ? $revUser->getName() : '';
 		} else {
@@ -878,21 +859,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
+	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
+	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string|null Comment stored for the last article revision, or null if the specified
 	 *  audience does not have access to the comment.
 	 */
 	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
-				wfDeprecated(
-					__METHOD__ . ' using FOR_THIS_USER without a user',
-					'1.35'
-				);
-				global $wgUser;
-				$user = $wgUser;
-			}
 			$revComment = $this->mLastRevision->getComment( $audience, $user );
 			return $revComment ? $revComment->text : '';
 		} else {
@@ -1703,6 +1677,15 @@ class WikiPage implements Page, IDBAccessObject {
 		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
 
 		$services = MediaWikiServices::getInstance();
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
@@ -1714,7 +1697,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
 			$this->getContentHandlerFactory(),
-			$this->getHookContainer()
+			$this->getHookContainer(),
+			$editResultCache
 		);
 
 		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
@@ -1822,7 +1806,8 @@ class WikiPage implements Page, IDBAccessObject {
 			new ServiceOptions(
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$config
-			)
+			),
+			ChangeTags::getSoftwareTags()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $config->get( 'PageCreationLog' ) );
@@ -2495,38 +2480,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Insert a new null revision for this page.
 	 *
-	 * @deprecated since 1.35, use insertNullProtectionRevision instead
-	 *
-	 * @param string $revCommentMsg Comment message key for the revision
-	 * @param array $limit Set of restriction keys
-	 * @param array $expiry Per restriction type expiration
-	 * @param int $cascade Set to false if cascading protection isn't allowed.
-	 * @param string $reason
-	 * @param User|null $user User to attribute to, or null for $wgUser (deprecated since 1.35)
-	 * @return Revision|null Null on error
-	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit,
-		array $expiry, $cascade, $reason, $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		$nullRevRecord = $this->insertNullProtectionRevision(
-			$revCommentMsg,
-			$limit,
-			$expiry,
-			(bool)$cascade,
-			$reason,
-			$user
-		);
-		return $nullRevRecord ? new Revision( $nullRevRecord ) : null;
-	}
-
-	/**
-	 * Insert a new null revision for this page.
+	 * @since 1.35
 	 *
 	 * @param string $revCommentMsg Comment message key for the revision
 	 * @param array $limit Set of restriction keys
@@ -2697,53 +2651,21 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
-	 * backwards compatibility, if you care about error reporting you should use
-	 * doDeleteArticleReal() instead.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * Deletes the article with database consistency, writes logs, purges caches
-	 *
-	 * @param string $reason Delete reason for deletion log
-	 * @param bool $suppress Suppress all revisions and log the deletion in
-	 *        the suppression log instead of the deletion log
-	 * @param int|null $u1 Unused
-	 * @param bool|null $u2 Unused
-	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $user The deleting user
-	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return bool True if successful
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user,
-			[], 'delete', $immediate );
-
-		// Returns true if the page was actually deleted, or is scheduled for deletion
-		return $status->isOK();
-	}
-
-	/**
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @since 1.19
 	 * @since 1.35 Signature changed, user moved to second parameter to prepare for requiring
-	 *             a user to be passed; not passing a user is deprecated since 1.35
+	 *             a user to be passed
+	 * @since 1.36 User second parameter is required
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param user|bool $user The deleting user (not passing a user is deprecated since 1.35)
-	 * @param bool|null $suppress Suppress all revisions and log the deletion in
+	 * @param User $deleter The deleting user
+	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
-	 * @param bool|null $u2 Unused
+	 * @param bool|null $u1 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $deleter The deleting user in the old signature, unused in the new
+	 * @param User|null $u2 Unused
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
@@ -2754,25 +2676,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
-		$reason, $user = false, $suppress = false, $u2 = null, &$error = '', User $deleter = null,
+		$reason, User $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
 		wfDebug( __METHOD__ );
-
-		if ( $user instanceof User ) {
-			$deleter = $user;
-		} else {
-			wfDeprecated(
-				__METHOD__ . ' without passing a User as the second parameter',
-				'1.35'
-			);
-			$suppress = $user;
-			if ( $deleter === null ) {
-				global $wgUser;
-				$deleter = $wgUser;
-			}
-		}
-		unset( $user );
 
 		$status = Status::newGood();
 
@@ -4042,6 +3949,20 @@ class WikiPage implements Page, IDBAccessObject {
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle() );
+	}
+
+	/**
+	 * Ensure consistency when unserializing.
+	 * @note WikiPage objects should never be serialized in the first place.
+	 * But some extensions like AbuseFilter did (see T213006),
+	 * and we need to be able to read old data (see T187153).
+	 */
+	public function __wakeup() {
+		// Make sure we re-fetch the latest state from the database.
+		// In particular, the latest revision may have changed.
+		// As a side-effect, this makes sure mLastRevision doesn't
+		// end up being an instance of the old Revision class (see T259181).
+		$this->clear();
 	}
 
 }

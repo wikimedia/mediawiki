@@ -127,6 +127,7 @@ class PermissionManager {
 		'createpage',
 		'createtalk',
 		'delete',
+		'delete-redirect',
 		'deletechangetags',
 		'deletedhistory',
 		'deletedtext',
@@ -222,11 +223,9 @@ class PermissionManager {
 	/**
 	 * Can $user perform $action on a page?
 	 *
-	 * The method is intended to replace Title::userCan()
+	 * The method replaced Title::userCan()
 	 * The $user parameter need to be superseded by UserIdentity value in future
 	 * The $title parameter need to be superseded by PageIdentity value in future
-	 *
-	 * @see Title::userCan()
 	 *
 	 * @param string $action
 	 * @param User $user
@@ -1000,7 +999,7 @@ class PermissionManager {
 			} elseif ( !$title->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];
 			}
-		} elseif ( $action == 'delete' ) {
+		} elseif ( $action == 'delete' || $action == 'delete-redirect' ) {
 			$tempErrors = $this->checkPageRestrictions( 'edit', $user, [], $rigor, true, $title );
 			if ( !$tempErrors ) {
 				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
@@ -1010,7 +1009,7 @@ class PermissionManager {
 				// If protection keeps them from editing, they shouldn't be able to delete.
 				$errors[] = [ 'deleteprotected' ];
 			}
-			if ( $rigor !== self::RIGOR_QUICK && $wgDeleteRevisionsLimit
+			if ( $rigor !== self::RIGOR_QUICK && $action == 'delete' && $wgDeleteRevisionsLimit
 				 && !$this->userCan( 'bigdelete', $user, $title ) && $title->isBigDeletion()
 			) {
 				$errors[] = [ 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ];

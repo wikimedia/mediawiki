@@ -5,6 +5,51 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.35 is a pre-release testing branch, and is not recommended
 for use in production.
 
+== MediaWiki 1.35.0-rc.3 ==
+
+=== Changes since MediaWiki 1.35.0-rc.2 ===
+* (T258662) mediawiki.visibleTimeout: Update the nextVisibleTimeoutId value.
+* Ensure Parsoid doesn't throw when <ref> is used w/o Cite installed.
+* Remove maintenance/createCommonPasswordCdb.php.
+* (T260468) Increase "sites.site_global_key" to varbinary(64).
+* (T183759) Fix shell edge-cases in Windows.
+* (T257879) Drop PHP 7.2 support; require 7.3.19.
+* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T246991) User: enforce pingLimiter() expiry time.
+* (T256831) Rest: Handle Uri constructor exception.
+* (T259094) Fix RequestFromGlobalsTest failing in Travis CI.
+* (T256831, T261344) Rest: Use try/catch to handle URIs with embedded colon.
+
+== MediaWiki 1.35.0-rc.2 ==
+
+=== Changes since MediaWiki 1.35.0-rc.1 ===
+* (T259693) uuid: Fix filenames on Windows.
+* Remove Gruntfile.js and package-lock.json from the tarball.
+* firejail: Strengthen by copying from Wikimedia's profile.
+* (T260059) ResourceLoaderOOUIImageModule: loadOOUIDefinition() may return
+  false.
+* (T30162, T245387) The installer supports using a Postgres server running
+  on a custom port other than 5432.
+* (T260201) Support private wikis in Parsoid zero configuration mode.
+* Fix bad use of `|=` PHP bit operation where `= … ||` bool is intended.
+* (T259212) SpecialBlock: Show error if a block could not be inserted or found.
+* (T255842) UserOptionsManager: fix options reset.
+* (T258649) WatchAction: avoid unnecessary UPDATEs when expiry is unchanged.
+* (T250851) Allow skins to override mediawiki.page.ready initialisation.
+* (T250851) mediawiki.page.ready: Allow skins to disable search lazy load.
+* (T253135, T255632) Update language in watchlist expiry.
+* Use IPset in MWRestrictions::checkIP.
+* (T259564) Fix race condition on edit page.
+* (T260759) Hide watchlist expiry label in edit form.
+* mime: Fix docs of MIME_EXTENSIONS, they're arrays, not space-seperated.
+* (T260031) Add application/font-sfnt to MimeMap for ttf files.
+* (T259379) WatchedItemStore: Cache single WatchedItems with preexisting expiry.
+* Add a maintenance script to create bot passwords.
+* (T201269) Add Traditional Chinese zh-hant as fallback for Amis (ami).
+* Improve wfParseUrl docs.
+* (T251038) Add multi index fields in ImageListPager for unique paginate.
+* (T259916) Guard against 'Widget not found' error.
+
 == MediaWiki 1.35.0-rc.1 ==
 
 === Changes since MediaWiki 1.35.0-rc.0 ===
@@ -31,7 +76,7 @@ for use in production.
 == MediaWiki 1.35.0-rc.0 ==
 
 == Upgrading notes for 1.35 ==
-1.35 requires PHP 7.2.22 or above (up from 7.2.9), to avoid segfaults (T228346).
+1.35 requires PHP 7.3.19 or above (up from 7.2.9). (T257879)
 
 1.35 has several database changes since 1.34, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
@@ -50,17 +95,12 @@ and updates may be required to any custom extensions.
 See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
-Some specific notes for MediaWiki 1.35 upgrades are below:
-
-* …
-
 For notes on 1.34.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.35 ===
 
 * (T72470) $wgLegacyJavaScriptGlobals is now false by default. This feature
   will be completely removed in a later MediaWiki release.
-* …
 
 ==== New configuration ====
 * $wgDiffEngine — This can be used to specify the difference engine to use,
@@ -337,9 +377,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   time limits in running unit tests.
 * The jquery.getAttrs module was removed.
 
-=== Bug fixes in 1.35 ===
-* …
-
 === Action API changes in 1.35 ===
 * The 'suggest' parameter of action=opensearch has been deprecated.
   The API behaves the same with and without this parameter.
@@ -411,7 +448,7 @@ because of Phabricator reports.
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
 
 === Breaking changes in 1.35 ===
-* MediaWiki now requires PHP 7.2.22 or above, to avoid segfaults (T228346).
+* MediaWiki no longer supports PHP 7.2; use PHP 7.3.19+ (T228346, T257879).
 * ResourceLoader::getLessVars(), deprecated in 1.32, was removed.
   Use ResourceLoaderModule::getLessVars() instead.
 * The jquery.tabIndex module, deprecated in 1.34, has been removed.
@@ -884,6 +921,10 @@ because of Phabricator reports.
         No replacement; MediaHandler provides for customizable media rendering
     - ParserBeforeTidy
         Use ParserAfterTidy instead to avoid exposing internal half-parsed state
+    - ParserBeforeStrip
+        No replacement; stripping is no longer supported.
+    - ParserAfterStrip
+        No replacement; stripping is no longer supported.
   - The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
     Parser::Title() have been deprecated; use the appropriate Parser::get* or
     Parser::set* methods instead.
@@ -972,6 +1013,7 @@ because of Phabricator reports.
   - FileDeleteForm::doDelete
   - OldLocalFile::userCan
   - ArchivedFile::userCan
+  - File::userCan
 * The following functions all accept an optional audience parameter and
   an optional user parameter. If the audience is FOR_THIS_USER and no
   user is passed, they fallback to $wgUser. Not passing a user when
@@ -1433,7 +1475,7 @@ because of Phabricator reports.
   on a custom port other than 5432.
 
 == Compatibility ==
-MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
+MediaWiki 1.35 requires PHP 7.3.19 or later, and the following PHP extensions:
 
 * ctype
 * dom

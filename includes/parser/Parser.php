@@ -154,7 +154,6 @@ class Parser {
 	/** @deprecated since 1.35; use Parser::getFunctionHooks() */
 	public $mFunctionHooks = [];
 	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
-	private $mFunctionTagHooks = [];
 	private $mStripList = [];
 	private $mVarCache = [];
 	private $mImageParams = [];
@@ -2969,6 +2968,8 @@ class Parser {
 
 		$profileSection = null; // profile templates
 
+		$sawDeprecatedTemplateEquals = false; // T91154
+
 		# SUBST
 		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !$found ) {
@@ -3159,6 +3160,17 @@ class Parser {
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
+						if (
+							$title->getNamespace() === NS_TEMPLATE &&
+							$title->getDBkey() === '=' &&
+							$originalTitle === '='
+						) {
+							// Note that we won't get here if `=` is evaluated
+							// (in the future) as a parser function, nor if
+							// the Template namespace is given explicitly,
+							// ie `{{Template:=}}`.  Only `{{=}}` triggers.
+							$sawDeprecatedTemplateEquals = true; // T91154
+						}
 					}
 				}
 
@@ -3227,6 +3239,15 @@ class Parser {
 
 		if ( $profileSection ) {
 			$this->mProfiler->scopedProfileOut( $profileSection );
+		}
+		if (
+			$sawDeprecatedTemplateEquals &&
+			$this->mStripState->unstripBoth( $text ) !== '='
+		) {
+			// T91154: {{=}} is deprecated when it doesn't expand to `=`;
+			// use {{Template:=}} if you must.
+			$this->addTrackingCategory( 'template-equals-category' );
+			$this->mOutput->addWarning( wfMessage( 'template-equals-warning' )->text() );
 		}
 
 		# Replace raw HTML by a placeholder
@@ -3898,14 +3919,8 @@ class Parser {
 		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
-		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower( $name )] ) &&
-			( $this->ot['html'] || $this->ot['pre'] );
-		if ( $isFunctionTag ) {
-			$markerType = 'none';
-		} else {
-			$markerType = 'general';
-		}
-		if ( $this->ot['html'] || $isFunctionTag ) {
+		$markerType = 'general';
+		if ( $this->ot['html'] ) {
 			$name = strtolower( $name );
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
@@ -3915,10 +3930,6 @@ class Parser {
 			if ( isset( $this->mTagHooks[$name] ) ) {
 				$output = call_user_func_array( $this->mTagHooks[$name],
 					[ $content, $attributes, $this, $frame ] );
-			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
-				list( $callback, ) = $this->mFunctionTagHooks[$name];
-
-				$output = $callback( $this, $frame, $content, $attributes );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
 					htmlspecialchars( $name ) . '</span>';
@@ -4809,7 +4820,6 @@ class Parser {
 	 */
 	public function clearTagHooks() {
 		$this->mTagHooks = [];
-		$this->mFunctionTagHooks = [];
 		$this->mStripList = [];
 	}
 
@@ -4895,33 +4905,6 @@ class Parser {
 	public function getFunctionHooks() {
 		$this->firstCallInit();
 		return array_keys( $this->mFunctionHooks );
-	}
-
-	/**
-	 * Create a tag function, e.g. "<test>some stuff</test>".
-	 * Unlike tag hooks, tag functions are parsed at preprocessor level.
-	 * Unlike parser functions, their content is not preprocessed.
-	 * @param string $tag
-	 * @param callable $callback
-	 * @param int $flags
-	 * @throws MWException
-	 * @return null
-	 * @deprecated since 1.35
-	 */
-	public function setFunctionTagHook( $tag, callable $callback, $flags ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$tag = strtolower( $tag );
-		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
-		}
-		$old = $this->mFunctionTagHooks[$tag] ?? null;
-		$this->mFunctionTagHooks[$tag] = [ $callback, $flags ];
-
-		if ( !in_array( $tag, $this->mStripList ) ) {
-			$this->mStripList[] = $tag;
-		}
-
-		return $old;
 	}
 
 	/**
@@ -5516,10 +5499,7 @@ class Parser {
 	 */
 	public function getTags() {
 		$this->firstCallInit();
-		return array_merge(
-			array_keys( $this->mTagHooks ),
-			array_keys( $this->mFunctionTagHooks )
-		);
+		return array_keys( $this->mTagHooks );
 	}
 
 	/**

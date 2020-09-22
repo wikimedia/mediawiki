@@ -40,5 +40,6 @@
 	"rest-bad-content-model": "Error message for REST API debugging, shown when an unknown content model is specified. Parameters:\n* $1: The content model name",
 	"rest-update-cannot-create-page": "Error message for REST API debugging, shown when creation of a page was requested via a PUT with no base revision ID, but the page already exists. Parameters:\n* $1: The title of the page",
 	"rest-extraneous-csrf-token": "Error message for REST API debugging, shown when an CSRF token was provided by the client, even though the authentication mechanisms used is safe against CSRF attacks.",
-	"rest-cannot-load-file": "Error message for REST API debugging, shown when a media file could not be loaded. Parameters:\n* $1: The title of the page"
+	"rest-cannot-load-file": "Error message for REST API debugging, shown when a media file could not be loaded. Parameters:\n* $1: The title of the page",
+	"rest-cross-origin-anon-write": "Error message for REST API debugging, shown when a client attempts to make a cross-origin anon write."
 }

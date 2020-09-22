@@ -1502,7 +1502,24 @@ class Article implements Page {
 			$outputPage->addParserOutput( $this->getEmptyPageParserOutput( $parserOptions ) );
 		} else {
 			if ( $oldid ) {
-				$text = wfMessage( 'missing-revision', $oldid )->plain();
+				// T251066: Try loading the revision from the archive table.
+				// Show link to view it if it exists and the user has permission to view it.
+				$pa = new PageArchive( $title, $this->getContext()->getConfig() );
+				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
+				if ( $revRecord && $revRecord->audienceCan(
+					RevisionRecord::DELETED_TEXT,
+					RevisionRecord::FOR_THIS_USER,
+					$this->getContext()->getUser()
+				) ) {
+					$text = wfMessage(
+						'missing-revision-permission', $oldid,
+						$revRecord->getTimestamp(),
+						$title->getPrefixedDBkey()
+					)->plain();
+				} else {
+					$text = wfMessage( 'missing-revision', $oldid )->plain();
+				}
+
 			} elseif ( $pm->quickUserCan( 'create', $this->getContext()->getUser(), $title ) &&
 				$pm->quickUserCan( 'edit', $this->getContext()->getUser(), $title )
 			) {
@@ -1797,14 +1814,14 @@ class Article implements Page {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		$msg = wfMessage(
-			'namespace-' . $this->getTitle()->getNamespace() . '-helppage'
-		);
-
 		$out = $this->getContext()->getOutput();
+		$msg = $out->msg( 'namespace-' . $this->getTitle()->getNamespace() . '-helppage' );
+
 		if ( !$msg->isDisabled() ) {
-			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$out->addHelpLink( $helpUrl, true );
+			$title = Title::newFromText( $msg->plain() );
+			if ( $title instanceof Title ) {
+				$out->addHelpLink( $title->getLocalURL(), true );
+			}
 		} else {
 			$out->addHelpLink( $to, $overrideBaseUrl );
 		}
@@ -2434,30 +2451,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::doDeleteArticleReal
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param int|null $u1
-	 * @param bool|null $u2
-	 * @param array|string &$error
-	 * @param User|null $user
-	 * @param array $tags
-	 * @param bool $immediate
-	 * @return Status
-	 */
-	public function doDeleteArticleReal(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
-		$tags = [], $immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->doDeleteArticleReal(
-			$reason, $suppress, $u1, $u2, $error, $user, $tags, 'delete', $immediate
-		);
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::doDeleteUpdates instead
 	 * @see WikiPage::doDeleteUpdates
 	 * @param int $id
@@ -2563,19 +2556,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::getComment
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return string|null
-	 */
-	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getComment( $audience, $user );
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::getContentHandler instead
 	 * @see WikiPage::getContentHandler
 	 * @return ContentHandler
@@ -2603,19 +2583,6 @@ class Article implements Page {
 	public function getContributors() {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getContributors();
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
-	 * @see WikiPage::getCreator
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return User|null
-	 */
-	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getCreator( $audience, $user );
 	}
 
 	/**
@@ -2754,30 +2721,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * @deprecated since 1.35, use WikiPage::getUser instead
-	 * @see WikiPage::getUser
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return int
-	 */
-	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getUser( $audience, $user );
-	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::getUserText instead
-	 * @see WikiPage::getUserText
-	 * @param int $audience
-	 * @param User|null $user
-	 * @return string
-	 */
-	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->getUserText( $audience, $user );
-	}
-
-	/**
 	 * @deprecated since 1.35, use WikiPage::hasViewableContent instead
 	 * @see WikiPage::hasViewableContent
 	 * @return bool
@@ -2797,26 +2740,6 @@ class Article implements Page {
 	public function insertOn( $dbw, $pageId = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->insertOn( $dbw, $pageId );
-	}
-
-	/**
-	 * @see WikiPage::insertProtectNullRevision
-	 * @deprecated since 1.35, use WikiPage::insertNullProtectionRevision instead
-	 * @param string $revCommentMsg
-	 * @param array $limit
-	 * @param array $expiry
-	 * @param int $cascade
-	 * @param string $reason
-	 * @param User|null $user
-	 * @return Revision|null
-	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit,
-		array $expiry, $cascade, $reason, $user = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->insertProtectNullRevision( $revCommentMsg, $limit,
-			$expiry, $cascade, $reason, $user
-		);
 	}
 
 	/**
@@ -3149,26 +3072,6 @@ class Article implements Page {
 			$reason,
 			$this->getContext()->getUser()
 		);
-	}
-
-	/**
-	 * @deprecated since 1.35, use WikiPage::doDeleteArticleReal instead
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param int|null $u1 Unused
-	 * @param bool|null $u2 Unused
-	 * @param string &$error
-	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	public function doDeleteArticle(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', $immediate = false
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error,
-			null, $immediate );
 	}
 
 	/**

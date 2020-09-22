@@ -39,7 +39,7 @@ class ApiTokens extends ApiBase {
 
 		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {
-			$val = call_user_func( $types[$type], null, null );
+			$val = call_user_func( $types[$type], $this->getUser() );
 
 			if ( $val === false ) {
 				$this->addWarning( [ 'apiwarn-tokennotallowed', $type ] );
@@ -68,7 +68,6 @@ class ApiTokens extends ApiBase {
 		foreach ( $names as $name ) {
 			$types[$name] = [ ApiQueryInfo::class, 'get' . ucfirst( $name ) . 'Token' ];
 		}
-		$this->getHookRunner()->onApiTokensGetTokenTypes( $types );
 
 		// For forwards-compat, copy any token types from ApiQueryTokens that
 		// we don't already have something for.

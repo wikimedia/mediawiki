@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use User;
@@ -37,12 +38,12 @@ use User;
  */
 class BlockPermissionChecker {
 	/**
-	 * @var UserIdentity|string Block target
+	 * @var UserIdentity|string|null Block target or null when unknown
 	 */
 	private $target;
 
 	/**
-	 * @var int $targetType One of AbstractBlock::TYPE_* constants
+	 * @var int|null $targetType One of AbstractBlock::TYPE_* constants, or null when unknown
 	 */
 	private $targetType = null;
 
@@ -52,18 +53,61 @@ class BlockPermissionChecker {
 	private $performer;
 
 	/**
+	 * @internal only for use by ServiceWiring and BlockPermissionCheckerFactory
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		'EnableUserEmail',
+	];
+
+	/**
+	 * @var ServiceOptions
+	 */
+	private $options;
+
+	/**
 	 * @var PermissionManager
 	 */
 	private $permissionManager;
 
+	/**
+	 * @param ServiceOptions $options
+	 * @param PermissionManager $permissionManager
+	 * @param UserIdentity|string|null $target
+	 * @param User $performer
+	 */
 	public function __construct(
+		ServiceOptions $options,
 		PermissionManager $permissionManager,
 		$target,
 		User $performer
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		list( $this->target, $this->targetType ) = AbstractBlock::parseTarget( $target );
 		$this->performer = $performer;
+	}
+
+	/**
+	 * Check base permission of the unblock
+	 *
+	 * @since 1.36
+	 * @param bool $checkHideuser
+	 * @return bool|string
+	 */
+	public function checkBasePermissions( $checkHideuser = false ) {
+		if ( !$this->permissionManager->userHasRight( $this->performer, 'block' ) ) {
+			return 'badaccess-group0';
+		}
+
+		if (
+			$checkHideuser &&
+			!$this->permissionManager->userHasRight( $this->performer, 'hideuser' )
+		) {
+			return 'unblock-hideuser';
+		}
+
+		return true;
 	}
 
 	/**
@@ -118,5 +162,16 @@ class BlockPermissionChecker {
 
 		// User is blocked and no exception took effect
 		return 'ipbblocked';
+	}
+
+	/**
+	 * Check permission to block emailing
+	 *
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function checkEmailPermissions() {
+		return $this->options->get( 'EnableUserEmail' ) &&
+			$this->permissionManager->userHasRight( $this->performer, 'blockemail' );
 	}
 }

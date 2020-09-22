@@ -173,7 +173,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['ratelimits'] ) ) {
-			$vals['ratelimits'] = $this->getRateLimits();
+			// true = real rate limits, taking User::isPingLimitable into account
+			$vals['ratelimits'] = $this->getRateLimits( true );
+		}
+		if ( isset( $this->prop['theoreticalratelimits'] ) ) {
+			// false = ignore User::isPingLimitable
+			$vals['theoreticalratelimits'] = $this->getRateLimits( false );
 		}
 
 		if ( isset( $this->prop['realname'] ) &&
@@ -240,13 +245,20 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return $vals;
 	}
 
-	protected function getRateLimits() {
+	/**
+	 * Get the rate limits that apply to the user, or the rate limits
+	 * that would apply if the user didn't have `noratelimit`
+	 *
+	 * @param bool $applyNoRateLimit
+	 * @return array
+	 */
+	protected function getRateLimits( bool $applyNoRateLimit ) {
 		$retval = [
 			ApiResult::META_TYPE => 'assoc',
 		];
 
 		$user = $this->getUser();
-		if ( !$user->isPingLimitable() ) {
+		if ( $applyNoRateLimit && !$user->isPingLimitable() ) {
 			return $retval; // No limits
 		}
 
@@ -313,6 +325,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'options',
 					'editcount',
 					'ratelimits',
+					'theoreticalratelimits',
 					'email',
 					'realname',
 					'acceptlang',

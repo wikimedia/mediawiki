@@ -10,7 +10,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 			? new ObjectFactory( $service )
 			: new ObjectFactory( $this->createMock( ContainerInterface::class ) );
 
-		return new SkinFactory( $objectFactory,	$options );
+		return new SkinFactory( $objectFactory, $options );
 	}
 
 	/**

@@ -3,7 +3,6 @@
 namespace MediaWiki\HookContainer;
 
 use Config;
-use ResourceLoader;
 use ResourceLoaderContext;
 use Skin;
 
@@ -303,7 +302,6 @@ class HookRunner implements
 	\MediaWiki\Hook\RecentChange_saveHook,
 	\MediaWiki\Hook\RejectParserCacheValueHook,
 	\MediaWiki\Hook\RequestContextCreateSkinHook,
-	\MediaWiki\Hook\ResourceLoaderRegisterModulesHook,
 	\MediaWiki\Hook\SelfLinkBeginHook,
 	\MediaWiki\Hook\SendWatchlistEmailNotificationHook,
 	\MediaWiki\Hook\SetupAfterCacheHook,
@@ -478,12 +476,8 @@ class HookRunner implements
 	\MediaWiki\Permissions\Hook\UserIsEveryoneAllowedHook,
 	\MediaWiki\Preferences\Hook\GetPreferencesHook,
 	\MediaWiki\Preferences\Hook\PreferencesFormPreSaveHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderForeignApiModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderJqueryMsgModuleMagicWordsHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderTestModulesHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideThumbnailHook,
 	\MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook,
@@ -523,6 +517,7 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesDeleteFromRecentchangesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesHook,
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
+	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
 	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
@@ -1033,6 +1028,17 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeResetNotificationTimestamp',
 			[ &$userObj, &$titleObj, $force, &$oldid ]
+		);
+	}
+
+	public function onBeforeRevertedTagUpdate( $wikiPage, $user,
+		$summary, $flags, $revisionRecord, $editResult, &$approved
+	) : void {
+		$this->container->run(
+			'BeforeRevertedTagUpdate',
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult,
+				&$approved ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -2377,7 +2383,8 @@ class HookRunner implements
 	public function onLoadExtensionSchemaUpdates( $updater ) {
 		return $this->container->run(
 			'LoadExtensionSchemaUpdates',
-			[ $updater ]
+			[ $updater ],
+			[ 'noServices' => true ]
 		);
 	}
 
@@ -3203,14 +3210,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onResourceLoaderForeignApiModules( &$dependencies, $context ) : void {
-		$this->container->run(
-			'ResourceLoaderForeignApiModules',
-			[ &$dependencies, $context ],
-			[ 'abortable' => false ]
-		);
-	}
-
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void {
 		$this->container->run(
 			'ResourceLoaderGetConfigVars',
@@ -3225,38 +3224,6 @@ class HookRunner implements
 		$this->container->run(
 			'ResourceLoaderJqueryMsgModuleMagicWords',
 			[ $context, &$magicWords ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderRegisterModules( ResourceLoader $rl ) : void {
-		$this->container->run(
-			'ResourceLoaderRegisterModules',
-			[ $rl ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderSiteModulePages( $skin, array &$pages ) : void {
-		$this->container->run(
-			'ResourceLoaderSiteModulePages',
-			[ $skin, &$pages ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ) : void {
-		$this->container->run(
-			'ResourceLoaderSiteStylesModulePages',
-			[ $skin, &$pages ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ) : void {
-		$this->container->run(
-			'ResourceLoaderTestModules',
-			[ &$testModules, $rl ],
 			[ 'abortable' => false ]
 		);
 	}

@@ -441,15 +441,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * Undeletion is covered in PageArchiveTest::testUndeleteRevisions()
 	 * TODO: Revision deletion
 	 *
-	 * @covers WikiPage::doDeleteArticle
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
-	public function testDoDeleteArticle() {
-		$this->hideDeprecated( 'WikiPage::doDeleteArticle' );
-		$this->hideDeprecated(
-			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
-		);
-
+	public function testDoDeleteArticleReal() {
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -457,7 +451,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 		$id = $page->getId();
 
-		$page->doDeleteArticle( "testing deletion" );
+		$page->doDeleteArticleReal( "testing deletion", $this->getTestSysop()->getUser() );
 
 		$this->assertFalse(
 			$page->getTitle()->getArticleID() > 0,
@@ -498,10 +492,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticleReal_user0() {
-		$this->hideDeprecated(
-			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
-		);
-
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -509,14 +499,16 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 		$id = $page->getId();
 
+		$deleter = $this->getTestSysop()->getUser();
+
 		$errorStack = '';
 		$status = $page->doDeleteArticleReal(
 			/* reason */ "testing user 0 deletion",
+			/* deleter */ $deleter,
 			/* suppress */ false,
 			/* unused 1 */ null,
-			/* unused 2 */ null,
 			/* errorStack */ $errorStack,
-			null
+			/* unused 2 */ null
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
@@ -537,8 +529,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'delete',
 				'delete',
 				'testing user 0 deletion',
-				null,
-				'127.0.0.1',
+				$deleter->getId(),
+				$deleter->getName(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
@@ -1899,69 +1891,6 @@ more stuff
 	 */
 	public function testNewFromId_returnsNullOnNonExistingId() {
 		$this->assertNull( WikiPage::newFromID( 2147483647 ) );
-	}
-
-	public function provideTestInsertProtectNullRevision() {
-		// phpcs:disable Generic.Files.LineLength
-		yield [
-			'goat-message-key',
-			[ 'edit' => 'sysop' ],
-			[ 'edit' => '20200101040404' ],
-			false,
-			'Goat Reason',
-			'(goat-message-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
-		];
-		yield [
-			'goat-key',
-			[ 'edit' => 'sysop', 'move' => 'something' ],
-			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
-			false,
-			'Goat Goat',
-			'(goat-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
-		];
-		// phpcs:enable
-	}
-
-	/**
-	 * @dataProvider provideTestInsertProtectNullRevision
-	 * @covers WikiPage::insertProtectNullRevision
-	 * @covers WikiPage::protectDescription
-	 *
-	 * @param string $revCommentMsg
-	 * @param array $limit
-	 * @param array $expiry
-	 * @param bool $cascade
-	 * @param string $reason
-	 * @param string $expectedComment
-	 */
-	public function testInsertProtectNullRevision(
-		$revCommentMsg,
-		array $limit,
-		array $expiry,
-		$cascade,
-		$reason,
-		$expectedComment
-	) {
-		$this->hideDeprecated( 'Revision::getComment' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'WikiPage::insertProtectNullRevision' );
-		$this->setContentLang( 'qqx' );
-
-		$page = $this->createPage( __METHOD__, 'Goat' );
-
-		$user = $this->getTestSysop()->getUser();
-
-		$result = $page->insertProtectNullRevision(
-			$revCommentMsg,
-			$limit,
-			$expiry,
-			$cascade,
-			$reason,
-			$user
-		);
-
-		$this->assertTrue( $result instanceof Revision );
-		$this->assertSame( $expectedComment, $result->getComment( RevisionRecord::RAW ) );
 	}
 
 	/**

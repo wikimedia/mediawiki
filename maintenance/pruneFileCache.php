@@ -34,7 +34,7 @@ class PruneFileCache extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Build file cache for content pages' );
+		$this->addDescription( 'Delete file cache files older than "agedays"' );
 		$this->addOption( 'agedays', 'How many days old files must be in order to delete', true, true );
 		$this->addOption( 'subdir', 'Prune one $wgFileCacheDirectory subdirectory name', false, true );
 	}

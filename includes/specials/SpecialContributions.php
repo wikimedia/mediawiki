@@ -217,19 +217,23 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
 			$id, $userObj, $this )
 		) {
-			$pager = new ContribsPager( $this->getContext(), [
-				'target' => $target,
-				'namespace' => $this->opts['namespace'],
-				'tagfilter' => $this->opts['tagfilter'],
-				'start' => $this->opts['start'],
-				'end' => $this->opts['end'],
-				'deletedOnly' => $this->opts['deletedOnly'],
-				'topOnly' => $this->opts['topOnly'],
-				'newOnly' => $this->opts['newOnly'],
-				'hideMinor' => $this->opts['hideMinor'],
-				'nsInvert' => $this->opts['nsInvert'],
-				'associated' => $this->opts['associated'],
-			], $this->getLinkRenderer() );
+			$pager = new ContribsPager(
+				$this->getContext(), [
+					'target' => $target,
+					'namespace' => $this->opts['namespace'],
+					'tagfilter' => $this->opts['tagfilter'],
+					'start' => $this->opts['start'],
+					'end' => $this->opts['end'],
+					'deletedOnly' => $this->opts['deletedOnly'],
+					'topOnly' => $this->opts['topOnly'],
+					'newOnly' => $this->opts['newOnly'],
+					'hideMinor' => $this->opts['hideMinor'],
+					'nsInvert' => $this->opts['nsInvert'],
+					'associated' => $this->opts['associated'],
+				],
+				$this->getLinkRenderer(),
+				MediaWikiServices::getInstance()->getLinkBatchFactory()
+			);
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
@@ -578,7 +582,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$request = $this->getRequest();
 		$nsFilters = $request->getArray( 'wpfilters' );
 		$fields['nsFilters'] = [
-			'class' => 'HTMLMultiSelectField',
+			'class' => HTMLMultiSelectField::class,
 			'label' => '',
 			'name' => 'wpfilters',
 			'flatlist' => true,

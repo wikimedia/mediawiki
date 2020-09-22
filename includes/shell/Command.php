@@ -57,14 +57,20 @@ class Command {
 	/** @var string */
 	private $method;
 
-	/** @var string|null */
-	private $inputString;
+	/** @var string */
+	private $inputString = '';
 
 	/** @var bool */
 	private $doIncludeStderr = false;
 
 	/** @var bool */
 	private $doLogStderr = false;
+
+	/** @var bool */
+	private $doPassStdin = false;
+
+	/** @var bool */
+	private $doPassStderr = false;
 
 	/** @var bool */
 	private $everExecuted = false;
@@ -192,13 +198,47 @@ class Command {
 	}
 
 	/**
-	 * Sends the provided input to the command.
-	 * When set to null (default), the command will use the standard input.
-	 * @param string|null $inputString
+	 * Sends the provided input to the command. Defaults to an empty string.
+	 * If you want to pass stdin through to the command instead, use
+	 * passStdin().
+	 *
+	 * @param string $inputString
 	 * @return $this
 	 */
-	public function input( ?string $inputString ): Command {
+	public function input( string $inputString ): Command {
 		$this->inputString = $inputString;
+
+		return $this;
+	}
+
+	/**
+	 * Controls whether stdin is passed through to the command, so that the
+	 * user can interact with the command when it is run in CLI mode. If this
+	 * is enabled:
+	 *   - The wall clock timeout will be disabled to avoid stopping the
+	 *     process with SIGTTIN/SIGTTOU (T206957).
+	 *   - The string specified with input() will be ignored.
+	 *
+	 * @param bool $yesno
+	 * @return $this
+	 */
+	public function passStdin( bool $yesno = true ): Command {
+		$this->doPassStdin = $yesno;
+
+		return $this;
+	}
+
+	/**
+	 * If this is set to true, text written to stderr by the command will be
+	 * passed through to PHP's stderr. To avoid SIGTTIN/SIGTTOU, and to support
+	 * Result::getStderr(), the file descriptor is not passed through, we just
+	 * copy the data to stderr as we receive it.
+	 *
+	 * @param bool $yesno
+	 * @return $this
+	 */
+	public function forwardStderr( bool $yesno = true ): Command {
+		$this->doPassStderr = $yesno;
 
 		return $this;
 	}
@@ -325,7 +365,7 @@ class Command {
 
 		if ( is_executable( '/bin/bash' ) ) {
 			$time = intval( $this->limits['time'] );
-			$wallTime = intval( $this->limits['walltime'] );
+			$wallTime = $this->doPassStdin ? 0 : intval( $this->limits['walltime'] );
 			$mem = intval( $this->limits['memory'] );
 			$filesize = intval( $this->limits['filesize'] );
 
@@ -346,6 +386,10 @@ class Command {
 		}
 		if ( !$useLogPipe && $this->doIncludeStderr ) {
 			$cmd .= ' 2>&1';
+		}
+
+		if ( wfIsWindows() ) {
+			$cmd = 'cmd.exe /c "' . $cmd . '"';
 		}
 
 		return [ $cmd, $useLogPipe ];
@@ -379,7 +423,7 @@ class Command {
 		}
 
 		$desc = [
-			0 => $this->inputString === null ? [ 'file', 'php://stdin', 'r' ] : [ 'pipe', 'r' ],
+			0 => $this->doPassStdin ? [ 'file', 'php://stdin', 'r' ] : [ 'pipe', 'r' ],
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ],
 		];
@@ -388,7 +432,16 @@ class Command {
 		}
 		$pipes = null;
 		$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
-		$proc = proc_open( $cmd, $desc, $pipes );
+		$proc = null;
+
+		if ( wfIsWindows() ) {
+			// Windows Shell bypassed, but command run is "cmd.exe /C "{$cmd}"
+			// This solves some shell parsing issues, see T207248
+			$proc = proc_open( $cmd, $desc, $pipes, null, null, [ 'bypass_shell' => true ] );
+		} else {
+			$proc = proc_open( $cmd, $desc, $pipes );
+		}
+
 		if ( !$proc ) {
 			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
 			throw new ProcOpenError();
@@ -508,6 +561,9 @@ class Command {
 						foreach ( $lines as $line ) {
 							$this->logger->info( $line );
 						}
+					}
+					if ( $fd === 2 && $this->doPassStderr ) {
+						fwrite( STDERR, $res );
 					}
 				}
 			}

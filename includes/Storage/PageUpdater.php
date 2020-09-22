@@ -25,7 +25,6 @@
 namespace MediaWiki\Storage;
 
 use AtomicSectionUpdate;
-use ChangeTags;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
@@ -83,7 +82,8 @@ class PageUpdater {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ManualRevertSearchRadius'
+		'ManualRevertSearchRadius',
+		'UseRCPatrol',
 	];
 
 	/**
@@ -178,6 +178,16 @@ class PageUpdater {
 	private $editResult = null;
 
 	/**
+	 * @var string[] currently enabled software change tags
+	 */
+	private $softwareTags;
+
+	/**
+	 * @var ServiceOptions
+	 */
+	private $serviceOptions;
+
+	/**
 	 * @param User $user
 	 * @param WikiPage $wikiPage
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
@@ -187,6 +197,8 @@ class PageUpdater {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param ServiceOptions $serviceOptions
+	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
+	 *        obtained from ChangeTags::getSoftwareTags()
 	 */
 	public function __construct(
 		User $user,
@@ -197,9 +209,11 @@ class PageUpdater {
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
-		ServiceOptions $serviceOptions
+		ServiceOptions $serviceOptions,
+		array $softwareTags
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->serviceOptions = $serviceOptions;
 
 		$this->user = $user;
 		$this->wikiPage = $wikiPage;
@@ -211,13 +225,20 @@ class PageUpdater {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 		$this->editResultBuilder = new EditResultBuilder(
-			$this->revisionStore,
-			ChangeTags::getSoftwareTags(),
+			$revisionStore,
+			$softwareTags,
 			$loadBalancer,
-			$serviceOptions
+			new ServiceOptions(
+				EditResultBuilder::CONSTRUCTOR_OPTIONS,
+				[
+					'ManualRevertSearchRadius' =>
+						$serviceOptions->get( 'ManualRevertSearchRadius' )
+				]
+			)
 		);
 	}
 
@@ -736,36 +757,6 @@ class PageUpdater {
 			$this->slotsUpdate,
 			$useStashed
 		);
-
-		// TODO: don't force initialization here!
-		// This is a hack to work around the fact that late initialization of the ParserOutput
-		// causes ApiFlowEditHeaderTest::testCache to fail. Whether that failure indicates an
-		// actual problem, or is just an issue with the test setup, remains to be determined
-		// [dk, 2018-03].
-		// Anomie said in 2018-03:
-		/*
-			I suspect that what's breaking is this:
-
-			The old version of WikiPage::doEditContent() called prepareContentForEdit() which
-			generated the ParserOutput right then, so when doEditUpdates() gets called from the
-			DeferredUpdate scheduled by WikiPage::doCreate() there's no need to parse. I note
-			there's a comment there that says "Get the pre-save transform content and final
-			parser output".
-			The new version of WikiPage::doEditContent() makes a PageUpdater and calls its
-			saveRevision(), which calls DerivedPageDataUpdater::prepareContent() and
-			PageUpdater::doCreate() without ever having to actually generate a ParserOutput.
-			Thus, when DerivedPageDataUpdater::doUpdates() is called from the DeferredUpdate
-			scheduled by PageUpdater::doCreate(), it does find that it needs to parse at that point.
-
-			And the order of operations in that Flow test is presumably:
-
-			- Create a page with a call to WikiPage::doEditContent(), in a way that somehow avoids
-			processing the DeferredUpdate.
-			- Set up the "no set!" mock cache in Flow\Tests\Api\ApiTestCase::expectCacheInvalidate()
-			- Then, during the course of doing that test, a $db->commit() results in the
-			DeferredUpdates being run.
-		 */
-		$this->derivedDataUpdater->getCanonicalParserOutput();
 
 		// Trigger pre-save hook (using provided edit summary)
 		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
@@ -1352,8 +1343,29 @@ class PageUpdater {
 				$hints['causeAction'] = 'edit-page';
 				$hints['causeAgent'] = $user->getName();
 
-				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				$editResult = $this->getEditResult();
+				$hints['editResult'] = $editResult;
+
+				if ( $editResult->isRevert() ) {
+					// Should the reverted tag update be scheduled right away?
+					// The revert is approved if either patrolling is disabled or the
+					// edit is patrolled or autopatrolled.
+					$approved = !$this->serviceOptions->get( 'UseRCPatrol' ) ||
+						$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
+						$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
+
+					// Allow extensions to override the patrolling subsystem.
+					$this->hookRunner->onBeforeRevertedTagUpdate(
+						$wikiPage,
+						$user,
+						$summary,
+						$flags,
+						$newRevisionRecord,
+						$editResult,
+						$approved
+					);
+					$hints['approved'] = $approved;
+				}
 
 				// Update links tables, site stats, etc.
 				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
@@ -1380,6 +1392,7 @@ class PageUpdater {
 					return;
 				}
 
+				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				if ( $created ) {
 					// Trigger post-create hook

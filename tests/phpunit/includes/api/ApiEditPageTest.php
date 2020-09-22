@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -1493,7 +1494,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1506,7 +1508,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			self::$users['sysop']->getUser()->clearInstanceCache();
 		}
 	}
@@ -1613,5 +1615,39 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'Some text',
 			'contentmodel' => 'json',
 		] );
+	}
+
+	public function testMidEditContentModelMismatch() {
+		$name = 'Help:' . ucfirst( __FUNCTION__ );
+		$title = Title::newFromText( $name );
+
+		$page = WikiPage::factory( $title );
+
+		// base edit, currently in Wikitext
+		$page->doEditContent( new WikitextContent( "Foo" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseId = $page->getRevisionRecord()->getId();
+
+		// Attempt edit in Javascript. This may happen, for instance, if we
+		// started editing the base content while it was in Javascript and
+		// before we save it was changed to Wikitext (base edit model).
+		$page->doEditContent( new JavaScriptContent( "Bar" ),
+			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->getUser() );
+		$this->forceRevisionDate( $page, '20120101020202' );
+
+		// ContentHanlder may throw exception if we attempt saving the above, so we will
+		// handle that with contentmodel-mismatch error. Test this is the case.
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'edit',
+				'title' => $name,
+				'text' => 'different content models!',
+				'baserevid' => $baseId,
+			] );
+			$this->fail( "Should have raised an ApiUsageException" );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'contentmodel-mismatch' ) );
+		}
 	}
 }

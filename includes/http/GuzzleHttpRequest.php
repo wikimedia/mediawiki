@@ -157,8 +157,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			$this->guzzleOptions['expect'] = false;
 		}
 
-		$this->guzzleOptions['headers'] = $this->reqHeaders;
-
 		// Create Middleware to use cookies from $this->getCookieJar(),
 		// which is in MediaWiki CookieJar format, not in Guzzle-specific CookieJar format.
 		// Note: received cookies (from HTTP response) don't need to be handled here,
@@ -196,9 +194,13 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			$this->guzzleOptions['verify'] = false;
 		}
 
+		$client = new Client( $this->guzzleOptions );
+		$request = new Request( $this->method, $this->url );
+		foreach ( $this->reqHeaders as $name => $value ) {
+			$request = $request->withHeader( $name, $value );
+		}
+
 		try {
-			$client = new Client( $this->guzzleOptions );
-			$request = new Request( $this->method, $this->url );
 			$response = $client->send( $request );
 			$this->headerList = $response->getHeaders();
 
@@ -235,7 +237,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				}
 			}
 		} catch ( GuzzleHttp\Exception\GuzzleException $e ) {
-			// @phan-suppress-previous-line PhanRedefinedClassReference False positive
 			$this->status->fatal( 'http-internal-error' );
 		}
 

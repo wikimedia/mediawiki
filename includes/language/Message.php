@@ -380,19 +380,6 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Returns the message format.
-	 *
-	 * @since 1.21
-	 *
-	 * @return string
-	 * @deprecated since 1.29 formatting is not stateful
-	 */
-	public function getFormat() {
-		wfDeprecated( __METHOD__, '1.29' );
-		return $this->format;
-	}
-
-	/**
 	 * Returns the Language of the Message.
 	 *
 	 * @since 1.23

@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
@@ -48,16 +49,26 @@ class LinkCache {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
+	/** @var ILoadBalancer|null */
+	private $loadBalancer;
+
 	/**
 	 * How many Titles to store. There are two caches, so the amount actually
 	 * stored in memory can be up to twice this.
 	 */
 	private const MAX_SIZE = 10000;
 
+	/**
+	 * @param TitleFormatter $titleFormatter
+	 * @param WANObjectCache $cache
+	 * @param NamespaceInfo|null $nsInfo Null for backward compatibility, but deprecated
+	 * @param ILoadBalancer|null $loadBalancer Use null when no database is set up, for example on installation
+	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		WANObjectCache $cache,
-		NamespaceInfo $nsInfo = null
+		NamespaceInfo $nsInfo = null,
+		ILoadBalancer $loadBalancer = null
 	) {
 		if ( !$nsInfo ) {
 			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
@@ -68,6 +79,7 @@ class LinkCache {
 		$this->wanCache = $cache;
 		$this->titleFormatter = $titleFormatter;
 		$this->nsInfo = $nsInfo;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -255,9 +267,15 @@ class LinkCache {
 			return 0;
 		}
 
+		// Only query database, when load balancer is provided by service wiring
+		// This maybe not happen when running as part of the installer
+		if ( $this->loadBalancer === null ) {
+			return 0;
+		}
+
 		// Cache template/file pages as they are less often viewed but heavily used
 		if ( $this->mForUpdate ) {
-			$row = $this->fetchPageRow( wfGetDB( DB_MASTER ), $nt );
+			$row = $this->fetchPageRow( $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_MASTER ), $nt );
 		} elseif ( $this->isCacheable( $nt ) ) {
 			// These pages are often transcluded heavily, so cache them
 			$cache = $this->wanCache;
@@ -265,7 +283,7 @@ class LinkCache {
 				$cache->makeKey( 'page', $nt->getNamespace(), sha1( $nt->getDBkey() ) ),
 				$cache::TTL_DAY,
 				function ( $curValue, &$ttl, array &$setOpts ) use ( $cache, $nt ) {
-					$dbr = wfGetDB( DB_REPLICA );
+					$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 					$setOpts += Database::getCacheSetOptions( $dbr );
 
 					$row = $this->fetchPageRow( $dbr, $nt );
@@ -276,7 +294,7 @@ class LinkCache {
 				}
 			);
 		} else {
-			$row = $this->fetchPageRow( wfGetDB( DB_REPLICA ), $nt );
+			$row = $this->fetchPageRow( $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA ), $nt );
 		}
 
 		if ( $row ) {

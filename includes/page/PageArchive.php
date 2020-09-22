@@ -60,7 +60,7 @@ class PageArchive {
 	 * @return RevisionStore
 	 */
 	private function getRevisionStore() {
-		// TODO: Refactor: delete()/undelete() should live in a PageStore service;
+		// TODO: Refactor: delete()/undeleteAsUser() should live in a PageStore service;
 		//       Methods in PageArchive and RevisionStore that deal with archive revisions
 		//       should move into an ArchiveStore service (but could still be implemented
 		//       together with RevisionStore).
@@ -450,46 +450,6 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * Within ::undeleteAsUser, this also sets Status objects, $this->fileStatus and
-	 * $this->revisionStatus (depending what operations are attempted).
-	 *
-	 * @deprecated since 1.35, use ::undeleteAsUser
-	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
-	 *   otherwise list the ones to undelete.
-	 * @param string $comment
-	 * @param array $fileVersions
-	 * @param bool $unsuppress
-	 * @param User|null $user User performing the action, or null to use $wgUser
-	 * @param string|string[]|null $tags Change tags to add to log entry
-	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array|bool [ number of file revisions restored, number of image revisions
-	 *   restored, log message ] on success, false on failure.
-	 */
-	public function undelete( $timestamps, $comment = '', $fileVersions = [],
-		$unsuppress = false, User $user = null, $tags = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		$result = $this->undeleteAsUser(
-			$timestamps,
-			$user,
-			$comment,
-			$fileVersions,
-			$unsuppress,
-			$tags
-		);
-		return $result;
-	}
-
-	/**
-	 * Restore the given (or all) text and file revisions for the page.
-	 * Once restored, the items will be removed from the archive tables.
-	 * The deletion log will be updated with an undeletion notice.
-	 *
 	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
 	 * (depending what operations are attempted).
 	 *
@@ -601,18 +561,18 @@ class PageArchive {
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
 
-		$page = $dbw->selectRow( 'page',
-			[ 'page_id', 'page_latest' ],
-			[ 'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey() ],
-			__METHOD__,
-			[ 'FOR UPDATE' ] // lock page
-		);
-
-		if ( $page ) {
-			$makepage = false;
+		if ( $article->exists() ) {
 			# Page already exists. Import the history, and if necessary
 			# we'll update the latest revision field in the record.
+			$makepage = false;
+
+			$page = $dbw->selectRow( 'page',
+				[ 'page_id', 'page_latest' ],
+				[ 'page_namespace' => $this->title->getNamespace(),
+					'page_title' => $this->title->getDBkey() ],
+				__METHOD__,
+				[ 'FOR UPDATE' ] // lock page for WikiPage::updateRevisionOn call
+			);
 
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',

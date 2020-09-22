@@ -11,7 +11,6 @@ class MediaWikiPHPUnitCommand extends Command {
 
 		// Add our own listeners
 		$this->arguments['listeners'][] = new MediaWikiPHPUnitTestListener;
-		$this->arguments['listeners'][] = new MediaWikiLoggerPHPUnitTestListener;
 
 		// Output only to stderr to avoid "Headers already sent" problems
 		$this->arguments['stderr'] = true;

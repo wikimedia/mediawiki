@@ -51,7 +51,10 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\UnblockUserFactory;
+use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
@@ -98,9 +101,11 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -182,6 +187,10 @@ return [
 		MediaWikiServices $services
 	) : BlockPermissionCheckerFactory {
 		return new BlockPermissionCheckerFactory(
+			new ServiceOptions(
+				BlockPermissionCheckerFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
 			$services->getPermissionManager()
 		);
 	},
@@ -190,6 +199,10 @@ return [
 		return new BlockRestrictionStore(
 			$services->getDBLoadBalancer()
 		);
+	},
+
+	'BlockUserFactory' => function ( MediaWikiServices $services ) : BlockUserFactory {
+		return $services->getService( '_UserBlockCommandFactory' );
 	},
 
 	'ChangeTagDefStore' => function ( MediaWikiServices $services ) : NameTableStore {
@@ -321,11 +334,17 @@ return [
 			$wanCache = WANObjectCache::newEmpty(); // T141804: handle cases like CACHE_DB
 		}
 
+		$srvCache = $services->getLocalServerObjectCache();
+		if ( $srvCache instanceof EmptyBagOStuff ) {
+			// Use process cache if the main stash is disabled
+			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
-			$services->getLocalServerObjectCache(),
+			$srvCache,
 			$stash,
 			$wanCache
 		);
@@ -531,10 +550,15 @@ return [
 	},
 
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
+		// Database layer may be disabled, so processing without database connection
+		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
+			? null
+			: $services->getDBLoadBalancer();
 		return new LinkCache(
 			$services->getTitleFormatter(),
 			$services->getMainWANObjectCache(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$dbLoadBalancer
 		);
 	},
 
@@ -995,7 +1019,7 @@ return [
 		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
 		$rl->register( $modules );
-		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner = new \MediaWiki\ResourceLoader\HookRunner( $services->getHookContainer() );
 		$hookRunner->onResourceLoaderRegisterModules( $rl );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
@@ -1026,6 +1050,23 @@ return [
 		}
 
 		return $rl;
+	},
+
+	'RevertedTagUpdateManager' => function ( MediaWikiServices $services ) : RevertedTagUpdateManager {
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+
+		return new RevertedTagUpdateManager(
+			$editResultCache,
+			// TODO: should be replaced with proper service injection
+			JobQueueGroup::singleton()
+		);
 	},
 
 	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {
@@ -1148,6 +1189,7 @@ return [
 			} else {
 				$displayName = $skin;
 				$spec = [
+					'name' => $name,
 					'class' => "Skin$skin"
 				];
 			}
@@ -1159,6 +1201,7 @@ return [
 			'class' => SkinFallback::class,
 			'args' => [
 				[
+					'name' => 'fallback',
 					'styles' => [ 'mediawiki.skinning.interface' ],
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
@@ -1169,6 +1212,7 @@ return [
 			'class' => SkinApi::class,
 			'args' => [
 				[
+					'name' => 'apioutput',
 					'styles' => [ 'mediawiki.skinning.interface' ],
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
@@ -1250,6 +1294,10 @@ return [
 
 	'TitleParser' => function ( MediaWikiServices $services ) : TitleParser {
 		return $services->getService( '_MediaWikiTitleCodec' );
+	},
+
+	'UnblockUserFactory' => function ( MediaWikiServices $services ) : UnblockUserFactory {
+		return $services->getService( '_UserBlockCommandFactory' );
 	},
 
 	'UploadRevisionImporter' => function ( MediaWikiServices $services ) : UploadRevisionImporter {
@@ -1448,6 +1496,17 @@ return [
 
 	'_SqlBlobStore' => function ( MediaWikiServices $services ) : SqlBlobStore {
 		return $services->getBlobStoreFactory()->newSqlBlobStore();
+	},
+
+	'_UserBlockCommandFactory' => function ( MediaWikiServices $services ) : UserBlockCommandFactory {
+		return new UserBlockCommandFactory(
+			new ServiceOptions( UserBlockCommandFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getHookContainer(),
+			$services->getBlockPermissionCheckerFactory(),
+			$services->getDatabaseBlockStore(),
+			$services->getBlockRestrictionStore(),
+			LoggerFactory::getInstance( 'BlockManager' )
+		);
 	},
 
 	///////////////////////////////////////////////////////////////////////////

@@ -165,3 +165,80 @@ CREATE TABLE /*_*/pagelinks (
   ),
   PRIMARY KEY(pl_from, pl_namespace, pl_title)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/templatelinks (
+  tl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  tl_namespace INT DEFAULT 0 NOT NULL,
+  tl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  tl_from_namespace INT DEFAULT 0 NOT NULL,
+  INDEX tl_namespace (tl_namespace, tl_title, tl_from),
+  INDEX tl_backlinks_namespace (
+    tl_from_namespace, tl_namespace,
+    tl_title, tl_from
+  ),
+  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/imagelinks (
+  il_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  il_to VARBINARY(255) DEFAULT '' NOT NULL,
+  il_from_namespace INT DEFAULT 0 NOT NULL,
+  INDEX il_to (il_to, il_from),
+  INDEX il_backlinks_namespace (
+    il_from_namespace, il_to, il_from
+  ),
+  PRIMARY KEY(il_from, il_to)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/langlinks (
+  ll_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  ll_lang VARBINARY(35) DEFAULT '' NOT NULL,
+  ll_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX ll_lang (ll_lang, ll_title),
+  PRIMARY KEY(ll_from, ll_lang)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/iwlinks (
+  iwl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  iwl_prefix VARBINARY(20) DEFAULT '' NOT NULL,
+  iwl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX iwl_prefix_title_from (iwl_prefix, iwl_title, iwl_from),
+  INDEX iwl_prefix_from_title (iwl_prefix, iwl_from, iwl_title),
+  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/category (
+  cat_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  cat_title VARBINARY(255) NOT NULL,
+  cat_pages INT DEFAULT 0 NOT NULL,
+  cat_subcats INT DEFAULT 0 NOT NULL,
+  cat_files INT DEFAULT 0 NOT NULL,
+  UNIQUE INDEX cat_title (cat_title),
+  INDEX cat_pages (cat_pages),
+  PRIMARY KEY(cat_id)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/watchlist_expiry (
+  we_item INT UNSIGNED NOT NULL,
+  we_expiry BINARY(14) NOT NULL,
+  INDEX we_expiry (we_expiry),
+  PRIMARY KEY(we_item)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/change_tag_def (
+  ctd_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  ctd_name VARBINARY(255) NOT NULL,
+  ctd_user_defined TINYINT(1) NOT NULL,
+  ctd_count BIGINT UNSIGNED DEFAULT 0 NOT NULL,
+  UNIQUE INDEX ctd_name (ctd_name),
+  INDEX ctd_count (ctd_count),
+  INDEX ctd_user_defined (ctd_user_defined),
+  PRIMARY KEY(ctd_id)
+) /*$wgDBTableOptions*/;

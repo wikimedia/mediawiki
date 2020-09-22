@@ -999,22 +999,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Same as ::getLimitOffsetForUser, but without a user parameter, instead using $wgUser
-	 *
-	 * @deprecated since 1.35, use ::getLimitOffsetForUser instead
-	 *
-	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
-	 * @param string $optionname To specify an option other than rclimit to pull from.
-	 * @return int[] First element is limit, second is offset
-	 */
-	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		global $wgUser;
-		return $this->getLimitOffsetForUser( $wgUser, $deflimit, $optionname );
-	}
-
-	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.

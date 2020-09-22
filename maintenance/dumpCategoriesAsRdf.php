@@ -53,9 +53,10 @@ class DumpCategoriesAsRdf extends Maintenance {
 	/**
 	 * Produce row iterator for categories.
 	 * @param IDatabase $dbr Database connection
+	 * @param string $fname Name of the calling function
 	 * @return RecursiveIterator
 	 */
-	public function getCategoryIterator( IDatabase $dbr ) {
+	public function getCategoryIterator( IDatabase $dbr, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
 			[ 'page', 'page_props', 'category' ],
@@ -84,6 +85,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			]
 
 		);
+		$it->setCaller( $fname );
 		return $it;
 	}
 
@@ -91,9 +93,10 @@ class DumpCategoriesAsRdf extends Maintenance {
 	 * Get iterator for links for categories.
 	 * @param IDatabase $dbr
 	 * @param int[] $ids List of page IDs
+	 * @param string $fname Name of the calling function
 	 * @return Traversable
 	 */
-	public function getCategoryLinksIterator( IDatabase $dbr, array $ids ) {
+	public function getCategoryLinksIterator( IDatabase $dbr, array $ids, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
 			'categorylinks',
@@ -105,6 +108,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			'cl_from' => $ids
 		] );
 		$it->setFetchColumns( [ 'cl_from', 'cl_to' ] );
+		$it->setCaller( $fname );
 		return new RecursiveIteratorIterator( $it );
 	}
 
@@ -147,7 +151,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
-		foreach ( $this->getCategoryIterator( $dbr ) as $batch ) {
+		foreach ( $this->getCategoryIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];
 			foreach ( $batch as $row ) {
 				$this->categoriesRdf->writeCategoryData(
@@ -156,10 +160,12 @@ class DumpCategoriesAsRdf extends Maintenance {
 					(int)$row->cat_pages - (int)$row->cat_subcats - (int)$row->cat_files,
 					(int)$row->cat_subcats
 				);
-				$pages[$row->page_id] = $row->page_title;
+				if ( $row->page_id ) {
+					$pages[$row->page_id] = $row->page_title;
+				}
 			}
 
-			foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ) ) as $row ) {
+			foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
 				$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->cl_to );
 			}
 			fwrite( $output, $this->rdfWriter->drain() );

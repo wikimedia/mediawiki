@@ -392,4 +392,48 @@ CSS
 			}
 		}
 	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule::getStyleFiles
+	 */
+	public function testGetStyleFilesFeatureStylesOrder() : void {
+		$ctx = $this->createMock( ResourceLoaderContext::class );
+		$module = new ResourceLoaderSkinModule(
+			[
+				'features' => [ 'normalize', 'elements' ],
+				'styles' => [
+					'test.styles/styles.css' => [
+						'media' => 'screen'
+					]
+				]
+			]
+		);
+
+		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
+			ResourceLoaderFileModule::extractBasePaths();
+
+		$featureFiles = ( new ReflectionClass( ResourceLoaderSkinModule::class ) )
+			->getConstant( 'FEATURE_FILES' );
+
+		$expected = [
+			'screen' => [
+				new ResourceLoaderFilePath(
+					$featureFiles['normalize']['screen'][0],
+					$defaultLocalBasePath,
+					$defaultRemoteBasePath
+				),
+				new ResourceLoaderFilePath(
+					$featureFiles['elements']['screen'][0],
+					$defaultLocalBasePath,
+					$defaultRemoteBasePath
+				),
+				'test.styles/styles.css'
+			]
+		];
+
+		$this->assertEquals(
+			$expected,
+			$module->getStyleFiles( $ctx )
+		);
+	}
 }

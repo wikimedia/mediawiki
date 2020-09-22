@@ -828,7 +828,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "その版のタグ。",
 	"apihelp-query+revisions+base-param-limit": "返す版の数を制限する。",
 	"apihelp-query+search-summary": "全文検索を行います。",
-	"apihelp-query+search-param-search": "この値を含むページ名または本文を検索します。Wikiの検索バックエンド実装に応じて、あなたは特別な検索機能を呼び出すための文字列を検索することができます。",
+	"apihelp-query+search-param-search": "この値を含むページ名または本文を検索します。ウィキの検索バックエンド実装に応じて、特別な検索機能を呼び出すための文字列を検索できます。",
 	"apihelp-query+search-param-namespace": "この名前空間内のみを検索します。",
 	"apihelp-query+search-param-what": "実行する検索の種類です。",
 	"apihelp-query+search-param-info": "どのメタデータを返すか。",

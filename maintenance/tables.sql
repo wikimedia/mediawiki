@@ -516,56 +516,6 @@ CREATE UNIQUE INDEX /*i*/model_name ON /*_*/content_models (model_name);
 
 
 --
--- Track template inclusions.
---
-CREATE TABLE /*_*/templatelinks (
-  -- Key to the page_id of the page containing the link.
-  tl_from int unsigned NOT NULL default 0,
-  -- Namespace for this page
-  tl_from_namespace int NOT NULL default 0,
-
-  -- Key to page_namespace/page_title of the target page.
-  -- The target page may or may not exist, and due to renames
-  -- and deletions may refer to different page records as time
-  -- goes by.
-  tl_namespace int NOT NULL default 0,
-  tl_title varchar(255) binary NOT NULL default '',
-  PRIMARY KEY (tl_from,tl_namespace,tl_title)
-) /*$wgDBTableOptions*/;
-
--- Reverse index, for Special:Whatlinkshere
-CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
-
--- Index for Special:Whatlinkshere with namespace filter
-CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_from_namespace,tl_namespace,tl_title,tl_from);
-
-
---
--- Track links to images *used inline*
--- We don't distinguish live from broken links here, so
--- they do not need to be changed on upload/removal.
---
-CREATE TABLE /*_*/imagelinks (
-  -- Key to page_id of the page containing the image / media link.
-  il_from int unsigned NOT NULL default 0,
-  -- Namespace for this page
-  il_from_namespace int NOT NULL default 0,
-
-  -- Filename of target image.
-  -- This is also the page_title of the file's description page;
-  -- all such pages are in namespace 6 (NS_FILE).
-  il_to varchar(255) binary NOT NULL default '',
-  PRIMARY KEY (il_from,il_to)
-) /*$wgDBTableOptions*/;
-
--- Reverse index, for Special:Whatlinkshere and file description page local usage
-CREATE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
-
--- Index for Special:Whatlinkshere with namespace filter
-CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_from_namespace,il_to,il_from);
-
-
---
 -- Track category inclusions *used inline*
 -- This tracks a single level of category membership
 --
@@ -624,35 +574,6 @@ CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 -- Used when updating collation (e.g. updateCollation.php)
 CREATE INDEX /*i*/cl_collation_ext ON /*_*/categorylinks (cl_collation, cl_to, cl_type, cl_from);
 
---
--- Track all existing categories. Something is a category if 1) it has an entry
--- somewhere in categorylinks, or 2) it has a description page. Categories
--- might not have corresponding pages, so they need to be tracked separately.
---
-CREATE TABLE /*_*/category (
-  -- Primary key
-  cat_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-
-  -- Name of the category, in the same form as page_title (with underscores).
-  -- If there is a category page corresponding to this category, by definition,
-  -- it has this name (in the Category namespace).
-  cat_title varchar(255) binary NOT NULL,
-
-  -- The numbers of member pages (including categories and media), subcatego-
-  -- ries, and Image: namespace members, respectively.  These are signed to
-  -- make underflow more obvious.  We make the first number include the second
-  -- two for better sorting: subtracting for display is easy, adding for order-
-  -- ing is not.
-  cat_pages int signed NOT NULL default 0,
-  cat_subcats int signed NOT NULL default 0,
-  cat_files int signed NOT NULL default 0
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/cat_title ON /*_*/category (cat_title);
-
--- For Special:Mostlinkedcategories
-CREATE INDEX /*i*/cat_pages ON /*_*/category (cat_pages);
-
 
 --
 -- Track links to external URLs
@@ -701,45 +622,6 @@ CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
 CREATE INDEX /*i*/el_index_60 ON /*_*/externallinks (el_index_60, el_id);
 CREATE INDEX /*i*/el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
 
---
--- Track interlanguage links
---
-CREATE TABLE /*_*/langlinks (
-  -- page_id of the referring page
-  ll_from int unsigned NOT NULL default 0,
-
-  -- Language code of the target
-  ll_lang varbinary(35) NOT NULL default '',
-
-  -- Title of the target, including namespace
-  ll_title varchar(255) binary NOT NULL default '',
-  PRIMARY KEY (ll_from,ll_lang)
-) /*$wgDBTableOptions*/;
-
--- Index for ApiQueryLangbacklinks
-CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
-
-
---
--- Track inline interwiki links
---
-CREATE TABLE /*_*/iwlinks (
-  -- page_id of the referring page
-  iwl_from int unsigned NOT NULL default 0,
-
-  -- Interwiki prefix code of the target
-  iwl_prefix varbinary(20) NOT NULL default '',
-
-  -- Title of the target, including namespace
-  iwl_title varchar(255) binary NOT NULL default '',
-  PRIMARY KEY (iwl_from,iwl_prefix,iwl_title)
-) /*$wgDBTableOptions*/;
-
--- Index for ApiQueryIWBacklinks
-CREATE INDEX /*i*/iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
-
--- Index for ApiQueryIWLinks
-CREATE INDEX /*i*/iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 --
 -- Blocks against user accounts, IP addresses and IP ranges.
@@ -1197,15 +1079,6 @@ CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 -- ApiQueryWatchlistRaw changed filter
 CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
 
--- Allows setting an expiry for watchlist items.
-CREATE TABLE /*_*/watchlist_expiry (
-  -- Key to watchlist.wl_id
-  we_item int unsigned NOT NULL PRIMARY KEY,
-  -- Expiry time
-  we_expiry binary(14) NOT NULL
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/we_expiry ON /*_*/watchlist_expiry (we_expiry);
 
 --
 -- When using the default MySQL search backend, page titles
@@ -1480,7 +1353,7 @@ CREATE TABLE /*_*/sites (
   site_id                    INT UNSIGNED        NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Global identifier for the site, ie 'enwiktionary'
-  site_global_key            varbinary(32)       NOT NULL,
+  site_global_key            varbinary(64)       NOT NULL,
 
   -- Type of the site, ie 'mediawiki'
   site_type                  varbinary(32)       NOT NULL,
@@ -1522,21 +1395,5 @@ CREATE INDEX /*i*/sites_language ON /*_*/sites (site_language);
 CREATE INDEX /*i*/sites_protocol ON /*_*/sites (site_protocol);
 CREATE INDEX /*i*/sites_domain ON /*_*/sites (site_domain);
 CREATE INDEX /*i*/sites_forward ON /*_*/sites (site_forward);
-
--- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
-CREATE TABLE /*_*/change_tag_def (
-    -- Numerical ID of the tag (ct_tag_id refers to this)
-    ctd_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    -- Symbolic name of the tag (what would previously be put in ct_tag)
-    ctd_name varbinary(255) NOT NULL,
-    -- Whether this tag was defined manually by a privileged user using Special:Tags
-    ctd_user_defined tinyint(1) NOT NULL,
-    -- Number of times this tag was used
-    ctd_count bigint unsigned NOT NULL default 0
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/ctd_name ON /*_*/change_tag_def (ctd_name);
-CREATE INDEX /*i*/ctd_count ON /*_*/change_tag_def (ctd_count);
-CREATE INDEX /*i*/ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 
 -- vim: sw=2 sts=2 et

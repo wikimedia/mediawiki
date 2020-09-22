@@ -82,7 +82,8 @@ class Names {
 		'az' => 'azərbaycanca', # Azerbaijani
 		'azb' => 'تۆرکجه', # South Azerbaijani
 		'ba' => 'башҡортса', # Bashkir
-		'ban' => 'Bali', # Balinese
+		'ban' => 'Basa Bali', # Balinese (Latin script)
+		'ban-bali' => 'ᬩᬲᬩᬮᬶ', # Balinese (Balinese script)
 		'bar' => 'Boarisch', # Bavarian (Austro-Bavarian and South Tyrolean)
 		'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 639-3 since 2010-06-30 )
 		'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
@@ -306,6 +307,7 @@ class Names {
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
 		'mr' => 'मराठी', # Marathi
+		'mrh' => 'Mara', # Mara
 		'mrj' => 'кырык мары', # Hill Mari
 		'ms' => 'Bahasa Melayu', # Malay
 		'mt' => 'Malti', # Maltese

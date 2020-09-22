@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @covers PageProps
@@ -86,7 +87,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test getting a single property from multiple pages. The property was
-	 * set in setUp().
+	 * set in setUp(). Using Title[].
 	 */
 	public function testGetSinglePropertyMultiplePages() {
 		$pageProps = PageProps::getInstance();
@@ -96,6 +97,27 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$this->title1,
 			$this->title2
 		];
+		$result = $pageProps->getProperties( $titles, "property1" );
+		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
+		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
+		$this->assertEquals( $result[$page1ID], "value1", "Get property page 1" );
+		$this->assertEquals( $result[$page2ID], "value1", "Get property page 2" );
+	}
+
+	/**
+	 * Test getting a single property from multiple pages. The property was
+	 * set in setUp(). Using TitleArray.
+	 */
+	public function testGetSinglePropertyMultiplePagesTitleArray() {
+		$pageProps = PageProps::getInstance();
+		$page1ID = $this->title1->getArticleID();
+		$page2ID = $this->title2->getArticleID();
+		$rows = [
+			$this->createRowFromTitle( $this->title1 ),
+			$this->createRowFromTitle( $this->title2 )
+		];
+		$resultWrapper = new FakeResultWrapper( $rows );
+		$titles = TitleArray::newFromResult( $resultWrapper );
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
@@ -285,5 +307,12 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$propertyName => $propertyValue
 		];
 		$this->setProperties( $pageID, $properties );
+	}
+
+	protected function createRowFromTitle( $title ) {
+		return (object)[
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => $title->getText()
+		];
 	}
 }

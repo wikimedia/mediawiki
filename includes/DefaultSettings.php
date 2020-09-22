@@ -469,15 +469,6 @@ $wgEnableUploads = false;
 $wgUploadStashMaxAge = 6 * 3600; // 6 hours
 
 /**
- * Allows to move images and other media files
- *
- * @deprecated since 1.35, use group permission settings instead.
- * (eg $wgGroupPermissions['sysop']['movefile'] = false; to revoke the
- * ability from sysops)
- */
-$wgAllowImageMoving = true;
-
-/**
  * Enable deferred upload tasks that use the job queue.
  * Only enable this if job runners are set up for both the
  * 'AssembleUploadChunks' and 'PublishStashedFile' job types.
@@ -6082,9 +6073,12 @@ $wgApplyIpBlocksToXff = false;
  *         'edit' => [
  *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
  *             'user' => [ x, y ], // each logged-in user
+ *             'global-user' => [ x, y ], // per username, across all sites (assumes names are global)
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
- *             'ip' => [ x, y ], // each anon and recent account
+ *             'ip' => [ x, y ], // each anon and recent account, across all sites
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *             'ip-all' => [ x, y ], // per ip, across all sites
+ *             'subnet-all' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
  *             'groupName' => [ x, y ], // by group membership
  *         ]
  *     ];
@@ -6252,6 +6246,9 @@ $wgGrantPermissions['highvolume']['apihighlimits'] = true;
 $wgGrantPermissions['highvolume']['noratelimit'] = true;
 $wgGrantPermissions['highvolume']['markbotedits'] = true;
 
+$wgGrantPermissions['import']['import'] = true;
+$wgGrantPermissions['import']['importupload'] = true;
+
 $wgGrantPermissions['editpage']['edit'] = true;
 $wgGrantPermissions['editpage']['minoredit'] = true;
 $wgGrantPermissions['editpage']['applychangetags'] = true;
@@ -6283,6 +6280,7 @@ $wgGrantPermissions['editsiteconfig']['editsitejs'] = true;
 $wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['createeditmovepage']['createpage'] = true;
 $wgGrantPermissions['createeditmovepage']['createtalk'] = true;
+$wgGrantPermissions['createeditmovepage']['delete-redirect'] = true;
 $wgGrantPermissions['createeditmovepage']['move'] = true;
 $wgGrantPermissions['createeditmovepage']['move-rootuserpages'] = true;
 $wgGrantPermissions['createeditmovepage']['move-subpages'] = true;
@@ -6372,6 +6370,7 @@ $wgGrantPermissionGroups = [
 	'oversight'           => 'administration',
 	'createaccount'       => 'administration',
 	'mergehistory'        => 'administration',
+	'import'              => 'administration',
 
 	'highvolume'          => 'high-volume',
 
@@ -7462,10 +7461,11 @@ $wgUseTagFilter = true;
  * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
  * - 'mw-undo': Edit made through an undo link
  * - 'mw-manual-revert': Edit that restored the page to an exact previous state
+ * - 'mw-reverted': Edit that was later reverted by another edit
  *
  * @var array
  * @since 1.31
- * @since 1.36 Added 'mw-manual-revert'
+ * @since 1.36 Added 'mw-manual-revert' and 'mw-reverted'
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,
@@ -7477,6 +7477,7 @@ $wgSoftwareTags = [
 	'mw-rollback' => true,
 	'mw-undo' => true,
 	'mw-manual-revert' => true,
+	'mw-reverted' => true,
 ];
 
 /**
@@ -7792,11 +7793,11 @@ $wgEnableParserLimitReporting = true;
  *
  * For example for 'foobarskin' where the PHP class is 'MediaWiki\Skins\FooBar\FooBarSkin' set:
  *
- * @par extension.json Example:
+ * @par skin.json Example:
  * @code
  * "ValidSkinNames": {
  * 	"foobarskin": {
- * 		"displayname": "FooBarSkin"
+ * 		"displayname": "FooBarSkin",
  * 		"class": "MediaWiki\\Skins\\FooBar\\FooBarSkin"
  * 	}
  * }
@@ -7971,6 +7972,7 @@ $wgJobClasses = [
 	'userGroupExpiry' => UserGroupExpiryJob::class,
 	'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,
 	'userOptionsUpdate' => UserOptionsUpdateJob::class,
+	'revertedTagUpdate' => RevertedTagUpdateJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 	'null' => NullJob::class,
 	'userEditCountInit' => UserEditCountInitJob::class,
@@ -8244,6 +8246,7 @@ $wgLogActionsHandlers = [
 	'contentmodel/new' => ContentModelLogFormatter::class,
 	'delete/delete' => DeleteLogFormatter::class,
 	'delete/delete_redir' => DeleteLogFormatter::class,
+	'delete/delete_redir2' => DeleteLogFormatter::class,
 	'delete/event' => DeleteLogFormatter::class,
 	'delete/restore' => DeleteLogFormatter::class,
 	'delete/revision' => DeleteLogFormatter::class,
@@ -8295,7 +8298,7 @@ $wgActionFilteredLogs = [
 	],
 	'delete' => [
 		'delete' => [ 'delete' ],
-		'delete_redir' => [ 'delete_redir' ],
+		'delete_redir' => [ 'delete_redir', 'delete_redir2' ],
 		'restore' => [ 'restore' ],
 		'event' => [ 'event' ],
 		'revision' => [ 'revision' ],
@@ -9619,6 +9622,37 @@ $wgManualRevertSearchRadius = 15;
  * @var bool
  */
 $wgAllowCrossOrigin = false;
+
+/**
+ * Maximum depth (revision count) of reverts that will have their reverted edits marked
+ * with the mw-reverted change tag. Reverts deeper than that will not have any edits
+ * marked as reverted at all.
+ *
+ * Large values can lead to lots of revisions being marked as "reverted", which may appear
+ * confusing to users.
+ *
+ * Setting this to 0 will disable the reverted tag entirely.
+ *
+ * @since 1.36
+ * @var int
+ */
+$wgRevertedTagMaxDepth = 15;
+
+/**
+ * Allows authenticated cross-origin requests to the REST API with session cookies.
+ *
+ * With this option enabled, any orgin specified in $wgCrossSiteAJAXdomains may send session cookies
+ * for authorization in the REST API.
+ *
+ * There is a performance impact by enabling this option. Therefore, it should be left disabled for
+ * most wikis and clients should instead use OAuth to make cross-origin authenticated requests.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
+ *
+ * @since 1.36
+ * @var bool
+ */
+$wgRestAllowCrossOriginCookieAuth = false;
 
 /**
  * For really cool vim folding this needs to be at the end:

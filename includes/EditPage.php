@@ -99,6 +99,7 @@ class EditPage implements IEditObject {
 	 * @var Article
 	 */
 	public $mArticle;
+
 	/** @var WikiPage */
 	private $page;
 
@@ -519,16 +520,12 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the context title object.
 	 *
-	 * If not set, $wgTitle will be returned, but this is deprecated. This will
-	 * throw an exception.
-	 *
+	 * @throws RuntimeException if no context title was set
 	 * @return Title
 	 */
 	public function getContextTitle() {
 		if ( $this->mContextTitle === null ) {
-			wfDeprecated( get_class( $this ) . '::getContextTitle called with no title set', '1.32' );
-			global $wgTitle;
-			return $wgTitle;
+			throw new RuntimeException( "EditPage does not have a context title set" );
 		} else {
 			return $this->mContextTitle;
 		}
@@ -886,8 +883,9 @@ class EditPage implements IEditObject {
 	protected function isWrongCaseUserConfigPage() {
 		if ( $this->mTitle->isUserConfigPage() ) {
 			$name = $this->mTitle->getSkinFromConfigSubpage();
+			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 			$skins = array_merge(
-				array_keys( Skin::getSkinNames() ),
+				array_keys( $skinFactory->getSkinNames() ),
 				[ 'common' ]
 			);
 			return !in_array( $name, $skins )
@@ -898,16 +896,23 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Returns whether section editing is supported for the current page.
-	 * Subclasses may override this to replace the default behavior, which is
-	 * to check ContentHandler::supportsSections.
+	 * Section editing is supported when the page content model allows
+	 * section edit and we are editing current revision.
 	 *
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
 	protected function isSectionEditSupported() {
-		return $this->contentHandlerFactory
-			->getContentHandler( $this->mTitle->getContentModel() )
-			->supportsSections();
+		$currentRev = $this->page->getRevisionRecord();
+
+		// $currentRev is null for non-existing pages, use the page default content model.
+		$revContentModel = $currentRev
+			? $currentRev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+			: $this->page->getContentModel();
+
+		return (
+			( $this->mArticle->getRevIdFetched() === $this->page->getLatest() ) &&
+			$this->contentHandlerFactory->getContentHandler( $revContentModel )->supportsSections()
+		);
 	}
 
 	/**
@@ -2269,7 +2274,6 @@ ERROR;
 
 			# Article exists. Check for edit conflict.
 
-			$this->page->clear(); # Force reload of dates, etc.
 			$timestamp = $this->page->getTimestamp();
 			$latest = $this->page->getLatest();
 
@@ -2550,6 +2554,9 @@ ERROR;
 		}
 
 		$undoContent = $this->getUndoContent( $undoRev, $oldRev );
+		if ( !$undoContent ) {
+			return false;
+		}
 
 		// Do a pre-save transform on the retrieved undo content
 		$user = $this->context->getUser();
@@ -2557,7 +2564,7 @@ ERROR;
 			$user, MediaWikiServices::getInstance()->getContentLanguage() );
 		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
 
-		if ( $undoContent && $undoContent->equals( $content ) ) {
+		if ( $undoContent->equals( $content ) ) {
 			return true;
 		}
 		return false;
@@ -3704,13 +3711,10 @@ ERROR;
 	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
-		$classes = [];
+		$attribs = [ 'id' => 'wikiPreview' ];
 		if ( $isOnTop ) {
-			$classes[] = 'ontop';
+			$attribs['class'] = 'ontop';
 		}
-
-		$attribs = [ 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) ];
-
 		if ( $this->formtype != 'preview' ) {
 			$attribs['style'] = 'display: none;';
 		}
@@ -3918,8 +3922,6 @@ ERROR;
 	 * @return string HTML
 	 */
 	public static function getPreviewLimitReport( ParserOutput $output = null ) {
-		global $wgLang;
-
 		if ( !$output || !$output->getLimitReportData() ) {
 			return '';
 		}
@@ -3947,7 +3949,7 @@ ERROR;
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
 						Html::rawElement( 'td', null,
-							$wgLang->formatNum( $valueMsg->params( $value )->parse() )
+							$valueMsg->numParams( $value )->parse()
 						) .
 						Html::closeElement( 'tr' );
 				}

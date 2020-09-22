@@ -1,0 +1,46 @@
+// This file is the central place where we declare
+// which variables are part of the "mediawiki.skin.variables.less"
+// API that core and extensions can use in their style modules.
+//
+// The initial values are intended merely as fallback to allow
+// forward and backward compatibility to allow new variables
+// to be defined without breaking existing implementations by
+// skins.
+//
+// #### Instructions for skins
+//
+// In skin.json, add:
+//    "SkinLessImportPaths": {
+//        "skinname": "resources/mediawiki.less"
+//    }
+//
+// Create a file called resources/mediawiki.less/mediawiki.skin.variables.less, which starts with:
+//    @import 'mediawiki.skin.default.less';
+// followed by any overrides for these variables, e.g.:
+//    @width-breakpoint-desktop: 1234px;
+
+// Minimum available screen width at which a device can be considered a mobile device.
+//
+// Many older feature phones have screens smaller than this value.
+//
+// @since 1.36
+@width-breakpoint-mobile: 320px;
+
+// Minimum available screen width at which a device can be considered a tablet.
+//
+// The number is currently based on the device width of a Samsung Galaxy S5 mini and
+// is low enough to cover iPad (768px).
+//
+// @since 1.36
+@width-breakpoint-tablet: 720px;
+
+// Minimum available screen width at which a device can be considered a desktop.
+//
+// @since 1.36
+@width-breakpoint-desktop: 1000px;
+
+// @since 1.36
+@font-family-sans: sans-serif;
+
+// @since 1.36
+@border-radius-base: 0;

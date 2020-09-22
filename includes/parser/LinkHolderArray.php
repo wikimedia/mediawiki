@@ -72,6 +72,7 @@ class LinkHolderArray {
 		}
 		$this->languageConverter = $languageConverter;
 		if ( !$hookContainer ) {
+			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$this->hookRunner = new HookRunner( $hookContainer );

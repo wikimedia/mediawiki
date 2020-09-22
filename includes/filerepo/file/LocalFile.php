@@ -1422,13 +1422,13 @@ class LocalFile extends File {
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
-			$uploadStatus = $this->recordUpload2(
+			$uploadStatus = $this->recordUpload3(
 				$oldver,
 				$comment,
 				$pageText,
+				$user,
 				$props,
 				$timestamp,
-				$user,
 				$tags,
 				$createNullRevision,
 				$revert
@@ -1449,41 +1449,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
-	 * @param string $oldver
-	 * @param string $desc
-	 * @param string $license
-	 * @param string $copyStatus
-	 * @param string $source
-	 * @param bool $watch
-	 * @param string|bool $timestamp
-	 * @param User|null $user User object or null to use $wgUser
-	 * @return bool
-	 */
-	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
-
-		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user )->isOK() ) {
-			return false;
-		}
-
-		if ( $watch ) {
-			$user->addWatch( $this->getTitle() );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35 (hard deprecated since 1.36)
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
@@ -1500,7 +1466,7 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
-		// TODO check all callers and hard deprecate
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -2042,30 +2008,6 @@ class LocalFile extends File {
 	/**
 	 * Delete all versions of the file.
 	 *
-	 * @deprecated since 1.35, use deleteFile
-	 *
-	 * Moves the files into an archive directory (or deletes them)
-	 * and removes the database rows.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param User|null $user
-	 * @return Status
-	 */
-	public function delete( $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return $this->deleteFile( $reason, $user, $suppress );
-	}
-
-	/**
-	 * Delete all versions of the file.
-	 *
 	 * @since 1.35
 	 *
 	 * Moves the files into an archive directory (or deletes them)
@@ -2122,32 +2064,6 @@ class LocalFile extends File {
 		$hcu->purgeUrls( $purgeUrls, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
-	}
-
-	/**
-	 * Delete an old version of the file.
-	 *
-	 * @deprecated since 1.35, use deleteOldFile
-	 *
-	 * Moves the file into an archive directory (or deletes it)
-	 * and removes the database row.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $archiveName
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param User|null $user
-	 * @throws MWException Exception on database or file store failure
-	 * @return Status
-	 */
-	public function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return $this->deleteOldFile( $archiveName, $reason, $user, $suppress );
 	}
 
 	/**

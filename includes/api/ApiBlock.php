@@ -20,9 +20,15 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\BlockPermissionCheckerFactory;
+use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 
 /**
  * API module that facilitates the blocking of users. Requires API write mode
@@ -34,6 +40,42 @@ class ApiBlock extends ApiBase {
 
 	use ApiBlockInfoTrait;
 
+	/** @var BlockPermissionCheckerFactory */
+	private $blockPermissionCheckerFactory;
+
+	/** @var BlockUserFactory */
+	private $blockUserFactory;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param BlockUserFactory $blockUserFactory
+	 * @param TitleFactory $titleFactory
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		BlockUserFactory $blockUserFactory,
+		TitleFactory $titleFactory,
+		UserFactory $userFactory
+	) {
+		parent::__construct( $main, $action );
+
+		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
+		$this->blockUserFactory = $blockUserFactory;
+		$this->titleFactory = $titleFactory;
+		$this->userFactory = $userFactory;
+	}
+
 	/**
 	 * Blocks the user specified in the parameters for the given expiry, with the
 	 * given reason, and with all other settings provided in the params. If the block
@@ -42,103 +84,84 @@ class ApiBlock extends ApiBase {
 	 */
 	public function execute() {
 		$this->checkUserRightsAny( 'block' );
-
-		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
-		# T17810: blocked admins should have limited access here
-		$block = $user->getBlock();
-		if ( $block ) {
-			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
-			if ( $status !== true ) {
-				$this->dieWithError(
-					$status,
-					null,
-					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-				);
-			}
-		}
-
-		$editingRestriction = $params['partial'] ? 'partial' : 'sitewide';
-		$pageRestrictions = implode( "\n", (array)$params['pagerestrictions'] );
-		$namespaceRestrictions = implode( "\n", (array)$params['namespacerestrictions'] );
-
-		if ( $params['userid'] !== null ) {
-			$username = User::whoIs( $params['userid'] );
-
-			if ( $username === false ) {
-				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
-			} else {
-				$params['user'] = $username;
-			}
+		// Make sure $target contains a parsed target
+		if ( $params['user'] !== null ) {
+			$target = $params['user'];
 		} else {
-			list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
-
-			// T40633 - if the target is a user (not an IP address), but it
-			// doesn't exist or is unusable, error.
-			if ( $type === DatabaseBlock::TYPE_USER &&
-				( $target->isAnon() /* doesn't exist */ ||
-					!MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $params['user'] ) )
-			) {
-				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
+			if ( User::whoIs( $params['userid'] ) === false ) {
+				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 			}
-		}
 
-		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( !$ableToTag->isOK() ) {
-				$this->dieStatus( $ableToTag );
-			}
+			$target = $this->userFactory->newFromId( $params['userid'] );
 		}
+		list( $target, $targetType ) = AbstractBlock::parseTarget( $target );
 
-		if ( $params['hidename'] &&
-			 !$this->getPermissionManager()->userHasRight( $user, 'hideuser' ) ) {
-			$this->dieWithError( 'apierror-canthide' );
-		}
-		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
+		if (
+			$params['noemail'] &&
+			!$this->blockPermissionCheckerFactory
+				->newBlockPermissionChecker(
+					$target,
+					$this->getUser()
+				)
+				->checkEmailPermissions()
+		) {
 			$this->dieWithError( 'apierror-cantblock-email' );
 		}
 
-		$data = [
-			'PreviousTarget' => $params['user'],
-			'Target' => $params['user'],
-			'Reason' => [
-				$params['reason'],
-				'other',
-				$params['reason']
-			],
-			'Expiry' => $params['expiry'],
-			'HardBlock' => !$params['anononly'],
-			'CreateAccount' => $params['nocreate'],
-			'AutoBlock' => $params['autoblock'],
-			'DisableEmail' => $params['noemail'],
-			'HideUser' => $params['hidename'],
-			'DisableUTEdit' => !$params['allowusertalk'],
-			'Reblock' => $params['reblock'],
-			'Watch' => $params['watchuser'],
-			'Confirm' => true,
-			'Tags' => $params['tags'],
-			'EditingRestriction' => $editingRestriction,
-			'PageRestrictions' => $pageRestrictions,
-			'NamespaceRestrictions' => $namespaceRestrictions,
-		];
+		$editingRestriction = $params['partial'] ? 'partial' : 'sitewide';
+		$pageRestrictions = array_map( function ( $text ) {
+			$title = $this->titleFactory->newFromText( $text );
+			$restriction = new PageRestriction( 0, $title->getArticleID() );
+			$restriction->setTitle( $title );
+			return $restriction;
+		}, (array)$params['pagerestrictions'] );
+		$namespaceRestrictions = array_map( function ( $id ) {
+			return new NamespaceRestriction( 0, $id );
+		}, (array)$params['namespacerestrictions'] );
+		$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
+		if ( $restrictions === null ) {
+			$restrictions = [];
+		}
 
-		$status = SpecialBlock::validateTarget( $params['user'], $user );
+		$status = $this->blockUserFactory->newBlockUser(
+			$target,
+			$this->getUser(),
+			$params['expiry'],
+			$params['reason'],
+			[
+				'isCreateAccountBlocked' => $params['nocreate'],
+				'isEmailBlocked' => $params['noemail'],
+				'isHardBlock' => !$params['anononly'],
+				'isAutoblocking' => $params['autoblock'],
+				'isUserTalkEditBlocked' => !$params['allowusertalk'],
+				'isHideUser' => $params['hidename']
+			],
+			$restrictions,
+			$params['tags']
+		)->placeBlock( $params['reblock'] );
+
+		if ( $params['watchuser'] && $targetType !== AbstractBlock::TYPE_RANGE ) {
+			WatchAction::doWatch(
+				Title::makeTitle( NS_USER, $target ),
+				$this->getUser(),
+				User::IGNORE_USER_RIGHTS
+			);
+		}
+
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
 
-		$retval = SpecialBlock::processForm( $data, $this->getContext() );
-		if ( $retval !== true ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
-		}
-
 		$res = [];
 
-		$res['user'] = $params['user'];
-		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
+		if ( $target instanceof UserIdentity ) {
+			$res['user'] = $target->getName();
+		} else {
+			$res['user'] = $target;
+		}
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
 		$block = DatabaseBlock::newFromTarget( $target, null, true );

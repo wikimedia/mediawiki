@@ -85,6 +85,7 @@ abstract class AbstractBlock {
 	protected $isSitewide = true;
 
 	# TYPE constants
+	# Do not introduce negative constants without changing BlockUser command object.
 	public const TYPE_USER = 1;
 	public const TYPE_IP = 2;
 	public const TYPE_RANGE = 3;

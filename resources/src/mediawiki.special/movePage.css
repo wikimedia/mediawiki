@@ -4,5 +4,5 @@
 
 /* stylelint-disable-next-line selector-class-pattern */
 .movepage-wrapper {
-	width: 50em;
+	max-width: 50em;
 }

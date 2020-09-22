@@ -25,7 +25,6 @@
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
@@ -162,7 +161,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/** @var int The page length, 0 for special pages */
 	protected $mLength = -1;
 
-	/** @var null Is the article at this title a redirect? */
+	/** @var null|bool Is the article at this title a redirect? */
 	public $mRedirect = null;
 
 	/** @var bool Whether a page has any subpages */
@@ -675,8 +674,11 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @param int $id The page_id of the article
 	 * @return string|null An object representing the article, or null if no such article was found
+	 * @deprecated since 1.36, use Title::newFromID( $id )->getPrefixedDBkey() instead.
 	 */
 	public static function nameOf( $id ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$s = $dbr->selectRow(
@@ -2391,106 +2393,6 @@ class Title implements LinkTarget, IDBAccessObject {
 		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
-	}
-
-	/**
-	 * Can $user perform $action on this page?
-	 * This skips potentially expensive cascading permission checks
-	 * as well as avoids expensive error formatting
-	 *
-	 * Suitable for use for nonessential UI controls in common cases, but
-	 * _not_ for functional access control.
-	 *
-	 * May provide false positives, but should never provide a false negative.
-	 *
-	 * @param string $action Action that permission needs to be checked for
-	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not provided.
-	 *
-	 * @return bool
-	 * @throws Exception
-	 *
-	 * @deprecated since 1.33,
-	 * use MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(..) instead
-	 *
-	 */
-	public function quickUserCan( $action, $user = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		if ( !$user instanceof User ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->quickUserCan( $action, $user, $this );
-	}
-
-	/**
-	 * Can $user perform $action on this page?
-	 *
-	 * @param string $action Action that permission needs to be checked for
-	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not
-	 *   provided.
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 *
-	 * @return bool
-	 * @throws Exception
-	 *
-	 * @deprecated since 1.33,
-	 * use MediaWikiServices::getInstance()->getPermissionManager()->userCan(..) instead
-	 *
-	 */
-	public function userCan( $action, $user = null, $rigor = PermissionManager::RIGOR_SECURE ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		if ( !$user instanceof User ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		// TODO: this is for b/c, eventually will be removed
-		if ( $rigor === true ) {
-			$rigor = PermissionManager::RIGOR_SECURE; // b/c
-		} elseif ( $rigor === false ) {
-			$rigor = PermissionManager::RIGOR_QUICK; // b/c
-		}
-
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->userCan( $action, $user, $this, $rigor );
-	}
-
-	/**
-	 * Can $user perform $action on this page?
-	 *
-	 * @todo FIXME: This *does not* check throttles (User::pingLimiter()).
-	 *
-	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check
-	 * @param string $rigor One of (quick,full,secure)
-	 *   - quick  : does cheap permission checks from replica DBs (usable for GUI creation)
-	 *   - full   : does cheap and expensive checks possibly from a replica DB
-	 *   - secure : does cheap and expensive checks, using the master as needed
-	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
-	 *   whose corresponding errors may be ignored.
-	 *
-	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
-	 * @throws Exception
-	 *
-	 * @deprecated since 1.33,
-	 * use MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors()
-	 *
-	 */
-	public function getUserPermissionsErrors(
-		$action, $user, $rigor = PermissionManager::RIGOR_SECURE, $ignoreErrors = []
-	) {
-		wfDeprecated( __METHOD__, '1.33' );
-
-		// TODO: this is for b/c, eventually will be removed
-		if ( $rigor === true ) {
-			$rigor = PermissionManager::RIGOR_SECURE; // b/c
-		} elseif ( $rigor === false ) {
-			$rigor = PermissionManager::RIGOR_QUICK; // b/c
-		}
-
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( $action, $user, $this, $rigor, $ignoreErrors );
 	}
 
 	/**
@@ -4244,17 +4146,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @deprecated since 1.35
 	 *
-	 * @param User|null $user (null defaults to global $wgUser, and is deprecated since 1.35)
+	 * @param User $user
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
-	public function getNotificationTimestamp( $user = null ) {
-		// Assume current user if none given
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
-		}
-
+	public function getNotificationTimestamp( User $user ) {
 		return MediaWikiServices::getInstance()
 			->getWatchlistNotificationManager()
 			->getTitleNotificationTimestamp( $user, $this );

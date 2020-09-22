@@ -1427,7 +1427,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $blocker );
-		$res = $block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$res = $blockStore->insertBlock( $block );
 		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
@@ -1437,7 +1438,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->isBlockedFrom( $user, $ut ) );
 
 		// Unblock
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
@@ -1490,13 +1491,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->assertSame( $expect, MediaWikiServices::getInstance()->getPermissionManager()
 				->isBlockedFrom( $user, $title ) );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 		}
 	}
 
@@ -1934,5 +1936,26 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user2 = $this->getTestSysop()->getUser();
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->assertNotSame( $pm->getUserPermissions( $user1 ), $pm->getUserPermissions( $user2 ) );
+	}
+
+	/**
+	 * Test delete-redirect checks for Special:MovePage
+	 */
+	public function testDeleteRedirect() {
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
+		$page = Title::newFromText( 'ExistentRedirect3' );
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getEffectiveGroups' ] )
+			->getMock();
+		$user->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
+
+		$this->assertFalse( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
+
+		$pm->overrideUserRightsForTesting( $user, 'delete-redirect' );
+
+		$this->assertTrue( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
+		$this->assertArrayEquals( [], $pm->getPermissionErrors( 'delete-redirect', $user, $page ) );
 	}
 }

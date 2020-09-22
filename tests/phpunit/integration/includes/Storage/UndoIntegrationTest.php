@@ -483,4 +483,60 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$editPage->importFormData( $request );
 		$editPage->internalAttemptSave( $result, false );
 	}
+
+	/**
+	 * Test whether EditPage correctly handles situations where an undo is impossible.
+	 * Ensures T262463 is fixed.
+	 */
+	public function testImpossibleUndo() {
+		$revisionIds = $this->setUpPageForTesting( [
+			"line 1\n\nline 2\n\nline3",
+			"line 1\n\nvandalism\n\nline3",
+			"line 1\n\nvandalism good content\n\nline3 more content"
+		] );
+
+		$context = RequestContext::getMain();
+		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
+
+		// set up a temporary hook with asserts
+		$this->setTemporaryHook(
+			'PageSaveComplete',
+			function (
+				WikiPage $wikiPage,
+				User $user,
+				string $summary,
+				int $flags,
+				RevisionStoreRecord $revisionRecord,
+				EditResult $editResult
+			) {
+				$this->assertFalse(
+					$editResult->isRevert(),
+					'EditResult::isRevert()'
+				);
+				$this->assertTrue(
+					$editResult->isNullEdit(),
+					'EditResult::isNullEdit()'
+				);
+			}
+		);
+
+		$request = new FauxRequest(
+			[
+				// We leave the "top" content in the textbox, as the undo should have failed
+				'wpTextbox1' => "line 1\n\nvandalism good content\n\nline3 more content",
+				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
+				'wpUndidRevision' => $revisionIds[1],
+				'wpUndoAfter' => $revisionIds[0],
+				'wpStarttime' => wfTimestampNow(),
+				'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
+				'model' => CONTENT_MODEL_WIKITEXT,
+				'format' => CONTENT_FORMAT_WIKITEXT,
+			],
+			true
+		);
+
+		$editPage = new EditPage( $article );
+		$editPage->importFormData( $request );
+		$editPage->internalAttemptSave( $result, false );
+	}
 }

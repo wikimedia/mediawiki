@@ -301,7 +301,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		// use LinkBatch to make sure, that all required data (associated with Titles)
 		// is loaded in one query
-		$lb = new LinkBatch();
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		foreach ( $rows as $row ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}

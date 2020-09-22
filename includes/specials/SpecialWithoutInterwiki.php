@@ -59,12 +59,13 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 			]
 		];
 
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->setWrapperLegend( '' )
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setWrapperLegend( '' )
 			->setSubmitTextMsg( 'withoutinterwiki-submit' )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
+		return '';
 	}
 
 	protected function sortDescending() {

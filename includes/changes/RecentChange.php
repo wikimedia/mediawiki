@@ -531,33 +531,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * Mark a given change as patrolled
-	 *
-	 * @deprecated since 1.35, use doMarkPatrolled directly
-	 *
-	 * @param RecentChange|int $change RecentChange or corresponding rc_id
-	 * @param bool $auto For automatic patrol
-	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
-	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array[]|null See doMarkPatrolled(), or null if $change is not an existing rc_id
-	 */
-	public static function markPatrolled( $change, $auto = false, $tags = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		global $wgUser;
-
-		$change = $change instanceof RecentChange
-			? $change
-			: self::newFromId( $change );
-
-		if ( !$change instanceof RecentChange ) {
-			return null;
-		}
-
-		return $change->doMarkPatrolled( $wgUser, $auto, $tags );
-	}
-
-	/**
 	 * Mark this RecentChange as patrolled
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
@@ -643,6 +616,14 @@ class RecentChange implements Taggable {
 		// Invalidate the page cache after the page has been patrolled
 		// to make sure that the Patrol link isn't visible any longer!
 		$this->getTitle()->invalidateCache();
+
+		// Enqueue a reverted tag update (in case the edit was a revert)
+		$revisionId = $this->getAttribute( 'rc_this_oldid' );
+		if ( $revisionId ) {
+			$revertedTagUpdateManager =
+				MediaWikiServices::getInstance()->getRevertedTagUpdateManager();
+			$revertedTagUpdateManager->approveRevertedTagForRevision( $revisionId );
+		}
 
 		return $dbw->affectedRows();
 	}
@@ -860,6 +841,7 @@ class RecentChange implements Taggable {
 		switch ( $type . '-' . $action ) {
 			case 'delete-delete':
 			case 'delete-delete_redir':
+			case 'delete-delete_redir2':
 				$pageStatus = 'deleted';
 				break;
 			case 'move-move':

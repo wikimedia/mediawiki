@@ -32,7 +32,7 @@ class ResponseFactory {
 	/**
 	 * Encode a stdClass object or array to a JSON string
 	 *
-	 * @param array|stdClass $value
+	 * @param array|stdClass|\JsonSerializable $value
 	 * @return string
 	 * @throws JsonEncodingException
 	 */
@@ -55,7 +55,7 @@ class ResponseFactory {
 
 	/**
 	 * Create a successful JSON response.
-	 * @param array|stdClass $value JSON value
+	 * @param array|stdClass|\JsonSerializable $value JSON value
 	 * @param string|null $contentType HTTP content type (should be 'application/json+...')
 	 *   or null for plain 'application/json'
 	 * @return Response
@@ -210,15 +210,24 @@ class ResponseFactory {
 				$exception->getMessageValue(),
 				(array)$exception->getErrorData()
 			);
+		} elseif ( $exception instanceof ResponseException ) {
+			return $exception->getResponse();
+		} elseif ( $exception instanceof RedirectException ) {
+			$response = $this->createRedirectBase( $exception->getTarget() );
+			$response->setStatus( $exception->getCode() );
 		} elseif ( $exception instanceof HttpException ) {
-			// FIXME can HttpException represent 2xx or 3xx responses?
-			$response = $this->createHttpError(
-				$exception->getCode(),
-				array_merge(
-					[ 'message' => $exception->getMessage() ],
-					(array)$exception->getErrorData()
-				)
-			);
+			if ( in_array( $exception->getCode(), [ 204, 304 ], true ) ) {
+				$response = $this->create();
+				$response->setStatus( $exception->getCode() );
+			} else {
+				$response = $this->createHttpError(
+					$exception->getCode(),
+					array_merge(
+						[ 'message' => $exception->getMessage() ],
+						(array)$exception->getErrorData()
+					)
+				);
+			}
 		} else {
 			$response = $this->createHttpError( 500, [
 				'message' => 'Error: exception of type ' . get_class( $exception ),

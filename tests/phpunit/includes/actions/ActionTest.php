@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @covers Action
@@ -295,7 +296,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			new PageRestriction( 0, $page->getTitle()->getArticleID() ),
 		] );
 
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$action->canExecute( $user );
@@ -304,7 +306,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			$this->assertInstanceOf( UserBlockedError::class, $e );
 		}
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 }

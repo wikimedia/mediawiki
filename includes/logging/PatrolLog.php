@@ -33,14 +33,13 @@ class PatrolLog {
 	 *
 	 * @param int|RecentChange $rc Change identifier or RecentChange object
 	 * @param bool $auto Was this patrol event automatic?
-	 * @param User|null $user User performing the action or null to use $wgUser
-	 *   (null to use $wgUser is deprecated since 1.35)
+	 * @param User $user User performing the action
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 *
 	 * @return bool
 	 */
-	public static function record( $rc, $auto = false, User $user = null, $tags = null ) {
+	public static function record( $rc, $auto, User $user, $tags = null ) {
 		// Do not log autopatrol actions: T184485
 		if ( $auto ) {
 			return false;
@@ -51,12 +50,6 @@ class PatrolLog {
 			if ( !is_object( $rc ) ) {
 				return false;
 			}
-		}
-
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			global $wgUser;
-			$user = $wgUser;
 		}
 
 		$entry = new ManualLogEntry( 'patrol', 'patrol' );
