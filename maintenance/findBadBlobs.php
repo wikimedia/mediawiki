@@ -29,7 +29,7 @@ use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
-require_once __DIR__ . '/cleanupTable.inc';
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script for finding and marking bad content blobs.
