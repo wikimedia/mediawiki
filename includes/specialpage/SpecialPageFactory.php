@@ -129,11 +129,28 @@ class SpecialPageFactory {
 			]
 		],
 		'Unblock' => \SpecialUnblock::class,
-		'BlockList' => \SpecialBlockList::class,
+		'BlockList' => [
+			'class' => \SpecialBlockList::class,
+			'services' => [
+				'PermissionManager',
+				'LinkBatchFactory',
+				'BlockRestrictionStore',
+				'DBLoadBalancer',
+				'SpecialPageFactory',
+				'ActorMigration',
+				'CommentStore',
+			],
+		],
 		'AutoblockList' => [
 			'class' => \SpecialAutoblockList::class,
 			'services' => [
 				'PermissionManager',
+				'LinkBatchFactory',
+				'BlockRestrictionStore',
+				'DBLoadBalancer',
+				'SpecialPageFactory',
+				'ActorMigration',
+				'CommentStore',
 			],
 		],
 		'ChangePassword' => \SpecialChangePassword::class,
