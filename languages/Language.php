@@ -3338,7 +3338,7 @@ class Language {
 		}
 		$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
 		if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
-			wfDeprecated( __METHOD__ . ' with a non-numeric string', '1.36' );
+			// wfDeprecated( __METHOD__ . ' with a non-numeric string', '1.36' );
 			// For backwards-compat, return commafy piecewise on the valid
 			// numbers in the string.
 			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) {
