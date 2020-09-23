@@ -104,7 +104,6 @@
 		<exclude-pattern>*/maintenance/sqlite\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/update\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/userDupes.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
