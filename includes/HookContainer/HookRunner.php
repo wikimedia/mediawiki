@@ -266,11 +266,9 @@ class HookRunner implements
 	\MediaWiki\Hook\PageMoveCompletingHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
-	\MediaWiki\Hook\ParserAfterStripHook,
 	\MediaWiki\Hook\ParserAfterTidyHook,
 	\MediaWiki\Hook\ParserBeforeInternalParseHook,
 	\MediaWiki\Hook\ParserBeforePreprocessHook,
-	\MediaWiki\Hook\ParserBeforeStripHook,
 	\MediaWiki\Hook\ParserCacheSaveCompleteHook,
 	\MediaWiki\Hook\ParserClearStateHook,
 	\MediaWiki\Hook\ParserClonedHook,
@@ -2875,13 +2873,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onParserAfterStrip( $parser, &$text, $stripState ) {
-		return $this->container->run(
-			'ParserAfterStrip',
-			[ $parser, &$text, $stripState ]
-		);
-	}
-
 	public function onParserAfterTidy( $parser, &$text ) {
 		return $this->container->run(
 			'ParserAfterTidy',
@@ -2899,13 +2890,6 @@ class HookRunner implements
 	public function onParserBeforePreprocess( $parser, &$text, $stripState ) {
 		return $this->container->run(
 			'ParserBeforePreprocess',
-			[ $parser, &$text, $stripState ]
-		);
-	}
-
-	public function onParserBeforeStrip( $parser, &$text, $stripState ) {
-		return $this->container->run(
-			'ParserBeforeStrip',
 			[ $parser, &$text, $stripState ]
 		);
 	}

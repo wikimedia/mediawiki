@@ -179,6 +179,8 @@ because of Phabricator reports.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
 * Parser::setFunctionTagHook(), deprecated in 1.35, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
+* The ParserBeforeTidy, ParserBeforeStrip, and ParserAfterStrip hooks,
+  deprecated in 1.35, have been removed.
 * All methods of MWTidy except for MW::tidy() have been removed.  These
   were either @internal or deprecated in 1.35.
 * The support for IE8 has been dropped.
