@@ -53,7 +53,6 @@
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
-		<exclude-pattern>maintenance/language/checkLanguage\.inc</exclude-pattern>
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
 		<exclude-pattern>maintenance/commandLine\.inc</exclude-pattern>
@@ -93,7 +92,6 @@
 		<exclude-pattern>*/maintenance/jsparse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/lag\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/checkLanguage.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/languages.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/minify\.php</exclude-pattern>
@@ -178,7 +176,6 @@
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/languages.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/checkLanguage.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
