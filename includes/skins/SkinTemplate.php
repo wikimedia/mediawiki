@@ -654,6 +654,14 @@ class SkinTemplate extends Skin {
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			if ( $permissionManager->groupHasPermission( '*', 'edit' ) ) {
+				// Non interactive placeholder for anonymous users.
+				// It's unstyled by default (black color). Skin that
+				// needs it, can style it using the 'pt-anonuserpage' id.
+				// Skin that does not need it should unset it.
+				$personal_urls['anonuserpage'] = [
+					'text' => $this->msg( 'notloggedin' )->text(),
+				];
+
 				// Because of caching, we can't link directly to the IP talk and
 				// contributions pages. Instead we use the special page shortcuts
 				// (which work correctly regardless of caching). This means we can't
@@ -689,6 +697,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
+
 		return $personal_urls;
 	}
 
