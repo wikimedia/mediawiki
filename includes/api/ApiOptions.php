@@ -122,8 +122,8 @@ class ApiOptions extends ApiBase {
 						'ApiOptions: Setting userjs option',
 						[
 							'phab' => 'T259073',
-							'OptionName' => substr( $key, 255 ),
-							'OptionValue' => substr( $value, 255 ),
+							'OptionName' => substr( $key, 0, 255 ),
+							'OptionValue' => substr( $value, 0, 255 ),
 							'OptionSize' => strlen( $value ),
 							'OptionValidation' => $validation,
 							'UserId' => $user->getId(),
