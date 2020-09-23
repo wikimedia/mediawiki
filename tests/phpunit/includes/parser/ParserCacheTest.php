@@ -103,6 +103,110 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ParserCache::getMetadata
+	 * @covers ParserCache::getKey
+	 */
+	public function testGetMetadataMissing() {
+		$cache = $this->createParserCache();
+
+		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY );
+		$this->assertFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_CURRENT_ONLY ) );
+		$this->assertNotFalse( $cache->getKey( $this->page, ParserOptions::newFromAnon() ) );
+		$this->assertNull( $metadataFromCache );
+	}
+
+	/**
+	 * @covers ParserCache::getMetadata
+	 * @covers ParserCache::getKey
+	 */
+	public function testGetMetadataAllGood() {
+		$cache = $this->createParserCache();
+		$parserOutput = $this->createDummyParserOutput();
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
+
+		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY );
+		$this->assertNotNull( $metadataFromCache );
+		$this->assertNotFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_CURRENT_ONLY ) );
+		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
+		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
+		$this->assertSame( $this->page->getRevisionRecord()->getId(),
+			$metadataFromCache->getCacheRevisionId() );
+		$this->assertSame( $this->cacheTime, $metadataFromCache->getCacheTime() );
+	}
+
+	/**
+	 * @covers ParserCache::getMetadata
+	 * @covers ParserCache::getKey
+	 */
+	public function testGetMetadataExpired() {
+		$cache = $this->createParserCache();
+		$parserOutput = $this->createDummyParserOutput();
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
+		$this->page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, time() + 10000 ) );
+		$this->page->clear();
+
+		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY ) );
+		$this->assertFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_CURRENT_ONLY ) );
+		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_EXPIRED );
+		$this->assertNotFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_EXPIRED ) );
+		$this->assertNotNull( $metadataFromCache );
+		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
+		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
+		$this->assertSame( $this->page->getRevisionRecord()->getId(),
+			$metadataFromCache->getCacheRevisionId() );
+		$this->assertSame( $this->cacheTime, $metadataFromCache->getCacheTime() );
+	}
+
+	/**
+	 * @covers ParserCache::getMetadata
+	 * @covers ParserCache::getKey
+	 */
+	public function testGetMetadataOutdated() {
+		$cache = $this->createParserCache();
+		$parserOutput = $this->createDummyParserOutput();
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
+		$this->editPage( $this->page->getTitle()->getDBkey(), 'Edit!' );
+		$this->page->clear();
+
+		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY ) );
+		$this->assertFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_CURRENT_ONLY ) );
+		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_EXPIRED ) );
+		$this->assertFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_EXPIRED ) );
+		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_OUTDATED );
+		$this->assertNotFalse( $cache->getKey( $this->page,
+			ParserOptions::newFromAnon(), ParserCache::USE_OUTDATED ) );
+		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
+		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
+		$this->assertNotSame( $this->page->getRevisionRecord()->getId(),
+			$metadataFromCache->getCacheRevisionId() );
+		$this->assertSame( $this->cacheTime, $metadataFromCache->getCacheTime() );
+	}
+
+	/**
+	 * @covers ParserCache::makeParserOutputKey
+	 */
+	public function testMakeParserOutputKey() {
+		$cache = $this->createParserCache();
+
+		$options1 = ParserOptions::newFromAnon();
+		$options1->setOption( $this->getDummyUsedOptions()[0], 'value1' );
+		$key1 = $cache->makeParserOutputKey( $this->page, $options1, $this->getDummyUsedOptions() );
+		$this->assertNotNull( $key1 );
+
+		$options2 = ParserOptions::newFromAnon();
+		$options2->setOption( $this->getDummyUsedOptions()[0], 'value2' );
+		$key2 = $cache->makeParserOutputKey( $this->page, $options2, $this->getDummyUsedOptions() );
+		$this->assertNotNull( $key2 );
+		$this->assertNotSame( $key1, $key2 );
+	}
+
+	/*
 	 * Test that fetching without storing first returns false.
 	 * @covers ParserCache::get
 	 */

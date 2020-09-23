@@ -454,6 +454,15 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Adds a comment notice about cache state to the text of the page
+	 * @param string $msg
+	 * @internal used by ParserCache
+	 */
+	public function addCacheMessage( string $msg ) {
+		$this->mText .= "\n<!-- $msg\n -->\n";
+	}
+
+	/**
 	 * Add a CSS class to use for the wrapping div. If no class is given, no wrapper is added.
 	 *
 	 * @param string $class
@@ -1176,7 +1185,8 @@ class ParserOutput extends CacheTime {
 	 * into account to produce this output.
 	 * @return string[]
 	 */
-	public function getUsedOptions() {
+	public function getUsedOptions() : array {
+		// TODO: Merge mAccessedOptions with CacheTime::mUsedOptions
 		if ( !isset( $this->mAccessedOptions ) ) {
 			return [];
 		}
@@ -1189,7 +1199,7 @@ class ParserOutput extends CacheTime {
 	 * The information gathered here is available via getUsedOptions(),
 	 * and is used by ParserCache::save().
 	 *
-	 * @see ParserCache::getKey
+	 * @see ParserCache::getMetadata
 	 * @see ParserCache::save
 	 * @see ParserOptions::addExtraKey
 	 * @see ParserOptions::optionsHash

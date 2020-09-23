@@ -126,12 +126,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOptions = $parserOptions;
 		$this->revision = $revision;
 		$this->audience = $audience;
-		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
-		$keyPrefix = $this->cacheKey ?: ObjectCache::getLocalClusterInstance()->makeKey(
-			'articleview', 'missingcachekey'
+		$parserCacheMetadata = $this->parserCache->getMetadata( $page );
+		$this->cacheKey = $this->parserCache->makeParserOutputKey( $page, $parserOptions,
+			$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
 		);
-
-		parent::__construct( 'ArticleView', $keyPrefix . ':revid:' . $revid );
+		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
 	}
 
 	/**
