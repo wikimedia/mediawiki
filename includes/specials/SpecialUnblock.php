@@ -94,12 +94,12 @@ class SpecialUnblock extends SpecialPage {
 	 * Several parameters are handled for backwards compatability. 'wpTarget' is
 	 * prioritized, since it matches the HTML form.
 	 *
-	 * @param string $par Subpage parameter
+	 * @param string|null $par Subpage parameter
 	 * @param WebRequest $request
 	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
 	 * @phan-return array{0:User|string|null,1:int|null}
 	 */
-	private function getTargetAndType( string $par, WebRequest $request ) {
+	private function getTargetAndType( ?string $par, WebRequest $request ) {
 		$possibleTargets = [
 			$request->getVal( 'wpTarget', null ),
 			$par,

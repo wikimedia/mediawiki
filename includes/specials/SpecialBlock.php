@@ -639,13 +639,13 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * @deprecated since 1.36. Use AbstractBlock::parseTarget directly instead.
 	 *
-	 * @param string $par Subpage parameter passed to setup, or data value from
+	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
 	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
 	 * @phan-return array{0:User|string|null,1:int|null}
 	 */
-	public static function getTargetAndType( $par, WebRequest $request = null ) {
+	public static function getTargetAndType( ?string $par, WebRequest $request = null ) {
 		if ( !$request instanceof WebRequest ) {
 			return AbstractBlock::parseTarget( $par );
 		}
@@ -837,7 +837,6 @@ class SpecialBlock extends FormSpecialPage {
 
 		$blockOptions = [
 			'isCreateAccountBlocked' => $data['CreateAccount'],
-			'isEmailBlocked' => $data['DisableEmail'],
 			'isHardBlock' => $data['HardBlock'],
 			'isAutoblocking' => $data['AutoBlock'],
 			'isHideUser' => $data['HideUser'],

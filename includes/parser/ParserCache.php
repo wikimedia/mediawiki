@@ -237,7 +237,7 @@ class ParserCache {
 			}
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
-			$usedOptions = $optionsKey->mUsedOptions;
+			$usedOptions = $optionsKey->getUsedOptions();
 			wfDebug( "Parser cache options found." );
 		} else {
 			if ( $useOutdated < self::USE_ANYTHING ) {
@@ -358,7 +358,7 @@ class ParserCache {
 			}
 
 			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
+			$optionsKey->setUsedOptions( $parserOutput->getUsedOptions() );
 			$optionsKey->updateCacheExpiry( $expire );
 
 			$optionsKey->setCacheTime( $cacheTime );
@@ -367,7 +367,7 @@ class ParserCache {
 			$parserOutput->setCacheRevisionId( $revId );
 
 			$parserOutputKey = $this->getParserOutputKey( $wikiPage,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $wikiPage->getTitle() ) );
+				$popts->optionsHash( $optionsKey->getUsedOptions(), $wikiPage->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
@@ -376,7 +376,7 @@ class ParserCache {
 				" and timestamp $cacheTime" .
 				" and revision id $revId";
 
-			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
+			$parserOutput->addCacheMessage( $msg );
 			wfDebug( $msg );
 
 			// Save the parser output
