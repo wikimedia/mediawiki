@@ -29,6 +29,11 @@ for use in production.
 * (T250449, T250450) Installer: consistently reset Language objects.
 * Explicitly wrap some XML calls in libxml_disable_entity_loader().
 * (T262934) Ensure dropdown label is always on its own line.
+* (T246855) resourceloader: Use a local HookRunner.
+* (T263604) Have findBadBlobs.php require Maintenance.php rather than
+  cleanupTable.inc.
+* (T263606) Set fake time, to avoid flaky tests.
+* (T261325) Add FindMissingActors script.
 
 == MediaWiki 1.35.0-rc.3 ==
 
