@@ -1134,14 +1134,18 @@ class SkinTemplate extends Skin {
 				}
 			}
 		} else {
-			// If it's not content, it's got to be a special page
+			// If it's not content, and a request URL is set it's got to be a special page
+			try {
+				$url = $request->getRequestURL();
+			} catch ( MWException $e ) {
+				$url = false;
+			}
 			$content_navigation['namespaces']['special'] = [
 				'class' => 'selected',
 				'text' => $this->msg( 'nstab-special' )->text(),
-				'href' => $request->getRequestURL(), // @see: T4457, T4510
+				'href' => $url, // @see: T4457, T4510
 				'context' => 'subject'
 			];
-
 			$this->getHookRunner()->onSkinTemplateNavigation__SpecialPage(
 				$this, $content_navigation );
 		}
