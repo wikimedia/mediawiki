@@ -137,7 +137,8 @@ class ApiBlock extends ApiBase {
 				'isHardBlock' => !$params['anononly'],
 				'isAutoblocking' => $params['autoblock'],
 				'isUserTalkEditBlocked' => !$params['allowusertalk'],
-				'isHideUser' => $params['hidename']
+				'isHideUser' => $params['hidename'],
+				'isPartial' => $params['partial'],
 			],
 			$restrictions,
 			$params['tags']

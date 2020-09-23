@@ -837,7 +837,6 @@ class SpecialBlock extends FormSpecialPage {
 
 		$blockOptions = [
 			'isCreateAccountBlocked' => $data['CreateAccount'],
-			'isEmailBlocked' => $data['DisableEmail'],
 			'isHardBlock' => $data['HardBlock'],
 			'isAutoblocking' => $data['AutoBlock'],
 			'isHideUser' => $data['HideUser'],
