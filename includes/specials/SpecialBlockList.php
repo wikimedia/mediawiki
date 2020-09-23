@@ -21,10 +21,14 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists existing blocks
@@ -38,8 +42,45 @@ class SpecialBlockList extends SpecialPage {
 
 	protected $blockType;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	public function __construct(
+		PermissionManager $permManager,
+		LinkBatchFactory $linkBatchFactory,
+		BlockRestrictionStore $blockRestrictionStore,
+		ILoadBalancer $loadBalancer,
+		SpecialPageFactory $specialPageFactory,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore
+	) {
 		parent::__construct( 'BlockList' );
+
+		$this->permManager = $permManager;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->loadBalancer = $loadBalancer;
+		$this->specialPageFactory = $specialPageFactory;
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
 	}
 
 	/**
@@ -64,7 +105,7 @@ class SpecialBlockList extends SpecialPage {
 
 		if ( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
 			# B/C @since 1.18: Unblock interface is now at Special:Unblock
-			$title = SpecialPage::getTitleFor( 'Unblock', $this->target );
+			$title = $this->specialPageFactory->getTitleForAlias( 'Unblock/' . $this->target );
 			$out->redirect( $title->getFullURL() );
 
 			return;
@@ -138,10 +179,7 @@ class SpecialBlockList extends SpecialPage {
 		$conds = [];
 		$db = $this->getDB();
 		# Is the user allowed to see hidden blocks?
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->permManager->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 
@@ -205,7 +243,13 @@ class SpecialBlockList extends SpecialPage {
 		return new BlockListPager(
 			$this,
 			$conds,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->blockRestrictionStore,
+			$this->permManager,
+			$this->loadBalancer,
+			$this->specialPageFactory,
+			$this->actorMigration,
+			$this->commentStore
 		);
 	}
 
@@ -266,6 +310,6 @@ class SpecialBlockList extends SpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA );
+		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 	}
 }

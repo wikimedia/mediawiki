@@ -21,8 +21,11 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\SpecialPageFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists autoblocks
@@ -35,13 +38,51 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @param PermissionManager $permManager
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param ILoadBalancer $loadBalancer
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param ActorMigration $actorMigration
+	 * @param CommentStore $commentStore
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct(
+		PermissionManager $permManager,
+		LinkBatchFactory $linkBatchFactory,
+		BlockRestrictionStore $blockRestrictionStore,
+		ILoadBalancer $loadBalancer,
+		SpecialPageFactory $specialPageFactory,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore
+	) {
 		parent::__construct( 'AutoblockList' );
 
 		$this->permManager = $permManager;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->loadBalancer = $loadBalancer;
+		$this->specialPageFactory = $specialPageFactory;
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
 	}
 
 	/**
@@ -99,7 +140,13 @@ class SpecialAutoblockList extends SpecialPage {
 		return new BlockListPager(
 			$this,
 			$conds,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->blockRestrictionStore,
+			$this->permManager,
+			$this->loadBalancer,
+			$this->specialPageFactory,
+			$this->actorMigration,
+			$this->commentStore
 		);
 	}
 
