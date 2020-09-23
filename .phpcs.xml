@@ -100,7 +100,6 @@
 		<exclude-pattern>*/maintenance/renderDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/shell\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/sql\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/sqlite.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/update\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
