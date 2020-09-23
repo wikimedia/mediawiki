@@ -1715,6 +1715,8 @@ abstract class Maintenance {
 	 * Utility function to parse a string (perhaps from a command line option)
 	 * into a list of integers (perhaps some kind of numeric IDs).
 	 *
+	 * @since 1.35
+	 *
 	 * @param string $text
 	 *
 	 * @return int[]

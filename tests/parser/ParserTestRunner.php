@@ -659,6 +659,7 @@ class ParserTestRunner {
 		$services->resetServiceForTesting( 'LinkRenderer' );
 		$services->resetServiceForTesting( 'LinkRendererFactory' );
 		$services->resetServiceForTesting( 'NamespaceInfo' );
+		$services->resetServiceForTesting( 'SpecialPageFactory' );
 	}
 
 	/**
@@ -1573,6 +1574,11 @@ class ParserTestRunner {
 			$teardown[] = function () {
 				MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
 			};
+			$reset = function () {
+				$this->resetTitleServices();
+			};
+			$setup[] = $reset;
+			$teardown[] = $reset;
 		}
 
 		// Add special namespaces, in case that hasn't been done by staticSetup() yet
