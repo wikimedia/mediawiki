@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"Grkn gll"
+			"Grkn gll",
+			"MuratTheTurkish"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",
@@ -39,5 +40,6 @@
 	"rest-bad-content-model": "Kötü içerik modeli: $1",
 	"rest-update-cannot-create-page": "\"$1\" sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde \"en son\" tuşu altındaki yapıda temel düzeltme kimliğini girin.",
 	"rest-extraneous-csrf-token": "Yabancı CSRF jetonu bulundu. CSRF saldırılarına karşı güvenli olan OAuth gibi kimlik doğrulama mekanizmaları kullanılırken CSRF belirteçleri kullanılmamalıdır.",
-	"rest-cannot-load-file": "\"$1\" başlıklı dosya yüklenemiyor."
+	"rest-cannot-load-file": "\"$1\" başlıklı dosya yüklenemiyor.",
+	"rest-cross-origin-anon-write": "Anonim çapraz kaynak yazma isteklerine izin verilmez"
 }
