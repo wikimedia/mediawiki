@@ -181,7 +181,7 @@ class SkinTemplate extends Skin {
 	 * @since 1.35
 	 * @return string HTML
 	 */
-	final protected function prepareSubtitle() {
+	final public function prepareSubtitle() {
 		$out = $this->getOutput();
 		$subpagestr = $this->subPageSubtitle();
 		if ( $subpagestr !== '' ) {
