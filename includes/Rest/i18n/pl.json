@@ -14,6 +14,8 @@
 	"rest-nonexistent-title": "Podany tytuł ($1) nie istnieje",
 	"rest-nonexistent-title-revision": "Podana wersja ($1) strony ($2) nie istnieje",
 	"rest-nonexistent-revision": "Żądana wersja ($1) nie istnieje.",
+	"rest-nonexistent-user": "Podany użytkownik ($1) nie istnieje",
+	"rest-invalid-user": "Podana nazwa użytkownika ($1) jest nieprawidłowa",
 	"rest-permission-denied-anon": "Niedostępne dla anonimowego użytkownika",
 	"rest-permission-denied-title": "Użytkownik nie posiada uprawnień do czytania tytułu ($1)",
 	"rest-permission-denied-revision": "Użytkownik nie ma dostępu do żądanej wersji ($1).",
@@ -31,6 +33,15 @@
 	"rest-pagehistorycount-too-many-revisions": "Podany tytuł zawiera za dużo wersji aby móc pobrać tę liczbę.",
 	"rest-search-error": "Błąd podczas zwracania wyników wyszukiwania: $1",
 	"rest-page-source-type-error": "Typ zawartości żądanej strony źródłowej jest niewspierany",
+	"rest-no-revision": "Nie udało się pobrać wersji dla tytułu $1",
+	"rest-media-too-many-links": "Znaleziono zbyt wiele linków do mediów w tytule $1 ($2 dozwolonych)",
+	"rest-html-backend-error": "Nie udało się pozyskać HTML-a Parsoida",
+	"rest-bad-json-body": "Nieprawidłowa treść żądania. Żądanie musi być obiektem JSON.",
+	"rest-json-body-parse-error": "Parsowanie treści żądania w formacie JSON nie powiodło się: $1",
+	"rest-missing-body-field": "Treść żądania nie zawiera wymaganego pola „$1”.",
 	"rest-bad-content-model": "Zły model zawartości: $1",
-	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany."
+	"rest-update-cannot-create-page": "Nie można utworzyć strony „$1”, ponieważ już istnieje. Aby zaktualizować istniejącą stronę, podaj ID bazowej wersji w strukturze pod kluczem „latest” w treści żądania.",
+	"rest-extraneous-csrf-token": "Znaleziono obcy token CSRF. Nie można używać tokenów CSRF podczas korzystania z mechanizmów uwierzytelniania takich jak OAuth, które są odporne na ataki CSRF.",
+	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany.",
+	"rest-cross-origin-anon-write": "Anonimowe żądania zapisu w innych domen nie są dozwolone"
 }

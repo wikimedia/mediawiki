@@ -296,6 +296,7 @@
 	"talk": "Diskussion",
 	"views": "Ansichten",
 	"toolbox": "Werkzeuge",
+	"cactions": "Weitere",
 	"tool-link-userrights": "{{GENDER:$1|Benutzergruppen}} ändern",
 	"tool-link-userrights-readonly": "{{GENDER:$1|Benutzergruppen}} ansehen",
 	"tool-link-emailuser": "E-Mail an {{GENDER:$1|diesen Benutzer|diese Benutzerin}} senden",

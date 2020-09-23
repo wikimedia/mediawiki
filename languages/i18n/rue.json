@@ -1708,7 +1708,7 @@
 	"activeusers-noresult": "Ненайдженый жаден хоснователь.",
 	"listgrouprights": "Права ґруп хоснователїв",
 	"listgrouprights-summary": "Тото є список ґруп хоснователїв дефінованых на тій вікіi і&nbsp;їх приступовых прав.\n\n[[{{MediaWiki:Listgrouprights-helppage}}|Детайлны інформації о&nbsp;єднотливых правах]]",
-	"listgrouprights-key": "Леґенда:\n* <span class=\"listgrouprights-granted\">Удїлены пвара</span>\n* <span class=\"listgrouprights-revoked\">Одобраны права</span>",
+	"listgrouprights-key": "Леґенда:\n* <span class=\"listgrouprights-granted\">Удїлены права</span>\n* <span class=\"listgrouprights-revoked\">Одобраны права</span>",
 	"listgrouprights-group": "Ґрупа",
 	"listgrouprights-rights": "Права",
 	"listgrouprights-helppage": "Help:Права хоснователїв",
