@@ -145,6 +145,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		$namespace = intval( $namespace );
+		if ( $namespace < NS_MAIN ) {
+			// Negative namespaces are invalid
+			return [];
+		}
+
 		$invert = $this->opts->getValue( 'invert' );
 		$associated = $this->opts->getValue( 'associated' );
 
