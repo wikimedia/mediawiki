@@ -643,9 +643,6 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
-		# No more strip!
-		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
 		$text = $this->internalParse( $text );
 		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
 
@@ -843,8 +840,6 @@ class Parser {
 	 * @return-taint escaped
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
-		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -919,8 +914,6 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
-		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
 		$this->hookRunner->onParserBeforePreprocess( $this, $text, $this->mStripState );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
