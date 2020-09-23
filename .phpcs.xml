@@ -72,7 +72,6 @@
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
