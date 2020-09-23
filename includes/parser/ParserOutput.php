@@ -23,8 +23,6 @@
  */
 
 class ParserOutput extends CacheTime {
-	use DeprecationHelper;
-
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
@@ -41,150 +39,155 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var string|null The output text
 	 */
-	private $mText;
+	public $mText = null;
 
 	/**
 	 * @var array List of the full text of language links,
 	 *  in the order they appear.
 	 */
-	private $mLanguageLinks;
+	public $mLanguageLinks;
 
 	/**
 	 * @var array Map of category names to sort keys
 	 */
-	private $mCategories;
+	public $mCategories;
 
 	/**
 	 * @var array Page status indicators, usually displayed in top-right corner.
 	 */
-	private $mIndicators = [];
+	public $mIndicators = [];
 
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
 	 */
-	private $mTitleText;
+	public $mTitleText;
 
 	/**
 	 * @var int[][] 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 * @phan-var array<int,array<string,int>>
 	 */
-	private $mLinks = [];
+	public $mLinks = [];
 
 	/**
 	 * @var array Keys are DBKs for the links to special pages in the document.
 	 * @since 1.35
 	 */
-	private $mLinksSpecial = [];
+	public $mLinksSpecial = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	private $mTemplates = [];
+	public $mTemplates = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	private $mTemplateIds = [];
+	public $mTemplateIds = [];
 
 	/**
 	 * @var array DB keys of the images used, in the array key only
 	 */
-	private $mImages = [];
+	public $mImages = [];
 
 	/**
 	 * @var array DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
-	private $mFileSearchOptions = [];
+	public $mFileSearchOptions = [];
 
 	/**
 	 * @var array External link URLs, in the key only.
 	 */
-	private $mExternalLinks = [];
+	public $mExternalLinks = [];
 
 	/**
 	 * @var array 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
-	private $mInterwikiLinks = [];
+	public $mInterwikiLinks = [];
 
 	/**
 	 * @var bool Show a new section link?
 	 */
-	private $mNewSection = false;
+	public $mNewSection = false;
 
 	/**
 	 * @var bool Hide the new section link?
 	 */
-	private $mHideNewSection = false;
+	public $mHideNewSection = false;
 
 	/**
 	 * @var bool No gallery on category page? (__NOGALLERY__).
 	 */
-	private $mNoGallery = false;
+	public $mNoGallery = false;
 
 	/**
 	 * @var array Items to put in the <head> section
 	 */
-	private $mHeadItems = [];
+	public $mHeadItems = [];
 
 	/**
 	 * @var array Modules to be loaded by ResourceLoader
 	 */
-	private $mModules = [];
+	public $mModules = [];
 
 	/**
-	 * @var array Modules of which only the CSS will be loaded by ResourceLoader.
+	 * @var array Modules of which only the CSSS will be loaded by ResourceLoader.
 	 */
-	private $mModuleStyles = [];
+	public $mModuleStyles = [];
 
 	/**
 	 * @var array JavaScript config variable for mw.config combined with this page.
 	 */
-	private $mJsConfigVars = [];
+	public $mJsConfigVars = [];
 
 	/**
 	 * @var array Hook tags as per $wgParserOutputHooks.
 	 */
-	private $mOutputHooks = [];
+	public $mOutputHooks = [];
 
 	/**
 	 * @var array Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
-	private $mWarnings = [];
+	public $mWarnings = [];
 
 	/**
 	 * @var array Table of contents
 	 */
-	private $mSections = [];
+	public $mSections = [];
 
 	/**
 	 * @var array Name/value pairs to be cached in the DB.
 	 */
-	private $mProperties = [];
+	public $mProperties = [];
 
 	/**
 	 * @var string HTML of the TOC.
 	 */
-	private $mTOCHTML = '';
+	public $mTOCHTML = '';
 
 	/**
 	 * @var string Timestamp of the revision.
 	 */
-	private $mTimestamp;
+	public $mTimestamp;
 
 	/**
 	 * @var bool Whether OOUI should be enabled.
 	 */
-	private $mEnableOOUI = false;
+	public $mEnableOOUI = false;
 
 	/**
 	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
 	 */
 	private $mIndexPolicy = '';
+
+	/**
+	 * @var true[] List of ParserOptions (stored in the keys).
+	 */
+	private $mAccessedOptions = [];
 
 	/**
 	 * @var array extra data used by extensions.
@@ -278,35 +281,6 @@ class ParserOutput extends CacheTime {
 	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
-		parent::__construct();
-		$this->deprecatePublicProperty( 'mText', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mLanguageLinks', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mCategories', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mIndicators', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTitleText', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mLinks', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mLinksSpecial', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTemplates', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTemplateIds', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mImages', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mFileSearchOptions', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mExternalLinks', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInterwikiLinks', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNewSection', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mHideNewSection', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNoGallery', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mHeadItems', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mModules', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mModuleStyles', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mJsConfigVars', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mOutputHooks', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mWarnings', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mSections', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mProperties', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTOCHTML', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTimestamp', '1.36', __CLASS__ );
-		$this->deprecatePublicProperty( 'mEnableOOUI', '1.36', __CLASS__ );
-
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
@@ -465,15 +439,6 @@ class ParserOutput extends CacheTime {
 			$text
 		);
 		return $text;
-	}
-
-	/**
-	 * Adds a comment notice about cache state to the text of the page
-	 * @param string $msg
-	 * @internal used by ParserCache
-	 */
-	public function addCacheMessage( string $msg ) {
-		$this->mText .= "\n<!-- $msg\n -->\n";
 	}
 
 	/**
@@ -1182,6 +1147,18 @@ class ParserOutput extends CacheTime {
 			$this->mProperties = [];
 		}
 		return $this->mProperties;
+	}
+
+	/**
+	 * Returns the options from its ParserOptions which have been taken
+	 * into account to produce this output.
+	 * @return string[]
+	 */
+	public function getUsedOptions() {
+		if ( !isset( $this->mAccessedOptions ) ) {
+			return [];
+		}
+		return array_keys( $this->mAccessedOptions );
 	}
 
 	/**
