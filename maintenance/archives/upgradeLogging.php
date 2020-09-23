@@ -21,7 +21,7 @@
  * @ingroup MaintenanceArchive
  */
 
-require __DIR__ . '/../commandLine.inc';
+require __DIR__ . '/../CommandLineInc.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;

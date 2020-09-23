@@ -55,7 +55,7 @@
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
-		<exclude-pattern>maintenance/commandLine\.inc</exclude-pattern>
+		<exclude-pattern>maintenance/CommandLineInc\.php</exclude-pattern>
 		<exclude-pattern>tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
@@ -81,7 +81,6 @@
 		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTable.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTitles\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/commandLine.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/getText\.php</exclude-pattern>
