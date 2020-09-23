@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @author Addshore
@@ -331,6 +332,9 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDuplicateAllAssociatedEntries() {
+		// Fake current time to be 2020-05-27T00:00:00Z
+		ConvertibleTimestamp::setFakeTime( '20200527000000' );
+
 		$user = $this->getUser();
 		$titleOld = Title::newFromText( 'WatchedItemStoreIntegrationTestPageOld' );
 		$titleNew = Title::newFromText( 'WatchedItemStoreIntegrationTestPageNew' );
