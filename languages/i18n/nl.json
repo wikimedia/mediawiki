@@ -296,6 +296,7 @@
 	"talk": "Overleg",
 	"views": "Weergaven",
 	"toolbox": "Hulpmiddelen",
+	"cactions": "Meer",
 	"tool-link-userrights": "{{GENDER:$1|Gebruikersgroepen}} wijzigen",
 	"tool-link-userrights-readonly": "{{GENDER:$1|Gebruikers}}groepen weergeven",
 	"tool-link-emailuser": "Deze {{GENDER:$1|gebruiker}} e-mailen",

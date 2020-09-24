@@ -19,7 +19,7 @@
 	"rest-permission-denied-anon": "Niedostępne dla anonimowego użytkownika",
 	"rest-permission-denied-title": "Użytkownik nie posiada uprawnień do czytania tytułu ($1)",
 	"rest-permission-denied-revision": "Użytkownik nie ma dostępu do żądanej wersji ($1).",
-	"rest-pagehistory-incompatible-params": "Parametry \"older_than\" i \"newer_than\" nie mogą być podawane razem",
+	"rest-pagehistory-incompatible-params": "Parametry „older_than” i „newer_than” nie mogą być podawane razem",
 	"rest-pagehistory-param-range-error": "ID wersji musi być większe niż 0",
 	"rest-pagehistory-timestamp-error": "Nie można pozyskać czasu dla podanej wersji ($1)",
 	"rest-pagehistorycount-type-unrecognized": "Podany typ liczenia ($1) jest niepoprawny",

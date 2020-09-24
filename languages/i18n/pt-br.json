@@ -315,6 +315,7 @@
 	"talk": "Discussão",
 	"views": "Visualizações",
 	"toolbox": "Ferramentas",
+	"cactions": "Mais",
 	"tool-link-userrights": "Editar grupos {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}}",
 	"tool-link-userrights-readonly": "Ver grupos {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}}",
 	"tool-link-emailuser": "Enviar e-mail a {{GENDER:$1|este usuário|esta usuária|este(a) usuário(a)}}",

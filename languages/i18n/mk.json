@@ -217,6 +217,7 @@
 	"talk": "Разговор",
 	"views": "Посети",
 	"toolbox": "Алатки",
+	"cactions": "Повеќе",
 	"tool-link-userrights": "Смени ги {{GENDER:$1|корисничките}} групи",
 	"tool-link-userrights-readonly": "Преглед на {{GENDER:$1|корисничките}} групи",
 	"tool-link-emailuser": "Испрати е-пошта на {{GENDER:$1|корисников}}",

@@ -3,6 +3,7 @@
 		"authors": [
 			"Aapkamanoj",
 			"Abhishrut",
+			"Abijeet Patro",
 			"Akansha",
 			"Aksi great",
 			"Alolitas",
@@ -286,6 +287,7 @@
 	"talk": "चर्चा",
 	"views": "दर्शाव",
 	"toolbox": "उपकरण",
+	"cactions": "और",
 	"tool-link-userrights": "{{GENDER:$1|सदस्य}} समूह बदलें",
 	"tool-link-userrights-readonly": "{{GENDER:$1|सदस्य}} समूह देखें",
 	"tool-link-emailuser": "इस {{GENDER:$1|सदस्य}} को ई-मेल करें।",

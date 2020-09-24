@@ -219,6 +219,7 @@
 	"talk": "Diskusija",
 	"views": "Apskates",
 	"toolbox": "Rīki",
+	"cactions": "Vairāk",
 	"tool-link-userrights": "Mainīt {{GENDER:$1|dalībnieka|dalībnieces}} grupas",
 	"tool-link-userrights-readonly": "Apskatīt {{GENDER:$1|dalībnieka|dalībnieces}} grupas",
 	"tool-link-emailuser": "Nosūtīt e-pastu {{GENDER:$1|šim dalībniekam|šai dalībniecei}}",
