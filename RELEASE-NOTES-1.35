@@ -1,9 +1,6 @@
 = MediaWiki 1.35 =
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.35 is a pre-release testing branch, and is not recommended
-for use in production.
+== MediaWiki 1.35.0 ==
 
 === Changes since MediaWiki 1.35.0-rc.3 ===
 * (T261258) Remove checks for ancient ImageMagick versions in BitmapHandler.
@@ -38,6 +35,8 @@ for use in production.
 * (T263655) NewPagesPager: Ignore nonexistent namespaces.
 * Update specialPageAliases and magicWords for Egyptian Arabic (arz).
 * (T261347) ParserOutput: don't throw on bad editsection.
+* (T232568, CVE-2020-25813) SpecialUserrights: If a viewer lacks `hideuser`,
+  ignore hidden users.
 * (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
   Special:Contributions.
 * (T256171, CVE-2020-25815) SECURITY: Unescaped message used in HTML within
@@ -67,7 +66,8 @@ for use in production.
 * (T260468) Increase "sites.site_global_key" to varbinary(64).
 * (T183759) Fix shell edge-cases in Windows.
 * (T257879) Drop PHP 7.2 support; require 7.3.19.
-* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T251661, CVE-2020-25827) SECURITY: User::pingLimiter: add user-global
+  rate limit type.
 * (T246991) User: enforce pingLimiter() expiry time.
 * (T256831) Rest: Handle Uri constructor exception.
 * (T259094) Fix RequestFromGlobalsTest failing in Travis CI.
