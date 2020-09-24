@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
  */
 
 class ParserOutput extends CacheTime {
+
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
@@ -41,155 +42,150 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var string|null The output text
 	 */
-	public $mText = null;
+	private $mText;
 
 	/**
 	 * @var array List of the full text of language links,
 	 *  in the order they appear.
 	 */
-	public $mLanguageLinks;
+	private $mLanguageLinks;
 
 	/**
 	 * @var array Map of category names to sort keys
 	 */
-	public $mCategories;
+	private $mCategories;
 
 	/**
 	 * @var array Page status indicators, usually displayed in top-right corner.
 	 */
-	public $mIndicators = [];
+	private $mIndicators = [];
 
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
 	 */
-	public $mTitleText;
+	private $mTitleText;
 
 	/**
 	 * @var int[][] 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 * @phan-var array<int,array<string,int>>
 	 */
-	public $mLinks = [];
+	private $mLinks = [];
 
 	/**
 	 * @var array Keys are DBKs for the links to special pages in the document.
 	 * @since 1.35
 	 */
-	public $mLinksSpecial = [];
+	private $mLinksSpecial = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplates = [];
+	private $mTemplates = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplateIds = [];
+	private $mTemplateIds = [];
 
 	/**
 	 * @var array DB keys of the images used, in the array key only
 	 */
-	public $mImages = [];
+	private $mImages = [];
 
 	/**
 	 * @var array DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
-	public $mFileSearchOptions = [];
+	private $mFileSearchOptions = [];
 
 	/**
 	 * @var array External link URLs, in the key only.
 	 */
-	public $mExternalLinks = [];
+	private $mExternalLinks = [];
 
 	/**
 	 * @var array 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
-	public $mInterwikiLinks = [];
+	private $mInterwikiLinks = [];
 
 	/**
 	 * @var bool Show a new section link?
 	 */
-	public $mNewSection = false;
+	private $mNewSection = false;
 
 	/**
 	 * @var bool Hide the new section link?
 	 */
-	public $mHideNewSection = false;
+	private $mHideNewSection = false;
 
 	/**
 	 * @var bool No gallery on category page? (__NOGALLERY__).
 	 */
-	public $mNoGallery = false;
+	private $mNoGallery = false;
 
 	/**
 	 * @var array Items to put in the <head> section
 	 */
-	public $mHeadItems = [];
+	private $mHeadItems = [];
 
 	/**
 	 * @var array Modules to be loaded by ResourceLoader
 	 */
-	public $mModules = [];
+	private $mModules = [];
 
 	/**
-	 * @var array Modules of which only the CSSS will be loaded by ResourceLoader.
+	 * @var array Modules of which only the CSS will be loaded by ResourceLoader.
 	 */
-	public $mModuleStyles = [];
+	private $mModuleStyles = [];
 
 	/**
 	 * @var array JavaScript config variable for mw.config combined with this page.
 	 */
-	public $mJsConfigVars = [];
+	private $mJsConfigVars = [];
 
 	/**
 	 * @var array Hook tags as per $wgParserOutputHooks.
 	 */
-	public $mOutputHooks = [];
+	private $mOutputHooks = [];
 
 	/**
 	 * @var array Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
-	public $mWarnings = [];
+	private $mWarnings = [];
 
 	/**
 	 * @var array Table of contents
 	 */
-	public $mSections = [];
+	private $mSections = [];
 
 	/**
 	 * @var array Name/value pairs to be cached in the DB.
 	 */
-	public $mProperties = [];
+	private $mProperties = [];
 
 	/**
 	 * @var string HTML of the TOC.
 	 */
-	public $mTOCHTML = '';
+	private $mTOCHTML = '';
 
 	/**
 	 * @var string Timestamp of the revision.
 	 */
-	public $mTimestamp;
+	private $mTimestamp;
 
 	/**
 	 * @var bool Whether OOUI should be enabled.
 	 */
-	public $mEnableOOUI = false;
+	private $mEnableOOUI = false;
 
 	/**
 	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
 	 */
 	private $mIndexPolicy = '';
-
-	/**
-	 * @var true[] List of ParserOptions (stored in the keys).
-	 */
-	private $mAccessedOptions = [];
 
 	/**
 	 * @var array extra data used by extensions.
@@ -451,6 +447,15 @@ class ParserOutput extends CacheTime {
 			$text
 		);
 		return $text;
+	}
+
+	/**
+	 * Adds a comment notice about cache state to the text of the page
+	 * @param string $msg
+	 * @internal used by ParserCache
+	 */
+	public function addCacheMessage( string $msg ) {
+		$this->mText .= "\n<!-- $msg\n -->\n";
 	}
 
 	/**
@@ -1159,18 +1164,6 @@ class ParserOutput extends CacheTime {
 			$this->mProperties = [];
 		}
 		return $this->mProperties;
-	}
-
-	/**
-	 * Returns the options from its ParserOptions which have been taken
-	 * into account to produce this output.
-	 * @return string[]
-	 */
-	public function getUsedOptions() {
-		if ( !isset( $this->mAccessedOptions ) ) {
-			return [];
-		}
-		return array_keys( $this->mAccessedOptions );
 	}
 
 	/**
