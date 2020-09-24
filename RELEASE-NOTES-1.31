@@ -1,8 +1,9 @@
 == MediaWiki 1.31.10 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.9 ===
+* Fixed issues relating to backporting of changes for T260485.
 
 == MediaWiki 1.31.9 ==
 
