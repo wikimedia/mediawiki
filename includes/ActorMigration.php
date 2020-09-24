@@ -183,6 +183,12 @@ class ActorMigration {
 
 	/**
 	 * Get actor ID from UserIdentity, if it exists
+	 *
+	 * @since 1.31.9
+	 *
+	 * @param IDatabase $db
+	 * @param UserIdentity $user
+	 * @return int|false
 	 */
 	public function getExistingActorId( IDatabase $db, UserIdentity $user ) {
 		$row = $db->selectRow(
@@ -202,17 +208,19 @@ class ActorMigration {
 	 * Attempt to assign an actor ID to the given user.
 	 * If it is already assigned, return the existing ID.
 	 *
-	 * @param IDatabase $dbw
+	 * @since 1.31.9
+	 *
+	 * @param IDatabase|int $dbw Either a database to read from, or the query flags to use
 	 * @param UserIdentity $user
 	 *
 	 * @return int The new actor ID
 	 */
-	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
+	public function getNewActorId( $dbw, UserIdentity $user ) {
 		$q = [
 			'actor_user' => $user->getId() ?: null,
 			'actor_name' => (string)$user->getName(),
 		];
-		if ( $dbw ) {
+		if ( $dbw instanceof IDatabase ) {
 			if ( $q['actor_user'] === null && User::isUsableName( $q['actor_name'] ) ) {
 				throw new CannotCreateActorException(
 					'Cannot create an actor for a usable name that is not an existing user'
@@ -240,9 +248,9 @@ class ActorMigration {
 					);
 				}
 			}
-			$this->invalidateCache();
+			User::newFromName( (string)$user->getName(), false )->invalidateCache();
 		} else {
-			list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
+			list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $dbw );
 			$db = wfGetDB( $index );
 			$actorId = (int)$db->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
 		}
