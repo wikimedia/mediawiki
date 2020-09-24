@@ -266,6 +266,8 @@ class ActorMigration {
 	 * Attempt to assign an actor ID to the given user.
 	 * If it is already assigned, return the existing ID.
 	 *
+	 * @since 1.35.0
+	 *
 	 * @param IDatabase $dbw
 	 * @param UserIdentity $user
 	 *
