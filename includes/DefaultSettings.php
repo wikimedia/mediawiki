@@ -142,7 +142,7 @@ $wgServerName = false;
  * should also be configured to send Strict-Transport-Security response headers.
  *
  * @var bool
- * @since 1.34.2
+ * @since 1.34.3
  */
 $wgForceHTTPS = false;
 
@@ -5683,9 +5683,13 @@ $wgApplyIpBlocksToXff = false;
  *         'edit' => [
  *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
  *             'user' => [ x, y ], // each logged-in user
+ *             // per username, across all sites (assumes names are global)
+ *             'global-user' => [ x, y ],
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
- *             'ip' => [ x, y ], // each anon and recent account
+ *             'ip' => [ x, y ], // each anon and recent account, across all sites
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *             'ip-all' => [ x, y ], // per ip, across all sites
+ *             'subnet-all' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
  *             'groupName' => [ x, y ], // by group membership
  *         ]
  *     ];
@@ -6095,7 +6099,7 @@ $wgCookieHttpOnly = true;
  * This only applies to login cookies, since the correct value for other
  * cookies depends on what kind of cookie it is.
  *
- * @since 1.34.2
+ * @since 1.34.3
  * @var string|null
  */
 $wgCookieSameSite = null;
@@ -6105,7 +6109,7 @@ $wgCookieSameSite = null;
  * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
  * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
  *
- * @since 1.34.2
+ * @since 1.34.3
  * @var bool
  */
 $wgUseSameSiteLegacyCookies = false;

@@ -1708,6 +1708,27 @@ abstract class Maintenance {
 	public static function requireTestsAutoloader() {
 		require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
 	}
+
+	/**
+	 * Utility function to parse a string (perhaps from a command line option)
+	 * into a list of integers (perhaps some kind of numeric IDs).
+	 *
+	 * @since 1.34.3
+	 *
+	 * @param string $text
+	 *
+	 * @return int[]
+	 */
+	protected function parseIntList( $text ) {
+		$ids = preg_split( '/[\s,;:|]+/', $text );
+		$ids = array_map(
+			function ( $id ) {
+				return (int)$id;
+			},
+			$ids
+		);
+		return array_filter( $ids );
+	}
 }
 
 /**

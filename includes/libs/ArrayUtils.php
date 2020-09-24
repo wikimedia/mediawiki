@@ -202,7 +202,7 @@ class ArrayUtils {
 	 * pointers of the input arrays to keep track of the current position
 	 * without referring to the keys.
 	 *
-	 * @since 1.34.2
+	 * @since 1.34.3
 	 *
 	 * @param array ...$inputArrays
 	 * @return array

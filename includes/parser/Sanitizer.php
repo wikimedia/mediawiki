@@ -1358,6 +1358,10 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function escapeIdInternal( $id, $mode ) {
+		// Truncate overly-long IDs.  This isn't an HTML limit, it's just
+		// griefer protection. [T251506]
+		$id = mb_substr( $id, 0, 1024 );
+
 		switch ( $mode ) {
 			case 'html5':
 				$id = str_replace( ' ', '_', $id );

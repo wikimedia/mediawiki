@@ -330,11 +330,17 @@ class WebInstaller extends Installer {
 			return true;
 		}
 
+		// Use secure cookies if we are on HTTPS
+		$options = [];
+		if ( $this->request->getProtocol() === 'https' ) {
+			$options['cookie_secure'] = '1';
+		}
+
 		$this->phpErrors = [];
 		set_error_handler( [ $this, 'errorHandler' ] );
 		try {
 			session_name( 'mw_installer_session' );
-			session_start();
+			session_start( $options );
 		} catch ( Exception $e ) {
 			restore_error_handler();
 			throw $e;
@@ -664,14 +670,12 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an information message box with an icon.
 	 *
-	 * @deprecated since 1.34.
 	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
 	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
 	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
 	 * @return string HTML
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
-		wfDeprecated( __METHOD__, '1.34' );
 		$html = ( $text instanceof HtmlArmor ) ?
 			HtmlArmor::getHtml( $text ) :
 			$this->parse( $text, true );

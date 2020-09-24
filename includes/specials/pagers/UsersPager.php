@@ -40,7 +40,7 @@ class UsersPager extends AlphabeticPager {
 	protected $userGroupCache;
 
 	/** @var string */
-	protected $requestedGroup;
+	public $requestedGroup;
 
 	/** @var bool */
 	protected $editsOnly;

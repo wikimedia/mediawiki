@@ -1316,40 +1316,21 @@ function wfMsgReplaceArgs( $message, $args ) {
 }
 
 /**
- * Fetch server name for use in error reporting etc.
- * Use real server name if available, so we know which machine
- * in a server farm generated the current page.
+ * Get host name of the current machine, for use in error reporting.
+ *
+ * This helps to know which machine in a data center generated the
+ * current page.
  *
  * @return string
  */
 function wfHostname() {
-	static $host;
-	if ( is_null( $host ) ) {
-		# Hostname overriding
-		global $wgOverrideHostname;
-		if ( $wgOverrideHostname !== false ) {
-			# Set static and skip any detection
-			$host = $wgOverrideHostname;
-			return $host;
-		}
-
-		if ( function_exists( 'posix_uname' ) ) {
-			// This function not present on Windows
-			$uname = posix_uname();
-		} else {
-			$uname = false;
-		}
-		if ( is_array( $uname ) && isset( $uname['nodename'] ) ) {
-			$host = $uname['nodename'];
-		} elseif ( getenv( 'COMPUTERNAME' ) ) {
-			# Windows computer name
-			$host = getenv( 'COMPUTERNAME' );
-		} else {
-			# This may be a virtual server.
-			$host = $_SERVER['SERVER_NAME'];
-		}
+	// Hostname overriding
+	global $wgOverrideHostname;
+	if ( $wgOverrideHostname !== false ) {
+		return $wgOverrideHostname;
 	}
-	return $host;
+
+	return php_uname( 'n' ) ?: 'unknown';
 }
 
 /**

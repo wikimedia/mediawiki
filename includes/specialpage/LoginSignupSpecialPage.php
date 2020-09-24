@@ -898,6 +898,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'rememberMe' => [
 					// option for saving the user token to a cookie
 					'type' => 'check',
+					'cssclass' => 'mw-userlogin-rememberme',
 					'name' => 'wpRemember',
 					'label-message' => $this->msg( 'userlogin-remembermypassword' )
 						->numParams( $expirationDays ),
