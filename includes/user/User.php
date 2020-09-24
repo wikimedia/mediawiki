@@ -2528,50 +2528,11 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->load();
 		}
 
-		// Currently $this->mActorId might be null if $this was loaded from a
-		// cache entry that was written when $wgActorTableSchemaMigrationStage
-		// was MIGRATION_OLD. Once that is no longer a possibility (i.e. when
-		// User::VERSION is incremented after $wgActorTableSchemaMigrationStage
-		// has been removed), that condition may be removed.
-		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
-			$q = [
-				'actor_user' => $this->getId() ?: null,
-				'actor_name' => (string)$this->getName(),
-			];
-			if ( $dbw ) {
-				if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
-					throw new CannotCreateActorException(
-						'Cannot create an actor for a usable name that is not an existing user'
-					);
-				}
-				if ( $q['actor_name'] === '' ) {
-					throw new CannotCreateActorException( 'Cannot create an actor for a user with no name' );
-				}
-				$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
-				if ( $dbw->affectedRows() ) {
-					$this->mActorId = (int)$dbw->insertId();
-				} else {
-					// Outdated cache?
-					// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-					$this->mActorId = (int)$dbw->selectField(
-						'actor',
-						'actor_id',
-						$q,
-						__METHOD__,
-						[ 'LOCK IN SHARE MODE' ]
-					);
-					if ( !$this->mActorId ) {
-						throw new CannotCreateActorException(
-							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
-						);
-					}
-				}
-				$this->invalidateCache();
-			} else {
-				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
-				$db = wfGetDB( $index );
-				$this->mActorId = (int)$db->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
-			}
+		if ( !$this->mActorId && $dbw ) {
+			$migration = MediaWikiServices::getInstance()->getActorMigration();
+			$this->mActorId = $migration->getNewActorId( $dbw, $this );
+
+			$this->invalidateCache();
 			$this->setItemLoaded( 'actor' );
 		}
 

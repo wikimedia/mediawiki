@@ -1,6 +1,12 @@
-== MediaWiki 1.31.9 ==
+== MediaWiki 1.31.10 ==
 
 THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.31.9 ===
+
+== MediaWiki 1.31.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.8 ===
 * In the web installer, use secure session cookies.
@@ -25,21 +31,25 @@ THIS IS NOT A RELEASE YET
 * (T258390) Add CentralIdLookup::factoryNonLocal().
 * (T246991) User: Fix pingLimiter() to use makeGlobalKey() for global rate
   limits.
-* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T251661, CVE-2020-25827) SECURITY: User::pingLimiter: add user-global rate
+  limit type.
 * (T246991) User: enforce pingLimiter() expiry time.
 * (T260232) don't include null page ids in query list for category dumps.
 * (T251506) Sanitizer: Truncate IDs to a reasonable length.
 * Explicitly wrap some XML calls in libxml_disable_entity_loader().
 * (T263455 T247285) Set EnableJavaScriptTest to true in
   includes/DevelopmentSettings.php.
-* (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
-  users.
+* (T232568, CVE-2020-25813) SECURITY: Special:UserRights exposes the existence
+  of hidden users.
 * (T258763, CVE-2020-17367, CVE-2020-17368) SECURITY: Prevent invoking
   firejail's --output functionality.
 * (T86738, CVE-2020-25814) SECURITY: mediawiki.jqueryMsg: Sanitize URLs and
   'style' attribute.
 * (T115888, CVE-2020-25828) SECURITY: mediawiki.js: Escape HTML in
   mw.message( ... ).parse().
+* (T260485, CVE-2020-25869) SECURITY: ActorMigration: Load user from the correct
+  database.
+* (T260485, CVE-2020-25869) SECURITY: ensure actor ID from correct wiki is used.
 
 == MediaWiki 1.31.8 ==
 
