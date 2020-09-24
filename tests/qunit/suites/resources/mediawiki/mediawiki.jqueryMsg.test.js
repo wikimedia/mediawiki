@@ -658,6 +658,16 @@
 			'External link message processed when format is \'parse\''
 		);
 		assert.htmlEqual(
+			formatParse( 'external-link-replace', '/wiki/Special:Version' ),
+			'Foo <a href="/wiki/Special:Version">bar</a>',
+			'External link message allows relative URL when processed'
+		);
+		assert.htmlEqual(
+			formatParse( 'external-link-replace', '//example.com' ),
+			'Foo <a href="//example.com">bar</a>',
+			'External link message allows protocol-relative URL when processed'
+		);
+		assert.htmlEqual(
 			formatParse( 'external-link-replace', $( '<i>' ) ),
 			'Foo <i>bar</i>',
 			'External link message processed as jQuery object when format is \'parse\''
@@ -792,6 +802,24 @@
 		verifyGetMessageFunction( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result', 'plain', false );
 
 		mw.jqueryMsg.getMessageFunction = oldGMF;
+	} );
+
+	// Tests that HTML in message parameters is escaped,
+	// whether the message looks like wikitext or not.
+	QUnit.test( 'mw.Message.prototype.parser monkey-patch HTML-escape', function ( assert ) {
+		mw.messages.set( '1x-wikitext', '<span>$1</span>' );
+		assert.htmlEqual(
+			mw.message( '1x-wikitext', '<script>alert( "1x-wikitext test" )</script>' ).parse(),
+			'<span>&lt;script&gt;alert( &quot;1x-wikitext test&quot; )&lt;/script&gt;</span>',
+			'Message parameters are escaped if message contains wikitext'
+		);
+
+		mw.messages.set( '1x-plain', '$1' );
+		assert.htmlEqual(
+			mw.message( '1x-plain', '<script>alert( "1x-plain test" )</script>' ).parse(),
+			'&lt;script&gt;alert( &quot;1x-plain test&quot; )&lt;/script&gt;',
+			'Message parameters are still escaped if message contains no wikitext'
+		);
 	} );
 
 	formatnumTests = [
@@ -1151,6 +1179,38 @@
 		);
 
 		assert.equal( logSpy.callCount, 2, 'mw.log.warn calls' );
+	} );
+
+	QUnit.test( 'Do not allow javascript: urls', function ( assert ) {
+		mw.messages.set( 'illegal-url', '[javascript:alert(1) foo]' );
+		mw.messages.set( 'illegal-url-param', '[$1 foo]' );
+
+		this.suppressWarnings();
+
+		assert.strictEqual(
+			formatParse( 'illegal-url' ),
+			'[javascript:alert(1) foo]',
+			'illegal-url: \'parse\' format'
+		);
+
+		assert.strictEqual(
+			// eslint-disable-next-line no-script-url
+			formatParse( 'illegal-url-param', 'javascript:alert(1)' ),
+			'[javascript:alert(1) foo]',
+			'illegal-url-param: \'parse\' format'
+		);
+	} );
+
+	QUnit.test( 'Do not allow arbitrary style', function ( assert ) {
+		mw.messages.set( 'illegal-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+
+		this.suppressWarnings();
+
+		assert.strictEqual(
+			formatParse( 'illegal-style' ),
+			'&lt;span style="background-image:url( http://example.com )"&gt;bar&lt;/span&gt;',
+			'illegal-style: \'parse\' format'
+		);
 	} );
 
 	QUnit.test( 'Integration', function ( assert ) {

@@ -695,7 +695,7 @@
 			 * @return {boolean} true if this is HTML is allowed, false otherwise
 			 */
 			function isAllowedHtml( startTagName, endTagName, attributes ) {
-				var i, len, attributeName;
+				var i, len, attributeName, badStyle;
 
 				startTagName = startTagName.toLowerCase();
 				endTagName = endTagName.toLowerCase();
@@ -703,10 +703,16 @@
 					return false;
 				}
 
+				badStyle = /[\000-\010\013\016-\037\177]|expression|filter\s*:|accelerator\s*:|-o-link\s*:|-o-link-source\s*:|-o-replace\s*:|url\s*\(|image\s*\(|image-set\s*\(/i;
+
 				for ( i = 0, len = attributes.length; i < len; i += 2 ) {
 					attributeName = attributes[ i ];
 					if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
 						( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
+						return false;
+					}
+					if ( attributeName === 'style' && attributes[ i + 1 ].search( badStyle ) !== -1 ) {
+						mw.log( 'HTML tag not parsed due to dangerous style attribute' );
 						return false;
 					}
 				}
@@ -1138,7 +1144,8 @@
 		extlink: function ( nodes ) {
 			var $el,
 				arg = nodes[ 0 ],
-				contents = nodes[ 1 ];
+				contents = nodes[ 1 ],
+				target;
 			if ( arg instanceof jQuery && !arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 				$el = arg;
 			} else {
@@ -1156,7 +1163,16 @@
 						}
 					} );
 				} else {
-					$el.attr( 'href', textify( arg ) );
+				target = textify( arg );
+					if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
+						$el.attr( 'href', target );
+					} else {
+						mw.log( 'External link in message had illegal target ' + target );
+						return appendWithoutParsing(
+							$( '<span>' ),
+							[ '[' + target + ' ' ].concat( contents ).concat( ']' )
+						).contents();
+					}
 				}
 			}
 			return appendWithoutParsing( $el.empty(), contents );
