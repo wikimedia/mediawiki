@@ -233,6 +233,7 @@
 	"talk": "שיחה",
 	"views": "צפיות",
 	"toolbox": "כלים",
+	"cactions": "עוד",
 	"tool-link-userrights": "שינוי הרשאות {{GENDER:$1|המשתמש|המשתמשת}}",
 	"tool-link-userrights-readonly": "צפייה בהרשאות {{GENDER:$1|המשתמש|המשתמשת}}",
 	"tool-link-emailuser": "שליחת דוא\"ל {{GENDER:$1|למשתמש|למשתמשת}}",

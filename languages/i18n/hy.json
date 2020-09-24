@@ -218,6 +218,7 @@
 	"talk": "Քննարկում",
 	"views": "Դիտումները",
 	"toolbox": "Գործիքներ",
+	"cactions": "Ավելին",
 	"tool-link-userrights": "Փոփոխել {{GENDER:$1|մասնակից}} խմբեր",
 	"tool-link-userrights-readonly": "Տեսնել {{GENDER:$1|մասնակից}} խումբը",
 	"tool-link-emailuser": "Ուղարկել էլ. նամակ այս {{GENDER:$1|մասնակցին}}",

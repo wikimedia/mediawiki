@@ -293,6 +293,7 @@
 	"talk": "Dyskusja",
 	"views": "Widok",
 	"toolbox": "Narzędzia",
+	"cactions": "Więcej",
 	"tool-link-userrights": "Zmiana grup {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"tool-link-userrights-readonly": "Zobacz grupy {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"tool-link-emailuser": "Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}",

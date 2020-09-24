@@ -224,6 +224,7 @@
 	"talk": "Vaten",
 	"views": "Asayışi",
 	"toolbox": "Haceti",
+	"cactions": "Zêde",
 	"tool-link-userrights": "Grubanê {{GENDER:$1|karberi}} bıvırnë",
 	"tool-link-userrights-readonly": "Grubanê {{GENDER:$1|karberi}} bıvin",
 	"tool-link-emailuser": "E-posta ya në {{GENDER:$1|karberi}}",
