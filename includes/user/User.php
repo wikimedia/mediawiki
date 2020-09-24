@@ -2528,11 +2528,17 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->load();
 		}
 
-		if ( !$this->mActorId && $dbw ) {
+		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
 			$migration = MediaWikiServices::getInstance()->getActorMigration();
+			if ( !$dbw ) {
+				// Read from a database, flags are used for wfGetDB()
+				$dbw = $this->queryFlagsUsed;
+			}
 			$this->mActorId = $migration->getNewActorId( $dbw, $this );
 
-			$this->invalidateCache();
+			if ( $dbw instanceof IDatabase ) {
+				$this->invalidateCache();
+			}
 			$this->setItemLoaded( 'actor' );
 		}
 
