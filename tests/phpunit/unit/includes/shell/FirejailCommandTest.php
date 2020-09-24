@@ -85,7 +85,7 @@ class FirejailCommandTest extends MediaWikiUnitTestCase {
 	 */
 	public function testParamsOutput() {
 		$this->expectException( RuntimeException::class );
-		( new FirejailCommand( 'firejail' ) )->params( 'echo', 'a', '--output=/tmp/fjout',';id' );
+		( new FirejailCommand( 'firejail' ) )->params( 'echo', 'a', '--output=/tmp/fjout', ';id' );
 	}
 
 }
