@@ -1274,7 +1274,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// Invalid user_id
 		$this->mId = 0;
-		$this->loadDefaults();
+		$this->loadDefaults( 'Unknown user' );
 
 		return false;
 	}

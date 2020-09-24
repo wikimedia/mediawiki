@@ -2645,4 +2645,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 	}
+
+	/**
+	 * @covers User::loadFromDatabase
+	 * @covers User::loadDefaults
+	 */
+	public function testBadUserID() {
+		$user = User::newFromId( 999999999 );
+		$this->assertSame( 'Unknown user', $user->getName() );
+	}
 }

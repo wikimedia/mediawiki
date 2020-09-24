@@ -5235,7 +5235,7 @@ $wgReservedUsernames = [
 	'Maintenance script', // Maintenance scripts which perform editing, image import script
 	'Template namespace initialisation script', // Used in 1.2->1.3 upgrade
 	'ScriptImporter', // Default user name used by maintenance/importSiteScripts.php
-	'Unknown user', // Used in WikiImporter and RevisionStore for revisions with no author
+	'Unknown user', // Used in WikiImporter & RevisionStore for revisions with no author and in User for invalid user id
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
 	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
