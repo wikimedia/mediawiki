@@ -34,6 +34,10 @@ for use in production.
   cleanupTable.inc.
 * (T263606) Set fake time, to avoid flaky tests.
 * (T261325) Add FindMissingActors script.
+* (T262364) shell: Don't blacklist /run/firejail.
+* (T263655) NewPagesPager: Ignore nonexistent namespaces.
+* Update specialPageAliases and magicWords for Egyptian Arabic (arz).
+* (T261347) ParserOutput: don't throw on bad editsection.
 * (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
   Special:Contributions.
 * (T256171, CVE-2020-25815) SECURITY: Unescaped message used in HTML within
@@ -47,6 +51,12 @@ for use in production.
 * (T260485, CVE-2020-25869) SECURITY: ActorMigration: Load user from the correct
   database.
 * (T260485, CVE-2020-25869) SECURITY: ensure actor ID from correct wiki is used.
+* Add Finnish special page aliases.
+* Fix GuzzleHttpRequest request headers.
+* Fix description for pruneFileCache.php.
+* emptyUserGroup.php: handle more than 5000 users.
+* Make ApiSandbox copyable URL absolute.
+* (T261087) Add a link from a deleted page to that page's logs.
 
 == MediaWiki 1.35.0-rc.3 ==
 
