@@ -58,15 +58,15 @@ class LoginHelper extends ContextSource {
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
 	 * @param string $returnTo
 	 * @param array|string $returnToQuery
-	 * @param bool $stickHTTPS Keep redirect link on HTTPS
+	 * @param bool $stickHTTPS Keep redirect link on HTTPS. Ignored (treated as
+	 *   true) if $wgForceHTTPS is true.
 	 */
 	public function showReturnToPage(
 		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
 	) {
-		global $wgRedirectOnLogin, $wgSecureLogin;
-
+		$config = $this->getConfig();
 		if ( $type !== 'error' && $wgRedirectOnLogin !== null ) {
-			$returnTo = $wgRedirectOnLogin;
+			$returnTo = $config->get( 'RedirectOnLogin' );
 			$returnToQuery = [];
 		} elseif ( is_string( $returnToQuery ) ) {
 			$returnToQuery = wfCgiToArray( $returnToQuery );
@@ -77,12 +77,14 @@ class LoginHelper extends ContextSource {
 
 		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 
-		if ( $wgSecureLogin && !$stickHTTPS ) {
-			$options = [ 'http' ];
-			$proto = PROTO_HTTP;
-		} elseif ( $wgSecureLogin ) {
+		if ( $config->get( 'ForceHTTPS' )
+			|| ( $config->get( 'SecureLogin' ) && $stickHTTPS )
+		) {
 			$options = [ 'https' ];
 			$proto = PROTO_HTTPS;
+		} elseif ( $config->get( 'SecureLogin' ) && !$stickHTTPS ) {
+			$options = [ 'http' ];
+			$proto = PROTO_HTTP;
 		} else {
 			$options = [];
 			$proto = PROTO_RELATIVE;

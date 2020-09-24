@@ -2065,11 +2065,16 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
 	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
+	 *
 	 * @return bool True if a rate limiter was tripped
+	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
+
+		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'ratelimit' );
+
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !Hooks::run( 'PingLimiter', [ &$user, $action, &$result, $incrBy ] ) ) {
@@ -2091,62 +2096,85 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
+		$logger->debug( __METHOD__ . ": limiting $action rate for {$this->getName()}" );
+
 		$keys = [];
 		$id = $this->getId();
-		$userLimit = false;
 		$isNewbie = $this->isNewbie();
 		$cache = ObjectCache::getLocalClusterInstance();
 
 		if ( $id == 0 ) {
-			// limits for anons
+			// "shared anon" limit, for all anons combined
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 			}
 		} else {
-			// limits for logged-in users
-			if ( isset( $limits['user'] ) ) {
-				$userLimit = $limits['user'];
+			// "global per name" limit, across sites
+			if ( isset( $limits['user-global'] ) ) {
+				$lookup = CentralIdLookup::factoryNonLocal();
+
+				$centralId = $lookup
+					? $lookup->centralIdFromLocalUser( $this, CentralIdLookup::AUDIENCE_RAW )
+					: 0;
+
+				if ( $centralId ) {
+					// We don't have proper realms, use provider ID.
+					$realm = $lookup->getProviderId();
+
+					$globalKey = $cache->makeGlobalKey( 'limiter', $action, 'user-global',
+						$realm, $centralId );
+				} else {
+					// Fall back to a local key for a local ID
+					$globalKey = $cache->makeKey( 'limiter', $action, 'user-global',
+						'local', $id );
+				}
+				$keys[$globalKey] = $limits['user-global'];
 			}
 		}
 
-		// limits for anons and for newbie logged-in users
 		if ( $isNewbie ) {
-			// ip-based limits
+			// "per ip" limit for anons and newbie users
 			if ( isset( $limits['ip'] ) ) {
 				$ip = $this->getRequest()->getIP();
-				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
+				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip', $ip )] = $limits['ip'];
 			}
-			// subnet-based limits
+			// "per subnet" limit for anons and newbie users
 			if ( isset( $limits['subnet'] ) ) {
 				$ip = $this->getRequest()->getIP();
 				$subnet = IP::getSubnet( $ip );
 				if ( $subnet !== false ) {
-					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet', $subnet )] = $limits['subnet'];
 				}
 			}
 		}
 
-		// Check for group-specific permissions
-		// If more than one group applies, use the group with the highest limit ratio (max/period)
-		foreach ( $this->getGroups() as $group ) {
-			if ( isset( $limits[$group] ) ) {
-				if ( $userLimit === false
-					|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
-				) {
-					$userLimit = $limits[$group];
-				}
-			}
+		// determine the "per user account" limit
+		$userLimit = false;
+		if ( $id !== 0 && isset( $limits['user'] ) ) {
+			// default limit for logged-in users
+			$userLimit = $limits['user'];
 		}
-
-		// limits for newbie logged-in users (override all the normal user limits)
+		// limits for newbie logged-in users (overrides all the normal user limits)
 		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
 			$userLimit = $limits['newbie'];
+		} else {
+			// Check for group-specific limits
+			// If more than one group applies, use the highest allowance (if higher than the default)
+			foreach ( $this->getGroups() as $group ) {
+				if ( isset( $limits[$group] ) ) {
+					if ( $userLimit === false
+						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
+					) {
+						$userLimit = $limits[$group];
+					}
+				}
+			}
 		}
 
 		// Set the user limit key
 		if ( $userLimit !== false ) {
 			list( $max, $period ) = $userLimit;
-			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
+			$logger->debug( __METHOD__ . ": effective user limit: $max in {$period}s" );
 			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
@@ -2156,7 +2184,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// ignore if user limit is more permissive
 			if ( $isNewbie || $userLimit === false
 				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
-				$keys["mediawiki:limiter:$action:ip-all:$ip"] = $limits['ip-all'];
+				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip-all', $ip )] = $limits['ip-all'];
 			}
 		}
 
@@ -2169,34 +2197,94 @@ class User implements IDBAccessObject, UserIdentity {
 				if ( $isNewbie || $userLimit === false
 					|| $limits['ip-all'][0] / $limits['ip-all'][1]
 					> $userLimit[0] / $userLimit[1] ) {
-					$keys["mediawiki:limiter:$action:subnet-all:$subnet"] = $limits['subnet-all'];
+					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet-all', $subnet )]
+						= $limits['subnet-all'];
 				}
 			}
 		}
 
+		// XXX: We may want to use $cache->getCurrentTime() here, but that would make it
+		//      harder to test for T246991. Also $cache->getCurrentTime() is documented
+		//      as being for testing only, so it apparently should not be called here.
+		$now = (int)wfTimestamp( TS_UNIX );
+		$clockFudge = 3; // avoid log spam when a clock is slightly off
+
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
-			list( $max, $period ) = $limit;
-			$summary = "(limit $max in {$period}s)";
-			$count = $cache->get( $key );
-			// Already pinged?
-			if ( $count ) {
-				if ( $count >= $max ) {
-					wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
-						"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
-					$triggered = true;
-				} else {
-					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
+			// Do the update in a merge callback, for atomicity.
+			// To use merge(), we need to explicitly track the desired expiry timestamp.
+			// This tracking was introduced to investigate T246991. Once it is no longer needed,
+			// we could go back to incrWithInit(), though that has more potential for race
+			// conditions between the get() and incrWithInit() calls.
+			$cache->merge(
+				$key,
+				function ( $cache, $key, $data, &$expiry )
+					use ( $action, $logger, &$triggered, $now, $clockFudge, $limit, $incrBy )
+				{
+					// phan is confused because &can-bypass's value is a bool, so it assumes
+					// that $userLimit is also a bool here.
+					// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
+					list( $max, $period ) = $limit;
+
+					$expiry = $now + (int)$period;
+					$count = 0;
+
+					// Already pinged?
+					if ( $data ) {
+						// NOTE: in order to investigate T246991, we write the expiry time
+						//       into the payload, along with the count.
+						$fields = explode( '|', $data );
+						$storedCount = (int)( $fields[0] ?? 0 );
+						$storedExpiry = (int)( $fields[1] ?? PHP_INT_MAX );
+
+						// Found a stale entry. This should not happen!
+						if ( $storedExpiry < ( $now + $clockFudge ) ) {
+							$logger->info(
+								'User::pingLimiter: '
+								. 'Stale rate limit entry, cache key failed to expire (T246991)',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $storedCount,
+									'key' => $key,
+									'expiry' => MWTimestamp::convert( TS_DB, $storedExpiry ),
+								]
+							);
+						} else {
+							// NOTE: We'll keep the original expiry when bumping counters,
+							//       resulting in a kind of fixed-window throttle.
+							$expiry = min( $storedExpiry, $now + (int)$period );
+							$count = $storedCount;
+						}
+					}
+
+					// Limit exceeded!
+					if ( $count >= $max ) {
+						if ( !$triggered ) {
+							$logger->info(
+								'User::pingLimiter: User tripped rate limit',
+								[
+									'action' => $action,
+									'user' => $this->getName(),
+									'ip' => $this->getRequest()->getIP(),
+									'limit' => $max,
+									'period' => $period,
+									'count' => $count,
+									'key' => $key
+								]
+							);
+						}
+
+						$triggered = true;
+					}
+
+					$count += $incrBy;
+					$data = "$count|$expiry";
+					return $data;
 				}
-			} else {
-				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				if ( $incrBy > 0 ) {
-					$cache->add( $key, 0, intval( $period ) ); // first ping
-				}
-			}
-			if ( $incrBy > 0 ) {
-				$cache->incr( $key, $incrBy );
-			}
+			);
 		}
 
 		return $triggered;
@@ -2440,49 +2528,16 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->load();
 		}
 
-		// Currently $this->mActorId might be null if $this was loaded from a
-		// cache entry that was written when $wgActorTableSchemaMigrationStage
-		// was MIGRATION_OLD. Once that is no longer a possibility (i.e. when
-		// User::VERSION is incremented after $wgActorTableSchemaMigrationStage
-		// has been removed), that condition may be removed.
 		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
-			$q = [
-				'actor_user' => $this->getId() ?: null,
-				'actor_name' => (string)$this->getName(),
-			];
-			if ( $dbw ) {
-				if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
-					throw new CannotCreateActorException(
-						'Cannot create an actor for a usable name that is not an existing user'
-					);
-				}
-				if ( $q['actor_name'] === '' ) {
-					throw new CannotCreateActorException( 'Cannot create an actor for a user with no name' );
-				}
-				$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
-				if ( $dbw->affectedRows() ) {
-					$this->mActorId = (int)$dbw->insertId();
-				} else {
-					// Outdated cache?
-					// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-					$this->mActorId = (int)$dbw->selectField(
-						'actor',
-						'actor_id',
-						$q,
-						__METHOD__,
-						[ 'LOCK IN SHARE MODE' ]
-					);
-					if ( !$this->mActorId ) {
-						throw new CannotCreateActorException(
-							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
-						);
-					}
-				}
+			$migration = MediaWikiServices::getInstance()->getActorMigration();
+			if ( !$dbw ) {
+				// Read from a database, flags are used for wfGetDB()
+				$dbw = $this->queryFlagsUsed;
+			}
+			$this->mActorId = $migration->getNewActorId( $dbw, $this );
+
+			if ( $dbw instanceof IDatabase ) {
 				$this->invalidateCache();
-			} else {
-				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
-				$db = wfGetDB( $index );
-				$this->mActorId = (int)$db->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
 			}
 			$this->setItemLoaded( 'actor' );
 		}
@@ -3440,7 +3495,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		global $wgSecureLogin;
+		global $wgForceHTTPS, $wgSecureLogin;
+		if ( $wgForceHTTPS ) {
+			return true;
+		}
 		if ( !$wgSecureLogin ) {
 			return false;
 		} else {

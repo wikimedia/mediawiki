@@ -82,4 +82,12 @@ class FirejailCommandTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expected, $output[0], $desc );
 	}
 
+	/**
+	 * @covers \MediaWiki\Shell\FirejailCommand::params
+	 */
+	public function testParamsOutput() {
+		$this->expectException( RuntimeException::class );
+		( new FirejailCommand( 'firejail' ) )->params( 'echo', 'a', '--output=/tmp/fjout', ';id' );
+	}
+
 }

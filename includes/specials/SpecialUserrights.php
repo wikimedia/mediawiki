@@ -553,6 +553,14 @@ class UserrightsPage extends SpecialPage {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
+		if ( $user instanceof User &&
+			$user->isHidden() &&
+			!$user->isAllowed( 'hideuser' )
+		) {
+			// Cannot see hidden users, pretend they don't exist
+			return Status::newFatal( 'nosuchusershort', $username );
+		}
+
 		return Status::newGood( $user );
 	}
 

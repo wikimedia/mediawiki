@@ -127,6 +127,26 @@ $wgServerName = false;
  */
 
 /**
+ * If this is true, when an insecure HTTP request is received, always redirect
+ * to HTTPS. This overrides and disables the preferhttps user preference, and it
+ * overrides $wgSecureLogin and the CanIPUseHTTPS hook.
+ *
+ * $wgServer may be either https or protocol-relative. If $wgServer starts with
+ * "http://", an exception will be thrown.
+ *
+ * If a reverse proxy or CDN is used to forward requests from HTTPS to HTTP,
+ * the request header "X-Forwarded-Proto: https" should be sent to suppress
+ * the redirect.
+ *
+ * In addition to setting this to true, for optimal security, the web server
+ * should also be configured to send Strict-Transport-Security response headers.
+ *
+ * @var bool
+ * @since 1.31.9
+ */
+$wgForceHTTPS = false;
+
+/**
  * The path we should point to.
  * It might be a virtual path in case with use apache mod_rewrite for example.
  *
@@ -5630,9 +5650,13 @@ $wgApplyIpBlocksToXff = false;
  *         'edit' => [
  *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
  *             'user' => [ x, y ], // each logged-in user
+ *             // per username, across all sites (assumes names are global)
+ *             'global-user' => [ x, y ],
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
- *             'ip' => [ x, y ], // each anon and recent account
+ *             'ip' => [ x, y ], // each anon and recent account, across all sites
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *             'ip-all' => [ x, y ], // per ip, across all sites
+ *             'subnet-all' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
  *             'groupName' => [ x, y ], // by group membership
  *         ]
  *     ];
@@ -5989,7 +6013,11 @@ $wgCookiePath = '/';
  * Whether the "secure" flag should be set on the cookie. This can be:
  *   - true:      Set secure flag
  *   - false:     Don't set secure flag
- *   - "detect":  Set the secure flag if $wgServer is set to an HTTPS URL
+ *   - "detect":  Set the secure flag if $wgServer is set to an HTTPS URL,
+ *                or if $wgForceHTTPS is true.
+ *
+ * If $wgForceHTTPS is true, session cookies will be secure regardless of this
+ * setting. However, other cookies will still be affected.
  */
 $wgCookieSecure = 'detect';
 
@@ -6014,6 +6042,28 @@ $wgCookiePrefix = false;
  * XSS attack.
  */
 $wgCookieHttpOnly = true;
+
+/**
+ * The SameSite cookie attribute used for login cookies. This can be "Lax",
+ * "Strict", "None" or empty/null to omit the attribute.
+ *
+ * This only applies to login cookies, since the correct value for other
+ * cookies depends on what kind of cookie it is.
+ *
+ * @since 1.31.9
+ * @var string|null
+ */
+$wgCookieSameSite = null;
+
+/**
+ * If true, when a cross-site cookie with SameSite=None is sent, a legacy
+ * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
+ * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
+ *
+ * @since 1.31.9
+ * @var bool
+ */
+$wgUseSameSiteLegacyCookies = false;
 
 /**
  * A list of cookies that vary the cache (for use by extensions)

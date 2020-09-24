@@ -377,7 +377,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 		// Only show prefershttps if secure login is turned on
-		if ( $this->config->get( 'SecureLogin' ) && $canIPUseHTTPS ) {
+		if ( !$this->config->get( 'ForceHTTPS' )
+			&& $this->config->get( 'SecureLogin' )
+			&& $canIPUseHTTPS
+		) {
 			$defaultPreferences['prefershttps'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',
