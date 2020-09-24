@@ -268,7 +268,7 @@ class ActorMigration {
 			'actor_user' => $user->getId() ?: null,
 			'actor_name' => (string)$user->getName(),
 		];
-		if ( $q['actor_user'] === null && User::isUsable( $q['actor_name'] ) ) {
+		if ( $q['actor_user'] === null && User::isUsableName( $q['actor_name'] ) ) {
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a usable name that is not an existing user: ' .
 				"user_id={$user->getId()} user_name=\"{$user->getName()}\""
