@@ -2,7 +2,7 @@
 
 == MediaWiki 1.34.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.34 branch.
 
 === Changes since MediaWiki 1.34.2 ===
 * In the web installer, use secure session cookies.
@@ -38,7 +38,10 @@ THIS IS NOT A RELEASE YET
 * (T258390) Add CentralIdLookup::factoryNonLocal().
 * (T246991) User: Fix pingLimiter() to use makeGlobalKey() for global rate
   limits.
-* (T251661) User::pingLimiter: add user-global rate limit type.
+* (T232568, CVE-2020-25813) SECURITY: Special:UserRights exposes the existence
+  of hidden users.
+* (T251661, CVE-2020-25827) SECURITY: User::pingLimiter: add user-global rate
+  limit type.
 * (T246991) User: enforce pingLimiter() expiry time.
 * (T260232) don't include null page ids in query list for category dumps.
 * (T251506) Sanitizer: Truncate IDs to a reasonable length.
@@ -46,8 +49,8 @@ THIS IS NOT A RELEASE YET
 * Explicitly wrap some XML calls in libxml_disable_entity_loader().
 * (T263455 T247285) Set EnableJavaScriptTest to true in
   includes/DevelopmentSettings.php.
-* (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
-  users.
+* (T232568, CVE-2020-25813) SECURITY: SpecialUserrights: If a viewer lacks
+  `hideuser`, ignore hidden users.
 * (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
   Special:Contributions.
 * (T256171, CVE-2020-25815) SECURITY: Unescaped message used in HTML within
