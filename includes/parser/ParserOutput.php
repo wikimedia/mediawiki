@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Output of the PHP parser.
  *
@@ -372,7 +374,17 @@ class ParserOutput extends CacheTime {
 					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
 
 					if ( !is_object( $editsectionPage ) ) {
-						throw new MWException( "Bad parser output text." );
+						LoggerFactory::getInstance( 'Parser' )
+							->error(
+								'ParserOutput::getText(): bad title in editsection placeholder',
+								[
+									'placeholder' => $m[0],
+									'editsectionPage' => $m[1],
+									'titletext' => $this->getTitleText(),
+									'phab' => 'T261347'
+								]
+							);
+						return '';
 					}
 
 					return $skin->doEditSectionLink(
