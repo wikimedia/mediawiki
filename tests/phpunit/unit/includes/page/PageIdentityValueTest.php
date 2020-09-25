@@ -104,4 +104,45 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 			$value->__toString()
 		);
 	}
+
+	public function provideIsSamePageAs() {
+		yield [
+			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			true
+		];
+		yield [
+			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			true
+		];
+		yield [
+			new PageIdentityValue( 0, 0, 'Foo', PageIdentity::LOCAL ),
+			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
+			false
+		];
+		yield [
+			new PageIdentityValue( 0, 0, 'Foo', PageIdentity::LOCAL ),
+			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
+			false
+		];
+		yield [
+			new PageIdentityValue( 1, 0, 'Foo', '' ),
+			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
+			false
+		];
+		yield [
+			new PageIdentityValue( 0, 0, 'Foo', '' ),
+			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsSamePageAs
+	 */
+	public function testIsSamePageAs( PageIdentityValue $a, PageIdentityValue $b, $expected ) {
+		$this->assertSame( $expected, $a->isSamePageAs( $b ) );
+		$this->assertSame( $expected, $b->isSamePageAs( $a ) );
+	}
 }

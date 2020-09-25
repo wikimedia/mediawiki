@@ -184,6 +184,20 @@ interface PageIdentity {
 	public function getDBkey();
 
 	/**
+	 * Checks whether the given PageIdentity refers to the same page as this PageIdentity.
+	 *
+	 * Two PageIdentity instances are considered to refer to the same page if
+	 * the page exists, they belong to the same wiki, and have the same ID;
+	 * or the page does not exist, they belong to the same wiki, and have the
+	 * same namespace and DB key.
+	 *
+	 * @param PageIdentity $other
+	 *
+	 * @return bool
+	 */
+	public function isSamePageAs( PageIdentity $other );
+
+	/**
 	 * Returns an informative human readable representation of the page identity,
 	 * for use in logging and debugging.
 	 *
