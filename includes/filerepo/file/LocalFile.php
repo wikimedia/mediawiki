@@ -1361,7 +1361,7 @@ class LocalFile extends File {
 	 *   info is already known
 	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
 	 *   current time
-	 * @param User|null $user User object or null to use $wgUser
+	 * @param User|null $user User object or null to use the context user
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
@@ -1422,6 +1422,12 @@ class LocalFile extends File {
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
+
+			if ( $user === null ) {
+				// User argument is optional, fall back to the context user
+				$user = RequestContext::getMain()->getUser();
+			}
+
 			$uploadStatus = $this->recordUpload3(
 				$oldver,
 				$comment,
