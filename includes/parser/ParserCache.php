@@ -50,6 +50,9 @@ class ParserCache {
 	 */
 	private const USE_ANYTHING = 3;
 
+	/** @var string The name of this ParserCache. Used as a root of the cache key. */
+	private $name;
+
 	/** @var BagOStuff */
 	private $cache;
 
@@ -87,21 +90,25 @@ class ParserCache {
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param HookContainer $hookContainer
 	 * @param IBufferingStatsdDataFactory|null $stats
-	 * @throws MWException
+	 * @param string $name
+	 * TODO: $name: drop fallback and move to the first position once FlaggedRevs is migrated
 	 */
 	public function __construct(
 		BagOStuff $cache,
-		$cacheEpoch,
+		string $cacheEpoch,
 		HookContainer $hookContainer,
-		IBufferingStatsdDataFactory $stats = null
+		IBufferingStatsdDataFactory $stats = null,
+		string $name = 'pcache'
 	) {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = $stats ?: MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$this->name = $name;
 	}
 
 	/**
+	 * TODO: make private once FlaggedRevs is migrated to ParserCacheFactory
 	 * @param WikiPage $wikiPage
 	 * @param string $hash
 	 * @return mixed|string
@@ -113,16 +120,17 @@ class ParserCache {
 		$pageid = $wikiPage->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
-		$key = $this->cache->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
+		$key = $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 		return $key;
 	}
 
 	/**
+	 * TODO: make private once FlaggedRevs is migrated to ParserCacheFactory
 	 * @param WikiPage $wikiPage
 	 * @return mixed|string
 	 */
 	protected function getOptionsKey( WikiPage $wikiPage ) {
-		return $this->cache->makeKey( 'pcache', 'idoptions', $wikiPage->getId() );
+		return $this->cache->makeKey( $this->name, 'idoptions', $wikiPage->getId() );
 	}
 
 	/**
@@ -177,7 +185,7 @@ class ParserCache {
 	private function incrementStats( WikiPage $wikiPage, $metricSuffix ) {
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
-		$this->stats->increment( 'pcache.' . $contentModel . '.' . $metricSuffix );
+		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
 	}
 
 	/**
