@@ -83,6 +83,16 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// set up global environment
 		if ( $user ) {
 			$wgUser = $user;
+
+			// Only $contextUser should be used, $wgUser is set for anything that still
+			// tries to read it
+			$contextUser = $user;
+		} else {
+			// Fallback, eventually should be removed. Once no tests write to $wgUser
+			// directly or via `setMwGlobals`, this should always be a reference
+			// to `self::$users['sysop']->getUser()` (which is set as the value of
+			// $wgUser in ::setUp) and should be replaced with using that.
+			$contextUser = $wgUser;
 		}
 
 		if ( $tokenType !== null ) {
@@ -91,17 +101,19 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 					->getModule( $params['action'], 'action' )->needsToken();
 			}
 			$params['token'] = ApiQueryTokens::getToken(
-				$wgUser, $sessionObj, ApiQueryTokens::getTokenTypeSalts()[$tokenType]
+				$contextUser,
+				$sessionObj,
+				ApiQueryTokens::getTokenTypeSalts()[$tokenType]
 			)->toString();
 		}
 
 		$wgRequest = new FauxRequest( $params, true, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
-		RequestContext::getMain()->setUser( $wgUser );
+		RequestContext::getMain()->setUser( $contextUser );
 		MediaWiki\Auth\AuthManager::resetCache();
 
 		// set up local environment
-		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
+		$context = $this->apiContext->newTestContext( $wgRequest, $contextUser );
 
 		$module = new ApiMain( $context, true );
 

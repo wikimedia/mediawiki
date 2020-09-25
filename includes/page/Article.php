@@ -57,7 +57,7 @@ class Article implements Page {
 	protected $mPage;
 
 	/**
-	 * @var ParserOptions|null ParserOptions object for $wgUser articles.
+	 * @var ParserOptions|null ParserOptions object for output of articles.
 	 * Initialized by getParserOptions by calling $this->mPage->makeParserOptions().
 	 */
 	public $mParserOptions;
