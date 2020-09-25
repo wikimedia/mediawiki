@@ -261,10 +261,14 @@ class LocalRepo extends FileRepo {
 
 		$fileMatchesSearch = function ( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
-			global $wgUser;
+
+			// Fallback to RequestContext::getMain should be replaced with a better
+			// way of setting the user that should be used; currently it needs to be
+			// set for each file individually. See T263033#6477586
+			$contextUser = RequestContext::getMain()->getUser();
 			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
 				? $search['private']
-				: $wgUser;
+				: $contextUser;
 
 			return (
 				$file->exists() &&

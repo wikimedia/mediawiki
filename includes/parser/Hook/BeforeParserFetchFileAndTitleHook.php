@@ -19,6 +19,7 @@ interface BeforeParserFetchFileAndTitleHook {
 	 * @param Title $nt Image title
 	 * @param array &$options Array of options to RepoGroup::findFile. If it contains 'broken'
 	 *   as a key then the file will appear as a broken thumbnail.
+	 *   If it contains `private` as a key, the value must be a User object.
 	 * @param string &$descQuery Query string to add to thumbnail URL
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

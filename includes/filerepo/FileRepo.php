@@ -440,13 +440,21 @@ class FileRepo {
 	 *                   current version. An image object will be returned which was
 	 *                   created at the specified time (which may be archived or current).
 	 *   ignoreRedirect: If true, do not follow file redirects
-	 *   private:        If true, return restricted (deleted) files if the current
+	 *   private:        If a User object, return restricted (deleted) files if the
 	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found. If a User object, use that user instead of the current.
+	 *                   be found. If set and not a User object, throws an exception
 	 *   latest:         If true, load from the latest available data into File objects
 	 * @return File|bool False on failure
+	 * @throws InvalidArgumentException
 	 */
 	public function findFile( $title, $options = [] ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' called with the `private` option set to something ' .
+				'other than a User object'
+			);
+		}
+
 		$title = File::normalizeTitle( $title );
 		if ( !$title ) {
 			return false;
@@ -471,13 +479,12 @@ class FileRepo {
 			if ( $img ) {
 				$img->load( $flags );
 				if ( $img->exists() ) {
-					global $wgUser;
 					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 						return $img; // always OK
-					} elseif ( !empty( $options['private'] ) &&
-						$img->userCan( File::DELETED_FILE,
-							$options['private'] instanceof User ? $options['private'] : $wgUser
-						)
+					} elseif (
+						// If its not empty, its a User object
+						!empty( $options['private'] ) &&
+						$img->userCan( File::DELETED_FILE, $options['private'] )
 					) {
 						return $img;
 					}
@@ -530,6 +537,13 @@ class FileRepo {
 				$title = $item['title'];
 				$options = $item;
 				unset( $options['title'] );
+
+				if (
+					!empty( $options['private'] ) &&
+					!( $options['private'] instanceof User )
+				) {
+					$options['private'] = RequestContext::getMain()->getUser();
+				}
 			} else {
 				$title = $item;
 				$options = [];
@@ -559,8 +573,16 @@ class FileRepo {
 	 * @param string $sha1 Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile().
 	 * @return File|bool False on failure
+	 * @throws InvalidArgumentException if the `private` option is set and not a User object
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' called with the `private` option set to something ' .
+				'other than a User object'
+			);
+		}
+
 		$time = $options['time'] ?? false;
 		# First try to find a matching current version of a file...
 		if ( !$this->fileFactoryKey ) {
@@ -574,13 +596,12 @@ class FileRepo {
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
 			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
-				global $wgUser;
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : $wgUser
-					)
+				} elseif (
+					// If its not empty, its a User object
+					!empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE, $options['private'] )
 				) {
 					return $img;
 				}
