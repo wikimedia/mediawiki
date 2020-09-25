@@ -24,10 +24,9 @@ ini_set( 'display_errors', 1 );
 /**
  * Debugging: MediaWiki
  */
-global $wgDevelopmentWarnings, $wgShowDBErrorBacktrace, $wgShowExceptionDetails,
-	$wgShowSQLErrors, $wgDebugRawPage,
-	$wgDebugComments, $wgDebugDumpSql, $wgDebugTimestamps,
-	$wgCommandLineMode, $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
+global $wgDevelopmentWarnings, $wgShowDBErrorBacktrace, $wgShowExceptionDetails, $wgShowSQLErrors,
+	$wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
+	$wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
@@ -53,5 +52,29 @@ if ( $logDir ) {
 }
 unset( $logDir );
 
-// Disable rate-limiting
+/**
+ * Make testing possible (or easier)
+ */
+
+global $wgRateLimits, $wgEnableJavaScriptTest;
+
+// Disable rate-limiting to allow integration tests to run unthrottled
+// in CI and for devs locally (T225796)
 $wgRateLimits = [];
+
+// Enable Special:JavaScriptTest and allow `npm run qunit` to work
+// https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
+$wgEnableJavaScriptTest = true;
+
+/**
+ * Experimental changes that may later become the default.
+ * (Must reference a Phabricator ticket)
+ */
+
+global $wgSQLMode, $wgLegacyJavaScriptGlobals;
+
+// Enable MariaDB/MySQL strict mode (T108255)
+$wgSQLMode = 'TRADITIONAL';
+
+// Disable legacy javascript globals in CI and for devs (T72470)
+$wgLegacyJavaScriptGlobals = false;

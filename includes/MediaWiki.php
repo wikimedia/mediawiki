@@ -720,6 +720,9 @@ class MediaWiki {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 		}
 
+		// Disable WebResponse setters for post-send processing (T191537).
+		WebResponse::disableForPostSend();
+
 		$blocksHttpClient = true;
 		// Defer everything else if possible...
 		$callback = function () use ( $mode, &$blocksHttpClient ) {
@@ -788,55 +791,9 @@ class MediaWiki {
 			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		}
 
-		// If the user has forceHTTPS set to true, or if the user
-		// is in a group requiring HTTPS, or if they have the HTTPS
-		// preference set, redirect them to HTTPS.
-		// Note: Do this after $wgTitle is setup, otherwise the hooks run from
-		// isLoggedIn() will do all sorts of weird stuff.
-		if (
-			$request->getProtocol() == 'http' &&
-			// switch to HTTPS only when supported by the server
-			preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) &&
-			(
-				$request->getSession()->shouldForceHTTPS() ||
-				// Check the cookie manually, for paranoia
-				$request->getCookie( 'forceHTTPS', '' ) ||
-				// check for prefixed version that was used for a time in older MW versions
-				$request->getCookie( 'forceHTTPS' ) ||
-				// Avoid checking the user and groups unless it's enabled.
-				(
-					$this->context->getUser()->isLoggedIn()
-					&& $this->context->getUser()->requiresHTTPS()
-				)
-			)
-		) {
-			$oldUrl = $request->getFullRequestURL();
-			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
-
-			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-			if ( Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
-				if ( $request->wasPosted() ) {
-					// This is weird and we'd hope it almost never happens. This
-					// means that a POST came in via HTTP and policy requires us
-					// redirecting to HTTPS. It's likely such a request is going
-					// to fail due to post data being lost, but let's try anyway
-					// and just log the instance.
-
-					// @todo FIXME: See if we could issue a 307 or 308 here, need
-					// to see how clients (automated & browser) behave when we do
-					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
-				}
-				// Setup dummy Title, otherwise OutputPage::redirect will fail
-				$title = Title::newFromText( 'REDIR', NS_MAIN );
-				$this->context->setTitle( $title );
-				// Since we only do this redir to change proto, always send a vary header
-				$output->addVaryHeader( 'X-Forwarded-Proto' );
-				$output->redirect( $redirUrl );
-				$output->output();
-
+		if ( $this->maybeDoHttpsRedirect() ) {
 				return;
 			}
-		}
 
 		if ( $title->canExist() && HTMLFileCache::useFileCache( $this->context ) ) {
 			// Try low-level file cache hit
@@ -878,6 +835,93 @@ class MediaWiki {
 
 		// Now send the actual output
 		print $outputWork();
+	}
+
+	/**
+	 * Check if an HTTP->HTTPS redirect should be done. It may still be aborted
+	 * by a hook, so this is not the final word.
+	 *
+	 * @return bool
+	 */
+	private function shouldDoHttpRedirect() {
+		$request = $this->context->getRequest();
+
+		// Don't redirect if we're already on HTTPS
+		if ( $request->getProtocol() !== 'http' ) {
+			return false;
+		}
+
+		$force = $this->config->get( 'ForceHTTPS' );
+
+		// Don't redirect if $wgServer is explicitly HTTP. We test for this here
+		// by checking whether wfExpandUrl() is able to force HTTPS.
+		if ( !preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) ) {
+			if ( $force ) {
+				throw new RuntimeException( '$wgForceHTTPS is true but the server is not HTTPS' );
+			}
+			return false;
+		}
+
+		// Configured $wgForceHTTPS overrides the remaining conditions
+		if ( $force ) {
+			return true;
+		}
+
+		// Check if HTTPS is required by the session or user preferences
+		return $request->getSession()->shouldForceHTTPS() ||
+			// Check the cookie manually, for paranoia
+			$request->getCookie( 'forceHTTPS', '' ) ||
+			// Avoid checking the user and groups unless it's enabled.
+			(
+				$this->context->getUser()->isLoggedIn()
+				&& $this->context->getUser()->requiresHTTPS()
+			);
+	}
+
+	/**
+	 * If the stars are suitably aligned, do an HTTP->HTTPS redirect
+	 *
+	 * Note: Do this after $wgTitle is setup, otherwise the hooks run from
+	 * isLoggedIn() will do all sorts of weird stuff.
+	 *
+	 * @return bool True if the redirect was done. Handling of the request
+	 *   should be aborted. False if no redirect was done.
+	 */
+	private function maybeDoHttpsRedirect() {
+		if ( !$this->shouldDoHttpRedirect() ) {
+			return false;
+		}
+
+		$request = $this->context->getRequest();
+		$oldUrl = $request->getFullRequestURL();
+		$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
+
+		// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+		if ( !Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
+			return false;
+		}
+
+		if ( $request->wasPosted() ) {
+			// This is weird and we'd hope it almost never happens. This
+			// means that a POST came in via HTTP and policy requires us
+			// redirecting to HTTPS. It's likely such a request is going
+			// to fail due to post data being lost, but let's try anyway
+			// and just log the instance.
+
+			// @todo FIXME: See if we could issue a 307 or 308 here, need
+			// to see how clients (automated & browser) behave when we do
+			wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
+		}
+		// Setup dummy Title, otherwise OutputPage::redirect will fail
+		$title = Title::newFromText( 'REDIR', NS_MAIN );
+		$this->context->setTitle( $title );
+		// Since we only do this redir to change proto, always send a vary header
+		$output = $this->context->getOutput();
+		$output->addVaryHeader( 'X-Forwarded-Proto' );
+		$output->redirect( $redirUrl );
+		$output->output();
+
+		return true;
 	}
 
 	/**

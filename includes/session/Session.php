@@ -209,7 +209,10 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Whether HTTPS should be forced
+	 * Get the expected value of the forceHTTPS cookie. This reflects whether
+	 * session cookies were sent with the Secure attribute. If $wgForceHTTPS
+	 * is true, the forceHTTPS cookie is not sent and this value is ignored.
+	 *
 	 * @return bool
 	 */
 	public function shouldForceHTTPS() {
@@ -217,7 +220,10 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Set whether HTTPS should be forced
+	 * Set the value of the forceHTTPS cookie. This reflects whether session
+	 * cookies were sent with the Secure attribute. If $wgForceHTTPS is true,
+	 * the forceHTTPS cookie is not sent, and this value is ignored.
+	 *
 	 * @param bool $force
 	 */
 	public function setForceHTTPS( $force ) {
