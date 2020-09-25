@@ -85,11 +85,12 @@ class ParserCacheFactory {
 		if ( !isset( $this->instanceCache[$name] ) ) {
 			$this->logger->debug( "Creating ParserCache instance for {$name}" );
 			$this->instanceCache[$name] = new ParserCache(
+				$name,
 				$this->cacheBackend,
 				$this->cacheEpoch,
 				$this->hookContainer,
 				$this->stats,
-				$name
+				$this->logger
 			);
 		}
 		return $this->instanceCache[$name];
