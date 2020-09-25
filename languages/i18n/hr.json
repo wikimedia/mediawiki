@@ -236,6 +236,7 @@
 	"talk": "Razgovor",
 	"views": "Pogledi",
 	"toolbox": "Pomagala",
+	"cactions": "Više",
 	"tool-link-userrights": "Promijeni {{GENDER:$1|suradnikovu|suradničinu}} pripadnost skupinama",
 	"tool-link-userrights-readonly": "Vidi {{GENDER:$1|suradnikovu|suradničinu|suradničku}} pripadnost skupinama",
 	"tool-link-emailuser": "Pošalji e-poruku {{GENDER:$1|ovome suradniku|ovoj suradnici|ovoj suradnici / ovome suradniku}}",
