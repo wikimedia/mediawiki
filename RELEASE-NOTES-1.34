@@ -1,5 +1,12 @@
 = MediaWiki 1.34 =
 
+== MediaWiki 1.34.4 ==
+
+This is a maintenance release of the Mediawiki 1.34 branch.
+
+=== Changes since MediaWiki 1.34.3 ===
+* Fixed issue relating to backporting of changes for T260485.
+
 == MediaWiki 1.34.3 ==
 
 This is a security and maintenance release of the MediaWiki 1.34 branch.
