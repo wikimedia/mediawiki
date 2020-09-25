@@ -502,7 +502,7 @@ class BlockUser {
 
 				if ( $block->equals( $priorBlock ) ) {
 					// Block settings are equal => user is already blocked
-					return Status::newFatal( 'ipb_already_blocked', $this->target->getUserPage() );
+					return Status::newFatal( 'ipb_already_blocked', $block->getTarget() );
 				}
 
 				$currentBlock = $this->configureBlock( $priorBlock );
@@ -510,12 +510,14 @@ class BlockUser {
 				$isReblock = true;
 				$block = $currentBlock;
 			} else {
-				return Status::newFatal( 'ipb_already_blocked', $this->target->getUserPage() );
+				return Status::newFatal( 'ipb_already_blocked', $block->getTarget() );
 			}
 		}
 
 		// Set *_deleted fields if requested
 		if ( $this->isHideUser ) {
+			// This should only be the case of $this->target is a user, so we can
+			// safely call ->getId()
 			RevisionDeleteUser::suppressUserName( $this->target, $this->target->getId() );
 		}
 
