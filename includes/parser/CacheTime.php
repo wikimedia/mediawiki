@@ -67,12 +67,18 @@ class CacheTime {
 	 * @return mixed
 	 */
 	public function __get( $name ) {
-		wfDeprecatedMsg(
-			'get ' . __CLASS__ . '::' . $name, '1.36' );
-		if ( property_exists( $this, $name ) ) {
+		if ( property_exists( get_called_class(), $name ) ) {
+			wfDeprecatedMsg( 'get ' . __CLASS__ . '::' . $name, '1.36' );
+			return $this->$name;
+		} elseif ( property_exists( $this, $name ) ) {
+			// TODO: This should trigger
+			// trigger_error( 'Inaccessible property via __get(): ' . $name, E_USER_NOTICE );
+			// However, until all extensions were converted to ParserOutput->setExtensionData
+			// instead of the pre-MW 1.20 pattern of setting dynamic properties on the PO object,
+			// this should still work.
 			return $this->$name;
 		} else {
-			trigger_error( 'Inaccessible property via __get(): ' . $name, E_USER_NOTICE );
+			return null;
 		}
 	}
 
@@ -84,12 +90,16 @@ class CacheTime {
 	 * @param mixed $value
 	 */
 	public function __set( $name, $value ) {
-		wfDeprecatedMsg(
-			'set ' . __CLASS__ . '::' . $name, '1.36' );
 		if ( property_exists( $this, $name ) ) {
+			wfDeprecatedMsg( 'set ' . __CLASS__ . '::' . $name, '1.36' );
 			$this->$name = $value;
 		} else {
-			trigger_error( 'Inaccessible property via __set(): ' . $name, E_USER_NOTICE );
+			// TODO: This should trigger
+			// trigger_error( 'Inaccessible property via __set(): ' . $name, E_USER_NOTICE );
+			// However, until all extensions were converted to ParserOutput->setExtensionData
+			// instead of the pre-MW 1.20 pattern of setting dynamic properties on the PO object,
+			// this should still work.
+			$this->$name = $value;
 		}
 	}
 
