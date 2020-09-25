@@ -299,7 +299,7 @@
 	"confirmable-no": "Nê",
 	"thisisdeleted": "Bıvêne ya zi $1 peyser biya?",
 	"viewdeleted": "$1 bıvin?",
-	"restorelink": "{{PLURAL:$1|jew vurnayış besteriya|$1 vurnayışi besteriyaye}}",
+	"restorelink": "{{PLURAL:$1|yew vurnayışo esteriyaye|$1 vurnayışê esteriyayeyi}}",
 	"feedlinks": "Weyiyekerdış:",
 	"feed-invalid": "Qeydey cıresnayışê  beğşi nêvêreno.",
 	"feed-unavailable": "Cıresnayışê şebekey çıniyê",

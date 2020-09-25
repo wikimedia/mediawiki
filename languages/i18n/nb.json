@@ -243,6 +243,7 @@
 	"talk": "Diskusjon",
 	"views": "Visninger",
 	"toolbox": "Verktøy",
+	"cactions": "Mer",
 	"tool-link-userrights": "Endre {{GENDER:$1|brukergrupper}}",
 	"tool-link-userrights-readonly": "Vis {{GENDER:$1|brukergrupper}}",
 	"tool-link-emailuser": "Send {{GENDER:$1|brukeren}} en e-post",

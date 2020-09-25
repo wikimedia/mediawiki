@@ -3,7 +3,8 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Grkn gll",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Stonecy"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",

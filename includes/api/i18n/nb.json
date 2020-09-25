@@ -1248,6 +1248,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Hent en nøkkel for å endre den gjeldende brukerens innstillinger.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Legger til den gjeldende brukerens antall redigeringer.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Lister opp fartsbegrensninger som gjelder den gjeldende brukeren.",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Lister alle hastighetsgrenser som ville gjelde denne brukeren hvis de ikke var unntatt fra hastighetsgrenser basert på brukerrettigheter eller IP",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Legger til brukerens virkelige navn.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Legger til brukerens epostadresse og dato for epostbekreftelse.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Viser <code>Accept-Language</code>-headeren sendt av klienten i et strukturert format.",
