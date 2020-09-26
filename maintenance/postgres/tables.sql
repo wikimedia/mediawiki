@@ -449,14 +449,6 @@ CREATE TABLE interwiki (
 );
 
 
-CREATE TABLE querycache (
-  qc_type       TEXT      NOT NULL,
-  qc_value      INTEGER   NOT NULL,
-  qc_namespace  SMALLINT  NOT NULL,
-  qc_title      TEXT      NOT NULL
-);
-CREATE INDEX querycache_type_value ON querycache (qc_type, qc_value);
-
 CREATE TABLE querycache_info (
   qci_type       TEXT              UNIQUE,
   qci_timestamp  TIMESTAMPTZ NULL

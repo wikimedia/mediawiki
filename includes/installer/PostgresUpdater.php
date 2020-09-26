@@ -749,6 +749,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'change_tag_def', 'ctd_count', 'BIGINT', 'ctd_count::BIGINT DEFAULT 0' ],
 			[ 'dropDefault', 'change_tag_def', 'ctd_user_defined' ],
 			[ 'dropFkey', 'ipblocks_restrictions', 'ir_ipb_id' ],
+			[ 'setDefault', 'querycache', 'qc_value', 0 ],
+			[ 'changeField', 'querycache', 'qc_namespace', 'INT', 'qc_namespace::INT DEFAULT 0' ],
+			[ 'setDefault', 'querycache', 'qc_title', '' ],
+			[ 'renameIndex', 'querycache', 'querycache_type_value', 'qc_type' ],
 		];
 	}
 

@@ -280,3 +280,12 @@ CREATE TABLE ipblocks_restrictions (
 );
 
 CREATE INDEX ir_type_value ON ipblocks_restrictions (ir_type, ir_value);
+
+
+CREATE TABLE querycache (
+  qc_type TEXT NOT NULL, qc_value INT DEFAULT 0 NOT NULL,
+  qc_namespace INT DEFAULT 0 NOT NULL,
+  qc_title TEXT DEFAULT '' NOT NULL
+);
+
+CREATE INDEX qc_type ON querycache (qc_type, qc_value);

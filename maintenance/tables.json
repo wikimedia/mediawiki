@@ -833,6 +833,37 @@
 			}
 		],
 		"pk": [ "ir_ipb_id", "ir_type", "ir_value" ]
+	},
+	{
+		"name": "querycache",
+		"comment": "Used for caching expensive grouped queries",
+		"columns": [
+			{
+				"name": "qc_type",
+				"comment": "A key name, generally the base name of of the special page",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "qc_value",
+				"comment": "Some sort of stored value. Sizes, counts...",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "qc_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qc_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "qc_type", "columns": [ "qc_type", "qc_value" ], "unique": false }
+		],
+		"pk": []
 	}
-
 ]
