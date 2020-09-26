@@ -865,5 +865,49 @@
 			{ "name": "qc_type", "columns": [ "qc_type", "qc_value" ], "unique": false }
 		],
 		"pk": []
+	},
+	{
+		"name": "querycachetwo",
+		"comment": "Used for caching expensive grouped queries that need two links (for example double-redirects)",
+		"columns": [
+			{
+				"name": "qcc_type",
+				"comment": "A key name, generally the base name of of the special page.",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "qcc_value",
+				"comment": "Some sort of stored value. Sizes, counts...",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "qcc_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qcc_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "qcc_namespacetwo",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qcc_titletwo",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "qcc_type", "columns": [ "qcc_type", "qcc_value" ], "unique": false },
+			{ "name": "qcc_title", "columns": [ "qcc_type", "qcc_namespace", "qcc_title" ], "unique": false },
+			{ "name": "qcc_titletwo", "columns": [ "qcc_type", "qcc_namespacetwo", "qcc_titletwo" ], "unique": false }
+		],
+		"pk": []
 	}
 ]
