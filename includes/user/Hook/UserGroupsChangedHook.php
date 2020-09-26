@@ -6,6 +6,9 @@ use User;
 use UserGroupMembership;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UserGroupsChanged" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

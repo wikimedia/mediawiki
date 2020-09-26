@@ -7,6 +7,9 @@ use User;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "NewRevisionFromEditComplete" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35, use the RevisionFromEditComplete hook instead
  * @ingroup Hooks
  */

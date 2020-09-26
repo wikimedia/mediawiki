@@ -6,6 +6,9 @@ use EnhancedChangesList;
 use RecentChange;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "EnhancedChangesListModifyLineData" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

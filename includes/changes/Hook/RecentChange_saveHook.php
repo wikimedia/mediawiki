@@ -6,6 +6,9 @@ namespace MediaWiki\Hook;
 use RecentChange;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "RecentChange_save" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

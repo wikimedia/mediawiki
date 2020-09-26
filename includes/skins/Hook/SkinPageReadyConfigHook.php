@@ -5,6 +5,9 @@ namespace MediaWiki\Skins\Hook;
 use ResourceLoaderContext;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SkinPageReadyConfig" to register handlers implementing this interface.
+ *
  * @stable for implementation
  */
 interface SkinPageReadyConfigHook {

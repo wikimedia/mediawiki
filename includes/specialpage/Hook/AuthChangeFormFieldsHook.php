@@ -5,6 +5,9 @@ namespace MediaWiki\SpecialPage\Hook;
 use MediaWiki\Auth\AuthenticationRequest;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "AuthChangeFormFields" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

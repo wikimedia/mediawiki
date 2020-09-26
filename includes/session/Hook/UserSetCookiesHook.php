@@ -5,6 +5,9 @@ namespace MediaWiki\Session\Hook;
 use User;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UserSetCookies" to register handlers implementing this interface.
+ *
  * @deprecated since 1.27 If you're trying to replace core session
  *   cookie handling, you want to create a subclass of
  *   MediaWiki\Session\CookieSessionProvider instead. Otherwise,

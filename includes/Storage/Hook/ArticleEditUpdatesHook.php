@@ -6,6 +6,9 @@ use MediaWiki\Edit\PreparedEdit;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticleEditUpdates" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35 Use RevisionDataUpdates instead
  * @ingroup Hooks
  */

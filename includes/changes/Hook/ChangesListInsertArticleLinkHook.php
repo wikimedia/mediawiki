@@ -6,6 +6,9 @@ use ChangesList;
 use RecentChange;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ChangesListInsertArticleLink" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

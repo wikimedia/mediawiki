@@ -5,6 +5,9 @@ namespace MediaWiki\Block\Hook;
 use MediaWiki\Block\DatabaseBlock;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "AbortAutoblock" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

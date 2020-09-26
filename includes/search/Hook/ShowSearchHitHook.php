@@ -6,6 +6,9 @@ use SearchResult;
 use SpecialSearch;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ShowSearchHit" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

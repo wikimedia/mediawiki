@@ -7,6 +7,9 @@ use User;
 use WikiFilePage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "FileDeleteComplete" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
