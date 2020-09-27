@@ -70,7 +70,7 @@ class LocalSettingsGenerator {
 
 		// The WebInstaller form field for "Logo" contains a literal "$wgResourceBasePath",
 		// and site admins are told in the help text that they can use $wgStylePath and $wgScriptPath
-		// within their input, such such treat this as raw PHP for now.
+		// within their input, such treat this as raw PHP for now.
 		$unescaped = [ 'wgRightsIcon', '_Logo', '_Caches' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',

@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\DBConnRef;
  */
 interface UsersPagerDoBatchLookupsHook {
 	/**
-	 * This hook is called called in UsersPager::doBatchLookups()
+	 * This hook is called in UsersPager::doBatchLookups()
 	 *
 	 * It is used to give extensions providing user group data from an alternate source a
 	 * chance to add their data into the cache array so that things like global user groups are

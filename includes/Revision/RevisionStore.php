@@ -1992,7 +1992,7 @@ class RevisionStore
 	 *
 	 * @return StatusValue a status containing, if isOK() returns true, a two-level nested
 	 *         associative array, mapping from revision ID to an associative array that maps from
-	 *         role name to an anonymous object object containing two fields:
+	 *         role name to an anonymous object containing two fields:
 	 *         - model_name: the name of the content's model
 	 *         - blob_data: serialized content data
 	 */

@@ -308,7 +308,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected function getUserVariant( User $user ) {
 		// This should only be called within the class after the user is known to be
-		// safe to load and and logged in, but check just in case.
+		// safe to load and logged in, but check just in case.
 		if ( !$user->isSafeToLoad() ) {
 			return false;
 		}

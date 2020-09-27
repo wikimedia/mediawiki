@@ -627,7 +627,7 @@ $wgForeignFileRepos = [];
 /**
  * Use Wikimedia Commons as a foreign file repository.
  *
- * This is a shortcut for adding an entry to to $wgForeignFileRepos
+ * This is a shortcut for adding an entry to $wgForeignFileRepos
  * for https://commons.wikimedia.org, using ForeignAPIRepo with the
  * default settings.
  *
@@ -5514,7 +5514,7 @@ $wgHideIdentifiableRedirects = true;
  * All users are implicitly in the '*' group including anonymous visitors;
  * logged-in users are all implicitly in the 'user' group. These will be
  * combined with the permissions of all groups that a given user is listed
- * in in the user_groups table.
+ * in the user_groups table.
  *
  * Note: Don't set $wgGroupPermissions = []; unless you know what you're
  * doing! This will wipe all permissions, and may mean that your users are
@@ -7879,7 +7879,7 @@ $wgAutoloadAttemptLowercase = false;
  *    "and others" show, add an element "...". This element can also be linked,
  *    for instance "[https://example ...]".
  *
- * - descriptionmsg: A message key or an an array with message key and parameters:
+ * - descriptionmsg: A message key or an array with message key and parameters:
  *    `'descriptionmsg' => 'exampleextension-desc',`
  *
  * - description: Description of extension as an inline string instead of
@@ -9428,7 +9428,7 @@ $wgInterwikiPrefixDisplayTypes = [];
  * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
  *
  * @since 1.32
- * @deprecated Since 1.35, the only accepted value is is SCHEMA_COMPAT_NEW.
+ * @deprecated Since 1.35, the only accepted value is SCHEMA_COMPAT_NEW.
  *             No longer functions as a setting. Will be removed in 1.36.
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */

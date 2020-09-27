@@ -180,7 +180,7 @@ class SqliteInstaller extends DatabaseInstaller {
 				return Status::newFatal( 'config-sqlite-mkdir-error', $dir );
 			}
 		}
-		# Put a .htaccess file in in case the user didn't take our advice
+		# Put a .htaccess file in case the user didn't take our advice
 		file_put_contents( "$dir/.htaccess", "Deny from all\n" );
 		return Status::newGood();
 	}

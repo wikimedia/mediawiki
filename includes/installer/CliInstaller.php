@@ -192,7 +192,7 @@ class CliInstaller extends Installer {
 	public function execute() {
 		// If APC is available, use that as the MainCacheType, instead of nothing.
 		// This is hacky and should be consolidated with WebInstallerOptions.
-		// This is here instead of in __construct(), because it should run run after
+		// This is here instead of in __construct(), because it should run after
 		// doEnvironmentChecks(), which populates '_Caches'.
 		if ( count( $this->getVar( '_Caches' ) ) ) {
 			// We detected a CACHE_ACCEL implementation, use it.

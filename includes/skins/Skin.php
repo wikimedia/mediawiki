@@ -373,7 +373,7 @@ abstract class Skin extends ContextSource {
 	 * A "relevant" title is not necessarily the actual title of the page.
 	 * Special pages like Special:MovePage use set the page they are acting on
 	 * as their "relevant" title, this allows the skin system to display things
-	 * such as content tabs which belong to to that page instead of displaying
+	 * such as content tabs which belong to that page instead of displaying
 	 * a basic special page tab which has almost no meaning.
 	 *
 	 * @return Title

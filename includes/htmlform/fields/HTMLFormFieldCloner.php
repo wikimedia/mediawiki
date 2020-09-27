@@ -199,8 +199,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	public function getDefault() {
 		$ret = parent::getDefault();
 
-		// The default default is one entry with all subfields at their
-		// defaults.
+		// The default is one entry with all subfields at their defaults.
 		if ( $ret === null ) {
 			$fields = $this->createFieldsForKey( $this->uniqueId );
 			$row = [];

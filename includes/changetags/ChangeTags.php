@@ -602,7 +602,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to adds and remove the given tags tags to/from a
+	 * Is it OK to allow the user to adds and remove the given tags to/from a
 	 * change?
 	 *
 	 * Extensions should not use this function, unless directly handling a user

@@ -3,7 +3,7 @@
 /**
  * Basic infrastructure of the field definition.
  *
- * Specific engines should extend this class and at at least,
+ * Specific engines should extend this class and at least,
  * override the getMapping method, but can reuse other parts.
  *
  * @stable to extend

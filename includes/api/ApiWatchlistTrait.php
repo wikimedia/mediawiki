@@ -84,7 +84,7 @@ trait ApiWatchlistTrait {
 	 * Return true if we're to watch the page, false if not.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param Title $title The page under consideration
-	 * @param User $user The user get the the value for.
+	 * @param User $user The user get the value for.
 	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
 	 *    If not set will use watchdefault always and watchcreations if $title doesn't exist.
 	 * @return bool
