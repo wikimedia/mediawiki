@@ -36,16 +36,17 @@ class TrackingCategories {
 	 * @var array
 	 */
 	private static $coreTrackingCategories = [
-		'index-category',
-		'noindex-category',
+		'broken-file-category',
 		'duplicate-args-category',
+		'expansion-depth-exceeded-category',
 		'expensive-parserfunction-category',
+		'hidden-category-category',
+		'index-category',
+		'node-count-exceeded-category',
+		'noindex-category',
+		'nonnumeric-formatnum',
 		'post-expand-template-argument-category',
 		'post-expand-template-inclusion-category',
-		'hidden-category-category',
-		'broken-file-category',
-		'node-count-exceeded-category',
-		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
 		'template-equals-category',
 		'template-loop-category',
