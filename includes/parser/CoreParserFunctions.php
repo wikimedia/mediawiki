@@ -302,6 +302,11 @@ class CoreParserFunctions {
 		return $parser->markerSkipCallback( $num, $func );
 	}
 
+	/**
+	 * @param Parser $parser
+	 *
+	 * @return Closure
+	 */
 	private static function getLegacyFormatNum( $parser ) {
 		// For historic reasons, the formatNum parser function will
 		// take arguments which are not actually formatted numbers,
