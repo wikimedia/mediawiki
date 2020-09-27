@@ -256,21 +256,13 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage|Article|Page $wikiPage Article is hard deprecated since 1.35
+	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( Page $wikiPage, $popts, $useOutdated = false ) {
-		if ( $wikiPage instanceof Article ) {
-			wfDeprecated(
-				__METHOD__ . ' with Article parameter',
-				1.35
-			);
-			$wikiPage = $wikiPage->getPage();
-		}
-
+	public function get( WikiPage $wikiPage, $popts, $useOutdated = false ) {
 		$canCache = $wikiPage->checkTouched();
 		if ( !$canCache ) {
 			// It's a redirect now

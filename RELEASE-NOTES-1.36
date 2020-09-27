@@ -211,6 +211,8 @@ because of Phabricator reports.
   outside of MediaWiki core.
 * ParserCache::__construct() now requires three parameters.
 * Message->getFormat(), deprecated in 1.29, has been removed.
+* Support for passing Article to ParserCache::get, deprecated in 1.35,
+  has been removed.
 * …
 
 === Deprecations in 1.36 ===
