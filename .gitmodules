@@ -1367,33 +1367,3 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Linter
 	branch = REL1_34
 	ignore = dirty
-[submodule "extensions/LDAPAuthentication2"]
-	path = extensions/LDAPAuthentication2
-	url = https://github.com/wikimedia/mediawiki-extensions-LDAPAuthentication2.git
-	branch = REL1_34
-	ignore = dirty
-[submodule "extensions/LDAPAuthorization"]
-	path = extensions/LDAPAuthorization
-	url = https://github.com/wikimedia/mediawiki-extensions-LDAPAuthorization.git
-	branch = REL1_34
-	ignore = dirty
-[submodule "extensions/LDAPGroups"]
-	path = extensions/LDAPGroups
-	url = https://github.com/wikimedia/mediawiki-extensions-LDAPGroups.git
-	branch = REL1_34
-	ignore = dirty
-[submodule "extensions/LDAPUserInfo"]
-	path = extensions/LDAPUserInfo
-	url = https://github.com/wikimedia/mediawiki-extensions-LDAPUserInfo.git
-	branch = REL1_34
-	ignore = dirty
-[submodule "extensions/LDAPProvider"]
-	path = extensions/LDAPProvider
-	url = https://github.com/wikimedia/mediawiki-extensions-LDAPProvider.git
-	branch = REL1_34
-	ignore = dirty
-[submodule "extensions/PluggableAuth"]
-	path = extensions/PluggableAuth
-	url = https://github.com/wikimedia/mediawiki-extensions-PluggableAuth.git
-	branch = REL1_34
-	ignore = dirty
