@@ -49,6 +49,7 @@ class TrackingCategories {
 		'restricted-displaytitle-ignored',
 		'template-equals-category',
 		'template-loop-category',
+		'nonnumeric-formatnum',
 	];
 
 	/**
