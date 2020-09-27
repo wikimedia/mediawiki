@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Session\SessionManager;
 
 /**
@@ -102,6 +103,30 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 				throw new LogicException( 'Multiple AuthenticationRequest objects with same ID!' );
 			}
 			$this->authRequests = $foundReqs;
+		}
+	}
+
+	/** @inheritDoc */
+	public function onAuthChangeFormFields(
+		array $requests, array $fieldInfo, array &$formDescriptor, $action
+	) {
+		parent::onAuthChangeFormFields( $requests, $fieldInfo, $formDescriptor, $action );
+
+		// Add some UI flair for password changes, the most common use case for this page.
+		if ( AuthenticationRequest::getRequestByClass( $this->authRequests,
+			PasswordAuthenticationRequest::class )
+		) {
+			$formDescriptor = self::mergeDefaultFormDescriptor( $fieldInfo, $formDescriptor, [
+				'password' => [
+					'autocomplete' => 'new-password',
+					'placeholder-message' => 'createacct-yourpassword-ph',
+					'help-message' => 'createacct-useuniquepass',
+				],
+				'retype' => [
+					'autocomplete' => 'new-password',
+					'placeholder-message' => 'createacct-yourpasswordagain-ph',
+				],
+			] );
 		}
 	}
 
