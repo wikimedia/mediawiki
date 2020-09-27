@@ -414,6 +414,7 @@ class ParserCache {
 	 * powers the parser cache
 	 *
 	 * @since 1.30
+	 * @internal
 	 * @return BagOStuff
 	 */
 	public function getCacheStorage() {
