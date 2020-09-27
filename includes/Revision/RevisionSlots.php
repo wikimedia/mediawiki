@@ -230,7 +230,7 @@ class RevisionSlots {
 	}
 
 	/**
-	 * Return all slots that are not not originate in the revision they belong to (that is,
+	 * Return all slots that are not originate in the revision they belong to (that is,
 	 * they are inherited from some other revision).
 	 *
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.

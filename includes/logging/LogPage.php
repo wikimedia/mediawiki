@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @newable
  * @note marked as newable in 1.35 for lack of a better alternative,
- *       but should become a stateless service, use use the command pattern.
+ *       but should become a stateless service, use the command pattern.
  */
 class LogPage {
 	public const DELETED_ACTION = 1;

@@ -1019,7 +1019,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				return 1; // "\0"
 			case 'array':
 			case 'object':
-				// Give up up and guess if there is too much depth
+				// Give up and guess if there is too much depth
 				if ( $depth >= 5 && $loops >= 256 ) {
 					return 1024;
 				}

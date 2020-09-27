@@ -362,7 +362,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      recognized in queries. This can be used in place of schemas for handle site farms.
 	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
 	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
-	 *      flag in place UNLESS this this database simply acts as a key/value store.
+	 *      flag in place UNLESS this database simply acts as a key/value store.
 	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
 	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be

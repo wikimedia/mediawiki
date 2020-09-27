@@ -521,7 +521,7 @@ class XmlDumpWriter {
 					// If we want to support other kinds of addresses in the future,
 					// we will have to silently ignore failures here.
 					// For now, this fails for "tt:0", which is present in the WMF production
-					// database of of Juli 2019, due to data corruption.
+					// database as of July 2019, due to data corruption.
 					$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
 				} catch ( InvalidArgumentException $ex ) {
 					MWDebug::warning( 'Bad content address for slot ' . $slot->getRole()

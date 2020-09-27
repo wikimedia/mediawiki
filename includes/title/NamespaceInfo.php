@@ -215,7 +215,7 @@ class NamespaceInfo {
 	 * @param LinkTarget $target
 	 * @return LinkTarget Talk page for $target
 	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL,
-	 *         because it's a relative section-only link, or it's an an interwiki link.
+	 *         because it's a relative section-only link, or it's an interwiki link.
 	 */
 	public function getTalkPage( LinkTarget $target ) : LinkTarget {
 		if ( $target->getText() === '' ) {

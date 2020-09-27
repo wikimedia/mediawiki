@@ -68,7 +68,7 @@ class ExtensionRegistry {
 	 * by ExtensionProcessor::CREDIT_ATTRIBS (plus a 'path' key that
 	 * points to the skin or extension JSON file).
 	 *
-	 * This info may be accessed via via ExtensionRegistry::getAllThings.
+	 * This info may be accessed via ExtensionRegistry::getAllThings.
 	 *
 	 * @var array[]
 	 */

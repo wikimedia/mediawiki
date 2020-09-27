@@ -592,7 +592,7 @@ TXT;
 	 *
 	 * The JSON object will have keys 'id', 'file', 'line', 'message', and
 	 * 'url'. These keys map to string values, with the exception of 'line',
-	 * which is a number, and 'url', which may be either a string URL or or
+	 * which is a number, and 'url', which may be either a string URL or
 	 * null if the throwable did not occur in the context of serving a web
 	 * request.
 	 *

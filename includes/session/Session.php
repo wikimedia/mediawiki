@@ -28,7 +28,7 @@ use User;
 use WebRequest;
 
 /**
- * Manages data for an an authenticated session
+ * Manages data for an authenticated session
  *
  * A Session represents the fact that the current HTTP request is part of a
  * session. There are two broad types of Sessions, based on whether they

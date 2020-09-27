@@ -51,7 +51,7 @@ class Status extends StatusValue {
 	/**
 	 * Succinct helper method to wrap a StatusValue
 	 *
-	 * This is is useful when formatting StatusValue objects:
+	 * This is useful when formatting StatusValue objects:
 	 * @code
 	 *     $this->getOutput()->addHtml( Status::wrap( $sv )->getHTML() );
 	 * @endcode

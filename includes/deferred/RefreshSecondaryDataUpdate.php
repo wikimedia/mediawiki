@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\ILBFactory;
 /**
  * Update object handling the cleanup of secondary data after a page was edited.
  *
- * This makes makes it possible for DeferredUpdates to have retry logic using a
+ * This makes it possible for DeferredUpdates to have retry logic using a
  * single refreshLinks job if any of the bundled updates fail.
  *
  * @since 1.34

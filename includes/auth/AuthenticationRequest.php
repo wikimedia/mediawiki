@@ -146,7 +146,7 @@ abstract class AuthenticationRequest {
 	/**
 	 * Initialize form submitted form data.
 	 *
-	 * The default behavior is to to check for each key of self::getFieldInfo()
+	 * The default behavior is to check for each key of self::getFieldInfo()
 	 * in the submitted data, and copy the value - after type-appropriate transformations -
 	 * to $this->$key. Most subclasses won't need to override this; if you do override it,
 	 * make sure to always return false if self::getFieldInfo() returns an empty array.

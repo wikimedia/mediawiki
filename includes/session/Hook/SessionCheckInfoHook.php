@@ -21,7 +21,7 @@ interface SessionCheckInfoHook {
 	 * @param WebRequest $request WebRequest being loaded from
 	 * @param array|bool $metadata Metadata array for the MediaWiki\Session\Session
 	 * @param array|bool $data Data array for the MediaWiki\Session\Session
-	 * @return bool|void True or no return value to continue, or false to to prevent
+	 * @return bool|void True or no return value to continue, or false to prevent
 	 *   the MediaWiki\Session\SessionInfo from being used
 	 */
 	public function onSessionCheckInfo( &$reason, $info, $request, $metadata,

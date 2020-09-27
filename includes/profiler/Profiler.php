@@ -342,7 +342,7 @@ abstract class Profiler {
 	 * is always included in the results.
 	 *
 	 * When a call chain involves a method invoked within itself, any
-	 * entries for the cyclic invocation should be be demarked with "@".
+	 * entries for the cyclic invocation should be demarked with "@".
 	 * This makes filtering them out easier and follows the xhprof style.
 	 *
 	 * @return array[] List of method entries arrays, each having:
