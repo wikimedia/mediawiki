@@ -48,20 +48,37 @@ class UserFactory implements IDBAccessObject {
 	}
 
 	/**
-	 * @see User::newFromName
+	 * Factory method for creating users by name, replacing static User::newFromName
+	 *
+	 * This is slightly less efficient than newFromId(), so use newFromId() if
+	 * you have both an ID and a name handy.
+	 *
+	 * @note unlike User::newFromName, this returns null instead of false for invalid usernames
 	 *
 	 * @since 1.35
+	 * @since 1.36 returns null instead of false for invalid user names
 	 *
-	 * @param string $name
+	 * @param string $name Username, validated by Title::newFromText
 	 * @param string $validate Validation strategy, one of the UserNameUtils::RIGOR_*
 	 *  constants. For no validation, use UserNameUtils::RIGOR_NONE.
-	 * @return User|bool
+	 * @return ?User User object, or null if the username is invalid (e.g. if it contains
+	 *  illegal characters or is an IP address). If the username is not present in the database,
+	 *  the result will be a user object with a name, a user id of 0, and default settings.
 	 */
 	public function newFromName(
 		string $name,
 		string $validate = UserNameUtils::RIGOR_VALID
-	) {
-		return User::newFromName( $name, $validate );
+	) : ?User {
+		$canonicalName = $this->userNameUtils->getCanonical( $name, $validate );
+		if ( $canonicalName === false ) {
+			return null;
+		}
+
+		$user = new User();
+		$user->mName = $canonicalName;
+		$user->mFrom = 'name';
+		$user->setItemLoaded( 'name' );
+		return $user;
 	}
 
 	/**
