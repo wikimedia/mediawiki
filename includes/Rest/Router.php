@@ -368,13 +368,6 @@ class Router {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
 		}
 
-		if ( $this->cors ) {
-			$authResult = $this->cors->authorize( $handler->getRequest(), $handler );
-			if ( $authResult ) {
-				return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
-			}
-		}
-
 		// Validate the parameters
 		$handler->validate( $this->restValidator );
 

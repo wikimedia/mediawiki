@@ -12,6 +12,18 @@ use Wikimedia\TestingAccessWrapper;
  * @author DannyS712
  */
 class UserEditTrackerTest extends MediaWikiUnitTestCase {
+	private $reqId;
+
+	/** @before */
+	public function reqIdSetUp() {
+		$this->reqId = WebRequest::getRequestId();
+		WebRequest::overrideRequestId( '000' );
+	}
+
+	/** @after */
+	public function reqIdTearDown() {
+		WebRequest::overrideRequestId( $this->reqId );
+	}
 
 	public function testGetUserEditCount() {
 		// getUserEditCount returns a value found in user_editcount
@@ -60,7 +72,6 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 	public function testGetUserEditCount_exception() {
 		// getUserEditCount throws if the user id is falsy
 		$userId = 0;
-		$methodName = 'MediaWiki\User\UserEditTracker::getUserEditCount';
 
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
@@ -75,9 +86,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 
 		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage(
-			$methodName . ' requires Users with ids set'
-		);
+		$this->expectExceptionMessage( 'requires a user ID' );
 		$tracker->getUserEditCount( $user );
 	}
 
@@ -160,7 +169,8 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				$this->assertEquals( 'userEditCountInit', $job->getType() );
 				$this->assertEquals( [
 					'userId' => $user->getId(),
-					'editCount' => $editCount
+					'editCount' => $editCount,
+					'requestId' => '000',
 				], $job->getParams() );
 			} );
 
@@ -229,7 +239,8 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 				$this->assertEquals( 'userEditCountInit', $job->getType() );
 				$this->assertEquals( [
 					'userId' => $user->getId(),
-					'editCount' => $editCount
+					'editCount' => $editCount,
+					'requestId' => '000',
 				], $job->getParams() );
 			} );
 

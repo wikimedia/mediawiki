@@ -545,7 +545,7 @@ class MessageCache implements LoggerAwareInterface {
 		// it instantiates MessageCache before the DB.
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		// Set the text for small software-defined messages in the main cache map
-		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $revisionStore->getQueryInfo( [ 'page' ] );
 
 		// T231196: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` then
 		// `revision` then `page` is somehow better than starting with `page`. Tell it not to reorder the
@@ -572,12 +572,17 @@ class MessageCache implements LoggerAwareInterface {
 			[ 'STRAIGHT_JOIN' ],
 			$revQuery['joins']
 		);
+		$result = $revisionStore->newRevisionsFromBatch( $res, [
+			'slots' => [ SlotRecord::MAIN ],
+			'content' => true
+		] );
+		$revisions = $result->isOK() ? $result->getValue() : [];
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
 			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
 				try {
-					$rev = $revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
-					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
+					$rev = $revisions[$row->rev_id] ?? null;
+					$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
 					$text = $this->getMessageTextFromContent( $content );
 				} catch ( Exception $ex ) {
 					$text = false;

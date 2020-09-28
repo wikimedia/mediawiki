@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Job that initializes an user's edit count if it's not yet set or the current value is outdated.
@@ -35,16 +34,14 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class UserEditCountInitJob extends Job implements GenericParameterJob {
 
-	/** @var ILoadBalancer $loadBalancer */
-	private $loadBalancer;
-
 	public function __construct( array $params ) {
 		parent::__construct( 'userEditCountInit', $params );
-		$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->removeDuplicates = true;
 	}
 
 	public function run() {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbw = $lb->getConnectionRef( DB_MASTER );
 
 		$dbw->update(
 			'user',
