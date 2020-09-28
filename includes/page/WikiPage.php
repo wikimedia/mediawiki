@@ -40,6 +40,7 @@ use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -51,6 +52,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * In the past, this class was part of Article.php and everything was public.
  */
 class WikiPage implements Page, IDBAccessObject {
+	use NonSerializableTrait;
 	use ProtectedHookAccessorTrait;
 
 	// Constants for $mDataLoadedFrom and related

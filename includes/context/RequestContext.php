@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -36,6 +37,8 @@ use Wikimedia\ScopedCallback;
  *       down to not expose heavy weight objects.
  */
 class RequestContext implements IContextSource, MutableContext {
+	use NonSerializableTrait;
+
 	/**
 	 * @var WebRequest
 	 */
