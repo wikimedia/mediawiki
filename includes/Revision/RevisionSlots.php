@@ -23,8 +23,8 @@
 namespace MediaWiki\Revision;
 
 use Content;
-use LogicException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * Value object representing the set of slots belonging to a revision.
@@ -39,6 +39,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionSlots
  */
 class RevisionSlots {
+	use NonSerializableTrait;
 
 	/** @var SlotRecord[]|callable */
 	protected $slots;
@@ -72,15 +73,6 @@ class RevisionSlots {
 			$role = $slot->getRole();
 			$this->slots[$role] = $slot;
 		}
-	}
-
-	/**
-	 * Implemented to defy serialization.
-	 *
-	 * @throws LogicException always
-	 */
-	public function __sleep() {
-		throw new LogicException( __CLASS__ . ' is not serializable.' );
 	}
 
 	/**

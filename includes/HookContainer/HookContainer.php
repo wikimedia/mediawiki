@@ -30,6 +30,7 @@ use MWDebug;
 use MWException;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Services\SalvageableService;
@@ -42,6 +43,7 @@ use Wikimedia\Services\SalvageableService;
  * @since 1.35
  */
 class HookContainer implements SalvageableService {
+	use NonSerializableTrait;
 
 	/** @var array Hooks and their callbacks registered through $this->register() */
 	private $dynamicHandlers = [];

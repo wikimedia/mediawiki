@@ -19,6 +19,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
@@ -28,6 +29,8 @@ use MediaWiki\MediaWikiServices;
  * @since 1.18
  */
 abstract class ContextSource implements IContextSource {
+	use NonSerializableTrait;
+
 	/**
 	 * @var IContextSource
 	 */

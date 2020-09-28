@@ -112,6 +112,7 @@ use WANObjectCache;
 use WatchedItemQueryService;
 use WatchedItemStoreInterface;
 use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
@@ -157,6 +158,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
  *      MediaWiki code base.
  */
 class MediaWikiServices extends ServiceContainer {
+	use NonSerializableTrait;
 
 	/**
 	 * @var MediaWikiServices|null

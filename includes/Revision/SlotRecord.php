@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use LogicException;
 use OutOfBoundsException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * Value object representing a content slot associated with a page revision.
@@ -37,6 +38,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.32 Renamed from MediaWiki\Storage\SlotRecord
  */
 class SlotRecord {
+	use NonSerializableTrait;
 
 	public const MAIN = 'main';
 
@@ -273,15 +275,6 @@ class SlotRecord {
 
 		$this->row = $row;
 		$this->content = $content;
-	}
-
-	/**
-	 * Implemented to defy serialization.
-	 *
-	 * @throws LogicException always
-	 */
-	public function __sleep() {
-		throw new LogicException( __CLASS__ . ' is not serializable.' );
 	}
 
 	/**
