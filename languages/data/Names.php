@@ -326,6 +326,7 @@ class Names {
 		'ne' => 'नेपाली', # Nepali
 		'new' => 'नेपाल भाषा', # Newar / Nepal Bhasha
 		'ng' => 'Oshiwambo', # Ndonga
+		'nia' => 'Li Niha', # Nias, T263968
 		'niu' => 'Niuē', # Niuean
 		'nl' => 'Nederlands', # Dutch
 		'nl-informal' => "Nederlands (informeel)\u{200E}", # Dutch (informal address ("je"))
