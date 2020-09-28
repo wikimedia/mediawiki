@@ -886,6 +886,11 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * Returns the main server-local cache, yeilding EmptyBagOStuff if there is none
+	 *
+	 * In web request mode, the cache should at least be shared among web workers.
+	 * In CLI mode, the cache should at least be shared among processes run by the same user.
+	 *
 	 * @since 1.28
 	 * @return BagOStuff
 	 */
@@ -921,6 +926,10 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * Returns the main object stash, yeilding EmptyBagOStuff if there is none
+	 *
+	 * The stash should be shared among all datacenters
+	 *
 	 * @since 1.28
 	 * @return BagOStuff
 	 */
@@ -929,6 +938,10 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * Returns the main WAN cache, yeilding EmptyBagOStuff if there is none
+	 *
+	 * The cache should relay any purge operations to all datacenterss
+	 *
 	 * @since 1.28
 	 * @return WANObjectCache
 	 */
