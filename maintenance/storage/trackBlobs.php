@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
 
-require __DIR__ . '/../commandLine.inc';
+require __DIR__ . '/../CommandLineInc.php';
 
 if ( count( $args ) < 1 ) {
 	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";

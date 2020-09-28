@@ -36,7 +36,7 @@ use MediaWiki\MediaWikiServices;
 
 $optionsWithArgs = [ 'd' ];
 
-require_once __DIR__ . "/commandLine.inc";
+require_once __DIR__ . "/CommandLineInc.php";
 
 if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
