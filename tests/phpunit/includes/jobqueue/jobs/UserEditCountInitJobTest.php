@@ -18,7 +18,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers UserEditCountInitJob */
 	public function testShouldInitEditCountWhenNotYetSet(): void {
-		$job = Job::factory( 'userEditCountInit', [
+		$job = new UserEditCountInitJob( [
 			'userId' => $this->user->getId(),
 			'editCount' => 2
 		] );
@@ -33,7 +33,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 	public function testShouldInitEditCountWhenGreaterThanCurrentCount(): void {
 		$this->setTestUserEditCount( 2 );
 
-		$job = Job::factory( 'userEditCountInit', [
+		$job = new UserEditCountInitJob( [
 			'userId' => $this->user->getId(),
 			'editCount' => 3
 		] );
@@ -48,7 +48,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 	public function testShouldNotChangeEditCountWhenLessThanCurrentCount(): void {
 		$this->setTestUserEditCount( 10 );
 
-		$job = Job::factory( 'userEditCountInit', [
+		$job = new UserEditCountInitJob( [
 			'userId' => $this->user->getId(),
 			'editCount' => 3
 		] );
