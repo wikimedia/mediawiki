@@ -268,7 +268,7 @@ class ParserCache {
 		if ( $wikiPage instanceof Article ) {
 			wfDeprecated(
 				__METHOD__ . ' with Article parameter',
-				1.35
+				'1.35'
 			);
 			$wikiPage = $wikiPage->getPage();
 		}
