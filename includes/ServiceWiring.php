@@ -86,6 +86,7 @@ use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -866,15 +867,19 @@ return [
 	},
 
 	'ParserCache' => function ( MediaWikiServices $services ) : ParserCache {
+		return $services->getParserCacheFactory()
+			->getInstance( ParserCacheFactory::DEFAULT_NAME );
+	},
+
+	'ParserCacheFactory' => function ( MediaWikiServices $services ) : ParserCacheFactory {
 		$config = $services->getMainConfig();
 		$cache = ObjectCache::getInstance( $config->get( 'ParserCacheType' ) );
-		wfDebugLog( 'caches', 'parser: ' . get_class( $cache ) );
-
-		return new ParserCache(
+		return new ParserCacheFactory(
 			$cache,
 			$config->get( 'CacheEpoch' ),
 			$services->getHookContainer(),
-			$services->getStatsdDataFactory()
+			$services->getStatsdDataFactory(),
+			LoggerFactory::getInstance( 'ParserCache' )
 		);
 	},
 
