@@ -126,6 +126,10 @@ class CacheTime {
 			$t = MWTimestamp::convert( TS_MW, $t );
 		}
 
+		if ( $t === -1 || $t === '-1' ) {
+			wfDeprecatedMsg( __METHOD__ . ' called with -1 as an argument', '1.36' );
+		}
+
 		return wfSetVar( $this->mCacheTime, $t );
 	}
 
