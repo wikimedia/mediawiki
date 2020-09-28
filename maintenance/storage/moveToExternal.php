@@ -27,7 +27,7 @@ define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = [ 'e', 's' ];
-	require_once __DIR__ . '/../commandLine.inc';
+	require_once __DIR__ . '/../CommandLineInc.php';
 	require_once 'resolveStubs.php';
 
 	$fname = 'moveToExternal';

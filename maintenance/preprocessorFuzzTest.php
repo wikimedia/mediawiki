@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 $optionsWithoutArgs = [ 'verbose' ];
-require_once __DIR__ . '/commandLine.inc';
+require_once __DIR__ . '/CommandLineInc.php';
 
 $wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
 
