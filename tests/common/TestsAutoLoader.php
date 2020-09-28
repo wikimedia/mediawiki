@@ -194,6 +194,7 @@ $wgAutoloadClasses += [
 	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/media/MediaWikiMediaTestCase.php",
 
 	# tests/phpunit/mocks
+	'MockHttpTrait' => "$testDir/phpunit/mocks/MockHttpTrait.php",
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",
