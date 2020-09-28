@@ -111,19 +111,18 @@ class ApiBlock extends ApiBase {
 			$this->dieWithError( 'apierror-cantblock-email' );
 		}
 
-		$editingRestriction = $params['partial'] ? 'partial' : 'sitewide';
-		$pageRestrictions = array_map( function ( $text ) {
-			$title = $this->titleFactory->newFromText( $text );
-			$restriction = new PageRestriction( 0, $title->getArticleID() );
-			$restriction->setTitle( $title );
-			return $restriction;
-		}, (array)$params['pagerestrictions'] );
-		$namespaceRestrictions = array_map( function ( $id ) {
-			return new NamespaceRestriction( 0, $id );
-		}, (array)$params['namespacerestrictions'] );
-		$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
-		if ( $restrictions === null ) {
-			$restrictions = [];
+		$restrictions = [];
+		if ( $params['partial'] ) {
+			$pageRestrictions = array_map( function ( $text ) {
+				$title = $this->titleFactory->newFromText( $text );
+				$restriction = new PageRestriction( 0, $title->getArticleID() );
+				$restriction->setTitle( $title );
+				return $restriction;
+			}, (array)$params['pagerestrictions'] );
+			$namespaceRestrictions = array_map( function ( $id ) {
+				return new NamespaceRestriction( 0, $id );
+			}, (array)$params['namespacerestrictions'] );
+			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
 		}
 
 		$status = $this->blockUserFactory->newBlockUser(

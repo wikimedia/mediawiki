@@ -813,22 +813,23 @@ class SpecialBlock extends FormSpecialPage {
 
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];
-		if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
-			$pageRestrictions = array_map( function ( $text ) {
-				$title = Title::newFromText( $text );
-				// Use the link cache since the title has already been loaded when
-				// the field was validated.
-				$restriction = new PageRestriction( 0, $title->getArticleID() );
-				$restriction->setTitle( $title );
-				return $restriction;
-			}, explode( "\n", $data['PageRestrictions'] ) );
+		if ( $isPartialBlock ) {
+			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
+				$pageRestrictions = array_map( function ( $text ) {
+					$title = Title::newFromText( $text );
+					// Use the link cache since the title has already been loaded when
+					// the field was validated.
+					$restriction = new PageRestriction( 0, $title->getArticleID() );
+					$restriction->setTitle( $title );
+					return $restriction;
+				}, explode( "\n", $data['PageRestrictions'] ) );
+			}
+			if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
+				$namespaceRestrictions = array_map( function ( $id ) {
+					return new NamespaceRestriction( 0, $id );
+				}, explode( "\n", $data['NamespaceRestrictions'] ) );
+			}
 		}
-		if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
-			$namespaceRestrictions = array_map( function ( $id ) {
-				return new NamespaceRestriction( 0, $id );
-			}, explode( "\n", $data['NamespaceRestrictions'] ) );
-		}
-
 		$restrictions = ( array_merge( $pageRestrictions, $namespaceRestrictions ) );
 
 		if ( !isset( $data['Tags'] ) ) {
