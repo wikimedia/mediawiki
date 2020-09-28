@@ -2220,6 +2220,7 @@
 	"trackingcategories-desc": "বিষয়শ্রেণী অন্তর্ভুক্তির মানদণ্ড",
 	"restricted-displaytitle-ignored": "উপেক্ষিত প্রদর্শন শিরোনামসহ পাতা",
 	"restricted-displaytitle-ignored-desc": "পাতাটি একটি <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> উপেক্ষা করেছে কারণ এটা পাতাটির আসল শিরোনামের সাথে সমতুল্য নয়।",
+	"nonnumeric-formatnum": "অ-সাংখ্যিক ফরম্যাটনাম আর্গুমেন্টসহ পাতা",
 	"noindex-category-desc": "এই পাতাটি রোবটদের দ্বারা সূচীভুক্ত করা হয়নি কারণ এটিতে <code><nowiki>__NOINDEX__</nowiki></code> জাদুশব্দটি আছে এবং এটি এমন একটি নামস্থানে আছে যেখানে এই ধরনের চিহ্নিতকরণ অনুমোদিত।",
 	"index-category-desc": "এই পাতাটিতে একটি <code><nowiki>__INDEX__</nowiki></code> আছে (এবং পাতাটি এমন একটি নামস্থানে অবস্থিত যেখানে এই ধরনের চিহ্নিতকরণ সম্ভব) এবং এ কারণে রোবটগুলি এ পাতাটিকে তাদের সূচীভূক্ত করে, যদিও সাধারণত এমনটি হবার কথা নয়।",
 	"post-expand-template-inclusion-category-desc": "সবগুলি টেমপ্লেট প্রসারিত করলে পাতার আকার <code>$wgMaxArticleSize</code>-এর চেয়ে বেশি হয়ে যায়, তাই কিছু টেমপ্লেট প্রসারিত করা হয়নি।",

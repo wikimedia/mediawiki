@@ -291,6 +291,7 @@
 	"nextrevision": "Uđđâsub versio",
 	"currentrevisionlink": "Táálááš versio",
 	"cur": "táál.",
+	"next": "čuávuvâš",
 	"last": "oovd.",
 	"histlegend": "Iäruttâsâi valjim: Merkkii tiei versioi valjimriggeid, maid halijdah viärdádâllâđ, já teddil enter teikâ vyellin leijee puálu.<br />\nČielgiittâs: '''({{int:cur}})'' = Iäruttâsah  uđđâsumos version, '''({{int:last}})'' = Iäruttâsah ovdebáá version, '''{{int:minoreditletter}}''' = uccâ nubástus.",
 	"history-fieldset-title": "Sillii versioid",

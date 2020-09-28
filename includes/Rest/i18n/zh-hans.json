@@ -20,7 +20,7 @@
 	"rest-permission-denied-anon": "匿名用户无法访问",
 	"rest-permission-denied-title": "用户无权阅读标题($1)",
 	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
-	"rest-pagehistory-incompatible-params": "不能同时指定“旧的”和“新的”参数",
+	"rest-pagehistory-incompatible-params": "不能同时指定“older_than”和“newer_than”两参数",
 	"rest-pagehistory-param-range-error": "修订 ID 必须大于 0",
 	"rest-pagehistory-timestamp-error": "无法检索指定修订的时间戳($1)",
 	"rest-pagehistorycount-type-unrecognized": "指定的计数类型($1)无效",

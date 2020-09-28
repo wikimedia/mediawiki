@@ -2303,7 +2303,7 @@
 	"trackingcategories-desc": "Opnamecriteria",
 	"restricted-displaytitle-ignored": "Pagina's met genegeerde weergavetitels",
 	"restricted-displaytitle-ignored-desc": "Deze pagina heeft een genegeerde <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> omdat het niet overeenkomstig is met de werkelijke titel van de pagina.",
-	"nonnumeric-formatnum": "Pagina's met niet-numerieke formatnum argumenten",
+	"nonnumeric-formatnum": "Pagina's met niet-numerieke formatnum-argumenten",
 	"nonnumeric-formatnum-desc": "Deze pagina's bevatten een niet-numeriek argument voor de parserfunctie formatnum.",
 	"noindex-category-desc": "De pagina bevat het magische woord <code><nowiki>__NOINDEX__</nowiki></code> (en bevindt zich in een naamruimte waarin dat magische woord is toegestaan), en wordt niet geïndexeerd door robots.",
 	"index-category-desc": "De pagina bevat het magische woord <code><nowiki>__INDEX__</nowiki></code> (en bevindt zich in een naamruimte waarin dat magische woord is toegestaan), en wordt geïndexeerd door robots, terwijl dat normaliter niet zou gebeuren.",

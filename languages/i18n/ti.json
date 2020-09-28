@@ -178,6 +178,7 @@
 	"userlogout": "ብመንነት ውጻእ",
 	"notloggedin": "ብመንነት ኣይኣተወን",
 	"userlogin-noaccount": "መንነት መፍለዪ የብልካን?",
+	"userlogin-joinproject": "ናብ {{SITENAME}} ተጸንበር",
 	"createaccount": "መንነት መፍለዪ ፍጠር",
 	"userlogin-resetpassword-link": "መሕለፊ ቃልካ ረሲዕኻዮ?",
 	"createacct-another-submit": "መንነት መፍለዪ ፍጠር",
