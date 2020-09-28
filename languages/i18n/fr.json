@@ -3363,7 +3363,7 @@
 	"confirm-watch-button": "Valider",
 	"confirm-watch-top": "Ajouter cette page à votre liste de suivi ?",
 	"confirm-watch-label": "Fréquence de la liste de suivi :",
-	"watchlist-expiry-options": "infini:infinite,1 semaine:1 week,1 mois:1 month,3 mois:3 months,6 mois:6 months",
+	"watchlist-expiry-options": "indéfiniment:infinite,1 semaine:1 week,1 mois:1 month,3 mois:3 months,6 mois:6 months",
 	"watchlist-expires-in-aria-label": "Elément de liste de suivi en cours d'expiration",
 	"confirm-watch-button-expiry": "Suivre",
 	"confirm-unwatch-button": "Valider",

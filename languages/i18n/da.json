@@ -2112,6 +2112,7 @@
 	"trackingcategories-name": "Navn på besked",
 	"trackingcategories-desc": "Optagelseskriterier for kategori",
 	"restricted-displaytitle-ignored": "Sider med ignorerede visningstitler",
+	"nonnumeric-formatnum": "Sider med ikke-numeriske argumenter i parserfunktionen formatnum‎",
 	"noindex-category-desc": "Siden indekseres ikke af robotter, fordi den indeholder det magiske ord <code><nowiki>__NOINDEX__</nowiki></code> og er i et navnerum, hvor dette flag er tilladt.",
 	"index-category-desc": "Siden indeholder <code><nowiki>__INDEX__</nowiki></code> (og er i et navnerum, hvor dette flag er tilladt), og bliver derfor indekseret af robotter, hvor den normalt ikke ville blive det.",
 	"post-expand-template-inclusion-category-desc": "Siden er større end <code>$wgMaxArticleSize</code> efter alle skabeloner er udvidet, så nogle skabeloner blev ikke udvidet.",
