@@ -92,7 +92,7 @@ trait FactoryArgTestTrait {
 		$pos = $param->getPosition();
 
 		$type = $param->getType();
-		if ( !$type ) {
+		if ( !$type || $type->getName() === 'string' ) {
 			// Optimistically assume a string is okay
 			return "some unlikely string $pos";
 		}

@@ -54,6 +54,7 @@ use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Revision\ContributionsLookup;
@@ -1036,6 +1037,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserCache() : ParserCache {
 		return $this->getService( 'ParserCache' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return ParserCacheFactory
+	 */
+	public function getParserCacheFactory() : ParserCacheFactory {
+		return $this->getService( 'ParserCacheFactory' );
 	}
 
 	/**
