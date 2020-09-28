@@ -589,9 +589,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			// `contribs-ns-filters` class allows these fields to be toggled on/off by JavaScript.
 			// See resources/src/mediawiki.special.recentchanges.js
 			'infusable' => true,
-			'options' => [
-				$this->msg( 'invert' )->text() => 'nsInvert',
-				$this->msg( 'namespace_association' )->text() => 'associated',
+			'options-messages' => [
+				'invert' => 'nsInvert',
+				'namespace_association' => 'associated',
 			],
 			'default' => $nsFilters,
 			'section' => 'contribs-top',

@@ -27,7 +27,7 @@ namespace Wikimedia\Mime;
  * @internal
  */
 class MimeMap {
-	/** @var array Map of MIME types to a string of space-separated file extensions */
+	/** @var array Map of MIME types to an array of file extensions */
 	public const MIME_EXTENSIONS = [
 		'application/ogg' => [ 'ogx', 'ogg', 'ogm', 'ogv', 'oga', 'spx', 'opus' ],
 		'application/pdf' => [ 'pdf' ],
@@ -135,6 +135,7 @@ class MimeMap {
 		'application/zip' =>
 			[ 'zip', 'jar', 'xpi', 'sxc', 'stc', 'sxd', 'std', 'sxi', 'sti', 'sxm', 'stm', 'sxw', 'stw' ],
 		'application/x-rar' => [ 'rar' ],
+		'application/font-sfnt' => [ 'ttf' ],
 		'application/font-woff' => [ 'woff' ],
 		'application/font-woff2' => [ 'woff2' ],
 		'application/vnd.ms-fontobject' => [ 'eot' ],

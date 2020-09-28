@@ -2309,9 +2309,15 @@ class Linker {
 				$skin->getRelevantTitle() );
 			if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 				$diffInDays = $watchedItem->getExpiryInDays();
-				$msgParams = [ $diffInDays ];
-				// Resolves to tooltip-ca-unwatch-expiring message
-				$tooltipTitle = 'ca-unwatch-expiring';
+
+				if ( $diffInDays ) {
+					$msgParams = [ $diffInDays ];
+					// Resolves to tooltip-ca-unwatch-expiring message
+					$tooltipTitle = 'ca-unwatch-expiring';
+				} else { // Resolves to tooltip-ca-unwatch-expiring-hours message
+					$tooltipTitle = 'ca-unwatch-expiring-hours';
+				}
+
 			}
 		}
 

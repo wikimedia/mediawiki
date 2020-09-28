@@ -2525,10 +2525,11 @@ ERROR;
 		$title = $this->mTitle;
 		$watch = $this->watchthis;
 		$watchlistExpiry = $this->watchlistExpiry;
-		// Do this in its own transaction to reduce contention...
-		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch, $watchlistExpiry ) {
-			WatchAction::doWatchOrUnwatch( $watch, $title, $user, $watchlistExpiry );
-		} );
+
+		// This can't run as a DeferredUpdate due to a possible race condition
+		// when the post-edit redirect happens if the pendingUpdates queue is
+		// too large to finish in time (T259564)
+		WatchAction::doWatchOrUnwatch( $watch, $title, $user, $watchlistExpiry );
 
 		// Add a job to purge expired watchlist items. Jobs will only be added at the rate
 		// specified by $wgWatchlistPurgeRate, which by default is every tenth edit.
@@ -4413,6 +4414,7 @@ ERROR;
 				'value-attr' => 'value',
 				'class' => DropdownInputWidget::class,
 				'options' => $options,
+				'invisibleLabel' => true,
 			];
 		}
 		return $fieldDefs;
@@ -4465,6 +4467,7 @@ ERROR;
 					'label' => new OOUI\HtmlSnippet( $this->context->msg( $options['label-message'] )->parse() ),
 					'title' => $title,
 					'id' => $options['label-id'] ?? null,
+					'invisibleLabel' => $options['invisibleLabel'] ?? null,
 				]
 			);
 		}

@@ -430,13 +430,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		);
 
 		$lb = new LinkBatch();
+		$context = $this->getContext();
 
 		foreach ( $watchedItems as $watchedItem ) {
 			$namespace = $watchedItem->getLinkTarget()->getNamespace();
 			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
 			$lb->add( $namespace, $dbKey );
 			if ( !$services->getNamespaceInfo()->isTalk( $namespace ) ) {
-				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDays();
+				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $context );
 			}
 		}
 
@@ -619,11 +620,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = [];
-			foreach ( $pages as $dbkey => $expiryDays ) {
+			foreach ( $pages as $dbkey => $expiryDaysText ) {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
-					$text = $this->buildRemoveLine( $title, $expiryDays );
+					$text = $this->buildRemoveLine( $title, $expiryDaysText );
 					$options[$text] = $title->getPrefixedText();
 					$count++;
 				}
@@ -680,11 +681,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
 	 * @param Title $title
-	 * @param int|null $expiryDays Number of days a title has remaining in a user's watchlist. If int is passed
-	 *                 then include a message that states the time remaining in a watchlist.
+	 * @param string $expiryDaysText message shows the number of days a title has remaining in a user's watchlist.
+	 *               If this param is not empty then include a message that states the time remaining in a watchlist.
 	 * @return string
 	 */
-	private function buildRemoveLine( $title, ?int $expiryDays = null ): string {
+	private function buildRemoveLine( $title, string $expiryDaysText = '' ): string {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
@@ -719,11 +720,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$watchlistExpiringMessage = '';
-		if ( $this->isWatchlistExpiryEnabled && $expiryDays !== null ) {
-			$watchlistExpiringMessage = Html::element( 'span', [ 'class' => 'watchlistexpiry-msg' ],
-					$expiryDays > 0 ?
-					$this->msg( 'watchlist-expiring-msg', $expiryDays )->text() :
-					$this->msg( 'watchlist-expiring-hours-msg' )->text()
+		if ( $this->isWatchlistExpiryEnabled && $expiryDaysText ) {
+			$watchlistExpiringMessage = Html::element(
+				'span',
+				[ 'class' => 'watchlistexpiry-msg' ],
+				$expiryDaysText
 			);
 		}
 

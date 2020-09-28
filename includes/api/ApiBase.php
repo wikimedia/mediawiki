@@ -52,7 +52,6 @@ use Wikimedia\Rdbms\IDatabase;
 abstract class ApiBase extends ContextSource {
 
 	use ApiBlockInfoTrait;
-	use ApiWatchlistTrait;
 
 	/** @var HookContainer */
 	private $hookContainer;

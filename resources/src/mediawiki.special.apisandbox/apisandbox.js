@@ -740,12 +740,13 @@
 		 */
 		formatRequest: function ( displayParams, rawParams ) {
 			var jsonLayout,
+				apiUrl = new mw.Uri( mw.util.wikiScript( 'api' ) ).toString(),
 				items = [
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
 						data: new mw.widgets.CopyTextLayout( {
 							label: Util.parseMsg( 'apisandbox-request-url-label' ),
-							copyText: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+							copyText: apiUrl + '?' + $.param( displayParams )
 						} )
 					} ),
 					new OO.ui.MenuOptionWidget( {

@@ -29,7 +29,7 @@ use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
-require_once __DIR__ . '/cleanupTable.inc';
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script for finding and marking bad content blobs.
@@ -123,19 +123,7 @@ class FindBadBlobs extends Maintenance {
 			}
 		}
 
-		return $this->normalizeIds( $opt );
-	}
-
-	/**
-	 * @param string $text
-	 *
-	 * @return int[]
-	 */
-	private function normalizeIds( $text ) {
-		$ids = preg_split( '/[\s,;:]+/', $text );
-		return array_map( function ( $id ) {
-			return (int)$id;
-		}, $ids );
+		return $this->parseIntList( $opt );
 	}
 
 	/**

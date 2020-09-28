@@ -938,6 +938,18 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * Returns a normalized expiry or the max expiry if the given expiry exceeds it.
+	 * @param string|null $expiry
+	 * @return false|string|null
+	 */
+	private function getNormalizedOrMaxExpiry( ?string $expiry ) {
+		if ( ExpiryDef::expiryExceedsMax( $expiry, $this->maxExpiryDuration ) ) {
+			return ExpiryDef::normalizeExpiry( $this->maxExpiryDuration );
+		}
+		return ExpiryDef::normalizeExpiry( $expiry );
+	}
+
+	/**
 	 * @since 1.27 Method added.
 	 * @since 1.35 Accepts $expiry parameter.
 	 * @param UserIdentity $user
@@ -947,11 +959,31 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
 		$this->addWatchBatchForUser( $user, [ $target ], $expiry );
+
+		if ( $this->expiryEnabled && !$expiry ) {
+			// When re-watching a page with a null $expiry, any existing expiry is left unchanged.
+			// However we must re-fetch the preexisting expiry or else the cached WatchedItem will
+			// incorrectly have a null expiry. Note that loadWatchedItem() does the caching.
+			// See T259379
+			$this->loadWatchedItem( $user, $target );
+		} else {
+			// Create a new WatchedItem and add it to the process cache.
+			// In this case we don't need to re-fetch the expiry.
+			$expiry = $this->getNormalizedOrMaxExpiry( $expiry );
+			$item = new WatchedItem(
+				$user,
+				$target,
+				null,
+				wfIsInfinity( $expiry ) ? null : $expiry
+			);
+			$this->cache( $item );
+		}
 	}
 
 	/**
 	 * Add multiple items to the user's watchlist.
-	 * If adding a single item, use self::addWatch() where you can optionally provide an expiry.
+	 * If you know you're adding a single page (and/or its talk page) use self::addWatch(),
+	 * since it will add the WatchedItem to the process cache.
 	 *
 	 * @since 1.27 Method added.
 	 * @since 1.35 Accepts $expiry parameter.
@@ -978,14 +1010,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return true;
 		}
 
-		if ( ExpiryDef::expiryExceedsMax( $expiry, $this->maxExpiryDuration ) ) {
-			$expiry = ExpiryDef::normalizeExpiry( $this->maxExpiryDuration );
-		} else {
-			$expiry = ExpiryDef::normalizeExpiry( $expiry );
-		}
+		$expiry = $this->getNormalizedOrMaxExpiry( $expiry );
 
 		$rows = [];
-		$items = [];
 		foreach ( $targets as $target ) {
 			$rows[] = [
 				'wl_user' => $user->getId(),
@@ -993,12 +1020,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp' => null,
 			];
-			$items[] = new WatchedItem(
-				$user,
-				$target,
-				null,
-				wfIsInfinity( $expiry ) ? null : $expiry
-			);
 			$this->uncache( $user, $target );
 		}
 
@@ -1020,12 +1041,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			if ( $ticket ) {
 				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
-		}
-		// Update process cache to ensure skin doesn't claim that the current
-		// page is unwatched in the response of action=watch itself (T28292).
-		// This would otherwise be re-queried from a replica by isWatched().
-		foreach ( $items as $item ) {
-			$this->cache( $item );
 		}
 
 		return (bool)$affectedRows;

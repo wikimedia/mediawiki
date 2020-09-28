@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 
 /**
@@ -133,17 +134,12 @@ class MWRestrictions {
 	}
 
 	/**
-	 * Test an IP address
+	 * Test if an IP address is allowed by the restrictions
 	 * @param string $ip
 	 * @return bool
 	 */
 	public function checkIP( $ip ) {
-		foreach ( $this->ipAddresses as $range ) {
-			if ( IPUtils::isInRange( $ip, $range ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		$set = new IPSet( $this->ipAddresses );
+		return $set->match( $ip );
 	}
 }

@@ -33,7 +33,23 @@ class RequestFromGlobals extends RequestBase {
 
 	public function getUri() {
 		if ( $this->uri === null ) {
-			$this->uri = new Uri( \WebRequest::getGlobalRequestURL() );
+			$requestUrl = \WebRequest::getGlobalRequestURL();
+
+			try {
+				$uriInstance = new Uri( $requestUrl );
+			} catch ( \InvalidArgumentException $e ) {
+				// Uri constructor will throw exception if the URL is
+				// relative and contains colon-number pattern that
+				// looks like a port.
+				//
+				// Since $requestUrl here is absolute-path references
+				// so all titles that contain colon followed by a
+				// number would be inacessible if the exception occurs.
+				$uriInstance = (
+					new Uri( '//HOST:80' . $requestUrl )
+				)->withScheme( '' )->withHost( '' )->withPort( null );
+			}
+			$this->uri = $uriInstance;
 		}
 		return $this->uri;
 	}

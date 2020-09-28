@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * Page addition to a user's watchlist
@@ -69,7 +70,8 @@ class WatchAction extends FormAction {
 
 	public function onSubmit( $data ) {
 		$expiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
-		return self::doWatch( $this->getTitle(), $this->getUser(), User::CHECK_USER_RIGHTS, $expiry );
+		// Even though we're never unwatching here, use doWatchOrUnwatch() because it also checks for changed expiry.
+		return self::doWatchOrUnwatch( true, $this->getTitle(), $this->getUser(), $expiry );
 	}
 
 	protected function checkCanExecute( User $user ) {
@@ -131,13 +133,12 @@ class WatchAction extends FormAction {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
 			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
-			$diffInDays = $watchedItem->getExpiryInDays();
-			$daysLeft = $msgLocalizer->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
+			$daysLeft = $watchedItem->getExpiryInDaysText( $msgLocalizer, true );
 			$expiryOptions = array_merge(
-				[ $daysLeft => $expiry->getTimestamp( TS_MW ) ],
+				[ $daysLeft => $expiry->getTimestamp( TS_ISO_8601 ) ],
 				$expiryOptions
 			);
-			$default = $expiry->getTimestamp( TS_MW );
+			$default = $expiry->getTimestamp( TS_ISO_8601 );
 		}
 		return [
 			'options' => $expiryOptions,
@@ -153,9 +154,47 @@ class WatchAction extends FormAction {
 		$form->setTokenSalt( 'watch' );
 	}
 
+	/**
+	 * Show one of 8 possible success messages.
+	 * The messages are:
+	 * 1. addedwatchtext
+	 * 2. addedwatchtext-talk
+	 * 3. addedwatchindefinitelytext
+	 * 4. addedwatchindefinitelytext-talk
+	 * 5. addedwatchexpirytext
+	 * 6. addedwatchexpirytext-talk
+	 * 7. addedwatchexpiryhours
+	 * 8. addedwatchexpiryhours-talk
+	 */
 	public function onSuccess() {
 		$msgKey = $this->getTitle()->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
-		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText() );
+		$expiryLabel = null;
+		$submittedExpiry = $this->getContext()->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		if ( $submittedExpiry ) {
+			// We can't use $this->watcheditem to get the expiry because it's not been saved at this
+			// point in the request and so its values are those from before saving.
+			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry );
+
+			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
+			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );
+			$defaultLabels = static::getExpiryOptions( $this->getContext(), null )['options'];
+			$localizedExpiry = array_search( $submittedExpiry, $defaultLabels );
+			$expiryLabel = $expiryDays && $localizedExpiry === false
+				? $this->getContext()->msg( 'days', $expiryDays )->text()
+				: $localizedExpiry;
+
+			// Determine which message to use, depending on whether this is a talk page or not
+			// and whether an expiry was selected.
+			$isTalk = $this->getTitle()->isTalkPage();
+			if ( wfIsInfinity( $expiry ) ) {
+				$msgKey = $isTalk ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+			} elseif ( $expiryDays > 0 ) {
+				$msgKey = $isTalk ? 'addedwatchexpirytext-talk' : 'addedwatchexpirytext';
+			} elseif ( $expiryDays < 1 ) {
+				$msgKey = $isTalk ? 'addedwatchexpiryhours-talk' : 'addedwatchexpiryhours';
+			}
+		}
+		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText(), $expiryLabel );
 	}
 
 	/**
@@ -179,8 +218,19 @@ class WatchAction extends FormAction {
 		if ( !$user->isLoggedIn() ) {
 			return Status::newGood();
 		}
-		$changingWatchStatus = $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) !== $watch;
-		if ( $expiry !== null || $changingWatchStatus ) {
+
+		// Only run doWatch() or doUnwatch() if there's been a change in the watched status.
+		$oldWatchedItem = MediaWikiServices::getInstance()->getWatchedItemStore()
+			->getWatchedItem( $user, $title );
+		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
+		if ( $oldWatchedItem && $expiry !== null ) {
+			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
+			$changingWatchStatus = $changingWatchStatus ||
+				ExpiryDef::normalizeExpiry( $oldWatchedItem->getExpiry() ) !==
+				ExpiryDef::normalizeExpiry( $expiry );
+		}
+
+		if ( $changingWatchStatus ) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {

@@ -22,8 +22,13 @@ caps.drop all
 blacklist /sbin
 blacklist /usr/sbin
 blacklist /usr/local/sbin
-# /run typically contains many exploitable UNIX sockets
-blacklist /run
+
+# Blacklist /run which typically contains many exploitable UNIX sockets. But
+# don't blacklist /run/firejail which firejail needs. Using a glob means that
+# the files and directories under /run are mounted separately, which allows
+# the noblacklist directive to work. (T262364)
+noblacklist /run/firejail
+blacklist /run/*
 
 # Disallow system files
 blacklist /etc/shadow

@@ -209,7 +209,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		IContextSource $context,
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
-		$oldOptions = $this->loadUserOptions( $user );
+		$oldOptions = $this->loadUserOptions( $user, self::READ_LATEST );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
 
 		if ( !is_array( $resetKinds ) ) {

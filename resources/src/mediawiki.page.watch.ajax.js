@@ -55,23 +55,30 @@
 		$li = $link.closest( 'li' );
 
 		// Trigger a 'watchpage' event for this List item.
-		// Announce the otherAction value as the first param.
+		// Announce the otherAction value and expiry as params.
 		// Used to monitor the state of watch link.
 		// TODO: Revise when system wide hooks are implemented
-		if ( state === undefined ) {
-			$li.trigger( 'watchpage.mw', otherAction );
+		if ( state !== 'loading' ) {
+			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
 		}
 
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
 			if ( expiry === null || expiry === 'infinity' ) {
+				// Resolves to tooltip-ca-unwatch message
 				tooltipAction = 'unwatch';
 			} else {
 				expiryDate = new Date( expiry );
 				// Using the Math.ceil function instead of floor so when, for example, a user selects one week
 				// the tooltip shows 7 days instead of 6 days (see Phab ticket T253936)
 				daysLeftExpiry = Math.ceil( ( expiryDate - currentDate ) / ( 1000 * 60 * 60 * 24 ) );
-				tooltipAction = 'unwatch-expiring';
+				if ( daysLeftExpiry > 0 ) {
+					// Resolves to tooltip-ca-unwatch-expiring message
+					tooltipAction = 'unwatch-expiring';
+				} else {
+					// Resolves to tooltip-ca-unwatch-expiring-hours message
+					tooltipAction = 'unwatch-expiring-hours';
+				}
 			}
 		}
 
@@ -80,29 +87,25 @@
 			// * watch
 			// * watching
 			// * unwatch
-			// * unwatch-expiring
+			// * tooltip-ca-unwatch
+			// * tooltip-ca-unwatch-expiring
+			// * tooltip-ca-unwatch-expiring-hours
 			// * unwatching
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
-		// Most common ID style
-		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
-			$li.prop( 'id', 'ca-' + action );
-		}
-
 		if ( state === 'loading' ) {
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
 
-			// Remove the half-star class that might have been added by SkinTemplate.
-			if ( action === 'unwatch' ) {
-				$li.removeClass( 'mw-watchlink-temp' );
+			// Most common ID style
+			if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
+				$li.prop( 'id', 'ca-' + action );
 			}
 		}
-
 	}
 
 	/**

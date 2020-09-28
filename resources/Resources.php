@@ -1471,6 +1471,19 @@ return [
 			'ready.js',
 			'checkboxShift.js',
 			'checkboxHack.js',
+			[ 'name' => 'config.json', 'callback' => function (
+				ResourceLoaderContext $context,
+				Config $config
+			) {
+				$readyConfig = [
+					'search' => true,
+					'collapsible' => true,
+					'sortable' => true,
+				];
+
+				Hooks::runner()->onSkinPageReadyConfig( $context, $readyConfig );
+				return $readyConfig;
+			} ],
 		],
 		'dependencies' => [
 			'mediawiki.util',
@@ -1507,6 +1520,7 @@ return [
 			'tooltip-ca-watch',
 			'tooltip-ca-unwatch',
 			'tooltip-ca-unwatch-expiring',
+			'tooltip-ca-unwatch-expiring-hours',
 			'addedwatchtext',
 			'addedwatchtext-talk',
 			'removedwatchtext',
@@ -1793,6 +1807,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
+			'mediawiki.Uri',
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
@@ -2186,6 +2201,7 @@ return [
 			'tooltip-ca-watch',
 			'tooltip-ca-unwatch',
 			'tooltip-ca-unwatch-expiring',
+			'tooltip-ca-unwatch-expiring-hours',
 			'watchlist-unwatch',
 			'watchlist-unwatch-undo',
 		],

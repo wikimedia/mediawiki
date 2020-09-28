@@ -156,7 +156,7 @@
 	"apihelp-edit-param-watch": "Add the page to the current user's watchlist.",
 	"apihelp-edit-param-unwatch": "Remove the page from the current user's watchlist.",
 	"apihelp-edit-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
-	"apihelp-edit-param-watchlistexpiry": "Watchlst expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
+	"apihelp-edit-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
 	"apihelp-edit-param-md5": "The MD5 hash of the $1text parameter, or the $1prependtext and $1appendtext parameters concatenated. If set, the edit won't be done unless the hash is correct.",
 	"apihelp-edit-param-prependtext": "Add this text to the beginning of the page. Overrides $1text.",
 	"apihelp-edit-param-appendtext": "Add this text to the end of the page. Overrides $1text.\n\nUse $1section=new to append a new section, rather than this parameter.",

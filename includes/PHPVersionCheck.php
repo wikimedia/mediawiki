@@ -78,7 +78,7 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$minimumVersion = '7.2.22';
+		$minimumVersion = '7.3.19';
 
 		if ( version_compare( PHP_VERSION, $minimumVersion ) < 0 ) {
 			$cliText = "Error: You might be using an older PHP version (PHP " . PHP_VERSION . ").\n"

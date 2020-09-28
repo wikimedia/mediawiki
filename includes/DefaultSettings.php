@@ -6078,9 +6078,12 @@ $wgApplyIpBlocksToXff = false;
  *         'edit' => [
  *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
  *             'user' => [ x, y ], // each logged-in user
+ *             'global-user' => [ x, y ], // per username, across all sites (assumes names are global)
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
- *             'ip' => [ x, y ], // each anon and recent account
+ *             'ip' => [ x, y ], // each anon and recent account, across all sites
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *             'ip-all' => [ x, y ], // per ip, across all sites
+ *             'subnet-all' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
  *             'groupName' => [ x, y ], // by group membership
  *         ]
  *     ];
@@ -7795,11 +7798,11 @@ $wgEnableParserLimitReporting = true;
  *
  * For example for 'foobarskin' where the PHP class is 'MediaWiki\Skins\FooBar\FooBarSkin' set:
  *
- * @par extension.json Example:
+ * @par skin.json Example:
  * @code
  * "ValidSkinNames": {
  * 	"foobarskin": {
- * 		"displayname": "FooBarSkin"
+ * 		"displayname": "FooBarSkin",
  * 		"class": "MediaWiki\\Skins\\FooBar\\FooBarSkin"
  * 	}
  * }

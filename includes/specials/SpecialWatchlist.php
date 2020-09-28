@@ -525,7 +525,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 						$watchedItem = $this->watchStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
 						if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 							$diffInDays = $watchedItem->getExpiryInDays();
-							$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring';
+
+							if ( $diffInDays > 0 ) {
+								$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring';
+							} else {
+								$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring-hours';
+							}
 						}
 					}
 

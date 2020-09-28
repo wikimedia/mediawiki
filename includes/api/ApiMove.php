@@ -169,8 +169,8 @@ class ApiMove extends ApiBase {
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
-		$this->setWatch( $watch, $fromTitle, 'watchmoves', $watchlistExpiry );
-		$this->setWatch( $watch, $toTitle, 'watchmoves', $watchlistExpiry );
+		$this->setWatch( $watch, $fromTitle, $user, 'watchmoves', $watchlistExpiry );
+		$this->setWatch( $watch, $toTitle, $user, 'watchmoves', $watchlistExpiry );
 
 		$result->addValue( null, $this->getModuleName(), $r );
 	}

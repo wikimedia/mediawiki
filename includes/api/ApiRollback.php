@@ -94,7 +94,7 @@ class ApiRollback extends ApiBase {
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
-		$this->setWatch( $watch, $titleObj, 'watchrollback', $watchlistExpiry );
+		$this->setWatch( $watch, $titleObj, $user, 'watchrollback', $watchlistExpiry );
 
 		$currentRevisionRecord = $details['current-revision-record'];
 		$targetRevisionRecord = $details['target-revision-record'];

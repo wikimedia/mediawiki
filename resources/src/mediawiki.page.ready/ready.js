@@ -1,33 +1,36 @@
 var checkboxShift = require( './checkboxShift.js' );
+var config = require( './config.json' );
+
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var $sortable, $collapsible, $sortableAndCollapsible, dependencies;
-
-	$collapsible = $content.find( '.mw-collapsible' );
-	$sortable = $content.find( 'table.sortable' );
-	$sortableAndCollapsible = $content.find( 'table.sortable.mw-collapsible' );
-
-	// Both modules are preloaded by Skin::getDefaultModules()
-	dependencies = [];
-	if ( $collapsible.length ) {
-		dependencies.push( 'jquery.makeCollapsible' );
-	}
-	if ( $sortable.length ) {
-		dependencies.push( 'jquery.tablesorter' );
-	}
-
-	mw.loader.using( dependencies ).then( function () {
-		// The two scripts only work correctly together when executed in this order (T64878)
-		if ( $sortableAndCollapsible.length ) {
-			$sortableAndCollapsible.tablesorter().makeCollapsible();
-		}
-		// These are no-ops when executed on elements that were already handled above
+	var $sortable, $collapsible,
+		dependencies = [];
+	if ( config.collapsible ) {
+		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
-			$collapsible.makeCollapsible();
+			dependencies.push( 'jquery.makeCollapsible' );
 		}
+	}
+	if ( config.sortable ) {
+		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
-			$sortable.tablesorter();
+			dependencies.push( 'jquery.tablesorter' );
 		}
-	} );
+	}
+	if ( dependencies.length ) {
+		// Both modules are preloaded by Skin::getDefaultModules()
+		mw.loader.using( dependencies ).then( function () {
+			// For tables that are both sortable and collapsible,
+			// it must be made sortable first and collapsible second.
+			// This is because jquery.tablesorter stumbles on the
+			// elements inserted by jquery.makeCollapsible (T64878)
+			if ( $sortable && $sortable.length ) {
+				$sortable.tablesorter();
+			}
+			if ( $collapsible && $collapsible.length ) {
+				$collapsible.makeCollapsible();
+			}
+		} );
+	}
 
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
@@ -89,29 +92,49 @@ $( function () {
 	} );
 } );
 
-// Load the search suggestion module when focus the search box.
-function eventListener( e ) {
-	if (
-		e.target.id === 'searchInput' ||
-		/(^|\s)mw-searchInput($|\s)/.test( e.target.className )
-	) {
-		mw.loader.load( 'mediawiki.searchSuggest' );
-		document.removeEventListener( 'focusin', eventListener );
+/**
+ * @class mw.plugin.page.ready
+ * @singleton
+ */
+
+/**
+ * @private
+ * @param {HTMLElement} element
+ * @return {boolean} Whether the element is a search input.
+ */
+function isSearchInput( element ) {
+	return element.id === 'searchInput' ||
+		/(^|\s)mw-searchInput($|\s)/.test( element.className );
+}
+
+/**
+ * Load a given module when a search input is focused.
+ *
+ * @param {string} moduleName Name of a module
+ */
+function loadSearchModule( moduleName ) {
+	// Load the module once a search input is focussed.
+	function eventListener( e ) {
+		if ( isSearchInput( e.target ) ) {
+			mw.loader.load( moduleName );
+			document.removeEventListener( 'focusin', eventListener );
+		}
+	}
+	document.addEventListener( 'focusin', eventListener );
+
+	// Load the module now if the search input is already focused,
+	// because the user started typing before the JavaScript arrived.
+	if ( document.activeElement && isSearchInput( document.activeElement ) ) {
+		mw.loader.load( moduleName );
 	}
 }
-document.addEventListener( 'focusin', eventListener );
 
-// Load the search suggestion module when the search box is already focused
-// because the user started typing before the JavaScript is loaded.
-if (
-	document.activeElement && (
-		document.activeElement.id === 'searchInput' ||
-		/(^|\s)mw-searchInput($|\s)/.test( document.activeElement.className )
-	)
-) {
-	mw.loader.load( 'mediawiki.searchSuggest' );
+// Skins may decide to disable this behaviour or use an alternative module.
+if ( config.search ) {
+	loadSearchModule( 'mediawiki.searchSuggest' );
 }
 
 module.exports = {
+	loadSearchModule: loadSearchModule,
 	checkboxHack: require( './checkboxHack.js' )
 };
