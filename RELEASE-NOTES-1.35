@@ -511,6 +511,7 @@ because of Phabricator reports.
 * (T248299) Added language support for Inari Sami (smn).
 * (T251369) Added language support for Ladin (lld).
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
+* (T254854) Added language support for Southern Altay (alt).
 
 === Breaking changes in 1.35 ===
 * MediaWiki no longer supports PHP 7.2; use PHP 7.3.19+ (T228346, T257879).
