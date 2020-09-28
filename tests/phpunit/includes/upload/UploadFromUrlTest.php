@@ -1,9 +1,6 @@
 <?php
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
-use Psr\Log\NullLogger;
 
 /**
  * @group large
@@ -13,6 +10,8 @@ use Psr\Log\NullLogger;
  * @covers UploadFromUrl
  */
 class UploadFromUrlTest extends ApiTestCase {
+	use MockHttpTrait;
+
 	private $user;
 
 	protected function setUp() : void {
@@ -32,87 +31,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 
 		$this->installMockHttp();
-	}
-
-	/**
-	 * @param null|string|array|callable|MWHttpRequest $request
-	 *
-	 * @return void
-	 * @throws Exception
-	 */
-	protected function installMockHttp( $request = null ) {
-		$options = new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, [
-			'HTTPTimeout' => 1,
-			'HTTPConnectTimeout' => 1,
-			'HTTPMaxTimeout' => 1,
-			'HTTPMaxConnectTimeout' => 1,
-		] );
-
-		$mockHttpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
-			->setConstructorArgs( [ $options, new NullLogger() ] )
-			->onlyMethods( [ 'create' ] )
-			->getMock();
-
-		if ( $request === null ) {
-			$mockHttpRequestFactory->expects( $this->never() )->method( 'create' );
-		} elseif ( $request instanceof MWHttpRequest ) {
-			$mockHttpRequestFactory->method( 'create' )
-				->willReturn( $request );
-		} elseif ( is_callable( $request ) ) {
-			$mockHttpRequestFactory->method( 'create' )
-				->willReturnCallback( $request );
-		} elseif ( is_array( $request ) ) {
-			$mockHttpRequestFactory->method( 'create' )
-				->willReturnOnConsecutiveCalls( ...$request );
-		} elseif ( is_string( $request ) ) {
-			$mockHttpRequestFactory->method( 'create' )
-				->willReturn( $this->makeFakeHttpRequest( $request ) );
-		}
-
-		$this->setService( 'HttpRequestFactory', function () use ( $mockHttpRequestFactory ) {
-			return $mockHttpRequestFactory;
-		} );
-	}
-
-	/**
-	 * @param string $body
-	 * @param int $status
-	 * @param array $headers
-	 *
-	 * @return MWHttpRequest
-	 */
-	private function makeFakeHttpRequest( $body = 'Lorem Ipsum', $statusCode = 200, $headers = [] ) {
-		$mockHttpRequest = $this->createNoOpMock(
-			MWHttpRequest::class,
-			[ 'execute', 'setCallback', 'isRedirect', 'getFinalUrl' ]
-		);
-
-		$mockHttpRequest->method( 'isRedirect' )->willReturn(
-			$statusCode >= 300 && $statusCode < 400
-		);
-
-		$mockHttpRequest->method( 'getFinalUrl' )->willReturn( $headers[ 'Location' ] ?? '' );
-
-		$dataCallback = null;
-		$mockHttpRequest->method( 'setCallback' )
-			->willReturnCallback(
-				function ( $callback ) use ( &$dataCallback ) {
-					$dataCallback = $callback;
-				}
-			);
-
-		$status = Status::newGood( $statusCode );
-		$mockHttpRequest->method( 'execute' )
-			->willReturnCallback(
-				function () use ( &$dataCallback, $body, $status ) {
-					if ( $dataCallback ) {
-						$dataCallback( $this, $body );
-					}
-					return $status;
-				}
-			);
-
-		return $mockHttpRequest;
 	}
 
 	/**
