@@ -954,11 +954,6 @@ EOF
 		$time = '20110606112233';
 		$po->setCacheTime( $time );
 		$this->assertSame( $time, $po->getCacheTime() );
-
-		// support -1 as a marker for "not cacheable"
-		$time = -1;
-		$po->setCacheTime( $time );
-		$this->assertSame( $time, $po->getCacheTime() );
 	}
 
 	public function provideOldSerialized() {
