@@ -87,15 +87,15 @@ class GenderCache {
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
-		global $wgUser;
-
 		if ( $username instanceof UserIdentity ) {
 			$username = $username->getName();
 		}
 
 		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
-			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
+			if ( $this->misses >= $this->missLimit &&
+				RequestContext::getMain()->getUser()->getName() !== $username
+			) {
 				if ( $this->misses === $this->missLimit ) {
 					$this->misses++;
 					wfDebug( __METHOD__ . ": too many misses, returning default onwards" );
