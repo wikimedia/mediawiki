@@ -115,6 +115,8 @@ class User implements IDBAccessObject, UserIdentity {
 	];
 
 	/** Cache variables */
+	// Some of these are public, including for use by the UserFactory, but they generally
+	// should not be set manually
 	// @{
 	/** @var int */
 	public $mId;
@@ -522,7 +524,7 @@ class User implements IDBAccessObject, UserIdentity {
 	// @{
 
 	/**
-	 * Static factory method for creation from username.
+	 * @see UserFactory::newFromName
 	 *
 	 * This is slightly less efficient than newFromId(), so use newFromId() if
 	 * you have both an ID and a name handy.
@@ -538,21 +540,34 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  with a name, zero user ID and default settings.
 	 */
 	public static function newFromName( $name, $validate = 'valid' ) {
+		// Backwards compatibility with strings / false
+		$validationLevels = [
+			'valid' => UserNameUtils::RIGOR_VALID,
+			'usable' => UserNameUtils::RIGOR_USABLE,
+			'creatable' => UserNameUtils::RIGOR_CREATABLE
+		];
 		if ( $validate === true ) {
 			$validate = 'valid';
 		}
-		$name = self::getCanonicalName( $name, $validate );
-		if ( $name === false ) {
-			return false;
+		if ( $validate === false ) {
+			$validation = UserNameUtils::RIGOR_NONE;
+		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
+			$validation = $validationLevels[ $validate ];
+		} else {
+			// Not a recognized value, probably a test for unsupported validation
+			// levels, regardless, just pass it along
+			$validation = $validate;
 		}
 
-		// Create unloaded user object
-		$u = new User;
-		$u->mName = $name;
-		$u->mFrom = 'name';
-		$u->setItemLoaded( 'name' );
+		$user = MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromName( (string)$name, $validation );
 
-		return $u;
+		// UserFactory returns null instead of false
+		if ( $user === null ) {
+			$user = false;
+		}
+		return $user;
 	}
 
 	/**
@@ -1202,9 +1217,11 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Set that an item has been loaded
 	 *
+	 * @internal Only public for use in UserFactory
+	 *
 	 * @param string $item
 	 */
-	protected function setItemLoaded( $item ) {
+	public function setItemLoaded( $item ) {
 		if ( is_array( $this->mLoadedItems ) ) {
 			$this->mLoadedItems[$item] = true;
 		}
