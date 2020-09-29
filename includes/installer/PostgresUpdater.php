@@ -381,8 +381,6 @@ class PostgresUpdater extends DatabaseUpdater {
 				'mwuser(user_id) ON DELETE SET NULL' ],
 			[ 'changeFkeyDeferrable', 'pagelinks', 'pl_from', 'page(page_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'page_props', 'pp_page', 'page (page_id) ON DELETE CASCADE' ],
-			[ 'changeFkeyDeferrable', 'page_restrictions', 'pr_page',
-				'page(page_id) ON DELETE CASCADE' ],
 			[ 'changeFkeyDeferrable', 'protected_titles', 'pt_user',
 				'mwuser(user_id) ON DELETE SET NULL' ],
 			[ 'ifTableNotExists', 'actor', 'changeFkeyDeferrable', 'recentchanges', 'rc_user',
@@ -756,6 +754,14 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'querycachetwo', 'querycachetwo_type_value', 'qcc_type' ],
 			[ 'renameIndex', 'querycachetwo', 'querycachetwo_title', 'qcc_title' ],
 			[ 'renameIndex', 'querycachetwo', 'querycachetwo_titletwo', 'qcc_titletwo' ],
+			[ 'dropFkey', 'page_restrictions', 'pr_page' ],
+			[ 'addPgIndex', 'page_restrictions', 'pr_pagetype', '(pr_page, pr_type)', true ],
+			[ 'addPgIndex', 'page_restrictions', 'pr_typelevel', '(pr_type, pr_level)' ],
+			[ 'addPgIndex', 'page_restrictions', 'pr_level', '(pr_level)' ],
+			[ 'addPgIndex', 'page_restrictions', 'pr_cascade', '(pr_cascade)' ],
+			[ 'changePrimaryKey', 'page_restrictions', [ 'pr_id' ], 'page_restrictions_pk' ] ,
+			[ 'dropPgIndex', 'page_restrictions', 'page_restrictions_pr_id_key' ],
+			[ 'changeNullableField', 'page_restrictions', 'pr_page', 'NOT NULL', true ],
 		];
 	}
 
@@ -1335,6 +1341,45 @@ END;
 		} else {
 			$this->output( "...index '$index' exists\n" );
 		}
+	}
+
+	protected function changePrimaryKey( $table, $shouldBe, $constraintName = null ) {
+		// https://wiki.postgresql.org/wiki/Retrieve_primary_key_columns
+		$result = $this->db->query(
+			"SELECT a.attname as column " .
+				"FROM pg_index i " .
+				"JOIN pg_attribute a ON a.attrelid = i.indrelid " .
+				"AND a.attnum = ANY(i.indkey) " .
+				"WHERE i.indrelid = '\"$table\"'::regclass " .
+				"AND i.indisprimary"
+		);
+		$currentColumns = [];
+		foreach ( $result as $row ) {
+			$currentColumns[] = $row->column;
+		}
+
+		if ( $currentColumns == $shouldBe ) {
+			$this->output( "...no need to change primary key of '$table'\n" );
+			return true;
+		}
+
+		if ( !$constraintName ) {
+			$constraintName = $table . '_pkey';
+		}
+
+		if ( $this->db->constraintExists( $table, $constraintName ) ) {
+			$this->db->query(
+				"ALTER TABLE $table" .
+				" DROP CONSTRAINT {$constraintName};",
+				__METHOD__
+			);
+		}
+
+		$this->db->query(
+			"ALTER TABLE $table" .
+			" ADD PRIMARY KEY (" . implode( ',', $shouldBe ) . ');',
+			__METHOD__
+		);
 	}
 
 	protected function checkRevUserFkey() {
