@@ -71,7 +71,6 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 
 	function wfMaintenanceSetup() {
-		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
 		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 			if ( $wgLocalisationCacheConf['storeClass'] === false
