@@ -2508,4 +2508,19 @@ abstract class Skin extends ContextSource {
 
 		return $html;
 	}
+
+	/**
+	 * Prepare the subtitle of the page for output in the skin if one has been set.
+	 * @since 1.35
+	 * @return string HTML
+	 */
+	final public function prepareSubtitle() {
+		$out = $this->getOutput();
+		$subpagestr = $this->subPageSubtitle();
+		if ( $subpagestr !== '' ) {
+			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
+		}
+		return $subpagestr . $out->getSubtitle();
+	}
+
 }
