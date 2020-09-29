@@ -1112,24 +1112,6 @@ CREATE TABLE /*_*/interwiki (
 
 
 --
--- Used for caching expensive grouped queries
---
-CREATE TABLE /*_*/querycache (
-  -- A key name, generally the base name of of the special page.
-  qc_type varbinary(32) NOT NULL,
-
-  -- Some sort of stored value. Sizes, counts...
-  qc_value int unsigned NOT NULL default 0,
-
-  -- Target namespace+title
-  qc_namespace int NOT NULL default 0,
-  qc_title varchar(255) binary NOT NULL default ''
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/qc_type ON /*_*/querycache (qc_type,qc_value);
-
-
---
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*_*/objectcache (

@@ -306,6 +306,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'langlinks', 'll_title', 'patch-langlinks-ll_title-varbinary.sql' ],
 			[ 'modifyField', 'iwlinks', 'iwl_title', 'patch-iwlinks-iwl_title-varbinary.sql' ],
 			[ 'modifyField', 'category', 'cat_title', 'patch-category-cat_title-varbinary.sql' ],
+			[ 'modifyField', 'querycache', 'qc_title', 'patch-querycache-qc_title-varbinary.sql' ],
 		];
 	}
 

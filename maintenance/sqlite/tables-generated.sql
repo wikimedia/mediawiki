@@ -269,3 +269,12 @@ CREATE TABLE /*_*/ipblocks_restrictions (
 );
 
 CREATE INDEX ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);
+
+
+CREATE TABLE /*_*/querycache (
+  qc_type BLOB NOT NULL, qc_value INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  qc_namespace INTEGER DEFAULT 0 NOT NULL,
+  qc_title BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX qc_type ON /*_*/querycache (qc_type, qc_value);
