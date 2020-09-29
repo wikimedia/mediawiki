@@ -805,6 +805,7 @@
 	"undo-summary-import2": "uklanjanje uvezene izmjene $1 suradnika/ce $2",
 	"undo-summary-username-hidden": "Uklanjanje izmjene $1 suradnika skrivenoga suradničkoga imena",
 	"viewpagelogs": "Vidi evidencije za ovu stranicu",
+	"viewpagelogs-lowercase": "vidi evidencije za ovu stranicu",
 	"nohistory": "Ne postoji povijest izmjena za ovu stranicu.",
 	"currentrev": "Trenutačna inačica",
 	"currentrev-asof": "Trenutačna izmjena od $1",
