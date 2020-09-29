@@ -278,3 +278,22 @@ CREATE TABLE /*_*/querycache (
 );
 
 CREATE INDEX qc_type ON /*_*/querycache (qc_type, qc_value);
+
+
+CREATE TABLE /*_*/querycachetwo (
+  qcc_type BLOB NOT NULL, qcc_value INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  qcc_namespace INTEGER DEFAULT 0 NOT NULL,
+  qcc_title BLOB DEFAULT '' NOT NULL,
+  qcc_namespacetwo INTEGER DEFAULT 0 NOT NULL,
+  qcc_titletwo BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX qcc_type ON /*_*/querycachetwo (qcc_type, qcc_value);
+
+CREATE INDEX qcc_title ON /*_*/querycachetwo (
+  qcc_type, qcc_namespace, qcc_title
+);
+
+CREATE INDEX qcc_titletwo ON /*_*/querycachetwo (
+  qcc_type, qcc_namespacetwo, qcc_titletwo
+);

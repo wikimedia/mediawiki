@@ -289,3 +289,22 @@ CREATE TABLE querycache (
 );
 
 CREATE INDEX qc_type ON querycache (qc_type, qc_value);
+
+
+CREATE TABLE querycachetwo (
+  qcc_type TEXT NOT NULL, qcc_value INT DEFAULT 0 NOT NULL,
+  qcc_namespace INT DEFAULT 0 NOT NULL,
+  qcc_title TEXT DEFAULT '' NOT NULL,
+  qcc_namespacetwo INT DEFAULT 0 NOT NULL,
+  qcc_titletwo TEXT DEFAULT '' NOT NULL
+);
+
+CREATE INDEX qcc_type ON querycachetwo (qcc_type, qcc_value);
+
+CREATE INDEX qcc_title ON querycachetwo (
+  qcc_type, qcc_namespace, qcc_title
+);
+
+CREATE INDEX qcc_titletwo ON querycachetwo (
+  qcc_type, qcc_namespacetwo, qcc_titletwo
+);

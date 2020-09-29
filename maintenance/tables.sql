@@ -1233,28 +1233,6 @@ CREATE TABLE /*_*/querycache_info (
 ) /*$wgDBTableOptions*/;
 
 
--- Used for caching expensive grouped queries that need two links (for example double-redirects)
-CREATE TABLE /*_*/querycachetwo (
-  -- A key name, generally the base name of of the special page.
-  qcc_type varbinary(32) NOT NULL,
-
-  -- Some sort of stored value. Sizes, counts...
-  qcc_value int unsigned NOT NULL default 0,
-
-  -- Target namespace+title
-  qcc_namespace int NOT NULL default 0,
-  qcc_title varchar(255) binary NOT NULL default '',
-
-  -- Target namespace+title2
-  qcc_namespacetwo int NOT NULL default 0,
-  qcc_titletwo varchar(255) binary NOT NULL default ''
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);
-CREATE INDEX /*i*/qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_title);
-CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
-
-
 -- Used for storing page restrictions (i.e. protection levels)
 CREATE TABLE /*_*/page_restrictions (
   -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)

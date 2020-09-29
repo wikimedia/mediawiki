@@ -753,6 +753,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'querycache', 'qc_namespace', 'INT', 'qc_namespace::INT DEFAULT 0' ],
 			[ 'setDefault', 'querycache', 'qc_title', '' ],
 			[ 'renameIndex', 'querycache', 'querycache_type_value', 'qc_type' ],
+			[ 'renameIndex', 'querycachetwo', 'querycachetwo_type_value', 'qcc_type' ],
+			[ 'renameIndex', 'querycachetwo', 'querycachetwo_title', 'qcc_title' ],
+			[ 'renameIndex', 'querycachetwo', 'querycachetwo_titletwo', 'qcc_titletwo' ],
 		];
 	}
 

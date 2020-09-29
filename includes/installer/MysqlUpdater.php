@@ -451,6 +451,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'iwlinks', 'iwl_title', 'patch-iwlinks-iwl_title-varbinary.sql' ],
 			[ 'modifyField', 'category', 'cat_title', 'patch-category-cat_title-varbinary.sql' ],
 			[ 'modifyField', 'querycache', 'qc_title', 'patch-querycache-qc_title-varbinary.sql' ],
+			[ 'modifyField', 'querycachetwo', 'qcc_title', 'patch-querycachetwo-qcc_title-varbinary.sql' ],
 		];
 	}
 
