@@ -637,7 +637,7 @@ class JobQueueDB extends JobQueue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbr );
 
-		$res = $dbr->select( 'job', [ 'job_cmd', 'COUNT(*) AS count' ],
+		$res = $dbr->select( 'job', [ 'job_cmd', 'count' => 'COUNT(*)' ],
 			[ 'job_cmd' => $types ], __METHOD__, [ 'GROUP BY' => 'job_cmd' ] );
 
 		$sizes = [];

@@ -212,7 +212,7 @@ class ActiveUsersPager extends UsersPager {
 		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
 		$dbr = $this->getDatabase();
 		$res = $dbr->select( 'ipblocks',
-			[ 'ipb_user', 'MAX(ipb_deleted) AS deleted, MAX(ipb_sitewide) AS sitewide' ],
+			[ 'ipb_user', 'deleted' => 'MAX(ipb_deleted)', 'sitewide' => 'MAX(ipb_sitewide)' ],
 			[ 'ipb_user' => $uids ],
 			__METHOD__,
 			[ 'GROUP BY' => [ 'ipb_user' ] ]
