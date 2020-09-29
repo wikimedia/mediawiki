@@ -86,6 +86,49 @@ trait SerializationTestTrait {
 	}
 
 	/**
+	 * Data provider for serialization round trip test.
+	 * - For each supported serialization format defined by ::getSupportedSerializationFormats
+	 *  - For each test instance defined by ::getTestInstances
+	 * @return Generator for [ object $instance, callable $serializer, callable $deserializer ]
+	 */
+	public function provideSerializationRoundTrip(): Generator {
+		$className = $this->getClassToTest();
+		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
+			foreach ( $this->getTestInstances() as $testCaseName => $instance ) {
+				yield "{$className}:{$testCaseName}, " .
+					"serialized with {$serializationFormat['ext']}" => [
+						$instance,
+						$serializationFormat['serializer'],
+						$serializationFormat['deserializer']
+					];
+			}
+		}
+	}
+
+	/**
+	 * Test that the $expected instance can be serialized and successfully be deserialized again.
+	 *
+	 * @dataProvider provideSerializationRoundTrip
+	 *
+	 * @param object $instance
+	 * @param callable $serializer
+	 * @param callable $deserializer
+	 */
+	public function testSerializationRoundTrip(
+		object $instance,
+		callable $serializer,
+		callable $deserializer
+	) {
+		$blob = $serializer( $instance );
+		$this->assertNotEmpty( $blob );
+
+		$actual = $deserializer( $blob );
+		$this->assertNotEmpty( $actual );
+
+		$this->validateObjectEquality( $instance, $actual );
+	}
+
+	/**
 	 * Asserts that all the fields across class hierarchy for
 	 * provided objects are equal.
 	 * @param object $expected

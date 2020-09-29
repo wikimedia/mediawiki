@@ -28,7 +28,7 @@ use MediaWiki\Parser\ParserCacheMetadata;
  *
  * @ingroup Parser
  */
-class CacheTime implements ParserCacheMetadata {
+class CacheTime implements ParserCacheMetadata, JsonSerializable {
 
 	/**
 	 * @var string[] ParserOptions which have been taken into account to produce output.
@@ -209,5 +209,65 @@ class CacheTime implements ParserCacheMetadata {
 	 */
 	public function getUsedOptions(): array {
 		return $this->mUsedOptions;
+	}
+
+	/**
+	 * Returns a JSON serializable structure representing this CacheTime instance.
+	 * @see newFromJson()
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function jsonSerialize() {
+		return [
+			'_type_' => 'CacheTime',
+
+			'UsedOptions' => $this->mUsedOptions,
+			'CacheExpiry' => $this->mCacheExpiry,
+			'CacheTime' => $this->mCacheTime,
+			'CacheRevisionId' => $this->mCacheRevisionId,
+			'Version' => $this->mVersion, // XXX: we can probably remove this
+		];
+	}
+
+	/**
+	 * Construct a CacheTime instance from a structure returned by jsonSerialize()
+	 *
+	 * @see jsonSerialize()
+	 * @since 1.36
+	 *
+	 * @param string|array|object $jsonData
+	 * @return CacheTime
+	 * @throws InvalidArgumentException
+	 */
+	public static function newFromJson( $jsonData ) {
+		if ( is_string( $jsonData ) ) {
+			$jsonData = FormatJson::decode( $jsonData, true );
+			if ( !$jsonData ) {
+				// TODO: in PHP 7.3, we can use JsonException
+				throw new InvalidArgumentException( 'Bad JSON' );
+			}
+		}
+
+		if ( is_object( $jsonData ) ) {
+			$jsonData = (array)$jsonData;
+		}
+
+		$cacheTime = new CacheTime();
+		$cacheTime->initFromJson( $jsonData );
+
+		return $cacheTime;
+	}
+
+	/**
+	 * Initialize member fields from an array returned by jsonSerialize().
+	 * @param array $jsonData
+	 */
+	protected function initFromJson( array $jsonData ) {
+		$this->mUsedOptions = $jsonData['UsedOptions'];
+		$this->mCacheExpiry = $jsonData['CacheExpiry'];
+		$this->mCacheTime = $jsonData['CacheTime'];
+		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
+		$this->mVersion = $jsonData['Version']; // XXX: we can probably remove this
 	}
 }
