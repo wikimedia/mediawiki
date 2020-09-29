@@ -52,7 +52,6 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $mmfl;
 		global $wgExtensionEntryPointListFiles;
 
