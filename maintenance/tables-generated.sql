@@ -251,3 +251,29 @@ CREATE TABLE /*_*/ipblocks_restrictions (
   INDEX ir_type_value (ir_type, ir_value),
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/querycache (
+  qc_type VARBINARY(32) NOT NULL,
+  qc_value INT UNSIGNED DEFAULT 0 NOT NULL,
+  qc_namespace INT DEFAULT 0 NOT NULL,
+  qc_title VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX qc_type (qc_type, qc_value)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/querycachetwo (
+  qcc_type VARBINARY(32) NOT NULL,
+  qcc_value INT UNSIGNED DEFAULT 0 NOT NULL,
+  qcc_namespace INT DEFAULT 0 NOT NULL,
+  qcc_title VARBINARY(255) DEFAULT '' NOT NULL,
+  qcc_namespacetwo INT DEFAULT 0 NOT NULL,
+  qcc_titletwo VARBINARY(255) DEFAULT '' NOT NULL,
+  INDEX qcc_type (qcc_type, qcc_value),
+  INDEX qcc_title (
+    qcc_type, qcc_namespace, qcc_title
+  ),
+  INDEX qcc_titletwo (
+    qcc_type, qcc_namespacetwo, qcc_titletwo
+  )
+) /*$wgDBTableOptions*/;

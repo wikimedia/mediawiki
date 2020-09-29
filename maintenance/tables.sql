@@ -1112,24 +1112,6 @@ CREATE TABLE /*_*/interwiki (
 
 
 --
--- Used for caching expensive grouped queries
---
-CREATE TABLE /*_*/querycache (
-  -- A key name, generally the base name of of the special page.
-  qc_type varbinary(32) NOT NULL,
-
-  -- Some sort of stored value. Sizes, counts...
-  qc_value int unsigned NOT NULL default 0,
-
-  -- Target namespace+title
-  qc_namespace int NOT NULL default 0,
-  qc_title varchar(255) binary NOT NULL default ''
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/qc_type ON /*_*/querycache (qc_type,qc_value);
-
-
---
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*_*/objectcache (
@@ -1249,28 +1231,6 @@ CREATE TABLE /*_*/querycache_info (
   -- Timestamp of last update
   qci_timestamp binary(14) NOT NULL default '19700101000000'
 ) /*$wgDBTableOptions*/;
-
-
--- Used for caching expensive grouped queries that need two links (for example double-redirects)
-CREATE TABLE /*_*/querycachetwo (
-  -- A key name, generally the base name of of the special page.
-  qcc_type varbinary(32) NOT NULL,
-
-  -- Some sort of stored value. Sizes, counts...
-  qcc_value int unsigned NOT NULL default 0,
-
-  -- Target namespace+title
-  qcc_namespace int NOT NULL default 0,
-  qcc_title varchar(255) binary NOT NULL default '',
-
-  -- Target namespace+title2
-  qcc_namespacetwo int NOT NULL default 0,
-  qcc_titletwo varchar(255) binary NOT NULL default ''
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);
-CREATE INDEX /*i*/qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_title);
-CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 
 -- Used for storing page restrictions (i.e. protection levels)
