@@ -2979,7 +2979,7 @@
 	"logentry-newusers-create2": "Akun pamaké $3 geus {{GENDER:$2|dijieun}} ku $1",
 	"logentry-newusers-autocreate": "Akun pamaké $1 {{GENDER:$2|dijieun}} otomatis",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|mupus}} panangtayungan ti $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|ditangtayungan}} $3 $4",
+	"logentry-protect-protect": "$1 {{GENDER:$2|nangtayungan}} $3 $4",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ngamuat}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|ngunjal}} $3 vérsi anyar",
 	"logentry-upload-revert": "$1 {{GENDER:$2|diunjal}} $3",
