@@ -8,7 +8,8 @@
  * @extends OO.ui.Widget
  * @param {string} action One of 'watch', 'unwatch'
  * @param {string} pageTitle Title of page that this widget will watch or unwatch
- * @param  {Object} config Configuration object
+ * @param {Function} updateWatchLink
+ * @param {Object} config Configuration object
  */
 
 var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, config ) {
@@ -31,7 +32,38 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 		.addClass( 'mw-watchstar-WatchlistExpiryWidget' )
 		.append( messageLabel.$element );
 
+	/**
+	 * Allows user to tab into the expiry dropdown from the watch link.
+	 * Valid only for the initial keystroke after the popup appears, so as to
+	 * avoid listening to every keystroke for the entire session.
+	 */
+	function addTabKeyListener() {
+		$( window ).one( 'keydown.watchlistExpiry', function ( e ) {
+			if ( ( e.keyCode || e.which ) !== OO.ui.Keys.TAB ) {
+				return;
+			}
+
+			// Here we look for focus on the watch link, going by the accessKey.
+			// This is because there is no CSS class or ID on the link itself,
+			// and skins could manipulate the position of the link. The accessKey
+			// however is always present on the link.
+			if ( document.activeElement.accessKey === mw.message( 'accesskey-ca-watch' ).text() ) {
+				e.preventDefault();
+				expiryDropdown.focus();
+
+				// Add another tab key listener so they can tab back to the watch link.
+				addTabKeyListener();
+			} else if ( $( e.target ).parents( '.mw-watchexpiry' ).length ) {
+				// Move focus to the watch link if they're tabbing from the dropdown.
+				e.preventDefault();
+				$( '#ca-unwatch a' ).trigger( 'focus' );
+			}
+		} );
+	}
+
 	if ( action === 'watch' ) {
+		addTabKeyListener();
+
 		Object.keys( dataExpiryOptions ).forEach( function ( key ) {
 			expiryOptions.push( { data: dataExpiryOptions[ key ], label: key } );
 		} );
