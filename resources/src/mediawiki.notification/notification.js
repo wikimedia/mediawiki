@@ -31,6 +31,7 @@
 
 		$notification = $( '<div>' )
 			.data( 'mw-notification', this )
+			.attr( 'role', 'status' )
 			.addClass( [
 				'mw-notification',
 				options.autoHide ? 'mw-notification-autohide' : 'mw-notification-noautohide'
@@ -61,6 +62,10 @@
 				.addClass( 'mw-notification-title' )
 				.text( options.title )
 				.appendTo( $notification );
+		}
+
+		if ( options.id ) {
+			$notification.attr( 'id', options.id );
 		}
 
 		$notificationContent = $( '<div>' ).addClass( 'mw-notification-content' );
@@ -450,6 +455,9 @@
 		 * - visibleTimeout:
 		 *   A boolean indicating if the autoHide timeout should be based on
 		 *   time the page was visible to user. Or if it should use wall clock time.
+		 *
+		 * - id:
+		 *   HTML ID to set on the notification element.
 		 */
 		defaults: {
 			autoHide: true,
@@ -457,7 +465,8 @@
 			tag: null,
 			title: null,
 			type: null,
-			visibleTimeout: true
+			visibleTimeout: true,
+			id: false
 		},
 
 		/**
