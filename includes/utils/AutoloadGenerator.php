@@ -202,8 +202,7 @@ class AutoloadGenerator {
 	}
 
 	/**
-	 * @param string $dir Path to a directory to recursively search
-	 *  for php files with either .php or .inc extensions
+	 * @param string $dir Path to a directory to recursively search for php files
 	 */
 	public function readDir( $dir ) {
 		$it = new RecursiveDirectoryIterator(
@@ -211,9 +210,7 @@ class AutoloadGenerator {
 		$it = new RecursiveIteratorIterator( $it );
 
 		foreach ( $it as $path => $file ) {
-			$ext = pathinfo( $path, PATHINFO_EXTENSION );
-			// some older files in mw use .inc
-			if ( $ext === 'php' || $ext === 'inc' ) {
+			if ( pathinfo( $path, PATHINFO_EXTENSION ) === 'php' ) {
 				$this->readFile( $path );
 			}
 		}
