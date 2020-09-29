@@ -128,7 +128,12 @@ class SpecialPageFactory {
 				'PermissionManager'
 			]
 		],
-		'Unblock' => \SpecialUnblock::class,
+		'Unblock' => [
+			'class' => \SpecialUnblock::class,
+			'services' => [
+				'UnblockUserFactory',
+			]
+		],
 		'BlockList' => [
 			'class' => \SpecialBlockList::class,
 			'services' => [

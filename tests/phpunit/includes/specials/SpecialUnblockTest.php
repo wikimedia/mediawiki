@@ -14,7 +14,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialUnblock();
+		return new SpecialUnblock( MediaWikiServices::getInstance()->getUnblockUserFactory() );
 	}
 
 	protected function tearDown() : void {
@@ -59,7 +59,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessUnblockErrors
-	 * @covers ::processUIUnblock()
+	 * @covers ::execute()
 	 */
 	public function testProcessUnblockErrors( $options, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -119,7 +119,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::processUIUnblock()
+	 * @covers ::execute()
 	 */
 	public function testProcessUnblockErrorsUnblockSelf() {
 		$performer = $this->getTestSysop()->getUser();
