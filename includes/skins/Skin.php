@@ -787,12 +787,22 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param OutputPage|null $out Defaults to $this->getOutput() if left as null
+	 * @deprecated since 1.36 use Skin::prepareSubtitle instead
+	 * @param OutputPage|null $out Defaults to $this->getOutput() if left as null (unused)
 	 * @return string
 	 */
-	public function subPageSubtitle( $out = null ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$out = $out ?? $this->getOutput();
+	public function subPageSubtitle( $out ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		return $this->subPageSubtitleInternal();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function subPageSubtitleInternal() {
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
+		$out = $this->getOutput();
 		$title = $out->getTitle();
 		$subpages = '';
 
@@ -800,44 +810,42 @@ abstract class Skin extends ContextSource {
 			return $subpages;
 		}
 
-		if (
-			$out->isArticle() && MediaWikiServices::getInstance()->getNamespaceInfo()->
-				hasSubpages( $title->getNamespace() )
-		) {
-			$ptext = $title->getPrefixedText();
-			if ( strpos( $ptext, '/' ) !== false ) {
-				$links = explode( '/', $ptext );
-				array_pop( $links );
-				$c = 0;
-				$growinglink = '';
-				$display = '';
-				$lang = $this->getLanguage();
+		$hasSubpages = $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() );
+		if ( !$out->isArticle() || !$hasSubpages ) {
+			return $subpages;
+		}
 
-				foreach ( $links as $link ) {
-					$growinglink .= $link;
-					$display .= $link;
-					$linkObj = Title::newFromText( $growinglink );
+		$ptext = $title->getPrefixedText();
+		if ( strpos( $ptext, '/' ) !== false ) {
+			$links = explode( '/', $ptext );
+			array_pop( $links );
+			$count = 0;
+			$growingLink = '';
+			$display = '';
+			$lang = $this->getLanguage();
 
-					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
-						$getlink = $linkRenderer->makeKnownLink(
-							$linkObj, $display
-						);
+			foreach ( $links as $link ) {
+				$growingLink .= $link;
+				$display .= $link;
+				$linkObj = Title::newFromText( $growingLink );
 
-						$c++;
+				if ( $linkObj && $linkObj->isKnown() ) {
+					$getlink = $linkRenderer->makeKnownLink( $linkObj, $display );
 
-						if ( $c > 1 ) {
-							$subpages .= $lang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
-						} else {
-							$subpages .= '&lt; ';
-						}
+					$count++;
 
-						$subpages .= $getlink;
-						$display = '';
+					if ( $count > 1 ) {
+						$subpages .= $lang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
 					} else {
-						$display .= '/';
+						$subpages .= '&lt; ';
 					}
-					$growinglink .= '/';
+
+					$subpages .= $getlink;
+					$display = '';
+				} else {
+					$display .= '/';
 				}
+				$growingLink .= '/';
 			}
 		}
 
@@ -2533,7 +2541,7 @@ abstract class Skin extends ContextSource {
 	 */
 	final public function prepareSubtitle() {
 		$out = $this->getOutput();
-		$subpagestr = $this->subPageSubtitle();
+		$subpagestr = $this->subPageSubtitleInternal();
 		if ( $subpagestr !== '' ) {
 			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
 		}
