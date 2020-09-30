@@ -54,6 +54,7 @@ use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -1079,6 +1080,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserFactory() : ParserFactory {
 		return $this->getService( 'ParserFactory' );
+	}
+
+	/**
+	 * @return ParserOutputAccess
+	 * @since 1.36
+	 */
+	public function getParserOutputAccess() {
+		return $this->getService( 'ParserOutputAccess' );
 	}
 
 	/**

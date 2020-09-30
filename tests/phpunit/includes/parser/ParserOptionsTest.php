@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ParserOptions
  */
-class ParserOptionsTest extends MediaWikiIntegrationTestCase {
+class ParserOptionsTest extends MediaWikiLangTestCase {
 
 	private static function clearCache() {
 		$wrap = TestingAccessWrapper::newFromClass( ParserOptions::class );
@@ -121,6 +121,11 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsSafeToCache() {
 		global $wgEnableParserLimitReporting;
+
+		$seven = function () {
+			return 7;
+		};
+
 		return [
 			'No overrides' => [ true, [] ],
 			'In-key options are ok' => [ true, [
@@ -132,6 +137,9 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 			] ],
 			'Non-in-key options are not ok (2)' => [ false, [
 				'wrapclass' => 'foobar',
+			] ],
+			'Callback not default' => [ true, [
+				'speculativeRevIdCallback' => $seven,
 			] ],
 			'Canonical override, not default (1)' => [ true, [
 				'enableLimitReport' => $wgEnableParserLimitReporting,

@@ -25,6 +25,7 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -666,7 +667,7 @@ class Article implements Page {
 		# Allow frames by default
 		$outputPage->allowClickjacking();
 
-		$parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
 
 		$parserOptions = $this->getParserOptions();
 		$poOptions = [];
@@ -701,9 +702,6 @@ class Article implements Page {
 		# Should the parser cache be used?
 		$useParserCache = $this->mPage->shouldCheckParserCache( $parserOptions, $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) );
-		if ( $user->getStubThreshold() ) {
-			MediaWikiServices::getInstance()->getStatsdDataFactory()->increment( 'pcache_miss_stub' );
-		}
 
 		$this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
@@ -717,6 +715,7 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
+					// NOTE: $outputDone and $useParserCache may be changed by the hook
 					$this->getHookRunner()->onArticleViewHeader( $this, $outputDone, $useParserCache );
 					break;
 				case 2:
@@ -730,9 +729,14 @@ class Article implements Page {
 
 					# Try the parser cache
 					if ( $useParserCache ) {
-						$this->mParserOutput = $parserCache->get( $this->getPage(), $parserOptions );
+						$this->mParserOutput = $parserOutputAccess->getCachedParserOutput(
+									$this->getPage(),
+									$parserOptions,
+									null,
+									ParserOutputAccess::OPT_NO_AUDIENCE_CHECK // we already checked
+								);
 
-						if ( $this->mParserOutput !== false ) {
+						if ( $this->mParserOutput ) {
 							if ( $oldid ) {
 								wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink" );
 								$this->setOldSubtitle( $oldid );
@@ -796,47 +800,57 @@ class Article implements Page {
 					wfDebug( __METHOD__ . ": doing uncached parse" );
 
 					$rev = $this->fetchRevisionRecord();
-					$error = null;
+					$renderStatus = null;
 
 					if ( $rev ) {
-						$poolArticleView = new PoolWorkArticleView(
-							$this->getPage(),
-							$parserOptions,
-							$this->getRevIdFetched(),
-							$useParserCache,
-							$rev,
-							// permission checking was done earlier via showDeletedRevisionHeader()
-							RevisionRecord::RAW
-						);
-						$ok = $poolArticleView->execute();
-						$error = $poolArticleView->getError();
-						$this->mParserOutput = $poolArticleView->getParserOutput() ?: null;
+						$opt = 0;
 
-						# Cache stale ParserOutput object with a short expiry
-						if ( $poolArticleView->getIsDirty() ) {
+						// we already checked the cache in case 2, don't check again.
+						$opt |= ParserOutputAccess::OPT_NO_CHECK_CACHE;
+
+						// we already checked in fetchRevisionRecord()
+						$opt |= ParserOutputAccess::OPT_NO_AUDIENCE_CHECK;
+
+						if ( !$rev->getId() || !$useParserCache ) {
+							// fake revision or uncacheable options
+							$opt |= ParserOutputAccess::OPT_NO_CACHE;
+						}
+
+						$renderStatus = $parserOutputAccess->getParserOutput(
+									$this->getPage(),
+									$parserOptions,
+									$rev,
+									$opt
+							);
+
+						$ok = $renderStatus->isOK();
+
+						$this->mParserOutput = $ok ? $renderStatus->getValue() : null;
+
+						// Cache stale ParserOutput object with a short expiry
+						if ( $ok && $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
 							$outputPage->setCdnMaxage( $wgCdnMaxageStale );
 							$outputPage->setLastModified( $this->mParserOutput->getCacheTime() );
-							$staleReason = $poolArticleView->getIsFastStale()
-								? 'pool contention' : 'pool overload';
+							$staleReason = $renderStatus->hasMessage( 'view-pool-contention' )
+								? $this->getContext()->msg( 'view-pool-contention' )
+								: $this->getContext()->msg( 'view-pool-timeout' );
 							$outputPage->addHTML( "<!-- parser cache is expired, " .
 								"sending anyway due to $staleReason-->\n" );
 						}
 					} else {
-						$ok = false;
+						// No revision, abort!
+						return;
 					}
 
-					if ( !$ok ) {
-						if ( $error ) {
-							$outputPage->clearHTML(); // for release() errors
-							$outputPage->enableClientCache( false );
-							$outputPage->setRobotPolicy( 'noindex,nofollow' );
+					if ( !$renderStatus->isOK() ) {
+						$outputPage->clearHTML(); // for release() errors
+						$outputPage->enableClientCache( false );
+						$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-							$errortext = $error->getWikiText(
-								false, 'view-pool-error', $this->getContext()->getLanguage()
-							);
-							$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
-						}
-						# Connection or timeout error
+						$errortext = $renderStatus->getWikiText(
+							false, 'view-pool-error', $this->getContext()->getLanguage()
+						);
+						$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
 						return;
 					}
 
@@ -2961,7 +2975,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @deprecated since 1.35, use WikiPage::shouldCheckParserCache instead
+	 * @deprecated since 1.35, use ParserOutputAccess instead
 	 * @see WikiPage::shouldCheckParserCache
 	 * @param ParserOptions $parserOptions
 	 * @param int $oldId
