@@ -111,12 +111,7 @@ class ApiMain extends ApiBase {
 			]
 		],
 		'move' => ApiMove::class,
-		'edit' => [
-			'class' => ApiEditPage::class,
-			'services' => [
-				'WatchedItemStore'
-			],
-		],
+		'edit' => ApiEditPage::class,
 		'upload' => ApiUpload::class,
 		'filerevert' => ApiFileRevert::class,
 		'emailuser' => ApiEmailUser::class,
