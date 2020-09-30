@@ -38,20 +38,11 @@ class ApiEditPage extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	public function __construct(
-		ApiMain $mainModule,
-		$moduleName,
-		WatchedItemStore $watchedItemStore,
-		$modulePrefix = ''
-	) {
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		parent::__construct( $mainModule, $moduleName, $modulePrefix );
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
-		$this->watchedItemStore = $watchedItemStore;
 	}
 
 	public function execute() {
@@ -379,6 +370,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj, $user );
+		$watchlistExpiry = $params['watchlistexpiry'] ?? null;
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
@@ -388,10 +380,9 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $watch ) {
-			$requestArray['wpWatchthis'] = true;
-			$watchlistExpiry = $this->getExpiryFromParams( $params );
+			$requestArray['wpWatchthis'] = '';
 
-			if ( $watchlistExpiry ) {
+			if ( $this->watchlistExpiryEnabled && $watchlistExpiry ) {
 				$requestArray['wpWatchlistExpiry'] = $watchlistExpiry;
 			}
 		}
@@ -509,16 +500,10 @@ class ApiEditPage extends ApiBase {
 				}
 
 				if ( $watch ) {
-					$r['watched'] = true;
+					$r['watched'] = $status->isOK();
 
-					$watchlistExpiry = $this->getWatchlistExpiry(
-						$this->watchedItemStore,
-						$titleObj,
-						$user
-					);
-
-					if ( $watchlistExpiry ) {
-						$r['watchlistexpiry'] = $watchlistExpiry;
+					if ( $this->watchlistExpiryEnabled ) {
+						$r['watchlistexpiry'] = ApiResult::formatExpiry( $watchlistExpiry );
 					}
 				}
 				break;
