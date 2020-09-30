@@ -2110,6 +2110,7 @@
 	"trackingcategories-desc": "Крытэрый уключэння ў катэгорыю",
 	"restricted-displaytitle-ignored": "Старонкі з игнорируемыми отображаемыми назвамі",
 	"restricted-displaytitle-ignored-desc": "Старонка змяшчае <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, які ігнаруецца з-за несупадзення з актуальнай назвай старонкі",
+	"nonnumeric-formatnum": "Старонкі з нелікавымі аргументамі formatnum",
 	"noindex-category-desc": "Старонка не індэксуецца пошукавымі робатамі, таму што на ёй ёсць магічнае слова <code><nowiki>__NOINDEX__</nowiki></code> і яна знаходзіцца ў прасторы назваў, дзе гэты сцяг дазволены.",
 	"index-category-desc": "На старонцы ёсць магічнае слова <code><nowiki>__INDEX__</nowiki></code> (і старонка знаходзіцца ў прасторы назваў, дзе гэты сцяг дазволены), таму яна індэксуецца пошукавымі робатамі у выпадках, калі гэтага звычайна не адбываецца.",
 	"post-expand-template-inclusion-category-desc": "Пасля разгортвання ўсіх шаблонаў памер старонкі перавышае <code>$wgMaxArticleSize</code>, таму некаторыя шаблоны пакінуты неразгорнутымі.",

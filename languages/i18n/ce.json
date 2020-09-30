@@ -1816,6 +1816,7 @@
 	"trackingcategories-name": "Хааман цӀе",
 	"trackingcategories-desc": "Категорин чутухуш йолчун хила деза хьал",
 	"restricted-displaytitle-ignored": "Гуш йолуш цӀерш тергалцойо агӀонаш",
+	"nonnumeric-formatnum": "Терахьаш-доцуш formatnum аргументашца агӀонаш",
 	"expensive-parserfunction-category-desc": "АгӀорахь тӀех дуккха ресурсийн функцеш лелош ю (<code>#ifexist</code> саниш). Мадарра ду — [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] агӀонгахь.",
 	"broken-file-category-desc": "АгӀонгахь ю нийса йоцу файлийн хьажорг (йоцучу файлан тӀе хьажорг).",
 	"trackingcategories-nodesc": "Цунах лаьцна хӀума дац.",
