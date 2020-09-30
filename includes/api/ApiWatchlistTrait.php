@@ -140,30 +140,4 @@ trait ApiWatchlistTrait {
 
 		return $watchlistExpiry;
 	}
-
-	/**
-	 * Get existing expiry from the database.
-	 *
-	 * @param WatchedItemStoreInterface $store
-	 * @param Title $title
-	 * @param User $user The user to get the expiry for.
-	 * @return string|null
-	 */
-	protected function getWatchlistExpiry(
-		WatchedItemStoreInterface $store,
-		Title $title,
-		User $user
-	): ?string {
-		$watchedItem = $store->getWatchedItem( $user, $title );
-
-		if ( $watchedItem ) {
-			$expiry = $watchedItem->getExpiry();
-
-			if ( $expiry !== null ) {
-				return ApiResult::formatExpiry( $expiry );
-			}
-		}
-
-		return null;
-	}
 }
