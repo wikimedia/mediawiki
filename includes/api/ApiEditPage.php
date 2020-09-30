@@ -32,6 +32,13 @@ use MediaWiki\Revision\SlotRecord;
  * EditPage.php should be rewritten to provide a cleaner interface,
  * see T20654 if you're inspired to fix this.
  *
+ * WARNING: This class is //not// stable to extend. However, it is
+ * currently extended by the ApiThreadAction class in the LiquidThreads
+ * extension, which is deployed on WMF servers. Changes that would
+ * break LiquidThreads will likely be reverted. See T264200 for context
+ * and T264213 for removing LiquidThreads' unsupported extending of this
+ * class.
+ *
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
