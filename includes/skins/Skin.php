@@ -2523,4 +2523,53 @@ abstract class Skin extends ContextSource {
 		return $subpagestr . $out->getSubtitle();
 	}
 
+	/**
+	 * Get template representation of the footer containing
+	 * site footer links as well as standard footer links.
+	 *
+	 * All values are resolved and can be added to by the
+	 * SkinAddFooterLinks hook.
+	 *
+	 * @since 1.35
+	 * @internal
+	 * @return array
+	 */
+	protected function getFooterLinks(): array {
+		$out = $this->getOutput();
+		$title = $out->getTitle();
+		$titleExists = $title->exists();
+		$config = $this->getConfig();
+		$maxCredits = $config->get( 'MaxCredits' );
+		$showCreditsIfMax = $config->get( 'ShowCreditsIfMax' );
+		$useCredits = $titleExists
+			&& $out->isArticle()
+			&& $out->isRevisionCurrent()
+			&& $maxCredits !== 0;
+
+		/** @var CreditsAction $action */
+		if ( $titleExists ) {
+			$article = Article::newFromWikiPage( $this->getWikiPage(), $this );
+			$action = Action::factory( 'credits', $article, $this );
+		}
+
+		'@phan-var CreditsAction $action';
+		$data = [
+			'info' => [
+				'lastmod' => !$useCredits ? $this->lastModified() : null,
+				'numberofwatchingusers' => null,
+				'credits' => $useCredits ?
+					$action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
+				'copyright' => $titleExists &&
+					$out->showsCopyright() ? $this->getCopyright() : null,
+			],
+			'places' => $this->getSiteFooterLinks(),
+		];
+		foreach ( $data as $key => $existingItems ) {
+			$newItems = [];
+			$this->getHookRunner()->onSkinAddFooterLinks( $this, $key, $newItems );
+			$data[$key] = $existingItems + $newItems;
+		}
+		return $data;
+	}
+
 }
