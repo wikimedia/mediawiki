@@ -39,6 +39,7 @@
 	"apihelp-block-param-allowusertalk": "Allow the user to edit their own talk page (depends on <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "If the user is already blocked, overwrite the existing block.",
 	"apihelp-block-param-watchuser": "Watch the user's or IP address's user and talk pages.",
+	"apihelp-block-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
 	"apihelp-block-param-tags": "Change tags to apply to the entry in the block log.",
 	"apihelp-block-param-partial": "Block user from specific pages or namespaces rather than the entire site.",
 	"apihelp-block-param-pagerestrictions": "List of titles to block the user from editing. Only applies when <var>partial</var> is set to true.",

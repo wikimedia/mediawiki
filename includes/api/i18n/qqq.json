@@ -51,6 +51,7 @@
 	"apihelp-block-param-allowusertalk": "{{doc-apihelp-param|block|allowusertalk}}\n* See also {{msg-mw|ipb-disableusertalk}}",
 	"apihelp-block-param-reblock": "{{doc-apihelp-param|block|reblock}}",
 	"apihelp-block-param-watchuser": "{{doc-apihelp-param|block|watchuser}}",
+	"apihelp-block-param-watchlistexpiry": "{{doc-apihelp-param|block|watchlistexpiry}}",
 	"apihelp-block-param-tags": "{{doc-apihelp-param|block|tags}}",
 	"apihelp-block-param-partial": "{{doc-apihelp-param|block|partial}}",
 	"apihelp-block-param-pagerestrictions": "{{doc-apihelp-param|block|pagerestrictions}}",

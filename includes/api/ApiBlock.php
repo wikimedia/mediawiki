@@ -29,6 +29,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * API module that facilitates the blocking of users. Requires API write mode
@@ -39,6 +40,7 @@ use MediaWiki\User\UserIdentity;
 class ApiBlock extends ApiBase {
 
 	use ApiBlockInfoTrait;
+	use ApiWatchlistTrait;
 
 	/** @var BlockPermissionCheckerFactory */
 	private $blockPermissionCheckerFactory;
@@ -52,6 +54,9 @@ class ApiBlock extends ApiBase {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -59,6 +64,7 @@ class ApiBlock extends ApiBase {
 	 * @param BlockUserFactory $blockUserFactory
 	 * @param TitleFactory $titleFactory
 	 * @param UserFactory $userFactory
+	 * @param WatchedItemStoreInterface $watchedItemStore
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -66,7 +72,8 @@ class ApiBlock extends ApiBase {
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
 		TitleFactory $titleFactory,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		WatchedItemStoreInterface $watchedItemStore
 	) {
 		parent::__construct( $main, $action );
 
@@ -74,6 +81,9 @@ class ApiBlock extends ApiBase {
 		$this->blockUserFactory = $blockUserFactory;
 		$this->titleFactory = $titleFactory;
 		$this->userFactory = $userFactory;
+		$this->watchedItemStore = $watchedItemStore;
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 	}
 
 	/**
@@ -143,12 +153,12 @@ class ApiBlock extends ApiBase {
 			$params['tags']
 		)->placeBlock( $params['reblock'] );
 
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$isUserObj = $target instanceof UserIdentity;
+		$userPage = $isUserObj ? $target->getUserPage() : Title::makeTitle( NS_USER, $target );
+
 		if ( $params['watchuser'] && $targetType !== AbstractBlock::TYPE_RANGE ) {
-			WatchAction::doWatch(
-				Title::makeTitle( NS_USER, $target ),
-				$this->getUser(),
-				User::IGNORE_USER_RIGHTS
-			);
+			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
 		}
 
 		if ( !$status->isOK() ) {
@@ -157,12 +167,12 @@ class ApiBlock extends ApiBase {
 
 		$res = [];
 
-		if ( $target instanceof UserIdentity ) {
+		if ( $isUserObj ) {
 			$res['user'] = $target->getName();
 		} else {
 			$res['user'] = $target;
 		}
-		$res['userID'] = $target instanceof User ? $target->getId() : 0;
+		$res['userID'] = $isUserObj ? $target->getId() : 0;
 
 		$block = DatabaseBlock::newFromTarget( $target, null, true );
 		if ( $block instanceof DatabaseBlock ) {
@@ -182,6 +192,14 @@ class ApiBlock extends ApiBase {
 		$res['hidename'] = $params['hidename'];
 		$res['allowusertalk'] = $params['allowusertalk'];
 		$res['watchuser'] = $params['watchuser'];
+		if ( $watchlistExpiry ) {
+			$expiry = $this->getWatchlistExpiry(
+				$this->watchedItemStore,
+				$userPage,
+				$this->getUser()
+			);
+			$res['watchlistexpiry'] = $expiry;
+		}
 		$res['partial'] = $params['partial'];
 		$res['pagerestrictions'] = $params['pagerestrictions'];
 		$res['namespacerestrictions'] = $params['namespacerestrictions'];
@@ -198,7 +216,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
@@ -217,6 +235,22 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		// @todo Find better way to support insertion at arbitrary position
+		if ( $this->watchlistExpiryEnabled ) {
+			$params += [
+				'watchlistexpiry' => [
+					ApiBase::PARAM_TYPE => 'expiry',
+					ExpiryDef::PARAM_MAX => $this->watchlistMaxDuration,
+					ExpiryDef::PARAM_USE_MAX => true,
+				]
+			];
+		}
+
+		return $params + [
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
