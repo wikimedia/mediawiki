@@ -52,6 +52,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUserFactory;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
@@ -204,6 +205,15 @@ return [
 
 	'BlockUserFactory' => function ( MediaWikiServices $services ) : BlockUserFactory {
 		return $services->getService( '_UserBlockCommandFactory' );
+	},
+
+	'BlockUtils' => function ( MediaWikiServices $services ) : BlockUtils {
+		return new BlockUtils(
+			new ServiceOptions(
+				BlockUtils::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
 	},
 
 	'ChangeTagDefStore' => function ( MediaWikiServices $services ) : NameTableStore {

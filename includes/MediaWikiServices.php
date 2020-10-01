@@ -31,6 +31,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUserFactory;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -565,6 +566,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlockUserFactory() : BlockUserFactory {
 		return $this->getService( 'BlockUserFactory' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return BlockUtils
+	 */
+	public function getBlockUtils() : BlockUtils {
+		return $this->getService( 'BlockUtils' );
 	}
 
 	/**
