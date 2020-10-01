@@ -224,6 +224,9 @@ because of Phabricator reports.
 * Support for passing Article to ParserCache::get, deprecated in 1.35,
   has been removed.
 * ParserCache::singleton(), deprecated in 1.30, has been removed.
+* The static public callback function SpecialUnblock::processUIUnblock has been
+  removed. This method was for internal use only, and appears unused outside of
+  MediaWiki core.
 * …
 
 === Deprecations in 1.36 ===
