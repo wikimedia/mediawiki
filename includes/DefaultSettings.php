@@ -2150,7 +2150,7 @@ $wgSharedPrefix = false;
 /**
  * @see $wgSharedDB
  */
-$wgSharedTables = [ 'user', 'user_properties' ];
+$wgSharedTables = [ 'user', 'user_properties', 'actor' ];
 
 /**
  * @see $wgSharedDB
