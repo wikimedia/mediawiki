@@ -223,6 +223,7 @@ because of Phabricator reports.
 * Message->getFormat(), deprecated in 1.29, has been removed.
 * Support for passing Article to ParserCache::get, deprecated in 1.35,
   has been removed.
+* ParserCache::singleton(), deprecated in 1.30, has been removed.
 * …
 
 === Deprecations in 1.36 ===
