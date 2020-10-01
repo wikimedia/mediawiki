@@ -286,6 +286,7 @@ because of Phabricator reports.
   BlockUser::parseExpiryInput instead.
 * All public properties of CacheTime and ParserOutput classes were
   hard deprecated. Use appropriate accessor methods instead.
+* SpecialBlock::validateTarget has been deprecated, use BlockUtils instead.
 * …
 
 === Other changes in 1.36 ===

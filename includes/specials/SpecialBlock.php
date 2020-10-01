@@ -690,59 +690,23 @@ class SpecialBlock extends FormSpecialPage {
 	 * Validate a block target.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.36, use BlockUtils service instead
+	 *             (note: service does not call BlockPermissionChecker::checkBlockPermissions)
 	 * @param string $value Block target to check
 	 * @param User $user Performer of the block
 	 * @return Status
 	 */
 	public static function validateTarget( $value, User $user ) {
-		global $wgBlockCIDRLimit;
+		$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $value );
 
-		/** @var User $target */
-		list( $target, $type ) = AbstractBlock::parseTarget( $value );
-		$status = Status::newGood( $target );
-
-		if ( $type == DatabaseBlock::TYPE_USER ) {
-			if ( $target->isAnon() ) {
-				$status->fatal(
-					'nosuchusershort',
-					wfEscapeWikiText( $target->getName() )
-				);
-			}
-
+		// This is here to make validateTarget to not change its behavior
+		// BlockUtils does not check checkUnblockSelf.
+		list( $target, $type ) = self::getTargetAndType( $value );
+		if ( $type === AbstractBlock::TYPE_USER ) {
 			$unblockStatus = self::checkUnblockSelf( $target, $user );
 			if ( $unblockStatus !== true ) {
 				$status->fatal( 'badaccess', $unblockStatus );
 			}
-		} elseif ( $type == DatabaseBlock::TYPE_RANGE ) {
-			list( $ip, $range ) = explode( '/', $target, 2 );
-
-			if (
-				( IPUtils::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 ) ||
-				( IPUtils::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 )
-			) {
-				// Range block effectively disabled
-				$status->fatal( 'range_block_disabled' );
-			}
-
-			if (
-				( IPUtils::isIPv4( $ip ) && $range > 32 ) ||
-				( IPUtils::isIPv6( $ip ) && $range > 128 )
-			) {
-				// Dodgy range
-				$status->fatal( 'ip_range_invalid' );
-			}
-
-			if ( IPUtils::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
-				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
-			}
-
-			if ( IPUtils::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
-				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
-			}
-		} elseif ( $type == DatabaseBlock::TYPE_IP ) {
-			# All is well
-		} else {
-			$status->fatal( 'badipaddress' );
 		}
 
 		return $status;
