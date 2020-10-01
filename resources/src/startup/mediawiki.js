@@ -716,8 +716,9 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} modules Names of modules to be checked
-			 * @return {boolean} True if no modules are in state 'error' or 'missing', false otherwise
+			 * @param {string[]} modules Names of modules to be checked
+			 * @return {boolean|string} False if no modules are in state 'error' or 'missing';
+			 *  failed module otherwise
 			 */
 			function anyFailed( modules ) {
 				var state,
@@ -725,7 +726,7 @@
 				for ( ; i < modules.length; i++ ) {
 					state = mw.loader.getState( modules[ i ] );
 					if ( state === 'error' || state === 'missing' ) {
-						return true;
+						return modules[ i ];
 					}
 				}
 				return false;
@@ -791,13 +792,13 @@
 					for ( i = 0; i < jobs.length; i++ ) {
 						job = jobs[ i ];
 						failed = anyFailed( job.dependencies );
-						if ( failed || allReady( job.dependencies ) ) {
+						if ( failed !== false || allReady( job.dependencies ) ) {
 							jobs.splice( i, 1 );
 							i -= 1;
 							try {
-								if ( failed && job.error ) {
-									job.error( new Error( 'Failed dependencies' ), job.dependencies );
-								} else if ( !failed && job.ready ) {
+								if ( failed !== false && job.error ) {
+									job.error( new Error( 'Failed dependency: ' + failed ), job.dependencies );
+								} else if ( failed === false && job.ready ) {
 									job.ready();
 								}
 							} catch ( e ) {
@@ -1167,6 +1168,8 @@
 			 * @param {Function} [error] Callback to execute when any dependency fails
 			 */
 			function enqueue( dependencies, ready, error ) {
+				var failed;
+
 				if ( allReady( dependencies ) ) {
 					// Run ready immediately
 					if ( ready !== undefined ) {
@@ -1175,11 +1178,12 @@
 					return;
 				}
 
-				if ( anyFailed( dependencies ) ) {
+				failed = anyFailed( dependencies );
+				if ( failed !== false ) {
 					if ( error !== undefined ) {
 						// Execute error immediately if any dependencies have errors
 						error(
-							new Error( 'One or more dependencies failed to load' ),
+							new Error( 'Dependency ' + failed + ' failed to load' ),
 							dependencies
 						);
 					}
