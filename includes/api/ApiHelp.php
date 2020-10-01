@@ -412,6 +412,9 @@ class ApiHelp extends ApiBase {
 
 			$urls = $module->getHelpUrls();
 			if ( $urls ) {
+				if ( !is_array( $urls ) ) {
+					$urls = [ $urls ];
+				}
 				$help['help-urls'] .= Html::openElement( 'div',
 					[ 'class' => 'apihelp-block apihelp-help-urls' ]
 				);
@@ -420,9 +423,6 @@ class ApiHelp extends ApiBase {
 					$help['help-urls'] .= self::wrap(
 						$msg->numParams( count( $urls ) ), 'apihelp-block-head', 'div'
 					);
-				}
-				if ( !is_array( $urls ) ) {
-					$urls = [ $urls ];
 				}
 				$help['help-urls'] .= Html::openElement( 'ul' );
 				foreach ( $urls as $url ) {
