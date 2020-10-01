@@ -288,7 +288,7 @@ class ParserCache {
 		$casToken = null;
 		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
-		if ( !$value ) {
+		if ( !$value instanceof ParserOutput ) {
 			$this->incrementStats( $wikiPage, "miss.absent" );
 			$this->logger->debug( 'ParserOutput cache miss', [
 				'name' => $this->name
