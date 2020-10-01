@@ -2654,13 +2654,4 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = User::newFromId( 999999999 );
 		$this->assertSame( 'Unknown user', $user->getName() );
 	}
-
-	/**
-	 * @covers User::__sleep
-	 */
-	public function testSerialization_fails() {
-		$this->expectException( LogicException::class );
-		$user = $this->getTestUser()->getUser();
-		serialize( $user );
-	}
 }
