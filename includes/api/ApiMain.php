@@ -100,6 +100,7 @@ class ApiMain extends ApiBase {
 				'BlockUserFactory',
 				'TitleFactory',
 				'UserFactory',
+				'WatchedItemStore'
 			]
 		],
 		'unblock' => [
