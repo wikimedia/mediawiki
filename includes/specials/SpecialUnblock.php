@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -36,8 +37,15 @@ class SpecialUnblock extends SpecialPage {
 	protected $type;
 	protected $block;
 
-	public function __construct() {
+	/** @var UnblockUserFactory */
+	private $unblockUserFactory;
+
+	/**
+	 * @param UnblockUserFactory $unblockUserFactory
+	 */
+	public function __construct( UnblockUserFactory $unblockUserFactory ) {
 		parent::__construct( 'Unblock', 'block' );
+		$this->unblockUserFactory = $unblockUserFactory;
 	}
 
 	public function doesWrites() {
@@ -66,7 +74,14 @@ class SpecialUnblock extends SpecialPage {
 
 		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() )
 			->setWrapperLegendMsg( 'unblockip' )
-			->setSubmitCallback( [ __CLASS__, 'processUIUnblock' ] )
+			->setSubmitCallback( function ( array $data, HTMLForm $form ) {
+				return $this->unblockUserFactory->newUnblockUser(
+					$data['Target'],
+					$form->getContext()->getUser(),
+					$data['Reason'],
+					$data['Tags'] ?? []
+				)->unblock();
+			} )
 			->setSubmitTextMsg( 'ipusubmit' )
 			->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
@@ -187,26 +202,6 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		return $fields;
-	}
-
-	/**
-	 * Submit callback for an HTMLForm object
-	 * @param array $data
-	 * @param HTMLForm $form
-	 * @internal Only to be used as the submit callback in execute().
-	 * @return Status
-	 */
-	public static function processUIUnblock( array $data, HTMLForm $form ) {
-		if ( !isset( $data['Tags'] ) ) {
-			$data['Tags'] = [];
-		}
-
-		return MediaWikiServices::getInstance()->getUnblockUserFactory()->newUnblockUser(
-			$data['Target'],
-			$form->getContext()->getUser(),
-			$data['Reason'],
-			$data['Tags']
-		)->unblock();
 	}
 
 	/**
