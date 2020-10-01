@@ -817,6 +817,7 @@
 	"post-expand-template-inclusion-category": "Sider der indeholder for mange skabeloner",
 	"post-expand-template-argument-warning": "Advarsel: Mindst en af skabelonparametrene på denne side fylder mere end det tilladte. Denne parameter er derfor udeladt.",
 	"post-expand-template-argument-category": "Sider med udeladte skabelonparametre",
+	"template-equals-category": "Sider der bruger = som en skabelon",
 	"parser-template-loop-warning": "Skabelonløkke fundet: [[$1]]",
 	"template-loop-category": "Sider med skabelonløkker",
 	"template-loop-category-desc": "Siden indeholder en skabelonløkke, det vil sige en skabelon som kalder sig selv rekursivt.",
