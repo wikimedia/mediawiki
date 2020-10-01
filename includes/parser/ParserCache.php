@@ -241,6 +241,16 @@ class ParserCache {
 			}
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
+
+			// HACK: The property 'mUsedOptions' was made private in the initial
+			// deployment of mediawiki 1.36.0-wmf.11. Thus anything it stored is
+			// broken and incompatible with wmf.10. We can't use RejectParserCacheValue
+			// because that hook does not run until later.
+			// See https://phabricator.wikimedia.org/T264257
+			if ( !isset( $optionsKey->mUsedOptions ) ) {
+				wfDebugLog( "ParserCache", "Bad ParserOutput key from wmf.11 T264257" );
+				return false;
+			}
 			$usedOptions = $optionsKey->mUsedOptions;
 			$this->logger->debug( 'Parser cache options found', [
 				'name' => $this->name
