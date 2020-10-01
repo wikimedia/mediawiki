@@ -21,12 +21,7 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	protected static function getExtraClassArgCount() {
-		// +1 $name
-		// -1 $logger
-		return 0;
-	}
-
-	protected function getIgnoredParamNames() {
-		return [ 'hookContainer', 'logger' ];
+		// $name
+		return 1;
 	}
 }
