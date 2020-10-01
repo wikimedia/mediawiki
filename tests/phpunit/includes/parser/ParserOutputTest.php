@@ -956,23 +956,10 @@ EOF
 		$this->assertSame( $time, $po->getCacheTime() );
 	}
 
-	public function provideOldSerialized() {
+	public static function provideOldSerialized() {
 		return [
-			'1.34.0-wmf.15' => [
-				// phpcs:ignore Generic.Files.LineLength
-				'O:12:"ParserOutput":43:{s:5:"mText";s:0:"";s:14:"mLanguageLinks";a:0:{}s:11:"mCategories";a:0:{}s:11:"mIndicators";a:0:{}s:10:"mTitleText";s:0:"";s:6:"mLinks";a:0:{}s:10:"mTemplates";a:0:{}s:12:"mTemplateIds";a:0:{}s:7:"mImages";a:0:{}s:18:"mFileSearchOptions";a:0:{}s:14:"mExternalLinks";a:0:{}s:15:"mInterwikiLinks";a:0:{}s:11:"mNewSection";b:0;s:15:"mHideNewSection";b:0;s:10:"mNoGallery";b:0;s:10:"mHeadItems";a:0:{}s:8:"mModules";a:0:{}s:13:"mModuleStyles";a:0:{}s:13:"mJsConfigVars";a:0:{}s:12:"mOutputHooks";a:0:{}s:9:"mWarnings";a:0:{}s:9:"mSections";a:0:{}s:11:"mProperties";a:0:{}s:8:"mTOCHTML";s:0:"";s:10:"mTimestamp";N;s:11:"mEnableOOUI";b:0;s:26:"\\000ParserOutput\\000mIndexPolicy";s:0:"";s:30:"\\000ParserOutput\\000mAccessedOptions";a:0:{}s:28:"\\000ParserOutput\\000mExtensionData";a:0:{}s:30:"\\000ParserOutput\\000mLimitReportData";a:0:{}s:32:"\\000ParserOutput\\000mLimitReportJSData";a:0:{}s:34:"\\000ParserOutput\\000mPreventClickjacking";b:0;s:20:"\\000ParserOutput\\000mFlags";a:0:{}s:31:"\\000ParserOutput\\000mSpeculativeRevId";N;s:35:"\\000ParserOutput\\000revisionTimestampUsed";N;s:36:"\\000ParserOutput\\000revisionUsedSha1Base36";N;s:32:"\\000ParserOutput\\000mWrapperDivClasses";a:0:{}s:32:"\\000ParserOutput\\000mMaxAdaptiveExpiry";d:INF;s:12:"mUsedOptions";N;s:8:"mVersion";s:5:"1.6.4";s:10:"mCacheTime";s:0:"";s:12:"mCacheExpiry";N;s:16:"mCacheRevisionId";N;}',
-				function ( ParserOutput $po ) {
-					$this->assertNotNull( $po );
-				}
-			],
-			'1.36.0-wmf.10' => [
-				// phpcs:ignore Generic.Files.LineLength
-				'O:12:"ParserOutput":48:{s:5:"mText";s:0:"";s:14:"mLanguageLinks";a:0:{}s:11:"mCategories";a:0:{}s:11:"mIndicators";a:0:{}s:10:"mTitleText";s:0:"";s:6:"mLinks";a:0:{}s:13:"mLinksSpecial";a:0:{}s:10:"mTemplates";a:0:{}s:12:"mTemplateIds";a:0:{}s:7:"mImages";a:0:{}s:18:"mFileSearchOptions";a:0:{}s:14:"mExternalLinks";a:0:{}s:15:"mInterwikiLinks";a:0:{}s:11:"mNewSection";b:0;s:15:"mHideNewSection";b:0;s:10:"mNoGallery";b:0;s:10:"mHeadItems";a:0:{}s:8:"mModules";a:0:{}s:13:"mModuleStyles";a:0:{}s:13:"mJsConfigVars";a:0:{}s:12:"mOutputHooks";a:0:{}s:9:"mWarnings";a:0:{}s:9:"mSections";a:0:{}s:11:"mProperties";a:0:{}s:8:"mTOCHTML";s:0:"";s:10:"mTimestamp";N;s:11:"mEnableOOUI";b:0;s:26:"\\000ParserOutput\\000mIndexPolicy";s:0:"";s:30:"\\000ParserOutput\\000mAccessedOptions";a:1:{s:4:"test";b:1;}s:28:"\\000ParserOutput\\000mExtensionData";a:0:{}s:30:"\\000ParserOutput\\000mLimitReportData";a:0:{}s:32:"\\000ParserOutput\\000mLimitReportJSData";a:0:{}s:34:"\\000ParserOutput\\000mPreventClickjacking";b:0;s:30:"\\000ParserOutput\\000mExtraScriptSrcs";a:0:{}s:31:"\\000ParserOutput\\000mExtraDefaultSrcs";a:0:{}s:29:"\\000ParserOutput\\000mExtraStyleSrcs";a:0:{}s:20:"\\000ParserOutput\\000mFlags";a:0:{}s:31:"\\000ParserOutput\\000mSpeculativeRevId";N;s:35:"\\000ParserOutput\\000speculativePageIdUsed";N;s:35:"\\000ParserOutput\\000revisionTimestampUsed";N;s:36:"\\000ParserOutput\\000revisionUsedSha1Base36";N;s:32:"\\000ParserOutput\\000mWrapperDivClasses";a:0:{}s:32:"\\000ParserOutput\\000mMaxAdaptiveExpiry";d:INF;s:12:"mUsedOptions";N;s:8:"mVersion";s:5:"1.6.4";s:10:"mCacheTime";s:0:"";s:12:"mCacheExpiry";N;s:16:"mCacheRevisionId";N;}',
-				function ( ParserOutput $po ) {
-					$this->assertNotNull( $po );
-					$this->assertArrayEquals( [ 'test' ], $po->getUsedOptions() );
-				}
-			]
+			// phpcs:ignore Generic.Files.LineLength
+			'1.34.0-wmf.15' => [ 'O:12:"ParserOutput":43:{s:5:"mText";s:0:"";s:14:"mLanguageLinks";a:0:{}s:11:"mCategories";a:0:{}s:11:"mIndicators";a:0:{}s:10:"mTitleText";s:0:"";s:6:"mLinks";a:0:{}s:10:"mTemplates";a:0:{}s:12:"mTemplateIds";a:0:{}s:7:"mImages";a:0:{}s:18:"mFileSearchOptions";a:0:{}s:14:"mExternalLinks";a:0:{}s:15:"mInterwikiLinks";a:0:{}s:11:"mNewSection";b:0;s:15:"mHideNewSection";b:0;s:10:"mNoGallery";b:0;s:10:"mHeadItems";a:0:{}s:8:"mModules";a:0:{}s:13:"mModuleStyles";a:0:{}s:13:"mJsConfigVars";a:0:{}s:12:"mOutputHooks";a:0:{}s:9:"mWarnings";a:0:{}s:9:"mSections";a:0:{}s:11:"mProperties";a:0:{}s:8:"mTOCHTML";s:0:"";s:10:"mTimestamp";N;s:11:"mEnableOOUI";b:0;s:26:"\\000ParserOutput\\000mIndexPolicy";s:0:"";s:30:"\\000ParserOutput\\000mAccessedOptions";a:0:{}s:28:"\\000ParserOutput\\000mExtensionData";a:0:{}s:30:"\\000ParserOutput\\000mLimitReportData";a:0:{}s:32:"\\000ParserOutput\\000mLimitReportJSData";a:0:{}s:34:"\\000ParserOutput\\000mPreventClickjacking";b:0;s:20:"\\000ParserOutput\\000mFlags";a:0:{}s:31:"\\000ParserOutput\\000mSpeculativeRevId";N;s:35:"\\000ParserOutput\\000revisionTimestampUsed";N;s:36:"\\000ParserOutput\\000revisionUsedSha1Base36";N;s:32:"\\000ParserOutput\\000mWrapperDivClasses";a:0:{}s:32:"\\000ParserOutput\\000mMaxAdaptiveExpiry";d:INF;s:12:"mUsedOptions";N;s:8:"mVersion";s:5:"1.6.4";s:10:"mCacheTime";s:0:"";s:12:"mCacheExpiry";N;s:16:"mCacheRevisionId";N;}' ]
 		];
 	}
 
@@ -983,9 +970,8 @@ EOF
 	 * @dataProvider provideOldSerialized
 	 * @covers ParserOutput::__sleep()
 	 */
-	public function testOldSerialized( string $serialized, callable $validator ) {
+	public function testOldSerialized( $serialized ) {
 		$po = unserialize( stripcslashes( $serialized ) );
-		$validator( $po );
 		$reserialized = serialize( $po );
 		$this->assertStringStartsWith( 'O:', $reserialized );
 	}

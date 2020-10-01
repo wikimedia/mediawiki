@@ -4022,7 +4022,7 @@ class Parser {
 		$this->mDoubleUnderscores = $mwa->matchAndRemove( $text );
 
 		if ( isset( $this->mDoubleUnderscores['nogallery'] ) ) {
-			$this->getOutput()->setNoGallery( true );
+			$this->mOutput->mNoGallery = true;
 		}
 		if ( isset( $this->mDoubleUnderscores['notoc'] ) && !$this->mForceTocPosition ) {
 			$this->mShowToc = false;

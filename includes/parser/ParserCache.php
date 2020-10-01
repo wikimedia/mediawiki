@@ -241,7 +241,7 @@ class ParserCache {
 			}
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
-			$usedOptions = $optionsKey->getUsedOptions();
+			$usedOptions = $optionsKey->mUsedOptions;
 			$this->logger->debug( 'Parser cache options found', [
 				'name' => $this->name
 			] );
@@ -361,7 +361,7 @@ class ParserCache {
 			}
 
 			$optionsKey = new CacheTime;
-			$optionsKey->setUsedOptions( $parserOutput->getUsedOptions() );
+			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
 			$optionsKey->updateCacheExpiry( $expire );
 
 			$optionsKey->setCacheTime( $cacheTime );
@@ -370,7 +370,7 @@ class ParserCache {
 			$parserOutput->setCacheRevisionId( $revId );
 
 			$parserOutputKey = $this->getParserOutputKey( $wikiPage,
-				$popts->optionsHash( $optionsKey->getUsedOptions(), $wikiPage->getTitle() ) );
+				$popts->optionsHash( $optionsKey->mUsedOptions, $wikiPage->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
@@ -378,7 +378,8 @@ class ParserCache {
 			$msg = "Saved in parser cache with key $parserOutputKey" .
 				" and timestamp $cacheTime" .
 				" and revision id $revId";
-			$parserOutput->addCacheMessage( $msg );
+
+			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
 
 			$this->logger->debug( 'Saved in parser cache', [
 				'name' => $this->name,

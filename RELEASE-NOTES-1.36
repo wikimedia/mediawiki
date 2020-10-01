@@ -284,8 +284,6 @@ because of Phabricator reports.
   BlockPermissionChecker::checkBlockPermissions instead.
 * SpecialBlock::parseExpiryInput was deprecated - use
   BlockUser::parseExpiryInput instead.
-* All public properties of CacheTime and ParserOutput classes were
-  hard deprecated. Use appropriate accessor methods instead.
 * SpecialBlock::validateTarget has been deprecated, use BlockUtils instead.
 * …
 
