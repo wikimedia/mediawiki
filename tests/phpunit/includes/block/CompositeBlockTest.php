@@ -302,7 +302,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 				'no reason given',
 				'1.2.3.4',
 				'',
-				'Your IP address appears in multiple blacklists',
+				'Your IP address appears in multiple blocklists',
 				'infinite',
 				'',
 				'00:00, 1 January 2000',
