@@ -6,6 +6,9 @@ use Title;
 use User;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "getUserPermissionsErrors" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

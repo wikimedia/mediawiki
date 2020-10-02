@@ -8,6 +8,9 @@ use Message;
 use User;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ApiCheckCanExecute" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

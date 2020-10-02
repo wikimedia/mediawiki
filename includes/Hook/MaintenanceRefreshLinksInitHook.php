@@ -5,6 +5,9 @@ namespace MediaWiki\Hook;
 use RefreshLinks;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "MaintenanceRefreshLinksInit" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

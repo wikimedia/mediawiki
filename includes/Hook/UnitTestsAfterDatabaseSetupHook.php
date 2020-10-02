@@ -5,6 +5,9 @@ namespace MediaWiki\Hook;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UnitTestsAfterDatabaseSetup" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

@@ -5,6 +5,9 @@ namespace MediaWiki\Hook;
 use WatchedItemQueryService;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "WatchedItemQueryServiceExtensions" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

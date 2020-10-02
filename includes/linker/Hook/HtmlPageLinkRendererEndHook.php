@@ -7,6 +7,9 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "HtmlPageLinkRendererEnd" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

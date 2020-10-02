@@ -6,6 +6,9 @@ use DatabaseLogEntry;
 use LogEventsList;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "LogEventsListLineEnding" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

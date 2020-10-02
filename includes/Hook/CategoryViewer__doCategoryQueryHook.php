@@ -6,6 +6,9 @@ use Wikimedia\Rdbms\IResultWrapper;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "CategoryViewer::doCategoryQuery" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
