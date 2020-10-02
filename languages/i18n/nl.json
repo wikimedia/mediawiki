@@ -1699,7 +1699,7 @@
 	"recentchangeslinked-to": "Wijzigingen aan pagina's met koppelingen naar deze pagina bekijken",
 	"recentchanges-page-added-to-category": "[[:$1]] aan categorie toegevoegd",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] is toegevoegd aan de categorie, [[Special:WhatLinksHere/$1|deze pagina is opgenomen in andere pagina's]]",
-	"recentchanges-page-removed-from-category": "[[:$1]] is verwijderd uit categorie",
+	"recentchanges-page-removed-from-category": "[[:$1]] uit categorie verwijderd",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] is verwijderd uit de categorie, [[Special:WhatLinksHere/$1|deze pagina is opgenomen in andere pagina's]]",
 	"autochange-username": "Automatische wijziging van MediaWiki",
 	"upload": "Bestand uploaden",

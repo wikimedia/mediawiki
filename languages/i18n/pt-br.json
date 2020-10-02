@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"!Silent",
+			"Albertoleoncio",
 			"Alcali",
 			"Alchimista",
 			"Alex Great",
@@ -1093,7 +1094,7 @@
 	"search-category": "(categoria $1)",
 	"search-file-match": "(coincide com o conteúdo do arquivo)",
 	"search-suggest": "Você quis dizer: $1?",
-	"search-rewritten": "Mostrando resultados para $1. Pesquisar ao invés por $2.",
+	"search-rewritten": "Mostrando resultados para $1, já que não foram encontrados resultados para $2.",
 	"search-interwiki-caption": "Resultados de projetos irmãos",
 	"search-interwiki-default": "Resultados de $1:",
 	"search-interwiki-more": "(mais)",

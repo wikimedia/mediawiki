@@ -113,6 +113,7 @@
 	"history_short": "Historial",
 	"updatedmarker": "actualizada desde su última visita",
 	"printableversion": "Versión para imprimir",
+	"printableversion-deprecated-warning": "La versión para imprimir ya no se admite y puede contener errores de representación. Actualice los marcadores del navegador y utilice en su lugar la función de impresión predeterminada del navegador.",
 	"permalink": "Enlace permanente",
 	"print": "Imprimir",
 	"view": "Ver",

@@ -46,6 +46,7 @@
 	"apihelp-block-param-allowusertalk": "Kullanıcının kendi tarışma sayfasını düzenlemesine izin ver (<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> üzerinde bağlı kalır).",
 	"apihelp-block-param-reblock": "Kullanıcı zaten engellenmişse, mevcut engelin üzerine yazın.",
 	"apihelp-block-param-watchuser": "Kullanıcının veya IP adresinin kullanıcı ve tartışma sayfalarını izleyin.",
+	"apihelp-block-param-watchlistexpiry": "İzleme listesi süresinin dolması zaman damgası. Geçerli bitiş tarihini değiştirmeden bırakmak için bu parametreyi tamamen atlayın.",
 	"apihelp-block-param-tags": "Engel günlüğündeki girişe uygulanacak etiketleri değiştirin.",
 	"apihelp-block-param-partial": "Kullanıcıyı sitenin tamamı yerine belirli sayfalardan veya ad alanlarından engelleyin.",
 	"apihelp-block-param-pagerestrictions": "Kullanıcının düzenlemesini engelleyecek başlıkların listesi. Yalnızca <var>partial</var> true olarak ayarlandığında geçerlidir.",
