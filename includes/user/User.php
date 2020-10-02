@@ -4139,28 +4139,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Check if all users may be assumed to have the given permission
-	 *
-	 * We generally assume so if the right is granted to '*' and isn't revoked
-	 * on any group. It doesn't attempt to take grants or other extension
-	 * limitations on rights into account in the general case, though, as that
-	 * would require it to always return false and defeat the purpose.
-	 * Specifically, session-based rights restrictions (such as OAuth or bot
-	 * passwords) are applied based on the current session.
-	 *
-	 * @deprecated since 1.34, use PermissionManager::isEveryoneAllowed() instead
-	 *
-	 * @param string $right Right to check
-	 *
-	 * @return bool
-	 * @since 1.22
-	 */
-	public static function isEveryoneAllowed( $right ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( $right );
-	}
-
-	/**
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
@@ -4171,18 +4149,6 @@ class User implements IDBAccessObject, UserIdentity {
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllGroups();
-	}
-
-	/**
-	 * Get a list of all available permissions.
-	 *
-	 * @deprecated since 1.34, use PermissionManager::getAllPermissions() instead
-	 *
-	 * @return string[] Array of permission names
-	 */
-	public static function getAllRights() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 	}
 
 	/**

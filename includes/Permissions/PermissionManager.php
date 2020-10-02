@@ -84,7 +84,7 @@ class PermissionManager {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	/** @var string[]|null Cached results of getAllRights() */
+	/** @var string[]|null Cached results of getAllPermissions() */
 	private $allRights;
 
 	/** @var BlockErrorFormatter */
