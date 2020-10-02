@@ -14,6 +14,7 @@ use ParserOptions;
 use ParserOutput;
 use Psr\Log\NullLogger;
 use Title;
+use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
 /**
@@ -385,4 +386,60 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$cache = $this->createParserCache( null, $storage );
 		$this->assertSame( $storage, $cache->getCacheStorage() );
 	}
+
+	/**
+	 * Test that we handle corrupt data gracefully.
+	 * This is important for forward-compatibility with JSON serialization.
+	 * We want to be sure that we don't crash horribly if we have to roll
+	 * back to a version of the code that doesn't know about JSON.
+	 *
+	 * @covers ParserCache::get
+	 */
+	public function testCorruptData() {
+		$bag = new HashBagOStuff();
+		$cache = $this->createParserCache( null, $bag );
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+
+		$options1 = ParserOptions::newFromAnon();
+		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
+
+		$outputKey = TestingAccessWrapper::newFromObject( $cache )->getParserOutputKey(
+			$this->page,
+			$options1->optionsHash( $parserOutput->getUsedOptions() )
+		);
+
+		$bag->set( $outputKey, 'bad data' );
+
+		// just make sure we don't crash and burn
+		$result = $cache->get( $this->page, $options1 );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * Test that we handle corrupt data gracefully.
+	 * This is important for forward-compatibility with JSON serialization.
+	 * We want to be sure that we don't crash horribly if we have to roll
+	 * back to a version of the code that doesn't know about JSON.
+	 *
+	 * @covers ParserCache::getKey
+	 */
+	public function testCorruptMetadata() {
+		$bag = new HashBagOStuff();
+		$cache = $this->createParserCache( null, $bag );
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+
+		$options1 = ParserOptions::newFromAnon();
+		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
+
+		$optionsKey = TestingAccessWrapper::newFromObject( $cache )->getOptionsKey(
+			$this->page
+		);
+
+		$bag->set( $optionsKey, 'bad data' );
+
+		// just make sure we don't crash and burn
+		$result = $cache->getKey( $this->page, $options1, false );
+		$this->assertFalse( $result );
+	}
+
 }
