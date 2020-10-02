@@ -121,8 +121,12 @@ class User implements IDBAccessObject, UserIdentity {
 	public $mId;
 	/** @var string */
 	public $mName;
-	/** @var int|null */
-	protected $mActorId;
+	/**
+	 * Switched from protected to public for use in UserFactory
+	 *
+	 * @var int|null
+	 */
+	public $mActorId;
 	/** @var string */
 	public $mRealName;
 
@@ -572,34 +576,36 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Static factory method for creation from a given user ID.
 	 *
+	 * @see UserFactory::newFromId
+	 *
 	 * @param int $id Valid user ID
 	 * @return User The corresponding User object
 	 */
 	public static function newFromId( $id ) {
-		$u = new User;
-		$u->mId = $id;
-		$u->mFrom = 'id';
-		$u->setItemLoaded( 'id' );
-		return $u;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromId( (int)$id );
 	}
 
 	/**
 	 * Static factory method for creation from a given actor ID.
+	 *
+	 * @see UserFactory::newFromActorId
 	 *
 	 * @since 1.31
 	 * @param int $id Valid actor ID
 	 * @return User The corresponding User object
 	 */
 	public static function newFromActorId( $id ) {
-		$u = new User;
-		$u->mActorId = $id;
-		$u->mFrom = 'actor';
-		$u->setItemLoaded( 'actor' );
-		return $u;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromActorId( (int)$id );
 	}
 
 	/**
 	 * Returns a User object corresponding to the given UserIdentity.
+	 *
+	 * @see UserFactory::newFromUserIdentity
 	 *
 	 * @since 1.32
 	 *
@@ -619,6 +625,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * This does not check that the ID, name, and actor ID all correspond to
 	 * the same user.
 	 *
+	 * @see UserFactory::newFromAnyId
+	 *
 	 * @since 1.31
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
@@ -627,46 +635,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
-		// Stop-gap solution for the problem described in T222212.
-		// Force the User ID and Actor ID to zero for users loaded from the database
-		// of another wiki, to prevent subtle data corruption and confusing failure modes.
-		if ( $dbDomain !== false ) {
-			$userId = 0;
-			$actorId = 0;
-		}
-
-		$user = new User;
-		$user->mFrom = 'defaults';
-
-		if ( $actorId !== null ) {
-			$user->mActorId = (int)$actorId;
-			if ( $user->mActorId !== 0 ) {
-				$user->mFrom = 'actor';
-			}
-			$user->setItemLoaded( 'actor' );
-		}
-
-		if ( $userName !== null && $userName !== '' ) {
-			$user->mName = $userName;
-			$user->mFrom = 'name';
-			$user->setItemLoaded( 'name' );
-		}
-
-		if ( $userId !== null ) {
-			$user->mId = (int)$userId;
-			if ( $user->mId !== 0 ) {
-				$user->mFrom = 'id';
-			}
-			$user->setItemLoaded( 'id' );
-		}
-
-		if ( $user->mFrom === 'defaults' ) {
-			throw new InvalidArgumentException(
-				'Cannot create a user with no name, no ID, and no actor ID'
-			);
-		}
-
-		return $user;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromAnyId( $userId, $userName, $actorId, $dbDomain );
 	}
 
 	/**
@@ -676,26 +647,16 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * If the code is invalid or has expired, returns NULL.
 	 *
+	 * @see UserFactory::newFromConfirmationCode
+	 *
 	 * @param string $code Confirmation code
 	 * @param int $flags User::READ_* bitfield
 	 * @return User|null
 	 */
 	public static function newFromConfirmationCode( $code, $flags = self::READ_NORMAL ) {
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
-
-		$id = $db->selectField(
-			'user',
-			'user_id',
-			[
-				'user_email_token' => md5( $code ),
-				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
-			],
-			__METHOD__,
-			$options
-		);
-
-		return $id ? self::newFromId( $id ) : null;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromConfirmationCode( (string)$code, $flags );
 	}
 
 	/**
