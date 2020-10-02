@@ -105,33 +105,10 @@ class ParserCache {
 
 	/**
 	 * @param WikiPage $wikiPage
-	 * @param string $hash
-	 * @return string
-	 */
-	private function getParserOutputKey( WikiPage $wikiPage, $hash ) {
-		global $wgRequest;
-
-		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
-		$pageid = $wikiPage->getId();
-		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
-
-		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
-	}
-
-	/**
-	 * @param WikiPage $wikiPage
-	 * @return mixed|string
-	 */
-	private function getOptionsKey( WikiPage $wikiPage ) {
-		return $this->cache->makeKey( $this->name, 'idoptions', $wikiPage->getId() );
-	}
-
-	/**
-	 * @param WikiPage $wikiPage
 	 * @since 1.28
 	 */
 	public function deleteOptionsKey( WikiPage $wikiPage ) {
-		$this->cache->delete( $this->getOptionsKey( $wikiPage ) );
+		$this->cache->delete( $this->makeMetadataKey( $wikiPage ) );
 	}
 
 	/**
@@ -196,6 +173,7 @@ class ParserCache {
 	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
 	 */
 	public function getKey( WikiPage $wikiPage, $popts, $useOutdated = self::USE_ANYTHING ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		if ( is_bool( $useOutdated ) ) {
 			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
 		}
@@ -238,7 +216,7 @@ class ParserCache {
 		int $staleConstraint = self::USE_ANYTHING
 	): ?ParserCacheMetadata {
 		$metadata = $this->cache->get(
-			$this->getOptionsKey( $wikiPage ),
+			$this->makeMetadataKey( $wikiPage ),
 			BagOStuff::READ_VERIFIED
 		);
 		if ( $metadata instanceof CacheTime ) {
@@ -287,6 +265,14 @@ class ParserCache {
 	}
 
 	/**
+	 * @param WikiPage $wikiPage
+	 * @return string
+	 */
+	private function makeMetadataKey( WikiPage $wikiPage ): string {
+		return $this->cache->makeKey( $this->name, 'idoptions', $wikiPage->getId() );
+	}
+
+	/**
 	 * Get a key that will be used by the ParserCache to store the content
 	 * for a given page considering the given options and the array of
 	 * used options.
@@ -307,11 +293,16 @@ class ParserCache {
 		ParserOptions $options,
 		array $usedOptions = null
 	): string {
+		global $wgRequest;
 		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
-		return $this->getParserOutputKey(
-			$wikiPage,
-			$options->optionsHash( $usedOptions, $wikiPage->getTitle() )
-		);
+
+		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
+		$pageid = $wikiPage->getId();
+		// TODO: remove the split T263581
+		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
+		$hash = $options->optionsHash( $usedOptions, $wikiPage->getTitle() );
+
+		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 	}
 
 	/**
@@ -462,7 +453,7 @@ class ParserCache {
 			);
 
 			// ...and its pointer
-			$this->cache->set( $this->getOptionsKey( $wikiPage ), $metadata, $expire );
+			$this->cache->set( $this->makeMetadataKey( $wikiPage ), $metadata, $expire );
 
 			$this->hookRunner->onParserCacheSaveComplete(
 				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
