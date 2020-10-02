@@ -1290,12 +1290,14 @@ class WebRequest {
 
 		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
+		echo("Inside getIP, forwardedFor header is $forwardedFor</br>");
 		if ( $forwardedFor !== false ) {
 			$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 			$isConfigured = $proxyLookup->isConfiguredProxy( $ip );
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
 			array_unshift( $ipchain, $ip );
+			echo('Inside getIP after unshift, ipchain is ' . print_r($ipchain, true) . " and ip is $ip</br>");
 
 			# Step through XFF list and find the last address in the list which is a
 			# trusted server. Set $ip to the IP address given by that trusted server,
@@ -1303,10 +1305,13 @@ class WebRequest {
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
+				echo("Inside ipchain loop, i=$i, curIP=$curIP</br>");
 				$curIP = IPUtils::sanitizeIP( IPUtils::canonicalize( $curIP ) );
+				echo("Sanitized curIP=$curIP</br>");
 				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
 					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
+					echo("breaking on first condition</br>");
 					break; // IP is not valid/trusted or does not point to anything
 				}
 				if (
@@ -1328,10 +1333,11 @@ class WebRequest {
 				break;
 			}
 		}
+		echo("Before onGetIP hook ip=$ip</br>");
 
 		# Allow extensions to improve our guess
 		Hooks::runner()->onGetIP( $ip );
-
+		echo("After onGetIP hook ip=$ip</br>");
 		if ( !$ip ) {
 			throw new MWException( "Unable to determine IP." );
 		}
@@ -1346,6 +1352,8 @@ class WebRequest {
 	 * @since 1.21
 	 */
 	public function setIP( $ip ) {
+		echo("Called setIP from");
+		debug_print_backtrace();
 		$this->ip = $ip;
 	}
 
