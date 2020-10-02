@@ -228,3 +228,14 @@ IP address into the config, like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 
 Switching on the remote log for XDebug comes at a performance cost so only
 use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG=remote_log=/tmp/xdebug.log`
+
+###### "(Cannot access the database: Unknown error (localhost))"
+
+The environment's working directory has recently changed to `/var/www/html/w`.
+Reconfigure this in your `LocalSettings.php` by ensuring that the following
+values are set correctly:
+
+```php
+$wgScriptPath = '/w';
+$wgSQLiteDataDir = "/var/www/html/w/cache/sqlite";
+```
