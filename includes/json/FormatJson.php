@@ -319,4 +319,49 @@ class FormatJson {
 		// Add final chunk to buffer before returning
 		return $buffer . substr( $str, $mark, $maxLen - $mark );
 	}
+
+	/**
+	 * Recursive check for ability to serialize $value to JSON via FormatJson::encode().
+	 *
+	 * @note instances of JsonSerializable interface are not considered serializable
+	 * in this method. The $value passed here is a result of JsonSerializable::jsonSerialize().
+	 *
+	 *
+	 * @param mixed $value
+	 * @param string $accumulatedPath
+	 * @return string|null JSON path to first encountered non-serializable property or null.
+	 */
+	private static function detectNonSerializableDataInternal(
+		$value,
+		string $accumulatedPath
+	): ?string {
+		if ( is_array( $value ) ||
+			( is_object( $value ) && get_class( $value ) === 'stdClass' ) ) {
+			foreach ( $value as $key => $propValue ) {
+				$propValueNonSerializablePath = self::detectNonSerializableDataInternal(
+					$propValue,
+					$accumulatedPath . '.' . $key
+				);
+				if ( $propValueNonSerializablePath ) {
+					return $propValueNonSerializablePath;
+				}
+			}
+		// Instances of classes other the \stdClass can not be serialized to JSON
+		} elseif ( !is_scalar( $value ) && $value !== null ) {
+			return $accumulatedPath;
+		}
+		return null;
+	}
+
+	/**
+	 * Checks if the $value is JSON-serializable (contains only scalar values)
+	 * and returns a JSON-path to the first non-serializable property encountered.
+	 *
+	 * @since 1.36
+	 * @param mixed $value
+	 * @return string|null JSON path to first encountered non-serializable property or null.
+	 */
+	public static function detectNonSerializableData( $value ): ?string {
+		return self::detectNonSerializableDataInternal( $value, '$' );
+	}
 }

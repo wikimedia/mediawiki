@@ -1135,6 +1135,16 @@ class ParserOutput extends CacheTime {
 	 * @param mixed $value
 	 */
 	public function setProperty( $name, $value ) {
+		$unserializablePath = FormatJson::detectNonSerializableData( $value );
+		if ( $unserializablePath ) {
+			LoggerFactory::getInstance( 'ParserOutput' )->warning(
+				'Non-serializable page property set',
+				[
+					'name' => $name,
+					'path' => $unserializablePath,
+				]
+			);
+		}
 		$this->mProperties[$name] = $value;
 	}
 
@@ -1233,6 +1243,16 @@ class ParserOutput extends CacheTime {
 		if ( $value === null ) {
 			unset( $this->mExtensionData[$key] );
 		} else {
+			$unserializablePath = FormatJson::detectNonSerializableData( $value );
+			if ( $unserializablePath ) {
+				LoggerFactory::getInstance( 'ParserOutput' )->warning(
+					'Non-serializable extension data set',
+					[
+						'key' => $key,
+						'path' => $unserializablePath,
+					]
+				);
+			}
 			$this->mExtensionData[$key] = $value;
 		}
 	}
