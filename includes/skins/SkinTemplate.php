@@ -228,57 +228,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Get template representation of the footer containing site footer
-	 * links as well as standard footer links.
-	 * All values are resolved and can be added to by the
-	 * SkinAddFooterLinks hook.
-	 * @since 1.35
-	 * @internal
-	 * @return array
-	 */
-	protected function getFooterLinks() {
-		$out = $this->getOutput();
-		$title = $out->getTitle();
-		$titleExists = $title->exists();
-		$config = $this->getConfig();
-		$wgMaxCredits = $config->get( 'MaxCredits' );
-		$wgShowCreditsIfMax = $config->get( 'ShowCreditsIfMax' );
-		$useCredits = $titleExists && $out->isArticle() &&
-			$out->isRevisionCurrent() && $wgMaxCredits !== 0;
-
-		/** @var CreditsAction $action */
-		if ( $titleExists ) {
-			$action = Action::factory(
-				'credits',
-				Article::newFromWikiPage(
-					$this->getWikiPage(),
-					$this->getContext()
-				),
-				$this->getContext()
-			);
-		}
-
-		'@phan-var CreditsAction $action';
-		$data = [
-			'info' => [
-				'lastmod' => !$useCredits ? $this->lastModified() : null,
-				'numberofwatchingusers' => null,
-				'credits' => $useCredits ?
-					$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) : null,
-				'copyright' => $titleExists &&
-					$out->showsCopyright() ? $this->getCopyright() : null,
-			],
-			'places' => $this->getSiteFooterLinks(),
-		];
-		foreach ( $data as $key => $existingItems ) {
-			$newItems = [];
-			$this->getHookRunner()->onSkinAddFooterLinks( $this->getSkin(), $key, $newItems );
-			$data[$key] = $existingItems + $newItems;
-		}
-		return $data;
-	}
-
-	/**
 	 * Prepare undelete link for output in page.
 	 * @since 1.35
 	 * @return null|string HTML, or null if there is no undelete link.
