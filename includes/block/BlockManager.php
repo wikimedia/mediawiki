@@ -210,6 +210,7 @@ class BlockManager {
 				$blocks[] = new SystemBlock( [
 					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
+					'anonOnly' => true,
 					'systemBlock' => 'dnsbl',
 				] );
 			}

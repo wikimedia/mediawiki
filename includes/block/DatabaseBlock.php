@@ -70,9 +70,6 @@ class DatabaseBlock extends AbstractBlock {
 	private $forcedTargetID;
 
 	/** @var bool */
-	private $isHardblock;
-
-	/** @var bool */
 	private $isAutoblocking;
 
 	/** @var Restriction[] */
@@ -108,7 +105,6 @@ class DatabaseBlock extends AbstractBlock {
 			'user'            => null,
 			'auto'            => false,
 			'expiry'          => '',
-			'anonOnly'        => false,
 			'createAccount'   => false,
 			'enableAutoblock' => false,
 			'blockEmail'      => false,
@@ -137,7 +133,6 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
-		$this->isHardblock( !$options['anonOnly'] );
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
 		$this->isEmailBlocked( (bool)$options['blockEmail'] );
