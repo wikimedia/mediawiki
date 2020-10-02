@@ -116,6 +116,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1361,6 +1362,14 @@ return [
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
 				User::newFromIdentity( $user )->invalidateCache();
 			} ]
+		);
+	},
+
+	'UserNamePrefixSearch' => function ( MediaWikiServices $services ) : UserNamePrefixSearch {
+		return new UserNamePrefixSearch(
+			$services->getDBLoadBalancer(),
+			$services->getPermissionManager(),
+			$services->getUserFactory()
 		);
 	},
 

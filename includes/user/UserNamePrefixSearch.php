@@ -20,47 +20,96 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+namespace MediaWiki\User;
+
+use InvalidArgumentException;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Handles searching prefixes of user names
  *
- * @since 1.27
+ * @note There are two classes called UserNamePrefixSearch.  You should use this first one, in
+ * namespace MediaWiki\User, which is a service.  \UserNamePrefixSearch is a deprecated static wrapper
+ * that forwards to the global service.
+ *
+ * @since 1.36 as a service in the current namespace
+ * @author DannyS712
  */
 class UserNamePrefixSearch {
+
+	/** @var string */
+	public const AUDIENCE_PUBLIC = 'public';
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param PermissionManager $permissionManager
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		PermissionManager $permissionManager,
+		UserFactory $userFactory
+	) {
+		$this->loadBalancer = $loadBalancer;
+		$this->permissionManager = $permissionManager;
+		$this->userFactory = $userFactory;
+	}
 
 	/**
 	 * Do a prefix search of user names and return a list of matching user names.
 	 *
-	 * @param string|User $audience The string 'public' or a user object to show the search for
+	 * @param string|UserIdentity $audience Either AUDIENCE_PUBLIC or a user to show the search for
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
-	 * @return array Array of strings
+	 * @return string[] Array of strings
+	 * @throws InvalidArgumentException if $audience is invalid
 	 */
-	public static function search( $audience, $search, $limit, $offset = 0 ) {
-		$user = User::newFromName( $search );
+	public function search( $audience, string $search, int $limit, int $offset = 0 ) : array {
+		if ( $audience !== self::AUDIENCE_PUBLIC &&
+			!( $audience instanceof UserIdentity )
+		) {
+			throw new InvalidArgumentException(
+				'$audience must be AUDIENCE_PUBLIC or a UserIdentity'
+			);
+		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		// TODO this was kept when switching to a service, but it should probably
+		// use UserNameUtils::getCanonical( $search, UserNameUtils::RIGOR_VALID ) and
+		// use an empty string if that is false, or the returned string, instead of
+		// taking the time to construct a user object.
+		$user = $this->userFactory->newFromName( $search );
 		$prefix = $user ? $user->getName() : '';
+
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+
 		$tables = [ 'user' ];
-		$cond = [ 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) ];
+		$conds = [ 'user_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ) ];
 		$joinConds = [];
 
 		// Filter out hidden user names
-		if ( $audience === 'public' || !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $audience, 'hideuser' )
+		if ( $audience === self::AUDIENCE_PUBLIC ||
+			!$this->permissionManager->userHasRight( $audience, 'hideuser' )
 		) {
 			$tables[] = 'ipblocks';
-			$cond['ipb_deleted'] = [ 0, null ];
+			$conds['ipb_deleted'] = [ 0, null ];
 			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];
 		}
 
 		$res = $dbr->selectFieldValues(
 			$tables,
 			'user_name',
-			$cond,
+			$conds,
 			__METHOD__,
 			[
 				'LIMIT' => $limit,
