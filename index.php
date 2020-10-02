@@ -50,5 +50,11 @@ function wfIndexMain() {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
 	global $mediaWiki;
 	$mediaWiki = new MediaWiki();
+	echo('$_SERVER["REMOTE_ADDR"]: ' . $_SERVER["REMOTE_ADDR"] . '<br/>');
+	$headers = print_r(getallheaders(), TRUE);
+	$headers = str_replace("\n", '<br/>', $headers);
+	echo($headers);
+	$request = RequestContext::getMain()->getRequest();
+	echo('WebRequest->getIP(): ' . $request->getIP() . '<br/>');
 	$mediaWiki->run();
 }
