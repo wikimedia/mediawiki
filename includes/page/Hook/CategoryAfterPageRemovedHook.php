@@ -6,6 +6,9 @@ use Category;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "CategoryAfterPageRemoved" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

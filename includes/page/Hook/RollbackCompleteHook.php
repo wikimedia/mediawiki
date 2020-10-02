@@ -7,6 +7,9 @@ use MediaWiki\User\UserIdentity;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "RollbackComplete" to register handlers implementing this interface.
+ *
  * @deprecated since 1.36, use PageSaveComplete
  * @ingroup Hooks
  */

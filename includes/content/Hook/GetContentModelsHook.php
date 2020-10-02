@@ -4,6 +4,9 @@ namespace MediaWiki\Content\Hook;
 
 // phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "GetContentModels" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

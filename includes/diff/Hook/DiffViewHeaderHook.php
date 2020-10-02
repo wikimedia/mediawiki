@@ -6,6 +6,9 @@ use DifferenceEngine;
 use Revision;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "DiffViewHeader" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35, use DifferenceEngineViewHeader
  * @ingroup Hooks
  */

@@ -5,6 +5,9 @@ namespace MediaWiki\ResourceLoader\Hook;
 use ResourceLoader;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ResourceLoaderTestModules" to register handlers implementing this interface.
+ *
  * @deprecated since 1.33; use the QUnitTestModule static extension registration attribute instead.
  * @ingroup ResourceLoaderHooks
  */

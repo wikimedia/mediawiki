@@ -5,6 +5,9 @@ namespace MediaWiki\Hook;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UsersPagerDoBatchLookups" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

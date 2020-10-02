@@ -5,6 +5,9 @@ namespace MediaWiki\Api\Hook;
 use ApiBase;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "APIQueryAfterExecute" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

@@ -5,6 +5,9 @@ namespace MediaWiki\ResourceLoader\Hook;
 use Config;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ResourceLoaderGetConfigVars" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup ResourceLoaderHooks
  */

@@ -5,6 +5,9 @@ namespace MediaWiki\Page\Hook;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticlePageDataBefore" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

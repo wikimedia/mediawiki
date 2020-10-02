@@ -6,6 +6,9 @@ use Article;
 use ParserOutput;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticleViewHeader" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
