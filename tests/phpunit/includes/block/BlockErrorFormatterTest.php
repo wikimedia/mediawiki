@@ -193,15 +193,15 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 		return [
 			'All original blocks are system blocks' => [
 				[ 'test', 'test' ],
-				'Your IP address appears in multiple blacklists',
+				'Your IP address appears in multiple blocklists',
 			],
 			'One original block is a database block' => [
 				[ 100, 'test' ],
-				'Relevant block IDs: #100 (your IP address may also be blacklisted)',
+				'Relevant block IDs: #100 (your IP address may also appear in a blocklist)',
 			],
 			'Several original blocks are database blocks' => [
 				[ 100, 101, 102 ],
-				'Relevant block IDs: #100, #101, #102 (your IP address may also be blacklisted)',
+				'Relevant block IDs: #100, #101, #102 (your IP address may also appear in a blocklist)',
 			],
 		];
 	}
