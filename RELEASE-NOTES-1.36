@@ -227,6 +227,7 @@ because of Phabricator reports.
 * The static public callback function SpecialUnblock::processUIUnblock has been
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
+* Deprecated null fallbacks in PasswordReset constructor have been removed.
 * …
 
 === Deprecations in 1.36 ===

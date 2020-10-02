@@ -25,8 +25,6 @@ use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -43,7 +41,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class PasswordReset implements LoggerAwareInterface {
 	use LoggerAwareTrait;
 
-	/** @var ServiceOptions|Config */
+	/** @var ServiceOptions */
 	protected $config;
 
 	/** @var AuthManager */
@@ -80,44 +78,28 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * This class is managed by MediaWikiServices, don't instantiate directly.
 	 *
-	 * @param ServiceOptions|Config $config
+	 * @param ServiceOptions $config
 	 * @param AuthManager $authManager
 	 * @param PermissionManager $permissionManager
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param LoggerInterface|null $logger
-	 * @param HookContainer|null $hookContainer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LoggerInterface $logger
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
-		$config,
+		ServiceOptions $config,
 		AuthManager $authManager,
 		PermissionManager $permissionManager,
-		ILoadBalancer $loadBalancer = null,
-		LoggerInterface $logger = null,
-		HookContainer $hookContainer = null
+		ILoadBalancer $loadBalancer,
+		LoggerInterface $logger,
+		HookContainer $hookContainer
 	) {
+		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		$this->config = $config;
 		$this->authManager = $authManager;
 		$this->permissionManager = $permissionManager;
-
-		if ( !$loadBalancer ) {
-			wfDeprecatedMsg( 'Not passing LoadBalancer to ' . __METHOD__ .
-				' was deprecated in MediaWiki 1.34', '1.34' );
-			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		}
 		$this->loadBalancer = $loadBalancer;
-
-		if ( !$logger ) {
-			wfDeprecatedMsg( 'Not passing LoggerInterface to ' . __METHOD__ .
-				' was deprecated in MediaWiki 1.34', '1.34' );
-			$logger = LoggerFactory::getInstance( 'authentication' );
-		}
 		$this->logger = $logger;
-
-		if ( !$hookContainer ) {
-			wfDeprecatedMsg( 'Not passing HookContainer to ' . __METHOD__ .
-				' was deprecated in MediaWiki 1.35', '1.35' );
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
