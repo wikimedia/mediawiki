@@ -28,8 +28,35 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 
 /**
+ * Cache for ParserOutput objects corresponding to the latest page revisions.
+ *
+ * The ParserCache is a two-tiered cache backed by BagOStuff which supports
+ * varying the stored content on the values of ParserOptions used during
+ * a page parse.
+ *
+ * First tier is keyed by the page ID and stores ParserCacheMetadata, which
+ * contains information about cache expiration and the list of ParserOptions
+ * used during the parse of the page. For example, if only 'dateformat' and
+ * 'userlang' options were accessed by the parser when producing output for the
+ * page, array [ 'dateformat', 'userlang' ] will be stored in the metadata cache.
+ * This means none of the other existing options had any effect on the output.
+ *
+ * The second tier of the cache contains ParserOutput objects. The key for the
+ * second tier is constructed from the page ID and values of those ParserOptions
+ * used during a page parse which affected the output. Upon cache lookup, the list
+ * of used option names is retrieved from tier 1 cache, and only the values of
+ * those options are hashed together with the page ID to produce a key, while
+ * the rest of the options are ignored. Following the example above where
+ * only [ 'dateformat', 'userlang' ] options changed the parser output for a
+ * page, the key will look like 'page_id!dateformat=default:userlang=ru'.
+ * Thus any cache lookup with dateformat=default and userlang=ru will hit the
+ * same cache entry regardless of the values of the rest of the options, since they
+ * were not accessed during a parse and thus did not change the output.
+ *
+ * @see ParserOutput::recordOption()
+ * @see ParserOutput::getUsedOptions()
+ * @see ParserOptions::allCacheVaryingOptions()
  * @ingroup Cache Parser
- * @todo document
  */
 class ParserCache {
 	/**
