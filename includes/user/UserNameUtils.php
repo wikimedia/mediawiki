@@ -39,7 +39,7 @@ use Wikimedia\Message\MessageValue;
  *
  * @since 1.35
  */
-class UserNameUtils {
+class UserNameUtils implements UserRigorOptions {
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -50,10 +50,9 @@ class UserNameUtils {
 		'InvalidUsernameCharacters'
 	];
 
-	public const RIGOR_CREATABLE = 'creatable';
-	public const RIGOR_USABLE = 'usable';
-	public const RIGOR_VALID = 'valid';
-	public const RIGOR_NONE = 'none';
+	/**
+	 * RIGOR_* constants are inherited from UserRigorOptions
+	 */
 
 	/**
 	 * @var ServiceOptions
