@@ -934,11 +934,14 @@ return [
 		$options = new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		return new PasswordReset(
 			$options,
-			$services->getAuthManager(),
-			$services->getPermissionManager(),
-			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'authentication' ),
-			$services->getHookContainer()
+			$services->getAuthManager(),
+			$services->getHookContainer(),
+			$services->getDBLoadBalancer(),
+			$services->getPermissionManager(),
+			$services->getUserFactory(),
+			$services->getUserNameUtils(),
+			$services->getUserOptionsLookup()
 		);
 	},
 

@@ -142,4 +142,18 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	// Copied from UserTest
+	public function testNewFromRow() {
+		// TODO: Create real tests here for loadFromRow
+		$row = (object)[];
+		$user = $this->getUserFactory()->newFromRow( $row );
+		$this->assertInstanceOf( User::class, $user, 'newFromRow returns a user object' );
+	}
+
+	public function testNewFromRow_bad() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$row must be an object' );
+		$this->getUserFactory()->newFromRow( [] );
+	}
+
 }
