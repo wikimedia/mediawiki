@@ -52,7 +52,7 @@ $namespaceAliases = [
 	'Categorie'          => NS_CATEGORY,
 	'Overleg_categorie'  => NS_CATEGORY_TALK,
 	'Kattegerie'         => NS_CATEGORY,
-	'Overleg_kattegerie' => NS_HELP_TALK,
+	'Overleg_kattegerie' => NS_CATEGORY_TALK,
 ];
 
 $dateFormats = [
