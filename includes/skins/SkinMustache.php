@@ -160,6 +160,8 @@ class SkinMustache extends SkinTemplate {
 		$printSource = Html::rawElement( 'div', [ 'class' => 'printfooter' ], $this->printSource() );
 		$bodyContent = $out->getHTML() . "\n" . $printSource;
 
+		$newTalksHtml = $this->getNewtalks() ?: null;
+
 		$data = [
 			'data-logos' => $this->getLogoData(),
 			// Array objects
@@ -168,6 +170,8 @@ class SkinMustache extends SkinTemplate {
 			'data-search-box' => $this->buildSearchProps(),
 			// HTML strings
 			'html-site-notice' => $this->getSiteNotice(),
+			'html-user-message' => $newTalksHtml ?
+				Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : '',
 			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
 			'html-body-content' => $this->wrapHTML( $out->getTitle(), $bodyContent ),
