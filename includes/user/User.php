@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -540,15 +541,15 @@ class User implements IDBAccessObject, UserIdentity {
 	public static function newFromName( $name, $validate = 'valid' ) {
 		// Backwards compatibility with strings / false
 		$validationLevels = [
-			'valid' => UserNameUtils::RIGOR_VALID,
-			'usable' => UserNameUtils::RIGOR_USABLE,
-			'creatable' => UserNameUtils::RIGOR_CREATABLE
+			'valid' => UserFactory::RIGOR_VALID,
+			'usable' => UserFactory::RIGOR_USABLE,
+			'creatable' => UserFactory::RIGOR_CREATABLE
 		];
 		if ( $validate === true ) {
 			$validate = 'valid';
 		}
 		if ( $validate === false ) {
-			$validation = UserNameUtils::RIGOR_NONE;
+			$validation = UserFactory::RIGOR_NONE;
 		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
 			$validation = $validationLevels[ $validate ];
 		} else {

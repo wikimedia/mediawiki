@@ -33,7 +33,11 @@ use User;
  *
  * @since 1.35
  */
-class UserFactory implements IDBAccessObject {
+class UserFactory implements IDBAccessObject, UserRigorOptions {
+
+	/**
+	 * RIGOR_* constants are inherited from UserRigorOptions
+	 */
 
 	/**
 	 * @var UserNameUtils
@@ -59,16 +63,17 @@ class UserFactory implements IDBAccessObject {
 	 * @since 1.36 returns null instead of false for invalid user names
 	 *
 	 * @param string $name Username, validated by Title::newFromText
-	 * @param string $validate Validation strategy, one of the UserNameUtils::RIGOR_*
-	 *  constants. For no validation, use UserNameUtils::RIGOR_NONE.
+	 * @param string $validate Validation strategy, one of the RIGOR_* constants. For no
+	 *    validation, use RIGOR_NONE.
 	 * @return ?User User object, or null if the username is invalid (e.g. if it contains
 	 *  illegal characters or is an IP address). If the username is not present in the database,
 	 *  the result will be a user object with a name, a user id of 0, and default settings.
 	 */
 	public function newFromName(
 		string $name,
-		string $validate = UserNameUtils::RIGOR_VALID
+		string $validate = self::RIGOR_VALID
 	) : ?User {
+		// RIGOR_* constants are the same here and in the UserNameUtils class
 		$canonicalName = $this->userNameUtils->getCanonical( $name, $validate );
 		if ( $canonicalName === false ) {
 			return null;
@@ -93,7 +98,7 @@ class UserFactory implements IDBAccessObject {
 		if ( $ip ) {
 			$validIp = $this->userNameUtils->isIP( $ip );
 			if ( $validIp ) {
-				$user = $this->newFromName( $ip, UserNameUtils::RIGOR_NONE );
+				$user = $this->newFromName( $ip, self::RIGOR_NONE );
 			} else {
 				throw new \InvalidArgumentException( 'Invalid IP address' );
 			}
