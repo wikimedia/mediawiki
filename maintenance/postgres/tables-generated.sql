@@ -328,3 +328,15 @@ CREATE INDEX pr_typelevel ON page_restrictions (pr_type, pr_level);
 CREATE INDEX pr_level ON page_restrictions (pr_level);
 
 CREATE INDEX pr_cascade ON page_restrictions (pr_cascade);
+
+
+CREATE TABLE user_groups (
+  ug_user INT DEFAULT 0 NOT NULL,
+  ug_group TEXT DEFAULT '' NOT NULL,
+  ug_expiry TIMESTAMPTZ DEFAULT NULL,
+  PRIMARY KEY(ug_user, ug_group)
+);
+
+CREATE INDEX ug_group ON user_groups (ug_group);
+
+CREATE INDEX ug_expiry ON user_groups (ug_expiry);

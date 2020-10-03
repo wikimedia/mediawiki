@@ -762,6 +762,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changePrimaryKey', 'page_restrictions', [ 'pr_id' ], 'page_restrictions_pk' ] ,
 			[ 'dropPgIndex', 'page_restrictions', 'page_restrictions_pr_id_key' ],
 			[ 'changeNullableField', 'page_restrictions', 'pr_page', 'NOT NULL', true ],
+			[ 'dropFkey', 'user_groups', 'ug_user' ],
+			[ 'setDefault', 'user_groups', 'ug_user', 0 ],
+			[ 'setDefault', 'user_groups', 'ug_group', '' ],
+			[ 'renameIndex', 'user_groups', 'user_groups_group', 'ug_group' ],
+			[ 'renameIndex', 'user_groups', 'user_groups_expiry', 'ug_expiry' ],
 		];
 	}
 
