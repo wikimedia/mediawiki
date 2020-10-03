@@ -1195,6 +1195,7 @@ return [
 			'subject-preview',
 			'parentheses',
 			'previewerrortext',
+			'templatesusedpreview',
 		],
 	],
 	'mediawiki.action.history' => [
