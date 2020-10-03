@@ -23,6 +23,7 @@
 namespace MediaWiki\User;
 
 use IDBAccessObject;
+use stdClass;
 use User;
 
 /**
@@ -186,6 +187,19 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		int $flags = self::READ_NORMAL
 	) {
 		return User::newFromConfirmationCode( $confirmationCode, $flags );
+	}
+
+	/**
+	 * @see User::newFromRow
+	 *
+	 * @since 1.36
+	 *
+	 * @param stdClass $row A row from the user table
+	 * @param array|null $data Further data to load into the object
+	 * @return User
+	 */
+	public function newFromRow( $row, $data = null ) {
+		return User::newFromRow( $row, $data );
 	}
 
 }

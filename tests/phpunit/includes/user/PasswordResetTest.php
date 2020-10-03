@@ -8,6 +8,8 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -48,13 +50,17 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 		$hookContainer = $this->createHookContainer();
 
+		$mwServices = MediaWikiServices::getInstance();
 		$passwordReset = new PasswordReset(
 			$config,
-			$authManager,
-			$permissionManager,
-			$loadBalancer,
 			new NullLogger(),
-			$hookContainer
+			$authManager,
+			$hookContainer,
+			$loadBalancer,
+			$permissionManager,
+			$mwServices->getUserFactory(),
+			$mwServices->getUserNameUtils(),
+			$mwServices->getUserOptionsLookup()
 		);
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
@@ -248,27 +254,49 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 		$users = $this->makeUsers();
 
+		// Only User1 has `requireemail` true, everything else false
+		$userRequiresEmail = function ( $user, $option ) {
+			$this->assertSame( 'requireemail', $option );
+			return ( $user->getName() === 'User1' );
+		};
+		$userOptionsLookup = $this->getMockBuilder( UserOptionsLookup::class )
+			->setMethods( [ 'getBoolOption' ] )
+			->getMockForAbstractClass();
+		$userOptionsLookup->method( 'getBoolOption' )
+			->willReturnCallback( $userRequiresEmail );
+
+		// Similar to $lookupUser callback, but with null instead of false
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromName' )
+			->willReturnCallback(
+				function ( $username ) use ( $users ) {
+					return $users[ $username ] ?? null;
+				}
+			);
+
 		$lookupUser = function ( $username ) use ( $users ) {
 			return $users[ $username ] ?? false;
 		};
 
+		$mwServices = MediaWikiServices::getInstance();
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )
-			->setMethods( [ 'getUsersByEmail', 'isAllowed', 'lookupUser' ] )
+			->setMethods( [ 'getUsersByEmail', 'isAllowed' ] )
 			->setConstructorArgs( [
 				$config,
-				$authManager,
-				$permissionManager,
-				$loadBalancer,
 				new NullLogger(),
-				MediaWikiServices::getInstance()->getHookContainer()
+				$authManager,
+				$mwServices->getHookContainer(),
+				$loadBalancer,
+				$permissionManager,
+				$userFactory,
+				$mwServices->getUserNameUtils(),
+				$userOptionsLookup
 			] )
 			->getMock();
 		$passwordReset->method( 'getUsersByEmail' )->with( $email )
 			->willReturn( array_map( $lookupUser, $usersWithEmail ) );
 		$passwordReset->method( 'isAllowed' )
 			->willReturn( Status::newGood() );
-		$passwordReset->method( 'lookupUser' )
-			->willReturnCallback( $lookupUser );
 
 		/** @var PasswordReset $passwordReset */
 		$status = $passwordReset->execute( $performingUser, $username, $email );
@@ -539,7 +567,10 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 	private function assertStatus( StatusValue $status, $error = false ) {
 		if ( $error === false ) {
-			$this->assertTrue( $status->isGood(), 'Expected status to be good' );
+			$this->assertTrue(
+				$status->isGood(),
+				'Expected status to be good, result was: ' . $status->__toString()
+			);
 		} else {
 			$this->assertFalse( $status->isGood(), 'Expected status to not be good' );
 			if ( is_string( $error ) ) {
@@ -668,10 +699,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$user2->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
 		$user3->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
 		$user4->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
-
-		$user1->method( 'getBoolOption' )
-			->with( 'requireemail' )
-			->willReturn( true );
 
 		$badUser = $this->getMockBuilder( User::class )->getMock();
 		$badUser->method( 'getName' )->willReturn( 'BadUser' );
