@@ -1633,8 +1633,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->mCascadeSources = null;
 		$result = $title->getCascadeProtectionSources( true );
 		$this->assertArrayEquals(
-			$result[1],
-			[ 'edit' => [ 'sysop' ] ]
+			[ 'edit' => [ 'sysop' ] ],
+			$result[1]
 		);
 		$this->assertTrue(
 			array_key_exists( $anotherPage->getTitle()->getArticleID(), $result[0] )
