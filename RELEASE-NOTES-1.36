@@ -228,6 +228,8 @@ because of Phabricator reports.
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
 * Deprecated null fallbacks in PasswordReset constructor have been removed.
+* User::isEveryoneAllowed and User::getAllRights, deprecated in 1.34, has been
+  removed.
 * …
 
 === Deprecations in 1.36 ===
