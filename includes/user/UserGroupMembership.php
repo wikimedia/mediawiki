@@ -23,7 +23,6 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterTypeException;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -98,169 +97,12 @@ class UserGroupMembership {
 	}
 
 	/**
-	 * @deprecated since 1.35
-	 * @param $row
-	 */
-	protected function initFromRow( $row ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->userId = (int)$row->ug_user;
-		$this->group = $row->ug_group;
-		$this->expiry = $row->ug_expiry === null ?
-			null :
-			wfTimestamp( TS_MW, $row->ug_expiry );
-	}
-
-	/**
-	 * Creates a new UserGroupMembership object from a database row.
-	 *
-	 * @param stdClass $row The row from the user_groups table
-	 * @return UserGroupMembership
-	 *
-	 * @deprecated since 1.35, use UserGroupMembership constructor instead
-	 */
-	public static function newFromRow( $row ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return new self(
-			(int)$row->ug_user,
-			$row->ug_group,
-			$row->ug_expiry === null ? null : wfTimestamp( TS_MW, $row->ug_expiry )
-		);
-	}
-
-	/**
-	 * Returns the list of user_groups fields that should be selected to create
-	 * a new user group membership.
-	 * @return array
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::getQueryInfo instead
-	 */
-	public static function selectFields() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getUserGroupManager()->getQueryInfo()['fields'];
-	}
-
-	/**
-	 * Delete the row from the user_groups table.
-	 *
-	 * @throws MWException
-	 * @param IDatabase|null $dbw Optional master database connection to use
-	 * @return bool Whether or not anything was deleted
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::removeUserFromGroup instead
-	 */
-	public function delete( IDatabase $dbw = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->removeUserFromGroup(
-				// TODO: we're forced to forge a User instance here because we don't have
-				// a username around to create an artificial UserIdentityValue
-				// and the username is being used down the tree. This will be gone once the
-				// deprecated method is removed
-				User::newFromId( $this->getUserId() ),
-				$this->group
-			);
-	}
-
-	/**
-	 * Insert a user right membership into the database. When $allowUpdate is false,
-	 * the function fails if there is a conflicting membership entry (same user and
-	 * group) already in the table.
-	 *
-	 * @throws UnexpectedValueException
-	 * @param bool $allowUpdate Whether to perform "upsert" instead of INSERT
-	 * @param IDatabase|null $dbw If you have one available
-	 * @return bool Whether or not anything was inserted
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::addUserToGroup instead
-	 */
-	public function insert( $allowUpdate = false, IDatabase $dbw = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->addUserToGroup(
-				// TODO: we're forced to forge a User instance here because we don't have
-				// a username around to create an artificial UserIdentityValue
-				// and the username is being used down the tree. This will be gone once the
-				// deprecated method is removed
-				User::newFromId( $this->getUserId() ),
-				$this->group,
-				$this->expiry,
-				$allowUpdate
-			);
-	}
-
-	/**
 	 * Has the membership expired?
 	 *
 	 * @return bool
 	 */
 	public function isExpired() {
 		return $this->expired;
-	}
-
-	/**
-	 * Purge expired memberships from the user_groups table
-	 *
-	 * @return int|bool false if purging wasn't attempted (e.g. because of
-	 *  readonly), the number of rows purged (might be 0) otherwise
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::purgeExpired instead
-	 */
-	public static function purgeExpired() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->purgeExpired();
-	}
-
-	/**
-	 * Returns UserGroupMembership objects for all the groups a user currently
-	 * belongs to.
-	 *
-	 * @param int $userId ID of the user to search for
-	 * @param IDatabase|null $db unused since 1.35
-	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::getUserGroupMemberships instead
-	 */
-	public static function getMembershipsForUser( $userId, IDatabase $db = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserGroupMemberships(
-				// TODO: we're forced to forge a User instance here because we don't have
-				// a username around to create an artificial UserIdentityValue
-				// and the username is being used down the tree. This will be gone once the
-				// deprecated method is removed
-				User::newFromId( $userId )
-			);
-	}
-
-	/**
-	 * Returns a UserGroupMembership object that pertains to the given user and group,
-	 * or false if the user does not belong to that group (or the assignment has
-	 * expired).
-	 *
-	 * @param int $userId ID of the user to search for
-	 * @param string $group User group name
-	 * @param IDatabase|null $db unused since 1.35
-	 * @return UserGroupMembership|false
-	 *
-	 * @deprecated since 1.35, use UserGroupManager::getUserGroupMemberships instead
-	 */
-	public static function getMembership( $userId, $group, IDatabase $db = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$ugms = MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserGroupMemberships(
-				// TODO: we're forced to forge a User instance here because we don't have
-				// a username around to create an artificial UserIdentityValue
-				// and the username is being used down the tree. This will be gone once the
-				// deprecated method is removed
-				User::newFromId( $userId )
-			);
-		return $ugms[$group] ?? false;
 	}
 
 	/**
