@@ -376,8 +376,8 @@ $dateFormats = [
  * Hledání knihy podle ISBN
  */
 $bookstoreList = [
-	'Národní knihovna'          => 'http://aleph.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
-	'Státní technická knihovna' => 'http://www.stk.cz/cgi-bin/dflex/CZE/STK/BROWSE?A=01&V=$1',
+	'Národní knihovna'           => 'https://aleph.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
+	'Národní technická knihovna' => 'https://vufind.techlib.cz/Search/Results?type=ISN&limit=20&lookfor=$1',
 	'inherit' => true,
 ];
 
