@@ -330,7 +330,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$password = null;
 		}
 
-		if ( $bp->save( $this->operation, $password ) ) {
+		if ( $bp && $bp->save( $this->operation, $password ) ) {
 			$this->logger->info(
 				"Bot password {op} for {user}@{app_id}",
 				[
@@ -344,10 +344,10 @@ class SpecialBotPasswords extends FormSpecialPage {
 				]
 			);
 			return Status::newGood();
-		} else {
-			// Messages: botpasswords-insert-failed, botpasswords-update-failed
-			return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
 		}
+
+		// Messages: botpasswords-insert-failed, botpasswords-update-failed
+		return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
 	}
 
 	public function onSuccess() {
