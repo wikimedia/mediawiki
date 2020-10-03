@@ -578,14 +578,12 @@ class RevisionStore
 
 		$this->insertSlotRowOn( $protoSlot, $dbw, $revisionId, $contentId );
 
-		$savedSlot = SlotRecord::newSaved(
+		return SlotRecord::newSaved(
 			$revisionId,
 			$contentId,
 			$blobAddress,
 			$protoSlot
 		);
-
-		return $savedSlot;
 	}
 
 	/**
@@ -1140,9 +1138,8 @@ class RevisionStore
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 			$conds[] = 'rev_id=page_latest';
-			$rev = $this->loadRevisionFromConds( $db, $conds, $flags, $title );
 
-			return $rev;
+			return $this->loadRevisionFromConds( $db, $conds, $flags, $title );
 		}
 	}
 
@@ -1181,9 +1178,8 @@ class RevisionStore
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 			$conds[] = 'rev_id=page_latest';
-			$rev = $this->loadRevisionFromConds( $db, $conds, $flags );
 
-			return $rev;
+			return $this->loadRevisionFromConds( $db, $conds, $flags );
 		}
 	}
 
@@ -1259,9 +1255,7 @@ class RevisionStore
 			);
 		}
 
-		$slots = $this->constructSlotRecords( $revId, $res, $queryFlags, $title );
-
-		return $slots;
+		return $this->constructSlotRecords( $revId, $res, $queryFlags, $title );
 	}
 
 	/**
@@ -2368,9 +2362,7 @@ class RevisionStore
 	) {
 		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags, $options );
 		if ( $row ) {
-			$rev = $this->newRevisionFromRow( $row, $flags, $title );
-
-			return $rev;
+			return $this->newRevisionFromRow( $row, $flags, $title );
 		}
 
 		return null;
@@ -2600,18 +2592,18 @@ class RevisionStore
 		$ret = [
 			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
-					'ar_id',
-					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
-					'ar_rev_id',
-					'ar_timestamp',
-					'ar_minor_edit',
-					'ar_deleted',
-					'ar_len',
-					'ar_parent_id',
+				'ar_id',
+				'ar_page_id',
+				'ar_namespace',
+				'ar_title',
+				'ar_rev_id',
+				'ar_timestamp',
+				'ar_minor_edit',
+				'ar_deleted',
+				'ar_len',
+				'ar_parent_id',
 					'ar_sha1',
-				] + $commentQuery['fields'] + $actorQuery['fields'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
