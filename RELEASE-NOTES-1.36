@@ -291,6 +291,8 @@ because of Phabricator reports.
 * SpecialBlock::parseExpiryInput was deprecated - use
   BlockUser::parseExpiryInput instead.
 * SpecialBlock::validateTarget has been deprecated, use BlockUtils instead.
+* SpecialBlock::validateTargetField has been deprecated for external use,
+  use BlockUtils instead.
 * …
 
 === Other changes in 1.36 ===

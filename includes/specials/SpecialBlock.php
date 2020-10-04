@@ -352,7 +352,7 @@ class SpecialBlock extends FormSpecialPage {
 		$fields['Target']['default'] = (string)$this->target;
 
 		if ( $this->target ) {
-			$status = self::validateTarget( $this->target, $this->getUser() );
+			$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $this->target );
 			if ( !$status->isOK() ) {
 				$errors = $status->getErrorsArray();
 				$this->preErrors = array_merge( $this->preErrors, $errors );
@@ -670,13 +670,14 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * HTMLForm field validation-callback for Target field.
 	 * @since 1.18
+	 * @internal since 1.36, use BlockUtils directly instead
 	 * @param string $value
 	 * @param array $alldata
 	 * @param HTMLForm $form
 	 * @return Message|true
 	 */
 	public static function validateTargetField( $value, $alldata, $form ) {
-		$status = self::validateTarget( $value, $form->getUser() );
+		$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $value );
 		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsArray();
 
@@ -697,6 +698,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return Status
 	 */
 	public static function validateTarget( $value, User $user ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $value );
 
 		// This is here to make validateTarget to not change its behavior
