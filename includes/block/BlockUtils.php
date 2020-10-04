@@ -83,9 +83,9 @@ class BlockUtils {
 				list( $ip, $range ) = explode( '/', $target, '2' );
 
 				if ( IPUtils::isIPv4( $ip ) ) {
-					$status->merge( $this->validateIPv4Target( $ip, $range ) );
+					$status->merge( $this->validateIPv4Range( $range ) );
 				} elseif ( IPUtils::isIPv6( $ip ) ) {
-					$status->merge( $this->validateIPv6Target( $ip, $range ) );
+					$status->merge( $this->validateIPv6Range( $range ) );
 				} else {
 					// Something is FUBAR
 					$status->fatal( 'badipaddress' );
@@ -105,14 +105,13 @@ class BlockUtils {
 	}
 
 	/**
-	 * Validate IPv4 target
+	 * Validate an IPv4 range
 	 *
-	 * @param string $ip
 	 * @param int $range
 	 *
 	 * @return Status
 	 */
-	private function validateIPv4Target( string $ip, int $range ) : Status {
+	private function validateIPv4Range( int $range ) : Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 
@@ -130,14 +129,13 @@ class BlockUtils {
 	}
 
 	/**
-	 * Validate IPv6 target
+	 * Validate an IPv6 range
 	 *
-	 * @param string $ip
 	 * @param int $range
 	 *
 	 * @return Status
 	 */
-	private function validateIPv6Target( string $ip, int $range ) : Status {
+	private function validateIPv6Range( int $range ) : Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 
