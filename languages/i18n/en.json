@@ -566,6 +566,8 @@
 	"botpasswords-help-grants": "Grants allow access to rights already held by your user account. Enabling a grant here does not provide access to any rights that your user account would not otherwise have. See the [[Special:ListGrants|table of grants]] for more information.",
 	"botpasswords-label-grants-column": "Granted",
 	"botpasswords-bad-appid": "The bot name \"$1\" is not valid.",
+	"botpasswords-toolong-restrictions": "There are too many IP addresses or ranges entered.",
+	"botpasswords-toolong-grants": "There are too many grants selected.",
 	"botpasswords-insert-failed": "Failed to add bot name \"$1\". Was it already added?",
 	"botpasswords-update-failed": "Failed to update bot name \"$1\". Was it deleted?",
 	"botpasswords-created-title": "Bot password created",

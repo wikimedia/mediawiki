@@ -26,7 +26,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 class CreateBotPassword extends Maintenance {
 	/**
-	 * width of initial column of --showgrants output
+	 * Width of initial column of --showgrants output
 	 */
 	private const SHOWGRANTS_COLUMN_WIDTH = 20;
 
@@ -58,7 +58,7 @@ class CreateBotPassword extends Maintenance {
 	public function execute() {
 		if ( $this->hasOption( 'showgrants' ) ) {
 			$this->showGrants();
-			exit;
+			return;
 		}
 
 		$username = $this->getArg( 0 );
@@ -112,14 +112,21 @@ class CreateBotPassword extends Maintenance {
 			'grants' => $grants
 		] );
 
-		$passwordInstance = $passwordFactory->newFromPlaintext( $password );
-		$success = $bp->save( 'insert', $passwordInstance );
+		if ( $bp === null ) {
+			$this->fatalError( "Bot password creation failed." );
+		}
 
-		if ( $success ) {
+		$passwordInstance = $passwordFactory->newFromPlaintext( $password );
+		$status = $bp->save( 'insert', $passwordInstance );
+
+		if ( $status->isGood() ) {
 			$this->output( "Success.\n" );
 			$this->output( "Log in using username:'${username}@${appId}' and password:'${password}'.\n" );
 		} else {
-			$this->fatalError( "Bot password creation failed. Does this appid already exist for the user perhaps?" );
+			$this->fatalError(
+				"Bot password creation failed. Does this appid already exist for the user perhaps?\n\nErrors:\n" .
+				print_r( $status->getErrors(), true )
+			);
 		}
 	}
 

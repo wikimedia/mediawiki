@@ -65,6 +65,10 @@ To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
 * [UploadedFileStreamTest] Skip test with chmod.
 * (T269710) Updating composer/semver (1.5.1 => 1.7.2).
 * (T269710) Updating mediawiki/mediawiki-codesniffer (33.0.0 => 34.0.0).
+* (T260631, T260633), BotPassword::save() now returns a Status object for the
+  result rather than a bool. The length of the bot password grants and
+  restriction fields are now validated, and an error will be thrown if it
+  would be truncated by the database.
 
 == MediaWiki 1.35.0 ==
 

@@ -782,6 +782,8 @@
 	"botpasswords-help-grants": "Help text for the grant selection checkmatrix.\n\nIdentical:\n* {{msg-mw|Mwoauth-consumer-grantshelp}}",
 	"botpasswords-label-grants-column": "Label for the checkbox column on the checkmatrix for selecting grants allowed when the bot password is used.",
 	"botpasswords-bad-appid": "Used as an error message when an invalid \"bot name\" is supplied on [[Special:BotPasswords]]. Parameters:\n* $1 - The rejected bot name.",
+	"botpasswords-toolong-restrictions": "Used when the bot password allowed IP ranges are too long when turned into JSON.",
+	"botpasswords-toolong-grants": "Error message when the selected grants are too long (usually means too many selected) when turned into JSON.",
 	"botpasswords-insert-failed": "Error message when saving a new bot password failed. It's likely that the failure was because the user resubmitted the form after a previous successful save. Parameters:\n* $1 - Bot name",
 	"botpasswords-update-failed": "Error message when saving changes to an existing bot password failed. It's likely that the failure was because the user deleted the bot password in another browser window. Parameters:\n* $1 - Bot name",
 	"botpasswords-created-title": "Title of the success page when a new bot password is created.",
