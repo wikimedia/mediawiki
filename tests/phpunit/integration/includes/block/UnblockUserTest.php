@@ -1,14 +1,18 @@
 <?php
 
+namespace MediaWiki\Tests\Block;
+
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
+use User;
 
 /**
  * @group Blocking
  * @group Database
  * @coversDefaultClass UnblockUser
  */
-class UnblockUserTest extends MediaWikiTestCase {
+class UnblockUserTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @var User
 	 */
