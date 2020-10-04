@@ -33,7 +33,6 @@ use MediaWiki\User\UserIdentity;
 use Message;
 use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
-use SpecialBlock;
 use Status;
 use Title;
 use User;
@@ -74,6 +73,9 @@ class BlockUser {
 
 	/** @var BlockPermissionChecker */
 	private $blockPermissionChecker;
+
+	/** @var BlockUtils */
+	private $blockUtils;
 
 	/** @var HookRunner */
 	private $hookRunner;
@@ -154,6 +156,7 @@ class BlockUser {
 	 * @param ServiceOptions $options
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param BlockUtils $blockUtils
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlockStore $databaseBlockStore
 	 * @param LoggerInterface $logger
@@ -179,6 +182,7 @@ class BlockUser {
 		ServiceOptions $options,
 		BlockRestrictionStore $blockRestrictionStore,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		BlockUtils $blockUtils,
 		HookContainer $hookContainer,
 		DatabaseBlockStore $databaseBlockStore,
 		LoggerInterface $logger,
@@ -199,6 +203,7 @@ class BlockUser {
 				$target,
 				$performer
 			);
+		$this->blockUtils = $blockUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->databaseBlockStore = $databaseBlockStore;
 		$this->logger = $logger;
@@ -409,8 +414,7 @@ class BlockUser {
 	 * @return Status
 	 */
 	public function placeBlockUnsafe( bool $reblock = false ) : Status {
-		// TODO get rid of SpecialBlock call here (T263189)
-		$status = SpecialBlock::validateTarget( $this->target, $this->performer );
+		$status = $this->blockUtils->validateTarget( $this->target );
 
 		if ( !$status->isOK() ) {
 			return $status;
