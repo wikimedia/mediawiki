@@ -303,6 +303,11 @@ class SpecialBotPasswords extends FormSpecialPage {
 			)
 		] );
 
+		if ( $bp === null ) {
+			// Messages: botpasswords-insert-failed, botpasswords-update-failed
+			return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
+		}
+
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = BotPassword::generatePassword( $this->getConfig() );
 			$passwordFactory = new PasswordFactory();
@@ -312,12 +317,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$password = null;
 		}
 
-		if ( $bp->save( $this->operation, $password ) ) {
-			return Status::newGood();
-		} else {
-			// Messages: botpasswords-insert-failed, botpasswords-update-failed
-			return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
-		}
+		return $bp->save( $this->operation, $password );
 	}
 
 	public function onSuccess() {
