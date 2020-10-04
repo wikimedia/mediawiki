@@ -26,5 +26,5 @@ interface ContributionsToolLinksHook {
 	 *   hint against a generic SpecialPage though.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onContributionsToolLinks( $id, $title, &$tools, $specialPage );
+	public function onContributionsToolLinks( $id, Title $title, array &$tools, SpecialPage $specialPage );
 }
