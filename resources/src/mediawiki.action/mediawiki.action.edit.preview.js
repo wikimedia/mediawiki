@@ -281,10 +281,14 @@
 	}
 
 	$( function () {
-		// Do not enable on user .js/.css pages, as there's no sane way of "previewing"
-		// the scripts or styles without reloading the page.
-		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length ) {
-			return;
+		var selector;
+
+		// Enable only live diff on user .js/.css pages, as there's no sane way of
+		// "previewing" the scripts or styles without reloading the page.
+		if ( $( '#mw-userjsyoucanpreview, #mw-usercssyoucanpreview, #mw-userjspreview, #mw-usercsspreview' ).length ) {
+			selector = '#wpDiff';
+		} else {
+			selector = '#wpPreview, #wpDiff';
 		}
 
 		// The following elements can change in a preview but are not output
@@ -340,7 +344,7 @@
 		// This should be moved down to '#editform', but is kept on the body for now
 		// because the LiquidThreads extension is re-using this module with only half
 		// the EditPage (doesn't include #editform presumably, T57463).
-		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
+		$( document.body ).on( 'click', selector, doLivePreview );
 	} );
 
 }() );
