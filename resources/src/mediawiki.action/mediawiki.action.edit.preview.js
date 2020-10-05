@@ -194,17 +194,36 @@
 				}
 				if ( response.parse.templates ) {
 					newList = response.parse.templates.map( function ( template ) {
-						return $( '<li>' )
-							.append( $( '<a>' )
-								.attr( {
-									href: mw.util.getUrl( template.title ),
-									class: ( template.exists ? '' : 'new' )
-								} )
+						return $( '<li>' ).append(
+							$( '<a>' )
+								.addClass( template.exists ? '' : 'new' )
+								.attr( 'href', mw.util.getUrl( template.title ) )
 								.text( template.title )
-							);
+						);
 					} );
 
-					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
+					$parent = $( '.templatesUsed' );
+					if ( newList.length ) {
+						$list = $parent.find( 'ul' );
+						if ( $list.length ) {
+							$list.detach().empty();
+						} else {
+							$( '<div>' )
+								.addClass( 'mw-templatesUsedExplanation' )
+								.append( '<p>' )
+								.appendTo( $parent );
+							$list = $( '<ul>' );
+						}
+
+						// Add "Templates used in this preview" or replace
+						// "Templates used on this page" with it
+						$( '.mw-templatesUsedExplanation > p' )
+							.msg( 'templatesusedpreview', newList.length );
+
+						$list.append( newList ).appendTo( $parent );
+					} else {
+						$parent.empty();
+					}
 				}
 				if ( response.parse.limitreporthtml ) {
 					$( '.limitreport' ).html( response.parse.limitreporthtml );
