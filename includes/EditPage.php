@@ -3392,12 +3392,14 @@ ERROR;
 					) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							[ 'rev-deleted-text-permission', $this->mTitle->getPrefixedText() ]
+							// title used in wikilinks, should not contain whitespaces
+							[ 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() ]
 						);
 					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							[ 'rev-deleted-text-view', $this->mTitle->getPrefixedText() ]
+							// title used in wikilinks, should not contain whitespaces
+							[ 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() ]
 						);
 					}
 

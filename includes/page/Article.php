@@ -515,8 +515,9 @@ class Article implements Page {
 				$this->mRevisionRecord->getId() );
 
 			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
+			// title used in wikilinks, should not contain whitespaces
 			$this->fetchResult = Status::newFatal(
-				'rev-deleted-text-permission', $this->getTitle()->getPrefixedText() );
+				'rev-deleted-text-permission', $this->getTitle()->getPrefixedDBkey() );
 			$this->applyContentOverride( $this->makeFetchErrorContent() );
 			return null;
 		}
@@ -1555,7 +1556,8 @@ class Article implements Page {
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
-		$titleText = $this->getTitle()->getPrefixedText();
+		// Used in wikilinks, should not contain whitespaces
+		$titleText = $this->getTitle()->getPrefixedDBkey();
 		// If the user is not allowed to see it...
 		if ( !RevisionRecord::userCanBitfield(
 			$this->mRevisionRecord->getVisibility(),
