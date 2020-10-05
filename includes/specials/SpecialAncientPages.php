@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Implements Special:Ancientpages
  *
@@ -30,8 +28,15 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAncientPages extends QueryPage {
 
-	public function __construct( $name = 'Ancientpages' ) {
-		parent::__construct( $name );
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( 'Ancientpages' );
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function isExpensive() {
@@ -45,8 +50,7 @@ class SpecialAncientPages extends QueryPage {
 	public function getQueryInfo() {
 		$tables = [ 'page', 'revision' ];
 		$conds = [
-			'page_namespace' =>
-				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces(),
+			'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 			'page_is_redirect' => 0
 		];
 		$joinConds = [

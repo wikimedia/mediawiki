@@ -65,7 +65,12 @@ class SpecialPageFactory {
 	private const CORE_LIST = [
 		// Maintenance Reports
 		'BrokenRedirects' => \SpecialBrokenRedirects::class,
-		'Deadendpages' => \SpecialDeadendPages::class,
+		'Deadendpages' => [
+			'class' => \SpecialDeadendPages::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'DoubleRedirects' => \SpecialDoubleRedirects::class,
 		'Longpages' => [
 			'class' => \SpecialLongPages::class,
@@ -74,8 +79,18 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 			]
 		],
-		'Ancientpages' => \SpecialAncientPages::class,
-		'Lonelypages' => \SpecialLonelyPages::class,
+		'Ancientpages' => [
+			'class' => \SpecialAncientPages::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
+		'Lonelypages' => [
+			'class' => \SpecialLonelyPages::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Fewestrevisions' => [
 			'class' => \SpecialFewestRevisions::class,
 			'services' => [
