@@ -256,6 +256,7 @@
 	"talk": "Συζήτηση",
 	"views": "Προβολές",
 	"toolbox": "Εργαλεία",
+	"cactions": "Περισσότερα",
 	"tool-link-userrights": "Αλλαγή ομάδων {{GENDER:$1|χρήστη}}",
 	"tool-link-userrights-readonly": "Εμφάνιση {{GENDER:$1|ομάδων}} χρήστη",
 	"tool-link-emailuser": "Αποστολή e-mail {{GENDER:$1|στο|στη}} χρήστη",

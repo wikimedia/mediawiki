@@ -851,6 +851,7 @@
 	"undo-summary-anon": "خنثی‌سازی ویرایش $1 توسط [[ویژه:مشارکت‌ها/$2|$2]]",
 	"undo-summary-username-hidden": "خنثی‌سازی نسخهٔ $1 به دست یک کاربر پنهان‌شده",
 	"viewpagelogs": "نمایش سیاهه‌های این صفحه",
+	"viewpagelogs-lowercase": "نمایش سیاهه‌های این صفحه",
 	"nohistory": "این صفحه تاریخچهٔ ویرایش ندارد.",
 	"currentrev": "نسخهٔ فعلی",
 	"currentrev-asof": "نسخهٔ کنونی تا $1",
