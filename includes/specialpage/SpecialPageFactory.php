@@ -55,10 +55,6 @@ use Wikimedia\ObjectFactory;
  * SpecialPageFactory::$list. To remove a core static special page at runtime, use
  * a SpecialPage_initList hook.
  *
- * @note There are two classes called SpecialPageFactory.  You should use this first one, in
- * namespace MediaWiki\Special, which is a service.  \SpecialPageFactory is a deprecated collection
- * of static methods that forwards to the global service.
- *
  * @ingroup SpecialPage
  * @since 1.17
  */
