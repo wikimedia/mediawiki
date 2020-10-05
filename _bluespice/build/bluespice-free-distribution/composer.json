@@ -11,6 +11,7 @@
 		"mediawiki/dynamic-page-list": "dev-master",
 		"mediawiki/echo": "dev-master",
 		"mediawiki/embed-video": "dev-master",
+		"mediawiki/flexiskin": "dev-master",
 		"mediawiki/hit-counters": "dev-master",
 		"mediawiki/image-map-edit": "dev-master",
 		"mediawiki/lingo": "~3.0",
