@@ -1521,6 +1521,7 @@ return [
 			new ServiceOptions( UserBlockCommandFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getHookContainer(),
 			$services->getBlockPermissionCheckerFactory(),
+			$services->getBlockUtils(),
 			$services->getDatabaseBlockStore(),
 			$services->getBlockRestrictionStore(),
 			LoggerFactory::getInstance( 'BlockManager' )
