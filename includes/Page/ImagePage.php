@@ -1010,6 +1010,7 @@ class ImagePage extends Article {
 
 		$out = $this->getContext()->getOutput();
 
+		$linkBatch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch()->setCaller( __METHOD__ );
 		$rows = [];
 		$redirects = [];
 		foreach ( $this->getTitle()->getRedirectsHere( NS_FILE ) as $redir ) {
@@ -1018,11 +1019,13 @@ class ImagePage extends Article {
 				'page_namespace' => NS_FILE,
 				'page_title' => $redir->getDBkey(),
 			];
+			$linkBatch->add( NS_FILE, $redir->getDBkey() );
 		}
 
 		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
 		foreach ( $res as $row ) {
 			$rows[] = $row;
+			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$count = count( $rows );
 
@@ -1033,6 +1036,7 @@ class ImagePage extends Article {
 			foreach ( $res as $row ) {
 				$redirects[$row->lt_title][] = $row;
 				$count++;
+				$linkBatch->add( $row->page_namespace, $row->page_title );
 			}
 			$hasMore = ( $res->numRows() + count( $rows ) ) > $limit;
 		}
@@ -1045,6 +1049,8 @@ class ImagePage extends Article {
 			);
 			return;
 		}
+
+		$linkBatch->execute();
 
 		$out->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
 		if ( !$hasMore ) {
