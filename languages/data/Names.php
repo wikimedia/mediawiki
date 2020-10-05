@@ -292,6 +292,7 @@ class Names {
 		'lv' => 'latviešu', # Latvian
 		'lzh' => '文言', # Literary Chinese, T10217
 		'lzz' => 'Lazuri', # Laz
+		'mad' => 'Madhurâ', # Madurese, T264582
 		'mai' => 'मैथिली', # Maithili
 		'map-bms' => 'Basa Banyumasan', # Banyumasan ('jv-x-bms')
 		'mdf' => 'мокшень', # Moksha
