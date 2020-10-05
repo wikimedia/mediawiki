@@ -111,6 +111,7 @@ because of Phabricator reports.
 * (T245359) Split Bali script locale from "ban" (Balinese) (ban-bali).
 * (T259330) Added language support for Mara (mhr).
 * (T263968) Added support for Nias language (nia).
+* (T264582) Added language support for Madurese (mad).
 
 === Breaking changes in 1.36 ===
 * (T176526) EditPage::getContextTitle() will now throw an exception if a context
