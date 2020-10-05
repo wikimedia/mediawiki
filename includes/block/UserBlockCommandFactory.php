@@ -33,6 +33,9 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 */
 	private $blockPermissionCheckerFactory;
 
+	/** @var BlockUtils */
+	private $blockUtils;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -57,6 +60,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param ServiceOptions $options
 	 * @param HookContainer $hookContainer
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param BlockUtils $blockUtils
 	 * @param DatabaseBlockStore $blockStore
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param LoggerInterface $logger
@@ -65,6 +69,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		ServiceOptions $options,
 		HookContainer $hookContainer,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		BlockUtils $blockUtils,
 		DatabaseBlockStore $blockStore,
 		BlockRestrictionStore $blockRestrictionStore,
 		LoggerInterface $logger
@@ -74,6 +79,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->options = $options;
 		$this->hookContainer = $hookContainer;
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
+		$this->blockUtils = $blockUtils;
 		$this->blockStore = $blockStore;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->logger = $logger;
@@ -109,6 +115,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->options,
 			$this->blockRestrictionStore,
 			$this->blockPermissionCheckerFactory,
+			$this->blockUtils,
 			$this->hookContainer,
 			$this->blockStore,
 			$this->logger,
