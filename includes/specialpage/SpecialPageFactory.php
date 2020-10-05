@@ -71,7 +71,13 @@ class SpecialPageFactory {
 		'BrokenRedirects' => \SpecialBrokenRedirects::class,
 		'Deadendpages' => \SpecialDeadendPages::class,
 		'DoubleRedirects' => \SpecialDoubleRedirects::class,
-		'Longpages' => \SpecialLongPages::class,
+		'Longpages' => [
+			'class' => \SpecialLongPages::class,
+			'services' => [
+				// Same as for Shortpages
+				'NamespaceInfo',
+			]
+		],
 		'Ancientpages' => \SpecialAncientPages::class,
 		'Lonelypages' => \SpecialLonelyPages::class,
 		'Fewestrevisions' => [
@@ -84,7 +90,13 @@ class SpecialPageFactory {
 		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
-		'Shortpages' => \SpecialShortPages::class,
+		'Shortpages' => [
+			'class' => \SpecialShortPages::class,
+			'services' => [
+				// Same as for Longpages
+				'NamespaceInfo',
+			]
+		],
 		'Uncategorizedcategories' => \SpecialUncategorizedCategories::class,
 		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
 		'Uncategorizedpages' => \SpecialUncategorizedPages::class,
