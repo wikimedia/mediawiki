@@ -50,6 +50,7 @@
 	"apihelp-block-param-allowusertalk": "לאפשר למשתמש לערוך את דף השיחה שלו או שלה (תלוי ב־<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "אם המשתמש כבר חסום, לדרוס את החסימה הנוכחית.",
 	"apihelp-block-param-watchuser": "לעקוב אחרי דף המשתמש ודף השיחה של המשתמש או של כתובת ה־IP.",
+	"apihelp-block-param-watchlistexpiry": "חותם זמן של תפוגת פריט ברשימת מעקב. אפשר להשמיט את הפרמטר הזה לגמרי כדי שהתפוגה הנוכחית לא תשתנה.",
 	"apihelp-block-param-tags": "תגי שינוי שיחולו על הרשומה ביומן החסימה.",
 	"apihelp-block-param-partial": "חסימת משתמש מעריכת דפים או מרחבי שם מסוימים ולא מכל האתר.",
 	"apihelp-block-param-pagerestrictions": "רשימת כותרות שהמשתמש ייחסם מלערוך. חל רק כאשר <var>partial</var> מוגדר ל־true.",

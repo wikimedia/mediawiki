@@ -39,5 +39,6 @@
 	"rest-bad-content-model": "Modelo de conteúdo incorreto: $1",
 	"rest-update-cannot-create-page": "A página \"$1# não pode ser criada porque já existe. Para atualizar a página existente, forneça o identificador da revisão base na estrutura que se encontra sob a chave \"latest\" no corpo do pedido.",
 	"rest-extraneous-csrf-token": "Foi encontrada uma chave CSRF supérflua. As chaves CSRF não podem ser utilisadas ao usar mecanismos de autenticação como o OAuth, que são seguros contra ataques de CSRF.",
-	"rest-cannot-load-file": "Não é possível carregar o ficheiro do título `$1`."
+	"rest-cannot-load-file": "Não é possível carregar o ficheiro do título `$1`.",
+	"rest-cross-origin-anon-write": "Não são permitidos pedidos de escrita anónimos com origens heterogéneas"
 }

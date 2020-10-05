@@ -739,7 +739,7 @@
 	"systemblockedtext": "Dein Benutzername oder deine IP-Adresse wurde von MediaWiki automatisch gesperrt.\nDer angegebene Grund ist:\n\n:<em>$2</em>\n\n* Beginn der Sperre: $8\n* Ablauf der Sperre: $6\n* Sperre betrifft: $7\n\nDeine aktuelle IP-Adresse ist $3.\nBitte gib alle oben stehenden Details in jeder Anfrage an.",
 	"blockednoreason": "keine Begründung angegeben",
 	"blockedtext-composite": "<strong>Dein Benutzername oder deine IP-Adresse wurde gesperrt.</strong>\n\nDer Angegebene Grund ist:\n\n:<em>$2</em>\n\n* Beginn der Sperre: $8\n* Ablauf der längsten Sperre: $6\n\n* $5\n\nDeine aktuelle IP-Adresse ist $3.\nBitte gib alle oben stehenden Details in jeder Anfrage an.",
-	"blockedtext-composite-ids": "Relevante Sperr-IDs: $1 (deine IP-Adresse könnte ebenfalls von einem Blacklisten-Eintrag betroffen sein)",
+	"blockedtext-composite-ids": "Relevante Sperr-IDs: $1 (deine IP-Adresse könnte ebenfalls in einer Sperrliste eingetragen sein.)",
 	"blockedtext-composite-no-ids": "Deine IP-Adresse taucht in mehreren Sperrlisten auf",
 	"blockedtext-composite-reason": "Es gibt mehrere Sperren gegen dein Benutzerkonto und/oder deine IP-Adresse",
 	"whitelistedittext": "Du musst dich $1, um Seiten bearbeiten zu können.",
