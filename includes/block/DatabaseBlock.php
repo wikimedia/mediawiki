@@ -649,26 +649,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Check if a block has expired. Delete it if it is.
-	 *
-	 * @deprecated since 1.35 No longer needed in core
-	 * @return bool
-	 */
-	public function deleteIfExpired() {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $this->isExpired() ) {
-			wfDebug( __METHOD__ . " -- deleting" );
-			$this->delete();
-			$retVal = true;
-		} else {
-			wfDebug( __METHOD__ . " -- not expired" );
-			$retVal = false;
-		}
-
-		return $retVal;
-	}
-
-	/**
 	 * Has the block expired?
 	 * @return bool
 	 */
