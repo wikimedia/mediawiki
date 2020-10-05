@@ -1370,5 +1370,5 @@
 [submodule "skins/Cosmos"]
 	path = skins/Cosmos
 	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
-	branch = master
+	branch = REL1_34
 	ignore = dirty
