@@ -233,6 +233,18 @@ Template:table_cells
 !! endarticle
 
 !! article
+Template:table_cell_content
+!! text
+{{{attr|}}}{{{cmt|}}}| foo
+!! endarticle
+
+!! article
+Template:table_cell_content_with_leading_spc
+!! text
+ | foo
+!! endarticle
+
+!! article
 Template:PartialTable
 !! text
 {|
@@ -1717,6 +1729,18 @@ protection !! here</th></tr>
 !this does not need
 protection !! here
 |}
+!! end
+
+## The output here may change with the outcome of T255007
+!! test
+Nowiki and french spacing
+!! wikitext
+<nowiki>test : 123</nowiki>
+!! html/php
+<p>test&#160;: 123
+</p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">test<span typeof="mw:DisplaySpace"> </span>: 123</span></p>
 !! end
 
 ###
@@ -3360,7 +3384,7 @@ Templates parameters with special tokenizing behavior dont get modified because 
 <p>a&#160;: b
 </p>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a : b"}},"i":0}}]}'>a<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: b</p>
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a : b"}},"i":0}}]}'>a<span typeof="mw:DisplaySpace"> </span>: b</p>
 !! end
 
 ## T73412
@@ -4441,6 +4465,43 @@ parsoid=wt2html
 <td>foo</td>
 </tr></table></dd></dl></dd></dl>
 !! end
+
+# Note that the legacy parser closes the list completely for the
+# hacky-indent table and then reopens it; Parsoid emits the "expected"
+# output.  Parsoid team regards this as a bug in the legacy parser.
+!! test
+Definition Lists: Hack use to indent tables, in a nested list context (T262943)
+!! wikitext
+This is a discussion thread.
+
+:Parent comment.
+::Child comment
+::{|
+|With a
+|Table!
+|}
+!! html/php
+<p>This is a discussion thread.
+</p>
+<dl><dd>Parent comment.
+<dl><dd>Child comment</dd></dl></dd></dl>
+<dl><dd><dl><dd><table>
+<tbody><tr>
+<td>With a
+</td>
+<td>Table!
+</td></tr></tbody></table></dd></dl></dd></dl>
+!! html/parsoid
+<p>This is a discussion thread.</p>
+
+<dl><dd data-parsoid='{}'>Parent comment.
+<dl><dd data-parsoid='{}'>Child comment</dd>
+<dd data-parsoid='{}'><table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>With a</td>
+<td>Table!</td></tr>
+</tbody></table></dd></dl></dd></dl>
+!! end
+
 
 # The trailing whitespace in this test is to catch a regression in
 # Parsoid after T54473.
@@ -7608,6 +7669,103 @@ Template generated table cell with attributes
 !! end
 
 !! test
+Templated table cell with untemplated attributes: Common use cases
+!! wikitext
+{|
+|-
+!class="test"{{table_cell_content}} /* <th> & <td> combine */
+|-
+|class="test"{{table_cell_content}} /* <td> & <td> combine */
+|
+|class="test"{{table_cell_content|attr=style='color:red;'}}
+|
+|class="test"{{table_cell_content|cmt=<!--bar-->}}
+|}
+!! html/php
+<table>
+
+<tbody><tr>
+<th class="test">foo /* </th><th> &amp; </th><td> combine */
+</td></tr>
+<tr>
+<td class="test">foo /* </td><td> &amp; </td><td> combine */
+</td>
+<td>
+</td>
+<td class="test" style="color:red;">foo
+</td>
+<td>
+</td>
+<td class="test">foo
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"startTagSrc":"|-"}'>
+<th class="test" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* "]}'>foo /*</th><th data-parsoid='{"stx":"html","autoInsertedEnd":true}'> &amp; </th><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> combine */</td></tr>
+<tr data-parsoid='{"startTagSrc":"|-"}'>
+<td class="test" typeof="mw:Transclusion" about="#mwt2" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* "]}'>foo /*</td><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> &amp; </td><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> combine */</td>
+<td></td>
+<td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt3" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td>
+<td></td>
+<td class="test" typeof="mw:Transclusion" about="#mwt4" data-parsoid='{"pi":[[{"k":"cmt","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"cmt":{"wt":"&lt;!--bar-->"}},"i":0}}]}'>foo</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Templated table cell with untemplated attributes: Regression tests
+!! wikitext
+{|
+|class="foo"
+{{1x|1={{!}}bar}}
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>class="foo"
+</td>
+<td>bar
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr>
+<td>class="foo"</td>
+<td about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}bar"}},"i":0}}]}'>bar</td></tr>
+</tbody></table>
+
+!! end
+
+!! test
+Templated table cell with untemplated attributes: Unsupported Scenarios
+!! options
+parsoid=wt2html
+!! wikitext
+{|
+|-
+|class="foo"{{1x|1= {{!}}bar}}
+|-
+|class="foo"{{1x|1=&nbsp;{{!}}bar}}
+|-
+|class="foo"{{1x|1={{!}}title="fail"{{!}}bar}}
+|}
+!! html/php
+<table>
+
+<tbody><tr>
+<td class="foo">bar
+</td></tr>
+<tr>
+<td class="foo">bar
+</td></tr>
+<tr>
+<td class="foo">title="fail"|bar
+</td></tr></tbody></table>
+!! html/parsoid
+This test fails each of the three table cell scenarios for different reasons.
+For now, we are deliberately not support these use cases in Parsoid unless
+required or we find a simpler solution that covers everything uniformly.
+!! end
+
+!! test
 Parsoid: Round-trip tables directly followed by content (T53219)
 !! options
 parsoid=wt2html,wt2wt
@@ -9005,6 +9163,28 @@ wgFragmentMode=[ 'legacy' ]
 </p>
 !! end
 
+!! test
+Wikilink in wikilink
+!! wikitext
+[[Hi|[[Ho]]]]
+!! html/php
+<p>[[Hi|<a href="/index.php?title=Ho&amp;action=edit&amp;redlink=1" class="new" title="Ho (page does not exist)">Ho</a>]]
+</p>
+!! html/parsoid
+<p>[[Hi|<a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"Ho"}}' class="new">Ho</a>]]</p>
+!! end
+
+!! test
+Media in wikilink
+!! wikitext
+[[Test|[[File:Foobar.jpg]]]]
+!! html/php
+<p>[[Test|<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>]]
+</p>
+!! html/parsoid
+<p>[[Test|<figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure-inline>]]</p>
+!! end
+
 ###
 ### Interwiki links (see maintenance/interwiki.sql)
 ###
@@ -9159,7 +9339,7 @@ Interwiki links that cannot be represented in wiki syntax
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok" title="meatball:ok">meatball:ok</a>
 <a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" title="meatball:ok">ok with fragment</a>
-<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" title="meatball:ok as well?">ok ending with<span typeof="mw:DisplaySpace mw:Placeholder"> </span>? mark</a>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" title="meatball:ok as well?">ok ending with<span typeof="mw:DisplaySpace"> </span>? mark</a>
 <a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/Foo?action=history" class="external text">has query</a>
 <a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/#foo" class="external text">is just fragment</a></p>
 !! end
@@ -9336,7 +9516,7 @@ Blah blah blah
 !! html/parsoid
 <p>Blah blah blah
 <a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish">es:Spanish</a>
-<a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese"> zh<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: Chinese </a></p>
+<a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese"> zh<span typeof="mw:DisplaySpace"> </span>: Chinese </a></p>
 !! end
 
 !! test
@@ -10230,6 +10410,37 @@ Nested lists 9 (extension interaction)
 !! end
 
 !! test
+Nested lists 10 (list and span siblings: wt2wt regression)
+!! wikitext
+*a <span>x</span>
+**b <span>y</span>
+!! html/parsoid
+<ul><li>a <span>x</span>
+<ul><li>b <span>y</span></li></ul></li></ul>
+!! end
+
+!! test
+Nested lists 11 (T262409: trailing whitespace & selser)
+!! options
+parsoid={
+  "modes": ["wt2html","selser"],
+  "changes": [
+    [ "ul > li > ul > li > ul > li", "after", "<li>b-new</li>" ]
+  ]
+}
+!! wikitext
+**a
+***b  
+!! html/parsoid
+<ul><li><ul><li>a
+<ul><li>b</li></ul></li></ul></li></ul>
+!! wikitext/edited
+**a
+***b  
+*** b-new
+!! end
+
+!! test
 1. Lists with start-of-line-transparent tokens before bullets: Comments
 !! wikitext
 *foo
@@ -10243,16 +10454,6 @@ Nested lists 9 (extension interaction)
 <ul><li>foo</li>
 <li><!--cmt-->bar</li>
 <!--cmt--><li>baz</li></ul>
-!! end
-
-!! test
-Nested lists 10 (list and span siblings: wt2wt regression)
-!! wikitext
-*a <span>x</span>
-**b <span>y</span>
-!! html/parsoid
-<ul><li>a <span>x</span>
-<ul><li>b <span>y</span></li></ul></li></ul>
 !! end
 
 # Parsoid handles this case differently from the legacy parser, as a side
@@ -13914,6 +14115,25 @@ Table cell with attribute before expanded attribute
 </tbody></table>
 !! end
 
+!! test
+Extension tag in templated tag attribute
+!! wikitext
+{{1x|1=
+{{{!}} class="123" <nowiki />
+{{!}} hi
+{{!}}}
+}}
+!! html/php
+<table class="123">
+<tbody><tr>
+<td>hi
+</td></tr></tbody></table>
+!! html/parsoid
+<table class="123" about="#mwt2" typeof="mw:Transclusion mw:ExpandedAttrs" data-parsoid='{"startTagSrc":"{{{!}}","a":{"&lt;nowiki />":null},"sa":{"&lt;nowiki />":""},"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{{!}} class=\"123\" &lt;nowiki />\n{{!}} hi\n{{!}}}"}},"i":0}}]}'>
+<tbody><tr><td>hi</td></tr>
+</tbody></table>
+!! end
+
 !!test
 Templates: HTML Tables: 1. Generating start of a HTML table
 !! wikitext
@@ -16052,6 +16272,17 @@ File:Foobar.jpg|link=https://example.com?foo&params=bar
 <div class="gallerytext"></div>
 </li>
 </ul>
+!! end
+
+!! test
+Image link markup is not generated when redundant (T108504) - encoded href
+!! options
+parsoid=html2wt,wt2wt
+language=sr
+!! wikitext
+[[Датотека:Foobar.jpg]]
+!! html/parsoid
+<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="178" width="172"/></a></figure-inline></p>
 !! end
 
 !! test
@@ -20005,7 +20236,7 @@ C'est grave !
 <p>C'est grave&#160;!
 </p>
 !! html/parsoid
-<p>C'est grave<span typeof="mw:DisplaySpace mw:Placeholder"> </span>!</p>
+<p>C'est grave<span typeof="mw:DisplaySpace"> </span>!</p>
 !! end
 
 !! test
@@ -22506,8 +22737,12 @@ parsoid={ "modes": ["wt2html","html2html"], "normalizePhp": true }
 ; Control (high): &#x7F; &#x9F;
 ; Unsupported legacy: &#128; &#130; &#131; &#150; &#159;
 ; Surrogate: &#xD83D;&#xDCA9;
+; Invalid characters: &#xfffe; &#xffff;
 ; This is an okay astral character: &#x1F4A9;
-!! html+tidy
+; This is an okay multi-codepoint HTML5 entity: &acE;
+; This are valid wikitext-specific entities: &רלמ; &رلم;
+; Highest valid characters: &#x10fffd; &#x10fffe; &#x10ffff;
+!! html
 <dl><dt>Null</dt>
 <dd>&amp;#00;</dd>
 <dt>FF</dt>
@@ -22522,8 +22757,16 @@ parsoid={ "modes": ["wt2html","html2html"], "normalizePhp": true }
 <dd>&amp;#128; &amp;#130; &amp;#131; &amp;#150; &amp;#159;</dd>
 <dt>Surrogate</dt>
 <dd>&amp;#xD83D;&amp;#xDCA9;</dd>
+<dt>Invalid characters</dt>
+<dd>&amp;#xfffe; &amp;#xffff;</dd>
 <dt>This is an okay astral character</dt>
-<dd>&#x1f4a9;</dd></dl>
+<dd>&#x1f4a9;</dd>
+<dt>This is an okay multi-codepoint HTML5 entity</dt>
+<dd>&#8766;&#819;</dd>
+<dt>This are valid wikitext-specific entities</dt>
+<dd>&rlm; &rlm;</dd>
+<dt>Highest valid characters</dt>
+<dd>&#x10fffd; &#x10fffe; &#x10ffff;</dd></dl>
 !! end
 
 !! test
@@ -25572,9 +25815,9 @@ Hello : this ; is « something ‹ else › again »
 </p><p>Hello&#160;: this&#160;; is «&#160;something ‹&#160;else&#160;› again&#160;»
 </p>
 !! html/parsoid
-<p>foo<span typeof="mw:DisplaySpace mw:Placeholder"> </span>! bar<span typeof="mw:DisplaySpace mw:Placeholder"> </span>? bat 50<span typeof="mw:DisplaySpace mw:Placeholder"> </span>% is less than 75<span typeof="mw:DisplaySpace mw:Placeholder"> </span>%.</p>
+<p>foo<span typeof="mw:DisplaySpace"> </span>! bar<span typeof="mw:DisplaySpace"> </span>? bat 50<span typeof="mw:DisplaySpace"> </span>% is less than 75<span typeof="mw:DisplaySpace"> </span>%.</p>
 
-<p>Hello<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: this<span typeof="mw:DisplaySpace mw:Placeholder"> </span>; is «<span typeof="mw:DisplaySpace mw:Placeholder"> </span>something ‹<span typeof="mw:DisplaySpace mw:Placeholder"> </span>else<span typeof="mw:DisplaySpace mw:Placeholder"> </span>› again<span typeof="mw:DisplaySpace mw:Placeholder"> </span>»</p>
+<p>Hello<span typeof="mw:DisplaySpace"> </span>: this<span typeof="mw:DisplaySpace"> </span>; is «<span typeof="mw:DisplaySpace"> </span>something ‹<span typeof="mw:DisplaySpace"> </span>else<span typeof="mw:DisplaySpace"> </span>› again<span typeof="mw:DisplaySpace"> </span>»</p>
 !! end
 
 !! test
@@ -30008,7 +30251,7 @@ parsoid=html2wt
 !! html/parsoid
 <p>foo<span typeof="mw:DisplaySpace"> </span>: bar</p>
 
-<p>foo<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: bar</p>
+<p>foo<span typeof="mw:DisplaySpace"> </span>: bar</p>
 
 <span typeof="mw:Extension/ref" data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;body&quot;:{&quot;html&quot;:&quot;foo<span typeof=\&quot;mw:DisplaySpace\&quot;>&amp;nbsp;</span>: bar&quot;}}"><sup>[1]</sup></span>ok</p>
 
@@ -32557,8 +32800,8 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 
 <h2 id="тест"><span id=".D1.82.D0.B5.D1.81.D1.82" typeof="mw:FallbackId"></span>тест</h2>
 
-<h2 id="Hey_&lt;_#_&quot;_>_%_:_'"><span id="Hey_.3C_.23_.22_.3E_.25_:_.27" typeof="mw:FallbackId"></span>Hey &lt; # " ><span typeof="mw:DisplaySpace mw:Placeholder"> </span>%<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: '</h2>
-<p><a rel="mw:WikiLink" href="./Parser_test#Foo_bar">#Foo bar</a> <a rel="mw:WikiLink" href="./Parser_test#foo_Bar">#foo Bar</a> <a rel="mw:WikiLink" href="./Parser_test#Тест">#Тест</a> <a rel="mw:WikiLink" href="./Parser_test#тест">#тест</a> <a rel="mw:WikiLink" href="./Parser_test#Hey_&lt;_#_&quot;_>_%_:_'" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Hey_&lt;_#_\"_>_%_:_&apos;"},"sa":{"href":"#Hey &lt; # \" > % : &apos;"}}'>#Hey &lt; # " ><span typeof="mw:DisplaySpace mw:Placeholder"> </span>%<span typeof="mw:DisplaySpace mw:Placeholder"> </span>: '</a></p>
+<h2 id="Hey_&lt;_#_&quot;_>_%_:_'"><span id="Hey_.3C_.23_.22_.3E_.25_:_.27" typeof="mw:FallbackId"></span>Hey &lt; # " ><span typeof="mw:DisplaySpace"> </span>%<span typeof="mw:DisplaySpace"> </span>: '</h2>
+<p><a rel="mw:WikiLink" href="./Parser_test#Foo_bar">#Foo bar</a> <a rel="mw:WikiLink" href="./Parser_test#foo_Bar">#foo Bar</a> <a rel="mw:WikiLink" href="./Parser_test#Тест">#Тест</a> <a rel="mw:WikiLink" href="./Parser_test#тест">#тест</a> <a rel="mw:WikiLink" href="./Parser_test#Hey_&lt;_#_&quot;_>_%_:_'" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#Hey_&lt;_#_\"_>_%_:_&apos;"},"sa":{"href":"#Hey &lt; # \" > % : &apos;"}}'>#Hey &lt; # " ><span typeof="mw:DisplaySpace"> </span>%<span typeof="mw:DisplaySpace"> </span>: '</a></p>
 
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"anchorencode:💩","function":"anchorencode"},"params":{},"i":0}}]}'>💩</span> <span id="💩" about="#mwt3" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"id"},{"html":"&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[178,197,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:💩\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&#39;>💩&lt;/span>"}]]}'></span></p>
 
@@ -32990,6 +33233,21 @@ footer
 header
 *foo
 footer
+!! end
+
+!! test
+Spaced heading with element
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    ["#x", "attr", "class", "y"]
+  ]
+}
+!! wikitext
+=== hi <span id="x">hi</span> hi ho ===
+!! wikitext/edited
+=== hi <span id="x" class="y">hi</span> hi ho ===
 !! end
 
 !! test
