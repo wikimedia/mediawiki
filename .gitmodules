@@ -1337,11 +1337,6 @@
 	url = https://github.com/edwardspec/mediawiki-extension-JsCalendar
 	branch = master
 	ignore = dirty
-[submodule "skins/Cosmos"]
-	path = skins/Cosmos
-	url = https://github.com/Universal-Omega/MediaWiki-Cosmos-skin
-	branch = REL1_34
-	ignore = dirty
 [submodule "extensions/Arrays"]
 	path = extensions/Arrays
 	url = https://github.com/wikimedia/mediawiki-extensions-Arrays
@@ -1372,3 +1367,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-LdapAuthentication.git
         branch = REL1_34
         ignore = dirty
+[submodule "skins/Cosmos"]
+	path = skins/Cosmos
+	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
+	branch = master
+	ignore = dirty
