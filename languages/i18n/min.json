@@ -1358,7 +1358,6 @@
 	"enhancedrc-history": "versi",
 	"recentchanges": "Parubahan baru",
 	"recentchanges-legend": "Piliahan parubahan baru",
-	"recentchanges-summary": "Caliak parubahan baru di wiki pado laman ko.<br />\n;Patunjuak:(<span style=\"color:blue;\">bedo</span>) parubahan, (<span style=\"color:blue;\">sijarah</span>) riwayaik parubahan, '''B''' laman baru, '''b''' suntiangan bot, '''k''' suntiangan ketek, <span class=\"unpatrolled\">!</span> parubahan alun dipatroli,<br /><span style=\"color:green;\">'''(+ ''bita'')'''</span> isi laman batambah, <span style=\"color:red;\">(- ''bita'')</span> isi laman bakurang, (← Ikhtisar otomatih), (→ <span style=\"color:grey;\">Suntiangan bagian</span>)",
 	"recentchanges-noresult": "Indak ado parubahan dalam rantang wakatu ko nan sasuai jo kriteria.",
 	"recentchanges-timeout": "wakatu mancari alah habih. Sanak mungkin ka mancubo parameter pancarian nan lain.",
 	"recentchanges-network": "Salamo tajadi kasalahan teknis, indak ado hasil nan biso dimuek. Silahkan cubo untuak manyagarkan halaman liak.",
