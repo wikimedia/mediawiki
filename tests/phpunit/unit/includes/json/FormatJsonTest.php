@@ -79,4 +79,35 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		}
 	}
 
+	public function provideValidateSerializable() {
+		$classInstance = new class() {
+		};
+
+		yield 'Number' => [ 1, null ];
+		yield 'Null' => [ null, null ];
+		yield 'Class' => [ $classInstance, '$' ];
+		yield 'Empty array' => [ [], null ];
+		yield 'Empty stdClass' => [ new stdClass(), null ];
+		yield 'Non-empty array' => [ [ 1, 2, 3 ], null ];
+		yield 'Non-empty map' => [ [ 'a' => 'b' ], null ];
+		yield 'Nested, serializable' => [ [ 'a' => [ 'b' => [ 'c' => 'd' ] ] ], null ];
+		yield 'Nested, serializable, with null' => [ [ 'a' => [ 'b' => null ] ], null ];
+		yield 'Nested, serializable, with stdClass' => [ [ 'a' => (object)[ 'b' => [ 'c' => 'd' ] ] ], null ];
+		yield 'Nested, serializable, with stdClass, with null' => [ [ 'a' => (object)[ 'b' => null ] ], null ];
+		yield 'Nested, non-serializable' => [ [ 'a' => [ 'b' => $classInstance ] ], '$.a.b' ];
+		yield 'Nested, non-serializable, in array' => [ [ 'a' => [ 1, 2, $classInstance ] ], '$.a.2' ];
+		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], '$.a.2' ];
+	}
+
+	/**
+	 * @dataProvider provideValidateSerializable
+	 * @covers FormatJson::detectNonSerializableData
+	 * @covers FormatJson::detectNonSerializableDataInternal
+	 * @param $value
+	 * @param string|null $result
+	 */
+	public function testValidateSerializable( $value, ?string $result ) {
+		$this->assertSame( $result, FormatJson::detectNonSerializableData( $value ) );
+	}
+
 }
