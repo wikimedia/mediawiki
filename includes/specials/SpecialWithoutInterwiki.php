@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Special page lists pages without language links
@@ -32,8 +32,23 @@ use MediaWiki\MediaWikiServices;
 class SpecialWithoutInterwiki extends PageQueryPage {
 	private $prefix = '';
 
-	public function __construct( $name = 'Withoutinterwiki' ) {
-		parent::__construct( $name );
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer
+	) {
+		parent::__construct( 'Withoutinterwiki' );
+		$this->namespaceInfo = $namespaceInfo;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function execute( $par ) {
@@ -93,14 +108,13 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 			],
 			'conds' => [
 				'll_title IS NULL',
-				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getContentNamespaces(),
+				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_is_redirect' => 0
 			],
 			'join_conds' => [ 'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ] ]
 		];
 		if ( $this->prefix ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
 		}
 

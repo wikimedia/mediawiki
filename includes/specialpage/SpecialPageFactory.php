@@ -81,7 +81,13 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 			]
 		],
-		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
+		'Withoutinterwiki' => [
+			'class' => \SpecialWithoutInterwiki::class,
+			'services' => [
+				'NamespaceInfo',
+				'DBLoadBalancer',
+			]
+		],
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
 		'Shortpages' => \SpecialShortPages::class,
