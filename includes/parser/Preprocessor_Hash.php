@@ -471,7 +471,8 @@ class Preprocessor_Hash extends Preprocessor {
 					$i++;
 				}
 
-				$count = strspn( $text, '=', $i, 6 );
+				// Examine upto 6 characters
+				$count = strspn( $text, '=', $i, min( strlen( $text ), 6 ) );
 				if ( $count == 1 && $findEquals ) {
 					// DWIM: This looks kind of like a name/value separator.
 					// Let's let the equals handler have it and break the potential
