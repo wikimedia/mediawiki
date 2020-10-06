@@ -683,7 +683,7 @@
 	"blockednoreason": "důvod nebyl zadán",
 	"blockedtext-composite": "<strong>Vaše uživatelské jméno nebo IP adresa byla zablokována.</strong>\n\nUdaný důvod blokování:\n\n:<em>$2</em>\n\n* Začátek blokování: $8\n* Konec nejdelšího blokování: $6\n\n* $5\n\nVaše současná IP adresa je $3.\nProsíme, uveďte tyto údaje při komunikaci se správci.",
 	"blockedtext-composite-ids": "Odpovídající ID bloku: $1 (může být zablokována také vaše IP adresa)",
-	"blockedtext-composite-no-ids": "Vaše IP adresa se objevuje na několika černých listinách",
+	"blockedtext-composite-no-ids": "Vaše IP adresa se vyskytuje na několika blokovacích seznamech",
 	"blockedtext-composite-reason": "Na váš účet a/nebo vaši IP adresu se vztahuje více blokování.",
 	"whitelistedittext": "Pro editaci se musíte $1.",
 	"confirmedittext": "Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy.\nNa stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.",

@@ -2413,6 +2413,7 @@
 	"trackingcategories-desc": "Criterios de inclusión de categoría",
 	"restricted-displaytitle-ignored": "Páginas con títulos de visualización ignorados",
 	"restricted-displaytitle-ignored-desc": "Esta página tiene una plantilla <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ignorada porque no es equivalente al título verdadero de la página.",
+	"nonnumeric-formatnum": "Páginas con argumentos formatnum no numéricos",
 	"noindex-category-desc": "La página contiene la palabra mágica <code><nowiki>__NOINDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots no la indizan.",
 	"index-category-desc": "La página contiene la palabra mágica <code><nowiki>__INDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots la indizarán.",
 	"post-expand-template-inclusion-category-desc": "Después de expandir todas las plantillas, el tamaño de la página es más grande que <code>$wgMaxArticleSize</code>, así que algunas plantillas no se expandieron.",
