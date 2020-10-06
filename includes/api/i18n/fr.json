@@ -69,6 +69,7 @@
 	"apihelp-block-param-allowusertalk": "Autoriser les utilisateurs à modifier leur propre page de discussion (dépend de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Si l’utilisateur est déjà bloqué, écraser le blocage existant.",
 	"apihelp-block-param-watchuser": "Surveiller les pages utilisateur et de discussion de l’utilisateur ou de l’adresse IP.",
+	"apihelp-block-param-watchlistexpiry": "Horodatage d’expiration de la liste de suivi. Omettre complètement ce paramètre pour laisser l’expiation actuelle inchangée.",
 	"apihelp-block-param-tags": "Modifier les balises à appliquer à l’entrée du journal des blocages.",
 	"apihelp-block-param-partial": "Bloquer un utilisateur pour des pages ou des espaces de nom spécifiques plutôt que pour tout un site.",
 	"apihelp-block-param-pagerestrictions": "Liste des titres pour lesquels bloquer l’utilisateur en modification. Ne s’applique que quand <var>partial</var> est mis à vrai.",
