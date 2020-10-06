@@ -89,9 +89,24 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmitHookAborted() {
+		// WatchlistExpiry feature flag.
+		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+
+		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->onlyMethods( [ 'getRequest' ] )
+			->setConstructorArgs( [ $this->watchAction->getContext() ] )
+			->getMock();
+
 		// Change the context to have a logged in user with correct permission.
-		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $this->getUser( true, true, [ 'editmywatchlist' ] ) );
+
+		/** @var MockObject|WebRequest $testRequest */
+		$testRequest = $this->createMock( WebRequest::class );
+		$testRequest->expects( $this->once() )
+			->method( 'getVal' )
+			->willReturn( '6 months' );
+		$testContext->method( 'getRequest' )->willReturn( $testRequest );
+
 		$this->watchAction = new WatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
