@@ -153,16 +153,16 @@ class ApiBlock extends ApiBase {
 			$params['tags']
 		)->placeBlock( $params['reblock'] );
 
+		if ( !$status->isOK() ) {
+			$this->dieStatus( $status );
+		}
+
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 		$isUserObj = $target instanceof UserIdentity;
 		$userPage = $isUserObj ? $target->getUserPage() : Title::makeTitle( NS_USER, $target );
 
 		if ( $params['watchuser'] && $targetType !== AbstractBlock::TYPE_RANGE ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
-		}
-
-		if ( !$status->isOK() ) {
-			$this->dieStatus( $status );
 		}
 
 		$res = [];
