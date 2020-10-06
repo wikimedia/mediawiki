@@ -32,11 +32,9 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;
-use RequestContext;
 use stdClass;
 use Title;
 use User;
-use WebResponse;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -1089,60 +1087,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
-	 * the same as the block's, to a maximum of 24 hours.
-	 *
-	 * @since 1.29
-	 * @deprecated since 1.34 Set a cookie via BlockManager::trackBlockWithCookie instead.
-	 * @param WebResponse $response The response on which to set the cookie.
-	 */
-	public function setCookie( WebResponse $response ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		MediaWikiServices::getInstance()->getBlockManager()->setBlockCookie( $this, $response );
-	}
-
-	/**
-	 * Unset the 'BlockID' cookie.
-	 *
-	 * @since 1.29
-	 * @deprecated since 1.34 Use BlockManager::clearBlockCookie instead
-	 * @param WebResponse $response The response on which to unset the cookie.
-	 */
-	public static function clearCookie( WebResponse $response ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		MediaWikiServices::getInstance()->getBlockManager()->clearBlockCookie( $response );
-	}
-
-	/**
-	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
-	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
-	 * be the block ID.
-	 *
-	 * @since 1.29
-	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead of calling this
-	 *  directly
-	 * @return string The block ID, probably concatenated with "!" and the HMAC.
-	 */
-	public function getCookieValue() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getBlockManager()->getCookieValue( $this );
-	}
-
-	/**
-	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
-	 * the ID and a HMAC (see DatabaseBlock::setCookie), but will sometimes only be the ID.
-	 *
-	 * @since 1.29
-	 * @deprecated since 1.34 Use BlockManager::getUserBlock instead
-	 * @param string $cookieValue The string in which to find the ID.
-	 * @return int|null The block ID, or null if the HMAC is present and invalid.
-	 */
-	public static function getIdFromCookieValue( $cookieValue ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getBlockManager()->getIdFromCookieValue( $cookieValue );
-	}
-
-	/**
 	 * @inheritDoc
 	 */
 	public function getIdentifier() {
@@ -1270,25 +1214,6 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		return null;
-	}
-
-	/**
-	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead of calling this
-	 *  directly.
-	 * @inheritDoc
-	 */
-	public function shouldTrackWithCookie( $isAnon ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$config = RequestContext::getMain()->getConfig();
-		switch ( $this->getType() ) {
-			case self::TYPE_IP:
-			case self::TYPE_RANGE:
-				return $isAnon && $config->get( 'CookieSetOnIpBlock' );
-			case self::TYPE_USER:
-				return !$isAnon && $config->get( 'CookieSetOnAutoblock' ) && $this->isAutoblocking();
-			default:
-				return false;
-		}
 	}
 
 	/**
