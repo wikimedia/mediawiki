@@ -1101,28 +1101,17 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 
 		if ( $action != 'patrol' ) {
-			$error = null;
 			// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
 			if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
-				$error = [ 'sitecssprotected', $action ];
+				$errors[] = [ 'sitecssprotected', $action ];
 			} elseif ( $title->isSiteJsonConfigPage() && !$this->userHasRight( $user, 'editsitejson' ) ) {
-				$error = [ 'sitejsonprotected', $action ];
+				$errors[] = [ 'sitejsonprotected', $action ];
 			} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
-				$error = [ 'sitejsprotected', $action ];
+				$errors[] = [ 'sitejsprotected', $action ];
 			}
 			if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
-				$error = [ 'siterawhtmlprotected', $action ];
-			}
-
-			if ( $error ) {
-				if ( $this->userHasRight( $user, 'editinterface' ) ) {
-					// Most users / site admins will probably find out about the new, more restrictive
-					// permissions by failing to edit something. Give them more info.
-					// TODO remove this a few release cycles after 1.32
-					$error = [ 'interfaceadmin-info', wfMessage( $error[0], $error[1] ) ];
-				}
-				$errors[] = $error;
+				$errors[] = [ 'siterawhtmlprotected', $action ];
 			}
 		}
 

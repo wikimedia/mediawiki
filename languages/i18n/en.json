@@ -4334,7 +4334,6 @@
 	"mute-preferences": "Mute preferences",
 	"revid": "revision $1",
 	"pageid": "page ID $1",
-	"interfaceadmin-info": "$1\n\nPermissions for editing of sitewide CSS/JS/JSON files were recently separated from the <code>editinterface</code> right. If you do not understand why you are getting this error, see [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages.",
 	"gotointerwiki": "Leaving {{SITENAME}}",
 	"gotointerwiki-invalid": "The specified title is invalid.",
