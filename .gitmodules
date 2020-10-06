@@ -1372,3 +1372,7 @@
 	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/TranslationNotifications"]
+	path = extensions/TranslationNotifications
+	url = https://github.com/wikimedia/mediawiki-extensions-TranslationNotifications
+	branch = REL1_34
