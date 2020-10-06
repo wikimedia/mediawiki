@@ -675,20 +675,6 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Check if the block should be tracked with a cookie.
-	 *
-	 * @since 1.33
-	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead
-	 *  of calling this directly.
-	 * @param bool $isAnon The user is logged out
-	 * @return bool The block should be tracked with a cookie
-	 */
-	public function shouldTrackWithCookie( $isAnon ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return false;
-	}
-
-	/**
 	 * Check if the block prevents a user from resetting their password
 	 *
 	 * @since 1.33
