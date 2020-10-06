@@ -20,3 +20,4 @@ wfLoadExtension( 'BlueSpiceDistributionConnector' );
 require_once __DIR__ . "/../extensions/BlueSpiceUserMergeConnector/BlueSpiceUserMergeConnector.php";
 require_once __DIR__ . "/../extensions/UserFunctions/UserFunctions.php";
 require_once __DIR__ . "/../extensions/UrlGetParameters/UrlGetParameters.php";
+wfLoadExtension( 'FlexiSkin' );
