@@ -47,7 +47,7 @@ Using a text editor, create a `.env` file in the root of the MediaWiki core repo
 
 ```bash
 MW_DOCKER_PORT=8080
-MW_SCRIPT_PATH=/
+MW_SCRIPT_PATH=/w
 MW_SERVER=http://localhost:8080
 MEDIAWIKI_USER=Admin
 MEDIAWIKI_PASSWORD=dockerpass
@@ -138,7 +138,7 @@ container][selenium-dedicated]. Example usage:
 
 ```sh
 export MW_SERVER=http://localhost:8080
-export MW_SCRIPT_PATH=/
+export MW_SCRIPT_PATH=/w
 export MEDIAWIKI_USER=Admin
 export MEDIAWIKI_PASSWORD=dockerpass
 fresh-node -env -net
@@ -155,7 +155,7 @@ container][api-dedicated]. Example usage:
 
 ```sh
 export MW_SERVER=http://localhost:8080/
-export MW_SCRIPT_PATH=/
+export MW_SCRIPT_PATH=/w
 export MEDIAWIKI_USER=Admin
 export MEDIAWIKI_PASSWORD=dockerpass
 fresh-node -env -net
