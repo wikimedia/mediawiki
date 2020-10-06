@@ -81,6 +81,7 @@ span.subpages {
 	display: none;
 }
 
+.printfooter,
 /* Hide links which require JavaScript to work */
 .client-nojs #t-print {
 	display: none; /* T167956 */
