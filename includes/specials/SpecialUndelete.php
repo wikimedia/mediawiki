@@ -440,8 +440,9 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		$titleText = $this->mTargetObj->getPrefixedText();
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			// Used in wikilinks, should not contain whitespaces
+			$titleText = $this->mTargetObj->getPrefixedDBkey();
 			if ( !RevisionRecord::userCanBitfield(
 				$revRecord->getVisibility(),
 				RevisionRecord::DELETED_TEXT,
@@ -477,7 +478,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( $this->mTargetObj->getPrefixedDBkey() ),
-			$titleText
+			$this->mTargetObj->getPrefixedText()
 		);
 
 		$lang = $this->getLanguage();
