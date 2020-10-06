@@ -769,18 +769,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get/set a flag determining whether the master is used for reads
-	 *
-	 * @deprecated since 1.35 No longer needed in core
-	 * @param bool|null $x
-	 * @return bool
-	 */
-	public function fromMaster( $x = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return wfSetVar( $this->mFromMaster, $x );
-	}
-
-	/**
 	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
 	 * @param bool|null $x
 	 * @return bool

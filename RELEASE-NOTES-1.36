@@ -225,7 +225,8 @@ because of Phabricator reports.
 * Support for passing Article to ParserCache::get, deprecated in 1.35,
   has been removed.
 * ParserCache::singleton(), deprecated in 1.30, has been removed.
-* DatabaseBlock::deleteIfExpired, deprecated in 1.35, has been removed.
+* DatabaseBlock::deleteIfExpired and ::fromMaster, deprecated in 1.35, have been
+  removed.
 * The static public callback function SpecialUnblock::processUIUnblock has been
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
