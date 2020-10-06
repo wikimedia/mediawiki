@@ -4552,7 +4552,6 @@
 	"mute-preferences": "Link in the sidebar to manage muting preferences for a user. It links to [[Special:Mute]] with the user in context as the subpage.",
 	"revid": "Used to format a revision ID number in text. Parameters:\n* $1 - Revision ID number.\n{{Identical|Revision}}",
 	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number.",
-	"interfaceadmin-info": "Part of the error message shown when someone with the <code>editinterface</code> right but without the appropriate <code>editsite*</code> right tries to edit a sitewide CSS/JSON/JS page.",
 	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page.",
 	"gotointerwiki": "{{doc-special|GoToInterwiki}}\n\nSpecial:GoToInterwiki is a warning page displayed before redirecting users to external interwiki links. Its triggered by people going to something like [[Special:Search/google:foo]].\n{{Identical|Leaving}}",
 	"gotointerwiki-invalid": "Message shown on Special:GoToInterwiki if given an invalid title.",
