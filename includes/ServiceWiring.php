@@ -212,7 +212,8 @@ return [
 			new ServiceOptions(
 				BlockUtils::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
-			)
+			),
+			$services->getUserFactory()
 		);
 	},
 

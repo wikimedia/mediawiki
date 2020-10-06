@@ -22,23 +22,31 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Status;
+use User;
 use Wikimedia\IPUtils;
 
 /**
  * Backend class for blocking utils
  *
- * For now, this includes only block target validation,
- * but this service should contain any methods that are useful
+ * This service should contain any methods that are useful
  * to more than one blocking-related class and doesn't fit any
  * other service.
+ *
+ * For now, this includes only
+ * - block target parsing
+ * - block target validation
  *
  * @since 1.36
  */
 class BlockUtils {
 	/** @var ServiceOptions */
 	private $options;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/**
 	 * @internal Only for use by ServiceWiring
@@ -49,12 +57,79 @@ class BlockUtils {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
-		ServiceOptions $options
+		ServiceOptions $options,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->userFactory = $userFactory;
+	}
+
+	/**
+	 * From an existing block, get the target and the type of target.
+	 *
+	 * Note that, except for null, it is always safe to treat the target
+	 * as a string; for User objects this will return User::__toString()
+	 * which in turn gives User::getName().
+	 *
+	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
+	 * @param string|UserIdentity|null $target
+	 * @return array [ User|String|null, int|null ]
+	 */
+	public function parseBlockTarget( $target ) : array {
+		// We may have been through this before
+		if ( $target instanceof UserIdentity ) {
+			$userObj = $this->userFactory->newFromUserIdentity( $target );
+			if ( IPUtils::isValid( $target->getName() ) ) {
+				return [ $userObj, AbstractBlock::TYPE_IP ];
+			} else {
+				return [ $userObj, AbstractBlock::TYPE_USER ];
+			}
+		} elseif ( $target === null ) {
+			return [ null, null ];
+		}
+
+		$target = trim( $target );
+
+		if ( IPUtils::isValid( $target ) ) {
+			// We can still create a User if it's an IP address, but we need to turn
+			// off validation checking (which would exclude IP addresses)
+			return [
+				$this->userFactory->newFromName(
+					IPUtils::sanitizeIP( $target ),
+					UserFactory::RIGOR_NONE
+				),
+				AbstractBlock::TYPE_IP
+			];
+
+		} elseif ( IPUtils::isValidRange( $target ) ) {
+			// Can't create a User from an IP range
+			return [ IPUtils::sanitizeRange( $target ), AbstractBlock::TYPE_RANGE ];
+		}
+
+		// Consider the possibility that this is not a username at all
+		// but actually an old subpage (T31797)
+		if ( strpos( $target, '/' ) !== false ) {
+			// An old subpage, drill down to the user behind it
+			$target = explode( '/', $target )[0];
+		}
+
+		$userObj = $this->userFactory->newFromName( $target );
+		if ( $userObj instanceof User ) {
+			// Note that since numbers are valid usernames, a $target of "12345" will be
+			// considered a User.  If you want to pass a block ID, prepend a hash "#12345",
+			// since hash characters are not valid in usernames or titles generally.
+			return [ $userObj, AbstractBlock::TYPE_USER ];
+		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
+			// Autoblock reference in the form "#12345"
+			return [ substr( $target, 1 ), AbstractBlock::TYPE_AUTO ];
+		} else {
+			return [ null, null ];
+		}
 	}
 
 	/**
@@ -64,8 +139,8 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	public function validateTarget( $value ) {
-		list( $target, $type ) = AbstractBlock::parseTarget( $value );
+	public function validateTarget( $value ) : Status {
+		list( $target, $type ) = $this->parseBlockTarget( $value );
 
 		$status = Status::newGood( $target );
 
