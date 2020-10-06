@@ -1312,6 +1312,30 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Resolve the title a redirect points to.
+	 *
+	 * Will follow sequential redirects to find the final page. In
+	 * the case of a redirect cycle the original page will be returned.
+	 * self::resolvePendingRedirects must be executed before calling
+	 * this method.
+	 *
+	 * @param Title $titleFrom A title from $this->mResolvedRedirectTitles
+	 * @return Title
+	 */
+	private function resolveRedirectTitleDest( Title $titleFrom ): Title {
+		$seen = [];
+		$dest = $titleFrom;
+		while ( isset( $this->mRedirectTitles[$dest->getPrefixedText()] ) ) {
+			$dest = $this->mRedirectTitles[$dest->getPrefixedText()];
+			if ( isset( $seen[$dest->getPrefixedText()] ) ) {
+				return $titleFrom;
+			}
+			$seen[$dest->getPrefixedText()] = true;
+		}
+		return $dest;
+	}
+
+	/**
 	 * Populate the generator data for all titles in the result
 	 *
 	 * The page data may be inserted into an ApiResult object or into an
@@ -1388,10 +1412,7 @@ class ApiPageSet extends ApiBase {
 		// Merge data generated about redirect titles into the redirect destination
 		if ( $this->mRedirectMergePolicy ) {
 			foreach ( $this->mResolvedRedirectTitles as $titleFrom ) {
-				$dest = $titleFrom;
-				while ( isset( $this->mRedirectTitles[$dest->getPrefixedText()] ) ) {
-					$dest = $this->mRedirectTitles[$dest->getPrefixedText()];
-				}
+				$dest = $this->resolveRedirectTitleDest( $titleFrom );
 				$fromNs = $titleFrom->getNamespace();
 				$fromDBkey = $titleFrom->getDBkey();
 				$toPageId = $dest->getArticleID();
