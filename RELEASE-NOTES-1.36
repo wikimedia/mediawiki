@@ -57,6 +57,8 @@ For notes on 1.35.x and older releases, see HISTORY.
   to other parts of the code, or to extensions,
   the new BlockUser and UnblockUser command objects were added.
   Use the BlockUserFactory and UnblockUserFactory services to create them.
+* The hook UsersPagerDoBatchLookupsHook takes now a \Wikimedia\Rdbms\IDatabase
+  instead of \Wikimedia\Rdbms\DBConnRef as first parameter
 * …
 
 === External library changes in 1.36 ===
