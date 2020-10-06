@@ -227,6 +227,14 @@ because of Phabricator reports.
 * ParserCache::singleton(), deprecated in 1.30, has been removed.
 * DatabaseBlock::deleteIfExpired and ::fromMaster, deprecated in 1.35, have been
   removed.
+* AbstractBlock::shouldTrackWithCookie, deprecated in 1.34, has been removed.
+* Multiple DatabaseBlock methods dealing with cookies, deprecated in 1.34,
+  have been removed:
+  - ::setCookie
+  - ::clearCookie
+  - ::getCookieValue
+  - ::getIdFromCookieValue
+  - ::shouldTrackWithCookie
 * The static public callback function SpecialUnblock::processUIUnblock has been
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
