@@ -1,6 +1,7 @@
 <?php
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
@@ -8,6 +9,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -966,7 +969,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					implode( ', ', $this->overriddenServices )
 			);
 		}
-		$newInstance = self::installMockMwServices( $configOverrides );
+		$newInstance = self::installMockMwServices( $configOverrides, $this );
 
 		if ( $this->localServices ) {
 			$this->localServices->destroy();
@@ -998,10 +1001,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
 	 *        instance.
+	 * @param TestCase|null $testCase The test case to install mock services for.
 	 *
 	 * @return MediaWikiServices the new mock service locator.
+	 * @throws MWException
 	 */
-	public static function installMockMwServices( Config $configOverrides = null ) {
+	public static function installMockMwServices(
+		Config $configOverrides = null,
+		MediaWikiIntegrationTestCase $testCase = null
+	) {
 		// Make sure we have the original service locator
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
@@ -1060,11 +1068,48 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		);
 
+		// Prevent real HTTP requests from tests
+		$newServices->resetServiceForTesting( 'HttpRequestFactory' );
+		$newServices->redefineService(
+			'HttpRequestFactory',
+			function ( MediaWikiServices $services ) use ( $testCase ) {
+				if ( !$testCase ) {
+					self::fail( 'HttpRequestFactory not supported' );
+				}
+
+				return $testCase->createMockHttpRequestFactory();
+			}
+		);
+
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
 		self::resetLegacyGlobals();
 
 		return $newServices;
+	}
+
+	/**
+	 * @return HttpRequestFactory
+	 */
+	private function createMockHttpRequestFactory() {
+		/** @var MultiHttpClient|MockObject $mock */
+		$multiClient = $this->createMock( MultiHttpClient::class );
+		$multiClient->method( $this->anythingBut( '__destruct' ) )
+			->willReturnCallback( function () {
+				self::fail( 'HTTP requests are not supported.' );
+			} );
+
+		/** @var HttpRequestFactory|MockObject $mock */
+		$mockFactory = $this->createMock( HttpRequestFactory::class );
+		$mockFactory->method( $this->anythingBut( '__destruct', 'getUserAgent', 'createMultiClient' ) )
+			->willReturnCallback( function () {
+				self::fail( 'HTTP requests are not supported.' );
+			} );
+
+		$mockFactory->method( 'getUserAgent' )->willReturn( 'TestMock' );
+		$mockFactory->method( 'createMultiClient' )->willReturn( $multiClient );
+
+		return $mockFactory;
 	}
 
 	/**

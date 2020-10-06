@@ -29,8 +29,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}
-
-		$this->installMockHttp();
 	}
 
 	/**
