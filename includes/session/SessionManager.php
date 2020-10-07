@@ -511,6 +511,7 @@ final class SessionManager implements SessionManagerInterface {
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
 				$retInfos[] = $info;
 				while ( $infos ) {
+					/** @var SessionInfo $info */
 					$info = array_pop( $infos );
 					if ( SessionInfo::compare( $retInfos[0], $info ) ) {
 						// We hit a lower priority, stop checking.
@@ -522,11 +523,13 @@ final class SessionManager implements SessionManagerInterface {
 						$retInfos[] = $info;
 					} else {
 						// Session load failed, so unpersist it from this request
+						$this->logUnpersist( $info, $request );
 						$info->getProvider()->unpersistSession( $request );
 					}
 				}
 			} else {
 				// Session load failed, so unpersist it from this request
+				$this->logUnpersist( $info, $request );
 				$info->getProvider()->unpersistSession( $request );
 			}
 		}
@@ -967,6 +970,23 @@ final class SessionManager implements SessionManagerInterface {
 
 		self::$globalSession = null;
 		self::$globalSessionRequest = null;
+	}
+
+	private function logUnpersist( SessionInfo $info, WebRequest $request ) {
+		$logData = [
+			'id' => $info->getId(),
+			'provider' => get_class( $info->getProvider() ),
+			'user' => '<anon>',
+			'clientip' => $request->getIP(),
+			'userAgent' => $request->getHeader( 'user-agent' ),
+		];
+		if ( $info->getUserInfo() ) {
+			if ( !$info->getUserInfo()->isAnon() ) {
+				$logData['user'] = $info->getUserInfo()->getName();
+			}
+			$logData['userVerified'] = $info->getUserInfo()->isVerified();
+		}
+		$this->logger->info( 'Failed to load session, unpersisting', $logData );
 	}
 
 	/** @} */
