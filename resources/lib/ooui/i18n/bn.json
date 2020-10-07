@@ -27,11 +27,13 @@
 	"ooui-dialog-process-dismiss": "বাতিল করুন",
 	"ooui-dialog-process-retry": "আবার চেষ্টা করুন",
 	"ooui-dialog-process-continue": "অগ্রসর হোন",
-	"ooui-combobox-button-label": "কম্বোবক্সের জন্য ড্রপডাউন",
+	"ooui-combobox-button-label": "ভাসানো বিকল্প",
 	"ooui-selectfile-button-select": "একটি ফাইল নির্বাচন করুন",
+	"ooui-selectfile-button-select-multiple": "ফাইলসমূহ নির্বাচন করুন",
 	"ooui-selectfile-not-supported": "চিত্র নির্বাচন সমর্থিত নয়",
-	"ooui-selectfile-placeholder": "কোন চিত্র নির্বাচিত হয়নি",
+	"ooui-selectfile-placeholder": "কোনও চিত্র নির্বাচিত হয়নি",
 	"ooui-selectfile-dragdrop-placeholder": "এখানে ফাইল ছাড়ুন",
-	"ooui-popup-widget-close-button-aria-label": "বন্ধ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "এখানে ফাইল ছাড়ুন",
+	"ooui-popup-widget-close-button-aria-label": "বন্ধ করুন",
 	"ooui-field-help": "সাহায্য"
 }

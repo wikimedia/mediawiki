@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.3
+ * OOUI v0.40.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-09-02T15:43:15Z
+ * Date: 2020-10-07T21:26:15Z
  */
 .oo-ui-icon-arrowNext {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/arrowNext-ltr.svg);
@@ -2552,6 +2552,24 @@
 }
 .oo-ui-image-progressive.oo-ui-icon-stop {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/stop-progressive.svg);
+}
+.oo-ui-icon-volumeDown {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeDown-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-volumeDown {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeDown-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-volumeDown {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeDown-ltr-progressive.svg);
+}
+.oo-ui-icon-volumeOff {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeOff-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-volumeOff {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeOff-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-volumeOff {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeOff-ltr-progressive.svg);
 }
 .oo-ui-icon-volumeUp {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/volumeUp-ltr.svg);

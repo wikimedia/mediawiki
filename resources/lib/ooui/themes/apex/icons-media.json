@@ -47,6 +47,18 @@
 		"stop": {
 			"file": "../wikimediaui/images/icons/stop.svg"
 		},
+		"volumeDown": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/volumeDown-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/volumeDown-rtl.svg"
+			}
+		},
+		"volumeOff": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/volumeOff-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/volumeOff-rtl.svg"
+			}
+		},
 		"volumeUp": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/volumeUp-ltr.svg",

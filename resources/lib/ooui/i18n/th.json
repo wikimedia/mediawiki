@@ -3,6 +3,7 @@
 		"authors": [
 			"Aefgh39622",
 			"Horus",
+			"Patsagorn Y.",
 			"Supasate",
 			"Taweetham"
 		]
@@ -22,8 +23,10 @@
 	"ooui-dialog-process-continue": "ดำเนินการต่อ",
 	"ooui-combobox-button-label": "สลับตัวเลือก",
 	"ooui-selectfile-button-select": "เลือกไฟล์",
+	"ooui-selectfile-button-select-multiple": "เลือกไฟล์",
 	"ooui-selectfile-not-supported": "ไม่รองรับการเลือกไฟล์",
 	"ooui-selectfile-placeholder": "ไม่ได้เลือกไฟล์ใด",
 	"ooui-selectfile-dragdrop-placeholder": "หย่อนไฟล์ลงที่นี่",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "หย่อนไฟล์ที่นี่",
 	"ooui-field-help": "วิธีใช้"
 }

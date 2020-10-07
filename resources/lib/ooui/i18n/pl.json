@@ -37,9 +37,11 @@
 	"ooui-dialog-process-continue": "Kontynuuj",
 	"ooui-combobox-button-label": "Pokaż opcje",
 	"ooui-selectfile-button-select": "Wybierz plik",
+	"ooui-selectfile-button-select-multiple": "Wybierz pliki",
 	"ooui-selectfile-not-supported": "Wybór pliku nie jest obsługiwany",
 	"ooui-selectfile-placeholder": "Nie wybrano pliku",
 	"ooui-selectfile-dragdrop-placeholder": "Upuść plik tutaj",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Przeciągnij pliki tutaj",
 	"ooui-popup-widget-close-button-aria-label": "Zamknij",
 	"ooui-field-help": "Pomoc"
 }

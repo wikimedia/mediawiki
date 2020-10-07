@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.3
+ * OOUI v0.40.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-09-02T15:43:15Z
+ * Date: 2020-10-07T21:26:15Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -405,13 +405,15 @@
   display: block;
   height: 100%;
   width: auto;
-  margin-left: 8.815em;
   margin-right: 0;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
   border: 0;
   box-shadow: none;
   background: transparent;
+}
+.oo-ui-selectFileWidget-dropTarget.oo-ui-selectFileWidget-withThumbnail .oo-ui-selectFileInputWidget-info {
+  margin-left: 8.815em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileInputWidget-label {
   display: block;

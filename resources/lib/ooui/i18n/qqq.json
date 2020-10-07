@@ -37,9 +37,11 @@
 	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}",
 	"ooui-combobox-button-label": "Label of the button in a combobox that opens the dropdown with preset options. This is a screenreader-only message.",
 	"ooui-selectfile-button-select": "Label for the file selection widget's select file button",
+	"ooui-selectfile-button-select-multiple": "Label for the multiple file selection widget's select file(s) button",
 	"ooui-selectfile-not-supported": "Label for the file selection widget if file selection is not supported",
 	"ooui-selectfile-placeholder": "Label for the file selection widget when no file is currently selected",
 	"ooui-selectfile-dragdrop-placeholder": "Label for the file selection widget's drop target",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Label for the multiple file selection widget's drop target",
 	"ooui-popup-widget-close-button-aria-label": "Aria label for the popup widget's close button\n{{identical|Close}}",
 	"ooui-field-help": "Label for the help icon attached to a form field\n{{Identical|Help}}"
 }

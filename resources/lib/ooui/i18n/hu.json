@@ -5,6 +5,7 @@
 			"Csega",
 			"Dj",
 			"Einstein2",
+			"Hanna Tardos",
 			"Kishajnalka",
 			"Misibacsi",
 			"Rodrigo",
@@ -26,8 +27,10 @@
 	"ooui-dialog-process-retry": "Próbáld újra",
 	"ooui-dialog-process-continue": "Folytatás",
 	"ooui-selectfile-button-select": "Fájl kiválasztása",
+	"ooui-selectfile-button-select-multiple": "Fájlok kijelölése",
 	"ooui-selectfile-not-supported": "A fájl kiválasztása nincs támogatva",
 	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva",
 	"ooui-selectfile-dragdrop-placeholder": "Dobd ide a fájlt",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Dobd ide a fájlt",
 	"ooui-field-help": "Súgó"
 }
