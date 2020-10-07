@@ -3907,7 +3907,6 @@
 	"mute-preferences": "Preferencias de silenciamento",
 	"revid": "revisión $1",
 	"pageid": "identificador de páxina $1",
-	"interfaceadmin-info": "$1\n\nOs permisos para editar os ficheiros CSS/JS/JSON globais separáronse recentemente do dereito <code>editinterface</code>. Se non comprende porqué está vendo este erro, vexa [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "As marcas &lt;html&gt; non poden usarse fóra das páxinas normais.",
 	"gotointerwiki": "Deixando {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado non é válido.",

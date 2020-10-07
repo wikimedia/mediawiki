@@ -3815,7 +3815,6 @@
 	"edit-error-long": "त्रुटि:\n\n$1",
 	"revid": "अवतरण $1",
 	"pageid": "पेज आईडी $1",
-	"interfaceadmin-info": "$1\n\nPermissions for editing of sitewide CSS/JS/JSON files were recently separated from the <code>editinterface</code> right. If you do not understand why you are getting this error, see [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt; टैग का उपयोग सामान्य पन्नों के बाहर नहीं किया जा सकता है।",
 	"gotointerwiki": "आप {{SITENAME}} से बाहर जा रहे हैं।",
 	"gotointerwiki-invalid": "दिया गया शीर्षक अमान्य है।",

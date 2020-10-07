@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amara-Amaziɣ",
+			"Ayour2002",
 			"BaRaN6161 TURK",
 			"Dalinanir",
 			"DannyS712",
@@ -318,6 +319,7 @@
 	"loginlanguagelabel": "ⵜⵓⵜⵍⴰⵢⵜ : $1",
 	"pt-login": "ⵣⴷⵉ ⵏⵏ",
 	"pt-login-button": "ⴽⵛⵎ",
+	"pt-createaccount": "Rẓm kran umiḍan",
 	"pt-userlogout": "ⴼⴼⵖ",
 	"php-mail-error-unknown": "Kra ur igadda tasɣnt btbratin() n PHP.",
 	"changepassword": "ⵙⵏⴼⵍ ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ",

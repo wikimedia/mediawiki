@@ -3880,7 +3880,6 @@
 	"mute-preferences": "Настройки на заглушаването",
 	"revid": "версия $1",
 	"pageid": "ID на страницата $1",
-	"interfaceadmin-info": "$1\n\nПравата за редактиране на CSS/JS/JSON в целия сайт наскоро бяха отделени от правата <code>editinterface</code>. Ако не разбирате защо получавате тази грешка, погледнете [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt; тагове могат да се използват само в нормални страници.",
 	"gotointerwiki": "Напускане на {{SITENAME}}",
 	"gotointerwiki-invalid": "Указаното заглавие е невалидно.",

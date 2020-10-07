@@ -4043,7 +4043,6 @@
 	"mute-preferences": "Preferensi bisu",
 	"revid": "revisi $1",
 	"pageid": "ID halaman $1",
-	"interfaceadmin-info": "$1\n\nHak akses untuk menyunting berkas CSS/JS/JSON di semua halaman telah dipisahkan dari hak akses <code>editinterface</code>. Apabila Anda tidak mengerti mengapa Anda mendapatkan galat ini, lihat [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Tag &lt;html&gt; tidak dapat digunakan di luar halaman normal.",
 	"gotointerwiki": "Meninggalkan {{SITENAME}}",
 	"gotointerwiki-invalid": "Judul yang ditentukan tidak sah",

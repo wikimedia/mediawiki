@@ -3972,7 +3972,6 @@
 	"mute-preferences": "Dempingsinnstillinger",
 	"revid": "revisjon $1",
 	"pageid": "side-ID $1",
-	"interfaceadmin-info": "$1\n\nTillatelse til å redigere CSS, JavaScript og JSON som gjelder hele nettstedet ble nylig utskilt til rettigheten <code>editinterface</code>. Om du ikke forstår hvorfor du får denne feilmeldingen, se [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider.",
 	"gotointerwiki": "Forlater {{SITENAME}}",
 	"gotointerwiki-invalid": "Den gitte tittelen er ugyldig.",

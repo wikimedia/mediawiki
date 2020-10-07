@@ -4061,7 +4061,6 @@
 	"mute-preferences": "Sessize alma tercihleri",
 	"revid": "revizyon $1",
 	"pageid": "sayfa kimliği $1",
-	"interfaceadmin-info": "$1\n\nSite çapında CSS/JS/JSON dosyalarının düzenleme izinleri kısa süre önce <code>editinterface</code> sağından ayrıldı. Bu hatayı neden aldığınızı anlamıyorsanız [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]] sayfasına bakın.",
 	"rawhtml-notallowed": "&lt;html&gt; etiketleri normal sayfaların dışında kullanılamaz.",
 	"gotointerwiki": "{{SITENAME}} ayrılıyor",
 	"gotointerwiki-invalid": "Belirtilen başlık geçersiz.",

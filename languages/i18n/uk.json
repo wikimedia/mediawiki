@@ -4078,7 +4078,6 @@
 	"mute-preferences": "Налаштування «без звуку»",
 	"revid": "версія $1",
 	"pageid": "ID сторінки $1",
-	"interfaceadmin-info": "$1\n\nПрава на редагування загальних CSS/JS/JSON-файлів недавно винесено з права <code>editinterface.</code> Якщо Ви не розумієте, чому Ви наткнулись на цю помилку, див. [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Теги &lt;html&gt; не можна використовувати за межами звичайних сторінок.",
 	"gotointerwiki": "Ви покидаєте сайт {{SITENAME}}",
 	"gotointerwiki-invalid": "Вказана назва неприпустима.",

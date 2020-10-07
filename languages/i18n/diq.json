@@ -4040,7 +4040,6 @@
 	"mute-preferences": "Tercihê bêvengi",
 	"revid": "Revizyonê $1",
 	"pageid": "IDyê pela $1",
-	"interfaceadmin-info": "$1\n\nSite herayin de mısadey vurnayışê dosyanê CSS/JS/JSON   u  <code>editinterface</code> pêra abıryaye. Eke şımayê ena xeta fahm nêkenê se bıewniyê [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Etiketê &lt;html&gt; teberê pêlane normalan de nêkariyenê.",
 	"gotointerwiki": "{{SITENAME}} ra abırriyeno",
 	"gotointerwiki-invalid": "Serameyo spesifiko nêravêrde.",

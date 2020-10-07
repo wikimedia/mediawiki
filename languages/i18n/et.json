@@ -3925,7 +3925,6 @@
 	"mute-preferences": "Vaigistamiseelistused",
 	"revid": "redaktsioon $1",
 	"pageid": "lehekülje identifikaator $1",
-	"interfaceadmin-info": "$1\n\nSaidiüleste CSS/JS/JSON-failide redigeerimisõigused on nüüd eraldi õigusest <code>editinterface</code>. Kui sa ei saa aru, mis seda tõrketeadet näed, siis loe lehekülge [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-silte ei saa kasutada mujal kui harilikel lehekülgedel.",
 	"gotointerwiki": "Lahkud {{GRAMMAR:elative|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Määratud pealkiri on vigane.",

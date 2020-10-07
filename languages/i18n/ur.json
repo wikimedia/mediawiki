@@ -3654,7 +3654,6 @@
 	"mute-preferences": "ترجیحات اغماض",
 	"revid": "نسخہ $1",
 	"pageid": "صفحہ کا شناختی نمبر $1",
-	"interfaceadmin-info": "$1\n\nسائٹ بھر میں اثر انداز ہونے والی سی ایس ایس/جے ایس/جے سن فائلوں میں ترمیم کی اجازت <code>editinterface</code> سے علاحدہ کر دی گئی ہے۔ اگر آپ اس نقص کے پیش آنے کی وجہ نہیں سمجھ پا رہے ہیں تو براہ کرم [[mw:MediaWiki_1.32/interface-admin]] ملاحظہ فرمائیں۔",
 	"rawhtml-notallowed": "\n&lt;html&gt; ٹیگ عام صفحات کے باہر استعمال نہیں کیا جا سکتا۔",
 	"gotointerwiki": "{{SITENAME}} سے باہر جا رہے ہیں",
 	"gotointerwiki-invalid": "درج کردہ عنوان درست نہیں ہے۔",

@@ -4164,7 +4164,6 @@
 	"mute-preferences": "ミュート設定",
 	"revid": "版 $1",
 	"pageid": "ページID $1",
-	"interfaceadmin-info": "$1\n\nサイト全体のCSS/JavaScriptの編集権限は、最近<code>editinterface</code> 権限から分離されました。なぜこのエラーが表示されたのかわからない場合は、[[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]]をご覧ください。",
 	"rawhtml-notallowed": "&lt;html&gt;タグは通常ページ以外では使用できません。",
 	"gotointerwiki": "{{SITENAME}}を離れる",
 	"gotointerwiki-invalid": "指定したページは無効です。",

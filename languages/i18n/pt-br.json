@@ -4088,7 +4088,6 @@
 	"mute-preferences": "Preferências do silenciador",
 	"revid": "revisão $1",
 	"pageid": "ID da página $1",
-	"interfaceadmin-info": "$1\n\nAs permissões de edição de arquivos CSS/JS/JSON que afetam todo o ''site'' foram recentemente separadas do privilégio <code>editinterface</code>. Se não compreende porque está a receber este erro, consulte [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "As tags &lt;html&gt; não podem ser usadas fora das páginas normais.",
 	"gotointerwiki": "Saindo {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado é inválido.",

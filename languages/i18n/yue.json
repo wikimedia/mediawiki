@@ -3176,7 +3176,6 @@
 	"authmanager-realname-label": "真名",
 	"authmanager-realname-help": "用戶嘅真名",
 	"authprovider-resetpass-skip-label": "跳過",
-	"interfaceadmin-info": "$1\n\n改全站通用 CSS/JS/JSON 檔嘅權限最近由 <code>editinterface</code> 權限拆咗出嚟。如果你唔明點解會出呢個錯誤訊息，請睇[[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]]。",
 	"passwordpolicies": "密碼政策",
 	"passwordpolicies-summary": "爾度係對爾個wiki定義咗嘅用戶組來講有效嘅密碼政策一覽。",
 	"passwordpolicies-group": "組",

@@ -4100,7 +4100,6 @@
 	"mute-preferences": "Preferencias de silencio",
 	"revid": "revisión $1",
 	"pageid": "ID de página $1",
-	"interfaceadmin-info": "$1\n\nLos permisos para editar los archivos con formato CSS, JS y JSON en todo el sitio han sido recientemente separados del permiso <code>editinterface</code>. Si no comprendes por qué recibes este error, por favor lee [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "No se pueden emplear las etiquetas &lt;html&gt; si no es en las páginas normales.",
 	"gotointerwiki": "Salir de {{SITENAME}}",
 	"gotointerwiki-invalid": "El título especificado no es válido.",

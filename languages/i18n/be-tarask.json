@@ -3847,7 +3847,6 @@
 	"mute-preferences": "Налады заглушэньня",
 	"revid": "вэрсія $1",
 	"pageid": "Ідэнтыфікатар старонкі $1",
-	"interfaceadmin-info": "$1\n\nДазволы на рэдагаваньне агульнасайтавых CSS/JS/JSON-файлаў былі нядаўна вылучаныя з права <code>editinterface</code>. Калі вы не разумееце, чаму атрымліваеце гэтую памылку, глядзіце [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-тэгі ня могуць быць выкарыстаныя па-за звычайнымі старонкамі.",
 	"gotointerwiki": "Пакідаем {{grammar:вінавальны|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Пазначаная назва зьяўляецца няслушнай.",

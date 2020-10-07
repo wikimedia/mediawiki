@@ -3936,7 +3936,6 @@
 	"mute-preferences": "Vaimennusasetukset",
 	"revid": "versio $1",
 	"pageid": "sivun tunnistenumero $1",
-	"interfaceadmin-info": "$1\n\nSivustonlaajuisten CSS/JS/JSON-tiedostojen muokkaamisoikeus erotettiin äskettäin <code>editinterface</code>-oikeudesta. Jos et ymmärrä, miksi saat tämän virheen, katso [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt; komentoa ei voida käyttää normaalien sivujen ulkopuolella.",
 	"gotointerwiki": "Lähdössä {{GRAMMAR:elative|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Annettu otsikko on virheellinen.",

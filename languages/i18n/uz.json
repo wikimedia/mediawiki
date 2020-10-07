@@ -791,6 +791,8 @@
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|kun|kun}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|soat|soat}}",
 	"rcfilters-quickfilters": "Esda saqlab qolingan filtrlar",
+	"rcfilters-quickfilters-placeholder-title": "Hech qanday filtr saqlanmadi",
+	"rcfilters-quickfilters-placeholder-description": "Filtr sozlamalarini saqlash va keyinroq qayta ishlatish uchun quyidagi Faol filtrlar maydonidagi xatchoʻp belgisini bosing.",
 	"rcfilters-savedqueries-defaultlabel": "Filtrlarni saqlash",
 	"rcfilters-savedqueries-rename": "Qayta nomlash",
 	"rcfilters-savedqueries-remove": "Oʻchirish",

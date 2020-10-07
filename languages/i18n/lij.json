@@ -3810,7 +3810,6 @@
 	"mute-preferences": "Preferense insce-o scilensio",
 	"revid": "verscion $1",
 	"pageid": "ID da paggina $1",
-	"interfaceadmin-info": "$1\n\nI driti pe modificâ i file CSS/JS/JSON globæ do scito son stæti separæ da-o drito <code>editinterface</code> che no l'è goæi. Se ti no t'acapisci perchè t'ariva st'aro chie, amia [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "I etichette &lt;html&gt; no peuan ese doeuviæ foeua de normale paggine.",
 	"gotointerwiki": "T'ê aproeuvo a lasciâ {{SITENAME}}",
 	"gotointerwiki-invalid": "O tittolo specificou o no l'è vallido.",

@@ -4106,7 +4106,6 @@
 	"mute-preferences": "屏蔽设置",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",
-	"interfaceadmin-info": "$1\n\n编辑全站CSS/JS/JSON文件的权限最近与<code>editinterface</code>权限分离了。如果您不知道为何收到此错误，请参见[[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]]",
 	"rawhtml-notallowed": "&lt;html&gt;标签不能在一般页面以外使用。",
 	"gotointerwiki": "离开{{SITENAME}}",
 	"gotointerwiki-invalid": "指定的标题无效。",
