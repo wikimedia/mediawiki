@@ -9,6 +9,7 @@
 		"mediawiki/ldap-authorization": "dev-REL1_31",
 		"mediawiki/ldap-groups": "dev-REL1_31",
 		"mediawiki/ldap-provider": "dev-REL1_31",
-		"mediawiki/ldap-user-info": "dev-REL1_31"
+		"mediawiki/ldap-user-info": "dev-REL1_31",
+		"mediawiki/ldap-sync-all": "dev-REL1_31"
 	}
 }
