@@ -3926,7 +3926,6 @@
 	"mute-preferences": "ترجیحات بی‌صدا کردن",
 	"revid": "نسخهٔ $1",
 	"pageid": "شناسهٔ صفحهٔ $1",
-	"interfaceadmin-info": "\n$1\n\nدسترسی‌ها برای ویرایش فایل‌های CSS/JS/JSON که اخیراً از دسترسی <code>editinterface</code> جدا شده‌اند. اگر نمی دانید که چرا این خطا رخ داده‌است [[mw:MediaWiki_1.32/interface-admin]] را مطالعه کنید.",
 	"rawhtml-notallowed": "برچسب‌های &lt;html&gt; را نمی‌توان خارج از صفحه‌های معمولی استفاده کرد.",
 	"gotointerwiki": "در حال ترک {{SITENAME}}",
 	"gotointerwiki-invalid": "عنوان مشخص شده نامعتبر است.",

@@ -4002,7 +4002,6 @@
 	"mute-preferences": "通知偏好設定",
 	"revid": "修訂 $1",
 	"pageid": "頁面 ID $1",
-	"interfaceadmin-info": "$1\n\n編輯全站 CSS/JS/JSON 檔案的權限，近期已從 <code>editinterface</code> 權限裡拆分。若您不清楚為何會收到此錯誤，請查看 [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]]。",
 	"rawhtml-notallowed": "&lt;html&gt; 標籤無法在一般頁面之外使用。",
 	"gotointerwiki": "離開 {{SITENAME}}",
 	"gotointerwiki-invalid": "指定的標題無效。",

@@ -3853,7 +3853,6 @@
 	"mute-preferences": "Preferencies de silenciu",
 	"revid": "revisión $1",
 	"pageid": "ID de páxina $1",
-	"interfaceadmin-info": "$1\n\nLos permisos pa editar los ficheros  CSS, JS y JSON globales del sitiu dixebráronse apocayá del permisu <code>editinterface</code>. Si nun entiendes por qué recibes esti error, visita [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Les etiquetes &lt;html&gt; nun pueden usase fuera de les páxines normales.",
 	"gotointerwiki": "Dexando {{SITENAME}}",
 	"gotointerwiki-invalid": "El títulu especificáu nun ye válidu.",

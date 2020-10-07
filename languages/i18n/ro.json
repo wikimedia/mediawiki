@@ -3892,7 +3892,6 @@
 	"mute-preferences": "Preferințe referitoare la blocarea notificărilor",
 	"revid": "versiunea $1",
 	"pageid": "ID pagină $1",
-	"interfaceadmin-info": "$1\n\nPermisiunile pentru editarea de CSS/JS/JSON global au fost recent separate de dreptul <code>editinterface</code>. Dacă nu înțelegeți de ce primiți această eroare, vedeți [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Tagurile &lt;html&gt; nu pot fi folosite în afara paginilor normale.",
 	"gotointerwiki": "Se părăsește {{SITENAME}}",
 	"gotointerwiki-invalid": "Titlul specificat nu este valid.",

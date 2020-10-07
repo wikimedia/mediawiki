@@ -4029,7 +4029,6 @@
 	"mute-preferences": "Ustawienia ignorowania",
 	"revid": "wersja $1",
 	"pageid": "ID strony: $1",
-	"interfaceadmin-info": "$1\n\nUprawnienia do edycji stron z CSS/JS/JSON całej witryny zostały wydzielone z dotychczasowego uprawnienia <code>editinterface</code>. Jeżeli nie rozumiesz, dlaczego otrzymujesz ten komunikat, przeczytaj [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin|MediaWiki 1.32/administrator interfejsu]].",
 	"rawhtml-notallowed": "Znaczniki &lt;html&gt; nie mogą być stosowane poza zwykłymi stronami.",
 	"gotointerwiki": "Opuszczasz {{grammar:B.lp|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Podany tytuł jest nieprawidłowy.",

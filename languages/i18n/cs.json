@@ -3985,7 +3985,6 @@
 	"mute-preferences": "Nastavení ztlumení",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1",
-	"interfaceadmin-info": "$1\n\nOprávnění editovat celoprojektové soubory s CSS/JS/JSON bylo nedávno odděleno z oprávnění <code>editinterface</code>. Pokud nerozumíte, proč se vám zobrazuje tato chyba, vizte [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",
 	"gotointerwiki": "Opustit {{GRAMMAR:4sg|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Zadaný název je neplatný.",

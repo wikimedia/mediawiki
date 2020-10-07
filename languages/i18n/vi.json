@@ -3998,7 +3998,6 @@
 	"mute-preferences": "Tùy chọn làm im",
 	"revid": "phiên bản $1",
 	"pageid": "số trang $1",
-	"interfaceadmin-info": "$1\n\nMới đây phần mềm bắt đầu phân biệt quyền sửa đổi các tập tin CSS/JS/JSON toàn trang và quyền <code>editinterface</code>. Nếu bạn không hiểu tại sao bạn bị lỗi trên, hãy xem [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Không thể sử dụng thẻ &lt;html&gt; bên ngoài trang bình thường.",
 	"gotointerwiki": "Rời khỏi {{SITENAME}}",
 	"gotointerwiki-invalid": "Tên trang chỉ định không hợp lệ.",

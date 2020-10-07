@@ -3700,7 +3700,6 @@
 	"specialmute-login-required": "Παρακαλούμε συνδεθείτε για αλλαγή των προτιμήσεων σίγασης.",
 	"mute-preferences": "Προτιμήσεις σίγασης",
 	"revid": "αναθεώρηση $1",
-	"interfaceadmin-info": "$1\n\nΟι άδειες για την επεξεργασία καθολικών αρχείων CSS/JS/JSON διαχωρίστηκαν πρόσφατα από το δικαίωμα <code>editinterface</code>. Εάν δεν καταλαβαίνετε γιατί εμφανίζεται αυτό το σφάλμα, ανατρέξτε στο [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"gotointerwiki": "Αποχώρηση από {{SITENAME}}",
 	"gotointerwiki-invalid": "Ο καθορισμένος τίτλος δεν είναι έγκυρος.",
 	"pagedata-title": "Δεδομένα σελίδας",

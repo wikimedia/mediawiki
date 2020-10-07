@@ -3916,7 +3916,6 @@
 	"mute-preferences": "Agordoj pri silentigo",
 	"revid": "revizio $1",
 	"pageid": "Identigilo de paĝo $1",
-	"interfaceadmin-info": "$1\n\nPermesoj pri redaktado de tut-retejaj CSS/JavaScript/JSON-dosieroj estis lastatempe disigitaj for de la rajto <code>editinterface</code>. Se vi ne komprenas kial vi ricevis ĉi tiun eraron, vidu la paĝon [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "etikedo &lt;html&gt; ne povas esti uzata ekster ordinaraj paĝoj.",
 	"gotointerwiki": "Elirante retejon {{SITENAME}}",
 	"gotointerwiki-invalid": "La specifita titolo ne estas valida.",

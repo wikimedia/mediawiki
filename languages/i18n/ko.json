@@ -3940,7 +3940,6 @@
 	"mute-preferences": "알림 미표시 환경 설정",
 	"revid": "$1 판",
 	"pageid": "페이지 ID $1",
-	"interfaceadmin-info": "$1\n\n사이트 전체에 쓰이는 CSS/JS/JSON 파일의 편집 권한이 최근 <code>editinterface</code> 권한에서 분리되었습니다. 왜 이 오류가 발생하는지 이해가 되지 않는다면, [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]]을 참고하십시오.",
 	"rawhtml-notallowed": "&lt;html&gt; 태그는 일반 페이지 밖에서는 사용할 수 없습니다.",
 	"gotointerwiki": "{{SITENAME}}을(를) 떠납니다",
 	"gotointerwiki-invalid": "지정된 제목이 올바르지 않습니다.",

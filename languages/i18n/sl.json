@@ -3894,7 +3894,6 @@
 	"mute-preferences": "Nastavitve utišanja",
 	"revid": "redakcija $1",
 	"pageid": "ID strani $1",
-	"interfaceadmin-info": "$1\n\nDovoljenja za urejanje datotek CSS/JS/JSON spletišča smo nedavno ločili od dovoljenja <code>editinterface</code>. Če ne razumete, zakaj smo vam izpisali to napako, si oglejte [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Oznak &lt;html&gt; ni možno uporabljati izven normalnih strani.",
 	"gotointerwiki": "Zapuščate {{GRAMMAR:tožilnik|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Naveden naslov je neveljaven.",

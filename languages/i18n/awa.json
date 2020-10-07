@@ -3871,7 +3871,6 @@
 	"mute-preferences": "पसंद सहेजा जाय",
 	"revid": "अवतरण $1",
 	"pageid": "पेज आईडी $1",
-	"interfaceadmin-info": "$1\n\nसाइटवाइड CSS/JS/JSON फाइलन के संपादन के बरे अनुमतियाँ हालय म <code> editinterface </ code> से अलग कइ दीन गय। अगर आप समझ नही पावत अहैं कि आपका ई गलती काहे हुवति अहय, तौ  [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]] देखैं.",
 	"rawhtml-notallowed": "&lt;html&gt; टैग का उपयोग सामान्य पन्नों के बाहर नहीं किया जा सकता है।",
 	"gotointerwiki": "आप {{SITENAME}} से बाहर जा रहे हैं।",
 	"gotointerwiki-invalid": "दिया गया शीर्षक अमान्य है।",

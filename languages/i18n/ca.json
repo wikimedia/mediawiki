@@ -3942,7 +3942,6 @@
 	"mute-preferences": "Preferències de silenciament",
 	"revid": "revisió $1",
 	"pageid": "ID de pàgina $1",
-	"interfaceadmin-info": "$1\n\nEls permisos per editar els arxius amb format CSS, JS y JSON en tot el lloc han estat recentment separats del permís <code>editinterface</code>. Si no enteneu per què rebeu aquest error, si us plau llegiu [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "No és possible fer servir les etiquetes &lt;html&gt; fora de les pàgines normals.",
 	"gotointerwiki": "A punt d’abandonar {{SITENAME}}",
 	"gotointerwiki-invalid": "El títol especificat no és vàlid.",

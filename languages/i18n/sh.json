@@ -3758,7 +3758,6 @@
 	"mute-preferences": "Preferencije za isključavanje",
 	"revid": "izmjena $1",
 	"pageid": "ID stranice $1",
-	"interfaceadmin-info": "$1\n\nDozvole za uređivanje CSS/JS/JSON datoteka preko cijelog wikija nedavno su odvojene od prava <code>editinterface</code>. Ako ne razumijete zašto ste dobili ovu grešku, pogl. [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-oznake ne mogu se koristiti van normalnih stranica.",
 	"gotointerwiki": "Napuštate projekt {{SITENAME}}",
 	"gotointerwiki-invalid": "Navedeni naslov je nevalidan.",

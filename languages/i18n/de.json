@@ -4020,7 +4020,6 @@
 	"mute-preferences": "Stummschaltungs-Einstellungen",
 	"revid": "Version $1",
 	"pageid": "Seitenkennung $1",
-	"interfaceadmin-info": "$1\n\nBerechtigungen für das Bearbeiten von wikiweiten CSS/JS/JSON-Dateien wurden kürzlich vom Recht <code>editinterface</code> getrennt. Falls du nicht verstehst, warum du diesen Fehler erhältst, siehe [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "&lt;html&gt;-Tags können nicht außerhalb von normalen Seiten verwendet werden.",
 	"gotointerwiki": "{{SITENAME}} verlassen",
 	"gotointerwiki-invalid": "Der angegebene Titel ist ungültig.",

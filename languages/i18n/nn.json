@@ -3072,7 +3072,6 @@
 	"userjsispublic": "Merk: JavaScript-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
 	"usercssispublic": "Merk: CSS-undersider bør ikkje innehalda konfidensielle data sidan dei er synlege for andre brukarar.",
 	"revid": "versjon $1",
-	"interfaceadmin-info": "$1\n\nLøyva for endring av CSS/JS/JSON-filer som gjeld heile nettstaden vart nyleg skilde ut frå <code>editinterface</code>-retten. Om du ikkje skjøner kvifor du får denne feilmeldinga, sjå [[mw:MediaWiki_1.32/interface-admin]].",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikkje vera det same som brukarnamnet",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikkje passa med svartelista passord",
 	"userlogout-continue": "Ynskjer du å logga ut?"

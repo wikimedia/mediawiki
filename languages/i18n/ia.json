@@ -3887,7 +3887,6 @@
 	"mute-preferences": "Preferentias de silentiamento",
 	"revid": "version $1",
 	"pageid": "ID de pagina $1",
-	"interfaceadmin-info": "$1\n\nLe permissiones pro modificar le files CSS/JS/JSON global del sito ha recentemente essite separate del privilegio <code>editinterface</code>. Si tu non comprende proque tu recipe iste error, vide [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Etiquettas &lt;html&gt; non pote esser usate foras de paginas normal.",
 	"gotointerwiki": "Quitar {{SITENAME}}",
 	"gotointerwiki-invalid": "Le titulo specificate non es valide.",
