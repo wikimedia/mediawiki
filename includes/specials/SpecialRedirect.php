@@ -91,7 +91,7 @@ class SpecialRedirect extends FormSpecialPage {
 			return Status::newFatal( $this->getMessagePrefix() . '-not-numeric' );
 		}
 		$user = User::newFromId( (int)$this->mValue );
-		$username = $user->getName(); // load User as side-effect
+		$user->load(); // Make sure the id is validated by loading the user
 		if ( $user->isAnon() ) {
 			// Message: redirect-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
@@ -101,10 +101,9 @@ class SpecialRedirect extends FormSpecialPage {
 		) {
 			throw new PermissionsError( null, [ 'badaccess-group0' ] );
 		}
-		$userpage = Title::makeTitle( NS_USER, $username );
 
 		return Status::newGood( [
-			$userpage->getFullURL( '', false, PROTO_CURRENT ), 302
+			$user->getUserPage()->getFullURL( '', false, PROTO_CURRENT ), 302
 		] );
 	}
 
