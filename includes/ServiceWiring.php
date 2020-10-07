@@ -1337,7 +1337,10 @@ return [
 	},
 
 	'UserFactory' => function ( MediaWikiServices $services ) : UserFactory {
-		return new UserFactory( $services->getUserNameUtils() );
+		return new UserFactory(
+			$services->getDBLoadBalancer(),
+			$services->getUserNameUtils()
+		);
 	},
 
 	'UserGroupManager' => function ( MediaWikiServices $services ) : UserGroupManager {

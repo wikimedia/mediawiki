@@ -14,8 +14,7 @@ use Wikimedia\IPUtils;
 class UserFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private function getUserFactory() {
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-		return new UserFactory( $userNameUtils );
+		return MediaWikiServices::getInstance()->getUserFactory();
 	}
 
 	public function testNewFromName() {

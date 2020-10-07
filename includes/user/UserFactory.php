@@ -22,9 +22,12 @@
 
 namespace MediaWiki\User;
 
+use DBAccessObjectUtils;
 use IDBAccessObject;
+use InvalidArgumentException;
 use stdClass;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Creates User objects.
@@ -38,17 +41,24 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 
 	/**
 	 * RIGOR_* constants are inherited from UserRigorOptions
+	 * READ_* constants are inherited from IDBAccessObject
 	 */
 
-	/**
-	 * @var UserNameUtils
-	 */
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var UserNameUtils */
 	private $userNameUtils;
 
 	/**
+	 * @param ILoadBalancer $loadBalancer
 	 * @param UserNameUtils $userNameUtils
 	 */
-	public function __construct( UserNameUtils $userNameUtils ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		UserNameUtils $userNameUtils
+	) {
+		$this->loadBalancer = $loadBalancer;
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -101,7 +111,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 			if ( $validIp ) {
 				$user = $this->newFromName( $ip, self::RIGOR_NONE );
 			} else {
-				throw new \InvalidArgumentException( 'Invalid IP address' );
+				throw new InvalidArgumentException( 'Invalid IP address' );
 			}
 		} else {
 			$user = new User();
@@ -110,19 +120,23 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	}
 
 	/**
-	 * @see User::newFromId
+	 * Factory method for creation from a given user ID, replacing User::newFromId
 	 *
 	 * @since 1.35
 	 *
-	 * @param int $id
-	 * @return User
+	 * @param int $id Valid user ID
+	 * @return User The corresponding User object
 	 */
 	public function newFromId( int $id ) : User {
-		return User::newFromId( $id );
+		$user = new User();
+		$user->mId = $id;
+		$user->mFrom = 'id';
+		$user->setItemLoaded( 'id' );
+		return $user;
 	}
 
 	/**
-	 * @see User::newFromActorId
+	 * Factory method for creation from a given actor ID, replacing User::newFromActorId
 	 *
 	 * @since 1.35
 	 *
@@ -130,11 +144,15 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @return User
 	 */
 	public function newFromActorId( int $actorId ) : User {
-		return User::newFromActorId( $actorId );
+		$user = new User();
+		$user->mActorId = $actorId;
+		$user->mFrom = 'actor';
+		$user->setItemLoaded( 'actor' );
+		return $user;
 	}
 
 	/**
-	 * @see User::newFromIdentity
+	 * Factory method for creation fom a given UserIdentity, replacing User::newFromIdentity
 	 *
 	 * @since 1.35
 	 *
@@ -154,7 +172,10 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	}
 
 	/**
-	 * @see User::newFromAnyId
+	 * Factory method for creation from an ID, name, and/or actor ID, replacing User::newFromAnyId
+	 *
+	 * @note This does not check that the ID, name, and actor ID all correspond to
+	 * the same user.
 	 *
 	 * @since 1.35
 	 *
@@ -163,6 +184,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param ?int $actorId
 	 * @param bool|string $dbDomain
 	 * @return User
+	 * @throws InvalidArgumentException if none of userId, userName, and actorId are specified
 	 */
 	public function newFromAnyId(
 		?int $userId,
@@ -170,11 +192,53 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		?int $actorId,
 		$dbDomain = false
 	) : User {
-		return User::newFromAnyId( $userId, $userName, $actorId, $dbDomain );
+		// Stop-gap solution for the problem described in T222212.
+		// Force the User ID and Actor ID to zero for users loaded from the database
+		// of another wiki, to prevent subtle data corruption and confusing failure modes.
+		if ( $dbDomain !== false ) {
+			$userId = 0;
+			$actorId = 0;
+		}
+
+		$user = new User;
+		$user->mFrom = 'defaults';
+
+		if ( $actorId !== null ) {
+			$user->mActorId = $actorId;
+			if ( $actorId !== 0 ) {
+				$user->mFrom = 'actor';
+			}
+			$user->setItemLoaded( 'actor' );
+		}
+
+		if ( $userName !== null && $userName !== '' ) {
+			$user->mName = $userName;
+			$user->mFrom = 'name';
+			$user->setItemLoaded( 'name' );
+		}
+
+		if ( $userId !== null ) {
+			$user->mId = $userId;
+			if ( $userId !== 0 ) {
+				$user->mFrom = 'id';
+			}
+			$user->setItemLoaded( 'id' );
+		}
+
+		if ( $user->mFrom === 'defaults' ) {
+			throw new InvalidArgumentException(
+				'Cannot create a user with no name, no ID, and no actor ID'
+			);
+		}
+
+		return $user;
 	}
 
 	/**
-	 * @see User::newFromConfirmationCode
+	 * Factory method to fetch the user for a given email confirmation code, replacing User::newFromConfirmationCode
+	 *
+	 * This code is generated when an account is created or its e-mail address has changed.
+	 * If the code is invalid or has expired, returns null.
 	 *
 	 * @since 1.35
 	 *
@@ -186,7 +250,26 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		string $confirmationCode,
 		int $flags = self::READ_NORMAL
 	) {
-		return User::newFromConfirmationCode( $confirmationCode, $flags );
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+
+		$db = $this->loadBalancer->getConnectionRef( $index );
+
+		$id = $db->selectField(
+			'user',
+			'user_id',
+			[
+				'user_email_token' => md5( $confirmationCode ),
+				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
+			],
+			__METHOD__,
+			$options
+		);
+
+		if ( !$id ) {
+			return null;
+		}
+
+		return $this->newFromId( (int)$id );
 	}
 
 	/**
