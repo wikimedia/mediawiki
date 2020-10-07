@@ -1360,8 +1360,18 @@ abstract class ContentHandler {
 	 * as representation of this document.
 	 * Overriding class should call parent function or take care of calling
 	 * the SearchDataForIndex hook.
-	 * @stable to override
 	 *
+	 * The $output must be the result of a call to {@link getParserOutputForIndexing()}
+	 * on the same content handler. That method may return ParserOutput
+	 * {@link ParserOutput::hasText() without HTML}; this base implementation
+	 * does not rely on the HTML being present, so it is safe to call
+	 * even by subclasses that override {@link getParserOutputForIndexing()}
+	 * to skip HTML generation. On the other hand,
+	 * since the default implementation of {@link getParserOutputForIndexing()}
+	 * does generate HTML, subclasses are free to rely on the HTML here
+	 * if they do not override {@link getParserOutputForIndexing()}.
+	 *
+	 * @stable to override
 	 * @param WikiPage $page Page to index
 	 * @param ParserOutput $output
 	 * @param SearchEngine $engine Search engine for which we are indexing
@@ -1398,8 +1408,14 @@ abstract class ContentHandler {
 
 	/**
 	 * Produce page output suitable for indexing.
+	 * Typically used with {@link getDataForSearchIndex()}.
 	 *
 	 * Specific content handlers may override it if they need different content handling.
+	 *
+	 * The default implementation returns output {@link ParserOutput::hasText() with HTML},
+	 * but callers should not rely on this, and subclasses may override this method
+	 * and skip HTML generation if it is not needed for indexing.
+	 * (In that case, they should not attempt to store the output in the $cache.)
 	 *
 	 * @stable to override
 	 *
@@ -1422,7 +1438,10 @@ abstract class ContentHandler {
 				$renderer->getRenderedRevision(
 					$revisionRecord,
 					$parserOptions
-				)->getRevisionParserOutput();
+				)->getRevisionParserOutput( [
+					// subclasses may want to add the following here:
+					// 'generate-html' => false,
+				] );
 			if ( $cache ) {
 				$cache->save( $parserOutput, $page, $parserOptions );
 			}

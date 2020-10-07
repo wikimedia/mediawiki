@@ -335,6 +335,13 @@ because of Phabricator reports.
   directory to the import path for LESS stylesheets. Skins can use this
   to provide a custom version of mediawiki.skin.variables.less, setting
   skin-specific values for certain LESS variables.
+* The interaction between ContentHandler::getParserOutputForIndexing()
+  and ContentHandler::getDataForSearchIndex() has been clarified
+  (the latter should only be called with the result of the former).
+  Extensions may override getParserOutputForIndexing() to skip generating HTML,
+  which may improve indexing performance. (The default implementation
+  still generates HTML, and getDataForSearchIndex() implementations can still
+  rely on it if they do not override getParserOutputForIndexing().)
 * …
 
 == Compatibility ==
