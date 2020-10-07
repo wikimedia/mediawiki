@@ -337,10 +337,6 @@ class SqliteUpdater extends DatabaseUpdater {
 	 * @return bool
 	 */
 	protected function indexHasField( $table, $index, $field ) {
-		if ( !$this->doTable( $table ) ) {
-			return true;
-		}
-
 		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
 		if ( $info ) {
 			foreach ( $info as $column ) {

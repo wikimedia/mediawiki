@@ -476,10 +476,6 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @return bool
 	 */
 	protected function indexHasField( $table, $index, $field ) {
-		if ( !$this->doTable( $table ) ) {
-			return true;
-		}
-
 		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
 		if ( $info ) {
 			foreach ( $info as $row ) {
@@ -1211,6 +1207,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doFixIpbAddressUniqueIndex() {
+		if ( !$this->doTable( 'ipblocks' ) ) {
+			return;
+		}
+
 		if ( !$this->indexHasField( 'ipblocks', 'ipb_address_unique', 'ipb_anon_only' ) ) {
 			$this->output( "...ipb_address_unique index up-to-date.\n" );
 			return;
