@@ -114,7 +114,7 @@
 		 * Construct the HTML for the debugging toolbar
 		 */
 		buildHtml: function () {
-			var $container, $bits, panes, id, gitInfo;
+			var $container, $bits, panes, paneId, gitInfoText, $gitInfo;
 
 			$container = $( '<div>' )
 				.attr( {
@@ -188,30 +188,28 @@
 
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
-			gitInfo = '';
 			if ( this.data.gitRevision !== false ) {
-				gitInfo = '(' + this.data.gitRevision.slice( 0, 7 ) + ')';
+				gitInfoText = '(' + this.data.gitRevision.slice( 0, 7 ) + ')';
 				if ( this.data.gitViewUrl !== false ) {
-					gitInfo = $( '<a>' )
+					$gitInfo = $( '<a>' )
 						.attr( 'href', this.data.gitViewUrl )
-						.text( gitInfo );
+						.text( gitInfoText );
+				} else {
+					$gitInfo = $( document.createTextNode( gitInfoText ) );
 				}
 			}
 
 			bitDiv( 'mwversion' )
 				.append( $( '<a>' ).attr( 'href', 'https://www.mediawiki.org/' ).text( 'MediaWiki' ) )
 				.append( document.createTextNode( ': ' + this.data.mwVersion + ' ' ) )
-				.append( gitInfo );
+				.append( $gitInfo );
 
 			if ( this.data.gitBranch !== false ) {
 				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );
 			}
 
 			bitDiv( 'phpversion' )
-				.append( this.data.phpEngine === 'HHVM' ?
-					$( '<a>' ).attr( 'href', 'https://hhvm.com/' ).text( 'HHVM' ) :
-					$( '<a>' ).attr( 'href', 'https://php.net/' ).text( 'PHP' )
-				)
+				.append( $( '<a>' ).attr( 'href', 'https://php.net/' ).text( 'PHP' ) )
 				.append( ': ' + this.data.phpVersion );
 
 			bitDiv( 'time' )
@@ -230,13 +228,13 @@
 				includes: this.buildIncludesPane()
 			};
 
-			for ( id in panes ) {
+			for ( paneId in panes ) {
 				$( '<div>' )
 					.prop( {
 						className: 'mw-debug-pane',
-						id: 'mw-debug-pane-' + id
+						id: 'mw-debug-pane-' + paneId
 					} )
-					.append( panes[ id ] )
+					.append( panes[ paneId ] )
 					.appendTo( $container );
 			}
 
@@ -274,6 +272,10 @@
 				entry = this.data.log[ i ];
 				entry.typeText = entryTypeText( entry.type );
 
+				// The following classes are used here:
+				// * mw-debug-console-log
+				// * mw-debug-console-warn
+				// * mw-debug-console-deprecated
 				$( '<tr>' )
 					.append( $( '<td>' )
 						.text( entry.typeText )
@@ -352,7 +354,10 @@
 				$table = $( '<table>' ).appendTo( $unit );
 
 				$( '<tr>' )
-					.html( '<th scope="col">Key</th><th scope="col">Value</th>' )
+					.append(
+						$( '<th>' ).attr( 'scope', 'col' ).text( 'Key' ),
+						$( '<th>' ).attr( 'scope', 'col' ).text( 'Value' )
+					)
 					.appendTo( $table );
 
 				for ( key in data ) {

@@ -32,11 +32,11 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * The running version of MediaWiki.
  *
- * This replaces the the $wgVersion global found in earlier versions.
+ * This replaces the $wgVersion global found in earlier versions.
  *
- * @since 1.34.1
+ * @since 1.35
  */
-define( 'MW_VERSION', '1.34.4' );
+define( 'MW_VERSION', '1.35.0' );
 
 # Obsolete aliases
 
@@ -188,8 +188,8 @@ define( 'SFH_OBJECT_ARGS', 2 );
 /** @} */
 
 /** @{
- * Autopromote conditions (must be here and not in Autopromote.php, so that
- * they're loaded for DefaultSettings.php before AutoLoader.php)
+ * Autopromote conditions ( must be here, so that they're loaded for
+ * DefaultSettings.php before AutoLoader.php)
  */
 define( 'APCOND_EDITCOUNT', 1 );
 define( 'APCOND_AGE', 2 );

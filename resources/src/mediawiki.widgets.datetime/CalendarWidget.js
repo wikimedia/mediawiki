@@ -202,7 +202,6 @@
 		return this.selected;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Set the selected dates
 	 *
@@ -253,7 +252,6 @@
 		return this.focusedDate;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Set the currently-focused date
 	 *

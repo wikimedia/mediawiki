@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Maintenance;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
-abstract class MaintenanceBaseTestCase extends MediaWikiTestCase {
+abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * The main Maintenance instance that is used for testing, wrapped and mockable.
@@ -15,7 +15,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiTestCase {
 	 */
 	protected $maintenance;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->maintenance = $this->createMaintenance();
@@ -25,7 +25,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiTestCase {
 	 * Do a little stream cleanup to prevent output in case the child class
 	 * hasn't tested the capture buffer.
 	 */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		if ( $this->maintenance ) {
 			$this->maintenance->cleanupChanneled();
 		}

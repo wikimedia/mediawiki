@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bencemac",
+			"Csega",
 			"Dj",
 			"Einstein2",
-			"Misibacsi",
-			"ViDam",
-			"Tacsipacsi",
-			"Csega",
 			"Kishajnalka",
+			"Misibacsi",
 			"Rodrigo",
-			"Bencemac"
+			"Tacsipacsi",
+			"ViDam"
 		]
 	},
 	"ooui-outline-control-move-down": "Elem mozgatása lefelé",

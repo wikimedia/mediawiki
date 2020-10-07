@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageHu
  */
 class LanguageHuTest extends LanguageClassesTestCase {

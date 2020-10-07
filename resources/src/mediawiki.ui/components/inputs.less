@@ -1,13 +1,11 @@
 // Inputs
 
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 // Text inputs
 //
 // Apply the mw-ui-input class to input and textarea fields.
-//
-// Styleguide 1.
 
 // mw-ui-input
 //
@@ -18,27 +16,25 @@
 // Markup:
 // <input class="mw-ui-input" placeholder="Enter your name">
 // <textarea class="mw-ui-input">Text here</textarea>
-//
-// Styleguide 1.1.
 .mw-ui-input {
-	background-color: #fff;
-	color: @colorGray1;
+	background-color: @background-color-base;
+	color: @color-base--emphasized;
 	.box-sizing( border-box );
 	display: block;
 	width: 100%;
-	border: 1px solid @colorFieldBorder;
-	border-radius: @borderRadius;
-	padding: 0.57142857em 0.57142857em 0.5em;
+	border: @border-base;
+	border-radius: @border-radius-base;
+	padding: 6px 8px;
 	// necessary for smooth transition
-	box-shadow: inset 0 0 0 0.1em #fff;
+	box-shadow: inset 0 0 0 1px #fff;
 	font-family: inherit;
 	font-size: inherit;
-	line-height: 1.07142857em;
+	line-height: 1.28571429em;
 	vertical-align: middle;
 
 	// Normalize & style placeholder text, see T139034
 	.mixin-placeholder( {
-		color: @colorGray7;
+		color: @color-placeholder;
 		opacity: 1;
 	} );
 
@@ -54,8 +50,8 @@
 	}
 
 	&:focus {
-		border-color: @colorProgressive;
-		box-shadow: inset 0 0 0 1px @colorProgressive;
+		border-color: @border-color-base--focus;
+		box-shadow: @box-shadow-base--focus;
 		outline: 0;
 	}
 
@@ -71,8 +67,10 @@
 
 	// Normalize styling for `<input type="search">`
 	&[ type='search' ] {
-		// Correct the odd appearance in Chrome and Safari 5
-		-webkit-appearance: textfield;
+		// Support: Safari/iOS `none` needed, Chrome would accept `textfield` as well.
+		-webkit-appearance: none;
+		// Support: Firefox.
+		-moz-appearance: textfield;
 
 		// Remove proprietary clear button in IE 10-11, Edge 12+
 		&::-ms-clear {
@@ -98,8 +96,6 @@ textarea.mw-ui-input {
 // Markup:
 // <input class="mw-ui-input mw-ui-input-inline">
 // <button class="mw-ui-button mw-ui-progressive">Submit</button>
-//
-// Styleguide 1.2.
 .mw-ui-input-inline {
 	display: inline-block;
 	width: auto;
@@ -119,8 +115,6 @@ textarea.mw-ui-input {
 // Markup:
 // <input value="input" class="mw-ui-input mw-ui-input-large" value="input" placeholder="Enter subject">
 // <textarea class="mw-ui-input mw-ui-input-large" placeholder="Provide additional details"></textarea>
-//
-// Styleguide 1.3.
 .mw-ui-input-large {
 	margin-top: 0;
 	margin-bottom: 0;
@@ -136,8 +130,8 @@ textarea.mw-ui-input {
 }
 
 input.mw-ui-input-large {
+	padding: 8px;
 	font-size: 1.75em;
 	font-weight: bold;
 	line-height: 1.25em;
-	padding: 0.3673em 0.3265em 0.3265em;
 }

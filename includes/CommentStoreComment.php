@@ -41,7 +41,7 @@ class CommentStoreComment {
 	public $data;
 
 	/**
-	 * @private For use by CommentStore only. Use self::newUnsavedComment() instead.
+	 * @internal For use by CommentStore only. Use self::newUnsavedComment() instead.
 	 * @param int|null $id
 	 * @param string $text
 	 * @param Message|null $message

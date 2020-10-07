@@ -9,7 +9,7 @@ class WfGetCallerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'WfGetCallerTest->testZero', wfGetCaller( 1 ) );
 	}
 
-	function callerOne() {
+	public function callerOne() {
 		return wfGetCaller();
 	}
 
@@ -17,7 +17,7 @@ class WfGetCallerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'WfGetCallerTest->testOne', self::callerOne() );
 	}
 
-	static function intermediateFunction( $level = 2, $n = 0 ) {
+	public static function intermediateFunction( $level = 2, $n = 0 ) {
 		if ( $n > 0 ) {
 			return self::intermediateFunction( $level, $n - 1 );
 		}

@@ -21,7 +21,7 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 		$conf2 = new HashConfig( [
 			'one' => '1',
 		] );
-		$this->assertEquals( '1', $conf2->get( 'one' ) );
+		$this->assertSame( '1', $conf2->get( 'one' ) );
 	}
 
 	/**
@@ -31,8 +31,9 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 		$conf = new HashConfig( [
 			'one' => '1',
 		] );
-		$this->assertEquals( '1', $conf->get( 'one' ) );
-		$this->setExpectedException( ConfigException::class, 'HashConfig::get: undefined option' );
+		$this->assertSame( '1', $conf->get( 'one' ) );
+		$this->expectException( ConfigException::class );
+		$this->expectExceptionMessage( 'HashConfig::get: undefined option' );
 		$conf->get( 'two' );
 	}
 
@@ -55,9 +56,9 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 			'one' => '1',
 		] );
 		$conf->set( 'two', '2' );
-		$this->assertEquals( '2', $conf->get( 'two' ) );
+		$this->assertSame( '2', $conf->get( 'two' ) );
 		// Check that set overwrites
 		$conf->set( 'one', '3' );
-		$this->assertEquals( '3', $conf->get( 'one' ) );
+		$this->assertSame( '3', $conf->get( 'one' ) );
 	}
 }

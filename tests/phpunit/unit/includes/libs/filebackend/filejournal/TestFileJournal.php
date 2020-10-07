@@ -1,6 +1,6 @@
 <?php
 
-class TestFileJournal extends NullFileJournal {
+class TestFileJournal extends FileJournal {
 	/** @var bool */
 	private $purged = false;
 

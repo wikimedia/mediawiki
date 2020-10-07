@@ -20,7 +20,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users['ApiQueryWatchlistIntegrationTestUser'] = $this->getMutableTestUser();
 		self::$users['ApiQueryWatchlistIntegrationTestUser2'] = $this->getMutableTestUser();
@@ -104,7 +104,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	private function deletePage( LinkTarget $target, $reason ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doDeleteArticleReal( $reason );
+		$page->doDeleteArticleReal( $reason, $this->getTestSysop()->getUser() );
 	}
 
 	/**
@@ -224,7 +224,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		// Check that each item in $actualItems contains all of keys specified in $requiredKeys
 		$actualItemsKeysOnly = array_map( 'array_keys', $actualItems );
 		foreach ( $actualItemsKeysOnly as $keysOfTheItem ) {
-			$this->assertEmpty( array_diff( $requiredKeys, $keysOfTheItem ) );
+			$this->assertSame( [], array_diff( $requiredKeys, $keysOfTheItem ) );
 		}
 	}
 
@@ -536,7 +536,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$this->assertCount( 1, $items );
 		$this->assertArrayHasKey( 'timestamp', $items[0] );
-		$this->assertInternalType( 'string', $items[0]['timestamp'] );
+		$this->assertIsString( $items[0]['timestamp'] );
 	}
 
 	public function testSizesPropParameter() {
@@ -829,7 +829,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'minor' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotMinor ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotMinor ) );
 	}
 
 	public function testShowBotParams() {
@@ -857,7 +857,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'bot' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotBot ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotBot ) );
 	}
 
 	public function testShowAnonParams() {
@@ -886,7 +886,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'anon' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotAnon ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotAnon ) );
 	}
 
 	public function testShowUnreadParams() {
@@ -971,7 +971,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromApiResponse( $resultPatrolled )
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotPatrolled ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotPatrolled ) );
 	}
 
 	public function testNewAndEditTypeParameters() {
@@ -1151,13 +1151,16 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			]
 		);
 		$title = Title::newFromLinkTarget( $subjectTarget );
-		$revision = Revision::newFromTitle( $title );
+		$revision = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $title );
 
+		$comment = $revision->getComment();
 		$rc = RecentChange::newForCategorization(
 			$revision->getTimestamp(),
 			Title::newFromLinkTarget( $categoryTarget ),
 			$user,
-			$revision->getComment(),
+			$comment ? $comment->text : '',
 			$title,
 			0,
 			$revision->getId(),
@@ -1389,7 +1392,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromApiResponse( $resultStart )
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultEnd ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultEnd ) );
 	}
 
 	public function testContinueParam() {
@@ -1472,7 +1475,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->watchPages( $otherUser, [ $target ] );
 
 		$reloadedUser = User::newFromName( $otherUser->getName() );
-		$this->assertEquals( '1234567890', $reloadedUser->getOption( 'watchlisttoken' ) );
+		$this->assertSame( '1234567890', $reloadedUser->getOption( 'watchlisttoken' ) );
 
 		$result = $this->doListWatchlistRequest( [
 			'wlowner' => $otherUser->getName(),
@@ -1497,7 +1500,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$otherUser->setOption( 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRequest( [
 			'wlowner' => $otherUser->getName(),
@@ -1506,7 +1510,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams_noWatchlistTokenSet() {
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRequest( [
 			'wlowner' => $this->getNonLoggedInTestUser()->getName(),

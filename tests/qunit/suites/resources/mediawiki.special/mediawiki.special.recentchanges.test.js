@@ -8,27 +8,27 @@
 			rc = require( 'mediawiki.special.recentchanges' );
 
 		// from Special:Recentchanges
-		selectHtml = '<select id="namespace" name="namespace" class="namespaceselector">'
-			+ '<option value="" selected="selected">all</option>'
-			+ '<option value="0">(Main)</option>'
-			+ '<option value="1">Talk</option>'
-			+ '<option value="2">User</option>'
-			+ '<option value="3">User talk</option>'
-			+ '<option value="4">ProjectName</option>'
-			+ '<option value="5">ProjectName talk</option>'
-			+ '</select>'
-			+ '<span class="mw-input-with-label mw-input-hidden">'
-			+ '<input name="invert" type="checkbox" value="1" id="nsinvert" title="no title" />'
-			+ '<label for="nsinvert" title="no title">Invert selection</label>'
-			+ '</span>'
-			+ '<span class="mw-input-with-label mw-input-hidden">'
-			+ '<input name="associated" type="checkbox" value="1" id="nsassociated" title="no title" />'
-			+ '<label for="nsassociated" title="no title">Associated namespace</label>'
-			+ '</span>'
-			+ '<input type="submit" value="Go" />'
-			+ '<input type="hidden" value="Special:RecentChanges" name="title" />';
+		selectHtml = '<select id="namespace" name="namespace" class="namespaceselector">' +
+			'<option value="" selected="selected">all</option>' +
+			'<option value="0">(Main)</option>' +
+			'<option value="1">Talk</option>' +
+			'<option value="2">User</option>' +
+			'<option value="3">User talk</option>' +
+			'<option value="4">ProjectName</option>' +
+			'<option value="5">ProjectName talk</option>' +
+			'</select>' +
+			'<span class="mw-input-with-label mw-input-hidden">' +
+			'<input name="invert" type="checkbox" value="1" id="nsinvert" title="no title" />' +
+			'<label for="nsinvert" title="no title">Invert selection</label>' +
+			'</span>' +
+			'<span class="mw-input-with-label mw-input-hidden">' +
+			'<input name="associated" type="checkbox" value="1" id="nsassociated" title="no title" />' +
+			'<label for="nsassociated" title="no title">Associated namespace</label>' +
+			'</span>' +
+			'<input type="submit" value="Go" />' +
+			'<input type="hidden" value="Special:RecentChanges" name="title" />';
 
-		$env = $( '<div>' ).html( selectHtml ).appendTo( 'body' );
+		$env = $( '<div>' ).html( selectHtml ).appendTo( document.body );
 
 		// TODO abstract the double strictEquals
 

@@ -44,14 +44,14 @@ class JobQueueGroup {
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
 
-	const TYPE_DEFAULT = 1; // integer; jobs popped by default
-	const TYPE_ANY = 2; // integer; any job
+	public const TYPE_DEFAULT = 1; // integer; jobs popped by default
+	private const TYPE_ANY = 2; // integer; any job
 
-	const USE_CACHE = 1; // integer; use process or persistent cache
+	public const USE_CACHE = 1; // integer; use process or persistent cache
 
-	const PROC_CACHE_TTL = 15; // integer; seconds
+	private const PROC_CACHE_TTL = 15; // integer; seconds
 
-	const CACHE_VERSION = 1; // integer; cache version
+	private const CACHE_VERSION = 1; // integer; cache version
 
 	/**
 	 * @param string $domain Wiki domain ID
@@ -118,9 +118,19 @@ class JobQueueGroup {
 			$conf['readOnlyReason'] = $this->readOnlyReason;
 		}
 
+		return $this->factoryJobQueue( $conf );
+	}
+
+	/**
+	 * @param array $conf
+	 * @return JobQueue
+	 * @throws JobQueueError
+	 */
+	private function factoryJobQueue( array $conf ) {
 		$services = MediaWikiServices::getInstance();
 		$conf['stats'] = $services->getStatsdDataFactory();
 		$conf['wanCache'] = $services->getMainWANObjectCache();
+		$conf['idGenerator'] = $services->getGlobalIdGenerator();
 
 		return JobQueue::factory( $conf );
 	}
@@ -374,7 +384,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Get the size of the queus for a list of job types
+	 * Get the size of the queues for a list of job types
 	 *
 	 * @return int[] Map of (job type => size)
 	 */
@@ -406,7 +416,7 @@ class JobQueueGroup {
 		if ( $this->coalescedQueues === null ) {
 			$this->coalescedQueues = [];
 			foreach ( $wgJobTypeConf as $type => $conf ) {
-				$queue = JobQueue::factory(
+				$queue = $this->factoryJobQueue(
 					[ 'domain' => $this->domain, 'type' => 'null' ] + $conf );
 				$loc = $queue->getCoalesceLocationInternal();
 				if ( !isset( $this->coalescedQueues[$loc] ) ) {

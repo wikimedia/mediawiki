@@ -25,6 +25,7 @@ namespace MediaWiki\Revision;
 use CommentStoreComment;
 use InvalidArgumentException;
 use MediaWiki\User\UserIdentity;
+use MWTimestamp;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
@@ -53,7 +54,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
-	function __construct(
+	public function __construct(
 		Title $title,
 		UserIdentity $user,
 		CommentStoreComment $comment,
@@ -68,8 +69,12 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mPageId = intval( $row->rev_page );
 		$this->mComment = $comment;
 
-		$timestamp = wfTimestamp( TS_MW, $row->rev_timestamp );
-		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );
+		$timestamp = MWTimestamp::convert( TS_MW, $row->rev_timestamp );
+		Assert::parameter(
+			is_string( $timestamp ),
+			'$row->rev_timestamp',
+			"must be a valid timestamp (rev_id={$this->mId}, rev_timestamp={$row->rev_timestamp})"
+		);
 
 		$this->mUser = $user;
 		$this->mMinorEdit = boolval( $row->rev_minor_edit );
@@ -97,16 +102,15 @@ class RevisionStoreRecord extends RevisionRecord {
 			&& $this->mPageId !== $this->mTitle->getArticleID()
 		) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId .
+				'The given Title (' . $this->mTitle->getPrefixedText() . ')' .
+				' does not belong to page ID ' . $this->mPageId .
 				' but actually belongs to ' . $this->mTitle->getArticleID()
 			);
 		}
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isCurrent
-	 *
-	 * @return bool
+	 * @inheritDoc
 	 */
 	public function isCurrent() {
 		return $this->mCurrent;

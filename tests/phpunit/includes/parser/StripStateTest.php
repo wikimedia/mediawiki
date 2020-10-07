@@ -3,8 +3,8 @@
 /**
  * @covers StripState
  */
-class StripStateTest extends MediaWikiTestCase {
-	public function setUp() {
+class StripStateTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setContentLang( 'qqx' );
 	}

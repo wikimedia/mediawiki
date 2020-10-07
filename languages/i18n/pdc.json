@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Geitost",
 			"Kaganer",
 			"Krinkle",
+			"Purodha",
 			"Shirayuki",
 			"Xqt",
 			"לערי ריינהארט",
-			"아라",
-			"Purodha",
-			"Geitost"
+			"아라"
 		]
 	},
 	"tog-underline": "Gleecher unnerleine:",
@@ -255,7 +256,7 @@
 	"histfirst": "eldescht",
 	"histlast": "neieschd",
 	"historysize": "({{PLURAL:$1|1 Beit|$1 Beit}})",
-	"historyempty": "(leer)",
+	"historyempty": "leer",
 	"rev-deleted-comment": "(Aamaericking iss weg geduh warre)",
 	"rev-deleted-user": "(Yuuser-Naame gelöscht)",
 	"rev-delundel": "zeig/verschwinne losse",

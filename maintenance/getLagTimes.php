@@ -24,6 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Maintenance script that displays replication lag times.
@@ -54,7 +55,7 @@ class GetLagTimes extends Maintenance {
 				$lags = $lb->getLagTimes();
 				foreach ( $lags as $serverIndex => $lag ) {
 					$host = $lb->getServerName( $serverIndex );
-					if ( IP::isValid( $host ) ) {
+					if ( IPUtils::isValid( $host ) ) {
 						$ip = $host;
 						$host = gethostbyaddr( $host );
 					} else {

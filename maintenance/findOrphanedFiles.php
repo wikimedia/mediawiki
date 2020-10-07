@@ -18,10 +18,12 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class FindOrphanedFiles extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( "Find unregistered files in the 'public' repo zone." );
@@ -31,11 +33,11 @@ class FindOrphanedFiles extends Maintenance {
 		$this->setBatchSize( 500 );
 	}
 
-	function execute() {
+	public function execute() {
 		$subdir = $this->getOption( 'subdir', '' );
 		$verbose = $this->hasOption( 'verbose' );
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $repo->hasSha1Storage() ) {
 			$this->fatalError( "Local repo uses SHA-1 file storage names; aborting." );
 		}
@@ -109,12 +111,14 @@ class FindOrphanedFiles extends Maintenance {
 					$dbr->selectSQLText(
 						'image',
 						[ 'name' => 'img_name', 'old' => 0 ],
-						$imgIN ? [ 'img_name' => $imgIN ] : '1=0'
+						$imgIN ? [ 'img_name' => $imgIN ] : '1=0',
+						__METHOD__
 					),
 					$dbr->selectSQLText(
 						'oldimage',
 						[ 'name' => 'oi_archive_name', 'old' => 1 ],
-						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0'
+						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0',
+						__METHOD__
 					)
 				],
 				$dbr::UNION_ALL

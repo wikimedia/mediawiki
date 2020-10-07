@@ -27,7 +27,9 @@ use MediaWiki\Linker\LinkTarget;
 /**
  * SlotRoleHandler instances are used to declare the existence and behavior of slot roles.
  * Most importantly, they control which content model can be used for the slot, and how it is
- * represented in the rendered verswion of page content.
+ * represented in the rendered version of page content.
+ *
+ * @stable to extend
  *
  * @since 1.33
  */
@@ -54,6 +56,8 @@ class SlotRoleHandler {
 	private $contentModel;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param string $role The name of the slot role defined by this SlotRoleHandler. See
 	 *        SlotRoleRegistry::defineRole for more information.
 	 * @param string $contentModel The default content model for this slot. As per the default
@@ -92,6 +96,7 @@ class SlotRoleHandler {
 	 *   Further values that may be supported in the future include "prepend". A "weight" key
 	 *   may be introduced for more fine grained control.
 	 *
+	 * @stable to override
 	 * @return array an associative array of hints
 	 */
 	public function getOutputLayoutHints() {
@@ -101,6 +106,7 @@ class SlotRoleHandler {
 	/**
 	 * The message key for the translation of the slot name.
 	 *
+	 * @stable to override
 	 * @return string
 	 */
 	public function getNameMessageKey() {
@@ -113,6 +119,8 @@ class SlotRoleHandler {
 	 * The default implementation always returns the content model provided to the constructor.
 	 * Subclasses may base the choice on default model on the page title or namespace.
 	 * The choice should not depend on external state, such as the page content.
+	 *
+	 * @stable to override
 	 *
 	 * @param LinkTarget $page
 	 *
@@ -128,6 +136,8 @@ class SlotRoleHandler {
 	 * The default implementation checks whether $model is the content model provided to the
 	 * constructor. Subclasses may allow other models and may base the decision on the page title
 	 * or namespace. The choice should not depend on external state, such as the page content.
+	 *
+	 * @stable to override
 	 *
 	 * @note This should be checked when creating new revisions. Existing revisions
 	 *       are not guaranteed to comply with the return value.
@@ -149,6 +159,8 @@ class SlotRoleHandler {
 	 * method, and Content::isCountable() must return true for the content of that slot.
 	 *
 	 * The default implementation always returns false.
+	 *
+	 * @stable to override
 	 *
 	 * @return bool
 	 */

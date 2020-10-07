@@ -1,8 +1,8 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -12,13 +12,12 @@ use Wikimedia\Rdbms\IResultWrapper;
 class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @return ILoadBalancer
 	 */
 	private function getLoadBalancerMock() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->method( 'getConnection' )->willReturnCallback(
 			function () {
@@ -79,7 +78,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConstruct_params() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -123,7 +122,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConstruct_failure() {
-		$this->setExpectedException( InvalidArgumentException::class, '' );
+		$this->expectException( InvalidArgumentException::class );
 
 		$lb = $this->getLoadBalancerMock();
 		new DBConnRef( $lb, 17, DB_REPLICA ); // bad constructor argument
@@ -133,7 +132,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\DBConnRef::getDomainId
 	 */
 	public function testGetDomainID() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		// getDomainID is optimized to not create a connection
 		$lb->expects( $this->never() )
@@ -155,20 +154,20 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	public function testToString() {
 		$ref = $this->getDBConnRef();
-		$this->assertInternalType( 'string', $ref->__toString() );
+		$this->assertIsString( $ref->__toString() );
 
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'test', 0 ], DB_MASTER );
-		$this->assertInternalType( 'string', $ref->__toString() );
+		$this->assertIsString( $ref->__toString() );
 	}
 
 	/**
 	 * @covers Wikimedia\Rdbms\DBConnRef::close
-	 * @expectedException \Wikimedia\Rdbms\DBUnexpectedError
 	 */
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_MASTER );
+		$this->expectException( \Wikimedia\Rdbms\DBUnexpectedError::class );
 		$ref->close();
 	}
 
@@ -192,16 +191,16 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
-	 * @expectedException Wikimedia\Rdbms\DBReadOnlyRoleError
 	 * @dataProvider provideRoleExceptions
 	 */
 	public function testRoleExceptions( $method, $args ) {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
+		$this->expectException( Wikimedia\Rdbms\DBReadOnlyRoleError::class );
 		$ref->$method( ...$args );
 	}
 
-	function provideRoleExceptions() {
+	public function provideRoleExceptions() {
 		return [
 			[ 'insert', [ 'table', [ 'a' => 1 ] ] ],
 			[ 'update', [ 'table', [ 'a' => 1 ], [ 'a' => 2 ] ] ],

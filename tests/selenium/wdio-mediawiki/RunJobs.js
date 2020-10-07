@@ -1,3 +1,5 @@
+'use strict';
+
 const MWBot = require( 'mwbot' );
 const Page = require( './Page' );
 const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
@@ -10,9 +12,7 @@ function getJobCount() {
 		action: 'query',
 		meta: 'siteinfo',
 		siprop: 'statistics'
-	} ).then( ( response ) => {
-		return response.query.statistics.jobs;
-	} );
+	} ).then( ( response ) => response.query.statistics.jobs );
 }
 
 function log( message ) {

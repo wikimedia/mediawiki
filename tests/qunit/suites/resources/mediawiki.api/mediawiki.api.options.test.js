@@ -24,6 +24,7 @@
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
 		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
+		api.badToken( 'options' );
 		api.getToken( 'options' );
 		this.server.respond(
 			/meta=tokens&type=csrf/,
@@ -33,7 +34,9 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			if ( [
+			if ( !request.requestBody ) {
+				// GET request for the token, already responded above
+			} else if ( [
 				// simple
 				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options
@@ -82,6 +85,7 @@
 
 		// We need to respond to the request for token first, otherwise the other requests won't be sent
 		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
+		api.badToken( 'options' );
 		api.getToken( 'options' );
 		this.server.respond(
 			/meta=tokens&type=csrf/,
@@ -91,7 +95,9 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			if ( [
+			if ( !request.requestBody ) {
+				// GET request for the token, already responded above
+			} else if ( [
 				// simple
 				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options

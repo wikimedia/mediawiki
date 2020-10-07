@@ -6,11 +6,8 @@
  */
 class TidyTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
-		if ( !MWTidy::isEnabled() ) {
-			$this->markTestSkipped( 'Tidy not found' );
-		}
 	}
 
 	/**

@@ -230,65 +230,69 @@
 	 * Highlight a result in the results table
 	 *
 	 * @param {Object} context
-	 * @param {jQuery|string} result `<tr>` to highlight, or 'prev' or 'next'
+	 * @param {jQuery|string} $result `<tr>` to highlight, or 'prev' or 'next'
 	 * @param {boolean} updateTextbox If true, put the suggestion in the textbox
 	 */
-	function highlight( context, result, updateTextbox ) {
-		var selected = context.data.$container.find( '.suggestions-result-current' );
-		if ( !result.get || selected.get( 0 ) !== result.get( 0 ) ) {
-			if ( result === 'prev' ) {
-				if ( selected.hasClass( 'suggestions-special' ) ) {
-					result = context.data.$container.find( '.suggestions-result' ).last();
+	function highlight( context, $result, updateTextbox ) {
+		var $selected = context.data.$container.find( '.suggestions-result-current' );
+		if ( !$result.get || $selected.get( 0 ) !== $result.get( 0 ) ) {
+			if ( $result === 'prev' ) {
+				// eslint-disable-next-line no-jquery/no-class-state
+				if ( $selected.hasClass( 'suggestions-special' ) ) {
+					$result = context.data.$container.find( '.suggestions-result' ).last();
 				} else {
-					result = selected.prev();
-					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
+					$result = $selected.prev();
+					// eslint-disable-next-line no-jquery/no-class-state
+					if ( !( $result.length && $result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
-						result = selected.parents( '.suggestions-results > *' ).prev().find( '.suggestions-result' ).eq( 0 );
+						$result = $selected.parents( '.suggestions-results > *' ).prev().find( '.suggestions-result' ).eq( 0 );
 					}
 
-					if ( selected.length === 0 ) {
+					if ( $selected.length === 0 ) {
 						// we are at the beginning, so lets jump to the last item
 						if ( context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
-							result = context.data.$container.find( '.suggestions-special' );
+							$result = context.data.$container.find( '.suggestions-special' );
 						} else {
-							result = context.data.$container.find( '.suggestions-results .suggestions-result' ).last();
+							$result = context.data.$container.find( '.suggestions-results .suggestions-result' ).last();
 						}
 					}
 				}
-			} else if ( result === 'next' ) {
-				if ( selected.length === 0 ) {
+			} else if ( $result === 'next' ) {
+				if ( $selected.length === 0 ) {
 					// No item selected, go to the first one
-					result = context.data.$container.find( '.suggestions-results .suggestions-result' ).first();
-					if ( result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
+					$result = context.data.$container.find( '.suggestions-results .suggestions-result' ).first();
+					if ( $result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 						// No suggestion exists, go to the special one directly
-						result = context.data.$container.find( '.suggestions-special' );
+						$result = context.data.$container.find( '.suggestions-special' );
 					}
 				} else {
-					result = selected.next();
-					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
+					$result = $selected.next();
+					// eslint-disable-next-line no-jquery/no-class-state
+					if ( !( $result.length && $result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
-						result = selected.parents( '.suggestions-results > *' ).next().find( '.suggestions-result' ).eq( 0 );
+						$result = $selected.parents( '.suggestions-results > *' ).next().find( '.suggestions-result' ).eq( 0 );
 					}
 
-					if ( selected.hasClass( 'suggestions-special' ) ) {
-						result = $( [] );
+					// eslint-disable-next-line no-jquery/no-class-state
+					if ( $selected.hasClass( 'suggestions-special' ) ) {
+						$result = $( [] );
 					} else if (
-						result.length === 0 &&
+						$result.length === 0 &&
 						context.data.$container.find( '.suggestions-special' ).html() !== ''
 					) {
 						// We were at the last item, jump to the specials!
-						result = context.data.$container.find( '.suggestions-special' );
+						$result = context.data.$container.find( '.suggestions-special' );
 					}
 				}
 			}
-			selected.removeClass( 'suggestions-result-current' );
-			result.addClass( 'suggestions-result-current' );
+			$selected.removeClass( 'suggestions-result-current' );
+			$result.addClass( 'suggestions-result-current' );
 		}
 		if ( updateTextbox ) {
-			if ( result.length === 0 || result.is( '.suggestions-special' ) ) {
+			if ( $result.length === 0 || $result.is( '.suggestions-special' ) ) {
 				restore( context );
 			} else {
-				context.data.$textbox.val( result.data( 'text' ) );
+				context.data.$textbox.val( $result.data( 'text' ) );
 				// .val() doesn't call any event handlers, so
 				// let the world know what happened
 				context.data.$textbox.trigger( 'change' );
@@ -508,7 +512,7 @@
 	 * @param {number} key Code of key pressed
 	 */
 	function keypress( e, context, key ) {
-		var selected,
+		var $selected,
 			// eslint-disable-next-line no-jquery/no-sizzle
 			wasVisible = context.data.$container.is( ':visible' ),
 			preventDefault = false;
@@ -543,25 +547,25 @@
 			// Enter
 			case 13:
 				preventDefault = wasVisible;
-				selected = context.data.$container.find( '.suggestions-result-current' );
+				$selected = context.data.$container.find( '.suggestions-result-current' );
 				hide( context );
-				if ( selected.length === 0 || context.data.selectedWithMouse ) {
+				if ( $selected.length === 0 || context.data.selectedWithMouse ) {
 					// If nothing is selected or if something was selected with the mouse
 					// cancel any current requests and allow the form to be submitted
 					// (simply don't prevent default behavior).
 					cancel( context );
 					preventDefault = false;
-				} else if ( selected.is( '.suggestions-special' ) ) {
+				} else if ( $selected.is( '.suggestions-special' ) ) {
 					if ( typeof context.config.special.select === 'function' ) {
 						// Allow the callback to decide whether to prevent default or not
-						if ( context.config.special.select.call( selected, context.data.$textbox, 'keyboard' ) === true ) {
+						if ( context.config.special.select.call( $selected, context.data.$textbox, 'keyboard' ) === true ) {
 							preventDefault = false;
 						}
 					}
 				} else {
 					if ( typeof context.config.result.select === 'function' ) {
 						// Allow the callback to decide whether to prevent default or not
-						if ( context.config.result.select.call( selected, context.data.$textbox, 'keyboard' ) === true ) {
+						if ( context.config.result.select.call( $selected, context.data.$textbox, 'keyboard' ) === true ) {
 							preventDefault = false;
 						}
 					}
@@ -644,7 +648,7 @@
 					visibleResults: 0,
 
 					// Suggestion the last mousedown event occurred on
-					mouseDownOn: $( [] ),
+					$mouseDownOn: $( [] ),
 					$textbox: $( this ),
 					selectedWithMouse: false
 				};
@@ -658,13 +662,13 @@
 							// textbox loses focus. Instead, listen for a mousedown followed
 							// by a mouseup on the same div.
 							.on( 'mousedown', function ( e ) {
-								context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results .suggestions-result' );
+								context.data.$mouseDownOn = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 							} )
 							.on( 'mouseup', function ( e ) {
 								var $result = $( e.target ).closest( '.suggestions-results .suggestions-result' ),
-									$other = context.data.mouseDownOn;
+									$other = context.data.$mouseDownOn;
 
-								context.data.mouseDownOn = $( [] );
+								context.data.$mouseDownOn = $( [] );
 								if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 									return;
 								}
@@ -691,13 +695,13 @@
 							// textbox loses focus. Instead, listen for a mousedown followed
 							// by a mouseup on the same div.
 							.on( 'mousedown', function ( e ) {
-								context.data.mouseDownOn = $( e.target ).closest( '.suggestions-special' );
+								context.data.$mouseDownOn = $( e.target ).closest( '.suggestions-special' );
 							} )
 							.on( 'mouseup', function ( e ) {
 								var $special = $( e.target ).closest( '.suggestions-special' ),
-									$other = context.data.mouseDownOn;
+									$other = context.data.$mouseDownOn;
 
-								context.data.mouseDownOn = $( [] );
+								context.data.$mouseDownOn = $( [] );
 								if ( $special.get( 0 ) !== $other.get( 0 ) ) {
 									return;
 								}
@@ -761,7 +765,7 @@
 					.on( 'blur', function () {
 						// When losing focus because of a mousedown
 						// on a suggestion, don't hide the suggestions
-						if ( context.data.mouseDownOn.length > 0 ) {
+						if ( context.data.$mouseDownOn.length > 0 ) {
 							return;
 						}
 						hide( context );

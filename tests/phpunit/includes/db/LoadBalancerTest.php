@@ -20,10 +20,11 @@
  *
  * @file
  */
-
-use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DatabaseDomain;
+use PHPUnit\Framework\Constraint\StringContains;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
 use Wikimedia\TestingAccessWrapper;
@@ -33,7 +34,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
-class LoadBalancerTest extends MediaWikiTestCase {
+class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function makeServerConfig( $flags = DBO_DEFAULT ) {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
@@ -56,6 +57,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::resolveDomainID()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::haveIndex()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::isNonZeroLoad()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::setDomainAliases()
 	 */
 	public function testWithoutReplica() {
 		global $wgDBname;
@@ -71,7 +73,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			}
 		] );
 
-		$this->assertEquals( 1, $lb->getServerCount() );
+		$this->assertSame( 1, $lb->getServerCount() );
 		$this->assertFalse( $lb->hasReplicaServers() );
 		$this->assertFalse( $lb->hasStreamingReplicaServers() );
 
@@ -90,12 +92,15 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $called );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master'
+		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_MASTER, $dbr->getTopologyRole(), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
 		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
@@ -147,30 +152,33 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $lb->isNonZeroLoad( 1 ) );
 
 		for ( $i = 0; $i < $lb->getServerCount(); ++$i ) {
-			$this->assertType( 'string', $lb->getServerName( $i ) );
-			$this->assertType( 'array', $lb->getServerInfo( $i ) );
-			$this->assertType( 'string', $lb->getServerType( $i ) );
-			$this->assertType( 'array', $lb->getServerAttributes( $i ) );
+			$this->assertIsString( $lb->getServerName( $i ) );
+			$this->assertIsArray( $lb->getServerInfo( $i ) );
+			$this->assertIsString( $lb->getServerType( $i ) );
+			$this->assertIsArray( $lb->getServerAttributes( $i ) );
 		}
 
 		$dbw = $lb->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getLBInfo( 'clusterMasterHost' ),
-			'cluster master set' );
+			$dbw->getTopologyRootMaster(),
+			'cluster master set'
+		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getLBInfo( 'clusterMasterHost' ),
-			'cluster master set' );
+			$dbr->getTopologyRootMaster(),
+			'cluster master set'
+		);
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
-		$this->assertWriteForbidden( $dbr );
 		$this->assertEquals( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
 
 		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
@@ -319,7 +327,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 	}
 
@@ -329,7 +337,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			$this->fail( 'Write operation should have failed!' );
 		} catch ( DBError $ex ) {
 			// check that the exception message contains "Write operation"
-			$constraint = new PHPUnit_Framework_Constraint_StringContains( 'Write operation' );
+			$constraint = new StringContains( 'Write operation' );
 
 			if ( !$constraint->evaluate( $ex->getMessage(), '', true ) ) {
 				// re-throw original error, to preserve stack trace
@@ -375,6 +383,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getServerAttributes
+	 */
 	public function testServerAttributes() {
 		$servers = [
 			[ // master
@@ -389,7 +400,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
 		$this->assertTrue( $lb->getServerAttributes( 0 )[Database::ATTR_DB_LEVEL_LOCKING] );
@@ -418,7 +429,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
 		$this->assertFalse( $lb->getServerAttributes( 1 )[Database::ATTR_DB_LEVEL_LOCKING] );
@@ -430,7 +441,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getAnyOpenConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 */
-	function testOpenConnection() {
+	public function testOpenConnection() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$i = $lb->getWriterIndex();
@@ -574,8 +585,26 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
+	 */
+	public function testForbiddenWritesNoRef() {
+		// Simulate web request with DBO_TRX
+		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_TRX ] );
+
+		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
+		$this->expectException( DBReadOnlyRoleError::class );
+		$dbr->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
+
+		// FIXME: not needed?
+		$lb->closeAll();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 */
 	public function testDBConnRefReadsMasterAndReplicaRoles() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
@@ -601,38 +630,50 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 */
 	public function testDBConnRefWritesReplicaRole() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( DB_REPLICA );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 */
 	public function testDBConnRefWritesReplicaRoleIndex() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( 1 );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
+	 */
+	public function testLazyDBConnRefWritesReplicaRoleIndex() {
+		$lb = $this->newMultiServerLocalLoadBalancer();
+
+		$rConn = $lb->getLazyConnectionRef( 1 );
+
+		$this->expectException( DBReadOnlyRoleError::class );
+		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 */
 	public function testDBConnRefWritesReplicaRoleInsert() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( DB_REPLICA );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->insert( 'test', [ 't' => 1 ], __METHOD__ );
 	}
 
@@ -746,5 +787,25 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$rReplica->query( "SELECT 1", __METHOD__ );
 		$this->assertNotFalse( $lb->getAnyOpenConnection( 0 ) );
 		$this->assertNotFalse( $lb->getAnyOpenConnection( 1 ) );
+	}
+
+	/**
+	 * @covers LoadBalancer::setDomainAliases()
+	 * @covers LoadBalancer::resolveDomainID()
+	 */
+	public function testSetDomainAliases() {
+		$lb = $this->newMultiServerLocalLoadBalancer();
+		$origDomain = $lb->getLocalDomainID();
+
+		$this->assertEquals( $origDomain, $lb->resolveDomainID( false ) );
+		$this->assertEquals( "db-prefix_", $lb->resolveDomainID( "db-prefix_" ) );
+
+		$lb->setDomainAliases( [
+			'alias-db' => 'realdb',
+			'alias-db-prefix_' => 'realdb-realprefix_'
+		] );
+
+		$this->assertEquals( 'realdb', $lb->resolveDomainID( 'alias-db' ) );
+		$this->assertEquals( "realdb-realprefix_", $lb->resolveDomainID( "alias-db-prefix_" ) );
 	}
 }

@@ -1,9 +1,10 @@
 <?php
+
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	protected static $restrictionsForChecks;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		self::$restrictionsForChecks = MWRestrictions::newFromArray( [
 			'IPAddresses' => [
 				'10.0.0.0/8',

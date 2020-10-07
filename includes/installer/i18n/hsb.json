@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Macofe",
 			"Michawiki",
-			"아라",
-			"Macofe"
+			"아라"
 		]
 	},
 	"config-desc": "Instalaciski program za MediaWiki",
@@ -35,7 +35,6 @@
 	"config-page-install": "Instalować",
 	"config-page-complete": "Dokónčeny!",
 	"config-page-restart": "Instalaciju znowa startować",
-	"config-page-readme": "Čitaj mje",
 	"config-page-releasenotes": "Wersijowe informacije",
 	"config-page-copying": "Kopěrowanje",
 	"config-page-upgradedoc": "Aktualizowanje",

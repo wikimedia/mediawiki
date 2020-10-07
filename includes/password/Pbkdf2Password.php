@@ -20,6 +20,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * A PBKDF2-hashed password
  *
@@ -29,7 +31,7 @@
  * @since 1.24
  */
 class Pbkdf2Password extends ParameterizedPassword {
-	protected function getDefaultParams() {
+	protected function getDefaultParams() : array {
 		return [
 			'algo' => $this->config['algo'],
 			'rounds' => $this->config['cost'],
@@ -37,25 +39,32 @@ class Pbkdf2Password extends ParameterizedPassword {
 		];
 	}
 
-	protected function getDelimiter() {
+	protected function getDelimiter() : string {
 		return ':';
 	}
 
-	public function crypt( $password ) {
+	public function crypt( string $password ) : void {
 		if ( count( $this->args ) == 0 ) {
 			$this->args[] = base64_encode( random_bytes( 16 ) );
 		}
 
-		$hash = hash_pbkdf2(
-			$this->params['algo'],
-			$password,
-			base64_decode( $this->args[0] ),
-			(int)$this->params['rounds'],
-			(int)$this->params['length'],
-			true
-		);
-		if ( !is_string( $hash ) ) {
-			throw new PasswordError( 'Error when hashing password.' );
+		try {
+			$hash = hash_pbkdf2(
+				$this->params['algo'],
+				$password,
+				base64_decode( $this->args[0] ),
+				(int)$this->params['rounds'],
+				(int)$this->params['length'],
+				true
+			);
+
+			// PHP < 8 raises a warning in case of an error, such as unknown algorithm...
+			if ( !is_string( $hash ) ) {
+				throw new PasswordError( 'Error when hashing password.' );
+			}
+		} catch ( ValueError $e ) {
+			// ...while PHP 8 throws ValueError
+			throw new PasswordError( 'Error when hashing password.', 0, $e );
 		}
 
 		$this->hash = base64_encode( $hash );

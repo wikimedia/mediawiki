@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users[__CLASS__] = new TestUser( __CLASS__ );
 	}

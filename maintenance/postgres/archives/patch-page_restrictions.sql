@@ -7,4 +7,3 @@ CREATE TABLE page_restrictions (
   pr_expiry TIMESTAMPTZ      NULL
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
-

@@ -2,8 +2,8 @@
 	/* eslint-disable camelcase */
 	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
-		mwLanguageCache = {},
-		hasOwn = Object.hasOwnProperty;
+		testData = require( 'mediawiki.language.testdata' ),
+		phpParserData = testData.phpParserData;
 
 	// When the expected result is the same in both modes
 	function assertBothModes( assert, parserArguments, expectedResult, assertMessage ) {
@@ -14,6 +14,12 @@
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.originalMwLanguage = mw.language;
+			this.getMwLanguage = function ( langCode ) {
+				mw.language = Object.create( this.originalMwLanguage );
+				mw.language.setData( langCode, phpParserData.jsData[ langCode ] );
+				testData.initLang( langCode );
+				return mw.language;
+			};
 			this.parserDefaults = mw.jqueryMsg.getParserDefaults();
 			mw.jqueryMsg.setParserDefaults( {
 				magic: {
@@ -74,6 +80,8 @@
 
 			'formatnum-msg': '{{formatnum:$1}}',
 
+			'bidi-msg': 'Welcome {{BIDI:$1}}!',
+
 			'portal-url': 'Project:Community portal',
 			'see-portal-url': '{{Int:portal-url}} is an important community page.',
 
@@ -89,62 +97,6 @@
 			'plural-empty-explicit-form': 'There is me{{PLURAL:$1|0=| and other people}}.'
 		}
 	} ) );
-
-	/**
-	 * Be careful to no run this in parallel as it uses a global identifier (mw.language)
-	 * to transport the module back to the test. It musn't be overwritten concurrentely.
-	 *
-	 * This function caches the mw.language data to avoid having to request the same module
-	 * multiple times. There is more than one test case for any given language.
-	 */
-	function getMwLanguage( langCode ) {
-		if ( !hasOwn.call( mwLanguageCache, langCode ) ) {
-			mwLanguageCache[ langCode ] = $.ajax( {
-				url: mw.util.wikiScript( 'load' ),
-				data: {
-					skin: mw.config.get( 'skin' ),
-					lang: langCode,
-					debug: mw.config.get( 'debug' ),
-					modules: 'mediawiki.language',
-					only: 'scripts'
-				},
-				dataType: 'script',
-				cache: true
-			} ).then( function () {
-				return mw.language;
-			} );
-		}
-		return mwLanguageCache[ langCode ];
-	}
-
-	/**
-	 * @param {Function[]} tasks List of functions that perform tasks
-	 *  that may be asynchronous. Invoke the callback parameter when done.
-	 */
-	function process( tasks ) {
-		function abort() {
-			tasks.splice( 0, tasks.length );
-			// eslint-disable-next-line no-use-before-define
-			next();
-		}
-		function next() {
-			var task;
-			if ( !tasks ) {
-				// This happens if after the process is completed, one of our callbacks is
-				// invoked. This can happen if a test timed out but the process was still
-				// running. In that case, ignore it. Don't invoke complete() a second time.
-				return;
-			}
-			task = tasks.shift();
-			if ( task ) {
-				task( next, abort );
-			} else {
-				// Remove tasks list to indicate the process is final.
-				tasks = null;
-			}
-		}
-		next();
-	}
 
 	QUnit.test( 'Replace', function ( assert ) {
 		mw.messages.set( 'simple', 'Foo $1 baz $2' );
@@ -187,6 +139,26 @@
 			formatParse( 'object-replace', $( '<div class="bar">&gt;</div>' ).toArray() ),
 			'Foo <div class="bar">&gt;</div>',
 			'HTMLElement[] arrays are preserved as raw html'
+		);
+
+		mw.messages.set( 'simple-double-replace', 'Foo 1: $1 2: $1' );
+		assert.strictEqual(
+			formatParse( 'simple-double-replace', 'bar' ),
+			'Foo 1: bar 2: bar',
+			'string params can be used multiple times'
+		);
+
+		mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
+		assert.strictEqual(
+			formatParse( 'object-double-replace', $( '<div class="bar">&gt;</div>' ) ),
+			'Foo 1: <div class="bar">&gt;</div> 2: <div class="bar">&gt;</div>',
+			'jQuery objects can be used multiple times'
+		);
+
+		assert.strictEqual(
+			formatParse( 'object-double-replace', $( '<div class="bar">&gt;</div>' ).get( 0 ) ),
+			'Foo 1: <div class="bar">&gt;</div> 2: <div class="bar">&gt;</div>',
+			'HTMLElement can be used multiple times'
 		);
 
 		assert.strictEqual(
@@ -361,31 +333,25 @@
 		assert.strictEqual( formatParse( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ', 'Grammar Test with wrong grammar template syntax' );
 	} );
 
-	QUnit.test( 'Match PHP parser', function ( assert ) {
-		var tasks;
-		mw.messages.set( mw.libs.phpParserData.messages );
-		tasks = mw.libs.phpParserData.tests.map( function ( test ) {
-			var done = assert.async();
-			return function ( next, abort ) {
-				getMwLanguage( test.lang )
-					.then( function ( langClass ) {
-						var parser;
-						mw.config.set( 'wgUserLanguage', test.lang );
-						parser = new mw.jqueryMsg.Parser( { language: langClass } );
-						assert.strictEqual(
-							parser.parse( test.key, test.args ).html(),
-							test.result,
-							test.name
-						);
-					}, function () {
-						assert.ok( false, 'Language "' + test.lang + '" failed to load.' );
-					} )
-					.then( done, done )
-					.then( next, abort );
-			};
-		} );
+	QUnit.test( 'Bi-di', function ( assert ) {
+		assert.strictEqual( formatParse( 'bidi-msg', 'Bob' ), 'Welcome \u202ABob\u202C!', 'Bidi test (LTR)' );
+		assert.strictEqual( formatParse( 'bidi-msg', 'בוב' ), 'Welcome \u202Bבוב\u202C!', 'Bidi test (RTL)' );
+	} );
 
-		process( tasks );
+	QUnit.test( 'Match PHP parser', function ( assert ) {
+		var self = this;
+		mw.messages.set( phpParserData.messages );
+		phpParserData.tests.forEach( function ( test ) {
+			var parser,
+				langClass = self.getMwLanguage( test.lang );
+			mw.config.set( 'wgUserLanguage', test.lang );
+			parser = new mw.jqueryMsg.Parser( { language: langClass } );
+			assert.strictEqual(
+				parser.parse( test.key, test.args ).html(),
+				test.result,
+				test.name
+			);
+		} );
 	} );
 
 	QUnit.test( 'Links', function ( assert ) {
@@ -775,6 +741,7 @@
 			var message;
 			outerCalled = false;
 			innerCalled = false;
+			// eslint-disable-next-line mediawiki/msg-doc
 			message = mw.message( key );
 			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
@@ -919,35 +886,21 @@
 	];
 
 	QUnit.test( 'formatnum', function ( assert ) {
-		var queue;
+		var self = this;
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-		queue = formatnumTests.map( function ( test ) {
-			var done = assert.async();
-			return function ( next, abort ) {
-				getMwLanguage( test.lang )
-					.then( function ( langClass ) {
-						var parser;
-						// The unit tests perform hot-reloading of mw.language (in hacky way).
-						// For the languages/*.js script files to work, they need to statically
-						// access mw.language.getData() for the "current" language.
-						mw.language = langClass;
-						mw.config.set( 'wgUserLanguage', test.lang );
-						parser = new mw.jqueryMsg.Parser( { language: langClass } );
-						assert.strictEqual(
-							parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
-								[ test.number ] ).html(),
-							test.result,
-							test.description
-						);
-					}, function () {
-						assert.ok( false, 'Language "' + test.lang + '" failed to load' );
-					} )
-					.then( done, done )
-					.then( next, abort );
-			};
+		formatnumTests.forEach( function ( test ) {
+			var parser,
+				langClass = self.getMwLanguage( test.lang );
+			mw.config.set( 'wgUserLanguage', test.lang );
+			parser = new mw.jqueryMsg.Parser( { language: langClass } );
+			assert.strictEqual(
+				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+					[ test.number ] ).html(),
+				test.result,
+				test.description
+			);
 		} );
-		process( queue );
 	} );
 
 	// HTML in wikitext
@@ -1240,6 +1193,7 @@
 		for ( i = 0; i < cases.length; i++ ) {
 			mw.messages.set( cases[ i ].key, cases[ i ].msg );
 			assert.strictEqual(
+				// eslint-disable-next-line mediawiki/msg-doc
 				mw.message( cases[ i ].key, $( '<b>' ).text( 'x' ) ).parse(),
 				cases[ i ].expected,
 				cases[ i ].key
@@ -1305,6 +1259,19 @@
 			'Passing a jQuery object as a parameter to a message without wikitext works correctly'
 		);
 
+		( function () {
+			var $messageArgument,
+				$message;
+
+			mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
+			$messageArgument = $( '<div class="bar">&gt;</div>' );
+			$message = $( '<span>' ).msg( 'object-double-replace', $messageArgument );
+			assert.ok(
+				$message[ 0 ].contains( $messageArgument[ 0 ] ),
+				'The original jQuery object is actually in the DOM'
+			);
+		}() );
+
 		assert.strictEqual(
 			mw.message( 'param-test', $( '<span>' ).text( 'World' ).get( 0 ) ).parse(),
 			'Hello <span>World</span>',
@@ -1346,8 +1313,8 @@
 		mw.messages.set( 'qqx-message', '(qqx-message)' );
 		mw.messages.set( 'non-qqx-message', '<b>hello world</b>' );
 
-		assert.strictEqual( mw.message( 'missing-message' ).parse(), '(missing-message)', 'qqx message (missing)' );
-		assert.strictEqual( mw.message( 'missing-message', $bar, 'baz' ).parse(), '(missing-message: <b>bar</b>, baz)', 'qqx message (missing) with parameters' );
+		assert.strictEqual( mw.message( 'missing-message' ).parse(), '⧼missing-message⧽', 'qqx message (missing)' );
+		assert.strictEqual( mw.message( 'missing-message', $bar, 'baz' ).parse(), '⧼missing-message⧽', 'qqx message (missing) with parameters' );
 		assert.strictEqual( mw.message( 'qqx-message' ).parse(), '(qqx-message)', 'qqx message (defined)' );
 		assert.strictEqual( mw.message( 'qqx-message', $bar, 'baz' ).parse(), '(qqx-message: <b>bar</b>, baz)', 'qqx message (defined) with parameters' );
 		assert.strictEqual( mw.message( 'non-qqx-message' ).parse(), '<b>hello world</b>', 'non-qqx message in qqx mode' );

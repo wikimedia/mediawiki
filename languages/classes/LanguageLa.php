@@ -40,7 +40,7 @@ class LanguageLa extends Language {
 	 *
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['la'][$case][$word] ) ) {
 			return $wgGrammarForms['la'][$case][$word];

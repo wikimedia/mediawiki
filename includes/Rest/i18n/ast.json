@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"rest-prefix-mismatch": "El camín solicitáu ($1) nun taba dientro del camín raíz de la API REST ($2)",
+	"rest-wrong-method": "El métodu solicitáu ($1) nun ̺{{PLURAL:$3|yera'l métodu permitíu pa esti camín|yera unu de los métodos permitíos pa esti camín}} ($2)",
+	"rest-no-match": "El camín relativu solicitáu ($1) nun casa con nengún xestor conocíu",
+	"rest-nonexistent-title": "El títulu especificáu ($1) nun esiste",
+	"rest-nonexistent-title-revision": "La revisión especificada ($1) nun esiste pa la páxina dada ($2)",
+	"rest-nonexistent-revision": "La revisión especificada ($1) nun esiste",
+	"rest-permission-denied-title": "L'usuariu nun tien permisos para lleer el títulu ($1)",
+	"rest-permission-denied-revision": "L'usuariu nun tien accesu a la revisión solicitada ($1).",
+	"rest-pagehistory-incompatible-params": "Los parámetros \"older_than\" y \"newer_than\" nun pueden dase al mesmu tiempu",
+	"rest-pagehistory-param-range-error": "El ID de revisión tien de ser mayor que 0",
+	"rest-pagehistory-timestamp-error": "Nun puede recuperase la marca de tiempu de la revisión especificada ($1)",
+	"rest-pagehistorycount-type-unrecognized": "El tipu de recuentu especificáu ($1) nun ye válidu",
+	"rest-pagehistorycount-parameters-invalid": "La combinación de parámetros especificada nun tien encontu.",
+	"rest-compare-page-mismatch": "Les revisiones especificaes pertenecen a páxines distintes; refugóse la comparancia",
+	"rest-compare-permission-denied": "L'usuariu nun tien accesu a les revisiones solicitaes",
+	"rest-compare-nonexistent": "La revisión especificada pol parámetru $1 nun esiste.",
+	"rest-compare-inaccessible": "La revisión especificada pol parámetru $1 nun tien accesu públicu.",
+	"rest-compare-wrong-content": "L'espaciu $1 de la revisión especificáu pol parámetru $2 tien un tipu de conteníu que nun pue convertise a testu.",
+	"rest-compare-wikidiff2": "Esti endpoint rique wikidiff2 1.9.0 o mayor.",
+	"rest-pagehistorycount-too-many-revisions": "El títulu especificáu contien demasiaes revisiones pa recuperar esta cuenta.",
+	"rest-search-error": "Error al devolver los resultaos de la gueta: $1"
+}

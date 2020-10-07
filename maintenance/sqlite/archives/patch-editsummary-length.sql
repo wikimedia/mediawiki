@@ -62,4 +62,3 @@ CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_sto
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
 CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1(10));
-

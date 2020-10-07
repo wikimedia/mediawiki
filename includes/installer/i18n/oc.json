@@ -2,10 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Cedric31",
+			"Fitoschido",
 			"Jfblanc",
-			"Seb35",
 			"Nicolas Eynaud",
-			"Fitoschido"
+			"Seb35"
 		]
 	},
 	"config-desc": "Lo programa d’installacion de MediaWiki",
@@ -30,7 +30,6 @@
 	"config-page-install": "Installar",
 	"config-page-complete": "Acabat !",
 	"config-page-restart": "Reaviar l’installacion",
-	"config-page-readme": "Legissètz-me",
 	"config-page-releasenotes": "Nòtas de version",
 	"config-page-copying": "Còpia",
 	"config-page-upgradedoc": "Mesa a jorn",
@@ -39,7 +38,6 @@
 	"config-env-good": "L’environament es estat verificat.\nPodètz installar MediaWiki.",
 	"config-env-bad": "L’environament es estat verificat.\nPodètz pas installar MediaWiki.",
 	"config-env-php": "PHP $1 es installat.",
-	"config-env-hhvm": "HHVM $1 es installat.",
 	"config-unicode-using-intl": "Utilizacion de [https://pecl.php.net/intl l'extension PECL intl] per la normalizacion Unicode.",
 	"config-memory-raised": "Lo paramètre <code>memory_limit</code> de PHP èra a $1, portat a $2.",
 	"config-apc": "[https://www.php.net/apc APC] es installat",

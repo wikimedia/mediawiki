@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko",
+			"Thibaut120094",
+			"Verdy p",
+			"Wladek92"
+		]
+	},
+	"rest-prefix-mismatch": "Le chemin requis ($1) n’était pas dans le chemin racine de l’API REST ($2)",
+	"rest-wrong-method": "La méthode requise ($1) n’était pas {{PLURAL:$3|la méthode autorisée pour ce chemin|une des méthodes autorisées pour ce chemin}} ($2)",
+	"rest-no-match": "Le chemin relatif requis ($1) ne correspondait à aucun gestionnaire connu",
+	"rest-nonexistent-title": "Le titre indiqué ($1) n’existe pas",
+	"rest-nonexistent-title-revision": "La version spécifiée ($1) n’existe pas pour la page spécifiée ($2)",
+	"rest-nonexistent-revision": "La version spécifiée ($1) n’existe pas",
+	"rest-permission-denied-anon": "Non accessible par un utilisateur anonyme",
+	"rest-permission-denied-title": "L’utilisateur n’a pas le droit de lire le titre ($1)",
+	"rest-permission-denied-revision": "L’utilisateur n’a pas accès à la version demandée ($1).",
+	"rest-pagehistory-incompatible-params": "Les paramètres « older_than » et « newer_than » ne peuvent pas être spécifiés simultanément",
+	"rest-pagehistory-param-range-error": "L’ID de version doit être supérieur à 0",
+	"rest-pagehistory-timestamp-error": "Impossible de récupérer l’horodatage de la version spécifiée ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Le type de compteur indiqué ($1) est incorrect",
+	"rest-pagehistorycount-parameters-invalid": "La combinaison spécifiée de paramètres n’est pas prise en charge.",
+	"rest-compare-page-mismatch": "Les révisions spécifiées appartiennent à des pages différentes ; refus de les comparer.",
+	"rest-compare-permission-denied": "L’utilisateur n’a pas accès aux versions demandées.",
+	"rest-compare-nonexistent": "La version spécifiée par le paramètre $1 n’existe pas.",
+	"rest-compare-inaccessible": "La version spécifiée par le paramètre $1 n’est pas accessible publiquement.",
+	"rest-compare-wrong-content": "L’emplacement $1 de la version spécifiée par le paramètre $2 a un type de contenu qui ne peut pas être converti en texte.",
+	"rest-compare-wikidiff2": "Ce point de terminaison nécessite wikidiff2 1.9.0 ou supérieur.",
+	"rest-pagehistorycount-too-many-revisions": "Le titre spécifié contient trop de versions pour en récupérer ce nombre.",
+	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1",
+	"rest-page-source-type-error": "Le type de contenu de la page source demandée n'est pas pris en charge",
+	"rest-no-revision": "Impossible de récupérer la révision du titre $1",
+	"rest-media-too-many-links": "Trop de liens de média trouvés dans le titre $1 ($2 autorisés)",
+	"rest-html-backend-error": "Impossible de récupérer le HTML de Parsoid",
+	"rest-bad-json-body": "Mauvais corps de requête, doit être un objet JSON.",
+	"rest-json-body-parse-error": "Échec de l’analyse du corps de la requête en JSON : $1",
+	"rest-missing-body-field": "Champ obligatoire « $1 » absent du corps de la requête.",
+	"rest-bad-content-model": "Mauvais modèle de contenu : $1",
+	"rest-update-cannot-create-page": "La page « $1 » n’a pas pu être créée car elle existe déjà. Pour mettre à jour la page existante, fournir l’ID de la révision de base dans la structure sous la clé « latest » dans le corps de la requête.",
+	"rest-extraneous-csrf-token": "Jeton CRSF superflu trouvé. Les jetons CSRF ne doivent pas être utilisés lors de l’utilisation de mécanismes d’authentification tels que OAuth, qui sont sûrs vis-à-vis des attaques CSRF.",
+	"rest-cannot-load-file": "Le fichier de titre « $1 » n’a pas pu être chargé."
+}

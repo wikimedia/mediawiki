@@ -77,7 +77,7 @@ class CleanupImages extends TableCleanup {
 
 		$title = Title::makeTitleSafe( NS_FILE, $cleaned );
 
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			$this->output( "page $source ($cleaned) is illegal.\n" );
 			$safe = $this->buildSafeTitle( $cleaned );
 			if ( $safe === false ) {
@@ -120,7 +120,7 @@ class CleanupImages extends TableCleanup {
 	 */
 	private function filePath( $name ) {
 		if ( $this->repo === null ) {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
@@ -219,7 +219,7 @@ class CleanupImages extends TableCleanup {
 			$name );
 
 		$test = Title::makeTitleSafe( NS_FILE, $x );
-		if ( is_null( $test ) || $test->getDBkey() !== $x ) {
+		if ( $test === null || $test->getDBkey() !== $x ) {
 			$this->error( "Unable to generate safe title from '$name', got '$x'" );
 
 			return false;

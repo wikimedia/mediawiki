@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"AnakngAraw",
-			"Sky Harbor",
-			"아라",
 			"Amire80",
-			"Jojit fb",
-			"Macofe",
+			"AnakngAraw",
 			"Emem.calist",
-			"LR Guanzon"
+			"Jojit fb",
+			"LR Guanzon",
+			"Macofe",
+			"Sky Harbor",
+			"아라"
 		]
 	},
 	"config-desc": "Ang tagapagluklok para sa MediaWiki",
@@ -40,7 +40,6 @@
 	"config-page-install": "Italaga",
 	"config-page-complete": "Buo na!",
 	"config-page-restart": "Simulan muli ang pag-iinstala",
-	"config-page-readme": "Basahin ako",
 	"config-page-releasenotes": "Pakawalan ang mga tala",
 	"config-page-copying": "Kinokopya",
 	"config-page-upgradedoc": "Itinataas ang uri",
@@ -53,7 +52,6 @@
 	"config-env-good": "Nasuri na ang kapaligiran.\nMailuluklok mo ang MediaWiki.",
 	"config-env-bad": "Nasuri na ang kapaligiran.\nHindi mo mailuklok ang MediaWiki.",
 	"config-env-php": "Naitalaga ang PHP na $1.",
-	"config-env-hhvm": "Naka-install ang HHVM $1.",
 	"config-unicode-using-intl": "Ginagamit ang [https://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.",
 	"config-unicode-pure-php-warning": "'''Babala''': Ang [https://pecl.php.net/intl dugtong ng internasyunal na PECL] ay hindi makukuha upang makapanghawak ng pagpapanormal ng Unikodigo, na babagsak na pabalik sa mabagal na pagsasakatuparan ng dalisay na PHP.\nKapag nagpapatakbo ka ng isang pook na mataas ang trapiko, dapat kang bumasa ng kaunti hinggil sa [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations pagpapanormal ng Unikodigo].",
 	"config-unicode-update-warning": "'''Babala''': Ang nakaluklok na bersiyon ng pambalot ng pagpapanormal ng Unikodigo ay gumagamit ng isang mas matandang bersiyon ng aklatan ng [http://site.icu-project.org/ proyekto ng ICU].\nDapat kang [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations magtaas ng uri] kung may pag-aalala ka hinggil sa paggamit ng Unikodigo.",
@@ -76,7 +74,6 @@
 	"config-using-uri": "Ginagamit ang URL ng tagapaghain na \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Babala:''' Ang iyong likas na nakatakdang direktoryo para sa paitaas na mga pagkakarga na <code>$1</code> ay may kahinaan laban sa pagsasagawa ng mga panitiki na hindi makatwiran. Bagaman sinisiyasat ng MediaWiki ang lahat ng paitaas na naikargang mga talaksan para sa mga panganib na pangkatiwasayan, mataas na iminumungkahi na [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security isara ang kahinaang ito na pangkatiwasayan] bago paganahin ang paitaas na mga pagkakarga.",
 	"config-no-cli-uploads-check": "'''Babala:''' Ang iyong likas na nakatakdang direktoryo para sa paitaas na mga pagkakarga (<code>$1</code>) ay hindi nasuri para sa kahinaan laban sa pagsasagawa ng panitik na hindi makatwiran habang iniluluklok ang Ugnayang Mukha ng Guhit ng Kaataasan o Command-Line Interface (CLI).",
-	"config-brokenlibxml": "Ang sistema mo ay mayroong isang pagsasama ng mga bersiyon ng PHP at libxml2 na maaaring masurot at maaaring makapagsanhi ng pagkasira ng datong nakakubli sa loob ng MediaWiki at iba pang mga aplikasyon ng sangkasaputan.\nMagtaas ng uri upang maging PHP 5.2.9 o mas lalong huli at libxml2 2.7.3 o mas lalong huli ([https://bugs.php.net/bug.php?id=45996 isinalansan ang surot o ''bug'' na mayroong PHP]). Binigo ang pagluluklok.",
 	"config-suhosin-max-value-length": "Nakaluklok ang Suhosin at hinahanggahan ang haba ng parametro ng GET sa $1 mga byte. Ang sangkap na ResourceLoader ng MediaWiki ay gagana sa paligid ng hangganang ito, subalit pasasamain nito ang pagganap. Kung talagang maaari, dapat mong itakda ang <code>suhosin.get.max_value_length</code> upang maging 1024 o mas mataas sa loob ng <code>php.ini</code>, at itakda ang <code>$wgResourceLoaderMaxQueryLength</code> sa katulad na halaga sa loob ng LocalSettings.php.",
 	"config-db-type": "Uri ng kalipunan ng datos:",
 	"config-db-host": "Tagapagpasinaya ng kalipunan ng datos:",

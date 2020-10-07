@@ -34,14 +34,14 @@ class MySQLMasterPos implements DBMasterPos {
 	/** @var float UNIX timestamp */
 	private $asOfTime = 0.0;
 
-	const BINARY_LOG = 'binary-log';
-	const GTID_MARIA = 'gtid-maria';
-	const GTID_MYSQL = 'gtid-mysql';
+	private const BINARY_LOG = 'binary-log';
+	private const GTID_MARIA = 'gtid-maria';
+	private const GTID_MYSQL = 'gtid-mysql';
 
 	/** @var int Key name of the binary log index number of a position tuple */
-	const CORD_INDEX = 0;
+	public const CORD_INDEX = 0;
 	/** @var int Key name of the binary log event number of a position tuple */
-	const CORD_EVENT = 1;
+	public const CORD_EVENT = 1;
 
 	/**
 	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)
@@ -178,6 +178,7 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @since 1.31
 	 */
 	public function getLogFile() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->gtids ? null : "{$this->binLog}.{$this->logPos[self::CORD_INDEX]}";
 	}
 
@@ -269,13 +270,13 @@ class MySQLMasterPos implements DBMasterPos {
 			$ignore = false;
 			// Filter out GTIDs from non-active replication domains
 			if ( $this->style === self::GTID_MARIA && $this->activeDomain !== null ) {
-				$ignore |= ( $domain !== $this->activeDomain );
+				$ignore = $ignore || ( $domain !== $this->activeDomain );
 			}
 			// Likewise for GTIDs from non-active replication origin servers
 			if ( $this->style === self::GTID_MARIA && $this->activeServerId !== null ) {
-				$ignore |= ( $server !== $this->activeServerId );
+				$ignore = $ignore || ( $server !== $this->activeServerId );
 			} elseif ( $this->style === self::GTID_MYSQL && $this->activeServerUUID !== null ) {
-				$ignore |= ( $server !== $this->activeServerUUID );
+				$ignore = $ignore || ( $server !== $this->activeServerUUID );
 			}
 
 			if ( !$ignore ) {
@@ -351,6 +352,7 @@ class MySQLMasterPos implements DBMasterPos {
 	public function __toString() {
 		return $this->gtids
 			? implode( ',', $this->gtids )
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			: $this->getLogFile() . "/{$this->logPos[self::CORD_EVENT]}";
 	}
 }

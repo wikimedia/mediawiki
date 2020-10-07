@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * A special page that listed pages that have highest interwiki count
@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialMostInterwikis extends QueryPage {
-	function __construct( $name = 'Mostinterwikis' ) {
+	public function __construct( $name = 'Mostinterwikis' ) {
 		parent::__construct( $name );
 	}
 
@@ -39,7 +39,7 @@ class SpecialMostInterwikis extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -76,7 +76,7 @@ class SpecialMostInterwikis extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
@@ -85,7 +85,7 @@ class SpecialMostInterwikis extends QueryPage {
 	 * @param object $result
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return Html::element(

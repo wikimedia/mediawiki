@@ -8,6 +8,7 @@
 /**
  * Tests for Bosnian (bosanski)
  *
+ * @group Language
  * @covers LanguageBs
  */
 class LanguageBsTest extends LanguageClassesTestCase {

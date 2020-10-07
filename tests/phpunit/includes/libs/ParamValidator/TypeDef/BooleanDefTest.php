@@ -2,6 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
@@ -12,16 +14,10 @@ class BooleanDefTest extends TypeDefTestCase {
 	protected static $testClass = BooleanDef::class;
 
 	public function provideValidate() {
-		$ex = new ValidationException( 'test', '', [], 'badbool', [
-			'truevals' => BooleanDef::$TRUEVALS,
-			'falsevals' => array_merge( BooleanDef::$FALSEVALS, [ 'the empty string' ] ),
-		] );
-
 		foreach ( [
 			[ BooleanDef::$TRUEVALS, true ],
 			[ BooleanDef::$FALSEVALS, false ],
 			[ [ '' ], false ],
-			[ [ '2', 'foobar' ], $ex ],
 		] as list( $vals, $expect ) ) {
 			foreach ( $vals as $v ) {
 				yield "Value '$v'" => [ $v, $expect ];
@@ -35,12 +31,43 @@ class BooleanDefTest extends TypeDefTestCase {
 				}
 			}
 		}
+
+		yield "Value '2'" => [ 2, new ValidationException(
+			DataMessageValue::new( 'paramvalidator-badbool', [], 'badbool' ),
+			'test', '2', []
+		) ];
+
+		yield "Value 'foobar'" => [ 'foobar', new ValidationException(
+			DataMessageValue::new( 'paramvalidator-badbool', [], 'badbool' ),
+			'test', 'foobar', []
+		) ];
 	}
 
 	public function provideStringifyValue() {
 		return [
 			[ true, 'true' ],
 			[ false, 'false' ],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-boolean"><text>1</text></message>',
+				],
+			],
+			'Multi-valued' => [
+				[ ParamValidator::PARAM_ISMULTI => true ],
+				[],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-boolean"><text>2</text></message>',
+				],
+			],
 		];
 	}
 

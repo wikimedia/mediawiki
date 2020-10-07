@@ -1,70 +1,31 @@
 ( function () {
 	'use strict';
 
-	// Table of contents toggle
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.toc' ).addBack( '.toc' ).each( function () {
-			var hideToc,
-				$this = $( this ),
-				$tocToggleCheckbox = $this.children( '.toctogglecheckbox' ),
-				$tocTitle = $this.find( '.toctitle' ),
-				$tocToggleLink = $this.find( '.togglelink' ),
-				$tocList = $this.find( 'ul' ).eq( 0 );
+	function initToc( tocNode ) {
+		var hidden = false,
+			toggleNode = tocNode.querySelector( '.toctogglecheckbox' );
 
-			// Hide/show the table of contents element
-			function toggleToc() {
-				// eslint-disable-next-line no-jquery/no-class-state
-				if ( $this.hasClass( 'tochidden' ) ) {
-					// FIXME: Use CSS transitions
-					// eslint-disable-next-line no-jquery/no-slide
-					$tocList.slideDown( 'fast' );
-					$tocToggleLink.text( mw.msg( 'hidetoc' ) );
-					$this.removeClass( 'tochidden' );
-					mw.cookie.set( 'hidetoc', null );
-				} else {
-					// eslint-disable-next-line no-jquery/no-slide
-					$tocList.slideUp( 'fast' );
-					$tocToggleLink.text( mw.msg( 'showtoc' ) );
-					$this.addClass( 'tochidden' );
-					mw.cookie.set( 'hidetoc', '1' );
-				}
-			}
+		if ( !toggleNode ) {
+			return;
+		}
 
-			// Only add it if there is a complete TOC and it doesn't
-			// have a toggle added already
-			if ( !$tocToggleCheckbox.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
-				hideToc = mw.cookie.get( 'hidetoc' ) === '1';
-
-				$tocToggleLink = $( '<a>' )
-					.attr( {
-						role: 'button',
-						tabindex: 0
-					} )
-					.addClass( 'togglelink' )
-					.text( mw.msg( hideToc ? 'showtoc' : 'hidetoc' ) )
-					.on( 'click keypress', function ( e ) {
-						if (
-							e.type === 'click' ||
-							e.type === 'keypress' && e.which === 13
-						) {
-							toggleToc();
-						}
-					} );
-
-				$tocTitle.append(
-					$tocToggleLink
-						.wrap( '<span class="toctoggle"></span>' )
-						.parent()
-						.prepend( '&nbsp;[' )
-						.append( ']&nbsp;' )
-				);
-
-				if ( hideToc ) {
-					$tocList.hide();
-					$this.addClass( 'tochidden' );
-				}
-			}
+		toggleNode.addEventListener( 'change', function () {
+			hidden = !hidden;
+			mw.cookie.set( 'hidetoc', hidden ? '1' : null );
 		} );
-	} );
 
+		// Initial state
+		if ( mw.cookie.get( 'hidetoc' ) === '1' ) {
+			toggleNode.checked = true;
+			hidden = true;
+		}
+	}
+
+	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+		var tocs = $content[ 0 ] ? $content[ 0 ].querySelectorAll( '.toc' ) : [],
+			i = tocs.length;
+		while ( i-- ) {
+			initToc( tocs[ i ] );
+		}
+	} );
 }() );

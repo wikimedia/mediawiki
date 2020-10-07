@@ -155,7 +155,7 @@ class JobQueueMemory extends JobQueue {
 	}
 
 	/**
-	 * @see JobQueue::doDelete
+	 * @inheritDoc
 	 */
 	protected function doDelete() {
 		if ( isset( self::$data[$this->type][$this->domain] ) ) {
@@ -214,7 +214,7 @@ class JobQueueMemory extends JobQueue {
 
 	/**
 	 * @param string $field
-	 * @param mixed $init
+	 * @param mixed|null $init
 	 *
 	 * @return mixed
 	 */

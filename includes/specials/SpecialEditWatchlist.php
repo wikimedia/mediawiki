@@ -43,9 +43,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
 	 * too much. Now it's passed on to the raw editor, from which it's very easy to clear.
 	 */
-	const EDIT_CLEAR = 1;
-	const EDIT_RAW = 2;
-	const EDIT_NORMAL = 3;
+	public const EDIT_CLEAR = 1;
+	public const EDIT_RAW = 2;
+	public const EDIT_NORMAL = 3;
 
 	protected $successMessage;
 
@@ -58,8 +58,18 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private $titleParser;
 
-	public function __construct() {
+	/**
+	 * @var WatchedItemStoreInterface
+	 */
+	private $watchedItemStore;
+
+	/** @var bool Watchlist Expiry flag */
+	private $isWatchlistExpiryEnabled;
+
+	public function __construct( WatchedItemStoreInterface $watchedItemStore ) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
+		$this->watchedItemStore = $watchedItemStore;
+		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
 	/**
@@ -248,35 +258,63 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				return false;
 			}
 
-			$this->clearUserWatchedItems( $current, 'raw' );
+			$this->clearUserWatchedItems( 'raw' );
 			$this->showTitles( $current, $this->successMessage );
 		}
 
 		return true;
 	}
 
-	public function submitClear( $data ) {
-		$current = $this->getWatchlist();
-		$this->clearUserWatchedItems( $current, 'clear' );
-		$this->showTitles( $current, $this->successMessage );
+	/**
+	 * Handler for the clear form submission
+	 *
+	 * @param array $data
+	 * @return bool
+	 */
+	public function submitClear( $data ): bool {
+		$this->clearUserWatchedItems( 'clear' );
 		return true;
 	}
 
 	/**
-	 * @param array $current
+	 * Makes a decision about using the JobQueue or not for clearing a users watchlist.
+	 * Also displays the appropriate messages to the user based on that decision.
+	 *
+	 * @param string $messageFor 'raw' or 'clear'. Only used when JobQueue is not used.
+	 */
+	private function clearUserWatchedItems( string $messageFor ): void {
+		if ( $this->watchedItemStore->mustClearWatchedItemsUsingJobQueue( $this->getUser() ) ) {
+			$this->clearUserWatchedItemsUsingJobQueue();
+		} else {
+			$this->clearUserWatchedItemsNow( $messageFor );
+		}
+	}
+
+	/**
+	 * You should call clearUserWatchedItems() instead to decide if this should use the JobQueue
+	 *
 	 * @param string $messageFor 'raw' or 'clear'
 	 */
-	private function clearUserWatchedItems( $current, $messageFor ) {
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		if ( $watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
-			$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
-			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
-					->numParams( count( $current ) )->parse();
-			$this->getUser()->invalidateCache();
-		} else {
-			$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
-			$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
+	private function clearUserWatchedItemsNow( string $messageFor ): void {
+		$current = $this->getWatchlist();
+		if ( !$this->watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+			throw new LogicException(
+				__METHOD__ . ' should only be called when able to clear synchronously'
+			);
 		}
+		$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
+		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
+				->numParams( count( $current ) )->parse();
+		$this->getUser()->invalidateCache();
+		$this->showTitles( $current, $this->successMessage );
+	}
+
+	/**
+	 * You should call clearUserWatchedItems() instead to decide if this should use the JobQueue
+	 */
+	private function clearUserWatchedItemsUsingJobQueue(): void {
+		$this->watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+		$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
 	}
 
 	/**
@@ -286,7 +324,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param array $titles Array of strings, or Title objects
-	 * @param string $output
+	 * @param string &$output
 	 */
 	private function showTitles( $titles, &$output ) {
 		$talk = $this->msg( 'talkpagelinktext' )->text();
@@ -340,7 +378,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function getWatchlist() {
 		$list = [];
 
-		$watchedItems = MediaWikiServices::getInstance()->getWatchedItemStore()->getWatchedItemsForUser(
+		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
 			$this->getUser(),
 			[ 'forWrite' => $this->getRequest()->wasPosted() ]
 		);
@@ -381,18 +419,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getWatchlistInfo() {
 		$titles = [];
 		$services = MediaWikiServices::getInstance();
+		$options = [ 'sort' => WatchedItemStore::SORT_ASC ];
 
-		$watchedItems = $services->getWatchedItemStore()
-			->getWatchedItemsForUser( $this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ] );
+		if ( $this->isWatchlistExpiryEnabled ) {
+			$options[ 'sortByExpiry'] = true;
+		}
+
+		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
+			$this->getUser(), $options
+		);
 
 		$lb = new LinkBatch();
+		$context = $this->getContext();
 
 		foreach ( $watchedItems as $watchedItem ) {
 			$namespace = $watchedItem->getLinkTarget()->getNamespace();
 			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
 			$lb->add( $namespace, $dbKey );
 			if ( !$services->getNamespaceInfo()->isTalk( $namespace ) ) {
-				$titles[$namespace][$dbKey] = 1;
+				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $context );
 			}
 		}
 
@@ -439,14 +484,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$badItems = $this->badItems;
 		DeferredUpdates::addCallableUpdate( function () use ( $user, $badItems ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			foreach ( $badItems as $row ) {
 				list( $title, $namespace, $dbKey ) = $row;
 				$action = $title ? 'cleaning up' : 'deleting';
 				wfDebug( "User {$user->getName()} has broken watchlist item " .
-					"ns($namespace):$dbKey, $action.\n" );
+					"ns($namespace):$dbKey, $action." );
 
-				$store->removeWatch( $user, new TitleValue( (int)$namespace, $dbKey ) );
+				// NOTE: We *know* that the title is invalid. TitleValue may refuse instantiation.
+				// XXX: We may need an InvalidTitleValue class that allows instantiation of
+				//      known bad title values.
+				$this->watchedItemStore->removeWatch( $user, Title::makeTitle( (int)$namespace, $dbKey ) );
 				// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 				if ( $title ) {
 					$user->addWatch( $title );
@@ -464,9 +511,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @throws MWException
 	 */
 	private function watchTitles( array $targets ) {
-		return MediaWikiServices::getInstance()->getWatchedItemStore()
-			->addWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
-			&& $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
+		return $this->watchedItemStore->addWatchBatchForUser(
+				$this->getUser(), $this->getExpandedTargets( $targets )
+			) && $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
 	}
 
 	/**
@@ -482,9 +529,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @throws MWException
 	 */
 	private function unwatchTitles( array $targets ) {
-		return MediaWikiServices::getInstance()->getWatchedItemStore()
-			->removeWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
-			&& $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
+		return $this->watchedItemStore->removeWatchBatchForUser(
+				$this->getUser(), $this->getExpandedTargets( $targets )
+			) && $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
 	}
 
 	/**
@@ -501,7 +548,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				Title::newFromTitleValue( $target ) :
 				Title::newFromText( $target );
 			$page = WikiPage::factory( $title );
-			Hooks::run( $action . 'ArticleComplete', [ $this->getUser(), &$page ] );
+			$user = $this->getUser();
+			if ( $action === 'Watch' ) {
+				$this->getHookRunner()->onWatchArticleComplete( $user, $page );
+			} else {
+				$this->getHookRunner()->onUnwatchArticleComplete( $user, $page );
+			}
 		}
 		return true;
 	}
@@ -564,19 +616,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		// Allow subscribers to manipulate the list of watched pages (or use it
 		// to preload lots of details at once)
 		$watchlistInfo = $this->getWatchlistInfo();
-		Hooks::run(
-			'WatchlistEditorBeforeFormRender',
-			[ &$watchlistInfo ]
-		);
+		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
 
 		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = [];
-
-			foreach ( array_keys( $pages ) as $dbkey ) {
+			foreach ( $pages as $dbkey => $expiryDaysText ) {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
-					$text = $this->buildRemoveLine( $title );
+					$text = $this->buildRemoveLine( $title, $expiryDaysText );
 					$options[$text] = $title->getPrefixedText();
 					$count++;
 				}
@@ -633,9 +681,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
 	 * @param Title $title
+	 * @param string $expiryDaysText message shows the number of days a title has remaining in a user's watchlist.
+	 *               If this param is not empty then include a message that states the time remaining in a watchlist.
 	 * @return string
 	 */
-	private function buildRemoveLine( $title ) {
+	private function buildRemoveLine( $title, string $expiryDaysText = '' ): string {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
@@ -661,18 +711,26 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		Hooks::run(
-			'WatchlistEditorBuildRemoveLine',
-			[ &$tools, $title, $title->isRedirect(), $this->getSkin(), &$link ]
-		);
+		$this->getHookRunner()->onWatchlistEditorBuildRemoveLine(
+			$tools, $title, $title->isRedirect(), $this->getSkin(), $link );
 
 		if ( $title->isRedirect() ) {
 			// Linker already makes class mw-redirect, so this is redundant
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		}
 
+		$watchlistExpiringMessage = '';
+		if ( $this->isWatchlistExpiryEnabled && $expiryDaysText ) {
+			$watchlistExpiringMessage = Html::element(
+				'span',
+				[ 'class' => 'watchlistexpiry-msg' ],
+				$expiryDaysText
+			);
+		}
+
 		return $link . ' ' .
-			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped();
+			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped() .
+			$watchlistExpiringMessage;
 	}
 
 	/**

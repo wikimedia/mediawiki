@@ -1,3 +1,5 @@
+'use strict';
+
 const Page = require( './Page' );
 
 class LoginPage extends Page {

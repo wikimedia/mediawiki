@@ -4,7 +4,7 @@
 			return new Array( multiplier + 1 ).join( input );
 		},
 		// See also TitleTest.php#testSecureAndSplit
-		cases = {
+		sharedCases = {
 			valid: [
 				'Sandbox',
 				'A "B"',
@@ -134,61 +134,77 @@
 	} ) );
 
 	QUnit.test( 'constructor', function ( assert ) {
-		var i, title;
-		for ( i = 0; i < cases.valid.length; i++ ) {
-			title = new mw.Title( cases.valid[ i ] );
-		}
-		for ( i = 0; i < cases.invalid.length; i++ ) {
-			title = cases.invalid[ i ];
-			// eslint-disable-next-line no-loop-func
+		sharedCases.valid.forEach( function ( title ) {
+			// Check no exception is thrown
+			return new mw.Title( title );
+		} );
+		sharedCases.invalid.forEach( function ( title ) {
 			assert.throws( function () {
 				return new mw.Title( title );
-			}, cases.invalid[ i ] );
-		}
+			}, title );
+		} );
 	} );
 
 	QUnit.test( 'newFromText', function ( assert ) {
-		var i;
-		for ( i = 0; i < cases.valid.length; i++ ) {
+		sharedCases.valid.forEach( function ( title ) {
 			assert.strictEqual(
-				typeof mw.Title.newFromText( cases.valid[ i ] ),
+				typeof mw.Title.newFromText( title ),
 				'object',
-				cases.valid[ i ]
+				title
 			);
-		}
-		for ( i = 0; i < cases.invalid.length; i++ ) {
+		} );
+		sharedCases.invalid.forEach( function ( title ) {
 			assert.strictEqual(
-				mw.Title.newFromText( cases.invalid[ i ] ),
+				mw.Title.newFromText( title ),
 				null,
-				cases.invalid[ i ]
+				title
 			);
-		}
+		} );
 	} );
 
 	QUnit.test( 'makeTitle', function ( assert ) {
-		var cases, i, title, expected,
+		var cases,
 			NS_MAIN = 0,
 			NS_TALK = 1,
 			NS_TEMPLATE = 10;
 
 		cases = [
-			[ NS_TEMPLATE, 'Foo', 'Template:Foo' ],
-			[ NS_TEMPLATE, 'Category:Foo', 'Template:Category:Foo' ],
-			[ NS_TEMPLATE, 'Template:Foo', 'Template:Template:Foo' ],
-			[ NS_TALK, 'Help:Foo', null ],
-			[ NS_TEMPLATE, '<', null ],
-			[ NS_MAIN, 'Help:Foo', 'Help:Foo' ]
+			{
+				namespace: NS_TEMPLATE,
+				text: 'Foo',
+				expected: 'Template:Foo'
+			},
+			{
+				namespace: NS_TEMPLATE,
+				text: 'Category:Foo',
+				expected: 'Template:Category:Foo'
+			},
+			{
+				namespace: NS_TEMPLATE,
+				text: 'Template:Foo',
+				expected: 'Template:Template:Foo'
+			},
+			{
+				namespace: NS_TALK,
+				text: 'Help:Foo',
+				expected: null
+			},
+			{
+				namespace: NS_TEMPLATE,
+				text: '<',
+				expected: null
+			},
+			{
+				namespace: NS_MAIN,
+				text: 'Help:Foo',
+				expected: 'Help:Foo'
+			}
 		];
 
-		for ( i = 0; i < cases.length; i++ ) {
-			title = mw.Title.makeTitle( cases[ i ][ 0 ], cases[ i ][ 1 ] );
-			expected = cases[ i ][ 2 ];
-			if ( expected === null ) {
-				assert.strictEqual( title, expected );
-			} else {
-				assert.strictEqual( title.getPrefixedText(), expected );
-			}
-		}
+		cases.forEach( function ( caseItem ) {
+			var title = mw.Title.makeTitle( caseItem.namespace, caseItem.text );
+			assert.strictEqual( title && title.getPrefixedText(), caseItem.expected );
+		} );
 	} );
 
 	QUnit.test( 'Basic parsing', function ( assert ) {
@@ -428,366 +444,317 @@
 	} );
 
 	QUnit.test( 'newFromImg', function ( assert ) {
-		var title, i, thisCase, prefix,
-			cases = [
-				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
-					typeOfUrl: 'Hashed thumb with shortened path',
-					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
-					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
-				},
+		var cases = [
+			{
+				url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+				typeOfUrl: 'Full image',
+				nameText: 'Anticlockwise heliotrope\'s',
+				prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+			},
 
-				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
-					typeOfUrl: 'Hashed thumb with sha1-ed path',
-					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
-					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
-				},
+			{
+				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+				typeOfUrl: 'thumb.php-based thumbnail',
+				nameText: 'Stuffless Figaro\'s',
+				prefixedText: 'File:Stuffless Figaro\'s.jpg'
+			},
 
-				{
-					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
-					typeOfUrl: 'Normal hashed directory thumbnail',
-					nameText: 'Anticlockwise heliotrope\'s',
-					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
-				},
+			{
+				url: 'foo',
+				typeOfUrl: 'String with only alphabet characters'
+			}
 
-				{
-					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
+		];
 
-				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons thumbnail',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
+		cases.forEach( function ( caseItem ) {
+			var prefix,
+				title = mw.Title.newFromImg( { src: caseItem.url } );
 
-				{
-					url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
-					typeOfUrl: 'Full image',
-					nameText: 'Anticlockwise heliotrope\'s',
-					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
-				},
-
-				{
-					url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
-					typeOfUrl: 'thumb.php-based thumbnail',
-					nameText: 'Stuffless Figaro\'s',
-					prefixedText: 'File:Stuffless Figaro\'s.jpg'
-				},
-
-				{
-					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons unhashed thumbnail',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
-					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
-					url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
-					typeOfUrl: 'Unhashed local file',
-					nameText: 'Anticlockwise heliotrope\'s',
-					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
-				},
-
-				{
-					url: '',
-					typeOfUrl: 'Empty string'
-				},
-
-				{
-					url: 'foo',
-					typeOfUrl: 'String with only alphabet characters'
-				},
-
-				{
-					url: 'foobar.foobar',
-					typeOfUrl: 'Not a file path'
-				},
-
-				{
-					url: '/a/a0/blah blah blah',
-					typeOfUrl: 'Space characters'
-				}
-			];
-
-		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[ i ];
-			title = mw.Title.newFromImg( { src: thisCase.url } );
-
-			if ( thisCase.nameText !== undefined ) {
-				prefix = '[' + thisCase.typeOfUrl + ' URL] ';
+			if ( caseItem.nameText !== undefined ) {
+				prefix = '[' + caseItem.typeOfUrl + ' URL] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.strictEqual( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
-				assert.strictEqual( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.strictEqual( title.getNameText(), caseItem.nameText, prefix + 'Filename matches original' );
+				assert.strictEqual( title.getPrefixedText(), caseItem.prefixedText, prefix + 'File page title matches original' );
 				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
-				assert.strictEqual( title, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
+				assert.strictEqual( title, null, caseItem.typeOfUrl + ', should not produce an mw.Title object' );
 			}
-		}
+		} );
 	} );
 
 	QUnit.test( 'getRelativeText', function ( assert ) {
-		var i, thisCase, title,
-			cases = [
-				{
-					text: 'asd',
-					relativeTo: 123,
-					expectedResult: ':Asd'
-				},
-				{
-					text: 'dfg',
-					relativeTo: 0,
-					expectedResult: 'Dfg'
-				},
-				{
-					text: 'Template:Ghj',
-					relativeTo: 0,
-					expectedResult: 'Template:Ghj'
-				},
-				{
-					text: 'Template:1',
-					relativeTo: 10,
-					expectedResult: '1'
-				},
-				{
-					text: 'User:Hi',
-					relativeTo: 10,
-					expectedResult: 'User:Hi'
-				}
-			];
+		var cases = [
+			{
+				text: 'asd',
+				relativeTo: 123,
+				expectedResult: ':Asd'
+			},
+			{
+				text: 'dfg',
+				relativeTo: 0,
+				expectedResult: 'Dfg'
+			},
+			{
+				text: 'Template:Ghj',
+				relativeTo: 0,
+				expectedResult: 'Template:Ghj'
+			},
+			{
+				text: 'Template:1',
+				relativeTo: 10,
+				expectedResult: '1'
+			},
+			{
+				text: 'User:Hi',
+				relativeTo: 10,
+				expectedResult: 'User:Hi'
+			}
+		];
 
-		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[ i ];
-
-			title = mw.Title.newFromText( thisCase.text );
-			assert.strictEqual( title.getRelativeText( thisCase.relativeTo ), thisCase.expectedResult );
-		}
+		cases.forEach( function ( caseItem ) {
+			var title = mw.Title.newFromText( caseItem.text );
+			assert.strictEqual( title.getRelativeText( caseItem.relativeTo ), caseItem.expectedResult );
+		} );
 	} );
 
 	QUnit.test( 'normalizeExtension', function ( assert ) {
-		var extension, i, thisCase, prefix,
-			cases = [
-				{
-					extension: 'png',
-					expected: 'png',
-					description: 'Extension already in canonical form'
-				},
-				{
-					extension: 'PNG',
-					expected: 'png',
-					description: 'Extension lowercased in canonical form'
-				},
-				{
-					extension: 'jpeg',
-					expected: 'jpg',
-					description: 'Extension changed in canonical form'
-				},
-				{
-					extension: 'JPEG',
-					expected: 'jpg',
-					description: 'Extension lowercased and changed in canonical form'
-				},
-				{
-					extension: '~~~',
-					expected: '',
-					description: 'Extension invalid and discarded'
-				}
-			];
+		var cases = [
+			{
+				extension: 'png',
+				expected: 'png',
+				description: 'Extension already in canonical form'
+			},
+			{
+				extension: 'PNG',
+				expected: 'png',
+				description: 'Extension lowercased in canonical form'
+			},
+			{
+				extension: 'jpeg',
+				expected: 'jpg',
+				description: 'Extension changed in canonical form'
+			},
+			{
+				extension: 'JPEG',
+				expected: 'jpg',
+				description: 'Extension lowercased and changed in canonical form'
+			},
+			{
+				extension: '~~~',
+				expected: '',
+				description: 'Extension invalid and discarded'
+			}
+		];
 
-		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[ i ];
-			extension = mw.Title.normalizeExtension( thisCase.extension );
-
-			prefix = '[' + thisCase.description + '] ';
-			assert.strictEqual( extension, thisCase.expected, prefix + 'Extension as expected' );
-		}
+		cases.forEach( function ( caseItem ) {
+			var extension = mw.Title.normalizeExtension( caseItem.extension ),
+				prefix = '[' + caseItem.description + '] ';
+			assert.strictEqual( extension, caseItem.expected, prefix + 'Extension as expected' );
+		} );
 	} );
 
 	QUnit.test( 'newFromUserInput', function ( assert ) {
-		var title, i, thisCase, prefix,
-			cases = [
-				{
-					title: 'DCS0001557854455.JPG',
-					expected: 'DCS0001557854455.JPG',
-					description: 'Title in normal namespace without anything invalid but with "file extension"'
+		var cases = [
+			{
+				title: 'DCS0001557854455.JPG',
+				expected: 'DCS0001557854455.JPG',
+				description: 'Title in normal namespace without anything invalid but with "file extension"'
+			},
+			{
+				title: 'MediaWiki:Msg-awesome',
+				expected: 'MediaWiki:Msg-awesome',
+				description: 'Full title (page in MediaWiki namespace) supplied as string'
+			},
+			{
+				title: 'The/Mw/Sound.flac',
+				defaultNamespace: -2,
+				expected: 'Media:The-Mw-Sound.flac',
+				description: 'Page in Media-namespace without explicit options'
+			},
+			{
+				title: 'File:The/Mw/Sound.kml',
+				defaultNamespace: 6,
+				options: {
+					forUploading: false
 				},
-				{
-					title: 'MediaWiki:Msg-awesome',
-					expected: 'MediaWiki:Msg-awesome',
-					description: 'Full title (page in MediaWiki namespace) supplied as string'
-				},
-				{
-					title: 'The/Mw/Sound.flac',
-					defaultNamespace: -2,
-					expected: 'Media:The-Mw-Sound.flac',
-					description: 'Page in Media-namespace without explicit options'
-				},
-				{
-					title: 'File:The/Mw/Sound.kml',
-					defaultNamespace: 6,
-					options: {
-						forUploading: false
-					},
-					expected: 'File:The/Mw/Sound.kml',
-					description: 'Page in File-namespace without explicit options'
-				},
-				{
-					title: 'File:Foo.JPEG',
-					expected: 'File:Foo.JPEG',
-					description: 'Page in File-namespace with non-canonical extension'
-				},
-				{
-					title: 'File:Foo.JPEG  ',
-					expected: 'File:Foo.JPEG',
-					description: 'Page in File-namespace with trailing whitespace'
-				},
-				{
-					title: 'File:Foo',
-					description: 'File name without file extension'
-				},
-				{
-					title: 'File:Foo.',
-					description: 'File name with empty file extension'
-				}
-			];
+				expected: 'File:The/Mw/Sound.kml',
+				description: 'Page in File-namespace without explicit options'
+			},
+			{
+				title: 'File:Foo.JPEG',
+				expected: 'File:Foo.JPEG',
+				description: 'Page in File-namespace with non-canonical extension'
+			},
+			{
+				title: 'File:Foo.JPEG  ',
+				expected: 'File:Foo.JPEG',
+				description: 'Page in File-namespace with trailing whitespace'
+			},
+			{
+				title: 'File:Foo',
+				description: 'File name without file extension'
+			},
+			{
+				title: 'File:Foo.',
+				description: 'File name with empty file extension'
+			}
+		];
 
-		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[ i ];
-			title = mw.Title.newFromUserInput( thisCase.title, thisCase.defaultNamespace, thisCase.options );
+		cases.forEach( function ( caseItem ) {
+			var prefix,
+				title = mw.Title.newFromUserInput( caseItem.title, caseItem.defaultNamespace, caseItem.options );
 
-			if ( thisCase.expected !== undefined ) {
-				prefix = '[' + thisCase.description + '] ';
+			if ( caseItem.expected !== undefined ) {
+				prefix = '[' + caseItem.description + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Title as expected' );
-				if ( thisCase.defaultNamespace === undefined ) {
-					title = mw.Title.newFromUserInput( thisCase.title, thisCase.options );
-					assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Skipping namespace argument' );
+				assert.strictEqual( title.toText(), caseItem.expected, prefix + 'Title as expected' );
+				if ( caseItem.defaultNamespace === undefined ) {
+					title = mw.Title.newFromUserInput( caseItem.title, 0, caseItem.options );
+					assert.strictEqual( title.toText(), caseItem.expected, prefix + 'Skipping namespace argument' );
 				}
 			} else {
-				assert.strictEqual( title, null, thisCase.description + ', should not produce an mw.Title object' );
+				assert.strictEqual( title, null, caseItem.description + ', should not produce an mw.Title object' );
 			}
-		}
+		} );
+	} );
+
+	QUnit.test( 'newFromUserInput with invalid file name for upload', function ( assert ) {
+		var title = mw.Title.newFromUserInput( 'File:No_dot' );
+		// Invalid file name is rejected by default
+		assert.strictEqual( title, null, 'file name is not accepted for upload' );
+	} );
+
+	QUnit.test( 'newFromUserInput with misplaced parameter', function ( assert ) {
+		var title = mw.Title.newFromUserInput( 'File:No_dot', { forUploading: false } );
+		// Misplaces options parameter (pseudo-compat with MW 1.33 and earlier),
+		// behaves as if it wasn't passed - rejected the same as the default would.
+		assert.strictEqual( title, null, 'misplaced options parameter is ignored' );
+	} );
+
+	QUnit.test( 'newFromUserInput with invalid file name, but not for upload', function ( assert ) {
+		var title = mw.Title.newFromUserInput( 'File:No_dot', 0, { forUploading: false } );
+		// Invalid file name is tolerated with this option
+		assert.strictEqual( title.getPrefixedText(), 'File:No dot', 'file name is accepted' );
 	} );
 
 	QUnit.test( 'newFromFileName', function ( assert ) {
-		var title, i, thisCase, prefix,
-			cases = [
-				{
-					fileName: 'DCS0001557854455.JPG',
-					typeOfName: 'Standard camera output',
-					nameText: 'DCS0001557854455',
-					prefixedText: 'File:DCS0001557854455.JPG'
-				},
-				{
-					fileName: 'File:Sample.png',
-					typeOfName: 'Carrying namespace',
-					nameText: 'File-Sample',
-					prefixedText: 'File:File-Sample.png'
-				},
-				{
-					fileName: 'Treppe 2222 Test upload.jpg',
-					typeOfName: 'File name with spaces in it and lower case file extension',
-					nameText: 'Treppe 2222 Test upload',
-					prefixedText: 'File:Treppe 2222 Test upload.jpg'
-				},
-				{
-					fileName: 'I contain a \ttab.jpg',
-					typeOfName: 'Name containing a tab character',
-					nameText: 'I contain a tab',
-					prefixedText: 'File:I contain a tab.jpg'
-				},
-				{
-					fileName: 'I_contain multiple__ ___ _underscores.jpg',
-					typeOfName: 'Name containing multiple underscores',
-					nameText: 'I contain multiple underscores',
-					prefixedText: 'File:I contain multiple underscores.jpg'
-				},
-				{
-					fileName: 'I like ~~~~~~~~es.jpg',
-					typeOfName: 'Name containing more than three consecutive tilde characters',
-					nameText: 'I like ~~es',
-					prefixedText: 'File:I like ~~es.jpg'
-				},
-				{
-					fileName: 'BI\u200EDI.jpg',
-					typeOfName: 'Name containing BIDI overrides',
-					nameText: 'BIDI',
-					prefixedText: 'File:BIDI.jpg'
-				},
-				{
-					fileName: '100%ab progress.jpg',
-					typeOfName: 'File name with URL encoding',
-					nameText: '100% ab progress',
-					prefixedText: 'File:100% ab progress.jpg'
-				},
-				{
-					fileName: '<([>]):/#.jpg',
-					typeOfName: 'File name with characters not permitted in titles that are replaced',
-					nameText: '((()))---',
-					prefixedText: 'File:((()))---.jpg'
-				},
-				{
-					fileName: 'spaces\u0009\u2000\u200A\u200Bx.djvu',
-					typeOfName: 'File name with different kind of spaces',
-					nameText: 'Spaces \u200Bx',
-					prefixedText: 'File:Spaces \u200Bx.djvu'
-				},
-				{
-					fileName: 'dot.dot.dot.dot.dotdot',
-					typeOfName: 'File name with a lot of dots',
-					nameText: 'Dot.dot.dot.dot',
-					prefixedText: 'File:Dot.dot.dot.dot.dotdot'
-				},
-				{
-					fileName: 'dot. dot ._dot',
-					typeOfName: 'File name with multiple dots and spaces',
-					nameText: 'Dot. dot',
-					prefixedText: 'File:Dot. dot. dot'
-				},
-				{
-					fileName: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂.png',
-					typeOfName: 'File name longer than 240 bytes',
-					nameText: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵',
-					prefixedText: 'File:𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵.png'
-				},
-				{
-					fileName: '',
-					typeOfName: 'Empty string'
-				},
-				{
-					fileName: 'foo',
-					typeOfName: 'String with only alphabet characters'
-				}
-			];
+		var cases = [
+			{
+				fileName: 'DCS0001557854455.JPG',
+				typeOfName: 'Standard camera output',
+				nameText: 'DCS0001557854455',
+				prefixedText: 'File:DCS0001557854455.JPG'
+			},
+			{
+				fileName: 'Treppe 2222 Test upload.jpg',
+				typeOfName: 'File name with spaces in it and lower case file extension',
+				nameText: 'Treppe 2222 Test upload',
+				prefixedText: 'File:Treppe 2222 Test upload.jpg'
+			},
+			{
+				fileName: 'I contain a \ttab.jpg',
+				typeOfName: 'Name containing a tab character',
+				nameText: 'I contain a tab',
+				prefixedText: 'File:I contain a tab.jpg'
+			},
+			{
+				fileName: 'I_contain multiple__ ___ _underscores.jpg',
+				typeOfName: 'Name containing multiple underscores',
+				nameText: 'I contain multiple underscores',
+				prefixedText: 'File:I contain multiple underscores.jpg'
+			},
+			{
+				fileName: 'I like ~~~~~~~~es.jpg',
+				typeOfName: 'Name containing more than three consecutive tilde characters',
+				nameText: 'I like ~~es',
+				prefixedText: 'File:I like ~~es.jpg'
+			},
+			{
+				fileName: 'BI\u200EDI.jpg',
+				typeOfName: 'Name containing BIDI overrides',
+				nameText: 'BIDI',
+				prefixedText: 'File:BIDI.jpg'
+			},
+			{
+				fileName: '100%ab progress.jpg',
+				typeOfName: 'File name with URL encoding',
+				nameText: '100% ab progress',
+				prefixedText: 'File:100% ab progress.jpg'
+			},
+			{
+				fileName: '<([>])/#.jpg',
+				typeOfName: 'File name with characters not permitted in titles that are replaced',
+				nameText: '((()))--',
+				prefixedText: 'File:((()))--.jpg'
+			},
+			{
+				fileName: 'spaces\u0009\u2000\u200A\u200Bx.djvu',
+				typeOfName: 'File name with different kind of spaces',
+				nameText: 'Spaces \u200Bx',
+				prefixedText: 'File:Spaces \u200Bx.djvu'
+			},
+			{
+				fileName: 'dot.dot.dot.dot.dotdot',
+				typeOfName: 'File name with a lot of dots',
+				nameText: 'Dot.dot.dot.dot',
+				prefixedText: 'File:Dot.dot.dot.dot.dotdot'
+			},
+			{
+				fileName: 'dot. dot ._dot',
+				typeOfName: 'File name with multiple dots and spaces',
+				nameText: 'Dot. dot',
+				prefixedText: 'File:Dot. dot. dot'
+			},
+			{
+				fileName: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂.png',
+				typeOfName: 'File name longer than 240 bytes',
+				nameText: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵',
+				prefixedText: 'File:𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵.png'
+			},
+			{
+				fileName: '',
+				typeOfName: 'Empty string'
+			},
+			{
+				fileName: 'foo',
+				typeOfName: 'String with only alphabet characters'
+			}
+		];
 
-		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[ i ];
-			title = mw.Title.newFromFileName( thisCase.fileName );
+		if ( mw.config.get( 'wgIllegalFileChars', '' ).indexOf( ':' ) > -1 ) {
+			// ":" is automatically replaced with "-". Only test this if it is present
+			// in wgIllegalFileChars. Bug: T196480
+			cases.push( {
+				fileName: 'File:Sample.png',
+				typeOfName: 'Carrying namespace',
+				nameText: 'File-Sample',
+				prefixedText: 'File:File-Sample.png'
+			} );
+			cases.push( {
+				fileName: 'Illegal:Char.png',
+				typeOfName: 'File name with : character not permitted in titles that are replaced',
+				nameText: 'Illegal-Char',
+				prefixedText: 'File:Illegal-Char.png'
+			} );
+		}
 
-			if ( thisCase.nameText !== undefined ) {
-				prefix = '[' + thisCase.typeOfName + '] ';
+		cases.forEach( function ( caseItem ) {
+			var prefix,
+				title = mw.Title.newFromFileName( caseItem.fileName );
+
+			if ( caseItem.nameText !== undefined ) {
+				prefix = '[' + caseItem.typeOfName + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.strictEqual( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
-				assert.strictEqual( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.strictEqual( title.getNameText(), caseItem.nameText, prefix + 'Filename matches original' );
+				assert.strictEqual( title.getPrefixedText(), caseItem.prefixedText, prefix + 'File page title matches original' );
 				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
-				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );
+				assert.strictEqual( title, null, caseItem.typeOfName + ', should not produce an mw.Title object' );
 			}
-		}
+		} );
 	} );
 
 }() );

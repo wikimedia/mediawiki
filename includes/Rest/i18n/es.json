@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"DannyS712",
+			"Fitoschido",
+			"Ihojose"
+		]
+	},
+	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",
+	"rest-wrong-method": "El método solicitado ($1) no estaba en {{PLURAL:$3|los métodos permitidos para esta ruta|uno de los métodos permitidos para esta ruta}} ($2)",
+	"rest-no-match": "La ruta relativa solicitada ($1) no coincide con ningún controlador conocido",
+	"rest-nonexistent-title": "El título especificado ($1) no existe",
+	"rest-nonexistent-title-revision": "La versión especificada ($1) no existe para la página especificada ($2)",
+	"rest-nonexistent-revision": "No existe la revisión especificada ($1)",
+	"rest-permission-denied-title": "El usuario no tiene permisos para leer el título ($1)",
+	"rest-permission-denied-revision": "El usuario no tiene acceso a la revisión solicitada ($1).",
+	"rest-pagehistory-incompatible-params": "Los parámetros \"older_than\" y \"newer_than\" no se pueden especificar",
+	"rest-pagehistory-param-range-error": "El id de revisión debe ser mayor que 0",
+	"rest-pagehistory-timestamp-error": "No se puede recuperar la marca de tiempo para la revisión especificada ($1)",
+	"rest-pagehistorycount-type-unrecognized": "El tipo de recuento especificado ($1) no es válido",
+	"rest-compare-page-mismatch": "Las revisiones especificadas perteneces a páginas distintas; no se compararán.",
+	"rest-compare-permission-denied": "El usuario no tiene acceso a la revisión solicitada",
+	"rest-compare-nonexistent": "La revisión especificada por el parámetro $1 no existe.",
+	"rest-compare-inaccessible": "La revisión especificada por el parámetro $1 no es accesible públicamente.",
+	"rest-compare-wrong-content": "El espacio $1 de la revisión especificada por el parámetro $2 tiene un tipo de contenido que no se puede convertir a texto.",
+	"rest-compare-wikidiff2": "Este endpoint requiere wikidiff2 1.9.0 o superor.",
+	"rest-bad-content-model": "Modelo de contenido malo: $1",
+	"rest-cannot-load-file": "No se puede cargar el archivo con el título «$1»."
+}

@@ -8,23 +8,20 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @coversDefaultClass FileJournal
  */
 class FileJournalTest extends MediaWikiUnitTestCase {
-	private function newObj( $options = [], $backend = '' ) {
-		return FileJournal::factory(
-			$options + [ 'class' => TestFileJournal::class ],
-			$backend
-		);
+	private function newObj( $options = [] ) {
+		return new TestFileJournal( $options + [ 'backend' => '' ] );
 	}
 
 	/**
 	 * @covers ::factory
 	 */
 	public function testConstructor_backend() {
-		$this->assertSame( 'some_backend', $this->newObj( [], 'some_backend' )->getBackend() );
+		$this->assertSame( 'some_backend',
+			$this->newObj( [ 'backend' => 'some_backend' ] )->getBackend() );
 	}
 
 	/**
 	 * @covers ::__construct
-	 * @covers ::factory
 	 */
 	public function testConstructor_ttlDays() {
 		$this->assertSame( 42, $this->newObj( [ 'ttlDays' => 42 ] )->getTtlDays() );
@@ -32,7 +29,6 @@ class FileJournalTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers ::__construct
-	 * @covers ::factory
 	 */
 	public function testConstructor_noTtlDays() {
 		$this->assertSame( false, $this->newObj()->getTtlDays() );
@@ -40,33 +36,22 @@ class FileJournalTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers ::__construct
-	 * @covers ::factory
 	 */
 	public function testConstructor_nullTtlDays() {
 		$this->assertSame( false, $this->newObj( [ 'ttlDays' => null ] )->getTtlDays() );
 	}
 
 	/**
-	 * @covers ::factory
-	 */
-	public function testFactory_invalidClass() {
-		$this->setExpectedException( UnexpectedValueException::class,
-			'Expected instance of FileJournal, got stdClass' );
-
-		FileJournal::factory( [ 'class' => 'stdclass' ], '' );
-	}
-
-	/**
 	 * @covers ::getTimestampedUUID
 	 */
 	public function testGetTimestampedUUID() {
-		$obj = FileJournal::factory( [ 'class' => 'NullFileJournal' ], '' );
+		$obj = new NullFileJournal;
 		$uuids = [];
 		for ( $i = 0; $i < 10; $i++ ) {
 			$time1 = time();
 			$uuid = $obj->getTimestampedUUID();
 			$time2 = time();
-			$this->assertRegexp( '/^[0-9a-z]{31}$/', $uuid );
+			$this->assertRegExp( '/^[0-9a-z]{31}$/', $uuid );
 			$this->assertArrayNotHasKey( $uuid, $uuids );
 			$uuids[$uuid] = true;
 

@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.25
  */
 class RecentChangesUpdateJob extends Job {
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'recentChangesUpdate', $title, $params );
 
 		if ( !isset( $params['type'] ) ) {
@@ -101,7 +101,7 @@ class RecentChangesUpdateJob extends Job {
 			}
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
-				Hooks::run( 'RecentChangesPurgeRows', [ $rows ] );
+				Hooks::runner()->onRecentChangesPurgeRows( $rows );
 				// There might be more, so try waiting for replica DBs
 				if ( !$factory->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'timeout' => 3 ]
@@ -141,7 +141,8 @@ class RecentChangesUpdateJob extends Job {
 		// Get the last-updated timestamp for the cache
 		$cTime = $dbw->selectField( 'querycache_info',
 			'qci_timestamp',
-			[ 'qci_type' => 'activeusers' ]
+			[ 'qci_type' => 'activeusers' ],
+			__METHOD__
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
 
@@ -185,7 +186,7 @@ class RecentChangesUpdateJob extends Job {
 				[
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
-					'qcc_title' => array_keys( $names ),
+					'qcc_title' => array_map( 'strval', array_keys( $names ) ),
 					'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
 				 ],
 				__METHOD__
@@ -221,8 +222,9 @@ class RecentChangesUpdateJob extends Job {
 		$asOfTimestamp = min( $eTimestamp, (int)$dbw->trxTimestamp() );
 
 		// Touch the data freshness timestamp
-		$dbw->replace( 'querycache_info',
-			[ 'qci_type' ],
+		$dbw->replace(
+			'querycache_info',
+			'qci_type',
 			[ 'qci_type' => 'activeusers',
 				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) ], // not always $now
 			__METHOD__

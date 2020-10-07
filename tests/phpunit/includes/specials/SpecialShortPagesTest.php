@@ -7,7 +7,7 @@
  *
  * @license GPL-2.0-or-later
  */
-class SpecialShortPagesTest extends MediaWikiTestCase {
+class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryInfoRespectsContentNs

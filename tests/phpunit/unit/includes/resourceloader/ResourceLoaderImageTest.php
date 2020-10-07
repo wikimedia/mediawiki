@@ -8,7 +8,7 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
 	private $imagesPath;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->imagesPath = __DIR__ . '/../../../data/resourceloader';
 	}
@@ -53,7 +53,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetPath
 	 */
 	public function testGetPath( $imageName, $languageCode, $path ) {
-		$this->markTestSkipped( 'Depends on overriding LanguageFallback/LocalisationCache' );
 		static $dirMap = [
 			'en' => 'ltr',
 			'en-gb' => 'ltr',
@@ -70,13 +69,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 		);
 		$context->setLanguage( $languageCode );
 		$context->setDirection( $dirMap[$languageCode] );
-		Language::$dataCache = $this->createMock( LocalisationCache::class );
-		Language::$dataCache->method( 'getItem' )->will( $this->returnCallback( function ( $code ) {
-			return ( [
-				'en-gb' => [ 'en' ],
-				'de-formal' => [ 'de' ],
-			] )[ $code ] ?? [];
-		} ) );
 
 		$this->assertEquals( $image->getPath( $context ), $this->imagesPath . '/' . $path );
 	}
@@ -121,6 +113,11 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 }
 
 class ResourceLoaderImageTestable extends ResourceLoaderImage {
+	private $mockFallbacks = [
+		'en-gb' => [ 'en' ],
+		'de-formal' => [ 'de' ],
+	];
+
 	// Make some protected methods public
 	public function massageSvgPathdata( $svg ) {
 		return parent::massageSvgPathdata( $svg );
@@ -129,5 +126,9 @@ class ResourceLoaderImageTestable extends ResourceLoaderImage {
 	// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
 	public function rasterize( $svg ) {
 		return 'RASTERIZESTUB';
+	}
+
+	protected function getLangFallbacks( string $code ) : array {
+		return $this->mockFallbacks[$code] ?? [];
 	}
 }

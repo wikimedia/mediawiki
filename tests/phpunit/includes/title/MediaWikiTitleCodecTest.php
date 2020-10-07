@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\Interwiki\InterwikiLookup;
-use Wikimedia\TestingAccessWrapper;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @covers MediaWikiTitleCodec
@@ -29,9 +29,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  *        ^--- needed because of global state in
  */
-class MediaWikiTitleCodecTest extends MediaWikiTestCase {
+class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -139,7 +139,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 	protected function makeCodec( $lang ) {
 		return new MediaWikiTitleCodec(
-			Language::factory( $lang ),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ),
 			$this->getGenderCache(),
 			[ 'localtestiw' ],
 			$this->getInterwikiLookup(),
@@ -366,6 +366,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			[ 'X#n&#x303;', NS_MAIN, 'en', new TitleValue( NS_MAIN, 'X', 'ñ' ) ],
 			// target section parsing
 			'empty fragment' => [ 'X#', NS_MAIN, 'en', new TitleValue( NS_MAIN, 'X' ) ],
+			'only fragment' => [ '#', NS_MAIN, 'en', new TitleValue( NS_MAIN, '' ) ],
 			'double hash' => [ 'X##', NS_MAIN, 'en', new TitleValue( NS_MAIN, 'X', '#' ) ],
 			'fragment with hash' => [ 'X#z#z', NS_MAIN, 'en', new TitleValue( NS_MAIN, 'X', 'z#z' ) ],
 			'fragment with space' => [ 'X#z z', NS_MAIN, 'en', new TitleValue( NS_MAIN, 'X', 'z z' ) ],
@@ -396,7 +397,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		// TODO: test unicode errors
 
 		return [
-			[ '#' ],
+			[ 'User:#' ],
 			[ '::' ],
 			[ '::xx' ],
 			[ '::##' ],
@@ -457,7 +458,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	 * @dataProvider provideParseTitle_invalid
 	 */
 	public function testParseTitle_invalid( $text ) {
-		$this->setExpectedException( MalformedTitleException::class );
+		$this->expectException( MalformedTitleException::class );
 
 		$codec = $this->makeCodec( 'en' );
 		$codec->parseTitle( $text, NS_MAIN );
@@ -490,19 +491,20 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->setService( 'TitleFormatter', $codec );
 
 		$actual = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
-		// We need to reset some members so equality testing works
-		if ( $actual ) {
-			$wrapper = TestingAccessWrapper::newFromObject( $actual );
-			$wrapper->mArticleID = $actual->getNamespace() === NS_SPECIAL ? 0 : -1;
-			$wrapper->mLocalInterwiki = false;
-			$wrapper->mUserCaseDBKey = null;
+
+		if ( $expected ) {
+			$this->assertNotNull( $actual );
+			$this->assertTrue( Title::castFromLinkTarget( $expected )->equals( $actual ) );
+		} else {
+			$this->assertNull( $actual );
 		}
-		$this->assertEquals( Title::castFromLinkTarget( $expected ), $actual );
 	}
 
 	public static function provideMakeTitleValueSafe() {
 		$ret = [
 			'Nonexistent NS' => [ null, 942929, 'Test' ],
+			'Linebreak in title' => [ null, NS_MAIN, "Test\nthis" ],
+			'Pipe in title' => [ null, NS_MAIN, "Test|this" ],
 			'Simple page' => [ new TitleValue( NS_MAIN, 'Test' ), NS_MAIN, 'Test' ],
 
 			// Fragments

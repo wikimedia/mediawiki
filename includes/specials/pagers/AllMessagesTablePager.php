@@ -19,8 +19,8 @@
  * @ingroup Pager
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -66,7 +66,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
 	 */
-	public function __construct( IContextSource $context = null, FormOptions $opts,
+	public function __construct( ?IContextSource $context, FormOptions $opts,
 		LinkRenderer $linkRenderer
 	) {
 		parent::__construct( $context, $linkRenderer );
@@ -109,8 +109,10 @@ class AllMessagesTablePager extends TablePager {
 		}
 	}
 
-	function getAllMessages( $descending ) {
-		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
+	private function getAllMessages( $descending ) {
+		$messageNames = MediaWikiServices::getInstance()
+			->getLocalisationCache()
+			->getSubitemList( 'en', 'messages' );
 
 		// Normalise message names so they look like page titles and sort correctly - T86139
 		$messageNames = array_map( [ $this->lang, 'ucfirst' ], $messageNames );
@@ -183,7 +185,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param bool $order
 	 * @return FakeResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		$asc = ( $order === self::QUERY_ASCENDING );
 
 		$messageNames = $this->getAllMessages( $order );
@@ -239,11 +241,11 @@ class AllMessagesTablePager extends TablePager {
 			</tr></thead>\n";
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return Html::closeElement( 'table' );
 	}
 
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'am_title' :
@@ -294,13 +296,13 @@ class AllMessagesTablePager extends TablePager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		// Do all the normal stuff
 		$s = parent::formatRow( $row );
 
 		// But if there's a customised message, add that too.
 		if ( $row->am_customised ) {
-			$s .= Html::openElement( 'tr', $this->getRowAttrs( $row, true ) );
+			$s .= Html::openElement( 'tr', $this->getRowAttrs( $row ) );
 			$formatted = strval( $this->formatValue( 'am_actual', $row->am_actual ) );
 
 			if ( $formatted === '' ) {
@@ -314,7 +316,7 @@ class AllMessagesTablePager extends TablePager {
 		return Html::rawElement( 'tbody', [], $s );
 	}
 
-	function getRowAttrs( $row ) {
+	protected function getRowAttrs( $row ) {
 		return [];
 	}
 
@@ -323,7 +325,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param string $value
 	 * @return array HTML attributes
 	 */
-	function getCellAttrs( $field, $value ) {
+	protected function getCellAttrs( $field, $value ) {
 		$attr = [];
 		if ( $field === 'am_title' ) {
 			if ( $this->mCurrentRow->am_customised ) {
@@ -343,26 +345,26 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	// This is not actually used, as getStartBody is overridden above
-	function getFieldNames() {
+	protected function getFieldNames() {
 		return [
 			'am_title' => $this->msg( 'allmessagesname' )->text(),
 			'am_default' => $this->msg( 'allmessagesdefault' )->text()
 		];
 	}
 
-	function getTitle() {
+	public function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
 
-	function isFieldSortable( $x ) {
+	protected function isFieldSortable( $x ) {
 		return false;
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return '';
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [];
 	}
 

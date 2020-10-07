@@ -21,6 +21,9 @@
  * @author Simetrical
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Category objects are immutable, strictly speaking. If you call methods that change the database,
  * like to refresh link counts, the objects will be appropriately reinitialized.
@@ -38,12 +41,16 @@ class Category {
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */
 	private $mPages = null, $mSubcats = null, $mFiles = null;
 
-	const LOAD_ONLY = 0;
-	const LAZY_INIT_ROW = 1;
+	protected const LOAD_ONLY = 0;
+	protected const LAZY_INIT_ROW = 1;
 
-	const ROW_COUNT_SMALL = 100;
+	public const ROW_COUNT_SMALL = 100;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
 
 	private function __construct() {
+		$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 	}
 
 	/**
@@ -64,7 +71,7 @@ class Category {
 			return true;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$row = $dbr->selectRow(
 			'category',
 			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
@@ -269,7 +276,7 @@ class Category {
 	 * @return TitleArray TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$conds = [ 'cl_to' => $this->getName(), 'cl_from = page_id' ];
 		$options = [ 'ORDER BY' => 'cl_sortkey' ];
@@ -325,7 +332,7 @@ class Category {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
 		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
@@ -349,8 +356,8 @@ class Category {
 			[ 'LOCK IN SHARE MODE' ]
 		);
 		// Get the aggregate `categorylinks` row counts for this category
-		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
-		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
+		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );
+		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], '1', 'NULL' );
 		$result = $dbw->selectRow(
 			[ 'categorylinks', 'page' ],
 			[
@@ -399,7 +406,7 @@ class Category {
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
 				],
-				[ 'cat_title' ],
+				'cat_title',
 				[
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
@@ -450,7 +457,7 @@ class Category {
 	 * @since 1.34
 	 */
 	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
 		$typeOccurances = $dbw->selectFieldValues(

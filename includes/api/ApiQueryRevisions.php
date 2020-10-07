@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -62,7 +63,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->tokenFunctions = [
 			'rollback' => [ self::class, 'getRollbackToken' ]
 		];
-		Hooks::run( 'APIQueryRevisionsTokens', [ &$this->tokenFunctions ] );
+		$this->getHookRunner()->onAPIQueryRevisionsTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
@@ -71,10 +72,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @deprecated since 1.24
 	 * @param int $pageid
 	 * @param Title $title
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (passing a Revision hard deprecated since 1.35)
 	 * @return bool|string
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
+		if ( $rev instanceof Revision ) {
+			// Don't actually need to use the Revision(Record), just emit warnings
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+		}
+
 		global $wgUser;
 		if ( !MediaWikiServices::getInstance()->getPermissionManager()
 				->userHasRight( $wgUser, 'rollback' ) ) {
@@ -146,10 +152,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
 			$this->token = $params['token'];
-			$opts = [];
-			if ( $this->token !== null || $pageCount > 0 ) {
-				$opts[] = 'page';
-			}
+			$opts = [ 'page' ];
 			if ( $this->fld_user ) {
 				$opts[] = 'user';
 			}
@@ -316,13 +319,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			if ( $params['user'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()
-					->getWhere( $db, 'rev_user', User::newFromName( $params['user'], false ) );
+					->getWhere( $db, 'rev_user', $params['user'] );
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( $actorQuery['conds'] );
 			} elseif ( $params['excludeuser'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()
-					->getWhere( $db, 'rev_user', User::newFromName( $params['excludeuser'], false ) );
+					->getWhere( $db, 'rev_user', $params['excludeuser'] );
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
@@ -417,15 +420,31 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $resultPageSet !== null ) {
 				$generated[] = $row->rev_id;
 			} else {
-				$revision = $revisionStore->newRevisionFromRow( $row );
+				$revision = $revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( $this->token !== null ) {
 					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
-					$revisionCompat = new Revision( $revision );
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $this->token as $t ) {
-						$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revisionCompat );
+						if ( $t === 'rollback' ) {
+							$val = call_user_func(
+								$tokenFunctions[$t],
+								$title->getArticleID(),
+								$title,
+								$revision
+							);
+						} else {
+							// Token function added via APIQueryRevisionsTokens,
+							// Hook is hard deprecated, so any use of
+							// Revision objects is okay
+							$val = call_user_func(
+								$tokenFunctions[$t],
+								$title->getArticleID(),
+								$title,
+								new Revision( $revision )
+							);
+						}
 						if ( $val === false ) {
 							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {
@@ -492,10 +511,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'tag' => null,

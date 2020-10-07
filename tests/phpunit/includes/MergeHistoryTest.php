@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  */
-class MergeHistoryTest extends MediaWikiTestCase {
+class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Make some pages to work with
@@ -33,7 +35,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 			// still work for the merge.
 			$timestamp = time() + ( 24 * 3600 );
 		}
-		$mh = new MergeHistory(
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory(
 			Title::newFromText( $source ),
 			Title::newFromText( $dest ),
 			$timestamp
@@ -69,6 +72,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 * @covers MergeHistory::isValidMerge
 	 */
 	public function testIsValidMergeRevisionLimit() {
+		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
+
 		$limit = MergeHistory::REVISION_LIMIT;
 
 		$mh = $this->getMockBuilder( MergeHistory::class )
@@ -94,7 +99,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 * @covers MergeHistory::checkPermissions
 	 */
 	public function testCheckPermissions() {
-		$mh = new MergeHistory(
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory(
 			Title::newFromText( 'Test' ),
 			Title::newFromText( 'Test2' )
 		);
@@ -115,7 +121,8 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 * @covers MergeHistory::getMergedRevisionCount
 	 */
 	public function testGetMergedRevisionCount() {
-		$mh = new MergeHistory(
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory(
 			Title::newFromText( 'Merge1' ),
 			Title::newFromText( 'Merge2' )
 		);
@@ -123,5 +130,41 @@ class MergeHistoryTest extends MediaWikiTestCase {
 		$sysop = static::getTestSysop()->getUser();
 		$mh->merge( $sysop );
 		$this->assertEquals( $mh->getMergedRevisionCount(), 1 );
+	}
+
+	/**
+	 * Test the old and new constructors work (though the old is deprecated)
+	 * @covers MergeHistory::__construct
+	 */
+	public function testConstructor() {
+		$services = MediaWikiServices::getInstance();
+		$source = Title::newFromText( 'Merge1' );
+		$destination = Title::newFromText( 'Merge2' );
+		$timestamp = false;
+
+		// Old method: No dependencies injected
+		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
+		$mergeHistory = new MergeHistory( $source, $destination, $timestamp );
+		$this->assertInstanceOf(
+			MergeHistory::class,
+			$mergeHistory
+		);
+
+		// New method: all dependencies injected
+		$mergeHistory = new MergeHistory(
+			$source,
+			$destination,
+			$timestamp,
+			$services->getDBLoadBalancer(),
+			$services->getPermissionManager(),
+			$services->getContentHandlerFactory(),
+			$services->getRevisionStore(),
+			$services->getWatchedItemStore(),
+			$services->getSpamChecker()
+		);
+		$this->assertInstanceOf(
+			MergeHistory::class,
+			$mergeHistory
+		);
 	}
 }

@@ -53,7 +53,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -64,7 +64,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		// Page filters
 		$this->addTables( 'page' );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 1 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -97,7 +97,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				$db->anyString() ) );
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$selectFields = [
 				'page_namespace',
 				'page_title',
@@ -236,7 +236,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				continue;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$vals = [
 					'pageid' => (int)$row->page_id,
@@ -253,7 +253,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'p' );
 		}
 	}

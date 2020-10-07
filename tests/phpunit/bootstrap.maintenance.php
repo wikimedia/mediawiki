@@ -14,7 +14,7 @@ EOF;
 	require_once __DIR__ . "/phpunit.php";
 }
 
-// The PHPUnit_TextUI_TestRunner class will run each test suite and may call
+// The TestRunner class will run each test suite and may call
 // exit() with an exit status code. As such, we cannot run code "after the last test"
 // by adding statements to PHPUnitMaintClass::execute or MediaWikiPHPUnitCommand::run.
 // Instead, we work around it by registering a shutdown callback from the bootstrap
@@ -27,7 +27,7 @@ register_shutdown_function( function () {
 	// - allow extensions to delete any temporary tables they created.
 	// - restore ability to connect to the real database,
 	//   (for logging profiling data).
-	MediaWikiTestCase::teardownTestDB();
+	MediaWikiIntegrationTestCase::teardownTestDB();
 
 	// Log profiling data, e.g. in the database or UDP
 	wfLogProfilingData();

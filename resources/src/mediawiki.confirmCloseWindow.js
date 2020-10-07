@@ -38,7 +38,7 @@
 			message;
 
 		options = $.extend( {
-			message: mw.message( 'mwe-prevent-close' ).text(),
+			message: mw.message( 'confirmleave-warning' ).text(),
 			test: function () { return true; }
 		}, options );
 

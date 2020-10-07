@@ -2,6 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\Util\UploadedFile;
 use Wikimedia\ParamValidator\ValidationException;
@@ -54,14 +56,23 @@ class UploadDefTest extends TypeDefTestCase {
 		$okFile = $this->makeUpload();
 		$iniFile = $this->makeUpload( UPLOAD_ERR_INI_SIZE );
 		$exIni = new ValidationException(
-			'test', '', [], 'badupload-inisize', [ 'size' => 2 * 1024 * 1024 * 1024 ]
+			DataMessageValue::new( 'paramvalidator-badupload-inisize', [], 'badupload', [
+				'code' => 'inisize',
+				'size' => 2 * 1024 * 1024 * 1024,
+			] ),
+			'test', '', []
 		);
 
 		return [
 			'Valid upload' => [ $okFile, $okFile ],
 			'Not an upload' => [
 				'bar',
-				new ValidationException( 'test', 'bar', [], 'badupload-notupload', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-notupload', [], 'badupload', [
+						'code' => 'notupload'
+					] ),
+					'test', 'bar', []
+				),
 			],
 
 			'Too big (bytes)' => [ $iniFile, $exIni, [], [ 'inisize' => 2 * 1024 * 1024 * 1024 ] ],
@@ -74,32 +85,160 @@ class UploadDefTest extends TypeDefTestCase {
 
 			'Form size' => [
 				$this->makeUpload( UPLOAD_ERR_FORM_SIZE ),
-				new ValidationException( 'test', '', [], 'badupload-formsize', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-formsize', [], 'badupload', [
+						'code' => 'formsize',
+					] ),
+					'test', '', []
+				),
 			],
 			'Partial' => [
 				$this->makeUpload( UPLOAD_ERR_PARTIAL ),
-				new ValidationException( 'test', '', [], 'badupload-partial', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-partial', [], 'badupload', [
+						'code' => 'partial',
+					] ),
+					'test', '', []
+				),
 			],
 			'No tmp' => [
 				$this->makeUpload( UPLOAD_ERR_NO_TMP_DIR ),
-				new ValidationException( 'test', '', [], 'badupload-notmpdir', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-notmpdir', [], 'badupload', [
+						'code' => 'notmpdir',
+					] ),
+					'test', '', []
+				),
 			],
 			'Can\'t write' => [
 				$this->makeUpload( UPLOAD_ERR_CANT_WRITE ),
-				new ValidationException( 'test', '', [], 'badupload-cantwrite', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-cantwrite', [], 'badupload', [
+						'code' => 'cantwrite',
+					] ),
+					'test', '', []
+				),
 			],
 			'Ext abort' => [
 				$this->makeUpload( UPLOAD_ERR_EXTENSION ),
-				new ValidationException( 'test', '', [], 'badupload-phpext', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badupload-phpext', [], 'badupload', [
+						'code' => 'phpext',
+					] ),
+					'test', '', []
+				),
 			],
-			'Unknown' => [
-				$this->makeUpload( -43 ), // Should be safe from ever being an UPLOAD_ERR_* constant
-				new ValidationException( 'test', '', [], 'badupload-unknown', [ 'code' => -43 ] ),
-			],
+		];
+	}
 
-			'Validating null' => [
-				null,
-				new ValidationException( 'test', '', [], 'badupload', [] ),
+	public function testValidate_badType() {
+		$callbacks = $this->getCallbacks( 'foo', [] );
+		$typeDef = $this->getInstance( $callbacks, [] );
+
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got string' );
+		$typeDef->validate( 'test', 'foo', [], [] );
+	}
+
+	public function testValidate_badType2() {
+		$callbacks = $this->getCallbacks( 'foo', [] );
+		$typeDef = $this->getInstance( $callbacks, [] );
+
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got NULL' );
+		$typeDef->validate( 'test', null, [], [] );
+	}
+
+	public function testValidate_unknownError() {
+		// -43 should be safe from ever being a valid UPLOAD_ERR_ constant
+		$callbacks = $this->getCallbacks( $this->makeUpload( -43 ), [] );
+		$typeDef = $this->getInstance( $callbacks, [] );
+		$value = $typeDef->getValue( 'test', [], [] );
+
+		$this->expectException( \UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'Unrecognized PHP upload error value -43' );
+		$typeDef->validate( 'test', $value, [], [] );
+	}
+
+	public function testValidate_unknownError2() {
+		define( 'UPLOAD_ERR_UPLOADDEFTEST', -44 );
+		$callbacks = $this->getCallbacks( $this->makeUpload( UPLOAD_ERR_UPLOADDEFTEST ), [] );
+		$typeDef = $this->getInstance( $callbacks, [] );
+		$value = $typeDef->getValue( 'test', [], [] );
+
+		$this->expectException( \UnexpectedValueException::class );
+		$this->expectExceptionMessage(
+			'Unrecognized PHP upload error value -44 (UPLOAD_ERR_UPLOADDEFTEST?)'
+		);
+		$typeDef->validate( 'test', $value, [], [] );
+	}
+
+	public function provideCheckSettings() {
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				self::STDRET,
+			],
+			'PARAM_ISMULTI not allowed' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_ISMULTI
+							=> 'PARAM_ISMULTI cannot be used for upload-type parameters',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI not allowed, but another ISMULTI issue was already logged' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+			],
+			'PARAM_DEFAULT can be null' => [
+				[ ParamValidator::PARAM_DEFAULT => null ],
+				self::STDRET,
+				self::STDRET,
+			],
+			'PARAM_DEFAULT is otherwise not allowed' => [
+				[
+					ParamValidator::PARAM_DEFAULT => true,
+				],
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_DEFAULT => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_DEFAULT => 'Cannot specify a default for upload-type parameters',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
 			],
 		];
 	}
@@ -107,6 +246,19 @@ class UploadDefTest extends TypeDefTestCase {
 	public function provideStringifyValue() {
 		return [
 			'Yeah, right' => [ $this->makeUpload(), null ],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-upload"></message>',
+				],
+			],
 		];
 	}
 

@@ -19,6 +19,12 @@
  *
  * @file
  */
+
+/**
+ * SquidPurgeClient helper class
+ *
+ * @deprecated Since 1.35 Use MultiHttpClient
+ */
 class SquidPurgeClientPool {
 	/** @var SquidPurgeClient[] */
 	protected $clients = [];
@@ -29,7 +35,7 @@ class SquidPurgeClientPool {
 	/**
 	 * @param array $options
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( $options = [] ) {
 		if ( isset( $options['timeout'] ) ) {
 			$this->timeout = $options['timeout'];
 		}
@@ -70,14 +76,14 @@ class SquidPurgeClientPool {
 			Wikimedia\restoreWarnings();
 			if ( $numReady === false ) {
 				wfDebugLog( 'squid', __METHOD__ . ': Error in stream_select: ' .
-					socket_strerror( socket_last_error() ) . "\n" );
+					socket_strerror( socket_last_error() ) );
 				break;
 			}
 
 			// Check for timeout, use 1% tolerance since we aimed at having socket_select()
 			// exit at precisely the overall timeout
 			if ( microtime( true ) - $startTime > $this->timeout * 0.99 ) {
-				wfDebugLog( 'squid', __CLASS__ . ": timeout ({$this->timeout}s)\n" );
+				wfDebugLog( 'squid', __CLASS__ . ": timeout ({$this->timeout}s)" );
 				break;
 			} elseif ( !$numReady ) {
 				continue;

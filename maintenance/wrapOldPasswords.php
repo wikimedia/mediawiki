@@ -35,10 +35,12 @@ use MediaWiki\MediaWikiServices;
 class WrapOldPasswords extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Wrap all passwords of a certain type in a new layered type' );
+		$this->addDescription( 'Wrap all passwords of a certain type in a new layered type. '
+					. 'The script runs in dry-run mode by default (use --update to update rows)' );
 		$this->addOption( 'type',
 			'Password type to wrap passwords in (must inherit LayeredParameterizedPassword)', true, true );
 		$this->addOption( 'verbose', 'Enables verbose output', false, false, 'v' );
+		$this->addOption( 'update', 'Actually wrap passwords', false, false, 'u' );
 		$this->setBatchSize( 100 );
 	}
 
@@ -62,14 +64,19 @@ class WrapOldPasswords extends Maintenance {
 		$typeConfig = $typeInfo[$layeredType];
 		$firstType = $typeConfig['types'][0];
 
+		$update = $this->hasOption( 'update' );
+
 		// Get a list of password types that are applicable
 		$dbw = $this->getDB( DB_MASTER );
 		$typeCond = 'user_password' . $dbw->buildLike( ":$firstType:", $dbw->anyString() );
 
+		$count = 0;
 		$minUserId = 0;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
-			$this->beginTransaction( $dbw, __METHOD__ );
+			if ( $update ) {
+				$this->beginTransaction( $dbw, __METHOD__ );
+			}
 
 			$res = $dbw->select( 'user',
 				[ 'user_id', 'user_name', 'user_password' ],
@@ -88,10 +95,6 @@ class WrapOldPasswords extends Maintenance {
 			/** @var User[] $updateUsers */
 			$updateUsers = [];
 			foreach ( $res as $row ) {
-				if ( $this->hasOption( 'verbose' ) ) {
-					$this->output( "Updating password for user {$row->user_name} ({$row->user_id}).\n" );
-				}
-
 				$user = User::newFromId( $row->user_id );
 				/** @var ParameterizedPassword $password */
 				$password = $passwordFactory->newFromCiphertext( $row->user_password );
@@ -101,24 +104,43 @@ class WrapOldPasswords extends Maintenance {
 				'@phan-var LayeredParameterizedPassword $layeredPassword';
 				$layeredPassword->partialCrypt( $password );
 
-				$updateUsers[] = $user;
-				$dbw->update( 'user',
-					[ 'user_password' => $layeredPassword->toString() ],
-					[ 'user_id' => $row->user_id ],
-					__METHOD__
-				);
+				if ( $this->hasOption( 'verbose' ) ) {
+					$this->output(
+						"Updating password for user {$row->user_name} ({$row->user_id}) from " .
+						"type {$password->getType()} to {$layeredPassword->getType()}.\n"
+					);
+				}
+
+				$count++;
+				if ( $update ) {
+					$updateUsers[] = $user;
+					$dbw->update( 'user',
+						[ 'user_password' => $layeredPassword->toString() ],
+						[ 'user_id' => $row->user_id ],
+						__METHOD__
+					);
+				}
 
 				$minUserId = $row->user_id;
 			}
 
-			$this->commitTransaction( $dbw, __METHOD__ );
-			$lbFactory->waitForReplication();
+			if ( $update ) {
+				$this->commitTransaction( $dbw, __METHOD__ );
+				$lbFactory->waitForReplication();
 
-			// Clear memcached so old passwords are wiped out
-			foreach ( $updateUsers as $user ) {
-				$user->clearSharedCache( 'refresh' );
+				// Clear memcached so old passwords are wiped out
+				foreach ( $updateUsers as $user ) {
+					$user->clearSharedCache( 'refresh' );
+				}
 			}
 		} while ( $res->numRows() );
+
+		if ( $update ) {
+			$this->output( "$count users rows updated." );
+		} else {
+			$this->output( "$count user rows found using old password formats. "
+					. "Run script again with --update to update these rows" );
+		}
 	}
 }
 

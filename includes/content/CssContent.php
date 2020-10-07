@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content object for CSS pages.
  *
+ * @newable
  * @ingroup Content
  */
 class CssContent extends TextContent {
@@ -40,6 +41,7 @@ class CssContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
+	 * @stable to call
 	 * @param string $text CSS code.
 	 * @param string $modelId the content content model
 	 */
@@ -73,12 +75,10 @@ class CssContent extends TextContent {
 	 * @return string CSS wrapped in a <pre> tag.
 	 */
 	protected function getHtml() {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getText() );
-		$html .= "\n</pre>\n";
-
-		return $html;
+		return Html::element( 'pre',
+			[ 'class' => 'mw-code mw-css', 'dir' => 'ltr' ],
+			"\n" . $this->getText() . "\n"
+		) . "\n";
 	}
 
 	/**

@@ -15,10 +15,6 @@ th.mw-version-ext-col-label {
 	font-size: 0.9em;
 }
 
-.mw-version-ext-vcs-version {
-	unicode-bidi: embed;
-}
-
 .mw-version-credits {
 	column-width: 18em;
 	-moz-column-width: 18em;

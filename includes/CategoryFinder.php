@@ -73,6 +73,10 @@ class CategoryFinder {
 	/** @var IDatabase Read-DB replica DB */
 	protected $dbr;
 
+	public function __construct() {
+		wfDeprecated( __METHOD__, '1.31' );
+	}
+
 	/**
 	 * Initializes the instance. Do this prior to calling run().
 	 * @param array $articleIds Array of article IDs
@@ -145,7 +149,7 @@ class CategoryFinder {
 	/**
 	 * This functions recurses through the parent representation, trying to match the conditions
 	 * @param int $id The article/category to check
-	 * @param array $conds The array of categories to match
+	 * @param array &$conds The array of categories to match
 	 * @param array $path Used to check for recursion loops
 	 * @return bool Does this match the conditions?
 	 */

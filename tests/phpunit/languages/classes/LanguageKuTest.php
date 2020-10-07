@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @covers LanguageKu
  * @covers KuConverter
  */
 class LanguageKuTest extends LanguageClassesTestCase {

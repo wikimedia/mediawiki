@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"500000000006城",
+			"A Chinese Wikipedian",
+			"VulpesVulpes825",
+			"铁桶"
+		]
+	},
+	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
+	"rest-wrong-method": "请求方法($1)不是{{PLURAL:$3|此路径允许的方法之一|此路径允许的方法}}($2)",
+	"rest-no-match": "请求的相对路径($1)不匹配任何已知的处理程序",
+	"rest-nonexistent-title": "指定的标题($1)不存在",
+	"rest-nonexistent-title-revision": "指定的修订($1)对于指定的页面不存在($2)",
+	"rest-nonexistent-revision": "指定的修订($1)不存在",
+	"rest-permission-denied-title": "用户无权阅读标题($1)",
+	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
+	"rest-pagehistory-incompatible-params": "不能同时指定“旧的”和“新的”参数",
+	"rest-pagehistory-param-range-error": "修订 ID 必须大于 0",
+	"rest-pagehistory-timestamp-error": "无法检索指定修订的时间戳($1)",
+	"rest-pagehistorycount-type-unrecognized": "指定的计数类型($1)无效",
+	"rest-pagehistorycount-parameters-invalid": "不支持指定的参数组合。",
+	"rest-compare-page-mismatch": "指定的修订版属于不同页面； 拒绝比较它们。",
+	"rest-compare-permission-denied": "用户无权访问所请求的修订",
+	"rest-compare-nonexistent": "由$1参数指定的修订不存在。",
+	"rest-compare-inaccessible": "$1参数指定的修订不能公开访问。",
+	"rest-compare-wrong-content": "$2参数指定的修订版的$1插槽具有无法转换为文本的内容类型。",
+	"rest-compare-wikidiff2": "此终结点需要 wikidiff2 1.9.0 或更高版本。",
+	"rest-pagehistorycount-too-many-revisions": "因为指定的标题中包含的修改太多，所以不能获得这个数量。",
+	"rest-search-error": "返回搜索结果时出错：$1",
+	"rest-page-source-type-error": "不支持请求的页面源的内容类型",
+	"rest-no-revision": "无法检索标题$1的修订",
+	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）"
+}

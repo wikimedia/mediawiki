@@ -8,4 +8,3 @@ $mw$;
 
 CREATE TRIGGER page_deleted AFTER DELETE ON page
   FOR EACH ROW EXECUTE PROCEDURE page_deleted();
-

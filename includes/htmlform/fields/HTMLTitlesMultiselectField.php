@@ -17,9 +17,13 @@ use MediaWiki\Widget\TitlesMultiselectWidget;
  * - OOUI modules were adjusted for the TitlesMultiselectWidget
  * - The PHP version instantiates a MediaWiki\Widget\TitlesMultiselectWidget
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLTitlesMultiselectField extends HTMLTitleTextField {
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$params += [
 			// This overrides the default from HTMLTitleTextField
@@ -46,7 +50,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			return true;
 		}
 
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			return false;
 		}
 
@@ -54,7 +58,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		$titlesArray = explode( "\n", $value );
 
 		if ( isset( $this->mParams['max'] ) && ( count( $titlesArray ) > $this->mParams['max'] ) ) {
-			return $this->msg( 'htmlform-int-toohigh', $this->mParams['max'] );
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
 		}
 
 		foreach ( $titlesArray as $title ) {
@@ -108,7 +112,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			$params['input'] = $this->mParams['input'];
 		}
 
-		if ( !is_null( $value ) ) {
+		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}

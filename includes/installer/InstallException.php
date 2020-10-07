@@ -33,7 +33,6 @@ class InstallException extends \MWException {
 	private $status;
 
 	/**
-	 * InstallException constructor.
 	 * @param \Status $status State when an exception occurs
 	 * @param string $message The Exception message to throw
 	 * @param int $code The Exception code

@@ -35,19 +35,19 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-
-		if ( is_null( $params['lang'] ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $params['lang'] === null ) {
 			$langObj = $this->getLanguage();
-		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
+		} elseif ( !$services->getLanguageNameUtils()->isValidCode( $params['lang'] ) ) {
 			$this->dieWithError(
 				[ 'apierror-invalidlang', $this->encodeParamName( 'lang' ) ], 'invalidlang'
 			);
 		} else {
-			$langObj = Language::factory( $params['lang'] );
+			$langObj = $services->getLanguageFactory()->getLanguage( $params['lang'] );
 		}
 
 		if ( $params['enableparser'] ) {
-			if ( !is_null( $params['title'] ) ) {
+			if ( $params['title'] !== null ) {
 				$title = Title::newFromText( $params['title'] );
 				if ( !$title || $title->isExternal() ) {
 					$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
@@ -61,7 +61,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 		// Determine which messages should we print
 		if ( in_array( '*', $params['messages'] ) ) {
-			$message_names = Language::getMessageKeysFor( $langObj->getCode() );
+			$message_names = $services->getLocalisationCache()
+				->getSubitemList( $langObj->getCode(), 'messages' );
 			if ( $params['includelocal'] ) {
 				$message_names = array_unique( array_merge(
 					$message_names,
@@ -69,7 +70,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					// MediaWiki:msgkey page. We might theoretically miss messages that have no
 					// MediaWiki:msgkey page but do have a MediaWiki:msgkey/lang page, but that's
 					// just a stupid case.
-					MessageCache::singleton()->getAllMessageKeys( $this->getConfig()->get( 'LanguageCode' ) )
+					$services->getMessageCache()
+						->getAllMessageKeys( $this->getConfig()->get( 'LanguageCode' ) )
 				) );
 			}
 			sort( $message_names );
@@ -125,8 +127,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		}
 
 		// Get all requested messages and print the result
-		$skip = !is_null( $params['from'] );
-		$useto = !is_null( $params['to'] );
+		$skip = $params['from'] !== null;
+		$useto = $params['to'] !== null;
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
@@ -194,7 +196,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		if ( is_null( $params['lang'] ) ) {
+		if ( $params['lang'] === null ) {
 			// Language not specified, will be fetched from preferences
 			return 'anon-public-user-private';
 		} elseif ( $params['enableparser'] ) {

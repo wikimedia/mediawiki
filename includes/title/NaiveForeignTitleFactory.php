@@ -56,7 +56,7 @@ class NaiveForeignTitleFactory implements ForeignTitleFactory {
 		 * ID, we fall back to using the local wiki's namespace names to resolve
 		 * this -- better than nothing, and mimics the old crappy behavior
 		 */
-		$isNamespacePartValid = is_null( $ns )
+		$isNamespacePartValid = $ns === null
 			? MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $pieces[0] ) !==
 				false
 			: $ns != 0;

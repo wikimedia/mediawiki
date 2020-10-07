@@ -3,15 +3,10 @@
 /**
  * @covers ConverterRule
  */
-class ConverterRuleTest extends MediaWikiTestCase {
-
-	public function setUp() {
-		parent::setUp();
-		$this->setMwGlobals( 'wgUser', new User );
-	}
+class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 
 	public function testParseEmpty() {
-		$converter = new LanguageConverter( new Language(), 'en' );
+		$converter = new EnConverter( new Language() );
 		$rule = new ConverterRule( '', $converter );
 		$rule->parse();
 

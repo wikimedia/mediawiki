@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"पर्वत सुबेदी",
 			"राम प्रसाद जोशी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
-	"config-title": "मेडिया विकि $1 स्थापना",
+	"config-title": "मिडिया विकि $1 स्थापना",
 	"config-information": "जानकारी",
 	"config-localsettings-upgrade": "<code>LocalSettings.php</code> फाइल पाइयो ।\nयै स्थापनालाई अपग्रेड गर्न, तलीखाइ दिया  बक्समी <code>$wgUpgradeKey</code>  को मान दर्ज गर ।\nतम <code>LocalSettings.php</code> मा भेट्टे हौ ।",
 	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> फाइल पाइयो ।\nयै स्थापनालाई अपग्रेड गद्द, बदलामी कृपया यैलाई चलाओ <code>update.php</code>",
@@ -33,7 +34,6 @@
 	"config-page-install": "स्थापना गद्दे",
 	"config-page-complete": "पूरा भयो !",
 	"config-page-restart": "स्थापना फेरि सुरु गद्दे",
-	"config-page-readme": "थप पड्डे",
 	"config-page-releasenotes": "प्रकाशन टिप्पणी",
 	"config-page-copying": "कपि हून लाग्याको छ",
 	"config-page-upgradedoc": "अद्यावधिक गरिदै",
@@ -46,7 +46,6 @@
 	"config-env-good": "The environment has been checked.\nYou can install MediaWiki.",
 	"config-env-bad": "The environment has been checked.\nYou cannot install MediaWiki.",
 	"config-env-php": "PHP $1 is installed.",
-	"config-env-hhvm": "HHVM $1 स्थापना गरिएको छ ।",
 	"config-unicode-using-intl": "Using the [https://pecl.php.net/intl intl PECL extension] for Unicode normalization.",
 	"config-unicode-pure-php-warning": "<strong>Warning:</strong> The [https://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.\nIf you run a high-traffic site, you should read a little on [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization]."
 }

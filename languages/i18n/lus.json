@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
 			"Lpachuau",
-			"RMizo",
-			"아라",
 			"Macofe",
+			"RMizo",
 			"Stephanecbisson",
-			"Fitoschido"
+			"아라"
 		]
 	},
 	"tog-underline": "Zawmna hnuairinna",
@@ -253,7 +254,7 @@
 	"nospecialpagetext": "<strong>Vohbik phek awm lo en i tum.</strong>\n\nVohbik phekte chu hetah hian a en theih [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Dik lo",
 	"databaseerror": "Database dik loh",
-	"laggedslavemode": "'''Vaukhanna:''' He phêk hian tun hnaia siam thar a pho lang lo mai thei.",
+	"laggedreplicamode": "'''Vaukhanna:''' He phêk hian tun hnaia siam thar a pho lang lo mai thei.",
 	"readonly": "Database kalh a ni",
 	"enterlockreason": "I kalhna chhan leh i hawn leh hun tura i rin sawi rawh",
 	"missing-article": "Database-in a hmuh tùr phêk \"$1\" $2 a hmu lo tlat mai. \n\nHei hi dnglm ţhing emaw phêk paih tawh zawmna hlui zui vanga awm a ni tlangpui. \n\nChumi a nih si loh chuan khawlthluakah hrik ţhalo i tawng tihna a ni ang. Khawngaihin [[Special:ListUsers/sysop|roreltu]] hnenah  a URL chiang taka sawiin hrilh rawh.",
@@ -369,7 +370,6 @@
 	"passwordreset-email": "E-chenhmun:",
 	"passwordreset-emailtitle": "{{SITENAME}}-a siangchan chanchin kim",
 	"passwordreset-emailelement": "Hmangtuhming: \n$1\n\nThurûk lailâwk: \n$2",
-	"passwordreset-emailsentemail": "Hriat nawntirna e-lehkha thawn fel a ni.",
 	"changeemail": "E-chenhmun thlâk rawh",
 	"changeemail-header": "Siangchan e-chenhmun thlâk rawh",
 	"changeemail-no-info": "He phêk lut mai tùr chuan i inziahluh a ngai.",
@@ -483,7 +483,7 @@
 	"histfirst": "Hmasa ber",
 	"histlast": "Hnuhnung ber",
 	"historysize": "({{PLURAL:$1|bait 1 |bait $1}})",
-	"historyempty": "(ruak)",
+	"historyempty": "ruak",
 	"history-feed-title": "Ennawnna chanchin",
 	"history-feed-description": "Wiki-a hemi phêk ennawnna chanchin",
 	"history-feed-item-nocomment": "$1-in $2-ah",

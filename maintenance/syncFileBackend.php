@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -46,7 +48,8 @@ class SyncFileBackend extends Maintenance {
 	}
 
 	public function execute() {
-		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
+		$backendGroup = MediaWikiServices::getInstance()->getFileBackendGroup();
+		$src = $backendGroup->get( $this->getOption( 'src' ) );
 
 		$posDir = $this->getOption( 'posdir' );
 		if ( $posDir != '' ) {
@@ -82,7 +85,7 @@ class SyncFileBackend extends Maintenance {
 		if ( !$this->hasOption( 'dst' ) ) {
 			$this->fatalError( "Param dst required!" );
 		}
-		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
+		$dst = $backendGroup->get( $this->getOption( 'dst' ) );
 
 		$start = $this->getOption( 'start', 0 );
 		if ( !$start && $posFile && is_dir( $posDir ) ) {

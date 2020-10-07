@@ -1,16 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Ebe123",
+			"Hangmanwa7id",
 			"JeanVoisin",
 			"Peter17",
 			"PieRRoMaN",
+			"Pierpao",
 			"RoyAlcatraz",
-			"Urhixidur",
-			"Zetud",
-			"Hangmanwa7id",
 			"Stisc-14",
-			"Pierpao"
+			"Urhixidur",
+			"Whytheonlyone",
+			"Zetud"
 		]
 	},
 	"tog-underline": "Souligner les liens:",
@@ -260,7 +262,7 @@
 	"error": "Erreur",
 	"databaseerror": "Erreur de la base d'information",
 	"databaseerror-error": "Erreur: $1",
-	"laggedslavemode": "Avertissement: La page est peut-être pas renouvelée.",
+	"laggedreplicamode": "Avertissement: La page est peut-être pas renouvelée.",
 	"readonly": "La base d'information est barrée.",
 	"enterlockreason": "Écrire une raison pour le barrage avec un temps estimé\nd'équand le barrage va être ôté.",
 	"readonlytext": "À présent, la base d'information est barrée aux nouveaux changements, peut-être pour le soutien habituel de la base d'information, et ça va retourner à normal t'à l'heure.\n\nL'administrateur qui l'a barrée a donné cette explication: $1",
@@ -475,7 +477,7 @@
 	"histlegend": "Choisir une version: Marquez les ronds pour les versions que vous voulez comparer et cliquez \"enter\" ou le bouton en bas.<br />\nClé: (cour.) = différence avec la version courante, (dernier) = différence avec la version avant, m = petit changement.",
 	"histfirst": "Premiers changements",
 	"histlast": "Derniers changements",
-	"historyempty": "(vide)",
+	"historyempty": "vide",
 	"history-feed-title": "Détails des changements",
 	"history-feed-description": "Détails des changements pour cette page sus le wiki",
 	"history-feed-item-nocomment": "$1 le $2",

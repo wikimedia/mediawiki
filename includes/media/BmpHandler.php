@@ -55,7 +55,7 @@ class BmpHandler extends BitmapHandler {
 	 * @param string $filename
 	 * @return array|false
 	 */
-	function getImageSize( $image, $filename ) {
+	public function getImageSize( $image, $filename ) {
 		$f = fopen( $filename, 'rb' );
 		if ( !$f ) {
 			return false;

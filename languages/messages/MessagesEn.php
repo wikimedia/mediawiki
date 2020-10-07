@@ -88,9 +88,20 @@ $namespaceNames = [
 ];
 
 /**
- * Array of namespace aliases, mapping from name to NS_xxx index
+ * Array of namespace aliases, mapping from name to NS_xxx index.
+ *
+ * Note that 'namespaceAliases' is a mergable language attribute,
+ * which means it is combined with other languages in the fallback chain.
  */
-$namespaceAliases = [];
+$namespaceAliases = [
+	// The canonical names of namespaces 6 and 7 are, as of MediaWik 1.14,
+	// "File" and "File_talk".  The old names "Image" and "Image_talk" are
+	// retained as aliases for backwards compatibility.
+	// This must apply regardless of site language (and does, given 'en' is at
+	// the end of all fallback chains.)
+	'Image' => NS_FILE,
+	'Image_talk' => NS_FILE_TALK,
+];
 
 /**
  * Array of gender specific. namespace aliases.
@@ -178,9 +189,9 @@ $dateFormats = [
  * Default list of book sources
  */
 $bookstoreList = [
-	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'https://www.amazon.com/gp/search/?field-isbn=$1'
+	'BWB' => 'https://www.betterworldbooks.com/product/detail/-$1',
+	'OpenLibrary' => 'https://openlibrary.org/isbn/$1',
+	'Worldcat' => 'https://www.worldcat.org/search?q=isbn:$1',
 ];
 
 /**
@@ -410,6 +421,7 @@ $specialPageAliases = [
 	'DeletedContributions'      => [ 'DeletedContributions' ],
 	'Diff'                      => [ 'Diff' ],
 	'DoubleRedirects'           => [ 'DoubleRedirects' ],
+	'EditPage'                  => [ 'EditPage', 'Edit' ],
 	'EditTags'                  => [ 'EditTags' ],
 	'EditWatchlist'             => [ 'EditWatchlist' ],
 	'Emailuser'                 => [ 'EmailUser', 'Email' ],
@@ -458,6 +470,8 @@ $specialPageAliases = [
 	'Newpages'                  => [ 'NewPages' ],
 	'PagesWithProp'             => [ 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ],
 	'PageData'                  => [ 'PageData' ],
+	'PageHistory'               => [ 'PageHistory', 'History' ],
+	'PageInfo'                  => [ 'PageInfo', 'Info' ],
 	'PageLanguage'              => [ 'PageLanguage' ],
 	'PasswordPolicies'          => [ 'PasswordPolicies' ],
 	'PasswordReset'             => [ 'PasswordReset' ],
@@ -466,6 +480,7 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'PrefixIndex' ],
 	'Protectedpages'            => [ 'ProtectedPages' ],
 	'Protectedtitles'           => [ 'ProtectedTitles' ],
+	'Purge'                     => [ 'Purge' ],
 	'Randompage'                => [ 'Random', 'RandomPage' ],
 	'RandomInCategory'          => [ 'RandomInCategory' ],
 	'Randomredirect'            => [ 'RandomRedirect' ],

@@ -7,8 +7,8 @@ require( './jquery.accessKeyLabel.js' );
 
 /**
  * Encode the string like PHP's rawurlencode
- * @ignore
  *
+ * @ignore
  * @param {string} str String to be encoded.
  * @return {string} Encoded string
  */
@@ -20,8 +20,8 @@ function rawurlencode( str ) {
 
 /**
  * Private helper function used by util.escapeId*()
- * @ignore
  *
+ * @ignore
  * @param {string} str String to be encoded
  * @param {string} mode Encoding mode, see documentation for $wgFragmentMode
  *     in DefaultSettings.php
@@ -44,6 +44,7 @@ function escapeIdInternal( str, mode ) {
 
 /**
  * Utility library
+ *
  * @class mw.util
  * @singleton
  */
@@ -314,6 +315,7 @@ util = {
 		link = document.createElement( 'a' );
 		link.href = href;
 		link.textContent = text;
+
 		if ( tooltip ) {
 			link.title = tooltip;
 		}
@@ -325,19 +327,14 @@ util = {
 		$portlet = $( portlet );
 		$portlet.removeClass( 'emptyPortlet' );
 
-		// Setup the list item (and a span if $portlet is a Vector tab)
-		// eslint-disable-next-line no-jquery/no-class-state
-		if ( $portlet.hasClass( 'vectorTabs' ) ) {
-			item = $( '<li>' ).append( $( '<span>' ).append( link )[ 0 ] )[ 0 ];
-		} else {
-			item = $( '<li>' ).append( link )[ 0 ];
-		}
+		item = $( '<li>' ).append( link )[ 0 ];
+
 		if ( id ) {
 			item.id = id;
 		}
 
 		// Select the first (most likely only) unordered list inside the portlet
-		ul = portlet.querySelector( 'ul' );
+		ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
 		if ( !ul ) {
 			// If it didn't have an unordered list yet, create one
 			ul = document.createElement( 'ul' );
@@ -353,6 +350,7 @@ util = {
 		}
 
 		if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
+			// eslint-disable-next-line no-jquery/variable-pattern
 			nextnode = $( ul ).find( nextnode );
 			if ( nextnode.length === 1 && nextnode[ 0 ].parentNode === ul ) {
 				// Insertion point: Before nextnode
@@ -374,6 +372,9 @@ util = {
 			$( link ).updateTooltipAccessKeys();
 		}
 
+		mw.hook( 'util.addPortletLink' ).fire( item, {
+			id: id
+		} );
 		return item;
 	},
 
@@ -446,7 +447,7 @@ util = {
 	},
 
 	/**
-	 * Note: borrows from IP::isIPv4
+	 * Note: borrows from \Wikimedia\IPUtils::isIPv4
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -467,7 +468,7 @@ util = {
 	},
 
 	/**
-	 * Note: borrows from IP::isIPv6
+	 * Note: borrows from \Wikimedia\IPUtils::isIPv6
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -530,6 +531,98 @@ util = {
 	},
 
 	/**
+	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
+	 * and return the image name, thumbnail size and a template that can be used to resize
+	 * the image.
+	 *
+	 * @param {string} url URL to parse (URL-encoded)
+	 * @return {Object|null} URL data, or null if the URL is not a valid MediaWiki
+	 *   image/thumbnail URL.
+	 * @return {string} return.name File name (same format as Title.getMainText()).
+	 * @return {number} [return.width] Thumbnail width, in pixels. Null when the file is not
+	 *   a thumbnail.
+	 * @return {function(number):string} [return.resizeUrl] A function that takes a width
+	 *   parameter and returns a thumbnail URL (URL-encoded) with that width. The width
+	 *   parameter must be smaller than the width of the original image (or equal to it; that
+	 *   only works if MediaHandler::mustRender returns true for the file). Null when the
+	 *   file in the original URL is not a thumbnail.
+	 *   On wikis with $wgGenerateThumbnailOnParse set to true, this will fall back to using
+	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
+	 */
+	parseImageUrl: function ( url ) {
+		var i, name, decodedName, width, match, strippedUrl,
+			urlTemplate = null,
+			// thumb.php-generated thumbnails
+			// thumb.php?f=<name>&w[idth]=<width>[px]
+			thumbPhpRegex = /thumb\.php/,
+			regexes = [
+				// Thumbnails
+				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
+				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
+				// or the base-36 SHA1 of the filename.
+				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})(\.[^\s/]+)?$/,
+
+				// Full size images
+				// /<hash prefix>/<name>
+				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)$/,
+
+				// Thumbnails in non-hashed upload directories
+				// /<name>/[<options>-]<width>-<name*>[.<ext>]
+				/\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})[^\s/]*$/,
+
+				// Full-size images in non-hashed upload directories
+				// /<name>
+				/\/([^\s/]+)$/
+			];
+
+		if ( thumbPhpRegex.test( url ) ) {
+			decodedName = mw.util.getParamValue( 'f', url );
+			name = encodeURIComponent( decodedName );
+			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
+		} else {
+			for ( i = 0; i < regexes.length; i++ ) {
+				match = url.match( regexes[ i ] );
+				if ( match ) {
+					name = match[ 1 ];
+					decodedName = decodeURIComponent( name );
+					width = match[ 2 ] || null;
+					break;
+				}
+			}
+		}
+
+		if ( name ) {
+			if ( width !== null ) {
+				width = parseInt( width, 10 ) || null;
+			}
+			if ( config.GenerateThumbnailOnParse ) {
+				// The wiki cannot generate thumbnails on demand. Use a special page - this means
+				// an extra redirect and PHP request, but it will generate the thumbnail if it does
+				// not exist.
+				urlTemplate = mw.util.getUrl( 'Special:Redirect/file/' + decodedName, { width: '{width}' } )
+					// getUrl urlencodes the template variable, fix that
+					.replace( '%7Bwidth%7D', '{width}' );
+			} else if ( width && !urlTemplate ) {
+				// Javascript does not expose regexp capturing group indexes, and the width
+				// part could in theory also occur in the filename so hide that first.
+				strippedUrl = url.replace( name, '{name}' )
+					.replace( name, '{name}' )
+					.replace( width + 'px-', '{width}px-' );
+				urlTemplate = strippedUrl.replace( /\{name\}/g, name );
+			}
+			return {
+				name: decodedName.replace( /_/g, ' ' ),
+				width: width,
+				resizeUrl: urlTemplate ? function ( w ) {
+					return urlTemplate.replace( '{width}', w );
+				} : null
+			};
+		}
+		return null;
+	},
+
+	/**
 	 * Escape string for safe inclusion in regular expression
 	 *
 	 * The following characters are escaped:
@@ -546,53 +639,42 @@ util = {
 	}
 };
 
+/**
+ * Initialisation of mw.util.$content
+ *
+ * @ignore
+ */
+function init() {
+	// The preferred standard is class "mw-body".
+	// You may also use class "mw-body mw-body-primary" if you use
+	// mw-body in multiple locations. Or class "mw-body-primary" if
+	// you use mw-body deeper in the DOM.
+	var content = document.querySelector( '.mw-body-primary' ) ||
+		document.querySelector( '.mw-body' ) ||
+		// If the skin has no such class, fall back to the parser output
+		document.querySelector( '#mw-content-text' ) ||
+		// Should never happen..., except if the skin is still in development.
+		document.body;
+
+	util.$content = $( content );
+}
+
 // Backwards-compatible alias for mediawiki.RegExp module.
 // @deprecated since 1.34
 mw.RegExp = {};
 mw.log.deprecate( mw.RegExp, 'escape', util.escapeRegExp, 'Use mw.util.escapeRegExp() instead.', 'mw.RegExp.escape' );
 
-// Not allowed outside unit tests
 if ( window.QUnit ) {
+	// Not allowed outside unit tests
 	util.setOptionsForTest = function ( opts ) {
 		var oldConfig = config;
 		config = $.extend( {}, config, opts );
 		return oldConfig;
 	};
+	util.init = init;
+} else {
+	$( init );
 }
-
-/**
- * Initialisation of mw.util.$content
- */
-function init() {
-	util.$content = ( function () {
-		var i, l, $node, selectors;
-
-		selectors = [
-			// The preferred standard is class "mw-body".
-			// You may also use class "mw-body mw-body-primary" if you use
-			// mw-body in multiple locations. Or class "mw-body-primary" if
-			// you use mw-body deeper in the DOM.
-			'.mw-body-primary',
-			'.mw-body',
-
-			// If the skin has no such class, fall back to the parser output
-			'#mw-content-text'
-		];
-
-		for ( i = 0, l = selectors.length; i < l; i++ ) {
-			$node = $( selectors[ i ] );
-			if ( $node.length ) {
-				return $node.first();
-			}
-		}
-
-		// Should never happen... well, it could if someone is not finished writing a
-		// skin and has not yet inserted bodytext yet.
-		return $( 'body' );
-	}() );
-}
-
-$( init );
 
 mw.util = util;
 module.exports = util;

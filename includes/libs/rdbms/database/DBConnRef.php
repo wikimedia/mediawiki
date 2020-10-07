@@ -31,15 +31,15 @@ class DBConnRef implements IDatabase {
 	private $lb;
 	/** @var Database|null Live connection handle */
 	private $conn;
-	/** @var array|null N-tuple of (server index, group, DatabaseDomain|string) */
+	/** @var array N-tuple of (server index, group, DatabaseDomain|string) */
 	private $params;
 	/** @var int One of DB_MASTER/DB_REPLICA */
 	private $role;
 
-	const FLD_INDEX = 0;
-	const FLD_GROUP = 1;
-	const FLD_DOMAIN = 2;
-	const FLD_FLAGS = 3;
+	private const FLD_INDEX = 0;
+	private const FLD_GROUP = 1;
+	private const FLD_DOMAIN = 2;
+	private const FLD_FLAGS = 3;
 
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn
@@ -59,7 +59,7 @@ class DBConnRef implements IDatabase {
 		}
 	}
 
-	function __call( $name, array $arguments ) {
+	public function __call( $name, array $arguments ) {
 		if ( $this->conn === null ) {
 			list( $index, $groups, $wiki, $flags ) = $this->params;
 			$this->conn = $this->lb->getConnection( $index, $groups, $wiki, $flags );
@@ -80,12 +80,11 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	/**
-	 * @param bool|null $buffer
-	 * @return bool
-	 * @deprecated Since 1.34 Use query batching
-	 */
-	public function bufferResults( $buffer = null ) {
+	public function getTopologyRole() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function getTopologyRootMaster() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -138,11 +137,6 @@ class DBConnRef implements IDatabase {
 	public function setLBInfo( $nameOrArray, $value = null ) {
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
-	}
-
-	public function setLazyMasterHandle( IDatabase $conn ) {
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database injection is disallowed to enable reuse." );
 	}
 
 	public function implicitOrderby() {
@@ -296,6 +290,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function newSelectQueryBuilder() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -334,7 +332,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -365,19 +363,19 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
+	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
+	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function makeList( $a, $mode = self::LIST_COMMA ) {
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -408,6 +406,14 @@ class DBConnRef implements IDatabase {
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function buildGreatest( $fields, $values ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function buildLeast( $fields, $values ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -466,7 +472,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function buildLike( $param ) {
+	public function buildLike( $param, ...$params ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -484,14 +490,14 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function upsert(
-		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
 	) {
 		$this->assertRoleAllowsWrites();
 
@@ -751,12 +757,7 @@ class DBConnRef implements IDatabase {
 
 	public function __toString() {
 		if ( $this->conn === null ) {
-			// spl_object_id is PHP >= 7.2
-			$id = function_exists( 'spl_object_id' )
-				? spl_object_id( $this )
-				: spl_object_hash( $this );
-
-			return $this->getType() . ' object #' . $id;
+			return $this->getType() . ' object #' . spl_object_id( $this );
 		}
 
 		return $this->__call( __FUNCTION__, func_get_args() );
@@ -797,7 +798,7 @@ class DBConnRef implements IDatabase {
 	/**
 	 * Clean up the connection when out of scope
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( $this->conn ) {
 			$this->lb->reuseConnection( $this->conn );
 		}

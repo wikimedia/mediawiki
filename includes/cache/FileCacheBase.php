@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * Base class for data storage in the file system.
  *
@@ -36,8 +38,8 @@ abstract class FileCacheBase {
 	protected $mCached;
 
 	/* @todo configurable? */
-	const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
-	const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
+	private const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
+	private const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 
 	protected function __construct() {
 		global $wgUseGzip;
@@ -124,7 +126,7 @@ abstract class FileCacheBase {
 		$cachetime = $this->cacheTimestamp();
 		$good = ( $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime );
 		wfDebug( __METHOD__ .
-			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n" );
+			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good" );
 
 		return $good;
 	}
@@ -163,7 +165,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
-			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() . "\n" );
+			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() );
 			$this->mCached = null;
 
 			return false;
@@ -233,13 +235,13 @@ abstract class FileCacheBase {
 			# Get a large IP range that should include the user  even if that
 			# person's IP address changes
 			$ip = $request->getIP();
-			if ( !IP::isValid( $ip ) ) {
+			if ( !IPUtils::isValid( $ip ) ) {
 				return;
 			}
 
-			$ip = IP::isIPv6( $ip )
-				? IP::sanitizeRange( "$ip/32" )
-				: IP::sanitizeRange( "$ip/16" );
+			$ip = IPUtils::isIPv6( $ip )
+				? IPUtils::sanitizeRange( "$ip/32" )
+				: IPUtils::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
 			$cache = ObjectCache::getLocalClusterInstance();

@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Implements Special:DeletedContributions to display archived revisions
@@ -32,7 +33,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var FormOptions */
 	protected $mOpts;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 	}
 
@@ -42,7 +43,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 *
 	 * @param string $par (optional) user name of the user for which to show the contributions
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->checkPermissions();
@@ -114,7 +115,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
-		$message = IP::isIPAddress( $target ) ?
+		$message = IPUtils::isIPAddress( $target ) ?
 			'sp-contributions-footer-anon' :
 			'sp-contributions-footer';
 
@@ -131,7 +132,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * @param User $userObj User object for the target
 	 * @return string Appropriately-escaped HTML to be output literally
 	 */
-	function getSubTitle( $userObj ) {
+	private function getSubTitle( $userObj ) {
 		$linkRenderer = $this->getLinkRenderer();
 		if ( $userObj->isAnon() ) {
 			$user = htmlspecialchars( $userObj->getName() );
@@ -161,7 +162,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 			// Show a note if the user is blocked and display the last block log entry.
 			$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
-			if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+			if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
 					$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
 						getCanonicalName( NS_USER ) . ':' . $block->getTarget();
@@ -193,7 +194,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 */
-	function getForm() {
+	private function getForm() {
 		$opts = $this->mOpts;
 
 		$formDescriptor = [

@@ -1,7 +1,7 @@
 {
 	"selectorWithoutVariant": ".oo-ui-icon-{name}",
 	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"variants": {
 		"invert": {
 			"color": "#fff",
@@ -36,10 +36,6 @@
 		},
 		"attachment": {
 			"file": "images/icons/attachment.svg"
-		},
-		"beaker": {
-			"file": "images/icons/labFlask.svg",
-			"deprecated": "Renamed since v0.34.1, use 'labFlask' instead."
 		},
 		"calendar": {
 			"file": "images/icons/calendar.svg"
@@ -138,10 +134,16 @@
 			"file": "images/icons/table.svg"
 		},
 		"tableAddColumnAfter": {
-			"file": "images/icons/tableAddColumnAfter.svg"
+			"file": {
+				"ltr": "images/icons/tableAddColumnAfter-ltr.svg",
+				"rtl": "images/icons/tableAddColumnAfter-rtl.svg"
+			}
 		},
 		"tableAddColumnBefore": {
-			"file": "images/icons/tableAddColumnBefore.svg"
+			"file": {
+				"ltr": "images/icons/tableAddColumnBefore-ltr.svg",
+				"rtl": "images/icons/tableAddColumnBefore-rtl.svg"
+			}
 		},
 		"tableAddRowAfter": {
 			"file": "images/icons/tableAddRowAfter.svg"
@@ -156,10 +158,16 @@
 			"file": "images/icons/tableMergeCells.svg"
 		},
 		"tableMoveColumnAfter": {
-			"file": "images/icons/tableMoveColumnAfter.svg"
+			"file": {
+				"ltr": "images/icons/tableMoveColumnAfter-ltr.svg",
+				"rtl": "images/icons/tableMoveColumnAfter-rtl.svg"
+			}
 		},
 		"tableMoveColumnBefore": {
-			"file": "images/icons/tableMoveColumnBefore.svg"
+			"file": {
+				"ltr": "images/icons/tableMoveColumnBefore-ltr.svg",
+				"rtl": "images/icons/tableMoveColumnBefore-rtl.svg"
+			}
 		},
 		"tableMoveRowAfter": {
 			"file": "images/icons/tableMoveRowAfter.svg"

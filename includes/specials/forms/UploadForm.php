@@ -72,7 +72,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		Hooks::run( 'UploadFormInitDescriptor', [ &$descriptor ] );
+		$this->getHookRunner()->onUploadFormInitDescriptor( $descriptor );
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
@@ -190,7 +190,8 @@ class UploadForm extends HTMLForm {
 				'checked' => $selectedSourceType == 'url',
 			];
 		}
-		Hooks::run( 'UploadFormSourceDescriptors', [ &$descriptor, &$radio, $selectedSourceType ] );
+		$this->getHookRunner()->onUploadFormSourceDescriptors(
+			$descriptor, $radio, $selectedSourceType );
 
 		$descriptor['Extensions'] = [
 			'type' => 'info',
@@ -257,7 +258,8 @@ class UploadForm extends HTMLForm {
 	protected function getDescriptionSection() {
 		$config = $this->getConfig();
 		if ( $this->mSessionKey ) {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
+			$stash = MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->getUploadStash( $this->getUser() );
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( Exception $e ) {
@@ -394,6 +396,7 @@ class UploadForm extends HTMLForm {
 
 	/**
 	 * Add the upload JS and show the form.
+	 * @return bool|Status
 	 */
 	public function show() {
 		$this->addUploadJS();
@@ -438,7 +441,7 @@ class UploadForm extends HTMLForm {
 	 *
 	 * @return bool False
 	 */
-	function trySubmit() {
+	public function trySubmit() {
 		return false;
 	}
 }

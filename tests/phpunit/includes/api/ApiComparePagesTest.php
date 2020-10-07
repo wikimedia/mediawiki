@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * @group API
  * @group Database
@@ -22,7 +24,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
-		return $status->value['revision']->getId();
+		return $status->value['revision-record']->getId();
 	}
 
 	public function addDBDataOnce() {
@@ -41,6 +43,19 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revB3'] = $this->addPage( 'B', 'B 3' );
 		self::$repl['revB4'] = $this->addPage( 'B', 'B 4' );
 		self::$repl['pageB'] = Title::newFromText( 'ApiComparePagesTest B' )->getArticleID();
+		foreach ( [
+			self::$repl['revB1'] => '20010101011101',
+			self::$repl['revB2'] => '20020202022202',
+			self::$repl['revB3'] => '20030303033303',
+			self::$repl['revB4'] => '20040404044404',
+		] as $id => $ts ) {
+			$this->db->update(
+				'revision',
+				[ 'rev_timestamp' => $this->db->timestamp( $ts ) ],
+				[ 'rev_id' => $id ],
+				__METHOD__
+			);
+		}
 
 		self::$repl['revC1'] = $this->addPage( 'C', 'C 1' );
 		self::$repl['revC2'] = $this->addPage( 'C', 'C 2' );
@@ -67,7 +82,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['pageG'] = Title::newFromText( 'ApiComparePagesTest G' )->getArticleID();
 
 		WikiPage::factory( Title::newFromText( 'ApiComparePagesTest C' ) )
-			->doDeleteArticleReal( 'Test for ApiComparePagesTest' );
+			->doDeleteArticleReal( 'Test for ApiComparePagesTest', $user );
 
 		RevisionDeleter::createList(
 			'revision',
@@ -76,9 +91,9 @@ class ApiComparePagesTest extends ApiTestCase {
 			[ self::$repl['revB2'] ]
 		)->setVisibility( [
 			'value' => [
-				Revision::DELETED_TEXT => 1,
-				Revision::DELETED_USER => 1,
-				Revision::DELETED_COMMENT => 1,
+				RevisionRecord::DELETED_TEXT => 1,
+				RevisionRecord::DELETED_USER => 1,
+				RevisionRecord::DELETED_COMMENT => 1,
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );
@@ -90,9 +105,9 @@ class ApiComparePagesTest extends ApiTestCase {
 			[ self::$repl['revB3'] ]
 		)->setVisibility( [
 			'value' => [
-				Revision::DELETED_USER => 1,
-				Revision::DELETED_COMMENT => 1,
-				Revision::DELETED_RESTRICTED => 1,
+				RevisionRecord::DELETED_USER => 1,
+				RevisionRecord::DELETED_COMMENT => 1,
+				RevisionRecord::DELETED_RESTRICTED => 1,
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );
@@ -428,7 +443,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'fromrev' => '{{REPL:revB1}}',
 					'torev' => '{{REPL:revB3}}',
 					'totitle' => 'ApiComparePagesTest B',
-					'prop' => 'diff|diffsize|rel|ids|title|user|comment|parsedcomment|size'
+					'prop' => 'diff|diffsize|rel|ids|title|user|comment|parsedcomment|size|timestamp'
 				],
 				[
 					'compare' => [
@@ -441,6 +456,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'fromuserid' => '{{REPL:creatorid}}',
 						'fromcomment' => 'Test for ApiComparePagesTest: B 1',
 						'fromparsedcomment' => 'Test for ApiComparePagesTest: B 1',
+						'fromtimestamp' => '2001-01-01T01:11:01Z',
 						'toid' => '{{REPL:pageB}}',
 						'torevid' => '{{REPL:revB3}}',
 						'tons' => 0,
@@ -449,6 +465,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'touserhidden' => true,
 						'tocommenthidden' => true,
 						'tosuppressed' => true,
+						'totimestamp' => '2003-03-03T03:33:03Z',
 						'next' => '{{REPL:revB4}}',
 						'diffsize' => 391,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
@@ -462,7 +479,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'fromrev' => '{{REPL:revB2}}',
 					'torev' => '{{REPL:revB3}}',
 					'totitle' => 'ApiComparePagesTest B',
-					'prop' => 'diff|diffsize|rel|ids|title|user|comment|parsedcomment|size'
+					'prop' => 'diff|diffsize|rel|ids|title|user|comment|parsedcomment|size|timestamp'
 				],
 				[
 					'compare' => [
@@ -478,6 +495,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'fromcommenthidden' => true,
 						'fromcomment' => 'Test for ApiComparePagesTest: B 2',
 						'fromparsedcomment' => 'Test for ApiComparePagesTest: B 2',
+						'fromtimestamp' => '2002-02-02T02:22:02Z',
 						'toid' => '{{REPL:pageB}}',
 						'torevid' => '{{REPL:revB3}}',
 						'tons' => 0,
@@ -486,6 +504,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'touserhidden' => true,
 						'tocommenthidden' => true,
 						'tosuppressed' => true,
+						'totimestamp' => '2003-03-03T03:33:03Z',
 						'prev' => '{{REPL:revB1}}',
 						'next' => '{{REPL:revB4}}',
 						'diffsize' => 391,
@@ -495,6 +514,33 @@ class ApiComparePagesTest extends ApiTestCase {
 					]
 				],
 				false, true
+			],
+			'Text diff with all props' => [
+				[
+					'fromrev' => '{{REPL:revB1}}',
+					'toslots' => 'main',
+					'totext-main' => 'To text {{subst:PAGENAME}}',
+					'tocontentmodel-main' => 'wikitext',
+					'prop' => 'diff|diffsize|rel|ids|title|user|comment|parsedcomment|size|timestamp'
+				],
+				[
+					'compare' => [
+						'fromid' => '{{REPL:pageB}}',
+						'fromrevid' => '{{REPL:revB1}}',
+						'fromns' => 0,
+						'fromtitle' => 'ApiComparePagesTest B',
+						'fromsize' => 3,
+						'fromuser' => '{{REPL:creator}}',
+						'fromuserid' => '{{REPL:creatorid}}',
+						'fromcomment' => 'Test for ApiComparePagesTest: B 1',
+						'fromparsedcomment' => 'Test for ApiComparePagesTest: B 1',
+						'fromtimestamp' => '2001-01-01T01:11:01Z',
+						'diffsize' => 414,
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">B 1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To text {{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+					]
+				],
 			],
 			'Relative diff, cur' => [
 				[

@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -33,6 +35,8 @@ use Wikimedia\Rdbms\IDatabase;
  * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
 class RevDelRevisionList extends RevDelList {
+	use ProtectedHookAccessorTrait;
+
 	/** @var int */
 	public $currentRevId;
 
@@ -53,8 +57,14 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$rev = Revision::newFromId( $ids[0] );
-		return $rev ? $rev->getTitle() : $target;
+		$revisionRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionById( $ids[0] );
+
+		if ( $revisionRecord ) {
+			return Title::newFromLinkTarget( $revisionRecord->getPageAsLinkTarget() );
+		}
+		return $target;
 	}
 
 	/**
@@ -62,8 +72,9 @@ class RevDelRevisionList extends RevDelList {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$ids = array_map( 'intval', $this->ids );
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
@@ -99,7 +110,7 @@ class RevDelRevisionList extends RevDelList {
 			return $live;
 		}
 
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = $revisionStore->getArchiveQueryInfo();
 		$archiveQueryInfo = [
 			'tables' => $arQuery['tables'],
 			'fields' => $arQuery['fields'],
@@ -159,7 +170,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function getCurrent() {
-		if ( is_null( $this->currentRevId ) ) {
+		if ( $this->currentRevId === null ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$this->currentRevId = $dbw->selectField(
 				'page', 'page_latest', $this->title->pageCond(), __METHOD__ );
@@ -177,9 +188,15 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
-		$this->title->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 		// Extensions that require referencing previous revisions may need this
-		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids, $visibilityChangeMap ] );
+		$this->getHookRunner()->onArticleRevisionVisibilitySet(
+			$this->title, $this->ids, $visibilityChangeMap );
+		MediaWikiServices::getInstance()
+			->getMainWANObjectCache()
+			->touchCheckKey( "RevDelRevisionList:page:{$this->title->getArticleID()}}" );
+
 		return Status::newGood();
 	}
 }

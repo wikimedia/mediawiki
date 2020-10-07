@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2019 OOUI Team and other contributors.
+ * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2020-07-10T06:32:25Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -61,7 +61,7 @@
   height: 2.5em;
 }
 .oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout {
-  padding: 1.42857143em;
+  padding: 20px;
 }
 .oo-ui-bookletLayout-outlinePanel > .oo-ui-outlineControlsWidget {
   border-top: 1px solid #c8ccd1;
@@ -84,7 +84,7 @@
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
-  padding: 1.42857143em;
+  padding: 20px;
 }
 .oo-ui-indexLayout.oo-ui-menuLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
   height: 2.64285714em;
@@ -201,7 +201,7 @@
 .oo-ui-buttonSelectWidget {
   display: inline-block;
   border-radius: 2px;
-  margin-right: 0.5em;
+  margin-right: 8px;
   z-index: 0;
   position: relative;
   padding-bottom: 1px;
@@ -232,6 +232,7 @@
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled:focus .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected .oo-ui-buttonElement-button {
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
+  outline: 1px solid transparent;
 }
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
@@ -253,10 +254,17 @@
 
 
 .oo-ui-toggleButtonWidget {
-  margin-right: 0.5em;
+  margin-right: 8px;
 }
 .oo-ui-toggleButtonWidget:last-child {
   margin-right: 0;
+}
+.oo-ui-toggleButtonWidget.oo-ui-widget-enabled.oo-ui-buttonElement-frameless.oo-ui-toggleWidget-on .oo-ui-buttonElement-button {
+  background-color: rgba(0, 36, 73, 0.08235294);
+  color: #000;
+}
+.oo-ui-toggleButtonWidget.oo-ui-widget-enabled.oo-ui-buttonElement-frameless.oo-ui-toggleWidget-on .oo-ui-buttonElement-button > .oo-ui-iconElement-icon:not( .oo-ui-image-invert ) {
+  opacity: 1;
 }
 
 .oo-ui-toggleSwitchWidget {
@@ -275,7 +283,7 @@
   height: 2em;
   border: 1px solid #72777d;
   border-radius: 1em;
-  margin-right: 0.5em;
+  margin-right: 8px;
   -webkit-transition: background-color 250ms, border-color 250ms;
   -moz-transition: background-color 250ms, border-color 250ms;
   transition: background-color 250ms, border-color 250ms;
@@ -528,7 +536,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 0.85714286em 0.85714286em;
+  padding: 0.85714286em 12px;
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
@@ -589,9 +597,6 @@
 .oo-ui-outlineControlsWidget-movers {
   float: right;
 }
-.oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
-  float: right;
-}
 .oo-ui-outlineControlsWidget-items > .oo-ui-buttonWidget,
 .oo-ui-outlineControlsWidget-movers > .oo-ui-buttonWidget {
   height: 2.28571429em;
@@ -620,7 +625,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 1.28571429em;
+  width: 18px;
   height: 2.28571429em;
   pointer-events: none;
 }
@@ -651,9 +656,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: bottom;
-  color: #444;
-  margin: 0.42857143em 0 0 0.42857143em;
-  padding: 0 0.57142857em;
+  color: #404244;
+  margin: 6px 0 0 6px;
+  padding: 0 8px;
   border-color: transparent;
   border-style: solid;
   font-weight: bold;
@@ -665,12 +670,14 @@
 .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
   cursor: default;
 }
-.oo-ui-tabOptionWidget .oo-ui-labelElement-label {
-  padding: 0.42857143em 0.35714286em;
+.oo-ui-tabOptionWidget > .oo-ui-labelElement-label {
+  color: inherit;
+  padding: 6px 5px;
   line-height: 1.28571429em;
+  text-decoration: inherit;
 }
 .oo-ui-tabSelectWidget-mobile .oo-ui-tabOptionWidget:last-child {
-  margin-right: 1.28571429em;
+  margin-right: 18px;
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget {
   border-width: 1px 1px 0 1px;
@@ -679,7 +686,7 @@
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
   border-bottom: 2px solid transparent;
-  padding: 0.42857143em 0.35714286em 0.28571429em;
+  padding: 6px 5px 4px;
   -webkit-transition: border-color 100ms;
   -moz-transition: border-color 100ms;
   transition: border-color 100ms;
@@ -693,7 +700,7 @@
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  color: #222;
+  color: #202122;
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:active {
   background-color: rgba(255, 255, 255, 0.8);
@@ -706,7 +713,7 @@
   border-bottom-color: #36c;
 }
 .oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget {
-  margin: 0.42857143em 0.42857143em -1px 0;
+  margin: 6px 6px -1px 0;
   border-width: 1px 0;
   box-shadow: inset 0 0 0 0 #36c;
   -webkit-transition: color 100ms, box-shadow 100ms;
@@ -776,10 +783,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 2.28571429em;
-  margin-right: 0.5em;
+  margin-right: 8px;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0 0.57142857em;
+  padding: 0 8px;
   line-height: 1;
 }
 .oo-ui-tagMultiselectWidget-handle:last-child {
@@ -793,7 +800,7 @@
   box-sizing: border-box;
   height: 2.14285714em;
   border: 0;
-  padding: 0.42857143em 0 0.42857143em 0.57142857em;
+  padding: 6px 0 6px 0.57142857em;
   font-family: inherit;
   font-size: inherit;
   line-height: 1.28571429em;
@@ -828,7 +835,7 @@
 .oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group {
   display: inline-block;
   max-width: 100%;
-  margin-top: 0.28571429em;
+  margin-top: 4px;
   margin-left: -0.14285714em;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle {
@@ -845,8 +852,10 @@
   right: 0;
   margin: 0 0.775em;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled {
   background-color: #fff;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
   -webkit-transition: border-color 250ms, box-shadow 250ms;
   -moz-transition: border-color 250ms, box-shadow 250ms;
   transition: border-color 250ms, box-shadow 250ms;
@@ -863,8 +872,10 @@
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-flaggedElement-invalid:hover .oo-ui-tagMultiselectWidget-handle {
   border-color: #d33;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined {
   background-color: #f8f9fa;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle {
   border-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -883,10 +894,10 @@
   color: #d33;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle {
+  background-color: #eaecf0;
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
   border-color: #c8ccd1;
-  background-color: #eaecf0;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle > .oo-ui-iconElement-icon {
   opacity: 0.51;
@@ -907,10 +918,10 @@
   width: auto;
   max-width: 100%;
   height: 1.57142857em;
-  margin: 0 0.28571429em 0.28571429em 0;
+  margin: 0 4px 4px 0;
   border: 1px solid #a2a9b1;
   border-radius: 1.57142857em;
-  padding: 0 0.57142857em;
+  padding: 0 8px;
   line-height: 1.42857143em;
   vertical-align: middle;
 }
@@ -928,14 +939,14 @@
   line-height: 1.61538462em;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled {
-  color: #222;
+  color: #202122;
   -webkit-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
   -moz-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled:hover {
   background-color: #fff;
-  color: #444;
+  color: #404244;
   border-color: #a2a9b1;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled:focus {
@@ -945,7 +956,7 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled:not( .oo-ui-tagItemWidget-fixed ) {
   background-color: #f8f9fa;
-  padding-right: 1.64285714em;
+  padding-right: 23px;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid {
   border-color: #d33;
@@ -964,6 +975,7 @@
   right: 0;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
+  display: block;
   border: 0;
   border-radius: 1.57142857em;
   padding-top: 1.42857143em;
@@ -979,7 +991,7 @@
   background-color: #c8ccd1;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-icon-close {
-  left: 0.21428571em;
+  left: 3px;
   min-width: 14px;
   width: 1em;
 }
@@ -1020,15 +1032,15 @@
 }
 .oo-ui-searchWidget-query {
   height: 4em;
-  padding: 0 1.42857143em;
+  padding: 0 16px;
   border-bottom: 1px solid #c8ccd1;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-searchWidget-query .oo-ui-textInputWidget {
-  margin: 0.85714286em 0;
+  margin: 12px 0;
 }
 .oo-ui-searchWidget-results {
   top: 4em;
-  padding: 1.14285714em;
+  padding: 12px 16px 16px;
   line-height: 0;
 }

@@ -24,11 +24,19 @@
 /**
  * Shortcut class for parameter file size errors
  *
+ * @newable
  * @ingroup Media
  * @since 1.25
  */
 class TransformTooBigImageAreaError extends MediaTransformError {
-	function __construct( $params, $maxImageArea ) {
+
+	/**
+	 * @stable to call
+	 *
+	 * @param array $params
+	 * @param int $maxImageArea
+	 */
+	public function __construct( $params, $maxImageArea ) {
 		$msg = wfMessage( 'thumbnail_toobigimagearea' );
 		$msg->params(
 			$msg->getLanguage()->formatComputingNumbers( $maxImageArea, 1000, "size-$1pixel" )
@@ -41,7 +49,7 @@ class TransformTooBigImageAreaError extends MediaTransformError {
 		);
 	}
 
-	function getHttpStatusCode() {
+	public function getHttpStatusCode() {
 		return 400;
 	}
 }

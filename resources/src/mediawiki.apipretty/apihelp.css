@@ -36,6 +36,7 @@ div.apihelp-linktrail {
 }
 
 .apihelp-deprecated,
+.apihelp-internal,
 .apihelp-flag-deprecated,
 .apihelp-flag-internal strong {
 	font-weight: bold;

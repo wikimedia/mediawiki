@@ -115,16 +115,16 @@ class ZipDirectoryReader {
 	protected $data;
 
 	/** The "extra field" ID for ZIP64 central directory entries */
-	const ZIP64_EXTRA_HEADER = 0x0001;
+	private const ZIP64_EXTRA_HEADER = 0x0001;
 
 	/** The segment size for the file contents cache */
-	const SEGSIZE = 16384;
+	private const SEGSIZE = 16384;
 
 	/** The index of the "general field" bit for UTF-8 file names */
-	const GENERAL_UTF8 = 11;
+	private const GENERAL_UTF8 = 11;
 
 	/** The index of the "general field" bit for central directory encryption */
-	const GENERAL_CD_ENCRYPTED = 13;
+	private const GENERAL_CD_ENCRYPTED = 13;
 
 	/**
 	 * @param string $fileName
@@ -145,7 +145,7 @@ class ZipDirectoryReader {
 	 *
 	 * @return Status
 	 */
-	function execute() {
+	private function execute() {
 		$this->file = fopen( $this->fileName, 'r' );
 		$this->data = [];
 		if ( !$this->file ) {
@@ -186,8 +186,8 @@ class ZipDirectoryReader {
 	 * @param string $debugMessage
 	 * @throws ZipDirectoryReaderError
 	 */
-	function error( $code, $debugMessage ) {
-		wfDebug( __CLASS__ . ": Fatal error: $debugMessage\n" );
+	private function error( $code, $debugMessage ) {
+		wfDebug( __CLASS__ . ": Fatal error: $debugMessage" );
 		throw new ZipDirectoryReaderError( $code );
 	}
 
@@ -196,7 +196,7 @@ class ZipDirectoryReader {
 	 * unimaginatively called the "end of central directory record" by the ZIP
 	 * spec.
 	 */
-	function readEndOfCentralDirectoryRecord() {
+	private function readEndOfCentralDirectoryRecord() {
 		$info = [
 			'signature' => 4,
 			'disk' => 2,
@@ -248,7 +248,7 @@ class ZipDirectoryReader {
 	 * Read the header called the "ZIP64 end of central directory locator". An
 	 * error will be raised if it does not exist.
 	 */
-	function readZip64EndOfCentralDirectoryLocator() {
+	private function readZip64EndOfCentralDirectoryLocator() {
 		$info = [
 			'signature' => [ 'string', 4 ],
 			'eocdr64 start disk' => 4,
@@ -273,7 +273,7 @@ class ZipDirectoryReader {
 	 * Read the header called the "ZIP64 end of central directory record". It
 	 * may replace the regular "end of central directory record" in ZIP64 files.
 	 */
-	function readZip64EndOfCentralDirectoryRecord() {
+	private function readZip64EndOfCentralDirectoryRecord() {
 		if ( $this->eocdr64Locator['eocdr64 start disk'] != 0
 			|| $this->eocdr64Locator['number of disks'] != 0
 		) {
@@ -311,7 +311,7 @@ class ZipDirectoryReader {
 	 *
 	 * @return array List containing offset, size and end position.
 	 */
-	function findOldCentralDirectory() {
+	private function findOldCentralDirectory() {
 		$size = $this->eocdr['CD size'];
 		$offset = $this->eocdr['CD offset'];
 		$endPos = $this->eocdr['position'];
@@ -332,7 +332,7 @@ class ZipDirectoryReader {
 	 *
 	 * @return array List containing offset, size and end position.
 	 */
-	function findZip64CentralDirectory() {
+	private function findZip64CentralDirectory() {
 		// The spec is ambiguous about the exact rules of precedence between the
 		// ZIP64 headers and the original headers. Here we follow zip_util.c
 		// from OpenJDK 7.
@@ -371,7 +371,7 @@ class ZipDirectoryReader {
 	 * @param int $size
 	 * @suppress PhanTypeInvalidLeftOperandOfIntegerOp
 	 */
-	function readCentralDirectory( $offset, $size ) {
+	private function readCentralDirectory( $offset, $size ) {
 		$block = $this->getBlock( $offset, $size );
 
 		$fixedInfo = [
@@ -464,7 +464,7 @@ class ZipDirectoryReader {
 	 * @param string $extraField
 	 * @return array|bool
 	 */
-	function unpackZip64Extra( $extraField ) {
+	private function unpackZip64Extra( $extraField ) {
 		$extraHeaderInfo = [
 			'id' => 2,
 			'size' => 2,
@@ -499,7 +499,7 @@ class ZipDirectoryReader {
 	 * Get the length of the file.
 	 * @return int
 	 */
-	function getFileLength() {
+	private function getFileLength() {
 		if ( $this->fileLength === null ) {
 			$stat = fstat( $this->file );
 			$this->fileLength = $stat['size'];
@@ -518,7 +518,7 @@ class ZipDirectoryReader {
 	 *
 	 * @return string
 	 */
-	function getBlock( $start, $length = null ) {
+	private function getBlock( $start, $length = null ) {
 		$fileLength = $this->getFileLength();
 		if ( $start >= $fileLength ) {
 			$this->error( 'zip-bad', "getBlock() requested position $start, " .
@@ -564,7 +564,7 @@ class ZipDirectoryReader {
 	 *
 	 * @return string
 	 */
-	function getSegment( $segIndex ) {
+	private function getSegment( $segIndex ) {
 		if ( !isset( $this->buffer[$segIndex] ) ) {
 			$bytePos = $segIndex * self::SEGSIZE;
 			if ( $bytePos >= $this->getFileLength() ) {
@@ -590,7 +590,7 @@ class ZipDirectoryReader {
 	 * @param array $struct
 	 * @return int
 	 */
-	function getStructSize( $struct ) {
+	private function getStructSize( $struct ) {
 		$size = 0;
 		foreach ( $struct as $type ) {
 			if ( is_array( $type ) ) {
@@ -626,7 +626,7 @@ class ZipDirectoryReader {
 	 *    may be represented as floating point numbers in the return value, so
 	 *    the use of weak comparison is advised.
 	 */
-	function unpack( $string, $struct, $offset = 0 ) {
+	private function unpack( $string, $struct, $offset = 0 ) {
 		$size = $this->getStructSize( $struct );
 		if ( $offset + $size > strlen( $string ) ) {
 			$this->error( 'zip-bad', 'unpack() would run past the end of the supplied string' );
@@ -679,41 +679,7 @@ class ZipDirectoryReader {
 	 * @param int $bitIndex The index of the bit, where 0 is the LSB.
 	 * @return bool
 	 */
-	function testBit( $value, $bitIndex ) {
+	private function testBit( $value, $bitIndex ) {
 		return (bool)( ( $value >> $bitIndex ) & 1 );
-	}
-
-	/**
-	 * Debugging helper function which dumps a string in hexdump -C format.
-	 * @param string $s
-	 */
-	function hexDump( $s ) {
-		$n = strlen( $s );
-		for ( $i = 0; $i < $n; $i += 16 ) {
-			printf( "%08X ", $i );
-			for ( $j = 0; $j < 16; $j++ ) {
-				print " ";
-				if ( $j == 8 ) {
-					print " ";
-				}
-				if ( $i + $j >= $n ) {
-					print "  ";
-				} else {
-					printf( "%02X", ord( $s[$i + $j] ) );
-				}
-			}
-
-			print "  |";
-			for ( $j = 0; $j < 16; $j++ ) {
-				if ( $i + $j >= $n ) {
-					print " ";
-				} elseif ( ctype_print( $s[$i + $j] ) ) {
-					print $s[$i + $j];
-				} else {
-					print '.';
-				}
-			}
-			print "|\n";
-		}
 	}
 }

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -53,7 +54,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$fld_loginfo = false, $fld_tags;
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -64,7 +65,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$user = $this->getUser();
 		$wlowner = $this->getWatchlistUser( $params );
 
-		if ( !is_null( $params['prop'] ) && is_null( $resultPageSet ) ) {
+		if ( $params['prop'] !== null && $resultPageSet === null ) {
 			$prop = array_flip( $params['prop'] );
 
 			$this->fld_ids = isset( $prop['ids'] );
@@ -96,7 +97,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				: WatchedItemQueryService::DIR_NEWER,
 		];
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$options['includeFields'] = $this->getFieldsToInclude();
 		} else {
 			$options['usedInGenerator'] = true;
@@ -110,7 +111,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$startFrom = null;
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$continueTimestamp = $cont[0];
@@ -124,7 +125,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['watchlistOwnerToken'] = $params['token'];
 		}
 
-		if ( !is_null( $params['namespace'] ) ) {
+		if ( $params['namespace'] !== null ) {
 			$options['namespaceIds'] = $params['namespace'];
 		}
 
@@ -132,7 +133,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['allRevisions'] = true;
 		}
 
-		if ( !is_null( $params['show'] ) ) {
+		if ( $params['show'] !== null ) {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
@@ -152,7 +153,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['filters'] = array_keys( $show );
 		}
 
-		if ( !is_null( $params['type'] ) ) {
+		if ( $params['type'] !== null ) {
 			try {
 				$rcTypes = RecentChange::parseToRCType( $params['type'] );
 				if ( $rcTypes ) {
@@ -164,26 +165,44 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			$options['onlyByUser'] = $params['user'];
 		}
-		if ( !is_null( $params['excludeuser'] ) ) {
+		if ( $params['excludeuser'] !== null ) {
 			$options['notByUser'] = $params['excludeuser'];
 		}
 
 		$options['limit'] = $params['limit'];
 
-		Hooks::run( 'ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions', [
-			$this, $params, &$options
-		] );
+		$this->getHookRunner()->onApiQueryWatchlistPrepareWatchedItemQueryServiceOptions(
+			$this, $params, $options );
 
 		$ids = [];
-		$watchedItemQuery = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$services = MediaWikiServices::getInstance();
+		$watchedItemQuery = $services->getWatchedItemQueryService();
 		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
+
+		// Get gender information
+		if ( $items !== [] && $resultPageSet === null && $this->fld_title &&
+			$services->getContentLanguage()->needsGenderDistinction()
+		) {
+			$nsInfo = $services->getNamespaceInfo();
+			$usernames = [];
+			foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+				/** @var WatchedItem $watchedItem */
+				$linkTarget = $watchedItem->getLinkTarget();
+				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
+					$usernames[] = $linkTarget->getText();
+				}
+			}
+			if ( $usernames !== [] ) {
+				$services->getGenderCache()->doQuery( $usernames, __METHOD__ );
+			}
+		}
 
 		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 			/** @var WatchedItem $watchedItem */
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = $this->extractOutputData( $watchedItem, $recentChangeInfo );
 				$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
@@ -201,7 +220,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->setContinueEnumParameter( 'continue', implode( '|', $startFrom ) );
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->getResult()->addIndexedTagName(
 				[ 'query', $this->getModuleName() ],
 				'item'
@@ -407,9 +426,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['suppressed'] = true;
 		}
 
-		Hooks::run( 'ApiQueryWatchlistExtractOutputData', [
-			$this, $watchedItem, $recentChangeInfo, &$vals
-		] );
+		$this->getHookRunner()->onApiQueryWatchlistExtractOutputData(
+			$this, $watchedItem, $recentChangeInfo, $vals );
 
 		return $vals;
 	}
@@ -429,9 +447,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
@@ -492,7 +512,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
 			],
 			'owner' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'token' => [
 				ApiBase::PARAM_TYPE => 'string',

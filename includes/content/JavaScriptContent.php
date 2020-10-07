@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content for JavaScript pages.
  *
+ * @newable
  * @ingroup Content
  */
 class JavaScriptContent extends TextContent {
@@ -40,6 +41,7 @@ class JavaScriptContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
+	 * @stable to call
 	 * @param string $text JavaScript code.
 	 * @param string $modelId the content model name
 	 */
@@ -72,12 +74,10 @@ class JavaScriptContent extends TextContent {
 	 * @return string JavaScript wrapped in a <pre> tag.
 	 */
 	protected function getHtml() {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getText() );
-		$html .= "\n</pre>\n";
-
-		return $html;
+		return Html::element( 'pre',
+			[ 'class' => 'mw-code mw-js', 'dir' => 'ltr' ],
+			"\n" . $this->getText() . "\n"
+		) . "\n";
 	}
 
 	/**

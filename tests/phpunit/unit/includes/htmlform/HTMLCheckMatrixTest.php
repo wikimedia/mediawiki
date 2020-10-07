@@ -35,17 +35,17 @@ class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
 				return false;
 			},
 		] );
-		$this->assertEquals( false, $this->validate( $field, [] ) );
+		$this->assertFalse( $this->validate( $field, [] ) );
 		$this->assertTrue( $called );
 	}
 
 	public function testValidateRequiresArrayInput() {
 		$field = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertEquals( false, $this->validate( $field, null ) );
-		$this->assertEquals( false, $this->validate( $field, true ) );
-		$this->assertEquals( false, $this->validate( $field, 'abc' ) );
-		$this->assertEquals( false, $this->validate( $field, new stdClass ) );
-		$this->assertEquals( true, $this->validate( $field, [] ) );
+		$this->assertFalse( $this->validate( $field, null ) );
+		$this->assertFalse( $this->validate( $field, true ) );
+		$this->assertFalse( $this->validate( $field, 'abc' ) );
+		$this->assertFalse( $this->validate( $field, (object)[] ) );
+		$this->assertTrue( $this->validate( $field, [] ) );
 	}
 
 	public function testValidateAllowsOnlyKnownTags() {

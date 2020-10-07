@@ -35,6 +35,8 @@ use Psr\Http\Message\StreamInterface;
 /**
  * An interface similar to PSR-7's ResponseInterface, the primary difference
  * being that it is mutable.
+ *
+ * @stable for implementing
  */
 interface ResponseInterface {
 	// ResponseInterface
@@ -47,7 +49,7 @@ interface ResponseInterface {
 	 *
 	 * @return int Status code.
 	 */
-	function getStatusCode();
+	public function getStatusCode();
 
 	/**
 	 * Gets the response reason phrase associated with the status code.
@@ -62,7 +64,7 @@ interface ResponseInterface {
 	 * @see http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 	 * @return string Reason phrase; must return an empty string if none present.
 	 */
-	function getReasonPhrase();
+	public function getReasonPhrase();
 
 	// ResponseInterface mutation
 
@@ -81,7 +83,7 @@ interface ResponseInterface {
 	 *     use the defaults as suggested in the HTTP specification.
 	 * @throws \InvalidArgumentException For invalid status code arguments.
 	 */
-	function setStatus( $code, $reasonPhrase = '' );
+	public function setStatus( $code, $reasonPhrase = '' );
 
 	// MessageInterface
 
@@ -92,7 +94,7 @@ interface ResponseInterface {
 	 *
 	 * @return string HTTP protocol version.
 	 */
-	function getProtocolVersion();
+	public function getProtocolVersion();
 
 	/**
 	 * Retrieves all message header values.
@@ -119,7 +121,7 @@ interface ResponseInterface {
 	 *     Each key MUST be a header name, and each value MUST be an array of
 	 *     strings for that header.
 	 */
-	function getHeaders();
+	public function getHeaders();
 
 	/**
 	 * Checks if a header exists by the given case-insensitive name.
@@ -129,7 +131,7 @@ interface ResponseInterface {
 	 *     name using a case-insensitive string comparison. Returns false if
 	 *     no matching header name is found in the message.
 	 */
-	function hasHeader( $name );
+	public function hasHeader( $name );
 
 	/**
 	 * Retrieves a message header value by the given case-insensitive name.
@@ -145,7 +147,7 @@ interface ResponseInterface {
 	 *    header. If the header does not appear in the message, this method MUST
 	 *    return an empty array.
 	 */
-	function getHeader( $name );
+	public function getHeader( $name );
 
 	/**
 	 * Retrieves a comma-separated string of the values for a single header.
@@ -166,14 +168,14 @@ interface ResponseInterface {
 	 *    concatenated together using a comma. If the header does not appear in
 	 *    the message, this method MUST return an empty string.
 	 */
-	function getHeaderLine( $name );
+	public function getHeaderLine( $name );
 
 	/**
 	 * Gets the body of the message.
 	 *
 	 * @return StreamInterface Returns the body as a stream.
 	 */
-	function getBody();
+	public function getBody();
 
 	// MessageInterface mutation
 
@@ -185,7 +187,7 @@ interface ResponseInterface {
 	 *
 	 * @param string $version HTTP protocol version
 	 */
-	function setProtocolVersion( $version );
+	public function setProtocolVersion( $version );
 
 	/**
 	 * Set or replace the specified header.
@@ -197,7 +199,7 @@ interface ResponseInterface {
 	 * @param string|string[] $value Header value(s).
 	 * @throws \InvalidArgumentException for invalid header names or values.
 	 */
-	function setHeader( $name, $value );
+	public function setHeader( $name, $value );
 
 	/**
 	 * Append the given value to the specified header.
@@ -211,7 +213,7 @@ interface ResponseInterface {
 	 * @throws \InvalidArgumentException for invalid header names.
 	 * @throws \InvalidArgumentException for invalid header values.
 	 */
-	function addHeader( $name, $value );
+	public function addHeader( $name, $value );
 
 	/**
 	 * Remove the specified header.
@@ -220,7 +222,7 @@ interface ResponseInterface {
 	 *
 	 * @param string $name Case-insensitive header field name to remove.
 	 */
-	function removeHeader( $name );
+	public function removeHeader( $name );
 
 	/**
 	 * Set the message body
@@ -230,7 +232,7 @@ interface ResponseInterface {
 	 * @param StreamInterface $body Body.
 	 * @throws \InvalidArgumentException When the body is not valid.
 	 */
-	function setBody( StreamInterface $body );
+	public function setBody( StreamInterface $body );
 
 	// MediaWiki extensions to PSR-7
 
@@ -240,7 +242,7 @@ interface ResponseInterface {
 	 *
 	 * @return string[]
 	 */
-	function getRawHeaderLines();
+	public function getRawHeaderLines();
 
 	/**
 	 * Set a cookie
@@ -272,6 +274,7 @@ interface ResponseInterface {
 	 *  - options: An associative array of further options
 	 *
 	 * @return array
+	 * @phan-return array{name:string,value:mixed,expire:int,options:array}
 	 */
 	public function getCookies();
 }

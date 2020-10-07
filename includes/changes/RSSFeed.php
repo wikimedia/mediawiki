@@ -34,18 +34,17 @@ class RSSFeed extends ChannelFeed {
 	 * @param int|null $ts Timestamp
 	 * @return string|null Date string
 	 */
-	function formatTime( $ts ) {
+	private function formatTime( $ts ) {
 		if ( $ts ) {
 			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
 		}
+		return null;
 	}
 
 	/**
 	 * Output an RSS 2.0 header
 	 */
-	function outHeader() {
-		global $wgVersion;
-
+	public function outHeader() {
 		$this->outXmlHeader();
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
@@ -54,7 +53,7 @@ class RSSFeed extends ChannelFeed {
 			'url' => $this->xmlEncode( wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ) ),
 			'description' => $this->getDescription(),
 			'language' => $this->xmlEncode( $this->getLanguage() ),
-			'version' => $this->xmlEncode( $wgVersion ),
+			'version' => $this->xmlEncode( MW_VERSION ),
 			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) )
 		];
 		print $this->templateParser->processTemplate( 'RSSHeader', $templateParams );
@@ -64,7 +63,7 @@ class RSSFeed extends ChannelFeed {
 	 * Output an RSS 2.0 item
 	 * @param FeedItem $item Item to be output
 	 */
-	function outItem( $item ) {
+	public function outItem( $item ) {
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
@@ -87,7 +86,7 @@ class RSSFeed extends ChannelFeed {
 	/**
 	 * Output an RSS 2.0 footer
 	 */
-	function outFooter() {
+	public function outFooter() {
 		print "</channel></rss>";
 	}
 }

@@ -26,7 +26,7 @@
 	Fix type for <id> within <contributor> to "nonNegativeInteger"
 
 	Version 0.8 adds support for a <model> and a <format> tag for
-	each revision. See contenthandler.txt.
+	each revision. See contenthandler.md.
 
 	Version 0.9 adds the database name to the site information.
 
@@ -226,6 +226,7 @@
 				<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
 				<attribute name="deleted" type="mw:DeletedFlagType" />
 				<attribute name="location" type="anyURI" />
+				<attribute name="sha1" type="string" />
 				<attribute name="bytes" type="nonNegativeInteger" />
 			</extension>
 		</simpleContent>

@@ -142,17 +142,19 @@ abstract class FormSpecialPage extends SpecialPage {
 		}
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'SpecialPageBeforeFormDisplay', [ $this->getName(), &$form ] );
+		$this->getHookRunner()->onSpecialPageBeforeFormDisplay( $this->getName(), $form );
 
 		return $form;
 	}
 
 	/**
 	 * Process the form on POST submission.
+	 * @phpcs:disable MediaWiki.Commenting.FunctionComment.ExtraParamComment
 	 * @param array $data
 	 * @param HTMLForm|null $form
 	 * @suppress PhanCommentParamWithoutRealParam Many implementations don't have $form
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
+	 * @phpcs:enable MediaWiki.Commenting.FunctionComment.ExtraParamComment
 	 */
 	abstract public function onSubmit( array $data /* HTMLForm $form = null */ );
 
@@ -207,7 +209,12 @@ abstract class FormSpecialPage extends SpecialPage {
 		if ( $this->requiresUnblock() ) {
 			$block = $user->getBlock();
 			if ( $block && $block->isSitewide() ) {
-				throw new UserBlockedError( $block );
+				throw new UserBlockedError(
+					$block,
+					$user,
+					$this->getLanguage(),
+					$this->getRequest()->getIP()
+				);
 			}
 		}
 

@@ -11,8 +11,7 @@
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
 			.attr( {
-				tabIndex: 0,
-				'aria-hidden': 'true'
+				tabIndex: 0
 			} )
 			.insertBefore( '.mw-htmlform-ooui-wrapper' );
 
@@ -70,17 +69,17 @@
 		// This function is called onload and onhashchange.
 		function detectHash() {
 			var hash = location.hash,
-				matchedElement, parentSection;
+				matchedElement, $parentSection;
 			if ( hash.match( /^#mw-prefsection-[\w]+$/ ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.slice( 1 ) );
 			} else if ( hash.match( /^#mw-[\w-]+$/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
-				parentSection = $( matchedElement ).parent().closest( '[id^="mw-prefsection-"]' );
-				if ( parentSection.length ) {
+				$parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
+				if ( $parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
-					switchPrefTab( parentSection.attr( 'id' ), true );
+					switchPrefTab( $parentSection.attr( 'id' ), true );
 					matchedElement.scrollIntoView();
 				}
 			}

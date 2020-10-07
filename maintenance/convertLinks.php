@@ -110,13 +110,13 @@ class ConvertLinks extends Maintenance {
 		list( $cur, $links, $links_temp, $links_backup ) =
 			$dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
-		if ( $dbw->tableExists( 'pagelinks' ) ) {
+		if ( $dbw->tableExists( 'pagelinks', __METHOD__ ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
 
 			return;
 		}
 
-		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
+		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1", __METHOD__ );
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 			$this->output( "Schema already converted\n" );
@@ -124,7 +124,7 @@ class ConvertLinks extends Maintenance {
 			return;
 		}
 
-		$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links" );
+		$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links", __METHOD__ );
 		$row = $dbw->fetchObject( $res );
 		$numRows = $row->count;
 
@@ -152,7 +152,8 @@ class ConvertLinks extends Maintenance {
 			do {
 				$res = $dbw->query(
 					"SELECT cur_namespace,cur_title,cur_id FROM $cur " .
-					"WHERE cur_id > $lastId ORDER BY cur_id LIMIT 10000"
+					"WHERE cur_id > $lastId ORDER BY cur_id LIMIT 10000",
+					__METHOD__
 				);
 				foreach ( $res as $row ) {
 					$title = $row->cur_title;
@@ -195,7 +196,7 @@ class ConvertLinks extends Maintenance {
 			) {
 				$sqlRead = "SELECT * FROM $links ";
 				$sqlRead = $dbw->limitResult( $sqlRead, $linksConvInsertInterval, $rowOffset );
-				$res = $dbw->query( $sqlRead );
+				$res = $dbw->query( $sqlRead, __METHOD__ );
 				if ( $noKeys ) {
 					$sqlWrite = [ "INSERT INTO $links_temp (l_from,l_to) VALUES " ];
 				} else {
@@ -223,7 +224,7 @@ class ConvertLinks extends Maintenance {
 					if ( $reportLinksConvProgress ) {
 						$this->output( "Inserting $tuplesAdded tuples into $links_temp..." );
 					}
-					$dbw->query( implode( "", $sqlWrite ) );
+					$dbw->query( implode( "", $sqlWrite ), __METHOD__ );
 					$totalTuplesInserted += $tuplesAdded;
 					if ( $reportLinksConvProgress ) {
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
@@ -280,20 +281,20 @@ class ConvertLinks extends Maintenance {
 		$links_temp = $dbConn->tableName( 'links_temp' );
 
 		$this->output( "Dropping temporary links table if it exists..." );
-		$dbConn->query( "DROP TABLE IF EXISTS $links_temp" );
+		$dbConn->query( "DROP TABLE IF EXISTS $links_temp", __METHOD__ );
 		$this->output( " done.\n" );
 
 		$this->output( "Creating temporary links table..." );
 		if ( $this->hasOption( 'noKeys' ) ) {
 			$dbConn->query( "CREATE TABLE $links_temp ( " .
 				"l_from int(8) unsigned NOT NULL default '0', " .
-				"l_to int(8) unsigned NOT NULL default '0')" );
+				"l_to int(8) unsigned NOT NULL default '0')", __METHOD__ );
 		} else {
 			$dbConn->query( "CREATE TABLE $links_temp ( " .
 				"l_from int(8) unsigned NOT NULL default '0', " .
 				"l_to int(8) unsigned NOT NULL default '0', " .
 				"UNIQUE KEY l_from(l_from,l_to), " .
-				"KEY (l_to))" );
+				"KEY (l_to))", __METHOD__ );
 		}
 		$this->output( " done.\n\n" );
 	}

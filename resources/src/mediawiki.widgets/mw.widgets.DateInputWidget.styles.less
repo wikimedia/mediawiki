@@ -8,6 +8,7 @@
 // Variables taken from OOUI's WikimediaUI theme
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
 @ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
+@ooui-unit: em;
 
 @background-color-base: #fff;
 
@@ -18,15 +19,15 @@
 @border-color-input--hover: #72777d;
 @border-radius-base: 2px;
 
-@padding-input-text: @padding-top-base @padding-horizontal-input-text @padding-bottom-base;
-@padding-horizontal-input-text: 8 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.57142857em`≈`7px`
-@padding-top-base: 8 / @ooui-font-size-browser / @ooui-font-size-base;
-@padding-bottom-base: 7 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.5em`≈`7px`
+@padding-input-text: @padding-vertical-base @padding-horizontal-input-text;
+@padding-horizontal-input-text: 8px;
+@padding-vertical-base: 6px;
 
 @box-shadow-widget: inset 0 0 0 1px transparent;
 @box-shadow-widget--focus: inset 0 0 0 1px #36c;
 
-@line-height-widget-singleline: 15 / @ooui-font-size-browser / @ooui-font-size-base; // equals `1.07142857em`≈`15px`; Firefox needs a value, Chrome the unit;
+// `line-height` has to be relative/in `em` to enable user override in browser settings.
+@line-height-widget-base: unit( 18 / @ooui-font-size-browser / @ooui-font-size-base, @ooui-unit ); // equals `18px` at base `font-size: 14px;
 
 @transition-ease-medium: @transition-duration-medium; // `ease` is the initial value
 @transition-duration-medium: 250ms;
@@ -61,7 +62,7 @@
 		// .oo-ui-inline-spacing( 0.5em ); already inherited from `.oo-ui-inputWidget`
 
 		.oo-ui-labelElement-label {
-			line-height: @line-height-widget-singleline;
+			line-height: @line-height-widget-base;
 		}
 	}
 
@@ -87,7 +88,7 @@
 		border: @border-base;
 		border-radius: @border-radius-base;
 		padding: @padding-input-text;
-		line-height: @line-height-widget-singleline;
+		line-height: @line-height-widget-base;
 	}
 
 	&.oo-ui-widget-enabled {

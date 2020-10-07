@@ -21,6 +21,8 @@
 /**
  * Basic localized exception.
  *
+ * @newable
+ * @stable to extend
  * @since 1.29
  * @ingroup Exception
  * @note Don't use this in a situation where MessageCache is not functional.
@@ -30,12 +32,13 @@ class LocalizedException extends Exception implements ILocalizedException {
 	protected $messageSpec;
 
 	/**
+	 * @stable to call
 	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
 	 * @param int $code
-	 * @param Exception|Throwable|null $previous The previous exception used for the exception
+	 * @param Throwable|null $previous The previous exception used for the exception
 	 *  chaining.
 	 */
-	public function __construct( $messageSpec, $code = 0, $previous = null ) {
+	public function __construct( $messageSpec, $code = 0, Throwable $previous = null ) {
 		$this->messageSpec = $messageSpec;
 
 		// Exception->getMessage() should be in plain English, not localized.

@@ -5,7 +5,7 @@
  */
 class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mediaPath = __DIR__ . '/../../../data/media/';

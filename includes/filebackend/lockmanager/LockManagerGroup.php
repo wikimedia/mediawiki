@@ -20,8 +20,8 @@
  * @file
  * @ingroup LockManager
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -134,11 +134,13 @@ class LockManagerGroup {
 	 * Get the default lock manager configured for the site.
 	 * Returns NullLockManager if no lock manager could be found.
 	 *
-	 * XXX This looks unused, should we just get rid of it?
-	 *
+	 * @codeCoverageIgnore
+	 * @deprecated since 1.35, seemingly unused, just call get() and catch any exception instead
 	 * @return LockManager
 	 */
 	public function getDefault() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		return isset( $this->managers['default'] )
 			? $this->get( 'default' )
 			: new NullLockManager( [] );
@@ -149,12 +151,14 @@ class LockManagerGroup {
 	 * or at least some other effective configured lock manager.
 	 * Throws an exception if no lock manager could be found.
 	 *
-	 * XXX This looks unused, should we just get rid of it?
-	 *
+	 * @codeCoverageIgnore
+	 * @deprecated since 1.35, seemingly unused, just call get() and catch any exception instead
 	 * @return LockManager
 	 * @throws Exception
 	 */
 	public function getAny() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		return isset( $this->managers['default'] )
 			? $this->get( 'default' )
 			: $this->get( 'fsLockManager' );

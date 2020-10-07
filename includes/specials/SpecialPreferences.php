@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Preferences' );
 	}
 

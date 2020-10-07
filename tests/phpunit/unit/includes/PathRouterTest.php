@@ -12,7 +12,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 	 */
 	protected $basicRouter;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$router = new PathRouter;
 		$router->add( "/wiki/$1" );
@@ -321,5 +321,28 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 		$router->add( "/$2/$1", [ 'restricted-to-y' => '$2' ], [ '$2' => 'y' ] );
 
 		$this->assertEquals( $router->parse( $path ), $expected );
+	}
+
+	public static function provideValidateRoute() {
+		yield [ 'https://test/wiki/$1' ];
+		yield [ 'http://test/wiki/$1' ];
+		yield [ '//test/wiki/$1' ];
+		yield [ '/w/index.php?title=$1' ];
+		yield [ '/w/index.php/$1' ];
+		yield [ '/wiki/$1' ];
+
+		// T48998
+		yield [ 'wiki/$1', false ];
+	}
+
+	/**
+	 * @dataProvider provideValidateRoute
+	 */
+	public function testValidateRoute( $path, $valid = true ) {
+		$router = new PathRouter;
+		if ( !$valid ) {
+			$this->expectException( FatalError::class );
+		}
+		$this->assertNull( $router->validateRoute( $path, 'wgExample' ) );
 	}
 }

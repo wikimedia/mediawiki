@@ -37,7 +37,7 @@ interface ImportSource {
 	 *
 	 * @return bool true if there is no more input, false otherwise.
 	 */
-	function atEnd();
+	public function atEnd();
 
 	/**
 	 * Return a chunk of the input, as a (possibly empty) string.
@@ -47,5 +47,5 @@ interface ImportSource {
 	 *
 	 * @return bool|string
 	 */
-	function readChunk();
+	public function readChunk();
 }

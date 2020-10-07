@@ -11,7 +11,8 @@ class SpecialPageExecutor {
 	 * @param SpecialPage $page The special page to execute
 	 * @param string $subPage The subpage parameter to call the page with
 	 * @param WebRequest|null $request Web request that may contain URL parameters, etc
-	 * @param Language|string|null $language The language which should be used in the context
+	 * @param Language|string|null $language The language which should be used in the context;
+	 * if not specified, the pseudo-code 'qqx' is used
 	 * @param User|null $user The user which should be used in the context of this special page
 	 *
 	 * @throws Exception
@@ -49,7 +50,7 @@ class SpecialPageExecutor {
 
 	/**
 	 * @param WebRequest|null $request
-	 * @param Language|string|null $language
+	 * @param Language|string|null $language Defaults to 'qqx'
 	 * @param User|null $user
 	 *
 	 * @return DerivativeContext
@@ -63,9 +64,7 @@ class SpecialPageExecutor {
 
 		$context->setRequest( $request ?: new FauxRequest() );
 
-		if ( $language !== null ) {
-			$context->setLanguage( $language );
-		}
+		$context->setLanguage( $language ?: 'qqx' );
 
 		if ( $user !== null ) {
 			$context->setUser( $user );

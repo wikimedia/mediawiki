@@ -1,18 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bfpage",
 			"Boukman",
+			"DannyS712",
 			"Internoob",
 			"Jvm",
-			"Masterches",
-			"Urhixidur",
-			"아라",
-			"Tisave",
-			"Bfpage",
-			"Macofe",
-			"Lucas",
 			"LeGuyanaisPure",
-			"Schery19"
+			"Lucas",
+			"Macofe",
+			"Masterches",
+			"Schery19",
+			"Tisave",
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Souliyen lyen yo :",
@@ -300,7 +301,7 @@
 	"databaseerror-query": "Rekèt: $1",
 	"databaseerror-function": "Fonksyon: $1",
 	"databaseerror-error": "Erè: $1",
-	"laggedslavemode": "'''Atansyon:''' paj sa a kapab pa anrejistre modifikasyon ki fèk fèt yo.",
+	"laggedreplicamode": "'''Atansyon:''' paj sa a kapab pa anrejistre modifikasyon ki fèk fèt yo.",
 	"readonly": "Bazdone a fèmen toutbon.",
 	"enterlockreason": "Bay yon rezon pou fème bazdone a ak yon estimasyon ki lè w ap ouvri l ankò",
 	"readonlytext": "Bazdone a fèmen kounye a, nou pa kapab ajoute pyès done ladan l. Sanble se pou pèmèt jesyon l; apre sa, l ap reprann sèvis li.\n\nAdministratè a ki te fèmen l bay rezon sa a : $1",
@@ -561,7 +562,7 @@
 	"histfirst": "Premye kontribisyon yo",
 	"histlast": "Dènye kontribisyon yo",
 	"historysize": "({{PLURAL:$1|$1 okte|$1 okte yo}})",
-	"historyempty": "(vid, pa gen anyen)",
+	"historyempty": "vid, pa gen anyen",
 	"history-feed-title": "Istorik vèsyon yo",
 	"history-feed-description": "Istorik pou paj sa anlè wiki a",
 	"history-feed-item-nocomment": "$1, lè li te ye $2",

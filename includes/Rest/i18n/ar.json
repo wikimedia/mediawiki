@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"rest-prefix-mismatch": "المسار المطلوب ($1) لم يكن داخل مسار جذر API REST ($2)",
+	"rest-wrong-method": "لم تكن طريقة الطلب  ($1)  {{PLURAL:$3|الطريقة|إحدى الطرق}} المسموح بها لهذا المسار ($2)",
+	"rest-no-match": "المسار النسبي المطلوب ($1) لا يتطابق مع أي معالج معروف",
+	"rest-nonexistent-title": "العنوان المحدد ($1) غير موجود",
+	"rest-nonexistent-title-revision": "المراجعة المحددة ($1) غير موجودة للصفحة المحددة ($2)",
+	"rest-nonexistent-revision": "المراجعة المحددة ($1) غير موجودة.",
+	"rest-permission-denied-title": "المستخدم ليست لديه صلاحية قراءة العنوان ($1)",
+	"rest-permission-denied-revision": "لا يمكن للمستخدم الوصول إلى المراجعة المطلوبة ($1).",
+	"rest-pagehistory-incompatible-params": "لا يمكن تحديد كلا الوسيطين \"الأقدم من\" و\"الأحدث من\"",
+	"rest-pagehistory-param-range-error": "يجب أن يكون معرف المراجعة أكبر من 0",
+	"rest-pagehistory-timestamp-error": "غير قادر على استرداد الطابع الزمني للمراجعة المحددة ($1)",
+	"rest-pagehistorycount-type-unrecognized": "نوع العد المحدد ($1) غير صالح",
+	"rest-pagehistorycount-parameters-invalid": "المجموعة المحددة من الوسائط غير مدعومة.",
+	"rest-compare-page-mismatch": "المراجعات المحددة تنتمي إلى صفحات مختلفة؛ رفض مقارنتها.",
+	"rest-compare-permission-denied": "لا يمكن للمستخدم الوصول إلى المراجعات المطلوبة",
+	"rest-compare-nonexistent": "المراجعة المحددة بواسطة الوسيط $1 غير موجودة.",
+	"rest-compare-inaccessible": "المراجعة المحددة بواسطة الوسيط $1 ليست متاحة علانية.",
+	"rest-compare-wrong-content": "تحتوي فتحة $1 للمراجعة المحددة بواسطة الوسيط $2 على نوع محتوى لا يمكن تحويله إلى نص.",
+	"rest-compare-wikidiff2": "تتطلب نقطة النهاية هذه wikidiff2 1.9.0 أو أحدث.",
+	"rest-pagehistorycount-too-many-revisions": "يحتوي العنوان المحدد على عدد كبير جدا من المراجعات لاسترداد هذا العدد.",
+	"rest-search-error": "خطأ عند إرجاع نتائج البحث: $1",
+	"rest-page-source-type-error": "نوع محتوى مصدر الصفحة المطلوب غير مدعوم",
+	"rest-no-revision": "غير قادر على استرداد مراجعة للعنوان $1"
+}

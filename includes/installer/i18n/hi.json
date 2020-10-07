@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Phoenix303",
+			"Sachinkatiyar",
+			"Sahilrathod",
+			"Sfic",
+			"Shyamal",
 			"Smtchahal",
 			"Vivek Rai",
-			"Phoenix303",
-			"संजीव कुमार",
-			"Sahilrathod",
-			"Shyamal",
-			"Sfic",
-			"Sachinkatiyar"
+			"संजीव कुमार"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -37,7 +37,6 @@
 	"config-page-install": "स्थापित करें",
 	"config-page-complete": "पूर्ण!",
 	"config-page-restart": "स्थापना को पुनरारंभ करें",
-	"config-page-readme": "मुझे पढ़ें",
 	"config-page-releasenotes": "रिलीज नोट्स",
 	"config-page-copying": "अनुकरण",
 	"config-page-upgradedoc": "उन्नयन",
@@ -45,7 +44,6 @@
 	"config-help-restart": "क्या आप अपने द्वारा दिये सभी डाटा को मिटाना चाहते हैं और फिर से स्थापित करना चाहते हैं?",
 	"config-restart": "हाँ, इसे पुनः आरंभ करें",
 	"config-env-php": "PHP $1 स्थापित किया गया है।",
-	"config-env-hhvm": "एचएचवीएम $1 स्थापित किया गया है।",
 	"config-memory-raised": "पीएचपी की <code>memory_limit</code> सीमा $1 है, जो $2 तक बढ़ गई है।",
 	"config-apc": "[https://www.php.net/apc एपीसी] स्थापित है।",
 	"config-apcu": "[https://www.php.net/apcu एपीसीयू] स्थापित है।",

@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lévi",
-			"Reder",
 			"Geitost",
-			"아라",
-			"Shirayuki",
 			"Gloria sah",
+			"Lévi",
 			"Macofe",
-			"Vlad5250"
+			"Matma Rex",
+			"Reder",
+			"Shirayuki",
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -287,7 +288,7 @@
 	"databaseerror-query": "Istrusiòun SQL: $1",
 	"databaseerror-function": "Funsiòun: $1",
 	"databaseerror-error": "Erōr: $1",
-	"laggedslavemode": "'''Atèinti:''' la pàgina la pré avèir mìa al revisiòun pió nōv.",
+	"laggedreplicamode": "'''Atèinti:''' la pàgina la pré avèir mìa al revisiòun pió nōv.",
 	"readonly": "'Database' bluchê",
 	"enterlockreason": "Scréver al mutîv dal blôch, precişêr quând a 's pèinsa che 'l vègna tôt via.",
 	"readonlytext": "In cól mumèint ché al databêş l'é bluchê e an 's pōlen fêr né zûnti né mudéfichi. Al blôch ed sôlit l'é lighê a 'na revişiòun normêla e quând la srà finîda al gnirà sbluchê. \n\nL'aminitradōr dal sistēma ch' l'à urdnê 'l blôch l'à dê cla spiegasiòun ché: $1",
@@ -480,7 +481,6 @@
 	"passwordreset-emailtext-ip": "Quelchidûn (prubabilmèint té, cun l'indirés IP $1) l'à dmandê de spidîregh 'na nōva cêva 'd ingrès per andêr dèinter a {{SITENAME}} ($4). {{PLURAL:$3|L'utèint inscrét| J utèint inscrét}} a sté indirés ed pôsta eletrônica în:\n \n$2 \n\n{{PLURAL:$3|Cla cêva 'd ingrès pruvişôria la scadrà| St' al cêvi 'd ingrès pruvişôri ché scadrân}} dôp {{PLURAL:$5|ûn dé|$5 dé}}. Ét duvrés andêr dèinter e sernîr 'na cêva 'd ingrès nōva adès. \n\nSe t'é mìa stê té a fêr la dmânda, o s' ét t'é ricurdê la cêva 'd ingrès uriginêla e an 't vō mia pió cambiêrla, ét pō scanşlêr cól mesâg ché e cuntinvêr a druvêr la tó cêva 'd ingrès vècia.",
 	"passwordreset-emailtext-user": "L'utèint $1 ed {{SITENAME}} l'à dmandê de spidîregh 'na nōva cêva 'd ingrès per andêr dèinter a {{SITENAME}} ($4). {{PLURAL:$3|L'utèint inscrét| J utèint inscrét}} a sté indirés ed pôsta eletrônica în:\n\n$2 \n\n{{PLURAL:$3|Cla cêva 'd ingrès pruvişôria ché la scadrà| St' al cêvi 'd ingrès pruvişôri ché scadrân}} dôp {{PLURAL:$5|ûn dé|$5 dé}}. Ét duvrés andêr dèinter e sernîr 'na cêva 'd ingrès nōva adès. \n\nSe t'é mìa stê té a fêr la dmânda, o s' ét t'é ricurdê la cêva 'd ingrès uriginêla e an 't vō mia pió cambiêrla, ét pō scanşlêr cól mesâg ché e cuntinvêr a druvêr la tó cêva 'd ingrès vècia",
 	"passwordreset-emailelement": "Nòm utèint: \n$1\n.\nCêva 'd ingrès pruvişôria: \n$2",
-	"passwordreset-emailsentemail": "Se cl’indirés ed pôsta eletrônica ché l’è unî a la tó utèinsa, alōra a gnirà spidî ‘na lètra per per turnêr a impustêr la cêva ‘d ingrès.",
 	"changeemail": "Mudéfica o tó via l'indirés ed pôsta eletrônica",
 	"changeemail-header": "Finés cól fòj ché per cambiêr al tó indirés ed pôsta eletrônica, 'S an 't vō mia avèir nisûn indirés coleghê a la tó utèinsa lêsa vōd al spâsi per l'indirés nōv quând té spidés al fòj.",
 	"changeemail-no-info": "Per andêr dèinter diretamèint a cla pàgina ché 't gh'ê da fêr l'ingrès.",
@@ -636,8 +636,6 @@
 	"undo-nochange": "A sèmbra che la mudéfica la sìa bèle stêda scanşlêda.",
 	"undo-summary": "Scanşlê la mudéfica $1 ed [[Special:Contributions/$2|$2]]\n([[User talk:$2|discusiòun]])",
 	"undo-summary-username-hidden": "Scanşlê la modéfica $1 ed 'n utèin lughê",
-	"cantcreateaccount-text": "La registrasiòun ed cl'indirés IP ché ('''$1''') l'é stêda bluchêda da [[User:$3|$3]]. \n\nAl mutîv dal blôch dê da $3 l'é còst: ''$2''.",
-	"cantcreateaccount-range-text": "La registrasiòun da indirés IP int l'intervâl <strong>$1</strong>, in dó gh'é dèinter al tó  (<strong>$4</strong>), l'é stêda bluchêda da [[User:$3|$3]]. \n\nAl mutîv dê da $3 l'é <em>$2</em>",
 	"viewpagelogs": "Guêrda la stòria 'd cla pàgina ché",
 	"nohistory": "L'elèinch ed la stôria dal versiòun ed cla pàgina ché an 's câta mìa.",
 	"currentrev": "Ûltma versiòun",
@@ -1529,5 +1527,7 @@
 	"feedback-message": "Mesâg",
 	"feedback-subject": "Argomèint:",
 	"searchsuggest-search": "Sērca dèinter ed {{SITENAME}}",
-	"mw-widgets-abandonedit": "Ét sicûr ed vrèir lasêr còl che t'é mudifichê sèinsa préma salvêr?"
+	"mw-widgets-abandonedit": "Ét sicûr ed vrèir lasêr còl che t'é mudifichê sèinsa préma salvêr?",
+	"mw-widgets-mediasearch-input-placeholder": "Sērca file multimediêl",
+	"mw-widgets-mediasearch-noresults": "Mìa catê nisùn risultê."
 }

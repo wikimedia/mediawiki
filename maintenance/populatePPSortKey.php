@@ -39,6 +39,8 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 
 		$lastProp = null;
 		$lastPageValue = 0;
+
+		$lastRowCount = 0;
 		$editedRowCount = 0;
 
 		$this->output( "Populating page_props.pp_sortkey...\n" );
@@ -56,7 +58,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 				$conditions,
 				__METHOD__,
 				[
-					'ORDER BY' => 'pp_page, pp_propname',
+					'ORDER BY' => [ 'pp_page', 'pp_propname' ],
 					'LIMIT' => $this->getBatchSize()
 				]
 			);
@@ -83,7 +85,11 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 				$editedRowCount++;
 			}
 
-			$this->output( "Updated " . $editedRowCount . " rows\n" );
+			if ( $editedRowCount !== $lastRowCount ) {
+				$this->output( "Updated " . $editedRowCount . " rows\n" );
+				$lastRowCount = $editedRowCount;
+			}
+
 			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// We need to get the last element's page ID
@@ -93,6 +99,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Populating page_props.pp_sortkey complete.\n" );
+		$this->output( "Updated a total of $editedRowCount rows\n" );
 		return true;
 	}
 

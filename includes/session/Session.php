@@ -45,7 +45,7 @@ use WebRequest;
  * @ingroup Session
  * @since 1.27
  */
-final class Session implements \Countable, \Iterator, \ArrayAccess {
+class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var null|string[] Encryption algorithm to use */
 	private static $encryptionAlgorithm = null;
 
@@ -83,7 +83,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Returns the SessionId object
-	 * @private For internal use by WebRequest
+	 * @internal For internal use by WebRequest
 	 * @return SessionId
 	 */
 	public function getSessionId() {
@@ -248,7 +248,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Fetch provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @return mixed
 	 */
 	public function getProviderMetadata() {

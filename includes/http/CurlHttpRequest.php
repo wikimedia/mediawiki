@@ -22,12 +22,13 @@
  * MWHttpRequest implemented using internal curl compiled into PHP
  */
 class CurlHttpRequest extends MWHttpRequest {
-	const SUPPORTS_FILE_POSTS = true;
+	public const SUPPORTS_FILE_POSTS = true;
 
 	protected $curlOptions = [];
 	protected $headerText = "";
 
 	/**
+	 * @internal Use HttpRequestFactory
 	 * @throws RuntimeException
 	 */
 	public function __construct() {
@@ -113,7 +114,7 @@ class CurlHttpRequest extends MWHttpRequest {
 			Wikimedia\suppressWarnings();
 			if ( !curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
 				$this->logger->debug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
-					"Probably open_basedir is set.\n" );
+					"Probably open_basedir is set." );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
@@ -153,7 +154,7 @@ class CurlHttpRequest extends MWHttpRequest {
 	public function canFollowRedirects() {
 		$curlVersionInfo = curl_version();
 		if ( $curlVersionInfo['version_number'] < 0x071304 ) {
-			$this->logger->debug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
+			$this->logger->debug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037" );
 			return false;
 		}
 

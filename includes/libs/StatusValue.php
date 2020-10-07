@@ -37,6 +37,7 @@
  *
  * The use of Message objects should be avoided when serializability is needed.
  *
+ * @newable
  * @since 1.25
  */
 class StatusValue {
@@ -96,11 +97,11 @@ class StatusValue {
 	 * @return static[]
 	 */
 	public function splitByErrorType() {
-		$errorsOnlyStatusValue = clone $this;
-		$warningsOnlyStatusValue = clone $this;
-		$warningsOnlyStatusValue->ok = true;
+		$errorsOnlyStatusValue = static::newGood();
+		$warningsOnlyStatusValue = static::newGood();
+		$warningsOnlyStatusValue->setResult( true, $this->getValue() );
+		$errorsOnlyStatusValue->setResult( $this->isOK(), $this->getValue() );
 
-		$errorsOnlyStatusValue->errors = $warningsOnlyStatusValue->errors = [];
 		foreach ( $this->errors as $item ) {
 			if ( $item['type'] === 'warning' ) {
 				$warningsOnlyStatusValue->errors[] = $item;
@@ -342,7 +343,7 @@ class StatusValue {
 				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",
 					$i,
 					$key,
-					implode( " ", $params )
+					self::flattenParams( $params )
 				);
 				$i += 1;
 			}
@@ -350,5 +351,23 @@ class StatusValue {
 		}
 
 		return $out;
+	}
+
+	/**
+	 * @param array $params Message parameters
+	 * @return string String representation
+	 */
+	private function flattenParams( array $params ) : string {
+		$ret = [];
+		foreach ( $params as $p ) {
+			if ( is_array( $p ) ) {
+				$ret[] = '[ ' . self::flattenParams( $p ) . ' ]';
+			} elseif ( $p instanceof MessageSpecifier ) {
+				$ret[] = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
+			} else {
+				$ret[] = (string)$p;
+			}
+		}
+		return implode( ' ', $ret );
 	}
 }

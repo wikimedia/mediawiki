@@ -66,9 +66,10 @@ interface IMaintainableDatabase extends IDatabase {
 	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
+	 * @param string ...$tables
 	 * @return array
 	 */
-	public function tableNames();
+	public function tableNames( ...$tables );
 
 	/**
 	 * Fetch a number of table names into an zero-indexed numerical array
@@ -79,9 +80,10 @@ interface IMaintainableDatabase extends IDatabase {
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
+	 * @param string ...$tables
 	 * @return array
 	 */
-	public function tableNamesN();
+	public function tableNamesN( ...$tables );
 
 	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
@@ -148,11 +150,23 @@ interface IMaintainableDatabase extends IDatabase {
 
 	/**
 	 * Delete a table
-	 * @param string $tableName
-	 * @param string $fName
-	 * @return bool|IResultWrapper
+	 *
+	 * @param string $table
+	 * @param string $fname
+	 * @return bool Whether the table already existed
+	 * @throws DBError If an error occurs
 	 */
-	public function dropTable( $tableName, $fName = __METHOD__ );
+	public function dropTable( $table, $fname = __METHOD__ );
+
+	/**
+	 * Delete all data in a table(s) and reset any sequences owned by that table(s)
+	 *
+	 * @param string|string[] $tables
+	 * @param string $fname
+	 * @throws DBError If an error occurs
+	 * @since 1.35
+	 */
+	public function truncate( $tables, $fname = __METHOD__ );
 
 	/**
 	 * Perform a deadlock-prone transaction.
@@ -174,11 +188,12 @@ interface IMaintainableDatabase extends IDatabase {
 	 * iteration, or false on error, for example if the retry limit was
 	 * reached.
 	 *
+	 * @param mixed ...$args
 	 * @return mixed
 	 * @throws DBUnexpectedError
 	 * @throws Exception
 	 */
-	public function deadlockLoop();
+	public function deadlockLoop( ...$args );
 
 	/**
 	 * Lists all the VIEWs in the database
@@ -291,10 +306,11 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $table
 	 * @param string $index
+	 * @param string $fname Calling function name
 	 *
 	 * @return bool
 	 */
-	public function indexUnique( $table, $index );
+	public function indexUnique( $table, $index, $fname = __METHOD__ );
 
 	/**
 	 * mysql_fetch_field() wrapper

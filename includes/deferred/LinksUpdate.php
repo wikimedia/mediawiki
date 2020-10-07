@@ -20,9 +20,11 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -33,6 +35,8 @@ use Wikimedia\ScopedCallback;
  * See docs/deferred.txt
  */
 class LinksUpdate extends DataUpdate {
+	use ProtectedHookAccessorTrait;
+
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
@@ -44,7 +48,10 @@ class LinksUpdate extends DataUpdate {
 	/** @var ParserOutput */
 	public $mParserOutput;
 
-	/** @var array Map of title strings to IDs for the links in the document */
+	/**
+	 * @var int[][] Map of title strings to IDs for the links in the document
+	 * @phan-var array<int,array<string,int>>
+	 */
 	public $mLinks;
 
 	/** @var array DB keys of the images used, in the array key only */
@@ -71,11 +78,12 @@ class LinksUpdate extends DataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
-	/** @var Revision Revision for which this update has been triggered */
-	private $mRevision;
+	/** @var RevisionRecord Revision for which this update has been triggered */
+	private $mRevisionRecord;
 
 	/**
-	 * @var null|array Added links if calculated.
+	 * @var array[]|null Added links if calculated.
+	 * @phan-var array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>|null
 	 */
 	private $linkInsertions = null;
 
@@ -85,7 +93,7 @@ class LinksUpdate extends DataUpdate {
 	private $linkDeletions = null;
 
 	/**
-	 * @var null|array Added external links if calculated.
+	 * @var null|array[] Added external links if calculated.
 	 */
 	private $externalLinkInsertions = null;
 
@@ -118,7 +126,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @throws MWException
 	 */
-	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
+	public function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
 		$this->mTitle = $title;
@@ -130,7 +138,8 @@ class LinksUpdate extends DataUpdate {
 
 		if ( !$this->mId ) {
 			throw new InvalidArgumentException(
-				"The Title object yields no ID. Perhaps the page doesn't exist?"
+				"The Title object yields no ID. "
+					. "Perhaps the page [[{$title->getPrefixedDBkey()}]] doesn't exist?"
 			);
 		}
 
@@ -163,9 +172,7 @@ class LinksUpdate extends DataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdateConstructed', [ &$linksUpdate ] );
+		$this->getHookRunner()->onLinksUpdateConstructed( $this );
 	}
 
 	/**
@@ -183,9 +190,7 @@ class LinksUpdate extends DataUpdate {
 			}
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdate', [ &$linksUpdate ] );
+		$this->getHookRunner()->onLinksUpdate( $this );
 		$this->doIncrementalUpdate();
 
 		// Commit and release the lock (if set)
@@ -195,9 +200,7 @@ class LinksUpdate extends DataUpdate {
 			$this->getDB(),
 			__METHOD__,
 			function () {
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$linksUpdate = $this;
-				Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate, $this->ticket ] );
+				$this->getHookRunner()->onLinksUpdateComplete( $this, $this->ticket );
 			}
 		) );
 	}
@@ -385,7 +388,9 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $cats
 	 */
 	private function invalidateCategories( $cats ) {
-		PurgeJobUtils::invalidatePages( $this->getDB(), NS_CATEGORY, array_keys( $cats ) );
+		PurgeJobUtils::invalidatePages(
+			$this->getDB(), NS_CATEGORY, array_map( 'strval', array_keys( $cats ) )
+		);
 	}
 
 	/**
@@ -407,13 +412,13 @@ class LinksUpdate extends DataUpdate {
 		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
 		foreach ( array_chunk( array_keys( $added ), $wgUpdateRowsPerQuery ) as $addBatch ) {
-			$wp->updateCategoryCounts( $addBatch, [], $this->mId );
+			$wp->updateCategoryCounts( array_map( 'strval', $addBatch ), [], $this->mId );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
 
 		foreach ( array_chunk( array_keys( $deleted ), $wgUpdateRowsPerQuery ) as $deleteBatch ) {
-			$wp->updateCategoryCounts( [], $deleteBatch, $this->mId );
+			$wp->updateCategoryCounts( [], array_map( 'strval', $deleteBatch ), $this->mId );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
@@ -423,7 +428,9 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $images
 	 */
 	private function invalidateImageDescriptions( array $images ) {
-		PurgeJobUtils::invalidatePages( $this->getDB(), NS_FILE, array_keys( $images ) );
+		PurgeJobUtils::invalidatePages(
+			$this->getDB(), NS_FILE, array_map( 'strval', array_keys( $images ) )
+		);
 	}
 
 	/**
@@ -482,7 +489,10 @@ class LinksUpdate extends DataUpdate {
 
 			$deletionBatches = array_chunk( array_keys( $deletions ), $bSize );
 			foreach ( $deletionBatches as $deletionBatch ) {
-				$deleteWheres[] = [ $fromField => $this->mId, $toField => $deletionBatch ];
+				$deleteWheres[] = [
+					$fromField => $this->mId,
+					$toField => array_map( 'strval', $deletionBatch )
+				];
 			}
 		}
 
@@ -504,7 +514,7 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		if ( count( $insertions ) ) {
-			Hooks::run( 'LinksUpdateAfterInsert', [ $this, $table, $insertions ] );
+			$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $insertions );
 		}
 	}
 
@@ -512,7 +522,8 @@ class LinksUpdate extends DataUpdate {
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
 	 * @param array $existing
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>
 	 */
 	private function getLinkInsertions( $existing = [] ) {
 		$arr = [];
@@ -578,7 +589,7 @@ class LinksUpdate extends DataUpdate {
 	/**
 	 * Get an array of externallinks insertions. Skips the names specified in $existing
 	 * @param array $existing
-	 * @return array
+	 * @return array[]
 	 */
 	private function getExternalInsertions( $existing = [] ) {
 		$arr = [];
@@ -609,11 +620,14 @@ class LinksUpdate extends DataUpdate {
 		global $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = [];
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
+		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
 		$collation = Collation::singleton();
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			$contLang->findVariantLink( $name, $nt, true );
+			$languageConverter->findVariantLink( $name, $nt, true );
 
 			$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCategoryLinkType( $this->mTitle->getNamespace() );
@@ -664,12 +678,12 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyInsertions( $existing = [] ) {
+	private function getPropertyInsertions( $existing = [] ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
 
 		$arr = [];
 		foreach ( array_keys( $diffs ) as $name ) {
-			$arr[] = $this->getPagePropRowData( $name );
+			$arr[] = $this->getPagePropRowData( (string)$name );
 		}
 
 		return $arr;
@@ -764,9 +778,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mLinks[$ns] ) ) {
-				$del[$ns] = array_diff_key( $existing[$ns], $this->mLinks[$ns] );
+				$del[$ns] = array_diff_key( $dbkeys, $this->mLinks[$ns] );
 			} else {
-				$del[$ns] = $existing[$ns];
+				$del[$ns] = $dbkeys;
 			}
 		}
 
@@ -783,9 +797,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mTemplates[$ns] ) ) {
-				$del[$ns] = array_diff_key( $existing[$ns], $this->mTemplates[$ns] );
+				$del[$ns] = array_diff_key( $dbkeys, $this->mTemplates[$ns] );
 			} else {
-				$del[$ns] = $existing[$ns];
+				$del[$ns] = $dbkeys;
 			}
 		}
 
@@ -851,9 +865,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $prefix => $dbkeys ) {
 			if ( isset( $this->mInterwikis[$prefix] ) ) {
-				$del[$prefix] = array_diff_key( $existing[$prefix], $this->mInterwikis[$prefix] );
+				$del[$prefix] = array_diff_key( $dbkeys, $this->mInterwikis[$prefix] );
 			} else {
-				$del[$prefix] = $existing[$prefix];
+				$del[$prefix] = $dbkeys;
 			}
 		}
 
@@ -1026,19 +1040,41 @@ class LinksUpdate extends DataUpdate {
 	 * Set the revision corresponding to this LinksUpdate
 	 *
 	 * @since 1.27
-	 *
+	 * @deprecated since 1.35, use setRevisionRecord
 	 * @param Revision $revision
 	 */
 	public function setRevision( Revision $revision ) {
-		$this->mRevision = $revision;
+		wfDeprecated( __METHOD__, '1.35' );
+		$this->mRevisionRecord = $revision->getRevisionRecord();
+	}
+
+	/**
+	 * Set the RevisionRecord corresponding to this LinksUpdate
+	 *
+	 * @since 1.35
+	 * @param RevisionRecord $revisionRecord
+	 */
+	public function setRevisionRecord( RevisionRecord $revisionRecord ) {
+		$this->mRevisionRecord = $revisionRecord;
 	}
 
 	/**
 	 * @since 1.28
+	 * @deprecated since 1.35, use getRevisionRecord
 	 * @return null|Revision
 	 */
 	public function getRevision() {
-		return $this->mRevision;
+		wfDeprecated( __METHOD__, '1.35' );
+		$revRecord = $this->mRevisionRecord;
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * @since 1.35
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		return $this->mRevisionRecord;
 	}
 
 	/**
@@ -1143,7 +1179,7 @@ class LinksUpdate extends DataUpdate {
 	 * Fetch external links removed by this LinksUpdate. Only available after
 	 * the update is complete.
 	 * @since 1.33
-	 * @return null|array Array of Strings
+	 * @return null|string[]
 	 */
 	public function getRemovedExternalLinks() {
 		if ( $this->externalLinkDeletions === null ) {

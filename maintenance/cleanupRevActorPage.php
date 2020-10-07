@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that cleans up cases where rev_page and revactor_page
  * became desynced, e.g. from T232464.
@@ -27,6 +29,8 @@ class CleanupRevActorPage extends LoggedUpdateMaintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$max = $dbw->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 		$batchSize = $this->mBatchSize;
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$this->output( "Resyncing revactor_page with rev_page...\n" );
 
@@ -64,7 +68,7 @@ class CleanupRevActorPage extends LoggedUpdateMaintenance {
 				$count += $dbw->affectedRows();
 			}
 
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 
 		$this->output( "Completed resync, $count row(s) updated\n" );

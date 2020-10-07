@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets rotsti ($2)",
+	"rest-wrong-method": "Den forespurte metoden ($1) var ikke {{PLURAL:$3|den tillatte metoden|blant de tillatte metodene}} for denne stien ($2)",
+	"rest-no-match": "Den forespurte relative stien ($1) passet ikke med noen kjent behandler",
+	"rest-nonexistent-title": "Den gitte tittelen ($1) finnes ikke",
+	"rest-nonexistent-title-revision": "Den gitte revisjonen ($1) eksisterer ikke for den gitte siden ($2)",
+	"rest-nonexistent-revision": "Den etterspurte revisjonen ($1) finnes ikke.",
+	"rest-permission-denied-title": "Brukeren har ikke rett til å lese tittelen ($1)",
+	"rest-permission-denied-revision": "Brukeren har ikke tilgang til den etterspurte revisjonen ($1).",
+	"rest-pagehistory-incompatible-params": "Parameterne «older_than» og «newer_than» kan ikke spesifiseres samtidig",
+	"rest-pagehistory-param-range-error": "Revisjons-ID-en må være større enn 0",
+	"rest-pagehistory-timestamp-error": "Kunne ikke hente tidsstempel for den gitte revisjonen ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Den gitte tellingstypen ($1) er ugyldig",
+	"rest-pagehistorycount-parameters-invalid": "Den gitte kombinasjonen av parametre støttes ikke.",
+	"rest-compare-page-mismatch": "De gitte revisjonene tilhører forskjellige sider; kan ikke sammenligne dem.",
+	"rest-compare-permission-denied": "Brukeren har ikke tilgang til de etterspurte revisjonene",
+	"rest-compare-nonexistent": "Revisjonen angitt i parameteren $1 finnes ikke.",
+	"rest-compare-inaccessible": "Revisjonen angitt i parameteren $1 er ikke offentlig tilgjengelig.",
+	"rest-compare-wrong-content": "Spalten $1 i revisjonen gitt i parameter $2 har en innholdstype som ikke kan konverteres til tekst.",
+	"rest-compare-wikidiff2": "Dette endepunktet krever wikideff2 1.9.0 eller nyere.",
+	"rest-pagehistorycount-too-many-revisions": "Den gitte tittelen inneholder for mange revisjoner til å hente antallet.",
+	"rest-search-error": "Feil under returnering av søkeresultater: $1",
+	"rest-page-source-type-error": "Innholdstypen til den forespurte sidekilden støttes ikke",
+	"rest-no-revision": "Kunne ikke hente revisjon for tittelen $1",
+	"rest-media-too-many-links": "For mange medielenker funnet i tittelen $1 ($2 er tillatt)",
+	"rest-html-backend-error": "Kunne ikke hente Parsoid-HTML"
+}

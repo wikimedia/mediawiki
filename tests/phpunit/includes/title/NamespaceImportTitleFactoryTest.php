@@ -24,9 +24,9 @@
  *
  * @group Title
  */
-class NamespaceImportTitleFactoryTest extends MediaWikiTestCase {
+class NamespaceImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setContentLang( 'en' );

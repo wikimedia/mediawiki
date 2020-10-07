@@ -4,13 +4,12 @@
  * @class jQuery.plugin.accessKeyLabel
  */
 
-// Cached access key modifiers for used browser
 var cachedAccessKeyModifiers,
 
-	// Whether to use 'test-' instead of correct prefix (used for testing)
-	useTestPrefix = false,
+	// Whether to use 'test-' instead of correct prefix (for unit tests)
+	testMode = false,
 
-	// tag names which can have a label tag
+	// HTML elements that can have an associated label
 	// https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
 	labelable = 'button, input, textarea, keygen, meter, output, progress, select';
 
@@ -22,74 +21,69 @@ var cachedAccessKeyModifiers,
  * Valid key values that are returned can be: ctrl, alt, option, shift, esc
  *
  * @private
- * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
- * @return {Array} Array with 1 or more of the string values, in this order: ctrl, option, alt, shift, esc
+ * @param {Object|undefined} [nav] A Navigator object with `userAgent` and `platform` properties.
+ * @return {string} Label with dash-separated segments in this order: ctrl, option, alt, shift, esc
  */
-function getAccessKeyModifiers( ua ) {
+function getAccessKeyModifiers( nav ) {
 	var profile, accessKeyModifiers;
 
-	// use cached prefix if possible
-	if ( !ua && cachedAccessKeyModifiers ) {
+	if ( !nav && cachedAccessKeyModifiers ) {
 		return cachedAccessKeyModifiers;
 	}
 
-	profile = $.client.profile( ua );
+	profile = $.client.profile( nav );
 
 	switch ( profile.name ) {
-		case 'chrome':
+		// Historical: Opera 8-13 used shift-esc- (Presto engine, no longer supported).
+		// Opera 15+ (Blink engine) matches Chromium.
+		// Historical: Konqueror 3-4 (WebKit) behaved the same as Safari (no longer supported).
+		// Konqueror 18+ (QtWebEngine/Chromium engine) is profiled as 'chrome',
+		// and matches Chromium behaviour.
 		case 'opera':
-			if ( profile.name === 'opera' && profile.versionNumber < 15 ) {
-				accessKeyModifiers = [ 'shift', 'esc' ];
-			} else if ( profile.platform === 'mac' ) {
-				accessKeyModifiers = [ 'ctrl', 'option' ];
+		case 'chrome':
+			if ( profile.platform === 'mac' ) {
+				// Chromium on macOS
+				accessKeyModifiers = 'ctrl-option';
 			} else {
-				// Chrome/Opera on Windows or Linux
+				// Chromium on Windows or Linux
 				// (both alt- and alt-shift work, but alt with E, D, F etc does not
-				// work since they are browser shortcuts)
-				accessKeyModifiers = [ 'alt', 'shift' ];
+				// work since they are native browser shortcuts as well, so advertise
+				// alt-shift- instead)
+				accessKeyModifiers = 'alt-shift';
 			}
 			break;
+		// Historical: Firefox 1.x used alt- (no longer supported).
 		case 'firefox':
 		case 'iceweasel':
-			if ( profile.versionBase < 2 ) {
-				// Before v2, Firefox used alt, though it was rebindable in about:config
-				accessKeyModifiers = [ 'alt' ];
-			} else {
-				if ( profile.platform === 'mac' ) {
-					if ( profile.versionNumber < 14 ) {
-						accessKeyModifiers = [ 'ctrl' ];
-					} else {
-						accessKeyModifiers = [ 'ctrl', 'option' ];
-					}
+			if ( profile.platform === 'mac' ) {
+				if ( profile.versionNumber < 14 ) {
+					accessKeyModifiers = 'ctrl';
 				} else {
-					accessKeyModifiers = [ 'alt', 'shift' ];
+					// Firefox 14+ on macOS
+					accessKeyModifiers = 'ctrl-option';
 				}
+			} else {
+				// Firefox 2+ on Windows or Linux
+				accessKeyModifiers = 'alt-shift';
 			}
 			break;
+		// Historical: Safari <= 3 on Windows used alt- (no longer supported).
+		// Historical: Safari <= 3 on macOS used ctrl- (no longer supported).
 		case 'safari':
-		case 'konqueror':
-			if ( profile.platform === 'win' ) {
-				accessKeyModifiers = [ 'alt' ];
-			} else {
-				if ( profile.layoutVersion > 526 ) {
-					// Non-Windows Safari with webkit_version > 526
-					accessKeyModifiers = [ 'ctrl', profile.platform === 'mac' ? 'option' : 'alt' ];
-				} else {
-					accessKeyModifiers = [ 'ctrl' ];
-				}
-			}
+			// Safari 4+ (WebKit 526+) on macOS
+			accessKeyModifiers = 'ctrl-option';
 			break;
 		case 'msie':
 		case 'edge':
-			accessKeyModifiers = [ 'alt' ];
+			accessKeyModifiers = 'alt';
 			break;
 		default:
-			accessKeyModifiers = profile.platform === 'mac' ? [ 'ctrl' ] : [ 'alt' ];
+			accessKeyModifiers = profile.platform === 'mac' ? 'ctrl' : 'alt';
 			break;
 	}
 
-	// cache modifiers
-	if ( !ua ) {
+	if ( !nav ) {
+		// If not for a custom UA string, cache and re-use
 		cachedAccessKeyModifiers = accessKeyModifiers;
 	}
 	return accessKeyModifiers;
@@ -112,10 +106,10 @@ function getAccessKeyLabel( element ) {
 	}
 	// use accessKeyLabel if possible
 	// https://html.spec.whatwg.org/multipage/interaction.html#dom-accesskeylabel
-	if ( !useTestPrefix && element.accessKeyLabel ) {
+	if ( !testMode && element.accessKeyLabel ) {
 		return element.accessKeyLabel;
 	}
-	return ( useTestPrefix ? 'test' : getAccessKeyModifiers().join( '-' ) ) + '-' + element.accessKey;
+	return ( testMode ? 'test' : getAccessKeyModifiers() ) + '-' + element.accessKey;
 }
 
 /**
@@ -193,14 +187,6 @@ $.fn.updateTooltipAccessKeys = function () {
 };
 
 /**
- * getAccessKeyModifiers
- *
- * @method updateTooltipAccessKeys_getAccessKeyModifiers
- * @inheritdoc #getAccessKeyModifiers
- */
-$.fn.updateTooltipAccessKeys.getAccessKeyModifiers = getAccessKeyModifiers;
-
-/**
  * getAccessKeyLabel
  *
  * @method updateTooltipAccessKeys_getAccessKeyLabel
@@ -212,12 +198,11 @@ $.fn.updateTooltipAccessKeys.getAccessKeyLabel = getAccessKeyLabel;
  * getAccessKeyPrefix
  *
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
- * @deprecated since 1.27 Use #getAccessKeyModifiers
- * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
+ * @param {Object} [nav] An object with a 'userAgent' and 'platform' property.
  * @return {string}
  */
-$.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( ua ) {
-	return getAccessKeyModifiers( ua ).join( '-' ) + '-';
+$.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( nav ) {
+	return getAccessKeyModifiers( nav ) + '-';
 };
 
 /**
@@ -227,7 +212,7 @@ $.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( ua ) {
  * @param {boolean} mode New mode
  */
 $.fn.updateTooltipAccessKeys.setTestMode = function ( mode ) {
-	useTestPrefix = mode;
+	testMode = mode;
 };
 
 /**

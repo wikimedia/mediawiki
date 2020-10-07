@@ -31,71 +31,36 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		$out = $this->getOutput();
+		$this->getOutput()->disable();
 
-		$this->setHeaders();
-		$out->disallowUserJs();
-
-		// This special page is disabled by default ($wgEnableJavaScriptTest), and contains
-		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
-		// we need to allow iframing of this page.
-		$out->allowClickjacking();
-
-		// Sub resource: Internal JavaScript export bundle for QUnit
 		if ( $par === 'qunit/export' ) {
-			$this->exportQUnit();
-			return;
+			// Send the JavaScript payload.
+			$this->exportJS();
+		} elseif ( $par === null || $par === '' || $par === 'qunit' || $par === 'qunit/plain' ) {
+			// Render the page
+			// (Support "/qunit" and "/qunit/plain" for backwards-compatibility)
+			$this->renderPage();
+		} else {
+			wfHttpError( 404, 'Unknown action', "Unknown action \"$par\"." );
 		}
-
-		// Regular view: QUnit test runner
-		// (Support "/qunit" and "/qunit/plain" for backwards compatibility)
-		if ( $par === null || $par === '' || $par === 'qunit' || $par === 'qunit/plain' ) {
-			$this->plainQUnit();
-			return;
-		}
-
-		// Unknown action
-		$out->setStatusCode( 404 );
-		$out->setPageTitle( $this->msg( 'javascripttest' ) );
-		$out->addHTML(
-			'<div class="error">'
-			. $this->msg( 'javascripttest-pagetext-unknownaction' )
-				->plaintextParams( $par )->parseAsBlock()
-			. '</div>'
-		);
 	}
 
 	/**
-	 * Get summary text wrapped in a container
+	 * Send the standalone JavaScript payload.
 	 *
-	 * @return string HTML
+	 * Loaded by the GUI (on Special:JavacriptTest), and by the CLI (via grunt-karma).
 	 */
-	private function getSummaryHtml() {
-		$summary = $this->msg( 'javascripttest-qunit-intro' )
-			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
-			->parseAsBlock();
-		return "<div id=\"mw-javascripttest-summary\">$summary</div>";
-	}
-
-	/**
-	 * Generate self-sufficient JavaScript payload to run the tests elsewhere.
-	 *
-	 * Includes startup module to request modules from ResourceLoader.
-	 *
-	 * Note: This modifies the registry to replace 'jquery.qunit' with an
-	 * empty module to allow external environment to preload QUnit with any
-	 * neccecary framework adapters (e.g. Karma). Loading it again would
-	 * re-define QUnit and dereference event handlers from Karma.
-	 */
-	private function exportQUnit() {
+	private function exportJS() {
 		$out = $this->getOutput();
-		$out->disable();
-
 		$rl = $out->getResourceLoader();
 
+		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.startup.js
+		// will close this tab when run from CLI using karma-qunit.
+		$out->allowClickjacking();
+
 		$query = [
-			'lang' => $this->getLanguage()->getCode(),
-			'skin' => $this->getSkin()->getSkinName(),
+			'lang' => 'qqx',
+			'skin' => 'fallback',
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'target' => 'test',
 		];
@@ -104,6 +69,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
 		$modules = $rl->getTestSuiteModuleNames();
+
+		// Disable module storage.
+		// The unit test for mw.loader.store will enable it (with a mock timers).
+		$config = new MultiConfig( [
+			new HashConfig( [ 'ResourceLoaderStorageEnabled' => false ] ),
+			$rl->getConfig(),
+		] );
 
 		// Disable autostart because we load modules asynchronously. By default, QUnit would start
 		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
@@ -117,15 +89,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 			. '}';
 
 		// The below is essentially a pure-javascript version of OutputPage::headElement().
-		$code = $rl->makeModuleResponse( $startupContext, [
-			'startup' => $rl->getModule( 'startup' ),
-		] );
-		$code .= <<<JAVASCRIPT
-	// Disable module storage.
-	// The unit test for mw.loader.store will enable it
-	// explicitly with a mock timer.
-	mw.loader.store.enabled = false;
-JAVASCRIPT;
+		$startupModule = $rl->getModule( 'startup' );
+		$startupModule->setConfig( $config );
+		$code = $rl->makeModuleResponse( $startupContext, [ 'startup' => $startupModule ] );
 		// The following has to be deferred via RLQ because the startup module is asynchronous.
 		$code .= ResourceLoader::makeLoaderConditionalScript(
 			// Embed page-specific mw.config variables.
@@ -135,7 +101,6 @@ JAVASCRIPT;
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),
-				'user.tokens' => $rl->getModule( 'user.tokens' ),
 			] )
 			// Load all the test suites
 			. Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
@@ -161,39 +126,32 @@ JAVASCRIPT
 		echo $code;
 	}
 
-	private function plainQUnit() {
-		$out = $this->getOutput();
-		$out->disable();
+	private function renderPage() {
+		$basePath = $this->getConfig()->get( 'ResourceBasePath' );
+		$headHtml = implode( "\n", [
+			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
+			Html::linkedStyle( "$basePath/resources/lib/qunitjs/qunit.css" ),
+			Html::linkedStyle( "$basePath/resources/src/qunitjs/qunit-local.css" ),
+		] );
 
-		$styles = $out->makeResourceLoaderLink( 'jquery.qunit',
-			ResourceLoaderModule::TYPE_STYLES
-		);
+		$introHtml = $this->msg( 'javascripttest-qunit-intro' )
+			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
+			->parseAsBlock();
 
-		// Use 'raw' because QUnit loads before ResourceLoader initialises (omit mw.loader.state call)
-		// Use 'sync' to ensure OutputPage doesn't use the "async" attribute because QUnit must
-		// load before qunit/export.
-		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
-			ResourceLoaderModule::TYPE_SCRIPTS,
-			[ 'raw' => '1', 'sync' => '1' ]
-		);
-
-		$head = implode( "\n", [ $styles, $scripts ] );
-		$summary = $this->getSummaryHtml();
-		$html = <<<HTML
-<!DOCTYPE html>
-<title>QUnit</title>
-$head
-$summary
-<div id="qunit"></div>
-HTML;
-
-		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( [
+		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 		] );
-		$html .= "\n" . Html::linkedScript( $url );
+		$script = Html::linkedScript( $scriptUrl );
 
 		header( 'Content-Type: text/html; charset=utf-8' );
-		echo $html;
+		echo <<<HTML
+<!DOCTYPE html>
+<title>QUnit</title>
+$headHtml
+$introHtml
+<div id="qunit"></div>
+$script
+HTML;
 	}
 
 	protected function getGroupName() {

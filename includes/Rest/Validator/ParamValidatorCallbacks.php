@@ -7,8 +7,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\User\UserIdentity;
 use Psr\Http\Message\UploadedFileInterface;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Callbacks;
-use Wikimedia\ParamValidator\ValidationException;
 
 class ParamValidatorCallbacks implements Callbacks {
 
@@ -80,7 +80,9 @@ class ParamValidatorCallbacks implements Callbacks {
 		return $upload instanceof UploadedFileInterface ? $upload : null;
 	}
 
-	public function recordCondition( ValidationException $condition, array $options ) {
+	public function recordCondition(
+		DataMessageValue $message, $name, $value, array $settings, array $options
+	) {
 		// @todo Figure out how to handle warnings
 	}
 

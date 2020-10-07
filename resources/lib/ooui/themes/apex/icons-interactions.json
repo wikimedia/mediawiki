@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"add": {
 			"file": "../wikimediaui/images/icons/add.svg"
@@ -65,6 +65,9 @@
 				}
 			}
 		},
+		"home": {
+			"file": "../wikimediaui/images/icons/home.svg"
+		},
 		"key": {
 			"file": "../wikimediaui/images/icons/key.svg"
 		},
@@ -73,6 +76,12 @@
 		},
 		"lightbulb": {
 			"file": "../wikimediaui/images/icons/lightbulb.svg"
+		},
+		"logIn": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/logIn-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/logIn-rtl.svg"
+			}
 		},
 		"logOut": {
 			"file": {
@@ -100,6 +109,9 @@
 		},
 		"settings": {
 			"file": "../wikimediaui/images/icons/settings.svg"
+		},
+		"stopHand": {
+			"file": "../wikimediaui/images/icons/stopHand.svg"
 		},
 		"subtract": {
 			"file": "../wikimediaui/images/icons/subtract.svg"

@@ -1,6 +1,6 @@
 <?php
 /**
- * See docs/magicword.txt.
+ * See docs/magicword.md.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,10 @@ use MediaWiki\MediaWikiServices;
  * ];
  * @endcode
  *
- * For magic words which are also Parser variables, add a MagicWordwgVariableIDs
+ * For magic words which name Parser double underscore names, add a
+ * GetDoubleUnderscoreIDs hook. Use string keys.
+ *
+ * For magic words which name Parser magic variables, add a GetMagicVariableIDs
  * hook. Use string keys.
  *
  * @ingroup Parser
@@ -113,63 +116,6 @@ class MagicWord {
 	}
 
 	/**
-	 * Factory: creates an object representing an ID
-	 *
-	 * @param string $id The internal name of the magic word
-	 *
-	 * @return MagicWord
-	 * @deprecated since 1.32, use MagicWordFactory::get
-	 */
-	public static function get( $id ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getMagicWordFactory()->get( $id );
-	}
-
-	/**
-	 * Get an array of parser variable IDs
-	 *
-	 * @return string[]
-	 * @deprecated since 1.32, use MagicWordFactory::getVariableIDs
-	 */
-	public static function getVariableIDs() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getMagicWordFactory()->getVariableIDs();
-	}
-
-	/**
-	 * Get an array of parser substitution modifier IDs
-	 * @return string[]
-	 * @deprecated since 1.32, use MagicWordFactory::getSubstIDs
-	 */
-	public static function getSubstIDs() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getMagicWordFactory()->getSubstIDs();
-	}
-
-	/**
-	 * Allow external reads of TTL array
-	 *
-	 * @param string $id
-	 * @return int
-	 * @deprecated since 1.32, use MagicWordFactory::getCacheTTL
-	 */
-	public static function getCacheTTL( $id ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getMagicWordFactory()->getCacheTTL( $id );
-	}
-
-	/**
-	 * Get a MagicWordArray of double-underscore entities
-	 *
-	 * @return MagicWordArray
-	 * @deprecated since 1.32, use MagicWordFactory::getDoubleUnderscoreArray
-	 */
-	public static function getDoubleUnderscoreArray() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return MediaWikiServices::getInstance()->getMagicWordFactory()->getDoubleUnderscoreArray();
-	}
-
-	/**
 	 * Initialises this object with an ID
 	 *
 	 * @param string $id
@@ -186,7 +132,7 @@ class MagicWord {
 
 	/**
 	 * Preliminary initialisation
-	 * @private
+	 * @internal
 	 */
 	public function initRegex() {
 		// Sort the synonyms by length, descending, so that the longest synonym

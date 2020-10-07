@@ -1,4 +1,28 @@
 <?php
+/**
+ * ApiParse check functions
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+use MediaWiki\Revision\RevisionRecord;
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
 
 /**
  * @group API
@@ -16,22 +40,25 @@ class ApiParseTest extends ApiTestCase {
 		$title = Title::newFromText( __CLASS__ );
 
 		$status = $this->editPage( __CLASS__, 'Test for revdel' );
-		self::$pageId = $status->value['revision']->getPage();
-		self::$revIds['revdel'] = $status->value['revision']->getId();
+		self::$pageId = $status->value['revision-record']->getPageId();
+		self::$revIds['revdel'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for suppressed' );
-		self::$revIds['suppressed'] = $status->value['revision']->getId();
+		self::$revIds['suppressed'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for oldid' );
-		self::$revIds['oldid'] = $status->value['revision']->getId();
+		self::$revIds['oldid'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for latest' );
-		self::$revIds['latest'] = $status->value['revision']->getId();
+		self::$revIds['latest'] = $status->value['revision-record']->getId();
 
 		$this->revisionDelete( self::$revIds['revdel'] );
 		$this->revisionDelete(
 			self::$revIds['suppressed'],
-			[ Revision::DELETED_TEXT => 1, Revision::DELETED_RESTRICTED => 1 ]
+			[
+				RevisionRecord::DELETED_TEXT => 1,
+				RevisionRecord::DELETED_RESTRICTED => 1
+			]
 		);
 
 		Title::clearCaches(); // Otherwise it has the wrong latest revision for some reason
@@ -91,7 +118,7 @@ class ApiParseTest extends ApiTestCase {
 			$html = preg_replace( $expectedEnd, '', $html );
 		}
 
-		call_user_func( $callback, $expected, $html );
+		$callback( $expected, $html );
 
 		if ( $warnings === null ) {
 			$this->assertCount( 1, $res[0] );
@@ -126,10 +153,10 @@ class ApiParseTest extends ApiTestCase {
 	/**
 	 * Set up a skin for testing.
 	 *
-	 * @todo Should this code be in MediaWikiTestCase or something?
+	 * @todo Should this code be in MediaWikiIntegrationTestCase or something?
 	 */
 	protected function setupSkin() {
-		$factory = new SkinFactory();
+		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
 				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )
@@ -194,8 +221,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testRevDelNoPermission() {
-		$this->setExpectedException( ApiUsageException::class,
-			"You don't have permission to view deleted revision text." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "You don't have permission to view deleted revision text." );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -225,10 +252,7 @@ class ApiParseTest extends ApiTestCase {
 
 			$this->fail( "API did not return an error when parsing a nonexistent page" );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'missingtitle' ),
-				"Parse request for nonexistent page must give 'missingtitle' error: "
-					. var_export( self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ), true )
-			);
+			$this->assertExceptionHasError( $ex, 'missingtitle' );
 		}
 	}
 
@@ -258,8 +282,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testInvalidSection() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The "section" parameter must be a valid section ID or "new".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The "section" parameter must be a valid section ID or "new".' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -273,10 +297,12 @@ class ApiParseTest extends ApiTestCase {
 		$status = $this->editPage( $name,
 			"Intro\n\n== Section 1 ==\n\nContent 1\n\n== Section 2 ==\n\nContent 2" );
 
-		$this->setExpectedException( ApiUsageException::class,
-			"Missing content for page ID {$status->value['revision']->getPage()}." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			"Missing content for page ID {$status->value['revision-record']->getPageId()}."
+		);
 
-		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision']->getId() ] );
+		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision-record']->getId() ] );
 
 		// Suppress warning in WikiPage::getContentModel
 		Wikimedia\suppressWarnings();
@@ -292,9 +318,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testNewSectionWithPage() {
-		$this->setExpectedException( ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'"section=new" cannot be combined with the "oldid", "pageid" or "page" ' .
-			'parameters. Please use "title" and "text".' );
+				'parameters. Please use "title" and "text".'
+		);
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -304,8 +332,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testNonexistentOldId() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no revision with ID 2147483647.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no revision with ID 2147483647.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -348,7 +376,8 @@ class ApiParseTest extends ApiTestCase {
 	public function testFollowedRedirectById() {
 		$name = ucfirst( __FUNCTION__ );
 
-		$id = $this->editPage( $name, "#REDIRECT [[$name 2]]" )->value['revision']->getPage();
+		$id = $this->editPage( $name, "#REDIRECT [[$name 2]]" )
+			->value['revision-record']->getPageId();
 		$this->editPage( "$name 2", "Some ''text''" );
 
 		$res = $this->doApiRequest( [
@@ -360,8 +389,37 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
 	}
 
+	public function testNonRedirectOk() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$this->editPage( $name, "Some ''text''" );
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'page' => $name,
+			'redirects' => true,
+		] );
+
+		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
+	}
+
+	public function testNonRedirectByIdOk() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$id = $this->editPage( $name, "Some ''text''" )->value['revision-record']->getPageId();
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'pageid' => $id,
+			'redirects' => true,
+		] );
+
+		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
+	}
+
 	public function testInvalidTitle() {
-		$this->setExpectedException( ApiUsageException::class, 'Bad title "|".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Bad title "|".' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -370,8 +428,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testTitleWithNonexistentRevId() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no revision with ID 2147483647.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no revision with ID 2147483647.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -437,8 +495,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testSerializationError() {
-		$this->setExpectedException( APIUsageException::class,
-			'Content serialization failed: Could not unserialize content' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers',
 			[ 'testing-serialize-error' => 'DummySerializeErrorContentHandler' ] );
@@ -769,14 +827,14 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		// We don't bother testing the actual values here
-		$this->assertInternalType( 'array', $res[0]['parse']['limitreportdata'] );
-		$this->assertInternalType( 'string', $res[0]['parse']['limitreporthtml'] );
+		$this->assertIsArray( $res[0]['parse']['limitreportdata'] );
+		$this->assertIsString( $res[0]['parse']['limitreporthtml'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
 	public function testParseTreeNonWikitext() {
-		$this->setExpectedException( ApiUsageException::class,
-			'"prop=parsetree" is only supported for wikitext content.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( '"prop=parsetree" is only supported for wikitext content.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -794,39 +852,14 @@ class ApiParseTest extends ApiTestCase {
 			'prop' => 'parsetree',
 		] );
 
-		// Preprocessor_DOM and Preprocessor_Hash give different results here,
-		// so we'll accept either
-		$this->assertRegExp(
-			'#^<root>Some \'\'text\'\' is <template><title>nice</title>' .
+		$this->assertEquals(
+			'<root>Some \'\'text\'\' is <template><title>nice</title>' .
 				'<part><name index="1"/><value>to have</value></part>' .
-				'<part><name>i</name>(?:<equals>)?=(?:</equals>)?<value>think</value></part>' .
-				'</template></root>$#',
+				'<part><name>i</name><equals>=</equals><value>think</value></part>' .
+				'</template></root>',
 			$res[0]['parse']['parsetree']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
-	}
-
-	public function testDisableTidy() {
-		$this->setMwGlobals( 'wgTidyConfig', [ 'driver' => 'RemexHtml' ] );
-
-		// Check that disabletidy doesn't have an effect just because tidying
-		// doesn't work for some other reason
-		$res1 = $this->doApiRequest( [
-			'action' => 'parse',
-			'text' => "<b>Mixed <i>up</b></i>",
-			'contentmodel' => 'wikitext',
-		] );
-		$this->assertParsedTo( "<p><b>Mixed <i>up</i></b>\n</p>", $res1 );
-
-		$res2 = $this->doApiRequest( [
-			'action' => 'parse',
-			'text' => "<b>Mixed <i>up</b></i>",
-			'contentmodel' => 'wikitext',
-			'disabletidy' => '',
-		] );
-
-		$this->assertParsedTo( "<p><b>Mixed <i>up</b></i>\n</p>", $res2,
-			'The parameter "disabletidy" has been deprecated.' );
 	}
 
 	public function testFormatCategories() {
@@ -849,5 +882,52 @@ class ApiParseTest extends ApiTestCase {
 			$res[0]['parse']['categories']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
+	}
+
+	public function testConcurrentLimitPageParse() {
+		$wgPoolCounterConf = [
+			'ApiParser' => [
+				'class' => MockPoolCounterFailing::class,
+			]
+		];
+
+		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+
+		try{
+			$this->doApiRequest( [
+				'action' => 'parse',
+				'page' => __CLASS__,
+			] );
+			$this->fail( "API did not return an error when concurrency exceeded" );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertExceptionHasError( $ex, 'concurrency-limit' );
+		}
+	}
+
+	public function testConcurrentLimitContentParse() {
+		$wgPoolCounterConf = [
+			'ApiParser' => [
+				'class' => MockPoolCounterFailing::class,
+			]
+		];
+
+		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+
+		try{
+			$this->doApiRequest( [
+				'action' => 'parse',
+				'oldid' => self::$revIds['revdel'],
+			] );
+			$this->fail( "API did not return an error when concurrency exceeded" );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertExceptionHasError( $ex, 'concurrency-limit' );
+		}
+	}
+
+	private function assertExceptionHasError( $ex, $error ) {
+		$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, $error ),
+		"Parse request for nonexistent page must give '$error' error: "
+			. var_export( self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ), true )
+		);
 	}
 }

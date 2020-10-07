@@ -1,39 +1,32 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * @group Broken
+ * @group large
  * @group Upload
  * @group Database
  *
  * @covers UploadFromUrl
  */
 class UploadFromUrlTest extends ApiTestCase {
-	protected function setUp() {
+	private $user;
+
+	protected function setUp() : void {
 		parent::setUp();
+		$this->user = self::$users['sysop']->getUser();
 
 		$this->setMwGlobals( [
 			'wgEnableUploads' => true,
 			'wgAllowCopyUploads' => true,
 		] );
+		$this->setGroupPermissions( 'sysop', 'upload_by_url', true );
 
-		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
+		if ( MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFile( 'UploadFromUrlTest.png' )->exists()
+		) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}
-	}
-
-	protected function doApiRequest( array $params, array $unused = null,
-		$appendModule = false, User $user = null, $tokenType = null
-	) {
-		global $wgRequest;
-
-		$req = new FauxRequest( $params, true, $wgRequest->getSession() );
-		$module = new ApiMain( $req, true );
-		$module->execute();
-
-		return [
-			$module->getResult()->getResultData( null, [ 'Strip' => 'all' ] ),
-			$req
-		];
 	}
 
 	/**
@@ -45,6 +38,63 @@ class UploadFromUrlTest extends ApiTestCase {
 			$job = JobQueueGroup::singleton()->pop();
 		}
 		$this->assertFalse( $job );
+	}
+
+	public function testIsAllowedHostEmpty() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [],
+		] );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar' ) );
+	}
+
+	public function testIsAllowedHostDirectMatch() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'foo.baz',
+				'bar.example.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://.foo.baz' ) );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.baz' ) );
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://bar.example.baz' ) );
+	}
+
+	public function testIsAllowedHostLastWildcard() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'*.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.example' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.example.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo/bar.baz' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://subdomain.foo.baz' ) );
+	}
+
+	public function testIsAllowedHostWildcardInMiddle() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'foo.*.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.bar.bar.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.bar.baz.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.com/.baz' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.example.baz' ) );
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar.baz' ) );
 	}
 
 	/**
@@ -60,7 +110,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			] );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "The token parameter must be set", $e->getMessage() );
+			$this->assertEquals( 'The "token" parameter must be set.', $e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -72,7 +122,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "One of the parameters sessionkey, file, url is required",
+			$this->assertEquals( 'One of the parameters "filekey", "file" and "url" is required.',
 				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
@@ -86,7 +136,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "The filename parameter must be set", $e->getMessage() );
+			$this->assertEquals( 'The "filename" parameter must be set.', $e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -101,7 +151,8 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "Permission denied", $e->getMessage() );
+			$this->assertStringStartsWith( "The action you have requested is limited to users in the group:",
+				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 	}
@@ -112,9 +163,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	public function testSyncDownload( $data ) {
 		$token = $this->user->getEditToken();
 
-		$job = JobQueueGroup::singleton()->pop();
-		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
-
 		$this->user->addGroup( 'users' );
 		$data = $this->doApiRequest( [
 			'action' => 'upload',
@@ -123,9 +171,6 @@ class UploadFromUrlTest extends ApiTestCase {
 			'ignorewarnings' => true,
 			'token' => $token,
 		], $data );
-
-		$job = JobQueueGroup::singleton()->pop();
-		$this->assertFalse( $job );
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
 		$this->deleteFile( 'UploadFromUrlTest.png' );
@@ -138,11 +183,12 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( $t->exists(), "File '$name' exists" );
 
 		if ( $t->exists() ) {
-			$file = wfFindFile( $name, [ 'ignoreRedirect' => true ] );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()
+				->findFile( $name, [ 'ignoreRedirect' => true ] );
 			$empty = "";
-			FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
+			FileDeleteForm::doDelete( $t, $file, $empty, "none", true, $this->user );
 			$page = WikiPage::factory( $t );
-			$page->doDeleteArticle( "testing" );
+			$page->doDeleteArticleReal( "testing", $this->user );
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 

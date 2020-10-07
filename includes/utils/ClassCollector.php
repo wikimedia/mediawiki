@@ -129,6 +129,7 @@ class ClassCollector {
 	 * @param array|string $token
 	 */
 	protected function tryEndExpect( $token ) {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		switch ( $this->startToken[0] ) {
 			case T_DOUBLE_COLON:
 				// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
@@ -181,7 +182,7 @@ class ClassCollector {
 						if ( $this->alias['target'] === true ) {
 							// We already saw a first argument, this must be the second.
 							// Strip quotes from the string literal.
-							$this->alias['name'] = substr( $token[1], 1, -1 );
+							$this->alias['name'] = self::stripQuotes( $token[1] );
 						}
 					} elseif ( $token === ')' ) {
 						// End of function call
@@ -209,6 +210,19 @@ class ClassCollector {
 					$this->classes[] = $this->namespace . $this->implodeTokens();
 				}
 		}
+	}
+
+	/**
+	 * Decode a quoted PHP string, interpreting escape sequences, like eval($str).
+	 * The implementation is half-baked, but the character set allowed in class
+	 * names is pretty small. This could be replaced by a call to a fully-baked
+	 * utility function.
+	 *
+	 * @param string $str
+	 * @return string
+	 */
+	private static function stripQuotes( $str ) {
+		return str_replace( '\\\\', '\\', substr( $str, 1, -1 ) );
 	}
 
 	/**

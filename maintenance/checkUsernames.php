@@ -39,7 +39,7 @@ class CheckUsernames extends Maintenance {
 		$this->setBatchSize( 1000 );
 	}
 
-	function execute() {
+	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$maxUserId = 0;

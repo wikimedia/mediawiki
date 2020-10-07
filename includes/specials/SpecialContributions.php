@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Special:Contributions, show user contributions in a paged list
@@ -112,7 +113,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
-			if ( !IP::isValidRange( $target ) ) {
+			if ( !IPUtils::isValidRange( $target ) ) {
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
 		}
@@ -213,7 +214,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( $feedParams );
 
-		if ( Hooks::run( 'SpecialContributionsBeforeMainOutput', [ $id, $userObj, $this ] ) ) {
+		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
+			$id, $userObj, $this )
+		) {
 			$pager = new ContribsPager( $this->getContext(), [
 				'target' => $target,
 				'namespace' => $this->opts['namespace'],
@@ -231,10 +234,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
 
-			if ( IP::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
-				$limit = $limits[ IP::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
+				$limit = $limits[ IPUtils::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
 				$out->addWikiMsg( 'sp-contributions-outofrange', $limit );
 			} elseif ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
@@ -276,9 +279,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( IP::isValidRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) ) {
 				$message = 'sp-contributions-footer-anon-range';
-			} elseif ( IP::isIPAddress( $target ) ) {
+			} elseif ( IPUtils::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
@@ -347,13 +350,26 @@ class SpecialContributions extends IncludableSpecialPage {
 					$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
 				}
 
-				if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
 						$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
 							getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 					}
 
 					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
+					if ( $userObj->isAnon() ) {
+						$msgKey = $block->isSitewide() ?
+							'sp-contributions-blocked-notice-anon' :
+							'sp-contributions-blocked-notice-anon-partial';
+					} else {
+						$msgKey = $block->isSitewide() ?
+							'sp-contributions-blocked-notice' :
+							'sp-contributions-blocked-notice-partial';
+					}
+					// Allow local styling overrides for different types of block
+					$class = $block->isSitewide() ?
+						'mw-contributions-blocked-notice' :
+						'mw-contributions-blocked-notice-partial';
 					LogEventsList::showLogExtract(
 						$out,
 						'block',
@@ -363,12 +379,15 @@ class SpecialContributions extends IncludableSpecialPage {
 							'lim' => 1,
 							'showIfEmpty' => false,
 							'msgKey' => [
-								$userObj->isAnon() ?
-									'sp-contributions-blocked-notice-anon' :
-									'sp-contributions-blocked-notice',
+								$msgKey,
 								$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
 							],
-							'offset' => '' # don't use WebRequest parameter offset
+							'offset' => '', # don't use WebRequest parameter offset
+							'wrap' => Html::rawElement(
+								'div',
+								[ 'class' => $class ],
+								'$1'
+							),
 						]
 					);
 				}
@@ -394,8 +413,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$username = $target->getName();
 		$userpage = $target->getUserPage();
 		$talkpage = $target->getTalkPage();
-		$isIP = IP::isValid( $username );
-		$isRange = IP::isValidRange( $username );
+		$isIP = IPUtils::isValid( $username );
+		$isRange = IPUtils::isValidRange( $username );
 
 		$linkRenderer = $sp->getLinkRenderer();
 
@@ -483,7 +502,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
-		Hooks::run( 'ContributionsToolLinks', [ $id, $userpage, &$tools, $sp ] );
+		Hooks::runner()->onContributionsToolLinks( $id, $userpage, $tools, $sp );
 
 		return $tools;
 	}
@@ -498,7 +517,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		// Modules required only for the form
 		$this->getOutput()->addModules( [
-			'mediawiki.userSuggest',
 			'mediawiki.special.contributions',
 		] );
 		$this->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
@@ -536,8 +554,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$target = $this->opts['target'] ?? null;
 		$fields['target'] = [
-			'type' => 'text',
-			'cssclass' => 'mw-autocomplete-user mw-ui-input-inline mw-input',
+			'type' => 'user',
 			'default' => $target ?
 				str_replace( '_', ' ', $target ) : '' ,
 			'label' => $this->msg( 'sp-contributions-username' )->text(),
@@ -627,10 +644,8 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// Allow additions at this point to the filters.
 		$rawFilters = [];
-		Hooks::run(
-			'SpecialContributions::getForm::filters',
-			[ $this, &$rawFilters ]
-		);
+		$this->getHookRunner()->onSpecialContributions__getForm__filters(
+			$this, $rawFilters );
 		foreach ( $rawFilters as $filter ) {
 			// Backwards compatibility support for previous hook function signature.
 			if ( is_string( $filter ) ) {
@@ -641,9 +656,9 @@ class SpecialContributions extends IncludableSpecialPage {
 					'section' => 'contribs-top',
 				];
 				wfDeprecated(
-					__METHOD__ .
-					' returning string[]',
-					'1.33'
+					'A SpecialContributions::getForm::filters hook handler returned ' .
+					'an array of strings, this is deprecated since MediaWiki 1.33',
+					'1.33', false, false
 				);
 			} else {
 				// Preferred append method.

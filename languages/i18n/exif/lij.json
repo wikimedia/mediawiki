@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Giodiassi5",
 			"Giromin Cangiaxo",
 			"S4b1nuz E.656"
 		]
@@ -187,7 +188,14 @@
 	"exif-compression-4": "Codiffica fax CCITT groppo 4",
 	"exif-copyrighted-true": "Protezuo da-o drito d'aotô",
 	"exif-copyrighted-false": "Stato do drito d'aotô non impostou",
+	"exif-photometricinterpretation-0": "Gianco e neigro (o gianco o l'è 0)",
 	"exif-photometricinterpretation-1": "Gianco e neigro (o neigro o l'è 0)",
+	"exif-photometricinterpretation-3": "Tavolòssa",
+	"exif-photometricinterpretation-4": "Maschera de trasparensa",
+	"exif-photometricinterpretation-5": "Separòu (probabilmente CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (codifica ICC)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (codifica ITU)",
 	"exif-unknowndate": "Dæta sconosciua",
 	"exif-orientation-1": "Normâle",
 	"exif-orientation-2": "Imbösòu orizontalmente",
@@ -258,6 +266,12 @@
 	"exif-scenetype-1": "Fotografia diretta",
 	"exif-customrendered-0": "Processo normale",
 	"exif-customrendered-1": "Processo personalizzou",
+	"exif-customrendered-2": "HDR (nisciun originâ sarvou)",
+	"exif-customrendered-3": "HDR (originâ sarvou)",
+	"exif-customrendered-4": "Originâle (pe HDR)",
+	"exif-customrendered-6": "Panoramma",
+	"exif-customrendered-7": "Ritræto HDR",
+	"exif-customrendered-8": "Ritræto",
 	"exif-exposuremode-0": "Espoxiçion aotomattica",
 	"exif-exposuremode-1": "Espoxiçion manoâ",
 	"exif-exposuremode-2": "Bracketing aotomattico",

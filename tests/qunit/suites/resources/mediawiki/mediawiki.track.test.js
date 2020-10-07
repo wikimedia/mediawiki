@@ -16,8 +16,7 @@
 	} );
 
 	QUnit.test( 'trackSubscribe', function ( assert ) {
-		var now,
-			sequence = [];
+		var sequence = [];
 		mw.track( 'before', { key: 1 } );
 		mw.track( 'before', { key: 2 } );
 		mw.trackSubscribe( 'before', function ( topic, data ) {
@@ -31,12 +30,10 @@
 			[ 'before', { key: 3 } ]
 		], 'Replay events from before subscribing' );
 
-		now = mw.now();
 		mw.track( 'context', { key: 0 } );
 		mw.trackSubscribe( 'context', function ( topic, data ) {
 			assert.strictEqual( this.topic, topic, 'thisValue has topic' );
 			assert.strictEqual( this.data, data, 'thisValue has data' );
-			assert.assertTrue( this.timeStamp >= now, 'thisValue has sane timestamp' );
 		} );
 	} );
 

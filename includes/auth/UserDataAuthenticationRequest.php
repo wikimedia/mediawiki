@@ -28,6 +28,7 @@ use User;
 /**
  * This represents additional user data requested on the account creation form
  *
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */
@@ -38,6 +39,10 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Real name */
 	public $realname;
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getFieldInfo() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$ret = [
@@ -68,6 +73,7 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * Add data to the User object
+	 * @stable to override
 	 * @param User $user User being created (not added to the database yet).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.

@@ -51,36 +51,16 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Create a store for a particular stage and key (for testing deprecated behaviour)
-	 * @param int $stage
-	 * @param string $key
-	 * @return CommentStore
-	 */
-	protected function makeStoreWithKey( $stage, $key ) {
-		$this->hideDeprecated( 'CommentStore::newKey' );
-		$store = CommentStore::newKey( $key );
-		TestingAccessWrapper::newFromObject( $store )->stage = $stage;
-
-		TestingAccessWrapper::newFromObject( $store )->tempTables += [ 'cs2_comment' => [
-			'table' => 'commentstore2_temp',
-			'pk' => 'cs2t_id',
-			'field' => 'cs2t_comment_id',
-			'joinPK' => 'cs2_id',
-			'stage' => MIGRATION_OLD,
-			'deprecatedIn' => null,
-		] ];
-
-		return $store;
-	}
-
-	/**
 	 * @dataProvider provideConstructor
 	 * @param int $stage
 	 * @param string|null $exceptionMsg
 	 */
 	public function testConstructor( $stage, $exceptionMsg ) {
 		try {
-			$m = new CommentStore( Language::factory( 'qqx' ), $stage );
+			$m = new CommentStore(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
+				$stage
+			);
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
 			}
@@ -112,18 +92,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, null ],
 			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, null ],
 		];
-	}
-
-	/**
-	 * @dataProvider provideGetFields
-	 * @param int $stage
-	 * @param string $key
-	 * @param array $expect
-	 */
-	public function testGetFields_withKeyConstruction( $stage, $key, $expect ) {
-		$store = $this->makeStoreWithKey( $stage, $key );
-		$result = $store->getFields();
-		$this->assertEquals( $expect, $result );
 	}
 
 	/**
@@ -241,18 +209,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				],
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider provideGetJoin
-	 * @param int $stage
-	 * @param string $key
-	 * @param array $expect
-	 */
-	public function testGetJoin_withKeyConstruction( $stage, $key, $expect ) {
-		$store = $this->makeStoreWithKey( $stage, $key );
-		$result = $store->getJoin();
-		$this->assertEquals( $expect, $result );
 	}
 
 	/**
@@ -646,109 +602,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	/**
-	 * @dataProvider provideInsertRoundTrip
-	 * @param string $table
-	 * @param string $key
-	 * @param string $pk
-	 * @param string|Message $comment
-	 * @param array|null $data
-	 * @param array $expect
-	 */
-	public function testInsertRoundTrip_withKeyConstruction(
-		$table, $key, $pk, $comment, $data, $expect
-	) {
-		static $id = 1000;
-
-		$expectOld = [
-			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
-			'data' => null,
-		];
-
-		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
-				MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
-
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
-				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
-			],
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
-				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
-			],
-		];
-
-		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			$wstore = $this->makeStoreWithKey( $writeStage, $key );
-			$usesTemp = $key === 'cs2_comment';
-
-			if ( $usesTemp ) {
-				list( $fields, $callback ) = $wstore->insertWithTempTable(
-					$this->db, $comment, $data
-				);
-			} else {
-				$fields = $wstore->insert( $this->db, $comment, $data );
-			}
-
-			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$this->assertSame( $expect['text'], $fields[$key], "old field, stage=$writeStage" );
-			} else {
-				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
-			}
-			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
-				$this->assertArrayHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
-			} else {
-				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
-			}
-
-			$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
-			if ( $usesTemp ) {
-				$callback( $id );
-			}
-
-			foreach ( $possibleReadStages as $readStage ) {
-				$rstore = $this->makeStoreWithKey( $readStage, $key );
-
-				$fieldRow = $this->db->selectRow(
-					$table,
-					$rstore->getFields(),
-					[ $pk => $id ],
-					__METHOD__
-				);
-
-				$queryInfo = $rstore->getJoin();
-				$joinRow = $this->db->selectRow(
-					[ $table ] + $queryInfo['tables'],
-					$queryInfo['fields'],
-					[ $pk => $id ],
-					__METHOD__,
-					[],
-					$queryInfo['joins']
-				);
-
-				$expectForCombination = (
-					( $writeStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_OLD ||
-					( $readStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD
-				) ? $expectOld : $expect;
-				$this->assertComment(
-					$expectForCombination,
-					$rstore->getCommentLegacy( $this->db, $fieldRow ),
-					"w=$writeStage, r=$readStage, from getFields()"
-				);
-				$this->assertComment(
-					$expectForCombination,
-					$rstore->getComment( $joinRow ),
-					"w=$writeStage, r=$readStage, from getJoin()"
-				);
-			}
-		}
-	}
-
 	public static function provideInsertRoundTrip() {
 		$db = wfGetDB( DB_REPLICA ); // for timestamps
 
@@ -916,22 +769,22 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use insertWithTempTable() for rev_comment
 	 */
 	public function testInsertWrong( $stage ) {
 		$store = $this->makeStore( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use insertWithTempTable() for rev_comment" );
 		$store->insert( $this->db, 'rev_comment', 'foo' );
 	}
 
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use insert() for ipb_reason
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
 		$store = $this->makeStore( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use insert() for ipb_reason" );
 		$store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 	}
 
@@ -949,7 +802,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
 		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
-		$this->assertTrue( is_callable( $callback ) );
+		$this->assertIsCallable( $callback );
 	}
 
 	public function testInsertTruncation() {
@@ -966,12 +819,10 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->assertSame( $truncated2, $stored );
 	}
 
-	/**
-	 * @expectedException OverflowException
-	 * @expectedExceptionMessage Comment data is too long (65611 bytes, maximum is 65535)
-	 */
 	public function testInsertTooMuchData() {
 		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$this->expectException( OverflowException::class );
+		$this->expectExceptionMessage( "Comment data is too long (65611 bytes, maximum is 65535)" );
 		$store->insert( $this->db, 'ipb_reason', 'foo', [
 			'long' => str_repeat( '💣', 16400 )
 		] );
@@ -979,11 +830,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 	public function testGetStore() {
 		$this->assertInstanceOf( CommentStore::class, CommentStore::getStore() );
-	}
-
-	public function testNewKey() {
-		$this->hideDeprecated( 'CommentStore::newKey' );
-		$this->assertInstanceOf( CommentStore::class, CommentStore::newKey( 'dummy' ) );
 	}
 
 }

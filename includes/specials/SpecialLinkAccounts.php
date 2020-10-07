@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Links/unlinks external accounts to the current user.
@@ -23,7 +24,7 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	public function isListed() {
-		return AuthManager::singleton()->canLinkAccounts();
+		return MediaWikiServices::getInstance()->getAuthManager()->canLinkAccounts();
 	}
 
 	protected function getRequestBlacklist() {

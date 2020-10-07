@@ -481,7 +481,7 @@
 	} );
 
 	QUnit.test( 'Finding matching filters', function ( assert ) {
-		var matches,
+		var foundMatches,
 			testCases = [
 				{
 					query: 'group',
@@ -533,7 +533,7 @@
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		testCases.forEach( function ( testCase ) {
-			matches = model.findMatches( testCase.query );
+			var matches = model.findMatches( testCase.query );
 			assert.deepEqual(
 				extractNames( matches ),
 				testCase.expectedMatches,
@@ -541,9 +541,9 @@
 			);
 		} );
 
-		matches = model.findMatches( 'foo' );
+		foundMatches = model.findMatches( 'foo' );
 		assert.ok(
-			$.isEmptyObject( matches ),
+			$.isEmptyObject( foundMatches ),
 			'findMatches returns an empty object when no results found'
 		);
 	} );

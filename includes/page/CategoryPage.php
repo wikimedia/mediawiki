@@ -25,7 +25,7 @@
  * Special handling for category description pages, showing pages,
  * subcategories and file that belong to the category
  *
- * @property WikiCategoryPage $mPage Set by overwritten newPage() in this class
+ * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */
 class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.
@@ -40,7 +40,7 @@ class CategoryPage extends Article {
 		return new WikiCategoryPage( $title );
 	}
 
-	function view() {
+	public function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly',
@@ -51,10 +51,7 @@ class CategoryPage extends Article {
 			return;
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$categoryPage = $this;
-
-		if ( !Hooks::run( 'CategoryPageView', [ &$categoryPage ] ) ) {
+		if ( !$this->getHookRunner()->onCategoryPageView( $this ) ) {
 			return;
 		}
 
@@ -71,14 +68,17 @@ class CategoryPage extends Article {
 
 		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->adaptCdnTTL( $this->mPage->getTouched(), IExpiringStore::TTL_MINUTE );
+		$outputPage->adaptCdnTTL(
+			$this->getPage()->getTouched(),
+			IExpiringStore::TTL_MINUTE
+		);
 	}
 
-	function openShowCategory() {
+	public function openShowCategory() {
 		# For overloading
 	}
 
-	function closeShowCategory() {
+	public function closeShowCategory() {
 		// Use these as defaults for back compat --catrope
 		$request = $this->getContext()->getRequest();
 		$oldFrom = $request->getVal( 'from' );
@@ -115,11 +115,19 @@ class CategoryPage extends Article {
 		$this->addHelpLink( 'Help:Categories' );
 	}
 
-	function getCategoryViewerClass() {
+	/**
+	 * @deprecated since 1.35
+	 */
+	public function getCategoryViewerClass() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mCategoryViewerClass;
 	}
 
-	function setCategoryViewerClass( $class ) {
+	/**
+	 * @deprecated since 1.35
+	 */
+	public function setCategoryViewerClass( $class ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mCategoryViewerClass = $class;
 	}
 }

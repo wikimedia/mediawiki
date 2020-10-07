@@ -114,7 +114,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 			'Baz' => 3,
 		];
 		$flipped = array_flip( $userMapping );
-		$idLookup = self::getMockBuilder( CentralIdLookup::class )
+		$idLookup = $this->getMockBuilder( CentralIdLookup::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'centralIdsFromNames', 'namesFromCentralIds' ] )
 			->getMockForAbstractClass();

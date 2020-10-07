@@ -7,7 +7,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 */
 	protected $mConf;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mConf = new SiteConfiguration;
@@ -33,6 +33,16 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 
 			'WithParams' => [
 				'default' => '$lang $site $wiki',
+			],
+
+			'WithNestedParams' => [
+				'default' => [
+					'monday' => 'Moon $lang $site',
+					'saturday' => 'Saturn $lang $site',
+				],
+				'+dewiki' => [
+					'Sonntag' => 'Sonne $lang $site',
+				],
 			],
 
 			'+SomeGlobal' => [
@@ -296,7 +306,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers SiteConfiguration::get
+	 * @covers SiteConfiguration
 	 */
 	public function testParameterReplacement() {
 		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
@@ -326,6 +336,24 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 			$this->mConf->get( 'WithParams', 'eswiki', 'wiki' ),
 			'get(): parameter replacement on a non-existing wiki'
 		);
+
+		$this->assertEquals(
+			[
+				'monday' => 'Moon en wiki',
+				'saturday' => 'Saturn en wiki',
+			],
+			$this->mConf->get( 'WithNestedParams', 'enwiki', 'wiki' ),
+			'get(): nested parameter replacement using default'
+		);
+		$this->assertEquals(
+			[
+				'monday' => 'Moon de wiki',
+				'saturday' => 'Saturn de wiki',
+				'Sonntag' => 'Sonne de wiki',
+			],
+			$this->mConf->get( 'WithNestedParams', 'dewiki', 'wiki' ),
+			'get(): nested parameter replacement using merged override'
+		);
 	}
 
 	/**
@@ -338,6 +366,10 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 			'SimpleKey' => 'enwiki',
 			'Fallback' => 'tag',
 			'WithParams' => 'en wiki enwiki',
+			'WithNestedParams' => [
+				'monday' => 'Moon en wiki',
+				'saturday' => 'Saturn en wiki',
+			],
 			'SomeGlobal' => [ 'enwiki' => 'enwiki' ] + $GLOBALS['SomeGlobal'],
 			'MergeIt' => [
 				'enwiki' => 'enwiki',
@@ -374,6 +406,29 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 			$getall['MergeIt'],
 			$GLOBALS['MergeIt'],
 			'extractAllGlobals(): merging setting'
+		);
+	}
+
+	/**
+	 * @covers SiteConfiguration
+	 */
+	public function testSuffixAndTagConflict() {
+		$conf = new SiteConfiguration;
+
+		$conf->suffixes = [ 'foo', 'bar', 'baz' ];
+		$conf->wikis = [ 'aabar', 'bbbar', 'ccbar' ];
+		$conf->settings = [
+			'MyVariable' => [
+				'default' => [ 'x' ],
+				'+bar' => [ 'y' ],
+			],
+		];
+
+		// Regression test for T246858
+		$this->assertSame(
+			[ 'y', 'x' ],
+			$conf->get( 'MyVariable', 'bbbar', 'bar', [], [ 'alpha', 'bar' ] ),
+			'get(): variable with +merge for a tag that is also a suffix'
 		);
 	}
 }

@@ -40,10 +40,10 @@ class PNGMetadataExtractor {
 	/** @var array */
 	private static $textChunks;
 
-	const VERSION = 1;
-	const MAX_CHUNK_SIZE = 3145728; // 3 megabytes
+	public const VERSION = 1;
+	private const MAX_CHUNK_SIZE = 3145728; // 3 megabytes
 
-	static function getMetadata( $filename ) {
+	public static function getMetadata( $filename ) {
 		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
 		self::$crcSize = 4;
 		/* based on list at http://owl.phy.queensu.ca/~phil/exiftool/TagNames/PNG.html#TextualData
@@ -208,13 +208,13 @@ class PNGMetadataExtractor {
 
 							if ( $items[5] === false ) {
 								// decompression failed
-								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n" );
+								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] );
 								fseek( $fh, self::$crcSize, SEEK_CUR );
 								continue;
 							}
 						} else {
 							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
-								. " or potentially invalid compression method\n" );
+								. " or potentially invalid compression method" );
 							fseek( $fh, self::$crcSize, SEEK_CUR );
 							continue;
 						}
@@ -281,7 +281,7 @@ class PNGMetadataExtractor {
 					$compression = substr( $postKeyword, 0, 1 );
 					$content = substr( $postKeyword, 1 );
 					if ( $compression !== "\x00" ) {
-						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping.\n" );
+						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping." );
 						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
@@ -292,7 +292,7 @@ class PNGMetadataExtractor {
 
 					if ( $content === false ) {
 						// decompression failed
-						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n" );
+						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword );
 						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
@@ -309,7 +309,7 @@ class PNGMetadataExtractor {
 					$text[$finalKeyword]['x-default'] = $content;
 					$text[$finalKeyword]['_type'] = 'lang';
 				} else {
-					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping.\n" );
+					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );
 					fseek( $fh, $chunk_size, SEEK_CUR );
 				}
 			} elseif ( $chunk_type == 'tIME' ) {

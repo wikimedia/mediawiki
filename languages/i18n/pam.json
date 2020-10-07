@@ -1,17 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amiel Guanlao",
+			"DannyS712",
 			"Geitost",
 			"Kaganer",
 			"Katimawan2005",
+			"Leeheonjin",
+			"Macofe",
+			"TTO",
 			"Urhixidur",
 			"Val2397",
-			"아라",
-			"Leeheonjin",
-			"TTO",
-			"Macofe",
-			"Amiel Guanlao",
-			"Vlad5250"
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -251,7 +252,7 @@
 	"nospecialpagetext": "<strong>E ustu ing aduan mung bulung a makabukud.</strong>\n\nAting tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Mali",
 	"databaseerror": "Pamagkamali king database (simpanan)",
-	"laggedslavemode": "Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.",
+	"laggedreplicamode": "Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.",
 	"readonly": "Makasara ya ing database",
 	"enterlockreason": "Ibie me ing sangkan ning pamaniara, pati ing tantia nung kapilan ya milako iti",
 	"readonlytext": "Kasalungsungan yang makasara ing database kareng bayung ambag at aliwa pang pamagbayu, mapalyaring para king karaniwan a pamaniamasan king database; mibalik ya king normal kaibat na niti.\n\nIni ing sangkan a binie ning talapanibalang minyara: $1",
@@ -430,7 +431,6 @@
 	"undo-failure": "E maliaring iurung ing edit a ini uling e la mipapareu deng minunang me-edit.",
 	"undo-norev": "E maliaring iurung ing edit a ini uling ala yu o mebura ya.",
 	"undo-summary": "Iurung ya ing miyalilan $1 nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])",
-	"cantcreateaccount-text": "Sebat neng [[User:$3|$3]] ing pamaglalang account manibat kaniting IP address ('''$1''').\n\nIni ing sangkan a binie nang $3: ''$2''",
 	"viewpagelogs": "Lon la reng log para king bulung a ini",
 	"nohistory": "Alang amlat ning pamag-edit (edit history) para king bulung a ini.",
 	"currentrev": "Kasalungsungan a pangayalili",
@@ -451,7 +451,7 @@
 	"histfirst": "Minunang dili",
 	"histlast": "Pekabayu",
 	"historysize": "({{PLURAL:$1|1 a byte|byte}})",
-	"historyempty": "(alang laman)",
+	"historyempty": "alang laman",
 	"history-feed-title": "Amlat ning pamanalili",
 	"history-feed-description": "Amlat ning pamagbayu/pamanalili ning bulu a ini king wiki",
 	"history-feed-item-nocomment": "$1 king $2",

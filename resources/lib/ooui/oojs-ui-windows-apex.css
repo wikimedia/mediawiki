@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2019 OOUI Team and other contributors.
+ * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2020-07-10T06:32:25Z
  */
 
 .oo-ui-window {
@@ -132,6 +132,10 @@
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget:last-child {
   margin-right: 0;
+}
+.oo-ui-messageDialog-actions .oo-ui-actionWidget .oo-ui-buttonElement-button {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
   line-height: 2.5em;
@@ -320,23 +324,22 @@
 }
 .oo-ui-processDialog-errors {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 3em 3em 1.5em 3em;
-  text-align: center;
-}
-.oo-ui-processDialog-errors .oo-ui-buttonWidget {
-  margin: 2em 1em 2em 1em;
+  padding: 3em 3em 0 3em;
 }
 .oo-ui-processDialog-errors-title {
   font-size: 1.5em;
   color: #000;
   margin-bottom: 2em;
+  text-align: center;
 }
-.oo-ui-processDialog-error {
-  text-align: left;
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid #d45353;
-  background-color: #ffdcdc;
+.oo-ui-processDialog-errors > .oo-ui-messageWidget {
+  margin: 1em 0 0;
+}
+.oo-ui-processDialog-errors-actions {
+  text-align: center;
+}
+.oo-ui-processDialog-errors-actions > .oo-ui-buttonWidget {
+  margin: 2em 1em;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-location {
   text-align: left;

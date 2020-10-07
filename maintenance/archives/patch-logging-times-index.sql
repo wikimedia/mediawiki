@@ -6,4 +6,3 @@
 
 ALTER TABLE /*$wgDBprefix*/logging
    ADD INDEX times (log_timestamp);
-

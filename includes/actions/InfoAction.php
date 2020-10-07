@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\Database;
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
-	const VERSION = 1;
+	private const VERSION = 1;
 
 	/**
 	 * Returns the name of the action this object responds to.
@@ -69,12 +69,14 @@ class InfoAction extends FormlessAction {
 	 * @param int|null $revid Revision id to clear
 	 */
 	public static function invalidateCache( Title $title, $revid = null ) {
+		$services = MediaWikiServices::getInstance();
 		if ( !$revid ) {
-			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
+			$revision = $services->getRevisionLookup()
+				->getRevisionByTitle( $title, 0, IDBAccessObject::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$cache = $services->getMainWANObjectCache();
 			$key = self::getCacheKey( $cache, $title, $revid );
 			$cache->delete( $key );
 		}
@@ -89,17 +91,17 @@ class InfoAction extends FormlessAction {
 		$content = '';
 
 		// Validate revision
-		$oldid = $this->page->getOldID();
+		$oldid = $this->getArticle()->getOldID();
 		if ( $oldid ) {
-			$revision = $this->page->getRevisionFetched();
+			$revRecord = $this->getArticle()->fetchRevisionRecord();
 
 			// Revision is missing
-			if ( $revision === null ) {
+			if ( $revRecord === null ) {
 				return $this->msg( 'missing-revision', $oldid )->parse();
 			}
 
 			// Revision is not current
-			if ( !$revision->isCurrent() ) {
+			if ( !$revRecord->isCurrent() ) {
 				return $this->msg( 'pageinfo-not-current' )->plain();
 			}
 		}
@@ -124,7 +126,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
-		Hooks::run( 'InfoAction', [ $this->getContext(), &$pageInfo ] );
+		$this->getHookRunner()->onInfoAction( $this->getContext(), $pageInfo );
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
@@ -225,7 +227,7 @@ class InfoAction extends FormlessAction {
 		$config = $this->context->getConfig();
 		$linkRenderer = $services->getLinkRenderer();
 
-		$pageCounts = $this->pageCounts( $this->page );
+		$pageCounts = $this->pageCounts();
 
 		$props = PageProps::getInstance()->getAllProperties( $title );
 		$pageProperties = $props[$id] ?? [];
@@ -242,7 +244,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it a redirect? If so, where to?
-		$redirectTarget = $this->page->getRedirectTarget();
+		$redirectTarget = $this->getWikiPage()->getRedirectTarget();
 		if ( $redirectTarget !== null ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),
@@ -281,7 +283,7 @@ class InfoAction extends FormlessAction {
 		$pageLang = $title->getPageLanguage()->getCode();
 
 		$pageLangHtml = $pageLang . ' - ' .
-			Language::fetchLanguageName( $pageLang, $lang->getCode() );
+			$services->getLanguageNameUtils()->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
 		$permissionManager = $services->getPermissionManager();
 		if ( $config->get( 'PageLanguageUseDB' )
@@ -301,9 +303,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $config->get( 'ContentHandlerUseDB' )
-			&& $permissionManager->userCan( 'editcontentmodel', $user, $title )
-		) {
+		if ( $permissionManager->userCan( 'editcontentmodel', $user, $title ) ) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
@@ -335,7 +335,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Use robot policy logic
-		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getArticle()->getRobotPolicy( 'view', $pOutput );
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
@@ -395,7 +395,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it counted as a content page?
-		if ( $this->page->isCountable() ) {
+		if ( $this->getWikiPage()->isCountable() ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-contentpage' ),
 				$this->msg( 'pageinfo-contentpage-yes' )
@@ -530,32 +530,32 @@ class InfoAction extends FormlessAction {
 			),
 		];
 
-		if ( !$this->page->exists() ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			return $pageInfo;
 		}
 
 		// Edit history
 		$pageInfo['header-edits'] = [];
 
-		$firstRev = $this->page->getOldestRevision();
-		$lastRev = $this->page->getRevision();
+		$firstRev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getFirstRevision( $this->getTitle() );
+		$lastRev = $this->getWikiPage()->getRevisionRecord();
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
-			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER );
-			if ( $firstRevUser !== '' ) {
-				$firstRevUserTitle = Title::makeTitle( NS_USER, $firstRevUser );
-				$batch->addObj( $firstRevUserTitle );
-				$batch->addObj( $firstRevUserTitle->getTalkPage() );
+			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			if ( $firstRevUser ) {
+				$batch->add( NS_USER, $firstRevUser->getName() );
+				$batch->add( NS_USER_TALK, $firstRevUser->getName() );
 			}
 		}
 
 		if ( $lastRev ) {
-			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER );
-			if ( $lastRevUser !== '' ) {
-				$lastRevUserTitle = Title::makeTitle( NS_USER, $lastRevUser );
-				$batch->addObj( $lastRevUserTitle );
-				$batch->addObj( $lastRevUserTitle->getTalkPage() );
+			$lastRevUser = $lastRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			if ( $lastRevUser ) {
+				$batch->add( NS_USER, $lastRevUser->getName() );
+				$batch->add( NS_USER_TALK, $lastRevUser->getName() );
 			}
 		}
 
@@ -592,9 +592,9 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-lasttime' ),
 				$linkRenderer->makeKnownLink(
 					$title,
-					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					$lang->userTimeAndDate( $this->getWikiPage()->getTimestamp(), $user ),
 					[],
-					[ 'oldid' => $this->page->getLatest() ]
+					[ 'oldid' => $this->getWikiPage()->getLatest() ]
 				)
 			];
 		}
@@ -641,7 +641,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$localizedList = Html::rawElement( 'ul', [], implode( '', $listItems ) );
-		$hiddenCategories = $this->page->getHiddenCategories();
+		$hiddenCategories = $this->getWikiPage()->getHiddenCategories();
 
 		if (
 			count( $listItems ) > 0 ||
@@ -728,10 +728,10 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
-	 * @param WikiPage|Article|Page $page
 	 * @return array
 	 */
-	protected function pageCounts( Page $page ) {
+	private function pageCounts() {
+		$page = $this->getWikiPage();
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
 		$services = MediaWikiServices::getInstance();
@@ -760,7 +760,7 @@ class InfoAction extends FormlessAction {
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
 
 				if ( $config->get( 'ShowUpdatedMarker' ) ) {
-					$updated = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+					$updated = (int)wfTimestamp( TS_UNIX, $page->getTimestamp() );
 					$result['visitingWatchers'] = $watchedItemStore->countVisitingWatchers(
 						$title,
 						$updated - $config->get( 'WatchersMaxAge' )
@@ -888,7 +888,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Html
 	 */
 	protected function getContributors() {
-		$contributors = $this->page->getContributors();
+		$contributors = $this->getWikiPage()->getContributors();
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];

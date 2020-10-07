@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users['ApiQueryWatchlistRawIntegrationTestUser']
 			= $this->getMutableTestUser();
@@ -348,7 +348,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$firstResult = $this->doListWatchlistRawRequest( [ 'wrlimit' => 2 ] );
 		$continuationParam = $firstResult[0]['continue']['wrcontinue'];
 
-		$this->assertEquals( '0|ApiQueryWatchlistRawIntegrationTestPage3', $continuationParam );
+		$this->assertSame( '0|ApiQueryWatchlistRawIntegrationTestPage3', $continuationParam );
 
 		$continuedResult = $this->doListWatchlistRawRequest( [ 'wrcontinue' => $continuationParam ] );
 
@@ -461,7 +461,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
 		$result = $this->doListWatchlistRawRequest( $params );
 
-		$this->assertEmpty( $this->getItemsFromApiResponse( $result ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $result ) );
 		$this->assertArrayNotHasKey( 'continue', $result[0] );
 	}
 
@@ -502,7 +502,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$otherUser->setOption( 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRawRequest( [
 			'wrowner' => $otherUser->getName(),
@@ -511,7 +512,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams_userHasNoWatchlistToken() {
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRawRequest( [
 			'wrowner' => $this->getNotLoggedInTestUser()->getName(),

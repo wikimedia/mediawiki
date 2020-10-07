@@ -1,11 +1,27 @@
 <?php
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 class SpecialChangeContentModel extends FormSpecialPage {
 
-	public function __construct() {
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/**
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @internal use @see SpecialPageFactory::getPage
+	 */
+	public function __construct( ?IContentHandlerFactory $contentHandlerFactory = null ) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
+
+		if ( !$contentHandlerFactory ) {
+			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
+			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		}
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function doesWrites() {
@@ -18,9 +34,9 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	private $title;
 
 	/**
-	 * @var Revision|bool|null
+	 * @var RevisionRecord|bool|null
 	 *
-	 * A Revision object, false if no revision exists, null if not loaded yet
+	 * A RevisionRecord object, false if no revision exists, null if not loaded yet
 	 */
 	private $oldRevision;
 
@@ -52,30 +68,33 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
-		if ( !$this->title ) {
-			$form->setMethod( 'GET' );
-		}
-
 		$this->addHelpLink( 'Help:ChangeContentModel' );
+
+		if ( $this->title ) {
+			$form->setFormIdentifier( 'modelform' );
+		} else {
+			$form->setFormIdentifier( 'titleform' );
+		}
 
 		// T120576
 		$form->setSubmitTextMsg( 'changecontentmodel-submit' );
+
+		if ( $this->title ) {
+			$this->getOutput()->addBacklinkSubtitle( $this->title );
+		}
 	}
 
 	public function validateTitle( $title ) {
-		if ( !$title ) {
-			// No form input yet
-			return true;
-		}
-
 		// Already validated by HTMLForm, but if not, throw
-		// and exception instead of a fatal
+		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
 
-		$this->oldRevision = Revision::newFromTitle( $titleObj ) ?: false;
+		$this->oldRevision = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $titleObj ) ?: false;
 
 		if ( $this->oldRevision ) {
-			$oldContent = $this->oldRevision->getContent();
+			$oldContent = $this->oldRevision->getContent( SlotRecord::MAIN );
 			if ( !$oldContent->getContentHandler()->supportsDirectEditing() ) {
 				return $this->msg( 'changecontentmodel-nodirectediting' )
 					->params( ContentHandler::getLocalizedName( $oldContent->getModel() ) )
@@ -98,6 +117,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			],
 		];
 		if ( $this->title ) {
+			$spamChecker = MediaWikiServices::getInstance()->getSpamChecker();
+
 			$options = $this->getOptionsForTitle( $this->title );
 			if ( empty( $options ) ) {
 				throw new ErrorPageError(
@@ -123,9 +144,16 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				],
 				'reason' => [
 					'type' => 'text',
+					'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 					'name' => 'reason',
-					'validation-callback' => function ( $reason ) {
-						$match = EditPage::matchSummarySpamRegex( $reason );
+					'validation-callback' => function ( $reason ) use ( $spamChecker ) {
+						if ( $reason === null || $reason === '' ) {
+							// Null on form display, or no reason given
+							return true;
+						}
+
+						$match = $spamChecker->checkSummary( $reason );
+
 						if ( $match ) {
 							return $this->msg( 'spamprotectionmatch', $match )->parse();
 						}
@@ -141,10 +169,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	private function getOptionsForTitle( Title $title = null ) {
-		$models = ContentHandler::getContentModels();
+		$models = $this->contentHandlerFactory->getContentModels();
 		$options = [];
 		foreach ( $models as $model ) {
-			$handler = ContentHandler::getForModelID( $model );
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
 			if ( !$handler->supportsDirectEditing() ) {
 				continue;
 			}
@@ -163,32 +191,19 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		if ( $data['pagetitle'] === '' ) {
-			// Initial form view of special page, pass
-			return false;
-		}
-
-		// At this point, it has to be a POST request. This is enforced by HTMLForm,
-		// but lets be safe verify that.
-		if ( !$this->getRequest()->wasPosted() ) {
-			throw new RuntimeException( "Form submission was not POSTed" );
-		}
-
-		$this->title = Title::newFromText( $data['pagetitle'] );
-		$titleWithNewContentModel = clone $this->title;
-		$titleWithNewContentModel->setContentModel( $data['model'] );
 		$user = $this->getUser();
-		// Check permissions and make sure the user has permission to:
-		$errors = wfMergeErrorArrays(
-			// edit the contentmodel of the page
-			$this->title->getUserPermissionsErrors( 'editcontentmodel', $user ),
-			// edit the page under the old content model
-			$this->title->getUserPermissionsErrors( 'edit', $user ),
-			// edit the contentmodel under the new content model
-			$titleWithNewContentModel->getUserPermissionsErrors( 'editcontentmodel', $user ),
-			// edit the page under the new content model
-			$titleWithNewContentModel->getUserPermissionsErrors( 'edit', $user )
-		);
+		$this->title = Title::newFromText( $data['pagetitle'] );
+		$page = WikiPage::factory( $this->title );
+
+		$changer = MediaWikiServices::getInstance()
+			->getContentModelChangeFactory()
+			->newContentModelChange(
+				$user,
+				$page,
+				$data['model']
+			);
+
+		$errors = $changer->checkPermissions();
 		if ( $errors ) {
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionsErrorMessage( $errors );
@@ -196,90 +211,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
 
-		$page = WikiPage::factory( $this->title );
-		if ( $this->oldRevision === null ) {
-			$this->oldRevision = $page->getRevision() ?: false;
-		}
-		$oldModel = $this->title->getContentModel();
-		if ( $this->oldRevision ) {
-			$oldContent = $this->oldRevision->getContent();
-			try {
-				$newContent = ContentHandler::makeContent(
-					$oldContent->serialize(), $this->title, $data['model']
-				);
-			} catch ( MWException $e ) {
-				return Status::newFatal(
-					$this->msg( 'changecontentmodel-cannot-convert' )
-						->params(
-							$this->title->getPrefixedText(),
-							ContentHandler::getLocalizedName( $data['model'] )
-						)
-				);
-			}
-		} else {
-			// Page doesn't exist, create an empty content object
-			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
-		}
-
-		// All other checks have passed, let's check rate limits
-		if ( $user->pingLimiter( 'editcontentmodel' ) ) {
-			throw new ThrottledError();
-		}
-
-		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
-		$flags |= EDIT_INTERNAL;
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'bot' )
-		) {
-			$flags |= EDIT_FORCE_BOT;
-		}
-
-		$log = new ManualLogEntry( 'contentmodel', $this->oldRevision ? 'change' : 'new' );
-		$log->setPerformer( $user );
-		$log->setTarget( $this->title );
-		$log->setComment( $data['reason'] );
-		$log->setParameters( [
-			'4::oldmodel' => $oldModel,
-			'5::newmodel' => $data['model']
-		] );
-
-		$formatter = LogFormatter::newFromEntry( $log );
-		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );
-		$reason = $formatter->getPlainActionText();
-		if ( $data['reason'] !== '' ) {
-			$reason .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $data['reason'];
-		}
-
-		// Run edit filters
-		$derivativeContext = new DerivativeContext( $this->getContext() );
-		$derivativeContext->setTitle( $this->title );
-		$derivativeContext->setWikiPage( $page );
-		$status = new Status();
-		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $derivativeContext, $newContent, $status, $reason,
-				$user, false ] )
-		) {
-			if ( $status->isGood() ) {
-				// TODO: extensions should really specify an error message
-				$status->fatal( 'hookaborted' );
-			}
-			return $status;
-		}
-
-		$status = $page->doEditContent(
-			$newContent,
-			$reason,
-			$flags,
-			$this->oldRevision ? $this->oldRevision->getId() : false,
-			$user
+		// Can also throw a ThrottledError, don't catch it
+		$status = $changer->doContentModelChange(
+			$this->getContext(),
+			$data['reason'],
+			true
 		);
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		$logid = $log->insert();
-		$log->publish( $logid );
 
 		return $status;
 	}

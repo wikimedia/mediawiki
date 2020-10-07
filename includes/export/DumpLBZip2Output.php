@@ -32,7 +32,7 @@ class DumpLBZip2Output extends DumpPipeOutput {
 	/**
 	 * @param string $file
 	 */
-	function __construct( $file ) {
+	public function __construct( $file ) {
 		# use only one core
 		parent::__construct( "lbzip2 -n 1", $file );
 	}

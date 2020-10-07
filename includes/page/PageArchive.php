@@ -18,17 +18,20 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.
  */
 class PageArchive {
+	use ProtectedHookAccessorTrait;
+
 	/** @var Title */
 	protected $title;
 
@@ -42,7 +45,7 @@ class PageArchive {
 	protected $config;
 
 	public function __construct( $title, Config $config = null ) {
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( __METHOD__ . ' given a null title.' );
 		}
 		$this->title = $title;
@@ -188,7 +191,7 @@ class PageArchive {
 		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
 		// XXX: Ideally, we would be ordering by ar_timestamp and ar_rev_id, but since we
 		// don't have an index on ar_rev_id, that causes a file sort.
-		$options = [ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ];
+		$options = [ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ];
 
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
@@ -238,31 +241,62 @@ class PageArchive {
 	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 *
-	 * @deprecated since 1.32, use getArchivedRevision() instead.
+	 * @deprecated since 1.32 (soft), 1.35 (hard)
+	 * Use getArchivedRevisionRecord() instead if a revision id is available
 	 *
 	 * @param string $timestamp
 	 * @return Revision|null
 	 */
 	public function getRevision( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.32' );
+		$revRecord = $this->getRevisionRecordByTimestamp( $timestamp );
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * Return a RevisionRecord object containing data for the deleted revision.
+	 *
+	 * @internal only for use in SpecialUndelete
+	 *
+	 * @param string $timestamp
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecordByTimestamp( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$rec = $this->getRevisionByConditions(
 			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
 		);
-		return $rec ? new Revision( $rec ) : null;
+		return $rec;
 	}
 
 	/**
 	 * Return the archived revision with the given ID.
 	 *
+	 * @deprecated since 1.35, use getArchivedRevisionRecord instead
+	 *
 	 * @param int $revId
 	 * @return Revision|null
 	 */
 	public function getArchivedRevision( $revId ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		// Protect against code switching from getRevision() passing in a timestamp.
 		Assert::parameterType( 'integer', $revId, '$revId' );
 
-		$rec = $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
-		return $rec ? new Revision( $rec ) : null;
+		$revRecord = $this->getArchivedRevisionRecord( $revId );
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * Return the archived revision with the given ID.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $revId
+	 * @return RevisionRecord|null
+	 */
+	public function getArchivedRevisionRecord( int $revId ) {
+		return $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
 	}
 
 	/**
@@ -303,10 +337,32 @@ class PageArchive {
 	 * May produce unexpected results in case of history merges or other
 	 * unusual time issues.
 	 *
+	 * @deprecated since 1.35, use getPreviousRevisionRecord
+	 *
 	 * @param string $timestamp
 	 * @return Revision|null Null when there is no previous revision
 	 */
 	public function getPreviousRevision( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
+		$revRecord = $this->getPreviousRevisionRecord( $timestamp );
+		$rev = $revRecord ? new Revision( $revRecord ) : null;
+		return $rev;
+	}
+
+	/**
+	 * Return the most-previous revision, either live or deleted, against
+	 * the deleted revision given by timestamp.
+	 *
+	 * May produce unexpected results in case of history merges or other
+	 * unusual time issues.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $timestamp
+	 * @return RevisionRecord|null Null when there is no previous revision
+	 */
+	public function getPreviousRevisionRecord( string $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Check the previous deleted revision...
@@ -341,10 +397,9 @@ class PageArchive {
 		if ( $prevLive && $prevLive > $prevDeleted ) {
 			// Most prior revision was live
 			$rec = $this->getRevisionStore()->getRevisionById( $prevLiveId );
-			$rec = $rec ? new Revision( $rec ) : null;
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
-			$rec = $this->getArchivedRevision( $prevDeletedId );
+			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
 		} else {
 			$rec = null;
 		}
@@ -365,7 +420,7 @@ class PageArchive {
 			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey() ],
 			__METHOD__,
-			[ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ]
+			[ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ]
 		);
 
 		return $revId ? intval( $revId ) : false;
@@ -395,8 +450,10 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
-	 * (depending what operations are attempted).
+	 * Within ::undeleteAsUser, this also sets Status objects, $this->fileStatus and
+	 * $this->revisionStatus (depending what operations are attempted).
+	 *
+	 * @deprecated since 1.35, use ::undeleteAsUser
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
@@ -411,6 +468,51 @@ class PageArchive {
 	 */
 	public function undelete( $timestamps, $comment = '', $fileVersions = [],
 		$unsuppress = false, User $user = null, $tags = null
+	) {
+		wfDeprecated( __METHOD__, '1.35' );
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$result = $this->undeleteAsUser(
+			$timestamps,
+			$user,
+			$comment,
+			$fileVersions,
+			$unsuppress,
+			$tags
+		);
+		return $result;
+	}
+
+	/**
+	 * Restore the given (or all) text and file revisions for the page.
+	 * Once restored, the items will be removed from the archive tables.
+	 * The deletion log will be updated with an undeletion notice.
+	 *
+	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
+	 * (depending what operations are attempted).
+	 *
+	 * @since 1.35
+	 *
+	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 *   otherwise list the ones to undelete.
+	 * @param User $user
+	 * @param string $comment
+	 * @param array $fileVersions
+	 * @param bool $unsuppress
+	 * @param string|string[]|null $tags Change tags to add to log entry
+	 *   ($user should be able to add the specified tags before this is called)
+	 * @return array|bool [ number of file revisions restored, number of image revisions
+	 *   restored, log message ] on success, false on failure.
+	 */
+	public function undeleteAsUser(
+		$timestamps,
+		User $user,
+		$comment = '',
+		$fileVersions = [],
+		$unsuppress = false,
+		$tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -447,14 +549,9 @@ class PageArchive {
 		// Touch the log!
 
 		if ( !$textRestored && !$filesRestored ) {
-			wfDebug( "Undelete: nothing undeleted...\n" );
+			wfDebug( "Undelete: nothing undeleted..." );
 
 			return false;
-		}
-
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
@@ -469,7 +566,7 @@ class PageArchive {
 			],
 		] );
 
-		Hooks::run( 'ArticleUndeleteLogEntry', [ $this, &$logEntry, $user ] );
+		$this->getHookRunner()->onArticleUndeleteLogEntry( $this, $logEntry, $user );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
@@ -523,7 +620,7 @@ class PageArchive {
 				__METHOD__ );
 
 			if ( $previousTimestamp === false ) {
-				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist\n" );
+				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
 				$status = Status::newGood( 0 );
 				$status->warning( 'undeleterevision-missing' );
@@ -566,7 +663,7 @@ class PageArchive {
 
 		$rev_count = $result->numRows();
 		if ( !$rev_count ) {
-			wfDebug( __METHOD__ . ": no revisions to restore\n" );
+			wfDebug( __METHOD__ . ": no revisions to restore" );
 
 			$status = Status::newGood( 0 );
 			$status->warning( "undelete-no-results" );
@@ -708,9 +805,19 @@ class PageArchive {
 
 				$restored++;
 
-				$legacyRevision = new Revision( $revision );
-				Hooks::run( 'ArticleRevisionUndeleted',
-					[ &$this->title, $legacyRevision, $row->ar_page_id ] );
+				$hookRunner = $this->getHookRunner();
+				$hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
+
+				// Hook is hard deprecated since 1.35
+				if ( $this->getHookContainer()->isRegistered( 'ArticleRevisionUndeleted' ) ) {
+					// Only create the Revision object if it is needed
+					$legacyRevision = new Revision( $revision );
+					$hookRunner->onArticleRevisionUndeleted(
+						$this->title,
+						$legacyRevision,
+						$row->ar_page_id
+					);
+				}
 				$restoredPages[$row->ar_page_id] = true;
 			}
 
@@ -737,14 +844,36 @@ class PageArchive {
 		// Was anything restored at all?
 		if ( $restored ) {
 			$created = (bool)$newid;
-			// Attach the latest revision to the page...
-			// XXX: updateRevisionOn should probably move into a PageStore service.
-			$wasnew = $article->updateIfNewerOn( $dbw, $legacyRevision );
+
+			$latestRevId = $article->getLatest();
+			if ( $latestRevId ) {
+				// If not found (false), cast to 0 so that the page is updated
+				// Just to be on the safe side, even though it should always be found
+				$latestRevTimestamp = (int)$revisionStore->getTimestampFromId(
+					$latestRevId,
+					RevisionStore::READ_LATEST
+				);
+			} else {
+				$latestRevTimestamp = 0;
+			}
+
+			if ( $revision->getTimestamp() > $latestRevTimestamp ) {
+				// Attach the latest revision to the page...
+				// XXX: updateRevisionOn should probably move into a PageStore service.
+				$wasnew = $article->updateRevisionOn(
+					$dbw,
+					$revision,
+					$latestRevId
+				);
+			} else {
+				$wasnew = false;
+			}
+
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
 				$article->doEditUpdates(
-					$legacyRevision,
+					$revision,
 					User::newFromName( $revision->getUser( RevisionRecord::RAW )->getName(), false ),
 					[
 						'created' => $created,
@@ -754,8 +883,8 @@ class PageArchive {
 				);
 			}
 
-			Hooks::run( 'ArticleUndelete',
-				[ &$this->title, $created, $comment, $oldPageId, $restoredPages ] );
+			$this->getHookRunner()->onArticleUndelete(
+				$this->title, $created, $comment, $oldPageId, $restoredPages );
 
 			if ( $this->title->getNamespace() == NS_FILE ) {
 				$job = HTMLCacheUpdateJob::newForBacklinks(

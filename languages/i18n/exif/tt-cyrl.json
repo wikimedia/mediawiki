@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Don Alessandro",
+			"Ерней",
 			"Ильнар",
-			"Рашат Якупов",
-			"Ерней"
+			"Рашат Якупов"
 		]
 	},
 	"exif-imagewidth": "Киңлек",
@@ -19,7 +19,7 @@
 	"exif-rowsperstrip": "Бер бүлемдә юллар саны",
 	"exif-stripbytecounts": "Кысылган бүлемдә байтлар саны",
 	"exif-datetime": "Файл үзгәреше датасы һәм вакыты",
-	"exif-imagedescription": "Сурәт атамасы",
+	"exif-imagedescription": "Сурәт исеме",
 	"exif-make": "Камера җитештерүчесе",
 	"exif-model": "Камера төре",
 	"exif-software": "Кулланылган программа",
@@ -41,7 +41,7 @@
 	"exif-subsectimedigitized": "Санлаштыру вакытының өлеш секунды",
 	"exif-exposuretime": "Экспозиция озаклыгы",
 	"exif-exposuretime-format": "$1 с ($2)",
-	"exif-fnumber": "Диафрагманың саны",
+	"exif-fnumber": "Диафрагма саны",
 	"exif-fnumber-format": "f/$1",
 	"exif-exposureprogram": "Экспозиция программасы",
 	"exif-spectralsensitivity": "Спектраль сизүчәнлек",
@@ -63,7 +63,7 @@
 	"exif-focalplaneyresolution": "Y фокаль яссылык киңәйтелүе",
 	"exif-focalplaneresolutionunit": "Фокаль яссылык киңәйтелүен исәпләү берәмлеге",
 	"exif-subjectlocation": "Җисемнең сул якка карата торышы",
-	"exif-exposureindex": "Экспозиция саны",
+	"exif-exposureindex": "Экспозиция индексы",
 	"exif-sensingmethod": "Сенсор төре",
 	"exif-filesource": "Файлның чыганагы",
 	"exif-scenetype": "Тирәлекнең төре",
@@ -77,7 +77,7 @@
 	"exif-contrast": "Караңгылык",
 	"exif-saturation": "Төрлелеге",
 	"exif-sharpness": "Ачыклыгы",
-	"exif-devicesettingdescription": "Камераның көйләүләр тасвирламасы",
+	"exif-devicesettingdescription": "Камераның көйләнмәләре тасвирламасы",
 	"exif-subjectdistancerange": "Төшерү җисеменә кадәр ераклык",
 	"exif-imageuniqueid": "Сурәт саны (ID)",
 	"exif-gpsversionid": "GPS мәгълүматы блогының версиясе",
@@ -199,6 +199,8 @@
 	"exif-objectcycle-a": "Иртән генә",
 	"exif-objectcycle-p": "Кичен генә",
 	"exif-objectcycle-b": "Иртән һәм кичен",
+	"exif-gpsdirection-t": "Чын юнәлеш",
+	"exif-gpsdirection-m": "Магнит юнәлеше",
 	"exif-dc-date": "Дата(лар)",
 	"exif-dc-publisher": "Нәшир",
 	"exif-dc-relation": "Бәйле медиа",

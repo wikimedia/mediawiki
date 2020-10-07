@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bill Pirkle",
+			"Tim Starling"
+		]
+	},
+	"rest-prefix-mismatch": "The requested path ($1) was not inside the REST API root path ($2)",
+	"rest-wrong-method": "The request method ($1) was not {{PLURAL:$3|the allowed method for this path|one of the allowed methods for this path}} ($2)",
+	"rest-no-match": "The requested relative path ($1) did not match any known handler",
+	"rest-nonexistent-title": "The specified title ($1) does not exist",
+	"rest-nonexistent-title-revision": "The specified revision ($1) does not exist for the specified page ($2)",
+	"rest-nonexistent-revision": "The specified revision ($1) does not exist",
+	"rest-nonexistent-user": "The specified user ($1) does not exist",
+	"rest-invalid-user": "The specified user name ($1) is invalid",
+	"rest-permission-denied-anon": "Not accessible by anonymous user",
+	"rest-permission-denied-title": "The user does not have rights to read title ($1)",
+	"rest-permission-denied-revision": "User doesn't have access to the requested revision ($1).",
+	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" and \"newer_than\" cannot both be specified",
+	"rest-pagehistory-param-range-error": "Revision id must be greater than 0",
+	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
+	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid",
+	"rest-pagehistorycount-parameters-invalid": "The specified combination of parameters is not supported.",
+	"rest-compare-page-mismatch": "The specified revisions belong to different pages; refusing to compare them.",
+	"rest-compare-permission-denied": "User doesn't have access to the requested revisions",
+	"rest-compare-nonexistent": "The revision specified by the $1 parameter does not exist.",
+	"rest-compare-inaccessible": "The revision specified by the $1 parameter is not publicly accessible.",
+	"rest-compare-wrong-content": "The $1 slot of the revision specified by the $2 parameter has a content type which cannot be converted to text.",
+	"rest-compare-wikidiff2": "This endpoint requires wikidiff2 1.9.0 or later.",
+	"rest-pagehistorycount-too-many-revisions": "The specified title contains too many revisions to retrieve this count.",
+	"rest-search-error": "Error when returning search results: $1",
+	"rest-page-source-type-error": "The content type of the page source requested is unsupported",
+	"rest-no-revision" : "Unable to retrieve revision for title $1",
+	"rest-media-too-many-links": "Too many media links found on title $1 ($2 allowed)",
+	"rest-html-backend-error": "Unable to fetch Parsoid HTML",
+	"rest-bad-json-body": "Bad request body, must be a JSON object.",
+	"rest-json-body-parse-error": "Parsing request body as JSON failed: $1",
+	"rest-missing-body-field": "Mandatory field \"$1\" missing from request body.",
+	"rest-bad-content-model": "Bad content model: $1",
+	"rest-update-cannot-create-page": "The page \"$1\" cannot be created since it already exists. To update the existing page, provide the base revision ID in the structure under \"latest\" key in the request body.",
+	"rest-extraneous-csrf-token": "Extraneous CSRF token found. CSRF tokens must not be used when using authentication mechanisms such as OAuth that are safe against CSRF attacks.",
+	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded."
+}

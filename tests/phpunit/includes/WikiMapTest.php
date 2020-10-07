@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\DatabaseDomain;
  */
 class WikiMapTest extends MediaWikiLangTestCase {
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$conf = new SiteConfiguration();

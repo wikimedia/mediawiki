@@ -1,19 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Рустам Нурыев",
-			"Азат Хәлилов",
-			"Sagan",
-			"Айсар",
-			"Янмурза Баки",
-			"Айбикә",
-			"Лилиә",
-			"Lizalizaufa",
-			"Гульчатай",
 			"Ilmira",
+			"Lizalizaufa",
+			"Sagan",
+			"Азат Хәлилов",
+			"Айбикә",
+			"Айсар",
 			"Гизатуллина",
+			"Гульчатай",
+			"Лилиә",
+			"Ләйсән",
+			"Рустам Нурыев",
 			"Танзиля Кутлугильдина",
-			"Ләйсән"
+			"Янмурза Баки"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почта таратыу]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce  API яңылыҡтары]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R  Хаталар һәм яуаптар]\n</div>\n<strong>Статус:</strong> Был биттә  күрһәтелгән бар функциялар ҙа эшләргә тейеш,  шулай ҙа  API әүҙем эшкәртеү хәлендә тора һәм теләгән бер ваҡытта үҙгәрергә мөмкин. Яңыртылыуҙарҙы һәр саҡ белеп торор өсөн [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почта таратыу mediawiki-api-announce], ошоға яҙыл.\n\n<strong>Хаталы һоратыуҙар:</strong> Әгәр API хаталы һоратыу алһа,     HTTP баш һүҙе   «MediaWiki-API-Error» асҡысы менән кире ҡайтарыла,  бынан һуң баш һүҙҙең мәғәнәһе һәм хата  коды кире ебәреләсәк һәм кире шул уҡ мәғәнәлә кире ҡуйыласаҡ. Киңерәк мәғлүмәтте ошонан ҡара  [[mw:API:Errors_and_warnings|API:Хаталар һәм иҫкәртеүҙәр]].\n\n<strong>Тестлау:</strong>   API-һоратыуҙарҙы тестлау уңайлы булһын өсөн ҡара. [[Special:ApiSandbox]]",
@@ -423,6 +423,5 @@
 	"apihelp-query+transcludedin-param-prop": "Ниндәй үҙенсәлек алырға:",
 	"apihelp-query+transcludedin-param-limit": "Күпме һылтанмаларҙы кире ҡайтарырға.",
 	"apihelp-query+usercontribs-summary": "Ҡулланыусының бөтә төҙәтеүҙәрен алыу",
-	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған белдереүҙәрҙең иң күп һаны",
-	"apierror-timeout": "Көтөлгән ваҡыт эсендә сервер яуып бирмәне."
+	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған белдереүҙәрҙең иң күп һаны"
 }

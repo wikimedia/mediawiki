@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to get information about a list of users
@@ -78,7 +79,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->tokenFunctions = [
 			'userrights' => [ self::class, 'getUserrightsToken' ],
 		];
-		Hooks::run( 'APIQueryUsersTokens', [ &$this->tokenFunctions ] );
+		$this->getHookRunner()->onAPIQueryUsersTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
@@ -98,17 +99,15 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	public function execute() {
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
-
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );
 
-		if ( !is_null( $params['prop'] ) ) {
+		if ( $params['prop'] !== null ) {
 			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = [];
 		}
-		$useNames = !is_null( $params['users'] );
+		$useNames = $params['users'] !== null;
 
 		$users = (array)$params['users'];
 		$userids = (array)$params['userids'];
@@ -173,7 +172,10 @@ class ApiQueryUsers extends ApiQueryBase {
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'JOIN', 'ug_user=user_id' ] ] );
 				$this->addFields( [ 'user_name' ] );
-				$this->addFields( UserGroupMembership::selectFields() );
+				$this->addFields( MediaWikiServices::getInstance()
+					->getUserGroupManager()
+					->getQueryInfo()['fields']
+				);
 				$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .
 					$db->addQuotes( $db->timestamp() ) );
 				$userGroupsRes = $this->select( __METHOD__ );
@@ -234,7 +236,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				if ( $row->ipb_deleted ) {
 					$data[$key]['hidden'] = true;
 				}
-				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+				if ( isset( $this->prop['blockinfo'] ) && $row->ipb_by_text !== null ) {
 					$data[$key] += $this->getBlockDetails( DatabaseBlock::newFromRow( $row ) );
 				}
 
@@ -256,7 +258,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					);
 				}
 
-				if ( !is_null( $params['token'] ) ) {
+				if ( $params['token'] !== null ) {
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
@@ -284,7 +286,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					if ( $iwUser instanceof UserRightsProxy ) {
 						$data[$u]['interwiki'] = true;
 
-						if ( !is_null( $params['token'] ) ) {
+						if ( $params['token'] !== null ) {
 							$tokenFunctions = $this->getTokenFunctions();
 
 							foreach ( $params['token'] as $t ) {
@@ -299,7 +301,8 @@ class ApiQueryUsers extends ApiQueryBase {
 					} else {
 						$data[$u]['missing'] = true;
 						if ( isset( $this->prop['cancreate'] ) ) {
-							$status = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u );
+							$status = MediaWikiServices::getInstance()->getAuthManager()
+								->canCreateAccount( $u );
 							$data[$u]['cancreate'] = $status->isGood();
 							if ( !$status->isGood() ) {
 								$data[$u]['cancreateerror'] = $this->getErrorFormatter()->arrayFromStatus( $status );

@@ -2,19 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
+			"Seb35",
 			"Soued031",
-			"아라",
-			"Seb35"
+			"아라"
 		]
 	},
 	"config-desc": "Den Installatiounsprogramm vu MediaWiki",
 	"config-title": "MediaWiki $1 Installatioun",
 	"config-information": "Informatioun",
-	"config-localsettings-upgrade": "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.\nÄr Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>$wgUpgradeKey</code> an d'Këscht.\nDir fannt en am <code>LocalSettings.php</code>.",
-	"config-localsettings-cli-upgrade": "E Fichier <code>LocalSettings.php</code> gouf fonnt.\nFir dës Installatioun z'aktuaéliséieren start w.e.g. <code>update.php</code>",
+	"config-localsettings-upgrade": "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.\nÄr Software kann aktualiséiert ginn, setzt wgl. de Wäert vum <code>$wgUpgradeKey</code> an d'Këscht.\nDir fannt en am <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "E Fichier <code>LocalSettings.php</code> gouf fonnt.\nFir dës Installatioun z'aktuaéliséieren start wgl. <code>update.php</code>",
 	"config-localsettings-key": "Aktualisatiounsschlëssel:",
 	"config-localsettings-badkey": "Den Aktualisatiouns-Schlëssel deen Dir aginn hutt ass net korrekt",
-	"config-localsettings-incomplete": "De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.\nD'Variabel $1 ass net definéiert.\nÄnnert w.e.g. de Fichier <code>LocalSettings.php</code> sou datt déi Variabel definéiert ass a klickt op \"{{int:Config-continue}}\".",
+	"config-localsettings-incomplete": "De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.\nD'Variabel $1 ass net definéiert.\nÄnnert wgl. de Fichier <code>LocalSettings.php</code> sou datt déi Variabel definéiert ass a klickt op \"{{int:Config-continue}}\".",
 	"config-session-error": "Feeler beim Starte vun der Sessioun: $1",
 	"config-no-session": "D'Donnéeë vun ärer Sessioun si verluergaangen!\nKuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",
 	"config-your-language": "Är Sprooch",
@@ -33,7 +33,6 @@
 	"config-page-install": "Installéieren",
 	"config-page-complete": "Fäerdeg!",
 	"config-page-restart": "Installatioun neistarten",
-	"config-page-readme": "Liest dëst",
 	"config-page-releasenotes": "Informatiounen zur Versioun",
 	"config-page-copying": "Kopéieren",
 	"config-page-upgradedoc": "Aktualiséieren",
@@ -41,12 +40,10 @@
 	"config-help-restart": "Wëllt Dir all gespäichert Donnéeë läschen déi Dir bis elo aginn hutt an den Installatiounsprozess nei starten?",
 	"config-restart": "Jo, neistarten",
 	"config-welcome": "=== Iwwerpréifung vum Installatiounsenvironnement ===\nEt gi grondsätzlech Iwwerpréifunge gemaach fir ze kucken ob den Environnment gëeegent ass fir MediaWiki z'installéieren.\nDir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef frot wéi Dir D'Installatioun ofschléisse kënnt.",
-	"config-sidebar": "* [https://www.mediawiki.org MediaWiki Haaptsäit]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benotzerguide]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Guide fir Administrateuren]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]\n----\n* <doclink href=Readme>Liest dëst</doclink>\n* <doclink href=ReleaseNotes>Informatioune vun der aktueller Versioun</doclink>\n* <doclink href=Copying>Lizenzbedingungen</doclink>\n* <doclink href=UpgradeDoc>Aktualiséierung</doclink>",
-	"config-sidebar-readme": "Liest dëst",
+	"config-sidebar": "* [https://www.mediawiki.org MediaWiki Haaptsäit]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benotzerguide]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Guide fir Administrateuren]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication No Hëllef sichen]\n* [https://phabricator.wikimedia.org/ Feeler mellen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Matmaachen]",
 	"config-env-good": "Den Environement gouf nogekuckt.\nDir kënnt MediaWiki installéieren.",
 	"config-env-bad": "Den Environnement gouf iwwerpréift.\nDir kënnt MediWiki net installéieren.",
 	"config-env-php": "PHP $1 ass installéiert.",
-	"config-env-hhvm": "HHVM $1 ass installéiert.",
 	"config-no-db": "Et konnt kee passenden Datebank-Driver fonnt ginn! Dir musst een Datebank-Driver fir PHP installéieren.\n{{PLURAL:$2|Dësn Datebank-Typ gëtt|Dës Datebank-Type ginn}} ënnerstëtzt: $1.\n\nWann Dir PHP selwer compiléiert hutt, da rekonfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysqli</code> benotzt.\nWann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
 	"config-outdated-sqlite": "<strong>Warnung:</strong> SQLite $2 ass installéiert. Allerdengs brauch MediaWiki SQLite $1 oder méi nei. SQLite ass dofir net disponibel.",
 	"config-memory-bad": "'''Opgepasst:''' De Parameter <code>memory_limit</code> vu PHP ass $1.\nDat ass wahrscheinlech ze niddreg.\nD'Installatioun kéint net funktionéieren.",
@@ -110,7 +107,7 @@
 	"config-admin-name": "Äre Benotzernumm:",
 	"config-admin-password": "Passwuert:",
 	"config-admin-password-confirm": "Passwuert confirméieren:",
-	"config-admin-help": "Gitt w.e.g. Äre gewënschte Benotzernumm hei an, zum Beispill \"Jang Muller\".\nDësen Numm gëtt da gebraucht fir sech an d'Wiki anzeloggen.",
+	"config-admin-help": "Gitt wgl. Äre gewënschte Benotzernumm hei an, zum Beispill \"Jang Muller\".\nDësen Numm gëtt da gebraucht fir sech an d'Wiki anzeloggen.",
 	"config-admin-name-blank": "Gitt e Benotzernumm fir den Administrateur an.",
 	"config-admin-name-invalid": "De spezifizéierte Benotzernumm \"<nowiki>$1</nowiki>\" ass net valabel.\nSpezifizéiert en anere Benotzernumm.",
 	"config-admin-password-blank": "Gitt e Passwuert fir den Adminstateur-Kont an.",
@@ -172,7 +169,7 @@
 	"config-install-user-grant-failed": "D'Bäisetze vu Rechter fir de Benotzer \"$1\" huet net funktionéiert: $2",
 	"config-install-user-missing": "De Benotzer \"$1\" deen ugi gouf gëtt et net.",
 	"config-install-user-missing-create": "De spezifizéierte Benotzer \"$1\" gëtt et net.\nKlickt d'Checkbox \"Benotzerkont uleeën\" wann Dir dee Benotzer uleeë wëllt.",
-	"config-install-tables": "Tabelle ginn ugeluecht",
+	"config-install-tables": "Tabelle ginn ugeluecht, éischte Schrëtt",
 	"config-install-interwiki": "Standard Interwiki-Tabell gëtt ausgefëllt",
 	"config-install-interwiki-list": "De Fichier <code>interwiki.list</code> gouf net fonnt.",
 	"config-install-stats": "Initialisatioun vun de Statistiken",
@@ -190,5 +187,5 @@
 	"config-extensions-requires": "$1 (brauch $2)",
 	"config-screenshot": "Screenshot",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
-	"mainpagedocfooter": "Kuckt w.e.g. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
+	"mainpagedocfooter": "Kuckt wgl. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
 }

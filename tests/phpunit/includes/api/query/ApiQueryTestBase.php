@@ -20,11 +20,14 @@
  * @file
  */
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\Comparator\ComparisonFailure;
+
 /** This class has some common functionality for testing query module
  */
 abstract class ApiQueryTestBase extends ApiTestCase {
 
-	const PARAM_ASSERT = <<<STR
+	private const PARAM_ASSERT = <<<STR
 Each parameter must be an array of two elements,
 first - an array of params to the API call,
 and the second array - expected results as returned by the API
@@ -54,12 +57,12 @@ STR;
 	 * @return array
 	 */
 	private function validateRequestExpectedPair( $v ) {
-		$this->assertInternalType( 'array', $v, self::PARAM_ASSERT );
-		$this->assertEquals( 2, count( $v ), self::PARAM_ASSERT );
+		$this->assertIsArray( $v, self::PARAM_ASSERT );
+		$this->assertCount( 2, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 0, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 1, $v, self::PARAM_ASSERT );
-		$this->assertInternalType( 'array', $v[0], self::PARAM_ASSERT );
-		$this->assertInternalType( 'array', $v[1], self::PARAM_ASSERT );
+		$this->assertIsArray( $v[0], self::PARAM_ASSERT );
+		$this->assertIsArray( $v[1], self::PARAM_ASSERT );
 
 		return $v;
 	}
@@ -112,20 +115,14 @@ STR;
 			$exp = self::sanitizeResultArray( $exp );
 			$result = self::sanitizeResultArray( $result );
 			$this->assertEquals( $exp, $result );
-		} catch ( PHPUnit_Framework_ExpectationFailedException $e ) {
+		} catch ( ExpectationFailedException $e ) {
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
 
-			// FIXME: once we migrate to phpunit 4.1+, hardcode ComparisonFailure exception use
-			$compEx = 'SebastianBergmann\Comparator\ComparisonFailure';
-			if ( !class_exists( $compEx ) ) {
-				$compEx = 'PHPUnit_Framework_ComparisonFailure';
-			}
-
-			throw new PHPUnit_Framework_ExpectationFailedException(
+			throw new ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
-				new $compEx(
+				new ComparisonFailure(
 					$exp,
 					$result,
 					print_r( $exp, true ),

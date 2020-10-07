@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/oojs-ui.svg?style=flat)](https://www.npmjs.com/package/oojs-ui) [![Packagist](https://img.shields.io/packagist/v/oojs/oojs-ui.svg?style=flat)](https://packagist.org/packages/oojs/oojs-ui) [![David](https://img.shields.io/david/dev/wikimedia/oojs-ui.svg?style=flat)](https://david-dm.org/wikimedia/oojs-ui#info=devDependencies)
+[![npm](https://img.shields.io/npm/v/oojs-ui.svg?style=flat)](https://www.npmjs.com/package/oojs-ui) [![Packagist](https://img.shields.io/packagist/v/oojs/oojs-ui.svg?style=flat)](https://packagist.org/packages/oojs/oojs-ui)
 
 OOUI
 =================
@@ -64,7 +64,7 @@ Contributing
 We are always delighted when people contribute patches. To setup your development environment:
 
 
-1. Clone the repo: `$ git clone https://phabricator.wikimedia.org/diffusion/GOJU/oojs-ui.git oojs-ui`
+1. Clone the repo: `$ git clone https://gerrit.wikimedia.org/r/oojs/ui oojs-ui`
 
 2. Move into the library directory:<br>`$ cd oojs-ui`
 

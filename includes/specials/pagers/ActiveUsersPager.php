@@ -55,7 +55,7 @@ class ActiveUsersPager extends UsersPager {
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
 	 */
-	public function __construct( IContextSource $context = null, FormOptions $opts ) {
+	public function __construct( ?IContextSource $context, FormOptions $opts ) {
 		parent::__construct( $context );
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
@@ -64,7 +64,7 @@ class ActiveUsersPager extends UsersPager {
 		$un = $opts->getValue( 'username' );
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
-			if ( !is_null( $username ) ) {
+			if ( $username !== null ) {
 				$this->requestedUser = $username->getText();
 			}
 		}
@@ -80,11 +80,11 @@ class ActiveUsersPager extends UsersPager {
 		}
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'qcc_title';
 	}
 
-	function getQueryInfo( $data = null ) {
+	public function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
@@ -131,7 +131,7 @@ class ActiveUsersPager extends UsersPager {
 				  ->userHasRight( $this->getUser(), 'hideuser' )
 		) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
+					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ], __METHOD__
 				) . ')';
 		}
 		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
@@ -221,7 +221,7 @@ class ActiveUsersPager extends UsersPager {
 		$this->mResult->seek( 0 );
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$userName = $row->user_name;
 
 		$ulinks = Linker::userLink( $row->user_id, $userName );

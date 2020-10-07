@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module that facilitates changing the language of a page.
  * The API equivalent of SpecialPageLanguage.
@@ -114,7 +116,9 @@ class ApiSetPageLanguage extends ApiBase {
 			'lang' => [
 				ApiBase::PARAM_TYPE => array_merge(
 					[ 'default' ],
-					array_keys( Language::fetchLanguageNames( null, 'mwfile' ) )
+					array_keys( MediaWikiServices::getInstance()
+						->getLanguageNameUtils()
+						->getLanguageNames( null, 'mwfile' ) )
 				),
 				ApiBase::PARAM_REQUIRED => true,
 			],

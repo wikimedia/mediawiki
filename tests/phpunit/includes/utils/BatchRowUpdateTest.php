@@ -9,7 +9,7 @@
  * @covers BatchRowIterator
  * @covers BatchRowWriter
  */
-class BatchRowUpdateTest extends MediaWikiTestCase {
+class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 	public function testWriterBasicFunctionality() {
 		$db = $this->mockDb( [ 'update' ] );
@@ -218,7 +218,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			$retvals[] = $this->returnValue( new ArrayIterator( $rows ) );
 		}
 
-		return call_user_func_array( [ $this, 'onConsecutiveCalls' ], $retvals );
+		return $this->onConsecutiveCalls( ...$retvals );
 	}
 
 	protected function genSelectResult( $batchSize, $numRows, $rowGenerator ) {
@@ -226,7 +226,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		for ( $i = 0; $i < $numRows; $i += $batchSize ) {
 			$rows = [];
 			for ( $j = 0; $j < $batchSize && $i + $j < $numRows; $j++ ) {
-				$rows [] = (object)call_user_func( $rowGenerator );
+				$rows[] = (object)$rowGenerator();
 			}
 			$res[] = $rows;
 		}

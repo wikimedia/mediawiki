@@ -20,43 +20,48 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Sender\SocketSender;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILBFactory;
+use Psr\Log\LoggerInterface;
+use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
-use Liuggio\StatsdClient\Sender\SocketSender;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
  */
 class MediaWiki {
-	/**
-	 * @var IContextSource
-	 */
-	private $context;
+	use ProtectedHookAccessorTrait;
 
-	/**
-	 * @var Config
-	 */
+	/** @var IContextSource */
+	private $context;
+	/** @var Config */
 	private $config;
 
-	/**
-	 * @var string Cache what action this request is
-	 */
+	/** @var string Cache what action this request is */
 	private $action;
+	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
+	private $postSendStrategy;
+
+	/** @var int Use fastcgi_finish_request() */
+	private const DEFER_FASTCGI_FINISH_REQUEST = 1;
+	/** @var int Use ob_end_flush() after explicitly setting the Content-Length */
+	private const DEFER_SET_LENGTH_AND_FLUSH = 2;
 
 	/**
 	 * @param IContextSource|null $context
 	 */
 	public function __construct( IContextSource $context = null ) {
-		if ( !$context ) {
-			$context = RequestContext::getMain();
+		$this->context = $context ?: RequestContext::getMain();
+		$this->config = $this->context->getConfig();
+		if ( function_exists( 'fastcgi_finish_request' ) ) {
+			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
+		} else {
+			$this->postSendStrategy = self::DEFER_SET_LENGTH_AND_FLUSH;
 		}
-
-		$this->context = $context;
-		$this->config = $context->getConfig();
 	}
 
 	/**
@@ -83,14 +88,14 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
 			// in wikitext links to tell Parser to make a direct file link
-			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
+			if ( $ret !== null && $ret->getNamespace() == NS_MEDIA ) {
 				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
 			}
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if (
-				$contLang->hasVariants() && !is_null( $ret ) && $ret->getArticleID() == 0
+				$contLang->hasVariants() && $ret !== null && $ret->getArticleID() == 0
 			) {
 				$contLang->findVariantLink( $title, $ret );
 			}
@@ -106,8 +111,14 @@ class MediaWiki {
 			$oldid = $oldid ?: $request->getInt( 'diff' );
 			// Allow oldid to override a changed or missing title
 			if ( $oldid ) {
-				$rev = Revision::newFromId( $oldid );
-				$ret = $rev ? $rev->getTitle() : $ret;
+				$revRecord = MediaWikiServices::getInstance()
+					->getRevisionLookup()
+					->getRevisionById( $oldid );
+				if ( $revRecord ) {
+					$ret = Title::newFromLinkTarget(
+						$revRecord->getPageAsLinkTarget()
+					);
+				}
 			}
 		}
 
@@ -150,7 +161,7 @@ class MediaWiki {
 	 *
 	 * @return string Action
 	 */
-	public function getAction() {
+	public function getAction() : string {
 		if ( $this->action === null ) {
 			$this->action = Action::getActionName( $this->context );
 		}
@@ -182,11 +193,10 @@ class MediaWiki {
 			$output->setPrintable();
 		}
 
-		$unused = null; // To pass it by reference
-		Hooks::run( 'BeforeInitialize', [ &$title, &$unused, &$output, &$user, $request, $this ] );
+		$this->getHookRunner()->onBeforeInitialize( $title, null, $output, $user, $request, $this );
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
+		if ( $title === null || ( $title->getDBkey() == '' && !$title->isExternal() )
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
@@ -203,7 +213,8 @@ class MediaWiki {
 		// We will check again in Article::view().
 		$permErrors = $title->isSpecial( 'RunJobs' )
 			? [] // relies on HMAC key signature alone
-			: $title->getUserPermissionsErrors( 'read', $user );
+			: MediaWikiServices::getInstance()->getPermissionManager()
+				->getPermissionErrors( 'read', $user, $title );
 		if ( count( $permErrors ) ) {
 			// T34276: allowing the skin to generate output with $wgTitle or
 			// $this->context->title set to the input title would allow anonymous users to
@@ -282,7 +293,7 @@ class MediaWiki {
 							$this->action = null;
 							$title = $target;
 							$output->addJsConfigVars( [
-								'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
+								'wgInternalRedirectTargetUrl' => $target->getLinkURL( $query ),
 							] );
 							$output->addModules( 'mediawiki.action.view.redirect' );
 						}
@@ -307,6 +318,7 @@ class MediaWiki {
 						. " returned neither an object nor a URL" );
 				}
 			}
+			$output->considerCacheSettingsFinal();
 		}
 	}
 
@@ -341,7 +353,7 @@ class MediaWiki {
 			|| ( $request->getCheck( 'title' )
 				&& $title->getPrefixedDBkey() == $request->getVal( 'title' ) )
 			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
-			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
+			|| !$this->getHookRunner()->onTestCanonicalRedirect( $request, $title, $output )
 		) {
 			return false;
 		}
@@ -411,7 +423,11 @@ class MediaWiki {
 		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
-		if ( !ContentHandler::getForTitle( $title )->supportsRedirects() ) {
+		if ( !MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $title->getContentModel() )
+				->supportsRedirects()
+		) {
 			return $article;
 		}
 
@@ -431,8 +447,8 @@ class MediaWiki {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
-			Hooks::run( 'InitializeArticleMaybeRedirect',
-				[ &$title, &$request, &$ignoreRedirect, &$target, &$article ] );
+			$this->getHookRunner()->onInitializeArticleMaybeRedirect( $title, $request,
+				$ignoreRedirect, $target, $article );
 			$page = $article->getPage(); // reflect any hook changes
 
 			// Follow redirects only for... redirects.
@@ -470,23 +486,23 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 *
-	 * @param Page $page
+	 * @param Article $article
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
-	private function performAction( Page $page, Title $requestTitle ) {
+	private function performAction( Article $article, Title $requestTitle ) {
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
 
-		if ( !Hooks::run( 'MediaWikiPerformAction',
-				[ $output, $page, $title, $user, $request, $this ] )
+		if ( !$this->getHookRunner()->onMediaWikiPerformAction(
+			$output, $article, $title, $user, $request, $this )
 		) {
 			return;
 		}
 
 		$act = $this->getAction();
-		$action = Action::factory( $act, $page, $this->context );
+		$action = Action::factory( $act, $article, $this->context );
 
 		if ( $action instanceof Action ) {
 			// Narrow DB query expectations for this HTTP request
@@ -529,6 +545,7 @@ class MediaWiki {
 				$out = $this->context->getOutput();
 				// TODO: Should ErrorPageError::report accept a OutputPage parameter?
 				$e->report( ErrorPageError::STAGE_OUTPUT );
+				$out->considerCacheSettingsFinal();
 
 				// T64091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
@@ -544,7 +561,7 @@ class MediaWiki {
 				$context->hasTitle() &&
 				$context->getTitle()->canExist() &&
 				in_array( $action, [ 'view', 'history' ], true ) &&
-				HTMLFileCache::useFileCache( $this->context, HTMLFileCache::MODE_OUTAGE )
+				HTMLFileCache::useFileCache( $context, HTMLFileCache::MODE_OUTAGE )
 			) {
 				// Try to use any (even stale) file during outages...
 				$cache = new HTMLFileCache( $context->getTitle(), $action );
@@ -554,23 +571,72 @@ class MediaWiki {
 					exit;
 				}
 			}
-
-			MWExceptionHandler::handleException( $e );
-		} catch ( Error $e ) {
+			// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
+			// ChronologyProtector synchronizes DB positions or replicas across all datacenters.
+			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
+		} catch ( Throwable $e ) {
 			// Type errors and such: at least handle it now and clean up the LBFactory state
-			MWExceptionHandler::handleException( $e );
+			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 
-		$this->doPostOutputShutdown( 'normal' );
+		$this->doPostOutputShutdown();
 	}
 
+	/**
+	 * Add a comment to future SQL queries for easy SHOW PROCESSLIST interpretation
+	 */
 	private function setDBProfilingAgent() {
 		$services = MediaWikiServices::getInstance();
-		// Add a comment for easy SHOW PROCESSLIST interpretation
 		$name = $this->context->getUser()->getName();
 		$services->getDBLoadBalancerFactory()->setAgentName(
 			mb_strlen( $name ) > 15 ? mb_substr( $name, 0, 15 ) . '...' : $name
 		);
+	}
+
+	/**
+	 * If enabled, after everything specific to this request is done, occasionally run jobs
+	 */
+	private function schedulePostSendJobs() {
+		$jobRunRate = $this->config->get( 'JobRunRate' );
+		if (
+			// Recursion guard
+			$this->getTitle()->isSpecial( 'RunJobs' ) ||
+			// Short circuit if there is nothing to do
+			( $jobRunRate <= 0 || wfReadOnly() ) ||
+			// Avoid blocking the client on stock apache; see doPostOutputShutdown()
+			(
+				$this->context->getRequest()->getMethod() === 'HEAD' ||
+				$this->context->getRequest()->getHeader( 'If-Modified-Since' )
+			)
+		) {
+			return;
+		}
+
+		if ( $jobRunRate < 1 ) {
+			$max = mt_getrandmax();
+			if ( mt_rand( 0, $max ) > $max * $jobRunRate ) {
+				return; // the higher the job run rate, the less likely we return here
+			}
+			$n = 1;
+		} else {
+			$n = intval( $jobRunRate );
+		}
+
+		// Note that DeferredUpdates will catch and log an errors (T88312)
+		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate( function () use ( $n ) {
+			$logger = LoggerFactory::getInstance( 'runJobs' );
+			if ( $this->config->get( 'RunJobsAsync' ) ) {
+				// Send an HTTP request to the job RPC entry point if possible
+				$invokedWithSuccess = $this->triggerAsyncJobs( $n, $logger );
+				if ( !$invokedWithSuccess ) {
+					// Fall back to blocking on running the job(s)
+					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
+					$this->triggerSyncJobs( $n );
+				}
+			} else {
+				$this->triggerSyncJobs( $n );
+			}
+		}, __METHOD__ ) );
 	}
 
 	/**
@@ -599,7 +665,8 @@ class MediaWiki {
 		$config = $context->getConfig();
 		$request = $context->getRequest();
 		$output = $context->getOutput();
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		// Try to make sure that all RDBMs, session, and other storage updates complete
 		ignore_user_abort( true );
@@ -648,8 +715,10 @@ class MediaWiki {
 					);
 					$output->redirect( $safeUrl );
 				} else {
-					$e = new LogicException( "No redirect; cannot append cpPosIndex parameter." );
-					MWExceptionHandler::logException( $e );
+					MWExceptionHandler::logException(
+						new LogicException( "No redirect; cannot append cpPosIndex parameter." ),
+						MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
+					);
 				}
 			}
 		}
@@ -676,10 +745,26 @@ class MediaWiki {
 			}
 
 			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
-			if ( MessageCache::singleton()->isDisabled() ) {
+			if ( $services->getMessageCache()->isDisabled() ) {
 				$maxAge = $config->get( 'CdnMaxageSubstitute' );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Response-Substitute: true" );
+			}
+
+			if ( !$output->couldBePublicCached() || $output->haveCacheVaryCookies() ) {
+				// Autoblocks: If this user is autoblocked (and the cookie block feature is enabled
+				// for autoblocks), then set a cookie to track this block.
+				// This has to be done on all logged-in page loads (not just upon saving edits),
+				// because an autoblocked editor might not edit again from the same IP address.
+				//
+				// IP blocks: For anons, if their IP is blocked (and cookie block feature is enabled
+				// for IP blocks), we also want to set the cookie whenever it is safe to do.
+				// Basically from any url that are definitely not publicly cacheable (like viewing
+				// EditPage), or when the HTTP response is personalised for other reasons (e.g. viewing
+				// articles within the same browsing session after making an edit).
+				$user = $context->getUser();
+				$services->getBlockManager()
+					->trackBlockWithCookie( $user, $request->response() );
 			}
 		}
 	}
@@ -739,10 +824,9 @@ class MediaWiki {
 	 * This manages deferred updates, job insertion,
 	 * final commit, and the logging of profiling data
 	 *
-	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
-	public function doPostOutputShutdown( $mode = 'normal' ) {
+	public function doPostOutputShutdown() {
 		// Record backend request timing
 		$timing = $this->context->getTiming();
 		$timing->mark( 'requestShutdown' );
@@ -751,45 +835,47 @@ class MediaWiki {
 		try {
 			// Show visible profiling data if enabled (which cannot be post-send)
 			Profiler::instance()->logDataPageOutputOnly();
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 
 		// Disable WebResponse setters for post-send processing (T191537).
 		WebResponse::disableForPostSend();
 
-		$blocksHttpClient = true;
 		// Defer everything else if possible...
-		$callback = function () use ( $mode, &$blocksHttpClient ) {
+		$callback = function () {
 			try {
-				$this->restInPeace( $mode, $blocksHttpClient );
-			} catch ( Exception $e ) {
+				$this->restInPeace();
+			} catch ( Throwable $e ) {
 				// If this is post-send, then displaying errors can cause broken HTML
-				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				MWExceptionHandler::rollbackMasterChangesAndLog(
+					$e,
+					MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
+				);
 			}
 		};
 
-		if ( function_exists( 'register_postsend_function' ) ) {
-			// https://github.com/facebook/hhvm/issues/1230
-			register_postsend_function( $callback );
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$blocksHttpClient = false;
+		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
+			fastcgi_finish_request();
+			$callback();
 		} else {
-			if ( function_exists( 'fastcgi_finish_request' ) ) {
-				fastcgi_finish_request();
-				/** @noinspection PhpUnusedLocalVariableInspection */
-				$blocksHttpClient = false;
-			} else {
-				// Either all DB and deferred updates should happen or none.
-				// The latter should not be cancelled due to client disconnect.
-				ignore_user_abort( true );
+			// Flush PHP and web server output buffers
+			if ( !$this->config->get( 'CommandLineMode' ) ) {
+				AtEase\AtEase::suppressWarnings();
+				if ( ob_get_status() ) {
+					ob_end_flush();
+				}
+				flush();
+				AtEase\AtEase::restoreWarnings();
 			}
-
 			$callback();
 		}
 	}
 
+	/**
+	 * Determine and send the response headers and body for this web request
+	 */
 	private function main() {
 		global $wgTitle;
 
@@ -864,13 +950,14 @@ class MediaWiki {
 			return $buffer;
 		};
 
-		// Now commit any transactions, so that unreported errors after
-		// output() don't roll back the whole DB transaction and so that
-		// we avoid having both success and error text in the response
+		// Commit any changes in the current transaction round so that:
+		// a) the transaction is not rolled back after success output was already sent
+		// b) error output is not jumbled together with success output in the response
 		$this->doPreOutputCommit( $outputWork );
-
-		// Now send the actual output
-		print $outputWork();
+		// If needed, push a deferred update to run jobs after the output is send
+		$this->schedulePostSendJobs();
+		// If no exceptions occurred then send the output since it is safe now
+		$this->outputResponsePayload( $outputWork() );
 	}
 
 	/**
@@ -933,7 +1020,7 @@ class MediaWiki {
 		$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
 		// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-		if ( !Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
+		if ( !$this->getHookRunner()->onBeforeHttpsRedirect( $this->context, $redirUrl ) ) {
 			return false;
 		}
 
@@ -961,11 +1048,54 @@ class MediaWiki {
 	}
 
 	/**
-	 * Ends this task peacefully
-	 * @param string $mode Use 'fast' to always skip job running
-	 * @param bool $blocksHttpClient Whether this blocks an HTTP response to a client
+	 * Set the actual output and attempt to flush it to the client if necessary
+	 *
+	 * No PHP buffers should be active at this point
+	 *
+	 * @param string $content
 	 */
-	public function restInPeace( $mode = 'fast', $blocksHttpClient = true ) {
+	private function outputResponsePayload( $content ) {
+		if (
+			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
+			DeferredUpdates::pendingUpdatesCount() &&
+			!headers_sent()
+		) {
+			$response = $this->context->getRequest()->response();
+			// Make the browser indicate the page as "loaded" as soon as it gets all the content
+			$response->header( 'Connection: close' );
+			// The client should not be blocked on "post-send" updates. If apache or ob_* decide
+			// that a response should be gzipped, the entire script will have to finish before
+			// any data can be sent. Disable compression if there are any post-send updates.
+			$response->header( 'Content-Encoding: none' );
+			AtEase\AtEase::suppressWarnings();
+			ini_set( 'zlib.output_compression', 0 );
+			if ( function_exists( 'apache_setenv' ) ) {
+				apache_setenv( 'no-gzip', '1' );
+			}
+			AtEase\AtEase::restoreWarnings();
+			// Also set the Content-Length so that apache does not block waiting on PHP to finish.
+			// If OutputPage is disabled, then either there is no body (e.g. HTTP 304) and thus no
+			// Content-Length, or it was taken care of already.
+			if ( !$this->context->getOutput()->isDisabled() ) {
+				ob_start();
+				print $content;
+				$response->header( 'Content-Length: ' . ob_get_length() );
+				ob_end_flush();
+			}
+			// @TODO: this still blocks on HEAD responses and 304 responses to GETs
+		} else {
+			print $content;
+		}
+	}
+
+	/**
+	 * Ends this task peacefully
+	 */
+	public function restInPeace() {
+		// Either all DB and deferred updates should happen or none.
+		// The latter should not be cancelled due to client disconnect.
+		ignore_user_abort( true );
+
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
 		$lbFactory->commitMasterChanges( __METHOD__ );
@@ -980,13 +1110,7 @@ class MediaWiki {
 		);
 
 		// Do any deferred jobs; preferring to run them now if a client will not wait on them
-		DeferredUpdates::doUpdates( $blocksHttpClient ? 'enqueue' : 'run' );
-
-		// Now that everything specific to this request is done,
-		// try to occasionally run jobs (if enabled) from the queues
-		if ( $mode === 'normal' ) {
-			$this->triggerJobs();
-		}
+		DeferredUpdates::doUpdates( 'run' );
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
@@ -995,7 +1119,7 @@ class MediaWiki {
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 
-		wfDebug( "Request ended normally\n" );
+		wfDebug( "Request ended normally" );
 	}
 
 	/**
@@ -1020,8 +1144,8 @@ class MediaWiki {
 				$statsdClient->send( $stats->getData() );
 
 				$stats->clearData(); // empty buffer for the next round
-			} catch ( Exception $ex ) {
-				MWExceptionHandler::logException( $ex );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 			}
 		}
 	}
@@ -1030,6 +1154,7 @@ class MediaWiki {
 	 * Potentially open a socket and sent an HTTP request back to the server
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
+	 * @deprecated Since 1.34
 	 */
 	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
@@ -1058,26 +1183,25 @@ class MediaWiki {
 				if ( !$invokedWithSuccess ) {
 					// Fall back to blocking on running the job(s)
 					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n, $logger );
+					$this->triggerSyncJobs( $n );
 				}
 			} else {
-				$this->triggerSyncJobs( $n, $logger );
+				$this->triggerSyncJobs( $n );
 			}
 		} catch ( JobQueueError $e ) {
 			// Do not make the site unavailable (T88312)
-			MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 	}
 
 	/**
 	 * @param int $n Number of jobs to try to run
-	 * @param LoggerInterface $runJobsLogger
 	 */
-	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
+	private function triggerSyncJobs( $n ) {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$old = $trxProfiler->setSilenced( true );
 		try {
-			$runner = new JobRunner( $runJobsLogger );
+			$runner = MediaWikiServices::getInstance()->getJobRunner();
 			$runner->run( [ 'maxJobs' => $n ] );
 		} finally {
 			$trxProfiler->setSilenced( $old );

@@ -23,6 +23,7 @@
 
 require __DIR__ . '/../commandLine.inc';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -40,26 +41,28 @@ class UpdateLogging {
 	public $batchSize = 1000;
 	public $minTs = false;
 
-	function execute() {
+	public function execute() {
 		$this->dbw = wfGetDB( DB_MASTER );
 		$logging = $this->dbw->tableName( 'logging' );
 		$logging_1_10 = $this->dbw->tableName( 'logging_1_10' );
 		$logging_pre_1_10 = $this->dbw->tableName( 'logging_pre_1_10' );
 
-		if ( $this->dbw->tableExists( 'logging_pre_1_10' ) && !$this->dbw->tableExists( 'logging' ) ) {
+		if ( $this->dbw->tableExists( 'logging_pre_1_10', __METHOD__ )
+			&& !$this->dbw->tableExists( 'logging', __METHOD__ )
+		) {
 			# Fix previous aborted run
 			echo "Cleaning up from previous aborted run\n";
 			$this->dbw->query( "RENAME TABLE $logging_pre_1_10 TO $logging", __METHOD__ );
 		}
 
-		if ( $this->dbw->tableExists( 'logging_pre_1_10' ) ) {
+		if ( $this->dbw->tableExists( 'logging_pre_1_10', __METHOD__ ) ) {
 			echo "This script has already been run to completion\n";
 
 			return;
 		}
 
 		# Create the target table
-		if ( !$this->dbw->tableExists( 'logging_1_10' ) ) {
+		if ( !$this->dbw->tableExists( 'logging_1_10', __METHOD__ ) ) {
 			global $wgDBTableOptions;
 
 			$sql = <<<EOT
@@ -130,11 +133,12 @@ EOT;
 	 * @param string $srcTable
 	 * @param string $dstTable
 	 */
-	function sync( $srcTable, $dstTable ) {
+	private function sync( $srcTable, $dstTable ) {
 		$batchSize = 1000;
 		$minTs = $this->dbw->selectField( $srcTable, 'MIN(log_timestamp)', '', __METHOD__ );
 		$minTsUnix = wfTimestamp( TS_UNIX, $minTs );
 		$numRowsCopied = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		while ( true ) {
 			$maxTs = $this->dbw->selectField( $srcTable, 'MAX(log_timestamp)', '', __METHOD__ );
@@ -175,12 +179,12 @@ EOT;
 			$this->dbw->insert( $dstTable, $batch, __METHOD__ );
 			$numRowsCopied += count( $batch );
 
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		echo "Copied $numRowsCopied rows\n";
 	}
 
-	function copyExactMatch( $srcTable, $dstTable, $copyPos ) {
+	private function copyExactMatch( $srcTable, $dstTable, $copyPos ) {
 		$numRowsCopied = 0;
 		$srcRes = $this->dbw->select( $srcTable, '*', [ 'log_timestamp' => $copyPos ], __METHOD__ );
 		$dstRes = $this->dbw->select( $dstTable, '*', [ 'log_timestamp' => $copyPos ], __METHOD__ );

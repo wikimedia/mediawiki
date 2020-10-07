@@ -203,7 +203,7 @@ class NameTableStore {
 				$dbw = $this->getDBConnection( DB_MASTER );
 				$dbw->onTransactionPreCommitOrIdle( function () {
 					$this->cache->delete( $this->getCacheKey() );
-				} );
+				}, __METHOD__ );
 			}
 			$this->tableCache = $table;
 		}
@@ -234,7 +234,7 @@ class NameTableStore {
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
 			$this->cache->reap( $this->getCacheKey(), INF );
-		} );
+		}, __METHOD__ );
 
 		return $this->tableCache;
 	}
@@ -457,7 +457,7 @@ class NameTableStore {
 		try {
 			$dbw->doAtomicSection(
 				__METHOD__,
-				function ( IDatabase $unused, $fname ) use ( $name, $id, &$ok, $dbw ) {
+				function ( IDatabase $unused, $fname ) use ( $name, $id, $dbw ) {
 					// Try to insert a row with the ID we originally got.
 					// If that fails (because of a key conflict), we will just try to get another ID again later.
 					$dbw->insert(
@@ -470,7 +470,7 @@ class NameTableStore {
 					// We could re-try once more, but that bears the risk of an infinite loop.
 					// So let's just give up on the ID.
 					$dbw->onAtomicSectionCancel(
-						function ( $trigger, IDatabase $unused ) use ( $name, $id, $dbw ) {
+						function ( $trigger, IDatabase $unused ) {
 							$this->logger->warning(
 								'Re-insertion of name into table ' . $this->table
 								. ' was rolled back. Giving up and reloading the cache.'

@@ -12,7 +12,7 @@ class PostgresField implements Field {
 	 * @param string $field
 	 * @return null|PostgresField
 	 */
-	static function fromText( DatabasePostgres $db, $table, $field ) {
+	public static function fromText( DatabasePostgres $db, $table, $field ) {
 		$q = <<<SQL
 SELECT
  attnotnull, attlen, conname AS conname,
@@ -68,35 +68,35 @@ SQL;
 		return null;
 	}
 
-	function name() {
+	public function name() {
 		return $this->name;
 	}
 
-	function tableName() {
+	public function tableName() {
 		return $this->tablename;
 	}
 
-	function type() {
+	public function type() {
 		return $this->type;
 	}
 
-	function isNullable() {
+	public function isNullable() {
 		return $this->nullable;
 	}
 
-	function maxLength() {
+	public function maxLength() {
 		return $this->max_length;
 	}
 
-	function is_deferrable() {
+	public function is_deferrable() {
 		return $this->deferrable;
 	}
 
-	function is_deferred() {
+	public function is_deferred() {
 		return $this->deferred;
 	}
 
-	function conname() {
+	public function conname() {
 		return $this->conname;
 	}
 
@@ -104,7 +104,7 @@ SQL;
 	 * @since 1.19
 	 * @return bool|mixed
 	 */
-	function defaultValue() {
+	public function defaultValue() {
 		if ( $this->has_default ) {
 			return $this->default;
 		} else {

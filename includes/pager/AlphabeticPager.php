@@ -23,6 +23,7 @@
 
 /**
  * IndexPager with an alphabetic list and a formatted navigation bar
+ * @stable to extend
  * @ingroup Pager
  */
 abstract class AlphabeticPager extends IndexPager {
@@ -30,6 +31,8 @@ abstract class AlphabeticPager extends IndexPager {
 	/**
 	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped
+	 *
+	 * @stable to override
 	 *
 	 * @return string HTML
 	 */
@@ -99,6 +102,8 @@ abstract class AlphabeticPager extends IndexPager {
 	 * enabling each one in getNavigationBar.  The return type is an associative
 	 * array whose keys must exactly match the keys of the array returned
 	 * by getIndexField(), and whose values are message keys.
+	 *
+	 * @stable to override
 	 *
 	 * @return array
 	 */

@@ -29,6 +29,8 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -58,9 +60,15 @@ use Wikimedia\ScopedCallback;
  * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
  * the maximum size and chunk count (indirectly) of values.
  *
+ * @stable to extend
  * @ingroup Cache
  */
-abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInterface {
+abstract class BagOStuff implements
+	ExpirationAwareness,
+	StorageAwareness,
+	IStoreKeyEncoder,
+	LoggerAwareInterface
+{
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -76,14 +84,14 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	private $wallClockOverride;
 
 	/** Bitfield constants for get()/getMulti(); these are only advisory */
-	const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
-	const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
+	public const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
+	public const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
 	/** Bitfield constants for set()/merge(); these are only advisory */
-	const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
-	const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
-	const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
-	const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
-	const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
+	public const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
+	public const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
+	public const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
+	public const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
+	public const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
 
 	/**
 	 * Parameters include:
@@ -107,6 +115,14 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	}
 
 	/**
+	 * @since 1.35
+	 * @return LoggerInterface
+	 */
+	public function getLogger() : LoggerInterface {
+		return $this->logger;
+	}
+
+	/**
 	 * @param bool $enabled
 	 */
 	public function setDebug( $enabled ) {
@@ -116,23 +132,23 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Get an item with the given key, regenerating and setting it if not found
 	 *
-	 * The callback can take $ttl as argument by reference and modify it.
+	 * The callback can take $exptime as argument by reference and modify it.
 	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
-	 * @param int $ttl Time-to-live (seconds)
+	 * @param int $exptime Time-to-live (seconds)
 	 * @param callable $callback Callback that derives the new value
 	 * @param int $flags Bitfield of BagOStuff::READ_* or BagOStuff::WRITE_* constants [optional]
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 * @since 1.27
 	 */
-	final public function getWithSetCallback( $key, $ttl, $callback, $flags = 0 ) {
+	final public function getWithSetCallback( $key, $exptime, $callback, $flags = 0 ) {
 		$value = $this->get( $key, $flags );
 
 		if ( $value === false ) {
-			$value = $callback( $ttl );
-			if ( $value !== false && $ttl >= 0 ) {
-				$this->set( $key, $value, $ttl, $flags );
+			$value = $callback( $exptime );
+			if ( $value !== false && $exptime >= 0 ) {
+				$this->set( $key, $value, $exptime, $flags );
 			}
 		}
 
@@ -380,8 +396,8 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
-	 * This will create the key with the value $init and TTL $ttl instead if not present.
-	 * Callers should make sure that both ($init - $value) and $ttl are invariants for all
+	 * This will create the key with the value $init and TTL $exptime instead if not present.
+	 * Callers should make sure that both ($init - $value) and $exptime are invariants for all
 	 * operations to any given key. The value of $init should be at least that of $value.
 	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
@@ -444,7 +460,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeGlobalKey( $class, ...$components );
@@ -454,7 +470,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeKey( $class, ...$components );
@@ -514,6 +530,33 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 
 		return $map;
 	}
+
+	/**
+	 * Prepare values for storage and get their serialized sizes, or, estimate those sizes
+	 *
+	 * All previously prepared values will be cleared. Each of the new prepared values will be
+	 * individually cleared as they get used by write operations for that key. This is done to
+	 * avoid unchecked growth in PHP memory usage.
+	 *
+	 * Example usage:
+	 * @code
+	 *     $valueByKey = [ $key1 => $value1, $key2 => $value2, $key3 => $value3 ];
+	 *     $cache->setNewPreparedValues( $valueByKey );
+	 *     $cache->set( $key1, $value1, $cache::TTL_HOUR );
+	 *     $cache->setMulti( [ $key2 => $value2, $key3 => $value3 ], $cache::TTL_HOUR );
+	 * @endcode
+	 *
+	 * This is only useful if the caller needs an estimate of the serialized object sizes.
+	 * The caller cannot know the serialization format and even if it did, it could be expensive
+	 * to serialize complex values twice just to get the size information before writing them to
+	 * cache. This method solves both problems by making the cache instance do the serialization
+	 * and having it reuse the result when the cache write happens.
+	 *
+	 * @param array $valueByKey Map of (cache key => PHP variable value to serialize)
+	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
+	 * @since 1.35
+	 */
+	abstract public function setNewPreparedValues( array $valueByKey );
 
 	/**
 	 * @internal For testing only

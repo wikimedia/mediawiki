@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Ninjastrikers",
 			"Rul1902",
 			"Sawmw"
@@ -328,7 +329,7 @@
 	"history-fieldset-title": "လါင်းလီသယ် မ်ုအင်းဃှူ့",
 	"histfirst": "အ်ုလီထုက်",
 	"histlast": "အ်ုသင့်ထုဂ်",
-	"historyempty": "(ပၠပ်ပြေ)",
+	"historyempty": "ပၠပ်ပြေ",
 	"history-feed-title": "လါင်းလီမေဝ်ႋစိင်စ်ုရင့်",
 	"history-feed-description": "ဝီကီဖံင့်ခေါဟ် လိက်မေံၜၠါ်ယိုဝ် ဆ်ုအင်းတင်မေဝ်ႋစိင်",
 	"history-feed-item-nocomment": "$2 ဝယ် $1",

@@ -85,18 +85,7 @@ class PopulateContentTables extends Maintenance {
 	}
 
 	public function execute() {
-		$multiContentRevisionSchemaMigrationStage =
-			$this->getConfig()->get( 'MultiContentRevisionSchemaMigrationStage' );
-
 		$t0 = microtime( true );
-
-		if ( ( $multiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) === 0 ) {
-			$this->writeln(
-				'...cannot update while \$wgMultiContentRevisionSchemaMigrationStage '
-				. 'does not have the SCHEMA_COMPAT_WRITE_NEW bit set.'
-			);
-			return false;
-		}
 
 		$this->initServices();
 
@@ -386,10 +375,7 @@ class PopulateContentTables extends Maintenance {
 
 		if ( !isset( $row->len ) ) {
 			// NOTE: The nominal size of the content may not be the length of the raw blob.
-			$handler = ContentHandler::getForModelID( $model );
-			$content = $handler->unserializeContent( $blob );
-
-			$row->len = $content->getSize();
+			$row->len = ContentHandler::makeContent( $blob, null, $model )->getSize();
 		}
 
 		if ( !isset( $row->sha1 ) || $row->sha1 === '' ) {
@@ -398,5 +384,5 @@ class PopulateContentTables extends Maintenance {
 	}
 }
 
-$maintClass = 'PopulateContentTables';
+$maintClass = PopulateContentTables::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

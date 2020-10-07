@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -10,8 +11,18 @@ use MediaWiki\MediaWikiServices;
  * @covers ApiQuerySiteinfo
  */
 class ApiQuerySiteinfoTest extends ApiTestCase {
-	// We don't try to test every single thing for every category, just a sample
+	private $originalRegistryLoaded = null;
 
+	protected function tearDown() : void {
+		if ( $this->originalRegistryLoaded !== null ) {
+			$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
+			$reg->loaded = $this->originalRegistryLoaded;
+			$this->originalRegistryLoaded = null;
+		}
+		parent::tearDown();
+	}
+
+	// We don't try to test every single thing for every category, just a sample
 	protected function doQuery( $siprop = null, $extraParams = [] ) {
 		$params = [ 'action' => 'query', 'meta' => 'siteinfo' ];
 		if ( $siprop !== null ) {
@@ -30,6 +41,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testGeneral() {
 		$this->setMwGlobals( [
 			'wgAllowExternalImagesFrom' => '//localhost/',
+			'wgMainPageIsDomainRoot' => true,
 		] );
 
 		$data = $this->doQuery();
@@ -37,10 +49,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( Title::newMainPage()->getPrefixedText(), $data['mainpage'] );
 		$this->assertSame( PHP_VERSION, $data['phpversion'] );
 		$this->assertSame( [ '//localhost/' ], $data['externalimages'] );
+		$this->assertTrue( $data['mainpageisdomainroot'] );
 	}
 
 	public function testLinkPrefixCharset() {
-		$contLang = Language::factory( 'ar' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ar' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->linkPrefixExtension(), 'Sanity check' );
 
@@ -50,7 +63,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testVariants() {
-		$contLang = Language::factory( 'zh' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->hasVariants(), 'Sanity check' );
 
@@ -120,12 +133,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespaceAliases() {
-		global $wgNamespaceAliases;
-
-		$expected = array_merge(
-			$wgNamespaceAliases,
-			MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases()
-		);
+		$expected = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases();
 		$expected = array_map(
 			function ( $key, $val ) {
 				return [ 'id' => $val, 'alias' => strtr( $key, '_', ' ' ) ];
@@ -133,9 +141,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			array_keys( $expected ),
 			$expected
 		);
-
-		// Test that we don't list duplicates
-		$this->mergeMwGlobalArrayValue( 'wgNamespaceAliases', [ 'Talk' => NS_TALK ] );
 
 		$this->assertSame( $expected, $this->doQuery( 'namespacealiases' ) );
 	}
@@ -193,7 +198,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		] );
 		$this->resetServices();
 
-		MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
 		$this->editPage( 'MediaWiki:Interlanguage-link-self', 'Self!' );
 		$this->editPage( 'MediaWiki:Interlanguage-link-sitename-self', 'Circular logic' );
@@ -432,6 +437,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 				'author' => [ 'John Smith', 'John Smith Jr.', '...' ],
 				'descriptionmsg' => [ 'another-extension-desc', 'param' ] ],
 		] ] );
+		// Make the main registry empty
+		// TODO: Make ExtensionRegistry an injected service?
+		$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
+		$this->originalRegistryLoaded = $reg->loaded;
+		$reg->loaded = [];
 
 		$data = $this->doQuery( 'extensions' );
 
@@ -515,7 +525,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider languagesProvider
 	 */
 	public function testLanguages( $langCode ) {
-		$expected = Language::fetchLanguageNames( (string)$langCode );
+		$expected = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( (string)$langCode );
 
 		$expected = array_map(
 			function ( $code, $name ) {
@@ -542,7 +554,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testLanguageVariants() {
 		$expectedKeys = array_filter( LanguageConverter::$languagesWithVariants,
 			function ( $langCode ) {
-				return !Language::factory( $langCode )->getConverter() instanceof FakeConverter;
+				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $langCode );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $lang );
+					return $converter->hasVariants();
 			}
 		);
 		sort( $expectedKeys );
@@ -570,12 +586,13 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$expectedAllowed = Skin::getAllowedSkins();
 		$expectedDefault = Skin::normalizeKey( 'default' );
 
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$i = 0;
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$this->assertSame( $name, $data[$i]['code'] );
 
 			$msg = wfMessage( "skinname-$name" );
-			if ( $code && Language::isValidCode( $code ) ) {
+			if ( $code && $languageNameUtils->isValidCode( $code ) ) {
 				$msg->inLanguage( $code );
 			} else {
 				$msg->inContentLanguage();

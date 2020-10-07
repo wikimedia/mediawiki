@@ -28,6 +28,8 @@
  * Stores a single person's name and email address.
  * These are passed in via the constructor, and will be returned in SMTP
  * header format when requested.
+ *
+ * @newable
  */
 class MailAddress {
 	/**
@@ -46,6 +48,8 @@ class MailAddress {
 	public $address;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param string $address String with an email address
 	 * @param string|null $name Human-readable name if a string address is given
 	 * @param string|null $realName Human-readable real name if a string address is given

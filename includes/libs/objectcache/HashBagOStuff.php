@@ -26,6 +26,7 @@
  *
  * Data will not persist and is not shared with other processes.
  *
+ * @newable
  * @ingroup Cache
  */
 class HashBagOStuff extends MediumSpecificBagOStuff {
@@ -40,18 +41,19 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	/** @var int CAS token counter */
 	private static $casCounter = 0;
 
-	const KEY_VAL = 0;
-	const KEY_EXP = 1;
-	const KEY_CAS = 2;
+	public const KEY_VAL = 0;
+	public const KEY_EXP = 1;
+	public const KEY_CAS = 2;
 
 	/**
+	 * @stable to call
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
 	 * @codingStandardsIgnoreStart
 	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 * @codingStandardsIgnoreEnd
 	 */
-	function __construct( $params = [] ) {
+	public function __construct( $params = [] ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 
@@ -147,6 +149,16 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		$this->doDelete( $key );
 
 		return true;
+	}
+
+	public function setNewPreparedValues( array $valueByKey ) {
+		// Do not bother with serialization as this class does not serialize values
+		$sizes = [];
+		foreach ( $valueByKey as $value ) {
+			$sizes[] = $this->guessSerialValueSize( $value );
+		}
+
+		return $sizes;
 	}
 
 	/**

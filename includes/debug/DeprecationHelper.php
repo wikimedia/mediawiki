@@ -137,5 +137,4 @@ trait DeprecationHelper {
 		}
 		return false;
 	}
-
 }

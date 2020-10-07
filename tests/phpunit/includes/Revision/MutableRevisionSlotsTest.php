@@ -37,7 +37,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 	 * @covers \MediaWiki\Revision\RevisionSlots::setSlotsInternal
 	 */
 	public function testConstructorFailue( $slots ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new MutableRevisionSlots( $slots );
 	}
@@ -125,7 +125,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 		$slots->removeSlot( SlotRecord::MAIN );
 		$this->assertSame( [], $slots->getSlots() );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$slots->getSlot( SlotRecord::MAIN );
 	}
 
@@ -143,6 +143,29 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$this->assertTrue( $slots->getSlot( 'other' )->isInherited() );
 		$this->assertSame( $parentSlots['some']->getContent(), $slots->getContent( 'some' ) );
 		$this->assertSame( $parentSlots['other']->getContent(), $slots->getContent( 'other' ) );
+	}
+
+	public function testResetCallback() {
+		$counter = 0;
+		$callback = function () use ( &$counter ) {
+			$counter++;
+		};
+
+		$slots = new MutableRevisionSlots( [], $callback );
+
+		$slot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$slots->setSlot( $slot );
+		$this->assertSame( 1, $counter, 'setSlot triggers callback' );
+
+		$slots->setContent( 'other', new WikitextContent( 'Y' ) );
+		$this->assertSame( 2, $counter, 'setContent triggers callback' );
+
+		$slot = $this->newSavedSlot( 'some', new WikitextContent( 'X' ) );
+		$slots->inheritSlot( $slot );
+		$this->assertSame( 3, $counter, 'inheritSlot triggers callback' );
+
+		$slots->removeSlot( SlotRecord::MAIN );
+		$this->assertSame( 4, $counter, 'inheritSlot triggers callback' );
 	}
 
 }

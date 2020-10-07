@@ -1,6 +1,6 @@
 <?php
 
-class SearchResultSetTest extends MediaWikiTestCase {
+class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers SearchResultSet::getIterator
 	 * @covers BaseSearchResultSet::next
@@ -9,13 +9,13 @@ class SearchResultSetTest extends MediaWikiTestCase {
 	public function testIterate() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
 		$resultSet = new MockSearchResultSet( [ $result ] );
-		$this->assertEquals( 1, $resultSet->numRows() );
+		$this->assertSame( 1, $resultSet->numRows() );
 		$count = 0;
 		foreach ( $resultSet as $iterResult ) {
 			$this->assertEquals( $result, $iterResult );
 			$count++;
 		}
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 
 		$this->hideDeprecated( 'BaseSearchResultSet::rewind' );
 		$this->hideDeprecated( 'BaseSearchResultSet::next' );
@@ -25,7 +25,7 @@ class SearchResultSetTest extends MediaWikiTestCase {
 			$this->assertEquals( $result, $iterResult );
 			$count++;
 		}
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 	}
 
 	/**
@@ -51,11 +51,24 @@ class SearchResultSetTest extends MediaWikiTestCase {
 	public function testHasMoreResults() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
 		$resultSet = new MockSearchResultSet( array_fill( 0, 3, $result ) );
-		$this->assertEquals( 3, count( $resultSet ) );
+		$this->assertCount( 3, $resultSet );
 		$this->assertFalse( $resultSet->hasMoreResults() );
 		$resultSet->shrink( 3 );
 		$this->assertFalse( $resultSet->hasMoreResults() );
 		$resultSet->shrink( 2 );
 		$this->assertTrue( $resultSet->hasMoreResults() );
+	}
+
+	/**
+	 * @covers SearchResultSet::shrink
+	 */
+	public function testShrink() {
+		$results = array_fill( 0, 3, SearchResult::newFromTitle( Title::newMainPage() ) );
+		$resultSet = new MockSearchResultSet( $results );
+		$this->assertCount( 3, $resultSet->extractResults() );
+		$this->assertCount( 3, $resultSet->extractTitles() );
+		$resultSet->shrink( 1 );
+		$this->assertCount( 1, $resultSet->extractResults() );
+		$this->assertCount( 1, $resultSet->extractTitles() );
 	}
 }

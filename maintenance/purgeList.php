@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -29,22 +31,47 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class PurgeList extends Maintenance {
+	/** @var string|null */
+	private $namespaceId;
+	/** @var bool */
+	private $allNamespaces;
+	/** @var bool */
+	private $doDbTouch;
+	/** @var float */
+	private $delay;
+
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Send purge requests for listed pages to CDN' );
-		$this->addOption( 'purge', 'Whether to update page_touched.', false, false );
-		$this->addOption( 'namespace', 'Namespace number', false, true );
-		$this->addOption( 'all', 'Purge all pages', false, false );
+		$this->addDescription( "Send purge requests for listed pages to CDN.\n"
+			. "By default this expects a list of URLs or page names from STDIN. "
+			. "To query the database for input, use --namespace or --all-namespaces instead."
+		);
+		$this->addOption( 'namespace', 'Purge pages with this namespace number', false, true );
+		$this->addOption( 'all-namespace', 'Purge pages in all namespaces', false, false );
+		$this->addOption( 'db-touch', 'Update the page.page_touched database field', false, false );
 		$this->addOption( 'delay', 'Number of seconds to delay between each purge', false, true );
 		$this->addOption( 'verbose', 'Show more output', false, false, 'v' );
 		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
-		if ( $this->hasOption( 'all' ) ) {
+		$this->namespaceId = $this->getOption( 'namespace' );
+		$this->allNamespaces = $this->hasOption( 'all-namespaces' );
+		$this->doDbTouch = $this->hasOption( 'db-touch' );
+		$this->delay = floatval( $this->getOption( 'delay', '0' ) );
+
+		$conf = $this->getConfig();
+		if ( ( $this->namespaceId !== null || $this->allNamespaces )
+			&& $this->doDbTouch
+			&& $conf->get( 'MiserMode' )
+		) {
+			$this->fatalError( 'Prevented mass db-invalidation (MiserMode is enabled).' );
+		}
+
+		if ( $this->allNamespaces ) {
 			$this->purgeNamespace( false );
-		} elseif ( $this->hasOption( 'namespace' ) ) {
-			$this->purgeNamespace( intval( $this->getOption( 'namespace' ) ) );
+		} elseif ( $this->namespaceId !== null ) {
+			$this->purgeNamespace( intval( $this->namespaceId ) );
 		} else {
 			$this->doPurge();
 		}
@@ -73,7 +100,7 @@ class PurgeList extends Maintenance {
 
 					$urls = array_merge( $urls, $newUrls );
 
-					if ( $this->getOption( 'purge' ) ) {
+					if ( $this->doDbTouch ) {
 						$title->invalidateCache();
 					}
 				} else {
@@ -127,22 +154,20 @@ class PurgeList extends Maintenance {
 	 * @param array $urls List of URLS to purge from CDNs
 	 */
 	private function sendPurgeRequest( $urls ) {
-		if ( $this->hasOption( 'delay' ) ) {
-			$delay = floatval( $this->getOption( 'delay' ) );
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		if ( $this->delay > 0 ) {
 			foreach ( $urls as $url ) {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $url . "\n" );
 				}
-				$u = new CdnCacheUpdate( [ $url ] );
-				$u->doUpdate();
-				usleep( $delay * 1e6 );
+				$hcu->purgeUrls( $url, $hcu::PURGE_NAIVE );
+				usleep( $this->delay * 1e6 );
 			}
 		} else {
 			if ( $this->hasOption( 'verbose' ) ) {
 				$this->output( implode( "\n", $urls ) . "\n" );
 			}
-			$u = new CdnCacheUpdate( $urls );
-			$u->doUpdate();
+			$hcu->purgeUrls( $urls, $hcu::PURGE_NAIVE );
 		}
 	}
 }

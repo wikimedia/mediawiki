@@ -3,16 +3,34 @@
 /**
  * @covers Parser::__construct
  */
-class ParserTest extends MediaWikiTestCase {
+class ParserTest extends MediaWikiIntegrationTestCase {
 	public function provideConstructorArguments() {
 		// Create a mock Config object that will satisfy ServiceOptions::__construct
 		$mockConfig = $this->createMock( 'Config' );
 		$mockConfig->method( 'has' )->willReturn( true );
 		$mockConfig->method( 'get' )->willReturn( 'I like otters.' );
 
+		// Stub out a MagicWordFactory so the Parser can initialize its
+		// function hooks when it is created.
+		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'get', 'getVariableIDs' ] )
+			->getMock();
+		$mwFactory
+			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+				$mw = $this->getMockBuilder( MagicWord::class )
+					->disableOriginalConstructor()
+					->setMethods( [ 'getSynonyms' ] )
+					->getMock();
+				$mw->method( 'getSynonyms' )->willReturn( [] );
+				return $mw;
+			} ) );
+		$mwFactory
+			->method( 'getVariableIDs' )->willReturn( [] );
+
 		$newArgs = [
 			$this->createMock( 'MediaWiki\Config\ServiceOptions' ),
-			$this->createMock( 'MagicWordFactory' ),
+			$mwFactory,
 			$this->createMock( 'Language' ),
 			$this->createMock( 'ParserFactory' ),
 			'a snail can sleep for three years',
@@ -23,7 +41,7 @@ class ParserTest extends MediaWikiTestCase {
 
 		$oldArgs = [
 			[],
-			$this->createMock( 'MagicWordFactory' ),
+			$mwFactory,
 			$this->createMock( 'Language' ),
 			$this->createMock( 'ParserFactory' ),
 			'a snail can sleep for three years',
@@ -63,6 +81,8 @@ class ParserTest extends MediaWikiTestCase {
 	 * @covers Parser::__construct
 	 */
 	public function testBackwardsCompatibleConstructorArguments( $args ) {
+		$this->hideDeprecated( 'Parser::__construct' );
+		$this->hideDeprecated( 'old calling convention for Parser::__construct' );
 		$parser = new Parser( ...$args );
 
 		$refObject = new ReflectionObject( $parser );
@@ -71,7 +91,8 @@ class ParserTest extends MediaWikiTestCase {
 		if ( is_array( $args[0] ) ) {
 			$svcOptionsProp = $refObject->getProperty( 'svcOptions' );
 			$svcOptionsProp->setAccessible( true );
-			$this->assertType( 'MediaWiki\Config\ServiceOptions',
+			$this->assertInstanceOf(
+				MediaWiki\Config\ServiceOptions::class,
 				$svcOptionsProp->getValue( $parser )
 			);
 			unset( $args[0] );
@@ -92,7 +113,7 @@ class ParserTest extends MediaWikiTestCase {
 			}
 		}
 
-		$this->assertCount( 0, $args, 'Not all arguments to the Parser constructor were ' .
+		$this->assertSame( [], $args, 'Not all arguments to the Parser constructor were ' .
 			'found on the Parser object' );
 	}
 }

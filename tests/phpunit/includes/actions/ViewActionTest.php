@@ -7,7 +7,7 @@
  *
  * @author Derick N. Alangi
  */
-class ViewActionTest extends MediaWikiTestCase {
+class ViewActionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return ViewAction
 	 */

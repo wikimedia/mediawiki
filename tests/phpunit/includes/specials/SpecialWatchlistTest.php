@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers SpecialWatchlist
  */
 class SpecialWatchlistTest extends SpecialPageTestBase {
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed = [ 'watchlist' ];
 		$this->setTemporaryHook(
@@ -18,22 +18,23 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			null
 		);
 
-		$this->setMwGlobals(
-			'wgDefaultUserOptions',
-			[
-				'extendwatchlist' => 1,
-				'watchlistdays' => 3.0,
-				'watchlisthideanons' => 0,
-				'watchlisthidebots' => 0,
-				'watchlisthideliu' => 0,
-				'watchlisthideminor' => 0,
-				'watchlisthideown' => 0,
-				'watchlisthidepatrolled' => 0,
-				'watchlisthidecategorization' => 1,
-				'watchlistreloadautomatically' => 0,
-				'watchlistunwatchlinks' => 0,
-			]
-		);
+		$this->setMwGlobals( [
+			'wgDefaultUserOptions' =>
+				[
+					'extendwatchlist' => 1,
+					'watchlistdays' => 3.0,
+					'watchlisthideanons' => 0,
+					'watchlisthidebots' => 0,
+					'watchlisthideliu' => 0,
+					'watchlisthideminor' => 0,
+					'watchlisthideown' => 0,
+					'watchlisthidepatrolled' => 1,
+					'watchlisthidecategorization' => 0,
+					'watchlistreloadautomatically' => 0,
+					'watchlistunwatchlinks' => 0,
+				],
+			'wgWatchlistExpiry' => true
+		] );
 	}
 
 	/**
@@ -46,14 +47,14 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	}
 
 	public function testNotLoggedIn_throwsException() {
-		$this->setExpectedException( UserNotLoggedIn::class );
+		$this->expectException( UserNotLoggedIn::class );
 		$this->executeSpecialPage();
 	}
 
 	public function testUserWithNoWatchedItems_displaysNoWatchlistMessage() {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
-		$this->assertContains( '(nowatchlist)', $html );
+		$this->assertStringContainsString( '(nowatchlist)', $html );
 	}
 
 	/**

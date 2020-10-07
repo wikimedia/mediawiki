@@ -69,7 +69,7 @@ class ApiOptions extends ApiBase {
 			$changes[$params['optionname']] = $newValue;
 		}
 
-		Hooks::run( 'ApiOptions', [ $this, $user, $changes, $resetKinds ] );
+		$this->getHookRunner()->onApiOptions( $this, $user, $changes, $resetKinds );
 
 		if ( $resetKinds ) {
 			$this->resetPreferences( $resetKinds );

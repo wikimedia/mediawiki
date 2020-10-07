@@ -1,3 +1,14 @@
+.mw-notification-area-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	/* Avoid horizontal scrollbar on fade in and on fade out */
+	overflow: hidden;
+	pointer-events: none;
+}
+
 .mw-notification-area {
 	top: 0;
 	right: 0;
@@ -6,8 +17,6 @@
 	width: 20em;
 	line-height: 1.35;
 	z-index: 10000;
-	/* Avoid horizontal scrollbar on fade in and on fade out */
-	overflow: hidden;
 }
 
 .mw-notification {
@@ -15,6 +24,7 @@
 	margin-bottom: 0.5em;
 	border: solid 1px #ddd;
 	background-color: #fff;
+	color: #000;
 	/* Click handler in mediawiki.notification.js */
 	cursor: pointer;
 	opacity: 0;
@@ -22,6 +32,7 @@
 	transform: translateX( 35px );
 	-webkit-transition: opacity 0.35s ease-in-out, -webkit-transform 0.35s ease-in-out;
 	transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+	pointer-events: auto;
 }
 
 .mw-notification-visible {
@@ -42,11 +53,22 @@
 }
 
 .mw-notification.mw-notification-type-warn {
-	border-color: #f5be00; /* yellow */
-	background-color: #ffffe8;
+	/* Yellow90 */
+	background-color: #fef6e7;
+	/* Yellow50 */
+	border-color: #fc3;
 }
 
 .mw-notification.mw-notification-type-error {
-	border-color: #eb3941; /* red */
-	background-color: #fff8f8;
+	/* Red90 */
+	background-color: #fee7e6;
+	/* Red50 */
+	border-color: #d33;
+}
+
+.mw-notification.mw-notification-type-success {
+	/* Green90 */
+	background-color: #d5fdf4;
+	/* Green30 */
+	border-color: #14866d;
 }

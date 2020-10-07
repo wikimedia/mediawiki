@@ -77,17 +77,17 @@
 	/**
 	 * Regular expressions to parse many common URIs.
 	 *
-	 * As they are gnarly, they have been moved to separate files to allow us to format them in the
-	 * 'extended' regular expression format (which JavaScript normally doesn't support). The subset of
-	 * features handled is minimal, but just the free whitespace gives us a lot.
+	 * These are gnarly expressions. For improved readability, they have been moved to a separate
+	 * file where they make use of named capture groups. That syntax isn't valid in JavaScript ES5,
+	 * so the server-side strips these before delivering to the client.
 	 *
 	 * @private
 	 * @static
 	 * @property {Object} parser
 	 */
 	parser = {
-		strict: mw.template.get( 'mediawiki.Uri', 'strict.regexp' ).render(),
-		loose: mw.template.get( 'mediawiki.Uri', 'loose.regexp' ).render()
+		strict: require( './strict.regexp.js' ),
+		loose: require( './loose.regexp.js' )
 	};
 
 	/**

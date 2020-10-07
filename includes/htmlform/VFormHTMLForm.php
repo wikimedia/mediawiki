@@ -23,6 +23,8 @@
 
 /**
  * Compact stacked vertical format for forms.
+ *
+ * @stable to extend
  */
 class VFormHTMLForm extends HTMLForm {
 	/**

@@ -2,41 +2,33 @@
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingSplatVariadicArg" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.SuperfluousVariadicArgComment" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
-		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
-		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedException" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessage" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessageRegExp" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgContLang" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgMemc" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgVersion" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
-		<exclude name="MediaWiki.Usage.NullableType.PHP71NullableStyle" />
-		<exclude name="MediaWiki.Usage.PHPUnitTypeHints.MissingTypehint" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
-		<exclude name="PSR12.Files.ImportStatement.LeadingSlash" />
-		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
-		<exclude name="Squiz.Scope.MethodScope.Missing" />
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
+		<exclude-pattern>includes/</exclude-pattern>
+	</rule>
+	<!-- See T238572 -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
+		<exclude-pattern>tests/</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--
 			includes/GlobalFunctions.php
 			* mimeTypeMatch
-			maintenance/cdb.php
-			* cdbShowHelp
 			maintenance/language/transstat.php
 			* showUsage
 			maintenance/mcc.php
@@ -47,25 +39,21 @@
 			maintenance/storage/resolveStubs.php
 			* resolveStub
 			* resolveStubs
-			profileinfo.php
-			* compare_point
-			* getEscapedProfileUrl
 			tests/phpunit/includes/HooksTest.php
 			* NothingFunction
 			* NothingFunctionData
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="cdbShowHelp,compare_point,cssfilter,getEscapedProfileUrl,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
+			<property name="ignoreList" type="array" value="cssfilter,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
 		<properties>
-			<property name="ignoreList" type="array" value="$IP,$messageMemc" />
+			<property name="ignoreList" type="array" value="$IP" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
-		<exclude-pattern>profileinfo\.php</exclude-pattern>
 		<exclude-pattern>maintenance/language/checkLanguage\.inc</exclude-pattern>
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
@@ -100,7 +88,6 @@
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/getText\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/hhvm/makeRepo\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/importDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/install\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/invalidateUserSessions\.php</exclude-pattern>
@@ -125,7 +112,6 @@
 		<exclude-pattern>*/maintenance/userDupes.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
-		<exclude-pattern>*/profileinfo\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
 		<exclude-pattern>*/languages/*\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
@@ -159,14 +145,35 @@
 		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*\.php</exclude-pattern>
 	</rule>
+	<rule ref="Generic.PHP.NoSilencedErrors.Discouraged">
+		<!--
+		Our normal policy of using Wikimedia\AtEase does not always make sense tests.
 
+		AtEase cannot be cleanly used in tests that also use expectException() as
+		the restoreWarnings() call would never be reached:
+
+			$this->expectException( PasswordError::class );
+			AtEase::suppressWarnings();
+			$password->crypt( 'whatever' );
+			AtEase::restoreWarnings();
+
+		The above will stop at crypt(), as expected, and leave AtEase in a dirty
+		state for unrelated tests.
+
+		TODO: Stop using PHPUnit TestCase directly. Require with a structure test
+		or with a high-level check in our run() hook, that all test cases use either
+		MediaWikiUnitTestCase or MediaWikiIntegrationTestCase. Otherwise the check
+		in MediaWikiTestCaseTrait can still be bypassed and cause a random failures.
+
+		-->
+		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+	</rule>
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
 		<!--
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/Maintenance\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
@@ -242,6 +249,5 @@
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
-	<exclude-pattern>AdminSettings\.php</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
 </ruleset>

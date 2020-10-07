@@ -18,17 +18,20 @@
  * @file
  */
 
+use PHPUnit\Framework\Error\Deprecated;
+
 /**
  * @covers DeprecatedGlobal
  */
-class DeprecatedGlobalTest extends MediaWikiTestCase {
+class DeprecatedGlobalTest extends MediaWikiIntegrationTestCase {
+	private $oldErrorLevel;
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->oldErrorLevel = error_reporting( -1 );
 	}
 
-	public function tearDown() {
+	protected function tearDown() : void {
 		error_reporting( $this->oldErrorLevel );
 		parent::tearDown();
 	}
@@ -66,14 +69,12 @@ class DeprecatedGlobalTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( HashBagOStuff::class, $wgDummyLazy );
 	}
 
-	/**
-	 * @expectedException PHPUnit_Framework_Error
-	 * @expectedExceptionMessage Use of $wgDummy1 was deprecated in MediaWiki 1.30
-	 */
 	public function testWarning() {
 		global $wgDummy1;
 
 		$wgDummy1 = new DeprecatedGlobal( 'wgDummy1', new HashBagOStuff(), '1.30' );
+		$this->expectException( Deprecated::class );
+		$this->expectExceptionMessage( 'Use of $wgDummy1 was deprecated in MediaWiki 1.30' );
 		$wgDummy1->get( 'foo' );
 		$this->assertInstanceOf( HashBagOStuff::class, $wgDummy1 );
 	}

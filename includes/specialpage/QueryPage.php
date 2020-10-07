@@ -23,14 +23,17 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
+ *
+ * @stable to extend
+ *
  * @ingroup SpecialPage
  */
 abstract class QueryPage extends SpecialPage {
@@ -112,7 +115,7 @@ abstract class QueryPage extends SpecialPage {
 				[ SpecialUnusedTemplates::class, 'Unusedtemplates' ],
 				[ SpecialWithoutInterwiki::class, 'Withoutinterwiki' ],
 			];
-			Hooks::run( 'wgQueryPages', [ &$qp ] );
+			Hooks::runner()->onWgQueryPages( $qp );
 		}
 
 		return $qp;
@@ -147,7 +150,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @param bool $bool
 	 */
-	function setListoutput( $bool ) {
+	protected function setListoutput( $bool ) {
 		$this->listoutput = $bool;
 	}
 
@@ -174,6 +177,7 @@ abstract class QueryPage extends SpecialPage {
 	 * If this function is not overridden or returns something other than
 	 * an array, getSQL() will be used instead. This is for backwards
 	 * compatibility only and is strongly deprecated.
+	 * @stable to override
 	 * @return array
 	 * @since 1.18
 	 */
@@ -187,7 +191,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @throws MWException
 	 * @return string
 	 */
-	function getSQL() {
+	protected function getSQL() {
 		/* Implement getQueryInfo() instead */
 		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
@@ -197,10 +201,11 @@ abstract class QueryPage extends SpecialPage {
 	 * Subclasses return an array of fields to order by here. Don't append
 	 * DESC to the field names, that'll be done automatically if
 	 * sortDescending() returns true.
+	 * @stable to override
 	 * @return string[]
 	 * @since 1.18
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'value' ];
 	}
 
@@ -211,6 +216,7 @@ abstract class QueryPage extends SpecialPage {
 	 * NOTE: formatRow() may get timestamps in TS_MW (mysql), TS_DB (pgsql)
 	 *       or TS_UNIX (querycache) format, so be sure to always run them
 	 *       through wfTimestamp()
+	 * @stable to override
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -221,9 +227,10 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Override to sort by increasing values
 	 *
+	 * @stable to override
 	 * @return bool
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return true;
 	}
 
@@ -232,6 +239,7 @@ abstract class QueryPage extends SpecialPage {
 	 * don't let it run in miser mode. $wgDisableQueryPages causes all query
 	 * pages to be declared expensive. Some query pages are always expensive.
 	 *
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isExpensive() {
@@ -242,6 +250,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Is the output of this query cacheable? Non-cacheable expensive pages
 	 * will be disabled in miser mode and will not have their results written
 	 * to the querycache table.
+	 * @stable to override
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -253,6 +262,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Whether or not the output of the page in question is retrieved from
 	 * the database cache.
 	 *
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isCached() {
@@ -262,29 +272,31 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Sometime we don't want to build rss / atom feeds.
 	 *
+	 * @stable to override
 	 * @return bool
 	 */
-	function isSyndicated() {
+	public function isSyndicated() {
 		return true;
 	}
 
 	/**
 	 * Formats the results of the query for display. The skin is the current
 	 * skin; you can use it for making links. The result is a single row of
-	 * result data. You should be able to grab SQL results off of it.
+	 * result data. You should be able to grab SQL results from it.
 	 * If the function returns false, the line output will be skipped.
 	 * @param Skin $skin
 	 * @param object $result Result row
 	 * @return string|bool String or false to skip
 	 */
-	abstract function formatResult( $skin, $result );
+	abstract protected function formatResult( $skin, $result );
 
 	/**
 	 * The content returned by this function will be output before any result
 	 *
+	 * @stable to override
 	 * @return string
 	 */
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return '';
 	}
 
@@ -304,14 +316,17 @@ abstract class QueryPage extends SpecialPage {
 	 * as an associative array. They will be encoded and added to the paging
 	 * links (prev/next/lengths).
 	 *
+	 * @stable to override
 	 * @return array
 	 */
-	function linkParameters() {
+	protected function linkParameters() {
 		return [];
 	}
 
 	/**
 	 * Clear the cache and save new results
+	 *
+	 * @stable to override
 	 *
 	 * @param int|bool $limit Limit for SQL statement
 	 * @param bool $ignoreErrors Whether to ignore database errors
@@ -394,9 +409,10 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
+	 * @stable to override
 	 * @return IDatabase
 	 */
-	function getRecacheDB() {
+	protected function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
 	}
 
@@ -419,6 +435,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Run the query and return the result
+	 * @stable to override
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
@@ -485,6 +502,8 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Fetch the query results from the query cache
+	 * @stable to override
+	 *
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
@@ -526,10 +545,11 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Return the order fields for fetchFromCache. Default is to always use
 	 * "ORDER BY value" which was the default prior to this function.
+	 * @stable to override
 	 * @return array
 	 * @since 1.29
 	 */
-	function getCacheOrderFields() {
+	protected function getCacheOrderFields() {
 		return [ 'value' ];
 	}
 
@@ -537,7 +557,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return string
 	 */
 	public function getCachedTimestamp() {
-		if ( is_null( $this->cachedTimestamp ) ) {
+		if ( $this->cachedTimestamp === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$fname = static::class . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
@@ -547,7 +567,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffset().
+	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffsetForUser().
 	 * Subclasses may override this to further restrict or modify limit and offset.
 	 *
 	 * @note Restricts the offset parameter, as most query pages have inefficient paging
@@ -559,7 +579,8 @@ abstract class QueryPage extends SpecialPage {
 	 * @return int[] list( $limit, $offset )
 	 */
 	protected function getLimitOffset() {
-		list( $limit, $offset ) = $this->getRequest()->getLimitOffset();
+		list( $limit, $offset ) = $this->getRequest()
+			->getLimitOffsetForUser( $this->getUser() );
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
@@ -594,6 +615,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Most QueryPage subclasses use inefficient paging, so limit the max amount we return
 	 * This matters for uncached query pages that might otherwise accept an offset of 3 million
 	 *
+	 * @stable to override
 	 * @since 1.27
 	 * @return int
 	 */
@@ -605,14 +627,11 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
+	 * @stable to override
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		$user = $this->getUser();
-		if ( !$this->userCanExecute( $user ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
+		$this->checkPermissions();
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -644,6 +663,7 @@ abstract class QueryPage extends SpecialPage {
 				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
 
 				if ( $ts ) {
+					$user = $this->getUser();
 					$updated = $lang->userTimeAndDate( $ts, $user );
 					$updateddate = $lang->userDate( $ts, $user );
 					$updatedtime = $lang->userTime( $ts, $user );
@@ -727,6 +747,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Format and output report results using the given information plus
 	 * OutputPage
 	 *
+	 * @stable to override
+	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use
 	 * @param IDatabase $dbr Database (read) connection to use
@@ -768,23 +790,24 @@ abstract class QueryPage extends SpecialPage {
 	 * @param int $offset
 	 * @return string
 	 */
-	function openList( $offset ) {
+	protected function openList( $offset ) {
 		return "\n<ol start='" . ( $offset + 1 ) . "' class='special'>\n";
 	}
 
 	/**
 	 * @return string
 	 */
-	function closeList() {
+	protected function closeList() {
 		return "</ol>\n";
 	}
 
 	/**
 	 * Do any necessary preprocessing of the result object.
+	 * @stable to override
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	protected function preprocessResults( $db, $res ) {
 	}
 
 	/**

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class UppercaseCollation extends Collation {
 
 	private $lang;
@@ -27,7 +29,7 @@ class UppercaseCollation extends Collation {
 	public function __construct() {
 		// Get a language object so that we can use the generic UTF-8 uppercase
 		// function there
-		$this->lang = Language::factory( 'en' );
+		$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 	}
 
 	public function getSortKey( $string ) {

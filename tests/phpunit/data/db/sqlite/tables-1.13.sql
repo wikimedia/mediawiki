@@ -338,5 +338,3 @@ CREATE TABLE /*$wgDBprefix*/page_props (
 
 CREATE TABLE /*$wgDBprefix*/updatelog (
   ul_key varchar(255) ) /*$wgDBTableOptions*/;
-
-

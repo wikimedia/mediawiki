@@ -32,7 +32,7 @@ class CategoryChangesAsRdf extends Maintenance {
 	/**
 	 * Insert query
 	 */
-	const SPARQL_INSERT = <<<SPARQL
+	private const SPARQL_INSERT = <<<SPARQL
 INSERT DATA {
 %s
 };
@@ -42,7 +42,7 @@ SPARQL;
 	/**
 	 * Delete query
 	 */
-	const SPARQL_DELETE = <<<SPARQLD
+	private const SPARQL_DELETE = <<<SPARQLD
 DELETE {
 ?category ?x ?y
 } WHERE {
@@ -57,7 +57,7 @@ SPARQLD;
 	/**
 	 * Delete/Insert query
 	 */
-	const SPARQL_DELETE_INSERT = <<<SPARQLDI
+	private const SPARQL_DELETE_INSERT = <<<SPARQLDI
 DELETE {
 ?category ?x ?y
 } INSERT {
@@ -364,6 +364,7 @@ SPARQL;
 	/**
 	 * Fetch categorization changes or edits
 	 * @param IDatabase $dbr
+	 * @param int $type
 	 * @return BatchRowIterator
 	 */
 	protected function getChangedCatsIterator( IDatabase $dbr, $type ) {
@@ -666,7 +667,7 @@ SPARQL;
 						'cat_subcats',
 						'cat_files',
 					],
-					[ 'cat_title' => array_keys( $parentCats ) ],
+					[ 'cat_title' => array_map( 'strval', array_keys( $parentCats ) ) ],
 					__METHOD__,
 					[],
 					$joinConditions

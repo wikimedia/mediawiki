@@ -71,7 +71,6 @@ class CLIParser extends Maintenance {
 			false,
 			true
 		);
-		$this->addOption( 'no-tidy', 'Don\'t tidy the output (deprecated)' );
 		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
 	}
 
@@ -127,11 +126,8 @@ class CLIParser extends Maintenance {
 	 * @return ParserOutput
 	 */
 	protected function parse( $wikitext ) {
-		$options = ParserOptions::newCanonical();
+		$options = ParserOptions::newCanonical( 'canonical' );
 		$options->setOption( 'enableLimitReport', false );
-		if ( $this->getOption( 'no-tidy' ) ) {
-			$options->setTidy( false );
-		}
 		return $this->parser->parse(
 			$wikitext,
 			$this->getTitle(),

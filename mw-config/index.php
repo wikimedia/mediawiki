@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
 // phpcs:ignore MediaWiki.Usage.DirUsage.FunctionFound
@@ -70,7 +72,7 @@ function wfInstallerMain() {
 	} else {
 		$langCode = 'en';
 	}
-	$wgLang = Language::factory( $langCode );
+	$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 	RequestContext::getMain()->setLanguage( $wgLang );
 
 	$installer->setParserLanguage( $wgLang );

@@ -116,7 +116,15 @@ class ApiQuery extends ApiBase {
 		'userinfo' => ApiQueryUserInfo::class,
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,
 		'tokens' => ApiQueryTokens::class,
-		'languageinfo' => ApiQueryLanguageinfo::class,
+		'languageinfo' => [
+			'class' => ApiQueryLanguageinfo::class,
+			'services' => [
+				'LanguageFactory',
+				'LanguageNameUtils',
+				'LanguageFallback',
+				'LanguageConverterFactory',
+			],
+		],
 	];
 
 	/**
@@ -149,7 +157,7 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
-		Hooks::run( 'ApiQuery::moduleManager', [ $this->mModuleMgr ] );
+		$this->getHookRunner()->onApiQuery__moduleManager( $this->mModuleMgr );
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
@@ -253,7 +261,7 @@ class ApiQuery extends ApiBase {
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->execute();
-			Hooks::run( 'APIQueryAfterExecute', [ &$module ] );
+			$this->getHookRunner()->onAPIQueryAfterExecute( $module );
 		}
 
 		// Set the cache mode
@@ -302,7 +310,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create instances of all modules requested by the client
-	 * @param array $modules To append instantiated modules to
+	 * @param array &$modules To append instantiated modules to
 	 * @param string $param Parameter name to read modules from
 	 */
 	private function instantiateModules( &$modules, $param ) {
@@ -339,6 +347,7 @@ class ApiQuery extends ApiBase {
 
 		$values = $pageSet->getNormalizedTitlesAsResult( $result );
 		if ( $values ) {
+			// @phan-suppress-next-line PhanRedundantCondition
 			$fit = $fit && $result->addValue( 'query', 'normalized', $values );
 		}
 		$values = $pageSet->getConvertedTitlesAsResult( $result );

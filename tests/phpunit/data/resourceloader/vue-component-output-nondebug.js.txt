@@ -1,0 +1,8 @@
+module.exports = {
+	data: function () {
+		return {
+			hello: 'world'
+		};
+	}
+};;
+module.exports.template = "<div class=\"mw-vue-test\"><p>Hello\\n<\/p> <p>{{ hello }}<\/p> <pre>\t\t\tfoo\\\n\t\t\tbar\n\t\t<\/pre><\/div>";

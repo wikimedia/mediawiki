@@ -59,7 +59,9 @@ class Names {
 		'ak' => 'Akan', # Akan
 		'aln' => 'Gegë', # Gheg Albanian
 		'als' => 'Alemannisch', # Alemannic -- not a valid code, for compatibility. See gsw.
+		'alt' => 'тÿштÿк алтай тил', # Southern Altai, T254854
 		'am' => 'አማርኛ', # Amharic
+		'ami' => 'Pangcah', # Amis
 		'an' => 'aragonés', # Aragonese
 		'ang' => 'Ænglisc', # Old English, T25283
 		'anp' => 'अङ्गिका', # Angika
@@ -67,7 +69,7 @@ class Names {
 		'arc' => 'ܐܪܡܝܐ', # Aramaic
 		'arn' => 'mapudungun', # Mapuche, Mapudungu, Araucanian (Araucano)
 		'arq' => 'جازايرية', # Algerian Spoken Arabic
-		'ary' => 'Maġribi', # Moroccan Spoken Arabic
+		'ary' => 'الدارجة', # Moroccan Spoken Arabic
 		'arz' => 'مصرى', # Egyptian Spoken Arabic
 		'as' => 'অসমীয়া', # Assamese
 		'ase' => 'American sign language', # American sign language
@@ -276,6 +278,7 @@ class Names {
 		'lij' => 'Ligure', # Ligurian
 		'liv' => 'Līvõ kēļ', # Livonian
 		'lki' => 'لەکی', # Laki
+		'lld' => 'Ladin', # Ladin
 		'lmo' => 'lumbaart', # Lombard
 		'ln' => 'lingála', # Lingala
 		'lo' => 'ລາວ', # Laotian
@@ -393,7 +396,7 @@ class Names {
 		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
 		'shi-latn' => 'Tašlḥiyt', # Tachelhit (Latin script)
 		'shn' => 'ၽႃႇသႃႇတႆး ', # Shan
-		'shy-latn' => 'tachawit', # Shawiya (Latin script) - T194047
+		'shy-latn' => 'tacawit', # Shawiya (Latin script) - T194047
 		'si' => 'සිංහල', # Sinhalese
 		'simple' => 'Simple English', # Simple English
 		'sk' => 'slovenčina', # Slovak
@@ -402,7 +405,8 @@ class Names {
 		'sl' => 'slovenščina', # Slovenian
 		'sli' => 'Schläsch', # Lower Selisian
 		'sm' => 'Gagana Samoa', # Samoan
-		'sma' => 'Åarjelsaemien', # Southern Sami
+		'sma' => 'åarjelsaemien', # Southern Sami
+		'smn' => 'anarâškielâ', # Inari Sami
 		'sn' => 'chiShona', # Shona
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian
@@ -412,12 +416,13 @@ class Names {
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
-		'sty' => 'cебертатар', # Siberian Tatar
+		'sty' => 'себертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
 		'su' => 'Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
 		'szl' => 'ślůnski', # Silesian
+		'szy' => 'Sakizaya', # Sakizaya - T174601
 		'ta' => 'தமிழ்', # Tamil
 		'tay' => 'Tayal', # Atayal
 		'tcy' => 'ತುಳು', # Tulu
@@ -436,6 +441,7 @@ class Names {
 		'tpi' => 'Tok Pisin', # Tok Pisin
 		'tr' => 'Türkçe', # Turkish
 		'tru' => 'Ṫuroyo', # Turoyo
+		'trv' => 'Seediq', # Taroko
 		'ts' => 'Xitsonga', # Tsonga
 		'tt' => 'татарча/tatarça', # Tatar (multiple scripts - defaults to Cyrillic)
 		'tt-cyrl' => 'татарча', # Tatar (Cyrillic script) (default)

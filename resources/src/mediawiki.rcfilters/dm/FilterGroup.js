@@ -382,22 +382,26 @@ FilterGroup.prototype.hasWhatsThis = function () {
 
 /**
  * Get the conflicts associated with the entire group.
+ *
  * Conflict object is set up by filter name keys and conflict
- * definition. For example:
- * [
- *     {
- *         filterName: {
- *             filter: filterName,
- *             group: group1
+ * definition.
+ *
+ *     @example
+ *     [
+ *         {
+ *             filterName: {
+ *                 filter: filterName,
+ *                 group: group1
+ *             }
+ *         },
+ *         {
+ *             filterName2: {
+ *                 filter: filterName2,
+ *                 group: group2
+ *             }
  *         }
- *     },
- *     {
- *         filterName2: {
- *             filter: filterName2,
- *             group: group2
- *         }
- *     }
- * ]
+ *     ]
+ *
  * @return {Object} Conflict definition
  */
 FilterGroup.prototype.getConflicts = function () {

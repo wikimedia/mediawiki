@@ -3,13 +3,14 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
-use MediaWikiTestCase;
+use MediaWiki\Storage\SlotRecord;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Dump
  * @covers BaseDump
  */
-class BaseDumpTest extends MediaWikiTestCase {
+class BaseDumpTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var BaseDump The BaseDump instance used within a test.
@@ -18,7 +19,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 */
 	private $dump = null;
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		if ( $this->dump !== null ) {
 			$this->dump->close();
 		}
@@ -34,23 +35,36 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 * @param string|null $expected The exepcted result of the prefetch
 	 * @param int $page The page number to prefetch the text for
 	 * @param int $revision The revision number to prefetch the text for
+	 * @param string $slot The role name of the slot to fetch
 	 */
-	private function assertPrefetchEquals( $expected, $page, $revision ) {
-		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision ),
+	private function assertPrefetchEquals( $expected, $page, $revision, $slot = SlotRecord::MAIN ) {
+		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision, $slot ),
 			"Prefetch of page $page revision $revision" );
 	}
 
-	function testSequential() {
+	public function testSequential() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
 		$this->assertPrefetchEquals( "BackupDumperTestP1Text1", 1, 1 );
+		$this->assertPrefetchEquals( "BackupDumperTestP1Text1aux", 1, 1, 'aux' );
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text4 some additional Text", 2, 5 );
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
 	}
 
-	function testSynchronizeRevisionMissToRevision() {
+	public function testSynchronizeSlotMissToRevision() {
+		$fname = $this->setUpPrefetch();
+		$this->dump = new BaseDump( $fname );
+
+		$this->assertPrefetchEquals( "BackupDumperTestP1Text1aux", 1, 1, 'aux' );
+		$this->assertPrefetchEquals( null, 1, 1, 'xyzzy' );
+		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
+		$this->assertPrefetchEquals( null, 2, 2, 'aux' );
+		$this->assertPrefetchEquals( "BackupDumperTestP2Text4 some additional Text", 2, 5 );
+	}
+
+	public function testSynchronizeRevisionMissToRevision() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -59,7 +73,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text4 some additional Text", 2, 5 );
 	}
 
-	function testSynchronizeRevisionMissToPage() {
+	public function testSynchronizeRevisionMissToPage() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -68,7 +82,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
 	}
 
-	function testSynchronizePageMiss() {
+	public function testSynchronizePageMiss() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -77,7 +91,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
 	}
 
-	function testPageMissAtEnd() {
+	public function testPageMissAtEnd() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -85,7 +99,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( null, 6, 40 );
 	}
 
-	function testRevisionMissAtEnd() {
+	public function testRevisionMissAtEnd() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -93,7 +107,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( null, 4, 40 );
 	}
 
-	function testSynchronizePageMissAtStart() {
+	public function testSynchronizePageMissAtStart() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -101,7 +115,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 	}
 
-	function testSynchronizeRevisionMissAtStart() {
+	public function testSynchronizeRevisionMissAtStart() {
 		$fname = $this->setUpPrefetch();
 		$this->dump = new BaseDump( $fname );
 
@@ -109,7 +123,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 	}
 
-	function testSequentialAcrossFiles() {
+	public function testSequentialAcrossFiles() {
 		$fname1 = $this->setUpPrefetch( [ 1 ] );
 		$fname2 = $this->setUpPrefetch( [ 2, 4 ] );
 		$this->dump = new BaseDump( $fname1 . ";" . $fname2 );
@@ -120,7 +134,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
 	}
 
-	function testSynchronizeSkipAcrossFile() {
+	public function testSynchronizeSkipAcrossFile() {
 		$fname1 = $this->setUpPrefetch( [ 1 ] );
 		$fname2 = $this->setUpPrefetch( [ 2 ] );
 		$fname3 = $this->setUpPrefetch( [ 4 ] );
@@ -130,7 +144,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
 	}
 
-	function testSynchronizeMissInWholeFirstFile() {
+	public function testSynchronizeMissInWholeFirstFile() {
 		$fname1 = $this->setUpPrefetch( [ 1 ] );
 		$fname2 = $this->setUpPrefetch( [ 2 ] );
 		$this->dump = new BaseDump( $fname1 . ";" . $fname2 );
@@ -153,7 +167,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 
 		// The header of every prefetch file
 		// phpcs:ignore Generic.Files.LineLength
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
+		$header = '<mediawiki>
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
@@ -197,10 +211,17 @@ class BaseDumpTest extends MediaWikiTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
-      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
       <text xml:space="preserve">BackupDumperTestP1Text1</text>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
+		<content>
+			<role>aux</role>
+			<origin>2</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text sha1="deadbeef" xml:space="preserve">BackupDumperTestP1Text1aux</text>
+		</content>
+      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
     </revision>
   </page>
 ';

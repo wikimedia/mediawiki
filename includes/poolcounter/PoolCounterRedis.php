@@ -75,13 +75,13 @@ class PoolCounterRedis extends PoolCounter {
 	/** @var int UNIX timestamp */
 	protected $slotTime;
 
-	const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
-	const AWAKE_ALL = 2; // wake-up if an existing process finishes and wake up such others
+	private const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
+	private const AWAKE_ALL = 2; // wake-up if an existing process finishes and wake up such others
 
 	/** @var PoolCounterRedis[] List of active PoolCounterRedis objects in this script */
 	protected static $active = null;
 
-	function __construct( $conf, $type, $key ) {
+	public function __construct( $conf, $type, $key ) {
 		parent::__construct( $conf, $type, $key );
 
 		$this->serversByLabel = $conf['servers'];
@@ -125,25 +125,25 @@ class PoolCounterRedis extends PoolCounter {
 		return Status::newGood( $this->conn );
 	}
 
-	function acquireForMe() {
+	public function acquireForMe( $timeout = null ) {
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
 			return $status;
 		}
 
-		return $this->waitForSlotOrNotif( self::AWAKE_ONE );
+		return $this->waitForSlotOrNotif( self::AWAKE_ONE, $timeout );
 	}
 
-	function acquireForAnyone() {
+	public function acquireForAnyone( $timeout = null ) {
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
 			return $status;
 		}
 
-		return $this->waitForSlotOrNotif( self::AWAKE_ALL );
+		return $this->waitForSlotOrNotif( self::AWAKE_ALL, $timeout );
 	}
 
-	function release() {
+	public function release() {
 		if ( $this->slot === null ) {
 			return Status::newGood( PoolCounter::NOT_LOCKED ); // not locked
 		}
@@ -229,9 +229,10 @@ LUA;
 
 	/**
 	 * @param int $doWakeup AWAKE_* constant
+	 * @param int|float|null $timeout
 	 * @return Status
 	 */
-	protected function waitForSlotOrNotif( $doWakeup ) {
+	protected function waitForSlotOrNotif( $doWakeup, $timeout = null ) {
 		if ( $this->slot !== null ) {
 			return Status::newGood( PoolCounter::LOCK_HELD ); // already acquired
 		}
@@ -245,6 +246,7 @@ LUA;
 		'@phan-var RedisConnRef $conn';
 
 		$now = microtime( true );
+		$timeout = $timeout ?? $this->timeout;
 		try {
 			$slot = $this->initAndPopPoolSlotList( $conn, $now );
 			if ( ctype_digit( $slot ) ) {
@@ -261,7 +263,7 @@ LUA;
 					// Just wait for an actual pool slot
 					: [ $this->getSlotListKey() ];
 
-				$res = $conn->blPop( $keys, $this->timeout );
+				$res = $conn->blPop( $keys, $timeout );
 				if ( $res === [] ) {
 					$conn->zRem( $this->getWaitSetKey(), $this->session ); // no longer waiting
 					return Status::newGood( PoolCounter::TIMEOUT );

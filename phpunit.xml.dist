@@ -10,12 +10,8 @@
 		 convertWarningsToExceptions="true"
 		 forceCoversAnnotation="true"
 		 stopOnFailure="false"
-		 timeoutForSmallTests="10"
-		 timeoutForMediumTests="30"
-		 timeoutForLargeTests="60"
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
-		 beStrictAboutTestSize="true"
 		 verbose="false">
 	<php>
 		<ini name="memory_limit" value="512M" />
@@ -56,6 +52,7 @@
 			<directory suffix=".php">skins</directory>
 			<exclude>
 				<directory suffix=".php">languages/messages</directory>
+				<directory suffix=".php">maintenance/benchmarks</directory>
 				<directory suffix=".php">extensions/*/tests</directory>
 				<directory suffix=".php">skins/*/tests</directory>
 				<file>languages/data/normalize-ar.php</file>

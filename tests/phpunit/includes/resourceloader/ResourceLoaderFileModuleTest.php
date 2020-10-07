@@ -1,21 +1,24 @@
 <?php
 
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+
 /**
  * @group ResourceLoader
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
-		$skinFactory = new SkinFactory();
-		// The return value of the closure shouldn't matter since this test should
-		// never call it
+		$skinFactory = new SkinFactory( new ObjectFactory(
+			$this->createMock( ContainerInterface::class )
+		) );
+		// The empty spec shouldn't matter since this test should never call it
 		$skinFactory->register(
 			'fakeskin',
 			'FakeSkin',
-			function () {
-			}
+			[]
 		);
 		$this->setService( 'SkinFactory', $skinFactory );
 
@@ -165,9 +168,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::getAllStyleFiles
-	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
-	 * @covers ResourceLoaderFileModule::getSkinStyleFiles
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testGetAllSkinStyleFiles() {
 		$baseParams = [
@@ -266,6 +267,42 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testCssFlipping() {
+		$plain = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+		] );
+		$plain->setName( 'test' );
+
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'en', 'dir' => 'ltr' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: left; }\n" ],
+			'Unchanged styles in LTR mode'
+		);
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'he', 'dir' => 'rtl' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Flipped styles in RTL mode'
+		);
+
+		$noflip = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+			'noflip' => true,
+		] );
+		$noflip->setName( 'test' );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Unchanged styles in RTL mode with noflip at module level'
+		);
+	}
+
+	/**
 	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
 	 *
 	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
@@ -350,7 +387,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl->setName( 'testing' );
 
 		if ( $expected === false ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( RuntimeException::class );
 			$rl->getTemplates();
 		} else {
 			$this->assertEquals( $rl->getTemplates(), $expected );
@@ -382,7 +419,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::compileLessFile
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testLessFileCompilation() {
 		$context = $this->getResourceLoaderContext();
@@ -505,6 +542,8 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$base = [ 'localBasePath' => $basePath ];
 		$commentScript = file_get_contents( "$basePath/script-comment.js" );
 		$nosemiScript = file_get_contents( "$basePath/script-nosemi.js" );
+		$vueComponentDebug = trim( file_get_contents( "$basePath/vue-component-output-debug.js.txt" ) );
+		$vueComponentNonDebug = trim( file_get_contents( "$basePath/vue-component-output-nondebug.js.txt" ) );
 		$config = RequestContext::getMain()->getConfig();
 		return [
 			[
@@ -582,12 +621,16 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ] ],
 						'sample.json',
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
-						[ 'name' => 'data.json', 'callback' => function ( $context ) {
-							return [ 'langCode' => $context->getLanguage() ];
-						} ],
+						[
+							'name' => 'data.json',
+							'callback' => function ( $context, $config, $extra ) {
+								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
+							},
+							'callbackParam' => [ 'a' => 'b' ],
+						],
 						[ 'name' => 'config.json', 'config' => [
 							'Sitename',
-							'wgVersion' => 'Version',
+							'server' => 'ServerName',
 						] ],
 					]
 				],
@@ -607,13 +650,13 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						],
 						'data.json' => [
 							'type' => 'data',
-							'content' => [ 'langCode' => 'fy' ]
+							'content' => [ 'langCode' => 'fy', 'extra' => [ 'a' => 'b' ] ],
 						],
 						'config.json' => [
 							'type' => 'data',
 							'content' => [
 								'Sitename' => $config->get( 'Sitename' ),
-								'wgVersion' => $config->get( 'Version' ),
+								'server' => $config->get( 'ServerName' ),
 							]
 						]
 					],
@@ -627,11 +670,16 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
-						[ 'name' => 'data.json', 'versionCallback' => function ( $context ) {
-							return $context->getLanguage();
-						}, 'callback' => function ( $context ) {
-							return [ 'langCode' => $context->getLanguage() ];
-						} ],
+						[
+							'name' => 'data.json',
+							'versionCallback' => function ( $context ) {
+								return 'x';
+							},
+							'callback' => function ( $context, $config, $extra ) {
+								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
+							},
+							'callbackParam' => [ 'A', 'B' ]
+						],
 					]
 				],
 				[
@@ -642,7 +690,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						],
 						'data.json' => [
 							'type' => 'data',
-							'content' => [ 'langCode' => 'fy' ]
+							'content' => [ 'langCode' => 'fy', 'extra' => [ 'A', 'B' ] ],
 						],
 					],
 					'main' => 'bar.js'
@@ -651,13 +699,96 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'lang' => 'fy'
 				]
 			],
+			'package file with callback that returns a file (1)' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
+							return new ResourceLoaderFilePath( $file );
+						} ]
+					]
+				],
+				[
+					'files' => [
+						'dynamic.js' => [
+							'type' => 'script',
+							'content' => $commentScript,
+						]
+					],
+					'main' => 'dynamic.js'
+				],
+				[
+					'lang' => 'fy'
+				]
+			],
+			'package file with callback that returns a file (2)' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
+							return new ResourceLoaderFilePath( $file );
+						} ]
+					]
+				],
+				[
+					'files' => [
+						'dynamic.js' => [
+							'type' => 'script',
+							'content' => $nosemiScript,
+						]
+					],
+					'main' => 'dynamic.js'
+				],
+				[
+					'lang' => 'nl'
+				]
+			],
+			'.vue file in debug mode' => [
+				$base + [
+					'packageFiles' => [
+						'vue-component.vue'
+					]
+				],
+				[
+					'files' => [
+						'vue-component.vue' => [
+							'type' => 'script',
+							'content' => $vueComponentDebug
+						]
+					],
+					'main' => 'vue-component.vue',
+				],
+				[
+					'debug' => 'true'
+				]
+			],
+			'.vue file in non-debug mode' => [
+				$base + [
+					'packageFiles' => [
+						'vue-component.vue'
+					],
+					'name' => 'nondebug',
+				],
+				[
+					'files' => [
+						'vue-component.vue' => [
+							'type' => 'script',
+							'content' => $vueComponentNonDebug
+						]
+					],
+					'main' => 'vue-component.vue'
+				],
+				[
+					'debug' => 'false'
+				]
+			],
 			[
 				$base + [
 					'packageFiles' => [
 						[ 'file' => 'script-comment.js' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			'package file with invalid callback' => [
 				$base + [
@@ -665,31 +796,34 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'foo.json', 'callback' => 'functionThatDoesNotExist142857' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// 'config' not valid for 'script' type
 				$base + [
 					'packageFiles' => [
 						'foo.json' => [ 'type' => 'script', 'config' => [ 'Sitename' ] ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// 'config' not valid for '*.js' file
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'foo.js', 'config' => 'Sitename' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// missing type/name/file.
 				$base + [
 					'packageFiles' => [
 						'foo.js' => [ 'garbage' => 'data' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
 				$base + [
@@ -697,16 +831,17 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						'filethatdoesnotexist142857.js'
 					]
 				],
-				false
+				RuntimeException::class
 			],
 			[
+				// JSON can't be a main file
 				$base + [
 					'packageFiles' => [
 						'script-nosemi.js',
 						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ], 'main' => true ]
 					]
 				],
-				false
+				LogicException::class
 			]
 		];
 	}
@@ -723,10 +858,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		if ( isset( $moduleDefinition['name'] ) ) {
 			$module->setName( $moduleDefinition['name'] );
 		}
-		if ( $expected === false ) {
-			$this->setExpectedException( MWException::class );
+		if ( is_string( $expected ) ) {
+			// Class name of expected exception
+			$this->expectException( $expected );
 			$module->getScript( $context );
 		} else {
+			// Array of expected return value
 			$this->assertEquals( $expected, $module->getScript( $context ) );
 		}
 	}

@@ -1,0 +1,363 @@
+/**
+ * MediaWiki print style sheet
+ * Largely based on work by Gabriel Wicke
+ *
+ * Originally derived from Plone (https://plone.org/) styles
+ * Copyright Alexander Limi
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+/**
+ * Hide all the elements irrelevant for printing
+ * Skins however can and should override.
+ */
+/* General hide-in-print class, please only use sparely */
+.noprint,
+/* Various content classes, in alphabetical order */
+.catlinks,
+.magnify,
+.mw-cite-backlink,
+.mw-editsection,
+.mw-editsection-like,
+.mw-hidden-catlinks,
+.mw-indicators,
+.mw-redirectedfrom,
+.patrollink,
+.usermessage,
+/* Various content ids, in alphabetical order */
+#column-one,
+#footer-places,
+#mw-navigation,
+#siteNotice,
+/* Deprecated, changed in core */
+#f-poweredbyico,
+#f-copyrightico,
+li#about,
+li#disclaimer,
+li#mobileview,
+li#privacy {
+	display: none;
+}
+
+/**
+ * Generic HTML elements
+ */
+body {
+	background: #fff;
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+
+/* Links */
+a {
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+a,
+a.external,
+a.new,
+a.stub {
+	color: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
+	text-decoration: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
+}
+
+/* Expand URLs for printing */
+.mw-parser-output a.external.text:after,
+.mw-parser-output a.external.autonumber:after {
+	content: ' (' attr( href ) ')';
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+/* Expand protocol-relative URLs for printing */
+.mw-parser-output a.external.text[ href^='//' ]:after,
+.mw-parser-output a.external.autonumber[ href^='//' ]:after {
+	content: ' (https:' attr( href ) ')';
+}
+
+dt {
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	/* Pagination */
+	page-break-after: avoid;
+	page-break-before: avoid;
+}
+
+p {
+	margin: 1em 0;
+	line-height: 1.2;
+	/* Pagination */
+	orphans: 3;
+	widows: 3;
+}
+
+img,
+figure,
+.wikitable,
+.thumb {
+	/* Pagination */
+	page-break-inside: avoid;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+pre,
+.mw-code {
+	background: #fff;
+	color: #000;
+	border: 1pt dashed #000;
+	padding: 1em;
+	font-size: 8pt;
+	white-space: pre-wrap;
+	/* Create a new block formatting context */
+	overflow-x: hidden;
+	/* Break really long words when they overflow to the next line */
+	word-wrap: break-word;
+}
+
+/* Prevent citations and subscripts from interfering with the line-height */
+sup,
+sub {
+	line-height: 1;
+}
+
+ul {
+	list-style-type: square;
+}
+
+/**
+ * MediaWiki-specific elements
+ */
+#globalWrapper {
+	width: 100% !important; /* stylelint-disable-line declaration-no-important */
+	min-width: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.mw-body {
+	background: #fff;
+	color: #000;
+	border: 0 !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
+	direction: ltr;
+}
+
+#column-content {
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+#column-content .mw-body {
+	padding: 1em;
+	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.toc {
+	background-color: #f9f9f9;
+	border: 1pt solid #aaa;
+	padding: 5px;
+	display: table;
+}
+
+/* Separate columns for `.tocnumber` and `.toctext` */
+.tocnumber,
+.toctext {
+	display: table-cell;
+}
+
+/* Space between those columns */
+.tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-ltr .tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-rtl .tocnumber {
+	padding-left: 0.5em;
+	padding-right: 0;
+}
+
+/**
+ * Floating divs (and thumbnails)
+ */
+/* @noflip */
+table.floatright,
+div.floatright,
+div.tright {
+	float: right;
+	clear: right;
+}
+
+/* @noflip */
+table.floatleft,
+div.floatleft,
+div.tleft {
+	float: left;
+	clear: left;
+}
+
+/* @noflip */
+div.tleft {
+	margin: 0.5em 1.4em 1.3em 0;
+}
+
+/* @noflip */
+div.tright {
+	margin: 0.5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+table.floatright,
+div.floatright {
+	margin: 0 0 0.5em 0.5em;
+	border: 0;
+}
+
+/* @noflip */
+table.floatleft,
+div.floatleft {
+	margin: 0 0.5em 0.5em 0;
+	border: 0;
+}
+
+.center {
+	text-align: center;
+}
+
+/**
+ * Thumbnails
+ */
+div.thumb {
+	background-color: transparent;
+	width: auto;
+}
+
+div.thumb a {
+	border-bottom: 0;
+}
+
+div.thumbinner {
+	background-color: #fff;
+	border: 0;
+	border-radius: 2px;
+	padding: 5px;
+	font-size: 10pt;
+	color: #666;
+	text-align: center;
+	/* new block formatting context,
+	 * to clear background from floating content */
+	overflow: hidden;
+	min-width: 100px;
+}
+
+html .thumbcaption {
+	text-align: left;
+	line-height: 1.4;
+	padding: 3px;
+}
+
+img.thumbborder {
+	border: 1pt solid #ddd;
+}
+
+/**
+ * Table rendering
+ */
+/* Compare `.wikitable` in shared.css */
+.wikitable,
+.mw_metadata {
+	background: #fff;
+	margin: 1em 0;
+	border: 1pt solid #aaa;
+	border-collapse: collapse;
+	font-size: 10pt;
+}
+
+.wikitable > caption,
+.mw_metadata caption {
+	padding: 5px;
+	font-size: 10pt;
+}
+
+.wikitable > tr > th,
+.wikitable > tr > td,
+.wikitable > * > tr > th,
+.wikitable > * > tr > td,
+.mw_metadata th,
+.mw_metadata td {
+	/* Important is required to override any inline styles provided by editors */
+	background: #fff !important; /* stylelint-disable-line declaration-no-important */
+	/* We need to also set color in case editors applied a light text color */
+	color: #000 !important; /* stylelint-disable-line declaration-no-important */
+	border: 1pt solid #aaa;
+	padding: 0.4em 0.6em;
+}
+
+.wikitable > tr > th,
+.wikitable > * > tr > th,
+.mw_metadata th {
+	text-align: center;
+}
+
+table.listing,
+table.listing td {
+	border: 1pt solid #000;
+	border-collapse: collapse;
+}
+
+/**
+ * Categories
+ */
+.catlinks ul {
+	display: inline;
+	padding: 0;
+	list-style: none none;
+}
+
+.catlinks li {
+	display: inline-block;
+	line-height: 1.15;
+	margin: 0.1em 0;
+	border-left: 1pt solid #aaa;
+	padding: 0 0.4em;
+}
+
+.catlinks li:first-child {
+	border-left: 0;
+	padding-left: 0.2em;
+}
+
+/**
+ * Footer
+ */
+.printfooter {
+	padding: 1em 0;
+}
+
+#footer {
+	background: #fff;
+	color: #000;
+	margin-top: 1em;
+	border-top: 1pt solid #aaa;
+	padding-top: 5px;
+	direction: ltr;
+}

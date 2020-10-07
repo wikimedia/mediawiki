@@ -10,12 +10,8 @@ class RedisBagOStuffTest extends MediaWikiUnitTestCase {
 	/** @var RedisBagOStuff */
 	private $cache;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
-
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'HHVM Reflection buggy' );
-		}
 
 		$cache = $this->getMockBuilder( RedisBagOStuff::class )
 			->disableOriginalConstructor()

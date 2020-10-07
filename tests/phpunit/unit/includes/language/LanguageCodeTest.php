@@ -17,7 +17,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	public function testGetDeprecatedCodeMapping() {
 		$map = LanguageCode::getDeprecatedCodeMapping();
 
-		$this->assertInternalType( 'array', $map );
+		$this->assertIsArray( $map );
 		$this->assertContainsOnly( 'string', array_keys( $map ) );
 		$this->assertArrayNotHasKey( '', $map );
 		$this->assertContainsOnly( 'string', $map );

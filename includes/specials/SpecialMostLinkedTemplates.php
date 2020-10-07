@@ -22,8 +22,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special page lists templates with a large number of
@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialMostLinkedTemplates extends QueryPage {
-	function __construct( $name = 'Mostlinkedtemplates' ) {
+	public function __construct( $name = 'Mostlinkedtemplates' ) {
 		parent::__construct( $name );
 	}
 

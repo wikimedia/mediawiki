@@ -74,11 +74,11 @@ use User;
  */
 interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/** Provider can create accounts */
-	const TYPE_CREATE = 'create';
+	public const TYPE_CREATE = 'create';
 	/** Provider can link to existing accounts elsewhere */
-	const TYPE_LINK = 'link';
+	public const TYPE_LINK = 'link';
 	/** Provider cannot create or link to accounts */
-	const TYPE_NONE = 'none';
+	public const TYPE_NONE = 'none';
 
 	/**
 	 * @inheritDoc

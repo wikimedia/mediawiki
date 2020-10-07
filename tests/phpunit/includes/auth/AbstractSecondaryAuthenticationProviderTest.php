@@ -6,7 +6,7 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractSecondaryAuthenticationProvider
  */
-class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	public function testAbstractSecondaryAuthenticationProvider() {
 		$user = \User::newFromName( 'UTSysop' );
 

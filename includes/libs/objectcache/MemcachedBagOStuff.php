@@ -27,7 +27,7 @@
  * @ingroup Cache
  */
 abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable

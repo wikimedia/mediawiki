@@ -6,10 +6,14 @@
  * @license GPL-2.0-or-later
  * @author Gergő Tisza
  */
-class HTMLFormTest extends MediaWikiTestCase {
+class HTMLFormTest extends MediaWikiIntegrationTestCase {
 
 	private function newInstance() {
-		$form = new HTMLForm( [] );
+		$context = new RequestContext();
+		$out = new OutputPage( $context );
+		$out->setTitle( Title::newMainPage() );
+		$context->setOutput( $out );
+		$form = new HTMLForm( [], $context );
 		$form->setTitle( Title::newFromText( 'Foo' ) );
 		return $form;
 	}
@@ -21,36 +25,34 @@ class HTMLFormTest extends MediaWikiTestCase {
 		$this->assertStringStartsWith( '<form ', $html );
 	}
 
-	/**
-	 * @expectedException LogicException
-	 */
 	public function testGetHTML_noPrepare() {
 		$form = $this->newInstance();
+		$this->expectException( LogicException::class );
 		$form->getHTML( false );
 	}
 
 	public function testAutocompleteDefaultsToNull() {
 		$form = $this->newInstance();
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToNull() {
 		$form = $this->newInstance();
 		$form->setAutocomplete( null );
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToFalse() {
 		$form = $this->newInstance();
 		// Previously false was used instead of null to indicate the attribute should not be set
 		$form->setAutocomplete( false );
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToOff() {
 		$form = $this->newInstance();
 		$form->setAutocomplete( 'off' );
-		$this->assertContains( ' autocomplete="off"', $form->wrapForm( '' ) );
+		$this->assertStringContainsString( ' autocomplete="off"', $form->wrapForm( '' ) );
 	}
 
 	public function testGetPreText() {
@@ -58,6 +60,17 @@ class HTMLFormTest extends MediaWikiTestCase {
 		$form = $this->newInstance();
 		$form->setPreText( $preText );
 		$this->assertSame( $preText, $form->getPreText() );
+	}
+
+	public function testGetErrorsOrWarningsWithRawParams() {
+		$form = $this->newInstance();
+		$msg = new RawMessage( 'message with $1' );
+		$msg->rawParams( '<a href="raw">params</a>' );
+		$status = Status::newFatal( $msg );
+
+		$result = $form->getErrorsOrWarnings( $status, 'error' );
+
+		$this->assertStringContainsString( 'message with <a href="raw">params</a>', $result );
 	}
 
 }

@@ -55,7 +55,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 			->unsafeParams( 'ThisIsStderr', '1>&2' )
 			->execute();
 
-		$this->assertNotContains( 'ThisIsStderr', $result->getStdout() );
+		$this->assertStringNotContainsString( 'ThisIsStderr', $result->getStdout() );
 		$this->assertEquals( "ThisIsStderr", $result->getStderr() );
 	}
 
@@ -144,14 +144,14 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command->setLogger( $logger );
 		$command->unsafeParams( 'ThisIsStderr', '1>&2' );
 		$command->execute();
-		$this->assertEmpty( $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		$command = $this->getPhpCommand( 'echo_args.php' );
 		$command->setLogger( $logger );
 		$command->logStderr();
 		$command->unsafeParams( 'ThisIsStderr', '1>&2' );
 		$command->execute();
-		$this->assertSame( 1, count( $logger->getBuffer() ) );
+		$this->assertCount( 1, $logger->getBuffer() );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
 	}
 

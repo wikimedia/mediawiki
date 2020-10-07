@@ -1,25 +1,26 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"menu": {
-			"file": "../wikimediaui/images/icons/menu.svg" },
-		"stripeFlow": {
+			"file": "../wikimediaui/images/icons/menu.svg"
+		},
+		"recentChanges": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeFlow-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeFlow-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/recentChanges-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/recentChanges-rtl.svg"
 			}
 		},
-		"stripeSummary": {
+		"textFlow": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeSummary-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeSummary-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/textFlow-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textFlow-rtl.svg"
 			}
 		},
-		"stripeToC": {
+		"textSummary": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeToC-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeToC-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/textSummary-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textSummary-rtl.svg"
 			}
 		},
 		"viewCompact": {

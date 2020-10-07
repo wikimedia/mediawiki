@@ -5,7 +5,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 /**
  * @covers ExternalUserNames
  */
-class ExternalUserNamesTest extends MediaWikiTestCase {
+class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetUserLinkTitle() {
 		return [
@@ -53,6 +53,9 @@ class ExternalUserNamesTest extends MediaWikiTestCase {
 			[ 'User1', 'prefix', 'prefix>User1' ],
 			[ 'User1', 'prefix:>', 'prefix>User1' ],
 			[ 'User1', 'prefix:', 'prefix>User1' ],
+			[ 'user1', 'prefix', 'prefix>user1' ],
+			[ '0', 'prefix', 'prefix>0' ],
+			[ 'Unknown user', 'prefix', 'Unknown user' ],
 		];
 	}
 
@@ -67,6 +70,23 @@ class ExternalUserNamesTest extends MediaWikiTestCase {
 			$expected,
 			$externalUserNames->applyPrefix( $username )
 		);
+	}
+
+	/**
+	 * @covers ExternalUserNames::applyPrefix
+	 */
+	public function testApplyPrefix_existingUser() {
+		$testName = $this->getTestUser()->getUser()->getName();
+		$testName2 = lcfirst( $testName );
+		$this->assertNotSame( $testName, $testName2, 'sanity check' );
+
+		$externalUserNames = new ExternalUserNames( 'p', false );
+		$this->assertSame( "p>$testName", $externalUserNames->applyPrefix( $testName ) );
+		$this->assertSame( "p>$testName2", $externalUserNames->applyPrefix( $testName2 ) );
+
+		$externalUserNames = new ExternalUserNames( 'p', true );
+		$this->assertSame( $testName, $externalUserNames->applyPrefix( $testName ) );
+		$this->assertSame( $testName2, $externalUserNames->applyPrefix( $testName2 ) );
 	}
 
 	public function provideAddPrefix() {

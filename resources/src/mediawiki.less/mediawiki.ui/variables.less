@@ -20,84 +20,72 @@
  */
 @width-breakpoint-desktop: 1000px;
 
-// Colors for use in mediawiki.ui and elsewhere
+// Colors for use in mediawiki.ui
 
-// Although this defines many shades, be parsimonious in your own use of grays.
-// Prefer semantic color names such as `@colorText` below.
+// All `@colorGray*` variables are only for reference.
+// They will be replaced by WikimediaUI Base variables.
+// Use semantic color names such as `@color-base` below.
 @colorGray1: #000; // darkest
-@colorGray2: #222;
-@colorGray4: #444;
+@colorGray2: #202122;
+@colorGray4: #404244;
 @colorGray5: #54595d;
 @colorGray7: #72777d;
 @colorGray10: #a2a9b1;
 @colorGray12: #c8ccd1;
 @colorGray14: #eaecf0;
 @colorGray15: #f8f9fa; // lightest
-@colorBaseInverted: #fff;
 
-// Semantic colors
+// Background colors
 @background-color-base: #fff;
-// Blue; for contextual use of a continuing action
-@colorProgressive: #36c;
-@colorProgressiveHighlight: #447ff5;
-@colorProgressiveActive: #2a4b8d;
-// Orange; for contextual use of returning to a past action
-@colorRegressive: #ff5d00;
-// Red; for contextual use of a negative action of high severity
-@colorDestructive: #d33;
-@colorDestructiveHighlight: #ff4242;
-@colorDestructiveActive: #b32424;
-// Orange; for contextual use of a potentially negative action of medium severity
-@colorMediumSevere: #ff5d00;
-// Yellow; for contextual use of a potentially negative action of low severity
-@colorLowSevere: #fc3;
 
-// Used in mixins to darken contextual colors by the same amount (eg. focus)
-@colorDarkenPercentage: 13.5%;
-// Used in mixins to lighten contextual colors by the same amount (eg. hover)
-@colorLightenPercentage: 13.5%;
-
-// Text colors
-@colorText: @colorGray2;
-@colorTextEmphasized: @colorGray1;
-@colorTextLight: @colorGray5;
-@colorButtonText: @colorGray2;
-@colorButtonTextHighlight: @colorGray4;
-@colorButtonTextActive: @colorGray1;
-@colorDisabledText: @colorGray7;
+// Colors
+@color-base: @colorGray2;
+@color-base--hover: @colorGray4;
+@color-base--active: @colorGray1;
+@color-base--emphasized: @colorGray1;
+@color-base--inverted: #fff;
+@color-base--subtle: @colorGray7;
+@color-base--disabled: @colorGray7;
+// Accent50 Foundation Blue; for contextual use of a continuing action
+@color-primary: #36c;
+@color-primary--hover: #447ff5;
+@color-primary--active: #2a4b8d;
+@color-primary--focus: @color-primary;
+// Red50; for contextual use of a negative action of high severity
+@color-destructive: #d33;
+@color-destructive--hover: #ff4242;
+@color-destructive--active: #b32424;
+// Other UI colors
+@color-placeholder: @colorGray7;
 
 // Messages
 // Messages: Error
-@backgroundColorError: #fee7e6;
-// Use only for inlined messages, boxed messages require `@colorTextEmphasized` for
+@background-color-error: #fee7e6;
+// Use only for inlined messages, boxed messages require `@color-base--emphasized` for
 // minimum contrast ratio.
-@colorError: #d33;
-@borderColorError: @colorError;
+@color-error: #d33;
+@border-color-error: @color-error;
 // Messages: Warning
-@backgroundColorWarning: #fef6e7;
-@colorWarning: @colorTextEmphasized;
-@borderColorWarning: #fc3;
+@background-color-warning: #fef6e7;
+@color-warning: @color-base--emphasized;
+@border-color-warning: #fc3;
 // Messages: Success
-@backgroundColorSuccess: #d5fdf4;
-@colorSuccess: #14866d;
-@borderColorSuccess: @colorSuccess;
-
-// FIXME: Remove after a few weeks, when extensions got updated
-@colorErrorText: @colorError;
-@colorWarningText: @colorWarning;
+@background-color-success: #d5fdf4;
+@color-success: #14866d;
+@border-color-success: @color-success;
 
 // UI colors
-@backgroundColorInputBinaryChecked: @colorProgressive;
-@backgroundColorInputBinaryActive: @colorProgressiveActive;
-@colorFieldBorder: #a2a9b1;
-@colorShadow: @colorGray14;
-@colorPlaceholder: @colorGray10;
-@colorNeutral: @colorGray7;
+@background-color-input-binary--active: @color-primary--active;
+@background-color-input-binary--checked: @color-primary;
+
+// Border
+@border-base: @border-width-base @border-style-base @border-color-base;
 
 // Border colors
 @border-color-base: #a2a9b1;
-@borderColorInputBinaryChecked: @colorProgressive;
-@borderColorInputBinaryActive: @colorProgressiveActive;
+@border-color-base--focus: @color-primary--focus;
+@border-color-input-binary--active: @color-primary--active;
+@border-color-input-binary--checked: @color-primary;
 
 // Border styles
 @border-style-base: solid;
@@ -105,21 +93,86 @@
 // Border widths
 @border-width-base: 1px;
 
-// Checked radio input border-width, equal to OOUI at 14px base font-size
-@borderWidthRadioChecked: 0.4285em;
+// Checked radio input `border-width`, in pixel as both the background and the dot are signals.
+// Equal to OOUI.
+@border-width-radio--checked: 6px;
 
-// Global border radius to be used to buttons and inputs
-@borderRadius: 2px;
+// Border radius to be used to buttons and inputs
+@border-radius-base: 2px;
 
 // Box shadows
-@boxShadowWidget: inset 0 0 0 1px transparent;
-@boxShadowWidgetFocus: inset 0 0 0 1px @colorProgressive;
-@boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @colorBaseInverted;
-@boxShadowInputBinaryActive: inset 0 0 0 1px @colorProgressiveActive;
+@box-shadow-base: inset 0 0 0 1px transparent;
+@box-shadow-base--focus: inset 0 0 0 1px @color-primary--focus;
+@box-shadow-primary--focus: inset 0 0 0 1px @color-primary--focus, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-input-binary--active: inset 0 0 0 1px @color-primary--active;
 
 // Icon related variables
-@iconSize: 1.5em;
-@iconGutterWidth: 1em;
+@size-icon: 1.5em;
+@width-icon-gutter: 1em;
 
 // Form input sizes, equal to OOUI at 14px base font-size
-@sizeInputBinary: 1.5625em;
+@size-input-binary: 1.5625em;
+
+/**
+ * Deprecated variables
+ */
+// Deprecated in MW v1.35.0
+@colorProgressive: @color-primary;
+@colorProgressiveHighlight: @color-primary--hover;
+@colorProgressiveActive: @color-primary--active;
+@colorDestructive: @color-destructive;
+@colorDestructiveHighlight: @color-destructive--hover;
+@colorDestructiveActive: @color-destructive--active;
+// Orange; for contextual use of returning to a past action
+@colorRegressive: #ff5d00;
+@colorText: @color-base;
+@colorTextEmphasized: @color-base--emphasized;
+@colorTextLight: @color-base--subtle;
+@colorBaseInverted: @color-base--inverted;
+@colorNeutral: @color-base--subtle;
+@colorButtonText: @color-base;
+@colorButtonTextHighlight: @color-base--hover;
+@colorButtonTextActive: @color-base--active;
+@colorDisabledText: @color-base--disabled;
+@colorFieldBorder: @border-color-base;
+@colorPlaceholder: @color-placeholder;
+@colorShadow: @colorGray14;
+// Used in mixins to darken contextual colors by the same amount (eg. focus)
+@colorDarkenPercentage: 13.5%;
+// Used in mixins to lighten contextual colors by the same amount (eg. hover)
+@colorLightenPercentage: 13.5%;
+
+@iconSize: @size-icon;
+@iconGutterWidth: @width-icon-gutter;
+
+@backgroundColorError: @background-color-error;
+@colorError: @color-error;
+@borderColorError: @color-error;
+@backgroundColorWarning: @background-color-warning;
+@colorWarning: @color-base--emphasized;
+@borderColorWarning: @border-color-warning;
+@backgroundColorSuccess: @background-color-success;
+@colorSuccess: @color-success;
+@borderColorSuccess: @color-success;
+
+// Orange; for contextual use of a potentially negative action of medium severity
+@colorMediumSevere: #ff5d00;
+// Yellow; for contextual use of a potentially negative action of low severity
+@colorLowSevere: #fc3;
+
+@backgroundColorInputBinaryChecked: @background-color-input-binary--checked;
+@backgroundColorInputBinaryActive: @background-color-input-binary--active;
+
+@sizeInputBinary: @size-input-binary;
+
+@borderColorInputBinaryChecked: @border-color-input-binary--checked;
+@borderColorInputBinaryActive: @border-color-input-binary--active;
+
+@borderWidthRadioChecked: @border-width-radio--checked;
+
+@borderRadius: @border-radius-base;
+
+@boxShadowWidget: @box-shadow-base;
+@boxShadowWidgetFocus: @box-shadow-base--focus;
+@boxShadowProgressiveFocus: @box-shadow-primary--focus;
+@boxShadowInputBinaryActive: @box-shadow-input-binary--active;

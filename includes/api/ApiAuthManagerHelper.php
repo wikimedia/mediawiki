@@ -21,11 +21,12 @@
  * @since 1.27
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Helper class for AuthManager-using API modules. Intended for use via
@@ -41,23 +42,29 @@ class ApiAuthManagerHelper {
 	/** @var string Message output format */
 	private $messageFormat;
 
+	/** @var AuthManager */
+	private $authManager;
+
 	/**
 	 * @param ApiBase $module API module, for context and parameters
+	 * @param AuthManager|null $authManager
 	 */
-	public function __construct( ApiBase $module ) {
+	public function __construct( ApiBase $module, AuthManager $authManager = null ) {
 		$this->module = $module;
 
 		$params = $module->extractRequestParams();
 		$this->messageFormat = $params['messageformat'] ?? 'wikitext';
+		$this->authManager = $authManager ?: MediaWikiServices::getInstance()->getAuthManager();
 	}
 
 	/**
 	 * Static version of the constructor, for chaining
 	 * @param ApiBase $module API module, for context and parameters
+	 * @param AuthManager|null $authManager
 	 * @return ApiAuthManagerHelper
 	 */
-	public static function newForModule( ApiBase $module ) {
-		return new self( $module );
+	public static function newForModule( ApiBase $module, AuthManager $authManager = null ) {
+		return new self( $module, $authManager );
 	}
 
 	/**
@@ -81,11 +88,12 @@ class ApiAuthManagerHelper {
 				break;
 
 			case 'raw':
+				$params = $message->getParams();
 				$res[$key] = [
 					'key' => $message->getKey(),
-					'params' => $message->getParams(),
+					'params' => $params,
 				];
-				ApiResult::setIndexedTagName( $res[$key]['params'], 'param' );
+				ApiResult::setIndexedTagName( $params, 'param' );
 				break;
 		}
 	}
@@ -96,7 +104,7 @@ class ApiAuthManagerHelper {
 	 * @throws ApiUsageException
 	 */
 	public function securitySensitiveOperation( $operation ) {
-		$status = AuthManager::singleton()->securitySensitiveOperationStatus( $operation );
+		$status = $this->authManager->securitySensitiveOperationStatus( $operation );
 		switch ( $status ) {
 			case AuthManager::SEC_OK:
 				return;
@@ -136,8 +144,7 @@ class ApiAuthManagerHelper {
 	public function loadAuthenticationRequests( $action ) {
 		$params = $this->module->extractRequestParams();
 
-		$manager = AuthManager::singleton();
-		$reqs = $manager->getAuthenticationRequests( $action, $this->module->getUser() );
+		$reqs = $this->authManager->getAuthenticationRequests( $action, $this->module->getUser() );
 
 		// Filter requests, if requested to do so
 		$wantedRequests = null;
@@ -147,9 +154,12 @@ class ApiAuthManagerHelper {
 			$wantedRequests = [ $params['request'] => true ];
 		}
 		if ( $wantedRequests !== null ) {
-			$reqs = array_filter( $reqs, function ( $req ) use ( $wantedRequests ) {
-				return isset( $wantedRequests[$req->getUniqueId()] );
-			} );
+			$reqs = array_filter(
+				$reqs,
+				function ( AuthenticationRequest $req ) use ( $wantedRequests ) {
+					return isset( $wantedRequests[$req->getUniqueId()] );
+				}
+			);
 		}
 
 		// Collect the fields for all the requests

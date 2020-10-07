@@ -19,8 +19,9 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A query module to show basic page information.
@@ -75,9 +76,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_touched' );
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
-		if ( $config->get( 'ContentHandlerUseDB' ) ) {
-			$pageSet->requestField( 'page_content_model' );
-		}
+		$pageSet->requestField( 'page_content_model' );
 		if ( $config->get( 'PageLanguageUseDB' ) ) {
 			$pageSet->requestField( 'page_lang' );
 		}
@@ -113,7 +112,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ self::class, 'getImportToken' ],
 			'watch' => [ self::class, 'getWatchToken' ],
 		];
-		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ] );
+		$this->getHookRunner()->onAPIQueryInfoTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
@@ -129,21 +128,27 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * @deprecated since 1.24
+	 * Temporary method until the token methods are removed entirely
+	 *
+	 * Only for the tokens that all use User::getEditToken
+	 *
+	 * @param string $right Right needed (edit/delete/block/etc.)
+	 * @return string|false
 	 */
-	public static function getEditToken( $pageid, $title ) {
-		// We could check for $title->userCan('edit') here,
-		// but that's too expensive for this purpose
-		// and would break caching
+	private static function getUserToken( string $right ) {
 		global $wgUser;
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $wgUser, 'edit' ) ) {
+		$user = $wgUser;
+
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, $right )
+		) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['edit'] ) ) {
-			self::$cachedTokens['edit'] = $wgUser->getEditToken();
+			self::$cachedTokens['edit'] = $user->getEditToken();
 		}
 
 		return self::$cachedTokens['edit'];
@@ -152,73 +157,36 @@ class ApiQueryInfo extends ApiQueryBase {
 	/**
 	 * @deprecated since 1.24
 	 */
+	public static function getEditToken( $pageid, $title ) {
+		return self::getUserToken( 'edit' );
+	}
+
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getDeleteToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $wgUser, 'delete' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['delete'] ) ) {
-			self::$cachedTokens['delete'] = $wgUser->getEditToken();
-		}
-
-		return self::$cachedTokens['delete'];
+		return self::getUserToken( 'delete' );
 	}
 
 	/**
 	 * @deprecated since 1.24
 	 */
 	public static function getProtectToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $wgUser, 'protect' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['protect'] ) ) {
-			self::$cachedTokens['protect'] = $wgUser->getEditToken();
-		}
-
-		return self::$cachedTokens['protect'];
+		return self::getUserToken( 'protect' );
 	}
 
 	/**
 	 * @deprecated since 1.24
 	 */
 	public static function getMoveToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $wgUser, 'move' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['move'] ) ) {
-			self::$cachedTokens['move'] = $wgUser->getEditToken();
-		}
-
-		return self::$cachedTokens['move'];
+		return self::getUserToken( 'move' );
 	}
 
 	/**
 	 * @deprecated since 1.24
 	 */
 	public static function getBlockToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $wgUser, 'block' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['block'] ) ) {
-			self::$cachedTokens['block'] = $wgUser->getEditToken();
-		}
-
-		return self::$cachedTokens['block'];
+		return self::getUserToken( 'block' );
 	}
 
 	/**
@@ -234,13 +202,15 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getEmailToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailuser() ) {
+		$user = $wgUser;
+
+		if ( !$user->canSendEmail() || $user->isBlockedFromEmailuser() ) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['email'] ) ) {
-			self::$cachedTokens['email'] = $wgUser->getEditToken();
+			self::$cachedTokens['email'] = $user->getEditToken();
 		}
 
 		return self::$cachedTokens['email'];
@@ -251,15 +221,17 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
+		$user = $wgUser;
+
 		if ( !MediaWikiServices::getInstance()
 			->getPermissionManager()
-			->userHasAnyRight( $wgUser, 'import', 'importupload' ) ) {
+			->userHasAnyRight( $user, 'import', 'importupload' ) ) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['import'] ) ) {
-			self::$cachedTokens['import'] = $wgUser->getEditToken();
+			self::$cachedTokens['import'] = $user->getEditToken();
 		}
 
 		return self::$cachedTokens['import'];
@@ -270,13 +242,15 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getWatchToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isLoggedIn() ) {
+		$user = $wgUser;
+
+		if ( !$user->isLoggedIn() ) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['watch'] ) ) {
-			self::$cachedTokens['watch'] = $wgUser->getEditToken( 'watch' );
+			self::$cachedTokens['watch'] = $user->getEditToken( 'watch' );
 		}
 
 		return self::$cachedTokens['watch'];
@@ -287,13 +261,15 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getOptionsToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isLoggedIn() ) {
+		$user = $wgUser;
+
+		if ( !$user->isLoggedIn() ) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['options'] ) ) {
-			self::$cachedTokens['options'] = $wgUser->getEditToken();
+			self::$cachedTokens['options'] = $user->getEditToken();
 		}
 
 		return self::$cachedTokens['options'];
@@ -301,7 +277,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function execute() {
 		$this->params = $this->extractRequestParams();
-		if ( !is_null( $this->params['prop'] ) ) {
+		if ( $this->params['prop'] !== null ) {
 			$prop = array_flip( $this->params['prop'] );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
@@ -324,7 +300,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		uasort( $this->everything, [ Title::class, 'compare' ] );
-		if ( !is_null( $this->params['continue'] ) ) {
+		if ( $this->params['continue'] !== null ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
 			$cont = explode( '|', $this->params['continue'] );
@@ -432,7 +408,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $this->params['token'] ) ) {
+		if ( $this->params['token'] !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
 			foreach ( $this->params['token'] as $t ) {
@@ -513,7 +489,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
-				Hooks::run( 'EditFormPreloadText', [ &$text, &$title ] );
+				$this->getHookRunner()->onEditFormPreloadText( $text, $title );
 
 				$pageInfo['preload'] = $text;
 			}
@@ -538,7 +514,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			$detailLevel = $this->params['testactionsdetail'];
-			$rigor = $detailLevel === 'quick' ? 'quick' : 'secure';
+			$rigor = $detailLevel === 'quick'
+				? PermissionManager::RIGOR_QUICK
+				// Not using RIGOR_SECURE here, because that results in master connection
+				: PermissionManager::RIGOR_FULL;
 			$errorFormatter = $this->getErrorFormatter();
 			if ( $errorFormatter->getFormat() === 'bc' ) {
 				// Eew, no. Use a more modern format here.
@@ -908,7 +887,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
-				$timestamps[$row->page_namespace][$row->page_title] = $revTimestamp - $age;
+				$timestamps[$row->page_namespace][$row->page_title] = (int)$revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(
 				function ( LinkTarget $target ) use ( $timestamps ) {
@@ -958,7 +937,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return 'private';
 		}
 
-		if ( !is_null( $params['token'] ) ) {
+		if ( $params['token'] !== null ) {
 			return 'private';
 		}
 

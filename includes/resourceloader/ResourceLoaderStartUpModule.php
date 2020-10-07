@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Module for ResourceLoader initialization.
  *
@@ -47,87 +45,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
-		// for forward compatiblity so that they can be safely referenced by mediawiki.js,
+		// for forward compatibility so that they can be safely referenced by mediawiki.js,
 		// even when the code is cached and the order of registrations (and implicit
 		// group ids) changes between versions of the software.
 		'user' => 0,
 		'private' => 1,
 	];
-
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array
-	 */
-	private function getConfigSettings( ResourceLoaderContext $context ) {
-		$conf = $this->getConfig();
-
-		/**
-		 * Namespace related preparation
-		 * - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
-		 * - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
-		 */
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$namespaceIds = $contLang->getNamespaceIds();
-		$caseSensitiveNamespaces = [];
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		foreach ( $nsInfo->getCanonicalNamespaces() as $index => $name ) {
-			$namespaceIds[$contLang->lc( $name )] = $index;
-			if ( !$nsInfo->isCapitalized( $index ) ) {
-				$caseSensitiveNamespaces[] = $index;
-			}
-		}
-
-		$illegalFileChars = $conf->get( 'IllegalFileChars' );
-
-		// Build list of variables
-		$skin = $context->getSkin();
-		$vars = [
-			'debug' => $context->getDebug(),
-			'skin' => $skin,
-			'stylepath' => $conf->get( 'StylePath' ),
-			'wgUrlProtocols' => wfUrlProtocols(),
-			'wgArticlePath' => $conf->get( 'ArticlePath' ),
-			'wgScriptPath' => $conf->get( 'ScriptPath' ),
-			'wgScript' => $conf->get( 'Script' ),
-			'wgSearchType' => $conf->get( 'SearchType' ),
-			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
-			// Force object to avoid "empty" associative array from
-			// becoming [] instead of {} in JS (T36604)
-			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
-			'wgServer' => $conf->get( 'Server' ),
-			'wgServerName' => $conf->get( 'ServerName' ),
-			'wgUserLanguage' => $context->getLanguage(),
-			'wgContentLanguage' => $contLang->getCode(),
-			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
-			'wgVersion' => $conf->get( 'Version' ),
-			'wgEnableAPI' => true, // Deprecated since MW 1.32
-			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
-			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
-			'wgNamespaceIds' => $namespaceIds,
-			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
-			'wgSiteName' => $conf->get( 'Sitename' ),
-			'wgDBname' => $conf->get( 'DBname' ),
-			'wgWikiID' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
-			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
-			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
-			// MediaWiki sets cookies to have this prefix by default
-			'wgCookiePrefix' => $conf->get( 'CookiePrefix' ),
-			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
-			'wgCookiePath' => $conf->get( 'CookiePath' ),
-			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
-			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
-			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
-			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
-			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
-			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
-			'wgCommentByteLimit' => null,
-			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
-		];
-
-		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin, $conf ] );
-
-		return $vars;
-	}
 
 	/**
 	 * Recursively get all explicit and implicit dependencies for to the given module.
@@ -140,9 +63,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	protected static function getImplicitDependencies(
 		array $registryData,
-		$moduleName,
+		string $moduleName,
 		array $handled = []
-	) {
+	) : array {
 		static $dependencyCache = [];
 
 		// No modules will be added or changed server-side after this point,
@@ -195,13 +118,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * This way we can reasonably reduce the amount of module registration
 	 * data send to the client.
 	 *
-	 * @param array &$registryData Modules keyed by name with properties:
+	 * @param array[] &$registryData Modules keyed by name with properties:
 	 *  - string 'version'
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
+	 * @codingStandardsIgnoreEnd
 	 */
-	public static function compileUnresolvedDependencies( array &$registryData ) {
+	public static function compileUnresolvedDependencies( array &$registryData ) : void {
 		foreach ( $registryData as $name => &$data ) {
 			$dependencies = $data['dependencies'];
 			try {
@@ -225,7 +151,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
-	public function getModuleRegistrations( ResourceLoaderContext $context ) {
+	public function getModuleRegistrations( ResourceLoaderContext $context ) : string {
 		$resourceLoader = $context->getResourceLoader();
 		// Future developers: Use WebRequest::getRawVal() instead getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
@@ -353,7 +279,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $out;
 	}
 
-	private function getGroupId( $groupName ) {
+	private function getGroupId( $groupName ) : ?int {
 		if ( $groupName === null ) {
 			return null;
 		}
@@ -370,9 +296,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * @return array
 	 */
-	private function getBaseModules() {
-		$baseModules = [ 'jquery', 'mediawiki.base' ];
-		return $baseModules;
+	private function getBaseModules() : array {
+		return [ 'jquery', 'mediawiki.base' ];
 	}
 
 	/**
@@ -381,7 +306,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * @return string localStorage item key for JavaScript
 	 */
-	private function getStoreKey() {
+	private function getStoreKey() : string {
 		return 'MediaWikiModuleStore:' . $this->getConfig()->get( 'DBname' );
 	}
 
@@ -406,7 +331,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string String of concatenated vary conditions
 	 */
-	private function getStoreVary( ResourceLoaderContext $context ) {
+	private function getStoreVary( ResourceLoaderContext $context ) : string {
 		return implode( ':', [
 			$context->getSkin(),
 			$this->getConfig()->get( 'ResourceLoaderStorageVersion' ),
@@ -418,12 +343,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
+	public function getScript( ResourceLoaderContext $context ) : string {
 		global $IP;
 		$conf = $this->getConfig();
 
 		if ( $context->getOnly() !== 'scripts' ) {
-			return '/* Requires only=script */';
+			return '/* Requires only=scripts */';
 		}
 
 		$startupCode = file_get_contents( "$IP/resources/src/startup/startup.js" );
@@ -441,7 +366,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
-			'$VARS.reqBase' => $context->encodeJson( $context->getReqBase() ),
+			// This should always be an object, even if the base vars are empty
+			// (such as when using the default lang/skin).
+			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
 			'$VARS.maxQueryLength' => $context->encodeJson( $this->getMaxQueryLength() ),
 			// The client-side module cache can be disabled by site configuration.
@@ -474,9 +401,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform string replacements for startup.js
 		$pairs = [
-			'$VARS.configuration' => $context->encodeJson(
-				$this->getConfigSettings( $context )
-			),
 			// Raw JavaScript code (not JSON)
 			'$CODE.registrations();' => trim( $this->getModuleRegistrations( $context ) ),
 			'$CODE.defineLoader();' => $mwLoaderCode,
@@ -489,14 +413,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/**
 	 * @return bool
 	 */
-	public function supportsURLLoading() {
+	public function supportsURLLoading() : bool {
 		return false;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function enableModuleContentVersion() {
+	public function enableModuleContentVersion() : bool {
 		// Enabling this means that ResourceLoader::getVersionHash will simply call getScript()
 		// and hash it to determine the version (as used by E-Tag HTTP response header).
 		return true;

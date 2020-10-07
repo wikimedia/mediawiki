@@ -22,8 +22,8 @@ namespace MediaWiki\Edit;
 
 use Content;
 use ParserOptions;
-use RuntimeException;
 use ParserOutput;
+use RuntimeException;
 
 /**
  * Represents information returned by WikiPage::prepareContentForEdit()
@@ -114,7 +114,7 @@ class PreparedEdit {
 	 * @param string $name
 	 * @return mixed
 	 */
-	function __get( $name ) {
+	public function __get( $name ) {
 		if ( $name === 'output' ) {
 			return $this->getOutput();
 		}

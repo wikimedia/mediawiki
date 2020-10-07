@@ -26,9 +26,7 @@ class ApiPurgeTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'purge', $data[0],
 			"Must receive a 'purge' result from API" );
 
-		$this->assertEquals(
-			3,
-			count( $data[0]['purge'] ),
+		$this->assertCount( 3, $data[0]['purge'],
 			"Purge request for three articles should give back three results received: "
 				. var_export( $data[0]['purge'], true ) );
 

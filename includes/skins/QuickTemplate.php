@@ -17,27 +17,31 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 /**
  * Generic wrapper for template functions, with interface
  * compatible with what we use of PHPTAL 0.7.
+ * @stable to extend
  * @ingroup Skins
  */
 abstract class QuickTemplate {
+	use ProtectedHookAccessorTrait;
 
 	/**
 	 * @var array
 	 */
 	public $data;
 
-	/** @var Config $config */
+	/** @var Config */
 	protected $config;
 
 	/**
 	 * @param Config|null $config
 	 */
-	function __construct( Config $config = null ) {
+	public function __construct( Config $config = null ) {
 		$this->data = [];
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
@@ -74,23 +78,11 @@ abstract class QuickTemplate {
 	 * @since 1.22
 	 * @param string $name Key for the data
 	 * @param mixed|null $default Optional default (or null)
-	 * @return mixed The value of the data requested or the deafult
+	 * @return mixed The value of the data requested or the default
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public function get( $name, $default = null ) {
 		return $this->data[$name] ?? $default;
-	}
-
-	/**
-	 * @deprecated since 1.31 This function is a now-redundant optimisation intended
-	 *  for very old versions of PHP. The use of references here makes the code
-	 *  more fragile and is incompatible with plans like T140664. Use set() instead.
-	 * @param string $name
-	 * @param mixed &$value
-	 */
-	public function setRef( $name, &$value ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		$this->data[$name] =& $value;
 	}
 
 	/**
@@ -100,60 +92,41 @@ abstract class QuickTemplate {
 	abstract public function execute();
 
 	/**
-	 * @private
 	 * @param string $str
 	 * @suppress SecurityCheck-DoubleEscaped $this->data can be either
 	 */
-	function text( $str ) {
+	protected function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
 	}
 
 	/**
-	 * @private
 	 * @param string $str
 	 * @suppress SecurityCheck-XSS phan-taint-check cannot tell if $str is pre-escaped
 	 */
-	function html( $str ) {
+	public function html( $str ) {
 		echo $this->data[$str];
 	}
 
 	/**
-	 * @private
 	 * @param string $msgKey
 	 */
-	function msg( $msgKey ) {
+	public function msg( $msgKey ) {
 		echo htmlspecialchars( wfMessage( $msgKey )->text() );
 	}
 
 	/**
-	 * An ugly, ugly hack.
-	 * @deprecated since 1.33 Use ->msg() instead.
-	 * @param string $msgKey
-	 */
-	function msgWiki( $msgKey ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		global $wgOut;
-
-		$text = wfMessage( $msgKey )->plain();
-		echo $wgOut->parseAsInterface( $text );
-	}
-
-	/**
-	 * @private
 	 * @param string $str
 	 * @return bool
 	 */
-	function haveData( $str ) {
+	private function haveData( $str ) {
 		return isset( $this->data[$str] );
 	}
 
 	/**
-	 * @private
-	 *
 	 * @param string $msgKey
 	 * @return bool
 	 */
-	function haveMsg( $msgKey ) {
+	protected function haveMsg( $msgKey ) {
 		$msg = wfMessage( $msgKey );
 		return $msg->exists() && !$msg->isDisabled();
 	}

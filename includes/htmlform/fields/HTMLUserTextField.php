@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Widget\UserInputWidget;
+use Wikimedia\IPUtils;
 
 /**
  * Implements a text input field for user names.
@@ -13,9 +14,13 @@ use MediaWiki\Widget\UserInputWidget;
  * 'iprangelimits' - Specifies the valid IP ranges for IPv4 and IPv6 in an array.
  *  defaults to IPv4 => 16; IPv6 => 32.
  *
+ * @stable to extend
  * @since 1.26
  */
 class HTMLUserTextField extends HTMLTextField {
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $params ) {
 		$params = wfArrayPlus2d( $params, [
 				'exists' => false,
@@ -32,9 +37,14 @@ class HTMLUserTextField extends HTMLTextField {
 	}
 
 	public function validate( $value, $alldata ) {
-		// Default value (from getDefault()) is null, User::newFromName() expects a string
+		// If the value is null, reset it to an empty string which is what is expected by the parent.
 		if ( $value === null ) {
 			$value = '';
+		}
+
+		// If the value is empty, there are no additional checks that can be performed.
+		if ( $value === '' ) {
+			return parent::validate( $value, $alldata );
 		}
 
 		// check, if a user exists with the given username
@@ -47,7 +57,7 @@ class HTMLUserTextField extends HTMLTextField {
 			// check, if the user exists, if requested
 			( $this->mParams['exists'] && $user->getId() === 0 ) &&
 			// check, if the username is a valid IP address, otherwise save the error message
-			!( $this->mParams['ipallowed'] && IP::isValid( $value ) ) &&
+			!( $this->mParams['ipallowed'] && IPUtils::isValid( $value ) ) &&
 			// check, if the username is a valid IP range, otherwise save the error message
 			!( $this->mParams['iprange'] && ( $rangeError = $this->isValidIPRange( $value ) ) === true )
 		) {
@@ -63,33 +73,33 @@ class HTMLUserTextField extends HTMLTextField {
 	protected function isValidIPRange( $value ) {
 		$cidrIPRanges = $this->mParams['iprangelimits'];
 
-		if ( !IP::isValidRange( $value ) ) {
+		if ( !IPUtils::isValidRange( $value ) ) {
 			return false;
 		}
 
 		list( $ip, $range ) = explode( '/', $value, 2 );
 
 		if (
-			( IP::isIPv4( $ip ) && $cidrIPRanges['IPv4'] == 32 ) ||
-			( IP::isIPv6( $ip ) && $cidrIPRanges['IPv6'] == 128 )
+			( IPUtils::isIPv4( $ip ) && $cidrIPRanges['IPv4'] == 32 ) ||
+			( IPUtils::isIPv6( $ip ) && $cidrIPRanges['IPv6'] == 128 )
 		) {
 			// Range block effectively disabled
 			return $this->msg( 'ip_range_toolow' )->parse();
 		}
 
 		if (
-			( IP::isIPv4( $ip ) && $range > 32 ) ||
-			( IP::isIPv6( $ip ) && $range > 128 )
+			( IPUtils::isIPv4( $ip ) && $range > 32 ) ||
+			( IPUtils::isIPv6( $ip ) && $range > 128 )
 		) {
 			// Dodgy range
 			return $this->msg( 'ip_range_invalid' )->parse();
 		}
 
-		if ( IP::isIPv4( $ip ) && $range < $cidrIPRanges['IPv4'] ) {
+		if ( IPUtils::isIPv4( $ip ) && $range < $cidrIPRanges['IPv4'] ) {
 			return $this->msg( 'ip_range_exceeded', $cidrIPRanges['IPv4'] )->parse();
 		}
 
-		if ( IP::isIPv6( $ip ) && $range < $cidrIPRanges['IPv6'] ) {
+		if ( IPUtils::isIPv6( $ip ) && $range < $cidrIPRanges['IPv6'] ) {
 			return $this->msg( 'ip_range_exceeded', $cidrIPRanges['IPv6'] )->parse();
 		}
 

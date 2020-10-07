@@ -7,7 +7,7 @@
 
 /**
  * Tests for Irish (Gaeilge)
- *
+ * @group Language
  * @covers LanguageGa
  */
 class LanguageGaTest extends LanguageClassesTestCase {

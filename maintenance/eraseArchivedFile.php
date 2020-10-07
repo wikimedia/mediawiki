@@ -50,12 +50,14 @@ class EraseArchivedFile extends Maintenance {
 		$filekey = $this->getOption( 'filekey' );
 		$filename = $this->getOption( 'filename' );
 
-		if ( $filekey === '*' ) { // all versions by name
+		if ( $filekey === '*' ) {
+			// all versions by name
 			if ( !strlen( $filename ) ) {
 				$this->fatalError( "Missing --filename parameter." );
 			}
 			$afile = false;
-		} else { // specified version
+		} else {
+			// specified version
 			$dbw = $this->getDB( DB_MASTER );
 			$fileQuery = ArchivedFile::getQueryInfo();
 			$row = $dbw->selectRow( $fileQuery['tables'], $fileQuery['fields'],
@@ -101,7 +103,7 @@ class EraseArchivedFile extends Maintenance {
 		$key = $archivedFile->getStorageKey();
 		$name = $archivedFile->getName();
 		$ts = $archivedFile->getTimestamp();
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
 		if ( $this->hasOption( 'delete' ) ) {
 			$status = $repo->getBackend()->delete( [ 'src' => $path ] );
@@ -109,8 +111,7 @@ class EraseArchivedFile extends Maintenance {
 				$this->output( "Deleted version '$key' ($ts) of file '$name'\n" );
 			} else {
 				$this->output( "Failed to delete version '$key' ($ts) of file '$name'\n" );
-				// @phan-suppress-next-line PhanUndeclaredMethod
-				$this->output( print_r( $status->getErrorsArray(), true ) );
+				$this->output( print_r( Status::wrap( $status )->getErrorsArray(), true ) );
 			}
 		} else {
 			$this->output( "Would delete version '{$key}' ({$ts}) of file '$name'\n" );

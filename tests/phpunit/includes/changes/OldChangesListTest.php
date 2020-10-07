@@ -24,7 +24,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -106,13 +106,13 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'<abbr class="newpage" title="(recentchanges-label-newpage)">(newpageletter)</abbr>',
 			$line,
 			'new page flag'
 		);
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'<abbr class="botedit" title="(recentchanges-label-bot)">(boteditletter)</abbr>',
 			$line,
 			'bot flag'
@@ -123,9 +123,19 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$recentChange = $this->getEditChange();
 		$recentChange->mAttribs['ts_tags'] = 'vandalism,newbie';
 
+		$this->setTemporaryHook( 'OldChangesListRecentChangesLine', function (
+			$oldChangesList, &$html, $rc, $classes, $attribs
+		) {
+			$html = $html . '/<div>Additional change line </div>/';
+		} );
+
 		$oldChangesList = $this->getOldChangesList();
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
+		$this->assertStringContainsString(
+			'/<div>Additional change line </div>/',
+			$line
+		);
 		$this->assertRegExp(
 			'/<li data-mw-revid="\d+" data-mw-ts="\d+" class="[\w\s-]*mw-tag-vandalism[\w\s-]*">/',
 			$line

@@ -29,7 +29,7 @@ class MainConfigDependency extends CacheDependency {
 	private $name;
 	private $value;
 
-	function __construct( $name ) {
+	public function __construct( $name ) {
 		$this->name = $name;
 		$this->value = $this->getConfig()->get( $this->name );
 	}
@@ -41,7 +41,7 @@ class MainConfigDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		if ( !$this->getConfig()->has( $this->name ) ) {
 			return true;
 		}

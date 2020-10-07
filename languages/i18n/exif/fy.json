@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Kening Aldgilles",
+			"PiefPafPier",
 			"Robin van der Vliet",
-			"Snakesteuben",
-			"PiefPafPier"
+			"Snakesteuben"
 		]
 	},
 	"exif-imagewidth": "Breedte",
@@ -13,6 +13,7 @@
 	"exif-samplesperpixel": "Oantal komponinten",
 	"exif-xresolution": "Horizontale resolúsje",
 	"exif-yresolution": "Fertikale resolúsje",
+	"exif-datetime": "Datum en tiid bestânswiziging",
 	"exif-imagedescription": "Ofbylding titel",
 	"exif-make": "Kamera makker",
 	"exif-model": "Kameramodel",

@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Tests\Message;
 
+use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -16,21 +17,39 @@ use Wikimedia\Message\ScalarParam;
  * @covers \Wikimedia\Message\ScalarParam
  * @covers \Wikimedia\Message\MessageParam
  */
-class TextFormatterTest extends MediaWikiTestCase {
-	private function createTextFormatter( $langCode ) {
-		return new class( $langCode ) extends TextFormatter {
-			public function __construct( $langCode ) {
-				parent::__construct( $langCode );
-			}
+class TextFormatterTest extends MediaWikiIntegrationTestCase {
+	private function createTextFormatter( $langCode,
+		$includeWikitext = false,
+		$format = Message::FORMAT_TEXT
+	) {
+		$converter = $this->getMockBuilder( Converter::class )
+			->setMethods( [ 'createMessage' ] )
+			->getMock();
+		$converter->method( 'createMessage' )
+			->willReturnCallback( function ( $key ) use ( $includeWikitext ) {
+				$message = $this->getMockBuilder( Message::class )
+					->setConstructorArgs( [ $key ] )
+					->setMethods( [ 'fetchMessage' ] )
+					->getMock();
 
-			protected function createMessage( $key ) {
-				return new FakeMessage( $key );
-			}
-		};
+				$message->method( 'fetchMessage' )
+					->willReturnCallback( function () use ( $message, $includeWikitext ) {
+						/** @var Message $message */
+						$result = "{$message->getKey()} $1 $2";
+						if ( $includeWikitext ) {
+							$result .= " {{SITENAME}}";
+						}
+						return $result;
+					} );
+
+				return $message;
+			} );
+
+		return new TextFormatter( $langCode, $converter, $format );
 	}
 
 	public function testGetLangCode() {
-		$formatter = $this->createTextFormatter( 'fr' );
+		$formatter = new TextFormatter( 'fr', new Converter );
 		$this->assertSame( 'fr', $formatter->getLangCode() );
 	}
 
@@ -39,6 +58,13 @@ class TextFormatterTest extends MediaWikiTestCase {
 		$mv = ( new MessageValue( 'test' ) )->bitrateParams( 100, 200 );
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test 100 bps 200 bps', $result );
+	}
+
+	public function testFormatShortDuration() {
+		$formatter = $this->createTextFormatter( 'en' );
+		$mv = ( new MessageValue( 'test' ) )->shortDurationParams( 100, 200 );
+		$result = $formatter->format( $mv );
+		$this->assertSame( 'test 1 min 40 s 3 min 20 s', $result );
 	}
 
 	public function testFormatList() {
@@ -63,10 +89,19 @@ class TextFormatterTest extends MediaWikiTestCase {
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test test2 a b x, 100 bps, test3 c test4 d e', $result );
 	}
-}
 
-class FakeMessage extends Message {
-	public function fetchMessage() {
-		return "{$this->getKey()} $1 $2";
+	public function testFormatMessageFormatsWikitext() {
+		global $wgSitename;
+		$formatter = $this->createTextFormatter( 'en', true );
+		$mv = MessageValue::new( 'test' )
+			->plaintextParams( '1', '2' );
+		$this->assertSame( "test 1 2 $wgSitename", $formatter->format( $mv ) );
+	}
+
+	public function testFormatMessageNotWikitext() {
+		$formatter = $this->createTextFormatter( 'en', true, Message::FORMAT_PLAIN );
+		$mv = MessageValue::new( 'test' )
+			->plaintextParams( '1', '2' );
+		$this->assertSame( "test 1 2 {{SITENAME}}", $formatter->format( $mv ) );
 	}
 }

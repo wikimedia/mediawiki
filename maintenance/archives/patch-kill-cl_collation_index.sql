@@ -4,4 +4,3 @@
 --
 
 DROP INDEX /*i*/cl_collation ON /*_*/categorylinks;
-

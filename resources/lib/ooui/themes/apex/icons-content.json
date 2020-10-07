@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"article": {
 			"file": {
@@ -37,6 +37,12 @@
 		},
 		"articleSearch": {
 			"file": "../wikimediaui/images/icons/articleSearch.svg"
+		},
+		"articlesSearch": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/articlesSearch-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/articlesSearch-rtl.svg"
+			}
 		},
 		"articleRedirect": {
 			"file": {
@@ -77,6 +83,12 @@
 		},
 		"robot": {
 			"file": "../wikimediaui/images/icons/robot.svg"
+		},
+		"specialPages": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/specialPages-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/specialPages-rtl.svg"
+			}
 		},
 		"tag": {
 			"file": {

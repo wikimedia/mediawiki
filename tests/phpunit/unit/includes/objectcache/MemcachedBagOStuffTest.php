@@ -6,7 +6,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 	/** @var MemcachedBagOStuff */
 	private $cache;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->cache = new MemcachedPhpBagOStuff( [ 'keyspace' => 'test', 'servers' => [] ] );
 	}
@@ -90,7 +90,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncodingThrowsException( $key ) {
-		$this->setExpectedException( Exception::class );
+		$this->expectException( Exception::class );
 		$this->cache->validateKeyEncoding( $key );
 	}
 

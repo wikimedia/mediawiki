@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Adfokati",
+			"DannyS712",
 			"Jordi",
 			"Kaganer",
+			"Macofe",
 			"Ooswesthoesbes",
 			"Stretsh",
 			"Urhixidur",
-			"아라",
-			"Macofe"
+			"아라"
 		]
 	},
 	"tog-underline": "Poti strepi ondro den miti:",
@@ -334,7 +335,7 @@
 	"histfirst": "A moro owru wan",
 	"histlast": "A moro nyun wan",
 	"historysize": "({{PLURAL:$1|wan byte|$1 byte}})",
-	"historyempty": "(leygi)",
+	"historyempty": "leygi",
 	"history-feed-title": "Kenkistori",
 	"history-feed-description": "Kenkistori du disi papira opo {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 tapu $2",

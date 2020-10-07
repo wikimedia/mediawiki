@@ -40,7 +40,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	 *
 	 * @param array $params
 	 */
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( $params );
 
 		// Default class-specific parameters

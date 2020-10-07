@@ -62,17 +62,20 @@
 		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
 		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
 
-		$( 'body' ).prepend( $container );
+		$( document.body ).prepend( $container );
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation );
+	// JS-only flag that allows another module providing a hook handler to suppress the default one.
+	if ( !mw.config.get( 'wgPostEditConfirmationDisabled' ) ) {
+		mw.hook( 'postEdit' ).add( showConfirmation );
+	}
 
 	if ( postEdit ) {
 		mw.hook( 'postEdit' ).fire( {
 			// The following messages can be used here:
-			// postedit-confirmation-saved
-			// postedit-confirmation-created
-			// postedit-confirmation-restored
+			// * postedit-confirmation-saved
+			// * postedit-confirmation-created
+			// * postedit-confirmation-restored
 			message: mw.msg(
 				'postedit-confirmation-' + postEdit,
 				mw.user

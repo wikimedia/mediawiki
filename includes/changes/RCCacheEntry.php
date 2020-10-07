@@ -37,12 +37,14 @@ class RCCacheEntry extends RecentChange {
 	public $usertalklink;
 	/** @var bool|null */
 	public $watched;
+	/** @var string|null */
+	public $watchlistExpiry;
 
 	/**
 	 * @param RecentChange $rc
 	 * @return RCCacheEntry
 	 */
-	static function newFromParent( $rc ) {
+	public static function newFromParent( $rc ) {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;

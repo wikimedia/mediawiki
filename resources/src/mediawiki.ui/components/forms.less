@@ -1,7 +1,7 @@
 // Form elements and layouts
 
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -15,8 +15,6 @@
 @defaultFormWidth: @captchaContainerWidth;
 
 // Forms
-//
-// Styleguide 5.
 
 // VForm
 //
@@ -34,8 +32,6 @@
 //     <button class="mw-ui-button mw-ui-progressive">Button in vform</button>
 //   </div>
 // </form>
-//
-// Styleguide 5.1.
 .mw-ui-vform {
 	.box-sizing( border-box );
 	width: @defaultFormWidth;
@@ -58,7 +54,7 @@
 
 	> label {
 		display: block;
-		color: @colorText;
+		color: @color-base;
 		.box-sizing( border-box );
 		width: auto;
 		margin: 0 0 0.2em;
@@ -103,17 +99,6 @@
 	//     <button class="mw-ui-button">Button in vform</button>
 	//   </div>
 	// </form>
-	//
-	// Styleguide 5.2.
-	.errorbox,
-	.warningbox,
-	.successbox {
-		.box-sizing( border-box );
-		font-size: 0.9em;
-		margin: 0 0 1em 0;
-		padding: 0.5em 1em;
-		word-wrap: break-word;
-	}
 
 	// This specifies styling for individual field validation error messages.
 	// Show them below the fields to prevent line break glitches, and leave
@@ -147,7 +132,7 @@
 // You generally don't need to use this class if <label> is within an Agora
 // form container such as mw-ui-vform
 .mw-ui-label {
-	color: @colorText;
+	color: @color-base;
 	font-size: 0.9em;
 
 	* {

@@ -110,6 +110,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *   - writeUsers          : Swift users with write access to public containers (account:username)
 	 *   - secureReadUsers     : Swift users with read access to private containers (account:username)
 	 *   - secureWriteUsers    : Swift users with write access to private containers (account:username)
+	 *   - connTimeout         : The HTTP connect timeout to use when connecting to Swift, in
+	 *                           seconds.
+	 *   - reqTimeout          : The HTTP request timeout to use when communicating with Swift, in
+	 *                           seconds.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -124,8 +128,16 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->shardViaHashLevels = $config['shardViaHashLevels'] ?? '';
 		$this->rgwS3AccessKey = $config['rgwS3AccessKey'] ?? '';
 		$this->rgwS3SecretKey = $config['rgwS3SecretKey'] ?? '';
+
 		// HTTP helper client
-		$this->http = new MultiHttpClient( [] );
+		$httpOptions = [];
+		foreach ( [ 'connTimeout', 'reqTimeout' ] as $optionName ) {
+			if ( isset( $config[$optionName] ) ) {
+				$httpOptions[$optionName] = $config[$optionName];
+			}
+		}
+		$this->http = new MultiHttpClient( $httpOptions );
+
 		// Cache container information to mask latency
 		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
 			$this->memCache = $config['wanCache'];
@@ -1556,6 +1568,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $rcode === 409 ) { // not empty
 			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc ); // race?
 		} else {
+			// @phan-suppress-previous-line PhanPluginDuplicateIfStatements
 			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
 		}
 

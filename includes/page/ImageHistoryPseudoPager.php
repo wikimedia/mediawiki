@@ -66,7 +66,11 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mLimitsShown = array_merge( [ 10 ], $this->mLimitsShown );
 		$this->mDefaultLimit = 10;
 		list( $this->mLimit, /* $offset */ ) =
-			$this->mRequest->getLimitOffset( $this->mDefaultLimit, '' );
+			$this->mRequest->getLimitOffsetForUser(
+				$this->getUser(),
+				$this->mDefaultLimit,
+				''
+			);
 	}
 
 	/**
@@ -172,40 +176,40 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if ( $numRows ) {
 			# Index value of top item in the list
 			$firstIndex = $this->mIsBackwards ?
-				$this->mHist[$numRows - 1]->getTimestamp() : $this->mHist[0]->getTimestamp();
+				[ $this->mHist[$numRows - 1]->getTimestamp() ] : [ $this->mHist[0]->getTimestamp() ];
 			# Discard the extra result row if there is one
 			if ( $numRows > $this->mLimit && $numRows > 1 ) {
 				if ( $this->mIsBackwards ) {
 					# Index value of item past the index
-					$this->mPastTheEndIndex = $this->mHist[0]->getTimestamp();
+					$this->mPastTheEndIndex = [ $this->mHist[0]->getTimestamp() ];
 					# Index value of bottom item in the list
-					$lastIndex = $this->mHist[1]->getTimestamp();
+					$lastIndex = [ $this->mHist[1]->getTimestamp() ];
 					# Display range
 					$this->mRange = [ 1, $numRows - 1 ];
 				} else {
 					# Index value of item past the index
-					$this->mPastTheEndIndex = $this->mHist[$numRows - 1]->getTimestamp();
+					$this->mPastTheEndIndex = [ $this->mHist[$numRows - 1]->getTimestamp() ];
 					# Index value of bottom item in the list
-					$lastIndex = $this->mHist[$numRows - 2]->getTimestamp();
+					$lastIndex = [ $this->mHist[$numRows - 2]->getTimestamp() ];
 					# Display range
 					$this->mRange = [ 0, $numRows - 2 ];
 				}
 			} else {
-				# Setting indexes to an empty string means that they will be
+				# Setting indexes to an empty array means that they will be
 				# omitted if they would otherwise appear in URLs. It just so
 				# happens that this  is the right thing to do in the standard
 				# UI, in all the relevant cases.
-				$this->mPastTheEndIndex = '';
+				$this->mPastTheEndIndex = [];
 				# Index value of bottom item in the list
 				$lastIndex = $this->mIsBackwards ?
-					$this->mHist[0]->getTimestamp() : $this->mHist[$numRows - 1]->getTimestamp();
+					[ $this->mHist[0]->getTimestamp() ] : [ $this->mHist[$numRows - 1]->getTimestamp() ];
 				# Display range
 				$this->mRange = [ 0, $numRows - 1 ];
 			}
 		} else {
-			$firstIndex = '';
-			$lastIndex = '';
-			$this->mPastTheEndIndex = '';
+			$firstIndex = [];
+			$lastIndex = [];
+			$this->mPastTheEndIndex = [];
 		}
 		if ( $this->mIsBackwards ) {
 			$this->mIsFirst = ( $numRows < $queryLimit );

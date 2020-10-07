@@ -29,11 +29,11 @@
  * @ingroup Media
  */
 class SVGReader {
-	const DEFAULT_WIDTH = 512;
-	const DEFAULT_HEIGHT = 512;
-	const NS_SVG = 'http://www.w3.org/2000/svg';
-	const LANG_PREFIX_MATCH = 1;
-	const LANG_FULL_MATCH = 2;
+	private const DEFAULT_WIDTH = 512;
+	private const DEFAULT_HEIGHT = 512;
+	private const NS_SVG = 'http://www.w3.org/2000/svg';
+	public const LANG_PREFIX_MATCH = 1;
+	public const LANG_FULL_MATCH = 2;
 
 	/** @var null|XMLReader */
 	private $reader = null;
@@ -51,7 +51,7 @@ class SVGReader {
 	 * @param string $source URI from which to read
 	 * @throws MWException|Exception
 	 */
-	function __construct( $source ) {
+	public function __construct( $source ) {
 		global $wgSVGMetadataCutoff;
 		$this->reader = new XMLReader();
 
@@ -182,7 +182,7 @@ class SVGReader {
 	 * Read a textelement from an element
 	 *
 	 * @param string $name Name of the element that we are reading from
-	 * @param string $metafield Field that we will fill with the result
+	 * @param string|null $metafield Field that we will fill with the result
 	 */
 	private function readField( $name, $metafield = null ) {
 		$this->debug( "Read field $metafield" );
@@ -206,7 +206,7 @@ class SVGReader {
 	/**
 	 * Read an XML snippet from an element
 	 *
-	 * @param string $metafield Field that we will fill with the result
+	 * @param string|null $metafield Field that we will fill with the result
 	 * @throws MWException
 	 */
 	private function readXml( $metafield = null ) {
@@ -245,7 +245,7 @@ class SVGReader {
 				&& $this->reader->nodeType == XMLReader::ELEMENT
 			) {
 				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
-				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
+				if ( $sysLang !== null && $sysLang !== '' ) {
 					// See https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 					$langList = explode( ',', $sysLang );
 					foreach ( $langList as $langItem ) {
@@ -291,7 +291,7 @@ class SVGReader {
 
 	private function debug( $data ) {
 		if ( $this->mDebug ) {
-			wfDebug( "SVGReader: $data\n" );
+			wfDebug( "SVGReader: $data" );
 		}
 	}
 
@@ -351,7 +351,7 @@ class SVGReader {
 	 * @param float|int $viewportSize Optional scale for percentage units...
 	 * @return float Length in pixels
 	 */
-	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
+	public static function scaleSVGUnit( $length, $viewportSize = 512 ) {
 		static $unitLength = [
 			'px' => 1.0,
 			'pt' => 1.25,

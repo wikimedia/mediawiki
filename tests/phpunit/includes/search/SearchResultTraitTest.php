@@ -1,6 +1,6 @@
 <?php
 
-class SearchResultTraitTest extends MediawikiTestCase {
+class SearchResultTraitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers SearchResultTrait::getExtensionData
 	 * @covers SearchResultTrait::setExtensionData

@@ -41,25 +41,25 @@
  */
 class BatchRowUpdate {
 	/**
-	 * @var BatchRowIterator $reader Iterator that returns an array of
+	 * @var BatchRowIterator Iterator that returns an array of
 	 *  database rows
 	 */
 	protected $reader;
 
 	/**
-	 * @var BatchRowWriter $writer Writer capable of pushing row updates
+	 * @var BatchRowWriter Writer capable of pushing row updates
 	 *  to the database
 	 */
 	protected $writer;
 
 	/**
-	 * @var RowUpdateGenerator $generator Generates single row updates
+	 * @var RowUpdateGenerator Generates single row updates
 	 *  based on the rows content
 	 */
 	protected $generator;
 
 	/**
-	 * @var callable $output Output callback
+	 * @var callable Output callback
 	 */
 	protected $output;
 

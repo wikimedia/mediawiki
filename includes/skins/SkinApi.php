@@ -28,45 +28,11 @@
  * SkinTemplate class for API output
  * @since 1.25
  */
-class SkinApi extends SkinTemplate {
+class SkinApi extends SkinMustache {
 	public $skinname = 'apioutput';
-	public $template = SkinApiTemplate::class;
-
-	public function getDefaultModules() {
-		$modules = parent::getDefaultModules();
-		$modules['styles']['skin'][] = 'mediawiki.skinning.interface';
-		// There is no search box, disable 'mediawiki.searchSuggest'
-		$modules['search'] = [];
-		return $modules;
-	}
-
-	// Skip work and hooks for stuff we don't use
-
-	function buildSidebar() {
-		return [];
-	}
-
-	function getNewtalks() {
-		return '';
-	}
-
-	function getSiteNotice() {
-		return '';
-	}
-
-	public function getLanguages() {
-		return [];
-	}
-
-	protected function buildPersonalUrls() {
-		return [];
-	}
-
-	protected function buildContentNavigationUrls() {
-		return [];
-	}
-
-	protected function buildNavUrls() {
-		return [];
-	}
+	/**
+	 * Extension of class methods is discouraged.
+	 * Developers are encouraged to improve the flexibility of SkinMustache
+	 * whereever possible.
+	 */
 }

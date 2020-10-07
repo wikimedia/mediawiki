@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"V.narsikar",
-			"Suyog"
+			"Suyog",
+			"V.narsikar"
 		]
 	},
 	"config-desc": "मिडियाविकि करीता उभारक(ईन्स्टॉलर)",
@@ -34,7 +34,6 @@
 	"config-page-install": "स्थापित करा(इन्स्टॉल)",
 	"config-page-complete": "पूर्ण!",
 	"config-page-restart": "उभारणीस पुन्हा सुरू करा",
-	"config-page-readme": "हे वाचा",
 	"config-page-releasenotes": "विमोचन टिप्पण्या",
 	"config-page-copying": "नकलवित आहे",
 	"config-page-upgradedoc": "दर्जोन्नती करीत आहे",
@@ -47,7 +46,6 @@
 	"config-env-good": "पारिसरीक तपासणी झाली आहे.\nआपण मिडियाविकि उभारू शकता.",
 	"config-env-bad": "पारिसरीक तपासणी झाली आहे.\nआपण मिडियाविकि उभारू शकत नाही.",
 	"config-env-php": "PHP $1 उभारल्या गेली.",
-	"config-env-hhvm": "HHVM $1 उभारल्या गेली.",
 	"config-unicode-using-intl": "यूनिकोड सामान्यिकरणासाठी [https://pecl.php.net/intl intl PECL विस्तारक] वापरत आहे.",
 	"config-outdated-sqlite": "<strong>इशारा:</strong> आपणापाशी SQLite $1 आहे, जी किमान आवश्यक आवृत्ती $2 पेक्षा, निम्न आहे. SQLite अनुपलब्ध राहील.",
 	"config-memory-raised": "पीएचपीची <code>memory_limit</code> ही $1 आहे, त्यास $2 ला वाढविली.",

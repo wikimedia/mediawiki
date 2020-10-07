@@ -44,7 +44,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -68,8 +68,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$nquery = $search->replacePrefixes( $query );
 		if ( $nquery !== $query ) {
 			$query = $nquery;
-			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
-						  get_class( $search ) . ')', '1.32' );
+			wfDeprecatedMsg( 'SearchEngine::replacePrefixes() is overridden by ' .
+				get_class( $search ) . ', this was deprecated in MediaWiki 1.32',
+				'1.32' );
 		}
 		// Perform the actual search
 		if ( $what == 'text' ) {
@@ -93,7 +94,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			// for instance the Lucene-based engine we use on Wikipedia.
 			// In this case, fall back to full-text search (which will
 			// include titles in it!)
-			if ( is_null( $matches ) ) {
+			if ( $matches === null ) {
 				$what = 'text';
 				$matches = $search->searchText( $query );
 			}
@@ -115,7 +116,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			} else {
 				$this->dieStatus( $status );
 			}
-		} elseif ( is_null( $matches ) ) {
+		} elseif ( $matches === null ) {
 			$this->dieWithError( [ 'apierror-searchdisabled', $what ], "search-{$what}-disabled" );
 		}
 
@@ -133,13 +134,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
 					'suggestion', $matches->getSuggestionQuery() );
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
-					'suggestionsnippet', $matches->getSuggestionSnippet() );
+					'suggestionsnippet', HtmlArmor::getHtml( $matches->getSuggestionSnippet() ) );
 			}
 			if ( isset( $searchInfo['rewrittenquery'] ) && $matches->hasRewrittenQuery() ) {
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
 					'rewrittenquery', $matches->getQueryAfterRewrite() );
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
-					'rewrittenquerysnippet', $matches->getQueryAfterRewriteSnippet() );
+					'rewrittenquerysnippet', HtmlArmor::getHtml( $matches->getQueryAfterRewriteSnippet() ) );
 			}
 		}
 
@@ -211,7 +212,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/**
 	 * Assemble search result data.
 	 * @param SearchResult $result Search result
-	 * @param array        $prop Props to extract (as keys)
+	 * @param array $prop Props to extract (as keys)
 	 * @return array|null Result data or null if result is broken in some way.
 	 */
 	private function getSearchResultData( SearchResult $result, $prop ) {
@@ -244,7 +245,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if ( isset( $prop['categorysnippet'] ) ) {
 			$vals['categorysnippet'] = $result->getCategorySnippet();
 		}
-		if ( !is_null( $result->getRedirectTitle() ) ) {
+		if ( $result->getRedirectTitle() !== null ) {
 			if ( isset( $prop['redirecttitle'] ) ) {
 				$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
 			}
@@ -252,7 +253,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$vals['redirectsnippet'] = $result->getRedirectSnippet();
 			}
 		}
-		if ( !is_null( $result->getSectionTitle() ) ) {
+		if ( $result->getSectionTitle() !== null ) {
 			if ( isset( $prop['sectiontitle'] ) ) {
 				$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
 			}
@@ -279,10 +280,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/**
 	 * Add interwiki results as a section in query results.
 	 * @param ISearchResultSet $matches
-	 * @param ApiResult       $apiResult
-	 * @param array           $prop Props to extract (as keys)
-	 * @param string          $section Section name where results would go
-	 * @param int             $type Interwiki result type
+	 * @param ApiResult $apiResult
+	 * @param array $prop Props to extract (as keys)
+	 * @param string $section Section name where results would go
+	 * @param int $type Interwiki result type
 	 * @return int|null Number of total hits in the data or null if none was produced
 	 */
 	private function addInterwikiResults(

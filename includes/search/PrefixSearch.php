@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
  * names that match. Used largely by the OpenSearch implementation.
  * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  *
+ * @stable to extend
  * @ingroup Search
  */
 abstract class PrefixSearch {
@@ -98,7 +99,7 @@ abstract class PrefixSearch {
 	 * When implemented in a descendant class, receives an array of titles as strings and returns
 	 * either an unmodified array or an array of Title objects corresponding to strings received.
 	 *
-	 * @param array $strings
+	 * @param string[] $strings
 	 *
 	 * @return array
 	 */
@@ -122,10 +123,9 @@ abstract class PrefixSearch {
 			}
 		}
 		$srchres = [];
-		if ( Hooks::run(
-			'PrefixSearchBackend',
-			[ $namespaces, $search, $limit, &$srchres, $offset ]
-		) ) {
+		if ( Hooks::runner()->onPrefixSearchBackend(
+			$namespaces, $search, $limit, $srchres, $offset )
+		) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
 		return $this->strings(

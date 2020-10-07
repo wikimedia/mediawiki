@@ -1,11 +1,21 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
  * @covers TextSlotDiffRenderer
  */
-class TextSlotDiffRendererTest extends MediaWikiTestCase {
+class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
+
+	public function testGetExtraCacheKeys() {
+		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
+		$key = $slotDiffRenderer->getExtraCacheKeys();
+		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
+		$inlineKey = $slotDiffRenderer->getExtraCacheKeys();
+		$this->assertSame( $key, [] );
+		$this->assertSame( $inlineKey, [ phpversion( 'wikidiff2' ), 'inline' ] );
+	}
 
 	/**
 	 * @dataProvider provideGetDiff
@@ -15,7 +25,7 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 	 * @throws Exception
 	 */
 	public function testGetDiff(
-		array $oldContentArgs = null, array $newContentArgs = null, $expectedResult
+		?array $oldContentArgs, ?array $newContentArgs, $expectedResult
 	) {
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
 			'testing' => DummyContentHandlerForTesting::class,
@@ -26,7 +36,8 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 		$newContent = $newContentArgs ? self::makeContent( ...$newContentArgs ) : null;
 
 		if ( $expectedResult instanceof Exception ) {
-			$this->setExpectedException( get_class( $expectedResult ), $expectedResult->getMessage() );
+			$this->expectException( get_class( $expectedResult ) );
+			$this->expectExceptionMessage( $expectedResult->getMessage() );
 		}
 
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
@@ -86,7 +97,8 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 	private function getTextSlotDiffRenderer() {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
 		$slotDiffRenderer->setStatsdDataFactory( new NullStatsdDataFactory() );
-		$slotDiffRenderer->setLanguage( Language::factory( 'en' ) );
+		$slotDiffRenderer->setLanguage(
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
 		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
 		return $slotDiffRenderer;
 	}

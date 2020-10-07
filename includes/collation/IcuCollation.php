@@ -18,11 +18,13 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 4;
+	private const FIRST_LETTER_VERSION = 4;
 
 	/** @var Collator */
 	private $primaryCollator;
@@ -239,11 +241,6 @@ class IcuCollation extends Collation {
 		'zu' => [],
 	];
 
-	/**
-	 * @since 1.16.3
-	 */
-	const RECORD_LENGTH = 14;
-
 	public function __construct( $locale ) {
 		if ( !extension_loaded( 'intl' ) ) {
 			throw new MWException( 'An ICU collation was requested, ' .
@@ -253,7 +250,8 @@ class IcuCollation extends Collation {
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
 		$localeParts = explode( '@', $locale );
-		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
+		$this->digitTransformLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $locale === 'root' ? 'en' : $localeParts[0] );
 
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {
@@ -392,7 +390,7 @@ class IcuCollation extends Collation {
 				// Primary collision (two characters with the same sort position).
 				// Keep whichever one sorts first in the main collator.
 				$comp = $this->mainCollator->compare( $letter, $letterMap[$key] );
-				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)\n" );
+				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)" );
 				// If that also has a collision, use codepoint as a tiebreaker.
 				if ( $comp === 0 ) {
 					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) <=>
@@ -470,7 +468,7 @@ class IcuCollation extends Collation {
 			$prev = $trimmedKey;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
-			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );
+			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}
@@ -504,7 +502,7 @@ class IcuCollation extends Collation {
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 * @since 1.16.3
 	 */
 	public function getFirstLetterCount() {
@@ -533,7 +531,7 @@ class IcuCollation extends Collation {
 	 * @since 1.21
 	 * @return string|bool
 	 */
-	static function getUnicodeVersionForICU() {
+	public static function getUnicodeVersionForICU() {
 		$icuVersion = INTL_ICU_VERSION;
 		if ( !$icuVersion ) {
 			return false;
@@ -542,6 +540,10 @@ class IcuCollation extends Collation {
 		$versionPrefix = substr( $icuVersion, 0, 3 );
 		// Source: http://site.icu-project.org/download
 		$map = [
+			'67.' => '13.0',
+			'66.' => '13.0',
+			'65.' => '12.0',
+			'64.' => '12.0',
 			'63.' => '11.0',
 			'62.' => '11.0',
 			'61.' => '10.0',

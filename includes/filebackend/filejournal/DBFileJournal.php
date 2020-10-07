@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -37,10 +37,10 @@ class DBFileJournal extends FileJournal {
 	protected $domain;
 
 	/**
-	 * Construct a new instance from configuration. Do not call directly, use FileJournal::factory.
+	 * Construct a new instance from configuration.
 	 *
 	 * @param array $config Includes:
-	 *   domain: database domain ID of the wiki
+	 *   - domain: database domain ID of the wiki
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -50,7 +50,7 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 * @param array $entries
+	 * @param array[] $entries
 	 * @param string $batchId
 	 * @return StatusValue
 	 */

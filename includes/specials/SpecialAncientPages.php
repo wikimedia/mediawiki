@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAncientPages extends QueryPage {
 
-	function __construct( $name = 'Ancientpages' ) {
+	public function __construct( $name = 'Ancientpages' ) {
 		parent::__construct( $name );
 	}
 
@@ -38,7 +38,7 @@ class SpecialAncientPages extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -58,7 +58,7 @@ class SpecialAncientPages extends QueryPage {
 		];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'AncientPagesQuery', [ &$tables, &$conds, &$joinConds ] );
+		$this->getHookRunner()->onAncientPagesQuery( $tables, $conds, $joinConds );
 
 		return [
 			'tables' => $tables,
@@ -76,7 +76,7 @@ class SpecialAncientPages extends QueryPage {
 		return true;
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -89,14 +89,14 @@ class SpecialAncientPages extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$d = $this->getLanguage()->userTimeAndDate( $result->value, $this->getUser() );
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$linkRenderer = $this->getLinkRenderer();
+
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			new HtmlArmor( MediaWikiServices::getInstance()->getContentLanguage()->
-				convert( htmlspecialchars( $title->getPrefixedText() ) ) )
+			new HtmlArmor( $this->getLanguageConverter()->convertHtml( $title->getPrefixedText() ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );

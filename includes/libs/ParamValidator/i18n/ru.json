@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Okras",
+			"Stjn"
+		]
+	},
+	"paramvalidator-badexpiry": "Недопустимое значение «$2» для параметра истечения срока «$1».",
+	"paramvalidator-badexpiry-past": "Значение «$2» для параметра истечения срока «$1» уже в прошлом.",
+	"paramvalidator-emptystring": "пустая строка",
+	"paramvalidator-param-deprecated": "Параметр «$1» устарел.",
+	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|Нераспознанное значение|Нераспознанные значения}} параметра «$1»: $3.",
+	"paramvalidator-help-default": "По умолчанию: $1",
+	"paramvalidator-help-default-empty": "По умолчанию: (пусто)",
+	"paramvalidator-help-deprecated": "Этот параметр устарел.",
+	"paramvalidator-help-required": "Это обязательный параметр.",
+	"paramvalidator-help-type-presenceboolean": "Тип: логическое значение"
+}

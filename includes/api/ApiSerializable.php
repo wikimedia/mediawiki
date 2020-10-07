@@ -29,6 +29,8 @@
  *   code to maintain compatibility with older MediaWiki while still taking
  *   advantage of this where it exists.
  *
+ * @stable to implement
+ *
  * @ingroup API
  * @since 1.25
  */

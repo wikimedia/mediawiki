@@ -31,14 +31,14 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class FormatInstallDoc extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addArg( 'path', 'The file name to format', false );
 		$this->addOption( 'outfile', 'The output file name', false, true );
 		$this->addOption( 'html', 'Use HTML output format. By default, wikitext is used.' );
 	}
 
-	function execute() {
+	public function execute() {
 		if ( $this->hasArg( 0 ) ) {
 			$fileName = $this->getArg( 0 );
 			$inFile = fopen( $fileName, 'r' );

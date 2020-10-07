@@ -47,7 +47,7 @@ class WikiFilePage extends WikiPage {
 	/**
 	 * @param File $file
 	 */
-	public function setFile( $file ) {
+	public function setFile( File $file ) {
 		$this->mFile = $file;
 		$this->mFileLoaded = true;
 	}
@@ -138,7 +138,7 @@ class WikiFilePage extends WikiPage {
 	 */
 	public function getDuplicates() {
 		$this->loadFile();
-		if ( !is_null( $this->mDupes ) ) {
+		if ( $this->mDupes !== null ) {
 			return $this->mDupes;
 		}
 		$hash = $this->mFile->getSha1();
@@ -146,7 +146,7 @@ class WikiFilePage extends WikiPage {
 			$this->mDupes = [];
 			return $this->mDupes;
 		}
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		$dupes = MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $hash );
 		// Remove duplicates with self and non matching file sizes
 		$self = $this->mFile->getRepoName() . ':' . $this->mFile->getName();
 		$size = $this->mFile->getSize();
@@ -175,7 +175,7 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 
 		if ( $this->mFile->exists() ) {
-			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
+			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() );
 			$job = HTMLCacheUpdateJob::newForBacklinks(
 				$this->mTitle,
 				'imagelinks',
@@ -184,7 +184,7 @@ class WikiFilePage extends WikiPage {
 			JobQueueGroup::singleton()->lazyPush( $job );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
-				. $this->mFile->getName() . "; limiting purge to cache only\n" );
+				. $this->mFile->getName() . "; limiting purge to cache only" );
 		}
 
 		// even if the file supposedly doesn't exist, force any cached information
@@ -221,7 +221,7 @@ class WikiFilePage extends WikiPage {
 		$file = $this->mFile;
 
 		if ( !$file instanceof LocalFile ) {
-			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file\n" );
+			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file" );
 			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
 		}
 

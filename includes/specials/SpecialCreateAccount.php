@@ -66,12 +66,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		parent::checkPermissions();
 
 		$user = $this->getUser();
-		$status = AuthManager::singleton()->checkAccountCreatePermissions( $user );
+		$status = MediaWikiServices::getInstance()->getAuthManager()
+			->checkAccountCreatePermissions( $user );
 		if ( !$status->isGood() ) {
-			// Track block with a cookie if it doesn't exist already
-			if ( $user->isBlockedFromCreateAccount() ) {
-				MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
-			}
 			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
 		}
 	}
@@ -106,7 +103,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		if ( $direct ) {
 			# Only save preferences if the user is not creating an account for someone else.
 			if ( !$this->proxyAccountCreation ) {
-				Hooks::run( 'AddNewAccount', [ $user, false ] );
+				$this->getHookRunner()->onAddNewAccount( $user, false );
 
 				// If the user does not have a session cookie at this point, they probably need to
 				// do something to their browser.
@@ -119,10 +116,12 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			} else {
 				$byEmail = false; // FIXME no way to set this
 
-				Hooks::run( 'AddNewAccount', [ $user, $byEmail ] );
+				$this->getHookRunner()->onAddNewAccount( $user, $byEmail );
 
 				$out = $this->getOutput();
+				// @phan-suppress-next-line PhanImpossibleCondition
 				$out->setPageTitle( $this->msg( $byEmail ? 'accmailtitle' : 'accountcreated' ) );
+				// @phan-suppress-next-line PhanImpossibleCondition
 				if ( $byEmail ) {
 					$out->addWikiMsg( 'accmailtext', $user->getName(), $user->getEmail() );
 				} else {
@@ -143,14 +142,14 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		# Run any hooks; display injected HTML
 		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation-msg';
-		Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html, $direct ] );
+		$this->getHookRunner()->onUserLoginComplete( $user, $injected_html, $direct );
 
 		/**
 		 * Let any extensions change what message is shown.
 		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforeWelcomeCreation
 		 * @since 1.18
 		 */
-		Hooks::run( 'BeforeWelcomeCreation', [ &$welcome_creation_msg, &$injected_html ] );
+		$this->getHookRunner()->onBeforeWelcomeCreation( $welcome_creation_msg, $injected_html );
 
 		$this->showSuccessPage( 'signup', $this->msg( 'welcomeuser', $this->getUser()->getName() ),
 			$welcome_creation_msg, $injected_html, $extraMessages );

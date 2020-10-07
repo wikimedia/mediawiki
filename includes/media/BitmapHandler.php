@@ -26,6 +26,7 @@ use MediaWiki\Shell\Shell;
 /**
  * Generic handler for bitmap images
  *
+ * @stable to extend
  * @ingroup Media
  */
 class BitmapHandler extends TransformationalImageHandler {
@@ -33,6 +34,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	/**
 	 * Returns which scaler type should be used. Creates parent directories
 	 * for $dstPath and returns 'client' on error
+	 * @stable to override
 	 *
 	 * @param string $dstPath
 	 * @param bool $checkDstPath
@@ -61,6 +63,10 @@ class BitmapHandler extends TransformationalImageHandler {
 		return $scaler;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function makeParamString( $params ) {
 		$res = parent::makeParamString( $params );
 		if ( isset( $params['interlace'] ) && $params['interlace'] ) {
@@ -70,6 +76,10 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function parseParamString( $str ) {
 		$remainder = preg_replace( '/^interlaced-/', '', $str );
 		$params = parent::parseParamString( $remainder );
@@ -80,6 +90,10 @@ class BitmapHandler extends TransformationalImageHandler {
 		return $params;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function validateParam( $name, $value ) {
 		if ( $name === 'interlace' ) {
 			return $value === false || $value === true;
@@ -89,6 +103,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	}
 
 	/**
+	 * @stable to override
 	 * @param File $image
 	 * @param array &$params
 	 * @return bool
@@ -127,6 +142,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * Transform an image using ImageMagick
+	 * @stable to override
 	 *
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
@@ -160,10 +176,10 @@ class BitmapHandler extends TransformationalImageHandler {
 			) {
 				$sharpen = [ '-sharpen', $wgSharpenParameter ];
 			}
-			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
-				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
-				$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
-			}
+
+			// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
+			$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
+
 			if ( $wgJpegPixelFormat ) {
 				$factors = $this->imageMagickSubsampling( $wgJpegPixelFormat );
 				$subsampling = [ '-sampling-factor', implode( ',', $factors ) ];
@@ -183,14 +199,14 @@ class BitmapHandler extends TransformationalImageHandler {
 			} elseif ( $this->isAnimatedImage( $image ) ) {
 				// Coalesce is needed to scale animated GIFs properly (T3017).
 				$animation_pre = [ '-coalesce' ];
+
 				// We optimize the output, but -optimize is broken,
-				// use optimizeTransparency instead (T13822)
-				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
-					$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
-				}
+				// use optimizeTransparency instead (T13822). Version >= IM 6.3.5
+				$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
 			}
-			if ( $params['interlace'] && version_compare( $this->getMagickVersion(), "6.3.4" ) >= 0
-				&& !$this->isAnimatedImage( $image ) ) { // interlacing animated GIFs is a bad idea
+			if ( $params['interlace'] && !$this->isAnimatedImage( $image ) ) {
+				// Version >= IM 6.3.4
+				// interlacing animated GIFs is a bad idea
 				$animation_post[] = '-interlace';
 				$animation_post[] = 'GIF';
 			}
@@ -206,19 +222,6 @@ class BitmapHandler extends TransformationalImageHandler {
 				'-layers', 'merge',
 				'-background', 'white',
 			];
-			Wikimedia\suppressWarnings();
-			$xcfMeta = unserialize( $image->getMetadata() );
-			Wikimedia\restoreWarnings();
-			if ( $xcfMeta
-				&& isset( $xcfMeta['colorType'] )
-				&& $xcfMeta['colorType'] === 'greyscale-alpha'
-				&& version_compare( $this->getMagickVersion(), "6.8.9-3" ) < 0
-			) {
-				// T68323 - Greyscale images not rendered properly.
-				// So only take the "red" channel.
-				$channelOnly = [ '-channel', 'R', '-separate' ];
-				$animation_pre = array_merge( $animation_pre, $channelOnly );
-			}
 		}
 
 		// Use one thread only, to avoid deadlock bugs on OOM
@@ -256,7 +259,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$animation_post,
 			[ $this->escapeMagickOutput( $params['dstPath'] ) ] ) );
 
-		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+		wfDebug( __METHOD__ . ": running ImageMagick: $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval, $env );
 
@@ -319,10 +322,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					$im = $im->coalesceImages();
 				}
 				// GIF interlacing is only available since 6.3.4
-				$v = Imagick::getVersion();
-				preg_match( '/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v );
-
-				if ( $params['interlace'] && version_compare( $v[1], '6.3.4' ) >= 0 ) {
+				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_GIF );
 				}
 			}
@@ -345,7 +345,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 
 			if ( $this->isAnimatedImage( $image ) ) {
-				wfDebug( __METHOD__ . ": Writing animated thumbnail\n" );
+				wfDebug( __METHOD__ . ": Writing animated thumbnail" );
 				// This is broken somehow... can't find out how to fix it
 				$result = $im->writeImages( $params['dstPath'], true );
 			} else {
@@ -381,7 +381,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
 		$cmd = str_replace( '%h', Shell::escape( $params['physicalHeight'] ),
 			str_replace( '%w', Shell::escape( $params['physicalWidth'] ), $cmd ) ); # Size
-		wfDebug( __METHOD__ . ": Running custom convert command $cmd\n" );
+		wfDebug( __METHOD__ . ": Running custom convert command $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval );
 
@@ -418,7 +418,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-type' )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -427,7 +427,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !function_exists( $loader ) ) {
 			$err = "Incomplete GD library configuration: missing function $loader";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_gd-library', $loader )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -435,7 +435,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !file_exists( $params['srcPath'] ) ) {
 			$err = "File seems to be missing: {$params['srcPath']}";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-missing', $params['srcPath'] )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -443,7 +443,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( filesize( $params['srcPath'] ) === 0 ) {
 			$err = "Image file size seems to be zero.";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-size-zero', $params['srcPath'] )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -505,7 +505,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param int|null $quality Quality of the thumbnail from 1-100,
 	 *    or null to use default quality.
 	 */
-	static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
+	public static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
 		global $wgJpegQuality;
 
 		if ( $quality === null ) {
@@ -518,6 +518,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -542,6 +543,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @see $wgEnableAutoRotation
+	 * @stable to override
 	 * @return bool Whether auto rotation is enabled
 	 */
 	public function autoRotateEnabled() {
@@ -556,6 +558,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	}
 
 	/**
+	 * @stable to override
 	 * @param File $file
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
@@ -575,7 +578,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					Shell::escape( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
 					" -rotate " . Shell::escape( "-$rotation" ) . " " .
 					Shell::escape( $this->escapeMagickOutput( $params['dstPath'] ) );
-				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+				wfDebug( __METHOD__ . ": running ImageMagick: $cmd" );
 				$retval = 0;
 				$err = wfShellExecWithStderr( $cmd, $retval );
 				if ( $retval !== 0 ) {

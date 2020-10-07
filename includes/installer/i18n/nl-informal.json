@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand",
-			"Seb35",
 			"Macofe",
-			"Mar(c)"
+			"Mar(c)",
+			"Seb35",
+			"Siebrand"
 		]
 	},
 	"config-localsettings-badkey": "De sleutel die je hebt opgegeven is onjuist",
@@ -26,7 +26,6 @@
 	"config-gd": "Ingebouwde GD grafische bibliotheek aangetroffen.\nHet aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als je uploaden inschakelt.",
 	"config-uploads-not-safe": "'''Waarschuwing:''' je uploadmap <code>$1</code> kan gebruikt worden voor het arbitrair uitvoeren van scripts.\nHoewel MediaWiki alle toegevoegde bestanden controleert op bedreigingen, is het zeer aan te bevelen het [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security beveiligingslek te verhelpen] alvorens uploads in te schakelen.",
 	"config-no-cli-uploads-check": "''Waarschuwing:'' je standaardmap voor uploads (<code>$1</code>) wordt niet gecontroleerd op kwetsbaarheden voor het uitvoeren van willekeurige scripts gedurende de CLI-installatie.",
-	"config-brokenlibxml": "Je systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.\nUpgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger([https://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).\nDe installatie wordt afgebroken.",
 	"config-db-host-help": "Als je databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.\n\nAls je gebruik maakt van gedeelde webhosting, hoort je provider je de juiste hostnaam te hebben verstrekt.\n\nAls je MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt \"localhost\" mogelijk niet als servernaam.\nAls het inderdaad niet werkt, probeer dan \"127.0.0.1\" te gebruiken als lokaal IP-adres.\n\nAls je PostgreSQL gebruikt, laat dit veld dan leeg om via een Unix-socket te verbinden.",
 	"config-db-name-help": "Kies een naam die je wiki identificeert.\nEr mogen geen spaties gebruikt worden.\nAls je gebruik maakt van gedeelde webhosting, dan hoort je provider ofwel jou een te gebruiken databasenaam gegeven te hebben, of je aangegeven te hebben hoe je databases kunt aanmaken.",
 	"config-db-prefix-help": "Als je een database moet gebruiken voor meerdere wiki's, of voor MediaWiki en een andere toepassing, dan kan je ervoor kiezen om een voorvoegsel toe te voegen aan de tabelnamen om conflicten te voorkomen.\nGebruik geen spaties.\n\nDit veld wordt meestal leeg gelaten.",

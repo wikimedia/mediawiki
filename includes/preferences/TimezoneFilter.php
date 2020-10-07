@@ -44,6 +44,7 @@ class TimezoneFilter implements Filter {
 				if ( count( $data ) === 3 ) {
 					// Make sure this timezone exists
 					try {
+						// @phan-suppress-next-line PhanNoopNew
 						new DateTimeZone( $data[2] );
 						// If the constructor didn't throw, we know it's valid
 						$valid = true;

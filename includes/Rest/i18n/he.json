@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Rotemliss"
+		]
+	},
+	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב השורש ($2) של ה־REST API",
+	"rest-wrong-method": "שיטת הבקשה ($1) לא הייתה {{PLURAL:$3|השיטה המותרת עבור נתיב זה|אחת השיטות המותרות עבור נתיב זה}} ($2)",
+	"rest-no-match": "הנתיב היחסי המבוקש ($1) אינו מתאים לשום הליך טיפול (handler) ידוע",
+	"rest-nonexistent-title": "הכותרת שצוינה ($1) אינה קיימת",
+	"rest-nonexistent-title-revision": "הגרסה שצוינה ($1) אינה קיימת עבור הדף שצוין ($2)",
+	"rest-nonexistent-revision": "הגרסה שצוינה ($1) אינה קיימת",
+	"rest-permission-denied-anon": "לא נגיש למשתמש אלמוני",
+	"rest-permission-denied-title": "למשתמש אין הרשאה לקרוא כותרת ($1)",
+	"rest-permission-denied-revision": "למשתמש אין גישה לגרסה המבוקשת ($1).",
+	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",
+	"rest-pagehistory-param-range-error": "מזהה הגרסה חייב להיות גדול מ־0",
+	"rest-pagehistory-timestamp-error": "לא ניתן למצוא את התאריך והשעה של הגרסה שצוינה ($1)",
+	"rest-pagehistorycount-type-unrecognized": "סוג הספירה שצוין ($1) אינו תקין",
+	"rest-pagehistorycount-parameters-invalid": "צירוף הפרמטרים שצוין אינו נתמך.",
+	"rest-compare-page-mismatch": "הגרסאות שצוינו שייכות לדפים שונים; ההשוואה שלהן סורבה.",
+	"rest-compare-permission-denied": "למשתמש אין גישה לגרסאות המבוקשות",
+	"rest-compare-nonexistent": "הגרסה שצוינה בפרמטר $1 אינה קיימת.",
+	"rest-compare-inaccessible": "הגרסה שצוינההגרסה שצוינה בפרמטר $1 אינה נגישה באופן ציבורי.",
+	"rest-compare-wrong-content": "למשבצת $1 של הגרסה שצוינה בפרמטר $2 יש סוג תוכן שאינו יכול להיות מומר לטקסט.",
+	"rest-compare-wikidiff2": "נקודת הקצה הזאת דורשת wikidiff2 1.9.0 או גרסה חדשה יותר.",
+	"rest-pagehistorycount-too-many-revisions": "הכותרת שצוינה מכילה יותר מדי גרסאות וזה לא מאפשר לאחזר את המספר הזה.",
+	"rest-search-error": "שגיאה בהחזרת תוצאות חיפוש: $1",
+	"rest-page-source-type-error": "סוג התוכן של מקור הדף שהתבקש אינו נתמך",
+	"rest-no-revision": "לא ניתן לאחזר גרסה עבור הכותרת $1",
+	"rest-media-too-many-links": "נמצאו יותר מדי קישורי מדיה בכותרת $1 (המספר המרבי הוא $2)",
+	"rest-html-backend-error": "לא ניתן לאחזר HTML של פרסואיד",
+	"rest-bad-json-body": "גוף בקשה גרוע, חייב להיות עצם JSON.",
+	"rest-json-body-parse-error": "פענוח גוף הבקשה בתור JSON נכשל: $1",
+	"rest-missing-body-field": "שדה החובה \"$1\" חסר מגוף הבקשה.",
+	"rest-bad-content-model": "מודל תוכן גרוע: $1",
+	"rest-update-cannot-create-page": "לא ניתן ליצור את הדף \"$1\" כי הוא כבר קיים. כדי לעדכן דף קיים, נא לספק את מזהה גרסת הבסיס במבנה תחת המפתח \"latest\" בגוף הבקשה.",
+	"rest-extraneous-csrf-token": "נמצאו אסימוני CSRF חיצוניים. אסימוני CSRF לא צריכים לשמש בעת שימוש במנגנוני אימות כגון OAuth, שחסינים מפני תקיפות CSRF.",
+	"rest-cannot-load-file": "לא ניתן לטעון את הקובץ עבור הכותרת \"$1\"."
+}

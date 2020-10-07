@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly",
+			"Xiplus"
+		]
+	},
+	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的根路徑（$2）內",
+	"rest-wrong-method": "請求的方法（$1）不是{{PLURAL:$3|此路徑允許的方法|此路徑允許的方法之一}}（$2）",
+	"rest-no-match": "請求的相對路徑（$1）不符合任何已知的處理器",
+	"rest-nonexistent-title": "指定的標題「$1」不存在",
+	"rest-nonexistent-title-revision": "指定的修訂（$1）不存在指定頁面（$2）",
+	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
+	"rest-permission-denied-anon": "不可被匿名使用者存取",
+	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
+	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂（$1）",
+	"rest-pagehistory-incompatible-params": "參數「older_than」與「newer_than」不可同時指定",
+	"rest-pagehistory-param-range-error": "修訂 ID 需大於 0",
+	"rest-pagehistory-timestamp-error": "指定的修訂（$1）無法取得時間戳記",
+	"rest-pagehistorycount-type-unrecognized": "指定的計算類型（$1）無效",
+	"rest-pagehistorycount-parameters-invalid": "指定的參數組合不支援。",
+	"rest-compare-page-mismatch": "所指定的修訂屬於不同頁面，拒絕進行比較。",
+	"rest-compare-permission-denied": "使用者沒有權限來存取請求修訂",
+	"rest-compare-nonexistent": "由參數$1指定的修訂不存在。",
+	"rest-compare-inaccessible": "由參數$1指定的修訂不可公開存取。",
+	"rest-compare-wrong-content": "由參數$2指定的修訂部份$1，內容類型無法轉換成文字。",
+	"rest-compare-wikidiff2": "此端點需要 wikidiff2 1.9.0 或以上的版本。",
+	"rest-pagehistorycount-too-many-revisions": "指定的標題包含太多的修訂而無法取得計數。",
+	"rest-search-error": "當回傳搜尋結果時發生錯誤：$1",
+	"rest-page-source-type-error": "不支援請求頁面來源的內容類型",
+	"rest-no-revision": "無法取回標題$1的修訂",
+	"rest-media-too-many-links": "在標題$1找到太多的媒體連結（允許 $2 個）",
+	"rest-html-backend-error": "無法取得 Parsoid HTML",
+	"rest-bad-json-body": "錯誤的請求正文，必須是 JSON 物件。",
+	"rest-json-body-parse-error": "將請求正文解析成 JSON 失敗：$1",
+	"rest-missing-body-field": "請求正文中缺少必要欄位「$1」。",
+	"rest-bad-content-model": "錯誤內容模組：$1",
+	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。",
+	"rest-extraneous-csrf-token": "發現到外來的 CSRF 權杖。當使用像是 OAuth 這種可抵擋 CSRF 攻擊的驗證機制時，不可使用 CSRF 權杖。",
+	"rest-cannot-load-file": "標題「$1」的檔案無法載入。"
+}

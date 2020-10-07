@@ -26,7 +26,6 @@
  * @internal
  */
 class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
-
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**

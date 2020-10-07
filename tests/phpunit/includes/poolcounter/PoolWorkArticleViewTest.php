@@ -9,7 +9,7 @@ use MediaWiki\Revision\SlotRecord;
  * @covers PoolWorkArticleView
  * @group Database
  */
-class PoolWorkArticleViewTest extends MediaWikiTestCase {
+class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	private function makeRevision( WikiPage $page, $text ) {
 		$user = $this->getTestUser()->getUser();
@@ -27,11 +27,11 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 
 		$work = new PoolWorkArticleView( $page, $options, $rev1->getId(), false );
 		$work->execute();
-		$this->assertContains( 'First', $work->getParserOutput()->getText() );
+		$this->assertStringContainsString( 'First', $work->getParserOutput()->getText() );
 
 		$work = new PoolWorkArticleView( $page, $options, $rev2->getId(), false );
 		$work->execute();
-		$this->assertContains( 'Second', $work->getParserOutput()->getText() );
+		$this->assertStringContainsString( 'Second', $work->getParserOutput()->getText() );
 	}
 
 	public function testDoWorkParserCache() {
@@ -47,7 +47,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 
 		$this->assertNotNull( $out );
 		$this->assertNotFalse( $out );
-		$this->assertContains( 'First', $out->getText() );
+		$this->assertStringContainsString( 'First', $out->getText() );
 	}
 
 	public function testDoWorkWithExplicitRevision() {
@@ -65,8 +65,8 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$work->execute();
 
 		$text = $work->getParserOutput()->getText();
-		$this->assertContains( 'YES!', $text );
-		$this->assertNotContains( 'NOPE', $text );
+		$this->assertStringContainsString( 'YES!', $text );
+		$this->assertStringNotContainsString( 'NOPE', $text );
 	}
 
 	public function testDoWorkWithContent() {
@@ -79,7 +79,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$work->execute();
 
 		$text = $work->getParserOutput()->getText();
-		$this->assertContains( 'YES!', $text );
+		$this->assertStringContainsString( 'YES!', $text );
 	}
 
 	public function testDoWorkWithString() {
@@ -90,7 +90,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$work->execute();
 
 		$text = $work->getParserOutput()->getText();
-		$this->assertContains( 'YES!', $text );
+		$this->assertStringContainsString( 'YES!', $text );
 	}
 
 	public function provideMagicWords() {
@@ -126,7 +126,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 	public function testMagicWords( $wikitext, $callback ) {
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$page = $this->getExistingTestPage( __METHOD__ );
-		$rev = $page->getRevision()->getRevisionRecord();
+		$rev = $page->getRevisionRecord();
 
 		// NOTE: provide the input as a string and let the PoolWorkArticleView create a fake
 		// revision internally, to see if the magic words work with that fake. They should
@@ -137,7 +137,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$expected = strval( $callback( $rev ) );
 		$output = $work->getParserOutput();
 
-		$this->assertContains( $expected, $output->getText() );
+		$this->assertStringContainsString( $expected, $output->getText() );
 	}
 
 	public function testDoWorkMissingPage() {
@@ -151,7 +151,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 	public function testDoWorkDeletedContent() {
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$page = $this->getExistingTestPage( __METHOD__ );
-		$rev1 = $page->getRevision()->getRevisionRecord();
+		$rev1 = $page->getRevisionRecord();
 
 		// make another revision, since the latest revision cannot be deleted.
 		$rev2 = $this->makeRevision( $page, 'Next' );

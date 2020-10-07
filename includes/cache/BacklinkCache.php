@@ -25,10 +25,11 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Class for fetching backlink lists, approximate backlink counts and
@@ -44,6 +45,8 @@ use MediaWiki\MediaWikiServices;
  * Introduced by r47317
  */
 class BacklinkCache {
+	use ProtectedHookAccessorTrait;
+
 	/** @var BacklinkCache */
 	protected static $instance;
 
@@ -90,7 +93,7 @@ class BacklinkCache {
 	 */
 	protected $title;
 
-	const CACHE_EXPIRY = 3600;
+	private const CACHE_EXPIRY = 3600;
 
 	/**
 	 * Create a new BacklinkCache
@@ -124,7 +127,7 @@ class BacklinkCache {
 	 *
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		return [ 'partitionCache', 'fullResultCache', 'title' ];
 	}
 
@@ -182,15 +185,14 @@ class BacklinkCache {
 	 * @return IResultWrapper
 	 */
 	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
-		$fromField = $this->getPrefix( $table ) . '_from';
-
 		if ( !$startId && !$endId && is_infinite( $max )
 			&& isset( $this->fullResultCache[$table] )
 		) {
-			wfDebug( __METHOD__ . ": got results from cache\n" );
+			wfDebug( __METHOD__ . ": got results from cache" );
 			$res = $this->fullResultCache[$table];
 		} else {
-			wfDebug( __METHOD__ . ": got results from DB\n" );
+			wfDebug( __METHOD__ . ": got results from DB" );
+			$fromField = $this->getPrefix( $table ) . '_from';
 			$conds = $this->getConditions( $table );
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
@@ -209,7 +211,7 @@ class BacklinkCache {
 				// Just select from the backlink table and ignore the page JOIN
 				$res = $this->getDB()->select(
 					$table,
-					[ $this->getPrefix( $table ) . '_from AS page_id' ],
+					[ 'page_id' => $fromField ],
 					array_filter( $conds, function ( $clause ) { // kind of janky
 						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
 					} ),
@@ -231,7 +233,7 @@ class BacklinkCache {
 				// The full results fit within the limit, so cache them
 				$this->fullResultCache[$table] = $res;
 			} else {
-				wfDebug( __METHOD__ . ": results from DB were uncacheable\n" );
+				wfDebug( __METHOD__ . ": results from DB were uncacheable" );
 			}
 		}
 
@@ -257,7 +259,7 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
-			Hooks::run( 'BacklinkCacheGetPrefix', [ $table, &$prefix ] );
+			$this->getHookRunner()->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
 			} else {
@@ -305,7 +307,7 @@ class BacklinkCache {
 				break;
 			default:
 				$conds = null;
-				Hooks::run( 'BacklinkCacheGetConditions', [ $table, $this->title, &$conds ] );
+				$this->getHookRunner()->onBacklinkCacheGetConditions( $table, $this->title, $conds );
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
@@ -392,7 +394,7 @@ class BacklinkCache {
 	public function partition( $table, $batchSize ) {
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
-			wfDebug( __METHOD__ . ": got from partition cache\n" );
+			wfDebug( __METHOD__ . ": got from partition cache" );
 
 			return $this->partitionCache[$table][$batchSize]['batches'];
 		}
@@ -403,7 +405,7 @@ class BacklinkCache {
 		// 2) ... then try full result cache ...
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
-			wfDebug( __METHOD__ . ": got from full result cache\n" );
+			wfDebug( __METHOD__ . ": got from full result cache" );
 
 			return $cacheEntry['batches'];
 		}
@@ -426,7 +428,7 @@ class BacklinkCache {
 		);
 		if ( is_array( $memcValue ) && ( $curTTL > 0 ) ) {
 			$cacheEntry = $memcValue;
-			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
+			wfDebug( __METHOD__ . ": got from memcached $memcKey" );
 
 			return $cacheEntry['batches'];
 		}
@@ -465,7 +467,7 @@ class BacklinkCache {
 		);
 		$this->wanCache->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
-		wfDebug( __METHOD__ . ": got from database\n" );
+		wfDebug( __METHOD__ . ": got from database" );
 
 		return $cacheEntry['batches'];
 	}

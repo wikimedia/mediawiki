@@ -25,6 +25,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that makes the required database updates for rev_parent_id
  * to be of any use.
@@ -48,7 +50,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
-		if ( !$db->tableExists( 'revision' ) ) {
+		if ( !$db->tableExists( 'revision', __METHOD__ ) ) {
 			$this->error( "revision table does not exist" );
 
 			return false;
@@ -56,7 +58,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$this->output( "Populating rev_parent_id column\n" );
 		$start = $db->selectField( 'revision', 'MIN(rev_id)', '', __FUNCTION__ );
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', '', __FUNCTION__ );
-		if ( is_null( $start ) || is_null( $end ) ) {
+		if ( $start === null || $end === null ) {
 			$this->output( "...revision table seems to be empty, nothing to do.\n" );
 
 			return true;
@@ -66,6 +68,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$blockEnd = intval( $start ) + $batchSize - 1;
 		$count = 0;
 		$changed = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$cond = "rev_id BETWEEN $blockStart AND $blockEnd";
@@ -119,7 +122,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
 

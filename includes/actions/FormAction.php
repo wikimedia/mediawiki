@@ -23,12 +23,15 @@
 /**
  * An action which shows a form and does something based on the input from the form
  *
+ * @stable to extend
+ *
  * @ingroup Actions
  */
 abstract class FormAction extends Action {
 
 	/**
 	 * Get an HTMLForm descriptor array
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getFormFields() {
@@ -38,6 +41,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Add pre- or post-text to the form
+	 * @stable to override
 	 * @return string HTML which will be sent to $form->addPreText()
 	 */
 	protected function preText() {
@@ -45,6 +49,7 @@ abstract class FormAction extends Action {
 	}
 
 	/**
+	 * @stable to override
 	 * @return string
 	 */
 	protected function postText() {
@@ -53,6 +58,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
+	 * @stable to override
 	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
@@ -60,6 +66,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Whether the form should use OOUI
+	 * @stable to override
 	 * @return bool
 	 */
 	protected function usesOOUI() {
@@ -68,13 +75,18 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Get the HTMLForm to control behavior
+	 * @stable to override
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->page ] );
+		$this->getHookRunner()->onActionModifyFormFields(
+			$this->getName(),
+			$this->fields,
+			$this->getArticle()
+		);
 
 		if ( $this->usesOOUI() ) {
 			$form = HTMLForm::factory( 'ooui', $this->fields, $this->getContext(), $this->getName() );
@@ -99,7 +111,11 @@ abstract class FormAction extends Action {
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionBeforeFormDisplay', [ $this->getName(), &$form, $this->page ] );
+		$this->getHookRunner()->onActionBeforeFormDisplay(
+			$this->getName(),
+			$form,
+			$this->getArticle()
+		);
 
 		return $form;
 	}
@@ -132,6 +148,7 @@ abstract class FormAction extends Action {
 	 * form (delete, protect, etc) and to do something exciting on 'success', be that
 	 * display something new or redirect to somewhere.  Some actions have more exotic
 	 * behavior, but that's what subclassing is for :D
+	 * @stable to override
 	 */
 	public function show() {
 		$this->setHeaders();
@@ -145,6 +162,10 @@ abstract class FormAction extends Action {
 		}
 	}
 
+	/**
+	 * @stable to override
+	 * @return bool
+	 */
 	public function doesWrites() {
 		return true;
 	}

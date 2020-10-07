@@ -30,7 +30,7 @@ abstract class ChangesListFilter {
 	/**
 	 * Filter name
 	 *
-	 * @var string $name
+	 * @var string
 	 */
 	protected $name;
 
@@ -40,35 +40,35 @@ abstract class ChangesListFilter {
 	 * In this example, if bot actions are included in the result set, this CSS class
 	 * will then be included in all bot-flagged actions.
 	 *
-	 * @var string|null $cssClassSuffix
+	 * @var string|null
 	 */
 	protected $cssClassSuffix;
 
 	/**
 	 * Callable that returns true if and only if a row is attributed to this filter
 	 *
-	 * @var callable $isRowApplicableCallable
+	 * @var callable
 	 */
 	protected $isRowApplicableCallable;
 
 	/**
 	 * Group.  ChangesListFilterGroup this belongs to
 	 *
-	 * @var ChangesListFilterGroup $group
+	 * @var ChangesListFilterGroup
 	 */
 	protected $group;
 
 	/**
 	 * i18n key of label for structured UI
 	 *
-	 * @var string $label
+	 * @var string
 	 */
 	protected $label;
 
 	/**
 	 * i18n key of description for structured UI
 	 *
-	 * @var string $description
+	 * @var string
 	 */
 	protected $description;
 
@@ -76,7 +76,7 @@ abstract class ChangesListFilter {
 	 * Array of associative arrays with conflict information.  See
 	 * setUnidirectionalConflict
 	 *
-	 * @var array $conflictingGroups
+	 * @var array
 	 */
 	protected $conflictingGroups = [];
 
@@ -84,31 +84,30 @@ abstract class ChangesListFilter {
 	 * Array of associative arrays with conflict information.  See
 	 * setUnidirectionalConflict
 	 *
-	 * @var array $conflictingFilters
+	 * @var array
 	 */
 	protected $conflictingFilters = [];
 
 	/**
 	 * Array of associative arrays with subset information
 	 *
-	 * @var array $subsetFilters
+	 * @var array
 	 */
 	protected $subsetFilters = [];
 
 	/**
 	 * Priority integer.  Higher value means higher up in the group's filter list.
 	 *
-	 * @var string $priority
+	 * @var int
 	 */
 	protected $priority;
 
 	/**
-	 *
-	 * @var string $defaultHighlightColor
+	 * @var string
 	 */
 	protected $defaultHighlightColor;
 
-	const RESERVED_NAME_CHAR = '_';
+	private const RESERVED_NAME_CHAR = '_';
 
 	/**
 	 * Creates a new filter with the specified configuration, and registers it to the
@@ -138,6 +137,9 @@ abstract class ChangesListFilter {
 	 *     UI.
 	 * * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *     up in the group's filter list.
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{name:string,cssClassSuffix?:string,isRowApplicableCallable?:callable,group:ChangesListFilterGroup,label:string,description:string,priority:int} $filterDefinition
+	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $filterDefinition ) {
 		if ( isset( $filterDefinition['group'] ) ) {

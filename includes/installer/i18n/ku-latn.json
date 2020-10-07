@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bikarhêner",
 			"George Animal",
-			"Ghybu",
-			"Bikarhêner"
+			"Ghybu"
 		]
 	},
 	"config-desc": "Barkera MediaWikiyê",
@@ -21,7 +21,6 @@
 	"config-page-install": "Ava bike",
 	"config-page-complete": "Qedîya!",
 	"config-page-restart": "Barkirinê jinûve dest pê bide kirin",
-	"config-page-readme": "Min bixwîne",
 	"config-page-copying": "Kopîkirin",
 	"config-page-upgradedoc": "Bilindkirin",
 	"config-page-existingwiki": "Wîkiya heye",

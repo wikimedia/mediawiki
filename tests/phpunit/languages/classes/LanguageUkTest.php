@@ -104,6 +104,11 @@ class LanguageUkTest extends LanguageClassesTestCase {
 				'Вікіпедія',
 				'accusative',
 			],
+			[
+				'у MediaWiki',
+				'MediaWiki',
+				'locative',
+			]
 		];
 	}
 }

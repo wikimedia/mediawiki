@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Simartampua",
-			"Apundung"
+			"Apundung",
+			"NoiX180",
+			"Simartampua"
 		]
 	},
 	"tog-underline": "Garis torui pranala:",
@@ -207,7 +208,7 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Amu puna}} $1 tingon {{PLURAL:$3|another user|$3 pamake}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|a new message|999=tona na baru}}",
 	"newmessagesdifflinkplural": "Parpudi {{PLURAL:$1|change|999=parubaan}}",
-	"editsection": "Pature",
+	"editsection": "pature",
 	"editold": "Pature",
 	"viewsourceold": "Sise sumber",
 	"editlink": "Pature",

@@ -10,7 +10,7 @@ use Wikimedia\Services\ServiceDisabledException;
  *
  * @group MediaWiki
  */
-class MediaWikiServicesTest extends MediaWikiTestCase {
+class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	private $deprecatedServices = [];
 
 	/**
@@ -29,11 +29,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	/**
 	 * @return MediaWikiServices
 	 */
-	private function newMediaWikiServices( Config $config = null ) {
-		if ( $config === null ) {
-			$config = $this->newTestConfig();
-		}
-
+	private function newMediaWikiServices() {
+		$config = $this->newTestConfig();
 		$instance = new MediaWikiServices( $config );
 
 		// Load the default wiring from the specified files.
@@ -230,7 +227,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $serviceCounter, 'No service instance should be created yet.' );
 
 		$oldInstance = $services->getService( 'Test' );
-		$this->assertEquals( 1, $serviceCounter, 'A service instance should exit now.' );
+		$this->assertSame( 1, $serviceCounter, 'A service instance should exit now.' );
 
 		// The old instance should be detached, and destroy() called.
 		$services->resetServiceForTesting( 'Test' );
@@ -310,14 +307,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			}
 
 			$returnType = $fun->getReturnType();
-
-			// ReflectionType::__toString() generates deprecation notices in PHP 7.4 and above
-			// TODO: T228342 - remove this check after MediaWiki only supports PHP 7.1+
-			if ( is_callable( [ $returnType, 'getName' ] ) ) {
-				$ret[$name] = [ $name, $returnType->getName() ];
-			} else {
-				$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
-			}
+			$ret[$name] = [ $name, $returnType->getName() ];
 		}
 		return $ret;
 	}
@@ -343,7 +333,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		foreach ( $names as $name ) {
 			$this->assertTrue( $services->hasService( $name ) );
 			$service = $services->getService( $name );
-			$this->assertInternalType( 'object', $service );
+			$this->assertIsObject( $service );
 		}
 	}
 

@@ -5,6 +5,7 @@
  * Must not be directly implemented by extension, please extend BaseSearchResultSet instead.
  * This interface must only be used for type hinting.
  *
+ * @unstable for implementation, extensions should extend the BaseSearchResultSet base class.
  * @see BaseSearchResultSet
  * @ingroup Search
  */
@@ -13,13 +14,13 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 * Identifier for interwiki results that are displayed only together with existing main wiki
 	 * results.
 	 */
-	const SECONDARY_RESULTS = 0;
+	public const SECONDARY_RESULTS = 0;
 
 	/**
 	 * Identifier for interwiki results that can be displayed even if no existing main wiki results
 	 * exist.
 	 */
-	const INLINE_RESULTS = 1;
+	public const INLINE_RESULTS = 1;
 
 	/**
 	 * @return int
@@ -43,6 +44,10 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 * a better result than the provided search. Returns true if this has
 	 * occurred.
 	 *
+	 * NOTE: In practice this has only been applied when the original query
+	 * returned no results. UI messages, such as `search-rewritten`, have
+	 * this assumption baked in.
+	 *
 	 * @return bool
 	 */
 	public function hasRewrittenQuery();
@@ -54,8 +59,11 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	public function getQueryAfterRewrite();
 
 	/**
-	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
-	 *  and with changes highlighted. Null when the query was not rewritten.
+	 * @return HtmlArmor|string|null Same as self::getQueryAfterRewrite(), but
+	 *  with changes to the string highlighted in HTML and wrapped in
+	 *  HtmlArmor.  If highlighting is not available the rewritten query will
+	 *  be returned. When the self::hasRewrittenQuery returns false (i.e. the
+	 *  results have not been rewritten) null will be returned.
 	 */
 	public function getQueryAfterRewriteSnippet();
 
@@ -73,7 +81,11 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	public function getSuggestionQuery();
 
 	/**
-	 * @return string HTML highlighted suggested query, '' if none
+	 * @return HtmlArmor|string Same as self::getSuggestionQuery(), but with
+	 *  changes to the string highlighted in HTML and wrapped in HtmlArmor. If
+	 *  highlighting is not available the suggested query will be returned. When
+	 *  self::hasSuggestion returns false (i.e no suggested query) the empty
+	 *  string will be returned.
 	 */
 	public function getSuggestionSnippet();
 

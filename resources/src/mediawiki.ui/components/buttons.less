@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/mixins.buttons';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/mixins.buttons.less';
+@import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -9,8 +9,6 @@
 // the button depends on what type of element is used.
 // There are two kinds of buttons, the default is a "Call to Action" with an obvious border
 // and there is a quiet kind without a border.
-//
-// Styleguide 2.
 
 // Neutral button styling
 //
@@ -23,11 +21,9 @@
 // <div>
 //   <button class="mw-ui-button" disabled>.mw-ui-button</button>
 // </div>
-//
-// Styleguide 2.1.
 .mw-ui-button {
 	background-color: @colorGray15;
-	color: @colorButtonText;
+	color: @color-base;
 	.mw-ui-button();
 	.mw-ui-button-states();
 
@@ -55,33 +51,31 @@
 	// <div>
 	//   <button class="mw-ui-button mw-ui-progressive mw-ui-quiet" disabled>.mw-ui-progressive</button>
 	// </div>
-	//
-	// Styleguide 2.1.1.
 	&.mw-ui-quiet,
 	&.mw-ui-quiet.mw-ui-progressive,
 	&.mw-ui-quiet.mw-ui-destructive {
 		background-color: transparent;
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
-		color: @colorButtonText;
+		color: @color-base;
 		border-color: transparent;
 
 		&:hover {
 			background-color: transparent;
-			color: @colorButtonTextHighlight;
+			color: @color-base--hover;
 			border-color: transparent;
 			box-shadow: none;
 		}
 
 		&:active {
 			background-color: transparent;
-			color: @colorButtonTextActive;
+			color: @color-base--active;
 			border-color: transparent;
 		}
 
 		&:focus {
 			background-color: transparent;
-			color: @colorButtonText;
+			color: @color-base;
 			border-color: transparent;
 			box-shadow: none;
 		}
@@ -90,7 +84,7 @@
 		&:disabled:hover,
 		&:disabled:active {
 			background-color: transparent;
-			color: @colorDisabledText;
+			color: @color-base--disabled;
 			border-color: transparent;
 		}
 	}
@@ -106,26 +100,24 @@
 	// <div>
 	//   <button class="mw-ui-button mw-ui-progressive" disabled>.mw-ui-progressive</button>
 	// </div>
-	//
-	// Styleguide 2.1.2.
 	&.mw-ui-progressive {
-		.mw-ui-button-colors-primary( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
+		.mw-ui-button-colors-primary( @color-primary, @color-primary--hover, @color-primary--active );
 
 		&.mw-ui-quiet {
-			color: @colorProgressive;
+			color: @color-primary;
 
 			&:hover {
 				background-color: transparent;
-				color: @colorProgressiveHighlight;
+				color: @color-primary--hover;
 			}
 
 			&:active {
-				color: @colorProgressiveActive;
+				color: @color-primary--active;
 			}
 
 			&:focus {
 				background-color: transparent;
-				color: @colorProgressive;
+				color: @color-primary--focus;
 			}
 		}
 	}
@@ -142,26 +134,24 @@
 	// <div>
 	//   <button class="mw-ui-button mw-ui-destructive" disabled>.mw-ui-destructive</button>
 	// </div>
-	//
-	// Styleguide 2.1.3.
 	&.mw-ui-destructive {
-		.mw-ui-button-colors-primary( @colorDestructive, @colorDestructiveHighlight, @colorDestructiveActive );
+		.mw-ui-button-colors-primary( @color-destructive, @color-destructive--hover, @color-destructive--active );
 
 		&.mw-ui-quiet {
-			color: @colorDestructive;
+			color: @color-destructive;
 
 			&:hover {
 				background-color: transparent;
-				color: @colorDestructiveHighlight;
+				color: @color-destructive--hover;
 			}
 
 			&:active {
-				color: @colorDestructiveActive;
+				color: @color-destructive--active;
 			}
 
 			&:focus {
 				background-color: transparent;
-				color: @colorDestructive;
+				color: @color-destructive;
 			}
 		}
 	}
@@ -181,8 +171,6 @@
 	// <div>
 	//   <button class="mw-ui-button mw-ui-destructive mw-ui-big">.mw-ui-destructive</button>
 	// </div>
-	//
-	// Styleguide 2.1.4.
 	&.mw-ui-big {
 		font-size: 1.3em;
 	}
@@ -201,8 +189,6 @@
 	// <div>
 	//   <button class="mw-ui-button mw-ui-destructive mw-ui-block">.mw-ui-destructive</button>
 	// </div>
-	//
-	// Styleguide 2.1.5.
 	&.mw-ui-block {
 		display: block;
 		width: 100%;
@@ -242,8 +228,6 @@ a.mw-ui-button {
 //   <div class="mw-ui-button">C</div>
 //   <div class="mw-ui-button">D</div>
 // </div><div style="clear:both"></div>
-//
-// Styleguide 2.2.
 .mw-ui-button-group {
 	& > * {
 		min-width: 48px;
@@ -251,8 +235,8 @@ a.mw-ui-button {
 		float: left;
 
 		&:first-child {
-			border-top-left-radius: @borderRadius;
-			border-bottom-left-radius: @borderRadius;
+			border-top-left-radius: @border-radius-base;
+			border-bottom-left-radius: @border-radius-base;
 		}
 
 		&:not( :first-child ) {
@@ -260,8 +244,8 @@ a.mw-ui-button {
 		}
 
 		&:last-child {
-			border-top-right-radius: @borderRadius;
-			border-bottom-right-radius: @borderRadius;
+			border-top-right-radius: @border-radius-base;
+			border-bottom-right-radius: @border-radius-base;
 		}
 	}
 

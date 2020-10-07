@@ -12,6 +12,8 @@
  * @author Гусейн
  */
 
+$fallback = 'ru';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medja',
 	NS_SPECIAL          => 'Xususi',

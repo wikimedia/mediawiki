@@ -2,9 +2,9 @@
 
 namespace Wikimedia\Rdbms;
 
-use stdClass;
-use RuntimeException;
 use InvalidArgumentException;
+use RuntimeException;
+use stdClass;
 
 /**
  * Result wrapper for grabbing data queried from an IDatabase object
@@ -90,7 +90,7 @@ class ResultWrapper implements IResultWrapper {
 		$this->result = null;
 	}
 
-	function rewind() {
+	public function rewind() {
 		if ( $this->numRows() ) {
 			$this->getDB()->dataSeek( $this, 0 );
 		}
@@ -98,7 +98,7 @@ class ResultWrapper implements IResultWrapper {
 		$this->currentRow = null;
 	}
 
-	function current() {
+	public function current() {
 		if ( $this->currentRow === null ) {
 			$this->currentRow = $this->fetchObject();
 		}
@@ -106,18 +106,18 @@ class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
-	function key() {
+	public function key() {
 		return $this->pos;
 	}
 
-	function next() {
+	public function next() {
 		$this->pos++;
 		$this->currentRow = $this->fetchObject();
 
 		return $this->currentRow;
 	}
 
-	function valid() {
+	public function valid() {
 		return $this->current() !== false;
 	}
 

@@ -86,6 +86,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// Initialization
 	this.$element
 		.addClass( 'mw-rcfilters-ui-menuSelectWidget' )
+		.attr( 'aria-label', mw.msg( 'rcfilters-filterlist-title' ) )
 		.append( config.isMobile ? undefined : header.$element )
 		.append(
 			this.$body
@@ -99,6 +100,9 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 		var isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
 			adjustedData = {
 				// Wrap the element with our own footer wrapper
+				// The following classes are used here:
+				// * mw-rcfilters-ui-menuSelectWidget-footer-feedback
+				// * mw-rcfilters-ui-menuSelectWidget-footer-viewSelect
 				$element: $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer-' + footerData.name )
@@ -237,6 +241,10 @@ MenuSelectWidget.prototype.updateView = function () {
 	if ( this.views[ viewName ] && this.currentView !== viewName ) {
 		this.updateFooterVisibility( viewName );
 
+		// The following classes are used here:
+		// * mw-rcfilters-ui-menuSelectWidget-view-default
+		// * mw-rcfilters-ui-menuSelectWidget-view-namespaces
+		// * mw-rcfilters-ui-menuSelectWidget-view-tags
 		this.$element
 			.data( 'view', viewName )
 			.removeClass( 'mw-rcfilters-ui-menuSelectWidget-view-' + this.currentView )

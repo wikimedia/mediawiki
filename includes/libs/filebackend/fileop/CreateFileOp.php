@@ -45,10 +45,12 @@ class CreateFileOp extends FileOp {
 		// Check if an incompatible destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
 		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
+
+		// Update file existence predicates if the operation is expected to be allowed to run
 		if ( $status->isOK() ) {
-			// Update file existence predicates
-			$predicates['exists'][$this->params['dst']] = true;
-			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+			$predicates[self::ASSUMED_EXISTS][$this->params['dst']] = true;
+			$predicates[self::ASSUMED_SIZE][$this->params['dst']] = $this->sourceSize;
+			$predicates[self::ASSUMED_SHA1][$this->params['dst']] = $this->sourceSha1;
 		}
 
 		return $status; // safe to call attempt()
@@ -63,6 +65,10 @@ class CreateFileOp extends FileOp {
 		}
 
 		return $status;
+	}
+
+	protected function getSourceSize() {
+		return strlen( $this->params['content'] );
 	}
 
 	protected function getSourceSha1Base36() {

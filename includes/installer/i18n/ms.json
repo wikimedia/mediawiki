@@ -2,12 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
-			"Pizza1016",
-			"SNN95",
-			"MaxSem",
 			"Aviator",
+			"Jeluang Terluang",
 			"Macofe",
-			"Jeluang Terluang"
+			"MaxSem",
+			"Pizza1016",
+			"SNN95"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -39,7 +39,6 @@
 	"config-page-install": "Pasang",
 	"config-page-complete": "Selesai!",
 	"config-page-restart": "Mulakan semula pemasangan",
-	"config-page-readme": "Baca saya",
 	"config-page-releasenotes": "Catatan keluaran",
 	"config-page-copying": "Sedang menyalin",
 	"config-page-upgradedoc": "Sedang menaik taraf",

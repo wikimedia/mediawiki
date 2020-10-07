@@ -55,7 +55,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	/** @var int Current idle pool size */
 	protected $idlePoolSize = 0;
 
-	/** @var array (server name => ((connection info array),...) */
+	/**
+	 * @var array (server name => ((connection info array),...)
+	 * @phan-var array<string,array{conn:Redis,free:bool}[]>
+	 */
 	protected $connections = [];
 	/** @var array (server name => UNIX timestamp) */
 	protected $downServers = [];
@@ -64,7 +67,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	protected static $instances = [];
 
 	/** integer; seconds to cache servers as "down". */
-	const SERVER_DOWN_TTL = 30;
+	private const SERVER_DOWN_TTL = 30;
 
 	/**
 	 * @var LoggerInterface
@@ -171,7 +174,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 *                       If a hostname is specified but no port, port 6379 will be used.
 	 * @param LoggerInterface|null $logger PSR-3 logger intance. [optional]
 	 * @return RedisConnRef|Redis|bool Returns false on failure
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function getConnection( $server, LoggerInterface $logger = null ) {
 		// The above @return also documents 'Redis' for convenience with IDEs.
@@ -268,15 +271,11 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			return false;
 		}
 
-		if ( $conn ) {
-			$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
-			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
-			$this->connections[$server][] = [ 'conn' => $conn, 'free' => false ];
+		$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
+		$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
+		$this->connections[$server][] = [ 'conn' => $conn, 'free' => false ];
 
-			return new RedisConnRef( $this, $server, $conn, $logger );
-		} else {
-			return false;
-		}
+		return new RedisConnRef( $this, $server, $conn, $logger );
 	}
 
 	/**
@@ -391,7 +390,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	/**
 	 * Make sure connections are closed for sanity
 	 */
-	function __destruct() {
+	public function __destruct() {
 		foreach ( $this->connections as $server => &$serverConnections ) {
 			foreach ( $serverConnections as $key => &$connection ) {
 				try {

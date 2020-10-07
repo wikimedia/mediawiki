@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group GlobalFunctions
  * @group Database
  */
-class GlobalWithDBTest extends MediaWikiTestCase {
+class GlobalWithDBTest extends MediaWikiIntegrationTestCase {
 	private function setUpBadImageTests( $name ) {
 		if ( in_array( $name, [
 			'Hook bad.jpg',
@@ -35,22 +37,12 @@ class GlobalWithDBTest extends MediaWikiTestCase {
 	public function testWfIsBadImage( $name, $title, $expected ) {
 		$this->setUpBadImageTests( $name );
 
-		$this->editPage( 'MediaWiki:Bad image list', BadFileLookupTest::BLACKLIST );
+		$this->editPage( 'MediaWiki:Bad image list', BadFileLookupTest::BAD_FILE_LIST );
 		$this->resetServices();
 		// Enable messages from MediaWiki namespace
-		MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
+		$this->hideDeprecated( 'wfIsBadImage' );
 		$this->assertEquals( $expected, wfIsBadImage( $name, $title ) );
-	}
-
-	/**
-	 * @dataProvider BadFileLookupTest::provideIsBadFile
-	 * @covers ::wfIsBadImage
-	 */
-	public function testWfIsBadImage_blacklistParam( $name, $title, $expected ) {
-		$this->setUpBadImageTests( $name );
-
-		$this->hideDeprecated( 'wfIsBadImage with $blacklist parameter' );
-		$this->assertSame( $expected, wfIsBadImage( $name, $title, BadFileLookupTest::BLACKLIST ) );
 	}
 }

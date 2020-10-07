@@ -3,7 +3,7 @@
 /**
  * @covers UnsupportedSlotDiffRenderer
  */
-class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
+class UnsupportedSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 
 	public function provideDiff() {
 		$oldContent = new TextContent( 'Kittens' );
@@ -28,7 +28,7 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
 			[ 'xyzzy' => 'UnknownContentHandler' ]
 		);
 
-		$localizer = $this->getMock( MessageLocalizer::class );
+		$localizer = $this->createMock( MessageLocalizer::class );
 
 		$localizer->method( 'msg' )
 			->willReturnCallback( function ( $key, ...$params ) {
@@ -36,7 +36,7 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
 			} );
 
 		$sdr = new UnsupportedSlotDiffRenderer( $localizer );
-		$this->assertContains( $expected, $sdr->getDiff( $oldContent, $newContent ) );
+		$this->assertStringContainsString( $expected, $sdr->getDiff( $oldContent, $newContent ) );
 	}
 
 }

@@ -21,7 +21,7 @@
  * @ingroup Benchmark
  */
 
-require_once __DIR__ . '/Benchmarker.php';
+require_once __DIR__ . '/../includes/Benchmarker.php';
 
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -46,7 +46,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 		$dbw->query( "CREATE TABLE IF NOT EXISTS /*_*/$test (
   test_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   text varbinary(255) NOT NULL
-);" );
+);", __METHOD__ );
 
 		$this->bench( [
 			'Delete' => [
@@ -67,7 +67,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 			]
 		] );
 
-		$dbw->dropTable( 'test' );
+		$dbw->dropTable( 'test', __METHOD__ );
 	}
 
 	/**
@@ -97,7 +97,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	 */
 	private function truncate( $dbw ) {
 		$test = $dbw->tableName( 'test' );
-		$dbw->query( "TRUNCATE TABLE $test" );
+		$dbw->query( "TRUNCATE TABLE $test", __METHOD__ );
 	}
 }
 

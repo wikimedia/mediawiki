@@ -3,6 +3,8 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -10,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
  */
-class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 
 	private $manager = null;
 	private $config = null;
@@ -34,8 +36,22 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			MediaWikiServices::getInstance()->getMainConfig()
 		] );
 
+		// We need a real HookContainer since testProviderChangeAuthenticationData()
+		// modifies $wgHooks
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+
 		if ( !$this->manager ) {
-			$this->manager = new AuthManager( new \FauxRequest(), $config );
+			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
+			$objectFactory = new \Wikimedia\ObjectFactory( $services );
+			$permManager = $this->createNoOpMock( PermissionManager::class );
+
+			$this->manager = new AuthManager(
+				new \FauxRequest(),
+				$config,
+				$objectFactory,
+				$permManager,
+				$hookContainer
+			);
 		}
 		$this->validity = \Status::newGood();
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
@@ -50,6 +66,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$provider->setConfig( $config );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setManager( $this->manager );
+		$provider->setHookContainer( $hookContainer );
 
 		return $provider;
 	}
@@ -426,7 +443,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$testUser = $this->getMutableTestUser();
 		$user = $testUser->getUser()->getName();
 		if ( is_callable( $usernameTransform ) ) {
-			$user = call_user_func( $usernameTransform, $user );
+			$user = $usernameTransform( $user );
 		}
 		$cuser = ucfirst( $user );
 		$oldpass = $testUser->getPassword();

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest;
 
-use Exception;
 use HttpStatus;
 use InvalidArgumentException;
 use LanguageCode;
@@ -16,9 +15,9 @@ use Wikimedia\Message\MessageValue;
  * Generates standardized response objects.
  */
 class ResponseFactory {
-	const CT_PLAIN = 'text/plain; charset=utf-8';
-	const CT_HTML = 'text/html; charset=utf-8';
-	const CT_JSON = 'application/json';
+	private const CT_PLAIN = 'text/plain; charset=utf-8';
+	private const CT_HTML = 'text/html; charset=utf-8';
+	private const CT_JSON = 'application/json';
 
 	/** @var ITextFormatter[] */
 	private $textFormatters;
@@ -181,20 +180,36 @@ class ResponseFactory {
 
 	/**
 	 * Create an HTTP 4xx or 5xx response with error message localisation
+	 *
+	 * @param int $errorCode
+	 * @param MessageValue $messageValue
+	 * @param array $extraData An array of additional data to be included in the JSON response
+	 *
+	 * @return Response
 	 */
-	public function createLocalizedHttpError( $errorCode, MessageValue $messageValue ) {
-		return $this->createHttpError( $errorCode, $this->formatMessage( $messageValue ) );
+	public function createLocalizedHttpError(
+		$errorCode,
+		MessageValue $messageValue,
+		array $extraData = []
+	) {
+		return $this->createHttpError(
+			$errorCode,
+			array_merge( $extraData, $this->formatMessage( $messageValue ) )
+		);
 	}
 
 	/**
-	 * Turn an exception into a JSON error response.
-	 * @param Exception|Throwable $exception
+	 * Turn a throwable into a JSON error response.
+	 * @param Throwable $exception
 	 * @return Response
 	 */
-	public function createFromException( $exception ) {
+	public function createFromException( Throwable $exception ) {
 		if ( $exception instanceof LocalizedHttpException ) {
-			$response = $this->createLocalizedHttpError( $exception->getCode(),
-				$exception->getMessageValue() );
+			$response = $this->createLocalizedHttpError(
+				$exception->getCode(),
+				$exception->getMessageValue(),
+				(array)$exception->getErrorData()
+			);
 		} elseif ( $exception instanceof HttpException ) {
 			// FIXME can HttpException represent 2xx or 3xx responses?
 			$response = $this->createHttpError(

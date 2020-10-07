@@ -59,7 +59,7 @@ class LanguageTr extends Language {
 	 * @param string $string
 	 * @return mixed|string
 	 */
-	function lcfirst( $string ) {
+	public function lcfirst( $string ) {
 		$first = mb_substr( $string, 0, 1 );
 		if ( in_array( $first, $this->uc ) ) {
 			$first = str_replace( $this->uc, $this->lc, $first );

@@ -3,6 +3,7 @@
 		"authors": [
 			"Akamycoco",
 			"Corainn",
+			"DannyS712",
 			"Hitaypayan",
 			"Temu19900728",
 			"Translatealcd"
@@ -362,7 +363,7 @@
 	"histfirst": "spzyang smural",
 	"histlast": "giqas balay",
 	"historysize": "({{PLURAL:$1|$1 bzyaqan kkayal na llpgan}})",
-	"historyempty": "(ungat ana nanu’)",
+	"historyempty": "ungat ana nanu’",
 	"history-feed-title": "Sbah pincyagan sraral",
 	"history-feed-description": "Sinbah sa wayal na zngazyan qaniy ka nyux squw WIKI qaniy.",
 	"history-feed-item-nocomment": "$1 na $2",

@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to populate the category table.
  *
@@ -31,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class PopulateCategory extends Maintenance {
 
-	const REPORTING_INTERVAL = 1000;
+	private const REPORTING_INTERVAL = 1000;
 
 	public function __construct() {
 		parent::__construct();
@@ -99,6 +101,8 @@ TEXT
 		}
 		$i = 0;
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		while ( true ) {
 			# Find which category to update
 			$row = $dbw->selectRow(
@@ -128,7 +132,7 @@ TEXT
 			++$i;
 			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 			usleep( $throttle * 1000 );
 		}

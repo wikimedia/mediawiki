@@ -20,4 +20,17 @@ class PasswordDef extends StringDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		if ( ( $settings[ParamValidator::PARAM_SENSITIVE] ?? true ) !== true &&
+			!isset( $ret['issues'][ParamValidator::PARAM_SENSITIVE] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_SENSITIVE] =
+				'Cannot set PARAM_SENSITIVE to false for password-type parameters';
+		}
+
+		return $ret;
+	}
+
 }

@@ -19,8 +19,8 @@
  */
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * LCStore implementation which uses the standard DB functions to store data.
@@ -83,7 +83,7 @@ class LCStoreDB implements LCStore {
 	public function finishWrite() {
 		if ( $this->readOnly ) {
 			return;
-		} elseif ( is_null( $this->code ) ) {
+		} elseif ( $this->code === null ) {
 			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
@@ -117,7 +117,7 @@ class LCStoreDB implements LCStore {
 	public function set( $key, $value ) {
 		if ( $this->readOnly ) {
 			return;
-		} elseif ( is_null( $this->code ) ) {
+		} elseif ( $this->code === null ) {
 			throw new MWException( __CLASS__ . ': must call startWrite() before set()' );
 		}
 

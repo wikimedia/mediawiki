@@ -1,7 +1,8 @@
 /*!
  * Styles shared across various special pages.
  */
-@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -43,6 +44,10 @@
 	break-inside: avoid-column;
 	page-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
+
+	li {
+		break-inside: avoid;
+	}
 }
 
 .mw-allpages-chunk,
@@ -91,6 +96,12 @@
 /* Special:EditWatchlist */
 .watchlistredir {
 	font-style: italic;
+}
+
+/* Special:EditWatchlist */
+.watchlistexpiry-msg {
+	margin-left: 0.3em;
+	color: @color-base--subtle;
 }
 
 /* Special:EmailUser */

@@ -95,7 +95,7 @@ class ScopedLock {
 	/**
 	 * Release the locks when this goes out of scope
 	 */
-	function __destruct() {
+	public function __destruct() {
 		$wasOk = $this->status->isOK();
 		$this->status->merge( $this->manager->unlockByType( $this->pathsByType ) );
 		if ( $wasOk ) {

@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -24,18 +27,38 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private $loadBalancer;
 
 	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
+
+	/**
+	 * @var SlotRoleRegistry
+	 */
+	private $slotRoleRegistry;
+
+	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
 	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
+	 * @param SlotRoleRegistry|null $slotRoleRegistry
 	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore,
+		SlotRoleRegistry $slotRoleRegistry = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
+		$this->revisionStore = $revisionStore;
+		// @todo: temporary - remove when FileImporter extension is updated
+		if ( !$slotRoleRegistry ) {
+			$slotRoleRegistry = \MediaWiki\MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		}
+		$this->slotRoleRegistry = $slotRoleRegistry;
 	}
 
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
@@ -97,7 +120,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		// Select previous version to make size diffs correct
 		// @todo This assumes that multiple revisions of the same page are imported
 		// in order from oldest to newest.
-		$prevId = $dbw->selectField( 'revision', 'rev_id',
+		$qi = $this->revisionStore->getQueryInfo();
+		$prevRevRow = $dbw->selectRow( $qi['tables'], $qi['fields'],
 			[
 				'rev_page' => $pageId,
 				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $importableRevision->getTimestamp() ) ),
@@ -107,38 +131,89 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 				'rev_timestamp DESC',
 				'rev_id DESC', // timestamp is not unique per page
 			]
-			]
+			],
+			$qi['joins']
 		);
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
-		$revision = new Revision( [
-			'title' => $importableRevision->getTitle(),
-			'page' => $pageId,
-			'content_model' => $importableRevision->getModel(),
-			'content_format' => $importableRevision->getFormat(),
-			// XXX: just set 'content' => $wikiRevision->getContent()?
-			'text' => $importableRevision->getContent()->serialize( $importableRevision->getFormat() ),
-			'comment' => $importableRevision->getComment(),
-			'user' => $userId,
-			'user_text' => $userText,
-			'timestamp' => $importableRevision->getTimestamp(),
-			'minor_edit' => $importableRevision->getMinor(),
-			'parent_id' => $prevId,
-		] );
-		$revision->insertOn( $dbw );
-		$changed = $page->updateIfNewerOn( $dbw, $revision );
+		$revisionRecord = new MutableRevisionRecord( $importableRevision->getTitle() );
+		$revisionRecord->setParentId( $prevRevRow ? (int)$prevRevRow->rev_id : 0 );
+		$revisionRecord->setComment(
+			CommentStoreComment::newUnsavedComment( $importableRevision->getComment() )
+		);
+
+		try {
+			$revUser = User::newFromAnyId(
+				$userId,
+				$userText,
+				null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			$revUser = RequestContext::getMain()->getUser();
+		}
+		$revisionRecord->setUser( $revUser );
+
+		$originalRevision = $prevRevRow
+			? $this->revisionStore->newRevisionFromRow(
+				$prevRevRow,
+				IDBAccessObject::READ_LATEST,
+				$importableRevision->getTitle()
+			)
+			: null;
+
+		foreach ( $importableRevision->getSlotRoles() as $role ) {
+			if ( !$this->slotRoleRegistry->isDefinedRole( $role ) ) {
+				throw new MWException( "Undefined slot role $role" );
+			}
+
+			$newContent = $importableRevision->getContent( $role );
+			if ( !$originalRevision || !$originalRevision->hasSlot( $role ) ) {
+				$revisionRecord->setContent( $role, $newContent );
+			} else {
+				$originalSlot = $originalRevision->getSlot( $role );
+				if ( !$originalSlot->hasSameContent( $importableRevision->getSlot( $role ) ) ) {
+					$revisionRecord->setContent( $role, $newContent );
+				} else {
+					$revisionRecord->inheritSlot( $originalRevision->getSlot( $role ) );
+				}
+			}
+		}
+
+		$revisionRecord->setTimestamp( $importableRevision->getTimestamp() );
+		$revisionRecord->setMinorEdit( $importableRevision->getMinor() );
+		$revisionRecord->setPageId( $pageId );
+
+		$latestRevId = $page->getLatest();
+
+		$inserted = $this->revisionStore->insertRevisionOn( $revisionRecord, $dbw );
+		if ( $latestRevId ) {
+			// If not found (false), cast to 0 so that the page is updated
+			// Just to be on the safe side, even though it should always be found
+			$latestRevTimestamp = (int)$this->revisionStore->getTimestampFromId(
+				$latestRevId,
+				RevisionStore::READ_LATEST
+			);
+		} else {
+			$latestRevTimestamp = 0;
+		}
+		if ( $importableRevision->getTimestamp() > $latestRevTimestamp ) {
+			$changed = $page->updateRevisionOn( $dbw, $inserted, $latestRevId );
+		} else {
+			$changed = false;
+		}
 
 		$tags = $importableRevision->getTags();
 		if ( $tags !== [] ) {
-			ChangeTags::addTags( $tags, null, $revision->getId() );
+			ChangeTags::addTags( $tags, null, $inserted->getId() );
 		}
 
 		if ( $changed !== false && $this->doUpdates ) {
-			$this->logger->debug( __METHOD__ . ": running updates\n" );
+			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
+			// @todo replace deprecated function
 			$page->doEditUpdates(
-				$revision,
+				$inserted,
 				$user,
 				[ 'created' => $created, 'oldcountable' => 'no-change' ]
 			);

@@ -114,7 +114,7 @@ class UnknownContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns false.
+	 * @return false
 	 */
 	public function getWikitextForTransclusion() {
 		return false;
@@ -122,6 +122,11 @@ class UnknownContent extends AbstractContent {
 
 	/**
 	 * Fills the ParserOutput with an error message.
+	 * @param Title $title
+	 * @param int $revId
+	 * @param ParserOptions $options
+	 * @param bool $generateHtml
+	 * @param ParserOutput &$output
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
@@ -132,7 +137,9 @@ class UnknownContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns false.
+	 * @param string $toModel
+	 * @param string $lossy
+	 * @return false
 	 */
 	public function convert( $toModel, $lossy = '' ) {
 		return false;

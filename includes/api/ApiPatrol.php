@@ -58,7 +58,7 @@ class ApiPatrol extends ApiBase {
 		$tags = $params['tags'];
 
 		// Check if user can add tags
-		if ( !is_null( $tags ) ) {
+		if ( $tags !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );

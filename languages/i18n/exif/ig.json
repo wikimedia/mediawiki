@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Oby Ezeilo",
 			"Ukabia",
 			"Uzoma Ozurumba"
 		]
@@ -8,6 +9,8 @@
 	"exif-imagewidth": "Àsáa",
 	"exif-imagelength": "Ógólógó",
 	"exif-orientation": "Ívú nà àsáa",
+	"exif-xresolution": "Mkpebi gbara uhie",
+	"exif-yresolution": "Mkpebi kwụọ ọtọ",
 	"exif-datetime": "Failụ mgbanwe ụbọchi na oge",
 	"exif-imagedescription": "Íshí nhuunuche",
 	"exif-make": "Mmewe igwefoto",

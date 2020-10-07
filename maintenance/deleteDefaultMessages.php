@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that deletes all pages in the MediaWiki namespace
  * which were last edited by "MediaWiki default".
@@ -87,14 +89,15 @@ class DeleteDefaultMessages extends Maintenance {
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
 		$dbw = $this->getDB( DB_MASTER );
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		foreach ( $res as $row ) {
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$page = WikiPage::factory( $title );
-			$error = ''; // Passed by ref
 			// FIXME: Deletion failures should be reported, not silently ignored.
-			$page->doDeleteArticle( 'No longer required', false, 0, true, $error, $user );
+			$page->doDeleteArticleReal( 'No longer required', $user );
 		}
 
 		$this->output( "done!\n", 'msg' );

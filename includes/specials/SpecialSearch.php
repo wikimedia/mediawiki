@@ -24,12 +24,12 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
-use MediaWiki\Widget\Search\FullSearchResultWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultSetWidget;
+use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
+use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
+use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
+use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
+use MediaWiki\Search\SearchWidgets\SimpleSearchResultSetWidget;
+use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -98,7 +98,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	private $loadStatus;
 
-	const NAMESPACES_CURRENT = 'sense';
+	private const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
 		parent::__construct( 'Search' );
@@ -157,8 +157,8 @@ class SpecialSearch extends SpecialPage {
 			// No match. If it could plausibly be a title
 			// run the No go match hook.
 			$title = Title::newFromText( $term );
-			if ( !is_null( $title ) ) {
-				Hooks::run( 'SpecialSearchNogomatch', [ &$title ] );
+			if ( $title !== null ) {
+				$this->getHookRunner()->onSpecialSearchNogomatch( $title );
 			}
 		}
 
@@ -213,7 +213,11 @@ class SpecialSearch extends SpecialPage {
 		$this->loadStatus = new Status();
 
 		$request = $this->getRequest();
-		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, '' );
+		list( $this->limit, $this->offset ) = $request->getLimitOffsetForUser(
+			$this->getUser(),
+			20,
+			''
+		);
 		$this->mPrefix = $request->getVal( 'prefix', '' );
 		if ( $this->mPrefix !== '' ) {
 			$this->setExtraParam( 'prefix', $this->mPrefix );
@@ -278,21 +282,47 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function goResult( $term ) {
 		# If the string cannot be used to create a title
-		if ( is_null( Title::newFromText( $term ) ) ) {
+		if ( Title::newFromText( $term ) === null ) {
 			return null;
 		}
 		# If there's an exact or very near match, jump right there.
 		$title = $this->getSearchEngine()
 			->getNearMatcher( $this->getConfig() )->getNearMatch( $term );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			return null;
 		}
 		$url = null;
-		if ( !Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] ) ) {
+		if ( !$this->getHookRunner()->onSpecialSearchGoResult( $term, $title, $url ) ) {
+			return null;
+		}
+
+		if (
+			// If there is a preference set to NOT redirect on exact page match
+			// then return null (which prevents direction)
+			!$this->redirectOnExactMatch()
+			// BUT ...
+			// ... ignore no-redirect preference if the exact page match is an interwiki link
+			&& !$title->isExternal()
+			// ... ignore no-redirect preference if the exact page match is NOT in the main
+			// namespace AND there's a namespace in the search string
+			&& !( $title->getNamespace() !== NS_MAIN && strpos( $term, ':' ) > 0 )
+		) {
 			return null;
 		}
 
 		return $url ?? $title->getFullUrlForRedirect();
+	}
+
+	private function redirectOnExactMatch() {
+		global $wgSearchMatchRedirectPreference;
+		if ( !$wgSearchMatchRedirectPreference ) {
+			// If the preference for whether to redirect is disabled, use the default setting
+			$defaultOptions = $this->getUser()->getDefaultOptions();
+			return $defaultOptions['search-match-redirect'];
+		} else {
+			// Otherwise use the user's preference
+			return $this->getUser()->getOption( 'search-match-redirect' );
+		}
 	}
 
 	/**
@@ -305,16 +335,17 @@ class SpecialSearch extends SpecialPage {
 
 		$out = $this->getOutput();
 		$widgetOptions = $this->getConfig()->get( 'SpecialSearchFormOptions' );
-		$formWidget = new MediaWiki\Widget\Search\SearchFormWidget(
+		$formWidget = new MediaWiki\Search\SearchWidgets\SearchFormWidget(
 			$this,
 			$this->searchConfig,
+			$this->getHookContainer(),
 			$this->getSearchProfiles()
 		);
 		$filePrefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
-			if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
+			if ( !$this->getHookRunner()->onSpecialSearchResultsPrepend( $this, $out, $term ) ) {
 				# Hook requested termination
 				return;
 			}
@@ -335,8 +366,8 @@ class SpecialSearch extends SpecialPage {
 		$engine->setSort( $this->sort );
 		$engine->prefix = $this->mPrefix;
 
-		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $engine ] );
-		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
+		$this->getHookRunner()->onSpecialSearchSetupEngine( $this, $this->profile, $engine );
+		if ( !$this->getHookRunner()->onSpecialSearchResultsPrepend( $this, $out, $term ) ) {
 			# Hook requested termination
 			return;
 		}
@@ -347,8 +378,9 @@ class SpecialSearch extends SpecialPage {
 
 		$rewritten = $engine->replacePrefixes( $term );
 		if ( $rewritten !== $term ) {
-			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
-						  get_class( $engine ) . ')', '1.32' );
+			wfDeprecatedMsg( 'SearchEngine::replacePrefixes()  was overridden by ' .
+				get_class( $engine ) . ', this is deprecated since MediaWiki 1.32',
+				'1.32', false, false );
 		}
 
 		// fetch search results
@@ -385,7 +417,7 @@ class SpecialSearch extends SpecialPage {
 
 		// did you mean... suggestions
 		if ( $textMatches ) {
-			$dymWidget = new MediaWiki\Widget\Search\DidYouMeanWidget( $this );
+			$dymWidget = new MediaWiki\Search\SearchWidgets\DidYouMeanWidget( $this );
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
@@ -421,7 +453,7 @@ class SpecialSearch extends SpecialPage {
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
-		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
+		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
 
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasSearchErrors ) {
@@ -434,7 +466,8 @@ class SpecialSearch extends SpecialPage {
 		// Although $num might be 0 there can still be secondary or inline
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
-		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
+		$mainResultWidget = new FullSearchResultWidget(
+			$this, $linkRenderer, $this->getHookContainer() );
 
 		// Default (null) on. Can be explicitly disabled.
 		if ( $engine->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
@@ -486,7 +519,7 @@ class SpecialSearch extends SpecialPage {
 		// Close <div class='searchresults'>
 		$out->addHTML( "</div>" );
 
-		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
+		$this->getHookRunner()->onSpecialSearchResultsAppend( $this, $out, $term );
 	}
 
 	/**
@@ -499,7 +532,7 @@ class SpecialSearch extends SpecialPage {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
-		if ( is_null( $title ) || $title->getDBkey() === ''
+		if ( $title === null || $title->getDBkey() === ''
 			|| ( $titleMatches !== null && $titleMatches->searchContainedSyntax() )
 			|| ( $textMatches !== null && $textMatches->searchContainedSyntax() )
 		) {
@@ -517,8 +550,14 @@ class SpecialSearch extends SpecialPage {
 			if ( $title->isKnown() ) {
 				$messageName = 'searchmenu-exists';
 				$linkClass = 'mw-search-exists';
-			} elseif ( ContentHandler::getForTitle( $title )->supportsDirectEditing()
+			} elseif (
+				MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $title->getContentModel() )
+					->supportsDirectEditing()
 				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'create',
+					$this->getUser(), $title )
+				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'edit',
 					$this->getUser(), $title )
 			) {
 				$messageName = 'searchmenu-new';
@@ -530,9 +569,10 @@ class SpecialSearch extends SpecialPage {
 			wfEscapeWikiText( $title->getPrefixedText() ),
 			Message::numParam( $num )
 		];
-		Hooks::run( 'SpecialSearchCreateLink', [ $title, &$params ] );
+		$this->getHookRunner()->onSpecialSearchCreateLink( $title, $params );
 
 		// Extensions using the hook might still return an empty $messageName
+		// @phan-suppress-next-line PhanRedundantCondition Set by hook
 		if ( $messageName ) {
 			$this->getOutput()->wrapWikiMsg( "<p class=\"$linkClass\">\n$1</p>", $params );
 		} else {
@@ -682,7 +722,8 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<string,array{message:string,tooltip:string,namespaces:int|string|(int|string)[],namespace-messages?:string[]}>
 	 */
 	protected function getSearchProfiles() {
 		// Builds list of Search Types (profiles)
@@ -714,7 +755,7 @@ class SpecialSearch extends SpecialPage {
 			]
 		];
 
-		Hooks::run( 'SpecialSearchProfiles', [ &$profiles ] );
+		$this->getHookRunner()->onSpecialSearchProfiles( $profiles );
 
 		foreach ( $profiles as &$data ) {
 			if ( !is_array( $data['namespaces'] ) ) {
@@ -746,7 +787,7 @@ class SpecialSearch extends SpecialPage {
 	 * Current search profile.
 	 * @return null|string
 	 */
-	function getProfile() {
+	public function getProfile() {
 		return $this->profile;
 	}
 
@@ -754,7 +795,7 @@ class SpecialSearch extends SpecialPage {
 	 * Current namespaces.
 	 * @return array
 	 */
-	function getNamespaces() {
+	public function getNamespaces() {
 		return $this->namespaces;
 	}
 

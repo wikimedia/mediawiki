@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
 			"Kaganer",
 			"Liangent",
-			"아라",
 			"Macofe",
-			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "Zerpajvandho xat kaşida şavand:",
@@ -198,7 +199,6 @@
 	"versionrequired": "Nusxai $1 az narmafzori MediaViki lozim ast",
 	"versionrequiredtext": "Baroi istifodai in sahifa ba nusxai $1 az narmafzori MediaViki nijoz dored. Baroi ittiloo' az nusxai narmafzori nasbşuda dar in viki ba [[Special:Version|in sahifa]] nigared.",
 	"ok": "Boşad",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "Bargirifta az \"$1\"",
 	"youhavenewmessages": "Şumo $1 ($2) dored.",
 	"youhavenewmessagesmulti": "Şumo nomahoi nav dar $1 dored.",
@@ -238,7 +238,7 @@
 	"nospecialpagetext": "<strong>Şumo sahifai viƶaero darxost kardaed, ki nodurust ast.</strong>\n\nFehristi sahifahoi viƶai durustro metavoned dar inço [[Special:SpecialPages|{{int:specialpages}}]] nigared.",
 	"error": "Iştiboh",
 	"databaseerror": "Xatoi bojgohi doda",
-	"laggedslavemode": "Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.",
+	"laggedreplicamode": "Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.",
 	"readonly": "Bojgohi doda qufl şudaast",
 	"enterlockreason": "Dalelero baroi qufl kardan zikr kuned, va taqriban vaqti az qufl ozod şudanaşro ham zikr kuned",
 	"readonlytext": "Pojgohi doda dar holi hozir dar barobari taƣjirot va eçodi sahifaho qufl şudaast, ehtimolan on baroi ta'miri pojgohi doda va rasidagihoe ma'mul ast, ki ba'd az ançomi on vaz' ba holati oddī boz xohad gaşt.\n\nTavzehi mudire, ki onro qufl kardaast badin şarh ast: $1",
@@ -403,7 +403,6 @@
 	"undo-success": "In viroiş metavonad botil şavad. Lutfan muqoisai zerinro baroi ta'jid kardani amalī xud, barrasī kuned, va ba'dan baroi ançom dodani botilkuniji viroiş taƣjiroti zerinro zaxira kuned.",
 	"undo-failure": "Ba illati barxūrdani viroişhoi dar mijon omada, in viroişro botil nametavon kard.",
 	"undo-summary": "Botili nusxai $1 az tarafi [[Special:Contributions/$2|$2]] ([[User talk:$2|Bahs]])",
-	"cantcreateaccount-text": "Imkoni soxtani hisobi korbarī az in nişonai IP ('''$1''') az tarafi [[User:$3|$3]] basta şudaast.\n\nDaleli $3 cunin ast ''$2''",
 	"viewpagelogs": "Namoişi guzorişhoi marbuta ba in sahifa",
 	"nohistory": "Ta'rixi viroiş baroi in sahifa vuçud nadorad.",
 	"currentrev": "Viroişoti kununī",
@@ -423,7 +422,7 @@
 	"histfirst": "Avvalin",
 	"histlast": "Oxirin",
 	"historysize": "({{PLURAL:$1|1 bajt|$1 bajt}})",
-	"historyempty": "(xolī)",
+	"historyempty": "xolī",
 	"history-feed-title": "Ta'rixi viroişho",
 	"history-feed-description": "Ta'rixi viroişhoi in sahifa dar viki",
 	"history-feed-item-nocomment": "$1 dar $2",

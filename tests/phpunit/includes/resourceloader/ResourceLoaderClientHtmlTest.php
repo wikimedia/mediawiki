@@ -232,13 +232,6 @@ Deprecation message.' ]
 			],
 			[
 				'context' => [],
-				'modules' => [ 'test.scripts' ],
-				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'extra' => [ 'raw' => '1', 'sync' => '1' ],
-				'output' => '<script src="/w/load.php?lang=nl&amp;modules=test.scripts&amp;only=scripts&amp;raw=1&amp;sync=1"></script>',
-			],
-			[
-				'context' => [],
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
@@ -346,7 +339,7 @@ Deprecation message.' ]
 
 	public function testGetDocumentAttributes() {
 		$client = new ResourceLoaderClientHtml( self::makeContext() );
-		$this->assertInternalType( 'array', $client->getDocumentAttributes() );
+		$this->assertIsArray( $client->getDocumentAttributes() );
 	}
 
 	private static function expandVariables( $text ) {
@@ -358,8 +351,6 @@ Deprecation message.' ]
 
 	private static function makeContext( $extraQuery = [] ) {
 		$conf = new HashConfig( [
-			'ResourceModuleSkinStyles' => [],
-			'ResourceModules' => [],
 			'EnableJavaScriptTest' => false,
 			'LoadScript' => '/w/load.php',
 		] );

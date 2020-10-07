@@ -1,0 +1,23 @@
+// We have to render the wordmark image before the print dialog is invoked, otherwise the image
+// won't render in the printed file. Use a little hack to render the image outside the viewport
+// and bring it in the viewport in print view.
+/* stylelint-disable-next-line selector-class-pattern */
+.firstHeading {
+	// We could also use a CSS background to display the logo.
+	// The problem is that the logo won't be printed unless the user prints the background too.
+	// Note. This specification does not fully define the interaction of :before and :after with
+	// replaced elements (such as IMG in HTML). This will be defined in more detail in a future
+	// specification. See https://www.w3.org/TR/CSS2/generate.html#before-after-content
+	& when( @logo-enabled = 1 ) {
+		&:before {
+			content: @logo-wordmark-url;
+			display: block;
+			height: ~'@{logo-wordmark-height}px';
+			left: -9999px;
+			line-height: 0;  // line-height is needed for correctly displaying the size of the content box.
+			margin-bottom: 20px;
+			position: absolute;
+			width: ~'@{logo-wordmark-width}px';
+		}
+	}
+}

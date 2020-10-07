@@ -49,6 +49,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mLoaded = false;
 	protected $mLoadedRequest = false;
 	protected $mSecureLoginUrl;
+	private $reasonValidatorResult = null;
 
 	/** @var string */
 	protected $securityLevel;
@@ -117,7 +118,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Load data from request.
-	 * @private
+	 * @internal
 	 * @param string $subPage Subpage of Special:Userlogin
 	 */
 	protected function load( $subPage ) {
@@ -132,8 +133,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$securityLevel = $this->getRequest()->getText( 'force' );
 		if (
-			$securityLevel && AuthManager::singleton()->securitySensitiveOperationStatus(
-				$securityLevel ) === AuthManager::SEC_REAUTH
+			$securityLevel &&
+				MediaWikiServices::getInstance()->getAuthManager()->securitySensitiveOperationStatus(
+					$securityLevel ) === AuthManager::SEC_REAUTH
 		) {
 			$this->securityLevel = $securityLevel;
 		}
@@ -220,12 +222,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			} );
 		}
 
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$session = SessionManager::getGlobalSession();
 
 		// Session data is used for various things in the authentication process, so we must make
 		// sure a session cookie or some equivalent mechanism is set.
 		$session->persist();
+		// Explicitly disable cache to ensure cookie blocks may be set (T152462).
+		// (Technically redundant with sessions persisting from this page.)
+		$this->getOutput()->enableClientCache( false );
 
 		$this->load( $subPage );
 		$this->setHeaders();
@@ -509,7 +514,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @throws MWException
 	 * @throws PermissionsError
 	 * @throws ReadOnlyError
-	 * @private
+	 * @internal
 	 */
 	protected function mainLoginForm( array $requests, $msg = '', $msgtype = 'error' ) {
 		$user = $this->getUser();
@@ -520,7 +525,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( !$requests ) {
 			$this->authAction = $this->getDefaultAction( $this->subPage );
 			$this->authForm = null;
-			$requests = AuthManager::singleton()->getAuthenticationRequests( $this->authAction, $user );
+			$requests = MediaWikiServices::getInstance()->getAuthManager()
+				->getAuthenticationRequests( $this->authAction, $user );
 		}
 
 		// Generic styles and scripts for both login and signup form
@@ -537,9 +543,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
 
 			// Additional styles and scripts for signup form
-			$out->addModules( [
-				'mediawiki.special.userlogin.signup.js'
-			] );
+			$out->addModules( 'mediawiki.special.createaccount' );
 			$out->addModuleStyles( [
 				'mediawiki.special.userlogin.signup.styles'
 			] );
@@ -658,7 +662,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// get basic form description from the auth logic
 		$fieldInfo = AuthenticationRequest::mergeFieldInfo( $requests );
 		// this will call onAuthChangeFormFields()
-		$formDescriptor = static::fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
+		$formDescriptor = $this->fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
 		$this->postProcessFormDescriptor( $formDescriptor, $requests );
 
 		$context = $this->getContext();
@@ -781,8 +785,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->isSignup() ) {
 			$fieldDefinitions = [
 				'statusarea' => [
-					// used by the mediawiki.special.userlogin.signup.js module for error display
-					// FIXME merge this with HTMLForm's normal status (error) area
+					// Used by the mediawiki.special.createaccount module for error display.
+					// FIXME: Merge this with HTMLForm's normal status (error) area
 					'type' => 'info',
 					'raw' => true,
 					'default' => Html::element( 'div', [ 'id' => 'mw-createacct-status-area' ] ),
@@ -871,6 +875,23 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'cssclass' => 'loginText',
 					'id' => 'wpReason',
 					'size' => '20',
+					'validation-callback' => function ( $value, $alldata ) {
+						// if the user sets an email address as the user creation reason, confirm that
+						// that was their intent
+						if ( $value && Sanitizer::validateEmail( $value ) ) {
+							if ( $this->reasonValidatorResult !== null ) {
+								return $this->reasonValidatorResult;
+							}
+							$this->reasonValidatorResult = true;
+							$authManager = MediaWikiServices::getInstance()->getAuthManager();
+							if ( !$authManager->getAuthenticationSessionData( 'reason-retry', false ) ) {
+								$authManager->setAuthenticationSessionData( 'reason-retry', true );
+								$this->reasonValidatorResult = $this->msg( 'createacct-reason-confirm' );
+							}
+							return $this->reasonValidatorResult;
+						}
+						return true;
+					},
 					'placeholder-message' => 'createacct-reason-ph',
 				],
 				'createaccount' => [
@@ -1135,7 +1156,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$attr = [];
-		$targetLanguage = Language::factory( $lang );
+		$targetLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
 		return $this->getLinkRenderer()->makeKnownLink(

@@ -30,9 +30,15 @@ use MediaWiki\Session\Token;
  * (i.e. the API) doesn't have to have so many special cases for anon edit
  * tokens.
  *
+ * @newable
+ *
  * @since 1.27
  */
 class LoggedOutEditToken extends Token {
+
+	/**
+	 * @stable to call
+	 */
 	public function __construct() {
 		parent::__construct( '', '', false );
 	}

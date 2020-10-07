@@ -147,7 +147,7 @@ class PasswordDomainAuthenticationRequestTest extends AuthenticationRequestTestC
 		$req->username = 'UTSysop';
 		$req->domain = 'd2';
 		$ret = $req->describeCredentials();
-		$this->assertInternalType( 'array', $ret );
+		$this->assertIsArray( $ret );
 		$this->assertArrayHasKey( 'provider', $ret );
 		$this->assertInstanceOf( \Message::class, $ret['provider'] );
 		$this->assertSame( 'authmanager-provider-password-domain', $ret['provider']->getKey() );

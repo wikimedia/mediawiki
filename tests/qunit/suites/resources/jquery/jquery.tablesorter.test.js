@@ -1,5 +1,5 @@
 ( function () {
-	var header = [ 'Planet', 'Radius (km)' ],
+	var planetHeader = [ 'Planet', 'Radius (km)' ],
 
 		// Data set "planets"
 		mercury = [ 'Mercury', '2439.7' ],
@@ -11,9 +11,9 @@
 		planets = [ mercury, venus, earth, mars, jupiter, saturn ],
 		planetsAscName = [ earth, jupiter, mars, mercury, saturn, venus ],
 		planetsAscRadius = [ mercury, mars, venus, earth, saturn, jupiter ],
+		planetsTotal = [ [ 'total', '146395.5' ] ],
 		planetsRowspan,
 		planetsRowspanII,
-		planetsAscNameLegacy,
 
 		// Data set "simple"
 		a1 = [ 'A', '1' ],
@@ -289,7 +289,7 @@
 
 		$table.find( 'tbody' ).find( 'tr' ).each( function ( i, tr ) {
 			var row = [];
-			$( tr ).find( 'td,th' ).each( function ( i, td ) {
+			$( tr ).find( 'td,th' ).each( function ( j, td ) {
 				row.push( $( td ).text() );
 			} );
 			data.push( row );
@@ -305,7 +305,7 @@
 	 * @param {string[]} header cols to make the table
 	 * @param {string[][]} data rows/cols to make the table
 	 * @param {string[][]} expected rows/cols to compare against at end
-	 * @param {function($table)} callback something to do with the table before we compare
+	 * @param {Function} callback Callback on $table before we compare
 	 */
 	function tableTest( msg, header, data, expected, callback ) {
 		QUnit.test( msg, function ( assert ) {
@@ -329,7 +329,7 @@
 	 * @param {string} msg text to pass on to qunit for the comparison
 	 * @param {string} html HTML to make the table
 	 * @param {string[][]} expected Rows/cols to compare against at end
-	 * @param {function($table)} callback Something to do with the table before we compare
+	 * @param {Function} callback Callback on $table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
 		QUnit.test( msg, function ( assert ) {
@@ -364,7 +364,7 @@
 
 	tableTest(
 		'Basic planet table: sorting initially - ascending by name',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -375,7 +375,7 @@
 	);
 	tableTest(
 		'Basic planet table: sorting initially - descending by radius',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscRadius ),
 		function ( $table ) {
@@ -386,7 +386,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -396,7 +396,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name a second time',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -406,7 +406,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name (multiple clicks)',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -418,7 +418,7 @@
 	);
 	tableTest(
 		'Basic planet table: descending by name',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscName ),
 		function ( $table ) {
@@ -427,8 +427,18 @@
 		}
 	);
 	tableTest(
+		'Basic planet table: return to initial sort',
+		planetHeader,
+		planets,
+		planets,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' ).trigger( 'click' );
+		}
+	);
+	tableTest(
 		'Basic planet table: ascending radius',
-		header,
+		planetHeader,
 		planets,
 		planetsAscRadius,
 		function ( $table ) {
@@ -438,7 +448,7 @@
 	);
 	tableTest(
 		'Basic planet table: descending radius',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscRadius ),
 		function ( $table ) {
@@ -448,7 +458,7 @@
 	);
 	tableTest(
 		'Sorting multiple columns by passing sort list',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -462,7 +472,7 @@
 	);
 	tableTest(
 		'Sorting multiple columns by programmatically triggering sort()',
-		header,
+		planetHeader,
 		simple,
 		simpleDescasc,
 		function ( $table ) {
@@ -477,7 +487,7 @@
 	);
 	tableTest(
 		'Reset to initial sorting by triggering sort() without any parameters',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -498,7 +508,7 @@
 	);
 	tableTest(
 		'Sort via click event after having initialized the tablesorter with initial sorting',
-		header,
+		planetHeader,
 		simple,
 		simpleDescasc,
 		function ( $table ) {
@@ -510,7 +520,7 @@
 	);
 	tableTest(
 		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -518,6 +528,9 @@
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
 			);
+
+			// There are three sort orders, so cycle though
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 			// Pretend to click while pressing the multi-sort key
@@ -527,7 +540,7 @@
 		}
 	);
 	QUnit.test( 'Reset sorting making table appear unsorted', function ( assert ) {
-		var $table = tableCreate( header, simple );
+		var $table = tableCreate( planetHeader, simple );
 		$table.tablesorter(
 			{ sortList: [
 				{ 0: 'desc' },
@@ -617,7 +630,7 @@
 	);
 
 	QUnit.test( 'Basic planet table: one unsortable column', function ( assert ) {
-		var $table = tableCreate( header, planets ),
+		var $table = tableCreate( planetHeader, planets ),
 			$cell;
 		$table.find( 'tr > th' ).eq( 0 ).addClass( 'unsortable' );
 
@@ -774,7 +787,7 @@
 	);
 
 	QUnit.test( 'Rowspan not exploded on init', function ( assert ) {
-		var $table = tableCreate( header, planets );
+		var $table = tableCreate( planetHeader, planets );
 
 		// Modify the table to have a multiple-row-spanning cell:
 		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
@@ -805,7 +818,7 @@
 
 	tableTest(
 		'Basic planet table: same value for multiple rows via rowspan',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspan,
 		function ( $table ) {
@@ -823,7 +836,7 @@
 	);
 	tableTest(
 		'Basic planet table: same value for multiple rows via rowspan (sorting initially)',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspan,
 		function ( $table ) {
@@ -842,7 +855,7 @@
 	);
 	tableTest(
 		'Basic planet table: Same value for multiple rows via rowspan II',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspanII,
 		function ( $table ) {
@@ -883,21 +896,46 @@
 		}
 	);
 
-	planetsAscNameLegacy = planetsAscName.slice( 0 );
-	planetsAscNameLegacy[ 4 ] = planetsAscNameLegacy[ 5 ];
-	planetsAscNameLegacy.pop();
-
 	tableTest(
-		'Legacy compat with .sortbottom',
-		header,
-		planets,
-		planetsAscNameLegacy,
+		'Handling of .sortbottom',
+		planetHeader,
+		planets.concat( planetsTotal ),
+		planetsAscName,
 		function ( $table ) {
 			$table.find( 'tr' ).last().addClass( 'sortbottom' );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		}
 	);
+
+	tableTest(
+		'Handling of .sorttop',
+		planetHeader,
+		planetsTotal.concat( planets ),
+		planetsAscName,
+		function ( $table ) {
+			$table.find( 'tbody > tr' ).first().addClass( 'sorttop' );
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+		}
+	);
+
+	QUnit.test( 'Test sort buttons not added to .sorttop row', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<tr><th>Data</th></tr>' +
+				'<tr class="sorttop"><th>2</th></tr>' +
+				'<tr><td>1</td></tr>' +
+				'<tr><td>1</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		assert.strictEqual(
+			$table.find( '.headerSort' ).eq( 0 ).text(),
+			'Data',
+			'Sort buttons are added to a header row without class sorttop'
+		);
+	} );
 
 	QUnit.test( 'Test detection routine', function ( assert ) {
 		var $table;
@@ -959,7 +997,7 @@
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1006,7 +1044,7 @@
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1064,13 +1102,14 @@
 		// - remove data, bring back attribute: 2
 		$table.find( 'td:contains(G)' ).removeData( 'sortValue' );
 
-		// Now sort again (twice, so it is back at Ascending)
+		// Now sort again (three times, so it is back at Ascending)
+		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()

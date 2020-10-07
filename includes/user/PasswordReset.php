@@ -23,6 +23,8 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -53,6 +55,12 @@ class PasswordReset implements LoggerAwareInterface {
 	/** @var ILoadBalancer */
 	protected $loadBalancer;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * In-process cache for isAllowed lookups, by username.
 	 * Contains a StatusValue object
@@ -74,29 +82,39 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param LoggerInterface|null $logger
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		$config,
 		AuthManager $authManager,
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer = null,
-		LoggerInterface $logger = null
+		LoggerInterface $logger = null,
+		HookContainer $hookContainer = null
 	) {
 		$this->config = $config;
 		$this->authManager = $authManager;
 		$this->permissionManager = $permissionManager;
 
 		if ( !$loadBalancer ) {
-			wfDeprecated( 'Not passing LoadBalancer to ' . __METHOD__, '1.34' );
+			wfDeprecatedMsg( 'Not passing LoadBalancer to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.34', '1.34' );
 			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		}
 		$this->loadBalancer = $loadBalancer;
 
 		if ( !$logger ) {
-			wfDeprecated( 'Not passing LoggerInterface to ' . __METHOD__, '1.34' );
+			wfDeprecatedMsg( 'Not passing LoggerInterface to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.34', '1.34' );
 			$logger = LoggerFactory::getInstance( 'authentication' );
 		}
 		$this->logger = $logger;
+
+		if ( !$hookContainer ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->permissionCache = new MapCacheLRU( 1 );
 	}
@@ -172,6 +190,13 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newGood();
 		}
 
+		// We need to have a valid IP address for the hook 'User::mailPasswordInternal', but per T20347,
+		// we should send the user's name if they're logged in.
+		$ip = $performingUser->getRequest()->getIP();
+		if ( !$ip ) {
+			return StatusValue::newFatal( 'badipaddress' );
+		}
+
 		$username = $username ?? '';
 		$email = $email ?? '';
 
@@ -202,6 +227,11 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( 'passwordreset-nodata' );
 		}
 
+		// If the username is not valid, tell the user.
+		if ( $username && !User::getCanonicalName( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
+		}
+
 		// Check for hooks (captcha etc), and allow them to modify the users list
 		$error = [];
 		$data = [
@@ -215,7 +245,7 @@ class PasswordReset implements LoggerAwareInterface {
 		// hook assumes that index '0' is defined if $users is not empty.
 		$users = array_values( $users );
 
-		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
+		if ( !$this->hookRunner->onSpecialPasswordResetOnSubmit( $users, $data, $error ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
@@ -241,22 +271,11 @@ class PasswordReset implements LoggerAwareInterface {
 			}
 		}
 
-		// If the username is not valid, tell the user.
-		if ( $username && !User::getCanonicalName( $username ) ) {
-			return StatusValue::newFatal( 'noname' );
-		}
-
-		// If the username doesn't exist, don't tell the user.
-		// This is not to avoid disclosure, as this information is available elsewhere,
-		// but it simplifies the password reset UX. T238961.
-		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			return StatusValue::newGood();
-		}
-
-		// The user doesn't have an email address, but pretend everything's fine to avoid
-		// disclosing this fact. Note that all the users will have the same email address (or none),
+		// If the user doesn't exist, or if the user doesn't have an email address,
+		// don't disclose the information. We want to pretend everything is ok per T238961.
+		// Note that all the users will have the same email address (or none),
 		// so there's no need to check more than the first.
-		if ( !$firstUser->getEmail() ) {
+		if ( !$firstUser instanceof User || !$firstUser->getId() || !$firstUser->getEmail() ) {
 			return StatusValue::newGood();
 		}
 
@@ -265,14 +284,7 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newGood();
 		}
 
-		// We need to have a valid IP address for the hook, but per T20347, we should
-		// send the user's name if they're logged in.
-		$ip = $performingUser->getRequest()->getIP();
-		if ( !$ip ) {
-			return StatusValue::newFatal( 'badipaddress' );
-		}
-
-		Hooks::run( 'User::mailPasswordInternal', [ &$performingUser, &$ip, &$firstUser ] );
+		$this->hookRunner->onUser__mailPasswordInternal( $performingUser, $ip, $firstUser );
 
 		$result = StatusValue::newGood();
 		$reqs = [];

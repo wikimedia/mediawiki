@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that refreshes the externallinks table el_index and
  * el_index_60 from el_to
@@ -50,7 +52,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
-		if ( !$dbw->tableExists( 'externallinks' ) ) {
+		if ( !$dbw->tableExists( 'externallinks', __METHOD__ ) ) {
 			$this->error( "externallinks table does not exist" );
 			return false;
 		}
@@ -67,6 +69,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 		$deleted = 0;
 		$start = $minmax->min - 1;
 		$last = $minmax->max;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $start < $last ) {
 			$end = min( $start + $this->mBatchSize, $last );
 			$this->output( "el_id $start - $end of $last\n" );
@@ -107,7 +110,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 				);
 				$updated++;
 			}
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 			$start = $end;
 		}
 		$this->output( "Done, $updated rows updated, $deleted deleted.\n" );
@@ -116,5 +119,5 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "RefreshExternallinksIndex";
+$maintClass = RefreshExternallinksIndex::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

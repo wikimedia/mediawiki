@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Widget\NamespacesMultiselectWidget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Widget\NamespacesMultiselectWidget;
 
 /**
  * Implements a tag multiselect input field for namespaces.
@@ -12,6 +12,7 @@ use MediaWiki\MediaWikiServices;
  * which itself duplicates HTMLUsersMultiselectField. These classes
  * should be refactored.
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
@@ -32,7 +33,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 			return true;
 		}
 
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			return false;
 		}
 
@@ -40,7 +41,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		$namespaces = explode( "\n", $value );
 
 		if ( isset( $this->mParams['max'] ) && ( count( $namespaces ) > $this->mParams['max'] ) ) {
-			return $this->msg( 'htmlform-int-toohigh', $this->mParams['max'] );
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
 		}
 
 		foreach ( $namespaces as $namespace ) {
@@ -94,7 +95,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 			$params['input'] = $this->mParams['input'];
 		}
 
-		if ( !is_null( $value ) ) {
+		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}

@@ -1,5 +1,5 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 // Helpers
 .mixin-mw-ui-anchor-styles( @mainColor ) {
@@ -33,18 +33,16 @@ Markup:
 <a href="#" class="mw-ui-anchor mw-ui-destructive">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
-
-Styleguide 6.2.
 */
 
 // Setup compound anchor selectors (such as .mw-ui-anchor.mw-ui-progressive)
 .mw-ui-anchor {
 	&.mw-ui-progressive {
-		.mixin-mw-ui-anchor-styles( @colorProgressive );
+		.mixin-mw-ui-anchor-styles( @color-primary );
 	}
 
 	&.mw-ui-destructive {
-		.mixin-mw-ui-anchor-styles( @colorDestructive );
+		.mixin-mw-ui-anchor-styles( @color-destructive );
 	}
 }
 
@@ -57,11 +55,9 @@ anchors. Use of quiet anchors is not recommended on mobile/tablet due to lack of
 Markup:
 <a href="#" class="mw-ui-anchor mw-ui-progressive mw-ui-quiet">Progressive</a>
 <a href="#" class="mw-ui-anchor mw-ui-destructive mw-ui-quiet">Destructive</a>
-
-Styleguide 6.2.1.
 */
 .mixin-mw-ui-anchor-styles-quiet( @mainColor ) {
-	color: @colorTextLight;
+	color: @color-base;
 	text-decoration: none;
 
 	&:hover {

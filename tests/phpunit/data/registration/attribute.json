@@ -1,0 +1,11 @@
+{
+	"name": "FooBar",
+	"attributes": {
+		"FooBar": {
+			"Baz": {
+				"buzz": true
+			}
+		}
+	},
+	"manifest_version": 2
+}

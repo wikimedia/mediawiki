@@ -20,15 +20,16 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-use PHPUnit_Framework_Error_Notice;
+use PHPUnit\Framework\Error\Notice;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @covers \MediaWiki\Logger\Monolog\AvroFormatter
  */
 class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
-		if ( !class_exists( 'AvroStringIO' ) ) {
+	protected function setUp() : void {
+		if ( !class_exists( \AvroStringIO::class ) ) {
 			$this->markTestSkipped( 'Avro is required for the AvroFormatterTest' );
 		}
 		parent::setUp();
@@ -36,23 +37,17 @@ class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
 	public function testSchemaNotAvailable() {
 		$formatter = new AvroFormatter( [] );
-		$this->setExpectedException(
-			'PHPUnit_Framework_Error_Notice',
-			"The schema for channel 'marty' is not available"
-		);
+		$this->expectException( Notice::class );
+		$this->expectExceptionMessage( "The schema for channel 'marty' is not available" );
 		$formatter->format( [ 'channel' => 'marty' ] );
 	}
 
 	public function testSchemaNotAvailableReturnValue() {
 		$formatter = new AvroFormatter( [] );
-		$noticeEnabled = PHPUnit_Framework_Error_Notice::$enabled;
-		// disable conversion of notices
-		PHPUnit_Framework_Error_Notice::$enabled = false;
 		// have to keep the user notice from being output
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$res = $formatter->format( [ 'channel' => 'marty' ] );
-		\Wikimedia\restoreWarnings();
-		PHPUnit_Framework_Error_Notice::$enabled = $noticeEnabled;
+		AtEase::restoreWarnings();
 		$this->assertNull( $res );
 	}
 

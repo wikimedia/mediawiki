@@ -35,7 +35,7 @@ class Undelete extends Maintenance {
 	public function execute() {
 		global $wgUser;
 
-		$user = $this->getOption( 'user', false );
+		$username = $this->getOption( 'user', false );
 		$reason = $this->getOption( 'reason', '' );
 		$pageName = $this->getArg( 0 );
 
@@ -43,17 +43,19 @@ class Undelete extends Maintenance {
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
 		}
-		if ( $user === false ) {
-			$wgUser = User::newSystemUser( 'Command line script', [ 'steal' => true ] );
+		if ( $username === false ) {
+			$user = User::newSystemUser( 'Command line script', [ 'steal' => true ] );
 		} else {
-			$wgUser = User::newFromName( $user );
+			$user = User::newFromName( $username );
 		}
-		if ( !$wgUser ) {
+		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
+		$wgUser = $user;
+
 		$archive = new PageArchive( $title, RequestContext::getMain()->getConfig() );
 		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
-		$archive->undelete( [], $reason );
+		$archive->undeleteAsUser( [], $user, $reason );
 		$this->output( "done\n" );
 	}
 }

@@ -7,10 +7,10 @@
 			"FocalPoint",
 			"Geraki",
 			"Glavkos",
+			"Nikosgranturismogt",
 			"Nikosguard",
-			"Tifa93",
 			"Stam.nikos",
-			"Nikosgranturismogt"
+			"Tifa93"
 		]
 	},
 	"ooui-outline-control-move-down": "Μετακίνηση στοιχείου προς τα κάτω",
@@ -26,6 +26,7 @@
 	"ooui-dialog-process-dismiss": "Απόρριψη",
 	"ooui-dialog-process-retry": "Δοκιμάστε ξανά",
 	"ooui-dialog-process-continue": "Συνέχεια",
+	"ooui-combobox-button-label": "Εναλλαγή επιλογών",
 	"ooui-selectfile-button-select": "Επιλέξτε ένα αρχείο",
 	"ooui-selectfile-not-supported": "Επιλογή αρχείου δεν υποστηρίζεται",
 	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο",

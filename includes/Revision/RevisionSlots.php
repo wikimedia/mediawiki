@@ -29,6 +29,12 @@ use Wikimedia\Assert\Assert;
 /**
  * Value object representing the set of slots belonging to a revision.
  *
+ * @note RevisionSlots provides "raw" access to the slots and does not apply audience checks.
+ * If audience checks are desired, use RevisionRecord::getSlot() or RevisionRecord::getContent()
+ * instead.
+ *
+ * @newable
+ *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionSlots
  */
@@ -38,6 +44,8 @@ class RevisionSlots {
 	protected $slots;
 
 	/**
+	 * @stable to call.
+	 *
 	 * @param SlotRecord[]|callable $slots SlotRecords,
 	 *        or a callback that returns such a structure.
 	 */
@@ -82,10 +90,12 @@ class RevisionSlots {
 	 * Note that for mutable Content objects, each call to this method will return a
 	 * fresh clone.
 	 *
+	 * @see SlotRecord::getContent()
+	 *
 	 * @param string $role The role name of the desired slot
 	 *
 	 * @throws RevisionAccessException if the slot does not exist or slot data
-	 *        could not be lazy-loaded.
+	 *        could not be lazy-loaded. See SlotRecord::getContent() for details.
 	 * @return Content
 	 */
 	public function getContent( $role ) {

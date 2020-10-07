@@ -18,8 +18,9 @@
  * @file
  */
 
-use Wikimedia\Http\HttpAcceptParser;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Http\HttpAcceptNegotiator;
+use Wikimedia\Http\HttpAcceptParser;
 
 /**
  * Request handler implementing a data interface for mediawiki pages.
@@ -88,7 +89,7 @@ class PageDataRequestHandler {
 		$revision = $request->getInt( 'revision', $revision );
 
 		if ( $title === null || $title === '' ) {
-			//TODO: different error message?
+			// TODO: different error message?
 			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', $title ) );
 		}
 
@@ -119,8 +120,10 @@ class PageDataRequestHandler {
 		Title $title,
 		$revision = 0
 	) {
-		$contentHandler = ContentHandler::getForTitle( $title );
-		$mimeTypes = $contentHandler->getSupportedFormats();
+		$mimeTypes = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $title->getContentModel() )
+			->getSupportedFormats();
 
 		$acceptHeader = $request->getHeader( 'Accept' );
 		if ( $acceptHeader !== false ) {

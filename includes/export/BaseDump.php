@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Revision\SlotRecord;
+
 /**
  * Readahead helper for making large MediaWiki data dumps;
  * reads in a previous XML dump to sequentially prefetch text
@@ -62,9 +64,10 @@ class BaseDump {
 	 *
 	 * @param int $page ID number of page to read
 	 * @param int $rev ID number of revision to read
+	 * @param string $slot Role name of the slot to read
 	 * @return string|null
 	 */
-	function prefetch( $page, $rev ) {
+	public function prefetch( $page, $rev, $slot = SlotRecord::MAIN ) {
 		$page = intval( $page );
 		$rev = intval( $rev );
 		while ( $this->lastPage < $page && !$this->atEnd ) {
@@ -85,6 +88,19 @@ class BaseDump {
 		if ( $this->lastRev == $rev && !$this->atEnd ) {
 			$this->debug( "BaseDump::prefetch hit on $page, $rev [$this->lastPage, $this->lastRev]" );
 
+			if ( $slot !== SlotRecord::MAIN ) {
+				$lastSlot = SlotRecord::MAIN;
+				while ( $lastSlot !== $slot ) {
+					if ( !$this->skipTo( 'content', 'revision' ) ) {
+						return null;
+					}
+					if ( !$this->skipTo( 'role', 'revision' ) ) {
+						return null;
+					}
+					$lastSlot = $this->nodeContents();
+				}
+			}
+
 			return $this->nextText();
 		} else {
 			$this->debug( "BaseDump::prefetch already past rev $rev on page $page "
@@ -94,16 +110,13 @@ class BaseDump {
 		}
 	}
 
-	function debug( $str ) {
-		wfDebug( $str . "\n" );
+	protected function debug( $str ) {
+		wfDebug( $str );
 		// global $dumper;
 		// $dumper->progress( $str );
 	}
 
-	/**
-	 * @private
-	 */
-	function nextPage() {
+	private function nextPage() {
 		if ( $this->skipTo( 'page', 'mediawiki' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
 				$this->lastPage = intval( $this->nodeContents() );
@@ -114,16 +127,13 @@ class BaseDump {
 			$this->close();
 			if ( count( $this->infiles ) ) {
 				$infile = array_shift( $this->infiles );
-				$this->reader->open( $infile );
+				$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
 				$this->atEnd = false;
 			}
 		}
 	}
 
-	/**
-	 * @private
-	 */
-	function nextRev() {
+	private function nextRev() {
 		if ( $this->skipTo( 'revision' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
 				$this->lastRev = intval( $this->nodeContents() );
@@ -134,22 +144,22 @@ class BaseDump {
 	}
 
 	/**
-	 * @private
 	 * @return string
 	 */
-	function nextText() {
-		$this->skipTo( 'text' );
+	private function nextText() {
+		if ( !$this->skipTo( 'text', 'revision' ) ) {
+			return null;
+		}
 
 		return strval( $this->nodeContents() );
 	}
 
 	/**
-	 * @private
 	 * @param string $name
 	 * @param string $parent
 	 * @return bool|null
 	 */
-	function skipTo( $name, $parent = 'page' ) {
+	private function skipTo( $name, $parent = 'page' ) {
 		if ( $this->atEnd ) {
 			return false;
 		}
@@ -177,9 +187,8 @@ class BaseDump {
 	 * no sub-elements or such scary things.
 	 *
 	 * @return string
-	 * @private
 	 */
-	function nodeContents() {
+	private function nodeContents() {
 		if ( $this->atEnd ) {
 			return null;
 		}
@@ -203,10 +212,9 @@ class BaseDump {
 	}
 
 	/**
-	 * @private
 	 * @return null
 	 */
-	function close() {
+	public function close() {
 		$this->reader->close();
 		$this->atEnd = true;
 

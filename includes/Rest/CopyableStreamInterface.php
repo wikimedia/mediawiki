@@ -17,5 +17,5 @@ interface CopyableStreamInterface extends \Psr\Http\Message\StreamInterface {
 	 *
 	 * @param resource $stream Destination
 	 */
-	function copyToStream( $stream );
+	public function copyToStream( $stream );
 }

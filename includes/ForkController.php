@@ -51,7 +51,7 @@ class ForkController {
 	 * Pass this flag to __construct() to cause the class to automatically restart
 	 * workers that exit with non-zero exit status or a signal such as SIGSEGV.
 	 */
-	const RESTART_ON_ERROR = 1;
+	private const RESTART_ON_ERROR = 1;
 
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( !wfIsCLI() ) {
@@ -150,14 +150,11 @@ class ForkController {
 	}
 
 	protected function prepareEnvironment() {
-		global $wgMemc;
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
-		FileBackendGroup::destroySingleton();
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
 		RedisConnectionPool::destroySingletons();
-		$wgMemc = null;
 	}
 
 	/**
@@ -192,8 +189,6 @@ class ForkController {
 	}
 
 	protected function initChild() {
-		global $wgMemc, $wgMainCacheType;
-		$wgMemc = wfGetCache( $wgMainCacheType );
 		$this->children = null;
 		pcntl_signal( SIGTERM, SIG_DFL );
 	}

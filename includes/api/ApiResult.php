@@ -38,7 +38,7 @@ class ApiResult implements ApiSerializable {
 	 * Override existing value in addValue(), setValue(), and similar functions
 	 * @since 1.21
 	 */
-	const OVERRIDE = 1;
+	public const OVERRIDE = 1;
 
 	/**
 	 * For addValue(), setValue() and similar functions, if the value does not
@@ -46,7 +46,7 @@ class ApiResult implements ApiSerializable {
 	 * (numerical index), all indexes will be renumbered.
 	 * @since 1.21
 	 */
-	const ADD_ON_TOP = 2;
+	public const ADD_ON_TOP = 2;
 
 	/**
 	 * For addValue() and similar functions, do not check size while adding a value
@@ -55,7 +55,7 @@ class ApiResult implements ApiSerializable {
 	 * Ignored for setValue() and similar functions.
 	 * @since 1.24
 	 */
-	const NO_SIZE_CHECK = 4;
+	public const NO_SIZE_CHECK = 4;
 
 	/**
 	 * For addValue(), setValue() and similar functions, do not validate data.
@@ -63,31 +63,31 @@ class ApiResult implements ApiSerializable {
 	 * probably wrong.
 	 * @since 1.25
 	 */
-	const NO_VALIDATE = self::NO_SIZE_CHECK | 8;
+	public const NO_VALIDATE = self::NO_SIZE_CHECK | 8;
 
 	/**
 	 * Key for the 'indexed tag name' metadata item. Value is string.
 	 * @since 1.25
 	 */
-	const META_INDEXED_TAG_NAME = '_element';
+	public const META_INDEXED_TAG_NAME = '_element';
 
 	/**
 	 * Key for the 'subelements' metadata item. Value is string[].
 	 * @since 1.25
 	 */
-	const META_SUBELEMENTS = '_subelements';
+	public const META_SUBELEMENTS = '_subelements';
 
 	/**
 	 * Key for the 'preserve keys' metadata item. Value is string[].
 	 * @since 1.25
 	 */
-	const META_PRESERVE_KEYS = '_preservekeys';
+	public const META_PRESERVE_KEYS = '_preservekeys';
 
 	/**
 	 * Key for the 'content' metadata item. Value is string.
 	 * @since 1.25
 	 */
-	const META_CONTENT = '_content';
+	public const META_CONTENT = '_content';
 
 	/**
 	 * Key for the 'type' metadata item. Value is one of the following strings:
@@ -107,7 +107,7 @@ class ApiResult implements ApiSerializable {
 	 *    [{"name":key,"*":value}] in JSON. META_KVP_KEY_NAME must also be set.
 	 * @since 1.25
 	 */
-	const META_TYPE = '_type';
+	public const META_TYPE = '_type';
 
 	/**
 	 * Key for the metadata item whose value specifies the name used for the
@@ -116,7 +116,7 @@ class ApiResult implements ApiSerializable {
 	 * Value is string.
 	 * @since 1.25
 	 */
-	const META_KVP_KEY_NAME = '_kvpkeyname';
+	public const META_KVP_KEY_NAME = '_kvpkeyname';
 
 	/**
 	 * Key for the metadata item that indicates that the KVP key should be
@@ -126,42 +126,30 @@ class ApiResult implements ApiSerializable {
 	 * Value is boolean.
 	 * @since 1.26
 	 */
-	const META_KVP_MERGE = '_kvpmerge';
+	public const META_KVP_MERGE = '_kvpmerge';
 
 	/**
 	 * Key for the 'BC bools' metadata item. Value is string[].
 	 * Note no setter is provided.
 	 * @since 1.25
 	 */
-	const META_BC_BOOLS = '_BC_bools';
+	public const META_BC_BOOLS = '_BC_bools';
 
 	/**
 	 * Key for the 'BC subelements' metadata item. Value is string[].
 	 * Note no setter is provided.
 	 * @since 1.25
 	 */
-	const META_BC_SUBELEMENTS = '_BC_subelements';
+	public const META_BC_SUBELEMENTS = '_BC_subelements';
 
 	private $data, $size, $maxSize;
 	private $errorFormatter;
 
-	// Deprecated fields
-	private $checkingSize, $mainForContinuation;
-
 	/**
 	 * @param int|bool $maxSize Maximum result "size", or false for no limit
-	 * @since 1.25 Takes an integer|bool rather than an ApiMain
 	 */
 	public function __construct( $maxSize ) {
-		if ( $maxSize instanceof ApiMain ) {
-			wfDeprecated( 'ApiMain to ' . __METHOD__, '1.25' );
-			$this->errorFormatter = $maxSize->getErrorFormatter();
-			$this->mainForContinuation = $maxSize;
-			$maxSize = $maxSize->getConfig()->get( 'APIMaxResultSize' );
-		}
-
 		$this->maxSize = $maxSize;
-		$this->checkingSize = true;
 		$this->reset();
 	}
 
@@ -405,7 +393,7 @@ class ApiResult implements ApiSerializable {
 	public function addValue( $path, $name, $value, $flags = 0 ) {
 		$arr = &$this->path( $path, ( $flags & self::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
-		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
+		if ( !( $flags & self::NO_SIZE_CHECK ) ) {
 			// self::size needs the validated value. Then flag
 			// to not re-validate later.
 			$value = self::validateValue( $value );
@@ -459,7 +447,7 @@ class ApiResult implements ApiSerializable {
 			$name = array_pop( $path );
 		}
 		$ret = self::unsetValue( $this->path( $path, 'dummy' ), $name );
-		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
+		if ( !( $flags & self::NO_SIZE_CHECK ) ) {
 			$newsize = $this->size - self::size( $ret );
 			$this->size = max( $newsize, 0 );
 		}

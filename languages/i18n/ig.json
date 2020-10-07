@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
+			"DannyS712",
+			"Oby Ezeilo",
 			"Reedy",
 			"Ukabia",
-			"아라",
 			"Uzoma Ozurumba",
-			"Oby Ezeilo",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Ahịrịàlà òjikọ:",
@@ -295,7 +296,7 @@
 	"databaseerror-query": "Ajụjụ:$1",
 	"databaseerror-function": "Ọrụ:$1",
 	"databaseerror-error": "Mmejọ:$1",
-	"laggedslavemode": "'''Gé ntị:''' Ihüá nwèríkí bu na o nwéghị ihe gáránirú na ógè nso.",
+	"laggedreplicamode": "'''Gé ntị:''' Ihüá nwèríkí bu na o nwéghị ihe gáránirú na ógè nso.",
 	"readonly": "Njikota ómárí gbachịrị",
 	"missing-article": "Njidé uche nsónùsòrò ènwéghịki tuó mkpụrụ edemede nke ihü nke áhù o kwèshírí hü, nke ha gùrù \"$1\" $2.\n\nIhe méré na mgbe ndiá bu ihe diff dáfùrù na ógè ndụ ya ma jikodo ákíkó mbu nke ótù ihü à gbákáshíálá.\n\nÓ bú nà ọ búghị ihe mèrè, ȯ nwèríkí bu Í gbákọtàrà àkà na áká nsónùsòrò.\nBiko chi ihe á na áká [[Special:ListUsers/sysop|onye íshí]], dètú URL.",
 	"missingarticle-rev": "(nlèwáriá#: $1)",
@@ -467,7 +468,7 @@
 	"histfirst": "Nke buzọr",
 	"histlast": "Nke ohúrù",
 	"historysize": "({{PLURAL:$1|byte 1|byte $1 di}})",
-	"historyempty": "(kwapụrụ)",
+	"historyempty": "gbàràaka",
 	"history-feed-title": "Akíkó mbu maka elélé orü",
 	"history-feed-description": "Ákíkó mbu màkà orübà nke ihüá na wiki",
 	"history-feed-item-nocomment": "$1 ngbe $2",
@@ -529,7 +530,7 @@
 	"searchprofile-everything-tooltip": "Tùwe ịhe níle (mà nà ihu nkàta)",
 	"searchprofile-advanced-tooltip": "Tùwe nà ime ahàm̀bara ntụziri",
 	"search-result-size": "$1 ({{PLURAL:$2|mkpurụ edemede 1|$2 mkpurụ edemede}})",
-	"search-redirect": "(kúfù $1)",
+	"search-redirect": "(site na $1 zigagharia)",
 	"search-section": "(nkeji $1)",
 	"search-category": "(ụdàkọ $1)",
 	"search-suggest": "Ị̀ kwèshirí dé: $1",
@@ -651,7 +652,7 @@
 	"recentchanges-label-unpatrolled": "ebugharịbegi ndezi a",
 	"recentchanges-label-plusminus": "Pegi a agbanwela na otu ọha site na ọnu ọgụgụ bayits",
 	"recentchanges-legend-heading": "<strong>Isi-okwu</strong>",
-	"recentchanges-legend-newpage": "$1 - ihü ohúrù",
+	"recentchanges-legend-newpage": "$1 - mgbanwe ọhụụ",
 	"rcfilters-savedqueries-cancel-label": "Hapụ̀",
 	"rclistfrom": "Zìrí ihe gbanwere ọhúrù shí $3 $2",
 	"rcshowhideminor": "orü ntákírí $1",
@@ -1100,6 +1101,7 @@
 	"others": "nke ndi ozor",
 	"creditspage": "Nkó áhà ihüá",
 	"spamprotectiontitle": "Ihe na zata maka cẹdolu ụrú",
+	"simpleantispam-label": "ihe nyocha.\nmee<strong> ọbụghị </strong> n'ime ebe a",
 	"pageinfo-header-edits": "Mèzí ịta",
 	"pageinfo-length": "Ogologo ihü (na baitusu)",
 	"pageinfo-article-id": "ID Ihü",

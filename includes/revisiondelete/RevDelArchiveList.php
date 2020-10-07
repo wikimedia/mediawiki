@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -43,7 +44,9 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$timestamps[] = $db->timestamp( $id );
 		}
 
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getArchiveQueryInfo();
 		$tables = $arQuery['tables'];
 		$fields = $arQuery['fields'];
 		$conds = [

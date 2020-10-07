@@ -2,21 +2,20 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use Wikimedia\Rdbms\ConnectionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
-use PHPUnit_Framework_MockObject_MockObject;
-use Wikimedia\Rdbms\ConnectionManager;
 
 /**
  * @covers Wikimedia\Rdbms\ConnectionManager
  *
  * @author Daniel Kinzler
  */
-class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
-	use \PHPUnit4And6Compat;
-
+class ConnectionManagerTest extends TestCase {
 	/**
-	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject
+	 * @return IDatabase|MockObject
 	 */
 	private function getIDatabaseMock() {
 		return $this->getMockBuilder( IDatabase::class )
@@ -24,7 +23,7 @@ class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
+	 * @return LoadBalancer|MockObject
 	 */
 	private function getLoadBalancerMock() {
 		return $this->createMock( LoadBalancer::class );

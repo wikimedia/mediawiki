@@ -1,6 +1,6 @@
 <?php
 /**
- * See docs/magicword.txt.
+ * See docs/magicword.md.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,9 @@
  * @file
  * @ingroup Parser
  */
+
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 
 /**
  * A factory that stores information about MagicWords, and creates them on demand with caching.
@@ -196,13 +199,18 @@ class MagicWordFactory {
 	/** @var Language */
 	private $contLang;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** #@- */
 
 	/**
 	 * @param Language $contLang Content language
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( Language $contLang ) {
+	public function __construct( Language $contLang, HookContainer $hookContainer ) {
 		$this->contLang = $contLang;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	public function getContentLanguage() {
@@ -233,7 +241,8 @@ class MagicWordFactory {
 	public function getVariableIDs() {
 		if ( !$this->mVariableIDsInitialised ) {
 			# Get variable IDs
-			Hooks::run( 'MagicWordwgVariableIDs', [ &$this->mVariableIDs ] );
+			$this->hookRunner->onMagicWordwgVariableIDs( $this->mVariableIDs );
+			$this->hookRunner->onGetMagicVariableIDs( $this->mVariableIDs );
 			$this->mVariableIDsInitialised = true;
 		}
 		return $this->mVariableIDs;
@@ -267,8 +276,8 @@ class MagicWordFactory {
 	 * @return MagicWordArray
 	 */
 	public function getDoubleUnderscoreArray() {
-		if ( is_null( $this->mDoubleUnderscoreArray ) ) {
-			Hooks::run( 'GetDoubleUnderscoreIDs', [ &$this->mDoubleUnderscoreIDs ] );
+		if ( $this->mDoubleUnderscoreArray === null ) {
+			$this->hookRunner->onGetDoubleUnderscoreIDs( $this->mDoubleUnderscoreIDs );
 			$this->mDoubleUnderscoreArray = $this->newArray( $this->mDoubleUnderscoreIDs );
 		}
 		return $this->mDoubleUnderscoreArray;

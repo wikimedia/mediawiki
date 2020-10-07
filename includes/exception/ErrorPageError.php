@@ -21,16 +21,21 @@
 /**
  * An error page which can definitely be safely rendered using the OutputPage.
  *
+ * @newable
+ * @stable to extend
+ *
  * @since 1.7
  * @ingroup Exception
  */
 class ErrorPageError extends MWException implements ILocalizedException {
-	const SEND_OUTPUT = 0;
-	const STAGE_OUTPUT = 1;
+	public const SEND_OUTPUT = 0;
+	public const STAGE_OUTPUT = 1;
 	public $title, $msg, $params;
 
 	/**
 	 * Note: these arguments are keys into wfMessage(), not text!
+	 *
+	 * @stable to call
 	 *
 	 * @param string|Message $title Message key (string) for page title, or a Message object
 	 * @param string|Message $msg Message key (string) for error text, or a Message object
@@ -62,6 +67,13 @@ class ErrorPageError extends MWException implements ILocalizedException {
 		return wfMessage( $this->msg, $this->params );
 	}
 
+	/**
+	 * @stable to override
+	 * @param int $action
+	 *
+	 * @throws FatalError
+	 * @throws MWException
+	 */
 	public function report( $action = self::SEND_OUTPUT ) {
 		if ( self::isCommandLine() || defined( 'MW_API' ) ) {
 			parent::report();

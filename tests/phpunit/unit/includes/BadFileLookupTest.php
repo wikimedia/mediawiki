@@ -1,13 +1,14 @@
 <?php
 
 use MediaWiki\BadFileLookup;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @coversDefaultClass MediaWiki\BadFileLookup
  */
 class BadFileLookupTest extends MediaWikiUnitTestCase {
 	/** Shared with GlobalWithDBTest */
-	const BLACKLIST = <<<WIKITEXT
+	public const BAD_FILE_LIST = <<<WIKITEXT
 Comment line, no effect [[File:Good.jpg]]
  * Indented list is also a comment [[File:Good.jpg]]
 * [[File:Bad.jpg]] except [[Nasty page]]
@@ -104,7 +105,15 @@ WIKITEXT;
 		return $mock;
 	}
 
-	public function setUp() {
+	private function getHookContainer() {
+		// FIXME: unit tests should not depend on the global HookContainer.
+		// Once the facilities are available, this should create a new
+		// HookContainer and register the hook directly into it, instead of using
+		// setTemporaryHook()
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setTemporaryHook( 'BadImage', __CLASS__ . '::badImageHook' );
@@ -118,11 +127,12 @@ WIKITEXT;
 	public function testIsBadFile( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
 			function () {
-				return self::BLACKLIST;
+				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroup(),
-			$this->getMockTitleParser()
+			$this->getMockTitleParser(),
+			$this->getHookContainer()
 		);
 
 		$this->assertSame( $expected, $bfl->isBadFile( $name, $title ) );
@@ -136,11 +146,12 @@ WIKITEXT;
 	public function testIsBadFile_nullRepoGroup( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
 			function () {
-				return self::BLACKLIST;
+				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroupNull(),
-			$this->getMockTitleParser()
+			$this->getMockTitleParser(),
+			$this->getHookContainer()
 		);
 
 		// Hack -- these expectations are reversed if the repo group returns null. In that case 1)

@@ -1,16 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rancher",
-			"Михајло Анђелковић",
-			"Milicevic01",
-			"Aktron",
-			"Сербијана",
-			"Zoranzoki21",
 			"Acamicamacaraca",
-			"Obsuser",
+			"Aktron",
 			"BadDog",
-			"Prevodim"
+			"Milicevic01",
+			"Obsuser",
+			"Prevodim",
+			"Rancher",
+			"Zoranzoki21",
+			"Михајло Анђелковић",
+			"Сербијана"
 		]
 	},
 	"config-desc": "Инсталациони програм за MediaWiki",
@@ -42,7 +42,6 @@
 	"config-page-install": "Инсталирај",
 	"config-page-complete": "Завршено!",
 	"config-page-restart": "Поновно покретање инсталације",
-	"config-page-readme": "Прочитај ме",
 	"config-page-releasenotes": "Напомене о издању",
 	"config-page-copying": "Копирање",
 	"config-page-upgradedoc": "Надоградња",
@@ -50,11 +49,10 @@
 	"config-help-restart": "Желите ли да обришете све сачуване податке које сте унели и поново покренете процес инсталације?",
 	"config-restart": "Да, покрени поново",
 	"config-welcome": "=== Провера окружења ===\nСада ће се извршити основна провера како би се утврдило да ли је ово окружење погодно за инсталацију MediaWiki-ја.\nНе заборавите да укључите ове информације ако тражите подршку како завршити инсталацију.",
-	"config-sidebar": "* [https://www.mediawiki.org Почетна страна MediaWiki-ја]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Водич за администраторе]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧПП]\n----\n* <doclink href=Readme>Прочитај ме</doclink>\n* <doclink href=ReleaseNotes>Напомене о издању</doclink>\n* <doclink href=Copying>Копирање</doclink>\n* <doclink href=UpgradeDoc>Надоградња</doclink>",
-	"config-env-good": "Окружење је проверено.\nМожете да инсталирате MediaWiki.",
-	"config-env-bad": "Окружење је проверено.\nНе можете да инсталирате MediaWiki.",
+	"config-sidebar": "* [https://www.mediawiki.org Почетна страница MediaWiki-ја]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Водич за администраторе]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања]",
+	"config-env-good": "Окружење је проверено.\nМожете да инсталирате Медијавики.",
+	"config-env-bad": "Окружење је проверено.\nНе можете да инсталирате Медијавики.",
 	"config-env-php": "PHP $1 је инсталиран.",
-	"config-env-hhvm": "HHVM $1 је инсталиран.",
 	"config-unicode-using-intl": "Користи се [https://php.net/manual/en/book.intl.php додатак PHP intl] за нормализацију Уникода.",
 	"config-outdated-sqlite": "<strong>Упозорење:</strong> имате SQLite $2, који је нижи од најмање тражене верзије $1. SQLite ће бити недоступан.",
 	"config-no-fts3": "<strong>Упозорење:</strong> SQLite је компајлиран без [//sqlite.org/fts3.html FTS3 модула], функције претраге биће недоступне на овој бази података.",
@@ -139,7 +137,7 @@
 	"config-mysql-innodb": "InnoDB (препоручено)",
 	"config-site-name": "Име викија:",
 	"config-site-name-help": "Ово ће се појавити у насловној траци прегледача и на разним другим местима.",
-	"config-site-name-blank": "Унесите име локације.",
+	"config-site-name-blank": "Унесите име сајта.",
 	"config-project-namespace": "Именски простор пројекта:",
 	"config-ns-generic": "Пројекат",
 	"config-ns-site-name": "Исти као вики име: $1",
@@ -159,7 +157,7 @@
 	"config-admin-email": "Адреса е-поште:",
 	"config-admin-error-user": "Дошло је до унутрашње грешке при прављењу администратора под именом „<nowiki>$1</nowiki>”.",
 	"config-admin-error-password": "Дошло је до унутрашње грешке при постављању лозинке за администратора „<nowiki>$1</nowiki>”: <pre>$2</pre>",
-	"config-admin-error-bademail": "Унели сте неважећу адресу е-поште.",
+	"config-admin-error-bademail": "Унели сте неважећу имејл-адресу.",
 	"config-subscribe": "Претплатите се на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements дописну листу].",
 	"config-subscribe-noemail": "Покушали сте да се претплатите на дописну листу за објаве о новим издањима без пружања адресе е-поште.\nПружите адресу е-поште ако желите да се претплатите на њу.",
 	"config-pingback": "Дели податке о овој инсталацији са MediaWiki програмерима.",
@@ -202,7 +200,7 @@
 	"config-cc-not-chosen": "Одаберите коју Creative Commons лиценцу желите и кликните на „настави”.",
 	"config-advanced-settings": "Напредна конфигурација",
 	"config-cache-options": "Подешавања за кеширање објекта:",
-	"config-cache-none": "Нема кеширања (функционалност није уклоњена, али брзина може утицати на веће вики локације)",
+	"config-cache-none": "Нема кеширања (функционалност није уклоњена, али брзина може утицати на веће вики пројекте)",
 	"config-cache-accel": "Кеширање PHP објекта (APC, APCu or WinCache)",
 	"config-cache-memcached": "Користи Memcached (захтева додатно подешавање и конфигурацију)",
 	"config-memcached-servers": "Memcached сервери:",
@@ -271,5 +269,5 @@
 	"config-extension-not-found": "Није могуће пронаћи датотеку регистрације за додатак „$1”",
 	"config-extension-dependency": "Дошло је до грешке зависности при инсталирању додатка „$1”: $2",
 	"mainpagetext": "<strong>MediaWiki је инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за информације о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Листа поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ЧПП]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о MediaWiki издањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борите против непожељног садржаја на свом викију]"
+	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за више информација о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Списак поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања о MediaWiki-ју]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима софтвера MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализујте MediaWiki на ваш језик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Сазнајте како да се борите против непожељног садржаја на свом викију]"
 }

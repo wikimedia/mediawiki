@@ -30,7 +30,7 @@
 class SiteExporterTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstructor_InvalidArgument() {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new SiteExporter( 'Foo' );
 	}
@@ -53,17 +53,16 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		fseek( $tmp, 0 );
 		$xml = fread( $tmp, 16 * 1024 );
 
-		$this->assertContains( '<sites ', $xml );
-		$this->assertContains( '<site>', $xml );
-		$this->assertContains( '<globalid>Foo</globalid>', $xml );
-		$this->assertContains( '</site>', $xml );
-		$this->assertContains( '<globalid>acme.com</globalid>', $xml );
-		$this->assertContains( '<group>Test</group>', $xml );
-		$this->assertContains( '<localid type="interwiki">acme</localid>', $xml );
-		$this->assertContains( '<path type="link">http://acme.com/</path>', $xml );
-		$this->assertContains( '</sites>', $xml );
+		$this->assertStringContainsString( '<sites ', $xml );
+		$this->assertStringContainsString( '<site>', $xml );
+		$this->assertStringContainsString( '<globalid>Foo</globalid>', $xml );
+		$this->assertStringContainsString( '</site>', $xml );
+		$this->assertStringContainsString( '<globalid>acme.com</globalid>', $xml );
+		$this->assertStringContainsString( '<group>Test</group>', $xml );
+		$this->assertStringContainsString( '<localid type="interwiki">acme</localid>', $xml );
+		$this->assertStringContainsString( '<path type="link">http://acme.com/</path>', $xml );
+		$this->assertStringContainsString( '</sites>', $xml );
 
-		// NOTE: HHVM (at least on wmf Jenkins) doesn't like file URLs.
 		$xsdFile = __DIR__ . '/../../../../docs/sitelist-1.0.xsd';
 		$xsdData = file_get_contents( $xsdFile );
 

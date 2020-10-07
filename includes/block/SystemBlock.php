@@ -22,8 +22,6 @@
 
 namespace MediaWiki\Block;
 
-use IContextSource;
-
 /**
  * System blocks are temporary blocks that are created on enforcement (e.g.
  * from IP blacklists) and are not saved to the database. The target of a
@@ -74,17 +72,8 @@ class SystemBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getPermissionsError( IContextSource $context ) {
-		$params = $this->getBlockErrorParams( $context );
-
-		// TODO: Clean up error messages params so we don't have to do this (T227174)
-		$params[ 4 ] = $this->getSystemBlockType();
-
-		$msg = 'systemblockedtext';
-
-		array_unshift( $params, $msg );
-
-		return $params;
+	public function getIdentifier() {
+		return $this->getSystemBlockType();
 	}
 
 	/**
@@ -105,4 +94,17 @@ class SystemBlock extends AbstractBlock {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getBy() {
+		return 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getByName() {
+		return '';
+	}
 }

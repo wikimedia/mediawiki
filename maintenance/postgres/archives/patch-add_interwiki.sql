@@ -11,4 +11,3 @@ $mw$
   INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES ($1,$2,$3);
   SELECT 1;
 $mw$;
-

@@ -26,10 +26,9 @@
  * @method ChangeTagsLogItem next()
  * @method ChangeTagsLogItem reset()
  * @method ChangeTagsLogItem current()
- * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class ChangeTagsList extends RevisionListBase {
-	function __construct( IContextSource $context, Title $title, array $ids ) {
+	public function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
 	}
@@ -64,7 +63,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	/**
 	 * Reload the list data from the master DB.
 	 */
-	function reloadFromMaster() {
+	public function reloadFromMaster() {
 		$dbw = wfGetDB( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 	}
@@ -79,6 +78,6 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * @param User $user
 	 * @return Status
 	 */
-	abstract function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
+	abstract public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
 		$reason, $user );
 }

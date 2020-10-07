@@ -25,9 +25,9 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.
@@ -64,7 +64,7 @@ class MwSql extends Maintenance {
 			$lb = $lbFactory->getMainLB( $wiki );
 		}
 		// Figure out which server to use
-		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
+		$replicaDB = $this->getOption( 'replicadb', '' );
 		if ( $replicaDB === 'any' ) {
 			$index = DB_REPLICA;
 		} elseif ( $replicaDB !== '' ) {
@@ -99,7 +99,7 @@ class MwSql extends Maintenance {
 				$this->fatalError( "Unable to open input file" );
 			}
 
-			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ] );
+			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ], __METHOD__ );
 			if ( $error !== true ) {
 				$this->fatalError( $error );
 			} else {
@@ -110,7 +110,7 @@ class MwSql extends Maintenance {
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$res = $this->sqlDoQuery( $db, $query, /* dieOnError */ true );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 			if ( $this->hasOption( 'status' ) ) {
 				exit( $res ? 0 : 2 );
 			}
@@ -157,7 +157,7 @@ class MwSql extends Maintenance {
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}
-		wfWaitForSlaves();
+		$lbFactory->waitForReplication();
 		if ( $this->hasOption( 'status' ) ) {
 			exit( $res ? 0 : 2 );
 		}
@@ -171,7 +171,7 @@ class MwSql extends Maintenance {
 	 */
 	protected function sqlDoQuery( IDatabase $db, $line, $dieOnError ) {
 		try {
-			$res = $db->query( $line );
+			$res = $db->query( $line, __METHOD__ );
 			return $this->sqlPrintResult( $res, $db );
 		} catch ( DBQueryError $e ) {
 			if ( $dieOnError ) {

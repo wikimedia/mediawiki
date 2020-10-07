@@ -1,7 +1,25 @@
+'use strict';
+
 const assert = require( 'assert' );
 const HistoryPage = require( '../pageobjects/history.page' );
+const Api = require( 'wdio-mediawiki/Api' );
 const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
+
+function vandalizePage( name, content ) {
+	const vandalUsername = 'Evil_' + browser.config.mwUser;
+	browser.call( async () => {
+		// Note: Repeated logins are inefficient/slow, but we cannot re-use
+		// the object across calls because MWBot can only be logged into one
+		// account at a time. See <https://github.com/Fannon/mwbot/issues/9>.
+		const adminBot = await Api.bot();
+		await adminBot.edit( name, content );
+
+		await Api.createAccount( adminBot, vandalUsername, browser.config.mwPwd );
+		const vandalBot = await Api.bot( vandalUsername, browser.config.mwPwd );
+		await vandalBot.edit( name, 'Vandalized: ' + content );
+	} );
+}
 
 describe( 'Rollback with confirmation', function () {
 	let content, name;
@@ -21,7 +39,7 @@ describe( 'Rollback with confirmation', function () {
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
 
-		HistoryPage.vandalizePage( name, content );
+		vandalizePage( name, content );
 
 		UserLoginPage.loginAdmin();
 		HistoryPage.open( name );
@@ -97,7 +115,7 @@ describe( 'Rollback without confirmation', function () {
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
 
-		HistoryPage.vandalizePage( name, content );
+		vandalizePage( name, content );
 
 		UserLoginPage.loginAdmin();
 		HistoryPage.open( name );

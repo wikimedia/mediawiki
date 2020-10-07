@@ -48,7 +48,7 @@ class RequestData extends RequestBase {
 	 *     - uploadedFiles: An array of objects implementing UploadedFileInterface
 	 *     - postParams: Equivalent to $_POST
 	 *     - pathParams: The path template parameters
-	 *     - headers: An array with the the key being the header name
+	 *     - headers: An array with the key being the header name
 	 *     - cookiePrefix: A prefix to add to cookie names in getCookie()
 	 */
 	public function __construct( $params = [] ) {

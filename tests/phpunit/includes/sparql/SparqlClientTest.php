@@ -5,17 +5,14 @@ namespace MediaWiki\Sparql;
 use Http;
 use MediaWiki\Http\HttpRequestFactory;
 use MWHttpRequest;
-use PHPUnit4And6Compat;
 
 /**
  * @covers \MediaWiki\Sparql\SparqlClient
  */
 class SparqlClientTest extends \PHPUnit\Framework\TestCase {
 
-	use PHPUnit4And6Compat;
-
 	private function getRequestFactory( $request ) {
-		$requestFactory = $this->getMock( HttpRequestFactory::class );
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
 		$requestFactory->method( 'create' )->willReturn( $request );
 		return $requestFactory;
 	}
@@ -69,7 +66,7 @@ JSON;
 		$this->assertCount( 2, $result );
 		$this->assertEquals( 'http://wikiba.se/ontology#Dump', $result[0]['x'] );
 		$this->assertEquals( 'http://creativecommons.org/ns#license', $result[0]['y'] );
-		$this->assertEquals( '0.1.0', $result[1]['z'] );
+		$this->assertSame( '0.1.0', $result[1]['z'] );
 		$this->assertNull( $result[1]['y'] );
 		// raw data format
 		$result = $client->query( "TEST SPARQL 2", true );
@@ -77,18 +74,16 @@ JSON;
 		$this->assertEquals( 'uri', $result[0]['x']['type'] );
 		$this->assertEquals( 'http://wikiba.se/ontology#Dump', $result[0]['x']['value'] );
 		$this->assertEquals( 'literal', $result[1]['z']['type'] );
-		$this->assertEquals( '0.1.0', $result[1]['z']['value'] );
+		$this->assertSame( '0.1.0', $result[1]['z']['value'] );
 		$this->assertNull( $result[1]['y'] );
 	}
 
-	/**
-	 * @expectedException \Mediawiki\Sparql\SparqlException
-	 */
 	public function testBadQuery() {
 		$request = $this->getMockBuilder( MWHttpRequest::class )->disableOriginalConstructor()->getMock();
 		$client = new SparqlClient( 'http://acme.test/', $this->getRequestFactory( $request ) );
 
 		$request->method( 'execute' )->willReturn( \Status::newFatal( "Bad query" ) );
+		$this->expectException( \Mediawiki\Sparql\SparqlException::class );
 		$result = $client->query( "TEST SPARQL 3" );
 	}
 
@@ -160,15 +155,15 @@ JSON;
 	 * @param array $expectedOptions
 	 */
 	public function testOptions( $sparql, $options, $timeout, $expectedUrl, $expectedOptions ) {
-		$requestFactory = $this->getMock( HttpRequestFactory::class );
-		$client = new SparqlClient( 'http://acme.test/',  $requestFactory );
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
+		$client = new SparqlClient( 'http://acme.test/', $requestFactory );
 
 		$request = $this->getRequestMock( '{}' );
 
 		$requestFactory->method( 'create' )->willReturnCallback(
 			function ( $url, $options ) use ( $request, $expectedUrl, $expectedOptions ) {
 				foreach ( $expectedUrl as $eurl ) {
-					$this->assertContains( $eurl, $url );
+					$this->assertStringContainsString( $eurl, $url );
 				}
 				foreach ( $expectedOptions as $ekey => $evalue ) {
 					$this->assertArrayHasKey( $ekey, $options );
@@ -178,10 +173,10 @@ JSON;
 			}
 		);
 
-		if ( !is_null( $options ) ) {
+		if ( $options !== null ) {
 			$client->setClientOptions( $options );
 		}
-		if ( !is_null( $timeout ) ) {
+		if ( $timeout !== null ) {
 			$client->setTimeout( $timeout );
 		}
 

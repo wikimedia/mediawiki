@@ -1,17 +1,23 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers \MagicWordFactory
  *
  * @author Derick N. Alangi
  */
-class MagicWordFactoryTest extends MediaWikiTestCase {
+class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 	private function makeMagicWordFactory( Language $contLang = null ) {
-		return new MagicWordFactory( $contLang ?: Language::factory( 'en' ) );
+		$services = MediaWikiServices::getInstance();
+		return new MagicWordFactory( $contLang ?:
+			$services->getLanguageFactory()->getLanguage( 'en' ),
+			$services->getHookContainer()
+		);
 	}
 
 	public function testGetContentLanguage() {
-		$contLang = Language::factory( 'en' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
 		$magicWordFactory = $this->makeMagicWordFactory( $contLang );
 		$magicWordContLang = $magicWordFactory->getContentLanguage();
@@ -32,7 +38,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 	public function testGetInvalidMagicWord() {
 		$magicWordFactory = $this->makeMagicWordFactory();
 
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		\Wikimedia\suppressWarnings();
 		try {
 			$magicWordFactory->get( 'invalid magic word' );
@@ -45,7 +51,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 		$magicWordFactory = $this->makeMagicWordFactory();
 		$varIds = $magicWordFactory->getVariableIDs();
 
-		$this->assertInternalType( 'array', $varIds );
+		$this->assertIsArray( $varIds );
 		$this->assertNotEmpty( $varIds );
 		$this->assertContainsOnly( 'string', $varIds );
 	}
@@ -54,7 +60,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 		$magicWordFactory = $this->makeMagicWordFactory();
 		$substIds = $magicWordFactory->getSubstIDs();
 
-		$this->assertInternalType( 'array', $substIds );
+		$this->assertIsArray( $substIds );
 		$this->assertNotEmpty( $substIds );
 		$this->assertContainsOnly( 'string', $substIds );
 	}

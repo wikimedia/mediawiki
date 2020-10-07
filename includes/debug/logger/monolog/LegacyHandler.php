@@ -50,39 +50,39 @@ class LegacyHandler extends AbstractProcessingHandler {
 
 	/**
 	 * Log sink descriptor
-	 * @var string $uri
+	 * @var string
 	 */
 	protected $uri;
 
 	/**
 	 * Filter log events using legacy rules
-	 * @var bool $useLegacyFilter
+	 * @var bool
 	 */
 	protected $useLegacyFilter;
 
 	/**
 	 * Log sink
-	 * @var resource $sink
+	 * @var resource
 	 */
 	protected $sink;
 
 	/**
-	 * @var string $error
+	 * @var string
 	 */
 	protected $error;
 
 	/**
-	 * @var string $host
+	 * @var string
 	 */
 	protected $host;
 
 	/**
-	 * @var int $port
+	 * @var int
 	 */
 	protected $port;
 
 	/**
-	 * @var string $prefix
+	 * @var string
 	 */
 	protected $prefix;
 

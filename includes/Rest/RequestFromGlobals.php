@@ -33,7 +33,23 @@ class RequestFromGlobals extends RequestBase {
 
 	public function getUri() {
 		if ( $this->uri === null ) {
-			$this->uri = new Uri( \WebRequest::getGlobalRequestURL() );
+			$requestUrl = \WebRequest::getGlobalRequestURL();
+
+			try {
+				$uriInstance = new Uri( $requestUrl );
+			} catch ( \InvalidArgumentException $e ) {
+				// Uri constructor will throw exception if the URL is
+				// relative and contains colon-number pattern that
+				// looks like a port.
+				//
+				// Since $requestUrl here is absolute-path references
+				// so all titles that contain colon followed by a
+				// number would be inacessible if the exception occurs.
+				$uriInstance = (
+					new Uri( '//HOST:80' . $requestUrl )
+				)->withScheme( '' )->withHost( '' )->withPort( null );
+			}
+			$this->uri = $uriInstance;
 		}
 		return $this->uri;
 	}
@@ -54,20 +70,7 @@ class RequestFromGlobals extends RequestBase {
 	}
 
 	protected function initHeaders() {
-		if ( function_exists( 'apache_request_headers' ) ) {
-			$this->setHeaders( apache_request_headers() );
-		} else {
-			$headers = [];
-			foreach ( $_SERVER as $name => $value ) {
-				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
-					$name = strtolower( str_replace( '_', '-', substr( $name, 5 ) ) );
-					$headers[$name] = $value;
-				} elseif ( $name === 'CONTENT_LENGTH' ) {
-					$headers['content-length'] = $value;
-				}
-			}
-			$this->setHeaders( $headers );
-		}
+		$this->setHeaders( getallheaders() );
 	}
 
 	public function getBody() {

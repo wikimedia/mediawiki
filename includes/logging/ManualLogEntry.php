@@ -26,12 +26,17 @@
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for creating new log entries and inserting them into the database.
  *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should be changed to use the builder pattern or the
+ *       command pattern.
  * @since 1.19
  */
 class ManualLogEntry extends LogEntryBase implements Taggable {
@@ -78,6 +83,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	protected $legacy = false;
 
 	/**
+	 * @stable to call
 	 * @since 1.19
 	 * @param string $type
 	 * @param string $subtype
@@ -334,7 +340,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		if ( $user->isAnon() ) {
 			// "MediaWiki default" and friends may have
 			// no IP address in their name
-			if ( IP::isIPAddress( $user->getName() ) ) {
+			if ( IPUtils::isIPAddress( $user->getName() ) ) {
 				$ip = $user->getName();
 			}
 		}
@@ -384,7 +390,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			function () use ( $newId, $to, $canAddTags ) {
 				$log = new LogPage( $this->getType() );
 				if ( !$log->isRestricted() ) {
-					Hooks::runWithoutAbort( 'ManualLogEntryBeforePublish', [ $this ] );
+					Hooks::runner()->onManualLogEntryBeforePublish( $this );
 					$rc = $this->getRecentChange( $newId );
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
@@ -414,14 +420,23 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getType() {
 		return $this->type;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSubtype() {
 		return $this->subtype;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getParameters() {
 		return $this->parameters;
 	}
@@ -440,12 +455,18 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return $this->target;
 	}
 
+	/**
+	 * @return string|false
+	 */
 	public function getTimestamp() {
 		$ts = $this->timestamp ?? wfTimestampNow();
 
 		return wfTimestamp( TS_MW, $ts );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getComment() {
 		return $this->comment;
 	}
@@ -484,6 +505,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return $this->legacy;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getDeleted() {
 		return (int)$this->deleted;
 	}

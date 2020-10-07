@@ -42,7 +42,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	private $result;
 
 	/**
-	 * @var string $method Identifies which password reset field was specified by the user.
+	 * @var string Identifies which password reset field was specified by the user.
 	 */
 	private $method;
 
@@ -157,14 +157,33 @@ class SpecialPasswordReset extends FormSpecialPage {
 		return $this->result;
 	}
 
+	/**
+	 * Show a message on the successful processing of the form.
+	 * This doesn't necessarily mean a reset email was sent.
+	 */
 	public function onSuccess() {
-		if ( $this->method === 'email' ) {
-			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentemail' );
-		} else {
-			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentusername' );
-		}
+		$output = $this->getOutput();
 
-		$this->getOutput()->returnToMain();
+		// Information messages.
+		$output->addWikiMsg( 'passwordreset-success' );
+		$output->addWikiMsg( 'passwordreset-success-details-generic',
+			$this->getConfig()->get( 'PasswordReminderResendTime' ) );
+
+		// Confirmation of what the user has just submitted.
+		$info = "\n";
+		$postVals = $this->getRequest()->getPostValues();
+		if ( isset( $postVals['wpUsername'] ) && $postVals['wpUsername'] !== '' ) {
+			$info .= "* " . $this->msg( 'passwordreset-username' ) . ' '
+				. wfEscapeWikiText( $postVals['wpUsername'] ) . "\n";
+		}
+		if ( isset( $postVals['wpEmail'] ) && $postVals['wpEmail'] !== '' ) {
+			$info .= "* " . $this->msg( 'passwordreset-email' ) . ' '
+				. wfEscapeWikiText( $postVals['wpEmail'] ) . "\n";
+		}
+		$output->addWikiMsg( 'passwordreset-success-info', $info );
+
+		// Link to main page.
+		$output->returnToMain();
 	}
 
 	/**

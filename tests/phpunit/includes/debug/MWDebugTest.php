@@ -1,20 +1,20 @@
 <?php
 
-class MWDebugTest extends MediaWikiTestCase {
+class MWDebugTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		/** Clear log before each test */
 		MWDebug::clearLog();
 	}
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 		MWDebug::init();
 		Wikimedia\suppressWarnings();
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		parent::tearDownAfterClass();
 		MWDebug::deinit();
 		Wikimedia\restoreWarnings();
@@ -58,8 +58,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
 		// assertCount() not available on WMF integration server
-		$this->assertEquals( 1,
-			count( MWDebug::getLog() ),
+		$this->assertCount( 1, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
@@ -75,8 +74,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
 		// assertCount() not available on WMF integration server
-		$this->assertEquals( 3,
-			count( MWDebug::getLog() ),
+		$this->assertCount( 3, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
@@ -93,9 +91,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		$context = new RequestContext();
 		$context->setRequest( $request );
 
-		$apiMain = new ApiMain( $context );
-
-		$result = new ApiResult( $apiMain );
+		$result = new ApiResult( false );
 
 		MWDebug::appendDebugInfoToApiResult( $context, $result );
 
@@ -113,7 +109,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		$xml = ApiFormatXml::recXmlPrint( 'help', $data, null );
 
 		// exception not thrown
-		$this->assertInternalType( 'string', $xml );
+		$this->assertIsString( $xml );
 	}
 
 	/**

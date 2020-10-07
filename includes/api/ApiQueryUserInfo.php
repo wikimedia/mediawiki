@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -32,7 +31,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	use ApiBlockInfoTrait;
 
-	const WL_UNREAD_LIMIT = 1000;
+	private const WL_UNREAD_LIMIT = 1000;
 
 	/** @var array */
 	private $params = [];
@@ -47,32 +46,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$this->params = $this->extractRequestParams();
 		$result = $this->getResult();
 
-		if ( !is_null( $this->params['prop'] ) ) {
+		if ( $this->params['prop'] !== null ) {
 			$this->prop = array_flip( $this->params['prop'] );
 		}
 
 		$r = $this->getCurrentUserInfo();
 		$result->addValue( 'query', $this->getModuleName(), $r );
-	}
-
-	/**
-	 * Get basic info about a given block
-	 *
-	 * @deprecated since 1.34 Use ApiBlockInfoTrait::getBlockDetails() instead.
-	 * @param AbstractBlock $block
-	 * @return array See ApiBlockInfoTrait::getBlockDetails
-	 */
-	public static function getBlockInfo( AbstractBlock $block ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		// Hack to access a private method from a trait:
-		$dummy = new class {
-			use ApiBlockInfoTrait {
-				getBlockDetails as public;
-			}
-		};
-
-		return $dummy->getBlockDetails( $block );
 	}
 
 	/**
@@ -132,7 +111,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
-			$vals['messages'] = $user->getNewtalk();
+			$vals['messages'] = MediaWikiServices::getInstance()
+				->getTalkPageNotificationManager()->userHasNewMessages( $user );
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
@@ -289,7 +269,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		// Now get the actual limits
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
-				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {
+				if ( isset( $limits[$cat] ) ) {
 					$retval[$action][$cat]['hits'] = (int)$limits[$cat][0];
 					$retval[$action][$cat]['seconds'] = (int)$limits[$cat][1];
 				}

@@ -15,13 +15,13 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class DifferenceEngineTest extends MediaWikiTestCase {
+class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 
 	protected $context;
 
 	private static $revisions;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$title = $this->getTitle();
@@ -225,10 +225,11 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetDiffBody
 	 */
 	public function testGetDiffBody(
-		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
+		?RevisionRecord $oldRevision, ?RevisionRecord $newRevision, $expectedDiff
 	) {
 		if ( $expectedDiff instanceof Exception ) {
-			$this->setExpectedException( get_class( $expectedDiff ), $expectedDiff->getMessage() );
+			$this->expectException( get_class( $expectedDiff ) );
+			$this->expectExceptionMessage( $expectedDiff->getMessage() );
 		}
 		$differenceEngine = new DifferenceEngine();
 		$differenceEngine->setRevisions( $oldRevision, $newRevision );
@@ -305,8 +306,10 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$customContent2 = clone $customContent;
 
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );
-		$this->setExpectedException( Exception::class,
-			': could not maintain backwards compatibility. Please use a SlotDiffRenderer.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage(
+			': could not maintain backwards compatibility. Please use a SlotDiffRenderer.'
+		);
 		$slotDiffRenderer->getDiff( $customContent, $customContent2 );
 	}
 

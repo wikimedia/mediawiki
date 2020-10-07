@@ -13,7 +13,7 @@ class ParserFuzzTest extends Maintenance {
 	private $memoryLimit = 100;
 	private $seed;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Run a fuzz test on the parser, until it segfaults ' .
 			'or throws an exception' );
@@ -23,12 +23,12 @@ class ParserFuzzTest extends Maintenance {
 		$this->addOption( 'seed', 'Start the fuzz test from the specified seed', false, true );
 	}
 
-	function finalSetup() {
+	public function finalSetup() {
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
 
-	function execute() {
+	public function execute() {
 		$files = $this->getOption( 'file', [ __DIR__ . '/parserTests.txt' ] );
 		$this->seed = intval( $this->getOption( 'seed', 1 ) ) - 1;
 		$this->parserTest = new ParserTestRunner(
@@ -42,7 +42,7 @@ class ParserFuzzTest extends Maintenance {
 	 * Draw input from a set of test files
 	 * @param array $filenames
 	 */
-	function fuzzTest( $filenames ) {
+	public function fuzzTest( $filenames ) {
 		$dict = $this->getFuzzInput( $filenames );
 		$dictSize = strlen( $dict );
 		$logMaxLength = log( $this->maxFuzzTestLength );
@@ -114,9 +114,6 @@ class ParserFuzzTest extends Maintenance {
 					foreach ( $memStats as $name => $usage ) {
 						echo "$name: $usage\n";
 					}
-					if ( function_exists( 'hphpd_break' ) ) {
-						hphpd_break();
-					}
 					return;
 				}
 			}
@@ -127,7 +124,7 @@ class ParserFuzzTest extends Maintenance {
 	 * Get a memory usage breakdown
 	 * @return array
 	 */
-	function getMemoryBreakdown() {
+	private function getMemoryBreakdown() {
 		$memStats = [];
 
 		foreach ( $GLOBALS as $name => $value ) {
@@ -162,7 +159,7 @@ class ParserFuzzTest extends Maintenance {
 	/**
 	 * Estimate the size of the input variable
 	 */
-	function guessVarSize( $var ) {
+	public function guessVarSize( $var ) {
 		$length = 0;
 		try {
 			Wikimedia\suppressWarnings();
@@ -178,7 +175,7 @@ class ParserFuzzTest extends Maintenance {
 	 * @param array $filenames
 	 * @return string
 	 */
-	function getFuzzInput( $filenames ) {
+	public function getFuzzInput( $filenames ) {
 		$dict = '';
 
 		foreach ( $filenames as $filename ) {
@@ -198,5 +195,5 @@ class ParserFuzzTest extends Maintenance {
 	}
 }
 
-$maintClass = 'ParserFuzzTest';
+$maintClass = ParserFuzzTest::class;
 require RUN_MAINTENANCE_IF_MAIN;

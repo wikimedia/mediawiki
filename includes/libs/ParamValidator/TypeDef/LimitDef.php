@@ -2,6 +2,9 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * Type definition for "limit" types
  *
@@ -23,7 +26,7 @@ class LimitDef extends IntegerDef {
 	 */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( $value === 'max' ) {
-			if ( !isset( $options['parse-limit'] ) || $options['parse-limit'] ) {
+			if ( $options['parse-limit'] ?? true ) {
 				$value = $this->callbacks->useHighLimits( $options )
 					? $settings[self::PARAM_MAX2] ?? $settings[self::PARAM_MAX] ?? PHP_INT_MAX
 					: $settings[self::PARAM_MAX] ?? PHP_INT_MAX;
@@ -39,7 +42,39 @@ class LimitDef extends IntegerDef {
 			self::PARAM_MIN => 0,
 		];
 
+		// Cannot be multi-valued
+		$settings[ParamValidator::PARAM_ISMULTI] = false;
+
 		return parent::normalizeSettings( $settings );
+	}
+
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			!isset( $ret['issues'][ParamValidator::PARAM_ISMULTI] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_ISMULTI] =
+				'PARAM_ISMULTI cannot be used for limit-type parameters';
+		}
+
+		if ( ( $settings[self::PARAM_MIN] ?? 0 ) < 0 ) {
+			$ret['issues'][] = 'PARAM_MIN must be greater than or equal to 0';
+		}
+		if ( !isset( $settings[self::PARAM_MAX] ) ) {
+			$ret['issues'][] = 'PARAM_MAX must be set';
+		}
+
+		return $ret;
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-limit' )
+			->params( 1 );
+
+		return $info;
 	}
 
 }

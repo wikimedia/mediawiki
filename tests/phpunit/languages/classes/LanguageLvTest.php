@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for Latvian */
+/** Tests for Latvian
+ * @group Language
+ */
 class LanguageLvTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

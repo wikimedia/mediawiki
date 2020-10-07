@@ -7,9 +7,9 @@ use RemexHtml\Serializer\Serializer;
 use RemexHtml\Serializer\SerializerNode;
 use RemexHtml\Tokenizer\Attributes;
 use RemexHtml\Tokenizer\PlainAttributes;
+use RemexHtml\TreeBuilder\Element;
 use RemexHtml\TreeBuilder\TreeBuilder;
 use RemexHtml\TreeBuilder\TreeHandler;
-use RemexHtml\TreeBuilder\Element;
 
 /**
  * @internal
@@ -434,6 +434,8 @@ class RemexCompatMunger implements TreeHandler {
 	/**
 	 * Find the ancestor of $node which is a child of a p-wrapper, and
 	 * reparent that node so that it is placed after the end of the p-wrapper
+	 * @param SerializerNode $node
+	 * @param int $sourceStart
 	 */
 	private function disablePWrapper( SerializerNode $node, $sourceStart ) {
 		$nodeData = $node->snData;
@@ -477,7 +479,7 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	public function doctype( $name, $public, $system, $quirks, $sourceStart, $sourceLength ) {
-		$this->serializer->doctype( $name, $public,  $system, $quirks,
+		$this->serializer->doctype( $name, $public, $system, $quirks,
 			$sourceStart, $sourceLength );
 	}
 

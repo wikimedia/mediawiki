@@ -11,7 +11,7 @@ class FileContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	private $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->handler = new FileContentHandler();
@@ -47,6 +47,6 @@ class FileContentHandlerTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $name, $field->getName() );
 			unset( $expect[$name] );
 		}
-		$this->assertEmpty( $expect );
+		$this->assertSame( [], $expect );
 	}
 }

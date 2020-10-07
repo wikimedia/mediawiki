@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki Hebrew grammar transformation handling */
+/** Tests for MediaWiki Hebrew grammar transformation handling
+ * @group Language
+ */
 class LanguageHeTest extends LanguageClassesTestCase {
 	/**
 	 * The most common usage for the plural forms is two forms,

@@ -16,8 +16,9 @@
  *  - Tests for LanguageConverter and Language should probably be separate..
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * @covers LanguageSr
  * @covers SrConverter
  */
 class LanguageSrTest extends LanguageClassesTestCase {
@@ -32,16 +33,16 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::hasVariant
 	 */
 	public function testHasVariant() {
+		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 		$langs = [
 			'sr' => $this->getLang(),
-			'sr-ec' => Language::factory( 'sr-ec' ),
-			'sr-cyrl' => Language::factory( 'sr-cyrl' ),
+			'sr-ec' => $langFactory->getLanguage( 'sr-ec' ),
+			'sr-cyrl' => $langFactory->getLanguage( 'sr-cyrl' ),
 		];
 		foreach ( $langs as $code => $l ) {
-			$p = $l->getParentLanguage();
+			$p = $langFactory->getParentLanguage( $l->getCode() );
 			$this->assertTrue( $p !== null, 'parent language exists' );
 			$this->assertEquals( 'sr', $p->getCode(), 'sr is parent language' );
-			$this->assertTrue( $p instanceof LanguageSr, 'parent is LanguageSr' );
 			// This is a valid variant of the base
 			$this->assertTrue( $p->hasVariant( $l->getCode() ) );
 			// This test should be tweaked if/when sr-ec is renamed (T117845)
@@ -58,17 +59,16 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::hasVariant
 	 */
 	public function testHasVariantBogus() {
+		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 		$langs = [
-			// Note that case matters when calling Language::factory();
-			// these are all bogus language codes
-			'sr-EC' => Language::factory( 'sr-EC' ),
-			'sr-Cyrl' => Language::factory( 'sr-Cyrl' ),
-			'sr-bogus' => Language::factory( 'sr-bogus' ),
+			// Note that case matters when calling getLanguage(); these are all bogus language codes
+			'sr-EC' => $langFactory->getLanguage( 'sr-EC' ),
+			'sr-Cyrl' => $langFactory->getLanguage( 'sr-Cyrl' ),
+			'sr-bogus' => $langFactory->getLanguage( 'sr-bogus' ),
 		];
 		foreach ( $langs as $code => $l ) {
-			$p = $l->getParentLanguage();
+			$p = $langFactory->getParentLanguage( $code );
 			$this->assertTrue( $p === null, 'no parent for bogus language' );
-			$this->assertFalse( $l instanceof LanguageSr, "$code is not sr" );
 			$this->assertFalse( $this->getLang()->hasVariant( $code ), "$code is not a sr variant" );
 			foreach ( [ 'sr', 'sr-ec', 'sr-EC', 'sr-Cyrl', 'sr-cyrl', 'sr-bogus' ] as $v ) {
 				if ( $v !== $code ) {
@@ -294,7 +294,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	/** Wrapper for converter::convertTo() method */
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()
-			->mConverter
+			->getConverter()
 			->convertTo(
 				$text, $variant
 			);

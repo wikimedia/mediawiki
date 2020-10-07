@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 class WebInstallerUpgrade extends WebInstallerPage {
@@ -83,7 +83,7 @@ class WebInstallerUpgrade extends WebInstallerPage {
 
 		$this->startForm();
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMessage( 'config-can-upgrade', $GLOBALS['wgVersion'] )->plain() ) );
+			wfMessage( 'config-can-upgrade', MW_VERSION )->plain() ) );
 		$this->endForm();
 
 		return null;

@@ -27,10 +27,12 @@
  * @defgroup Dump Dump
  */
 
-use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
-use Wikimedia\Rdbms\IResultWrapper;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @ingroup SpecialPage Dump
@@ -48,16 +50,16 @@ class WikiExporter {
 	/** @var string */
 	public $author_list = "";
 
-	const FULL = 1;
-	const CURRENT = 2;
-	const STABLE = 4; // extension defined
-	const LOGS = 8;
-	const RANGE = 16;
+	public const FULL = 1;
+	public const CURRENT = 2;
+	public const STABLE = 4; // extension defined
+	public const LOGS = 8;
+	public const RANGE = 16;
 
-	const TEXT = XmlDumpWriter::WRITE_CONTENT;
-	const STUB = XmlDumpWriter::WRITE_STUB;
+	public const TEXT = XmlDumpWriter::WRITE_CONTENT;
+	public const STUB = XmlDumpWriter::WRITE_STUB;
 
-	const BATCH_SIZE = 50000;
+	protected const BATCH_SIZE = 50000;
 
 	/** @var int */
 	public $text;
@@ -76,6 +78,12 @@ class WikiExporter {
 
 	/** @var array|null */
 	protected $limitNamespaces;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
@@ -97,7 +105,7 @@ class WikiExporter {
 	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
 	 *   to limit results
 	 */
-	function __construct(
+	public function __construct(
 		$db,
 		$history = self::CURRENT,
 		$text = self::TEXT,
@@ -109,6 +117,9 @@ class WikiExporter {
 		$this->sink = new DumpOutput();
 		$this->text = $text;
 		$this->limitNamespaces = $limitNamespaces;
+		$services = MediaWikiServices::getInstance();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -203,7 +214,7 @@ class WikiExporter {
 	 */
 	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( "Can't export invalid title" );
 		} else {
 			$this->pageByTitle( $title );
@@ -246,7 +257,7 @@ class WikiExporter {
 		$this->author_list = "<contributors>";
 		// rev_deleted
 
-		$revQuery = Revision::getQueryInfo( [ 'page' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		$res = $this->db->select(
 			$revQuery['tables'],
 			[
@@ -351,12 +362,8 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpPages( $cond, $orderRevs ) {
-		$revQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getQueryInfo(
-			[ 'page' ]
-		);
-		$slotQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getSlotsQueryInfo(
-			[ 'content' ]
-		);
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
+		$slotQuery = $this->revisionStore->getSlotsQueryInfo( [ 'content' ] );
 
 		// We want page primary rather than revision.
 		// We also want to join in the slots and content tables.
@@ -426,7 +433,7 @@ class WikiExporter {
 			# Default JOIN, to be overridden...
 			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 			# One, and only one hook should set this, and return false
-			if ( Hooks::run( 'WikiExporter::dumpStableQuery', [ &$tables, &$opts, &$join ] ) ) {
+			if ( $this->hookRunner->onWikiExporter__dumpStableQuery( $tables, $opts, $join ) ) {
 				throw new MWException( __METHOD__ . " given invalid history dump type." );
 			}
 		} elseif ( $this->history & self::RANGE ) {
@@ -445,8 +452,8 @@ class WikiExporter {
 
 		$opts['LIMIT'] = self::BATCH_SIZE;
 
-		Hooks::run( 'ModifyExportQuery',
-			[ $this->db, &$tables, &$cond, &$opts, &$join ] );
+		$this->hookRunner->onModifyExportQuery(
+			$this->db, $tables, $cond, $opts, $join, $conds );
 
 		while ( !$done ) {
 			// If necessary, impose the overall maximum and stop looping after this iteration.
@@ -586,13 +593,13 @@ class WikiExporter {
 
 	/**
 	 * @param IResultWrapper $resultset
-	 * @return int the log_id value of the last item output, or null if none
+	 * @return int|null the log_id value of the last item output, or null if none
 	 */
 	protected function outputLogStream( $resultset ) {
 		foreach ( $resultset as $row ) {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
 		}
-		return isset( $row ) ? $row->log_id : null;
+		return $row->log_id ?? null;
 	}
 }

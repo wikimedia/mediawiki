@@ -4,9 +4,9 @@
  * @covers CryptHKDF
  * @covers MWCryptHKDF
  */
-class MWCryptHKDFTest extends MediaWikiTestCase {
+class MWCryptHKDFTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgSecretKey', '5bf1945342e67799cb50704a7fa19ac6' );

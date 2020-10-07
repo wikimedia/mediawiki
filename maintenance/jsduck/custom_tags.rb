@@ -69,15 +69,15 @@ end
 
 class ContextTag < CommonTag
   def initialize
-    @tagname = :context
-    @pattern = 'context'
+    @tagname = :this
+    @pattern = 'this'
     super
   end
 
   def format(context, formatter)
     position = context[:files][0]
     context[@tagname].each do |tag|
-      tag[:doc] = render_long_context(tag[:doc], formatter, position)
+      tag[:doc] = render_long_this(tag[:doc], formatter, position)
     end
   end
 
@@ -88,14 +88,14 @@ class ContextTag < CommonTag
     EOHTML
   end
 
-  def render_long_context(tag, formatter, position)
+  def render_long_this(tag, formatter, position)
     match = /\A([^\s]+)/m.match(tag)
 
     if match
       name = match[1]
       return formatter.format("`context` : {@link #{name}}")
     else
-      JsDuck::Logger.warn(nil, 'Unexpected @context argument: "' + tag + '"', position)
+      JsDuck::Logger.warn(nil, 'Unexpected @this argument: "' + tag + '"', position)
       return tag
     end
   end

@@ -60,11 +60,11 @@ class FileBackendMultiWrite extends FileBackend {
 	protected $asyncWrites = false;
 
 	/** @var int Compare file sizes among backends */
-	const CHECK_SIZE = 1;
+	private const CHECK_SIZE = 1;
 	/** @var int Compare file mtimes among backends */
-	const CHECK_TIME = 2;
+	private const CHECK_TIME = 2;
 	/** @var int Compare file hashes among backends */
-	const CHECK_SHA1 = 4;
+	private const CHECK_SHA1 = 4;
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.
@@ -144,18 +144,18 @@ class FileBackendMultiWrite extends FileBackend {
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
 		// Acquire any locks as needed
+		$scopeLock = null;
 		if ( empty( $opts['nonLocking'] ) ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
 		}
-		// Clear any cache entries (after locks acquired)
-		$this->clearCache();
-		$opts['preserveCache'] = true; // only locked files are cached
 		// Get the list of paths to read/write
 		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		// Clear any cache entries (after locks acquired)
+		$this->clearCache( $relevantPaths );
+		$opts['preserveCache'] = true; // only locked files are cached
 		// Check if the paths are valid and accessible on all backends
 		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
 		if ( !$status->isOK() ) {
@@ -399,6 +399,7 @@ class FileBackendMultiWrite extends FileBackend {
 					if (
 						$resyncMode === 'conservative' &&
 						$cloneStat &&
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						$cloneStat['mtime'] > $masterStat['mtime']
 					) {
 						// Do not replace files with older ones; reduces the risk of data loss
@@ -527,7 +528,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param array $ops File operations for FileBackend::doOperations()
+	 * @param array[] $ops File operations for FileBackend::doOperations()
 	 * @return bool Whether there are file path sources with outside lifetime/ownership
 	 */
 	protected function hasVolatileSources( array $ops ) {
@@ -540,7 +541,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return false;
 	}
 
-	protected function doQuickOperationsInternal( array $ops ) {
+	protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		$status = $this->newStatus();
 		// Do the operations on the master backend; setting StatusValue fields
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );

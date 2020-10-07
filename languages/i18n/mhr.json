@@ -3,17 +3,18 @@
 		"authors": [
 			"Amdf",
 			"Azim",
+			"DannyS712",
+			"Fitoschido",
+			"Irus",
 			"Jose77",
 			"Kaganer",
 			"Lifeway",
+			"Sergey Ivanov",
 			"Shirayuki",
 			"Сай",
 			"Санюн Вадик",
-			"아라",
-			"Sergey Ivanov",
-			"Irus",
-			"Fitoschido",
-			"Сергей Иванов"
+			"Сергей Иванов",
+			"아라"
 		]
 	},
 	"tog-underline": "Кылверлам ӱлыч удыралмаш:",
@@ -312,7 +313,7 @@
 	"history-fieldset-title": "Эртымгорным ончыкташ",
 	"histfirst": "эн тошто",
 	"histlast": "эн у",
-	"historyempty": "(яра)",
+	"historyempty": "яра",
 	"history-feed-item-nocomment": "$1 $2што",
 	"rev-delundel": "ончыкташ/шылташ",
 	"rev-showdeleted": "ончыкташ",

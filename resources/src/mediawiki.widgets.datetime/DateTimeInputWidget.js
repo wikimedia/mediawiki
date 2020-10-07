@@ -10,7 +10,7 @@
 	 *     @example
 	 *     // Example of a text input widget
 	 *     var dateTimeInput = new mw.widgets.datetime.DateTimeInputWidget( {} )
-	 *     $( 'body' ).append( dateTimeInput.$element );
+	 *     $( document.body ).append( dateTimeInput.$element );
 	 *
 	 * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
 	 *

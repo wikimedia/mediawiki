@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RefreshLinks extends Maintenance {
-	const REPORTING_INTERVAL = 100;
+	private const REPORTING_INTERVAL = 100;
 
 	/** @var int|bool */
 	protected $namespace = false;
@@ -112,9 +112,10 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Give extensions a chance to optimize settings
-		Hooks::run( 'MaintenanceRefreshLinksInit', [ $this ] );
+		$this->getHookRunner()->onMaintenanceRefreshLinksInit( $this );
 
 		$what = $redirectsOnly ? "redirects" : "links";
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		if ( $oldRedirectsOnly ) {
 			# This entire code path is cut-and-pasted from below.  Hurrah.
@@ -141,7 +142,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 				$this->fixRedirect( $row->page_id );
 			}
@@ -162,7 +163,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
@@ -182,7 +183,7 @@ class RefreshLinks extends Maintenance {
 			for ( $id = $start; $id <= $end; $id++ ) {
 				if ( !( $id % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$id\n" );
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 				$this->fixRedirect( $id );
 			}
@@ -194,7 +195,7 @@ class RefreshLinks extends Maintenance {
 				for ( $id = $start; $id <= $end; $id++ ) {
 					if ( !( $id % self::REPORTING_INTERVAL ) ) {
 						$this->output( "$id\n" );
-						wfWaitForSlaves();
+						$lbFactory->waitForReplication();
 					}
 					self::fixLinksFromArticle( $id, $this->namespace );
 				}
@@ -293,7 +294,7 @@ class RefreshLinks extends Maintenance {
 	private function deleteLinksFromNonexistent( $start = null, $end = null, $batchSize = 100,
 		$chunkSize = 100000
 	) {
-		wfWaitForSlaves();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		do {
@@ -339,7 +340,8 @@ class RefreshLinks extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
-		$linksTables = [ // table name => page_id field
+		$linksTables = [
+			// table name => page_id field
 			'pagelinks' => 'pl_from',
 			'imagelinks' => 'il_from',
 			'categorylinks' => 'cl_from',
@@ -351,6 +353,7 @@ class RefreshLinks extends Maintenance {
 			'page_props' => 'pp_page',
 		];
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $linksTables as $table => $field ) {
 			$this->output( "    $table: 0" );
 			$tableStart = $start;
@@ -361,7 +364,7 @@ class RefreshLinks extends Maintenance {
 					$field,
 					[
 						self::intervalCond( $dbr, $field, $tableStart, $end ),
-						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
+						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id', [], __METHOD__ )})",
 					],
 					__METHOD__,
 					[ 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize ]
@@ -373,7 +376,7 @@ class RefreshLinks extends Maintenance {
 					$dbw->delete( $table, [ $field => $ids ], __METHOD__ );
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 
 			} while ( $numIds >= $batchSize && ( $end === null || $tableStart <= $end ) );
@@ -444,6 +447,7 @@ class RefreshLinks extends Maintenance {
 		$i = 0;
 		$timestamp = '';
 		$lastId = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
 			$finalConds = $conds;
 			$timestamp = $dbr->addQuotes( $timestamp );
@@ -462,7 +466,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 				$lastId = $row->page_id;
 				$timestamp = $row->cl_timestamp;

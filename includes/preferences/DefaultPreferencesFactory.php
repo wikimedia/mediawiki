@@ -23,17 +23,20 @@ namespace MediaWiki\Preferences;
 use DateTime;
 use DateTimeZone;
 use Exception;
-use Hooks;
 use Html;
 use HTMLForm;
 use HTMLFormField;
 use IContextSource;
+use ILanguageConverter;
 use Language;
 use LanguageCode;
 use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -68,6 +71,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var Language The wiki's content language. */
 	protected $contLang;
 
+	/** @var LanguageNameUtils */
+	protected $languageNameUtils;
+
 	/** @var AuthManager */
 	protected $authManager;
 
@@ -79,6 +85,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 	/** @var PermissionManager */
 	protected $permissionManager;
+
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * @var array
@@ -109,19 +121,22 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'RCMaxAge',
 		'RCShowWatchingUsers',
 		'RCWatchCategoryMembership',
+		'SearchMatchRedirectPreference',
 		'SecureLogin',
+		'SignatureValidation',
 		'ThumbLimits',
 	];
 
 	/**
-	 * Do not call this directly.  Get it from MediaWikiServices.
-	 *
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
 	 * @param NamespaceInfo $nsInfo
 	 * @param PermissionManager $permissionManager
+	 * @param ILanguageConverter|null $languageConverter
+	 * @param LanguageNameUtils|null $languageNameUtils
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -129,7 +144,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		AuthManager $authManager,
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		ILanguageConverter $languageConverter = null,
+		LanguageNameUtils $languageNameUtils = null,
+		HookContainer $hookContainer = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -140,6 +158,25 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
+
+		if ( !$languageConverter ) {
+			wfDeprecated( __METHOD__ . ' without $languageConverter parameter', '1.35' );
+			$languageConverter = MediaWikiServices::getInstance()
+				->getLanguageConverterFactory()
+				->getLanguageConverter();
+		}
+		$this->languageConverter = $languageConverter;
+
+		if ( !$languageNameUtils ) {
+			wfDeprecated( __METHOD__ . ' without $languageNameUtils parameter', '1.35' );
+			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		}
+		$this->languageNameUtils = $languageNameUtils;
+
+		if ( !$hookContainer ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -177,7 +214,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->watchlistPreferences( $user, $context, $preferences );
 		$this->searchPreferences( $preferences );
 
-		Hooks::run( 'GetPreferences', [ $user, &$preferences ] );
+		$this->hookRunner->onGetPreferences( $user, $preferences );
 
 		$this->loadPreferenceValues( $user, $context, $preferences );
 		$this->logger->debug( "Created form descriptor for user '{$user->getName()}'" );
@@ -192,17 +229,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences Array to load values for
 	 * @return array|null
 	 */
-	private function loadPreferenceValues(
-		User $user, IContextSource $context, &$defaultPreferences
-	) {
-		# # Remove preferences that wikis don't want to use
+	private function loadPreferenceValues( User $user, IContextSource $context, &$defaultPreferences ) {
+		// Remove preferences that wikis don't want to use
 		foreach ( $this->options->get( 'HiddenPrefs' ) as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
 				unset( $defaultPreferences[$pref] );
 			}
 		}
 
-		# # Make sure that form fields have their parent set. See T43337.
+		// Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
 		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
@@ -210,7 +245,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultOptions = User::getDefaultOptions();
 		$userOptions = $user->getOptions();
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
-		# # Prod in defaults from the user
+		// Add in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
 			if ( $disable && !in_array( $name, $this->getSaveBlacklist() ) ) {
@@ -223,7 +258,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			if ( isset( $info['default'] ) ) {
 				// Already set, no problem
 				continue;
-			} elseif ( !is_null( $prefFromUser ) && // Make sure we're not just pulling nothing
+			} elseif ( $prefFromUser !== null && // Make sure we're not just pulling nothing
 					$field->validate( $prefFromUser, $user->getOptions() ) === true ) {
 				$info['default'] = $prefFromUser;
 			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
@@ -296,10 +331,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function profilePreferences(
 		User $user, IContextSource $context, &$defaultPreferences, $canIPUseHTTPS
 	) {
+		$services = MediaWikiServices::getInstance();
+
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
-		# # User info #####################################
 		// Information panel
 		$defaultPreferences['username'] = [
 			'type' => 'info',
@@ -310,7 +346,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$lang = $context->getLanguage();
 
-		# Get groups to which the user belongs
+		// Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
 		$userGroupMemberships = $user->getGroupMemberships();
 		$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
@@ -350,7 +386,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
-				count( $userGroups ) )->params( $userName )->parse(),
+				count( $userGroups ) )->params( $userName )->text(),
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 				->escaped(),
@@ -413,6 +449,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'label' => $context->msg( 'prefs-resetpass' )->text(),
 				] ),
 				'label-message' => 'yourpassword',
+				// email password reset feature only works for users that have an email set up
+				'help' => $this->options->get( 'AllowRequiringEmailForResets' ) && $user->getEmail()
+					? $context->msg( 'prefs-help-yourpassword',
+						'[[#mw-prefsection-personal-email|{{int:prefs-email}}]]' )->parse()
+					: '',
 				'section' => 'personal/info',
 			];
 		}
@@ -429,7 +470,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$languages = Language::fetchLanguageNames( null, 'mwfile' );
+		$languages = $this->languageNameUtils->getLanguageNames( null, 'mwfile' );
 		$languageCode = $this->options->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
@@ -449,13 +490,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'yourlanguage',
 		];
 
+		$neutralGenderMessage = $context->msg( 'gender-notknown' )->escaped() . (
+			!$context->msg( 'gender-unknown' )->isDisabled()
+				? "<br>" . $context->msg( 'parentheses' )
+					->params( $context->msg( 'gender-unknown' )->plain() )
+					->escaped()
+				: ''
+		);
+
 		$defaultPreferences['gender'] = [
 			'type' => 'radio',
 			'section' => 'personal/i18n',
 			'options' => [
-				$context->msg( 'parentheses' )
-					->params( $context->msg( 'gender-unknown' )->plain() )
-					->escaped() => 'unknown',
+				$neutralGenderMessage => 'unknown',
 				$context->msg( 'gender-female' )->escaped() => 'female',
 				$context->msg( 'gender-male' )->escaped() => 'male',
 			],
@@ -465,13 +512,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// see if there are multiple language variants to choose from
 		if ( !$this->options->get( 'DisableLangConversion' ) ) {
+
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
-					if ( !$this->contLang->hasVariants() ) {
+					if ( !$this->languageConverter->hasVariants() ) {
 						continue;
 					}
 
-					$variants = $this->contLang->getVariants();
+					$variants = $this->languageConverter->getVariants();
 					$variantArray = [];
 					foreach ( $variants as $v ) {
 						$v = str_replace( '_', '-', strtolower( $v ) );
@@ -500,7 +548,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = MediaWikiServices::getInstance()->getParser()->preSaveTransform(
+		$oldsigWikiText = $services->getParser()->preSaveTransform(
 			'~~~',
 			$context->getTitle(),
 			$user,
@@ -509,11 +557,52 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$oldsigHTML = Parser::stripOuterParagraph(
 			$context->getOutput()->parseAsContent( $oldsigWikiText )
 		);
+		$signatureFieldConfig = [];
+		// Validate existing signature and show a message about it
+		if ( $user->getBoolOption( 'fancysig' ) ) {
+			$validator = new SignatureValidator(
+				$user,
+				$context,
+				ParserOptions::newFromContext( $context )
+			);
+			$signatureErrors = $validator->validateSignature( $user->getOption( 'nickname' ) );
+			if ( $signatureErrors ) {
+				$sigValidation = $this->options->get( 'SignatureValidation' );
+				$oldsigHTML .= '<p><strong>' .
+					// Messages used here:
+					// * prefs-signature-invalid-warning
+					// * prefs-signature-invalid-new
+					// * prefs-signature-invalid-disallow
+					$context->msg( "prefs-signature-invalid-$sigValidation" )->parse() .
+					'</strong></p>';
+
+				// On initial page load, show the warnings as well
+				// (when posting, you get normal validation errors instead)
+				foreach ( $signatureErrors as &$sigError ) {
+					$sigError = new \OOUI\HtmlSnippet( $sigError );
+				}
+				if ( !$context->getRequest()->wasPosted() ) {
+					$signatureFieldConfig = [
+						'warnings' => $sigValidation !== 'disallow' ? $signatureErrors : null,
+						'errors' => $sigValidation === 'disallow' ? $signatureErrors : null,
+					];
+				}
+			}
+		}
 		$defaultPreferences['oldsig'] = [
 			'type' => 'info',
-			'raw' => true,
-			'label-message' => 'tog-oldsig',
-			'default' => $oldsigHTML,
+			// Normally HTMLFormFields do not display warnings, so we need to use 'rawrow'
+			// and provide the entire OOUI\FieldLayout here
+			'rawrow' => true,
+			'default' => new \OOUI\FieldLayout(
+				new \OOUI\LabelWidget( [
+					'label' => new \OOUI\HtmlSnippet( $oldsigHTML ),
+				] ),
+				[
+					'align' => 'top',
+					'label' => new \OOUI\HtmlSnippet( $context->msg( 'tog-oldsig' )->parse() )
+				] + $signatureFieldConfig
+			),
 			'section' => 'personal/signature',
 		];
 		$defaultPreferences['nickname'] = [
@@ -536,8 +625,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'personal/signature'
 		];
 
-		# # Email stuff
-
+		// Email preferences
 		if ( $this->options->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
 				$helpMessages = [];
@@ -570,11 +658,21 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'label-message' => 'youremail',
 					'section' => 'personal/email',
 					'help-messages' => $helpMessages,
-					# 'cssclass' chosen below
+					// 'cssclass' chosen below
 				];
 			}
 
 			$disableEmailPrefs = false;
+
+			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
+				$defaultPreferences['requireemail'] = [
+					'type' => 'toggle',
+					'label-message' => 'tog-requireemail',
+					'help-message' => 'prefs-help-requireemail',
+					'section' => 'personal/email',
+					'disabled' => $user->getEmail() ? false : true,
+				];
+			}
 
 			if ( $this->options->get( 'EmailAuthentication' ) ) {
 				$emailauthenticationclass = 'mw-email-not-authenticated';
@@ -614,20 +712,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'section' => 'personal/email',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
-						# Apply the same CSS class used on the input to the message:
+						// Apply the same CSS class used on the input to the message:
 						'cssclass' => $emailauthenticationclass,
 					];
 				}
-			}
-
-			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
-				$defaultPreferences['requireemail'] = [
-					'type' => 'toggle',
-					'label-message' => 'tog-requireemail',
-					'help-message' => 'prefs-help-requireemail',
-					'section' => 'personal/email',
-					'disabled' => $disableEmailPrefs,
-				];
 			}
 
 			if ( $this->options->get( 'EnableUserEmail' ) &&
@@ -714,8 +802,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @return void
 	 */
 	protected function skinPreferences( User $user, IContextSource $context, &$defaultPreferences ) {
-		# # Skin #####################################
-
 		// Skin selector, if there is at least one valid skin
 		$skinOptions = $this->generateSkinOptions( $user, $context );
 		if ( $skinOptions ) {
@@ -728,9 +814,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$allowUserCss = $this->options->get( 'AllowUserCss' );
 		$allowUserJs = $this->options->get( 'AllowUserJs' );
-		# Create links to user CSS/JS pages for all skins
-		# This code is basically copied from generateSkinOptions().  It'd
-		# be nice to somehow merge this back in there to avoid redundancy.
+		// Create links to user CSS/JS pages for all skins.
+		// This code is basically copied from generateSkinOptions().
+		// @todo Refactor this and the similar code in generateSkinOptions().
 		if ( $allowUserCss || $allowUserJs ) {
 			$linkTools = [];
 			$userName = $user->getName();
@@ -762,7 +848,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function filesPreferences( IContextSource $context, &$defaultPreferences ) {
-		# # Files #####################################
 		$defaultPreferences['imagesize'] = [
 			'type' => 'select',
 			'options' => $this->getImageSizes( $context ),
@@ -783,8 +868,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 * @return void
 	 */
-	protected function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		# # Date and time #####################################
+	protected function datetimePreferences(
+		User $user, IContextSource $context, &$defaultPreferences
+	) {
 		$dateOptions = $this->getDateOptions( $context );
 		if ( $dateOptions ) {
 			$defaultPreferences['date'] = [
@@ -867,7 +953,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MessageLocalizer $l10n,
 		&$defaultPreferences
 	) {
-		# # Diffs ####################################
+		// Diffs
 		$defaultPreferences['diffonly'] = [
 			'type' => 'toggle',
 			'section' => 'rendering/diffs',
@@ -879,7 +965,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-norollbackdiff',
 		];
 
-		# # Page Rendering ##############################
+		// Page Rendering
 		if ( $this->options->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['underline'] = [
 				'type' => 'select',
@@ -937,7 +1023,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function editingPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
-		# # Editing #####################################
 		$defaultPreferences['editsectiononrightclick'] = [
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -1005,7 +1090,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function rcPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
 		$rcMaxAge = $this->options->get( 'RCMaxAge' );
-		# # RecentChanges #####################################
 		$defaultPreferences['rcdays'] = [
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
@@ -1107,7 +1191,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	) {
 		$watchlistdaysMax = ceil( $this->options->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
-		# # Watchlist #####################################
 		if ( $this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
 			$editWatchlistModes = [
@@ -1283,10 +1366,23 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'api',
 			];
 		}
+
+		if ( $this->options->get( 'SearchMatchRedirectPreference' ) ) {
+			$defaultPreferences['search-match-redirect'] = [
+				'type' => 'toggle',
+				'section' => 'searchoptions',
+				'label-message' => 'search-match-redirect-label',
+				'help-message' => 'search-match-redirect-help',
+			];
+		} else {
+			$defaultPreferences['search-match-redirect'] = [
+				'type' => 'api',
+			];
+		}
 	}
 
 	/**
-	 * @param User $user The User object
+	 * @param User $user
 	 * @param IContextSource $context
 	 * @return array Text/links to display as key; $skinkey as value
 	 */
@@ -1296,7 +1392,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
-		# Only show skins that aren't disabled in $wgSkipSkins
+		// Only show skins that aren't disabled
 		$validSkinNames = Skin::getAllowedSkins();
 		$allInstalledSkins = Skin::getSkinNames();
 
@@ -1327,10 +1423,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$allowUserCss = $this->options->get( 'AllowUserCss' );
 		$allowUserJs = $this->options->get( 'AllowUserJs' );
 
-		# Sort by the internal name, so that the ordering is the same for each display language,
-		# especially if some skin names are translated to use a different alphabet and some are not.
+		// Sort by the internal name, so that the ordering is the same for each display language,
+		// especially if some skin names are translated to use a different alphabet and some are not.
 		uksort( $validSkinNames, function ( $a, $b ) use ( $defaultSkin ) {
-			# Display the default first in the list by comparing it as lesser than any other.
+			// Display the default first in the list by comparing it as lesser than any other.
 			if ( strcasecmp( $a, $defaultSkin ) === 0 ) {
 				return -1;
 			}
@@ -1344,17 +1440,18 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = [];
 
-			# Mark the default skin
+			// Mark the default skin
 			if ( strcasecmp( $skinkey, $defaultSkin ) === 0 ) {
 				$linkTools[] = $context->msg( 'default' )->escaped();
 				$foundDefault = true;
 			}
 
-			# Create preview link
+			// Create preview link
 			$mplink = htmlspecialchars( $mptitle->getLocalURL( [ 'useskin' => $skinkey ] ) );
 			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
 
-			# Create links to user CSS/JS pages
+			// Create links to user CSS/JS pages
+			// @todo Refactor this and the similar code in skinPreferences().
 			if ( $allowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
 				$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
@@ -1453,25 +1550,64 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param string $signature
 	 * @param array $alldata
 	 * @param HTMLForm $form
-	 * @return bool|string
+	 * @return bool|string|string[]
 	 */
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
+		$sigValidation = $this->options->get( 'SignatureValidation' );
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
-			return Xml::element( 'span', [ 'class' => 'error' ],
-				$form->msg( 'badsiglength' )->numParams( $maxSigChars )->text() );
-		} elseif ( isset( $alldata['fancysig'] ) &&
-				$alldata['fancysig'] &&
-				MediaWikiServices::getInstance()->getParser()->validateSig( $signature ) === false
-		) {
-			return Xml::element(
-				'span',
-				[ 'class' => 'error' ],
-				$form->msg( 'badsig' )->text()
-			);
-		} else {
+			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
+		}
+
+		// Remaining checks only apply to fancy signatures
+		if ( !( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) ) {
 			return true;
 		}
+
+		// HERE BE DRAGONS:
+		//
+		// If this value is already saved as the user's signature, treat it as valid, even if it
+		// would be invalid to save now, and even if $wgSignatureValidation is set to 'disallow'.
+		//
+		// It can become invalid when we introduce new validation, or when the value just transcludes
+		// some page containing the real signature and that page is edited (which we can't validate),
+		// or when someone's username is changed.
+		//
+		// Otherwise it would be completely removed when the user opens their preferences page, which
+		// would be very unfriendly.
+		//
+		// Additionally, if it was removed in that way, it would reset to the default value of '',
+		// which is actually invalid when 'fancysig' is enabled, which would cause an exception like
+		// "Default '' is invalid for preference...".
+		if (
+			$signature === $form->getUser()->getOption( 'nickname' ) &&
+			(bool)$alldata['fancysig'] === $form->getUser()->getBoolOption( 'fancysig' )
+		) {
+			return true;
+		}
+
+		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
+			// Validate everything
+			$validator = new SignatureValidator(
+				$form->getUser(),
+				$form->getContext(),
+				ParserOptions::newFromContext( $form->getContext() )
+			);
+			$errors = $validator->validateSignature( $signature );
+			if ( $errors ) {
+				return $errors;
+			}
+		}
+
+		// Quick check for mismatched HTML tags in the input.
+		// Note that this is easily fooled by wikitext templates or bold/italic markup.
+		// We're only keeping this until Parsoid is integrated and guaranteed to be available.
+		$parser = MediaWikiServices::getInstance()->getParser();
+		if ( $parser->validateSig( $signature ) === false ) {
+			return $form->msg( 'badsig' )->escaped();
+		}
+
+		return true;
 	}
 
 	/**
@@ -1508,6 +1644,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// We use ButtonWidgets in some of the getPreferences() functions
 		$context->getOutput()->enableOOUI();
 
+		// Note that the $user parameter of getFormDescriptor() is deprecated.
 		$formDescriptor = $this->getFormDescriptor( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
@@ -1542,7 +1679,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
-		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
+		// Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback(
@@ -1638,12 +1775,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				unset( $formData[$b] );
 			}
 
-			# If users have saved a value for a preference which has subsequently been disabled
-			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
-			# is subsequently re-enabled
+			// If users have saved a value for a preference which has subsequently been disabled
+			// via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
+			// is subsequently re-enabled
 			foreach ( $hiddenPrefs as $pref ) {
-				# If the user has not set a non-default value here, the default will be returned
-				# and subsequently discarded
+				// If the user has not set a non-default value here, the default will be returned
+				// and subsequently discarded
 				$formData[$pref] = $user->getOption( $pref, null, true );
 			}
 
@@ -1662,10 +1799,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$user->setOption( $key, $value );
 			}
 
-			Hooks::run(
-				'PreferencesFormPreSave',
-				[ $formData, $form, $user, &$result, $oldUserOptions ]
-			);
+			$this->hookRunner->onPreferencesFormPreSave(
+				$formData, $form, $user, $result, $oldUserOptions );
 		}
 
 		$user->saveSettings();
@@ -1721,10 +1856,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$context = $form->getContext();
 			$urlOptions = [];
 
-			if ( $res === 'eauth' ) {
-				$urlOptions['eauth'] = 1;
-			}
-
 			$urlOptions += $form->getExtraSuccessRedirectParameters();
 
 			$url = $form->getTitle()->getFullURL( $urlOptions );
@@ -1741,7 +1872,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * Get a list of all time zones
 	 * @param Language $language Language used for the localized names
-	 * @return array A list of all time zones. The system name of the time zone is used as key and
+	 * @return array[] A list of all time zones. The system name of the time zone is used as key and
 	 *  the value is an array which contains localized name, the timecorrection value used for
 	 *  preferences and the region
 	 * @since 1.26

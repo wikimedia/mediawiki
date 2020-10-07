@@ -8,7 +8,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	/**
 	 * Anything that needs to happen before your tests should go here.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		// Be sure to call the parent setup and teardown functions.
 		// This makes sure that all the various cleanup and restorations
 		// happen as they should (including the restoration for setMwGlobals).
@@ -25,7 +25,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	/**
 	 * Anything cleanup you need to do should go here.
 	 */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 	}
 
@@ -96,11 +96,10 @@ class SampleTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
-	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.expectedException
+	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions
 	 */
 	public function testTitleObjectFromObject() {
-		$title = Title::newFromText( Title::newFromText( "test" ) );
-		$this->assertEquals( "Test", $title->isLocal() );
+		$this->expectException( InvalidArgumentException::class );
+		Title::newFromText( Title::newFromText( "test" ) );
 	}
 }

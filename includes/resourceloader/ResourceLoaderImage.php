@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -27,7 +29,6 @@ use MediaWiki\Shell\Shell;
  * @since 1.25
  */
 class ResourceLoaderImage {
-
 	/**
 	 * Map of allowed file extensions to their MIME types.
 	 * @var array
@@ -64,7 +65,7 @@ class ResourceLoaderImage {
 	 * @param string|null $defaultColor of the base variant
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $name, $module, $descriptor, $basePath, $variants,
+	public function __construct( $name, $module, $descriptor, $basePath, array $variants,
 		$defaultColor = null
 	) {
 		$this->name = $name;
@@ -137,8 +138,19 @@ class ResourceLoaderImage {
 	 *
 	 * @return string[]
 	 */
-	public function getVariants() {
+	public function getVariants() : array {
 		return array_keys( $this->variants );
+	}
+
+	/**
+	 * @internal For unit testing overrride
+	 * @param string $lang
+	 * @return string[]
+	 */
+	protected function getLangFallbacks( string $lang ) : array {
+		return MediaWikiServices::getInstance()
+			->getLanguageFallback()
+			->getAll( $lang, LanguageFallback::STRICT );
 	}
 
 	/**
@@ -158,7 +170,7 @@ class ResourceLoaderImage {
 			if ( isset( $desc['lang'][$contextLang] ) ) {
 				return $this->getLocalPath( $desc['lang'][$contextLang] );
 			}
-			$fallbacks = Language::getFallbacksFor( $contextLang, Language::STRICT_FALLBACKS );
+			$fallbacks = $this->getLangFallbacks( $contextLang );
 			foreach ( $fallbacks as $lang ) {
 				if ( isset( $desc['lang'][$lang] ) ) {
 					return $this->getLocalPath( $desc['lang'][$lang] );
@@ -312,7 +324,7 @@ class ResourceLoaderImage {
 	 *
 	 * @param ResourceLoaderContext $context Image context
 	 */
-	public function sendResponseHeaders( ResourceLoaderContext $context ) {
+	public function sendResponseHeaders( ResourceLoaderContext $context ) : void {
 		$format = $context->getFormat();
 		$mime = $this->getMimeType( $format );
 		$filename = $this->getName() . '.' . $this->getExtension( $format );
@@ -329,7 +341,7 @@ class ResourceLoaderImage {
 	 * @param ResourceLoaderContext $context Image context
 	 * @return string New SVG file data
 	 */
-	protected function variantize( $variantConf, ResourceLoaderContext $context ) {
+	protected function variantize( array $variantConf, ResourceLoaderContext $context ) {
 		$dom = new DOMDocument;
 		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
@@ -386,25 +398,23 @@ class ResourceLoaderImage {
 	 * @return string|bool PNG image data, or false on failure
 	 */
 	protected function rasterize( $svg ) {
-		/**
-		 * This code should be factored out to a separate method on SvgHandler, or perhaps a separate
-		 * class, with a separate set of configuration settings.
-		 *
-		 * This is a distinct use case from regular SVG rasterization:
-		 * * We can skip many sanity and security checks (as the images come from a trusted source,
-		 *   rather than from the user).
-		 * * We need to provide extra options to some converters to achieve acceptable quality for very
-		 *   small images, which might cause performance issues in the general case.
-		 * * We want to directly pass image data to the converter, rather than a file path.
-		 *
-		 * See https://phabricator.wikimedia.org/T76473#801446 for examples of what happens with the
-		 * default settings.
-		 *
-		 * For now, we special-case rsvg (used in WMF production) and do a messy workaround for other
-		 * converters.
-		 */
-
 		global $wgSVGConverter, $wgSVGConverterPath;
+
+		// This code should be factored out to a separate method on SvgHandler, or perhaps a separate
+		// class, with a separate set of configuration settings.
+		//
+		// This is a distinct use case from regular SVG rasterization:
+		// * We can skip many sanity and security checks (as the images come from a trusted source,
+		//   rather than from the user).
+		// * We need to provide extra options to some converters to achieve acceptable quality for very
+		//   small images, which might cause performance issues in the general case.
+		// * We want to directly pass image data to the converter, rather than a file path.
+		//
+		// See https://phabricator.wikimedia.org/T76473#801446 for examples of what happens with the
+		// default settings.
+		//
+		// For now, we special-case rsvg (used in WMF production) and do a messy workaround for other
+		// converters.
 
 		$svg = $this->massageSvgPathdata( $svg );
 

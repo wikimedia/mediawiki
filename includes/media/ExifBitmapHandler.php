@@ -25,13 +25,17 @@
  * Stuff specific to JPEG and (built-in) TIFF handler.
  * All metadata related, since both JPEG and TIFF support Exif.
  *
+ * @stable to extend
  * @ingroup Media
  */
 class ExifBitmapHandler extends BitmapHandler {
-	const BROKEN_FILE = '-1'; // error extracting metadata
-	const OLD_BROKEN_FILE = '0'; // outdated error extracting metadata.
+	/** Error extracting metadata */
+	public const BROKEN_FILE = '-1';
 
-	function convertMetadataVersion( $metadata, $version = 1 ) {
+	/** Outdated error extracting metadata */
+	public const OLD_BROKEN_FILE = '0';
+
+	public function convertMetadataVersion( $metadata, $version = 1 ) {
 		// basically flattens arrays.
 		$version = intval( explode( ';', $version, 2 )[0] );
 		if ( $version < 1 || $version >= 2 ) {
@@ -92,7 +96,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		if ( $metadata === self::OLD_BROKEN_FILE ) {
 			# Old special value indicating that there is no Exif data in the file.
 			# or that there was an error well extracting the metadata.
-			wfDebug( __METHOD__ . ": back-compat version\n" );
+			wfDebug( __METHOD__ . ": back-compat version" );
 
 			return self::METADATA_COMPATIBLE;
 		}
@@ -109,12 +113,12 @@ class ExifBitmapHandler extends BitmapHandler {
 				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
 			) {
 				// back-compatible but old
-				wfDebug( __METHOD__ . ": back-compat version\n" );
+				wfDebug( __METHOD__ . ": back-compat version" );
 
 				return self::METADATA_COMPATIBLE;
 			}
 			# Wrong (non-compatible) version
-			wfDebug( __METHOD__ . ": wrong version\n" );
+			wfDebug( __METHOD__ . ": wrong version" );
 
 			return self::METADATA_BAD;
 		}
@@ -156,7 +160,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		return $exif;
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'exif';
 	}
 
@@ -168,7 +172,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @param string $path
 	 * @return array|false
 	 */
-	function getImageSize( $image, $path ) {
+	public function getImageSize( $image, $path ) {
 		$gis = parent::getImageSize( $image, $path );
 
 		// Don't just call $image->getMetadata(); FSFile::getPropsFromPath() calls us with a bogus object.

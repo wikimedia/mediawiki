@@ -34,30 +34,28 @@ use Psr\Log\LoggerInterface;
  * @since 1.19
  */
 abstract class FileOp {
-	/** @var array */
-	protected $params = [];
-
 	/** @var FileBackendStore */
 	protected $backend;
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var array */
+	protected $params = [];
+
 	/** @var int */
 	protected $state = self::STATE_NEW;
-
 	/** @var bool */
 	protected $failed = false;
-
 	/** @var bool */
 	protected $async = false;
-
 	/** @var string */
 	protected $batchId;
+	/** @var bool */
+	protected $cancelled = false;
 
-	/** @var bool Operation is not a no-op */
-	protected $doOperation = true;
-
-	/** @var string */
+	/** @var int|bool */
+	protected $sourceSize;
+	/** @var string|bool */
 	protected $sourceSha1;
 
 	/** @var bool */
@@ -67,9 +65,13 @@ abstract class FileOp {
 	protected $destExists;
 
 	/* Object life-cycle */
-	const STATE_NEW = 1;
-	const STATE_CHECKED = 2;
-	const STATE_ATTEMPTED = 3;
+	private const STATE_NEW = 1;
+	private const STATE_CHECKED = 2;
+	private const STATE_ATTEMPTED = 3;
+
+	protected const ASSUMED_SHA1 = 'sha1';
+	protected const ASSUMED_EXISTS = 'exists';
+	protected const ASSUMED_SIZE = 'size';
 
 	/**
 	 * Build a new batch file operation transaction
@@ -155,7 +157,7 @@ abstract class FileOp {
 	 * @return array
 	 */
 	final public static function newPredicates() {
-		return [ 'exists' => [], 'sha1' => [] ];
+		return [ self::ASSUMED_EXISTS => [], self::ASSUMED_SHA1 => [], self::ASSUMED_SIZE => [] ];
 	}
 
 	/**
@@ -209,14 +211,13 @@ abstract class FileOp {
 	 * @return array
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
-		if ( !$this->doOperation ) {
+		if ( $this->cancelled ) {
 			return []; // this is a no-op
 		}
 		$nullEntries = [];
 		$updateEntries = [];
 		$deleteEntries = [];
-		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
-		foreach ( array_unique( $pathsUsed ) as $path ) {
+		foreach ( $this->storagePathsReadOrChanged() as $path ) {
 			$nullEntries[] = [ // assertion for recovery
 				'op' => 'null',
 				'path' => $path,
@@ -224,7 +225,7 @@ abstract class FileOp {
 			];
 		}
 		foreach ( $this->storagePathsChanged() as $path ) {
-			if ( $nPredicates['sha1'][$path] === false ) { // deleted
+			if ( $nPredicates[self::ASSUMED_SHA1][$path] === false ) { // deleted
 				$deleteEntries[] = [
 					'op' => 'delete',
 					'path' => $path,
@@ -234,7 +235,7 @@ abstract class FileOp {
 				$updateEntries[] = [
 					'op' => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
 					'path' => $path,
-					'newSha1' => $nPredicates['sha1'][$path]
+					'newSha1' => $nPredicates[self::ASSUMED_SHA1][$path]
 				];
 			}
 		}
@@ -257,10 +258,9 @@ abstract class FileOp {
 		$this->state = self::STATE_CHECKED;
 
 		$status = StatusValue::newGood();
-		$storagePaths = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
-		foreach ( array_unique( $storagePaths ) as $storagePath ) {
-			if ( !$this->backend->isPathUsableInternal( $storagePath ) ) {
-				$status->fatal( 'backend-fail-usable', $storagePath );
+		foreach ( $this->storagePathsReadOrChanged() as $path ) {
+			if ( !$this->backend->isPathUsableInternal( $path ) ) {
+				$status->fatal( 'backend-fail-usable', $path );
 			}
 		}
 		if ( !$status->isOK() ) {
@@ -295,14 +295,14 @@ abstract class FileOp {
 			return StatusValue::newFatal( 'fileop-fail-attempt-precheck' );
 		}
 		$this->state = self::STATE_ATTEMPTED;
-		if ( $this->doOperation ) {
+		if ( $this->cancelled ) {
+			$status = StatusValue::newGood(); // no-op
+		} else {
 			$status = $this->doAttempt();
 			if ( !$status->isOK() ) {
 				$this->failed = true;
 				$this->logFailure( 'attempt' );
 			}
-		} else { // no-op
-			$status = StatusValue::newGood();
 		}
 
 		return $status;
@@ -326,6 +326,28 @@ abstract class FileOp {
 		$this->async = false;
 
 		return $result;
+	}
+
+	/**
+	 * Attempt the operation without regards to prechecks
+	 *
+	 * @return StatusValue
+	 */
+	final public function attemptQuick() {
+		$this->state = self::STATE_CHECKED; // bypassed
+
+		return $this->attempt();
+	}
+
+	/**
+	 * Attempt the operation in the background without regards to prechecks
+	 *
+	 * @return StatusValue
+	 */
+	final public function attemptAsyncQuick() {
+		$this->state = self::STATE_CHECKED; // bypassed
+
+		return $this->attemptAsync();
 	}
 
 	/**
@@ -366,8 +388,19 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Get a list of storage paths read from or written to for this operation
+	 *
+	 * @return array
+	 */
+	final public function storagePathsReadOrChanged() {
+		return array_values( array_unique(
+			array_merge( $this->storagePathsRead(), $this->storagePathsChanged() )
+		) );
+	}
+
+	/**
 	 * Check for errors with regards to the destination file already existing.
-	 * Also set the destExists, overwriteSameCase and sourceSha1 member variables.
+	 * Also set destExists, overwriteSameCase, sourceSize, and sourceSha1 member variables.
 	 * A bad StatusValue will be returned if there is no chance it can be overwritten.
 	 *
 	 * @param array $predicates
@@ -375,33 +408,40 @@ abstract class FileOp {
 	 */
 	protected function precheckDestExistence( array $predicates ) {
 		$status = StatusValue::newGood();
-		// Get hash of source file/string and the destination file
+		// Record the size of source file/string
+		$this->sourceSize = $this->getSourceSize(); // FS file or data string
+		if ( $this->sourceSize === null ) { // file in storage?
+			$this->sourceSize = $this->fileSize( $this->params['src'], $predicates );
+		}
+		// Record the hash of source file/string
 		$this->sourceSha1 = $this->getSourceSha1Base36(); // FS file or data string
 		if ( $this->sourceSha1 === null ) { // file in storage?
 			$this->sourceSha1 = $this->fileSha1( $this->params['src'], $predicates );
 		}
-		$this->overwriteSameCase = false;
+		// Record the existence of destination file
 		$this->destExists = $this->fileExists( $this->params['dst'], $predicates );
+		// Check if an incompatible file exists at the destination
+		$this->overwriteSameCase = false;
 		if ( $this->destExists ) {
 			if ( $this->getParam( 'overwrite' ) ) {
-				return $status; // OK
+				return $status; // OK, no conflict
 			} elseif ( $this->getParam( 'overwriteSame' ) ) {
+				// Operation does nothing other than return an OK or bad status
 				$dhash = $this->fileSha1( $this->params['dst'], $predicates );
+				$dsize = $this->fileSize( $this->params['dst'], $predicates );
 				// Check if hashes are valid and match each other...
 				if ( !strlen( $this->sourceSha1 ) || !strlen( $dhash ) ) {
 					$status->fatal( 'backend-fail-hashes' );
-				} elseif ( $this->sourceSha1 !== $dhash ) {
+				} elseif ( !is_int( $this->sourceSize ) || !is_int( $dsize ) ) {
+					$status->fatal( 'backend-fail-sizes' );
+				} elseif ( $this->sourceSha1 !== $dhash || $this->sourceSize !== $dsize ) {
 					// Give an error if the files are not identical
 					$status->fatal( 'backend-fail-notsame', $this->params['dst'] );
 				} else {
 					$this->overwriteSameCase = true; // OK
 				}
-
-				return $status; // do nothing; either OK or bad status
 			} else {
 				$status->fatal( 'backend-fail-alreadyexists', $this->params['dst'] );
-
-				return $status;
 			}
 		} elseif ( $this->destExists === FileBackend::EXISTENCE_ERROR ) {
 			$status->fatal( 'backend-fail-stat', $this->params['dst'] );
@@ -411,8 +451,18 @@ abstract class FileOp {
 	}
 
 	/**
+	 * precheckDestExistence() helper function to get the source file size.
+	 * Subclasses should overwrite this if the source is not in storage.
+	 *
+	 * @return string|bool Returns false on failure
+	 */
+	protected function getSourceSize() {
+		return null; // N/A
+	}
+
+	/**
 	 * precheckDestExistence() helper function to get the source file SHA-1.
-	 * Subclasses should overwride this if the source is not in storage.
+	 * Subclasses should overwrite this if the source is not in storage.
 	 *
 	 * @return string|bool Returns false on failure
 	 */
@@ -431,8 +481,8 @@ abstract class FileOp {
 	 * @return bool|null Whether the file will exist or null on error
 	 */
 	final protected function fileExists( $source, array $predicates ) {
-		if ( isset( $predicates['exists'][$source] ) ) {
-			return $predicates['exists'][$source]; // previous op assures this
+		if ( isset( $predicates[self::ASSUMED_EXISTS][$source] ) ) {
+			return $predicates[self::ASSUMED_EXISTS][$source]; // previous op assures this
 		} else {
 			$params = [ 'src' => $source, 'latest' => true ];
 
@@ -441,19 +491,45 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Get the SHA-1 hash a file in storage will have when this operation is attempted
+	 * Get the size a file in storage will have when this operation is attempted
 	 *
 	 * Ideally, file the stat entry should already be preloaded via preloadFileStat() and
 	 * the backend tracks hashes as extended attributes. Otherwise, this will query the backend.
+	 * Get the size of a file in storage when this operation is attempted
+	 *
+	 * @param string $source Storage path
+	 * @param array $predicates
+	 * @return int False on failure
+	 */
+	final protected function fileSize( $source, array $predicates ) {
+		if ( isset( $predicates[self::ASSUMED_SIZE][$source] ) ) {
+			return $predicates[self::ASSUMED_SIZE][$source]; // previous op assures this
+		} elseif (
+			isset( $predicates[self::ASSUMED_EXISTS][$source] ) &&
+			!$predicates[self::ASSUMED_EXISTS][$source]
+		) {
+			return false; // previous op assures this
+		} else {
+			$params = [ 'src' => $source, 'latest' => true ];
+
+			return $this->backend->getFileSize( $params );
+		}
+	}
+
+	/**
+	 * Get the SHA-1 of a file in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
 	 * @param array $predicates
 	 * @return string|bool The SHA-1 hash the file will have or false if non-existent or on error
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
-		if ( isset( $predicates['sha1'][$source] ) ) {
-			return $predicates['sha1'][$source]; // previous op assures this
-		} elseif ( isset( $predicates['exists'][$source] ) && !$predicates['exists'][$source] ) {
+		if ( isset( $predicates[self::ASSUMED_SHA1][$source] ) ) {
+			return $predicates[self::ASSUMED_SHA1][$source]; // previous op assures this
+		} elseif (
+			isset( $predicates[self::ASSUMED_EXISTS][$source] ) &&
+			!$predicates[self::ASSUMED_EXISTS][$source]
+		) {
 			return false; // previous op assures this
 		} else {
 			$params = [ 'src' => $source, 'latest' => true ];

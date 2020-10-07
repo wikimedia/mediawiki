@@ -2,14 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Alchimista",
+			"Athena in Wonderland",
 			"Cecílio",
 			"MCruz",
 			"Malafaya",
+			"MokaAkashiyaPT",
 			"Romaine",
 			"Urhixidur",
-			"아라",
-			"MokaAkashiyaPT",
-			"Athena in Wonderland"
+			"아라"
 		]
 	},
 	"tog-underline": "Sublinhar lhigaçones:",
@@ -263,7 +263,7 @@
 	"nospecialpagetext": "<strong>Solicitou ua páigina special ambálida.</strong>\n\nAncontra ua lhista de las páiginas speciales bálidas an [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Erro",
 	"databaseerror": "Erro na base de dados",
-	"laggedslavemode": "Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.",
+	"laggedreplicamode": "Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.",
 	"readonly": "Base de dados bloquiada",
 	"missing-article": "La base de dados nun achou l testo dua páigina que deberie tener achado, cul nome \"$1\" $2.\n\nEsto normalmente ye por bias de la besita a ua lhigaçon zatualizada ó de stória dua páigina que fui apagada.\n\nSe nun fur este l causo, tu puodes tener ancuntrado algun porblema ne l software.\nPor fabor, diç esto a un [[Special:ListUsers/sysop|admenistrador]], dezindo la lhigaçon.",
 	"missingarticle-rev": "(rebison#: $1)",
@@ -411,7 +411,6 @@
 	"recreate-moveddeleted-warn": "<strong>Abiso: Tu stás a criar ua páigina que yá fui d'atrás botada fuora.</strong>\n\nBei bien se ye própio cuntinar a eiditar esta páigina.\nL registro de la eileminaçon i de l arrastrar ye amostrado eiqui por cumbeniéncia:",
 	"moveddeleted-notice": "Esta páigina fui botada fuora.\nL registro de la eileminaçon, porteçon i arrastramiento desta páigina stá ambaixo pa refréncia.",
 	"content-model-wikitext": "testo wiki",
-	"deprecated-self-close-category": "Páiginas cun etiquetas HTML outo-cerradas ambálidas",
 	"duplicate-args-category": "Páiginas cun argumientos de modelos dobles",
 	"expensive-parserfunction-category": "Páiginas cun smasiadas chamadas pa funçones eisigentes",
 	"post-expand-template-inclusion-category": "Páiginas cun eicesso de modelos",
@@ -1207,6 +1206,7 @@
 	"comparepages": "Acumparar páiginas",
 	"diff-form": "Defréncias",
 	"permanentlink": "Lhigaçon permaniente",
+	"purge": "Purgar",
 	"logentry-delete-delete": "$1 {{GENDER:$2|botou fuora}} la páigina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restourou}} la páigina $3 ($4)",
 	"logentry-delete-revision": "$1 {{GENDER:$2|altarou}} la besibelidade de {{PLURAL:$5|ua rebison|$5 rebisones}} na páigina $3: $4",

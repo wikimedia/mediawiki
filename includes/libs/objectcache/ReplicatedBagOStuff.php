@@ -43,7 +43,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	private $lastKeyWrites = [];
 
 	/** @var int Max expected delay (in seconds) for writes to reach replicas */
-	const MAX_WRITE_DELAY = 5;
+	private const MAX_WRITE_DELAY = 5;
 
 	/**
 	 * Constructor. Parameters are:
@@ -209,6 +209,10 @@ class ReplicatedBagOStuff extends BagOStuff {
 
 	public function addBusyCallback( callable $workCallback ) {
 		$this->writeStore->addBusyCallback( $workCallback );
+	}
+
+	public function setNewPreparedValues( array $valueByKey ) {
+		return $this->writeStore->setNewPreparedValues( $valueByKey );
 	}
 
 	public function setMockTime( &$time ) {

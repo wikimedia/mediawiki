@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jayarathina",
 			"Karthi.dr",
 			"TRYPPN",
-			"மதனாஹரன்",
-			"Jayarathina"
+			"மதனாஹரன்"
 		]
 	},
 	"config-title": "மீடியாவிக்கி $1 நிறுவுதல்",
@@ -25,7 +25,6 @@
 	"config-page-install": "நிறுவு",
 	"config-page-complete": "நிறைவு!",
 	"config-page-restart": "நிறுவலை மீண்டும் தொடங்கவும்",
-	"config-page-readme": "இதைப் படி",
 	"config-page-releasenotes": "வெளியீட்டு குறிப்புகள்",
 	"config-page-copying": "நகலெடுக்கப்படுகிறது",
 	"config-page-upgradedoc": "தரமுயர்த்தப்படுகிறது",

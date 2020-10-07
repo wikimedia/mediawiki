@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,10 +18,11 @@
  * @file
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 
@@ -37,12 +37,18 @@ class ApiComparePages extends ApiBase {
 	/** @var \MediaWiki\Revision\SlotRoleRegistry */
 	private $slotRoleRegistry;
 
-	private $guessedTitle = false, $props;
+	/** @var Title|false */
+	private $guessedTitle = false;
+	private $props;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
 
 	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		parent::__construct( $mainModule, $moduleName, $modulePrefix );
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$this->slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 
 	public function execute() {
@@ -127,7 +133,8 @@ class ApiComparePages extends ApiBase {
 					if ( !$toRev ) {
 						$title = Title::newFromLinkTarget( $title );
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					}
 					$toRelRev = $toRev;
@@ -399,7 +406,8 @@ class ApiComparePages extends ApiBase {
 				if ( !$suppliedContent ) {
 					if ( $title->exists() ) {
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					} else {
 						$this->dieWithError(
@@ -579,6 +587,12 @@ class ApiComparePages extends ApiBase {
 			if ( isset( $this->props['size'] ) ) {
 				$vals["{$prefix}size"] = $rev->getSize();
 			}
+			if ( isset( $this->props['timestamp'] ) ) {
+				$revTimestamp = $rev->getTimestamp();
+				if ( $revTimestamp ) {
+					$vals["{$prefix}timestamp"] = wfTimestamp( TS_ISO_8601, $revTimestamp );
+				}
+			}
 
 			$anyHidden = false;
 			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
@@ -657,11 +671,11 @@ class ApiComparePages extends ApiBase {
 			],
 			'contentformat-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 			],
 			'contentmodel-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
 			],
 			'pst' => false,
 
@@ -670,11 +684,11 @@ class ApiComparePages extends ApiBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'section' => [
@@ -715,6 +729,7 @@ class ApiComparePages extends ApiBase {
 				'comment',
 				'parsedcomment',
 				'size',
+				'timestamp',
 			],
 			ApiBase::PARAM_ISMULTI => true,
 			ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
@@ -734,5 +749,9 @@ class ApiComparePages extends ApiBase {
 			'action=compare&fromrev=1&torev=2'
 				=> 'apihelp-compare-example-1',
 		];
+	}
+
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return $this->contentHandlerFactory;
 	}
 }

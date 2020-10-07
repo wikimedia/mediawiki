@@ -24,9 +24,9 @@ namespace Wikimedia\Rdbms;
 
 use mysqli;
 use mysqli_result;
-use IP;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\IPUtils;
 
 /**
  * Database abstraction object for PHP extension mysqli.
@@ -72,7 +72,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		// We need to parse the port or socket path out of $realServer
 		$port = null;
 		$socket = null;
-		$hostAndPort = IP::splitHostAndPort( $realServer );
+		$hostAndPort = IPUtils::splitHostAndPort( $realServer );
 		if ( $hostAndPort ) {
 			$realServer = $hostAndPort[0];
 			if ( $hostAndPort[1] ) {
@@ -142,7 +142,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return int
 	 */
-	function insertId() {
+	public function insertId() {
 		$conn = $this->getBindingHandle();
 
 		return (int)$conn->insert_id;
@@ -151,7 +151,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return int
 	 */
-	function lastErrno() {
+	public function lastErrno() {
 		if ( $this->conn instanceof mysqli ) {
 			return $this->conn->errno;
 		} else {

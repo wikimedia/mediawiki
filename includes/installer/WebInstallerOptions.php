@@ -16,8 +16,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
+
+use Wikimedia\IPUtils;
 
 class WebInstallerOptions extends WebInstallerPage {
 
@@ -263,7 +265,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			'</div>' .
 			$this->parent->getTextBox( [
-				'var' => 'wgLogo',
+				'var' => '_Logo',
 				'label' => 'config-logo',
 				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
@@ -329,6 +331,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	/**
 	 * @param string $name
 	 * @param array $screenshots
+	 * @return string HTML
 	 */
 	private function makeScreenshotsLink( $name, $screenshots ) {
 		global $wgLang;
@@ -471,7 +474,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 */
 	public function submit() {
 		$this->parent->setVarsFromRequest( [ '_RightsProfile', '_LicenseCode',
-			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
+			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', '_Logo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons', 'wgDefaultSkin' ] );
@@ -481,6 +484,13 @@ class WebInstallerOptions extends WebInstallerPage {
 		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles ) ) {
 			reset( $this->parent->rightsProfiles );
 			$this->setVar( '_RightsProfile', key( $this->parent->rightsProfiles ) );
+		}
+
+		// If this is empty, either the default got lost internally
+		// or the user blanked it
+		if ( strval( $this->getVar( '_Logo' ) ) === '' ) {
+			$this->parent->showError( 'config-install-logo-blank' );
+			$retVal = false;
 		}
 
 		$code = $this->getVar( '_LicenseCode' );
@@ -546,7 +556,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			foreach ( $memcServers as $server ) {
 				$memcParts = explode( ":", $server, 2 );
 				if ( !isset( $memcParts[0] )
-					|| ( !IP::isValid( $memcParts[0] )
+					|| ( !IPUtils::isValid( $memcParts[0] )
 						&& ( gethostbyname( $memcParts[0] ) == $memcParts[0] ) )
 				) {
 					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );

@@ -20,6 +20,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * The old style of MediaWiki password hashing, with a salt. It involves
  * running MD5 on the password, and then running MD5 on the salt concatenated
@@ -28,15 +30,15 @@
  * @since 1.24
  */
 class MWSaltedPassword extends ParameterizedPassword {
-	protected function getDefaultParams() {
+	protected function getDefaultParams() : array {
 		return [];
 	}
 
-	protected function getDelimiter() {
+	protected function getDelimiter() : string {
 		return ':';
 	}
 
-	public function crypt( $plaintext ) {
+	public function crypt( string $plaintext ) : void {
 		if ( count( $this->args ) == 0 ) {
 			$this->args[] = MWCryptRand::generateHex( 8 );
 		}

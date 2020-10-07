@@ -58,13 +58,13 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $repo ) {
 			$this->repo = $repo;
 		} else {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		if ( $stash ) {
 			$this->stash = $stash;
 		} else {
-			wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() . "\n" );
+			wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() );
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
 	}
@@ -148,7 +148,7 @@ class UploadFromChunks extends UploadFromFile {
 	public function concatenateChunks() {
 		$chunkIndex = $this->getChunkIndex();
 		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" .
-			$this->getOffset() . ' inx:' . $chunkIndex . "\n" );
+			$this->getOffset() . ' inx:' . $chunkIndex );
 
 		// Concatenate all the chunks to mVirtualTempPath
 		$fileList = [];
@@ -218,7 +218,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param int $index
 	 * @return string
 	 */
-	function getVirtualChunkLocation( $index ) {
+	private function getVirtualChunkLocation( $index ) {
 		return $this->repo->getVirtualUrl( 'temp' ) .
 			'/' .
 			$this->repo->getHashPath(
@@ -275,7 +275,7 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	private function updateChunkStatus() {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
-			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
+			$this->getOffset() . ' inx:' . $this->getChunkIndex() );
 
 		$dbw = $this->repo->getMasterDB();
 		$dbw->update(

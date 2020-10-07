@@ -37,7 +37,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * Example value: `'user'`
 	 *
-	 * @var string $mType
+	 * @var string
 	 */
 	protected $mType;
 
@@ -46,11 +46,11 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * Example value: `'42'`
 	 *
-	 * @var string $mValue
+	 * @var string
 	 */
 	protected $mValue;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;
@@ -60,7 +60,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 * Set $mType and $mValue based on parsed value of $subpage.
 	 * @param string $subpage
 	 */
-	function setParameter( $subpage ) {
+	public function setParameter( $subpage ) {
 		// parse $subpage to pull out the parts
 		$parts = explode( '/', $subpage, 2 );
 		$this->mType = $parts[0];
@@ -72,7 +72,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status A good status contains the url to redirect to
 	 */
-	function dispatchUser() {
+	public function dispatchUser() {
 		if ( !ctype_digit( $this->mValue ) ) {
 			// Message: redirect-not-numeric
 			return Status::newFatal( $this->getMessagePrefix() . '-not-numeric' );
@@ -100,7 +100,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status A good status contains the url to redirect to
 	 */
-	function dispatchFile() {
+	public function dispatchFile() {
 		try {
 			$title = Title::newFromTextThrow( $this->mValue, NS_FILE );
 			if ( $title && !$title->inNamespace( NS_FILE ) ) {
@@ -143,7 +143,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status A good status contains the url to redirect to
 	 */
-	function dispatchRevision() {
+	public function dispatchRevision() {
 		$oldid = $this->mValue;
 		if ( !ctype_digit( $oldid ) ) {
 			// Message: redirect-not-numeric
@@ -165,7 +165,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status A good status contains the url to redirect to
 	 */
-	function dispatchPage() {
+	public function dispatchPage() {
 		$curid = $this->mValue;
 		if ( !ctype_digit( $curid ) ) {
 			// Message: redirect-not-numeric
@@ -189,7 +189,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 * @since 1.27
 	 * @return Status A good status contains the url to redirect to
 	 */
-	function dispatchLog() {
+	public function dispatchLog() {
 		$logid = $this->mValue;
 		if ( !ctype_digit( $logid ) ) {
 			// Message: redirect-not-numeric
@@ -212,7 +212,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status|bool True if a redirect was successfully handled.
 	 */
-	function dispatch() {
+	private function dispatch() {
 		// the various namespaces supported by Special:Redirect
 		switch ( $this->mType ) {
 			case 'user':
@@ -253,7 +253,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 			return true;
 		}
-		if ( !is_null( $this->mValue ) ) {
+		if ( $this->mValue !== null ) {
 			$this->getOutput()->setStatusCode( 404 );
 
 			return $status;

@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -46,23 +45,18 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	/**
 	 * @param array|null $info
 	 */
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		parent::__construct( $info );
+		'@phan-var array $info';
 		$this->wiki = $info['wiki'];
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
-	/**
-	 * @return IDatabase
-	 */
-	function getMasterDB() {
+	public function getMasterDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_MASTER, [], $this->wiki );
 	}
 
-	/**
-	 * @return IDatabase
-	 */
-	function getReplicaDB() {
+	public function getReplicaDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, [], $this->wiki );
 	}
 
@@ -84,22 +78,13 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		return $lbFactory->getMainLB( $this->wiki );
 	}
 
-	function hasSharedCache() {
+	private function hasSharedCache() {
 		return $this->hasSharedCache;
 	}
 
-	/**
-	 * Get a key on the primary cache for this repository.
-	 * Returns false if the repository's cache is not accessible at this site.
-	 * The parameters are the parts of the key, as for wfMemcKey().
-	 * @return bool|string
-	 */
-	function getSharedCacheKey( /*...*/ ) {
+	public function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
-			$args = func_get_args();
-			array_unshift( $args, $this->wiki );
-
-			return implode( ':', $args );
+			return $this->wanCache->makeGlobalKey( $this->wiki, ...$args );
 		} else {
 			return false;
 		}

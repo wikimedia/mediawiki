@@ -1,15 +1,16 @@
 <?php
 
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ExtensionRegistry
  */
-class ExtensionRegistryTest extends MediaWikiTestCase {
+class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 
 	private $dataDir;
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->dataDir = __DIR__ . '/../../data/registration';
 	}
@@ -17,10 +18,8 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 	public function testQueue_invalid() {
 		$registry = new ExtensionRegistry();
 		$path = __DIR__ . '/doesnotexist.json';
-		$this->setExpectedException(
-			Exception::class,
-			"file $path"
-		);
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "file $path" );
 		$registry->queue( $path );
 	}
 
@@ -33,23 +32,22 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			$registry->getQueue()
 		);
 		$registry->clearQueue();
-		$this->assertEmpty( $registry->getQueue() );
+		$this->assertSame( [], $registry->getQueue() );
 	}
 
 	public function testLoadFromQueue_empty() {
 		$registry = new ExtensionRegistry();
 		$registry->loadFromQueue();
-		$this->assertEmpty( $registry->getAllThings() );
+		$this->assertSame( [], $registry->getAllThings() );
 	}
 
 	public function testLoadFromQueue_late() {
 		$registry = new ExtensionRegistry();
 		$registry->finish();
 		$registry->queue( "{$this->dataDir}/good.json" );
-		$this->setExpectedException(
-			MWException::class,
-			"The following paths tried to load late: {$this->dataDir}/good.json"
-		);
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
+			"The following paths tried to load late: {$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
 	}
 
@@ -72,21 +70,17 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$this->assertFalse( $registry->isLoaded( 'FooBar', '^1.3.0' ) );
 	}
 
-	/**
-	 * @expectedException LogicException
-	 */
 	public function testLoadFromQueueWithConstraintWithoutVersion() {
 		$registry = new ExtensionRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
+		$this->expectException( LogicException::class );
 		$registry->isLoaded( 'FooBar', '>= 1.2.0' );
 	}
 
-	/**
-	 * @expectedException PHPUnit_Framework_Error
-	 */
 	public function testReadFromQueue_nonexistent() {
 		$registry = new ExtensionRegistry();
+		$this->expectException( PHPUnit\Framework\Error\Error::class );
 		$registry->readFromQueue( [
 			__DIR__ . '/doesnotexist.json' => 1
 		] );
@@ -101,6 +95,17 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			class_exists( 'Test\\MediaWiki\\AutoLoader\\TestFooBar' ),
 			"Registry initializes Autoloader from AutoloadNamespaces"
 		);
+	}
+
+	public function testExportExtractedDataNamespaceAlreadyDefined() {
+		define( 'FOO_VALUE', 123 ); // Emulates overriding a namespace set in LocalSettings.php
+		$registry = new ExtensionRegistry();
+		$info = [ 'defines' => [ 'FOO_VALUE' => 456 ], 'globals' => [] ];
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage(
+			"FOO_VALUE cannot be re-defined with 456 it has already been set with 123"
+		);
+		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
 	}
 
 	/**
@@ -128,10 +133,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			'autoloaderPaths' => []
 		];
 		$registry = new ExtensionRegistry();
-		$class = new ReflectionClass( ExtensionRegistry::class );
-		$method = $class->getMethod( 'exportExtractedData' );
-		$method->setAccessible( true );
-		$method->invokeArgs( $registry, [ $info ] );
+		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
 		foreach ( $expected as $name => $value ) {
 			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
 			$this->assertEquals( $value, $GLOBALS[$name], $desc );
@@ -416,13 +418,43 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
 	}
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage The attribute 'foo' has already been overridden
-	 */
 	public function testSetAttributeForTestDuplicate() {
 		$registry = new ExtensionRegistry();
 		$reset1 = $registry->setAttributeForTest( 'foo', [ 'val1' ] );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "The attribute 'foo' has already been overridden" );
 		$reset2 = $registry->setAttributeForTest( 'foo', [ 'val2' ] );
+	}
+
+	public function testGetLazyLoadedAttribute() {
+		$registry = TestingAccessWrapper::newFromObject(
+			new ExtensionRegistry()
+		);
+		// Verify the registry is absolutely empty
+		$this->assertSame( [], $registry->getLazyLoadedAttribute( 'FooBarBaz' ) );
+		// Indicate what paths should be checked for the lazy attributes
+		$registry->loaded = [
+			'FooBar' => [
+				'path' => "{$this->dataDir}/attribute.json",
+			]
+		];
+		// Set in attribute.json
+		$this->assertEquals(
+			[ 'buzz' => true ],
+			$registry->getLazyLoadedAttribute( 'FooBarBaz' )
+		);
+		// Still return an array if nothing was set
+		$this->assertSame(
+			[],
+			$registry->getLazyLoadedAttribute( 'NotSetAtAll' )
+		);
+
+		// Test test overrides
+		$reset = $registry->setAttributeForTest( 'FooBarBaz',
+			[ 'lightyear' => true ] );
+		$this->assertEquals(
+			[ 'lightyear' => true ],
+			$registry->getLazyLoadedAttribute( 'FooBarBaz' )
+		);
 	}
 }

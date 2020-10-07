@@ -27,7 +27,7 @@
  * @ingroup Media
  */
 class PNGHandler extends BitmapHandler {
-	const BROKEN_FILE = '0';
+	private const BROKEN_FILE = '0';
 
 	/**
 	 * @param File|FSFile $image
@@ -39,7 +39,7 @@ class PNGHandler extends BitmapHandler {
 			$metadata = BitmapMetadataHandler::PNG( $filename );
 		} catch ( Exception $e ) {
 			// Broken file?
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			return self::BROKEN_FILE;
 		}
@@ -86,7 +86,7 @@ class PNGHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function isAnimatedImage( $image ) {
+	public function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -103,11 +103,11 @@ class PNGHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool False
 	 */
-	function canAnimateThumbnail( $image ) {
+	public function canAnimateThumbnail( $image ) {
 		return false;
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-png';
 	}
 
@@ -122,7 +122,7 @@ class PNGHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . " invalid png metadata\n" );
+			wfDebug( __METHOD__ . " invalid png metadata" );
 
 			return self::METADATA_BAD;
 		}
@@ -130,7 +130,7 @@ class PNGHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
 			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION
 		) {
-			wfDebug( __METHOD__ . " old but compatible png metadata\n" );
+			wfDebug( __METHOD__ . " old but compatible png metadata" );
 
 			return self::METADATA_COMPATIBLE;
 		}

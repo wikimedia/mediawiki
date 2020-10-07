@@ -21,10 +21,13 @@
 			$element.data( 'origtext', $element.textSelection( 'getContents' ) );
 		} );
 
+		// This registers an event with the name "beforeunload.editwarning", which allows others to
+		// turn the confirmation off with `$( window ).off( 'beforeunload.editwarning' );`.
 		allowCloseWindow = mw.confirmCloseWindow( {
 			test: function () {
-				// We use .textSelection, because editors might not have updated the form yet.
+				// When the action is submit we're solving a conflict. Everything is a pending change there.
 				return mw.config.get( 'wgAction' ) === 'submit' ||
+					// We use .textSelection, because editors might not have updated the form yet.
 					$textBox.data( 'origtext' ) !== $textBox.textSelection( 'getContents' ) ||
 					$summary.data( 'origtext' ) !== $summary.textSelection( 'getContents' );
 			},

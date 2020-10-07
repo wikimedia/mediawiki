@@ -10,7 +10,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
-use Revision;
 use StatusValue;
 use TextContent;
 use Title;
@@ -28,8 +27,6 @@ use WikitextContent;
  * @group medium
  */
 class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
-
-	use McrSchemaOverride;
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		$numberOfSlots = count( $rev->getSlotRoles() );
@@ -194,16 +191,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	}
 
 	/**
-	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
-	 * revision.
-	 *
-	 * @return array
-	 */
-	protected function getSlotRevisionConditions( $revId ) {
-		return [ 'slot_revision_id' => $revId ];
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
 	 * @throws \MWException
 	 */
@@ -212,14 +199,14 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
 		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
-		/** @var Revision $rev1 */
-		$rev1 = $editStatus->getValue()['revision'];
+		/** @var RevisionRecord $revRecord1 */
+		$revRecord1 = $editStatus->getValue()['revision-record'];
 
-		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
 		$blobStatus = StatusValue::newGood( [] );
-		$blobStatus->warning( 'internalerror', 'oops!' );
+		$blobStatus->warning( 'internalerror_info', 'oops!' );
 
-		$mockBlobStore = $this->getMock( BlobStore::class );
+		$mockBlobStore = $this->createMock( BlobStore::class );
 		$mockBlobStore->method( 'getBlobBatch' )
 			->willReturn( $blobStatus );
 
@@ -229,29 +216,29 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$wrappedRevStore = TestingAccessWrapper::newFromObject( $revStore );
 		$wrappedRevStore->blobStore = $mockBlobStore;
 
-		$result = $revStore->getContentBlobsForBatch( [ $rev1->getId() ] );
+		$result = $revStore->getContentBlobsForBatch( [ $revRecord1->getId() ] );
 		$this->assertTrue( $result->isOK() );
 		$this->assertFalse( $result->isGood() );
 		$this->assertNotEmpty( $result->getErrors() );
 
 		$records = $result->getValue();
-		$this->assertArrayHasKey( $rev1->getId(), $records );
+		$this->assertArrayHasKey( $revRecord1->getId(), $records );
 
-		$mainRow = $records[$rev1->getId()][SlotRecord::MAIN];
+		$mainRow = $records[$revRecord1->getId()][SlotRecord::MAIN];
 		$this->assertNull( $mainRow->blob_data );
 		$this->assertSame( [
 			[
 				'type' => 'warning',
-				'message' => 'internalerror',
+				'message' => 'internalerror_info',
 				'params' => [
 					"oops!"
 				]
 			],
 			[
 				'type' => 'warning',
-				'message' => 'internalerror',
+				'message' => 'internalerror_info',
 				'params' => [
-					"Couldn't find blob data for rev " . $rev1->getId()
+					"Couldn't find blob data for rev " . $revRecord1->getId()
 				]
 			]
 		], $result->getErrors() );
@@ -265,10 +252,10 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
 		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
-		/** @var Revision $rev1 */
-		$rev1 = $editStatus->getValue()['revision'];
+		/** @var RevisionRecord $revRecord1 */
+		$revRecord1 = $editStatus->getValue()['revision-record'];
 
-		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
 		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -290,12 +277,12 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$wrappedRevStore->blobStore = $mockBlobStore;
 
 		$result = $revStore->getContentBlobsForBatch(
-			[ $rev1->getId() ],
+			[ $revRecord1->getId() ],
 			[ SlotRecord::MAIN ]
 		);
 		$this->assertTrue( $result->isGood() );
 		$this->assertSame( 'Content_From_Mock',
-			$result->getValue()[$rev1->getId()][SlotRecord::MAIN]->blob_data );
+			$result->getValue()[$revRecord1->getId()][SlotRecord::MAIN]->blob_data );
 	}
 
 	/**
@@ -305,19 +292,20 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	public function testNewRevisionsFromBatch_error() {
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
-		/** @var Revision $rev1 */
-		$rev1 = $page->doEditContent(
+		/** @var RevisionRecord $revRecord1 */
+		$revRecord1 = $page->doEditContent(
 			new WikitextContent( $text . '1' ),
 			__METHOD__ . 'b',
 			0,
 			false,
 			$this->getTestUser()->getUser()
-		)->value['revision'];
-		$invalidRow = $this->revisionToRow( $rev1 );
+		)->value['revision-record'];
+
+		$invalidRow = $this->revisionRecordToRow( $revRecord1 );
 		$invalidRow->rev_id = 100500;
 		$result = MediaWikiServices::getInstance()->getRevisionStore()
 			->newRevisionsFromBatch(
-				[ $this->revisionToRow( $rev1 ), $invalidRow ],
+				[ $this->revisionRecordToRow( $revRecord1 ), $invalidRow ],
 				[
 					'slots' => [ SlotRecord::MAIN ],
 					'content' => true
@@ -326,15 +314,15 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertFalse( $result->isGood() );
 		$this->assertNotEmpty( $result->getErrors() );
 		$records = $result->getValue();
-		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
+		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertSame( $text . '1',
-			$records[$rev1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+			$records[$revRecord1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
 		$this->assertEquals( $page->getTitle()->getDBkey(),
-			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
+			$records[$revRecord1->getId()]->getPageAsLinkTarget()->getDBkey() );
 		$this->assertNull( $records[$invalidRow->rev_id] );
 		$this->assertSame( [ [
 			'type' => 'warning',
-			'message' => 'internalerror',
+			'message' => 'internalerror_info',
 			'params' => [
 				"Couldn't find slots for rev 100500"
 			]
@@ -349,10 +337,10 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
 		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
-		/** @var Revision $rev1 */
-		$rev1 = $editStatus->getValue()['revision'];
+		/** @var RevisionRecord $revRecord1 */
+		$revRecord1 = $editStatus->getValue()['revision-record'];
 
-		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
 		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -374,7 +362,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$wrappedRevStore->blobStore = $mockBlobStore;
 
 		$result = $revStore->newRevisionsFromBatch(
-			[ $this->revisionToRow( $rev1 ) ],
+			[ $this->revisionRecordToRow( $revRecord1 ) ],
 			[
 				'slots' => [ SlotRecord::MAIN ],
 				'content' => true
@@ -382,7 +370,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		);
 		$this->assertTrue( $result->isGood() );
 		$this->assertSame( 'Content_From_Mock',
-			ContentHandler::getContentText( $result->getValue()[$rev1->getId()]
+			ContentHandler::getContentText( $result->getValue()[$revRecord1->getId()]
 				->getContent( SlotRecord::MAIN ) ) );
 	}
 }

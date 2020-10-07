@@ -8,7 +8,7 @@
  */
 class SpecialBlankPageTest extends SpecialPageTestBase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setUserLang( 'qqx' );
 	}
@@ -24,7 +24,7 @@ class SpecialBlankPageTest extends SpecialPageTestBase {
 
 	public function testHasWikiMsg() {
 		list( $html, ) = $this->executeSpecialPage();
-		$this->assertContains( '(intentionallyblankpage)', $html );
+		$this->assertStringContainsString( '(intentionallyblankpage)', $html );
 	}
 
 }

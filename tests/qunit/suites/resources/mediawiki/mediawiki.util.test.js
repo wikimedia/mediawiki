@@ -288,121 +288,131 @@
 		assert.strictEqual( util.getParamValue( 'TEST', url ), 'a b+c d', 'T32441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
-	QUnit.test( '$content', function ( assert ) {
-		assert.ok( util.$content instanceof $, 'mw.util.$content instance of jQuery' );
-		assert.strictEqual( util.$content.length, 1, 'mw.util.$content must have length of 1' );
+	function getParents( link ) {
+		return $( link ).parents( '#qunit-fixture *' ).toArray()
+			.map( function ( el ) {
+				return el.tagName + ( el.className && '.' + el.className ) + ( el.id && '#' + el.id );
+			} );
+	}
+
+	QUnit.test( 'addPortletLink (Vector list)', function ( assert ) {
+		var link;
+
+		$( '#qunit-fixture' ).html(
+			'<div class="portlet" id="p-toolbox">' +
+				'<h3>Tools</h3>' +
+				'<div class="body"><ul></ul></div>' +
+				'</div>'
+		);
+		link = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+			'Foo', 't-foo', 'Tooltip', 'l'
+		);
+
+		assert.domEqual(
+			link,
+			{
+				tagName: 'LI',
+				attributes: { id: 't-foo' },
+				contents: [
+					{
+						tagName: 'A',
+						attributes: { href: 'https://foo.test/', title: 'Tooltip [test-l]', accesskey: 'l' },
+						contents: [ 'Foo' ]
+					}
+				]
+			},
+			'Link element'
+		);
+		assert.propEqual(
+			[ 'UL', 'DIV.body', 'DIV.portlet#p-toolbox' ],
+			getParents( link ),
+			'List structure'
+		);
 	} );
 
-	/**
-	 * Portlet names are prefixed with 'p-test' to avoid conflict with core
-	 * when running the test suite under a wiki page.
-	 * Previously, test elements where invisible to the selector since only
-	 * one element can have a given id.
-	 */
-	QUnit.test( 'addPortletLink', function ( assert ) {
-		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
-			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
+	QUnit.test( 'addPortletLink (Minerva list)', function ( assert ) {
+		var link;
 
-		$( '#qunit-fixture' ).append(
-			'<div class="portlet" id="p-test-tb">' +
-				'<h3>Toolbox</h3>' +
-				'<ul class="body"></ul>' +
-			'</div>' +
-			'<div class="portlet" id="p-test-custom">' +
-				'<h3>Views</h3>' +
-				'<ul class="body">' +
-					'<li id="c-foo"><a href="#">Foo</a></li>' +
-					'<li id="c-barmenu">' +
-						'<ul>' +
-							'<li id="c-bar-baz"><a href="#">Baz</a></a>' +
-						'</ul>' +
-					'</li>' +
-				'</ul>' +
-			'</div>' +
-			'<div id="p-test-views" class="vectorTabs">' +
-				'<h3>Views</h3>' +
-				'<ul></ul>' +
-			'</div>'
-		);
+		$( '#qunit-fixture' ).html( '<ul id="p-list"></ul>' );
+		link = util.addPortletLink( 'p-list', '#', 'Foo', 't-foo' );
 
-		tbRL = util.addPortletLink( 'p-test-tb', 'https://example.org/next',
-			'Next', 't-rl', 'More info about Example Next ', 'l'
-		);
-		assert.strictEqual( tbRL.nodeType, 1, 'returns a DOM Node' );
-		assert.strictEqual( tbRL.nodeName, 'LI', 'returns a list item element' );
-
-		tbMW = util.addPortletLink( 'p-test-tb', '//example.org/',
-			'Example.org', 't-xmp', 'Go to Example', 'x', tbRL );
-		$tbMW = $( tbMW );
-		assert.propEqual(
-			$tbMW.getAttrs(),
+		assert.domEqual(
+			link,
 			{
-				id: 't-xmp'
+				tagName: 'LI',
+				attributes: { id: 't-foo' },
+				contents: [
+					{
+						tagName: 'A',
+						attributes: { href: '#' },
+						contents: [ 'Foo' ]
+					}
+				]
 			},
-			'List item attributes'
+			'Link element'
 		);
 		assert.propEqual(
-			$tbMW.find( 'a' ).getAttrs(),
-			{
-				href: '//example.org/',
-				title: 'Go to Example [test-x]',
-				accesskey: 'x'
-			},
-			'Anchor link attributes'
+			getParents( link ),
+			[ 'UL#p-list' ],
+			'List structure'
 		);
-		assert.strictEqual(
-			$tbMW.closest( '.portlet' ).attr( 'id' ),
-			'p-test-tb',
-			'Parent portlet ID'
-		);
-		assert.strictEqual(
-			$tbMW.next()[ 0 ],
-			tbRL,
-			'Next node (set as Node object)'
-		);
-		assert.strictEqual(
-			$tbMW.find( 'span' ).length,
-			0,
-			'No <span> wrap for porlets without vectorTabs class'
+	} );
+
+	QUnit.test( 'addPortletLink (nextNode option)', function ( assert ) {
+		var linkFoo, link;
+
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+		linkFoo = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+			'Foo', 't-foo', 'Tooltip', 'l'
 		);
 
-		cuQuux = util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
-		$cuQuux = $( cuQuux );
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-node', null, null, linkFoo );
+		assert.strictEqual( link.nextSibling, linkFoo, 'HTMLElement' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-selector', null, null, '#t-foo' );
+		assert.strictEqual( link.nextSibling, linkFoo, 'CSS selector' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-jqueryobj', null, null, $( '#t-foo' ) );
+		assert.strictEqual( link.nextSibling, linkFoo, 'jQuery object' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-selector-unknown', null, null, '#t-nonexistent' );
+		assert.strictEqual( link.nextSibling, null, 'non-matching CSS selector' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-jqueryobj-empty', null, null, $( '#t-nonexistent' ) );
+		assert.strictEqual( link.nextSibling, null, 'empty jQuery object' );
+	} );
+
+	QUnit.test( 'addPortletLink (accesskey option)', function ( assert ) {
+		var link;
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+
+		link = util.addPortletLink( 'p-toolbox', '#', 'Label', null, 'Tooltip [shift-x]', 'z' );
 		assert.strictEqual(
-			$cuQuux.find( 'a' ).attr( 'title' ),
-			'Example [test-q]',
-			'Title has new accesskey and label'
+			link.querySelector( 'a' ).title,
+			'Tooltip [test-z]',
+			'Change a pre-existing accesskey in a tooltip'
 		);
+	} );
+
+	QUnit.test( 'addPortletLink (nested list)', function ( assert ) {
+		// Regresion test for T37082
+		$( '#qunit-fixture' ).html(
+			'<ul id="p-toolbox">' +
+				'<li id="x-foo"><a href="#">Foo</a></li>' +
+				'<li id="x-bar"><ul><li id="quux"><a href="#">Quux</a></li></ul></li>' +
+				'</ul>'
+		);
+		util.addPortletLink( 'p-toolbox', 'https://example.test/', 'Example' );
+
 		assert.strictEqual(
-			$( '#p-test-custom #c-barmenu ul li' ).length,
+			$( 'a[href="https://example.test/"]' ).length,
 			1,
-			'No items added to unrelated <ul> elsewhere in the portlet (T37082)'
-		);
-
-		tbRLDM = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
-		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Next node (set as CSS selector)' );
-
-		caFoo = util.addPortletLink( 'p-test-views', '#', 'Foo' );
-		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'Added <span> element for porlet with vectorTabs class' );
-
-		addedAfter = util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
-		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Next node (set as jQuery object)' );
-
-		tbRLDMnonexistentid = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
-		assert.strictEqual(
-			tbRLDMnonexistentid,
-			$( '#p-test-tb li' ).last()[ 0 ],
-			'Next node as non-matching CSS selector falls back to appending'
-		);
-
-		tbRLDMemptyjquery = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
-		assert.strictEqual(
-			tbRLDMemptyjquery,
-			$( '#p-test-tb li' ).last()[ 0 ],
-			'Next node as empty jQuery object falls back to appending'
+			'No duplicates created (T37082)'
 		);
 	} );
 
@@ -438,6 +448,179 @@
 
 		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
+		} );
+	} );
+
+	QUnit.module( 'parseImageUrl', function ( hooks ) {
+		hooks.beforeEach( function () {
+			this.oldConfig = mw.util.setOptionsForTest( {} );
+		} );
+		hooks.afterEach( function () {
+			mw.util.setOptionsForTest( this.oldConfig );
+		} );
+
+		[
+			{
+				url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
+				typeOfUrl: 'Hashed thumb with shortened path',
+				name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+				width: 939,
+				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-thumbnail.jpg'
+			},
+
+			{
+				url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
+				typeOfUrl: 'Hashed thumb with sha1-ed path',
+				name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+				width: 939,
+				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/1000px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg'
+			},
+
+			{
+				url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
+				typeOfUrl: 'Normal hashed directory thumbnail',
+				name: 'Anticlockwise heliotrope\'s.jpg',
+				width: 99,
+				resizedUrl: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/1000px-Anticlockwise_heliotrope%27s.jpg'
+			},
+
+			{
+				url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+				typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+				name: 'Wikipedia-logo-v2.svg',
+				width: 150,
+				resizedUrl: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
+			},
+
+			{
+				url: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-100px-Little_Bobby_Tables-100px-file.jpg',
+				typeOfUrl: 'Width-like filename component',
+				name: 'Little Bobby Tables-100px-file.jpg',
+				width: 100,
+				resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-1000px-Little_Bobby_Tables-100px-file.jpg'
+			},
+
+			{
+				url: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-100px-Little_Bobby%22%3B_Tables-100px-file.jpg',
+				typeOfUrl: 'Width-like filename component in non-ASCII filename',
+				name: 'Little Bobby"; Tables-100px-file.jpg',
+				width: 100,
+				resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
+			},
+
+			{
+				url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+				typeOfUrl: 'Commons thumbnail',
+				name: 'Wikipedia-logo-v2.svg',
+				width: 150,
+				resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
+			},
+
+			{
+				url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+				typeOfUrl: 'Full image',
+				name: 'Anticlockwise heliotrope\'s.jpg',
+				width: null,
+				resizedUrl: null
+			},
+
+			{
+				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+				typeOfUrl: 'thumb.php-based thumbnail',
+				name: 'Stuffless Figaro\'s.jpg',
+				width: 180,
+				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+			},
+
+			{
+				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180px',
+				typeOfUrl: 'thumb.php-based thumbnail with px width',
+				name: 'Stuffless Figaro\'s.jpg',
+				width: 180,
+				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+			},
+
+			{
+				url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&w=180',
+				typeOfUrl: 'thumb.php-based BC thumbnail',
+				name: 'Stuffless Figaro\'s.jpg',
+				width: 180,
+				resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
+			},
+
+			{
+				url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+				typeOfUrl: 'Commons unhashed thumbnail',
+				name: 'Wikipedia-logo-v2.svg',
+				width: 150,
+				resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
+			},
+
+			{
+				url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+				typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
+				name: 'Wikipedia-logo-v2.svg',
+				width: 150,
+				resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
+			},
+
+			{
+				url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+				typeOfUrl: 'Unhashed local file',
+				name: 'Anticlockwise heliotrope\'s.jpg',
+				width: null,
+				resizedUrl: null
+			},
+
+			{
+				url: '',
+				typeOfUrl: 'Empty string'
+			},
+
+			{
+				url: 'foo',
+				typeOfUrl: 'String with only alphabet characters'
+			},
+
+			{
+				url: 'foobar.foobar',
+				typeOfUrl: 'Not a file path'
+			},
+
+			{
+				url: '/a/a0/blah blah blah',
+				typeOfUrl: 'Space characters'
+			}
+		].forEach( function ( thisCase ) {
+			QUnit.test( 'parseImageUrl: ' + thisCase.typeOfUrl, function ( assert ) {
+				var data;
+
+				mw.util.setOptionsForTest( { GenerateThumbnailOnParse: false } );
+				data = mw.util.parseImageUrl( thisCase.url );
+				if ( thisCase.name !== undefined ) {
+					assert.ok( data, 'Parses successfully' );
+					assert.strictEqual( data.name, thisCase.name, 'File name is correct' );
+					assert.strictEqual( data.width, thisCase.width, 'Width is correct' );
+					if ( thisCase.resizedUrl ) {
+						assert.ok( data.resizeUrl, 'resizeUrl is set' );
+						assert.strictEqual( data.resizeUrl( 1000 ), thisCase.resizedUrl, 'Resized URL is correct' );
+					} else {
+						assert.notOk( data.resizeUrl, 'resizeUrl is not set' );
+					}
+				} else {
+					assert.strictEqual( data, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
+				}
+			} );
+		} );
+
+		QUnit.test( 'parseImageUrl: Without dynamic thumbnail generation', function ( assert ) {
+			var resizeUrl;
+
+			mw.util.setOptionsForTest( { GenerateThumbnailOnParse: true } );
+			this.sandbox.stub( mw.config.values, 'wgScript', '/w' );
+			resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
+			assert.ok( resizeUrl, 'resizeUrl is set' );
+			assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 		} );
 	} );
 
@@ -496,5 +679,50 @@
 			);
 			done();
 		} );
+	} );
+
+	QUnit.test( 'init (.mw-body-primary)', function ( assert ) {
+		var node = $( '<div class="mw-body-primary mw-body">primary</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			'<div id="mw-content-text"></div>',
+			'<div class="mw-body"></div>',
+			node
+		);
+
+		util.init();
+		assert.strictEqual( mw.util.$content[ 0 ], node );
+	} );
+
+	QUnit.test( 'init (first of multiple .mw-body)', function ( assert ) {
+		var node = $( '<div class="mw-body">first</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			'<div id="mw-content-text"></div>',
+			node,
+			'<div class="mw-body">second</div>'
+		);
+
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
+	} );
+
+	QUnit.test( 'init (#mw-content-text fallback)', function ( assert ) {
+		var node = $( '<div id="mw-content-text">fallback</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			node
+		);
+
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
+	} );
+
+	QUnit.test( 'init (body fallback)', function ( assert ) {
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], document.body, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
 }() );

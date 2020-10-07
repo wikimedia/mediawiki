@@ -23,10 +23,11 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -39,7 +40,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Maximum length of a tag description in UTF-8 characters.
 	 * Longer descriptions will be truncated.
 	 */
-	const TAG_DESC_CHARACTER_LIMIT = 120;
+	private const TAG_DESC_CHARACTER_LIMIT = 120;
 
 	/**
 	 * Preference name for saved queries. Subclasses that use saved queries should override this.
@@ -85,7 +86,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * all of the filters in a group can be configured to only display on the
 	 * unstuctured UI, in which case you don't need a group title.
 	 *
-	 * @var array $filterGroupDefinitions
+	 * @var array
 	 */
 	private $filterGroupDefinitions;
 
@@ -103,7 +104,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Filter groups, and their contained filters
 	 * This is an associative array (with group name as key) of ChangesListFilterGroup objects.
 	 *
-	 * @var array $filterGroups
+	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups = [];
 
@@ -111,7 +112,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction );
 
 		$nonRevisionTypes = [ RC_LOG ];
-		Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
+		$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
 
 		$this->filterGroupDefinitions = [
 			[
@@ -624,6 +625,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->considerActionsForDefaultSavedQuery( $subpage );
 
+		// Enable OOUI for the clock icon.
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$this->getOutput()->enableOOUI();
+		}
+
 		$opts = $this->getOptions();
 		try {
 			$rows = $this->getRows();
@@ -963,7 +969,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected static function getChangeTagList( ResourceLoaderContext $context ) {
 		$tags = self::getChangeTagListSummary( $context );
-		$language = Language::factory( $context->getLanguage() );
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $context->getLanguage() );
 		foreach ( $tags as &$tagInfo ) {
 			$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
 			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
@@ -1070,7 +1077,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			);
 		}
 
-		Hooks::run( 'ChangesListSpecialPageStructuredFilters', [ $this ] );
+		$this->getHookRunner()->onChangesListSpecialPageStructuredFilters( $this );
 
 		$this->registerFiltersFromDefinitions( [] );
 
@@ -1164,7 +1171,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		foreach ( $this->filterGroups as $group ) {
 			if ( $group instanceof ChangesListBooleanFilterGroup ) {
 				foreach ( $group->getFilters() as $key => $filter ) {
-					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
+					if ( $filter->displaysOnUnstructuredUi() ) {
 						$filters[ $key ] = $filter;
 					}
 				}
@@ -1287,7 +1294,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} );
 
 		foreach ( $this->filterGroups as $groupName => $group ) {
-			$groupOutput = $group->getJsData( $this );
+			$groupOutput = $group->getJsData();
 			if ( $groupOutput !== null ) {
 				$output['messageKeys'] = array_merge(
 					$output['messageKeys'],
@@ -1620,10 +1627,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function runMainQueryHook( &$tables, &$fields, &$conds,
 		&$query_options, &$join_conds, $opts
 	) {
-		return Hooks::run(
-			'ChangesListSpecialPageQuery',
-			[ $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ]
-		);
+		return $this->getHookRunner()->onChangesListSpecialPageQuery(
+			$this->getName(), $tables, $fields, $conds, $query_options, $join_conds, $opts );
 	}
 
 	/**
@@ -1762,6 +1767,29 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			[ 'class' => 'mw-changeslist-legend-plusminus' ],
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
+		// Watchlist expiry clock icon.
+		if ( $context->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$widget = new IconWidget( [
+				'icon' => 'clock',
+				'classes' => [ 'mw-changesList-watchlistExpiry' ],
+			] );
+			// Link the image to its label for assistive technologies.
+			$watchlistLabelId = 'mw-changeslist-watchlistExpiry-label';
+			$widget->getIconElement()->setAttributes( [
+				'role' => 'img',
+				'aria-labelledby' => $watchlistLabelId,
+			] );
+			$legend .= Html::rawElement(
+				'dt',
+				[ 'class' => 'mw-changeslist-legend-watchlistexpiry' ],
+				$widget
+			);
+			$legend .= Html::rawElement(
+				'dd',
+				[ 'class' => 'mw-changeslist-legend-watchlistexpiry', 'id' => $watchlistLabelId ],
+				$context->msg( 'recentchanges-legend-watchlistexpiry' )->text()
+			);
+		}
 		$legend .= Html::closeElement( 'dl' ) . "\n";
 
 		$legendHeading = $this->isStructuredFilterUiEnabled() ?

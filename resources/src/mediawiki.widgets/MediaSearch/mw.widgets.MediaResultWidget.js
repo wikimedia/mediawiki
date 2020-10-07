@@ -44,6 +44,7 @@
 
 		this.$thumb = $( '<img>' )
 			.addClass( 'mw-widget-mediaResultWidget-thumbnail' )
+			.attr( 'alt', '' )
 			.on( {
 				load: this.onThumbnailLoad.bind( this ),
 				error: this.onThumbnailError.bind( this )

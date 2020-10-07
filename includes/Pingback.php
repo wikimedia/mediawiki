@@ -20,9 +20,9 @@
  * @file
  */
 
-use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 
 /**
  * Send information about this MediaWiki instance to MediaWiki.org.
@@ -36,7 +36,7 @@ class Pingback {
 	 *   payload. The schema lives on MetaWiki, at
 	 *   <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
 	 */
-	const SCHEMA_REV = 15781718;
+	private const SCHEMA_REV = 15781718;
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -57,7 +57,7 @@ class Pingback {
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->config = $config ?: RequestContext::getMain()->getConfig();
 		$this->logger = $logger ?: LoggerFactory::getInstance( __CLASS__ );
-		$this->key = 'Pingback-' . $this->config->get( 'Version' );
+		$this->key = 'Pingback-' . MW_VERSION;
 	}
 
 	/**
@@ -93,6 +93,7 @@ class Pingback {
 	/**
 	 * Record the fact that we have sent a pingback for this MediaWiki version,
 	 * to ensure we don't submit data multiple times.
+	 * @return bool
 	 */
 	private function markSent() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -100,7 +101,7 @@ class Pingback {
 		return $dbw->upsert(
 			'updatelog',
 			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
-			[ 'ul_key' ],
+			'ul_key',
 			[ 'ul_value' => $timestamp ],
 			__METHOD__
 		);
@@ -143,7 +144,7 @@ class Pingback {
 	public function getSystemInfo() {
 		$event = [
 			'database'   => $this->config->get( 'DBtype' ),
-			'MediaWiki'  => $this->config->get( 'Version' ),
+			'MediaWiki'  => MW_VERSION,
 			'PHP'        => PHP_VERSION,
 			'OS'         => PHP_OS . ' ' . php_uname( 'r' ),
 			'arch'       => PHP_INT_SIZE === 8 ? 64 : 32,
@@ -187,7 +188,7 @@ class Pingback {
 	private function getOrCreatePingbackId() {
 		if ( !$this->id ) {
 			$id = wfGetDB( DB_REPLICA )->selectField(
-				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ] );
+				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 
 			if ( $id == false ) {
 				$id = MWCryptRand::generateHex( 32 );
@@ -201,7 +202,7 @@ class Pingback {
 
 				if ( !$dbw->affectedRows() ) {
 					$id = $dbw->selectField(
-						'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ] );
+						'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 				}
 			}
 
@@ -230,7 +231,7 @@ class Pingback {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url ) !== null;
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url, [], __METHOD__ ) !== null;
 	}
 
 	/**

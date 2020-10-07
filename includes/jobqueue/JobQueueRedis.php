@@ -76,7 +76,7 @@ class JobQueueRedis extends JobQueue {
 	/** @var string Compression method to use */
 	protected $compression;
 
-	const MAX_PUSH_SIZE = 25; // avoid tying up the server
+	private const MAX_PUSH_SIZE = 25; // avoid tying up the server
 
 	/**
 	 * @param array $params Possible keys:
@@ -243,7 +243,7 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @param array $items List of results from JobQueueRedis::getNewJobFields()
+	 * @param array[] $items List of results from JobQueueRedis::getNewJobFields()
 	 * @return int Number of jobs inserted (duplicates are ignored)
 	 * @throws RedisException
 	 */
@@ -693,7 +693,7 @@ LUA;
 			// Some jobs cannot run until a "release timestamp"
 			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
 			// Additional job metadata
-			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
+			'uuid' => $this->idGenerator->newRawUUIDv4(),
 			'sha1' => $job->ignoreDuplicates()
 				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',

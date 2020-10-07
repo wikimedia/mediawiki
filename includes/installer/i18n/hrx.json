@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Paul Beppler",
-			"Macofe"
+			"Macofe",
+			"Paul Beppler"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -34,7 +34,6 @@
 	"config-page-install": "Installiere",
 	"config-page-complete": "Fertich!",
 	"config-page-restart": "Installationsvoargang erneit oonfänge",
-	"config-page-readme": "Les mich",
 	"config-page-releasenotes": "Versionsinfos (en)",
 	"config-page-copying": "Kopie von die Lizenz",
 	"config-page-upgradedoc": "Aktualisiere",
@@ -72,7 +71,6 @@
 	"config-using-uri": "Der Server URL \"<nowiki>$1$2</nowiki>\" weard benutz.",
 	"config-uploads-not-safe": "'''Warnung:''' Das Standardverzeichnis für hochgeloodne Dateie <code>$1</code> ist für die willkürliche/arbiträer Ausführung von Skripte oonfällich.\nObwohl MediaWiki die hochgeloodne Dateie uff Sicherheitsrisike üwerprüft, weard dennoch dringend empfohl die [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security Sicherheitslücke] zu schliesse, bevor das Hochloode von Dateie aktiviert weard.",
 	"config-no-cli-uploads-check": "'''Warnung''': Das Standardverzeichnis für hochgeloodene Dateie (<code>$1</code>) weard, während der Installation üwer die Kommandozeile, net auf Sicherheitsoonfälligkeite hinsichtlich willkürlicher/arbiträr Skriptausführunge geprüft.",
-	"config-brokenlibxml": "Das System nutzt en Kombination aus PHP- und libxml2-Versione, die fehleroonfällich ist und versteckte Datefehler bei MediaWiki und annere Weboonwennunge verursache kann.\nAktualisier uff libxml2 2.7.3 orrer später, um das Problem zu löse. Installationsabbruch ([https://bugs.php.net/bug.php?id=45996 sieh hierzu die Fehlermeldung bei PHP]).",
 	"config-suhosin-max-value-length": "Suhosin ist installiert und beschränkt die Läng von der GET-Parameters auf $1 Bytes.\nDer ResouceLoader von MediaWiki weard zwoor unner den Bedingunge funktioniere, allerdings nuer mit verminnerter Leistungsfähigkeit.\nSoweit möchlich sollt der Parameter <code>suhosin.get.max_value_length</code> in der Datei <code>php.ini</code> uff 1024 oreer höcher festgeleht werre.\nGleichzeitich muss der Parameter <code>$wgResourceLoaderMaxQueryLength</code> in der Datei <code>LocalSettings.php</code> uff den selwer Weart rengestellt sin.",
 	"config-db-type": "Datebanksystem:",
 	"config-db-host": "Datebankserver:",

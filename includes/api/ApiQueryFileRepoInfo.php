@@ -21,6 +21,8 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query action to return meta information about the foreign file repos
  * configured on the wiki.
@@ -34,7 +36,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	}
 
 	protected function getInitialisedRepoGroup() {
-		$repoGroup = RepoGroup::singleton();
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		$repoGroup->initialiseRepos();
 
 		return $repoGroup;
@@ -51,12 +53,14 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$repoGroup = $this->getInitialisedRepoGroup();
 		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
 
-		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$repos, $props, $foreignTargets ) {
-			$repoProps = $repo->getInfo();
-			$repoProps['canUpload'] = in_array( $repoProps['name'], $foreignTargets );
+		$repoGroup->forEachForeignRepo(
+			function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
+				$repoProps = $repo->getInfo();
+				$repoProps['canUpload'] = in_array( $repoProps['name'], $foreignTargets );
 
-			$repos[] = array_intersect_key( $repoProps, $props );
-		} );
+				$repos[] = array_intersect_key( $repoProps, $props );
+			}
+		);
 
 		$localInfo = $repoGroup->getLocalRepo()->getInfo();
 		$localInfo['canUpload'] = $conf->get( 'EnableUploads' );
@@ -90,7 +94,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$props = [];
 		$repoGroup = $this->getInitialisedRepoGroup();
 
-		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$props ) {
+		$repoGroup->forEachForeignRepo( function ( FileRepo $repo ) use ( &$props ) {
 			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
 		} );
 

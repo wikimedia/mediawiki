@@ -1,0 +1,57 @@
+/* stylelint-disable selector-class-pattern */
+.messagebox,
+.errorbox,
+.warningbox,
+.successbox {
+	color: #000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 16px;
+	border: 1px solid;
+	padding: 12px 24px;
+	word-wrap: break-word;
+	/* Standard property is `overflow-wrap` */
+	overflow-wrap: break-word;
+	overflow: hidden;
+}
+
+/* Ensure box inner spacing is not all over the place no matter what element is only child. */
+.messagebox :only-child,
+.errorbox :only-child,
+.warningbox :only-child,
+.successbox :only-child {
+	margin: 0;
+}
+
+.messagebox h2,
+.errorbox h2,
+.warningbox h2,
+.successbox h2 {
+	color: inherit;
+	display: inline;
+	margin: 0 0.5em 0 0;
+	border: 0;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.messagebox {
+	background-color: #eaecf0;
+	border-color: #a2a9b1;
+}
+
+.errorbox {
+	background-color: #fee7e6;
+	border-color: #d33;
+}
+
+.warningbox {
+	background-color: #fef6e7;
+	border-color: #fc3;
+}
+
+.successbox {
+	background-color: #d5fdf4;
+	border-color: #14866d;
+}

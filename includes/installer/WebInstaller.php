@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Class for the core installer web interface.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class WebInstaller extends Installer {
@@ -87,7 +87,6 @@ class WebInstaller extends Installer {
 	 */
 	protected $otherPages = [
 		'Restart',
-		'Readme',
 		'ReleaseNotes',
 		'Copying',
 		'UpgradeDoc', // Can't use Upgrade due to Upgrade step
@@ -378,7 +377,7 @@ class WebInstaller extends Installer {
 		return md5( serialize( [
 			'local path' => dirname( __DIR__ ),
 			'url' => $url,
-			'version' => $GLOBALS['wgVersion']
+			'version' => MW_VERSION
 		] ) );
 	}
 
@@ -395,7 +394,7 @@ class WebInstaller extends Installer {
 				array_map( 'htmlspecialchars', $params )
 			);
 		}
-		$text = $msg->useDatabase( false )->plain();
+		$text = $msg->useDatabase( false )->parse();
 		$box = Html::errorBox( $text, '', 'config-error-box' );
 		$this->output->addHTML( $box );
 	}
@@ -504,7 +503,8 @@ class WebInstaller extends Installer {
 
 		if ( $this->getSession( 'test' ) === null && !$this->request->wasPosted() ) {
 			$wgLanguageCode = $this->getAcceptLanguage();
-			$wgLang = Language::factory( $wgLanguageCode );
+			$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $wgLanguageCode );
 			RequestContext::getMain()->setLanguage( $wgLang );
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
 			$this->setVar( '_UserLang', $wgLanguageCode );
@@ -522,7 +522,9 @@ class WebInstaller extends Installer {
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;
 
-		$mwLanguages = Language::fetchLanguageNames( null, 'mwfile' );
+		$mwLanguages = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( null, 'mwfile' );
 		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
 
 		foreach ( $headerLanguages as $lang ) {
@@ -566,7 +568,7 @@ class WebInstaller extends Installer {
 		// Messages:
 		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
 		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
-		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-complete, config-page-restart, config-page-releasenotes,
 		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$s .= Html::element( 'h2', [],
 			wfMessage( 'config-page-' . strtolower( $currentPageName ) )->text() );
@@ -589,7 +591,7 @@ class WebInstaller extends Installer {
 		// Messages:
 		// config-page-language, config-page-welcome, config-page-dbconnect, config-page-upgrade,
 		// config-page-dbsettings, config-page-name, config-page-options, config-page-install,
-		// config-page-complete, config-page-restart, config-page-readme, config-page-releasenotes,
+		// config-page-complete, config-page-restart, config-page-releasenotes,
 		// config-page-copying, config-page-upgradedoc, config-page-existingwiki
 		$name = wfMessage( 'config-page-' . strtolower( $pageName ) )->text();
 
@@ -642,32 +644,6 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Get HTML for an error box with an icon.
-	 *
-	 * @deprecated since 1.34 Use Html::errorBox() instead.
-	 * @param string $text Wikitext, get this with wfMessage()->plain()
-	 *
-	 * @return string
-	 */
-	public function getErrorBox( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getInfoBox( $text, 'critical-32.png', 'config-error-box' );
-	}
-
-	/**
-	 * Get HTML for a warning box with an icon.
-	 *
-	 * @deprecated since 1.34 Use Html::warningBox() instead.
-	 * @param string $text Wikitext, get this with wfMessage()->plain()
-	 *
-	 * @return string
-	 */
-	public function getWarningBox( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getInfoBox( $text, 'warning-32.png', 'config-warning-box' );
-	}
-
-	/**
 	 * Get HTML for an information message box with an icon.
 	 *
 	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
@@ -692,6 +668,7 @@ class WebInstaller extends Installer {
 	 * Parameters like wfMessage().
 	 *
 	 * @param string $msg
+	 * @param mixed ...$args
 	 * @return string
 	 */
 	public function getHelpBox( $msg, ...$args ) {

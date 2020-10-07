@@ -47,7 +47,6 @@ class TrackingCategories {
 		'node-count-exceeded-category',
 		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
-		'deprecated-self-close-category',
 		'template-loop-category',
 	];
 
@@ -60,7 +59,8 @@ class TrackingCategories {
 
 	/**
 	 * Read the global and extract title objects from the corresponding messages
-	 * @return array [ 'msg' => Title, 'cats' => Title[] ]
+	 * @return array[] [ 'msg' => Title, 'cats' => Title[] ]
+	 * @phan-return array<string,array{msg:Title,cats:Title[]}>
 	 */
 	public function getTrackingCategories() {
 		$categories = array_merge(

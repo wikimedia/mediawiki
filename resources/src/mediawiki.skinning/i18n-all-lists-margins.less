@@ -1,0 +1,42 @@
+/* Correct directionality when page dir is different from site/user dir */
+.mw-content-ltr ul,
+.mw-content-rtl .mw-content-ltr ul {
+	/* @noflip */
+	margin: 0.3em 0 0 1.6em;
+	padding: 0;
+}
+
+.mw-content-rtl ul,
+.mw-content-ltr .mw-content-rtl ul {
+	/* @noflip */
+	margin: 0.3em 1.6em 0 0;
+	padding: 0;
+}
+
+.mw-content-ltr ol,
+.mw-content-rtl .mw-content-ltr ol {
+	/* @noflip */
+	margin: 0.3em 0 0 3.2em;
+	padding: 0;
+}
+
+.mw-content-rtl ol,
+.mw-content-ltr .mw-content-rtl ol {
+	/* @noflip */
+	margin: 0.3em 3.2em 0 0;
+	padding: 0;
+}
+
+/* @noflip */
+.mw-content-ltr dd,
+.mw-content-rtl .mw-content-ltr dd {
+	margin-left: 1.6em;
+	margin-right: 0;
+}
+
+/* @noflip */
+.mw-content-rtl dd,
+.mw-content-ltr .mw-content-rtl dd {
+	margin-right: 1.6em;
+	margin-left: 0;
+}

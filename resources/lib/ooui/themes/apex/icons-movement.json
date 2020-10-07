@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"arrowNext": {
 			"file": {
@@ -22,6 +22,18 @@
 		},
 		"draggable": {
 			"file": "../wikimediaui/images/icons/draggable.svg"
+		},
+		"doubleChevronEnd": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/doubleChevronEnd-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/doubleChevronEnd-rtl.svg"
+			}
+		},
+		"doubleChevronStart": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/doubleChevronStart-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/doubleChevronStart-rtl.svg"
+			}
 		},
 		"expand": {
 			"file": "../wikimediaui/images/icons/expand.svg"

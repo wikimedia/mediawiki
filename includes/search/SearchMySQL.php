@@ -118,10 +118,10 @@ class SearchMySQL extends SearchDatabase {
 				$regexp = $this->regexTerm( $term, $wildcard );
 				$this->searchTerms[] = $regexp;
 			}
-			wfDebug( __METHOD__ . ": Would search with '$searchon'\n" );
-			wfDebug( __METHOD__ . ': Match with /' . implode( '|', $this->searchTerms ) . "/\n" );
+			wfDebug( __METHOD__ . ": Would search with '$searchon'" );
+			wfDebug( __METHOD__ . ': Match with /' . implode( '|', $this->searchTerms ) . "/" );
 		} else {
-			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
+			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'" );
 		}
 
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
@@ -237,7 +237,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param array &$query
 	 * @since 1.18 (changed)
 	 */
-	function queryNamespaces( &$query ) {
+	private function queryNamespaces( &$query ) {
 		if ( is_array( $this->namespaces ) ) {
 			if ( count( $this->namespaces ) === 0 ) {
 				$this->namespaces[] = '0';
@@ -341,15 +341,18 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 * @param string $text
 	 */
-	function update( $id, $title, $text ) {
+	public function update( $id, $title, $text ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
-		$dbw->replace( 'searchindex',
-			[ 'si_page' ],
+		$dbw->replace(
+			'searchindex',
+			'si_page',
 			[
 				'si_page' => $id,
 				'si_title' => $this->normalizeText( $title ),
 				'si_text' => $this->normalizeText( $text )
-			], __METHOD__ );
+			],
+			__METHOD__
+		);
 	}
 
 	/**
@@ -359,7 +362,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param int $id
 	 * @param string $title
 	 */
-	function updateTitle( $id, $title ) {
+	public function updateTitle( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $this->normalizeText( $title ) ],
@@ -375,7 +378,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param int $id Page id that was deleted
 	 * @param string $title Title of page that was deleted
 	 */
-	function delete( $id, $title ) {
+	public function delete( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
 	}
@@ -386,7 +389,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $string
 	 * @return mixed|string
 	 */
-	function normalizeText( $string ) {
+	public function normalizeText( $string ) {
 		$out = parent::normalizeText( $string );
 
 		// MySQL fulltext index doesn't grok utf-8, so we
@@ -439,7 +442,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @return int
 	 */
 	protected function minSearchLength() {
-		if ( is_null( self::$mMinSearchLength ) ) {
+		if ( self::$mMinSearchLength === null ) {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
 			$dbr = $this->lb->getConnectionRef( DB_REPLICA );

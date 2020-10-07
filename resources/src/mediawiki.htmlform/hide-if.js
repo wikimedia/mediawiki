@@ -78,9 +78,9 @@
 				switch ( op ) {
 					case 'AND':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( !funcs[ j ]() ) {
 									return false;
 								}
 							}
@@ -90,9 +90,9 @@
 
 					case 'OR':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( funcs[ j ]() ) {
 									return true;
 								}
 							}
@@ -102,9 +102,9 @@
 
 					case 'NAND':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( !funcs[ j ]() ) {
 									return true;
 								}
 							}
@@ -114,9 +114,9 @@
 
 					case 'NOR':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( funcs[ j ]() ) {
 									return false;
 								}
 							}
@@ -223,17 +223,17 @@
 
 		mw.loader.using( modules ).done( function () {
 			$fields.each( function () {
-				var v, i, fields, test, func, spec, self,
+				var v, i, fields, test, func, spec, $elOrLayout,
 					$el = $( this );
 
 				if ( $el.is( '[data-ooui]' ) ) {
-					// self should be a FieldLayout that mixes in mw.htmlform.Element
-					self = OO.ui.FieldLayout.static.infuse( $el );
-					spec = self.hideIf;
+					// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
+					$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
+					spec = $elOrLayout.hideIf;
 					// The original element has been replaced with infused one
-					$el = self.$element;
+					$el = $elOrLayout.$element;
 				} else {
-					self = $el;
+					$elOrLayout = $el;
 					spec = $el.data( 'hideIf' );
 				}
 
@@ -247,12 +247,12 @@
 				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 				func = function () {
 					var shouldHide = test();
-					self.toggle( !shouldHide );
+					$elOrLayout.toggle( !shouldHide );
 
 					// It is impossible to submit a form with hidden fields failing validation, e.g. one that
 					// is required. However, validity is not checked for disabled fields, as these are not
 					// submitted with the form. So we should also disable fields when hiding them.
-					if ( self instanceof $ ) {
+					if ( $elOrLayout instanceof $ ) {
 						// This also finds elements inside any nested fields (in case of HTMLFormFieldCloner),
 						// which is problematic. But it works because:
 						// * HTMLFormFieldCloner::createFieldsForKey() copies 'hide-if' rules to nested fields
@@ -260,7 +260,7 @@
 						//   handlers for parents first
 						// * Event handlers are fired in the order they were registered, so even if the handler
 						//   for parent messed up the child, the handle for child will run next and fix it
-						self.find( 'input, textarea, select' ).each( function () {
+						$elOrLayout.find( 'input, textarea, select' ).each( function () {
 							var $this = $( this );
 							if ( shouldHide ) {
 								if ( $this.data( 'was-disabled' ) === undefined ) {
@@ -272,14 +272,14 @@
 							}
 						} );
 					} else {
-						// self is a OO.ui.FieldLayout
+						// $elOrLayout is a OO.ui.FieldLayout
 						if ( shouldHide ) {
-							if ( self.wasDisabled === undefined ) {
-								self.wasDisabled = self.fieldWidget.isDisabled();
+							if ( $elOrLayout.wasDisabled === undefined ) {
+								$elOrLayout.wasDisabled = $elOrLayout.fieldWidget.isDisabled();
 							}
-							self.fieldWidget.setDisabled( true );
-						} else if ( self.wasDisabled !== undefined ) {
-							self.fieldWidget.setDisabled( self.wasDisabled );
+							$elOrLayout.fieldWidget.setDisabled( true );
+						} else if ( $elOrLayout.wasDisabled !== undefined ) {
+							$elOrLayout.fieldWidget.setDisabled( $elOrLayout.wasDisabled );
 						}
 					}
 				};

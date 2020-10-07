@@ -3,10 +3,6 @@
 use MediaWiki\MediaWikiServices;
 
 class TimeAdjustTest extends MediaWikiLangTestCase {
-	protected function setUp() {
-		parent::setUp();
-	}
-
 	/**
 	 * Test offset usage for a given Language::userAdjust
 	 * @dataProvider dataUserAdjust

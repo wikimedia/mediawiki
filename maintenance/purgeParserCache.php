@@ -36,7 +36,7 @@ class PurgeParserCache extends Maintenance {
 
 	private $usleep = 0;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Remove old objects from the parser cache. " .
 			"This only works when the parser cache is in an SQL database." );
@@ -50,7 +50,7 @@ class PurgeParserCache extends Maintenance {
 		$this->addOption( 'msleep', 'Milliseconds to sleep between purge chunks', false, true );
 	}
 
-	function execute() {
+	public function execute() {
 		global $wgParserCacheExpireTime;
 
 		$inputDate = $this->getOption( 'expiredate' );
@@ -65,7 +65,7 @@ class PurgeParserCache extends Maintenance {
 		}
 		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
 
-		$english = Language::factory( 'en' );
+		$english = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$this->output( "Deleting objects expiring before " .
 			$english->timeanddate( $date ) . "\n" );
 
@@ -79,7 +79,8 @@ class PurgeParserCache extends Maintenance {
 	}
 
 	public function showProgressAndWait( $percent ) {
-		usleep( $this->usleep ); // avoid lag; T150124
+		// avoid lag; T150124
+		usleep( $this->usleep );
 
 		$percentString = sprintf( "%.2f", $percent );
 		if ( $percentString === $this->lastProgress ) {

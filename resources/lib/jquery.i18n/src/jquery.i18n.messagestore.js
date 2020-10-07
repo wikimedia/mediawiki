@@ -61,19 +61,16 @@
 		 */
 		load: function ( source, locale ) {
 			var key = null,
-				deferred = null,
 				deferreds = [],
 				messageStore = this;
 
 			if ( typeof source === 'string' ) {
 				// This is a URL to the messages file.
 				$.i18n.log( 'Loading messages from: ' + source );
-				deferred = jsonMessageLoader( source )
-					.done( function ( localization ) {
-						messageStore.set( locale, localization );
+				return jsonMessageLoader( source )
+					.then( function ( localization ) {
+						return messageStore.load( localization, locale );
 					} );
-
-				return deferred.promise();
 			}
 
 			if ( locale ) {
@@ -112,7 +109,6 @@
 		},
 
 		/**
-		 *
 		 * @param {string} locale
 		 * @param {string} messageKey
 		 * @return {boolean}

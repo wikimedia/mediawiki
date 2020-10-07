@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi"
+		]
+	},
+	"paramvalidator-emptystring": "rêza venge",
+	"paramvalidator-missingparam": "Gani parametrey \"$1\" eyar bo.",
+	"paramvalidator-help-default": "Hesabyaye : $1",
+	"paramvalidator-help-default-empty": "Hesabyaye: (veng)",
+	"paramvalidator-help-deprecated": "Parametre wedariyayo",
+	"paramvalidator-help-required": "No parametre lazımo",
+	"paramvalidator-help-type-boolean": "Tewr: {{PLURAL:$1|1=boolean|2=lista booleans}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=wa veng bo|veng ya zi  $1 beno }}",
+	"paramvalidator-help-type-float": "Tewr: {{PLURAL:$1|1=natlon|2=lista naylonan}}",
+	"paramvalidator-help-type-integer": "Tewr: {{PLURAL:$1|1=tamamar|2=lista tamamari}}",
+	"paramvalidator-help-type-limit": "Tewr: tam amar ya zi \"max\"",
+	"paramvalidator-help-type-number-max": "Wa {{PLURAL:$1|1=erca |2=ercê }} $3 ra zeder bê.",
+	"paramvalidator-help-type-presenceboolean": "Tewr:Boolean",
+	"paramvalidator-help-type-string-maxbytes": "$1 {{PLURAL:$1|bayte|$1 baytan }} ra kemi nêbeno",
+	"paramvalidator-help-type-string-maxchars": "$1 {{PLURAL:$1|karakter|$1 karakteran}} ra kemi nêbeno"
+}

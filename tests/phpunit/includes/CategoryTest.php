@@ -4,8 +4,8 @@
  * @group Database
  * @group Category
  */
-class CategoryTest extends MediaWikiTestCase {
-	protected function setUp() {
+class CategoryTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -136,7 +136,7 @@ class CategoryTest extends MediaWikiTestCase {
 			__METHOD__
 		) );
 
-		$this->assertEquals( 1, $category->getID() );
+		$this->assertSame( '1', $category->getID() );
 
 		$dbw->delete( 'category', '*', __METHOD__ );
 	}

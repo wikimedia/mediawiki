@@ -1,15 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Krinkle",
+			"Matěj Suchánek",
 			"Omnipaedista",
 			"Svetko",
-			"Wolliger Mensch",
-			"ОйЛ",
-			"아라",
-			"Илья Драконов",
 			"Vvs-dm",
-			"Matěj Suchánek"
+			"Wolliger Mensch",
+			"Илья Драконов",
+			"ОйЛ",
+			"아라"
 		]
 	},
 	"tog-oldsig": "твои нꙑнѣшьн҄ь аѵтографъ :",
@@ -302,7 +303,7 @@
 	"histfirst": "прьвꙑ",
 	"histlast": "послѣдьнꙗ",
 	"historysize": "{{PLURAL:$1|1 баитъ|$1 баита|$1 баитъ}}",
-	"historyempty": "(поусто)",
+	"historyempty": "поусто",
 	"history-feed-title": "мѣнъ їсторїꙗ",
 	"history-feed-item-nocomment": "$1 при $2",
 	"rev-deleted-comment": "(мѣнꙑ опьсаниѥ съкрꙑто ѥстъ)",

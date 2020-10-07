@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers JobQueueMemory
  *
@@ -16,10 +18,13 @@ class JobQueueMemoryTest extends PHPUnit\Framework\TestCase {
 	 * @return JobQueueMemory
 	 */
 	private function newJobQueue() {
+		$services = MediaWikiServices::getInstance();
+
 		return JobQueue::factory( [
 			'class' => JobQueueMemory::class,
 			'domain' => WikiMap::getCurrentWikiDbDomain()->getId(),
 			'type' => 'null',
+			'idGenerator' => $services->getGlobalIdGenerator(),
 		] );
 	}
 

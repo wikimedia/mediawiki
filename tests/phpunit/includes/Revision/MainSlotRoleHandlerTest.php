@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
@@ -30,7 +31,10 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getOutputLayoutHints()
 	 */
 	public function testConstruction() {
-		$handler = new MainSlotRoleHandler( [] );
+		$handler = new MainSlotRoleHandler(
+			[],
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
+		);
 		$this->assertSame( 'main', $handler->getRole() );
 		$this->assertSame( 'slot-name-main', $handler->getNameMessageKey() );
 
@@ -44,7 +48,10 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getDefaultModel()
 	 */
 	public function testFetDefaultModel() {
-		$handler = new MainSlotRoleHandler( [ 100 => CONTENT_MODEL_TEXT ] );
+		$handler = new MainSlotRoleHandler(
+			[ 100 => CONTENT_MODEL_TEXT ],
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
+		);
 
 		// For the main handler, the namespace determins the default model
 		$titleMain = $this->makeTitleObject( NS_MAIN );
@@ -58,7 +65,10 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::isAllowedModel()
 	 */
 	public function testIsAllowedModel() {
-		$handler = new MainSlotRoleHandler( [] );
+		$handler = new MainSlotRoleHandler(
+			[],
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
+		);
 
 		// For the main handler, (nearly) all models are allowed
 		$title = $this->makeTitleObject( NS_MAIN );
@@ -70,7 +80,10 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::supportsArticleCount()
 	 */
 	public function testSupportsArticleCount() {
-		$handler = new MainSlotRoleHandler( [] );
+		$handler = new MainSlotRoleHandler(
+			[],
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
+		);
 
 		$this->assertTrue( $handler->supportsArticleCount() );
 	}

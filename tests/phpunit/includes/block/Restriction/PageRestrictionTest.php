@@ -42,7 +42,7 @@ class PageRestrictionTest extends RestrictionTestCase {
 		$this->assertSame( $title, $restriction->getTitle() );
 
 		$restriction = new $class( 1, 1 );
-		$title = \Title::newFromId( 1 );
+		$title = \Title::newFromID( 1 );
 		$this->assertEquals( $title->getArticleID(), $restriction->getTitle()->getArticleID() );
 	}
 

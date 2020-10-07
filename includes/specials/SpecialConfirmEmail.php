@@ -48,7 +48,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 * @throws ReadOnlyError
 	 * @throws UserNotLoggedIn
 	 */
-	function execute( $code ) {
+	public function execute( $code ) {
 		// Ignore things like master queries/connections on GET requests.
 		// It's very convenient to just allow formless link usage.
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -83,7 +83,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	/**
 	 * Show a nice form for the user to request a confirmation mail
 	 */
-	function showRequestForm() {
+	private function showRequestForm() {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
@@ -104,7 +104,6 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form = HTMLForm::factory( 'ooui', $descriptor, $this->getContext() );
 			$form
-				->setMethod( 'post' )
 				->setAction( $this->getPageTitle()->getLocalURL() )
 				->setSubmitTextMsg( 'confirmemail_send' )
 				->setSubmitCallback( [ $this, 'submitSend' ] );

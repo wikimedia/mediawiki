@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 
@@ -30,7 +31,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Media
  */
 class SvgHandler extends ImageHandler {
-	const SVG_METADATA_VERSION = 2;
+	public const SVG_METADATA_VERSION = 2;
 
 	/** @var array A list of metadata tags that can be converted
 	 *  to the commonly used exif tags. This allows messages
@@ -46,7 +47,7 @@ class SvgHandler extends ImageHandler {
 	public function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
+			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering." );
 
 			return false;
 		} else {
@@ -58,7 +59,7 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
-	function isVectorized( $file ) {
+	public function isVectorized( $file ) {
 		return true;
 	}
 
@@ -66,7 +67,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isAnimatedImage( $file ) {
+	public function isAnimatedImage( $file ) {
 		# @todo Detect animated SVGs
 		$metadata = $file->getMetadata();
 		if ( $metadata ) {
@@ -163,7 +164,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		return false;
 	}
 
@@ -224,7 +225,7 @@ class SvgHandler extends ImageHandler {
 	 * @param int $flags
 	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -350,7 +351,7 @@ class SvgHandler extends ImageHandler {
 					$env['LANG'] = $lang;
 				}
 
-				wfDebug( __METHOD__ . ": $cmd\n" );
+				wfDebug( __METHOD__ . ": $cmd" );
 				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 			}
 		}
@@ -383,7 +384,7 @@ class SvgHandler extends ImageHandler {
 	 * @param bool|array $metadata
 	 * @return array|false
 	 */
-	function getImageSize( $file, $path, $metadata = false ) {
+	public function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false && $file instanceof File ) {
 			$metadata = $file->getMetadata();
 		}
@@ -448,13 +449,13 @@ class SvgHandler extends ImageHandler {
 				'message' => $e->getMessage(),
 				'code' => $e->getCode()
 			];
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 		}
 
 		return serialize( $metadata );
 	}
 
-	function unpackMetadata( $metadata ) {
+	protected function unpackMetadata( $metadata ) {
 		Wikimedia\suppressWarnings();
 		$unser = unserialize( $metadata );
 		Wikimedia\restoreWarnings();
@@ -465,7 +466,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-svg';
 	}
 
@@ -547,7 +548,10 @@ class SvgHandler extends ImageHandler {
 			return ( $value > 0 );
 		} elseif ( $name == 'lang' ) {
 			// Validate $code
-			if ( $value === '' || !Language::isValidCode( $value ) ) {
+			if ( $value === ''
+				|| !MediaWikiServices::getInstance()->getLanguageNameUtils()
+					->isValidCode( $value )
+			) {
 				return false;
 			}
 

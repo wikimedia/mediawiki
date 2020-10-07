@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for Samogitian */
+/** Tests for Samogitian
+ * @group Language
+ */
 class LanguageSgsTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePluralAllForms

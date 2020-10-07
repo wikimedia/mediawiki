@@ -33,24 +33,24 @@ class SpecialUncategorizedPages extends PageQueryPage {
 	/** @var int|false */
 	protected $requestedNamespace = false;
 
-	function __construct( $name = 'Uncategorizedpages' ) {
+	public function __construct( $name = 'Uncategorizedpages' ) {
 		parent::__construct( $name );
 		$this->addHelpLink( 'Help:Categories' );
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'categorylinks' ],
 			'fields' => [
@@ -73,7 +73,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		];
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
 		if ( $this->requestedNamespace === false &&

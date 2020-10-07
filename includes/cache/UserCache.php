@@ -52,7 +52,7 @@ class UserCache {
 	 */
 	public function getProp( $userId, $prop ) {
 		if ( !isset( $this->cache[$userId][$prop] ) ) {
-			wfDebug( __METHOD__ . ": querying DB for prop '$prop' for user ID '$userId'.\n" );
+			wfDebug( __METHOD__ . ": querying DB for prop '$prop' for user ID '$userId'." );
 			$this->doQuery( [ $userId ] ); // cache miss
 		}
 

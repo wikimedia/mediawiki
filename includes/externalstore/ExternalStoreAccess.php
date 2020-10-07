@@ -3,9 +3,9 @@
  * @defgroup ExternalStorage ExternalStorage
  */
 
-use \Psr\Log\LoggerAwareInterface;
-use \Psr\Log\LoggerInterface;
-use \Psr\Log\NullLogger;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Key/value blob storage for a collection of storage medium types (e.g. RDBMs, files)
@@ -99,12 +99,13 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 			throw new ExternalStoreException( "List of external stores provided is empty." );
 		}
 
-		$error = false;
+		$error = false;      // track the last exception thrown
+		$readOnlyCount = 0;  // track if a store was read-only
 		while ( count( $tryStores ) > 0 ) {
 			$index = mt_rand( 0, count( $tryStores ) - 1 );
 			$storeUrl = $tryStores[$index];
 
-			$this->logger->debug( __METHOD__ . ": trying $storeUrl\n" );
+			$this->logger->debug( __METHOD__ . ": trying $storeUrl" );
 
 			$store = $this->storeFactory->getStoreForUrl( $storeUrl, $params );
 			if ( $store === false ) {
@@ -114,15 +115,20 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 			$location = $this->storeFactory->getStoreLocationFromUrl( $storeUrl );
 			try {
 				if ( $store->isReadOnly( $location ) ) {
+					$readOnlyCount++;
 					$msg = 'read only';
 				} else {
 					$url = $store->store( $location, $data );
 					if ( strlen( $url ) ) {
-						return $url; // a store accepted the write; done!
+						// A store accepted the write; done!
+						return $url;
 					}
-					$msg = 'operation failed';
+					throw new ExternalStoreException(
+						"No URL returned by storage medium ($storeUrl)"
+					);
 				}
-			} catch ( Exception $error ) {
+			} catch ( Exception $ex ) {
+				$error = $ex;
 				$msg = 'caught ' . get_class( $error ) . ' exception: ' . $error->getMessage();
 			}
 
@@ -133,11 +139,19 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 				[ 'store_path' => $storeUrl, 'failure' => $msg ]
 			);
 		}
-		// All stores failed
+
+		// We only get here when all stores failed.
 		if ( $error ) {
-			throw $error; // rethrow the last error
+			// At least one store threw an exception. Re-throw the most recent one.
+			throw $error;
+		} elseif ( $readOnlyCount ) {
+			// If no exceptions where thrown and we get here,
+			// this should mean that all stores were in read-only mode.
+			throw new ReadOnlyError();
 		} else {
-			throw new ExternalStoreException( "Unable to store text to external storage" );
+			// We shouldn't get here. If there were no failures, this method should have returned
+			// from inside the body of the loop.
+			throw new LogicException( "Unexpected failure to store text to external store" );
 		}
 	}
 

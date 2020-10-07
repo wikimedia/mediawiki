@@ -24,10 +24,13 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Status;
 use StatusValue;
 use User;
@@ -84,42 +87,42 @@ use Wikimedia\ObjectFactory;
  */
 class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
-	const ACTION_LOGIN = 'login';
+	public const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
 	 * with an external provider
 	 */
-	const ACTION_LOGIN_CONTINUE = 'login-continue';
+	public const ACTION_LOGIN_CONTINUE = 'login-continue';
 	/** Create a new user */
-	const ACTION_CREATE = 'create';
+	public const ACTION_CREATE = 'create';
 	/** Continue a user creation process that was interrupted by the need for user input or
 	 * communication with an external provider
 	 */
-	const ACTION_CREATE_CONTINUE = 'create-continue';
+	public const ACTION_CREATE_CONTINUE = 'create-continue';
 	/** Link an existing user to a third-party account */
-	const ACTION_LINK = 'link';
+	public const ACTION_LINK = 'link';
 	/** Continue a user linking process that was interrupted by the need for user input or
 	 * communication with an external provider
 	 */
-	const ACTION_LINK_CONTINUE = 'link-continue';
+	public const ACTION_LINK_CONTINUE = 'link-continue';
 	/** Change a user's credentials */
-	const ACTION_CHANGE = 'change';
+	public const ACTION_CHANGE = 'change';
 	/** Remove a user's credentials */
-	const ACTION_REMOVE = 'remove';
+	public const ACTION_REMOVE = 'remove';
 	/** Like ACTION_REMOVE but for linking providers only */
-	const ACTION_UNLINK = 'unlink';
+	public const ACTION_UNLINK = 'unlink';
 
 	/** Security-sensitive operations are ok. */
-	const SEC_OK = 'ok';
+	public const SEC_OK = 'ok';
 	/** Security-sensitive operations should re-authenticate. */
-	const SEC_REAUTH = 'reauth';
+	public const SEC_REAUTH = 'reauth';
 	/** Security-sensitive should not be performed. */
-	const SEC_FAIL = 'fail';
+	public const SEC_FAIL = 'fail';
 
 	/** Auto-creation is due to SessionManager */
-	const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
+	public const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
 
 	/** Auto-creation is due to a Maintenance script */
-	const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
+	public const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
 
 	/** @var AuthManager|null */
 	private static $instance = null;
@@ -130,8 +133,14 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var Config */
 	private $config;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var PermissionManager */
+	private $permManager;
 
 	/** @var AuthenticationProvider[] */
 	private $allAuthenticationProviders = [];
@@ -148,28 +157,42 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var CreatedAccountAuthenticationRequest[] */
 	private $createdAccountAuthenticationRequests = [];
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
+	 * @deprecated since 1.35 use MediaWikiServices::getInstance()->getAuthManager() instead.
 	 */
 	public static function singleton() {
-		if ( self::$instance === null ) {
-			self::$instance = new self(
-				\RequestContext::getMain()->getRequest(),
-				MediaWikiServices::getInstance()->getMainConfig()
-			);
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getAuthManager();
 	}
 
 	/**
 	 * @param WebRequest $request
 	 * @param Config $config
+	 * @param ObjectFactory $objectFactory
+	 * @param PermissionManager $permManager
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( WebRequest $request, Config $config ) {
+	public function __construct(
+		WebRequest $request,
+		Config $config,
+		ObjectFactory $objectFactory,
+		PermissionManager $permManager,
+		HookContainer $hookContainer
+	) {
 		$this->request = $request;
 		$this->config = $config;
-		$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' ) );
+		$this->objectFactory = $objectFactory;
+		$this->permManager = $permManager;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->setLogger( new NullLogger() );
 	}
 
 	/**
@@ -222,6 +245,7 @@ class AuthManager implements LoggerAwareInterface {
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
 			$provider->setConfig( $this->config );
+			$provider->setHookContainer( $this->hookContainer );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
@@ -233,22 +257,6 @@ class AuthManager implements LoggerAwareInterface {
 			$this->allAuthenticationProviders[$id] = $provider;
 			$this->primaryAuthenticationProviders[$id] = $provider;
 		}
-	}
-
-	/**
-	 * This used to call a legacy AuthPlugin method, if necessary. Since that code has
-	 * been removed, it now just returns the $return parameter.
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated For backwards compatibility only, should be avoided in new code
-	 * @param string $method AuthPlugin method to call
-	 * @param array $params Parameters to pass
-	 * @param mixed $return Return value if AuthPlugin wasn't called
-	 * @return mixed Return value from the AuthPlugin method, or $return
-	 */
-	public static function callLegacyAuthPlugin( $method, array $params, $return = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $return;
 	}
 
 	/**
@@ -341,7 +349,8 @@ class AuthManager implements LoggerAwareInterface {
 			$this->setSessionDataForUser( $user );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+				$ret, $user, $user->getName(), [] );
 			return $ret;
 		}
 
@@ -357,7 +366,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->callMethodOnProviders( 7, 'postAuthentication',
 					[ User::newFromName( $guessUserName ) ?: null, $ret ]
 				);
-				\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, null, $guessUserName, [] ] );
+				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit( $ret, null, $guessUserName, [] );
 				return $ret;
 			}
 		}
@@ -473,7 +482,8 @@ class AuthManager implements LoggerAwareInterface {
 								[ User::newFromName( $guessUserName ) ?: null, $res ]
 							);
 							$session->remove( 'AuthManager::authnState' );
-							\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
+							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+								$res, null, $guessUserName, [] );
 							return $res;
 						case AuthenticationResponse::ABSTAIN;
 							// Continue loop
@@ -539,7 +549,8 @@ class AuthManager implements LoggerAwareInterface {
 							[ User::newFromName( $guessUserName ) ?: null, $res ]
 						);
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
+						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+							$res, null, $guessUserName, [] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -630,7 +641,8 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 					$session->remove( 'AuthManager::authnState' );
-					\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+						$ret, $user, $user->getName(), [] );
 					return $ret;
 				}
 			}
@@ -663,7 +675,8 @@ class AuthManager implements LoggerAwareInterface {
 						$this->logger->debug( "Login failed in secondary authentication by $id" );
 						$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $res ] );
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, $user, $user->getName(), [] ] );
+						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+							$res, $user, $user->getName(), [] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -699,7 +712,8 @@ class AuthManager implements LoggerAwareInterface {
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
 			$this->removeAuthenticationSessionData( null );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+				$ret, $user, $user->getName(), [] );
 			return $ret;
 		} catch ( \Exception $ex ) {
 			$session->remove( 'AuthManager::authnState' );
@@ -768,9 +782,8 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		\Hooks::run( 'SecuritySensitiveOperationStatus', [
-			&$status, $operation, $session, $timeSinceLogin
-		] );
+		$this->getHookRunner()->onSecuritySensitiveOperationStatus(
+			$status, $operation, $session, $timeSinceLogin );
 
 		// If authentication is not possible, downgrade from "REAUTH" to "FAIL".
 		if ( !$this->canAuthenticateNow() && $status === self::SEC_REAUTH ) {
@@ -864,10 +877,16 @@ class AuthManager implements LoggerAwareInterface {
 		$any = false;
 		$providers = $this->getPrimaryAuthenticationProviders() +
 			$this->getSecondaryAuthenticationProviders();
+
 		foreach ( $providers as $provider ) {
 			$status = $provider->providerAllowsAuthenticationDataChange( $req, $checkData );
 			if ( !$status->isGood() ) {
-				return Status::wrap( $status );
+				// If status is not good because reset email password last attempt was within
+				// $wgPasswordReminderResendTime then return good status with throttled-mailpassword value;
+				// otherwise, return the $status wrapped.
+				return $status->hasMessage( 'throttled-mailpassword' )
+					? Status::newGood( 'throttled-mailpassword' )
+					: Status::wrap( $status );
 			}
 			$any = $any || $status->value !== 'ignored';
 		}
@@ -995,9 +1014,11 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
 		}
 
-		// This is awful, this permission check really shouldn't go through Title.
-		$permErrors = \SpecialPage::getTitleFor( 'CreateAccount' )
-			->getUserPermissionsErrors( 'createaccount', $creator, 'secure' );
+		$permErrors = $this->permManager->getPermissionErrors(
+			'createaccount',
+			$creator,
+			\SpecialPage::getTitleFor( 'CreateAccount' )
+		);
 		if ( $permErrors ) {
 			$status = Status::newGood();
 			foreach ( $permErrors as $args ) {
@@ -1006,25 +1027,17 @@ class AuthManager implements LoggerAwareInterface {
 			return $status;
 		}
 
+		$ip = $this->getRequest()->getIP();
+
 		$block = $creator->isBlockedFromCreateAccount();
 		if ( $block ) {
-			$errorParams = [
-				$block->getTarget(),
-				$block->getReason() ?: wfMessage( 'blockednoreason' )->text(),
-				$block->getByName()
-			];
-
-			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
-				$errorMessage = 'cantcreateaccount-range-text';
-				$errorParams[] = $this->getRequest()->getIP();
-			} else {
-				$errorMessage = 'cantcreateaccount-text';
-			}
-
-			return Status::newFatal( wfMessage( $errorMessage, $errorParams ) );
+			$language = \RequestContext::getMain()->getLanguage();
+			$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+			return Status::newFatal(
+				$formatter->getMessage( $block, $creator, $language, $ip )
+			);
 		}
 
-		$ip = $this->getRequest()->getIP();
 		if (
 			MediaWikiServices::getInstance()->getBlockManager()
 				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
@@ -1430,7 +1443,7 @@ class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				}
 				$this->setDefaultUserOptions( $user, $creator->isAnon() );
-				\Hooks::runWithoutAbort( 'LocalUserCreated', [ $user, false ] );
+				$this->getHookRunner()->onLocalUserCreated( $user, false );
 				$user->saveSettings();
 				$state['userid'] = $user->getId();
 
@@ -1645,7 +1658,7 @@ class AuthManager implements LoggerAwareInterface {
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,
-				'ip' => $anon->getName(),
+				'clientip' => $anon->getName(),
 			] );
 			$session->set( 'AuthManager::AutoCreateBlacklist', 'authmanager-autocreate-noperm' );
 			$session->persist();
@@ -1750,7 +1763,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Inform the providers
 		$this->callMethodOnProviders( 6, 'autoCreatedAccount', [ $user, $source ] );
 
-		\Hooks::run( 'LocalUserCreated', [ $user, true ] );
+		$this->getHookRunner()->onLocalUserCreated( $user, true );
 		$user->saveSettings();
 
 		// Update user count
@@ -2053,15 +2066,21 @@ class AuthManager implements LoggerAwareInterface {
 				return is_array( $state ) ? $state['continueRequests'] : [];
 
 			case self::ACTION_LINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
+				$providers = [];
+				foreach ( $this->getPrimaryAuthenticationProviders() as $p ) {
+					if ( $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK ) {
+						$providers[] = $p;
+					}
+				}
 				break;
 
 			case self::ACTION_UNLINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
+				$providers = [];
+				foreach ( $this->getPrimaryAuthenticationProviders() as $p ) {
+					if ( $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK ) {
+						$providers[] = $p;
+					}
+				}
 
 				// To providers, unlink and remove are identical.
 				$providerAction = self::ACTION_REMOVE;
@@ -2248,7 +2267,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Store authentication in the current session
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders only
 	 * @param string $key
 	 * @param mixed $data Must be serializable
 	 */
@@ -2264,7 +2283,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Fetch authentication data from the current session
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders only
 	 * @param string $key
 	 * @param mixed|null $default
 	 * @return mixed
@@ -2280,7 +2299,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Remove authentication data
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders
 	 * @param string|null $key If null, all data is removed
 	 */
 	public function removeAuthenticationSessionData( $key ) {
@@ -2316,15 +2335,12 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
-			$provider = ObjectFactory::getObjectFromSpec( $spec );
-			if ( !$provider instanceof $class ) {
-				throw new \RuntimeException(
-					"Expected instance of $class, got " . get_class( $provider )
-				);
-			}
+			/** @var AuthenticationProvider $provider */
+			$provider = $this->objectFactory->createObject( $spec, [ 'assertClass' => $class ] );
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
 			$provider->setConfig( $this->config );
+			$provider->setHookContainer( $this->getHookContainer() );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
@@ -2412,7 +2428,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		\Wikimedia\ScopedCallback::consume( $delay );
 
-		\Hooks::run( 'UserLoggedIn', [ $user ] );
+		$this->getHookRunner()->onUserLoggedIn( $user );
 	}
 
 	/**
@@ -2427,8 +2443,10 @@ class AuthManager implements LoggerAwareInterface {
 		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $contLang;
 		$user->setOption( 'language', $lang->getPreferredVariant() );
 
-		if ( $contLang->hasVariants() ) {
-			$user->setOption( 'variant', $contLang->getPreferredVariant() );
+		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+		if ( $contLangConverter->hasVariants() ) {
+			$user->setOption( 'variant', $contLangConverter->getPreferredVariant() );
 		}
 	}
 
@@ -2455,7 +2473,8 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
-	 * @protected Unit tests only
+	 * @note Unit tests only
+	 * @internal
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
@@ -2465,6 +2484,20 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		self::$instance = null;
+	}
+
+	/**
+	 * @return HookContainer
+	 */
+	private function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @return HookRunner
+	 */
+	private function getHookRunner() {
+		return $this->hookRunner;
 	}
 
 	/** @} */

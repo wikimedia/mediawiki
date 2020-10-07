@@ -27,6 +27,8 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * File reversion user interface
+ * WikiPage must contain getFile method: \WikiFilePage
+ * Article::getFile is only for b/c: \ImagePage
  *
  * @ingroup Actions
  */
@@ -58,10 +60,8 @@ class RevertAction extends FormAction {
 			throw new ErrorPageError( 'internalerror', 'unexpected', [ 'oldimage', $oldimage ] );
 		}
 
-		$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
-			$this->getTitle(),
-			$oldimage
-		);
+		$this->oldFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFromArchiveName( $this->getTitle(), $oldimage );
 
 		if ( !$this->oldFile->exists() ) {
 			throw new ErrorPageError( '', 'filerevert-badversion' );
@@ -101,7 +101,10 @@ class RevertAction extends FormAction {
 				'default' => $this->msg( 'filerevert-intro',
 					$this->getTitle()->getText(), $userDate, $userTime,
 					wfExpandUrl(
-						$this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
+						$this->getFile()
+							->getArchiveUrl(
+								$this->getRequest()->getText( 'oldimage' )
+							),
 						PROTO_CURRENT
 					) )->parseAsBlock()
 			],
@@ -119,7 +122,7 @@ class RevertAction extends FormAction {
 
 		$old = $this->getRequest()->getText( 'oldimage' );
 		/** @var LocalFile $localFile */
-		$localFile = $this->page->getFile();
+		$localFile = $this->getFile();
 		'@phan-var LocalFile $localFile';
 		$oldFile = OldLocalFile::newFromArchiveName( $this->getTitle(), $localFile->getRepo(), $old );
 
@@ -154,9 +157,13 @@ class RevertAction extends FormAction {
 
 		$this->getOutput()->addWikiMsg( 'filerevert-success', $this->getTitle()->getText(),
 			$userDate, $userTime,
-			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
+			wfExpandUrl(
+				$this->getFile()
+					->getArchiveUrl(
+						$this->getRequest()->getText( 'oldimage' )
+					),
 				PROTO_CURRENT
-		) );
+			) );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 	}
 
@@ -170,5 +177,16 @@ class RevertAction extends FormAction {
 
 	public function doesWrites() {
 		return true;
+	}
+
+	/**
+	 * @since 1.35
+	 * @return File
+	 */
+	private function getFile() : File {
+		/** @var \WikiFilePage $wikiPage */
+		$wikiPage = $this->getWikiPage();
+		// @phan-suppress-next-line PhanUndeclaredMethod
+		return $wikiPage->getFile();
 	}
 }

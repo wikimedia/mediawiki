@@ -23,11 +23,16 @@
 
 /**
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
+ *
+ * @stable to extend
  */
 class OOUIHTMLForm extends HTMLForm {
 	private $oouiErrors;
 	private $oouiWarnings;
 
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
@@ -232,7 +237,7 @@ class OOUIHTMLForm extends HTMLForm {
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
-		// Used in getBody()
+		// Used in formatFormHeader()
 		if ( $elementsType === 'error' ) {
 			$this->oouiErrors = $errors;
 		} else {
@@ -242,7 +247,7 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	public function getHeaderText( $section = null ) {
-		if ( is_null( $section ) ) {
+		if ( $section === null ) {
 			// We handle $this->mHeader elsewhere, in getBody()
 			return '';
 		} else {
@@ -250,32 +255,37 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 	}
 
+	protected function formatFormHeader() {
+		if ( !( $this->mHeader || $this->oouiErrors || $this->oouiWarnings ) ) {
+			return '';
+		}
+		$classes = [ 'mw-htmlform-ooui-header' ];
+		if ( $this->oouiErrors ) {
+			$classes[] = 'mw-htmlform-ooui-header-errors';
+		}
+		if ( $this->oouiWarnings ) {
+			$classes[] = 'mw-htmlform-ooui-header-warnings';
+		}
+		// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
+		if ( $this->mHeader ) {
+			$element = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] );
+		} else {
+			$element = new OOUI\Widget( [] );
+		}
+		return new OOUI\FieldLayout(
+			$element,
+			[
+				'align' => 'top',
+				'errors' => $this->oouiErrors,
+				'notices' => $this->oouiWarnings,
+				'classes' => $classes,
+			]
+		);
+	}
+
 	public function getBody() {
 		$html = parent::getBody();
-		if ( $this->mHeader || $this->oouiErrors || $this->oouiWarnings ) {
-			$classes = [ 'mw-htmlform-ooui-header' ];
-			if ( $this->oouiErrors ) {
-				$classes[] = 'mw-htmlform-ooui-header-errors';
-			}
-			if ( $this->oouiWarnings ) {
-				$classes[] = 'mw-htmlform-ooui-header-warnings';
-			}
-			// if there's no header, don't create an (empty) LabelWidget, simply use a placeholder
-			if ( $this->mHeader ) {
-				$element = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ] );
-			} else {
-				$element = new OOUI\Widget( [] );
-			}
-			$html = new OOUI\FieldLayout(
-				$element,
-				[
-					'align' => 'top',
-					'errors' => $this->oouiErrors,
-					'notices' => $this->oouiWarnings,
-					'classes' => $classes,
-				]
-			) . $html;
-		}
+		$html = $this->formatFormHeader() . $html;
 		return $html;
 	}
 

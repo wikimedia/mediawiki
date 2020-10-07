@@ -1,7 +1,5 @@
 <?php
 /**
- * Base class for profiling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
- * @defgroup Profiler Profiler
  */
-use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\ScopedCallback;
 
 /**
- * Profiler base class that defines the interface and some trivial
- * functionality
+ * @defgroup Profiler Profiler
+ */
+
+/**
+ * Profiler base class that defines the interface and some shared
+ * functionality.
  *
  * @ingroup Profiler
  */
@@ -46,7 +46,7 @@ abstract class Profiler {
 	private static $instance = null;
 
 	/**
-	 * @param array $params
+	 * @param array $params See $wgProfiler.
 	 */
 	public function __construct( array $params ) {
 		if ( isset( $params['profileID'] ) ) {
@@ -62,17 +62,14 @@ abstract class Profiler {
 	 */
 	final public static function instance() {
 		if ( self::$instance === null ) {
-			global $wgProfiler, $wgProfileLimit;
+			global $wgProfiler;
 
-			$params = [
+			$params = $wgProfiler + [
 				'class'     => ProfilerStub::class,
 				'sampling'  => 1,
-				'threshold' => $wgProfileLimit,
+				'threshold' => 0.0,
 				'output'    => [],
 			];
-			if ( is_array( $wgProfiler ) ) {
-				$params = array_merge( $params, $wgProfiler );
-			}
 
 			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
 			// wfIsCLI() is not available yet
@@ -143,7 +140,7 @@ abstract class Profiler {
 			return $this->context;
 		} else {
 			wfDebug( __METHOD__ . " called and \$context is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
+				"Return RequestContext::getMain(); for sanity" );
 			return RequestContext::getMain();
 		}
 	}
@@ -342,7 +339,7 @@ abstract class Profiler {
 	 * entries for the cyclic invocation should be be demarked with "@".
 	 * This makes filtering them out easier and follows the xhprof style.
 	 *
-	 * @return array List of method entries arrays, each having:
+	 * @return array[] List of method entries arrays, each having:
 	 *   - name     : method name
 	 *   - calls    : the number of invoking calls
 	 *   - real     : real time elapsed (ms)

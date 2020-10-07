@@ -97,6 +97,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		if ( $configPrefix !== 'wg' ) {
 			$this->json['config']['_prefix'] = $configPrefix;
 		}
+
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
 			if ( $realName === false ) {
@@ -119,8 +120,27 @@ class ConvertExtensionToRegistration extends Maintenance {
 					"Please update the entry point before convert to registration.\n" );
 				$this->hasWarning = true;
 			} elseif ( strpos( $name, $configPrefix ) === 0 ) {
+				$configName = substr( $name, strlen( $configPrefix ) );
+
+				$isPath = false;
+				if ( is_array( $value ) ) {
+					foreach ( $value as $k => $v ) {
+						if ( strpos( $v, $this->dir ) !== false ) {
+							$value[$k] = $this->stripPath( $v, $this->dir );
+							$isPath = true;
+						}
+					}
+				} elseif ( is_string( $value ) && strpos( $value, $this->dir ) !== false ) {
+					$value = $this->stripPath( $value, $this->dir );
+					$isPath = true;
+				}
+
 				// Most likely a config setting
-				$this->json['config'][substr( $name, strlen( $configPrefix ) )] = [ 'value' => $value ];
+				$this->json['config'][$configName] = [ 'value' => $value ];
+
+				if ( $isPath ) {
+					$this->json['config'][$configName]['path'] = true;
+				}
 			} elseif ( $configPrefix !== 'wg' && strpos( $name, 'wg' ) === 0 ) {
 				// Warn about this
 				$this->output( 'Warning: Skipped global "' . $name . '" (' .

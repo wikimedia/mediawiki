@@ -60,17 +60,17 @@
 					top: offset.top,
 					left: offset.left
 				},
-				viewport = rectangle || this.makeViewportFromWindow();
+				viewportRect = rectangle || this.makeViewportFromWindow();
 
 			return (
 				// Top border must be above viewport's bottom
-				( viewport.bottom >= rect.top ) &&
+				( viewportRect.bottom >= rect.top ) &&
 				// Left border must be before viewport's right border
-				( viewport.right >= rect.left ) &&
+				( viewportRect.right >= rect.left ) &&
 				// Bottom border must be below viewport's top
-				( viewport.top <= rect.top + rect.height ) &&
+				( viewportRect.top <= rect.top + rect.height ) &&
 				// Right border must be after viewport's left border
-				( viewport.left <= rect.left + rect.width )
+				( viewportRect.left <= rect.left + rect.width )
 			);
 		},
 
@@ -86,14 +86,14 @@
 		 * @return {boolean}
 		 */
 		isElementCloseToViewport: function ( el, threshold, rectangle ) {
-			var viewport = rectangle ? $.extend( {}, rectangle ) : this.makeViewportFromWindow();
+			var viewportRect = rectangle ? $.extend( {}, rectangle ) : this.makeViewportFromWindow();
 			threshold = threshold || 50;
 
-			viewport.top -= threshold;
-			viewport.left -= threshold;
-			viewport.right += threshold;
-			viewport.bottom += threshold;
-			return this.isElementInViewport( el, viewport );
+			viewportRect.top -= threshold;
+			viewportRect.left -= threshold;
+			viewportRect.right += threshold;
+			viewportRect.bottom += threshold;
+			return this.isElementInViewport( el, viewportRect );
 		}
 
 	};

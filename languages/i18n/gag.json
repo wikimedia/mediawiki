@@ -1,14 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"1917 Ekim Devrimi",
 			"Andrijko Z.",
 			"Cuman",
+			"DannyS712",
 			"Emperyan",
-			"Reedy",
+			"Fitoschido",
 			"Meisam",
-			"아라",
+			"Reedy",
 			"Stephanecbisson",
-			"Fitoschido"
+			"아라"
 		]
 	},
 	"tog-underline": "Baalantıların altını çiz",
@@ -330,7 +332,7 @@
 	"histfirst": "En eski",
 	"histlast": "En eni",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayt}})",
-	"historyempty": "(boş)",
+	"historyempty": "boş",
 	"history-feed-title": "Diişmäk istoriyası",
 	"history-feed-item-nocomment": " $2de $1",
 	"rev-deleted-comment": "(yorum silindi)",

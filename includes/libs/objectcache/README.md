@@ -25,8 +25,9 @@ Call counter from `WANObjectCache::getWithSetCallback()`.
 
 #### `wanobjectcache.{kClass}.regen_set_delay`
 
-Upon cache miss, this measures the time spent in `WANObjectCache::getWithSetCallback()`,
-from the start of the method to right after the new value has been computed by the callback.
+Upon cache update due to a cache miss, this measures the time spent in
+`WANObjectCache::getWithSetCallback()`, from the start of the method to right after
+the new value has been computed by the callback.
 
 This essentially measures the whole method (including retrieval of any old value,
 validation, any locks for `lockTSE`, and the callbacks), except for the time spent
@@ -35,10 +36,19 @@ in sending the value to the backend server.
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
 
+#### `wanobjectcache.{kClass}.regen_set_bytes`
+
+Upon cache update due to a cache miss, this estimates the size of the new value
+sent from `WANObjectCache::getWithSetCallback()`.
+
+* Type: Counter (in bytes).
+* Variable `kClass`: The first part of your cache key.
+
 #### `wanobjectcache.{kClass}.regen_walltime`
 
-Upon cache miss, this measures the time spent in `WANObjectCache::getWithSetCallback()`
-from the start of the callback to right after the new value has been computed.
+Upon cache update due to a cache miss, this measures the time spent in
+`WANObjectCache::getWithSetCallback()` from the start of the callback to
+right after the new value has been computed.
 
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.

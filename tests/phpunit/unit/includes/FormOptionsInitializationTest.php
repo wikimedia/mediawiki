@@ -20,7 +20,7 @@ class FormOptionsInitializationTest extends \MediaWikiUnitTestCase {
 	 * A new fresh and empty FormOptions object to test initialization
 	 * with.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->object = TestingAccessWrapper::newFromObject( new FormOptions() );
 	}

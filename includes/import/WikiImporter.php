@@ -24,7 +24,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * XML file reader for the page data importer.
@@ -46,6 +48,8 @@ class WikiImporter {
 	private $config;
 	/** @var ImportTitleFactory */
 	private $importTitleFactory;
+	/** @var HookRunner */
+	private $hookRunner;
 	/** @var array */
 	private $countableCache = [];
 	/** @var bool */
@@ -59,13 +63,14 @@ class WikiImporter {
 	 * @param Config $config
 	 * @throws Exception
 	 */
-	function __construct( ImportSource $source, Config $config ) {
+	public function __construct( ImportSource $source, Config $config ) {
 		if ( !class_exists( 'XMLReader' ) ) {
 			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
 		}
 
 		$this->reader = new XMLReader();
 		$this->config = $config;
+		$this->hookRunner = Hooks::runner();
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
@@ -108,17 +113,17 @@ class WikiImporter {
 
 	public function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
-		wfDebug( "WikiImporter XML error: $err\n" );
+		wfDebug( "WikiImporter XML error: $err" );
 	}
 
 	public function debug( $data ) {
 		if ( $this->mDebug ) {
-			wfDebug( "IMPORT: $data\n" );
+			wfDebug( "IMPORT: $data" );
 		}
 	}
 
 	public function warn( $data ) {
-		wfDebug( "IMPORT: $data\n" );
+		wfDebug( "IMPORT: $data" );
 	}
 
 	public function notice( $msg, ...$params ) {
@@ -127,7 +132,7 @@ class WikiImporter {
 		} else { # No ImportReporter -> CLI
 			// T177997: the command line importers should call setNoticeCallback()
 			// for their own custom callback to echo the notice
-			wfDebug( wfMessage( $msg, $params )->text() . "\n" );
+			wfDebug( wfMessage( $msg, $params )->text() );
 		}
 	}
 
@@ -135,7 +140,7 @@ class WikiImporter {
 	 * Set debug mode...
 	 * @param bool $debug
 	 */
-	function setDebug( $debug ) {
+	public function setDebug( $debug ) {
 		$this->mDebug = $debug;
 	}
 
@@ -143,7 +148,7 @@ class WikiImporter {
 	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
 	 * @param bool $noupdates
 	 */
-	function setNoUpdates( $noupdates ) {
+	public function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
 	}
 
@@ -153,7 +158,7 @@ class WikiImporter {
 	 * @param int $nthPage
 	 * @since 1.29
 	 */
-	function setPageOffset( $nthPage ) {
+	public function setPageOffset( $nthPage ) {
 		$this->pageOffset = $nthPage;
 	}
 
@@ -252,7 +257,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
-		if ( is_null( $namespace ) ) {
+		if ( $namespace === null ) {
 			// Don't override namespaces
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 			return true;
@@ -275,7 +280,7 @@ class WikiImporter {
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
-		if ( is_null( $rootpage ) ) {
+		if ( $rootpage === null ) {
 			// No rootpage
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
@@ -431,7 +436,8 @@ class WikiImporter {
 			}
 		}
 
-		return Hooks::run( 'AfterImportPage', func_get_args() );
+		return $this->hookRunner->onAfterImportPage( $title, $foreignTitle,
+			$revCount, $sRevCount, $pageInfo );
 	}
 
 	/**
@@ -469,7 +475,7 @@ class WikiImporter {
 	 * Notify the callback function when a new "<page>" is reached.
 	 * @param array $title
 	 */
-	function pageCallback( $title ) {
+	public function pageCallback( $title ) {
 		if ( isset( $this->mPageCallback ) ) {
 			call_user_func( $this->mPageCallback, $title );
 		}
@@ -533,7 +539,7 @@ class WikiImporter {
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	public function nodeContents() {
 		if ( $this->reader->isEmptyElement ) {
@@ -567,22 +573,22 @@ class WikiImporter {
 		// libxml_disable_entity_loader() to avoid local file
 		// inclusion attacks (T48932).
 		$oldDisable = libxml_disable_entity_loader( true );
-		$this->reader->read();
-
-		if ( $this->reader->localName != 'mediawiki' ) {
-			libxml_disable_entity_loader( $oldDisable );
-			throw new MWException( "Expected <mediawiki> tag, got " .
-				$this->reader->localName );
-		}
-		$this->debug( "<mediawiki> tag is correct." );
-
-		$this->debug( "Starting primary dump processing loop." );
-
-		$keepReading = $this->reader->read();
-		$skip = false;
 		$rethrow = null;
-		$pageCount = 0;
 		try {
+			$this->reader->read();
+
+			if ( $this->reader->localName != 'mediawiki' ) {
+				libxml_disable_entity_loader( $oldDisable );
+				throw new MWException( "Expected <mediawiki> tag, got " .
+					$this->reader->localName );
+			}
+			$this->debug( "<mediawiki> tag is correct." );
+
+			$this->debug( "Starting primary dump processing loop." );
+
+			$keepReading = $this->reader->read();
+			$skip = false;
+			$pageCount = 0;
 			while ( $keepReading ) {
 				$tag = $this->reader->localName;
 				if ( $this->pageOffset ) {
@@ -596,7 +602,7 @@ class WikiImporter {
 				}
 				$type = $this->reader->nodeType;
 
-				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', [ $this ] ) ) {
+				if ( !$this->hookRunner->onImportHandleToplevelXMLTag( $this ) ) {
 					// Do nothing
 				} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
 					break;
@@ -678,9 +684,7 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', [
-				$this, $logInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleLogItemXMLTag( $this, $logInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -739,9 +743,6 @@ class WikiImporter {
 		return $this->logItemCallback( $revision );
 	}
 
-	/**
-	 * @suppress PhanTypeInvalidDimOffset Phan not reading the reference inside the hook
-	 */
 	private function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );
@@ -766,8 +767,7 @@ class WikiImporter {
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
 				$skip = true;
-			} elseif ( !Hooks::run( 'ImportHandlePageXMLTag', [ $this,
-						&$pageInfo ] ) ) {
+			} elseif ( !$this->hookRunner->onImportHandlePageXMLTag( $this, $pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				// An XML snippet:
@@ -824,13 +824,14 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param array $pageInfo
+	 * @param array &$pageInfo
 	 */
 	private function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = [];
 
-		$normalFields = [ 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text', 'sha1' ];
+		$normalFields = [ 'id', 'parentid', 'timestamp', 'comment', 'minor', 'origin',
+			'model', 'format', 'text', 'sha1' ];
 
 		$skip = false;
 
@@ -842,12 +843,15 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', [
-				$this, $pageInfo, $revisionInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleRevisionXMLTag(
+				$this, $pageInfo, $revisionInfo )
+			) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
+			} elseif ( $tag == 'content' ) {
+				// We can have multiple content tags, so make this an array.
+				$revisionInfo[$tag][] = $this->handleContent();
 			} elseif ( $tag == 'contributor' ) {
 				$revisionInfo['contributor'] = $this->handleContributor();
 			} elseif ( $tag != '#text' ) {
@@ -862,6 +866,85 @@ class WikiImporter {
 		}
 	}
 
+	private function handleContent() {
+		$this->debug( "Enter content handler" );
+		$contentInfo = [];
+
+		$normalFields = [ 'role', 'origin', 'model', 'format', 'text' ];
+
+		$skip = false;
+
+		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
+				$this->reader->localName == 'content' ) {
+				break;
+			}
+
+			$tag = $this->reader->localName;
+
+			if ( !$this->hookRunner->onImportHandleContentXMLTag(
+				$this, $contentInfo )
+			) {
+				// Do nothing
+			} elseif ( in_array( $tag, $normalFields ) ) {
+				$contentInfo[$tag] = $this->nodeContents();
+			} elseif ( $tag != '#text' ) {
+				$this->warn( "Unhandled content XML tag $tag" );
+				$skip = true;
+			}
+		}
+
+		return $contentInfo;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param int $revisionId
+	 * @param array $contentInfo
+	 *
+	 * @return Content
+	 * @throws MWException
+	 */
+	private function makeContent( Title $title, $revisionId, $contentInfo ) {
+		global $wgMaxArticleSize;
+
+		if ( !isset( $contentInfo['text'] ) ) {
+			throw new MWException( 'Missing text field in import.' );
+		}
+
+		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
+		// database errors and instability. Testing for revisions with only listed
+		// content models, as other content models might use serialization formats
+		// which aren't checked against $wgMaxArticleSize.
+		if ( ( !isset( $contentInfo['model'] ) ||
+				in_array( $contentInfo['model'], [
+					'wikitext',
+					'css',
+					'json',
+					'javascript',
+					'text',
+					''
+				] ) ) &&
+			strlen( $contentInfo['text'] ) > $wgMaxArticleSize * 1024
+		) {
+			throw new MWException( 'The text of ' .
+				( $revisionId ?
+					"the revision with ID $revisionId" :
+					'a revision'
+				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
+		}
+
+		$role = $contentInfo['role'] ?? SlotRecord::MAIN;
+		$model = $contentInfo['model'] ?? $this->getDefaultContentModel( $title, $role );
+		$handler = $this->getContentHandler( $model );
+
+		$text = $handler->importTransform( $contentInfo['text'] );
+
+		$content = $handler->unserializeContent( $text );
+
+		return $content;
+	}
+
 	/**
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
@@ -869,51 +952,26 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
-		global $wgMaxArticleSize;
-
-		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
-		// database errors and instability. Testing for revisions with only listed
-		// content models, as other content models might use serialization formats
-		// which aren't checked against $wgMaxArticleSize.
-		if ( ( !isset( $revisionInfo['model'] ) ||
-			in_array( $revisionInfo['model'], [
-				'wikitext',
-				'css',
-				'json',
-				'javascript',
-				'text',
-				''
-			] ) ) &&
-			strlen( $revisionInfo['text'] ) > $wgMaxArticleSize * 1024
-		) {
-			throw new MWException( 'The text of ' .
-				( isset( $revisionInfo['id'] ) ?
-					"the revision with ID $revisionInfo[id]" :
-					'a revision'
-				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
-		}
-
-		// FIXME: process schema version 11!
 		$revision = new WikiRevision( $this->config );
 
-		if ( isset( $revisionInfo['id'] ) ) {
+		$revId = $revisionInfo['id'] ?? 0;
+		if ( $revId ) {
 			$revision->setID( $revisionInfo['id'] );
 		}
-		if ( isset( $revisionInfo['model'] ) ) {
-			$revision->setModel( $revisionInfo['model'] );
-		}
-		if ( isset( $revisionInfo['format'] ) ) {
-			$revision->setFormat( $revisionInfo['format'] );
-		}
-		$revision->setTitle( $pageInfo['_title'] );
 
-		if ( isset( $revisionInfo['text'] ) ) {
-			$handler = $revision->getContentHandler();
-			$text = $handler->importTransform(
-				$revisionInfo['text'],
-				$revision->getFormat() );
+		$title = $pageInfo['_title'];
+		$revision->setTitle( $title );
 
-			$revision->setText( $text );
+		$content = $this->makeContent( $title, $revId, $revisionInfo );
+		$revision->setContent( SlotRecord::MAIN, $content );
+
+		foreach ( $revisionInfo['content'] ?? [] as $slotInfo ) {
+			if ( !isset( $slotInfo['role'] ) ) {
+				throw new MWException( "Missing role for imported slot." );
+			}
+
+			$content = $this->makeContent( $title, $revId, $slotInfo );
+			$revision->setContent( $slotInfo['role'], $content );
 		}
 		$revision->setTimestamp( $revisionInfo['timestamp'] ?? wfTimestampNow() );
 
@@ -942,7 +1000,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param array $pageInfo
+	 * @param array &$pageInfo
 	 * @return mixed
 	 */
 	private function handleUpload( &$pageInfo ) {
@@ -962,9 +1020,7 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleUploadXMLTag', [
-				$this, $pageInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleUploadXMLTag( $this, $pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();
@@ -1051,6 +1107,7 @@ class WikiImporter {
 	 * @return array
 	 */
 	private function handleContributor() {
+		$this->debug( "Enter contributor handler." );
 		$fields = [ 'id', 'ip', 'username' ];
 		$info = [];
 
@@ -1079,7 +1136,7 @@ class WikiImporter {
 	 * @return array|bool
 	 */
 	private function processTitle( $text, $ns = null ) {
-		if ( is_null( $this->foreignNamespaces ) ) {
+		if ( $this->foreignNamespaces === null ) {
 			$foreignTitleFactory = new NaiveForeignTitleFactory();
 		} else {
 			$foreignTitleFactory = new NamespaceAwareForeignTitleFactory(
@@ -1093,7 +1150,7 @@ class WikiImporter {
 			$foreignTitle );
 
 		$commandLineMode = $this->config->get( 'CommandLineMode' );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			# Invalid page title? Ignore the page
 			$this->notice( 'import-error-invalid', $foreignTitle->getFullText() );
 			return false;
@@ -1123,5 +1180,28 @@ class WikiImporter {
 		}
 
 		return [ $title, $foreignTitle ];
+	}
+
+	/**
+	 * @param string $model
+	 * @return ContentHandler
+	 */
+	private function getContentHandler( $model ) {
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $model );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $role
+	 *
+	 * @return string
+	 */
+	private function getDefaultContentModel( $title, $role ) {
+		return MediaWikiServices::getInstance()
+			->getSlotRoleRegistry()
+			->getRoleHandler( $role )
+			->getDefaultModel( $title );
 	}
 }

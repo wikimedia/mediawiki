@@ -3,5 +3,3 @@
 ALTER TABLE /*$wgDBprefix*/recentchanges
   ADD rc_ip varbinary(40) NOT NULL default '',
   ADD INDEX rc_ip (rc_ip);
-
-

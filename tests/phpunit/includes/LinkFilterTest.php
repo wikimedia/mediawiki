@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\LikeMatch;
  */
 class LinkFilterTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgUrlProtocols', [
@@ -38,7 +38,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 * @param array $like Array as created by LinkFilter::makeLikeArray()
 	 * @return string Regex
 	 */
-	function createRegexFromLIKE( $like ) {
+	private function createRegexFromLIKE( $like ) {
 		$regex = '!^';
 
 		foreach ( $like as $item ) {
@@ -208,7 +208,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 *  - found: (bool) Should the URL be found? (defaults true)
 	 *  - idn: (bool) Does this test require the idn conversion (default false)
 	 */
-	function testMakeLikeArrayWithValidPatterns( $protocol, $pattern, $url, $options = [] ) {
+	public function testMakeLikeArrayWithValidPatterns( $protocol, $pattern, $url, $options = [] ) {
 		$options += [ 'found' => true, 'idn' => false ];
 		if ( !empty( $options['idn'] ) && !LinkFilter::supportsIDN() ) {
 			$this->markTestSkipped( 'LinkFilter IDN support is not available' );
@@ -281,7 +281,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 *
 	 * @param string $pattern Invalid search pattern
 	 */
-	function testMakeLikeArrayWithInvalidPatterns( $pattern ) {
+	public function testMakeLikeArrayWithInvalidPatterns( $pattern ) {
 		$this->assertFalse(
 			LinkFilter::makeLikeArray( $pattern ),
 			"'$pattern' is not a valid pattern and should be rejected"

@@ -24,12 +24,13 @@ namespace MediaWiki\Interwiki;
 
 use Cdb\Exception as CdbException;
 use Cdb\Reader as CdbReader;
-use Hooks;
 use Interwiki;
 use Language;
-use WikiMap;
 use MapCacheLRU;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use WANObjectCache;
+use WikiMap;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -91,9 +92,13 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private $thisSite = null;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param Language $contLang Language object used to convert prefixes to lower case
 	 * @param WANObjectCache $objectCache Cache for interwiki info retrieved from the database
+	 * @param HookContainer $hookContainer
 	 * @param int $objectCacheExpiry Expiry time for $objectCache, in seconds
 	 * @param bool|array|string $cdbData The path of a CDB file, or
 	 *        an array resembling the contents of a CDB file,
@@ -104,9 +109,10 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 *    - 3: site level as well as wiki and global levels
 	 * @param string $fallbackSite The code to assume for the local site,
 	 */
-	function __construct(
+	public function __construct(
 		Language $contLang,
 		WANObjectCache $objectCache,
+		HookContainer $hookContainer,
 		$objectCacheExpiry,
 		$cdbData,
 		$interwikiScopes,
@@ -116,6 +122,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 		$this->contLang = $contLang;
 		$this->objectCache = $objectCache;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->objectCacheExpiry = $objectCacheExpiry;
 		$this->cdbData = $cdbData;
 		$this->interwikiScopes = $interwikiScopes;
@@ -212,9 +219,9 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return bool|string The interwiki entry or false if not found
 	 */
 	private function getInterwikiCacheEntry( $prefix ) {
-		wfDebug( __METHOD__ . "( $prefix )\n" );
+		wfDebug( __METHOD__ . "( $prefix )" );
 
-		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wikiId = WikiMap::getCurrentWikiId();
 
 		$value = false;
 		try {
@@ -272,7 +279,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private function load( $prefix ) {
 		$iwData = [];
-		if ( !Hooks::run( 'InterwikiLoadPrefix', [ $prefix, &$iwData ] ) ) {
+		if ( !$this->hookRunner->onInterwikiLoadPrefix( $prefix, $iwData ) ) {
 			return $this->loadFromArray( $iwData );
 		}
 
@@ -337,9 +344,9 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return array List of prefixes, where each row is an associative array
 	 */
 	private function getAllPrefixesCached( $local ) {
-		wfDebug( __METHOD__ . "()\n" );
+		wfDebug( __METHOD__ . "()" );
 
-		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wikiId = WikiMap::getCurrentWikiId();
 
 		$data = [];
 		try {

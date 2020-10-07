@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agusbou2015",
 			"Alpertron",
 			"Cerealito",
 			"Crazymadlover",
@@ -13,8 +14,7 @@
 			"Macofe",
 			"MarcoAurelio",
 			"Sanbec",
-			"Vivaelcelta",
-			"Agusbou2015"
+			"Vivaelcelta"
 		]
 	},
 	"exif-imagewidth": "Anchura",
@@ -280,6 +280,12 @@
 	"exif-scenetype-1": "Una imagen directamente fotografiada",
 	"exif-customrendered-0": "Proceso normal",
 	"exif-customrendered-1": "Proceso personalizado",
+	"exif-customrendered-2": "HDR (no se guardó el original)",
+	"exif-customrendered-3": "HDR (original guardado)",
+	"exif-customrendered-4": "Original (para HDR)",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "HDR vertical",
+	"exif-customrendered-8": "Vertical",
 	"exif-exposuremode-0": "Exposición automática",
 	"exif-exposuremode-1": "Exposición manual",
 	"exif-exposuremode-2": "Auto bracket",

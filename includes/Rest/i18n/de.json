@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tobi 406"
+		]
+	},
+	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden",
+	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfas}} ($2)",
+	"rest-no-match": "Der angeforderte relative Pfad ($1) stimmte mit keinem bekannten Handler überein",
+	"rest-nonexistent-title": "Der angegebene Titel ($1) existiert nicht",
+	"rest-nonexistent-title-revision": "Die angegebene Version ($1) existiert nicht für die angegebene Seite ($2)",
+	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",
+	"rest-nonexistent-user": "Der angegebene Benutzer ($1) ist nicht vorhanden.",
+	"rest-invalid-user": "Der angegebene Benutzername ($1) ist ungültig",
+	"rest-permission-denied-anon": "Für nicht angemeldete Benutzer nicht zugänglich",
+	"rest-permission-denied-title": "Der Benutzer hat keine Rechte zum Lesen des Titels ($1)",
+	"rest-permission-denied-revision": "Der Benutzer hat keinen Zugriff auf die angeforderte Version ($1).",
+	"rest-pagehistory-incompatible-params": "Die Parameter \"older_than\" und \"newer_than\" können nicht beide angegeben werden.",
+	"rest-pagehistory-param-range-error": "Die Versions-ID muss größer als 0 sein",
+	"rest-pagehistory-timestamp-error": "Zeitstempel für die angegebene Version kann nicht abgerufen werden ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Die angegebene Zählart ($1) ist nicht gültig",
+	"rest-pagehistorycount-parameters-invalid": "Die angegebene Kombination von Parametern wird nicht unterstützt.",
+	"rest-compare-page-mismatch": "Die angegebenen Versionen gehören zu verschiedenen Seiten; sie zu vergleichen wird abgelehnt.",
+	"rest-compare-permission-denied": "Benutzer hat keinen Zugang zu den angeforderten Versionen",
+	"rest-compare-nonexistent": "Die durch den Parameter $1 angegebene Version existiert nicht.",
+	"rest-compare-inaccessible": "Die durch den Parameter $1 angegebene Version ist nicht öffentlich zugänglich.",
+	"rest-compare-wrong-content": "Der Slot $1 der durch den Parameter $2 angegebenen Version hat einen Inhaltstyp, der nicht in Text konvertiert werden kann.",
+	"rest-compare-wikidiff2": "Dieser Endpunkt erfordert wikidiff2 1.9.0 oder höher.",
+	"rest-pagehistorycount-too-many-revisions": "Der angegebene Titel enthält zu viele Versionen, um diese Anzahl abzurufen.",
+	"rest-search-error": "Fehler bei der Rückgabe von Suchergebnissen: $1",
+	"rest-page-source-type-error": "Der Inhaltstyp der angeforderten Seitenquelle wird nicht unterstützt",
+	"rest-no-revision": "Version für Titel $1 kann nicht abgerufen werden",
+	"rest-media-too-many-links": "Zu viele Medienlinks auf Titel $1 gefunden ($2 erlaubt)",
+	"rest-html-backend-error": "Parsoid-HTML kann nicht abgerufen werden",
+	"rest-bad-json-body": "Schlechter Hauptteil der Anfrage, muss ein JSON-Objekt sein.",
+	"rest-json-body-parse-error": "Parsen des Hauptteils der Anfrage als JSON fehlgeschlagen: $1",
+	"rest-missing-body-field": "Pflichtfeld „$1“ fehlt im Hauptteil der Anfrage.",
+	"rest-bad-content-model": "Schlechtes Inhaltsmodell: $1",
+	"rest-update-cannot-create-page": "Die Seite „$1“ kann nicht erstellt werden, da sie bereits existiert. Um die bestehende Seite zu aktualisieren, gib die Basis-Versions-ID in der Struktur unter dem Schlüssel „latest“ im Hauptteil der Anfrage an.",
+	"rest-extraneous-csrf-token": "Fremdes CSRF-Token gefunden. CSRF-Token dürfen nicht verwendet werden, wenn Authentifizierungsmechanismen wie OAuth verwendet werden, die gegen CSRF-Angriffe sicher sind.",
+	"rest-cannot-load-file": "Die Datei von „$1“ kann nicht geladen werden."
+}

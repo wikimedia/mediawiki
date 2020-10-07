@@ -1,19 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
+			"Impersonator 1",
 			"Kaganer",
+			"LNDDYL",
+			"Macofe",
 			"Mark85296341",
+			"Mywood",
 			"Reedy",
 			"Symane",
 			"Urhixidur",
 			"Vipuser",
 			"Xiaomingyan",
-			"아라",
-			"Mywood",
-			"Impersonator 1",
-			"LNDDYL",
-			"Macofe",
-			"Fitoschido"
+			"아라"
 		]
 	},
 	"tog-underline": "下劃連結",
@@ -247,7 +248,7 @@
 	"nospecialpagetext": "<strong>倷要求嗰特殊頁冇有用。</strong>\n\n[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
 	"error": "錯誤",
 	"databaseerror": "資料庫錯誤",
-	"laggedslavemode": "警告：頁面可能冇有新近內容。",
+	"laggedreplicamode": "警告：頁面可能冇有新近內容。",
 	"readonly": "資料庫上正鎖哩",
 	"enterlockreason": "請輸入鎖到資料庫嗰理由，包括預計幾時間解鎖",
 	"readonlytext": "資料庫上嘞鎖改伓正，可能佢正維修中，搞正嘞仰上會還原。管理員嗰解釋： $1",
@@ -422,7 +423,6 @@
 	"undo-success": "箇隻編輯可以拕取銷。請檢查吖以確定箇係倷想扤嗰，接到保存修改去完成撤銷編輯。",
 	"undo-failure": "半中嗰編輯有人挭仗，箇隻編輯伓可以拕取銷。",
 	"undo-summary": "取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所修訂嗰 $1",
-	"cantcreateaccount-text": "IP 位址伓能 （'''$1'''） 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 （ISP）故意嗰破壞扤得。",
 	"viewpagelogs": "眵吖箇頁嗰日誌",
 	"nohistory": "箇頁冇修改歷史。",
 	"currentrev": "眼前嗰修改版本",
@@ -443,7 +443,7 @@
 	"histfirst": "頂早嗰版本",
 	"histlast": "頂晏嗰版本",
 	"historysize": "（{{PLURAL:$1|1 字節|$1 字節}}）",
-	"historyempty": "（空）",
+	"historyempty": "空",
 	"history-feed-title": "修改歷史",
 	"history-feed-description": "本站箇頁嗰修改歷史",
 	"history-feed-item-nocomment": "$1到$2",

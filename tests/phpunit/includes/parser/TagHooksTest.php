@@ -10,15 +10,6 @@ use MediaWiki\MediaWikiServices;
  * @covers BlockLevelPass
  * @covers StripState
  *
- * @covers Preprocessor_DOM
- * @covers PPDStack
- * @covers PPDStackElement
- * @covers PPDPart
- * @covers PPFrame_DOM
- * @covers PPTemplateFrame_DOM
- * @covers PPCustomFrame_DOM
- * @covers PPNode_DOM
- *
  * @covers Preprocessor_Hash
  * @covers PPDStack_Hash
  * @covers PPDStackElement_Hash
@@ -31,7 +22,7 @@ use MediaWiki\MediaWikiServices;
  * @covers PPNode_Hash_Array
  * @covers PPNode_Hash_Attr
  */
-class TagHooksTest extends MediaWikiTestCase {
+class TagHooksTest extends MediaWikiIntegrationTestCase {
 	public static function provideValidNames() {
 		return [
 			[ 'foo' ],
@@ -71,18 +62,12 @@ class TagHooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
 	 */
 	public function testBadTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->expectException( MWException::class );
 		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
-		$parser->parse(
-			"Foo<$tag>Bar</$tag>Baz",
-			Title::newFromText( 'Test' ),
-			$this->getParserOptions()
-		);
-		$this->fail( 'Exception not thrown.' );
 	}
 
 	/**
@@ -91,6 +76,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	public function testFunctionTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->hideDeprecated( 'Parser::setFunctionTagHook' );
 		$parser->setFunctionTagHook( $tag, [ $this, 'functionTagCallback' ], 0 );
 		$parserOutput = $parser->parse(
 			"Foo<$tag>Bar</$tag>Baz",
@@ -104,29 +90,24 @@ class TagHooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
 	 */
 	public function testBadFunctionTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->expectException( MWException::class );
+		$this->hideDeprecated( 'Parser::setFunctionTagHook' );
 		$parser->setFunctionTagHook(
 			$tag,
 			[ $this, 'functionTagCallback' ],
 			Parser::SFH_OBJECT_ARGS
 		);
-		$parser->parse(
-			"Foo<$tag>Bar</$tag>Baz",
-			Title::newFromText( 'Test' ),
-			$this->getParserOptions()
-		);
-		$this->fail( 'Exception not thrown.' );
 	}
 
-	function tagCallback( $text, $params, $parser ) {
+	public function tagCallback( $text, $params, $parser ) {
 		return str_rot13( $text );
 	}
 
-	function functionTagCallback( &$parser, $frame, $code, $attribs ) {
+	public function functionTagCallback( $parser, $frame, $code, $attribs ) {
 		return str_rot13( $code );
 	}
 }

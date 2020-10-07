@@ -2,7 +2,6 @@
 
 namespace Wikimedia\ParamValidator\Util;
 
-use Exception;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 use Throwable;
@@ -36,10 +35,7 @@ class UploadedFileStream implements StreamInterface {
 	 * @throws RuntimeException if $func returns $fail
 	 */
 	private static function quietCall( callable $func, array $args, $fail, $msg ) {
-		// TODO remove the function_exists check once we drop HHVM support
-		if ( function_exists( 'error_clear_last' ) ) {
-			error_clear_last();
-		}
+		error_clear_last();
 		$ret = AtEase::quietCall( $func, ...$args );
 		if ( $ret === $fail ) {
 			$err = error_get_last();
@@ -73,9 +69,6 @@ class UploadedFileStream implements StreamInterface {
 		try {
 			$this->seek( 0 );
 			return $this->getContents();
-		} catch ( Exception $ex ) {
-			// Not allowed to throw
-			return '';
 		} catch ( Throwable $ex ) {
 			// Not allowed to throw
 			return '';
@@ -85,7 +78,12 @@ class UploadedFileStream implements StreamInterface {
 	public function close() {
 		if ( $this->fp ) {
 			// Spec doesn't care about close errors.
-			AtEase::quietCall( 'fclose', $this->fp );
+			try {
+				// PHP 7 emits warnings, suppress
+				AtEase::quietCall( 'fclose', $this->fp );
+			} catch ( \TypeError $unused ) {
+				// While PHP 8 throws exceptions, ignore
+			}
 			$this->fp = null;
 		}
 	}
@@ -102,7 +100,10 @@ class UploadedFileStream implements StreamInterface {
 
 			if ( $this->fp ) {
 				// Spec doesn't care about errors here.
-				$stat = AtEase::quietCall( 'fstat', $this->fp );
+				try {
+					$stat = AtEase::quietCall( 'fstat', $this->fp );
+				} catch ( \TypeError $unused ) {
+				}
 				$this->size = $stat['size'] ?? null;
 			}
 		}
@@ -117,7 +118,11 @@ class UploadedFileStream implements StreamInterface {
 
 	public function eof() {
 		// Spec doesn't care about errors here.
-		return !$this->fp || AtEase::quietCall( 'feof', $this->fp );
+		try {
+			return !$this->fp || AtEase::quietCall( 'feof', $this->fp );
+		} catch ( \TypeError $unused ) {
+			return true;
+		}
 	}
 
 	public function isSeekable() {

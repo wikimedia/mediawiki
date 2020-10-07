@@ -2,6 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -47,17 +49,95 @@ class FloatDefTest extends TypeDefTestCase {
 			'Weird, but ok' => [ '-0', 0 ],
 			'Underflow is ok' => [ '1e-9999', 0 ],
 
-			'Empty decimal part' => [ '1.', new ValidationException( 'test', '1.', [], 'badfloat', [] ) ],
-			'Bad sign' => [ ' 1', new ValidationException( 'test', ' 1', [], 'badfloat', [] ) ],
-			'Comma as decimal separator or thousands grouping?'
-				=> [ '1,234', new ValidationException( 'test', '1,234', [], 'badfloat', [] ) ],
-			'U+2212 minus' => [ '−1', new ValidationException( 'test', '−1', [], 'badfloat', [] ) ],
-			'Overflow' => [ '1e9999', new ValidationException( 'test', '1e9999', [], 'notfinite', [] ) ],
-			'Overflow, -INF'
-				=> [ '-1e9999', new ValidationException( 'test', '-1e9999', [], 'notfinite', [] ) ],
-			'Bogus value' => [ 'foo', new ValidationException( 'test', 'foo', [], 'badfloat', [] ) ],
-			'Bogus value (2)' => [ '123f4', new ValidationException( 'test', '123f4', [], 'badfloat', [] ) ],
-			'Newline' => [ "123\n", new ValidationException( 'test', "123\n", [], 'badfloat', [] ) ],
+			'Empty decimal part' => [ '1.', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat', [], 'badfloat' ),
+				'test', '1.', []
+			) ],
+			'Bad sign' => [ ' 1', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat', [], 'badfloat' ),
+				'test', ' 1', []
+			) ],
+			'Comma as decimal separator or thousands grouping?' => [ '1,234', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat', [], 'badfloat' ),
+				'test', '1,234', []
+			) ],
+			'U+2212 minus' => [ '−1', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat', [], 'badfloat' ),
+				'test', '−1', []
+			) ],
+			'Overflow' => [ '1e9999', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat-notfinite', [], 'badfloat-notfinite' ),
+				'test', '1e9999', []
+			) ],
+			'Overflow, -INF' => [ '-1e9999', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badfloat-notfinite', [], 'badfloat-notfinite' ),
+				'test', '-1e9999', []
+			) ],
+			'Bogus value' => [ 'foo', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-notfinite', [], 'badfloat' ),
+				'test', 'foo', []
+			) ],
+			'Bogus value' => [ '123f4', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-notfinite', [], 'badfloat' ),
+				'test', '123f4', []
+			) ],
+			'Newline' => [ "123\n", new ValidationException(
+				DataMessageValue::new( 'paramvalidator-notfinite', [], 'badfloat' ),
+				'test', "123\n", []
+			) ],
+		];
+	}
+
+	public function provideCheckSettings() {
+		$keys = [
+			'Y', FloatDef::PARAM_IGNORE_RANGE,
+			FloatDef::PARAM_MIN, FloatDef::PARAM_MAX, FloatDef::PARAM_MAX2
+		];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					FloatDef::PARAM_IGNORE_RANGE => true,
+					FloatDef::PARAM_MIN => -100.0,
+					FloatDef::PARAM_MAX => -90.0,
+					FloatDef::PARAM_MAX2 => -80.0,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					FloatDef::PARAM_IGNORE_RANGE => 1,
+					FloatDef::PARAM_MIN => 1,
+					FloatDef::PARAM_MAX => '2',
+					FloatDef::PARAM_MAX2 => '3',
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						FloatDef::PARAM_IGNORE_RANGE => 'PARAM_IGNORE_RANGE must be boolean, got integer',
+						FloatDef::PARAM_MIN => 'PARAM_MIN must be double, got integer',
+						FloatDef::PARAM_MAX => 'PARAM_MAX must be double, got string',
+						FloatDef::PARAM_MAX2 => 'PARAM_MAX2 must be double, got string',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
 		];
 	}
 
@@ -116,6 +196,33 @@ class FloatDefTest extends TypeDefTestCase {
 
 			// This one, on my system at least, has decimal_point as U+066B.
 			[ 'ps_AF' ],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[ 'min' => null, 'max' => null ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-float"><text>1</text></message>',
+				],
+			],
+			'Various settings' => [
+				[
+					FloatDef::PARAM_MIN => 1,
+					FloatDef::PARAM_MAX => 100,
+					ParamValidator::PARAM_ISMULTI => true
+				],
+				[ 'min' => 1, 'max' => 100 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					FloatDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-minmax"><text>2</text><num>1</num><num>100</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-float"><text>2</text></message>',
+				],
+			],
 		];
 	}
 

@@ -24,8 +24,8 @@
  * @group GlobalFunctions
  * @covers ::wfParseUrl
  */
-class WfParseUrlTest extends MediaWikiTestCase {
-	protected function setUp() {
+class WfParseUrlTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgUrlProtocols', [

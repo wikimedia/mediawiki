@@ -17,7 +17,7 @@ class ImportSites extends Maintenance {
 	public function __construct() {
 		$this->addDescription( 'Imports site definitions from XML into the sites table.' );
 
-		$this->addArg( 'file', 'An XML file containing site definitions (see docs/sitelist.txt). ' .
+		$this->addArg( 'file', 'An XML file containing site definitions (see docs/sitelist.md). ' .
 			'Use "php://stdin" to read from stdin.', true
 		);
 

@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  */
 class TitleMethodsTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -307,7 +307,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetOtherPage( $text, $expected ) {
 		if ( $expected === null ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 		}
 
 		$title = Title::newFromText( $text );
@@ -406,7 +406,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'wgFragmentMode' => [ 'html5', 'legacy' ]
 		] );
 
-		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createMock( InterwikiLookup::class );
 
 		$interwikiLookup->method( 'fetch' )
 			->willReturnCallback( function ( $interwiki ) {
@@ -437,32 +437,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
 	}
 
-	/**
-	 * Integration test to catch regressions like T74870. Taken and modified
-	 * from SemanticMediaWiki
-	 *
-	 * @covers Title::moveTo
-	 */
-	public function testTitleMoveCompleteIntegrationTest() {
-		$this->hideDeprecated( 'Title::moveTo' );
-
-		$oldTitle = Title::newFromText( 'Help:Some title' );
-		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
-		$newTitle = Title::newFromText( 'Help:Some other title' );
-		$this->assertNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
-
-		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
-		$this->assertNotNull(
-			WikiPage::factory( $oldTitle )->getRevision()
-		);
-		$this->assertNotNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
-	}
-
-	function tearDown() {
+	protected function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

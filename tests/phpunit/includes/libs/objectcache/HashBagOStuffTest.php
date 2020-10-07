@@ -6,7 +6,6 @@ use Wikimedia\TestingAccessWrapper;
  * @group BagOStuff
  */
 class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
-
 	use MediaWikiCoversValidator;
 
 	/**
@@ -21,25 +20,25 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadZero() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => 0 ] );
 	}
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadNeg() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => -1 ] );
 	}
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadType() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => 'x' ] );
 	}
 
@@ -50,9 +49,9 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 			$cache->delete( "key$i" );
-			$this->assertEquals( false, $cache->get( "key$i" ) );
+			$this->assertFalse( $cache->get( "key$i" ) );
 		}
 	}
 
@@ -63,11 +62,11 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 		}
 		$cache->clear();
 		for ( $i = 0; $i < 10; $i++ ) {
-			$this->assertEquals( false, $cache->get( "key$i" ) );
+			$this->assertFalse( $cache->get( "key$i" ) );
 		}
 	}
 
@@ -84,11 +83,21 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( 0, $cacheInternal->bag['foo'][$cache::KEY_EXP], 'Indefinite' );
 		// 2 seconds tolerance
-		$this->assertEquals( time() + 10, $cacheInternal->bag['bar'][$cache::KEY_EXP], 'Future', 2 );
-		$this->assertEquals( time() - 10, $cacheInternal->bag['baz'][$cache::KEY_EXP], 'Past', 2 );
+		$this->assertEqualsWithDelta(
+			time() + 10,
+			$cacheInternal->bag['bar'][$cache::KEY_EXP],
+			2,
+			'Future'
+		);
+		$this->assertEqualsWithDelta(
+			time() - 10,
+			$cacheInternal->bag['baz'][$cache::KEY_EXP],
+			2,
+			'Past'
+		);
 
-		$this->assertEquals( 1, $cache->get( 'bar' ), 'Key not expired' );
-		$this->assertEquals( false, $cache->get( 'baz' ), 'Key expired' );
+		$this->assertSame( 1, $cache->get( 'bar' ), 'Key not expired' );
+		$this->assertFalse( $cache->get( 'baz' ), 'Key expired' );
 	}
 
 	/**
@@ -100,12 +109,12 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 		}
 		for ( $i = 10; $i < 20; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
-			$this->assertEquals( false, $cache->get( "key" . ( $i - 10 ) ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
+			$this->assertFalse( $cache->get( "key" . ( $i - 10 ) ) );
 		}
 	}
 
@@ -130,9 +139,9 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		// Foo's life should have been extended over Bar
 		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
-			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
+			$this->assertSame( 1, $cache->get( $key ), "Kept $key" );
 		}
-		$this->assertEquals( false, $cache->get( 'bar' ), 'Evicted bar' );
+		$this->assertFalse( $cache->get( 'bar' ), 'Evicted bar' );
 	}
 
 	/**
@@ -156,8 +165,8 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		// Foo's life should have been extended over Bar
 		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
-			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
+			$this->assertSame( 1, $cache->get( $key ), "Kept $key" );
 		}
-		$this->assertEquals( false, $cache->get( 'bar' ), 'Evicted bar' );
+		$this->assertFalse( $cache->get( 'bar' ), 'Evicted bar' );
 	}
 }

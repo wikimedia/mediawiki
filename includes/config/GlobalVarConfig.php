@@ -23,6 +23,7 @@
 /**
  * Accesses configuration settings from $GLOBALS
  *
+ * @newable
  * @since 1.23
  */
 class GlobalVarConfig implements Config {
@@ -41,6 +42,11 @@ class GlobalVarConfig implements Config {
 		return new GlobalVarConfig();
 	}
 
+	/**
+	 * @stable to call
+	 *
+	 * @param string $prefix
+	 */
 	public function __construct( $prefix = 'wg' ) {
 		$this->prefix = $prefix;
 	}

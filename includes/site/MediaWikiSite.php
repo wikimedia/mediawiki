@@ -36,8 +36,8 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * @ingroup Site
  */
 class MediaWikiSite extends Site {
-	const PATH_FILE = 'file_path';
-	const PATH_PAGE = 'page_path';
+	public const PATH_FILE = 'file_path';
+	public const PATH_PAGE = 'page_path';
 
 	/**
 	 * @since 1.21
@@ -86,7 +86,7 @@ class MediaWikiSite extends Site {
 	 * @throws MWException
 	 */
 	public function normalizePageName( $pageName ) {
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_DEV_ENV' ) ) {
 			// If the code is under test, don't call out to other sites, just
 			// normalize locally.
 			// Note: this may cause results to be inconsistent with the actual

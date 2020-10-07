@@ -30,8 +30,8 @@
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Wikimedia\ScopedCallback;
 use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 
 /**
  * @brief Base class for all file backend classes (including multi-write backends).
@@ -88,6 +88,10 @@ use Psr\Log\NullLogger;
  * Methods of subclasses should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
  *
+ * See [the architecture doc](@ref filebackendarch) for more information.
+ *
+ * @stable to extend
+ *
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -127,36 +131,37 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected $statusWrapper;
 
 	/** Bitfield flags for supported features */
-	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
-	const ATTR_METADATA = 2; // files can be stored with metadata key/values
-	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
+	public const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
+	public const ATTR_METADATA = 2; // files can be stored with metadata key/values
+	public const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
 	/** @var false Idiom for "no info; non-existant file" (since 1.34) */
-	const STAT_ABSENT = false;
+	protected const STAT_ABSENT = false;
 
 	/** @var null Idiom for "no info; I/O errors" (since 1.34) */
-	const STAT_ERROR = null;
+	public const STAT_ERROR = null;
 	/** @var null Idiom for "no file/directory list; I/O errors" (since 1.34) */
-	const LIST_ERROR = null;
+	public const LIST_ERROR = null;
 	/** @var null Idiom for "no temp URL; not supported or I/O errors" (since 1.34) */
-	const TEMPURL_ERROR = null;
+	public const TEMPURL_ERROR = null;
 	/** @var null Idiom for "existence unknown; I/O errors" (since 1.34) */
-	const EXISTENCE_ERROR = null;
+	public const EXISTENCE_ERROR = null;
 
 	/** @var false Idiom for "no timestamp; missing file or I/O errors" (since 1.34) */
-	const TIMESTAMP_FAIL = false;
+	public const TIMESTAMP_FAIL = false;
 	/** @var false Idiom for "no content; missing file or I/O errors" (since 1.34) */
-	const CONTENT_FAIL = false;
+	public const CONTENT_FAIL = false;
 	/** @var false Idiom for "no metadata; missing file or I/O errors" (since 1.34) */
-	const XATTRS_FAIL = false;
+	public const XATTRS_FAIL = false;
 	/** @var false Idiom for "no size; missing file or I/O errors" (since 1.34) */
-	const SIZE_FAIL = false;
+	public const SIZE_FAIL = false;
 	/** @var false Idiom for "no SHA1 hash; missing file or I/O errors" (since 1.34) */
-	const SHA1_FAIL = false;
+	public const SHA1_FAIL = false;
 
 	/**
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
+	 * @stable to call
 	 *
 	 * @param array $config Parameters include:
 	 *   - name : The unique name of this backend.
@@ -185,21 +190,26 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - logger : Optional PSR logger object.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
+	 *   - statusWrapper : Optional callback that is used to wrap returned StatusValues
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
+		if ( !array_key_exists( 'name', $config ) ) {
+			throw new InvalidArgumentException( 'Backend name not specified.' );
+		}
 		$this->name = $config['name'];
 		$this->domainId = $config['domainId'] // e.g. "my_wiki-en_"
-			?? $config['wikiId']; // b/c alias
+			?? $config['wikiId'] // b/c alias
+			?? null;
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
 			throw new InvalidArgumentException( "Backend name '{$this->name}' is invalid." );
-		} elseif ( !is_string( $this->domainId ) ) {
+		}
+		if ( !is_string( $this->domainId ) ) {
 			throw new InvalidArgumentException(
 				"Backend domain ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = $config['lockManager'] ?? new NullLockManager( [] );
-		$this->fileJournal = $config['fileJournal']
-			?? FileJournal::factory( [ 'class' => NullFileJournal::class ], $this->name );
+		$this->fileJournal = $config['fileJournal'] ?? new NullFileJournal;
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -211,7 +221,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 			: 50;
 		$this->obResetFunc = $config['obResetFunc'] ?? [ $this, 'resetOutputBuffer' ];
 		$this->streamMimeFunc = $config['streamMimeFunc'] ?? null;
-		$this->statusWrapper = $config['statusWrapper'] ?? null;
 
 		$this->profiler = $config['profiler'] ?? null;
 		if ( !is_callable( $this->profiler ) ) {
@@ -284,6 +293,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * Get the a bitfield of extra features supported by the backend medium
+	 * @stable to override
 	 *
 	 * @return int Bitfield of FileBackend::ATTR_* flags
 	 * @since 1.23
@@ -447,9 +457,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) predicted operation errors occurred and 'force' was not set
 	 *
-	 * @param array $ops List of operations to execute in order
+	 * @param array[] $ops List of operations to execute in order
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool} $ops
+	 * @phan-param array<int,array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool}> $ops
 	 * @param array $opts Batch operation options
 	 * @phan-param array{force?:bool,nonLocking?:bool,nonJournaled?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts
 	 * @codingStandardsIgnoreEnd
@@ -690,7 +700,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * considered "OK" as long as no fatal errors occurred.
 	 *
 	 * @param array $ops Set of operations to execute
-	 * @phan-param array{ignoreMissingSource?:bool,headers?:bool} $ops
+	 * @codingStandardsIgnoreStart
+	 * @phan-param list<array{op:?string,src?:string,dst?:string,ignoreMissingSource?:bool,headers?:array}> $ops
+	 * @codingStandardsIgnoreEnd
 	 * @param array $opts Batch operation options
 	 * @phan-param array{bypassReadOnly?:bool} $opts
 	 * @return StatusValue
@@ -712,16 +724,17 @@ abstract class FileBackend implements LoggerAwareInterface {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 
-		return $this->doQuickOperationsInternal( $ops );
+		return $this->doQuickOperationsInternal( $ops, $opts );
 	}
 
 	/**
 	 * @see FileBackend::doQuickOperations()
 	 * @param array $ops
+	 * @param array $opts
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	abstract protected function doQuickOperationsInternal( array $ops );
+	abstract protected function doQuickOperationsInternal( array $ops, array $opts );
 
 	/**
 	 * Same as doQuickOperations() except it takes a single operation.
@@ -730,11 +743,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperations()
 	 *
 	 * @param array $op Operation
+	 * @param array $opts Batch operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function doQuickOperation( array $op ) {
-		return $this->doQuickOperations( [ $op ] );
+	final public function doQuickOperation( array $op, array $opts = [] ) {
+		return $this->doQuickOperations( [ $op ], $opts );
 	}
 
 	/**
@@ -744,11 +758,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickCreate( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'create' ] + $params );
+	final public function quickCreate( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'create' ] + $params, $opts );
 	}
 
 	/**
@@ -758,11 +773,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickStore( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'store' ] + $params );
+	final public function quickStore( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'store' ] + $params, $opts );
 	}
 
 	/**
@@ -772,11 +788,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickCopy( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'copy' ] + $params );
+	final public function quickCopy( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'copy' ] + $params, $opts );
 	}
 
 	/**
@@ -786,11 +803,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickMove( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'move' ] + $params );
+	final public function quickMove( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'move' ] + $params, $opts );
 	}
 
 	/**
@@ -800,11 +818,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickDelete( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'delete' ] + $params );
+	final public function quickDelete( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'delete' ] + $params, $opts );
 	}
 
 	/**
@@ -814,11 +833,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.21
 	 */
-	final public function quickDescribe( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'describe' ] + $params );
+	final public function quickDescribe( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'describe' ] + $params, $opts );
 	}
 
 	/**
@@ -1563,6 +1583,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return string|null Parent storage path or null on failure
 	 */
 	final public static function parentStoragePath( $storagePath ) {
+		// XXX dirname() depends on platform and locale! If nothing enforces that the storage path
+		// doesn't contain characters like '\', behavior can vary by platform. We should use
+		// explode() instead.
 		$storagePath = dirname( $storagePath );
 		list( , , $rel ) = self::splitStoragePath( $storagePath );
 
@@ -1577,6 +1600,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return string
 	 */
 	final public static function extensionFromPath( $path, $case = 'lowercase' ) {
+		// This will treat a string starting with . as not having an extension, but store paths have
+		// to start with 'mwstore://', so "garbage in, garbage out".
 		$i = strrpos( $path, '.' );
 		$ext = $i ? substr( $path, $i + 1 ) : '';
 
@@ -1693,7 +1718,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 		return $this->profiler ? ( $this->profiler )( $section ) : null;
 	}
 
+	/**
+	 * @codeCoverageIgnore Let's not reset output buffering during tests
+	 */
 	protected function resetOutputBuffer() {
+		// XXX According to documentation, ob_get_status() always returns a non-empty array and this
+		// condition will always be true
 		while ( ob_get_status() ) {
 			if ( !ob_end_clean() ) {
 				// Could not remove output buffer handler; abort now

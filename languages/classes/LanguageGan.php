@@ -21,57 +21,6 @@
  */
 
 /**
- * @ingroup Language
- */
-class GanConverter extends LanguageConverter {
-	/**
-	 * @param Language $langobj
-	 * @param string $maincode
-	 * @param array $variants
-	 * @param array $variantfallbacks
-	 * @param array $flags
-	 * @param array $manualLevel
-	 */
-	function __construct( Language $langobj, $maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = [],
-		$manualLevel = []
-	) {
-		$this->mDescCodeSep = '：';
-		$this->mDescVarSep = '；';
-		parent::__construct( $langobj, $maincode,
-			$variants,
-			$variantfallbacks,
-			$flags,
-			$manualLevel
-		);
-		$names = [
-			'gan' => '原文',
-			'gan-hans' => '简体',
-			'gan-hant' => '繁體',
-		];
-		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
-	}
-
-	function loadDefaultTables() {
-		$this->mTables = [
-			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
-			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
-			'gan' => new ReplacementArray
-		];
-	}
-
-	/**
-	 * @param string $key
-	 * @return string
-	 */
-	function convertCategoryKey( $key ) {
-		return $this->autoConvert( $key, 'gan' );
-	}
-}
-
-/**
  * Gan Chinese
  *
  * class that handles both Traditional and Simplified Chinese
@@ -80,26 +29,6 @@ class GanConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageGan extends LanguageZh {
-	function __construct() {
-		parent::__construct();
-
-		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
-		$variantfallbacks = [
-			'gan' => [ 'gan-hans', 'gan-hant' ],
-			'gan-hans' => [ 'gan' ],
-			'gan-hant' => [ 'gan' ],
-		];
-		$ml = [
-			'gan' => 'disable',
-		];
-
-		$this->mConverter = new GanConverter( $this, 'gan',
-			$variants, $variantfallbacks,
-			[],
-			$ml
-		);
-	}
-
 	/**
 	 * word segmentation
 	 *
@@ -107,9 +36,8 @@ class LanguageGan extends LanguageZh {
 	 * @param string $autoVariant
 	 * @return string
 	 */
-	function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
+	public function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::normalizeForSearch
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
-
 }

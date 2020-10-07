@@ -3,9 +3,9 @@
 /**
  * @group Media
  */
-class BitmapScalingTest extends MediaWikiTestCase {
+class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

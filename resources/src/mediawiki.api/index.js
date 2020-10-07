@@ -50,12 +50,12 @@
 		return action;
 	}
 
-	// Pre-populate with fake ajax promises to save http requests for tokens
-	// we already have on the page via the user.tokens module (T36733).
+	// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
+	// we already have on the page from the embedded user.options module (T36733).
 	promises[ defaultOptions.ajax.url ] = {};
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( mw.user.tokens.get(), function ( key, value ) {
-		// This requires #getToken to use the same key as user.tokens.
+		// This requires #getToken to use the same key as mw.user.tokens.
 		// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
 		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
 			.resolve( value )
@@ -234,10 +234,6 @@
 					ajaxOptions.data += '&token=' + encodeURIComponent( token );
 				}
 
-				// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
-				// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
-				ajaxOptions.data = ajaxOptions.data.replace( /\./g, '%2E' );
-
 				if ( ajaxOptions.contentType === 'multipart/form-data' ) {
 					// We were asked to emulate but can't, so drop the Content-Type header, otherwise
 					// it'll be wrong and the server will fail to decode the POST body
@@ -249,9 +245,9 @@
 			xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
-				.fail( function ( xhr, textStatus, exception ) {
+				.fail( function ( jqXHR, textStatus, exception ) {
 					apiDeferred.reject( 'http', {
-						xhr: xhr,
+						xhr: jqXHR,
 						textStatus: textStatus,
 						exception: exception
 					} );
@@ -310,12 +306,16 @@
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			var api = this,
+				assertParams = {
+					assert: params.assert,
+					assertuser: params.assertuser
+				},
 				abortedPromise = $.Deferred().reject( 'http',
 					{ textStatus: 'abort', exception: 'abort' } ).promise(),
 				abortable,
 				aborted;
 
-			return api.getToken( tokenType, params.assert ).then( function ( token ) {
+			return api.getToken( tokenType, assertParams ).then( function ( token ) {
 				params.token = token;
 				// Request was aborted while token request was running, but we
 				// don't want to unnecessarily abort token requests, so abort
@@ -332,8 +332,8 @@
 							// Try again, once
 							params.token = undefined;
 							abortable = null;
-							return api.getToken( tokenType, params.assert ).then( function ( token ) {
-								params.token = token;
+							return api.getToken( tokenType, assertParams ).then( function ( t ) {
+								params.token = t;
 								if ( aborted ) {
 									return abortedPromise;
 								}
@@ -358,30 +358,32 @@
 		/**
 		 * Get a token for a certain action from the API.
 		 *
-		 * The assert parameter is only for internal use by #postWithToken.
-		 *
 		 * @since 1.22
 		 * @param {string} type Token type
-		 * @param {string} [assert]
+		 * @param {Object|string} [additionalParams] Additional parameters for the API (since 1.35).
+		 *   When given a string, it's treated as the 'assert' parameter (since 1.25).
 		 * @return {jQuery.Promise} Received token.
 		 */
-		getToken: function ( type, assert ) {
+		getToken: function ( type, additionalParams ) {
 			var apiPromise, promiseGroup, d, reject;
 			type = mapLegacyToken( type );
 			promiseGroup = promises[ this.defaults.ajax.url ];
 			d = promiseGroup && promiseGroup[ type + 'Token' ];
+
+			if ( typeof additionalParams === 'string' ) {
+				additionalParams = { assert: additionalParams };
+			}
 
 			if ( !promiseGroup ) {
 				promiseGroup = promises[ this.defaults.ajax.url ] = {};
 			}
 
 			if ( !d ) {
-				apiPromise = this.get( {
+				apiPromise = this.get( $.extend( {
 					action: 'query',
 					meta: 'tokens',
-					type: type,
-					assert: assert
-				} );
+					type: type
+				}, additionalParams ) );
 				reject = function () {
 					// Clear promise. Do not cache errors.
 					delete promiseGroup[ type + 'Token' ];
@@ -426,6 +428,88 @@
 			type = mapLegacyToken( type );
 			if ( promiseGroup ) {
 				delete promiseGroup[ type + 'Token' ];
+			}
+		},
+
+		/**
+		 * Given an API response indicating an error, get a jQuery object containing a human-readable
+		 * error message that you can display somewhere on the page.
+		 *
+		 * For better quality of error messages, it's recommended to use the following options in your
+		 * API queries:
+		 *
+		 *     errorformat: 'html',
+		 *     errorlang: mw.config.get( 'wgUserLanguage' ),
+		 *     errorsuselocal: true,
+		 *
+		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
+		 * Your user interface should have enough space for that.
+		 *
+		 * Example usage:
+		 *
+		 *     var api = new mw.Api();
+		 *     // var title = 'Test valid title';
+		 *     var title = 'Test invalid title <>';
+		 *     api.postWithToken( 'watch', {
+		 *       action: 'watch',
+		 *       title: title
+		 *     } ).then( function ( data ) {
+		 *       mw.notify( 'Success!' );
+		 *     }, function ( code, data ) {
+		 *       mw.notify( api.getErrorMessage( data ), { type: 'error' } );
+		 *     } );
+		 *
+		 * @param {Object} data API response indicating an error
+		 * @return {jQuery} Error messages, each wrapped in a `<div>`
+		 */
+		getErrorMessage: function ( data ) {
+			if (
+				data === undefined || data === null || data === '' ||
+				// The #ajax method returns the data like this, it's not my fault...
+				data === 'OK response but empty result (check HTTP headers?)'
+			) {
+				// Server failed so horribly it did not even set a HTTP error status
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+
+			} else if ( data.xhr ) {
+				if ( data.textStatus === 'timeout' ) {
+					// Hit the timeout (as defined above in defaultOptions)
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-timeout' ).parseDom() );
+				} else if ( data.textStatus === 'abort' ) {
+					// Request cancelled by calling the abort() method on the promise
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-aborted' ).parseDom() );
+				} else if ( data.textStatus === 'parsererror' ) {
+					// Server returned invalid JSON
+					// data.exception is probably a SyntaxError exception
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+				} else if ( data.xhr.status ) {
+					// Server HTTP error
+					// data.exception is probably the HTTP "reason phrase", e.g. "Internal Server Error"
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-http', data.xhr.status ).parseDom() );
+				} else {
+					// We don't know the status of the HTTP request. Common causes include (we have no way
+					// to distinguish these): user losing their network connection (request wasn't even sent),
+					// misconfigured CORS for cross-wiki queries.
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-noconnect' ).parseDom() );
+				}
+
+			} else if ( data.error ) {
+				// errorformat: 'bc' (or not specified)
+				return $( '<div>' ).text( data.error.info );
+
+			} else if ( data.errors ) {
+				// errorformat: 'html'
+				return $( data.errors.map( function ( err ) {
+					// formatversion: 1 / 2
+					var $node = $( '<div>' ).html( err[ '*' ] || err.html );
+					return $node[ 0 ];
+				} ) );
+
+			} else {
+				// Server returned some valid but bogus JSON that probably doesn't even come from our API,
+				// or this method was called incorrectly (e.g. with a successful response)
+				mw.log.warn( 'mw.Api#getErrorMessage could not handle the response:', data );
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
 			}
 		}
 	};

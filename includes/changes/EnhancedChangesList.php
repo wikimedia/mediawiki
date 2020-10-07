@@ -89,7 +89,7 @@ class EnhancedChangesList extends ChangesList {
 			'jquery.makeCollapsible',
 		] );
 
-		return '<div class="mw-changeslist">';
+		return '<div class="mw-changeslist" aria-live="polite">';
 	}
 
 	/**
@@ -205,7 +205,7 @@ class EnhancedChangesList extends ChangesList {
 		# Default values for RC flags
 		$collectedRcFlags = [];
 		foreach ( $recentChangesFlags as $key => $value ) {
-			$flagGrouping = ( $recentChangesFlags[$key]['grouping'] ?? 'any' );
+			$flagGrouping = $value['grouping'] ?? 'any';
 			switch ( $flagGrouping ) {
 				case 'all':
 					$collectedRcFlags[$key] = true;
@@ -467,8 +467,8 @@ class EnhancedChangesList extends ChangesList {
 		$attribs = $this->getDataAttributes( $rcObj );
 
 		// give the hook a chance to modify the data
-		$success = Hooks::run( 'EnhancedChangesListModifyLineData',
-			[ $this, &$data, $block, $rcObj, &$classes, &$attribs ] );
+		$success = $this->getHookRunner()->onEnhancedChangesListModifyLineData(
+			$this, $data, $block, $rcObj, $classes, $attribs );
 		if ( !$success ) {
 			// skip entry if hook aborted it
 			return [];
@@ -611,8 +611,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Allow others to alter, remove or add to these links
-		Hooks::run( 'EnhancedChangesList::getLogText',
-			[ $this, &$links, $block ] );
+		$this->getHookRunner()->onEnhancedChangesList__getLogText( $this, $links, $block );
 
 		if ( !$links ) {
 			return '';
@@ -711,8 +710,8 @@ class EnhancedChangesList extends ChangesList {
 		$data['attribs'] = array_merge( $this->getDataAttributes( $rcObj ), [ 'class' => $classes ] );
 
 		// give the hook a chance to modify the data
-		$success = Hooks::run( 'EnhancedChangesListModifyBlockLineData',
-			[ $this, &$data, $rcObj ] );
+		$success = $this->getHookRunner()->onEnhancedChangesListModifyBlockLineData(
+			$this, $data, $rcObj );
 		if ( !$success ) {
 			// skip entry if hook aborted it
 			return '';

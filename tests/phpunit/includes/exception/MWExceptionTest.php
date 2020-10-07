@@ -6,13 +6,13 @@
  * @file
  */
 
-class MWExceptionTest extends MediaWikiTestCase {
+class MWExceptionTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @expectedException MWException
 	 * @covers MWException
 	 */
 	public function testMwexceptionThrowing() {
+		$this->expectException( MWException::class );
 		throw new MWException();
 	}
 
@@ -50,22 +50,11 @@ class MWExceptionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideUseMessageCache
 	 * @covers MWException::useMessageCache
 	 */
-	public function testUseMessageCache( $expected, $langObj ) {
-		$this->setMwGlobals( [
-			'wgLang' => $langObj,
-		] );
+	public function testUseMessageCache() {
 		$e = new MWException();
-		$this->assertEquals( $expected, $e->useMessageCache() );
-	}
-
-	public function provideUseMessageCache() {
-		return [
-			[ false, null ],
-			[ true, $this->getMockLanguage() ],
-		];
+		$this->assertTrue( $e->useMessageCache() );
 	}
 
 	/**
@@ -136,7 +125,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 		$this->assertObjectHasAttribute( $key, $json,
 			"JSON serialized exception is missing key '$key'"
 		);
-		$this->assertInternalType( $expectedKeyType, $json->$key,
+		$this->assertSame( $expectedKeyType, gettype( $json->$key ),
 			"JSON serialized key '$key' has type " . gettype( $json->$key )
 			. " (expected: $expectedKeyType)."
 		);
@@ -153,7 +142,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 				[ 'string', $exClass, 'file' ],
 				[ 'integer', $exClass, 'line' ],
 				[ 'string', $exClass, 'message' ],
-				[ 'null', $exClass, 'url' ],
+				[ 'NULL', $exClass, 'url' ],
 				# Backtrace only enabled with wgLogExceptionBacktrace = true
 				[ 'array', $exClass, 'backtrace' ],
 			];

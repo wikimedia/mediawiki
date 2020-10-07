@@ -18,8 +18,9 @@
  * @file
  */
 
-use Psr\Log\LoggerInterface;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
@@ -30,7 +31,7 @@ use Psr\Log\NullLogger;
  * PHP's HTTP extension.
  */
 abstract class MWHttpRequest implements LoggerAwareInterface {
-	const SUPPORTS_FILE_POSTS = false;
+	public const SUPPORTS_FILE_POSTS = false;
 
 	/**
 	 * @var int|string
@@ -98,14 +99,12 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	public function __construct(
 		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
 	) {
-		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
-
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
 		$this->logger = $options['logger'] ?? new NullLogger();
 
-		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
+		if ( !$this->parsedUrl || !self::isValidURI( $this->url ) ) {
 			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );
 		} else {
 			$this->status = StatusValue::newGood( 100 ); // continue
@@ -114,11 +113,19 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
 			$this->timeout = $options['timeout'];
 		} else {
+			// The timeout should always be set by HttpRequestFactory, so this
+			// should only happen if the class was directly constructed
+			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
+			global $wgHTTPTimeout;
 			$this->timeout = $wgHTTPTimeout;
 		}
 		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
 			$this->connectTimeout = $options['connectTimeout'];
 		} else {
+			// The timeout should always be set by HttpRequestFactory, so this
+			// should only happen if the class was directly constructed
+			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
+			global $wgHTTPConnectTimeout;
 			$this->connectTimeout = $wgHTTPConnectTimeout;
 		}
 		if ( isset( $options['userAgent'] ) ) {
@@ -144,7 +151,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				// ensure that MWHttpRequest::method is always
 				// uppercased. T38137
 				if ( $o == 'method' ) {
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$options[$o] = strtoupper( $options[$o] );
 				}
 				$this->$o = $options[$o];
@@ -190,8 +196,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( $options === null ) {
 			$options = [];
 		}
-		return \MediaWiki\MediaWikiServices::getInstance()
-			->getHttpRequestFactory()
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()
 			->create( $url, $options, $caller );
 	}
 
@@ -335,7 +340,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	public function setCallback( $callback ) {
-		return $this->doSetCallback( $callback );
+		$this->doSetCallback( $callback );
 	}
 
 	/**
@@ -346,7 +351,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	protected function doSetCallback( $callback ) {
-		if ( is_null( $callback ) ) {
+		if ( $callback === null ) {
 			$callback = [ $this, 'read' ];
 		} elseif ( !is_callable( $callback ) ) {
 			$this->status->fatal( 'http-internal-error' );
@@ -393,7 +398,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
-			$this->setUserAgent( Http::userAgent() );
+			$http = MediaWikiServices::getInstance()->getHttpRequestFactory();
+			$this->setUserAgent( $http->getUserAgent() );
 		}
 	}
 

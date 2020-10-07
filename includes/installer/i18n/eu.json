@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"An13sa",
-			"පසිඳු කාවින්ද",
-			"Subi",
-			"Sator",
+			"Fitoschido",
 			"Mikel Ibaiba",
-			"Fitoschido"
+			"Sator",
+			"Subi",
+			"Xabier Armendaritz",
+			"පසිඳු කාවින්ද"
 		]
 	},
 	"config-desc": "MediaWiki instalatzailea",
@@ -38,7 +39,6 @@
 	"config-page-install": "Instalatu",
 	"config-page-complete": "Bukatua!",
 	"config-page-restart": "Instalazioa berriz hasi",
-	"config-page-readme": "Irakur nazazu",
 	"config-page-releasenotes": "Bertsioko oharrak",
 	"config-page-copying": "Kopiatzea",
 	"config-page-upgradedoc": "Eguneratu",
@@ -51,7 +51,6 @@
 	"config-env-good": "Ingurumena egiaztatu egin da. \nMediaWiki instalatu ahal duzu.",
 	"config-env-bad": "Ingurumena egiaztatu egin da.\nEzin duzu MediaWiki-a instalatu.",
 	"config-env-php": "PHP $1 instalatuta dago.",
-	"config-env-hhvm": "HHVM $1 instalatuta dago.",
 	"config-unicode-using-intl": "[https://pecl.php.net/intl intl PECL extension] erabiltzen Unicode-ren normalizaziorako.",
 	"config-unicode-pure-php-warning": "<strong>Oharra:</strong> [https://pecl.php.net/intl intl PECL extension] ez dago prest Unicode-ren normalizazioa jasatzeko,PHP hutsaren ezarpena motelara itzultzen.\n\nTrafiko handiko gune bat exekutatzen baduzu, apur bat irakurri beharko zenuke [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization]-ri buruz.",
 	"config-unicode-update-warning": "<strong>Oharra:</strong> Unicode-ren normalizazioaren bilgarriaren bertsio instalatua [http://site.icu-project.org/ ICU proiektuaren] liburutegia bertsio zaharrago bat erabiltzen du.\n[Https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations upgrade] behar duzu Unicode erabiltzeagatik kezkatuta bazaude.",
@@ -79,7 +78,6 @@
 	"config-using-uri": "\"<nowiki>$1$2</nowiki>\" zerbitzariaren URLa erabiltzen.",
 	"config-uploads-not-safe": "<strong>Oharra:</strong> Zure igoerak egiteko <code>$1</code> direktorio lehenetsia gidoi arbitrarioen exekuzioek kaltetu dezakete.\nMediaWiki-k segurtasunerako kargatutako fitxategi guztiak egiaztatzen dituen arren, oso gomendagarria da [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security segurtasun-ahultasun hau itxi] erabiltzea gaitu aurretik.",
 	"config-no-cli-uploads-check": "<strong>Oharra:</ strong> Zure kargatutako direktorio (<code>$1</code>) lehenetsia ez da hauteman ahultasunerako\nscript arbitrarioak exekutatzeko CLI instalazioan zehar.",
-	"config-brokenlibxml": "Zure sistemak dauka PHP-ko eta libxml2-ko konbinazio akastun bat eta eragin ahal du korrupzioa datarekin MediaWikin eta beste web aplikazioetan.\nAktualizatu libxml2 2.7.3-era edo berrietara ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]).\nInstalazioa geldiarazi egin da.",
 	"config-suhosin-max-value-length": "Suhosin instalatuta dago eta GET parametroaren <code>luzeera</code> $1 byte-ra mugatzen du.\nMediaWiki-ren ResourceLoader osagaia muga honen inguruan lan egingo du, baina horrek errendimendua kaltetu egingo du.\nAhal izanez gero, <code>suhosin.get.max_value_length</code> 1024 edo handiagoa ezarri beharko zenuke <code>php.ini</code>, eta <code>LocalSettings.php</code>-n <code>$wgResourceLoaderMaxQueryLength</code> balio bera ezarri.",
 	"config-using-32bit": "<strong>Oharra:</strong> zure sistemak 32 bit-ekin jarduten duela dirudi. Hau da [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit not advised].",
 	"config-db-type": "Datu-base mota:",
@@ -284,7 +282,7 @@
 	"config-download-localsettings": "Jaitsi <code>LocalSettings.php</code>",
 	"config-help": "laguntza",
 	"config-help-tooltip": "sakatu zabaltzeko",
-	"config-nofile": "Ezin da \"$1\" fitxategia aurkitu. Ezabatua izan da?",
+	"config-nofile": "Ezin da «$1» fitxategia aurkitu. Ezabatuta dago?",
 	"config-extension-link": "Ba al zenekien wikiak [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions] onartzen dituela?\n\nArakatu [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category] edo [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] ikusi ahal izateko luzapenen zerrenda.",
 	"config-skins-screenshots": "$1 (Pantaila-irudia: $2)",
 	"config-extensions-requires": "$1 ($2 behar du)",

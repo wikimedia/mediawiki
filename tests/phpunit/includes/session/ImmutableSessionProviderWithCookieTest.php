@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\ImmutableSessionProviderWithCookie
  */
-class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
+class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
 
 	private function getProvider( $name, $prefix = null, $forceHTTPS = false ) {
 		$config = new \HashConfig();
@@ -32,6 +32,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$provider->setLogger( new \TestLogger() );
 		$provider->setConfig( $config );
 		$provider->setManager( new SessionManager() );
+		$provider->setHookContainer( $this->createHookContainer() );
 
 		return $provider;
 	}
@@ -213,6 +214,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			] ),
 			new TestBagOStuff(),
 			new \Psr\Log\NullLogger(),
+			$this->createHookContainer(),
 			10
 		);
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
@@ -232,7 +234,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$provider->persistSession( $backend, $request );
 
 		$cookie = $request->response()->getCookieData( 'xsession' );
-		$this->assertInternalType( 'array', $cookie );
+		$this->assertIsArray( $cookie );
 		if ( isset( $cookie['expire'] ) && $cookie['expire'] > 0 ) {
 			// Round expiry so we don't randomly fail if the seconds ticked during the test.
 			$cookie['expire'] = round( $cookie['expire'] - $time, -2 );
@@ -249,7 +251,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 
 		$cookie = $request->response()->getCookieData( 'forceHTTPS' );
 		if ( $secure && !$forceHTTPS ) {
-			$this->assertInternalType( 'array', $cookie );
+			$this->assertIsArray( $cookie );
 			if ( isset( $cookie['expire'] ) && $cookie['expire'] > 0 ) {
 				// Round expiry so we don't randomly fail if the seconds ticked during the test.
 				$cookie['expire'] = round( $cookie['expire'] - $time, -2 );

@@ -35,7 +35,7 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @param string $file
 	 */
-	function __construct( $file ) {
+	public function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
 		$this->filename = $file;
 	}
@@ -43,7 +43,7 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @param string $string
 	 */
-	function writeCloseStream( $string ) {
+	public function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
 		if ( $this->handle ) {
 			fclose( $this->handle );
@@ -54,14 +54,14 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @param string $string
 	 */
-	function write( $string ) {
+	public function write( $string ) {
 		fputs( $this->handle, $string );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	function closeRenameAndReopen( $newname ) {
+	public function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
@@ -69,10 +69,10 @@ class DumpFileOutput extends DumpOutput {
 	 * @param string $newname
 	 * @throws MWException
 	 */
-	function renameOrException( $newname ) {
-			if ( !rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
-			}
+	protected function renameOrException( $newname ) {
+		if ( !rename( $this->filename, $newname ) ) {
+			throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+		}
 	}
 
 	/**
@@ -80,13 +80,12 @@ class DumpFileOutput extends DumpOutput {
 	 * @return string
 	 * @throws MWException
 	 */
-	function checkRenameArgCount( $newname ) {
+	protected function checkRenameArgCount( $newname ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
 			}
+			$newname = $newname[0];
 		}
 		return $newname;
 	}
@@ -94,7 +93,7 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @inheritDoc
 	 */
-	function closeAndRename( $newname, $open = false ) {
+	public function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
 			if ( $this->handle ) {
@@ -111,7 +110,7 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @return string|null
 	 */
-	function getFilenames() {
+	public function getFilenames() {
 		return $this->filename;
 	}
 }

@@ -1,6 +1,5 @@
 <?php
 /**
- * Transaction profiling for contention
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,22 +17,23 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 
 /**
- * Helper class that detects high-contention DB queries via profiling calls
+ * Detect high-contention DB queries via profiling calls.
  *
- * This class is meant to work with an IDatabase object, which manages queries
+ * This class is meant to work with an IDatabase object, which manages queries.
  *
  * @since 1.24
+ * @ingroup Profiler
+ * @ingroup Database
  */
 class TransactionProfiler implements LoggerAwareInterface {
 	/** @var float Seconds */
@@ -45,7 +45,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = [];
-	/** @var array transaction ID => list of (query name, start time, end time) */
+	/**
+	 * @var array[][] transaction ID => list of (query name, start time, end time)
+	 * @phan-var array<string,array<int,array{0:string,1:int,2:int}>>
+	 */
 	protected $dbTrxMethodTimes = [];
 
 	/** @var array */

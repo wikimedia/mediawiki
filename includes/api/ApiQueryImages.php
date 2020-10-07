@@ -41,7 +41,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
@@ -56,7 +56,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 		$this->addTables( 'imagelinks' );
 		$this->addWhereFld( 'il_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -100,7 +100,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$count = 0;
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {

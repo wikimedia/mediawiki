@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Asd1346",
 			"Ianbu",
-			"唐吉訶德的侍從",
-			"Yoxem"
+			"Yoxem",
+			"唐吉訶德的侍從"
 		]
 	},
 	"config-desc": "MediaWiki的安裝程式",
 	"config-title": "MediaWiki $1的安裝",
-	"config-information": "資訊",
+	"config-information": "Chu-sìn",
 	"config-localsettings-upgrade": "有一个<code>LocalSettings.php</code>檔案佇咧。若欲升級，請佇下面的框內底拍<code>$wgUpgradeKey</code>的內容。你會使佇<code>LocalSettings.php</code>內底揣著彼項。",
 	"config-localsettings-cli-upgrade": "有一个<code>LocalSettings.php</code>檔案。若欲升級，請直接執行<code>update.php</code>。",
 	"config-localsettings-key": "Seng-kip--ê bi̍t-bé:",
@@ -35,7 +36,6 @@
 	"config-page-install": "安裝",
 	"config-page-complete": "完成",
 	"config-page-restart": "重裝",
-	"config-page-readme": "讀我",
 	"config-page-releasenotes": "發布的說明",
 	"config-page-copying": "複製",
 	"config-page-upgradedoc": "升級",

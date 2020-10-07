@@ -1,4 +1,3 @@
-/* global sinon */
 ( function () {
 	'use strict';
 
@@ -11,6 +10,9 @@
 	 *   hooks object statically and passes it to multiple QUnit.module() calls.
 	 * - Supporting QUnit 1.x 'setup' and 'teardown' hooks
 	 *   (deprecated in QUnit 1.16, removed in QUnit 2).
+	 *
+	 * @param {Object} localEnv
+	 * @return {Object}
 	 */
 	function makeSafeEnv( localEnv ) {
 		var wrap = localEnv ? Object.create( localEnv ) : {};
@@ -31,18 +33,16 @@
 	 * @return {string} Such as 'data/foo.js?131031765087663960'
 	 */
 	QUnit.fixurl = function ( value ) {
-		return value + ( /\?/.test( value ) ? '&' : '?' )
-			+ String( new Date().getTime() )
-			+ String( parseInt( Math.random() * 100000, 10 ) );
+		return value + ( /\?/.test( value ) ? '&' : '?' ) +
+			String( new Date().getTime() ) +
+			String( parseInt( Math.random() * 100000, 10 ) );
 	};
-
-	/**
-	 * Configuration
-	 */
 
 	// For each test that is asynchronous, allow this time to pass before
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
+
+	QUnit.dump.maxDepth = QUnit.config.maxDepth = 20;
 
 	// Reduce default animation duration from 400ms to 0ms for unit tests
 	// eslint-disable-next-line no-underscore-dangle
@@ -56,12 +56,10 @@
 		value: 'true'
 	} );
 
-	/**
-	 * SinonJS
-	 *
-	 * Glue code for nicer integration with QUnit setup/teardown
-	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
-	 */
+	// SinonJS
+	//
+	// Glue code for nicer integration with QUnit setup/teardown
+	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
 		QUnit.assert.ok( false, msg );
 	};
@@ -193,7 +191,7 @@
 
 		/**
 		 * @param {jQuery.Event} event
-		 * @param {jqXHR} jqXHR
+		 * @param {jQuery.jqXHR} jqXHR
 		 * @param {Object} ajaxOptions
 		 */
 		function trackAjax( event, jqXHR, ajaxOptions ) {
@@ -260,9 +258,13 @@
 					timers = $.timers.length;
 					// eslint-disable-next-line no-jquery/no-each-util
 					$.each( $.timers, function ( i, timer ) {
-						var node = timer.elem;
+						var node = timer.elem, attribs = {};
+						// eslint-disable-next-line no-jquery/no-each-util
+						$.each( node.attributes, function ( j, attrib ) {
+							attribs[ attrib.name ] = attrib.value;
+						} );
 						mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-							mw.html.element( node.nodeName.toLowerCase(), $( node ).getAttrs() )
+							mw.html.element( node.nodeName.toLowerCase(), attribs )
 						);
 					} );
 					// Force animations to stop to give the next test a clean start
@@ -306,7 +308,6 @@
 	QUnit.whenPromisesComplete = function () {
 		var altPromises = [];
 
-		// When we have ES6 support we'll be able to use Array.from here
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( arguments, function ( i, arg ) {
 			var alt = $.Deferred();
@@ -329,26 +330,29 @@
 	 * @return {Object|string} Plain JavaScript value representing the node.
 	 */
 	function getDomStructure( node ) {
-		var $node, children, processedChildren, i, len, el;
-		$node = $( node );
+		var processedChildren, attribs;
 		if ( node.nodeType === Node.ELEMENT_NODE ) {
-			children = $node.contents();
 			processedChildren = [];
-			for ( i = 0, len = children.length; i < len; i++ ) {
-				el = children[ i ];
+			$( node ).contents().each( function ( i, el ) {
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
-			}
+			} );
+
+			attribs = {};
+			// eslint-disable-next-line no-jquery/no-each-util
+			$.each( node.attributes, function ( i, attrib ) {
+				attribs[ attrib.name ] = attrib.value;
+			} );
 
 			return {
 				tagName: node.tagName,
-				attributes: $node.getAttrs(),
+				attributes: attribs,
 				contents: processedChildren
 			};
 		} else {
 			// Should be text node
-			return $node.text();
+			return node.textContent;
 		}
 	}
 
@@ -356,6 +360,7 @@
 	 * Gets structure of node for this HTML.
 	 *
 	 * @param {string} html HTML markup for one or more nodes.
+	 * @return {Object}
 	 */
 	function getHtmlStructure( html ) {
 		var el = $( '<div>' ).append( html )[ 0 ];
@@ -424,6 +429,23 @@
 				result: actual >= true,
 				actual: actual,
 				expected: 'greater than or equal to ' + expected,
+				message: message
+			} );
+		},
+
+		/**
+		 * Asserts that two DOM nodes are structurally equivalent.
+		 *
+		 * @param {HTMLElement} actual
+		 * @param {Object} expectedStruct
+		 * @param {string} message Assertion message.
+		 */
+		domEqual: function ( actual, expectedStruct, message ) {
+			var actualStruct = getDomStructure( actual );
+			this.pushResult( {
+				result: QUnit.equiv( actualStruct, expectedStruct ),
+				actual: actualStruct,
+				expected: expectedStruct,
 				message: message
 			} );
 		},

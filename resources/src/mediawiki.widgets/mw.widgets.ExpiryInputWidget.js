@@ -141,18 +141,20 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.static.reusePreInfuseDOM = function ( node, config ) {
-		var relativeElement = $( node ).find( '.mw-widget-ExpiryWidget-relative' );
+		var $relativeElement = $( node ).find( '.mw-widget-ExpiryWidget-relative' );
 
 		config = mw.widgets.ExpiryWidget.parent.static.reusePreInfuseDOM( node, config );
 
-		if ( relativeElement.hasClass( 'oo-ui-textInputWidget' ) ) {
+		// eslint-disable-next-line no-jquery/no-class-state
+		if ( $relativeElement.hasClass( 'oo-ui-textInputWidget' ) ) {
 			config.RelativeInputClass = OO.ui.TextInputWidget;
-		} else if ( relativeElement.hasClass( 'mw-widget-selectWithInputWidget' ) ) {
+		// eslint-disable-next-line no-jquery/no-class-state
+		} else if ( $relativeElement.hasClass( 'mw-widget-selectWithInputWidget' ) ) {
 			config.RelativeInputClass = mw.widgets.SelectWithInputWidget;
 		}
 
 		config.relativeInput = config.RelativeInputClass.static.reusePreInfuseDOM(
-			relativeElement,
+			$relativeElement,
 			config.relativeInput
 		);
 

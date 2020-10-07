@@ -24,8 +24,9 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - php: 7.3
     - php: 7.2
+    - php: 7.3
+    - php: 7.4
 
 services:
   - mysql
@@ -51,7 +52,7 @@ before_script:
   # At Travis CI, the mysql user 'travis' doesn't have create database rights, use 'root' instead.
   - >
       php maintenance/install.php traviswiki admin
-      --pass travis
+      --pass somemwadminpassword
       --dbtype "mysql"
       --dbname traviswiki
       --dbuser "root"

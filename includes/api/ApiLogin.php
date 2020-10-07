@@ -21,10 +21,11 @@
  * @file
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Unit to authenticate log-in attempts to the current wiki.
@@ -111,8 +112,11 @@ class ApiLogin extends ApiBase {
 
 		// Check login token
 		$token = $session->getToken( '', 'login' );
-		if ( $token->wasNew() || !$params['token'] ) {
+		if ( !$params['token'] ) {
 			$authRes = 'NeedToken';
+		} elseif ( $token->wasNew() ) {
+			$authRes = 'Failed';
+			$message = ApiMessage::create( 'authpage-cannot-login-continue', 'sessionlost' );
 		} elseif ( !$token->match( $params['token'] ) ) {
 			$authRes = 'WrongToken';
 		}
@@ -145,7 +149,7 @@ class ApiLogin extends ApiBase {
 
 		if ( $authRes === false ) {
 			// Simplified AuthManager login, for backwards compatibility
-			$manager = AuthManager::singleton();
+			$manager = MediaWikiServices::getInstance()->getAuthManager();
 			$reqs = AuthenticationRequest::loadRequestsFromSubmission(
 				$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, $this->getUser() ),
 				[
@@ -155,7 +159,7 @@ class ApiLogin extends ApiBase {
 					'rememberMe' => true,
 				]
 			);
-			$res = AuthManager::singleton()->beginAuthentication( $reqs, 'null:' );
+			$res = $manager->beginAuthentication( $reqs, 'null:' );
 			switch ( $res->status ) {
 				case AuthenticationResponse::PASS:
 					if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
@@ -194,7 +198,7 @@ class ApiLogin extends ApiBase {
 
 				// Deprecated hook
 				$injected_html = '';
-				Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html, true ] );
+				$this->getHookRunner()->onUserLoginComplete( $user, $injected_html, true );
 
 				$result['lguserid'] = (int)$user->getId();
 				$result['lgusername'] = $user->getName();
@@ -286,7 +290,7 @@ class ApiLogin extends ApiBase {
 			'status' => $response->status,
 		];
 		if ( $response->message ) {
-			$ret['message'] = $response->message->inLanguage( 'en' )->plain();
+			$ret['responseMessage'] = $response->message->inLanguage( 'en' )->plain();
 		}
 		$reqs = [
 			'neededRequests' => $response->neededRequests,

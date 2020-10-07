@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @author Addshore
  *
@@ -15,18 +17,20 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 	 * @return SpecialPage
 	 */
 	protected function newSpecialPage() {
-		return new SpecialEditWatchlist();
+		return new SpecialEditWatchlist(
+			MediaWikiServices::getInstance()->getWatchedItemStore()
+		);
 	}
 
 	public function testNotLoggedIn_throwsException() {
-		$this->setExpectedException( UserNotLoggedIn::class );
+		$this->expectException( UserNotLoggedIn::class );
 		$this->executeSpecialPage();
 	}
 
 	public function testRootPage_displaysExplanationMessage() {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
-		$this->assertContains( '(watchlistedit-normal-explain)', $html );
+		$this->assertStringContainsString( '(watchlistedit-normal-explain)', $html );
 	}
 
 	public function testClearPage_hasClearButtonForm() {
@@ -41,7 +45,7 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 	public function testEditRawPage_hasTitlesBox() {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( 'raw', null, 'qqx', $user->getUser() );
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'<div id=\'mw-input-wpTitles\'',
 			$html
 		);

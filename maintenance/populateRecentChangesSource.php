@@ -23,6 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -42,7 +43,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
 		$batchSize = $this->getBatchSize();
-		if ( !$dbw->fieldExists( 'recentchanges', 'rc_source' ) ) {
+		if ( !$dbw->fieldExists( 'recentchanges', 'rc_source', __METHOD__ ) ) {
 			$this->error( 'rc_source field in recentchanges table does not exist.' );
 		}
 
@@ -71,7 +72,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			);
 
 			$this->output( "." );
-			wfWaitForSlaves();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

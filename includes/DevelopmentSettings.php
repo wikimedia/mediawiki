@@ -26,8 +26,8 @@ ini_set( 'display_errors', 1 );
  */
 
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
-    $wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
-    $wgDBerrorLog, $wgDebugLogGroups, $wgLocalisationCacheConf;
+	$wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
+	$wgDBerrorLog, $wgDebugLogGroups, $wgLocalisationCacheConf;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
@@ -40,15 +40,15 @@ $wgDebugRawPage = true; // T49960
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
 if ( $logDir ) {
-    if ( $wgCommandLineMode ) {
-        $wgDebugLogFile = "$logDir/mw-debug-cli.log";
-    } else {
-        $wgDebugLogFile = "$logDir/mw-debug-www.log";
-    }
-    $wgDBerrorLog = "$logDir/mw-dberror.log";
-    $wgDebugLogGroups['ratelimit'] = "$logDir/mw-ratelimit.log";
-    $wgDebugLogGroups['exception'] = "$logDir/mw-exception.log";
-    $wgDebugLogGroups['error'] = "$logDir/mw-error.log";
+	if ( $wgCommandLineMode ) {
+		$wgDebugLogFile = "$logDir/mw-debug-cli.log";
+	} else {
+		$wgDebugLogFile = "$logDir/mw-debug-www.log";
+	}
+	$wgDBerrorLog = "$logDir/mw-dberror.log";
+	$wgDebugLogGroups['ratelimit'] = "$logDir/mw-ratelimit.log";
+	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
+	$wgDebugLogGroups['exception'] = "$logDir/mw-error.log";
 }
 unset( $logDir );
 
@@ -56,7 +56,7 @@ unset( $logDir );
  * Make testing possible (or easier)
  */
 
-global $wgRateLimits, $wgEnableJavaScriptTest;
+global $wgRateLimits;
 
 // Disable rate-limiting to allow integration tests to run unthrottled
 // in CI and for devs locally (T225796)
@@ -65,6 +65,9 @@ $wgRateLimits = [];
 // Enable Special:JavaScriptTest and allow `npm run qunit` to work
 // https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
 $wgEnableJavaScriptTest = true;
+
+// Enable development/experimental endpoints
+$wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
 
 /**
  * Experimental changes that may later become the default.
@@ -81,3 +84,13 @@ $wgLegacyJavaScriptGlobals = false;
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';
+
+// Experimental Book Referencing feature (T236255)
+global $wgCiteBookReferencing;
+$wgCiteBookReferencing = true;
+
+// The default value is false, but for development it is useful to set this to the system temp
+// directory by default (T218207)
+$wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
+	DIRECTORY_SEPARATOR .
+	rawurlencode( WikiMap::getCurrentWikiId() );

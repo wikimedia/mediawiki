@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie",
+			"WikiPhoenix"
+		]
+	},
+	"rest-prefix-mismatch": "Den begärda sökvägen ($1) fanns inte inuti rotsökvägen för REST API ($2)",
+	"rest-wrong-method": "Den begärda metoden ($1) var inte {{PLURAL:$3|den tillåtna metoden för denna sökväg|en av de tillåtna metoderna för denna sökväg}} ($2)",
+	"rest-no-match": "Den begärda relativa sökvägen ($1) matchade inte några kända hanterare",
+	"rest-nonexistent-title": "Den angivna titeln ($1) finns inte.",
+	"rest-nonexistent-title-revision": "Den angivna sidversionen ($1) finns inte för den specificerade sidan ($2)",
+	"rest-nonexistent-revision": "Den angivna sidversionen ($1) finns inte",
+	"rest-permission-denied-title": "Användaren har inte behörighet att läsa titeln ($1)",
+	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1).",
+	"rest-pagehistory-incompatible-params": "Båda parametrarna \"older_than\" och \"newer_than\" kan inte specifieras",
+	"rest-pagehistory-param-range-error": "Sidversionens ID måste vara större än 0",
+	"rest-pagehistory-timestamp-error": "Kunde inte hämta tidsstämpeln för den specificerade sidversionen ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Den angivna antalstypen ($1) är inte giltig.",
+	"rest-pagehistorycount-parameters-invalid": "Den specifika parameterkombinationen stöds inte.",
+	"rest-compare-page-mismatch": "De angivna versionerna tillhör olika sidor vilket gör det omöjligt att jämföra dem.",
+	"rest-compare-permission-denied": "Användaren har inte åtkomst till de begärda sidversionerna",
+	"rest-compare-nonexistent": "Sidversionen som angavs av parametern $1 finns inte.",
+	"rest-compare-inaccessible": "Sidversionen som angavs av parametern $1 är inte offentligt åtkomlig.",
+	"rest-compare-wrong-content": "$1platsen för sidversionen som specificeras av parametern $2 har en innehållstyp som inte kan omvandlas till text.",
+	"rest-compare-wikidiff2": "Denna ändpunkt kräver wikidiff2 1.9.0 eller senare.",
+	"rest-pagehistorycount-too-many-revisions": "Den angivna titeln innehåller för många sidversioner för att hämta detta antal.",
+	"rest-search-error": "Fel uppstod när sökresultaten returnerades: $1",
+	"rest-page-source-type-error": "Innehållstypen för den begärda källsidan stöds inte",
+	"rest-no-revision": "Kunde inte hämta versionen för titeln $1",
+	"rest-media-too-many-links": "För många medialänkar hittades i titeln $1 ($2 är tillåtet)",
+	"rest-html-backend-error": "Kunde inte hämta Parsoid-HTML",
+	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in."
+}

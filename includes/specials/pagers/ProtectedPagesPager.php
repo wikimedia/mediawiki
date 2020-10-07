@@ -56,7 +56,7 @@ class ProtectedPagesPager extends TablePager {
 		$this->noredirect = (bool)$noredirect;
 	}
 
-	function preprocessResults( $result ) {
+	public function preprocessResults( $result ) {
 		# Do a link batch query
 		$lb = new LinkBatch;
 		$userids = [];
@@ -85,7 +85,7 @@ class ProtectedPagesPager extends TablePager {
 		$lb->execute();
 	}
 
-	function getFieldNames() {
+	protected function getFieldNames() {
 		static $headers = null;
 
 		if ( $headers == [] ) {
@@ -111,7 +111,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @return string HTML
 	 * @throws MWException
 	 */
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		/** @var object $row */
 		$row = $this->mCurrentRow;
 		$linkRenderer = $this->getLinkRenderer();
@@ -146,7 +146,7 @@ class ProtectedPagesPager extends TablePager {
 				} else {
 					$formatted = $linkRenderer->makeLink( $title );
 				}
-				if ( !is_null( $row->page_len ) ) {
+				if ( $row->page_len !== null ) {
 					$formatted .= $this->getLanguage()->getDirMark() .
 						' ' . Html::rawElement(
 							'span',
@@ -250,7 +250,7 @@ class ProtectedPagesPager extends TablePager {
 		return $formatted;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pr_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
 			' OR pr_expiry IS NULL';
@@ -277,7 +277,7 @@ class ProtectedPagesPager extends TablePager {
 		if ( $this->level ) {
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
 		}
-		if ( !is_null( $this->namespace ) ) {
+		if ( $this->namespace !== null ) {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		}
 
@@ -321,15 +321,15 @@ class ProtectedPagesPager extends TablePager {
 		return parent::getTableClass() . ' mw-protectedpages';
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'pr_id';
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return 'pr_id';
 	}
 
-	function isFieldSortable( $field ) {
+	protected function isFieldSortable( $field ) {
 		// no index for sorting exists
 		return false;
 	}

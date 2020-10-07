@@ -19,9 +19,11 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This class contains a list of pages that the client has requested.
@@ -42,10 +44,10 @@ class ApiPageSet extends ApiBase {
 	 * Constructor flag: The new instance of ApiPageSet will ignore the 'generator=' parameter
 	 * @since 1.21
 	 */
-	const DISABLE_GENERATORS = 1;
+	private const DISABLE_GENERATORS = 1;
 
 	private $mDbSource;
-	private $mParams;
+	private $mParams = [];
 	private $mResolveRedirects;
 	private $mConvertTitles;
 	private $mAllowGenerator;
@@ -86,10 +88,10 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Add all items from $values into the result
-	 * @param array $result Output
+	 * @param array &$result Output
 	 * @param array $values Values to add
 	 * @param string[] $flags The names of boolean flags to mark this element
-	 * @param string $name If given, name of the value
+	 * @param string|null $name If given, name of the value
 	 */
 	private static function addValues( array &$result, $values, $flags = [], $name = null ) {
 		foreach ( $values as $val ) {
@@ -176,9 +178,7 @@ class ApiPageSet extends ApiBase {
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$apiModule = $this;
-				Hooks::run( 'APIQueryGeneratorAfterExecute', [ &$generator, &$apiModule ] );
+				$this->getHookRunner()->onAPIQueryGeneratorAfterExecute( $generator, $this );
 			} else {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();
@@ -318,9 +318,7 @@ class ApiPageSet extends ApiBase {
 			$pageFlds['page_is_redirect'] = null;
 		}
 
-		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$pageFlds['page_content_model'] = null;
-		}
+		$pageFlds['page_content_model'] = null;
 
 		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
 			$pageFlds['page_lang'] = null;
@@ -413,7 +411,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects for good and missing titles.
-	 * @return array
+	 * @return Title[]
 	 */
 	public function getGoodAndMissingTitles() {
 		return $this->mGoodTitles + $this->mMissingTitles;
@@ -856,14 +854,14 @@ class ApiPageSet extends ApiBase {
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
 	 * @param IResultWrapper $res DB Query result
-	 * @param array $remaining Array of either pageID or ns/title elements (optional).
+	 * @param array|null &$remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
-	 * @param bool $processTitles Must be provided together with $remaining.
+	 * @param bool|null $processTitles Must be provided together with $remaining.
 	 *        If true, treat $remaining as an array of [ns][title]
 	 *        If false, treat it as an array of [pageIDs]
 	 */
 	private function initFromQueryResult( $res, &$remaining = null, $processTitles = null ) {
-		if ( !is_null( $remaining ) && is_null( $processTitles ) ) {
+		if ( $remaining !== null && $processTitles === null ) {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 
@@ -1115,6 +1113,7 @@ class ApiPageSet extends ApiBase {
 
 		if ( $this->mPendingRedirectSpecialPages ) {
 			foreach ( $this->mPendingRedirectSpecialPages as $key => list( $from, $to ) ) {
+				/** @var Title $from */
 				$fromKey = $from->getPrefixedText();
 				$this->mResolvedRedirectTitles[$fromKey] = $from;
 				$this->mRedirectTitles[$fromKey] = $to;
@@ -1161,7 +1160,6 @@ class ApiPageSet extends ApiBase {
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
-		$usernames = [];
 		$linkBatch = new LinkBatch();
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
@@ -1170,6 +1168,7 @@ class ApiPageSet extends ApiBase {
 		foreach ( $titles as $index => $title ) {
 			if ( is_string( $title ) ) {
 				try {
+					/** @var Title $titleObj */
 					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
 				} catch ( MalformedTitleException $ex ) {
 					// Handle invalid titles gracefully
@@ -1226,7 +1225,8 @@ class ApiPageSet extends ApiBase {
 							$special = $spFactory->getPage( $dbkey );
 							if ( $special instanceof RedirectSpecialArticle ) {
 								// Only RedirectSpecialArticle is intended to redirect to an article, other kinds of
-								// RedirectSpecialPage are probably applying weird URL parameters we don't want to handle.
+								// RedirectSpecialPage are probably applying weird URL parameters we don't want to
+								// handle.
 								$context = new DerivativeContext( $this );
 								$context->setTitle( $titleObj );
 								$context->setRequest( new FauxRequest );
@@ -1471,15 +1471,15 @@ class ApiPageSet extends ApiBase {
 		return $result;
 	}
 
-	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
+	public function handleParamNormalization( $paramName, $value, $rawValue ) {
 		parent::handleParamNormalization( $paramName, $value, $rawValue );
 
 		if ( $paramName === 'titles' ) {
 			// For the 'titles' parameter, we want to split it like ApiBase would
 			// and add any changed titles to $this->mNormalizedTitles
-			$value = $this->explodeMultiValue( $value, self::LIMIT_SML2 + 1 );
+			$value = ParamValidator::explodeMultiValue( $value, self::LIMIT_SML2 + 1 );
 			$l = count( $value );
-			$rawValue = $this->explodeMultiValue( $rawValue, $l );
+			$rawValue = ParamValidator::explodeMultiValue( $rawValue, $l );
 			for ( $i = 0; $i < $l; $i++ ) {
 				if ( $value[$i] !== $rawValue[$i] ) {
 					$this->mNormalizedTitles[$rawValue[$i]] = $value[$i];

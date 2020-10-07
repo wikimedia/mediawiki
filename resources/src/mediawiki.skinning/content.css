@@ -23,19 +23,9 @@
  *
  * We use display:table. Even though it should only contain other table-* display
  * elements, there are no known problems with using this.
- *
- * Because IE < 8 and other older browsers don't support display:table, we fallback to
- * using inline-block mode, which features at least intrinsic width, but won't clear preceding
- * inline elements. In practice inline elements surrounding the TOC are uncommon enough that
- * this is an acceptable sacrifice.
  */
 .toc {
-	display: inline-block;
 	display: table;
-
-	/* IE7 and earlier */
-	zoom: 1;
-	*display: inline; /* stylelint-disable declaration-block-no-duplicate-properties */
 	padding: 7px;
 }
 
@@ -74,7 +64,6 @@ table.toc td {
 }
 
 /* Separate columns for tocnumber and toctext */
-/* Ignored by IE7 and lower */
 .tocnumber,
 .toctext {
 	display: table-cell;
@@ -88,9 +77,9 @@ table.toc td {
 
 /* Space between the columns for tocnumber and toctext */
 .tocnumber {
+	color: #202122;
 	padding-left: 0;
 	padding-right: 0.5em;
-	color: #222;
 }
 /* @noflip */
 .mw-content-ltr .tocnumber {
@@ -156,13 +145,13 @@ html .thumbcaption {
 	text-align: left;
 }
 
-div.magnify {
+.magnify {
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	float: right;
 	margin-left: 3px;
 }
 
-div.magnify a {
+.magnify a {
 	display: block;
 	/* Hide the text… */
 	text-indent: 15px;
@@ -175,7 +164,6 @@ div.magnify a {
 
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-ltr.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
@@ -203,10 +191,9 @@ img.thumbborder {
 }
 
 /* @noflip */
-.mw-content-ltr div.magnify a {
+.mw-content-ltr .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-ltr.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 }
 
@@ -223,10 +210,9 @@ img.thumbborder {
 }
 
 /* @noflip */
-.mw-content-rtl div.magnify a {
+.mw-content-rtl .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-rtl.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
 }
 

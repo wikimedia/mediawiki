@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require( 'assert' );
 const Api = require( 'wdio-mediawiki/Api' );
 const DeletePage = require( '../pageobjects/delete.page' );
@@ -11,7 +13,7 @@ const Util = require( 'wdio-mediawiki/Util' );
 describe( 'Page', function () {
 	let content, name, bot;
 
-	before( async function () {
+	before( async () => {
 		bot = await Api.bot();
 	} );
 

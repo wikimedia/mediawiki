@@ -15,7 +15,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	public static $page = 'Help:ApiRevDel_test';
 	public $revs = [];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		// Needs to be before setup since this gets cached
 		$this->mergeMwGlobalArrayValue(
 			'wgGroupPermissions',
@@ -30,6 +30,12 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
+		$this->hideDeprecated( 'Revision::newFromId' );
+		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getUser' );
+
 		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequest( [
@@ -52,9 +58,9 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		// Now check that that revision was actually hidden
 		$rev = Revision::newFromId( $revid );
-		$this->assertEquals( $rev->getContent( Revision::FOR_PUBLIC ), null );
-		$this->assertEquals( $rev->getComment( Revision::FOR_PUBLIC ), '' );
-		$this->assertEquals( $rev->getUser( Revision::FOR_PUBLIC ), 0 );
+		$this->assertNull( $rev->getContent( Revision::FOR_PUBLIC ) );
+		$this->assertNull( $rev->getComment( Revision::FOR_PUBLIC ) );
+		$this->assertSame( 0, $rev->getUser( Revision::FOR_PUBLIC ) );
 
 		// Now test unhiding!
 		$out2 = $this->doApiRequest( [

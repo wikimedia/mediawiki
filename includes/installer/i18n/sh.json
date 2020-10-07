@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Conquistador",
 			"OC Ripper",
 			"Seb35",
-			"Conquistador",
 			"Vlad5250"
 		]
 	},
@@ -36,7 +36,6 @@
 	"config-page-install": "Uspostavi",
 	"config-page-complete": "Završeno!",
 	"config-page-restart": "Pokreni uspostavu ponovno",
-	"config-page-readme": "Pročitaj me",
 	"config-page-releasenotes": "Bilješke o izdanju",
 	"config-page-copying": "Kopiranje",
 	"config-page-upgradedoc": "Nadogradnja",
@@ -46,14 +45,12 @@
 	"config-welcome": "=== Provjere okoline ===\nSada ćemo obaviti osnovne provjere kako bismo utvrdili je li okruženje prikladno za uspostavu MediaWikija. Ne zaboravite navesti ove informacije ako tražite pomoć s dovršavanjem uspostave.",
 	"config-welcome-section-copyright": "=== Autorska prava i uvjeti ===\n\n$1\n\nTo je slobodni softver (free software); možete ga redistribuirati i/ili mijenjati pod uvjetima GNU-ove opće javne licence (GNU General Public License) Zaklade za slobodni softver (Free Software Foundation); verzija 2 ili bilo koja kasnija verzija licence (po vašem izboru).\n\nOvaj se program nudi u nadi da će biti koristan, ali '''bez ikakvog jamstva'''; čak i implicirano jamstvo '''sposobnosti prodaje''' ili '''prikladnosti za određenu svrhu'''.\nViše informacija ćete naći u tekstu GNU-ove opće javne licence.\n\nTrebali ste primiti [$2 primjerak GNU-ove opće javne licence] zajedno s programima; ako ga ne primite, pišite nam na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. ili [https://www.gnu.org/copyleft/gpl.html pročitajte je ovdje].",
 	"config-sidebar": "* [https://www.mediawiki.org Početna strana MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodič za administratore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ČPP]",
-	"config-sidebar-readme": "Pročitaj me",
 	"config-sidebar-relnotes": "Bilješke o izdanju",
 	"config-sidebar-license": "Kopiranje",
 	"config-sidebar-upgrade": "Nadogradnja",
 	"config-env-good": "Okruženje je provjereno.\nMožete uspostaviti MediaWiki.",
 	"config-env-bad": "Okruženje je provjereno.\nNe možete uspostaviti MediaWiki.",
 	"config-env-php": "PHP $1 je uspostavljen.",
-	"config-env-hhvm": "HHVM $1 je uspostavljen.",
 	"config-unicode-using-intl": "Uz dodatak [https://pecl.php.net/intl intL PECL] za Unicode normalizaciju.",
 	"config-unicode-pure-php-warning": "'''Upozorenje''': Dodatak [https://pecl.php.net/intl intl PECL] nije dostupan za normalizaciju Unicode, vraćajući se na sporu primjenu čistog PHP-a.\n\nAko imate web-lokaciju s visokim prometom, morat ćete pročitati više o [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalizacije].",
 	"config-unicode-update-warning": "'''Upozorenje:''' Uspostavljena verzija omotnice Unicode normalizacije koristi stariju verziju biblioteke [http://site.icu-project.org/ projekta ICU].\nDa biste koristili Unicode, trebate napraviti [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations nadogradnju].",
@@ -81,7 +78,6 @@
 	"config-using-uri": "Koristite server s URL adresom \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Upozorenje:''' Vaš matični direktorijum za otpremanja <code>$1</code> podliježe izvršavanju (pokretanju) proizvoljnih skripta.\nIako MediaWiki provodi sigurnosne provjere svih prenesenih datoteka, savjetujemo vam da [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security zatvorite ovu sigurnosnu rupu] prije omogućavanja otpremanja.",
 	"config-no-cli-uploads-check": "'''Upozorenje:'''  Vaš podrazumevani direktorijum za otpremanje (<code>$1</code>) nije provjeren ako je podložna\nslučajno izvršavanje skripti tijekom uspostavke posrednika na razini pozivatelja (CLI).",
-	"config-brokenlibxml": "Vaš sistem ima kombinaciju verzija PHP i libxml2 te stoga ima pogreške i može uzrokovati oštećenje skrivenih podataka u MediaWiki i drugim mrežnim programima.\nNadogradite ga na libxml2 2.7.3 ili njihove kasnije verzije! ([https://bugs.php.net/bug.php?id=45996 pogreška je zabilježena u PHP-u]). Uspostava je otkazana.",
 	"config-suhosin-max-value-length": "Suhosin je uspostavljen i ograničava duljinu GET parametra na $1 bajta. Sekcija ResourceLoader MediaWikija će zaobići ovu granicu, ali to će pogoršati učinkovitost. Ako je ikako moguće, na <code>suhosin.get.max_value_length</code> treba ga namjestiti na 1024 ili više u <code>php.ini</code>, i dati istu vrijednost <code>$wgResourceLoaderMaxQueryLength</code> u <code>LocalSettings.php</code>.",
 	"config-using-32bit": "<strong>Upozorenje:</strong> vaš sistem radi na 32-bitnim celim brojevima. Ovo se [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit ne preporučuje].",
 	"config-db-type": "Tip baze podataka:",

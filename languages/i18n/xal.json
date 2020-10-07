@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
+			"DannyS712",
+			"Fitoschido",
 			"Huuchin",
 			"ОйЛ",
 			"לערי ריינהארט",
-			"아라",
-			"Fitoschido",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Заалһиг татасллһн:",
@@ -353,7 +354,7 @@
 	"history-fieldset-title": "Тууҗ хәләх",
 	"histfirst": "маш хуучн",
 	"histlast": "маш шин",
-	"historyempty": "(хоосн)",
+	"historyempty": "хоосн",
 	"rev-delundel": "үзүлх/нуух",
 	"rev-showdeleted": "үзүлх",
 	"revdelete-show-file-submit": "Тиим",

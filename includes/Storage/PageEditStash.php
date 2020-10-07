@@ -25,8 +25,10 @@ namespace MediaWiki\Storage;
 use ActorMigration;
 use BagOStuff;
 use Content;
-use Hooks;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Storage\Hook\ParserOutputStashForEditHook;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use stdClass;
@@ -50,29 +52,32 @@ class PageEditStash {
 	private $logger;
 	/** @var StatsdDataFactoryInterface */
 	private $stats;
+	/** @var ParserOutputStashForEditHook */
+	private $hookRunner;
 	/** @var int */
 	private $initiator;
 
-	const ERROR_NONE = 'stashed';
-	const ERROR_PARSE = 'error_parse';
-	const ERROR_CACHE = 'error_cache';
-	const ERROR_UNCACHEABLE = 'uncacheable';
-	const ERROR_BUSY = 'busy';
+	public const ERROR_NONE = 'stashed';
+	public const ERROR_PARSE = 'error_parse';
+	public const ERROR_CACHE = 'error_cache';
+	public const ERROR_UNCACHEABLE = 'uncacheable';
+	public const ERROR_BUSY = 'busy';
 
-	const PRESUME_FRESH_TTL_SEC = 30;
-	const MAX_CACHE_TTL = 300; // 5 minutes
-	const MAX_SIGNATURE_TTL = 60;
+	public const PRESUME_FRESH_TTL_SEC = 30;
+	public const MAX_CACHE_TTL = 300; // 5 minutes
+	public const MAX_SIGNATURE_TTL = 60;
 
-	const MAX_CACHE_RECENT = 2;
+	private const MAX_CACHE_RECENT = 2;
 
-	const INITIATOR_USER = 1;
-	const INITIATOR_JOB_OR_CLI = 2;
+	public const INITIATOR_USER = 1;
+	public const INITIATOR_JOB_OR_CLI = 2;
 
 	/**
 	 * @param BagOStuff $cache
 	 * @param ILoadBalancer $lb
 	 * @param LoggerInterface $logger
 	 * @param StatsdDataFactoryInterface $stats
+	 * @param HookContainer $hookContainer
 	 * @param int $initiator Class INITIATOR__* constant
 	 */
 	public function __construct(
@@ -80,12 +85,14 @@ class PageEditStash {
 		ILoadBalancer $lb,
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
+		HookContainer $hookContainer,
 		$initiator
 	) {
 		$this->cache = $cache;
 		$this->lb = $lb;
 		$this->logger = $logger;
 		$this->stats = $stats;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->initiator = $initiator;
 	}
 
@@ -96,7 +103,7 @@ class PageEditStash {
 	 * @param string $summary Edit summary
 	 * @return string Class ERROR_* constant
 	 */
-	public function parseAndCache( WikiPage $page, Content $content, User $user, $summary ) {
+	public function parseAndCache( WikiPage $page, Content $content, User $user, string $summary ) {
 		$logger = $this->logger;
 
 		$title = $page->getTitle();
@@ -136,8 +143,8 @@ class PageEditStash {
 
 		if ( $editInfo && $editInfo->output ) {
 			// Let extensions add ParserOutput metadata or warm other caches
-			Hooks::run( 'ParserOutputStashForEdit',
-				[ $page, $content, $editInfo->output, $summary, $user ] );
+			$this->hookRunner->onParserOutputStashForEdit(
+				$page, $content, $editInfo->output, $summary, $user );
 
 			if ( $alreadyCached ) {
 				$logger->debug( "Parser output for key '{cachekey}' already cached.", $context );

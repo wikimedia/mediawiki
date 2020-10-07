@@ -126,7 +126,7 @@ class CryptHKDF {
 	 * from the same SKM. This should keep things unpredictable even if an attacker
 	 * is able to influence CTXinfo.
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( $this->lastK ) {
 			$this->cache->set( $this->cacheKey, $this->lastK );
 		}

@@ -22,17 +22,19 @@
  */
 
 /**
+ * @stable to extend
  * @ingroup Cache
  */
 abstract class CacheDependency {
 	/**
 	 * Returns true if the dependency is expired, false otherwise
 	 */
-	abstract function isExpired();
+	abstract public function isExpired();
 
 	/**
 	 * Hook to perform any expensive pre-serialize loading of dependency values.
+	 * @stable to override
 	 */
-	function loadDependencyValues() {
+	public function loadDependencyValues() {
 	}
 }

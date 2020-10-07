@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Eitvys200",
-			"Mantak111",
-			"Zygimantus",
-			"Hugo.arg",
 			"Homo",
-			"Manvydasz"
+			"Hugo.arg",
+			"Mantak111",
+			"Manvydasz",
+			"Zygimantus"
 		]
 	},
 	"config-desc": "MediaWiki diegimas",
@@ -38,7 +38,6 @@
 	"config-page-install": "Įdiegti",
 	"config-page-complete": "Baigta!",
 	"config-page-restart": "Iš naujo paleiskite diegimą",
-	"config-page-readme": "Skaityti daugiau",
 	"config-page-releasenotes": "Leidimo pastabos",
 	"config-page-copying": "Kopijuojama",
 	"config-page-upgradedoc": "Atnaujinama",
@@ -50,7 +49,6 @@
 	"config-env-good": "Aplinka buvo patikrinta.\nJūs galite įdiegti MediaWiki.",
 	"config-env-bad": "Aplinka buvo patikrinta.\nJūs negalite įdiegti MediaWiki.",
 	"config-env-php": "PHP $1 yra įdiegtas.",
-	"config-env-hhvm": "HHVM $1 yra įdiegtas.",
 	"config-outdated-sqlite": "<strong>Įspėjimas:</strong> jūs turite SQLite $1, kuri yra mažesnė nei minimali reikalinga versija $2. SQLite nebus prieinama.",
 	"config-memory-raised": "PHP <code>memory_limit</code> yra $1, padidintas iki $2.",
 	"config-apc": "[https://www.php.net/apc APC] yra įdiegtas",

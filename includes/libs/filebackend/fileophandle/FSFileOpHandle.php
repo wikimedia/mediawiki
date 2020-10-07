@@ -19,27 +19,22 @@
  * @ingroup FileBackend
  */
 
-/**
- * @see FileBackendStoreOpHandle
- */
 class FSFileOpHandle extends FileBackendStoreOpHandle {
-	public $cmd; // string; shell command
-	public $chmodPath; // string; file to chmod
+	/** @var string Shell command */
+	public $cmd;
+	/** var callback Post-operation success/error handling and cleanup function */
+	public $callback;
 
 	/**
 	 * @param FSFileBackend $backend
 	 * @param array $params
 	 * @param callable $call
 	 * @param string $cmd
-	 * @param int|null $chmodPath
 	 */
-	public function __construct(
-		FSFileBackend $backend, array $params, $call, $cmd, $chmodPath = null
-	) {
+	public function __construct( FSFileBackend $backend, array $params, callable $call, $cmd ) {
 		$this->backend = $backend;
 		$this->params = $params;
-		$this->call = $call;
+		$this->callback = $call;
 		$this->cmd = $cmd;
-		$this->chmodPath = $chmodPath;
 	}
 }

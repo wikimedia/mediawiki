@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"MF-Warburg",
-			"Nemo bis",
-			"Reedy",
-			"아라",
 			"Matma Rex",
-			"Raphael Merx"
+			"Nemo bis",
+			"Raphael Merx",
+			"Reedy",
+			"아라"
 		]
 	},
 	"tog-underline": "Subliña ligasaun sira:",
@@ -259,7 +260,7 @@
 	"page_last": "ikus",
 	"histfirst": "sedu liu hotu",
 	"histlast": "foun liu hotu",
-	"historyempty": "(mamuk)",
+	"historyempty": "mamuk",
 	"history-feed-item-nocomment": "$1 iha $2",
 	"rev-delundel": "hatudu/subar",
 	"rev-showdeleted": "hatudu",

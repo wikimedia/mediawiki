@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Session;
 
-use Psr\Log\LogLevel;
 use MediaWikiUnitTestCase;
+use Psr\Log\LogLevel;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,18 +51,14 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		foreach ( $args as $arg ) {
 			$expectArgs[] = $this->identicalTo( $arg );
 		}
-		$tmp = call_user_func_array( [ $tmp, 'with' ], $expectArgs );
+		$tmp = $tmp->with( ...$expectArgs );
 
 		$retval = new \stdClass;
 		$tmp->will( $this->returnValue( $retval ) );
 
 		$session = TestUtils::getDummySession( $mock, 42 );
 
-		if ( $ret ) {
-			$this->assertSame( $retval, call_user_func_array( [ $session, $m ], $args ) );
-		} else {
-			$this->assertNull( call_user_func_array( [ $session, $m ], $args ) );
-		}
+		$this->assertSame( $ret ? $retval : null, $session->$m( ...$args ) );
 
 		// Trigger Session destructor
 		$session = null;
@@ -100,7 +96,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$session = TestUtils::getDummySession();
 		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
-		$this->assertEquals( 1, $session->get( 'foo' ) );
+		$this->assertSame( 1, $session->get( 'foo' ) );
 		$this->assertEquals( 'zero', $session->get( 0 ) );
 		$this->assertFalse( $backend->dirty );
 
@@ -141,7 +137,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 
 		$backend->data = [ 'a', 'b', '?' => 'c' ];
 		$this->assertSame( 3, $session->count() );
-		$this->assertSame( 3, count( $session ) );
+		$this->assertCount( 3, $session );
 		$this->assertFalse( $backend->dirty );
 
 		$data = [];
@@ -160,7 +156,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$session = TestUtils::getDummySession( null, -1, $logger );
 		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
-		$this->assertEquals( 1, $session['foo'] );
+		$this->assertSame( 1, $session['foo'] );
 		$this->assertEquals( 'zero', $session[0] );
 		$this->assertFalse( $backend->dirty );
 

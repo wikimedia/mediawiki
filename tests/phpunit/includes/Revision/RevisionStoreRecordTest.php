@@ -10,7 +10,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 
@@ -18,7 +18,7 @@ use Title;
  * @covers \MediaWiki\Revision\RevisionStoreRecord
  * @covers \MediaWiki\Revision\RevisionRecord
  */
-class RevisionStoreRecordTest extends MediaWikiTestCase {
+class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
 	use RevisionRecordTests;
 
@@ -297,7 +297,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
 	}
 

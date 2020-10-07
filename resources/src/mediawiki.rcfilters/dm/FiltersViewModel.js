@@ -309,12 +309,15 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 		};
 
 		// Title is a msg-key
+		// eslint-disable-next-line mediawiki/msg-doc
 		data.title = data.title ? mw.msg( data.title ) : data.name;
 
 		// Filters are given to us with msg-keys, we need
 		// to translate those before we hand them off
 		for ( i = 0; i < data.filters.length; i++ ) {
+			// eslint-disable-next-line mediawiki/msg-doc
 			data.filters[ i ].label = data.filters[ i ].label ? mw.msg( data.filters[ i ].label ) : data.filters[ i ].name;
+			// eslint-disable-next-line mediawiki/msg-doc
 			data.filters[ i ].description = data.filters[ i ].description ? mw.msg( data.filters[ i ].description ) : '';
 		}
 	} );
@@ -1249,6 +1252,7 @@ FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
 
 /**
  * Check if the highlight feature is enabled
+ *
  * @return {boolean}
  */
 FiltersViewModel.prototype.isHighlightEnabled = function () {

@@ -26,11 +26,11 @@ class McrRestoreAction extends McrUndoAction {
 	}
 
 	protected function initFromParameters() {
-		$curRev = $this->page->getRevision();
+		$curRev = $this->getWikiPage()->getRevisionRecord();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
 		}
-		$this->curRev = $curRev->getRevisionRecord();
+		$this->curRev = $curRev;
 		$this->cur = $this->getRequest()->getInt( 'cur', $this->curRev->getId() );
 
 		$this->undo = $this->cur;

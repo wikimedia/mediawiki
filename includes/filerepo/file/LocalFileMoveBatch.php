@@ -65,10 +65,10 @@ class LocalFileMoveBatch {
 	protected $newRel;
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param Title $target
 	 */
-	function __construct( File $file, Title $target ) {
+	public function __construct( LocalFile $file, Title $target ) {
 		$this->file = $file;
 		$this->target = $target;
 		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );
@@ -110,14 +110,14 @@ class LocalFileMoveBatch {
 			$bits = explode( '!', $oldName, 2 );
 
 			if ( count( $bits ) != 2 ) {
-				wfDebug( "Old file name missing !: '$oldName' \n" );
+				wfDebug( "Old file name missing !: '$oldName'" );
 				continue;
 			}
 
 			list( $timestamp, $filename ) = $bits;
 
 			if ( $this->oldName != $filename ) {
-				wfDebug( "Old file name doesn't match: '$oldName' \n" );
+				wfDebug( "Old file name doesn't match: '$oldName'" );
 				continue;
 			}
 
@@ -298,7 +298,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Removes non-existent files from move batch.
-	 * @param array $triplets
+	 * @param array[] $triplets
 	 * @return Status
 	 */
 	protected function removeNonexistentFiles( $triplets ) {

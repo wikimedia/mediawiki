@@ -4,68 +4,14 @@
  *
  * It does this by looking up the results of various kinds of string parsing, with various
  * languages, in the current installation of MediaWiki. It then outputs a static specification,
- * mapping expected inputs to outputs, which can be used fed into a unit test framework.
- * (QUnit, Jasmine, anything, it just outputs an object with key/value pairs).
- *
- * This is similar to Michael Dale (mdale@mediawiki.org)'s parser tests, except that it doesn't
- * look up the API results while doing the test, so the test run is much faster (at the cost
- * of being out of date in rare circumstances. But mostly the parsing that we are doing in
- * Javascript doesn't change much).
- */
-
-/*
- * @example QUnit
- * <code>
-	QUnit.test( 'Output matches PHP parser', function ( assert ) {
-		mw.messages.set( mw.libs.phpParserData.messages );
-		$.each( mw.libs.phpParserData.tests, function ( i, test ) {
-			QUnit.stop();
-			getMwLanguage( test.lang, function ( langClass ) {
-				var parser = new mw.jqueryMsg.Parser( { language: langClass } );
-				assert.strictEqual(
-					parser.parse( test.key, test.args ).html(),
-					test.result,
-					test.name
-				);
-				QUnit.start();
-			} );
-		} );
-	});
- * </code>
- *
- * @example Jasmine
- * <code>
-	describe( 'match output to output from PHP parser', function () {
-		mw.messages.set( mw.libs.phpParserData.messages );
-		$.each( mw.libs.phpParserData.tests, function ( i, test ) {
-			it( 'should parse ' + test.name, function () {
-				var langClass;
-				runs( function () {
-					getMwLanguage( test.lang, function ( gotIt ) {
-						langClass = gotIt;
-					});
-				});
-				waitsFor( function () {
-					return langClass !== undefined;
-				}, 'Language class should be loaded', 1000 );
-				runs( function () {
-					console.log( test.lang, 'running tests' );
-					var parser = new mw.jqueryMsg.Parser( { language: langClass } );
-					expect(
-						parser.parse( test.key, test.args ).html()
-					).toEqual( test.result );
-				} );
-			} );
-		} );
-	} );
- * </code>
+ * mapping expected inputs to outputs, which is used then run by QUnit.
  */
 
 require __DIR__ . '/../../../maintenance/Maintenance.php';
 
 class GenerateJqueryMsgData extends Maintenance {
 
-	public static $keyToTestArgs = [
+	private static $keyToTestArgs = [
 		'undelete_short' => [
 			[ 0 ],
 			[ 1 ],
@@ -82,6 +28,8 @@ class GenerateJqueryMsgData extends Maintenance {
 		]
 	];
 
+	private static $testLangs = [ 'en', 'fr', 'ar', 'jp', 'zh', 'nl', 'ml', 'hi' ];
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Create a specification for message parsing ini JSON format' );
@@ -89,21 +37,25 @@ class GenerateJqueryMsgData extends Maintenance {
 	}
 
 	public function execute() {
-		list( $messages, $tests ) = $this->getMessagesAndTests();
-		$this->writeJavascriptFile( $messages, $tests, __DIR__ . '/mediawiki.jqueryMsg.data.js' );
+		$data = $this->getData();
+		$this->writeJsonFile( $data, __DIR__ . '/mediawiki.jqueryMsg.data.json' );
 	}
 
-	private function getMessagesAndTests() {
+	private function getData() {
 		$messages = [];
 		$tests = [];
-		foreach ( [ 'en', 'fr', 'ar', 'jp', 'zh' ] as $languageCode ) {
+		$jsData = [];
+		foreach ( self::$testLangs as $languageCode ) {
+			$jsData[$languageCode] = ResourceLoaderLanguageDataModule::getData( $languageCode );
 			foreach ( self::$keyToTestArgs as $key => $testArgs ) {
 				foreach ( $testArgs as $args ) {
 					// Get the raw message, without any transformations.
-					$template = wfMessage( $key )->inLanguage( $languageCode )->plain();
+					$template = wfMessage( $key )->useDatabase( false )
+						->inLanguage( $languageCode )->plain();
 
 					// Get the magic-parsed version with args.
-					$result = wfMessage( $key, $args )->inLanguage( $languageCode )->text();
+					$result = wfMessage( $key, ...$args )->useDatabase( false )
+						->inLanguage( $languageCode )->text();
 
 					// Record the template, args, language, and expected result
 					// fake multiple languages by flattening them together.
@@ -119,24 +71,19 @@ class GenerateJqueryMsgData extends Maintenance {
 				}
 			}
 		}
-		return [ $messages, $tests ];
-	}
-
-	private function writeJavascriptFile( $messages, $tests, $dataSpecFile ) {
-		$phpParserData = [
+		return [
 			'messages' => $messages,
 			'tests' => $tests,
+			'jsData' => $jsData,
 		];
+	}
 
-		$output =
-			"// This file stores the output from the PHP parser for various messages, arguments,\n"
-				. "// languages, and parser modes. Intended for use by a unit test framework by looping\n"
-				. "// through the object and comparing its parser return value with the 'result' property.\n"
-				. '// Last generated with ' . basename( __FILE__ ) . ' at ' . gmdate( 'r' ) . "\n"
-				. "/* eslint-disable */\n"
-				. "\n"
-				. 'mediaWiki.libs.phpParserData = ' . FormatJson::encode( $phpParserData, true ) . ";\n";
+	private function writeJsonFile( array $data, $dataSpecFile ) {
+		$phpParserData = [
+			'@' => 'Last generated with ' . basename( __FILE__ ) . ' at ' . gmdate( 'r' ),
+		] + $data;
 
+		$output = FormatJson::encode( $phpParserData, true ) . "\n";
 		$fp = file_put_contents( $dataSpecFile, $output );
 		if ( $fp === false ) {
 			die( "Couldn't write to $dataSpecFile." );
@@ -144,5 +91,5 @@ class GenerateJqueryMsgData extends Maintenance {
 	}
 }
 
-$maintClass = "GenerateJqueryMsgData";
+$maintClass = GenerateJqueryMsgData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

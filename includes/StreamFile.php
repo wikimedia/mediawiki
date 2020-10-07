@@ -26,10 +26,10 @@
 class StreamFile {
 	// Do not send any HTTP headers unless requested by caller (e.g. body only)
 	/** @deprecated since 1.34 */
-	const STREAM_HEADLESS = HTTPFileStreamer::STREAM_HEADLESS;
+	public const STREAM_HEADLESS = HTTPFileStreamer::STREAM_HEADLESS;
 	// Do not try to tear down any PHP output buffers
 	/** @deprecated since 1.34 */
-	const STREAM_ALLOW_OB = HTTPFileStreamer::STREAM_ALLOW_OB;
+	public const STREAM_ALLOW_OB = HTTPFileStreamer::STREAM_ALLOW_OB;
 
 	/**
 	 * Stream a file to the browser, adding all the headings and fun stuff.
@@ -100,7 +100,7 @@ class StreamFile {
 		global $wgTrivialMimeDetection;
 
 		$ext = strrchr( $filename, '.' );
-		$ext = $ext === false ? '' : strtolower( substr( $ext, 1 ) );
+		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
 
 		# trivial detection by file extension,
 		# used for thumbnails (thumb.php)
@@ -122,7 +122,7 @@ class StreamFile {
 		// Use the extension only, rather than magic numbers, to avoid opening
 		// up vulnerabilities due to uploads of files with allowed extensions
 		// but disallowed types.
-		$type = $magic->guessTypesForExtension( $ext );
+		$type = $magic->getMimeTypeFromExtensionOrNull( $ext );
 
 		/**
 		 * Double-check some security settings that were done on upload but might

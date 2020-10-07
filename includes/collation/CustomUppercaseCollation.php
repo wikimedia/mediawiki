@@ -39,10 +39,10 @@
  */
 class CustomUppercaseCollation extends NumericUppercaseCollation {
 
-	/** @var array $alphabet Sorted array of letters */
+	/** @var array Sorted array of letters */
 	private $alphabet;
 
-	/** @var array $puaSubset List of private use area codes */
+	/** @var array List of private use area codes */
 	private $puaSubset;
 
 	/** @var array */

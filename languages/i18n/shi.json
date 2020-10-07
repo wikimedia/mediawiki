@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amara-Amaziɣ",
+			"BaRaN6161 TURK",
 			"Dalinanir",
+			"DannyS712",
 			"Ebe123",
 			"Zanatos",
-			"아라",
-			"Amara-Amaziɣ"
+			"아라"
 		]
 	},
 	"tog-underline": "krrj du izdayn:",
@@ -215,7 +217,6 @@
 	"versionrequiredtext": "Ixxṣṣa w-ayyaw $1 n MediaWiki bac at tskrert tasna yad.\nẒr [[Special:Version|ayyaw tasna]].",
 	"ok": "ⵡⴰⵅⵅⴰ",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "Yurrid z \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|{{GENDER:$3|ⴷⴰⵔⴽ|ⴷⴰⵔⵎ}}}} $1 ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ⵜⵓⵣⵉⵏⵜ ⵜⴰⵎⴰⵢⵏⵓⵜ|ⵜⵓⵣⵉⵏⵉⵏ ⵜⵉⵎⴰⵢⵏⵓⵜⵉⵏ}}",
@@ -263,7 +264,7 @@
 	"error": "ⵜⴰⵣⴳⵍⵜ",
 	"databaseerror": "ⵜⴰⵣⴳⵍⵜ ⴳ ⵜⴰⵙⵉⵍⴰ ⵏ ⵉⵙⴼⴽⴰ",
 	"databaseerror-error": "ⴰⵣⴳⴳⴰⵍ: $1",
-	"laggedslavemode": "Ḥan tasnayad ur gis graygan ambddel amaynu.",
+	"laggedreplicamode": "Ḥan tasnayad ur gis graygan ambddel amaynu.",
 	"readonly": "ⵜⴰⵙⵉⵍⴰ ⵏ ⵉⵙⴼⴽⴰ ⵉⵜⵜⵡⴰⵔⴳⵍⵏ",
 	"missing-article": "lqaa'ida n lbayanat ortofa nass ad gh tawriqt  liss ikhssa asti taf limism \"$1\" $2.\n\nghikad artitsbib  igh itabaa lfrq aqdim nghd tarikh artawi skra nsfha ityohyadn.\n\nighor iga lhal ghika ati ran taft kra lkhata gh lbarnamaj.\n\nini mayad ikra [[Special:ListUsers/sysop|lmodir]] tfktas ladriss ntwriqt an.",
 	"missingarticle-rev": "(ⵓⵟⵟⵓⵏ ⵏ ⵓⵣⵣⵔⴰⵢ : $1)",
@@ -378,7 +379,7 @@
 	"template-semiprotected": "Azin-ugdal",
 	"hiddencategories": "ⵜⵍⵍⴰ ⵜⴰⵙⵏⴰ ⴰⴷ ⵖ {{PLURAL:$1|1 ⵜⴰⴳⴳⴰⵢⵜ ⵉⵏⵜⵍⵏ|$1 ⵜⴰⴳⴳⴰⵢⵉⵏ ⵏⵜⵍⵏⵉⵏ}}:",
 	"permissionserrors": "ⵜⴰⵣⴳⵍⵜ ⵖ ⵜⵓⵔⴰⴳⵜ",
-	"permissionserrorstext-withaction": "Urak ittuyskar  {{IGGUT:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :",
+	"permissionserrorstext-withaction": "Urak ittuyskar  {{PLURAL:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :",
 	"recreate-moveddeleted-warn": "<strong>ⵔⴰⵔ ⵜⴰⵖⴹⴼⵜ: ⵀⴰ ⵜ ⴰⵔ ⴷⴰⵖ ⵜⵙⵏⵓⵍⴼⵓⵜ ⵢⴰⵜ ⵜⴰⵙⵏⴰ ⵢⴰⴷ ⵉⵜⵜⵡⴰⴽⴽⵙⵏ.</strong>\n\nYou should consider whether it is appropriate to continue editing this page.\nⴰⵍⵓⴳ ⵏ ⵡⵓⴽⵓⵙ ⴷ ⵓⵙⵎⵓⵜⵜⵉ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ ⵜⵜⵢⴰⵡⴼⵙⵔⵏ ⴷⴷⴰⵡ ⴰⵙ for convenience:",
 	"moveddeleted-notice": "ⵜⴻⵜⵜⵡⴰⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰⴷ.\nⵜⵓⴽⴽⵙⴰ, ⴰⴼⵔⴰⴳ, ⴷ ⵓⵙⵎⵓⵜⵜⵉ ⵏ ⵜⴰⵙⵏⴰ ⵍⵍⴰⵏ ⴷⴷⴰⵡ‒ⴰⵙ for reference.",
 	"log-fulllog": "Zṛ anɣmas izun (usmmid)",
@@ -409,7 +410,7 @@
 	"history-show-deleted": "ⵖⴰⵔ ⵜⵓⵏⵖⵉⵍⵜ ⵏⵏⴰ ⵉⵜⵜⵡⴰⴽⴽⵙⵏ",
 	"histfirst": "ⴰⴽⴽⵯ ⵉⵇⴷⵎⵏ",
 	"histlast": "ⴰⴽⴽⵯ ⵉⵊⴷⵉⴷⵏ",
-	"historyempty": "(ⵉⵅⵡⴰ)",
+	"historyempty": "ⵉⵅⵡⴰ",
 	"history-feed-title": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵜⵓⵏⵖⵉⵍⵉⵏ",
 	"history-feed-description": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵜⵓⵏⵖⵉⵍⵉⵏ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ ⵉⵍⵍⴰⵏ ⵖ ⵓⵡⵉⴽⵉ",
 	"history-feed-item-nocomment": "$1 ⵖ $2",

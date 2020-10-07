@@ -60,7 +60,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param string $filename
 	 * @return array|false
 	 */
-	function getImageSize( $image, $filename ) {
+	public function getImageSize( $image, $filename ) {
 		$header = self::getXCFMetaData( $filename );
 		if ( !$header ) {
 			return false;
@@ -89,7 +89,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param string $filename Full path to a XCF file
 	 * @return bool|array Metadata Array just like PHP getimagesize()
 	 */
-	static function getXCFMetaData( $filename ) {
+	private static function getXCFMetaData( $filename ) {
 		# Decode master structure
 		$f = fopen( $filename, 'rb' );
 		if ( !$f ) {
@@ -132,14 +132,14 @@ class XCFHandler extends BitmapHandler {
 
 		# Check values
 		if ( $header['magic'] !== 'gimp xcf' ) {
-			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
+			wfDebug( __METHOD__ . " '$filename' has invalid magic signature." );
 
 			return false;
 		}
 		# TODO: we might want to check for sane values of width and height
 
 		wfDebug( __METHOD__ .
-			": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
+			": canvas size of '$filename' is {$header['width']} x {$header['height']} px" );
 
 		return $header;
 	}

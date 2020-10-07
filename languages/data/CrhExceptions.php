@@ -13,9 +13,9 @@ use CrhConverter as Crh;
 
 class CrhExceptions {
 
-	const WB = '\b'; # default word boundary; may be updated in the future
+	private const WB = '\b'; # default word boundary; may be updated in the future
 
-	function __construct() {
+	public function __construct() {
 		$this->loadRegs();
 	}
 
@@ -89,7 +89,7 @@ class CrhExceptions {
 		}
 	}
 
-	function loadExceptions( $lcChars, $ucChars ) {
+	public function loadExceptions( $lcChars, $ucChars ) {
 		# init lc and uc, as needed
 		$this->initLcUc( $lcChars, $ucChars );
 
@@ -399,13 +399,11 @@ class CrhExceptions {
 	private $Cyrl2LatnRegexes = [];
 	private $Latn2CyrlRegexes = [];
 
-	function loadRegs() {
+	private function loadRegs() {
 		// Regexes as keys need to be declared in a function.
 		$this->Cyrl2LatnRegexes = [
-			############################
-			# относятся ко всему слову #
-			# whole words              #
-			############################
+			# относятся ко всему слову
+			# whole words
 
 			// TODO: refactor upper/lower/first capital whole words without
 			// regexes into simpler list
@@ -478,10 +476,8 @@ class CrhExceptions {
 			'/' . self::WB . 'Я' . self::WB . '/u' => 'Ya',
 			'/' . self::WB . 'Ё' . self::WB . '/u' => 'Yo',
 
-			############################
-			# относятся к началу слова #
-			# word prefixes            #
-			############################
+			# относятся к началу слова
+			# word prefixes
 			'/' . self::WB . 'КъЮШн/u' => 'QYŞn',
 			'/' . self::WB . 'ЮШн/u' => 'YŞn',
 
@@ -564,10 +560,8 @@ class CrhExceptions {
 			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ya$2',
 			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YA$2',
 
-			###############################
-			# не зависят от места в слове #
-			# position independent        #
-			###############################
+			# не зависят от места в слове
+			# position independent
 
 			# слова на -льон
 			# words with -льон

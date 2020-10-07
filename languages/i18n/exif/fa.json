@@ -4,8 +4,8 @@
 			"Ebraminio",
 			"Huji",
 			"Meisam",
-			"ZxxZxxZ",
-			"Reza1615"
+			"Reza1615",
+			"ZxxZxxZ"
 		]
 	},
 	"exif-imagewidth": "عرض",
@@ -272,6 +272,12 @@
 	"exif-scenetype-1": "تصویر مستقیماً عکاسی شده",
 	"exif-customrendered-0": "ظهور عادی",
 	"exif-customrendered-1": "ظهور سفارشی",
+	"exif-customrendered-2": "HDR (غیراصلی ذخیره شده‌است)",
+	"exif-customrendered-3": "HDR (اصلی ذخیره شده‌است)",
+	"exif-customrendered-4": "اصلی (برای HDR)",
+	"exif-customrendered-6": "سراسرنما",
+	"exif-customrendered-7": "HDR پرتره",
+	"exif-customrendered-8": "پرتره",
 	"exif-exposuremode-0": "نوردهی خودکار",
 	"exif-exposuremode-1": "نوردهی دستی",
 	"exif-exposuremode-2": "قاب‌بندی خودکار (Auto bracket)",

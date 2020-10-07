@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * A special page listing redirects to redirecting page.
@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialDoubleRedirects extends QueryPage {
-	function __construct( $name = 'DoubleRedirects' ) {
+	public function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}
 
@@ -40,19 +40,19 @@ class SpecialDoubleRedirects extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
 	}
 
-	function reallyGetQueryInfo( $namespace = null, $title = null ) {
+	private function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
 		$dbr = wfGetDB( DB_REPLICA );
 		$retval = [
@@ -107,7 +107,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		return $this->reallyGetQueryInfo();
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'ra.rd_namespace', 'ra.rd_title' ];
 	}
 
@@ -116,7 +116,7 @@ class SpecialDoubleRedirects extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		// If no Title B or C is in the query, it means this came from
 		// querycache (which only saves the 3 columns for title A).
 		// That does save the bulk of the query cost, but now we need to
@@ -159,7 +159,10 @@ class SpecialDoubleRedirects extends QueryPage {
 				->getPermissionManager()
 				->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
+			MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $titleA->getContentModel() )
+				->supportsDirectEditing()
 		) {
 			$edit = $linkRenderer->makeKnownLink(
 				$titleA,
@@ -211,7 +214,7 @@ class SpecialDoubleRedirects extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
 			return;
 		}

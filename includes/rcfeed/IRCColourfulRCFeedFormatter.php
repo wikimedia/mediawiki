@@ -66,8 +66,8 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			if ( $wgUseRCPatrol || ( $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
-			// HACK: We need this hook for WMF's secure server setup
-			Hooks::run( 'IRCLineURL', [ &$url, &$query, $rc ] );
+
+			Hooks::runner()->onIRCLineURL( $url, $query, $rc );
 			$url .= $query;
 		}
 

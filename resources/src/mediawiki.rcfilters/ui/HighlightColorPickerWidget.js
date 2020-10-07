@@ -25,6 +25,12 @@ var HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidge
 	this.currentSelection = 'none';
 	this.buttonSelect = new OO.ui.ButtonSelectWidget( {
 		items: colors.map( function ( color ) {
+			// The following classes are used here:
+			// * mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-c1
+			// * mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-c2
+			// * mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-c3
+			// * mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-c4
+			// * mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect-color-c5
 			return new OO.ui.ButtonOptionWidget( {
 				icon: color === 'none' ? 'check' : null,
 				data: color,
@@ -68,6 +74,7 @@ OO.mixinClass( HighlightColorPickerWidget, OO.ui.mixin.LabelElement );
 
 /**
  * Bind the color picker to an item
+ *
  * @param {mw.rcfilters.dm.FilterItem} filterItem
  */
 HighlightColorPickerWidget.prototype.setFilterItem = function ( filterItem ) {

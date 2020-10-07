@@ -34,7 +34,7 @@ class DbTestRecorder extends TestRecorder {
 	 * Set up result recording; insert a record for the run with the date
 	 * and all that fun stuff
 	 */
-	function start() {
+	public function start() {
 		$this->db->begin( __METHOD__ );
 
 		if ( !$this->db->tableExists( 'testrun' )
@@ -68,7 +68,7 @@ class DbTestRecorder extends TestRecorder {
 	 * @param array $test
 	 * @param ParserTestResult $result
 	 */
-	function record( $test, ParserTestResult $result ) {
+	public function record( $test, ParserTestResult $result ) {
 		$this->db->insert( 'testitem',
 			[
 				'ti_run' => $this->curRun,
@@ -81,7 +81,7 @@ class DbTestRecorder extends TestRecorder {
 	/**
 	 * Commit transaction and clean up for result recording
 	 */
-	function end() {
+	public function end() {
 		$this->db->commit( __METHOD__ );
 	}
 }

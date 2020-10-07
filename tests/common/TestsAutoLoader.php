@@ -53,6 +53,7 @@ $wgAutoloadClasses += [
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'HamcrestPHPUnitIntegration' => "$testDir/phpunit/HamcrestPHPUnitIntegration.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
+	'MediaWikiCliOptions' => "$testDir/phpunit/MediaWikiCliOptions.php",
 	'MediaWikiCoversValidator' => "$testDir/phpunit/MediaWikiCoversValidator.php",
 	'MediaWikiGroupValidator' => "$testDir/phpunit/MediaWikiGroupValidator.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
@@ -64,9 +65,8 @@ $wgAutoloadClasses += [
 	'MediaWikiTestCaseTrait' => "$testDir/phpunit/MediaWikiTestCaseTrait.php",
 	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",
 	'MediaWikiIntegrationTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
-	'MediaWikiTestResult' => "$testDir/phpunit/MediaWikiTestResult.php",
-	'MediaWikiTestRunner' => "$testDir/phpunit/MediaWikiTestRunner.php",
 	'PHPUnit4And6Compat' => "$testDir/phpunit/PHPUnit4And6Compat.php",
+	'PHPUnit6And8Compat' => "$testDir/phpunit/PHPUnit6And8Compat.php",
 	'ResourceLoaderFileModuleTestingSubclass' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderFileTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderTestCase' => "$testDir/phpunit/ResourceLoaderTestCase.php",
@@ -77,8 +77,6 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes
 	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
-	'PageArchiveTestBase' => "$testDir/phpunit/includes/page/PageArchiveTestBase.php",
-	'RevisionDbTestBase' => "$testDir/phpunit/includes/RevisionDbTestBase.php",
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
 	'RevisionTestModifyableContentHandler' => "$testDir/phpunit/includes/RevisionTestModifyableContentHandler.php",
 	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
@@ -119,6 +117,7 @@ $wgAutoloadClasses += [
 		"$testDir/phpunit/mocks/content/DummySerializeErrorContentHandler.php",
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
+	'ObjectFactoryMakeContentHandlerWithSpecsToTest' => "$testDir/phpunit/includes/content/ObjectFactoryMakeContentHandlerWithSpecsToTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
 	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
 
@@ -139,14 +138,8 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
-	# tests/phpunit/includes/page
-	'WikiPageDbTestBase' => "$testDir/phpunit/includes/page/WikiPageDbTestBase.php",
-
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
-
-	# tests/phpunit/includes/password
-	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
 	# tests/phpunit/includes/resourceloader
 	'ResourceLoaderImageModuleTest' =>
@@ -172,19 +165,21 @@ $wgAutoloadClasses += [
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
 	# tests/phpunit/includes/Revision
-	'MediaWiki\Tests\Revision\McrSchemaDetection' => "$testDir/phpunit/includes/Revision/McrSchemaDetection.php",
-	'MediaWiki\Tests\Revision\McrSchemaOverride' => "$testDir/phpunit/includes/Revision/McrSchemaOverride.php",
-	'MediaWiki\Tests\Revision\McrWriteBothSchemaOverride' => "$testDir/phpunit/includes/Revision/McrWriteBothSchemaOverride.php",
-	'MediaWiki\Tests\Revision\McrReadNewSchemaOverride' => "$testDir/phpunit/includes/Revision/McrReadNewSchemaOverride.php",
 	'MediaWiki\Tests\Revision\RevisionSlotsTest' => "$testDir/phpunit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Revision\RevisionRecordTests' => "$testDir/phpunit/includes/Revision/RevisionRecordTests.php",
 	'MediaWiki\Tests\Revision\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Revision/RevisionStoreDbTestBase.php",
 	'MediaWiki\Tests\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/includes/Revision/RevisionStoreRecordTest.php",
 
+	# test/phpunit/includes/user
+	'UserOptionsLookupTest' => "$testDir/phpunit/includes/user/UserOptionsLookupTest.php",
+
 	# tests/phpunit/languages
+	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
+	'LanguageConverterTestTrait' => "$testDir/phpunit/languages/LanguageConverterTestTrait.php",
 
 	# tests/phpunit/includes/libs
+	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCase' => "$testDir/phpunit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 
@@ -192,6 +187,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Maintenance\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
 	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
 	'MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
+	'MediaWiki\Tests\Maintenance\PageDumpTestDataTrait' => "$testDir/phpunit/maintenance/PageDumpTestDataTrait.php",
 
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
@@ -202,6 +198,7 @@ $wgAutoloadClasses += [
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
+	'MockPoolCounterFailing' => "$testDir/phpunit/mocks/poolcounter/MockPoolCounterFailing.php",
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
@@ -230,9 +227,19 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
 
+	# tests/phpunit/includes/unit/password
+	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",
+
+	# tests/phpunit/unit/includes/Rest/Handler
+	'MediaWiki\Tests\Rest\Handler\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",
+	'MediaWiki\Tests\Rest\Handler\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
+	'MediaWiki\Tests\Rest\Handler\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",
+	'MediaWiki\Tests\Rest\Handler\MediaTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/MediaTestTrait.php",
+
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
+	'SuiteEventsTrait' => "$testDir/phpunit/suites/SuiteEventsTrait.php",
 ];
 // phpcs:enable
 

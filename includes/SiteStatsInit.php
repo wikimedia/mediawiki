@@ -17,8 +17,8 @@
  *
  * @file
  */
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class designed for counting of stats.
@@ -171,20 +171,20 @@ class SiteStatsInit {
 	 * Refresh site_stats
 	 */
 	public function refresh() {
-		$values = [
-			'ss_row_id' => 1,
+		$set = [
 			'ss_total_edits' => $this->edits === null ? $this->edits() : $this->edits,
 			'ss_good_articles' => $this->articles === null ? $this->articles() : $this->articles,
 			'ss_total_pages' => $this->pages === null ? $this->pages() : $this->pages,
 			'ss_users' => $this->users === null ? $this->users() : $this->users,
 			'ss_images' => $this->files === null ? $this->files() : $this->files,
 		];
+		$row = [ 'ss_row_id' => 1 ] + $set;
 
 		self::getDB( DB_MASTER )->upsert(
 			'site_stats',
-			$values,
-			[ 'ss_row_id' ],
-			$values,
+			$row,
+			'ss_row_id',
+			$set,
 			__METHOD__
 		);
 	}

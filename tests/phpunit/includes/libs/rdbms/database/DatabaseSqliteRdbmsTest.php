@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -11,16 +12,23 @@ use Wikimedia\Rdbms\DatabaseSqlite;
 class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseSqlite
+	 * @return MockObject|DatabaseSqlite
 	 */
 	private function getMockDb() {
-		return $this->getMockBuilder( DatabaseSqlite::class )
+		$db = $this->getMockBuilder( DatabaseSqlite::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->setMethods( [ 'open', 'query', 'addQuotes' ] )
 			->getMock();
+
+		$db->expects( $this->any() )->method( 'addQuotes' )->willReturnCallback(
+			function ( $s ) {
+				return "'$s'";
+			}
+		);
+
+		return $db;
 	}
 
 	public function provideBuildSubstring() {
@@ -53,8 +61,81 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testBuildSubstring_invalidParams( $start, $length ) {
 		$dbMock = $this->getMockDb();
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$dbMock->buildSubstring( 'foo', $start, $length );
 	}
 
+	/**
+	 * @dataProvider provideGreatest
+	 * @covers Wikimedia\Rdbms\DatabaseSqlite::buildGreatest
+	 */
+	public function testBuildGreatest( $fields, $values, $sqlText ) {
+		$dbMock = $this->getMockDb();
+		$this->assertEquals(
+			$sqlText,
+			trim( $dbMock->buildGreatest( $fields, $values ) )
+		);
+	}
+
+	public static function provideGreatest() {
+		return [
+			[
+				'field',
+				'value',
+				"MAX(\"field\",'value')"
+			],
+			[
+				[ 'field' ],
+				[ 'value' ],
+				"MAX(\"field\",'value')"
+			],
+			[
+				[ 'field', 'field2' ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MAX(\"field\",\"field2\",'value','value2',3,7.6)"
+			],
+			[
+				[ 'field', 'a' => "\"field2\"+1" ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MAX(\"field\",\"field2\"+1,'value','value2',3,7.6)"
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLeast
+	 * @covers Wikimedia\Rdbms\DatabaseSqlite::buildLeast
+	 */
+	public function testBuildLeast( $fields, $values, $sqlText ) {
+		$dbMock = $this->getMockDb();
+		$this->assertEquals(
+			$sqlText,
+			trim( $dbMock->buildLeast( $fields, $values ) )
+		);
+	}
+
+	public static function provideLeast() {
+		return [
+			[
+				'field',
+				'value',
+				"MIN(\"field\",'value')"
+			],
+			[
+				[ 'field' ],
+				[ 'value' ],
+				"MIN(\"field\",'value')"
+			],
+			[
+				[ 'field', 'field2' ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MIN(\"field\",\"field2\",'value','value2',3,7.6)"
+			],
+			[
+				[ 'field', 'a' => "\"field2\"+1" ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MIN(\"field\",\"field2\"+1,'value','value2',3,7.6)"
+			],
+		];
+	}
 }

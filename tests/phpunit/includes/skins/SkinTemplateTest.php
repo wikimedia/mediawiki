@@ -7,12 +7,15 @@
  *
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
-class SkinTemplateTest extends MediaWikiTestCase {
+class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider makeListItemProvider
 	 */
-	public function testMakeListItem( $expected, $key, $item, $options, $message ) {
+	public function testMakeListItem( $expected, $key, array $item, array $options, $message ) {
 		$template = $this->getMockForAbstractClass( BaseTemplate::class );
+		$template->set( 'skin', new SkinFallback( [
+			'templateDirectory' => __DIR__,
+		] ) );
 
 		$this->assertEquals(
 			$expected,
@@ -40,48 +43,40 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|OutputPage
+	 * @return OutputPage
 	 */
 	private function getMockOutputPage( $isSyndicated, $html ) {
-		$mock = $this->getMockBuilder( OutputPage::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->createMock( OutputPage::class );
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
-			->will( $this->returnValue( $isSyndicated ) );
+			->willReturn( $isSyndicated );
 		$mock->expects( $this->any() )
 			->method( 'getHTML' )
-			->will( $this->returnValue( $html ) );
+			->willReturn( $html );
 		return $mock;
 	}
 
 	public function provideGetDefaultModules() {
-		$defaultStyles = [
-			'mediawiki.legacy.shared',
-			'mediawiki.legacy.commonPrint',
-		];
-		$buttonStyle = 'mediawiki.ui.button';
-		$feedStyle = 'mediawiki.feedlink';
 		return [
 			[
 				false,
 				'',
-				$defaultStyles
+				[]
 			],
 			[
 				true,
 				'',
-				array_merge( $defaultStyles, [ $feedStyle ] )
+				[ 'mediawiki.feedlink' ]
 			],
 			[
 				false,
 				'FOO mw-ui-button BAR',
-				array_merge( $defaultStyles, [ $buttonStyle ] )
+				[ 'mediawiki.ui.button' ]
 			],
 			[
 				true,
 				'FOO mw-ui-button BAR',
-				array_merge( $defaultStyles, [ $buttonStyle, $feedStyle ] )
+				[ 'mediawiki.ui.button', 'mediawiki.feedlink' ]
 			],
 		];
 	}
@@ -90,7 +85,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	 * @covers Skin::getDefaultModules
 	 * @dataProvider provideGetDefaultModules
 	 */
-	public function testgetDefaultModules( $isSyndicated, $html, $expectedModuleStyles ) {
+	public function testgetDefaultModules( $isSyndicated, $html, array $expectedModuleStyles ) {
 		$skin = new SkinTemplate();
 
 		$context = new DerivativeContext( $skin->getContext() );
@@ -99,11 +94,9 @@ class SkinTemplateTest extends MediaWikiTestCase {
 
 		$modules = $skin->getDefaultModules();
 
-		$actualStylesModule = call_user_func_array( 'array_merge', $modules['styles'] );
-		$this->assertArraySubset(
-			$expectedModuleStyles,
-			$actualStylesModule,
-			'style modules'
-		);
+		$actualStylesModule = array_merge( ...array_values( $modules['styles'] ) );
+		foreach ( $expectedModuleStyles as $expected ) {
+			$this->assertContains( $expected, $actualStylesModule );
+		}
 	}
 }

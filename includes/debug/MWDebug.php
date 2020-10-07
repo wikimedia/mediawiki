@@ -68,6 +68,11 @@ class MWDebug {
 	protected static $deprecationWarnings = [];
 
 	/**
+	 * @var string[] Deprecation filter regexes
+	 */
+	protected static $deprecationFilters = [];
+
+	/**
 	 * @internal For use by Setup.php only.
 	 */
 	public static function setup() {
@@ -185,7 +190,10 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendMessage( $msg, $callerDescription, 'warning', $level );
+		self::sendMessage(
+			self::formatCallerDescription( $msg, $callerDescription ),
+			'warning',
+			$level );
 
 		if ( self::$enabled ) {
 			self::$log[] = [
@@ -207,7 +215,7 @@ class MWDebug {
 	 *
 	 * @since 1.19
 	 * @param string $function Function that is deprecated.
-	 * @param string|bool $version Version in which the function was deprecated.
+	 * @param string|false $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
 	 *    If false, it is assumed the function is in MediaWiki core.
 	 * @param int $callerOffset How far up the callstack is the original
@@ -217,15 +225,53 @@ class MWDebug {
 	public static function deprecated( $function, $version = false,
 		$component = false, $callerOffset = 2
 	) {
-		$callerDescription = self::getCallerDescription( $callerOffset );
-		$callerFunc = $callerDescription['func'];
+		if ( $version ) {
+			$component = $component ?: 'MediaWiki';
+			$msg = "Use of $function was deprecated in $component $version.";
+		} else {
+			$msg = "Use of $function is deprecated.";
+		}
+		self::deprecatedMsg( $msg, $version, $component, $callerOffset + 1 );
+	}
+
+	/**
+	 * Log a deprecation warning with arbitrary message text. A caller
+	 * description will be appended. If the message has already been sent for
+	 * this caller, it won't be sent again.
+	 *
+	 * Although there are component and version parameters, they are not
+	 * automatically appended to the message. The message text should include
+	 * information about when the thing was deprecated.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $msg The message
+	 * @param string|false $version Version of MediaWiki that the function
+	 *    was deprecated in.
+	 * @param string|bool $component Component to which the function belongs.
+	 *    If false, it is assumed the function is in MediaWiki core.
+	 * @param int|false $callerOffset How far up the call stack is the original
+	 *    caller. 2 = function that called the function that called us. If false,
+	 *    the caller description will not be appended.
+	 */
+	public static function deprecatedMsg( $msg, $version = false,
+		$component = false, $callerOffset = 2
+	) {
+		if ( $callerOffset === false ) {
+			$callerFunc = '';
+			$rawMsg = $msg;
+		} else {
+			$callerDescription = self::getCallerDescription( $callerOffset );
+			$callerFunc = $callerDescription['func'];
+			$rawMsg = self::formatCallerDescription( $msg, $callerDescription );
+		}
 
 		$sendToLog = true;
 
 		// Check to see if there already was a warning about this function
-		if ( isset( self::$deprecationWarnings[$function][$callerFunc] ) ) {
+		if ( isset( self::$deprecationWarnings[$msg][$callerFunc] ) ) {
 			return;
-		} elseif ( isset( self::$deprecationWarnings[$function] ) ) {
+		} elseif ( isset( self::$deprecationWarnings[$msg] ) ) {
 			if ( self::$enabled ) {
 				$sendToLog = false;
 			} else {
@@ -233,11 +279,13 @@ class MWDebug {
 			}
 		}
 
-		self::$deprecationWarnings[$function][$callerFunc] = true;
+		self::$deprecationWarnings[$msg][$callerFunc] = true;
 
 		if ( $version ) {
 			global $wgDeprecationReleaseLimit;
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
+
+			$component = $component ?: 'MediaWiki';
+			if ( $wgDeprecationReleaseLimit && $component === 'MediaWiki' ) {
 				# Strip -* off the end of $version so that branches can use the
 				# format #.##-branchname to avoid issues if the branch is merged into
 				# a version of MediaWiki later than what it was branched from
@@ -249,18 +297,39 @@ class MWDebug {
 					$sendToLog = false;
 				}
 			}
+		}
 
-			$component = $component === false ? 'MediaWiki' : $component;
-			$msg = "Use of $function was deprecated in $component $version.";
-		} else {
-			$msg = "Use of $function is deprecated.";
+		self::sendRawDeprecated(
+			$rawMsg,
+			$sendToLog,
+			$callerFunc
+		);
+	}
+
+	/**
+	 * Send a raw deprecation message to the log and the debug toolbar,
+	 * without filtering of duplicate messages. A caller description will
+	 * not be appended.
+	 *
+	 * @param string $msg The complete message including relevant caller information.
+	 * @param bool $sendToLog If true, the message will be sent to the debug
+	 *   toolbar, the debug log, and raised as a warning if indicated by
+	 *   $wgDevelopmentWarnings. If false, the message will only be sent to
+	 *   the debug toolbar.
+	 * @param string $callerFunc The caller, for display in the debug toolbar's
+	 *   caller column.
+	 */
+	public static function sendRawDeprecated( $msg, $sendToLog = true, $callerFunc = '' ) {
+		foreach ( self::$deprecationFilters as $filter ) {
+			if ( preg_match( $filter, $msg ) ) {
+				return;
+			}
 		}
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
 			self::sendMessage(
 				$msg,
-				$callerDescription,
 				'deprecated',
 				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
 			);
@@ -278,6 +347,26 @@ class MWDebug {
 				'caller' => $callerFunc,
 			];
 		}
+	}
+
+	/**
+	 * Deprecation messages matching the supplied regex will be suppressed.
+	 * Use this to filter deprecation warnings when testing deprecated code.
+	 *
+	 * @param string $regex
+	 */
+	public static function filterDeprecationForTest( $regex ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+		}
+		self::$deprecationFilters[] = $regex;
+	}
+
+	/**
+	 * Clear all deprecation filters.
+	 */
+	public static function clearDeprecationFilters() {
+		self::$deprecationFilters = [];
 	}
 
 	/**
@@ -318,22 +407,30 @@ class MWDebug {
 	}
 
 	/**
+	 * Append a caller description to an error message
+	 *
+	 * @param string $msg
+	 * @param array $caller Caller description from getCallerDescription()
+	 * @return string
+	 */
+	private static function formatCallerDescription( $msg, $caller ) {
+		return $msg . ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+	}
+
+	/**
 	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
 	 * @param string $msg Message to send
-	 * @param array $caller Caller description get from getCallerDescription()
 	 * @param string $group Log group on which to send the message
 	 * @param int|bool $level Error level to use; set to false to not trigger an error
 	 */
-	private static function sendMessage( $msg, $caller, $group, $level ) {
-		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
-
+	private static function sendMessage( $msg, $group, $level ) {
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebugLog( $group, $msg, 'private' );
+		wfDebugLog( $group, $msg );
 	}
 
 	/**
@@ -454,7 +551,7 @@ class MWDebug {
 			// by the time this method is called.
 			$html = ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] ),
-				$context->getOutput()->getCSPNonce()
+				$context->getOutput()->getCSP()->getNonce()
 			);
 		}
 
@@ -540,14 +637,7 @@ class MWDebug {
 			return [];
 		}
 
-		global $wgVersion;
 		$request = $context->getRequest();
-
-		// HHVM's reported memory usage from memory_get_peak_usage()
-		// is not useful when passing false, but we continue passing
-		// false for consistency of historical data in zend.
-		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
-		$realMemoryUsage = wfIsHHVM();
 
 		$branch = GitInfo::currentBranch();
 		if ( GitInfo::isSHA1( $branch ) ) {
@@ -557,9 +647,9 @@ class MWDebug {
 		}
 
 		return [
-			'mwVersion' => $wgVersion,
-			'phpEngine' => wfIsHHVM() ? 'HHVM' : 'PHP',
-			'phpVersion' => wfIsHHVM() ? HHVM_VERSION : PHP_VERSION,
+			'mwVersion' => MW_VERSION,
+			'phpEngine' => 'PHP',
+			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
 			'gitBranch' => $branch,
 			'gitViewUrl' => GitInfo::headViewUrl(),
@@ -573,8 +663,8 @@ class MWDebug {
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
 			],
-			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
-			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
+			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
+			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		];
 	}

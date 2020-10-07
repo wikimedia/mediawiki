@@ -22,13 +22,18 @@
  * @file
  */
 
-use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
+use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should use a factory in the future and should be narrowed
+ *       down to not expose heavy weight objects.
  */
 class RequestContext implements IContextSource, MutableContext {
 	/**
@@ -168,9 +173,10 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( $this->title === null ) {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
-			wfDebugLog(
-				'GlobalTitleFail',
-				__METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no title set.'
+			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
+			$logger->info(
+				__METHOD__ . ' called with no title set.',
+				[ 'exception' => new Exception ]
 			);
 		}
 
@@ -292,7 +298,11 @@ class RequestContext implements IContextSource, MutableContext {
 		$code = strtolower( $code );
 
 		# Validate $code
-		if ( !$code || !Language::isValidCode( $code ) || $code === 'qqq' ) {
+		if ( !$code
+			|| !MediaWikiServices::getInstance()->getLanguageNameUtils()
+				->isValidCode( $code )
+			|| $code === 'qqq'
+		) {
 			$code = $wgLanguageCode;
 		}
 
@@ -309,7 +319,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$this->lang = $language;
 		} elseif ( is_string( $language ) ) {
 			$language = self::sanitizeLangCode( $language );
-			$obj = Language::factory( $language );
+			$obj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $language );
 			$this->lang = $obj;
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
@@ -330,7 +340,8 @@ class RequestContext implements IContextSource, MutableContext {
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
 			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
-			$this->lang = Language::factory( $code );
+			$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $code );
 		} elseif ( $this->lang === null ) {
 			$this->languageRecursion = true;
 
@@ -343,14 +354,27 @@ class RequestContext implements IContextSource, MutableContext {
 				if ( $code === 'user' ) {
 					$code = $user->getOption( 'language' );
 				}
+
+				// There are certain characters we don't allow in language code strings,
+				// but by and large almost any valid UTF-8 string will makes it past
+				// this check and the LanguageNameUtils::isValidCode method it uses.
+				// This is to support on-wiki interface message overrides for
+				// non-existent language codes. Also known as "Uselang hacks".
+				// See <https://www.mediawiki.org/wiki/Manual:Uselang_hack>
+				// For something like "en-whatever" or "de-whatever" it will end up
+				// with a mostly "en" or "de" interface, but with an extra layer of
+				// possible MessageCache overrides from `MediaWiki:*/<code>` titles.
+				// While non-ASCII works here, it is required that they are in
+				// NFC form given this will not convert to normalised form.
 				$code = self::sanitizeLangCode( $code );
 
-				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
+				Hooks::runner()->onUserGetLanguageObject( $user, $code, $this );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
 				} else {
-					$obj = Language::factory( $code );
+					$obj = MediaWikiServices::getInstance()->getLanguageFactory()
+						->getLanguage( $code );
 					$this->lang = $obj;
 				}
 			} finally {
@@ -375,7 +399,7 @@ class RequestContext implements IContextSource, MutableContext {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			$skin = null;
-			Hooks::run( 'RequestContextCreateSkin', [ $this, &$skin ] );
+			Hooks::runner()->onRequestContextCreateSkin( $this, $skin );
 			$factory = MediaWikiServices::getInstance()->getSkinFactory();
 
 			if ( $skin instanceof Skin ) {
@@ -446,7 +470,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public static function getMainAndWarn( $func = __METHOD__ ) {
 		wfDebug( $func . ' called without context. ' .
-			"Using RequestContext::getMain() for sanity\n" );
+			"Using RequestContext::getMain() for sanity" );
 
 		return self::getMain();
 	}
@@ -507,7 +531,7 @@ class RequestContext implements IContextSource, MutableContext {
 			// Sanity check to avoid sending random cookies for the wrong users.
 			// This method should only called by CLI scripts or by HTTP job runners.
 			throw new MWException( "Sessions can only be imported when none is active." );
-		} elseif ( !IP::isValid( $params['ip'] ) ) {
+		} elseif ( !IPUtils::isValid( $params['ip'] ) ) {
 			throw new MWException( "Invalid client IP address '{$params['ip']}'." );
 		}
 

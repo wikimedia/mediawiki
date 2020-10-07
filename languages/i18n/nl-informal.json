@@ -2,15 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"HanV",
-			"MarkvA",
-			"Siebrand",
-			"Tedjuh10",
-			"Southparkfan",
-			"McDutchie",
-			"Romaine",
 			"Mainframe98",
 			"Mar(c)",
-			"Robin van der Vliet"
+			"MarkvA",
+			"McDutchie",
+			"Robin van der Vliet",
+			"Romaine",
+			"Siebrand",
+			"Southparkfan",
+			"Tedjuh10"
 		]
 	},
 	"view-pool-error": "De servers zijn op het moment helaas overbelast.\nTe veel gebruikers proberen deze pagina te bekijken.\nWacht even voordat je opnieuw toegang probeert te krijgen tot deze pagina.\n\n$1",
@@ -161,7 +161,6 @@
 	"filewasdeleted": "Er is eerder een bestand met deze naam verwijderd.\nRaadpleeg het $1 voordat je het opnieuw toevoegt.",
 	"filename-bad-prefix": "De naam van het bestand dat je aan het uploaden bent begint met '''\"$1\"''', wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.\nKies een duidelijke naam voor je bestand.",
 	"uploadstash-badtoken": "Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat je bewerkingsreferenties zijn verlopen. Probeer het opnieuw.",
-	"img-auth-nopathinfo": "PATH_INFO ontbreekt.\nJe server is niet ingesteld om deze gegevens door te geven.\nMisschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.\nZie https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization voor meer informatie.",
 	"img-auth-isdir": "Je probeert de map \"$1\" te benaderen.\nAlleen toegang tot bestanden is toegestaan.",
 	"upload-curl-error28-text": "Het duurde te lang voordat de website antwoordde.\nControleer of de website beschikbaar is, wacht even en probeer het dan opnieuw.\nJe kunt het misschien proberen als het minder druk is.",
 	"upload_source_file": "(een bestand op je computer)",
@@ -189,7 +188,6 @@
 	"removedwatchtext": "De pagina \"[[:$1]]\" is van [[Special:Watchlist|je volglijst]] verwijderd.",
 	"watchlist-details": "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op je volglijst, exclusief overlegpagina's.",
 	"wlheader-showupdated": "Pagina's die zijn bewerkt sinds je laatste bezoek worden '''vet''' weergegeven",
-	"watcherrortext": "Er is een fout opgetreden tijdens het wijzigen van je volglijstinstellingen voor \"$1\".",
 	"enotif_lastvisited": "Zie $1 voor alle wijzigingen sinds je laatste bezoek.",
 	"enotif_body": "Hoi $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\n\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nTenzij je deze pagina bezoekt, komen er geen verdere berichten. Op je volglijst kan je voor alle gevolgde pagina's de waarschuwingsinstellingen opschonen.\n\nGroet van je {{SITENAME}}-waarschuwingssysteem.\n\n--\nJe kunt je e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nJe kunt je volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nJe kunt de pagina van je volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
 	"historywarning": "'''Waarschuwing:''' de pagina die je wilt verwijderen heeft ongeveer $1 {{PLURAL:$1|versie|versies}}:",

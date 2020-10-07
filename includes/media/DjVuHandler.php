@@ -29,7 +29,7 @@ use MediaWiki\Shell\Shell;
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
-	const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
+	private const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
 
 	/**
 	 * @return bool
@@ -37,7 +37,7 @@ class DjVuHandler extends ImageHandler {
 	public function isEnabled() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
-			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
+			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump" );
 
 			return false;
 		} else {
@@ -147,7 +147,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
 		if ( !$this->normaliseParams( $image, $params ) ) {
@@ -215,7 +215,7 @@ class DjVuHandler extends ImageHandler {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
 		$cmd .= ' > ' . Shell::escape( $dstPath ) . ') 2>&1';
-		wfDebug( __METHOD__ . ": $cmd\n" );
+		wfDebug( __METHOD__ . ": $cmd" );
 		$retval = '';
 		$err = wfShellExec( $cmd, $retval );
 
@@ -242,7 +242,7 @@ class DjVuHandler extends ImageHandler {
 	 * @return DjVuImage
 	 * @suppress PhanUndeclaredProperty Custom property
 	 */
-	function getDjVuImage( $image, $path ) {
+	private function getDjVuImage( $image, $path ) {
 		if ( !$image ) {
 			$deja = new DjVuImage( $path );
 		} elseif ( !isset( $image->dejaImage ) ) {
@@ -303,7 +303,7 @@ class DjVuHandler extends ImageHandler {
 
 		$metadata = $this->getUnserializedMetadata( $image );
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
-			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
+			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow" );
 
 			return false;
 		}
@@ -346,14 +346,14 @@ class DjVuHandler extends ImageHandler {
 				$metaTree = $tree;
 			}
 		} catch ( Exception $e ) {
-			wfDebug( "Bogus multipage XML metadata\n" );
+			wfDebug( "Bogus multipage XML metadata" );
 		}
 		Wikimedia\restoreWarnings();
 
 		return [ 'MetaTree' => $metaTree, 'TextTree' => $textTree ];
 	}
 
-	function getImageSize( $image, $path ) {
+	public function getImageSize( $image, $path ) {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
 
@@ -362,14 +362,14 @@ class DjVuHandler extends ImageHandler {
 		static $mime;
 		if ( !isset( $mime ) ) {
 			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$mime = $magic->guessTypesForExtension( $wgDjvuOutputExtension );
+			$mime = $magic->getMimeTypeFromExtensionOrNull( $wgDjvuOutputExtension );
 		}
 
 		return [ $wgDjvuOutputExtension, $mime ];
 	}
 
 	public function getMetadata( $image, $path ) {
-		wfDebug( "Getting DjVu metadata for $path\n" );
+		wfDebug( "Getting DjVu metadata for $path" );
 
 		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
 		if ( $xml === false ) {
@@ -380,7 +380,7 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'djvuxml';
 	}
 
@@ -450,7 +450,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param int $page Page number to get information for
 	 * @return bool|string Page text or false when no text found.
 	 */
-	function getPageText( File $image, $page ) {
+	public function getPageText( File $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
 			return false;

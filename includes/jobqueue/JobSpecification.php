@@ -52,7 +52,9 @@ class JobSpecification implements IJobSpecification {
 	/**
 	 * @param string $type
 	 * @param array $params Map of key/values
-	 * @param array $opts Map of key/values; includes 'removeDuplicates'
+	 * @param array $opts Map of key/values
+	 *   'removeDuplicates' key - whether to remove duplicate jobs
+	 *   'removeDuplicatesIgnoreParams' key - array with parameters to ignore for deduplication
 	 * @param Title|null $title Optional descriptive title
 	 */
 	public function __construct(
@@ -116,8 +118,6 @@ class JobSpecification implements IJobSpecification {
 	public function getDeduplicationInfo() {
 		$info = [
 			'type' => $this->getType(),
-			'namespace' => $this->getTitle()->getNamespace(),
-			'title' => $this->getTitle()->getDBkey(),
 			'params' => $this->getParams()
 		];
 		if ( is_array( $info['params'] ) ) {
@@ -126,6 +126,11 @@ class JobSpecification implements IJobSpecification {
 			unset( $info['params']['rootJobTimestamp'] );
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
+			if ( isset( $this->opts['removeDuplicatesIgnoreParams'] ) ) {
+				foreach ( $this->opts['removeDuplicatesIgnoreParams'] as $field ) {
+					unset( $info['params'][$field] );
+				}
+			}
 		}
 
 		return $info;

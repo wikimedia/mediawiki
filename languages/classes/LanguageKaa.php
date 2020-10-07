@@ -30,6 +30,7 @@ class LanguageKaa extends Language {
 
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
+
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 *
@@ -38,7 +39,7 @@ class LanguageKaa extends Language {
 	 *
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kaa'][$case][$word] ) ) {
 			return $wgGrammarForms['kaa'][$case][$word];
@@ -68,7 +69,7 @@ class LanguageKaa extends Language {
 	 *
 	 * @return mixed|string
 	 */
-	function lcfirst( $string ) {
+	public function lcfirst( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
 			return 'ı' . substr( $string, 1 );
 		}

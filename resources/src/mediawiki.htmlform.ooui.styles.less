@@ -1,4 +1,4 @@
-@import 'mediawiki.mixins';
+@import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -13,9 +13,6 @@
 @ooui-padding-vertical: 4 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.285714em`≈`4px`
 
 .mw-htmlform-ooui-wrapper.oo-ui-panelLayout-padded {
-	// Reducing `padding-top`, as the heading's `line-height` provides similar distance.
-	padding: @ooui-spacing-medium @ooui-spacing-large @ooui-spacing-large;
-
 	.client-js & .oo-ui-fieldsetLayout.mw-collapsible .oo-ui-fieldsetLayout-header {
 		// Push legend up when JS is on, to increase clickable area.
 		margin-top: -@ooui-spacing-small;
@@ -47,10 +44,6 @@
 
 	.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
 		line-height: 16 / @ooui-font-size-browser / @ooui-font-size-base;
-	}
-
-	.mw-htmlform-field-HTMLCheckMatrix {
-		width: 100%;
 	}
 
 	// Default OOUI styles produce a larger margin here

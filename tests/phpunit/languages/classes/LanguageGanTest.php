@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Language
  * @covers LanguageGan
  * @covers GanConverter
  */

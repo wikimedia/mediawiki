@@ -24,11 +24,14 @@
  * Uses BadRequestError to emit a 400 HTTP error code to ensure caching proxies and
  * mobile browsers know not to cache it as valid content. (T35646)
  *
+ * @newable
  * @since 1.19
  * @ingroup Exception
  */
 class BadTitleError extends BadRequestError {
 	/**
+	 * @stable to call
+	 *
 	 * @param string|Message|MalformedTitleException $msg A message key (default: 'badtitletext'), or
 	 *     a MalformedTitleException to figure out things from
 	 * @param array $params Parameter to wfMessage()

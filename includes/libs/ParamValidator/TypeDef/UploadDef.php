@@ -2,30 +2,31 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use InvalidArgumentException;
 use Psr\Http\Message\UploadedFileInterface;
+use UnexpectedValueException;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\Util\UploadedFile;
-use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * Type definition for upload types
  *
  * The result from validate() is an object implementing UploadedFileInterface.
  *
- * ValidationException codes:
- *  - 'badupload': The upload is not valid. No data.
- *  - 'badupload-inisize': The upload exceeded the maximum in php.ini. Data:
- *     - 'size': The configured size (in bytes).
- *  - 'badupload-formsize': The upload exceeded the maximum in the form post. No data.
- *  - 'badupload-partial': The file was only partially uploaded. No data.
- *  - 'badupload-nofile': There was no file. No data.
- *  - 'badupload-notmpdir': PHP has no temporary directory to store the upload. No data.
- *  - 'badupload-cantwrite': PHP could not store the upload. No data.
- *  - 'badupload-phpext': A PHP extension rejected the upload. No data.
- *  - 'badupload-notupload': The field was present in the submission but was not encoded as
- *    an upload. No data.
- *  - 'badupload-unknown': Some unknown PHP upload error code. Data:
- *     - 'code': The code.
+ * Failure codes:
+ *  - 'badupload': The upload is not valid. Data:
+ *     - 'code': A value indicating why the upload was not valid:
+ *       - 'inisize': The upload exceeded the maximum in php.ini.
+ *       - 'formsize': The upload exceeded the maximum in the form post.
+ *       - 'partial': The file was only partially uploaded.
+ *       - 'nofile': There was no file.
+ *       - 'notmpdir': PHP has no temporary directory to store the upload.
+ *       - 'cantwrite': PHP could not store the upload.
+ *       - 'phpext': A PHP extension rejected the upload.
+ *       - 'notupload': The field was present in the submission but was not encoded as an upload.
+ *     - 'size': The configured size (in bytes), if 'code' is 'inisize'.
  *
  * @since 1.34
  * @unstable
@@ -82,7 +83,8 @@ class UploadDef extends TypeDef {
 
 		if ( !$value instanceof UploadedFileInterface ) {
 			// Err?
-			throw new ValidationException( $name, $value, $settings, 'badupload', [] );
+			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
+			throw new InvalidArgumentException( "\$value must be UploadedFileInterface, got $type" );
 		}
 
 		$err = $value->getError();
@@ -97,21 +99,58 @@ class UploadDef extends TypeDef {
 			$size = $this->getIniSize();
 			$last = strtolower( substr( $size, -1 ) );
 			$size = intval( $size, 10 ) * ( $prefixes[$last] ?? 1 );
-			throw new ValidationException( $name, $value, $settings, 'badupload-inisize', [
-				'size' => $size,
-			] );
+			$this->failure(
+				$this->failureMessage( 'badupload', [
+					'code' => 'inisize',
+					'size' => $size,
+				], 'inisize' )->sizeParams( $size ),
+				$name, '', $settings, $options
+			);
 		} elseif ( isset( $codemap[$err] ) ) {
-			throw new ValidationException( $name, $value, $settings, 'badupload-' . $codemap[$err], [] );
+			$this->failure(
+				$this->failureMessage( 'badupload', [ 'code' => $codemap[$err] ], $codemap[$err] ),
+				$name, '', $settings, $options
+			);
 		} else {
-			throw new ValidationException( $name, $value, $settings, 'badupload-unknown', [
-				'code' => $err,
-			] );
+			$constant = '';
+			foreach ( get_defined_constants() as $c => $v ) {
+				if ( $v === $err && substr( $c, 0, 11 ) === 'UPLOAD_ERR_' ) {
+					$constant = " ($c?)";
+				}
+			}
+			throw new UnexpectedValueException( "Unrecognized PHP upload error value $err$constant" );
 		}
+	}
+
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		if ( isset( $settings[ParamValidator::PARAM_DEFAULT] ) ) {
+			$ret['issues'][ParamValidator::PARAM_DEFAULT] =
+				'Cannot specify a default for upload-type parameters';
+		}
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			!isset( $ret['issues'][ParamValidator::PARAM_ISMULTI] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_ISMULTI] =
+				'PARAM_ISMULTI cannot be used for upload-type parameters';
+		}
+
+		return $ret;
 	}
 
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		// Not going to happen.
 		return null;
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-upload' );
+
+		return $info;
 	}
 
 }

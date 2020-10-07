@@ -3,8 +3,8 @@
 		"authors": [
 			"C.R.",
 			"Chelin",
-			"Macofe",
 			"Fitoschido",
+			"Macofe",
 			"Ruthven"
 		]
 	},
@@ -37,7 +37,6 @@
 	"config-page-install": "Installa",
 	"config-page-complete": "Cumpreta!",
 	"config-page-restart": "Riabbìa l'installazione",
-	"config-page-readme": "Lieggeme",
 	"config-page-releasenotes": "Note 'e verziona",
 	"config-page-copying": "Copia",
 	"config-page-upgradedoc": "Agghiurnanno",
@@ -50,7 +49,6 @@
 	"config-env-good": "L'ambiente è stato cuntrullato.\nÈ pussibbele installare MediaWiki.",
 	"config-env-bad": "L'ambiente è stato cuntrullato.\nNun se può installà MediaWiki.",
 	"config-env-php": "PHP $1 è installato.",
-	"config-env-hhvm": "HHVM $1 è installato.",
 	"config-unicode-using-intl": "Aúsa [https://pecl.php.net/intl l'estensione PECL intl] pe' ne fà 'a normalizzazione Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Attenziò:</strong> L' [https://pecl.php.net/intl estensione intl PECL] nun è a disposizione pe' gestire 'a normalizzazione Unicode, accussì se ausasse n'imprementazziona llenta 'n puro PHP.\nSi state a gestire nu pizzo ad alto traffico, avisseve a lieggere cocche considerazione ncopp' 'a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizzaziona Unicode].",
 	"config-unicode-update-warning": "<strong>Attenziò:</strong> 'A verziona installata 'e normalizzazione Unicode aùsa 'a verziona viecchia d' 'o [http://site.icu-project.org/ pruggetto ICU].\nV'avite 'a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations agghiurnà] si state a penzà ncopp' 'o fatto d'ausà Unicode.",
@@ -78,7 +76,6 @@
 	"config-using-uri": "URL d' 'o server ca se stà ausanno \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Attenziò:</strong> 'a cartella predefinita p' 'e carreche <code>$1</code> è vulnerabbele all'esecuzione arbitraria 'e script.\nPure si MediaWiki cuntrolla tutt' 'e file carrecate pe' rischio 'a sicurezza se raccumanna 'e [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security nchiure sta vulnerabbilità 'e sicurezza] apprimm'appiccià 'a funcione 'e carreche.",
 	"config-no-cli-uploads-check": "<strong>Attenziò:</strong> 'a cartella predefinita p' 'e carreche (<code>$1</code>) nun è stata cuntrullata p' 'a vulnerabbelità ncopp'a l'esecuzione arbitraria 'e script pe' tramente ca se fà l'installazione 'a linea 'e commando.",
-	"config-brokenlibxml": "'O sistema vuosto ave na combinazione 'e verziune 'e PHP e libxml2 nguacchiata ca putesse scassà 'e date 'e MediaWiki 'n manera annascunnusa e pure l'ati apprecaziune p' 'o web.\nAgghiurnate a libxml2 2.7.3 o cchiù muderno ([https://bugs.php.net/bug.php?id=45996 'o bug studiato d' 'o lato PHP]).\nInstallaziona spezzata.",
 	"config-suhosin-max-value-length": "Suhosin è installato e miette lemmeto 'o parametro GET <code>length</code> a $1 byte.\n'O componente MediaWiki ResourceLoader funzionarrà aggirann'a stu lemmeto, ma luvanno prestaziune.\nSi pussibile, avit'a mpustà <code>suhosin.get.max_value_length</code> a 1024 o cchiù auto 'n <code>php.ini</code>, e mpustà <code>$wgResourceLoaderMaxQueryLength</code> a 'o stesso valore 'n <code>LocalSettings.php</code>.",
 	"config-using-32bit": "<strong>Attenziò:</strong> 'o sistema vuosto pare c'ausasse nummere sane 'e 32-bit. Chest' [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit è scunzigliat].",
 	"config-db-type": "Tipo 'e database:",

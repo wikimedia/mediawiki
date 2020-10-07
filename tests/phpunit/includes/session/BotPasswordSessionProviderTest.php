@@ -3,8 +3,8 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
-use MediaWikiTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\BotPasswordSessionProvider
  */
-class BotPasswordSessionProviderTest extends MediaWikiTestCase {
+class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	private $config;
 
@@ -50,7 +50,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

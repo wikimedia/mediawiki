@@ -23,8 +23,8 @@
 namespace Wikimedia\Rdbms;
 
 use Exception;
-use LogicException;
 use InvalidArgumentException;
+use LogicException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -80,28 +80,28 @@ use InvalidArgumentException;
  */
 interface ILoadBalancer {
 	/** @var int Request a replica DB connection */
-	const DB_REPLICA = -1;
+	public const DB_REPLICA = -1;
 	/** @var int Request a master DB connection */
-	const DB_MASTER = -2;
+	public const DB_MASTER = -2;
 
 	/** @var string Domain specifier when no specific database needs to be selected */
-	const DOMAIN_ANY = '';
+	public const DOMAIN_ANY = '';
 	/** @var string The generic query group */
-	const GROUP_GENERIC = '';
+	public const GROUP_GENERIC = '';
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
-	const CONN_TRX_AUTOCOMMIT = 1;
+	public const CONN_TRX_AUTOCOMMIT = 1;
 	/** @var int Return null on connection failure instead of throwing an exception */
-	const CONN_SILENCE_ERRORS = 2;
+	public const CONN_SILENCE_ERRORS = 2;
 	/** @var int Caller is requesting the master DB server for possibly writes */
-	const CONN_INTENT_WRITABLE = 4;
+	public const CONN_INTENT_WRITABLE = 4;
 	/** @var int Bypass and update any server-side read-only mode state cache */
-	const CONN_REFRESH_READ_ONLY = 8;
+	public const CONN_REFRESH_READ_ONLY = 8;
 
 	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
-	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
+	public const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
 	/** @var string Manager of ILoadBalancer instances is running post-rollback callbacks */
-	const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
+	public const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
 
 	/**
 	 * Construct a manager of IDatabase connection objects
@@ -109,7 +109,7 @@ interface ILoadBalancer {
 	 * @param array $params Parameter map with keys:
 	 *  - servers : List of server info structures
 	 *  - localDomain: A DatabaseDomain or domain ID string
-	 *  - loadMonitor : Name of a class used to fetch server lag and load
+	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field. [optional]
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
@@ -267,9 +267,9 @@ interface ILoadBalancer {
 	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
 	 * single database transaction as a consequence.
 	 *
-	 * Calling functions that use $domain must call reuseConnection() once the last query of the
-	 * function is executed. This lets the load balancer share this handle with other callers
-	 * requesting connections on different database domains.
+	 * Callers of this function that use a non-local $domain must call reuseConnection() after
+	 * their last query on this handle executed. This lets the load balancer share the handle with
+	 * other callers requesting connections on different database domains.
 	 *
 	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
 	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
@@ -792,4 +792,14 @@ interface ILoadBalancer {
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Convert certain database domains to alternative ones.
+	 *
+	 * This can be used for backwards compatibility logic.
+	 *
+	 * @param DatabaseDomain[]|string[] $aliases Map of (domain alias => domain)
+	 * @since 1.35
+	 */
+	public function setDomainAliases( array $aliases );
 }

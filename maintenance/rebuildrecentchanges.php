@@ -26,6 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -111,7 +112,8 @@ class RebuildRecentchanges extends Maintenance {
 			[
 				'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
-			]
+			],
+			__METHOD__
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
@@ -205,7 +207,7 @@ class RebuildRecentchanges extends Maintenance {
 				"rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rc_cur_id,rc_timestamp' ]
+			[ 'ORDER BY' => [ 'rc_cur_id', 'rc_timestamp' ] ]
 		);
 
 		$lastCurId = 0;
@@ -230,7 +232,7 @@ class RebuildRecentchanges extends Maintenance {
 				if ( $revRow ) {
 					$lastOldId = intval( $revRow->rev_id );
 					# Grab the last text size if available
-					$lastSize = !is_null( $revRow->rev_len ) ? intval( $revRow->rev_len ) : null;
+					$lastSize = $revRow->rev_len !== null ? intval( $revRow->rev_len ) : null;
 				} else {
 					# No previous edit
 					$lastOldId = 0;
@@ -374,7 +376,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass4( ILBFactory $lbFactory ) {
-		global $wgUseRCPatrol, $wgMiserMode;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol, $wgMiserMode;
 
 		$dbw = $this->getDB( DB_MASTER );
 
@@ -384,11 +386,12 @@ class RebuildRecentchanges extends Maintenance {
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
-		$autopatrolgroups = $wgUseRCPatrol ? MediaWikiServices::getInstance()
-			->getPermissionManager()
+		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol ) ?
+			MediaWikiServices::getInstance()->getPermissionManager()
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits
+		// @phan-suppress-next-line PhanRedundantCondition
 		if ( $botgroups ) {
 			$this->output( "Flagging bot account edits...\n" );
 
@@ -463,15 +466,28 @@ class RebuildRecentchanges extends Maintenance {
 			if ( $patrolusers ) {
 				$actorQuery = ActorMigration::newMigration()->getWhere( $dbw, 'rc_user', $patrolusers, false );
 				foreach ( $actorQuery['orconds'] as $cond ) {
+					$conds = [
+						$cond,
+						'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
+						'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+						'rc_patrolled' => 0
+					];
+
+					if ( !$wgUseRCPatrol ) {
+						$subConds = [];
+						if ( $wgUseNPPatrol ) {
+							$subConds[] = 'rc_source = ' . $dbw->addQuotes( RecentChange::SRC_NEW );
+						}
+						if ( $wgUseFilePatrol ) {
+							$subConds[] = 'rc_log_type = ' . $dbw->addQuotes( 'upload' );
+						}
+						$conds[] = $dbw->makeList( $subConds, IDatabase::LIST_OR );
+					}
+
 					$dbw->update(
 						'recentchanges',
 						[ 'rc_patrolled' => 2 ],
-						[
-							$cond,
-							'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-							'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
-							'rc_patrolled' => 0
-						],
+						$conds,
 						__METHOD__
 					);
 					$lbFactory->waitForReplication();
@@ -482,7 +498,7 @@ class RebuildRecentchanges extends Maintenance {
 
 	/**
 	 * Rebuild pass 5: Delete duplicate entries where we generate both a page revision and a log
-	 * entry for a single action (upload only, at the moment, but potentially move, protect, ...).
+	 * entry for a single action (upload, move, protect, import, etc.).
 	 *
 	 * @param ILBFactory $lbFactory
 	 */
@@ -497,7 +513,7 @@ class RebuildRecentchanges extends Maintenance {
 			[
 				'ls_log_id = log_id',
 				'ls_field' => 'associated_rev_id',
-				'log_type' => 'upload',
+				'log_type != ' . $dbw->addQuotes( 'create' ),
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 			],

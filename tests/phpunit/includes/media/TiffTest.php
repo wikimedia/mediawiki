@@ -3,14 +3,14 @@
 /**
  * @group Media
  */
-class TiffTest extends MediaWikiTestCase {
+class TiffTest extends MediaWikiIntegrationTestCase {
 
 	/** @var TiffHandler */
 	protected $handler;
 	/** @var string */
 	protected $filePath;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

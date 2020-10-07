@@ -32,21 +32,21 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/**
 	 * Maximum number of pages to show on single subpage.
 	 *
-	 * @var int $maxPerPage
+	 * @var int
 	 */
 	protected $maxPerPage = 345;
 
 	/**
 	 * Determines, which message describes the input field 'nsfrom'.
 	 *
-	 * @var string $nsfromMsg
+	 * @var string
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
 	/**
 	 * @param string $name Name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
-	function __construct( $name = 'Allpages' ) {
+	public function __construct( $name = 'Allpages' ) {
 		parent::__construct( $name );
 	}
 
@@ -55,7 +55,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 *
 	 * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default null)
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 
@@ -158,7 +158,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param string $to List all pages to this name
 	 * @param bool $hideredirects Don't show redirects (default false)
 	 */
-	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
+	private function showToplevel(
+		$namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false
+	) {
 		$from = Title::makeTitleSafe( $namespace, $from );
 		$to = Title::makeTitleSafe( $namespace, $to );
 		$from = ( $from && $from->isLocal() ) ? $from->getDBkey() : null;
@@ -173,7 +175,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param string|false $to List all pages to this name (default false)
 	 * @param bool $hideredirects Don't show redirects (default false)
 	 */
-	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
+	private function showChunk(
+		$namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false
+	) {
 		$output = $this->getOutput();
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );

@@ -37,9 +37,9 @@ class HTTPFileStreamer {
 	protected $streamMimeFunc;
 
 	// Do not send any HTTP headers unless requested by caller (e.g. body only)
-	const STREAM_HEADLESS = 1;
+	public const STREAM_HEADLESS = 1;
 	// Do not try to tear down any PHP output buffers
-	const STREAM_ALLOW_OB = 2;
+	public const STREAM_ALLOW_OB = 2;
 
 	/**
 	 * Takes HTTP headers in a name => value format and converts them to the weird format
@@ -269,7 +269,7 @@ class HTTPFileStreamer {
 	 */
 	protected static function contentTypeFromPath( $filename ) {
 		$ext = strrchr( $filename, '.' );
-		$ext = $ext === false ? '' : strtolower( substr( $ext, 1 ) );
+		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
 
 		switch ( $ext ) {
 			case 'gif':

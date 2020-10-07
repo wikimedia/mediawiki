@@ -158,7 +158,7 @@ ERROR
 	 * @return Generator
 	 */
 	protected function getUserBatches() {
-		if ( !is_null( $this->user ) ) {
+		if ( $this->user !== null ) {
 			$this->output( "\t ... querying '$this->user'\n" );
 			yield [ [ $this->user ] ];
 			return;

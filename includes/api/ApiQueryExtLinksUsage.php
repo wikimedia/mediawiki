@@ -42,7 +42,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -52,8 +52,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$query = $params['query'];
 		$protocol = self::getProtocolPrefix( $params['protocol'] );
 
-		$this->addTables( [ 'page', 'externallinks' ] );
-		$this->addWhere( 'page_id=el_from' );
+		$this->addTables( [ 'externallinks', 'page' ] );
+		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
 
 		$miser_ns = [];
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
@@ -107,7 +107,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$fld_title = isset( $prop['title'] );
 		$fld_url = isset( $prop['url'] );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [
 				'page_id',
 				'page_namespace',
@@ -120,6 +120,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
+
+		// T244254: Avoid MariaDB deciding to scan all of `page`.
+		$this->addOption( 'STRAIGHT_JOIN' );
 
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
@@ -137,6 +140,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		$result = $this->getResult();
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
@@ -150,7 +158,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				continue;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = [
 					ApiResult::META_TYPE => 'assoc',
 				];
@@ -179,7 +187,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ],
 				$this->getModulePrefix() );
 		}

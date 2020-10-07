@@ -193,6 +193,7 @@
 				);
 			},
 			function ( errorMsg ) {
+				// eslint-disable-next-line mediawiki/msg-doc
 				booklet.getPage( 'upload' ).$element.msg( errorMsg );
 				return $.Deferred().resolve();
 			}
@@ -328,34 +329,15 @@
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
 		var state = this.upload.getState(),
 			stateDetails = this.upload.getStateDetails(),
-			error = stateDetails.errors ? stateDetails.errors[ 0 ] : false,
 			warnings = stateDetails.upload && stateDetails.upload.warnings,
 			$ul = $( '<ul>' ),
-			errorText;
+			$error;
 
 		if ( state === mw.Upload.State.ERROR ) {
-			if ( !error ) {
-				if ( stateDetails.textStatus === 'timeout' ) {
-					// in case of $.ajax.fail(), there is no response json
-					errorText = mw.message( 'apierror-timeout' ).parse();
-				} else if ( stateDetails.xhr && stateDetails.xhr.status === 0 ) {
-					// failed to even connect to server
-					errorText = mw.message( 'apierror-offline' ).parse();
-				} else if ( stateDetails.textStatus ) {
-					errorText = stateDetails.textStatus;
-				} else {
-					errorText = mw.message( 'apierror-unknownerror', JSON.stringify( stateDetails ) ).parse();
-				}
-
-				// If there's an 'exception' key, this might be a timeout, or other connection problem
-				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).html( errorText ),
-					{ recoverable: false }
-				) );
-			}
+			$error = ( new mw.Api() ).getErrorMessage( stateDetails );
 
 			return $.Deferred().resolve( new OO.ui.Error(
-				$( '<p>' ).html( error.html ),
+				$error,
 				{ recoverable: false }
 			) );
 		}
@@ -678,7 +660,7 @@
 	 * @param {File|null} file File to select
 	 */
 	mw.Upload.BookletLayout.prototype.setFile = function ( file ) {
-		this.selectFileWidget.setValue( file );
+		this.selectFileWidget.setValue( [ file ] );
 	};
 
 	/**

@@ -23,6 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -76,7 +77,7 @@ class PurgeChangedPages extends Maintenance {
 			$this->maybeHelp( true );
 		}
 
-		$stuckCount = 0; // loop breaker
+		$stuckCount = 0;
 		while ( true ) {
 			// Adjust bach size if we are stuck in a second that had many changes
 			$bSize = ( $stuckCount + 1 ) * $this->getBatchSize();
@@ -137,8 +138,8 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to CDN servers
-			$cdn = new CdnCacheUpdate( $urls, count( $urls ) );
-			$cdn->doUpdate();
+			$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+			$hcu->purgeUrls( $urls, $hcu::PURGE_NAIVE );
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {
 				// sleep-per-batch is milliseconds, usleep wants micro seconds.

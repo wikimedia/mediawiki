@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Elisardojm",
-			"Toliño",
-			"아라",
-			"Vivaelcelta",
-			"Macofe",
 			"Banjo",
+			"Elisardojm",
+			"Macofe",
+			"Maria zaos",
 			"Seb35",
-			"Maria zaos"
+			"Toliño",
+			"Vivaelcelta",
+			"아라"
 		]
 	},
 	"config-desc": "O programa de instalación de MediaWiki",
@@ -40,7 +40,6 @@
 	"config-page-install": "Instalar",
 	"config-page-complete": "Completo!",
 	"config-page-restart": "Reiniciar a instalación",
-	"config-page-readme": "Léame",
 	"config-page-releasenotes": "Notas de lanzamento",
 	"config-page-copying": "Copiar",
 	"config-page-upgradedoc": "Actualizar",
@@ -53,7 +52,6 @@
 	"config-env-good": "Rematou a comprobación da contorna.\nPode instalar MediaWiki.",
 	"config-env-bad": "Rematou a comprobación da contorna.\nNon pode instalar MediaWiki.",
 	"config-env-php": "Está instalado o PHP $1.",
-	"config-env-hhvm": "Está instalado o HHVM $1.",
 	"config-unicode-using-intl": "Usando a [https://pecl.php.net/intl extensión intl PECL] para a normalización Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Atención:</strong> A [https://pecl.php.net/intl extensión intl PECL] non está dispoñible para manexar a normalización Unicode; volvendo á execución lenta de PHP puro.\nSe o seu sitio posúe un alto tráfico de visitantes, debería ler un chisco sobre a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
 	"config-unicode-update-warning": "<strong>Atención:</strong> A versión instalada da envoltura de normalización Unicode emprega unha versión vella da biblioteca [http://site.icu-project.org/ do proxecto ICU].\nDebería [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations actualizar] se o uso de Unicode é importante para vostede.",
@@ -81,7 +79,6 @@
 	"config-using-uri": "Usando o URL do servidor \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Atención:</strong> O seu directorio por defecto para as cargas, <code>$1</code>, é vulnerable a execucións arbitrarias de escrituras.\nAínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas de seguridade, é amplamente recomendable [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security pechar esta vulnerabilidade de seguridade] antes de activar as cargas.",
 	"config-no-cli-uploads-check": "<strong>Atención:</strong> Durante a instalación CLI, o seu directorio por defecto para as cargas, <code>$1</code>, non se comproba fronte a posibles vulnerabilidades de execucións arbitrarias de escrituras.",
-	"config-brokenlibxml": "O seu sistema ten unha combinación de versións de PHP e libxml2 que pode ser problemático e causar corrupción de datos en MediaWiki e outras aplicacións web.\nActualice o sistema á versión 2.7.3 ou posterior de libxml2 ([https://bugs.php.net/bug.php?id=45996 erro presentado co PHP]).\nInstalación abortada.",
 	"config-suhosin-max-value-length": "Suhosin está instalado e limita o parámetro GET <code>length</code> a $1 bytes.\nO compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento.\nSe é posible, debería establecer <code>suhosin.get.max_value_length</code> no valor 1024 ou superior en <code>php.ini</code> e establecer <code>$wgResourceLoaderMaxQueryLength</code> no mesmo valor en <code>LocalSettings.php</code>.",
 	"config-using-32bit": "<strong>Aviso:</strong> o teu sistema semella estar funcionando con números enteiros de 32 bits. Isto é algo [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit non recomendado].",
 	"config-db-type": "Tipo de base de datos:",

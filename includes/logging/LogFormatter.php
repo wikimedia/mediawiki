@@ -29,16 +29,18 @@ use MediaWiki\MediaWikiServices;
  * Implements the default log formatting.
  *
  * Can be overridden by subclassing and setting:
+ * @code
+ *   $wgLogActionsHandlers['type/subtype'] = 'class'; or
+ *   $wgLogActionsHandlers['type/*'] = 'class';
+ * @endcode
  *
- *     $wgLogActionsHandlers['type/subtype'] = 'class'; or
- *     $wgLogActionsHandlers['type/*'] = 'class';
- *
+ * @stable to extend
  * @since 1.19
  */
 class LogFormatter {
 	// Audience options for viewing usernames, comments, and actions
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
+	public const FOR_PUBLIC = 1;
+	public const FOR_THIS_USER = 2;
 
 	// Static->
 
@@ -108,6 +110,11 @@ class LogFormatter {
 	 */
 	protected $parsedParameters;
 
+	/**
+	 * @stable to call
+	 *
+	 * @param LogEntry $entry
+	 */
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
@@ -277,10 +284,6 @@ class LogFormatter {
 						$text = wfMessage( 'undeletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
-					//case 'revision': // Revision deletion
-					//case 'event': // Log deletion
-					// see https://github.com/wikimedia/mediawiki/commit/a9c243b7b5289dad204278dbe7ed571fd914e395
-					//default:
 				}
 				break;
 
@@ -302,7 +305,9 @@ class LogFormatter {
 				switch ( $entry->getSubtype() ) {
 					case 'protect':
 						$text = wfMessage( 'protectedarticle' )
-							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )
+							->inContentLanguage()
+							->escaped();
 						break;
 					case 'unprotect':
 						$text = wfMessage( 'unprotectedarticle' )
@@ -310,7 +315,9 @@ class LogFormatter {
 						break;
 					case 'modify':
 						$text = wfMessage( 'modifiedarticleprotection' )
-							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )
+							->inContentLanguage()
+							->escaped();
 						break;
 					case 'move_prot':
 						$text = wfMessage( 'movedarticleprotection' )
@@ -435,7 +442,7 @@ class LogFormatter {
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
-		if ( is_null( $text ) ) {
+		if ( $text === null ) {
 			$text = $this->getPlainActionText();
 		}
 
@@ -447,6 +454,7 @@ class LogFormatter {
 
 	/**
 	 * Gets the log action, including username.
+	 * @stable to override
 	 * @return string HTML
 	 * phan-taint-check gets very confused by $this->plaintext, so disable.
 	 * @return-taint onlysafefor_html
@@ -488,6 +496,7 @@ class LogFormatter {
 	 * Default is logentry-TYPE-SUBTYPE for modern logs. Legacy log
 	 * types will use custom keys, and subclasses can also alter the
 	 * key depending on the entry itself.
+	 * @stable to override
 	 * @return string Message key
 	 */
 	protected function getMessageKey() {
@@ -500,6 +509,7 @@ class LogFormatter {
 	/**
 	 * Returns extra links that comes after the action text, like "revert", etc.
 	 *
+	 * @stable to override
 	 * @return string
 	 */
 	public function getActionLinks() {
@@ -509,6 +519,7 @@ class LogFormatter {
 	/**
 	 * Extracts the optional extra parameters for use in action messages.
 	 * The array indexes start from number 3.
+	 * @stable to override
 	 * @return array
 	 */
 	protected function extractParameters() {
@@ -556,6 +567,7 @@ class LogFormatter {
 	 *  - 1: user name with premade link
 	 *  - 2: usable for gender magic function
 	 *  - 3: target page with premade link
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getMessageParameters() {
@@ -657,6 +669,7 @@ class LogFormatter {
 	/**
 	 * Helper to make a link to the page, taking the plaintext
 	 * value in consideration.
+	 * @stable to override
 	 * @param Title|null $title The page
 	 * @param array $parameters Query parameters
 	 * @param string|null $html Linktext of the link as raw html
@@ -704,6 +717,7 @@ class LogFormatter {
 
 	/**
 	 * Gets the user provided comment
+	 * @stable to override
 	 * @return string HTML
 	 */
 	public function getComment() {
@@ -794,6 +808,7 @@ class LogFormatter {
 	}
 
 	/**
+	 * @stable to override
 	 * @return array Array of titles that should be preloaded with LinkBatch
 	 */
 	public function getPreloadTitles() {
@@ -813,6 +828,7 @@ class LogFormatter {
 	/**
 	 * Get the array of parameters, converted from legacy format if necessary.
 	 * @since 1.25
+	 * @stable to override
 	 * @return array
 	 */
 	protected function getParametersForApi() {
@@ -831,6 +847,7 @@ class LogFormatter {
 	 * the mediawiki-api-announce mailing list.
 	 *
 	 * @since 1.25
+	 * @stable to override
 	 * @return array
 	 */
 	public function formatParametersForApi() {

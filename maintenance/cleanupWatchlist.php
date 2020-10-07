@@ -41,7 +41,7 @@ require_once __DIR__ . '/cleanupTable.inc';
 class CleanupWatchlist extends TableCleanup {
 	protected $defaultParams = [
 		'table' => 'watchlist',
-		'index' => [ 'wl_user', 'wl_namespace', 'wl_title' ],
+		'index' => [ 'wl_id' ],
 		'conds' => [],
 		'callback' => 'processRow'
 	];
@@ -52,7 +52,7 @@ class CleanupWatchlist extends TableCleanup {
 		$this->addOption( 'fix', 'Actually remove entries; without will only report.' );
 	}
 
-	function execute() {
+	public function execute() {
 		if ( !$this->hasOption( 'fix' ) ) {
 			$this->output( "Dry run only: use --fix to enable updates\n" );
 		}
@@ -65,7 +65,7 @@ class CleanupWatchlist extends TableCleanup {
 		$verified = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $display );
 		$title = Title::newFromText( $verified );
 
-		if ( $row->wl_user == 0 || is_null( $title ) || !$title->equals( $current ) ) {
+		if ( $row->wl_user == 0 || $title === null || !$title->equals( $current ) ) {
 			$this->output( "invalid watch by {$row->wl_user} for "
 				. "({$row->wl_namespace}, \"{$row->wl_title}\")\n" );
 			$updated = $this->removeWatch( $row );
@@ -80,12 +80,17 @@ class CleanupWatchlist extends TableCleanup {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete(
-				'watchlist', [
-				'wl_user' => $row->wl_user,
-				'wl_namespace' => $row->wl_namespace,
-				'wl_title' => $row->wl_title ],
+				'watchlist',
+				[ 'wl_id' => $row->wl_id ],
 				__METHOD__
 			);
+			if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+				$dbw->delete(
+					'watchlist_expiry',
+					[ 'we_item' => $row->wl_id ],
+					__METHOD__
+				);
+			}
 
 			$this->output( "- removed\n" );
 

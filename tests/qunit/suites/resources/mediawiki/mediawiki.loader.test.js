@@ -33,8 +33,7 @@
 	} ) );
 
 	mw.loader.addSource( {
-		testloader:
-			QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
+		testloader: mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php'
 	} );
 
 	/**
@@ -48,6 +47,12 @@
 	 * when the url is loaded, but that is fragile since it doesn't monitor the
 	 * same request as the css @import, and Safari 4 has issues with
 	 * onerror/onload not being fired at all in weird cases like this.
+	 *
+	 * @param {Object} assert QUnit test assertion context
+	 * @param {jQuery} $element
+	 * @param {string} prop
+	 * @param {string} val
+	 * @param {Function} fn
 	 */
 	function assertStyleAsync( assert, $element, prop, val, fn ) {
 		var styleTestStart,
@@ -59,7 +64,7 @@
 			$element.css( 'height' );
 			// eslint-disable-next-line no-unused-expressions
 			el.innerHTML;
-			// eslint-disable-next-line no-self-assign
+			// eslint-disable-next-line no-self-assign, mediawiki/class-doc
 			el.className = el.className;
 			// eslint-disable-next-line no-unused-expressions
 			document.documentElement.clientHeight;
@@ -139,10 +144,10 @@
 			[ 'test.set.circleC', '0', [ 'test.set.circleA' ] ]
 		] );
 		mw.loader.using( 'test.set.circleC' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
@@ -169,10 +174,10 @@
 			[ 'test.shim.circleC', '0', [ 'test.shim.circleA' ] ]
 		] );
 		mw.loader.using( 'test.shim.circleC' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
@@ -235,10 +240,10 @@
 		var done = assert.async();
 
 		mw.loader.using( 'test.using.unreg' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
 			}
 		).always( done );
@@ -466,10 +471,10 @@
 			},
 			{
 				css: [
-					'@import url(\''
-						+ urlStyleTest( '.mw-test-implement-import', 'float', 'right' )
-						+ '\');\n'
-						+ '.mw-test-implement-import { text-align: center; }'
+					'@import url(\'' +
+						urlStyleTest( '.mw-test-implement-import', 'float', 'right' ) +
+						'\');\n' +
+						'.mw-test-implement-import { text-align: center; }'
 				]
 			}
 		);
@@ -876,11 +881,11 @@
 	QUnit.test( 'Empty string module name - T28804', function ( assert ) {
 		var done = false;
 
-		assert.strictEqual( mw.loader.getState( '' ), null, 'State (unregistered)' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ], undefined, 'Unregistered' );
 
 		mw.loader.register( '', 'v1' );
-		assert.strictEqual( mw.loader.getState( '' ), 'registered', 'State (registered)' );
-		assert.strictEqual( mw.loader.getVersion( '' ), 'v1', 'Version' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ].state, 'registered', 'State before' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ].version, 'v1', 'Version' );
 
 		mw.loader.implement( '', function () {
 			done = true;
@@ -888,7 +893,7 @@
 
 		return mw.loader.using( '', function () {
 			assert.strictEqual( done, true, 'script ran' );
-			assert.strictEqual( mw.loader.getState( '' ), 'ready', 'State (ready)' );
+			assert.strictEqual( mw.loader.moduleRegistry[ '' ].state, 'ready', 'State after' );
 		} );
 	} );
 
@@ -939,8 +944,8 @@
 			.then( function () {
 				assert.strictEqual( count, 1 );
 				// After implementing, registry contains version as implemented by the response.
-				assert.strictEqual( mw.loader.getVersion( 'test.stale' ), 'v1', 'Override version' );
-				assert.strictEqual( mw.loader.getState( 'test.stale' ), 'ready' );
+				assert.strictEqual( mw.loader.moduleRegistry[ 'test.stale' ].version, 'v1', 'Override version' );
+				assert.strictEqual( mw.loader.moduleRegistry[ 'test.stale' ].state, 'ready' );
 				assert.strictEqual( typeof mw.loader.store.get( 'test.stale' ), 'string', 'In store' );
 			} )
 			.then( function () {
@@ -1037,7 +1042,7 @@
 		} );
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Invalid JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Invalid JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1053,7 +1058,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Wrong JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Wrong JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1069,7 +1074,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Expired JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Expired JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1089,7 +1094,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Good JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Good JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );

@@ -121,7 +121,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1%2E2', 'Pipe-separated value was submitted' );
+			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1.2', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -167,9 +167,9 @@
 			'{ "query": { "tokens": { "testuncachedtoken": "good" } } }'
 		] );
 
-		// Get a token of a type that isn't prepopulated by user.tokens.
+		// Get a token of a type that isn't prepopulated by mw.user.tokens.
 		// Could use "block" or "delete" here, but those could in theory
-		// be added to user.tokens, use a fake one instead.
+		// be added to mw.user.tokens, so use a fake one instead.
 		api.getToken( 'testuncached' )
 			.done( function ( token ) {
 				assert.strictEqual( token, 'good', 'The token' );

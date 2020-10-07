@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Dferg",
-			"Seb35",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Seb35"
 		]
 	},
 	"config-localsettings-upgrade": "Se ha encontrado un archivo <code>LocalSettings.php</code>.\nPara actualizar esta instalación, escriba el valor de <code>$wgUpgradeKey</code> en el cuadro de abajo.\nLo encontrará en <code>LocalSettings.php</code>.",
@@ -11,7 +11,6 @@
 	"config-localsettings-connection-error": "Se ha producido un error al conectar con la base de datos a través de la configuración especificada en <code>LocalSettings.php</code>. Corrija estos ajustes e inténtelo de nuevo.\n\n$1",
 	"config-your-language-help": "Seleccione un idioma para usar durante el proceso de instalación.",
 	"config-page-welcome": "Le damos la bienvenida a MediaWiki.",
-	"config-page-readme": "Léame",
 	"config-help-restart": "¿Desea borrar todos los datos guardados que ha escrito y reiniciar el proceso de instalación?",
 	"config-env-good": "El entorno ha sido comprobado.\nPuede instalar MediaWiki.",
 	"config-env-bad": "El entorno ha sido comprobado.\nNo puede instalar MediaWiki.",

@@ -2,6 +2,7 @@
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
@@ -28,7 +29,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	public function isListed() {
-		return AuthManager::singleton()->canLinkAccounts();
+		return MediaWikiServices::getInstance()->getAuthManager()->canLinkAccounts();
 	}
 
 	protected function getRequestBlacklist() {

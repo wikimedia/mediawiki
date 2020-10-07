@@ -32,11 +32,11 @@
  */
 
 class SpecialTrackingCategories extends SpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'TrackingCategories' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Categories' );
@@ -71,7 +71,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		}
 		$batch->execute();
 
-		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $categoryList ] );
+		$this->getHookRunner()->onSpecialTrackingCategories__preprocess( $this, $categoryList );
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -90,8 +90,8 @@ class SpecialTrackingCategories extends SpecialPage {
 					$catTitle->getText()
 				);
 
-				Hooks::run( 'SpecialTrackingCategories::generateCatLink',
-					[ $this, $catTitle, &$html ] );
+				$this->getHookRunner()->onSpecialTrackingCategories__generateCatLink(
+					$this, $catTitle, $html );
 
 				$allMsgs[] = $html;
 			}

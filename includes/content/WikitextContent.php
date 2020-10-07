@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content object for wiki text pages.
  *
+ * @newable
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
@@ -43,10 +44,15 @@ class WikitextContent extends TextContent {
 	private $hadSignature = false;
 
 	/**
-	 * @var array|null Stack trace of the previous parse
+	 * @var string|null Stack trace of the previous parse
 	 */
 	private $previousParseStackTrace = null;
 
+	/**
+	 * @stable to call
+	 *
+	 * @param string $text
+	 */
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}
@@ -103,7 +109,7 @@ class WikitextContent extends TextContent {
 			# Inserting a new section
 			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
 					->plaintextParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
-			if ( Hooks::run( 'PlaceNewSection', [ $this, $oldtext, $subject, &$text ] ) ) {
+			if ( Hooks::runner()->onPlaceNewSection( $this, $oldtext, $subject, $text ) ) {
 				$text = strlen( trim( $oldtext ) ) > 0
 					? "{$oldtext}\n\n{$subject}{$text}"
 					: "{$subject}{$text}";

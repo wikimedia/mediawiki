@@ -1,112 +1,112 @@
 [submodule "extensions/CheckUser"]
 	path = extensions/CheckUser
 	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
 	url = https://github.com/wikimedia/mediawiki-extensions-AbuseFilter
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CentralAuth"]
 	path = extensions/CentralAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-CentralAuth
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TitleBlacklist"]
 	path = extensions/TitleBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-TitleBlacklist
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SpamBlacklist"]
 	path = extensions/SpamBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Vector"]
 	path = skins/Vector
 	url = https://github.com/wikimedia/mediawiki-skins-Vector
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/MonoBook"]
 	path = skins/MonoBook
 	url = https://github.com/wikimedia/mediawiki-skins-MonoBook
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AntiSpoof"]
 	path = extensions/AntiSpoof
 	url = https://github.com/wikimedia/mediawiki-extensions-AntiSpoof
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Babel"]
 	path = extensions/Babel
 	url = https://github.com/wikimedia/mediawiki-extensions-Babel
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Cite"]
 	path = extensions/Cite
 	url = https://github.com/wikimedia/mediawiki-extensions-Cite
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://github.com/wikimedia/mediawiki-extensions-Echo
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GlobalBlocking"]
 	path = extensions/GlobalBlocking
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalBlocking
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Interwiki"]
 	path = extensions/Interwiki
 	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MassMessage"]
 	path = extensions/MassMessage
 	url = https://github.com/wikimedia/mediawiki-extensions-MassMessage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MobileFrontend"]
 	path = extensions/MobileFrontend
 	url = https://github.com/wikimedia/mediawiki-extensions-MobileFrontend
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
 	url = https://github.com/wikimedia/mediawiki-extensions-Nuke
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/OAuth"]
 	path = extensions/OAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OAuth
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Renameuser"]
 	path = extensions/Renameuser
 	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Thanks"]
 	path = extensions/Thanks
 	url = https://github.com/wikimedia/mediawiki-extensions-Thanks
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Translate"]
 	path = extensions/Translate
@@ -121,71 +121,71 @@
 [submodule "extensions/UrlShortener"]
 	path = extensions/UrlShortener
 	url = https://github.com/wikimedia/mediawiki-extensions-UrlShortener
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://github.com/wikimedia/mediawiki-extensions-cldr
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/CologneBlue"]
 	path = skins/CologneBlue
 	url = https://github.com/wikimedia/mediawiki-skins-CologneBlue
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Modern"]
 	path = skins/Modern
 	url = https://github.com/wikimedia/mediawiki-skins-Modern
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Flow"]
 	path = extensions/Flow
 	url = https://github.com/wikimedia/mediawiki-extensions-Flow
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/VisualEditor"]
 	path = extensions/VisualEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/InputBox"]
 	path = extensions/InputBox
 	url = https://github.com/wikimedia/mediawiki-extensions-InputBox
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Scribunto"]
 	path = extensions/Scribunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Math"]
 	path = extensions/Math
 	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MultiUpload"]
 	path = extensions/MultiUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Timeline"]
 	path = extensions/Timeline
 	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
-		branch = REL1_34
+		branch = REL1_35
 [submodule "extensions/CategoryTree"]
 	path = extensions/CategoryTree
 	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CiteThisPage"]
 	path = extensions/CiteThisPage
 	url = https://github.com/wikimedia/mediawiki-extensions-CiteThisPage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Disambiguator"]
 	path = extensions/Disambiguator
@@ -195,57 +195,57 @@
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
 	url = https://github.com/wikimedia/mediawiki-extensions-Imagemap
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GlobalCssJs"]
 	path = extensions/GlobalCssJs
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalCssJs
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DynamicPageList"]
 	path = extensions/DynamicPageList
 	url = https://github.com/wikimedia/mediawiki-extensions-intersection
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TemplateData"]
 	path = extensions/TemplateData
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TimedMediaHandler"]
 	path = extensions/TimedMediaHandler
 	url = https://github.com/wikimedia/mediawiki-extensions-TimedMediaHandler
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CollapsibleVector"]
 	path = extensions/CollapsibleVector
 	url = https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SubpageFun"]
 	path = extensions/SubpageFun
 	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DPLForum"]
 	path = extensions/DPLForum
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Tabber"]
 	path = extensions/Tabber
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabber.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://github.com/wikimedia/mediawiki-extensions-Poem.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AdminLinks"]
 	path = extensions/AdminLinks
 	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SocialProfile"]
 	path = extensions/SocialProfile
@@ -255,57 +255,57 @@
 [submodule "extensions/Variables"]
 	path = extensions/Variables
 	url = https://github.com/wikimedia/mediawiki-extensions-Variables.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CharInsert"]
 	path = extensions/CharInsert
 	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NewUserMessage"]
 	path = extensions/NewUserMessage
 	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CSS"]
 	path = extensions/CSS
 	url = https://github.com/wikimedia/mediawiki-extensions-CSS.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Popups"]
 	path = extensions/Popups
 	url = https://github.com/wikimedia/mediawiki-extensions-Popups.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
 	url = https://github.com/wikimedia/mediawiki-extensions-PageImages.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TitleKey"]
 	path = extensions/TitleKey
 	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MsUpload"]
 	path = extensions/MsUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MsLinks"]
 	path = extensions/MsLinks
 	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MsCatSelect"]
 	path = extensions/MsCatSelect
@@ -315,77 +315,77 @@
 [submodule "extensions/MultiBoilerplate"]
 	path = extensions/MultiBoilerplate
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RelatedArticles"]
 	path = extensions/RelatedArticles
 	url = https://github.com/wikimedia/mediawiki-extensions-RelatedArticles
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Josa"]
 	path = extensions/Josa
 	url = https://github.com/wikimedia/mediawiki-extensions-Josa
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PageTriage"]
 	path = extensions/PageTriage
 	url = https://github.com/wikimedia/mediawiki-extensions-PageTriage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/FeaturedFeeds"]
 	path = extensions/FeaturedFeeds
 	url = https://github.com/wikimedia/mediawiki-extensions-FeaturedFeeds
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NoTitle"]
 	path = extensions/NoTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-NoTitle
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/OpenGraphMeta"]
 	path = extensions/OpenGraphMeta
 	url = https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiLove
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/BetaFeatures"]
 	path = extensions/BetaFeatures
 	url = https://github.com/wikimedia/mediawiki-extensions-BetaFeatures
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SandboxLink"]
 	path = extensions/SandboxLink
 	url = https://github.com/wikimedia/mediawiki-extensions-SandboxLink
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MultimediaViewer"]
 	path = extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ContactPage"]
 	path = extensions/ContactPage
 	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Poll"]
 	path = extensions/Poll
 	url = https://github.com/wikimedia/mediawiki-extensions-Poll
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
@@ -395,22 +395,22 @@
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Loops"]
 	path = extensions/Loops
 	url = https://github.com/wikimedia/mediawiki-extensions-Loops.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NewestPages"]
 	path = extensions/NewestPages
 	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/HeaderTabs"]
 	path = extensions/HeaderTabs
 	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
@@ -420,7 +420,7 @@
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
 	url = https://github.com/wikimedia/mediawiki-skins-Metrolook.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AJAXPoll"]
 	path = extensions/AJAXPoll
@@ -430,52 +430,52 @@
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
 	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WebChat"]
 	path = extensions/WebChat
 	url = https://github.com/wikimedia/mediawiki-extensions-WebChat
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MsCalendar"]
 	path = extensions/MsCalendar
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Widgets"]
 	path = extensions/Widgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Widgets
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AuthorProtect"]
 	path = extensions/AuthorProtect
 	url = https://github.com/wikimedia/mediawiki-extensions-AuthorProtect
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/LinkSuggest"]
 	path = extensions/LinkSuggest
 	url = https://github.com/wikimedia/mediawiki-extensions-LinkSuggest
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/DuskToDawn"]
 	path = skins/DuskToDawn
 	url = https://github.com/wikimedia/mediawiki-skins-DuskToDawn
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/apex"]
 	path = skins/apex
 	url = https://github.com/wikimedia/mediawiki-skins-apex.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/erudite"]
 	path = skins/erudite
 	url = https://github.com/wikimedia/mediawiki-skins-erudite.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ConfirmEdit"]
 	path = extensions/ConfirmEdit
 	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CreateWiki"]
 	path = extensions/CreateWiki
@@ -490,7 +490,7 @@
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RandomSelection"]
 	path = extensions/RandomSelection
@@ -505,7 +505,7 @@
 [submodule "extensions/AddHTMLMetaAndTitle"]
 	path = extensions/AddHTMLMetaAndTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/HighlightLinksInCategory"]
 	path = extensions/HighlightLinksInCategory
@@ -540,12 +540,12 @@
 [submodule "extensions/LabeledSectionTransclusion"]
 	path = extensions/LabeledSectionTransclusion
 	url = https://github.com/wikimedia/mediawiki-extensions-LabeledSectionTransclusion
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ReplaceText"]
 	path = extensions/ReplaceText
 	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/JavascriptSlideshow"]
 	path = extensions/JavascriptSlideshow
@@ -555,17 +555,17 @@
 [submodule "extensions/Wikibase"]
 	path = extensions/Wikibase
 	url = https://github.com/wikimedia/mediawiki-extensions-Wikibase
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RSS"]
 	path = extensions/RSS
 	url = https://github.com/wikimedia/mediawiki-extensions-RSS
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CookieWarning"]
 	path = extensions/CookieWarning
 	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/FancyBoxThumbs"]
 	path = extensions/FancyBoxThumbs
@@ -580,12 +580,12 @@
 [submodule "extensions/ContentTranslation"]
 	path = extensions/ContentTranslation
 	url = https://github.com/wikimedia/mediawiki-extensions-ContentTranslation
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MassEditRegex"]
 	path = extensions/MassEditRegex
 	url = https://github.com/wikimedia/mediawiki-extensions-MassEditRegex
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/HideSection"]
 	path = extensions/HideSection
@@ -600,7 +600,7 @@
 [submodule "extensions/WikiTextLoggedInOut"]
 	path = extensions/WikiTextLoggedInOut
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiTextLoggedInOut
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Refreshed"]
 	path = skins/Refreshed
@@ -615,52 +615,52 @@
 [submodule "extensions/ArticleRatings"]
 	path = extensions/ArticleRatings
 	url = https://github.com/wikimedia/mediawiki-extensions-ArticleRatings
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Nostalgia"]
 	path = skins/Nostalgia
 	url = https://github.com/wikimedia/mediawiki-skins-Nostalgia
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/FlaggedRevs"]
 	path = extensions/FlaggedRevs
 	url = https://github.com/wikimedia/mediawiki-extensions-FlaggedRevs
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PdfHandler"]
 	path = extensions/PdfHandler
 	url = https://github.com/wikimedia/mediawiki-extensions-PdfHandler
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TorBlock"]
 	path = extensions/TorBlock
 	url = https://github.com/wikimedia/mediawiki-extensions-TorBlock
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/LocalisationUpdate"]
 	path = extensions/LocalisationUpdate
 	url = https://github.com/wikimedia/mediawiki-extensions-LocalisationUpdate
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Newsletter"]
 	path = extensions/Newsletter
 	url = https://github.com/wikimedia/mediawiki-extensions-Newsletter
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/OATHAuth"]
 	path = extensions/OATHAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OATHAuth
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CreatePage"]
 	path = extensions/CreatePage
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatePage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/wikihiero"]
 	path = extensions/wikihiero
 	url = https://github.com/wikimedia/mediawiki-extensions-wikihiero
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ManageWiki"]
 	path = extensions/ManageWiki
@@ -670,7 +670,7 @@
 [submodule "extensions/Quiz"]
 	path = extensions/Quiz
 	url = https://github.com/wikimedia/mediawiki-extensions-Quiz
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ProtectSite"]
 	path = extensions/ProtectSite
@@ -680,7 +680,7 @@
 [submodule "extensions/Theme"]
 	path = extensions/Theme
 	url = https://github.com/wikimedia/mediawiki-extensions-Theme
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Gamepress"]
 	path = skins/Gamepress
@@ -690,17 +690,17 @@
 [submodule "extensions/DismissableSiteNotice"]
 	path = extensions/DismissableSiteNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NewSignupPage"]
 	path = extensions/NewSignupPage
 	url = https://github.com/wikimedia/mediawiki-extensions-NewSignupPage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Graph"]
 	path = extensions/Graph
 	url = https://github.com/wikimedia/mediawiki-extensions-Graph
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Spoilers"]
 	path = extensions/Spoilers
@@ -710,32 +710,32 @@
 [submodule "extensions/SimpleChanges"]
 	path = extensions/SimpleChanges
 	url = https://github.com/wikimedia/mediawiki-extensions-SimpleChanges
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CreateRedirect"]
 	path = extensions/CreateRedirect
 	url = https://github.com/wikimedia/mediawiki-extensions-CreateRedirect
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WhoIsWatching"]
 	path = extensions/WhoIsWatching
 	url = https://github.com/wikimedia/mediawiki-extensions-WhoIsWatching
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/EditSubpages"]
 	path = extensions/EditSubpages
 	url = https://github.com/wikimedia/mediawiki-extensions-EditSubpages
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ProofreadPage"]
 	path = extensions/ProofreadPage
 	url = https://github.com/wikimedia/mediawiki-extensions-ProofreadPage
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PagedTiffHandler"]
 	path = extensions/PagedTiffHandler
 	url = https://github.com/wikimedia/mediawiki-extensions-PagedTiffHandler
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/ModernSkylight"]
 	path = skins/ModernSkylight
@@ -755,12 +755,12 @@
 [submodule "extensions/PageForms"]
 	path = extensions/PageForms
 	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Timeless"]
 	path = skins/Timeless
 	url = https://github.com/wikimedia/mediawiki-skins-Timeless
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ContributionScores"]
 	path = extensions/ContributionScores
@@ -770,12 +770,12 @@
 [submodule "extensions/TocTree"]
 	path = extensions/TocTree
 	url = https://github.com/wikimedia/mediawiki-extensions-TocTree
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GroupsSidebar"]
 	path = extensions/GroupsSidebar
 	url = https://github.com/wikimedia/mediawiki-extensions-GroupsSidebar
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/Tweeki"]
 	path = skins/Tweeki
@@ -785,12 +785,12 @@
 [submodule "extensions/GuidedTour"]
 	path = extensions/GuidedTour
 	url = https://github.com/wikimedia/mediawiki-extensions-GuidedTour
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/EventLogging"]
 	path = extensions/EventLogging
 	url = https://github.com/wikimedia/mediawiki-extensions-EventLogging
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ArticleFeedbackv5"]
 	path = extensions/ArticleFeedbackv5
@@ -800,17 +800,17 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://github.com/wikimedia/mediawiki-vendor
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CentralNotice"]
 	path = extensions/CentralNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-CentralNotice
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/UrlGetParameters"]
 	path = extensions/UrlGetParameters
 	url = https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Moderation"]
 	path = extensions/Moderation
@@ -825,22 +825,22 @@
 [submodule "extensions/Score"]
 	path = extensions/Score
 	url = https://github.com/wikimedia/mediawiki-extensions-Score
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/LoginNotify"]
 	path = extensions/LoginNotify
 	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/AddThis"]
 	path = extensions/AddThis
 	url = https://github.com/wikimedia/mediawiki-extensions-AddThis
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MagicNoCache"]
 	path = extensions/MagicNoCache
 	url = https://github.com/wikimedia/mediawiki-extensions-MagicNoCache
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiForum"]
 	path = extensions/WikiForum
@@ -860,21 +860,21 @@
 [submodule "skins/MinervaNeue"]
 	path = skins/MinervaNeue
 	url = https://github.com/wikimedia/mediawiki-skins-MinervaNeue
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ElectronPdfService"]
 	path = extensions/ElectronPdfService
 	url = https://github.com/wikimedia/mediawiki-extensions-ElectronPdfService
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GlobalUserPage"]
 	path = extensions/GlobalUserPage
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUserPage
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/GlobalPreferences"]
 	path = extensions/GlobalPreferences
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalPreferences
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/QuizGame"]
 	path = extensions/QuizGame
 	url = https://github.com/wikimedia/mediawiki-extensions-QuizGame
@@ -883,7 +883,7 @@
 [submodule "extensions/Capiunto"]
 	path = extensions/Capiunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Capiunto
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DonateBoxInSidebar"]
 	path = extensions/DonateBoxInSidebar
@@ -893,7 +893,7 @@
 [submodule "extensions/TemplateStyles"]
 	path = extensions/TemplateStyles
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateStyles
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiDiscover"]
 	path = extensions/WikiDiscover
@@ -903,22 +903,22 @@
 [submodule "extensions/Collection"]
 	path = extensions/Collection
 	url = https://github.com/wikimedia/mediawiki-extensions-Collection
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PipeEscape"]
 	path = extensions/PipeEscape
 	url = https://github.com/wikimedia/mediawiki-extensions-PipeEscape
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Kartographer"]
 	path = extensions/Kartographer
 	url = https://github.com/wikimedia/mediawiki-extensions-Kartographer
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Description2"]
 	path = extensions/Description2
 	url = https://github.com/wikimedia/mediawiki-extensions-Description2
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "skins/pivot"]
 	path = skins/pivot
@@ -931,37 +931,37 @@
 [submodule "extensions/GeoData"]
 	path = extensions/GeoData
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoData
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TwoColConflict"]
 	path = extensions/TwoColConflict
 	url = https://github.com/wikimedia/mediawiki-extensions-TwoColConflict
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/JSBreadCrumbs"]
 	path = extensions/JSBreadCrumbs
 	url = https://github.com/wikimedia/mediawiki-extensions-JSBreadCrumbs
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MyVariables"]
 	path = extensions/MyVariables
 	url = https://github.com/wikimedia/mediawiki-extensions-MyVariables
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RandomGameUnit"]
 	path = extensions/RandomGameUnit
 	url = https://github.com/wikimedia/mediawiki-extensions-RandomGameUnit
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NewUserNotif"]
 	path = extensions/NewUserNotif
 	url = https://github.com/wikimedia/mediawiki-extensions-NewUserNotif
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/LinkTarget"]
 	path = extensions/LinkTarget
 	url = https://github.com/wikimedia/mediawiki-extensions-LinkTarget
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MatomoAnalytics"]
 	path = extensions/MatomoAnalytics
@@ -971,27 +971,27 @@
 [submodule "extensions/WikidataPageBanner"]
 	path = extensions/WikidataPageBanner
 	url = https://github.com/wikimedia/mediawiki-extensions-WikidataPageBanner
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Listings"]
 	path = extensions/Listings
 	url = https://github.com/wikimedia/mediawiki-extensions-Listings
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/UploadsLink"]
 	path = extensions/UploadsLink
 	url = https://github.com/wikimedia/mediawiki-extensions-UploadsLink
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RevisionSlider"]
 	path = extensions/RevisionSlider
 	url = https://github.com/wikimedia/mediawiki-extensions-RevisionSlider
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CodeMirror"]
 	path = extensions/CodeMirror
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeMirror
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DiscordNotifications"]
 	path = extensions/DiscordNotifications
@@ -1008,12 +1008,12 @@
 [submodule "extensions/ImageRating"]
 	path = extensions/ImageRating
 	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RandomImage"]
 	path = extensions/RandomImage
 	url = https://github.com/wikimedia/mediawiki-extensions-RandomImage.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/PollNY"]
 	path = extensions/PollNY
@@ -1023,7 +1023,7 @@
 [submodule "extensions/WikimediaIncubator"]
 	path = extensions/WikimediaIncubator
 	url = https://github.com/wikimedia/mediawiki-extensions-WikimediaIncubator
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ApprovedRevs"]
 	path = extensions/ApprovedRevs
@@ -1058,7 +1058,7 @@
 [submodule "extensions/TemplateWizard"]
 	path = extensions/TemplateWizard
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiSEO"]
 	path = extensions/WikiSEO
@@ -1078,22 +1078,22 @@
 [submodule "extensions/UserMerge"]
 	path = extensions/UserMerge
 	url = https://github.com/wikimedia/mediawiki-extensions-UserMerge.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/MobileDetect"]
 	path = extensions/MobileDetect
 	url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Citoid"]
 	path = extensions/Citoid
 	url = https://github.com/wikimedia/mediawiki-extensions-Citoid.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Genealogy"]
 	path = extensions/Genealogy
 	url = https://github.com/wikimedia/mediawiki-extensions-Genealogy
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/IncidentReporting"]
 	path = extensions/IncidentReporting
@@ -1108,12 +1108,12 @@
 [submodule "extensions/CirrusSearch"]
 	path = extensions/CirrusSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Elastica"]
 	path = extensions/Elastica
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DataDump"]
 	path = extensions/DataDump
@@ -1123,7 +1123,7 @@
 [submodule "extensions/DisplayTitle"]
 	path = extensions/DisplayTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/WikiCategoryTagCloud"]
 	path = extensions/WikiCategoryTagCloud
@@ -1133,30 +1133,30 @@
 [submodule "skins/Mask"]
 	path = skins/Mask
 	url = https://github.com/wikimedia/mediawiki-skins-Mask.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/JsonConfig"]
 	path = extensions/JsonConfig
 	url = https://github.com/wikimedia/mediawiki-extensions-JsonConfig.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CategorySortHeaders"]
 	path = extensions/CategorySortHeaders
 	url = https://github.com/wikimedia/mediawiki-extensions-CategorySortHeaders
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/StopForumSpam"]
 	path = extensions/StopForumSpam
 	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/PageDisqus"]
 	path = extensions/PageDisqus
 	url = https://github.com/wikimedia/mediawiki-extensions-PageDisqus
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/DisqusTag"]
 	path = extensions/DisqusTag
 	url = https://github.com/wikimedia/mediawiki-extensions-DisqusTag
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
 	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
@@ -1164,11 +1164,11 @@
 [submodule "extensions/AdvancedSearch"]
 	path = extensions/AdvancedSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/CommonsMetadata"]
 	path = extensions/CommonsMetadata
 	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
-	branch = REL1_34
+	branch = REL1_35
 [submodule "extensions/HeaderFooter"]
 	path = extensions/HeaderFooter
 	url = https://github.com/enterprisemediawiki/HeaderFooter.git
@@ -1182,12 +1182,12 @@
 [submodule "extensions/LastModified"]
 	path = extensions/LastModified
 	url = https://github.com/wikimedia/mediawiki-extensions-LastModified
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CreatePageUw"]
 	path = extensions/CreatePageUw
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatePageUw
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RecentChangesLogFilter"]
 	path = extensions/RecentChangesLogFilter
@@ -1197,12 +1197,12 @@
 [submodule "extensions/ParsoidBatchAPI"]
 	path = extensions/ParsoidBatchAPI
 	url = https://github.com/wikimedia/mediawiki-extensions-ParsoidBatchAPI
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DarkMode"]
 	path = extensions/DarkMode
 	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/FontAwesome"]
 	path = extensions/FontAwesome
@@ -1230,12 +1230,12 @@
 [submodule "extensions/LanguageSelector"]
 	path = extensions/LanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ForcePreview"]
 	path = extensions/ForcePreview
 	url = https://github.com/wikimedia/mediawiki-extensions-ForcePreview
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/SlackNotifications"]
 	path = extensions/SlackNotifications
@@ -1245,7 +1245,7 @@
 [submodule "extensions/RegexFunctions"]
 	path = extensions/RegexFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-RegexFunctions
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CommentStreams"]
 	path = extensions/CommentStreams
@@ -1260,7 +1260,7 @@
 [submodule "extensions/DataTransfer"]
 	path = extensions/DataTransfer
 	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Bootstrap"]
 	path = extensions/Bootstrap
@@ -1270,17 +1270,17 @@
 [submodule "extensions/Calendar"]
 	path = extensions/Calendar
 	url = https://github.com/wikimedia/mediawiki-extensions-Calendar
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DynamicSidebar"]
 	path = extensions/DynamicSidebar
 	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GlobalUsage"]
 	path = extensions/GlobalUsage
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/GoogleDocs4MW"]
 	path = extensions/GoogleDocs4MW
@@ -1305,7 +1305,7 @@
 [submodule "extensions/UserFunctions"]
 	path = extensions/UserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-UserFunctions
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TreeAndMenu"]
 	path = extensions/TreeAndMenu
@@ -1315,7 +1315,7 @@
 [submodule "extensions/Lingo"]
 	path = extensions/Lingo
 	url = https://github.com/wikimedia/mediawiki-extensions-Lingo
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TwitterTag"]
 	path = extensions/TwitterTag
@@ -1340,39 +1340,40 @@
 [submodule "extensions/Arrays"]
 	path = extensions/Arrays
 	url = https://github.com/wikimedia/mediawiki-extensions-Arrays
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/RightFunctions"]
 	path = extensions/RightFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-RightFunctions
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DeleteUserPages"]
 	path = extensions/DeleteUserPages
 	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/OrphanedTalkPages"]
 	path = extensions/OrphanedTalkPages
 	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages.git
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/Linter"]
 	path = extensions/Linter
 	url = https://github.com/wikimedia/mediawiki-extensions-Linter
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/LdapAuthentication"]
 	path = extensions/LdapAuthentication
 	url = https://github.com/wikimedia/mediawiki-extensions-LdapAuthentication.git
-        branch = REL1_34
-        ignore = dirty
+	branch = REL1_35
+	ignore = dirty
 [submodule "skins/Cosmos"]
 	path = skins/Cosmos
 	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
-	branch = REL1_34
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/TranslationNotifications"]
 	path = extensions/TranslationNotifications
 	url = https://github.com/wikimedia/mediawiki-extensions-TranslationNotifications
-	branch = REL1_34
+	branch = REL1_35
+	ignore = dirty

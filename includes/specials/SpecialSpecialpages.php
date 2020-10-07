@@ -30,11 +30,11 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialSpecialpages extends UnlistedSpecialPage {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Specialpages' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$out = $this->getOutput();
 		$this->setHeaders();
 		$this->outputHeader();

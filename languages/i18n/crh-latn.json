@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"AlefZet",
+			"DannyS712",
 			"Don Alessandro",
-			"Urhixidur",
-			"아라",
+			"Fitoschido",
 			"Macofe",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -255,7 +256,7 @@
 	"nospecialpagetext": "<strong>Tapılmağan bir mahsus saifege kirdiñiz.</strong>\n\nBar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}]] saifesinde körip olursıñız.",
 	"error": "Hata",
 	"databaseerror": "Malümat bazasınıñ hatası",
-	"laggedslavemode": "Diqqat! Bu saifede soñki yañaruv olmay bile.",
+	"laggedreplicamode": "Diqqat! Bu saifede soñki yañaruv olmay bile.",
 	"readonly": "Malümat bazası kilitlendi",
 	"enterlockreason": "Blok etüvniñ sebebini ve devamını kirsetiñiz.",
 	"readonlytext": "Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normal alına qaytacaq.\n\nMalümat bazasını kilitlegen idareciniñ añlatması: $1",
@@ -495,7 +496,6 @@
 	"undo-failure": "Aradaki deñiştirmeler bir-birine kelişikli olmağanı içün deñiştirme lâğu etilip olamay.",
 	"undo-norev": "Deñiştirme lâğu etilip olamaz, çünki o ya da yoq, ya da bar edi, amma yoq etilgen.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) qullanıcısınıñ $1 nomeralı deñiştirmesini lâğu etüv.",
-	"cantcreateaccount-text": "Bu IP adresinden ('''$1''') esap yaratuv [[User:$3|$3]] tarafından blok etildi.\n\n$3 mına bu sebepni bildirdi: ''$2''",
 	"viewpagelogs": "Bu saifeniñ jurnallarını köster",
 	"nohistory": "Bu saifeniñ keçmiş versiyası yoq.",
 	"currentrev": "Şimdiki versiya",
@@ -516,7 +516,7 @@
 	"histfirst": "eñ eski",
 	"histlast": "eñ yañı",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayt}})",
-	"historyempty": "(boş)",
+	"historyempty": "boş",
 	"history-feed-title": "Deñiştirüv tarihı",
 	"history-feed-description": "Vikide bu saifeni deñiştirüv tarihı",
 	"history-feed-item-nocomment": "$2 üstünde $1",

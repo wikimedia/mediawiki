@@ -24,6 +24,7 @@ namespace MediaWiki\Revision;
 
 use CommentStoreComment;
 use MediaWiki\User\UserIdentity;
+use MWTimestamp;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
@@ -56,7 +57,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
-	function __construct(
+	public function __construct(
 		Title $title,
 		UserIdentity $user,
 		CommentStoreComment $comment,
@@ -67,7 +68,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 		parent::__construct( $title, $slots, $dbDomain );
 		Assert::parameterType( 'object', $row, '$row' );
 
-		$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
+		$timestamp = MWTimestamp::convert( TS_MW, $row->ar_timestamp );
 		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );
 
 		$this->mArchiveId = intval( $row->ar_id );

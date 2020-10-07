@@ -2,13 +2,16 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
  */
-class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
@@ -134,7 +137,13 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$request = new \FauxRequest();
 		$manager = $this->getMockBuilder( AuthManager::class )
 			->setMethods( [ 'allowsAuthenticationDataChange' ] )
-			->setConstructorArgs( [ $request, \RequestContext::getMain()->getConfig() ] )
+			->setConstructorArgs( [
+				$request,
+				\RequestContext::getMain()->getConfig(),
+				MediaWikiServices::getInstance()->getObjectFactory(),
+				$this->createNoOpMock( PermissionManager::class ),
+				MediaWikiServices::getInstance()->getHookContainer()
+			] )
 			->getMock();
 		$manager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
 			->will( $this->returnCallback( function ( $req ) {
@@ -224,7 +233,11 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			],
 		] );
 		$request = new \FauxRequest();
-		$manager = new AuthManager( $request, $config );
+		$services = $this->createNoOpMock( ContainerInterface::class );
+		$objectFactory = new \Wikimedia\ObjectFactory( $services );
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$manager = new AuthManager( $request, $config, $objectFactory, $permManager, $hookContainer );
 		$provider->setManager( $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 

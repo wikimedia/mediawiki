@@ -91,7 +91,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 
 		$this->output( 'VACUUM: ' );
-		if ( $dbw->query( 'VACUUM' ) ) {
+		if ( $dbw->query( 'VACUUM', __METHOD__ ) ) {
 			clearstatcache();
 			$newSize = filesize( $dbw->getDbFilePath() );
 			$this->output( sprintf( "Database size was %d, now %d (%.1f%% reduction).\n",
@@ -103,7 +103,7 @@ class SqliteMaintenance extends Maintenance {
 
 	private function integrityCheck( DatabaseSqlite $dbw ) {
 		$this->output( "Performing database integrity checks:\n" );
-		$res = $dbw->query( 'PRAGMA integrity_check' );
+		$res = $dbw->query( 'PRAGMA integrity_check', __METHOD__ );
 
 		if ( !$res || $res->numRows() == 0 ) {
 			$this->error( "Error: integrity check query returned nothing.\n" );

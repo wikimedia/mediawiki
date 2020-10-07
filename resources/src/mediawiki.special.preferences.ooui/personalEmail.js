@@ -3,22 +3,24 @@
  */
 ( function () {
 	$( function () {
-		var allowEmail, allowEmailFromNewUsers;
+		var allowEmail, $allowEmail, allowEmailFromNewUsers, $allowEmailFromNewUsers;
 
-		allowEmail = $( '#wpAllowEmail' );
-		allowEmailFromNewUsers = $( '#wpAllowEmailFromNewUsers' );
+		$allowEmail = $( '#wpAllowEmail' );
+		$allowEmailFromNewUsers = $( '#wpAllowEmailFromNewUsers' );
+
+		// This preference could theoretically be disabled ($wgHiddenPrefs)
+		if ( !$allowEmail.length || !$allowEmailFromNewUsers.length ) {
+			return;
+		}
+
+		allowEmail = OO.ui.infuse( $allowEmail );
+		allowEmailFromNewUsers = OO.ui.infuse( $allowEmailFromNewUsers );
 
 		function toggleDisabled() {
-			if ( allowEmail.is( ':checked' ) && allowEmail.is( ':enabled' ) ) {
-				allowEmailFromNewUsers.prop( 'disabled', false );
-			} else {
-				allowEmailFromNewUsers.prop( 'disabled', true );
-			}
+			allowEmailFromNewUsers.setDisabled( !allowEmail.isSelected() );
 		}
 
-		if ( allowEmail ) {
-			allowEmail.on( 'change', toggleDisabled );
-			toggleDisabled();
-		}
+		allowEmail.on( 'change', toggleDisabled );
+		toggleDisabled();
 	} );
 }() );

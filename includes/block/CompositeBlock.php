@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Block;
 
-use IContextSource;
 use Title;
 
 /**
@@ -122,44 +121,14 @@ class CompositeBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get the IDs for the original blocks, ignoring any that are null
-	 *
-	 * @return int[]
-	 */
-	protected function getIds() {
-		$ids = [];
-		foreach ( $this->originalBlocks as $block ) {
-			$id = $block->getId();
-			if ( $id !== null ) {
-				$ids[] = $id;
-			}
-		}
-		return $ids;
-	}
-
-	/**
 	 * @inheritDoc
 	 */
-	public function getPermissionsError( IContextSource $context ) {
-		$params = $this->getBlockErrorParams( $context );
-
-		$ids = implode( ', ', array_map( function ( $id ) {
-			return '#' . $id;
-		}, $this->getIds() ) );
-		if ( $ids === '' ) {
-			$idsMsg = $context->msg( 'blockedtext-composite-no-ids' )->plain();
-		} else {
-			$idsMsg = $context->msg( 'blockedtext-composite-ids', [ $ids ] )->plain();
+	public function getIdentifier() {
+		$identifier = [];
+		foreach ( $this->originalBlocks as $block ) {
+			$identifier[] = $block->getIdentifier();
 		}
-
-		// TODO: Clean up error messages params so we don't have to do this (T227174)
-		$params[ 4 ] = $idsMsg;
-
-		$msg = 'blockedtext-composite';
-
-		array_unshift( $params, $msg );
-
-		return $params;
+		return $identifier;
 	}
 
 	/**
@@ -223,4 +192,17 @@ class CompositeBlock extends AbstractBlock {
 		return $this->methodReturnsValue( __FUNCTION__, true );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getBy() {
+		return 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getByName() {
+		return '';
+	}
 }

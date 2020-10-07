@@ -25,6 +25,15 @@
  */
 class ApiUndelete extends ApiBase {
 
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	public function execute() {
 		$this->useTransactionalTimeLimit();
 
@@ -46,7 +55,7 @@ class ApiUndelete extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( !is_null( $params['tags'] ) ) {
+		if ( $params['tags'] !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
@@ -65,12 +74,12 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$pa = new PageArchive( $titleObj, $this->getConfig() );
-		$retval = $pa->undelete(
+		$retval = $pa->undeleteAsUser(
 			( $params['timestamps'] ?? [] ),
+			$user,
 			$params['reason'],
 			$params['fileids'],
 			false,
-			$user,
 			$params['tags']
 		);
 		if ( !is_array( $retval ) ) {
@@ -78,11 +87,13 @@ class ApiUndelete extends ApiBase {
 		}
 
 		if ( $retval[1] ) {
-			Hooks::run( 'FileUndeleteComplete',
-				[ $titleObj, $params['fileids'], $this->getUser(), $params['reason'] ] );
+			$this->getHookRunner()->onFileUndeleteComplete(
+				$titleObj, $params['fileids'],
+				$this->getUser(), $params['reason'] );
 		}
 
-		$this->setWatch( $params['watchlist'], $titleObj );
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$this->setWatch( $params['watchlist'], $titleObj, $user, null, $watchlistExpiry );
 
 		$info = [
 			'title' => $titleObj->getPrefixedText(),
@@ -120,16 +131,7 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
 			],
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
-		];
+		] + $this->getWatchlistParams();
 	}
 
 	public function needsToken() {

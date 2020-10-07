@@ -1,5 +1,7 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": []
+	},
 	"exif-imagewidth": "阔",
 	"exif-imagelength": "高",
 	"exif-bitspersample": "每像素byte数",

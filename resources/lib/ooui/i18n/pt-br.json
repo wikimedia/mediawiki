@@ -3,17 +3,17 @@
 		"authors": [
 			"Cainamarques",
 			"Dianakc",
+			"Eduardo Addad de Oliveira",
+			"Felipe L. Ewald",
 			"Fúlvio",
 			"Helder.wiki",
 			"HenriqueCrang",
 			"Jaideraf",
 			"Luckas",
 			"OTAVIO1981",
-			555,
 			"TheEduGobi",
 			"TheGabrielZaum",
-			"Felipe L. Ewald",
-			"Eduardo Addad de Oliveira"
+			555
 		]
 	},
 	"ooui-outline-control-move-down": "Mover item para baixo",
@@ -29,7 +29,7 @@
 	"ooui-dialog-process-dismiss": "Dispensar",
 	"ooui-dialog-process-retry": "Tente novamente",
 	"ooui-dialog-process-continue": "Continuar",
-	"ooui-combobox-button-label": "Expansor da caixa de combinação",
+	"ooui-combobox-button-label": "Opções de alternância",
 	"ooui-selectfile-button-select": "Selecionar um arquivo",
 	"ooui-selectfile-not-supported": "O selecionamento de arquivos não é suportado",
 	"ooui-selectfile-placeholder": "Nenhum arquivo selecionado",

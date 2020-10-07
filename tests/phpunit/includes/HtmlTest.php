@@ -1,16 +1,20 @@
 <?php
 
-class HtmlTest extends MediaWikiTestCase {
+use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\Error\Notice;
+
+class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 
-		$contLangObj = Language::factory( 'en' );
+		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$contLangObj = $langFactory->getLanguage( 'en' );
 
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
@@ -37,7 +41,7 @@ class HtmlTest extends MediaWikiTestCase {
 		] );
 		$this->setContentLang( $contLangObj );
 
-		$userLangObj = Language::factory( 'es' );
+		$userLangObj = $langFactory->getLanguage( 'es' );
 		$userLangObj->setNamespaces( [
 			-2 => "Medio",
 			-1 => "Especial",
@@ -65,9 +69,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->restoreWarnings = false;
 	}
 
-	protected function tearDown() {
-		Language::factory( 'en' )->resetNamespaces();
-
+	protected function tearDown() : void {
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
 			Wikimedia\restoreWarnings();
@@ -77,11 +79,11 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException PHPUnit_Framework_Error_Notice
-	 * @expectedExceptionMessage given element name with space
 	 * @covers Html::openElement
 	 */
 	public function testOpenElement() {
+		$this->expectException( Notice::class );
+		$this->expectExceptionMessage( 'given element name with space' );
 		Html::openElement( 'span id="x"' );
 	}
 
@@ -335,11 +337,11 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Html::expandAttributes
-	 * @expectedException MWException
 	 */
 	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
 		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
 		// when used with an outdated BetaFeatures extension (see Gerrit deda1e7)
+		$this->expectException( MWException::class );
 		Html::expandAttributes( [
 			'src' => [
 				'ltr' => 'ltr.svg',
@@ -610,12 +612,10 @@ class HtmlTest extends MediaWikiTestCase {
 			'tel',
 			'color',
 		];
-		$cases = [];
-		foreach ( $types as $type ) {
-			$cases[] = [ $type ];
-		}
 
-		return $cases;
+		foreach ( $types as $type ) {
+			yield [ $type ];
+		}
 	}
 
 	/**
@@ -767,17 +767,7 @@ class HtmlTest extends MediaWikiTestCase {
 			"dropDefaults accepts values given as an array"
 		];
 
-		# Craft the Html elements
-		$ret = [];
-		foreach ( $cases as $case ) {
-			$ret[] = [
-				$case[0],
-				$case[1], $case[2],
-				$case[3] ?? ''
-			];
-		}
-
-		return $ret;
+		return $cases;
 	}
 
 	/**
@@ -937,7 +927,7 @@ class HtmlTest extends MediaWikiTestCase {
 }
 
 class HtmlTestValue {
-	function __toString() {
+	public function __toString() {
 		return 'stringValue';
 	}
 }

@@ -28,6 +28,8 @@
  * (POST or GET) and use the base request for the remaining stuff
  * (cookies, session and headers).
  *
+ * @newable
+ *
  * @ingroup HTTP
  * @since 1.19
  */
@@ -36,6 +38,8 @@ class DerivativeRequest extends FauxRequest {
 	private $ip;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param WebRequest $base
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values

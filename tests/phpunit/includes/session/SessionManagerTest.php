@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\SessionManager
  */
-class SessionManagerTest extends MediaWikiTestCase {
+class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var \HashConfig */
 	private $config;

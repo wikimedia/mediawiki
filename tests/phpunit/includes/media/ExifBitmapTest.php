@@ -10,7 +10,7 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 	 */
 	protected $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

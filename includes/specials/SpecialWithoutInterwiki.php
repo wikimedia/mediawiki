@@ -32,17 +32,17 @@ use MediaWiki\MediaWikiServices;
 class SpecialWithoutInterwiki extends PageQueryPage {
 	private $prefix = '';
 
-	function __construct( $name = 'Withoutinterwiki' ) {
+	public function __construct( $name = 'Withoutinterwiki' ) {
 		parent::__construct( $name );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->prefix = Title::capitalize(
 			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
 		parent::execute( $par );
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		# Do not show useless input form if special page is cached
 		if ( $this->isCached() ) {
 			return '';
@@ -67,23 +67,23 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 			->displayForm( false );
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'page_namespace', 'page_title' ];
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$query = [
 			'tables' => [ 'page', 'langlinks' ],
 			'fields' => [

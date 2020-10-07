@@ -22,9 +22,10 @@
 
 namespace MediaWiki\Revision;
 
-use ContentHandler;
 use Hooks;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
+use MWUnknownContentModelException;
 use Title;
 
 /**
@@ -47,12 +48,22 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	private $namespaceContentModels;
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * @param string[] $namespaceContentModels A mapping of namespaces to content models,
 	 *        typically from $wgNamespaceContentModels.
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
-	public function __construct( array $namespaceContentModels ) {
+	public function __construct(
+		array $namespaceContentModels,
+		IContentHandlerFactory $contentHandlerFactory
+	) {
 		parent::__construct( 'main', CONTENT_MODEL_WIKITEXT );
 		$this->namespaceContentModels = $namespaceContentModels;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function supportsArticleCount() {
@@ -64,10 +75,12 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	 * @param LinkTarget $page
 	 *
 	 * @return bool
+	 * @throws MWUnknownContentModelException
 	 */
 	public function isAllowedModel( $model, LinkTarget $page ) {
 		$title = Title::newFromLinkTarget( $page );
-		$handler = ContentHandler::getForModelID( $model );
+		$handler = $this->contentHandlerFactory->getContentHandler( $model );
+
 		return $handler->canBeUsedOn( $title );
 	}
 
@@ -86,7 +99,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 
 		// Hook can determine default model
 		$title = Title::newFromLinkTarget( $page );
-		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) && !is_null( $model ) ) {
+		if ( !Hooks::runner()->onContentHandlerDefaultModelFor( $title, $model ) && $model !== null ) {
 			return $model;
 		}
 
@@ -106,7 +119,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		}
 
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
+		$isWikitext = $model === null || $model == CONTENT_MODEL_WIKITEXT;
 		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
 
 		if ( !$isWikitext ) {

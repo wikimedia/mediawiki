@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dbc334"
+		]
+	},
+	"rest-prefix-mismatch": "Zahtevana pot ($1) ni bila znotraj korenske poti REST API ($2)",
+	"rest-wrong-method": "Zahtevana metoda ($1) ni {{PLURAL:$3|veljavna metoda|ena od veljavnih metod}} za to pot ($2)",
+	"rest-no-match": "Zahtevana relativna pot ($1) se ne ujema z nobenim znanim krmilnikom",
+	"rest-nonexistent-title": "Navedeni naslov ($1) ne obstaja",
+	"rest-nonexistent-title-revision": "Navedena redakcija ($1) ne obstaja za izbrano stran ($2)",
+	"rest-nonexistent-revision": "Navedena redakcija ($1) ne obstaja",
+	"rest-pagehistory-incompatible-params": "Parametra »older_than« in »newer_than« ne moreta biti določena hkrati",
+	"rest-pagehistory-param-range-error": "ID redakcije mora biti večji od 0",
+	"rest-pagehistory-timestamp-error": "Ne moremo pridobiti časovnega žiga za navedeno redakcijo ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Navedena vrsta štetja ($1) ni veljavna"
+}

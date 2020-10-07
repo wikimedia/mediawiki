@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * A special page listing redirects to non existent page. Those should be
@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialBrokenRedirects extends QueryPage {
-	function __construct( $name = 'BrokenRedirects' ) {
+	public function __construct( $name = 'BrokenRedirects' ) {
 		parent::__construct( $name );
 	}
 
@@ -40,15 +40,15 @@ class SpecialBrokenRedirects extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return $this->msg( 'brokenredirectstext' )->parseAsBlock();
 	}
 
@@ -91,7 +91,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	/**
 	 * @return array
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'rd_namespace', 'rd_title', 'rd_from' ];
 	}
 
@@ -100,7 +100,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->rd_title ) ) {
 			$toObj = Title::makeTitle( $result->rd_namespace, $result->rd_title, $result->rd_fragment );
@@ -133,7 +133,10 @@ class SpecialBrokenRedirects extends QueryPage {
 			// check user permissions
 			$permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
+			MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $fromObj->getContentModel() )
+				->supportsDirectEditing()
 		) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
@@ -152,7 +155,12 @@ class SpecialBrokenRedirects extends QueryPage {
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),
 				[],
-				[ 'action' => 'delete' ]
+				[
+					'action' => 'delete',
+					'wpReason' => $this->msg( 'brokenredirects-delete-reason' )
+						->inContentLanguage()
+						->text()
+				]
 			);
 		}
 
@@ -176,7 +184,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 

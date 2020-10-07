@@ -16,7 +16,7 @@ class ApiUnblockTest extends ApiTestCase {
 	/** @var User */
 	private $blockee;
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(
@@ -35,7 +35,7 @@ class ApiUnblockTest extends ApiTestCase {
 		$result = $block->insert();
 		$this->assertNotFalse( $result, 'Could not insert block' );
 		$blockFromDB = DatabaseBlock::newFromID( $result['id'] );
-		$this->assertTrue( !is_null( $blockFromDB ), 'Could not retrieve block' );
+		$this->assertTrue( $blockFromDB !== null, 'Could not retrieve block' );
 	}
 
 	private function getBlockFromParams( array $params ) {
@@ -45,7 +45,7 @@ class ApiUnblockTest extends ApiTestCase {
 		if ( array_key_exists( 'userid', $params ) ) {
 			return DatabaseBlock::newFromTarget( User::newFromId( $params['userid'] ) );
 		}
-		return DatabaseBlock::newFromId( $params['id'] );
+		return DatabaseBlock::newFromID( $params['id'] );
 	}
 
 	/**
@@ -70,10 +70,8 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->assertNull( $this->getBlockFromParams( $params ), 'Block should have been removed' );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testWithNoToken() {
+		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( [
 			'action' => 'unblock',
 			'user' => $this->blockee->getName(),
@@ -156,7 +154,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockNonexistentBlock() {
-		$this->setExpectedAPIException( [ 'ipb_cant_unblock', $this->blocker->getName() ] );
+		$this->setExpectedApiException( [ 'ipb_cant_unblock', $this->blocker->getName() ] );
 
 		$this->doUnblock( [ 'user' => $this->blocker ] );
 	}

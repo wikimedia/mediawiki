@@ -1,7 +1,7 @@
 // Mediawiki.ui button mixins for MediaWiki (deprecated)
 //
 // Helper mixins used to create button styles. This file is importable
-// by all LESS files via `@import 'mediawiki.ui/mixins.buttons';`.
+// by all LESS files via `@import 'mediawiki.ui/mixins.buttons.less';`.
 
 /* stylelint-disable selector-class-pattern */
 
@@ -13,9 +13,9 @@
 	min-width: 4em;
 	max-width: 28.75em; // equivalent to 460px, @see T95367
 	margin: 0;
-	padding: 0.57142857em 0.9375em; // equivalent to `8px 12px`
-	border: @border-width-base @border-style-base @border-color-base;
-	border-radius: @borderRadius;
+	padding: 6px 12px;
+	border: @border-base;
+	border-radius: @border-radius-base;
 	cursor: pointer;
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
 	vertical-align: middle;
@@ -23,35 +23,31 @@
 	font-family: inherit;
 	font-size: 1em;
 	font-weight: bold;
-	line-height: 1;
+	line-height: 1.28571429em;
 	text-align: center;
 	// Disable weird iOS styling
 	-webkit-appearance: none;
-	// IE 6 & 7 hack
-	// https://stackoverflow.com/a/5838575/365238
-	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
-	zoom: 1;
 }
 
 // Mixin for button interaction states.
 .mw-ui-button-states() {
 	// Make sure that `color` isn't inheriting from user-agent styles
 	&:visited {
-		color: @colorButtonText;
+		color: @color-base;
 	}
 
 	&:hover {
 		background-color: @background-color-base;
-		color: @colorGray4;
+		color: @color-base--hover;
 		border-color: @colorGray10;
 	}
 
 	&:focus {
 		background-color: @background-color-base;
 		// Make sure that `color` isn't inheriting from user-agent styles
-		color: @colorButtonText;
-		border-color: @colorProgressive;
-		box-shadow: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @background-color-base;
+		color: @color-base;
+		border-color: @border-color-base--focus;
+		box-shadow: @box-shadow-primary--focus;
 		outline-width: 0;
 
 		// Remove the inner border and padding in Firefox.
@@ -64,14 +60,14 @@
 	&:active,
 	&.is-on {
 		background-color: @colorGray12;
-		color: @colorGray1;
+		color: @color-base--active;
 		border-color: @colorGray7;
 		box-shadow: none;
 	}
 
 	&:disabled {
 		background-color: @colorGray12;
-		color: @colorBaseInverted;
+		color: @color-base--inverted;
 		border-color: @colorGray12;
 		cursor: default;
 
@@ -79,7 +75,7 @@
 		&:hover,
 		&:active {
 			background-color: @colorGray12;
-			color: @colorBaseInverted;
+			color: @color-base--inverted;
 			box-shadow: none;
 			border-color: @colorGray12;
 		}

@@ -1,5 +1,10 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
+
+// mediawiki.ui icon specific variables
+@margin-icon: 2 * @width-icon-gutter;
+@width-icon--legacy: @size-icon + @margin-icon;
+@size-icon--large: ( @size-icon * 1.75) + @margin-icon;
 
 // Mixins
 .mixin-mw-ui-icon-bgimage( @iconSvg, @iconPng ) {
@@ -13,7 +18,6 @@
 // Icons
 //
 // To use icons you must be using a browser that supports pseudo elements.
-// This includes support for IE 8.
 // https://caniuse.com/#feat=css-gencontent
 //
 // For elements that are intended to have both an icon and text, browsers that
@@ -21,14 +25,12 @@
 //
 // However, icon-only elements do not yet degrade to text-only elements in these
 // browsers.
-//
-// Styleguide 6.
 
 .mw-ui-icon {
 	position: relative;
-	line-height: @iconSize;
-	min-height: @iconSize;
-	min-width: @iconSize;
+	line-height: @size-icon;
+	min-height: @size-icon;
+	min-width: @size-icon;
 
 	// If an inline element has been marked as a mw-ui-icon element it must be inline-block
 	span& {
@@ -41,34 +43,29 @@
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok">OK</div><br>
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok mw-ui-button mw-ui-progressive">OK</div><br>
 	// <button class="mw-ui-icon mw-ui-icon-ok mw-ui-icon-element mw-ui-button mw-ui-quiet" title="">Close</button>
-	//
-	// Styleguide 6.1.1.
 	&.mw-ui-icon-element {
-		@marginIcon: 2 * @iconGutterWidth;
-		@width: @iconSize + @marginIcon;
-		@sizeIconLarge: ( @iconSize * 1.75) + @marginIcon;
 		text-indent: -999px;
 		overflow: hidden;
-		width: @width;
-		min-width: @width;
-		max-width: @width;
+		width: @width-icon--legacy;
+		min-width: @width-icon--legacy;
+		max-width: @width-icon--legacy;
 
 		&:before {
 			left: 0;
 			right: 0;
 			position: absolute;
-			margin: 0 @iconGutterWidth;
+			margin: 0 @width-icon-gutter;
 		}
 
 		&.mw-ui-icon-large {
-			width: @sizeIconLarge;
-			min-width: @sizeIconLarge;
-			max-width: @sizeIconLarge;
-			line-height: @sizeIconLarge;
-			min-height: @sizeIconLarge;
+			width: @size-icon--large;
+			min-width: @size-icon--large;
+			max-width: @size-icon--large;
+			line-height: @size-icon--large;
+			min-height: @size-icon--large;
 
 			&:before {
-				min-height: @sizeIconLarge;
+				min-height: @size-icon--large;
 			}
 		}
 	}
@@ -80,7 +77,7 @@
 		background-size: 100% auto;
 		float: left;
 		display: block;
-		min-height: @iconSize;
+		min-height: @size-icon;
 		content: '';
 	}
 
@@ -89,13 +86,11 @@
 	// Markup:
 	// <div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ok">OK</div>
 	// <div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ok mw-ui-progressive mw-ui-button">OK</div>
-	//
-	// Styleguide 6.1.2
 	&.mw-ui-icon-before {
 		&:before {
 			position: relative;
-			width: @iconSize;
-			margin-right: @iconGutterWidth;
+			width: @size-icon;
+			margin-right: @width-icon-gutter;
 		}
 	}
 
@@ -103,8 +98,6 @@
 	//
 	// Markup:
 	// <div class="mw-ui-icon mw-ui-icon-small mw-ui-icon-help"></div>
-	//
-	// Styleguide 6.1.3
 	&.mw-ui-icon-small:before {
 		background-size: 66.67% auto; // 66.67% of 24px equals 16px
 	}

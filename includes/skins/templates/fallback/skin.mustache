@@ -1,0 +1,20 @@
+{{{html-fallback-warning}}}
+{{#data-search-box}}
+<form action="{{form-action}}">
+	<input type="hidden" name="title" value="{{page-title}}">
+	<h3>
+		<label for="searchInput">{{msg-search}}</label>
+	</h3>
+	{{{html-input}}}
+	{{{html-button-search-fallback}}}
+	{{{html-button-search}}}
+</form>
+{{/data-search-box}}
+<div class="mw-body" role="main">
+	<h1 id="firstHeading">{{{html-title}}}</h1>
+	{{{html-subtitle}}}
+	<div class="mw-body-content">
+		{{{html-body-content}}}
+		{{{html-categories}}}
+	</div>
+</div>

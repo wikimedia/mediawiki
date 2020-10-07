@@ -129,11 +129,7 @@
 
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
 		assert.strictEqual( conf.exists( 'undef' ), true, 'Map.exists where value is `undefined`' );
-		assert.strictEqual( conf.exists( [ 'undef', 'example' ] ), true, 'Map.exists with multiple keys (all existing)' );
-		assert.strictEqual( conf.exists( [ 'example', 'doesNotExist' ] ), false, 'Map.exists with multiple keys (some non-existing)' );
-		assert.strictEqual( conf.exists( [] ), true, 'Map.exists with no keys' );
 		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists with invalid key that looks like an existing key' );
-		assert.strictEqual( conf.exists( [ nummy ] ), false, 'Map.exists with invalid key that looks like an existing key' );
 
 		// Multiple values at once
 		conf = new mw.Map();
@@ -338,8 +334,8 @@
 		mw.messages.set( 'qqx-message', '(qqx-message)' );
 		mw.messages.set( 'non-qqx-message', 'hello world' );
 
-		assert.strictEqual( mw.message( 'missing-message' ).plain(), '(missing-message)', 'qqx message (missing)' );
-		assert.strictEqual( mw.message( 'missing-message', 'bar', 'baz' ).plain(), '(missing-message: bar, baz)', 'qqx message (missing) with parameters' );
+		assert.strictEqual( mw.message( 'missing-message' ).plain(), '⧼missing-message⧽', 'qqx message (missing)' );
+		assert.strictEqual( mw.message( 'missing-message', 'bar', 'baz' ).plain(), '⧼missing-message⧽', 'qqx message (missing) with parameters' );
 		assert.strictEqual( mw.message( 'qqx-message' ).plain(), '(qqx-message)', 'qqx message (defined)' );
 		assert.strictEqual( mw.message( 'qqx-message', 'bar', 'baz' ).plain(), '(qqx-message: bar, baz)', 'qqx message (defined) with parameters' );
 		assert.strictEqual( mw.message( 'non-qqx-message' ).plain(), 'hello world', 'non-qqx message in qqx mode' );

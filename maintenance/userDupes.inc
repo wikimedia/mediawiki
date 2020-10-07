@@ -39,14 +39,18 @@ class UserDupes {
 	 * @var IMaintainableDatabase
 	 */
 	private $db;
+	/** @var int */
 	private $reassigned;
+	/** @var int */
 	private $trimmed;
+	/** @var int */
 	private $failed;
+	/** @var callable */
 	private $outputCallback;
 
 	/**
 	 * @param IMaintainableDatabase &$database
-	 * @param callback $outputCallback
+	 * @param callable $outputCallback
 	 */
 	public function __construct( &$database, $outputCallback ) {
 		$this->db = $database;
@@ -135,6 +139,7 @@ class UserDupes {
 
 		$this->out( "\n" );
 
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $this->reassigned > 0 ) {
 			if ( $doDelete ) {
 				$this->out( "$this->reassigned duplicate accounts had edits "
@@ -144,6 +149,7 @@ class UserDupes {
 			}
 		}
 
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $this->trimmed > 0 ) {
 			if ( $doDelete ) {
 				$this->out(
@@ -156,12 +162,14 @@ class UserDupes {
 			}
 		}
 
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $this->failed > 0 ) {
 			$this->out( "Something terribly awry; $this->failed duplicate accounts were not removed.\n" );
 
 			return false;
 		}
 
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $this->trimmed == 0 || $doDelete ) {
 			$this->out( "It is now safe to apply the unique index on user_name.\n" );
 

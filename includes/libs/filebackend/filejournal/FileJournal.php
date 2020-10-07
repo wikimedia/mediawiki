@@ -34,6 +34,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * Subclasses should avoid throwing exceptions at all costs.
  *
+ * @stable to extend
  * @ingroup FileJournal
  * @since 1.20
  */
@@ -44,29 +45,34 @@ abstract class FileJournal {
 	protected $ttlDays;
 
 	/**
-	 * Construct a new instance from configuration. Do not call this directly, use factory().
+	 * Construct a new instance from configuration.
+	 * @stable to call
 	 *
 	 * @param array $config Includes:
-	 *     'ttlDays' : days to keep log entries around (false means "forever")
+	 *   - 'backend': The name of a registered file backend
+	 *   - 'ttlDays': Days to keep log entries around (false means "forever")
 	 */
 	public function __construct( array $config ) {
+		$this->backend = $config['backend'];
 		$this->ttlDays = $config['ttlDays'] ?? false;
 	}
 
 	/**
 	 * Create an appropriate FileJournal object from config
 	 *
+	 * @deprecated since 1.35, only FileBackendGroup should need to create FileJournals
 	 * @param array $config
 	 * @param string $backend A registered file backend name
 	 * @throws Exception
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		$jrn = ObjectFactory::getObjectFromSpec(
-			$config,
+			[ 'backend' => $backend ] + $config,
 			[ 'specIsArg' => true, 'assertClass' => __CLASS__ ]
 		);
-		$jrn->backend = $backend;
 
 		return $jrn;
 	}
@@ -155,7 +161,7 @@ abstract class FileJournal {
 	 * @param int|null $start Starting change ID or null
 	 * @param int $limit Maximum number of items to return (0 = unlimited)
 	 * @param string|null &$next Updated to the ID of the next entry.
-	 * @return array List of associative arrays, each having:
+	 * @return array[] List of associative arrays, each having:
 	 *     id         : unique, monotonic, ID for this change
 	 *     batch_uuid : UUID for an operation batch
 	 *     backend    : the backend name
@@ -164,6 +170,7 @@ abstract class FileJournal {
 	 *     new_sha1   : base 36 sha1 of the new file had the operation succeeded
 	 *     timestamp  : TS_MW timestamp of the batch change
 	 *   Also, $next is updated to the ID of the next entry.
+	 * @phan-return array<int,array{id:int,batch_uuid:string,backend:string,op:string,path:string,new_sha1:string,timestamp:string}>
 	 */
 	final public function getChangeEntries( $start = null, $limit = 0, &$next = null ) {
 		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );

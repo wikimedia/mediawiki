@@ -44,21 +44,21 @@ class DumpFilter {
 	/**
 	 * @param DumpOutput &$sink
 	 */
-	function __construct( &$sink ) {
+	public function __construct( &$sink ) {
 		$this->sink =& $sink;
 	}
 
 	/**
 	 * @param string $string
 	 */
-	function writeOpenStream( $string ) {
+	public function writeOpenStream( $string ) {
 		$this->sink->writeOpenStream( $string );
 	}
 
 	/**
 	 * @param string $string
 	 */
-	function writeCloseStream( $string ) {
+	public function writeCloseStream( $string ) {
 		$this->sink->writeCloseStream( $string );
 	}
 
@@ -66,7 +66,7 @@ class DumpFilter {
 	 * @param object $page
 	 * @param string $string
 	 */
-	function writeOpenPage( $page, $string ) {
+	public function writeOpenPage( $page, $string ) {
 		$this->sendingThisPage = $this->pass( $page );
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeOpenPage( $page, $string );
@@ -76,7 +76,7 @@ class DumpFilter {
 	/**
 	 * @param string $string
 	 */
-	function writeClosePage( $string ) {
+	public function writeClosePage( $string ) {
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeClosePage( $string );
 			$this->sendingThisPage = false;
@@ -87,7 +87,7 @@ class DumpFilter {
 	 * @param object $rev
 	 * @param string $string
 	 */
-	function writeRevision( $rev, $string ) {
+	public function writeRevision( $rev, $string ) {
 		if ( $this->sendingThisPage ) {
 			$this->sink->writeRevision( $rev, $string );
 		}
@@ -97,7 +97,7 @@ class DumpFilter {
 	 * @param object $rev
 	 * @param string $string
 	 */
-	function writeLogItem( $rev, $string ) {
+	public function writeLogItem( $rev, $string ) {
 		$this->sink->writeRevision( $rev, $string );
 	}
 
@@ -105,7 +105,7 @@ class DumpFilter {
 	 * @see DumpOutput::closeRenameAndReopen()
 	 * @param string|string[] $newname
 	 */
-	function closeRenameAndReopen( $newname ) {
+	public function closeRenameAndReopen( $newname ) {
 		$this->sink->closeRenameAndReopen( $newname );
 	}
 
@@ -114,14 +114,14 @@ class DumpFilter {
 	 * @param string|string[] $newname
 	 * @param bool $open
 	 */
-	function closeAndRename( $newname, $open = false ) {
+	public function closeAndRename( $newname, $open = false ) {
 		$this->sink->closeAndRename( $newname, $open );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getFilenames() {
+	public function getFilenames() {
 		return $this->sink->getFilenames();
 	}
 

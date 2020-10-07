@@ -44,7 +44,7 @@ interface RequestInterface {
 	 *
 	 * @return string Returns the request method.
 	 */
-	function getMethod();
+	public function getMethod();
 
 	/**
 	 * Retrieves the URI instance.
@@ -55,7 +55,7 @@ interface RequestInterface {
 	 * @return UriInterface Returns a UriInterface instance
 	 *     representing the URI of the request.
 	 */
-	function getUri();
+	public function getUri();
 
 	// MessageInterface
 
@@ -66,7 +66,7 @@ interface RequestInterface {
 	 *
 	 * @return string HTTP protocol version.
 	 */
-	function getProtocolVersion();
+	public function getProtocolVersion();
 
 	/**
 	 * Retrieves all message header values.
@@ -97,7 +97,7 @@ interface RequestInterface {
 	 *     key MUST be a header name, and each value MUST be an array of strings
 	 *     for that header.
 	 */
-	function getHeaders();
+	public function getHeaders();
 
 	/**
 	 * Retrieves a message header value by the given case-insensitive name.
@@ -117,7 +117,7 @@ interface RequestInterface {
 	 *    header. If the header does not appear in the message, this method MUST
 	 *    return an empty array.
 	 */
-	function getHeader( $name );
+	public function getHeader( $name );
 
 	/**
 	 * Checks if a header exists by the given case-insensitive name.
@@ -127,7 +127,7 @@ interface RequestInterface {
 	 *     name using a case-insensitive string comparison. Returns false if
 	 *     no matching header name is found in the message.
 	 */
-	function hasHeader( $name );
+	public function hasHeader( $name );
 
 	/**
 	 * Retrieves a comma-separated string of the values for a single header.
@@ -148,14 +148,14 @@ interface RequestInterface {
 	 *    concatenated together using a comma. If the header does not appear in
 	 *    the message, this method MUST return an empty string.
 	 */
-	function getHeaderLine( $name );
+	public function getHeaderLine( $name );
 
 	/**
 	 * Gets the body of the message.
 	 *
 	 * @return StreamInterface Returns the body as a stream.
 	 */
-	function getBody();
+	public function getBody();
 
 	// ServerRequestInterface
 
@@ -168,7 +168,7 @@ interface RequestInterface {
 	 *
 	 * @return array
 	 */
-	function getServerParams();
+	public function getServerParams();
 
 	/**
 	 * Retrieve cookies.
@@ -180,7 +180,7 @@ interface RequestInterface {
 	 *
 	 * @return array
 	 */
-	function getCookieParams();
+	public function getCookieParams();
 
 	/**
 	 * Retrieve query string arguments.
@@ -194,7 +194,7 @@ interface RequestInterface {
 	 *
 	 * @return array
 	 */
-	function getQueryParams();
+	public function getQueryParams();
 
 	/**
 	 * Retrieve normalized file upload data.
@@ -205,7 +205,7 @@ interface RequestInterface {
 	 * @return array An array tree of UploadedFileInterface instances; an empty
 	 *     array MUST be returned if no data is present.
 	 */
-	function getUploadedFiles();
+	public function getUploadedFiles();
 
 	// MediaWiki extensions to PSR-7
 
@@ -214,7 +214,7 @@ interface RequestInterface {
 	 *
 	 * @return string[]
 	 */
-	function getPathParams();
+	public function getPathParams();
 
 	/**
 	 * Retrieve a single path parameter.
@@ -226,7 +226,7 @@ interface RequestInterface {
 	 * @param string $name The parameter name.
 	 * @return string|null
 	 */
-	function getPathParam( $name );
+	public function getPathParam( $name );
 
 	/**
 	 * Erase all path parameters from the object and set the parameter array
@@ -234,14 +234,14 @@ interface RequestInterface {
 	 *
 	 * @param string[] $params
 	 */
-	function setPathParams( $params );
+	public function setPathParams( $params );
 
 	/**
 	 * Get the current cookie prefix
 	 *
 	 * @return string
 	 */
-	function getCookiePrefix();
+	public function getCookiePrefix();
 
 	/**
 	 * Add the cookie prefix to a specified cookie name and get the value of
@@ -252,7 +252,7 @@ interface RequestInterface {
 	 * @param mixed|null $default
 	 * @return mixed The cookie value as a string, or $default
 	 */
-	function getCookie( $name, $default = null );
+	public function getCookie( $name, $default = null );
 
 	/**
 	 * Retrieve POST form parameters.
@@ -261,5 +261,5 @@ interface RequestInterface {
 	 *
 	 * @return array The deserialized POST parameters
 	 */
-	function getPostParams();
+	public function getPostParams();
 }

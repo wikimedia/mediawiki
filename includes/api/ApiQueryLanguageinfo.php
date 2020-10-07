@@ -18,6 +18,11 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
+
 /**
  * API module to enumerate language information.
  *
@@ -36,7 +41,19 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 *
 	 * @var float
 	 */
-	const MAX_EXECUTE_SECONDS = 2.0;
+	private const MAX_EXECUTE_SECONDS = 2.0;
+
+	/** @var LanguageFactory */
+	private $languageFactory;
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/** @var LanguageFallback */
+	private $languageFallback;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
 
 	/** @var callable|null */
 	private $microtimeFunction;
@@ -44,15 +61,27 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	/**
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
+	 * @param LanguageFactory $languageFactory
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LanguageFallback $languageFallback
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param callable|null $microtimeFunction Function to use instead of microtime(), for testing.
 	 * Should accept no arguments and return float seconds. (null means real microtime().)
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
 		$moduleName,
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils,
+		LanguageFallback $languageFallback,
+		LanguageConverterFactory $languageConverterFactory,
 		$microtimeFunction = null
 	) {
 		parent::__construct( $queryModule, $moduleName, 'li' );
+		$this->languageFactory = $languageFactory;
+		$this->languageNameUtils = $languageNameUtils;
+		$this->languageFallback = $languageFallback;
+		$this->languageConverterFactory = $languageConverterFactory;
 		$this->microtimeFunction = $microtimeFunction;
 	}
 
@@ -80,7 +109,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		$targetLanguageCode = $this->getLanguage()->getCode();
 		$include = 'all';
 
-		$availableLanguageCodes = array_keys( Language::fetchLanguageNames(
+		$availableLanguageCodes = array_keys( $this->languageNameUtils->getLanguageNames(
 			// MediaWiki and extensions may return different sets of language codes
 			// when asked for language names in different languages;
 			// asking for English language names is most likely to give us the full set,
@@ -148,21 +177,21 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeDir ) {
-				$dir = Language::factory( $languageCode )->getDir();
+				$dir = $this->languageFactory->getLanguage( $languageCode )->getDir();
 				$info['dir'] = $dir;
 			}
 
 			if ( $includeAutonym ) {
-				$autonym = Language::fetchLanguageName(
+				$autonym = $this->languageNameUtils->getLanguageName(
 					$languageCode,
-					Language::AS_AUTONYMS,
+					LanguageNameUtils::AUTONYMS,
 					$include
 				);
 				$info['autonym'] = $autonym;
 			}
 
 			if ( $includeName ) {
-				$name = Language::fetchLanguageName(
+				$name = $this->languageNameUtils->getLanguageName(
 					$languageCode,
 					$targetLanguageCode,
 					$include
@@ -171,17 +200,19 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeFallbacks ) {
-				$fallbacks = Language::getFallbacksFor(
+				$fallbacks = $this->languageFallback->getAll(
 					$languageCode,
 					// allow users to distinguish between implicit and explicit 'en' fallbacks
-					Language::STRICT_FALLBACKS
+					LanguageFallback::STRICT
 				);
 				ApiResult::setIndexedTagName( $fallbacks, 'fb' );
 				$info['fallbacks'] = $fallbacks;
 			}
 
 			if ( $includeVariants ) {
-				$variants = Language::factory( $languageCode )->getVariants();
+				$language = $this->languageFactory->getLanguage( $languageCode );
+				$converter = $this->languageConverterFactory->getLanguageConverter( $language );
+				$variants = $converter->getVariants();
 				ApiResult::setIndexedTagName( $variants, 'var' );
 				$info['variants'] = $variants;
 			}

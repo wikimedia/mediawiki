@@ -2,11 +2,13 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * @covers Wikimedia\ParamValidator\TypeDef\IntegerDef
+ * @covers Wikimedia\ParamValidator\TypeDef\NumericDef
  */
 class IntegerDefTest extends TypeDefTestCase {
 
@@ -29,21 +31,33 @@ class IntegerDefTest extends TypeDefTestCase {
 	}
 
 	public function provideValidate() {
-		$badinteger = new ValidationException( 'test', '...', [], 'badinteger', [] );
-		$belowminimum = new ValidationException(
-			'test', '...', [], 'belowminimum', [ 'min' => 0, 'max' => 2, 'max2' => '' ]
+		$badinteger = new ValidationException(
+			DataMessageValue::new( 'XXX', [], 'badinteger' ),
+			'test', '...', []
 		);
-		$abovemaximum = new ValidationException(
-			'test', '...', [], 'abovemaximum', [ 'min' => 0, 'max' => 2, 'max2' => '' ]
+		$outofrange = new ValidationException(
+			DataMessageValue::new( 'XXX', [], 'outofrange', [
+				'min' => 0, 'curmax' => 2, 'max' => 2, 'highmax' => 2
+			] ),
+			'test', '...', []
 		);
-		$abovemaximum2 = new ValidationException(
-			'test', '...', [], 'abovemaximum', [ 'min' => 0, 'max' => 2, 'max2' => 4 ]
+		$outofrange2 = new ValidationException(
+			DataMessageValue::new( 'XXX', [], 'outofrange', [
+				'min' => 0, 'curmax' => 2, 'max' => 2, 'highmax' => 4
+			] ),
+			'test', '...', []
 		);
-		$abovehighmaximum = new ValidationException(
-			'test', '...', [], 'abovehighmaximum', [ 'min' => 0, 'max' => 2, 'max2' => 4 ]
+		$outofrange2h = new ValidationException(
+			DataMessageValue::new( 'XXX', [], 'outofrange', [
+				'min' => 0, 'curmax' => 4, 'max' => 2, 'highmax' => 4
+			] ),
+			'test', '...', []
 		);
 		$asWarn = function ( ValidationException $ex ) {
-			return [ $ex->getFailureCode() ] + $ex->getFailureData();
+			return [
+				'code' => $ex->getFailureMessage()->getCode(),
+				'data' => $ex->getFailureMessage()->getData(),
+			];
 		};
 
 		$minmax = [
@@ -78,23 +92,23 @@ class IntegerDefTest extends TypeDefTestCase {
 			'Float (e notation)' => [ '1e1', $badinteger ],
 			'Bad sign (space)' => [ ' 1', $badinteger ],
 			'Bad sign (newline)' => [ "\n1", $badinteger ],
-			'Bogus value' => [ 'foo', $badinteger ],
+			'Bogus value' => [ 'max', $badinteger ],
 			'Bogus value (2)' => [ '1foo', $badinteger ],
 			'Hex value' => [ '0x123', $badinteger ],
 			'Newline' => [ "1\n", $badinteger ],
 
 			'Ok with range' => [ '1', 1, $minmax ],
-			'Below minimum' => [ '-1', $belowminimum, $minmax ],
-			'Below minimum, ignored' => [ '-1', 0, $minmax + $ignore, [], [ $asWarn( $belowminimum ) ] ],
-			'Above maximum' => [ '3', $abovemaximum, $minmax ],
-			'Above maximum, ignored' => [ '3', 2, $minmax + $ignore, [], [ $asWarn( $abovemaximum ) ] ],
-			'Not above max2 but can\'t use it' => [ '3', $abovemaximum2, $minmax2, [] ],
+			'Below minimum' => [ '-1', $outofrange, $minmax ],
+			'Below minimum, ignored' => [ '-1', 0, $minmax + $ignore, [], [ $asWarn( $outofrange ) ] ],
+			'Above maximum' => [ '3', $outofrange, $minmax ],
+			'Above maximum, ignored' => [ '3', 2, $minmax + $ignore, [], [ $asWarn( $outofrange ) ] ],
+			'Not above max2 but can\'t use it' => [ '3', $outofrange2, $minmax2, [] ],
 			'Not above max2 but can\'t use it, ignored'
-				=> [ '3', 2, $minmax2 + $ignore, [], [ $asWarn( $abovemaximum2 ) ] ],
+				=> [ '3', 2, $minmax2 + $ignore, [], [ $asWarn( $outofrange2 ) ] ],
 			'Not above max2' => [ '3', 3, $minmax2, $usehigh ],
-			'Above max2' => [ '5', $abovehighmaximum, $minmax2, $usehigh ],
+			'Above max2' => [ '5', $outofrange2h, $minmax2, $usehigh ],
 			'Above max2, ignored'
-				=> [ '5', 4, $minmax2 + $ignore, $usehigh, [ $asWarn( $abovehighmaximum ) ] ],
+				=> [ '5', 4, $minmax2 + $ignore, $usehigh, [ $asWarn( $outofrange2h ) ] ],
 		];
 	}
 
@@ -120,38 +134,211 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideDescribeSettings() {
+	public function provideCheckSettings() {
+		$keys = [
+			'Y', IntegerDef::PARAM_IGNORE_RANGE,
+			IntegerDef::PARAM_MIN, IntegerDef::PARAM_MAX, IntegerDef::PARAM_MAX2
+		];
+
 		return [
-			'Basic' => [ [], [], [] ],
-			'Default' => [
-				[ ParamValidator::PARAM_DEFAULT => 123 ],
-				[ 'default' => '123' ],
-				[ 'default' => [ 'value' => '123' ] ],
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					IntegerDef::PARAM_IGNORE_RANGE => true,
+					IntegerDef::PARAM_MIN => -100,
+					IntegerDef::PARAM_MAX => -90,
+					IntegerDef::PARAM_MAX2 => -80,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					IntegerDef::PARAM_IGNORE_RANGE => 1,
+					IntegerDef::PARAM_MIN => 1.0,
+					IntegerDef::PARAM_MAX => '2',
+					IntegerDef::PARAM_MAX2 => '3',
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						IntegerDef::PARAM_IGNORE_RANGE => 'PARAM_IGNORE_RANGE must be boolean, got integer',
+						IntegerDef::PARAM_MIN => 'PARAM_MIN must be integer, got double',
+						IntegerDef::PARAM_MAX => 'PARAM_MAX must be integer, got string',
+						IntegerDef::PARAM_MAX2 => 'PARAM_MAX2 must be integer, got string',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Min == max' => [
+				[
+					IntegerDef::PARAM_MIN => 1,
+					IntegerDef::PARAM_MAX => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Min > max' => [
+				[
+					IntegerDef::PARAM_MIN => 2,
+					IntegerDef::PARAM_MAX => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MIN must be less than or equal to PARAM_MAX, but 2 > 1',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 without max' => [
+				[
+					IntegerDef::PARAM_MAX2 => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MAX2 cannot be used without PARAM_MAX',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 == max' => [
+				[
+					IntegerDef::PARAM_MAX => 1,
+					IntegerDef::PARAM_MAX2 => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 < max' => [
+				[
+					IntegerDef::PARAM_MAX => -10,
+					IntegerDef::PARAM_MAX2 => -11,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MAX2 must be greater than or equal to PARAM_MAX, but -11 < -10',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic' => [
+				[],
+				[ 'min' => null, 'max' => null ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
 			],
 			'Min' => [
-				[ ParamValidator::PARAM_DEFAULT => 123, IntegerDef::PARAM_MIN => 0 ],
-				[ 'default' => '123', 'min' => 0 ],
-				[ 'default' => [ 'value' => '123' ], 'min' => [ 'min' => 0, 'max' => '', 'max2' => '' ] ],
+				[ IntegerDef::PARAM_MIN => 0, ParamValidator::PARAM_ISMULTI => true ],
+				[ 'min' => 0, 'max' => null ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-min"><text>2</text><num>0</num><text>∞</text></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>2</text></message>',
+				],
 			],
 			'Max' => [
 				[ IntegerDef::PARAM_MAX => 2 ],
-				[ 'max' => 2 ],
-				[ 'max' => [ 'min' => '', 'max' => 2, 'max2' => '' ] ],
+				[ 'min' => null, 'max' => 2 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-max"><text>1</text><text>−∞</text><num>2</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
 			],
 			'Max2' => [
 				[ IntegerDef::PARAM_MAX => 2, IntegerDef::PARAM_MAX2 => 4 ],
-				[ 'max' => 2, 'max2' => 4 ],
-				[ 'max2' => [ 'min' => '', 'max' => 2, 'max2' => 4 ] ],
+				[ 'min' => null, 'max' => 2, 'highmax' => 4 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-max"><text>1</text><text>−∞</text><num>2</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
+			],
+			'Max2, highlimits' => [
+				[ IntegerDef::PARAM_MAX => 2, IntegerDef::PARAM_MAX2 => 4 ],
+				[ 'min' => null, 'max' => 2, 'highmax' => 4 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-max"><text>1</text><text>−∞</text><num>4</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
+				[ 'useHighLimits' => true ],
 			],
 			'Minmax' => [
 				[ IntegerDef::PARAM_MIN => 0, IntegerDef::PARAM_MAX => 2 ],
 				[ 'min' => 0, 'max' => 2 ],
-				[ 'minmax' => [ 'min' => 0, 'max' => 2, 'max2' => '' ] ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-minmax"><text>1</text><num>0</num><num>2</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
 			],
 			'Minmax2' => [
 				[ IntegerDef::PARAM_MIN => 0, IntegerDef::PARAM_MAX => 2, IntegerDef::PARAM_MAX2 => 4 ],
-				[ 'min' => 0, 'max' => 2, 'max2' => 4 ],
-				[ 'minmax2' => [ 'min' => 0, 'max' => 2, 'max2' => 4 ] ],
+				[ 'min' => 0, 'max' => 2, 'highmax' => 4 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-minmax"><text>1</text><num>0</num><num>2</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>1</text></message>',
+				],
+			],
+			'Minmax2, highlimits' => [
+				[
+					IntegerDef::PARAM_MIN => 0, IntegerDef::PARAM_MAX => 2, IntegerDef::PARAM_MAX2 => 4,
+					ParamValidator::PARAM_ISMULTI => true
+				],
+				[ 'min' => 0, 'max' => 2, 'highmax' => 4 ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					IntegerDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-minmax"><text>2</text><num>0</num><num>4</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-integer"><text>2</text></message>',
+				],
+				[ 'useHighLimits' => true ],
 			],
 		];
 	}

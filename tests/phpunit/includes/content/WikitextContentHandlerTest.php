@@ -13,10 +13,11 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	private $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
-		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
+		$this->handler = MediaWikiServices::getInstance()->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_WIKITEXT );
 	}
 
 	/**
@@ -229,8 +230,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::getAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
-		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
-		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+		$oldContent = $old === null ? null : new WikitextContent( $old );
+		$newContent = $new === null ? null : new WikitextContent( $new );
 
 		$summary = $this->handler->getAutosummary( $oldContent, $newContent, $flags );
 
@@ -330,8 +331,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			'mw-blank' => true,
 			'mw-replace' => true,
 		] );
-		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
-		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+		$oldContent = $old === null ? null : new WikitextContent( $old );
+		$newContent = $new === null ? null : new WikitextContent( $new );
 
 		$tag = $this->handler->getChangeTag( $oldContent, $newContent, $flags );
 
@@ -374,7 +375,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$content = new WikitextContent( '' );
 
 		/** @var SlotRenderingProvider $srp */
-		$srp = $this->getMock( SlotRenderingProvider::class );
+		$srp = $this->createMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
 		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
@@ -389,7 +390,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );
 
-		$srp = $this->getMock( SlotRenderingProvider::class );
+		$srp = $this->createMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
 		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );

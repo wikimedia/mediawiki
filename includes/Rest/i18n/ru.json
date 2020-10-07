@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Katunchik",
+			"Okras",
+			"Vlad5250"
+		]
+	},
+	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",
+	"rest-wrong-method": "Метод запроса ($1) не был {{{{PLURAL:$3|}}|разрешенным методом для этого пути|одним из разрешенных методов для этого пути}} ($2)",
+	"rest-no-match": "Запрошенный относительный путь ($1) не соответствует ни одному известному обработчику",
+	"rest-nonexistent-title": "Указанного заголовка ($1) не существует",
+	"rest-nonexistent-title-revision": "Указанной версии ($1) не существует для указанной страницы ($2)",
+	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует",
+	"rest-permission-denied-title": "Участник не обладает правами чтения заголовка ($1)",
+	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1).",
+	"rest-pagehistory-incompatible-params": "Параметры «older_than» и «newer_than» нельзя указывать одновременно",
+	"rest-pagehistory-param-range-error": "Идентификатор версии должен быть больше 0",
+	"rest-pagehistory-timestamp-error": "Не удалось получить временную отметку для указанной версии ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Указанный тип подсчета ($1) недопустим",
+	"rest-pagehistorycount-parameters-invalid": "Указанная комбинация параметров не поддерживается.",
+	"rest-compare-page-mismatch": "Указанные версии относятся к разным страницам; сравнивать их нельзя.",
+	"rest-compare-permission-denied": "Участник не имеет доступа к запрошенным версиям",
+	"rest-compare-nonexistent": "Редакция, заданная параметром $1, не существует.",
+	"rest-compare-inaccessible": "Редакция, заданная параметром $1, не является общедоступной.",
+	"rest-compare-wrong-content": "Слот $1 редакции, заданный параметром $2, имеет тип контента, который не может быть преобразован в текст.",
+	"rest-compare-wikidiff2": "Для этой конечной точки требуется wikidiff2 1.9.0 или более поздняя версия.",
+	"rest-pagehistorycount-too-many-revisions": "Указанный заголовок содержит слишком много версий для получения такого количества.",
+	"rest-search-error": "Ошибка при возврате результатов поиска: $1",
+	"rest-cannot-load-file": "Файл для заголовка «$1» не может быть загружен."
+}

@@ -31,16 +31,18 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$special = $this->newSpecialPage();
 		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
-		$user = clone $this->getTestUser()->getUser();
-		$user->mBlockedby = $user->getName();
-		$user->mBlock = new DatabaseBlock( [
-			'address' => '127.0.8.1',
-			'by' => $user->getId(),
-			'reason' => 'sitewide block',
-			'timestamp' => time(),
-			'sitewide' => true,
-			'expiry' => 10,
-		] );
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( new DatabaseBlock( [
+				'address' => '127.0.8.1',
+				'by' => $user->getId(),
+				'reason' => 'sitewide block',
+				'timestamp' => time(),
+				'sitewide' => true,
+				'expiry' => 10,
+			] ) );
 
 		$this->expectException( UserBlockedError::class );
 		$checkExecutePermissions( $user );
@@ -53,16 +55,18 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$special = $this->newSpecialPage();
 		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
-		$user = clone $this->getTestUser()->getUser();
-		$user->mBlockedby = $user->getName();
-		$user->mBlock = new DatabaseBlock( [
-			'address' => '127.0.8.1',
-			'by' => $user->getId(),
-			'reason' => 'partial block',
-			'timestamp' => time(),
-			'sitewide' => false,
-			'expiry' => 10,
-		] );
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( new DatabaseBlock( [
+				'address' => '127.0.8.1',
+				'by' => $user->getId(),
+				'reason' => 'partial block',
+				'timestamp' => time(),
+				'sitewide' => false,
+				'expiry' => 10,
+			] ) );
 
 		$this->assertNull( $checkExecutePermissions( $user ) );
 	}

@@ -93,22 +93,6 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
-easy-deflate:
-  type: multi-file
-  files:
-    deflate.js:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/deflate.js
-      integrity: sha384-sHnZLDSWMUhA2w9ygkzCK8YFvoh/fQKY6lXMbvmrYzjuNURiLB0DZFCDNMpGyZ77
-    easydeflate.js:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/easydeflate.js
-      integrity: sha384-EwPfP2RMkDPa1HkzQsXgzTsy1KEjcIzQPA1HDS/JPHjvEMvVUsCxWwm1oXql/jk2
-    inflate.js:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/inflate.js
-      integrity: sha384-hMg44Hw424mUYvmzKl0JT4J8UU/1YYhTiGRtR0YX/MXNLK9qWTK0d62FBCDGxmxw
-    README.md:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/README.md
-      integrity: sha384-6kwcfCLivvqXBZy2ATyya+mTVWLk3eaQyBdC6tbpBtkygnBrM2SNkq3jz/l7IkvP
-
 html5shiv:
   type: file
   src: https://raw.githubusercontent.com/aFarkas/html5shiv/3.7.3/src/html5shiv.js
@@ -119,11 +103,11 @@ jquery:
   files:
     # Integrities from link modals https://code.jquery.com/jquery/
     jquery.migrate.js:
-      src: https://code.jquery.com/jquery-migrate-3.0.1.js
-      integrity: sha256-VvnF+Zgpd00LL73P2XULYXEn6ROvoFaa/vbfoiFlZZ4=
+      src: https://code.jquery.com/jquery-migrate-3.1.0.js
+      integrity: sha256-oA/lsZCgEPkbv/byAkeXSTEZTsGOPZCrtbyFBHmcGKM=
     jquery.js:
-      src: https://code.jquery.com/jquery-3.3.1.js
-      integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
+      src: https://code.jquery.com/jquery-3.4.1.js
+      integrity: sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=
 
 jquery.chosen:
   type: multi-file
@@ -188,15 +172,15 @@ jquery.hoverIntent:
 
 jquery.i18n:
   type: tar
-  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.5
-  integrity: sha384-bkmmKC2byOVjTg4di3o6sSISU49JwXynV9gNGH2zl4U9nh8vZJiauiIvoWgvhwsK
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.7
+  integrity: sha384-vUuZNwEm0k4d/JGRa8uoscyxTL6e1BZ0a+fTS/jtjjS+3pOcwcMo9BjzMbe6reEv
   dest:
-    jquery.i18n-1.0.5/CODE_OF_CONDUCT.md:
-    jquery.i18n-1.0.5/CREDITS:
-    jquery.i18n-1.0.5/GPL-LICENSE:
-    jquery.i18n-1.0.5/MIT-LICENSE:
-    jquery.i18n-1.0.5/README.md:
-    jquery.i18n-1.0.5/src:
+    jquery.i18n-1.0.7/CODE_OF_CONDUCT.md:
+    jquery.i18n-1.0.7/CREDITS:
+    jquery.i18n-1.0.7/GPL-LICENSE:
+    jquery.i18n-1.0.7/MIT-LICENSE:
+    jquery.i18n-1.0.7/README.md:
+    jquery.i18n-1.0.7/src:
 
 jquery.jStorage:
   type: file
@@ -212,14 +196,14 @@ jquery.throttle-debounce:
 
 moment:
   type: tar
-  src: https://codeload.github.com/moment/moment/tar.gz/2.24.0
-  integrity: sha384-2/I9rfqkN8AAgh5wOXXphuo827uV7lMmOodrCfIvqC6W6JKKiDGOwd+lE3e8R0yz
+  src: https://codeload.github.com/moment/moment/tar.gz/2.25.2
+  integrity: sha384-Kdi8+psMUggMYwnp+uBCuy03sBfDbKFyjzdLWJks/4O8x4DwOFWzYbtm7RbJ4ISU
   dest:
-    moment-2.24.0/moment.js:
-    moment-2.24.0/CHANGELOG.md:
-    moment-2.24.0/README.md:
-    moment-2.24.0/LICENSE:
-    moment-2.24.0/locale/*.js: locale
+    moment-2.25.2/moment.js:
+    moment-2.25.2/CHANGELOG.md:
+    moment-2.25.2/README.md:
+    moment-2.25.2/LICENSE:
+    moment-2.25.2/locale/*.js: locale
 
 mustache:
   type: multi-file
@@ -233,8 +217,8 @@ mustache:
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-3.0.0.tgz
-  integrity: sha256-cNQ5UOHczNGzfEvm6jKM5zcmg3tqFxnJ2UnEOSt9/1M=
+  src: https://registry.npmjs.org/oojs/-/oojs-5.0.0.tgz
+  integrity: sha384-otTlw6PtjKOqRQCEpsKOR7LuxE673tqlgfl/aIH33tR8JuPAJ7vB+Gvr4JNWw6FO
   dest:
     package/dist/oojs.jquery.js:
     package/AUTHORS.txt:
@@ -253,8 +237,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.34.1.tgz
-  integrity: sha384-QXYp5vK60xpu4nkv/JStszI6U4TYGCNe7uXb5rYb7FYURLTR41mtNO74gl7HXgpz
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.39.3.tgz
+  integrity: sha384-rRMPfsmD2IJ5Tl/cfp/iQ1sbQq+/l8xBeEZrzfQwi2GJkiHrXeDYaOB84/weEnn+
 
   dest:
     # Main stuff
@@ -269,6 +253,8 @@ ooui:
     package/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json}:
     package/dist/i18n:
     package/dist/images:
+    # For jsduck/eg-iframe
+    package/dist/oojs-ui-images-wikimediaui.css:
     # WikimediaUI theme
     package/dist/themes/wikimediaui/images/icons/*.{svg,png}: themes/wikimediaui/images/icons
     package/dist/themes/wikimediaui/images/indicators/*.{svg,png}: themes/wikimediaui/images/indicators
@@ -282,19 +268,65 @@ ooui:
     package/dist/LICENSE-MIT:
     package/dist/README.md:
 
+pako:
+  type: multi-file
+  files:
+    pako_deflate.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/dist/pako_deflate.js
+      integrity: sha384-5WMh5CB1LExc7cwu9KhrrJNgHsi75Q1U6APn5dpmeFGEalKInNRzqTkUkHXb9JA9
+    README.md:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/README.md
+      integrity: sha384-lI5OTOkO7/0yGfYTICjdLvpYcj5DVpWMTRFS+I7t0usiyiA1jLqBmyDELv/zrGQZ
+    LICENSE:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/LICENSE
+      integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
+
+promise-polyfill:
+  type: multi-file
+  files:
+    promise-polyfill.js:
+      # src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/8.1.3/dist/polyfill.js
+      src: https://raw.githubusercontent.com/wikimedia/promise-polyfill/9bafe45598e69e4215757dc874b99629d0dfea0d/dist/polyfill.js
+      integrity: sha384-nQUslfDX7uz5YSWudfV8dG5d8whQpNMrLcbJPLjvq+McUl2VK7v0UOVnbfs/FrMl
+    LICENSE:
+      src: https://raw.githubusercontent.com/wikimedia/promise-polyfill/9bafe45598e69e4215757dc874b99629d0dfea0d/LICENSE
+      integrity: sha384-IiroT08PAyKPUM4VsNJI7G1o3SM1y+YBBj1lwdJURXYnjtx1OzYKJTNEWs2pE684
+
 qunitjs:
   type: multi-file
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: http://code.jquery.com/qunit/qunit-2.9.1.js
-      integrity: sha256-eNccBdxd8zReziWcVjEsPeyJDi3LKMYnzMXyDv8bzsU=
+      src: http://code.jquery.com/qunit/qunit-2.10.0.js
+      integrity: sha256-X1fQXHSYGxa4V2bqkEAQW0DQGSxJrKveasahr959o28=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.9.1.css
-      integrity: sha256-SSS7o92V7wzcIFg3qnJL9mc4msePaT4klbxtuSGvVVo=
+      src: https://code.jquery.com/qunit/qunit-2.10.0.css
+      integrity: sha256-0qVb1rgTvRqgmXb5us49Z/TADxRfGlAWvjxUqrgCnYQ=
 
 sinonjs:
   type: file
   src: https://sinonjs.org/releases/sinon-1.17.7.js
   integrity: sha384-wR63Jwy75KqwBfzCmXd6gYws6uj3qV/XMAybzXrkEYGYG3AQ58ZWwr1fVpkHa5e8
   dest: sinon.js
+
+vue:
+  type: tar
+  src: https://codeload.github.com/vuejs/vue/tar.gz/v2.6.11
+  integrity: sha384-BEkoIZmPWNcsSd1uY37iJdjLDsPjpVT0Ai6yq6chddUw0UkuIKwIruXGMUsi4tb9
+
+  dest:
+    vue-2.6.11/README.md:
+    vue-2.6.11/LICENSE:
+    vue-2.6.11/dist/vue.common.prod.js:
+    vue-2.6.11/dist/vue.common.dev.js:
+
+vuex:
+  type: tar
+  src: https://codeload.github.com/vuejs/vuex/tar.gz/v3.1.3
+  integrity: sha384-Q+Mapd6G1U76N7ZSdYApIqr/+u/c0HxSiYw+IKQAqcKPFFOLD5ASFQ9pOBrE4qcw
+
+  dest:
+    vuex-3.1.3/README.md:
+    vuex-3.1.3/LICENSE:
+    vuex-3.1.3/dist/vuex.js:
+    vuex-3.1.3/dist/vuex.min.js:

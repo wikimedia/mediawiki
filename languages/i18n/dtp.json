@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"FRANCIS5091",
 			"FRANELYA",
-			"아라",
 			"Macofe",
-			"Tofeiku"
+			"Tofeiku",
+			"아라"
 		]
 	},
 	"tog-underline": "Mangagaris pioputan:",
@@ -271,7 +272,7 @@
 	"databaseerror-query": "Timuhot: $1",
 	"databaseerror-function": "Gunoon: $1",
 	"databaseerror-error": "Silap: $1",
-	"laggedslavemode": "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
+	"laggedreplicamode": "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
 	"readonly": "Nokunsian databing",
 	"enterlockreason": "Posuango sabab do mongunsi, poobion do gisom soira oukaban kunsi",
 	"readonlytext": "Databing diti nokunsian mantad monuang-suang om nogi pinsimbanan, koubasan do maso doropion, nga koguli miagal kasari do opongoh po ilo.\n\nMandur di minongunsi minomisunud do: $1",
@@ -424,7 +425,6 @@
 	"passwordreset-email": "Porikatan surat-i:",
 	"passwordreset-emailtitle": "Kointalangan takaun id {{SITENAME}}",
 	"passwordreset-emailelement": "Ngaranmoguno: \n$1\n\nKaatalib daamot: \n$2",
-	"passwordreset-emailsentemail": "Surat-i pononsorou nakaatod noh.",
 	"changeemail": "Alanai porikatan surat-i",
 	"changeemail-header": "Alanai akaun porikatan surat-i",
 	"changeemail-no-info": "Mositi sumuang log ko do mongoguno monilombus id bolikon diti.",
@@ -540,7 +540,7 @@
 	"histfirst": "Nokododori",
 	"histlast": "Poinwawagu",
 	"historysize": "({{PLURAL:$1|1 bait|$1 babait}})",
-	"historyempty": "(ingaa)",
+	"historyempty": "ingaa",
 	"history-feed-title": "Susuyan sinimakan",
 	"history-feed-description": "Susuyan sinimakan do bolikon diti id wiki",
 	"history-feed-item-nocomment": "$1 ontok $3 jaam $4",

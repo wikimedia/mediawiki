@@ -120,7 +120,7 @@ CREATE TABLE /*_*/user (
 
   -- Count of edits and edit-like actions.
   --
-  -- *NOT* intended to be an accurate copy of COUNT(*) WHERE rev_user=user_id
+  -- *NOT* intended to be an accurate copy of COUNT(*) WHERE rev_actor refers to a user's actor_id
   -- May contain NULL for old accounts if batch-update scripts haven't been
   -- run, as well as listing deleted edits and other myriad ways it could be
   -- out of sync.
@@ -138,29 +138,6 @@ CREATE TABLE /*_*/user (
 CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);
 CREATE INDEX /*i*/user_email_token ON /*_*/user (user_email_token);
 CREATE INDEX /*i*/user_email ON /*_*/user (user_email(50));
-
-
---
--- The "actor" table associates user names or IP addresses with integers for
--- the benefit of other tables that need to refer to either logged-in or
--- logged-out users. If something can only ever be done by logged-in users, it
--- can refer to the user table directly.
---
-CREATE TABLE /*_*/actor (
-  -- Unique ID to identify each actor
-  actor_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-
-  -- Key to user.user_id, or NULL for anonymous edits.
-  actor_user int unsigned,
-
-  -- Text username or IP address
-  actor_name varchar(255) binary NOT NULL
-) /*$wgDBTableOptions*/;
-
--- User IDs and names must be unique.
-CREATE UNIQUE INDEX /*i*/actor_user ON /*_*/actor (actor_user);
-CREATE UNIQUE INDEX /*i*/actor_name ON /*_*/actor (actor_name);
-
 
 --
 -- User permissions have been broken out to a separate table;
@@ -193,16 +170,6 @@ CREATE TABLE /*_*/user_groups (
 
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups (ug_expiry);
-
--- Stores the groups the user has once belonged to.
--- The user may still belong to these groups (check user_groups).
--- Users are not autopromoted to groups from which they were removed.
-CREATE TABLE /*_*/user_former_groups (
-  -- Key to user_id
-  ufg_user int unsigned NOT NULL default 0,
-  ufg_group varbinary(255) NOT NULL default '',
-  PRIMARY KEY (ufg_user,ufg_group)
-) /*$wgDBTableOptions*/;
 
 --
 -- Stores notifications of user talk page changes, for the display
@@ -293,7 +260,7 @@ CREATE TABLE /*_*/page (
 
   -- Comma-separated set of permission keys indicating who
   -- can move or edit the page.
-  page_restrictions tinyblob NOT NULL,
+  page_restrictions tinyblob NULL,
 
   -- 1 indicates the article is a redirect.
   page_is_redirect tinyint unsigned NOT NULL default 0,
@@ -361,27 +328,11 @@ CREATE TABLE /*_*/revision (
   -- Key to page_id. This should _never_ be invalid.
   rev_page int unsigned NOT NULL,
 
-  -- Key to text.old_id, where the actual bulk text is stored.
-  -- It's possible for multiple revisions to use the same text,
-  -- for instance revisions where only metadata is altered
-  -- or a rollback to a previous version.
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be 0) in favor of the
-  -- corresponding data from the slots and content tables
-  rev_text_id int unsigned NOT NULL default 0,
+  -- Key to comment.comment_id. Comment summarizing the change.
+  rev_comment_id bigint unsigned NOT NULL default 0,
 
-  -- Text comment summarizing the change. Deprecated in favor of
-  -- revision_comment_temp.revcomment_comment_id.
-  rev_comment varbinary(767) NOT NULL default '',
-
-  -- Key to user.user_id of the user who made this edit.
-  -- Stores 0 for anonymous edits and for some mass imports.
-  -- Deprecated in favor of revision_actor_temp.revactor_actor.
-  rev_user int unsigned NOT NULL default 0,
-
-  -- Text username or IP address of the editor.
-  -- Deprecated in favor of revision_actor_temp.revactor_actor.
-  rev_user_text varchar(255) binary NOT NULL default '',
+  -- Key to actor.actor_id of the user or IP who made this edit.
+  rev_actor bigint unsigned NOT NULL default 0,
 
   -- Timestamp of when revision was created
   rev_timestamp binary(14) NOT NULL default '',
@@ -401,19 +352,7 @@ CREATE TABLE /*_*/revision (
   rev_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be NULL) in favor of the
-  -- corresponding data from the slots and content tables
-  rev_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be NULL).
-  rev_content_format varbinary(64) DEFAULT NULL
-
+  rev_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
@@ -429,16 +368,12 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 -- History index
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 
--- Logged-in user contributions index
-CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
-
--- Anonymous user countributions index
-CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
+-- User contributions index
+CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp,rev_id);
 
 -- Credits index. This is scanned in order to compile credits lists for pages,
--- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified
--- and is a logged-in user.
-CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
+-- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified.
+CREATE INDEX /*i*/rev_page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
 
 --
 -- Temporary table to avoid blocking on an alter of revision.
@@ -493,7 +428,7 @@ CREATE TABLE /*_*/ip_changes (
   -- The timestamp of the revision
   ipc_rev_timestamp binary(14) NOT NULL DEFAULT '',
 
-  -- Hex representation of the IP address, as returned by IP::toHex()
+  -- Hex representation of the IP address, as returned by Wikimedia\IPUtils::toHex()
   -- For IPv4 it will resemble: ABCD1234
   -- For IPv6: v6-ABCD1234000000000000000000000000
   -- BETWEEN is then used to identify revisions within a given range
@@ -517,7 +452,7 @@ CREATE TABLE /*_*/text (
   -- Note that the 'oldid' parameter used in URLs does *not*
   -- refer to this number anymore, but to rev_id.
   --
-  -- revision.rev_text_id is a key to this column
+  -- content.content_address refers to this column
   old_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Depending on the contents of the old_flags field, the text
@@ -604,17 +539,6 @@ CREATE TABLE /*_*/archive (
   -- archive rows from before 1.5, a new rev_id is created.
   ar_rev_id int unsigned NOT NULL,
 
-  -- Copied from rev_text_id, references text.old_id.
-  -- To avoid breaking the block-compression scheme and otherwise making
-  -- storage changes harder, the actual text is *not* deleted from the
-  -- text storage. Instead, it is merely hidden from public view, by removal
-  -- of the page and revision entries.
-  --
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be 0) in favor of the
-  -- corresponding data from the slots and content tables
-  ar_text_id int unsigned NOT NULL DEFAULT 0,
-
   -- Copied from rev_deleted. Although this may be raised during deletion.
   -- Users with the "suppressrevision" right may "archive" and "suppress"
   -- content in a single action.
@@ -639,20 +563,7 @@ CREATE TABLE /*_*/archive (
 
   -- Copied from rev_sha1, SHA-1 text content hash in base-36
   -- @since 1.19
-  ar_sha1 varbinary(32) NOT NULL default '',
-
-  -- Copied from rev_content_model, see CONTENT_MODEL_XXX constants
-  -- @since 1.21
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be NULL) in favor of the
-  -- corresponding data from the slots and content tables
-  ar_content_model varbinary(32) DEFAULT NULL,
-
-  -- Copied from rev_content_format, see CONTENT_FORMAT_XXX constants
-  -- @since 1.21
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be NULL).
-  ar_content_format varbinary(64) DEFAULT NULL
+  ar_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions
@@ -853,9 +764,10 @@ CREATE TABLE /*_*/categorylinks (
   cl_collation varbinary(32) NOT NULL default '',
 
   -- Stores whether cl_from is a category, file, or other page, so we can
-  -- paginate the three categories separately.  This never has to be updated
-  -- after the page is created, since none of these page types can be moved to
-  -- any other.
+  -- paginate the three categories separately.  This only has to be updated
+  -- when moving pages into or out of the category namespace, since file pages
+  -- cannot be moved to other namespaces, nor can non-files be moved into the
+  -- file namespace.
   cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page',
   PRIMARY KEY (cl_from,cl_to)
 ) /*$wgDBTableOptions*/;
@@ -957,7 +869,7 @@ CREATE TABLE /*_*/langlinks (
   ll_from int unsigned NOT NULL default 0,
 
   -- Language code of the target
-  ll_lang varbinary(20) NOT NULL default '',
+  ll_lang varbinary(35) NOT NULL default '',
 
   -- Title of the target, including namespace
   ll_title varchar(255) binary NOT NULL default '',
@@ -1018,8 +930,7 @@ CREATE TABLE /*_*/site_stats (
 ) /*$wgDBTableOptions*/;
 
 --
--- The internet is full of jerks, alas. Sometimes it's handy
--- to block a vandal or troll account.
+-- Blocks against user accounts, IP addresses and IP ranges.
 --
 CREATE TABLE /*_*/ipblocks (
   -- Primary key, introduced for privacy.
@@ -1090,7 +1001,7 @@ CREATE TABLE /*_*/ipblocks (
 
 -- Unique index to support "user already blocked" messages
 -- Any new options which prevent collisions should be included
-CREATE UNIQUE INDEX /*i*/ipb_address ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
+CREATE UNIQUE INDEX /*i*/ipb_address_unique ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto);
 
 -- For querying whether a logged-in user is blocked
 CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks (ipb_user);
@@ -1118,7 +1029,7 @@ CREATE TABLE /*_*/ipblocks_restrictions (
   -- The restriction type id.
   ir_type tinyint(1) NOT NULL,
 
-  -- The restriction id that corrposponds to the type. Typically a Page ID or a
+  -- The restriction id that corresponds to the type. Typically a Page ID or a
   -- Namespace ID.
   ir_value int NOT NULL,
 
@@ -1474,6 +1385,15 @@ CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 -- ApiQueryWatchlistRaw changed filter
 CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
 
+-- Allows setting an expiry for watchlist items.
+CREATE TABLE /*_*/watchlist_expiry (
+  -- Key to watchlist.wl_id
+  we_item int unsigned NOT NULL PRIMARY KEY,
+  -- Expiry time
+  we_expiry binary(14) NOT NULL
+) /*$wgDBTableOptions*/;
+
+CREATE INDEX /*i*/we_expiry ON /*_*/watchlist_expiry (we_expiry);
 
 --
 -- When using the default MySQL search backend, page titles
@@ -1771,12 +1691,6 @@ CREATE TABLE /*_*/page_props (
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
--- A table to log updates, one text key row per update.
-CREATE TABLE /*_*/updatelog (
-  ul_key varchar(255) NOT NULL PRIMARY KEY,
-  ul_value blob
-) /*$wgDBTableOptions*/;
-
 
 -- A table to track tags for revisions, logs and recent changes.
 CREATE TABLE /*_*/change_tag (
@@ -1804,7 +1718,7 @@ CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
   -- Language code
-  lc_lang varbinary(32) NOT NULL,
+  lc_lang varbinary(35) NOT NULL,
   -- Cache key
   lc_key varchar(255) NOT NULL,
   -- Value
@@ -1831,7 +1745,7 @@ CREATE TABLE /*_*/sites (
   site_id                    INT UNSIGNED        NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Global identifier for the site, ie 'enwiktionary'
-  site_global_key            varbinary(32)       NOT NULL,
+  site_global_key            varbinary(64)       NOT NULL,
 
   -- Type of the site, ie 'mediawiki'
   site_type                  varbinary(32)       NOT NULL,
@@ -1843,7 +1757,7 @@ CREATE TABLE /*_*/sites (
   site_source                varbinary(32)       NOT NULL,
 
   -- Language code of the sites primary language.
-  site_language              varbinary(32)       NOT NULL,
+  site_language              varbinary(35)       NOT NULL,
 
   -- Protocol of the site, ie 'http://', 'irc://', '//'
   -- This field is an index for lookups and is build from type specific data in site_data.
@@ -1873,23 +1787,6 @@ CREATE INDEX /*i*/sites_language ON /*_*/sites (site_language);
 CREATE INDEX /*i*/sites_protocol ON /*_*/sites (site_protocol);
 CREATE INDEX /*i*/sites_domain ON /*_*/sites (site_domain);
 CREATE INDEX /*i*/sites_forward ON /*_*/sites (site_forward);
-
--- Links local site identifiers to their corresponding site.
-CREATE TABLE /*_*/site_identifiers (
-  -- Key on site.site_id
-  si_site                    INT UNSIGNED        NOT NULL,
-
-  -- local key type, ie 'interwiki' or 'langlink'
-  si_type                    varbinary(32)       NOT NULL,
-
-  -- local key value, ie 'en' or 'wiktionary'
-  si_key                     varbinary(32)       NOT NULL,
-
-  PRIMARY KEY (si_type, si_key)
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
-CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
 
 -- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
 CREATE TABLE /*_*/change_tag_def (

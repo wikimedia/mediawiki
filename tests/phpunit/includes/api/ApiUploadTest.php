@@ -12,9 +12,10 @@ class ApiUploadTest extends ApiUploadTestCase {
 		return __DIR__ . '/../../data/media/' . $fileName;
 	}
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed[] = 'watchlist'; // This test might interfere with watchlists test.
+		$this->tablesUsed[] = 'watchlist_expiry';
 		$this->tablesUsed = array_merge( $this->tablesUsed, LocalFile::getQueryInfo()['tables'] );
 		$this->setService( 'RepoGroup', new RepoGroup(
 			[
@@ -30,32 +31,34 @@ class ApiUploadTest extends ApiUploadTestCase {
 			null
 		) );
 		$this->resetServices();
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
 	}
 
 	public function testUploadRequiresToken() {
-		$this->setExpectedException(
-			ApiUsageException::class,
-			'The "token" parameter must be set'
-		);
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The "token" parameter must be set' );
 		$this->doApiRequest( [
 			'action' => 'upload'
 		] );
 	}
 
 	public function testUploadMissingParams() {
-		$this->setExpectedException(
-			ApiUsageException::class,
-			'One of the parameters "filekey", "file" and "url" is required'
-		);
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'One of the parameters "filekey", "file" and "url" is required' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
 		], null, self::$users['uploader']->getUser() );
 	}
 
-	public function testUpload() {
+	public function testUploadWithWatch() {
 		$fileName = 'TestUpload.jpg';
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
+		$title = Title::newFromText( $fileName, NS_FILE );
+		$user = self::$users['uploader']->getUser();
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 		list( $result ) = $this->doApiRequestWithToken( [
@@ -64,12 +67,15 @@ class ApiUploadTest extends ApiUploadTestCase {
 			'file' => 'dummy content',
 			'comment' => 'dummy comment',
 			'text' => "This is the page text for $fileName",
-		], null, self::$users['uploader']->getUser() );
+			'watchlist' => 'watch',
+			'watchlistexpiry' => '99990123000000',
+		], null, $user );
 
 		$this->assertArrayHasKey( 'upload', $result );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertTrue( $user->isTempWatched( $title ) );
 	}
 
 	public function testUploadZeroLength() {
@@ -79,10 +85,8 @@ class ApiUploadTest extends ApiUploadTestCase {
 
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 
-		$this->setExpectedException(
-			ApiUsageException::class,
-			'The file you submitted was empty'
-		);
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The file you submitted was empty' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'filename' => $fileName,

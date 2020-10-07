@@ -54,7 +54,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$this->resetQueryParams();
 		$this->addTables( 'page' );
 		$this->addFields( [ 'page_id', 'page_random' ] );
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_title', 'page_namespace' ] );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
@@ -64,7 +64,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $params['filterredir'] === 'nonredirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 0 );
-		} elseif ( is_null( $resultPageSet ) ) {
+		} elseif ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_is_redirect' ] );
 		}
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -87,12 +87,17 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$path = [ 'query', $this->getModuleName() ];
 
 		$res = $this->select( __METHOD__ );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( $count++ >= $limit ) {
 				return [ 0, "{$row->page_random}|{$row->page_id}" ];
 			}
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$page = [
 					'id' => (int)$row->page_id,
@@ -168,7 +173,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$this->setContinueEnumParameter( 'continue', "$rand|$continue|$endFlag" );
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 		}
 	}

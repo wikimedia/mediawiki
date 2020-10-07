@@ -50,7 +50,7 @@
 		this.apiUrl = String( url );
 		this.anonymous = options && options.anonymous;
 
-		options = $.extend( /* deep=*/ true,
+		options = $.extend( /* deep= */ true,
 			{
 				ajax: {
 					url: this.apiUrl,
@@ -111,9 +111,7 @@
 			origin = ( parameters && parameters.origin ) || this.defaults.parameters.origin;
 			if ( origin !== undefined ) {
 				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
-					// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
-					// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
-					'origin=' + encodeURIComponent( origin ).replace( /\./g, '%2E' );
+					'origin=' + encodeURIComponent( origin );
 			}
 			newAjaxOptions = $.extend( {}, ajaxOptions, { url: url } );
 		} else {

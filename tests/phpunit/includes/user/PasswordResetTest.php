@@ -6,6 +6,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -14,9 +15,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @covers PasswordReset
  * @group Database
  */
-class PasswordResetTest extends MediaWikiTestCase {
-	const VALID_IP = '1.2.3.4';
-	const VALID_EMAIL = 'foo@bar.baz';
+class PasswordResetTest extends MediaWikiIntegrationTestCase {
+	private const VALID_IP = '1.2.3.4';
+	private const VALID_EMAIL = 'foo@bar.baz';
 
 	/**
 	 * @dataProvider provideIsAllowed
@@ -45,12 +46,15 @@ class PasswordResetTest extends MediaWikiTestCase {
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 
+		$hookContainer = $this->createHookContainer();
+
 		$passwordReset = new PasswordReset(
 			$config,
 			$authManager,
 			$permissionManager,
 			$loadBalancer,
-			new NullLogger()
+			new NullLogger(),
+			$hookContainer
 		);
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
@@ -255,7 +259,8 @@ class PasswordResetTest extends MediaWikiTestCase {
 				$authManager,
 				$permissionManager,
 				$loadBalancer,
-				new NullLogger()
+				new NullLogger(),
+				MediaWikiServices::getInstance()->getHookContainer()
 			] )
 			->getMock();
 		$passwordReset->method( 'getUsersByEmail' )->with( $email )

@@ -48,7 +48,7 @@ abstract class DumpIterator extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !( $this->hasOption( 'file' ) ^ $this->hasOption( 'dump' ) ) ) {
+		if ( !( $this->hasOption( 'file' ) xor $this->hasOption( 'dump' ) ) ) {
 			$this->fatalError( "You must provide a file or dump" );
 		}
 
@@ -112,7 +112,7 @@ abstract class DumpIterator extends Maintenance {
 		}
 	}
 
-	static function disableInterwikis( $prefix, &$data ) {
+	public static function disableInterwikis( $prefix, &$data ) {
 		# Title::newFromText will check on each namespaced article if it's an interwiki.
 		# We always answer that it is not.
 
@@ -146,16 +146,24 @@ abstract class DumpIterator extends Maintenance {
 		$this->processRevision( $rev );
 	}
 
-	/* Stub function for processing additional options */
+	/**
+	 * Stub function for processing additional options
+	 */
 	public function checkOptions() {
 	}
 
-	/* Stub function for giving data about what was computed */
+	/**
+	 * Stub function for giving data about what was computed
+	 */
 	public function conclusions() {
 	}
 
-	/* Core function which does whatever the maintenance script is designed to do */
-	abstract public function processRevision( $rev );
+	/**
+	 * Core function which does whatever the maintenance script is designed to do
+	 *
+	 * @param WikiRevision $rev
+	 */
+	abstract public function processRevision( WikiRevision $rev );
 }
 
 /**
@@ -176,9 +184,9 @@ class SearchDump extends DumpIterator {
 	}
 
 	/**
-	 * @param Revision $rev
+	 * @param WikiRevision $rev
 	 */
-	public function processRevision( $rev ) {
+	public function processRevision( WikiRevision $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getContent()->getTextForSearchIndex() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );
 		}

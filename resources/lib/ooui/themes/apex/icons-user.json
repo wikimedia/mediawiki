@@ -1,7 +1,13 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
+		"userAdd": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userAdd-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userAdd-rtl.svg"
+			}
+		},
 		"userAnonymous": {
 			"file": "../wikimediaui/images/icons/userAnonymous.svg"
 		},

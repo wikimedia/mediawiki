@@ -21,6 +21,8 @@
  * @ingroup Cache Parser
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -34,19 +36,19 @@ class ParserCache {
 	 */
 
 	/** Use only current data */
-	const USE_CURRENT_ONLY = 0;
+	private const USE_CURRENT_ONLY = 0;
 
 	/** Use expired data if current data is unavailable */
-	const USE_EXPIRED = 1;
+	private const USE_EXPIRED = 1;
 
 	/** Use expired data or data from different revisions if current data is unavailable */
-	const USE_OUTDATED = 2;
+	private const USE_OUTDATED = 2;
 
 	/**
 	 * Use expired data and data from different revisions, and if all else
 	 * fails vary on all variable options
 	 */
-	const USE_ANYTHING = 3;
+	private const USE_ANYTHING = 3;
 
 	/** @var BagOStuff */
 	private $cache;
@@ -58,6 +60,12 @@ class ParserCache {
 	 */
 	private $cacheEpoch;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var IBufferingStatsdDataFactory */
+	private $stats;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -65,6 +73,7 @@ class ParserCache {
 	 * @return ParserCache
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return MediaWikiServices::getInstance()->getParserCache();
 	}
 
@@ -76,23 +85,34 @@ class ParserCache {
 	 *
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
+	 * @param HookContainer|null $hookContainer
+	 * @param IBufferingStatsdDataFactory|null $stats
 	 * @throws MWException
 	 */
-	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000' ) {
+	public function __construct(
+		BagOStuff $cache,
+		$cacheEpoch = '20030516000000',
+		HookContainer $hookContainer = null,
+		IBufferingStatsdDataFactory $stats = null
+	) {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
+		$this->hookRunner = new HookRunner(
+			$hookContainer ?: MediaWikiServices::getInstance()->getHookContainer()
+		);
+		$this->stats = $stats ?: MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 
 	/**
-	 * @param WikiPage $article
+	 * @param WikiPage $wikiPage
 	 * @param string $hash
 	 * @return mixed|string
 	 */
-	protected function getParserOutputKey( $article, $hash ) {
+	protected function getParserOutputKey( WikiPage $wikiPage, $hash ) {
 		global $wgRequest;
 
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
-		$pageid = $article->getId();
+		$pageid = $wikiPage->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
 		$key = $this->cache->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
@@ -100,67 +120,70 @@ class ParserCache {
 	}
 
 	/**
-	 * @param WikiPage $page
+	 * @param WikiPage $wikiPage
 	 * @return mixed|string
 	 */
-	protected function getOptionsKey( $page ) {
-		return $this->cache->makeKey( 'pcache', 'idoptions', $page->getId() );
+	protected function getOptionsKey( WikiPage $wikiPage ) {
+		return $this->cache->makeKey( 'pcache', 'idoptions', $wikiPage->getId() );
 	}
 
 	/**
-	 * @param WikiPage $page
+	 * @param WikiPage $wikiPage
 	 * @since 1.28
 	 */
-	public function deleteOptionsKey( $page ) {
-		$this->cache->delete( $this->getOptionsKey( $page ) );
+	public function deleteOptionsKey( WikiPage $wikiPage ) {
+		$this->cache->delete( $this->getOptionsKey( $wikiPage ) );
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $article
+	 * Provides an E-Tag suitable for the whole page. Note that $wikiPage
 	 * is just the main wikitext. The E-Tag has to be unique to the whole
 	 * page, even if the article itself is the same, so it uses the
 	 * complete set of user options. We don't want to use the preference
 	 * of a different user on a message just because it wasn't used in
-	 * $article. For example give a Chinese interface to a user with
+	 * $wikiPage. For example give a Chinese interface to a user with
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 *
-	 * @param WikiPage $article
+	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
-	public function getETag( $article, $popts ) {
-		return 'W/"' . $this->getParserOutputKey( $article,
-			$popts->optionsHash( ParserOptions::allCacheVaryingOptions(), $article->getTitle() ) ) .
-				"--" . $article->getTouched() . '"';
+	public function getETag( WikiPage $wikiPage, $popts ) {
+		return 'W/"'
+			. $this->getParserOutputKey(
+				$wikiPage,
+				$popts->optionsHash(
+					ParserOptions::allCacheVaryingOptions(),
+					$wikiPage->getTitle()
+				)
+			)
+			. "--" . $wikiPage->getTouched() . '"';
 	}
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
-	 * @param WikiPage $article
+	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function getDirty( $article, $popts ) {
-		$value = $this->get( $article, $popts, true );
+	public function getDirty( WikiPage $wikiPage, $popts ) {
+		$value = $this->get( $wikiPage, $popts, true );
 		return is_object( $value ) ? $value : false;
 	}
 
 	/**
-	 * @param WikiPage $article
+	 * @param WikiPage $wikiPage
 	 * @param string $metricSuffix
 	 */
-	private function incrementStats( $article, $metricSuffix ) {
-		// old style global metric (can be removed once no longer used)
-		wfIncrStats( 'pcache.' . $metricSuffix );
-		// new per content model metric
-		$contentModel = str_replace( '.', '_', $article->getContentModel() );
+	private function incrementStats( WikiPage $wikiPage, $metricSuffix ) {
+		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
-		wfIncrStats( 'pcache.' . $contentModel . '.' . $metricSuffix );
+		$this->stats->increment( 'pcache.' . $contentModel . '.' . $metricSuffix );
 	}
 
 	/**
-	 * Generates a key for caching the given article considering
+	 * Generates a key for caching the given page considering
 	 * the given parser options.
 	 *
 	 * @note Which parser options influence the cache key
@@ -171,7 +194,7 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
-	 * @param WikiPage $article
+	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @param int|bool $useOutdated One of the USE constants. For backwards
 	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
@@ -179,42 +202,45 @@ class ParserCache {
 	 * @return bool|mixed|string
 	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
 	 */
-	public function getKey( $article, $popts, $useOutdated = self::USE_ANYTHING ) {
+	public function getKey( WikiPage $wikiPage, $popts, $useOutdated = self::USE_ANYTHING ) {
 		if ( is_bool( $useOutdated ) ) {
 			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
 		}
 
 		if ( $popts instanceof User ) {
-			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
+			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$wikiPage, &\$user )\n" );
 			$popts = ParserOptions::newFromUser( $popts );
 		}
 
 		// Determine the options which affect this article
 		$optionsKey = $this->cache->get(
-			$this->getOptionsKey( $article ), BagOStuff::READ_VERIFIED );
+			$this->getOptionsKey( $wikiPage ), BagOStuff::READ_VERIFIED );
 		if ( $optionsKey instanceof CacheTime ) {
-			if ( $useOutdated < self::USE_EXPIRED && $optionsKey->expired( $article->getTouched() ) ) {
-				$this->incrementStats( $article, "miss.expired" );
+			if (
+				$useOutdated < self::USE_EXPIRED
+				&& $optionsKey->expired( $wikiPage->getTouched() )
+			) {
+				$this->incrementStats( $wikiPage, "miss.expired" );
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebugLog( "ParserCache",
-					"Parser options key expired, touched " . $article->getTouched()
-					. ", epoch {$this->cacheEpoch}, cached $cacheTime\n" );
+					"Parser options key expired, touched {$wikiPage->getTouched()}"
+					. ", epoch {$this->cacheEpoch}, cached $cacheTime" );
 				return false;
 			} elseif ( $useOutdated < self::USE_OUTDATED &&
-				$optionsKey->isDifferentRevision( $article->getLatest() )
+				$optionsKey->isDifferentRevision( $wikiPage->getLatest() )
 			) {
-				$this->incrementStats( $article, "miss.revid" );
-				$revId = $article->getLatest();
+				$this->incrementStats( $wikiPage, "miss.revid" );
+				$revId = $wikiPage->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebugLog( "ParserCache",
-					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
 				);
 				return false;
 			}
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
 			$usedOptions = $optionsKey->mUsedOptions;
-			wfDebug( "Parser cache options found.\n" );
+			wfDebug( "Parser cache options found." );
 		} else {
 			if ( $useOutdated < self::USE_ANYTHING ) {
 				return false;
@@ -223,8 +249,8 @@ class ParserCache {
 		}
 
 		return $this->getParserOutputKey(
-			$article,
-			$popts->optionsHash( $usedOptions, $article->getTitle() )
+			$wikiPage,
+			$popts->optionsHash( $usedOptions, $wikiPage->getTitle() )
 		);
 	}
 
@@ -232,26 +258,34 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage|Article $article
+	 * @param WikiPage|Article|Page $wikiPage Article is hard deprecated since 1.35
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( $article, $popts, $useOutdated = false ) {
-		$canCache = $article->checkTouched();
+	public function get( Page $wikiPage, $popts, $useOutdated = false ) {
+		if ( $wikiPage instanceof Article ) {
+			wfDeprecated(
+				__METHOD__ . ' with Article parameter',
+				1.35
+			);
+			$wikiPage = $wikiPage->getPage();
+		}
+
+		$canCache = $wikiPage->checkTouched();
 		if ( !$canCache ) {
 			// It's a redirect now
 			return false;
 		}
 
-		$touched = $article->getTouched();
+		$touched = $wikiPage->getTouched();
 
-		$parserOutputKey = $this->getKey( $article, $popts,
+		$parserOutputKey = $this->getKey( $wikiPage, $popts,
 			$useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY
 		);
 		if ( $parserOutputKey === false ) {
-			$this->incrementStats( $article, 'miss.absent' );
+			$this->incrementStats( $wikiPage, 'miss.absent' );
 			return false;
 		}
 
@@ -259,42 +293,41 @@ class ParserCache {
 		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
-			wfDebug( "ParserOutput cache miss.\n" );
-			$this->incrementStats( $article, "miss.absent" );
+			wfDebug( "ParserOutput cache miss." );
+			$this->incrementStats( $wikiPage, "miss.absent" );
 			return false;
 		}
 
-		wfDebug( "ParserOutput cache found.\n" );
-
-		$wikiPage = method_exists( $article, 'getPage' )
-			? $article->getPage()
-			: $article;
+		wfDebug( "ParserOutput cache found." );
 
 		if ( !$useOutdated && $value->expired( $touched ) ) {
-			$this->incrementStats( $article, "miss.expired" );
+			$this->incrementStats( $wikiPage, "miss.expired" );
 			$cacheTime = $value->getCacheTime();
 			wfDebugLog( "ParserCache",
 				"ParserOutput key expired, touched $touched, "
-				. "epoch {$this->cacheEpoch}, cached $cacheTime\n" );
+				. "epoch {$this->cacheEpoch}, cached $cacheTime" );
 			$value = false;
-		} elseif ( !$useOutdated && $value->isDifferentRevision( $article->getLatest() ) ) {
-			$this->incrementStats( $article, "miss.revid" );
-			$revId = $article->getLatest();
+		} elseif (
+			!$useOutdated
+			&& $value->isDifferentRevision( $wikiPage->getLatest() )
+		) {
+			$this->incrementStats( $wikiPage, "miss.revid" );
+			$revId = $wikiPage->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebugLog( "ParserCache",
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
 			);
 			$value = false;
 		} elseif (
-			Hooks::run( 'RejectParserCacheValue', [ $value, $wikiPage, $popts ] ) === false
+			$this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false
 		) {
-			$this->incrementStats( $article, 'miss.rejected' );
+			$this->incrementStats( $wikiPage, 'miss.rejected' );
 			wfDebugLog( "ParserCache",
-				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n"
+				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler."
 			);
 			$value = false;
 		} else {
-			$this->incrementStats( $article, "hit" );
+			$this->incrementStats( $wikiPage, "hit" );
 		}
 
 		return $value;
@@ -302,14 +335,14 @@ class ParserCache {
 
 	/**
 	 * @param ParserOutput $parserOutput
-	 * @param WikiPage $page
+	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @param string|null $cacheTime TS_MW timestamp when the cache was generated
 	 * @param int|null $revId Revision ID that was parsed
 	 */
 	public function save(
 		ParserOutput $parserOutput,
-		$page,
+		WikiPage $wikiPage,
 		$popts,
 		$cacheTime = null,
 		$revId = null
@@ -322,7 +355,7 @@ class ParserCache {
 		if ( $expire > 0 && !$this->cache instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
-				$revision = $page->getRevision();
+				$revision = $wikiPage->getRevisionRecord();
 				$revId = $revision ? $revision->getId() : null;
 			}
 
@@ -335,18 +368,17 @@ class ParserCache {
 			$optionsKey->setCacheRevisionId( $revId );
 			$parserOutput->setCacheRevisionId( $revId );
 
-			$parserOutputKey = $this->getParserOutputKey( $page,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
+			$parserOutputKey = $this->getParserOutputKey( $wikiPage,
+				$popts->optionsHash( $optionsKey->mUsedOptions, $wikiPage->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->setTimestamp( $page->getTimestamp() );
+			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
 
 			$msg = "Saved in parser cache with key $parserOutputKey" .
 				" and timestamp $cacheTime" .
-				" and revision id $revId" .
-				"\n";
+				" and revision id $revId";
 
-			$parserOutput->mText .= "\n<!-- $msg -->\n";
+			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
 			wfDebug( $msg );
 
 			// Save the parser output
@@ -358,14 +390,12 @@ class ParserCache {
 			);
 
 			// ...and its pointer
-			$this->cache->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
+			$this->cache->set( $this->getOptionsKey( $wikiPage ), $optionsKey, $expire );
 
-			Hooks::run(
-				'ParserCacheSaveComplete',
-				[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
-			);
+			$this->hookRunner->onParserCacheSaveComplete(
+				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
 		} elseif ( $expire <= 0 ) {
-			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
+			wfDebug( "Parser output was marked as uncacheable and has not been saved." );
 		}
 	}
 

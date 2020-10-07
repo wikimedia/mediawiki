@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Peter Alberti",
 			"Christian List",
-			"Tjernobyl",
-			"Thomsen",
+			"Joedalton",
 			"MGA73",
 			"Mads Haupt",
-			"Joedalton",
-			"Saederup92"
+			"Peter Alberti",
+			"Saederup92",
+			"Thomsen",
+			"Tjernobyl"
 		]
 	},
 	"config-desc": "Installationsprogrammet til MediaWiki",
@@ -37,7 +37,6 @@
 	"config-page-install": "Installer",
 	"config-page-complete": "Færdig!",
 	"config-page-restart": "Genstarte installation",
-	"config-page-readme": "Læs mig",
 	"config-page-releasenotes": "Udgivelsesnoter",
 	"config-page-copying": "Kopiering",
 	"config-page-upgradedoc": "Opgraderer",
@@ -46,7 +45,6 @@
 	"config-restart": "Ja, genstart den",
 	"config-sidebar-upgrade": "Opgraderer",
 	"config-env-php": "PHP $1 er installeret.",
-	"config-env-hhvm": "HHVM $1 er installeret.",
 	"config-apc": "[https://www.php.net/apc APC] er installeret",
 	"config-apcu": "[https://www.php.net/apcu APCu] er installeret",
 	"config-db-type": "Databasetype:",
@@ -100,7 +98,8 @@
 	"config-install-user": "Opretter databasebruger",
 	"config-install-user-alreadyexists": "Brugeren \"$1\" findes allerede",
 	"config-install-user-create-failed": "Oprettelse af brugeren \"$1\" mislykkedes: $2",
-	"config-install-tables": "Opretter tabeller",
+	"config-install-tables": "Opretter tabeller, trin et",
+	"config-install-tables-manual": "Opretter tabeller, trin to",
 	"config-install-keys": "Genererer hemmelige nøgler",
 	"config-install-mainpage-exists": "Forsiden findes allerede, springer over",
 	"config-install-mainpage-failed": "Kunne ikke indsætte forside: $1",

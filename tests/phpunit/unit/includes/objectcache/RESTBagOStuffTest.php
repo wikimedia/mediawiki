@@ -15,7 +15,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 	 */
 	private $bag;
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->client =
 			$this->getMockBuilder( MultiHttpClient::class )
@@ -56,7 +56,6 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			[ 'JSON', '', 'JSON.."somedata"' ],
 			[ 'PHP', '12345', 'PHP.t2EKhUF4l65kZqWhoAnKW8ZPzekDYfrDxTkQcVmGsuM=.s:8:"somedata";' ],
 			[ 'PHP', '', 'PHP..s:8:"somedata";' ],
-			[ 'legacy', '', 's:8:"somedata";' ],
 		];
 	}
 
@@ -127,7 +126,6 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			[ 'JSON', '', 'JSON.."somedata"' ],
 			[ 'PHP', '12345', 'PHP.t2EKhUF4l65kZqWhoAnKW8ZPzekDYfrDxTkQcVmGsuM=.s:8:"somedata";' ],
 			[ 'PHP', '', 'PHP..s:8:"somedata";' ],
-			[ 'legacy', '', 's:8:"somedata";' ],
 		];
 	}
 

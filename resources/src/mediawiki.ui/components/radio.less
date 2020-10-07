@@ -1,5 +1,5 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 // Radio
 //
@@ -11,23 +11,21 @@
 //
 // Markup:
 // <div class="mw-ui-radio">
-//   <input type="radio" id="kss-example-4" name="kss-example-4">
-//   <label for="kss-example-4">Standard radio</label>
+//   <input type="radio" id="component-example-4" name="component-example-4">
+//   <label for="component-example-4">Standard radio</label>
 // </div>
 // <div class="mw-ui-radio">
-//   <input type="radio" id="kss-example-4-checked" name="kss-example-4" checked>
-//   <label for="kss-example-4-checked">Standard checked radio</label>
+//   <input type="radio" id="component-example-4-checked" name="component-example-4" checked>
+//   <label for="component-example-4-checked">Standard checked radio</label>
 // </div>
 // <div class="mw-ui-radio">
-//   <input type="radio" id="kss-example-4-disabled" name="kss-example-4-disabled" disabled>
-//   <label for="kss-example-4-disabled">Disabled radio</label>
+//   <input type="radio" id="component-example-4-disabled" name="component-example-4-disabled" disabled>
+//   <label for="component-example-4-disabled">Disabled radio</label>
 // </div>
 // <div class="mw-ui-radio">
-//   <input type="radio" id="kss-example-4-disabled-checked" name="kss-example-4-disabled" disabled checked>
-//   <label for="kss-example-4-disabled-checked">Disabled checked radio</label>
+//   <input type="radio" id="component-example-4-disabled-checked" name="component-example-4-disabled" disabled checked>
+//   <label for="component-example-4-disabled-checked">Disabled checked radio</label>
 // </div>
-//
-// Styleguide 4.
 .mw-ui-radio {
 	display: inline-block;
 	vertical-align: middle;
@@ -40,7 +38,7 @@
 .client-js .mw-ui-radio:not( #noop ) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	line-height: @sizeInputBinary;
+	line-height: @size-input-binary;
 
 	* {
 		// reset font sizes (see T74727)
@@ -50,8 +48,8 @@
 
 	[ type='radio' ] {
 		// ensure the invisible radio takes up the required width
-		width: @sizeInputBinary;
-		height: @sizeInputBinary;
+		width: @size-input-binary;
+		height: @size-input-binary;
 		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin: 0;
@@ -69,8 +67,8 @@
 				.box-sizing( border-box );
 				position: absolute;
 				left: 0;
-				width: @sizeInputBinary;
-				height: @sizeInputBinary;
+				width: @size-input-binary;
+				height: @size-input-binary;
 				border: 1px solid @colorGray7;
 				border-radius: 100%;
 			}
@@ -79,9 +77,9 @@
 			&:after {
 				content: ' ';
 				position: absolute;
-				top: 2px; // `px` unit due to pixel rounding error when using `@sizeInputBinary / 4`
+				top: 2px; // `px` unit due to pixel rounding error when using `@size-input-binary / 4`
 				left: 2px;
-				width: 1.14285em; // equals `@sizeInputBinary - 4px`
+				width: 1.14285em; // equals `@size-input-binary - 4px`
 				height: 1.14285em;
 				border: 1px solid transparent;
 				border-radius: 100%;
@@ -90,7 +88,7 @@
 
 		// Apply a dot on the pseudo `:before` element when the input is checked
 		&:checked + label:before {
-			border-width: @borderWidthRadioChecked;
+			border-width: @border-width-radio--checked;
 		}
 
 		&:enabled {
@@ -102,17 +100,19 @@
 			}
 
 			&:hover + label:before {
-				border-color: @colorProgressive;
+				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+				border-color: @color-primary;
 			}
 
 			&:active + label:before {
-				background-color: @colorProgressiveActive;
-				border-color: @borderColorInputBinaryActive;
+				// FIXME: Replace with WikimediaUI Base `@background-color*` var when available.
+				background-color: @color-primary--active;
+				border-color: @border-color-input-binary--active;
 			}
 
 			&:checked {
 				& + label:before {
-					border-color: @borderColorInputBinaryChecked;
+					border-color: @border-color-input-binary--checked;
 				}
 
 				&:focus + label:after {
@@ -120,17 +120,18 @@
 				}
 
 				&:hover + label:before {
-					border-color: @colorProgressiveHighlight;
+					// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+					border-color: @color-primary--hover;
 				}
 
 				&:active {
 					& + label:before {
-						border-color: @borderColorInputBinaryActive;
-						box-shadow: @boxShadowInputBinaryActive;
+						border-color: @border-color-input-binary--active;
+						box-shadow: @box-shadow-input-binary--active;
 					}
 
 					& + label:after {
-						border-color: @borderColorInputBinaryActive;
+						border-color: @border-color-input-binary--active;
 					}
 				}
 			}

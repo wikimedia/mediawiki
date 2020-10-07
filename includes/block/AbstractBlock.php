@@ -20,23 +20,30 @@
 
 namespace MediaWiki\Block;
 
+use CommentStoreComment;
 use IContextSource;
 use InvalidArgumentException;
-use IP;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use Message;
 use RequestContext;
 use Title;
 use User;
+use Wikimedia\IPUtils;
 
 /**
+ * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock {
 	/**
-	 * @deprecated since 1.34. Use getReason and setReason instead.
-	 * @var string
+	 * @deprecated since 1.34. Use getReasonComment and setReason instead.
+	 *  Internally, use $reason.
 	 */
-	public $mReason;
+	protected $mReason;
+
+	/** @var CommentStoreComment */
+	protected $reason;
 
 	/**
 	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
@@ -65,60 +72,45 @@ abstract class AbstractBlock {
 	 */
 	public $mHideName = false;
 
-	/** @var User|string */
+	/** @var User|string|null */
 	protected $target;
 
 	/**
-	 * @var int AbstractBlock::TYPE_ constant. After the block has been loaded
+	 * @var int|null AbstractBlock::TYPE_ constant. After the block has been loaded
 	 * from the database, this can only be USER, IP or RANGE.
 	 */
 	protected $type;
-
-	/** @var User */
-	protected $blocker;
 
 	/** @var bool */
 	protected $isSitewide = true;
 
 	# TYPE constants
-	const TYPE_USER = 1;
-	const TYPE_IP = 2;
-	const TYPE_RANGE = 3;
-	const TYPE_AUTO = 4;
-	const TYPE_ID = 5;
+	public const TYPE_USER = 1;
+	public const TYPE_IP = 2;
+	public const TYPE_RANGE = 3;
+	public const TYPE_AUTO = 4;
+	public const TYPE_ID = 5;
 
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
 	 * @param array $options Parameters of the block, with supported options:
 	 *  - address: (string|User) Target user name, User object, IP address or IP range
-	 *  - by: (int) User ID of the blocker
-	 *  - reason: (string) Reason of the block
+	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
 	 *  - timestamp: (string) The time at which the block comes into effect
-	 *  - byText: (string) Username of the blocker (for foreign users)
 	 *  - hideName: (bool) Hide the target user name
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
 			'address'         => '',
-			'by'              => null,
 			'reason'          => '',
 			'timestamp'       => '',
-			'byText'          => '',
 			'hideName'        => false,
 		];
 
 		$options += $defaults;
 
 		$this->setTarget( $options['address'] );
-
-		if ( $options['by'] ) {
-			# Local user
-			$this->setBlocker( User::newFromId( $options['by'] ) );
-		} else {
-			# Foreign user
-			$this->setBlocker( $options['byText'] );
-		}
 
 		$this->setReason( $options['reason'] );
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
@@ -130,18 +122,14 @@ abstract class AbstractBlock {
 	 *
 	 * @return int (0 for foreign users)
 	 */
-	public function getBy() {
-		return $this->getBlocker()->getId();
-	}
+	abstract public function getBy();
 
 	/**
 	 * Get the username of the blocking sysop
 	 *
 	 * @return string
 	 */
-	public function getByName() {
-		return $this->getBlocker()->getName();
-	}
+	abstract public function getByName();
 
 	/**
 	 * Get the block ID
@@ -152,23 +140,47 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Get the reason given for creating the block
+	 * Get the information that identifies this block, such that a user could
+	 * look up everything that can be found about this block. May be an ID,
+	 * array of IDs, type, etc.
 	 *
+	 * @return mixed Identifying information
+	 */
+	abstract public function getIdentifier();
+
+	/**
+	 * Get the reason given for creating the block, as a string.
+	 *
+	 * Deprecated, since this gives the caller no control over the language
+	 * or format, and no access to the comment's data.
+	 *
+	 * @deprecated since 1.35. Use getReasonComment instead.
 	 * @since 1.33
 	 * @return string
 	 */
 	public function getReason() {
-		return $this->mReason;
+		$language = RequestContext::getMain()->getLanguage();
+		return $this->reason->message->inLanguage( $language )->plain();
 	}
 
 	/**
-	 * Set the reason for creating the block
+	 * Get the reason for creating the block.
+	 *
+	 * @since 1.35
+	 * @return CommentStoreComment
+	 */
+	public function getReasonComment() {
+		return $this->reason;
+	}
+
+	/**
+	 * Set the reason for creating the block.
 	 *
 	 * @since 1.33
-	 * @param string $reason
+	 * @param string|Message|CommentStoreComment $reason
 	 */
 	public function setReason( $reason ) {
-		$this->mReason = $reason;
+		$this->reason = CommentStoreComment::newUnsavedComment( $reason );
 	}
 
 	/**
@@ -302,6 +314,7 @@ abstract class AbstractBlock {
 	 * @return bool|null Null for unrecognized rights.
 	 */
 	public function prevents( $action, $x = null ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		$config = RequestContext::getMain()->getConfig();
 		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
 		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
@@ -359,16 +372,19 @@ abstract class AbstractBlock {
 	 * as a string; for User objects this will return User::__toString()
 	 * which in turn gives User::getName().
 	 *
-	 * @param string|int|User|null $target
-	 * @return array [ User|String|null, AbstractBlock::TYPE_ constant|null ]
+	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
+	 * @param string|UserIdentity|null $target
+	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
-		if ( $target instanceof User ) {
-			if ( IP::isValid( $target->getName() ) ) {
-				return [ $target, self::TYPE_IP ];
+		if ( $target instanceof UserIdentity ) {
+			$userObj = User::newFromIdentity( $target );
+			if ( IPUtils::isValid( $target->getName() ) ) {
+				return [ $userObj, self::TYPE_IP ];
 			} else {
-				return [ $target, self::TYPE_USER ];
+				return [ $userObj, self::TYPE_USER ];
 			}
 		} elseif ( $target === null ) {
 			return [ null, null ];
@@ -376,17 +392,17 @@ abstract class AbstractBlock {
 
 		$target = trim( $target );
 
-		if ( IP::isValid( $target ) ) {
+		if ( IPUtils::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn
 			# off validation checking (which would exclude IP addresses)
 			return [
-				User::newFromName( IP::sanitizeIP( $target ), false ),
+				User::newFromName( IPUtils::sanitizeIP( $target ), false ),
 				self::TYPE_IP
 			];
 
-		} elseif ( IP::isValidRange( $target ) ) {
+		} elseif ( IPUtils::isValidRange( $target ) ) {
 			# Can't create a User from an IP range
-			return [ IP::sanitizeRange( $target ), self::TYPE_RANGE ];
+			return [ IPUtils::sanitizeRange( $target ), self::TYPE_RANGE ];
 		}
 
 		# Consider the possibility that this is not a username at all
@@ -414,7 +430,7 @@ abstract class AbstractBlock {
 
 	/**
 	 * Get the type of target for this particular block.
-	 * @return int AbstractBlock::TYPE_ constant, will never be TYPE_ID
+	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
 	public function getType() {
 		return $this->type;
@@ -424,7 +440,10 @@ abstract class AbstractBlock {
 	 * Get the target and target type for this particular block. Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return array [ User|String, AbstractBlock::TYPE_ constant ]
+	 *
+	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
+	 * @return array [ User|String|null, int|null ]
 	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
 	public function getTargetAndType() {
@@ -435,7 +454,7 @@ abstract class AbstractBlock {
 	 * Get the target for this particular block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return User|string
+	 * @return User|string|null
 	 */
 	public function getTarget() {
 		return $this->target;
@@ -491,79 +510,61 @@ abstract class AbstractBlock {
 
 	/**
 	 * Get the user who implemented this block
-	 * @return User User object. May name a foreign user.
+	 * @deprecated since 1.35. Use getBy/getByName instead
+	 * @return null User object or null. May name a foreign user.
 	 */
 	public function getBlocker() {
-		return $this->blocker;
+		wfDeprecated( __METHOD__, '1.35' );
+		return null;
 	}
 
 	/**
 	 * Set the user who implemented (or will implement) this block
+	 * @deprecated since 1.35. Moved to DatabaseBlock
 	 * @param User|string $user Local User object or username string
 	 */
 	public function setBlocker( $user ) {
-		if ( is_string( $user ) ) {
-			$user = User::newFromName( $user, false );
-		}
-
-		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
-			throw new InvalidArgumentException(
-				'Blocker must be a local user or a name that cannot be a local user'
-			);
-		}
-
-		$this->blocker = $user;
+		wfDeprecated( __METHOD__, '1.35' );
 	}
 
 	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
+	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
+	 *  build the array using Message::getKey and Message::getParams.
 	 * @since 1.22
 	 * @param IContextSource $context
 	 * @return array
 	 */
-	abstract public function getPermissionsError( IContextSource $context );
+	public function getPermissionsError( IContextSource $context ) {
+		$message = MediaWikiServices::getInstance()
+			->getBlockErrorFormatter()->getMessage(
+				$this,
+				$context->getUser(),
+				$context->getLanguage(),
+				$context->getRequest()->getIP()
+			);
+		return array_merge( [ [ $message->getKey() ], $message->getParams() ] );
+	}
 
 	/**
 	 * Get block information used in different block error messages
 	 *
+	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
+	 *  extract the params from the Message object using Message::getParams.
 	 * @since 1.33
 	 * @param IContextSource $context
 	 * @return array
 	 */
 	public function getBlockErrorParams( IContextSource $context ) {
-		$lang = $context->getLanguage();
-
-		$blocker = $this->getBlocker();
-		if ( $blocker instanceof User ) { // local user
-			$blockerUserpage = $blocker->getUserPage();
-			$blockerText = $lang->embedBidi( $blockerUserpage->getText() );
-			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
-		} else { // foreign user
-			$link = $blocker;
-		}
-
-		$reason = $this->getReason();
-		if ( $reason == '' ) {
-			$reason = $context->msg( 'blockednoreason' )->text();
-		}
-
-		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
-		 * This could be a username, an IP range, or a single IP. */
-		$intended = (string)$this->getTarget();
-
-		return [
-			$link,
-			$reason,
-			$context->getRequest()->getIP(),
-			$lang->embedBidi( $this->getByName() ),
-			// TODO: SystemBlock replaces this with the system block type. Clean up
-			// error params so that this is not necessary.
-			$this->getId(),
-			$lang->formatExpiry( $this->getExpiry() ),
-			$lang->embedBidi( $intended ),
-			$lang->userTimeAndDate( $this->getTimestamp(), $context->getUser() ),
-		];
+		wfDeprecated( __METHOD__, '1.35' );
+		return MediaWikiServices::getInstance()
+			->getBlockErrorFormatter()->getMessage(
+				$this,
+				$context->getUser(),
+				$context->getLanguage(),
+				$context->getRequest()->getIP()
+			)->getParams();
 	}
 
 	/**

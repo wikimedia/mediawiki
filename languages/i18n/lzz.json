@@ -1,18 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
+			"BaRaN6161 TURK",
 			"Bombola",
 			"Ceas08",
+			"Cem Rize",
 			"Dato deutschland",
 			"Dawid Deutschland",
 			"Erdemaslancan",
 			"Ibero-kolxi",
 			"Reedy",
-			"The Evil IP address",
-			"아라",
-			"Velg",
 			"Stephanecbisson",
-			"Cem Rize"
+			"The Evil IP address",
+			"Velg",
+			"아라"
 		]
 	},
 	"tog-underline": "Link'iş tude kogu3’uxaçki:",
@@ -570,7 +571,7 @@
 	"sp-contributions-talk": "Mesaji",
 	"sp-contributions-search": "Meşvelape mgori",
 	"sp-contributions-username": "IP varna maxmare:",
-	"sp-contributions-toponly": "Sadece son revizyon olan değişiklikleri göster",
+	"sp-contributions-toponly": "Yalnızca son revizyon olan değişiklikleri göster",
 	"sp-contributions-newonly": "Yalnızca yeni sayfa oluşturan değişiklikleri görüntüle",
 	"sp-contributions-submit": "Mgori",
 	"whatlinkshere": "Butʼkʼaşa na ixvenu kʼontʼaktʼepe",

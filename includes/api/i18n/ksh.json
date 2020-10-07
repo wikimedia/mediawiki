@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Purodha",
+			"1233qwer1234qwer4",
+			"Als-Holder",
 			"Macofe",
-			"Als-Holder"
+			"Purodha"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokemäntazjohn]]\n* [[mw:API:FAQ/de|Öff jefrohch]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mäileng_Leß]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Aanköndejonge zom <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Jemäldte Fähler un Wönsch]\n</div>\n<strong>Status:</strong> Alle op heh dä Sigg aanjzeischte Ußwahle sullte donn, ävver et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> weed jrahd noch äntwekeld un et kann sesch alle Nahslangs jädd ändere. Holl Der de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ Mäileng_Leß med Aanköndejonge], öm automattesch övver Neujeschkeite enfommehrt ze wähde.\n\n<strong>Kapodde Aanfrohre:</strong> Wam_mer kapodde Aanfroheaan et API <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> schek, kritt mer ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol\">HTTP</i>-Kopp ußjejovve met däm Täx „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">MediaWiki-API-Error</code>“ dren, dä mer als ene Schlößel bedraachte kann. Mih dohzoh fengk met op dä Sigg [[mw:API:Errors_and_warnings|<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>: Fähler un Warnonge]].",
@@ -260,7 +261,6 @@
 	"apihelp-parse-param-disablelimitreport": "Jiff keine Bereesch vum Vüürbereijde zom Paase (der „<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">NewPP limit report</i>“) mem Paaser singe Dahte zosamme uß.",
 	"apihelp-parse-param-disablepp": "Nämm <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1disablelimitreport</var> schtatt dämm.",
 	"apihelp-parse-param-disableeditsection": "Donn de Lenks för Affschnedde ze änndere en de Ußjahbe vum Paaser eruß lohße.",
-	"apihelp-parse-param-disabletidy": "Donn et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> vun dä Ußjahbe nit oprühme, för e Beijschpell met <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"correct and cleans up HTML and XML documents fixing markup errors and upgrading legacy code\">tidy</i>.",
 	"apihelp-parse-param-disabletoc": "Donn et Ennhaldsverzeijscheneß en de Ußjahbe vottlohße.",
 	"apihelp-parse-example-page": "Donn en Sigg pahse.",
 	"apihelp-parse-example-text": "Donn Wikkitäx pahse.",
@@ -411,7 +411,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Donn blohß Sigge en heh däm Appachtemang opleßte.",
 	"apihelp-query+allrevisions-param-generatetitles": "Wann als ene  Jenerahtor enjesaz, brängk dat Övverschreffte un kein Kännonge vun Väsjohne.",
 	"apihelp-query+allrevisions-example-user": "Donn de läzde fuffzisch Beijdrähsch vum Metmaacher „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Example</kbd>“ opleßte.",
-	"apihelp-query+allrevisions-example-ns-main": "Donn de eezde fuffzisch Väsjohne em Houp-Appachemang opleßte.",
 	"apihelp-query+mystashedfiles-summary": "Holl en Leß vun dem aktoälle Metmaacher singe upload stash.",
 	"apihelp-query+mystashedfiles-param-prop": "Wat för en Aanjahbe holle för di Datteije.",
 	"apihelp-query+mystashedfiles-param-limit": "Wi vill Datteije holle?",
@@ -958,7 +957,7 @@
 	"apihelp-upload-param-filesize": "De Datteijrühße vum jannze Huhlahde.",
 	"apihelp-upload-example-url": "Vun enem <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i> huhlahde.",
 	"apihelp-upload-example-filekey": "Don et Huhlahde fähdesch maace, wat wähje Warnonge nit johd jejange wohr.",
-	"apihelp-userrights-param-user": "Metmaacher_Nahme.",
+	"apihelp-userrights-param-user": "Metmaacher.",
 	"apihelp-userrights-param-userid": "Enem Metmaacher sing Kännong.",
 	"apihelp-userrights-param-add": "Donn dä Metmaacher en heh di Jroppe eren.",
 	"apihelp-userrights-param-remove": "Donn dä Metmaacher us heh dä Jroppe eruß nämme.",
@@ -997,24 +996,11 @@
 	"api-help-license-unknown": "Lezänz: <span class=\"apihelp-unknown\">onbikannt</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parramehter|Parramehtere|Parramehter}}:",
 	"api-help-param-deprecated": "Meßjevällesch.",
-	"api-help-param-required": "Heh dä Parramehter es nühdesch.",
 	"api-help-datatypes-header": "Zoote Dahte",
 	"api-help-param-type-limit": "Zoot: en jannze Zahl udder „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">max</kbd>“",
-	"api-help-param-type-integer": "Zoot: {{PLURAL:$1|1=en jannze Zahl|2=en Leß met jannze Zahle}}",
-	"api-help-param-type-boolean": "Zoot: Boolsch ([[Special:ApiHelp/main#main/datatypes|Einjzelheijte]])",
 	"api-help-param-type-timestamp": "Zoot: {{PLURAL:$1|1=en Dattomm un en Zigg|2=en Leß met Aanjahbe us Dattom un Zigg}} (de [[Special:ApiHelp/main#main/datatypes|zohjelohße Fommahte]])",
-	"api-help-param-type-user": "Zoot: {{PLURAL:$1|1=ene Metmaacher_Nahme|2=en Leß met Metmaacher_Nahme}}",
-	"api-help-param-list": "{{PLURAL:$1|1=Eijne Wäät|2=Wääte met <kbd>{{!}}</kbd> derzwesche}} vun dänne heh: $2",
-	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Moß läddesch sin|Kann läddesch sin, udder $2}}",
-	"api-help-param-limit": "Nit mih wi $1 sin zohjelohße.",
-	"api-help-param-limit2": "Nit mih wi $1 sin zohjelohße, ävver $2 för de Bots.",
-	"api-help-param-integer-min": "{{PLURAL:$1|1=Dä Wäät darref|2=De Wääte dörrve}} nit kleijener wi $2 sin.",
-	"api-help-param-integer-max": "{{PLURAL:$1|1=Dä Wäät darref|2=De Wääte dörrve}} nit jrühßer wi $3 sin.",
-	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Dä Wäät moß|2=De Wääte möße}} nit zwesche $2 un $3 lijje.",
-	"api-help-param-upload": "Moß als Datteij huhjelahde wähde met dä Eijeschaff „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">multipart/form-data</code>“.",
+	"api-help-param-type-enum": "{{PLURAL:$1|1=Eijne Wäät|2=Wääte met <kbd>{{!}}</kbd> derzwesche}} vun dänne heh: $2",
 	"api-help-param-multi-separate": "Donn de Wääte met <kbd>|</kbd> derzwesche tränne.",
-	"api-help-param-multi-max": "De jrühßte müjjelesche Zahl es {{PLURAL:$1|$1}}, un {{PLURAL:$2|$2}} för Botprojramme.",
-	"api-help-param-default": "Schtandatt: $1",
 	"api-help-param-default-empty": "Schtandatt: <span class=\"apihelp-empty\">(läddesch)</span>",
 	"api-help-param-disabled-in-miser-mode": "Dadd es wäje em [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] affjeschalldt.",
 	"api-help-param-limited-in-miser-mode": "<strong>Opjepaß:</strong> Weil der [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] enjeschalld es, künne heh winnijer wi <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1limit</var> Äjehpneße ußjejejovve wähde, vör em Wigger_Mache. En Jränzfäll künne et Noll sin.",
@@ -1026,7 +1012,6 @@
 	"api-help-permissions-granted-to": "Jejovve aan: $2{{PLURAL:$1|}}",
 	"api-help-right-apihighlimits": "Donn de Beschängkonge vun Opdrähscht aan de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> kleiner maache (langsamme Opdrähscht: $1; flöcke Opdrähscht: $2). De Beschränkonge för lahme Opdrähscht jällde och för Parramehtere met vill Wähte.",
 	"api-help-open-in-apisandbox": "<small>[en de Sandkeß opmaache]</small>",
-	"apierror-timeout": "Dä ẞööver hät en dä jewennde Zick nit jeantwoot.",
 	"api-credits-header": "Aanäkännong för Beijdrähsch",
 	"api-credits": "Dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ier Äntweklere:\n* Roan Kattouw (Aanföhrer zigg em Säptämber 2007 bes 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Bejenner un Aanföhrer vum Säptämber 2006 bes Säptämber 2007)\n* Brad Jorsch (Aanföhrer vun 2013 bes hük)\n\nDoht Ühr Aanmärkonge, Vörschlähsch un Frohre aan de Meijlengleß <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">mediawiki-api@lists.wikimedia.org</code> scheke, Ühr Vörschlähsch un Fählermälldong doht op <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">https://phabricator.wikimedia.org/</code> ennjävve."
 }

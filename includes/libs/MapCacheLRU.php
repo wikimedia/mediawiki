@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use Wikimedia\Assert\Assert;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 /**
  * Handles a simple LRU key/value map with a maximum number of entries
@@ -34,7 +35,7 @@ use Wikimedia\Assert\Assert;
  * @ingroup Cache
  * @since 1.23
  */
-class MapCacheLRU implements IExpiringStore, Serializable {
+class MapCacheLRU implements ExpirationAwareness, Serializable {
 	/** @var array Map of (key => value) */
 	private $cache = [];
 	/** @var array Map of (key => (UNIX timestamp, (field => UNIX timestamp))) */
@@ -49,12 +50,12 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	private $wallClockOverride;
 
 	/** @var float */
-	const RANK_TOP = 1.0;
+	private const RANK_TOP = 1.0;
 
 	/** @var int Array key that holds the entry's main timestamp (flat key use) */
-	const SIMPLE = 0;
+	private const SIMPLE = 0;
 	/** @var int Array key that holds the entry's field timestamps (nested key use) */
-	const FIELDS = 1;
+	private const FIELDS = 1;
 
 	/**
 	 * @param int $maxKeys Maximum number of entries allowed (min 1)
@@ -354,7 +355,8 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	public function serialize() {
 		return serialize( [
 			'entries' => $this->cache,
-			'timestamps' => $this->timestamps
+			'timestamps' => $this->timestamps,
+			'maxCacheKeys' => $this->maxCacheKeys,
 		] );
 	}
 
@@ -362,6 +364,8 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 		$data = unserialize( $serialized );
 		$this->cache = $data['entries'] ?? [];
 		$this->timestamps = $data['timestamps'] ?? [];
+		// Fallback needed for serializations prior to T218511
+		$this->maxCacheKeys = $data['maxCacheKeys'] ?? ( count( $this->cache ) + 1 );
 		$this->epoch = $this->getCurrentTime();
 	}
 

@@ -1,9 +1,10 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
-@import 'mw.rcfilters.variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
+@import 'mw.rcfilters.variables.less';
 
 .mw-rcfilters-ui-filterTagMultiselectWidget {
 	max-width: none;
+	margin-top: 16px;
 
 	.oo-ui-tagMultiselectWidget-input input {
 		// Make sure this uses the interface direction, not the content direction
@@ -14,12 +15,11 @@
 
 	&.oo-ui-widget-enabled {
 		.oo-ui-tagMultiselectWidget-handle {
-			border: 1px solid @colorGray10;
-			border-bottom: 0;
 			background-color: @colorGray15;
-			border-radius: 2px 2px 0 0;
+			border: @border-base;
+			border-bottom: 0;
+			border-radius: @border-radius-base @border-radius-base 0 0;
 			padding: 0 0.6em 0.6em 0.6em;
-			margin-top: 1em;
 			line-height: normal;
 		}
 
@@ -32,7 +32,7 @@
 	.mw-rcfilters-collapsed & {
 		// Taking from the handle, since border-bottom is set on the
 		// filters view which is hidden when collapsed
-		border-bottom: 1px solid @colorGray10;
+		border-bottom: @border-base;
 
 		&.mw-rcfilters-ui-filterTagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
 			padding-bottom: 0;
@@ -40,7 +40,7 @@
 		}
 
 		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-hideshow {
-			border-left: 1px solid @colorGray10;
+			border-left: @border-base;
 		}
 
 		&.oo-ui-tagMultiselectWidget-outlined {
@@ -136,9 +136,9 @@
 				display: block;
 				.box-sizing( border-box );
 				height: 2.5em;
-				border: 1px solid @colorGray10;
+				border: @border-base;
 				border-left-width: 0;
-				border-radius: 0 0 @borderRadius 0;
+				border-radius: 0 0 @border-radius-base 0;
 				// For `padding-right` using the 'left' value from
 				// .oo-ui-buttonElement-frameless.oo-ui-iconElement >
 				// .oo-ui-buttonElement-button > .oo-ui-iconElement-icon
@@ -146,7 +146,7 @@
 				text-align: right;
 				white-space: nowrap;
 
-				.oo-ui-buttonOptionWidget:first-child {
+				.oo-ui-buttonWidget:first-child {
 					margin-left: 0;
 				}
 			}
@@ -154,7 +154,7 @@
 	}
 
 	&-emptyFilters {
-		color: @colorGray7;
+		color: @color-base--subtle;
 	}
 
 	&-cell-filters {

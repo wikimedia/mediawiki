@@ -52,4 +52,10 @@ interface SessionProviderInterface {
 	 */
 	public function whyNoSession();
 
+	/**
+	 * Returns true if this provider is safe against csrf attacks, or false otherwise
+	 *
+	 * @return bool
+	 */
+	public function safeAgainstCsrf();
 }

@@ -33,11 +33,11 @@ use MediaWiki\MediaWikiServices;
  */
 class WantedFilesPage extends WantedQueryPage {
 
-	function __construct( $name = 'Wantedfiles' ) {
+	public function __construct( $name = 'Wantedfiles' ) {
 		parent::__construct( $name );
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		# Specifically setting to use "Wanted Files" (NS_MAIN) as title, so as to get what
 		# category would be used on main namespace pages, for those tricky wikipedia
 		# admins who like to do {{#ifeq:{{NAMESPACE}}|foo|bar|....}}.
@@ -79,7 +79,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * @return bool
 	 */
 	protected function likelyToHaveFalsePositives() {
-		return RepoGroup::singleton()->hasForeignRepos();
+		return MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos();
 	}
 
 	/**
@@ -92,7 +92,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * redirects.
 	 * @return bool
 	 */
-	function forceExistenceCheck() {
+	protected function forceExistenceCheck() {
 		return true;
 	}
 
@@ -109,7 +109,7 @@ class WantedFilesPage extends WantedQueryPage {
 		return (bool)MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [
 				'imagelinks',

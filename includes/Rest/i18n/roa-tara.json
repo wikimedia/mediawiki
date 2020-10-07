@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"rest-prefix-mismatch": "'U percorse cercate ($1) non ge ste jndr'à 'u percorse radice d'u REST API ($2)",
+	"rest-wrong-method": "'U metode cercate ($1) non g'ere {{PLURAL:$3|'nu metode conzendite|une de le metode conzendite}} pe stu percorse ($2)",
+	"rest-no-match": "'U percorse relative cercate ($1) non ge s'accocchie cu le gestore canusciute",
+	"rest-nonexistent-title": "'U titole specificate ($1) non g'esiste",
+	"rest-nonexistent-title-revision": "'A revisione specificate ($1) non g'esiste pa pàgene specificate ($2)",
+	"rest-nonexistent-revision": "'A versione specificate ($1) non g'esiste",
+	"rest-permission-denied-title": "L'utende non g'ave le deritte pe leggere 'u titole ($1)",
+	"rest-permission-denied-revision": "L'utende non ge tène l'accesse 'a revisione cercate ($1).",
+	"rest-pagehistory-incompatible-params": "Le parametre \"older_than\" e \"newer_than\" non ge ponne essere specificate tutte e doje",
+	"rest-pagehistory-param-range-error": "ID d'a revisione adda essere cchiù granne de 0",
+	"rest-pagehistory-timestamp-error": "Non ge riesce a pigghià l'orarie de stambe pa revisione specificate ($1)",
+	"rest-pagehistorycount-type-unrecognized": "'U cunde d'u tipe specificate ($1) non g'è valide",
+	"rest-pagehistorycount-parameters-invalid": "'A combinazione specificate de le parametre non g'è supportate.",
+	"rest-compare-page-mismatch": "Le revisiune specificate appartènene a pàggene diverse; no se ponne combrondà.",
+	"rest-compare-permission-denied": "L'utende non ge tène l'accesse le revisiune cercate",
+	"rest-compare-nonexistent": "'A revisione specificate da 'u parametre $1 non g'esiste.",
+	"rest-compare-inaccessible": "'A revisione specificate da 'u parametre $1 non g'è accessibbele pubblecamende.",
+	"rest-compare-wrong-content": "'U slot $1 d'a revisione specificate da 'u parametre $2 tène 'nu tipe de condenute ca non ge pò essere convertite jndr'à 'u teste.",
+	"rest-compare-wikidiff2": "Stu punde finale vole wikidiff2 1.9.0 o cchiù nuève.",
+	"rest-pagehistorycount-too-many-revisions": "'U titole specificate tène troppe revisiune pe pigghià stu cunde.",
+	"rest-search-error": "Errore quanne tuèrne le resultate de recerche: $1",
+	"rest-cannot-load-file": "'U file pu titole \"$1\" non ge pò essere carecate."
+}

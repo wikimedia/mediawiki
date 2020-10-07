@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"David1010",
-			"BRUTE"
+			"BRUTE",
+			"David1010"
 		]
 	},
 	"config-information": "ინფორმაცია",
@@ -19,14 +19,12 @@
 	"config-page-install": "ინსტალაცია",
 	"config-page-complete": "დასრულებულია!",
 	"config-page-restart": "ინსტალაციის თავიდან დაწყება",
-	"config-page-readme": "წამიკითხე",
 	"config-page-copying": "ლიცენზია",
 	"config-page-upgradedoc": "განახლება",
 	"config-page-existingwiki": "არსებული ვიკი",
 	"config-restart": "დიახ, თავიდან დაიწყეთ",
 	"config-sidebar": "* [https://www.mediawiki.org მედიავიკის ვებ-გვერდი]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/ka მომხმარებლების დახმარება]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents/ka ადმინისტრატორების დახმარება]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ka FAQ]\n----\n* <doclink href=Readme>წამიკითხე</doclink>\n* <doclink href=ReleaseNotes>ინფორმაცია გამოშვებაზე</doclink>\n* <doclink href=Copying>ლიცენზია</doclink>\n* <doclink href=UpgradeDoc>განახლება</doclink>",
 	"config-env-php": "PHP $1 დაინსტალირებულია",
-	"config-env-hhvm": "HHVM $1 დაინსტალირებულია.",
 	"config-apc": "[https://www.php.net/apc APC] დაყენდა",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] დაყენდა",
 	"config-diff3-bad": "GNU diff3 ვერ მოიძებნა.",

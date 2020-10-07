@@ -71,8 +71,8 @@ class PageProps {
 	}
 
 	/** Cache parameters */
-	const CACHE_TTL = 10; // integer; TTL in seconds
-	const CACHE_SIZE = 100; // integer; max cached pages
+	private const CACHE_TTL = 10; // integer; TTL in seconds
+	private const CACHE_SIZE = 100; // integer; max cached pages
 
 	/** Property cache */
 	private $cache = null;
@@ -215,7 +215,8 @@ class PageProps {
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
 				if ( $currentPageID != $pageID ) {
-					if ( $pageProperties != [] ) {
+					if ( $pageProperties ) {
+						// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 						$this->cacheProperties( $currentPageID, $pageProperties );
 						$values[$currentPageID] = $pageProperties;
 					}

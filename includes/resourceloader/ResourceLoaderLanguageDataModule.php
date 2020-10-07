@@ -19,6 +19,8 @@
  * @author Santhosh Thottingal
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module for populating language specific data, such as grammar forms.
  *
@@ -26,17 +28,18 @@
  * @internal
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
-
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get all the dynamic data for the content language to an array.
 	 *
-	 * @param ResourceLoaderContext $context
+	 * @internal Only public for use by GenerateJqueryMsgData (tests)
+	 * @param string $langCode
 	 * @return array
 	 */
-	protected function getData( ResourceLoaderContext $context ) {
-		$language = Language::factory( $context->getLanguage() );
+	public static function getData( $langCode ) : array {
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $langCode );
 		return [
 			'digitTransformTable' => $language->digitTransformTable(),
 			'separatorTransformTable' => $language->separatorTransformTable(),
@@ -58,7 +61,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 		return parent::getScript( $context )
 			. 'mw.language.setData('
 			. $context->encodeJson( $context->getLanguage() ) . ','
-			. $context->encodeJson( $this->getData( $context ) )
+			. $context->encodeJson( self::getData( $context->getLanguage() ) )
 			. ');';
 	}
 

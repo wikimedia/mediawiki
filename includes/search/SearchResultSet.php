@@ -107,8 +107,9 @@ class SearchResultSet extends BaseSearchResultSet {
 	}
 
 	/**
-	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
-	 *  and with changes highlighted. Null when the query was not rewritten.
+	 * @return HtmlArmor|string|null Same as self::getQueryAfterRewrite(), but
+	 *  with changes highlighted if HtmlArmor is returned. Null when the query
+	 *  was not rewritten.
 	 */
 	public function getQueryAfterRewriteSnippet() {
 		return null;
@@ -132,7 +133,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	}
 
 	/**
-	 * @return string HTML highlighted suggested query, '' if none
+	 * @return HtmlArmor|string HTML highlighted suggested query, '' if none
 	 */
 	public function getSuggestionSnippet() {
 		return '';
@@ -188,6 +189,7 @@ class SearchResultSet extends BaseSearchResultSet {
 			// must override this as well.
 			if ( is_array( $this->results ) ) {
 				$this->results = array_slice( $this->results, 0, $limit );
+				$this->titles = null;
 			} else {
 				throw new \UnexpectedValueException(
 					"When overriding result store extending classes must "
@@ -201,7 +203,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	 * @return SearchResult[]
 	 */
 	public function extractResults() {
-		if ( is_null( $this->results ) ) {
+		if ( $this->results === null ) {
 			$this->results = [];
 			if ( $this->numRows() == 0 ) {
 				// Don't bother if we've got empty result
@@ -221,7 +223,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	 * @return Title[]
 	 */
 	public function extractTitles() {
-		if ( is_null( $this->titles ) ) {
+		if ( $this->titles === null ) {
 			if ( $this->numRows() == 0 ) {
 				// Don't bother if we've got empty result
 				$this->titles = [];

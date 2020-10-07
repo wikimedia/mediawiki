@@ -61,7 +61,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$opts = $this->opts;
 		$conds = [];
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
@@ -111,10 +111,6 @@ class NewFilesPager extends RangeChronologicalPager {
 					'rc_timestamp = img_timestamp'
 				]
 			];
-			// We're ordering by img_timestamp, so we have to make sure MariaDB queries `image` first.
-			// It sometimes decides to query `recentchanges` first and filesort the result set later
-			// to get the right ordering. T124205 / https://mariadb.atlassian.net/browse/MDEV-8880
-			$options[] = 'STRAIGHT_JOIN';
 		}
 
 		if ( $opts->getValue( 'mediatype' ) ) {
@@ -135,6 +131,11 @@ class NewFilesPager extends RangeChronologicalPager {
 			}
 		}
 
+		// We're ordering by img_timestamp, but MariaDB sometimes likes to query other tables first
+		// and filesort the result set later.
+		// See T124205 / https://mariadb.atlassian.net/browse/MDEV-8880, and T244533
+		$options[] = 'STRAIGHT_JOIN';
+
 		$query = [
 			'tables' => $tables,
 			'fields' => $fields,
@@ -146,7 +147,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return $query;
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'img_timestamp';
 	}
 
@@ -169,22 +170,40 @@ class NewFilesPager extends RangeChronologicalPager {
 		return $this->gallery->toHTML();
 	}
 
-	function formatRow( $row ) {
+	protected function doBatchLookups() {
+		$userIds = [];
+		$this->mResult->seek( 0 );
+		foreach ( $this->mResult as $row ) {
+			$userIds[] = $row->img_user;
+		}
+		// Do a link batch query for names and userpages
+		UserCache::singleton()->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+	}
+
+	public function formatRow( $row ) {
 		$name = $row->img_name;
-		$user = User::newFromId( $row->img_user );
+		$username = UserCache::singleton()->getUserName( $row->img_user, $row->img_user_text );
 
 		$title = Title::makeTitle( NS_FILE, $name );
-		$ul = $this->getLinkRenderer()->makeLink(
-			$user->getUserPage(),
-			$user->getName()
-		);
+		if ( ExternalUserNames::isExternal( $username ) ) {
+			$ul = htmlspecialchars( $username );
+		} else {
+			$ul = $this->getLinkRenderer()->makeLink(
+				Title::makeTitle( NS_USER, $username ),
+				$username
+			);
+		}
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
 		$this->gallery->add(
 			$title,
 			"$ul<br />\n<i>"
 			. htmlspecialchars( $time )
-			. "</i><br />\n"
+			. "</i><br />\n",
+			'',
+			'',
+			[],
+			ImageGalleryBase::LOADING_LAZY
 		);
 		return '';
 	}

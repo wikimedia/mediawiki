@@ -2,13 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Als-Holder",
+			"DannyS712",
 			"Imbericle",
 			"M-sch",
 			"Manuae",
+			"Matma Rex",
+			"Purodha",
 			"SPS",
 			"Xqt",
-			"아라",
-			"Purodha"
+			"아라"
 		]
 	},
 	"tog-underline": "Ling'g unnaschdraische",
@@ -226,7 +228,7 @@
 	"databaseerror": "Daadebongg-Irrdumm",
 	"databaseerror-query": "Abfroche: $1",
 	"databaseerror-error": "Fehla: $1",
-	"laggedslavemode": "<strong>Baßma uff:</strong> Die Said hodd viellaischd die ledschde Ännarunge nedd.",
+	"laggedreplicamode": "<strong>Baßma uff:</strong> Die Said hodd viellaischd die ledschde Ännarunge nedd.",
 	"readonly": "Daadebongg blogiead",
 	"missing-article": "De Tegschd fa „$1“ $2 isch inde Daadebongg nedd gfunne worre.\n\nNoamalawees heeßd des, dass die Said gleschd worre isch.\n\nWonnse des awwa nedd isch, hoschd villaischdn Irdumm inde Daadebongg gfunne.\nBidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebbde URL dzu õ.",
 	"missingarticle-rev": "(Ausgawenumma#: $1)",
@@ -395,7 +397,7 @@
 	"history-show-deleted": "Bloß gleschdi Saide zaische",
 	"histfirst": "äldschde",
 	"histlast": "naijschde",
-	"historyempty": "(lea)",
+	"historyempty": "lea",
 	"history-feed-title": "Ännarungsgschischd",
 	"history-feed-description": "Gschischd vunde Said uff {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 õm $2",
@@ -1024,5 +1026,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|Jaahunnad|Jaahunnade}}",
 	"duration-millennia": "$1 {{PLURAL:$1|Jaadausnd|Jaadausnde}}",
 	"mw-widgets-abandonedit": "Bischda sischa, dassde uffde Onsischdmodus geje megschd, ohne dvoa zu schbaischare?",
-	"mw-widgets-abandonedit-keep": "Waida schaffe"
+	"mw-widgets-abandonedit-keep": "Waida schaffe",
+	"mw-widgets-mediasearch-input-placeholder": "Gugg nochde Medije",
+	"mw-widgets-mediasearch-noresults": "Kä Eagewnis gfunne"
 }

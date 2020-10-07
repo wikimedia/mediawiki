@@ -1,20 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abanima",
 			"Ciphers",
 			"Claw eg",
 			"Elfalem",
-			"Jdforrester",
-			"Mido",
-			"OsamaK",
-			"زكريا",
-			"مشعل الحربي",
-			"ترجمان05",
-			"Abanima",
-			"محمد أحمد عبد الفتاح",
 			"Hiba Alshawi",
+			"Jdforrester",
 			"Meno25",
-			"ديفيد"
+			"Mido",
+			"NEHAOUA",
+			"OsamaK",
+			"ترجمان05",
+			"ديفيد",
+			"زكريا",
+			"محمد أحمد عبد الفتاح",
+			"مشعل الحربي"
 		]
 	},
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
@@ -30,7 +31,7 @@
 	"ooui-dialog-process-dismiss": "أغلق",
 	"ooui-dialog-process-retry": "حاول مرة أخرى",
 	"ooui-dialog-process-continue": "استمر",
-	"ooui-combobox-button-label": "القائمة المنسدلة لصندوق التحرير",
+	"ooui-combobox-button-label": "خيارات التبديل",
 	"ooui-selectfile-button-select": "اختر ملفا",
 	"ooui-selectfile-not-supported": "اختيار الملفات غير مدعوم",
 	"ooui-selectfile-placeholder": "لم يتم اختيار أي ملف",

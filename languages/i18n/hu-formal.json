@@ -3,10 +3,11 @@
 		"authors": [
 			"Dani",
 			"Futhark1988",
+			"Matma Rex",
+			"Misibacsi",
 			"Máté",
 			"R-Joe",
-			"Tacsipacsi",
-			"Misibacsi"
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -238,5 +239,7 @@
 	"mw-widgets-abandonedit-discard": "Változtatások elvetése",
 	"mw-widgets-abandonedit-keep": "Szerkesztés folytatása",
 	"mw-widgets-abandonedit-title": "Biztos benne?",
+	"mw-widgets-mediasearch-input-placeholder": "Média keresése",
+	"mw-widgets-mediasearch-noresults": "Nincs találat.",
 	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!"
 }

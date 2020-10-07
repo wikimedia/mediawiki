@@ -9,8 +9,8 @@
  * @covers MachineReadableRCFeedFormatter
  * @covers RCFeed
  */
-class RCFeedIntegrationTest extends MediaWikiTestCase {
-	protected function setUp() {
+class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgCanonicalServer' => 'https://example.org',

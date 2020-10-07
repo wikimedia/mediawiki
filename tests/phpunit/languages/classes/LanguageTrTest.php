@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageTr
  */
 class LanguageTrTest extends LanguageClassesTestCase {

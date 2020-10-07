@@ -100,7 +100,7 @@
 	 */
 	[ 'write', 'writeln' ].forEach( function ( method ) {
 		mw.log.deprecate( document, method, function () {
-			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
+			$( document.body ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
 		}, 'Use jQuery or mw.loader.load instead.', 'document.' + method );
 	} );
 

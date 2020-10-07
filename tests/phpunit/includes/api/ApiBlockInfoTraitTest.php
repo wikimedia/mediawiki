@@ -1,18 +1,19 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ApiBlockInfoTrait
  */
-class ApiBlockInfoTraitTest extends MediaWikiTestCase {
+class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetBlockDetails
 	 */
 	public function testGetBlockDetails( $block, $expectedInfo ) {
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
+		$mock->method( 'getLanguage' )->willReturn( 'en' );
 		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block );
 		$subset = array_merge( [
 			'blockid' => null,
@@ -21,7 +22,7 @@ class ApiBlockInfoTraitTest extends MediaWikiTestCase {
 			'blockreason' => '',
 			'blockexpiry' => 'infinite',
 		], $expectedInfo );
-		$this->assertArraySubset( $subset, $info );
+		$this->assertArraySubmapSame( $subset, $info, "Matching block details" );
 	}
 
 	public static function provideGetBlockDetails() {

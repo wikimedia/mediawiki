@@ -26,16 +26,13 @@
  * @since 1.17
  */
 class ResourceLoaderFilePath {
-
 	/** @var string Local base path */
 	protected $localBasePath;
 
 	/** @var string Remote base path */
 	protected $remoteBasePath;
 
-	/**
-	 * @var string Path to the file
-	 */
+	/** @var string Path to the file */
 	protected $path;
 
 	/**
@@ -43,43 +40,37 @@ class ResourceLoaderFilePath {
 	 * @param string $localBasePath Base path to prepend when generating a local path.
 	 * @param string $remoteBasePath Base path to prepend when generating a remote path.
 	 */
-	public function __construct( $path, $localBasePath, $remoteBasePath ) {
+	public function __construct( $path, $localBasePath = '', $remoteBasePath = '' ) {
 		$this->path = $path;
 		$this->localBasePath = $localBasePath;
 		$this->remoteBasePath = $remoteBasePath;
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getLocalPath() {
-		return "{$this->localBasePath}/{$this->path}";
+		return $this->localBasePath === '' ?
+			$this->path :
+			"{$this->localBasePath}/{$this->path}";
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getRemotePath() {
-		return "{$this->remoteBasePath}/{$this->path}";
+		return $this->remoteBasePath === '' ?
+			$this->path :
+			"{$this->remoteBasePath}/{$this->path}";
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getLocalBasePath() {
 		return $this->localBasePath;
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getRemoteBasePath() {
 		return $this->remoteBasePath;
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getPath() {
 		return $this->path;
 	}

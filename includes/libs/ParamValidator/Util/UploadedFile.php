@@ -100,10 +100,7 @@ class UploadedFile implements UploadedFileInterface {
 			throw new RuntimeException( 'Specified file is not an uploaded file' );
 		}
 
-		// TODO remove the function_exists check once we drop HHVM support
-		if ( function_exists( 'error_clear_last' ) ) {
-			error_clear_last();
-		}
+		error_clear_last();
 		$ret = AtEase::quietCall(
 			$this->fromUpload ? 'move_uploaded_file' : 'rename',
 			$this->data['tmp_name'],

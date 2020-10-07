@@ -23,34 +23,50 @@
  *
  * This is a wrapper that will call the EditPage class or a custom editor from an extension.
  *
+ * @stable for subclasssing
  * @ingroup Actions
  */
 class EditAction extends FormlessAction {
 
+	/**
+	 * @stable to override
+	 * @return string
+	 */
 	public function getName() {
 		return 'edit';
 	}
 
+	/**
+	 * @stable to override
+	 * @return string|null
+	 */
 	public function onView() {
 		return null;
 	}
 
+	/**
+	 * @stable to override
+	 */
 	public function show() {
 		$this->useTransactionalTimeLimit();
 
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
+
+		// The editor should always see the latest content when starting their edit.
+		// Also to ensure cookie blocks can be set (T152462).
+		$out->enableClientCache( false );
+
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
 			] );
 		}
-		$page = $this->page;
-		$user = $this->getUser();
 
-		if ( Hooks::run( 'CustomEditor', [ $page, $user ] ) ) {
-			$editor = new EditPage( $page );
+		$article = $this->getArticle();
+		if ( $this->getHookRunner()->onCustomEditor( $article, $this->getUser() ) ) {
+			$editor = new EditPage( $article );
 			$editor->setContextTitle( $this->getTitle() );
 			$editor->edit();
 		}

@@ -66,7 +66,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 		$this->addTables( 'langlinks' );
 		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -122,11 +122,13 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
+			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 			if ( isset( $prop['langname'] ) ) {
-				$entry['langname'] = Language::fetchLanguageName( $row->ll_lang, $params['inlanguagecode'] );
+				$entry['langname'] = $languageNameUtils
+					->getLanguageName( $row->ll_lang, $params['inlanguagecode'] );
 			}
 			if ( isset( $prop['autonym'] ) ) {
-				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
+				$entry['autonym'] = $languageNameUtils->getLanguageName( $row->ll_lang );
 			}
 			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );

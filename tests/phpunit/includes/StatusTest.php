@@ -30,10 +30,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::newFatal
 	 */
 	public function testNewFatalWithMessage() {
-		$message = $this->getMockBuilder( Message::class )
-			->disableOriginalConstructor()
-			->getMock();
-
+		$message = $this->getMockMessage();
 		$status = Status::newFatal( $message );
 		$this->assertFalse( $status->isGood() );
 		$this->assertFalse( $status->isOK() );
@@ -221,19 +218,6 @@ class StatusTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $errors[$key], $expectedArray );
 		}
 		$this->assertFalse( $status->isOK() );
-	}
-
-	protected function getMockMessage( $key = 'key', $params = [] ) {
-		$message = $this->getMockBuilder( Message::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$message->expects( $this->atLeastOnce() )
-			->method( 'getKey' )
-			->will( $this->returnValue( $key ) );
-		$message->expects( $this->atLeastOnce() )
-			->method( 'getParams' )
-			->will( $this->returnValue( $params ) );
-		return $message;
 	}
 
 	/**
@@ -446,7 +430,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getMessage
 	 */
 	public function testGetMessage(
-		Status $status, $expectedParams = [], $expectedKey, $expectedWrapper
+		Status $status, $expectedParams, $expectedKey, $expectedWrapper
 	) {
 		$message = $status->getMessage( null, null, 'qqx' );
 		$this->assertInstanceOf( Message::class, $message );
@@ -574,6 +558,23 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Status::getErrorMessage
+	 */
+	public function testGetErrorMessageComplexParam() {
+		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
+		$method->setAccessible( true );
+		$status = new Status();
+		$key = 'foo';
+		$params = [ 'bar', Message::numParam( 5 ) ];
+
+		/** @var Message $message */
+		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$this->assertInstanceOf( Message::class, $message );
+		$this->assertEquals( $key, $message->getKey() );
+		$this->assertEquals( $params, $message->getParams() );
+	}
+
+	/**
 	 * @covers Status::getErrorMessageArray
 	 */
 	public function testGetErrorMessageArray() {
@@ -592,7 +593,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$this->assertInternalType( 'array', $messageArray );
+		$this->assertIsArray( $messageArray );
 		$this->assertCount( 2, $messageArray );
 		foreach ( $messageArray as $message ) {
 			$this->assertInstanceOf( Message::class, $message );
@@ -629,7 +630,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			return '-' . $value . '-';
 		};
 		$status->__wakeup();
-		$this->assertEquals( false, $status->cleanCallback );
+		$this->assertFalse( $status->cleanCallback );
 	}
 
 	/**
@@ -646,7 +647,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$array = $status->getWarningsArray(); // We use getWarningsArray to access getStatusArray
 
-		$this->assertEquals( 1, count( $array ) );
+		$this->assertCount( 1, $array );
 		$this->assertEquals( $nonObjMsg, $array[0] );
 	}
 
@@ -717,6 +718,48 @@ class StatusTest extends MediaWikiLangTestCase {
 				[],
 			]
 		];
+	}
+
+	/**
+	 * Regression test for interference between cloning and references.
+	 * @coversNothing
+	 */
+	public function testWrapAndSplitByErrorType() {
+		$sv = StatusValue::newFatal( 'fatal' );
+		$sv->warning( 'warning' );
+		$s = Status::wrap( $sv );
+		list( $se, $sw ) = $s->splitByErrorType();
+		$this->assertTrue( $s->hasMessage( 'fatal' ) );
+		$this->assertTrue( $s->hasMessage( 'warning' ) );
+		$this->assertFalse( $s->isOK() );
+		$this->assertTrue( $se->hasMessage( 'fatal' ) );
+		$this->assertFalse( $se->hasMessage( 'warning' ) );
+		$this->assertFalse( $s->isOK() );
+		$this->assertFalse( $sw->hasMessage( 'fatal' ) );
+		$this->assertTrue( $sw->hasMessage( 'warning' ) );
+		$this->assertTrue( $sw->isOK() );
+	}
+
+	/**
+	 * @covers Status::setMessageLocalizer
+	 */
+	public function testSetContext() {
+		$status = Status::newFatal( 'foo' );
+		$status->fatal( 'bar' );
+
+		$messageLocalizer = $this->getMockBuilder( MessageLocalizer::class )
+			->setMethods( [ 'msg' ] )
+			->getMockForAbstractClass();
+		$messageLocalizer->expects( $this->atLeastOnce() )
+			->method( 'msg' )
+			->willReturnCallback( function ( $key ) {
+				return new RawMessage( $key );
+			} );
+		/** @var MessageLocalizer $messageLocalizer */
+		$status->setMessageLocalizer( $messageLocalizer );
+		$status->getWikiText();
+		$status->getWikiText( null, null, 'en' );
+		$status->getWikiText( 'wrap-short', 'wrap-long' );
 	}
 
 }

@@ -26,6 +26,8 @@
  * param flag may result in a StatusValue that contains this object as a value.
  * This class is largely backend-specific and is mostly just "magic" to be
  * passed to FileBackendStore::executeOpHandlesInternal().
+ *
+ * @stable to extend
  */
 abstract class FileBackendStoreOpHandle {
 	/** @var array */

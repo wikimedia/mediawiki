@@ -37,7 +37,7 @@ class DependencyWrapper {
 	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
 	 *   array. All dependencies must be objects implementing CacheDependency.
 	 */
-	function __construct( $value = false, $deps = [] ) {
+	public function __construct( $value = false, $deps = [] ) {
 		$this->value = $value;
 
 		if ( !is_array( $deps ) ) {
@@ -52,7 +52,7 @@ class DependencyWrapper {
 	 *
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		foreach ( $this->deps as $dep ) {
 			if ( $dep->isExpired() ) {
 				return true;
@@ -66,7 +66,7 @@ class DependencyWrapper {
 	 * Initialise dependency values in preparation for storing. This must be
 	 * called before serialization.
 	 */
-	function initialiseDeps() {
+	public function initialiseDeps() {
 		foreach ( $this->deps as $dep ) {
 			$dep->loadDependencyValues();
 		}
@@ -76,7 +76,7 @@ class DependencyWrapper {
 	 * Get the user-defined value
 	 * @return bool|mixed
 	 */
-	function getValue() {
+	public function getValue() {
 		return $this->value;
 	}
 
@@ -87,7 +87,7 @@ class DependencyWrapper {
 	 * @param string $key
 	 * @param int $expiry
 	 */
-	function storeToCache( $cache, $key, $expiry = 0 ) {
+	public function storeToCache( $cache, $key, $expiry = 0 ) {
 		$this->initialiseDeps();
 		$cache->set( $key, $this, $expiry );
 	}
@@ -109,7 +109,7 @@ class DependencyWrapper {
 	 * @return mixed The value, or null if it was not present in the cache and no
 	 *    callback was defined.
 	 */
-	static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false,
+	public static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false,
 		$callbackParams = [], $deps = []
 	) {
 		$obj = $cache->get( $key );

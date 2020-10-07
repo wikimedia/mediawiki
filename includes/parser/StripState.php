@@ -23,6 +23,7 @@
 
 /**
  * @todo document, briefly.
+ * @newable
  * @ingroup Parser
  */
 class StripState {
@@ -40,6 +41,8 @@ class StripState {
 	protected $sizeLimit = 5000000;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param Parser|null $parser
 	 * @param array $options
 	 */
@@ -217,72 +220,6 @@ class StripState {
 				],
 			]
 		];
-	}
-
-	/**
-	 * Get a StripState object which is sufficient to unstrip the given text.
-	 * It will contain the minimum subset of strip items necessary.
-	 *
-	 * @deprecated since 1.31
-	 * @param string $text
-	 * @return StripState
-	 */
-	public function getSubState( $text ) {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$subState = new StripState;
-		$pos = 0;
-		while ( true ) {
-			$startPos = strpos( $text, Parser::MARKER_PREFIX, $pos );
-			$endPos = strpos( $text, Parser::MARKER_SUFFIX, $pos );
-			if ( $startPos === false || $endPos === false ) {
-				break;
-			}
-
-			$endPos += strlen( Parser::MARKER_SUFFIX );
-			$marker = substr( $text, $startPos, $endPos - $startPos );
-			if ( !preg_match( $this->regex, $marker, $m ) ) {
-				continue;
-			}
-
-			$key = $m[1];
-			if ( isset( $this->data['nowiki'][$key] ) ) {
-				$subState->data['nowiki'][$key] = $this->data['nowiki'][$key];
-			} elseif ( isset( $this->data['general'][$key] ) ) {
-				$subState->data['general'][$key] = $this->data['general'][$key];
-			}
-			$pos = $endPos;
-		}
-		return $subState;
-	}
-
-	/**
-	 * Merge another StripState object into this one. The strip marker keys
-	 * will not be preserved. The strings in the $texts array will have their
-	 * strip markers rewritten, the resulting array of strings will be returned.
-	 *
-	 * @deprecated since 1.31
-	 * @param StripState $otherState
-	 * @param array $texts
-	 * @return array
-	 */
-	public function merge( $otherState, $texts ) {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$mergePrefix = wfRandomString( 16 );
-
-		foreach ( $otherState->data as $type => $items ) {
-			foreach ( $items as $key => $value ) {
-				$this->data[$type]["$mergePrefix-$key"] = $value;
-			}
-		}
-
-		$callback = function ( $m ) use ( $mergePrefix ) {
-			$key = $m[1];
-			return Parser::MARKER_PREFIX . $mergePrefix . '-' . $key . Parser::MARKER_SUFFIX;
-		};
-		$texts = preg_replace_callback( $otherState->regex, $callback, $texts );
-		return $texts;
 	}
 
 	/**

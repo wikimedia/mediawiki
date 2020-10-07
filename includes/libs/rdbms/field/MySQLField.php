@@ -7,7 +7,7 @@ class MySQLField implements Field {
 		$is_pk, $is_unique, $is_multiple, $is_key, $type, $binary,
 		$is_numeric, $is_blob, $is_unsigned, $is_zerofill;
 
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		$this->name = $info->name;
 		$this->tablename = $info->table;
 		$this->default = $info->def;
@@ -28,81 +28,81 @@ class MySQLField implements Field {
 	/**
 	 * @return string
 	 */
-	function name() {
+	public function name() {
 		return $this->name;
 	}
 
 	/**
 	 * @return string
 	 */
-	function tableName() {
+	public function tableName() {
 		return $this->tablename;
 	}
 
 	/**
 	 * @return string
 	 */
-	function type() {
+	public function type() {
 		return $this->type;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isNullable() {
+	public function isNullable() {
 		return $this->nullable;
 	}
 
-	function defaultValue() {
+	public function defaultValue() {
 		return $this->default;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isKey() {
+	public function isKey() {
 		return $this->is_key;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isMultipleKey() {
+	public function isMultipleKey() {
 		return $this->is_multiple;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isBinary() {
+	public function isBinary() {
 		return $this->binary;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isNumeric() {
+	public function isNumeric() {
 		return $this->is_numeric;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isBlob() {
+	public function isBlob() {
 		return $this->is_blob;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isUnsigned() {
+	public function isUnsigned() {
 		return $this->is_unsigned;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isZerofill() {
+	public function isZerofill() {
 		return $this->is_zerofill;
 	}
 }

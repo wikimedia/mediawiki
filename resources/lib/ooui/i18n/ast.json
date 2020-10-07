@@ -19,6 +19,7 @@
 	"ooui-dialog-process-dismiss": "Descartar",
 	"ooui-dialog-process-retry": "Vuelvi a intentalo",
 	"ooui-dialog-process-continue": "Siguir",
+	"ooui-combobox-button-label": "Llista desplegable pa caxa combinada",
 	"ooui-selectfile-button-select": "Seleicionar un ficheru",
 	"ooui-selectfile-not-supported": "Nun hai encontu pa la seleición de ficheros",
 	"ooui-selectfile-placeholder": "Nun se seleicionó nengún ficheru",

@@ -2,8 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
-use Wikimedia\ParamValidator\TypeDef;
-use Wikimedia\ParamValidator\ValidationException;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Type definition for a floating-point type
@@ -18,28 +18,30 @@ use Wikimedia\ParamValidator\ValidationException;
  *
  * The result from validate() is a PHP float.
  *
- * ValidationException codes:
+ * Failure codes:
  *  - 'badfloat': The value was invalid. No data.
- *  - 'notfinite': The value was in a valid format, but conversion resulted in
+ *  - 'badfloat-notfinite': The value was in a valid format, but conversion resulted in
  *    infinity or NAN.
  *
  * @since 1.34
  * @unstable
  */
-class FloatDef extends TypeDef {
+class FloatDef extends NumericDef {
+
+	protected $valueType = 'double';
 
 	public function validate( $name, $value, array $settings, array $options ) {
 		// Use a regex so as to avoid any potential oddness PHP's default conversion might allow.
 		if ( !preg_match( '/^[+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?$/D', $value ) ) {
-			throw new ValidationException( $name, $value, $settings, 'badfloat', [] );
+			$this->failure( 'badfloat', $name, $value, $settings, $options );
 		}
 
 		$ret = (float)$value;
 		if ( !is_finite( $ret ) ) {
-			throw new ValidationException( $name, $value, $settings, 'notfinite', [] );
+			$this->failure( 'badfloat-notfinite', $name, $value, $settings, $options );
 		}
 
-		return $ret;
+		return $this->checkRange( $ret, $name, $value, $settings, $options );
 	}
 
 	/**
@@ -68,6 +70,15 @@ class FloatDef extends TypeDef {
 		// Ensure sufficient precision for round-tripping. PHP_FLOAT_DIG was added in PHP 7.2.
 		$digits = defined( 'PHP_FLOAT_DIG' ) ? PHP_FLOAT_DIG : 15;
 		return $this->fixLocaleWeirdness( sprintf( "%.{$digits}g", $value ) );
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-float' )
+			->params( empty( $settings[ParamValidator::PARAM_ISMULTI] ) ? 1 : 2 );
+
+		return $info;
 	}
 
 }

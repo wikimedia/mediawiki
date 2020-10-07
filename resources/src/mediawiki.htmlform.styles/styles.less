@@ -1,0 +1,55 @@
+/* HTMLForm styles */
+@import 'mediawiki.mixins';
+
+.mw-htmlform {
+	clear: both;
+}
+
+table.mw-htmlform-nolabel td.mw-label {
+	display: none;
+}
+
+.mw-htmlform-invalid-input td.mw-input input {
+	border-color: #d33;
+}
+
+.mw-htmlform-flatlist div.mw-htmlform-flatlist-item {
+	display: inline;
+	margin-right: 1em;
+	white-space: nowrap;
+}
+
+/* HTMLCheckMatrix */
+.mw-htmlform-matrix th {
+	font-weight: normal;
+}
+
+.mw-htmlform-matrix td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+tr.mw-htmlform-vertical-label td.mw-label {
+	text-align: left !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.mw-icon-question {
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url( images/question.png );
+	background-image: linear-gradient( transparent, transparent ), url( images/question.svg );
+	background-repeat: no-repeat;
+	background-size: 13px 13px;
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	margin-left: 4px;
+}
+
+// Note that Hebrew does not mirror question mark.
+.mw-icon-question:lang( ar ),
+.mw-icon-question:lang( fa ),
+.mw-icon-question:lang( ur ) {
+	.transform( scaleX( -1 ) );
+}

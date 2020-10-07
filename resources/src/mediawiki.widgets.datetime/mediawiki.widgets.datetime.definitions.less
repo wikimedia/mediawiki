@@ -34,12 +34,13 @@
 // Variables taken from OOUI's WikimediaUI theme, see its common.less for further explanations
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
 @ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
+@ooui-unit: em;
 
 @background-color-base: #fff;
 @background-color-base--hover: #eaecf0;
 @background-color-base--disabled: #eaecf0;
 
-@color-base: #222;
+@color-base: #202122;
 @color-base--inverted: #fff;
 @color-base--subtle: #72777d;
 @color-base--disabled: #72777d;
@@ -53,12 +54,12 @@
 @max-width-base: 50em;
 @max-width-input: @max-width-base;
 
-@padding-input-text: @padding-top-base @padding-horizontal-input-text @padding-bottom-base;
-@padding-horizontal-base: 12 / @ooui-font-size-browser / @ooui-font-size-base;
-@padding-horizontal-input-text: 8 / @ooui-font-size-browser / @ooui-font-size-base;
-@padding-top-base: 8 / @ooui-font-size-browser / @ooui-font-size-base;
-@padding-top-button-clear: 28 / @ooui-font-size-browser / @ooui-font-size-base; // As it's inside an input, we need to reduce from borders surrounding
-@padding-bottom-base: 7 / @ooui-font-size-browser / @ooui-font-size-base;
+@padding-input-text: @padding-vertical-base @padding-horizontal-input-text;
+@padding-horizontal-base: 12px;
+@padding-horizontal-input-text: 8px;
+@padding-vertical-base: 6px;
+// All paddings holding icons need `em`s due to font-size derived icon scaling.
+@padding-top-button-clear: 28 / @ooui-font-size-browser / @ooui-font-size-base; // As it's inside an input, we need to reduce from borders surrounding.
 @padding-start-input-text-icon: 6 / @ooui-font-size-browser / @ooui-font-size-base;
 @padding-start-input-text-icon-label: 32 / @ooui-font-size-browser / @ooui-font-size-base;
 @padding-start-button-clear: 4 / @ooui-font-size-browser / @ooui-font-size-base;
@@ -76,7 +77,8 @@
 @box-shadow-widget: inset 0 0 0 1px transparent;
 @box-shadow-erroneous--focus: inset 0 0 0 1px @color-erroneous;
 
-@line-height-widget-singleline: 15 / @ooui-font-size-browser / @ooui-font-size-base;
+// `line-height` has to be relative/in `em` to enable user override in browser settings.
+@line-height-widget-base: unit( 18 / @ooui-font-size-browser / @ooui-font-size-base, @ooui-unit ); // equals `18px` at base `font-size: 14px;
 
 @text-shadow-base: 0 1px 1px @color-base--inverted; // 'coined' effect
 @text-shadow-base--disabled: @text-shadow-base;

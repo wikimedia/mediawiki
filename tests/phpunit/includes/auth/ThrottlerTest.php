@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\Throttler
  */
-class ThrottlerTest extends \MediaWikiTestCase {
+class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$cache = new \HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
@@ -173,11 +173,11 @@ class ThrottlerTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testException() {
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ] );
 		$throttler->setLogger( new NullLogger() );
+		$this->expectException( \InvalidArgumentException::class );
 		$throttler->increase();
 	}
 

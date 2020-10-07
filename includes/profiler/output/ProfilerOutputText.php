@@ -1,7 +1,5 @@
 <?php
 /**
- * Profiler showing output in page source.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,11 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 
 /**
- * The least sophisticated profiler output class possible, view your source! :)
+ * Adds profiler output to the HTTP response.
+ *
+ * The least sophisticated profiler output class possible, view source! :)
  *
  * @ingroup Profiler
  * @since 1.25
@@ -34,7 +33,7 @@ class ProfilerOutputText extends ProfilerOutput {
 	/** @var bool Whether to use visible text or a comment (for HTML responses) */
 	private $visible;
 
-	function __construct( Profiler $collector, array $params ) {
+	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
 		$this->thresholdMs = $params['thresholdMs'] ?? 1.0;
 		$this->visible = $params['visible'] ?? false;

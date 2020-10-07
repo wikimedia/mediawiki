@@ -64,11 +64,11 @@ class DiffHistoryBlob implements HistoryBlob {
 	public $mMaxCount = 100;
 
 	/** Constants from xdiff.h */
-	const XDL_BDOP_INS = 1;
-	const XDL_BDOP_CPY = 2;
-	const XDL_BDOP_INSB = 3;
+	private const XDL_BDOP_INS = 1;
+	private const XDL_BDOP_CPY = 2;
+	private const XDL_BDOP_INSB = 3;
 
-	function __construct() {
+	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
 		}
@@ -79,7 +79,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @param string $text
 	 * @return int
 	 */
-	function addItem( $text ) {
+	public function addItem( $text ) {
 		if ( $this->mFrozen ) {
 			throw new MWException( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
 		}
@@ -94,28 +94,28 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @param string $key
 	 * @return string
 	 */
-	function getItem( $key ) {
+	public function getItem( $key ) {
 		return $this->mItems[$key];
 	}
 
 	/**
 	 * @param string $text
 	 */
-	function setText( $text ) {
+	public function setText( $text ) {
 		$this->mDefaultKey = $this->addItem( $text );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getText() {
+	public function getText() {
 		return $this->getItem( $this->mDefaultKey );
 	}
 
 	/**
 	 * @throws MWException
 	 */
-	function compress() {
+	private function compress() {
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
 		}
@@ -192,7 +192,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @param string $t2
 	 * @return string
 	 */
-	function diff( $t1, $t2 ) {
+	private function diff( $t1, $t2 ) {
 		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
 		# "String is not zero-terminated"
 		Wikimedia\suppressWarnings();
@@ -206,7 +206,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @param string $diff
 	 * @return bool|string
 	 */
-	function patch( $base, $diff ) {
+	private function patch( $base, $diff ) {
 		if ( function_exists( 'xdiff_string_bpatch' ) ) {
 			Wikimedia\suppressWarnings();
 			$text = xdiff_string_bpatch( $base, $diff ) . '';
@@ -221,11 +221,11 @@ class DiffHistoryBlob implements HistoryBlob {
 		# Check the checksum if hash extension is available
 		$ofp = $this->xdiffAdler32( $base );
 		if ( $ofp !== false && $ofp !== substr( $diff, 0, 4 ) ) {
-			wfDebug( __METHOD__ . ": incorrect base checksum\n" );
+			wfDebug( __METHOD__ . ": incorrect base checksum" );
 			return false;
 		}
 		if ( $header['csize'] != strlen( $base ) ) {
-			wfDebug( __METHOD__ . ": incorrect base length\n" );
+			wfDebug( __METHOD__ . ": incorrect base length" );
 			return false;
 		}
 
@@ -254,7 +254,7 @@ class DiffHistoryBlob implements HistoryBlob {
 					$out .= substr( $base, $x['off'], $x['csize'] );
 					break;
 				default:
-					wfDebug( __METHOD__ . ": invalid op\n" );
+					wfDebug( __METHOD__ . ": invalid op" );
 					return false;
 			}
 		}
@@ -268,7 +268,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @param string $s
 	 * @return string|bool False if the hash extension is not available
 	 */
-	function xdiffAdler32( $s ) {
+	public function xdiffAdler32( $s ) {
 		if ( !function_exists( 'hash' ) ) {
 			return false;
 		}
@@ -284,7 +284,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		return strrev( hash( 'adler32', $init . $s, true ) );
 	}
 
-	function uncompress() {
+	private function uncompress() {
 		if ( !$this->mDiffs ) {
 			return;
 		}
@@ -301,7 +301,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	/**
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$this->compress();
 		if ( $this->mItems === [] ) {
 			$info = false;
@@ -328,7 +328,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		return [ 'mCompressed' ];
 	}
 
-	function __wakeup() {
+	public function __wakeup() {
 		// addItem() doesn't work if mItems is partially filled from mDiffs
 		$this->mFrozen = true;
 		$info = unserialize( gzinflate( $this->mCompressed ) );
@@ -368,7 +368,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 *
 	 * @return bool
 	 */
-	function isHappy() {
+	public function isHappy() {
 		return $this->mSize < $this->mMaxSize
 			&& count( $this->mItems ) < $this->mMaxCount;
 	}

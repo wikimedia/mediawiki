@@ -1,17 +1,18 @@
 {
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki",
+		"wikimedia/jsduck"
 	],
 	"globals": {
-		"require": false,
-		"module": false,
-		"mw": false,
-		"OO": false
+		"require": "readonly",
+		"module": "readonly"
 	},
 	"rules": {
-		"quote-props": [ "error", "as-needed" ],
 		"max-len": "off",
-		"no-jquery/no-global-selector": "off"
+		"mediawiki/valid-package-file-require": "off",
+		"no-jquery/no-global-selector": "off",
+		"no-shadow": "error"
 	}
 }

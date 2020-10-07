@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2019 OOUI Team and other contributors.
+ * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2020-07-10T06:32:25Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -90,11 +90,11 @@
   color: #000;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover {
-  background-color: #fafafa;
+  background-color: rgba(0, 0, 0, 0.01960784);
   color: #000;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:active {
-  background-color: #ddd;
+  background-color: rgba(0, 0, 0, 0.13333333);
   color: #000;
 }
 .oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child,
@@ -112,6 +112,9 @@
 .oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #333;
   margin-left: 0.25em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-noIcon + .oo-ui-labelElement-label {
+  margin-left: 0;
 }
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   padding: 0;
@@ -131,7 +134,6 @@
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-iconElement > .oo-ui-buttonElement-button:focus:active,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-labelElement > .oo-ui-buttonElement-button:focus:active {
-  border-color: #fff;
   border-color: transparent;
   box-shadow: none;
 }
@@ -325,8 +327,6 @@
   top: auto;
   width: 1.5625em;
   height: 1.5625em;
-  min-width: auto;
-  min-height: auto;
   margin: 0.15625em;
   opacity: 0.8;
 }
@@ -404,6 +404,14 @@
   clear: both;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
@@ -414,6 +422,13 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   text-align: right;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
   display: table;
@@ -634,7 +649,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   bottom: 0;
 }
 .oo-ui-panelLayout-padded {
-  padding: 1.25em;
+  padding: 1em 1em 1.25em;
 }
 .oo-ui-panelLayout-framed {
   border: 1px solid #ccc;
@@ -743,7 +758,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
-.oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+.oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   padding-left: 0.5em;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
@@ -766,15 +781,15 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-sizing: border-box;
   font-weight: bold;
 }
-.oo-ui-messageWidget .oo-ui-labelElement-label {
+.oo-ui-messageWidget > .oo-ui-labelElement-label {
   display: block;
 }
-.oo-ui-messageWidget .oo-ui-iconElement-icon {
+.oo-ui-messageWidget > .oo-ui-iconElement-icon {
   display: block;
   float: left;
   margin: 0;
 }
-.oo-ui-messageWidget .oo-ui-labelElement-label {
+.oo-ui-messageWidget > .oo-ui-labelElement-label {
   margin-top: 0.15625em;
   margin-left: 2.5em;
   line-height: 1.4;
@@ -975,6 +990,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
   position: absolute;
 }
+.oo-ui-popupWidget-head > .oo-ui-iconElement-icon {
+  float: left;
+}
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
   float: left;
   cursor: default;
@@ -1087,7 +1105,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-size: 1.25em 1.25em;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
-  margin: 0.75em 2.125em 0.75em 1em;
+  margin: 0.75em 2.125em 0.75em 0.25em;
+}
+.oo-ui-popupWidget-head > .oo-ui-iconElement-icon {
+  height: 100%;
+  margin-left: 0.75em;
 }
 .oo-ui-popupWidget-body {
   line-height: 1.4;
@@ -1619,7 +1641,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   white-space: normal;
 }
-.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   padding-left: 0.5em;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
@@ -1772,35 +1794,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
   pointer-events: none;
 }
-.oo-ui-selectFileInputWidget-label {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-overflow: ellipsis;
-}
-.oo-ui-selectFileInputWidget-clearButton {
-  position: absolute;
-  z-index: 2;
-}
-.oo-ui-selectFileInputWidget-empty .oo-ui-selectFileInputWidget-clearButton {
-  display: none;
-}
 .oo-ui-selectFileInputWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileInputWidget-label {
   cursor: default;
-}
-.oo-ui-selectFileInputWidget-label {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  left: 0.5em;
-  right: 2.175em;
-  line-height: 2.3em;
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .oo-ui-defaultOverlay {

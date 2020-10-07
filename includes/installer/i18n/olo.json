@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mashoi7",
 			"Ilja.mos",
+			"Mashoi7",
 			"Pyscowicz"
 		]
 	},
@@ -18,13 +18,11 @@
 	"config-page-options": "Azetukset",
 	"config-page-install": "Azenda",
 	"config-page-complete": "Valmis!",
-	"config-page-readme": "Luve minut",
 	"config-page-copying": "Kopiruijah",
 	"config-page-upgradedoc": "Päivitetäh",
 	"config-page-existingwiki": "Olemasolii wiki",
 	"config-restart": "Muga, käynnistä uvvelleh",
 	"config-env-php": "PHP $1 on azendettu.",
-	"config-env-hhvm": "HHVM $1 on azendettu.",
 	"config-db-name": "Tiedokannan nimi:",
 	"config-db-username": "Tiedokannan käyttäinimi:",
 	"config-db-password": "Tiedokannan salasana:",

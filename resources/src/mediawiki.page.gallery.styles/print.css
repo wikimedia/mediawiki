@@ -4,12 +4,6 @@ li.gallerybox {
 	display: inline-block;
 }
 
-ul.gallery,
-li.gallerybox {
-	zoom: 1;
-	*display: inline;
-}
-
 ul.gallery {
 	margin: 2px;
 	padding: 2px;

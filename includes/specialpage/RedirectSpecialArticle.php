@@ -82,10 +82,18 @@
  *    }
  * @endcode
  *
+ * @stable to extend
+ *
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialArticle extends RedirectSpecialPage {
-	function __construct( $name ) {
+
+	/**
+	 * @stable to call
+	 *
+	 * @param string $name
+	 */
+	public function __construct( $name ) {
 		parent::__construct( $name );
 		$redirectParams = [
 			'action',
@@ -103,7 +111,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'ctype', 'maxage', 'smaxage',
 		];
 
-		Hooks::run( "RedirectSpecialArticleRedirectParams", [ &$redirectParams ] );
+		$this->getHookRunner()->onRedirectSpecialArticleRedirectParams( $redirectParams );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
 

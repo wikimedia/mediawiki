@@ -21,6 +21,9 @@
 
 namespace MediaWiki\Auth;
 
+/**
+ * @stable to extend
+ */
 class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	/** @var AuthenticationRequest[] */
 	protected $linkRequests;
@@ -29,6 +32,7 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	public $confirmedLinkIDs = [];
 
 	/**
+	 * @stable to call
 	 * @param AuthenticationRequest[] $linkRequests A list of autolink requests
 	 *  which need to be confirmed.
 	 */
@@ -39,6 +43,10 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 		$this->linkRequests = $linkRequests;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getFieldInfo() {
 		$options = [];
 		foreach ( $this->linkRequests as $req ) {
@@ -59,10 +67,16 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getUniqueId() {
-		return parent::getUniqueId() . ':' . implode( '|', array_map( function ( $req ) {
-			return $req->getUniqueId();
-		}, $this->linkRequests ) );
+		$ids = [];
+		foreach ( $this->linkRequests as $req ) {
+			$ids[] = $req->getUniqueId();
+		}
+		return parent::getUniqueId() . ':' . implode( '|', $ids );
 	}
 
 	/**

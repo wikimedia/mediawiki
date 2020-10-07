@@ -18,17 +18,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBQueryError;
 
 /**
  * Class for setting up the MediaWiki database using MySQL.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class MysqlInstaller extends DatabaseInstaller {

@@ -13,12 +13,16 @@
  */
 class ApiDeleteTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'change_tag', 'change_tag_def', 'logging' ]
+			[ 'change_tag', 'change_tag_def', 'logging', 'watchlist', 'watchlist_expiry' ]
 		);
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
 	}
 
 	public function testDelete() {
@@ -71,8 +75,8 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteNonexistent() {
-		$this->setExpectedException( ApiUsageException::class,
-			"The page you specified doesn't exist." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "The page you specified doesn't exist." );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -81,8 +85,10 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeletionWithoutPermission() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The action you have requested is limited to users in the group:' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			'The action you have requested is limited to users in the group:'
+		);
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -135,8 +141,10 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteWithoutTagPermission() {
-		$this->setExpectedException( ApiUsageException::class,
-			'You do not have permission to apply change tags along with your changes.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			'You do not have permission to apply change tags along with your changes.'
+		);
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -158,8 +166,8 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testDeleteAbortedByHook() {
-		$this->setExpectedException( ApiUsageException::class,
-			'Deletion aborted by hook. It gave no explanation.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Deletion aborted by hook. It gave no explanation.' );
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -186,10 +194,17 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertTrue( Title::newFromText( $name )->exists() );
 		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
 
-		$this->doApiRequestWithToken( [ 'action' => 'delete', 'title' => $name, 'watch' => '' ] );
+		$this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+			'watch' => '',
+			'watchlistexpiry' => '99990123000000',
+		] );
 
-		$this->assertFalse( Title::newFromText( $name )->exists() );
-		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
+		$title = Title::newFromText( $name );
+		$this->assertFalse( $title->exists() );
+		$this->assertTrue( $user->isWatched( $title ) );
+		$this->assertTrue( $user->isTempWatched( $title ) );
 	}
 
 	public function testDeleteUnwatch() {
@@ -201,7 +216,11 @@ class ApiDeleteTest extends ApiTestCase {
 		$user->addWatch( Title::newFromText( $name ) );
 		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
 
-		$this->doApiRequestWithToken( [ 'action' => 'delete', 'title' => $name, 'unwatch' => '' ] );
+		$this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $name,
+			'watchlist' => 'unwatch',
+		] );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );

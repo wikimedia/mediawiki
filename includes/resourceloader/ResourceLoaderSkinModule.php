@@ -31,6 +31,137 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public $targets = [ 'desktop', 'mobile' ];
 
 	/**
+	 * Every skin should define which features it would like to reuse for core inside a
+	 * ResourceLoader module that has set the class to ResourceLoaderSkinModule.
+	 * For a feature to be valid it must be listed here along with the associated resources
+	 *
+	 * The following features are available:
+	 *
+	 * "logo":
+	 *     Adds CSS to style an element with class `mw-wiki-logo` using the value of wgLogos['1x'].
+	 *     This is enabled by default if no features are added.
+	 *
+	 * "normalize":
+	 *     Styles needed to normalize rendering across different browser rendering engines.
+	 *     All to address bugs and common browser inconsistencies for skins and extensions.
+	 *     Inspired by necolas' normalize.css. This is meant to be kept lean,
+	 *     basic styling beyond normalization should live in one of the following modules.
+	 *
+	 * "elements":
+	 *     The base level that only contains the most basic of common skin styles.
+	 *     Only styles for single elements are included, no styling for complex structures like the
+	 *     TOC is present. This level is for skins that want to implement the entire style of even
+	 *     content area structures like the TOC themselves.
+	 *
+	 * "content":
+	 *     The most commonly used level for skins implemented from scratch. This level includes all
+	 *     the single element styles from "elements" as well as styles for complex structures such
+	 *     as the TOC that are output in the content area by MediaWiki rather than the skin.
+	 *     Essentially this is the common level that lets skins leave the style of the content area
+	 *     as it is normally styled, while leaving the rest of the skin up to the skin
+	 *     implementation.
+	 *
+	 * "interface":
+	 *     The highest level, this stylesheet contains extra common styles for classes like
+	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
+	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
+	 *     common to MonoBook clones.
+	 *
+	 * "i18n-ordered-lists":
+	 *     Styles for ordered lists elements that support mixed language content.
+	 *
+	 * "i18n-all-lists-margins":
+	 *     Styles for margins of list elements where LTR and RTL are mixed.
+	 *
+	 * "i18n-headings":
+	 *     Styles for line-heights of headings across different languages.
+	 *
+	 * "legacy":
+	 *     For backwards compatibility a legacy feature is provided.
+	 *     New skins should not use this if they can avoid doing so.
+	 *     This feature also contains all `i18n-` prefixed features.
+	 */
+	private const FEATURE_FILES = [
+		'logo' => [
+			// Applies the logo and ensures it downloads prior to printing.
+			'all' => [ 'resources/src/mediawiki.skinning/logo.less' ],
+			// Reserves whitespace for the logo in a pseudo element.
+			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
+		],
+		'content' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
+		],
+		'interface' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.css' ],
+		],
+		'normalize' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
+		],
+		'elements' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
+		],
+		'legacy' => [
+			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
+		],
+		'i18n-ordered-lists' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
+		],
+		'i18n-all-lists-margins' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-all-lists-margins.less' ],
+		],
+		'i18n-headings' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
+		],
+	];
+
+	/** @var string[] */
+	private $features;
+
+	public function __construct(
+		array $options = [],
+		$localBasePath = null,
+		$remoteBasePath = null
+	) {
+		parent::__construct( $options, $localBasePath, $remoteBasePath );
+		$this->features = $options['features'] ?? [ 'logo', 'legacy' ];
+	}
+
+	/**
+	 * Get styles defined in the module definition, plus any enabled feature styles.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public function getStyleFiles( ResourceLoaderContext $context ) {
+		$styles = parent::getStyleFiles( $context );
+
+		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
+			ResourceLoaderFileModule::extractBasePaths();
+
+		foreach ( $this->features as $feature ) {
+			if ( !isset( self::FEATURE_FILES[$feature] ) ) {
+				throw new InvalidArgumentException( "Feature `$feature` is not recognised" );
+			}
+			foreach ( self::FEATURE_FILES[$feature] as $mediaType => $files ) {
+				if ( !isset( $styles[$mediaType] ) ) {
+					$styles[$mediaType] = [];
+				}
+				foreach ( $files as $filepath ) {
+					$styles[$mediaType][] = new ResourceLoaderFilePath(
+						$filepath,
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
+				}
+			}
+		}
+
+		return $styles;
+	}
+
+	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
@@ -39,39 +170,41 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$styles = parent::getStyles( $context );
 		$this->normalizeStyles( $styles );
 
-		$default = !is_array( $logo ) ? $logo : $logo['1x'];
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+		$isLogoFeatureEnabled = in_array( 'logo', $this->features );
+		if ( $isLogoFeatureEnabled ) {
+			$default = !is_array( $logo ) ? $logo : $logo['1x'];
+			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
 				'; }';
-
-		if ( is_array( $logo ) ) {
-			if ( isset( $logo['svg'] ) ) {
-				$styles['all'][] = '.mw-wiki-logo { ' .
-					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
-						CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
-					'background-image: linear-gradient(transparent, transparent), ' .
-						CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
-					'background-size: 135px auto; }';
-			} else {
-				if ( isset( $logo['1.5x'] ) ) {
-					$styles[
-						'(-webkit-min-device-pixel-ratio: 1.5), ' .
-						'(min--moz-device-pixel-ratio: 1.5), ' .
-					'(min-resolution: 1.5dppx), ' .
-						'(min-resolution: 144dpi)'
-					][] = '.mw-wiki-logo { background-image: ' .
-					CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-					'background-size: 135px auto; }';
-				}
-				if ( isset( $logo['2x'] ) ) {
-					$styles[
-						'(-webkit-min-device-pixel-ratio: 2), ' .
-						'(min--moz-device-pixel-ratio: 2), ' .
-						'(min-resolution: 2dppx), ' .
-						'(min-resolution: 192dpi)'
-					][] = '.mw-wiki-logo { background-image: ' .
-					CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-					'background-size: 135px auto; }';
+			if ( is_array( $logo ) ) {
+				if ( isset( $logo['svg'] ) ) {
+					$styles['all'][] = '.mw-wiki-logo { ' .
+						'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+							CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
+						'background-image: linear-gradient(transparent, transparent), ' .
+							CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
+						'background-size: 135px auto; }';
+				} else {
+					if ( isset( $logo['1.5x'] ) ) {
+						$styles[
+							'(-webkit-min-device-pixel-ratio: 1.5), ' .
+							'(min--moz-device-pixel-ratio: 1.5), ' .
+						'(min-resolution: 1.5dppx), ' .
+							'(min-resolution: 144dpi)'
+						][] = '.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+						'background-size: 135px auto; }';
+					}
+					if ( isset( $logo['2x'] ) ) {
+						$styles[
+							'(-webkit-min-device-pixel-ratio: 2), ' .
+							'(min--moz-device-pixel-ratio: 2), ' .
+							'(min-resolution: 2dppx), ' .
+							'(min-resolution: 192dpi)'
+						][] = '.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+						'background-size: 135px auto; }';
+					}
 				}
 			}
 		}
@@ -91,7 +224,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * Helper method for getPreloadLinks()
 	 * @return array
 	 */
-	private function getLogoPreloadlinks() {
+	private function getLogoPreloadlinks() : array {
 		$logo = $this->getLogoData( $this->getConfig() );
 
 		$logosPerDppx = [];
@@ -175,12 +308,58 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * @param array &$styles Associative array, keys are strings (media queries),
 	 *   values are strings or arrays
 	 */
-	private function normalizeStyles( &$styles ) {
+	private function normalizeStyles( array &$styles ) : void {
 		foreach ( $styles as $key => $val ) {
 			if ( !is_array( $val ) ) {
 				$styles[$key] = [ $val ];
 			}
 		}
+	}
+
+	/**
+	 * Return an array of all available logos that a skin may use.
+	 * @since 1.35
+	 * @param Config $conf
+	 * @return array with the following keys:
+	 *  - 1x: a square logo (required)
+	 *  - 2x: a square logo for HD displays (optional)
+	 *  - wordmark: a rectangle logo (wordmark) for print media and skins which desire
+	 *      horizontal logo (optional)
+	 */
+	public static function getAvailableLogos( $conf ) : array {
+		$logos = $conf->get( 'Logos' );
+		if ( $logos === false ) {
+			// no logos were defined... this will either
+			// 1. Load from wgLogo and wgLogoHD
+			// 2. Trigger runtime exception if those are not defined.
+			$logos = [];
+		}
+
+		// If logos['1x'] is not defined, see if we can use wgLogo
+		if ( !isset( $logos[ '1x' ] ) ) {
+			$logo = $conf->get( 'Logo' );
+			if ( $logo ) {
+				$logos['1x'] = $logo;
+			}
+		}
+
+		try {
+			$logoHD = $conf->get( 'LogoHD' );
+			// make sure not false
+			if ( $logoHD ) {
+				// wfDeprecated( __METHOD__ . ' with $wgLogoHD set instead of $wgLogos', '1.35', false, 1 );
+				$logos += $logoHD;
+			}
+		} catch ( ConfigException $e ) {
+			// no backwards compatibility changes needed.
+		}
+
+		// check the configuration is valid
+		if ( !isset( $logos['1x'] ) ) {
+			throw new \RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
+		}
+		// return the modified logos!
+		return $logos;
 	}
 
 	/**
@@ -192,14 +371,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *  in which case variants other than "1x" are omitted.
 	 */
 	protected function getLogoData( Config $conf ) {
-		$logo = $conf->get( 'Logo' );
-		$logoHD = $conf->get( 'LogoHD' );
+		$logoHD = self::getAvailableLogos( $conf );
+		$logo = $logoHD['1x'];
 
 		$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
-
-		if ( !$logoHD ) {
-			return $logo1Url;
-		}
 
 		$logoUrls = [
 			'1x' => $logo1Url,
@@ -210,7 +385,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				$conf,
 				$logoHD['svg']
 			);
-		} else {
+		} elseif ( isset( $logoHD['1.5x'] ) || isset( $logoHD['2x'] ) ) {
 			// Only 1.5x and 2x are supported
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$logoUrls['1.5x'] = OutputPage::transformResourcePath(
@@ -224,6 +399,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					$logoHD['2x']
 				);
 			}
+		} else {
+			// Return a string rather than a one-element array, getLogoPreloadlinks depends on this
+			return $logo1Url;
 		}
 
 		return $logoUrls;
@@ -239,11 +417,32 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		return false;
 	}
 
+	/**
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$lessVars = parent::getLessVars( $context );
+		$logos = self::getAvailableLogos( $this->getConfig() );
+
+		if ( isset( $logos['wordmark'] ) ) {
+			$logo = $logos['wordmark'];
+			$lessVars[ 'logo-enabled' ] = true;
+			$lessVars[ 'logo-wordmark-url' ] = CSSMin::buildUrlValue( $logo['src'] );
+			$lessVars[ 'logo-wordmark-width' ] = intval( $logo['width'] );
+			$lessVars[ 'logo-wordmark-height' ] = intval( $logo['height'] );
+		} else {
+			$lessVars[ 'logo-enabled' ] = false;
+		}
+		return $lessVars;
+	}
+
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
-			'logo' => $this->getConfig()->get( 'Logo' ),
-			'logoHD' => $this->getConfig()->get( 'LogoHD' ),
+			'logos' => self::getAvailableLogos( $this->getConfig() ),
 		];
 		return $summary;
 	}

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Assert\PostconditionException;
+
 /**
  * Code to test the getFallbackFor, getFallbacksFor, and getFallbacksIncludingSiteLanguage methods
  * that have historically been static methods of the Language class. It can be used to test any
@@ -10,9 +12,11 @@ trait LanguageFallbackTestTrait {
 	 * @param array $options Valid keys:
 	 *   * expectedGets: How many times we expect to hit the localisation cache. (This can be
 	 *   ignored in integration tests -- it's enough to test in unit tests.)
+	 *   * fallbackMap: A map of language codes to fallback sequences to use.
 	 *   * siteLangCode
-	 * @return string|object Name of class or object with the three methods getFallbackFor,
-	 *   getFallbacksFor, and getFallbacksIncludingSiteLanguage.
+	 * @return string|object Name of class or object with the three methods getFirst, getAll, and
+	 *   getAllIncludingSiteLanguage (or getFallbackFor, getFallbacksFor, and
+	 *   getFallbacksIncludingSiteLanguage if callMethod() is suitably overridden).
 	 */
 	abstract protected function getCallee( array $options = [] );
 
@@ -27,14 +31,38 @@ trait LanguageFallbackTestTrait {
 	abstract protected function getStrictKey();
 
 	/**
+	 * @param int $expectedGets How many times it's expected that 'getItem' will be called
+	 * @param array $map Map language codes to fallback arrays to return
+	 * @return LocalisationCache
+	 */
+	protected function getMockLocalisationCache( $expectedGets, $map ) {
+		$mockLocCache = $this->createMock( LocalisationCache::class );
+		$mockLocCache->expects( $this->exactly( $expectedGets ) )->method( 'getItem' )
+			->with( $this->anything(),
+				$this->logicalOr( 'fallbackSequence', 'originalFallbackSequence' ) )
+			->will( $this->returnCallback( function ( $code, $key ) use ( $map ) {
+				if ( $key === 'originalFallbackSequence' || $code === 'en' ) {
+					return $map[$code];
+				}
+				$fallbacks = $map[$code];
+				if ( !$fallbacks || $fallbacks[count( $fallbacks ) - 1] !== 'en' ) {
+					$fallbacks[] = 'en';
+				}
+				return $fallbacks;
+			} ) );
+		$mockLocCache->expects( $this->never() )->method( $this->anythingBut( 'getItem' ) );
+		return $mockLocCache;
+	}
+
+	/**
 	 * Convenience/readability wrapper to call a method on a class or object.
 	 *
-	 * @param string|object As in return value of getCallee()
+	 * @param string|object $callee As in return value of getCallee()
 	 * @param string $method Name of method to call
 	 * @param mixed ...$params To pass to method
 	 * @return mixed Return value of method
 	 */
-	private function callMethod( $callee, $method, ...$params ) {
+	public function callMethod( $callee, $method, ...$params ) {
 		return [ $callee, $method ]( ...$params );
 	}
 
@@ -42,47 +70,47 @@ trait LanguageFallbackTestTrait {
 	 * @param string $code
 	 * @param array $expected
 	 * @param array $options
-	 * @dataProvider provideGetFallbacksFor
-	 * @covers ::getFallbackFor
+	 * @dataProvider provideGetAll
+	 * @covers MediaWiki\Languages\LanguageFallback::getFirst
 	 * @covers Language::getFallbackFor
 	 */
-	public function testGetFallbackFor( $code, array $expected, array $options = [] ) {
+	public function testGetFirst( $code, array $expected, array $options = [] ) {
 		$callee = $this->getCallee( $options );
 		// One behavior difference between the old static methods and the new instance methods:
 		// returning null instead of false.
 		$defaultExpected = is_object( $callee ) ? null : false;
 		$this->assertSame( $expected[0] ?? $defaultExpected,
-			$this->callMethod( $callee, 'getFallbackFor', $code ) );
+			$this->callMethod( $callee, 'getFirst', $code ) );
 	}
 
 	/**
 	 * @param string $code
 	 * @param array $expected
 	 * @param array $options
-	 * @dataProvider provideGetFallbacksFor
-	 * @covers ::getFallbacksFor
+	 * @dataProvider provideGetAll
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
 	 * @covers Language::getFallbacksFor
 	 */
-	public function testGetFallbacksFor( $code, array $expected, array $options = [] ) {
+	public function testGetAll( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getFallbacksFor', $code ) );
+			$this->callMethod( $this->getCallee( $options ), 'getAll', $code ) );
 	}
 
 	/**
 	 * @param string $code
 	 * @param array $expected
 	 * @param array $options
-	 * @dataProvider provideGetFallbacksFor
-	 * @covers ::getFallbacksFor
+	 * @dataProvider provideGetAll
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
 	 * @covers Language::getFallbacksFor
 	 */
-	public function testGetFallbacksFor_messages( $code, array $expected, array $options = [] ) {
+	public function testGetAll_messages( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getFallbacksFor',
+			$this->callMethod( $this->getCallee( $options ), 'getAll',
 				$code, $this->getMessagesKey() ) );
 	}
 
-	public static function provideGetFallbacksFor() {
+	public static function provideGetAll() {
 		return [
 			'en' => [ 'en', [], [ 'expectedGets' => 0 ] ],
 			'fr' => [ 'fr', [ 'en' ] ],
@@ -97,17 +125,17 @@ trait LanguageFallbackTestTrait {
 	 * @param string $code
 	 * @param array $expected
 	 * @param array $options
-	 * @dataProvider provideGetFallbacksFor_strict
-	 * @covers ::getFallbacksFor
+	 * @dataProvider provideGetAll_strict
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
 	 * @covers Language::getFallbacksFor
 	 */
-	public function testGetFallbacksFor_strict( $code, array $expected, array $options = [] ) {
+	public function testGetAll_strict( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getFallbacksFor',
+			$this->callMethod( $this->getCallee( $options ), 'getAll',
 				$code, $this->getStrictKey() ) );
 	}
 
-	public static function provideGetFallbacksFor_strict() {
+	public static function provideGetAll_strict() {
 		return [
 			'en' => [ 'en', [], [ 'expectedGets' => 0 ] ],
 			'fr' => [ 'fr', [] ],
@@ -119,21 +147,46 @@ trait LanguageFallbackTestTrait {
 	}
 
 	/**
-	 * @covers ::getFallbacksFor
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
 	 * @covers Language::getFallbacksFor
 	 */
-	public function testGetFallbacksFor_exception() {
-		$this->setExpectedException( MWException::class, 'Invalid fallback mode "7"' );
+	public function testGetAll_invalidMode() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid fallback mode "7"' );
 
 		$callee = $this->getCallee( [ 'expectedGets' => 0 ] );
 
 		// These should not throw, because of short-circuiting. If they do, it will fail the test,
 		// because we pass 5 and 6 instead of 7.
-		$this->callMethod( $callee, 'getFallbacksFor', 'en', 5 );
-		$this->callMethod( $callee, 'getFallbacksFor', '!!!', 6 );
+		$this->callMethod( $callee, 'getAll', 'en', 5 );
+		$this->callMethod( $callee, 'getAll', '!!!', 6 );
 
 		// This is the one that should throw.
-		$this->callMethod( $callee, 'getFallbacksFor', 'fr', 7 );
+		$this->callMethod( $callee, 'getAll', 'fr', 7 );
+	}
+
+	/**
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers Language::getFallbacksFor
+	 */
+	public function testGetAll_invalidFallback() {
+		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
+
+		$this->expectException( PostconditionException::class );
+		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
+		$this->callMethod( $callee, 'getAll', 'qqz' );
+	}
+
+	/**
+	 * @covers MediaWiki\Languages\LanguageFallback::getAll
+	 * @covers Language::getFallbacksFor
+	 */
+	public function testGetAll_invalidFallback_strict() {
+		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
+
+		$this->expectException( PostconditionException::class );
+		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
+		$this->callMethod( $callee, 'getAll', 'qqz', $this->getStrictKey() );
 	}
 
 	/**
@@ -141,23 +194,23 @@ trait LanguageFallbackTestTrait {
 	 * @param string $siteLangCode
 	 * @param array $expected
 	 * @param int $expectedGets
-	 * @dataProvider provideGetFallbacksIncludingSiteLanguage
-	 * @covers ::getFallbacksIncludingSiteLanguage
+	 * @dataProvider provideGetAllIncludingSiteLanguage
+	 * @covers MediaWiki\Languages\LanguageFallback::getAllIncludingSiteLanguage
 	 * @covers Language::getFallbacksIncludingSiteLanguage
 	 */
-	public function testGetFallbacksIncludingSiteLanguage(
+	public function testGetAllIncludingSiteLanguage(
 		$code, $siteLangCode, array $expected, $expectedGets = 1
 	) {
 		$callee = $this->getCallee(
 			[ 'siteLangCode' => $siteLangCode, 'expectedGets' => $expectedGets ] );
 		$this->assertSame( $expected,
-			$this->callMethod( $callee, 'getFallbacksIncludingSiteLanguage', $code ) );
+			$this->callMethod( $callee, 'getAllIncludingSiteLanguage', $code ) );
 
 		// Call again to make sure we don't call LocalisationCache again
-		$this->callMethod( $callee, 'getFallbacksIncludingSiteLanguage', $code );
+		$this->callMethod( $callee, 'getAllIncludingSiteLanguage', $code );
 	}
 
-	public static function provideGetFallbacksIncludingSiteLanguage() {
+	public static function provideGetAllIncludingSiteLanguage() {
 		return [
 			'en on en' => [ 'en', 'en', [ [], [ 'en' ] ], 0 ],
 			'fr on en' => [ 'fr', 'en', [ [ 'en' ], [] ] ],

@@ -56,7 +56,7 @@ class ApiLogout extends ApiBase {
 
 		// Give extensions to do something after user logout
 		$injected_html = '';
-		Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
+		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldName );
 	}
 
 	public function mustBePosted() {

@@ -2,7 +2,7 @@
 /**
  * Tests for Special:UncategorizedCategories
  */
-class SpecialUncategorizedCategoriesTest extends MediaWikiTestCase {
+class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTestGetQueryInfoData
 	 * @covers SpecialUncategorizedCategories::getQueryInfo

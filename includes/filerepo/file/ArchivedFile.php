@@ -22,10 +22,12 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Class representing a row of the 'filearchive' table
  *
+ * @stable to extend
  * @ingroup FileAbstraction
  */
 class ArchivedFile {
@@ -95,16 +97,17 @@ class ArchivedFile {
 	protected $title; # image title
 
 	/** @var bool */
-	private $exists;
+	protected $exists;
 
 	/**
+	 * @stable to call
 	 * @throws MWException
 	 * @param Title $title
 	 * @param int $id
 	 * @param string $key
 	 * @param string $sha1
 	 */
-	function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
+	public function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
@@ -149,6 +152,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
+	 * @stable to override
 	 * @throws MWException
 	 * @return bool|null True on success or null
 	 */
@@ -205,6 +209,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
+	 * @stable to override
 	 *
 	 * @param stdClass $row
 	 * @return ArchivedFile
@@ -220,6 +225,7 @@ class ArchivedFile {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new archivedfile object.
 	 * @since 1.31
+	 * @stable to override
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
@@ -255,6 +261,7 @@ class ArchivedFile {
 
 	/**
 	 * Load ArchivedFile object fields from a DB row.
+	 * @stable to override
 	 *
 	 * @param stdClass $row Object database row
 	 * @since 1.21
@@ -422,7 +429,7 @@ class ArchivedFile {
 	 * Get a MediaHandler instance for this file
 	 * @return MediaHandler
 	 */
-	function getHandler() {
+	private function getHandler() {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
@@ -433,9 +440,10 @@ class ArchivedFile {
 	/**
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
-	 * @return bool|int
+	 * @stable to override
+	 * @return int|false
 	 */
-	function pageCount() {
+	public function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
 			// @FIXME: callers expect File objects
 			// @phan-suppress-next-line PhanTypeMismatchArgument
@@ -478,7 +486,7 @@ class ArchivedFile {
 	 * @return string
 	 * @since 1.21
 	 */
-	function getSha1() {
+	public function getSha1() {
 		$this->load();
 
 		return $this->sha1;
@@ -578,13 +586,24 @@ class ArchivedFile {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
 	 * @param int $field
-	 * @param null|User $user User object to check, or null to use $wgUser
+	 * @param null|User $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
 		$this->load();
-
 		$title = $this->getTitle();
-		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ?: null );
+
+		if ( !$user ) {
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		return RevisionRecord::userCanBitfield(
+			$this->deleted,
+			$field,
+			$user,
+			$title ?: null
+		);
 	}
 }

@@ -27,6 +27,7 @@ use RuntimeException;
 /**
  * Exception representing a failure to look up a revision.
  *
+ * @newable
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionAccessException
  */

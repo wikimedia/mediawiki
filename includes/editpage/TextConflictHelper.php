@@ -28,8 +28,12 @@ use Content;
 use ContentHandler;
 use Html;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MediaWikiServices;
+use MWUnknownContentModelException;
 use OutputPage;
 use Title;
+use User;
 
 /**
  * Helper for displaying edit conflicts in text content
@@ -47,12 +51,12 @@ class TextConflictHelper {
 	/**
 	 * @var null|string
 	 */
-	public $contentModel = null;
+	public $contentModel;
 
 	/**
 	 * @var null|string
 	 */
-	public $contentFormat = null;
+	public $contentFormat;
 
 	/**
 	 * @var OutputPage
@@ -80,20 +84,37 @@ class TextConflictHelper {
 	protected $storedversion = '';
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * @param Title $title
 	 * @param OutputPage $out
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param string $submitLabel
+	 * @param IContentHandlerFactory|null $contentHandlerFactory Required param with legacy support
+	 *
+	 * @throws MWUnknownContentModelException
 	 */
 	public function __construct( Title $title, OutputPage $out, IBufferingStatsdDataFactory $stats,
-		$submitLabel
+		$submitLabel, ?IContentHandlerFactory $contentHandlerFactory = null
 	) {
 		$this->title = $title;
 		$this->out = $out;
 		$this->stats = $stats;
 		$this->submitLabel = $submitLabel;
 		$this->contentModel = $title->getContentModel();
-		$this->contentFormat = ContentHandler::getForModelID( $this->contentModel )->getDefaultFormat();
+
+		if ( !$contentHandlerFactory ) {
+			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
+			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		}
+		$this->contentHandlerFactory = $contentHandlerFactory;
+
+		$this->contentFormat = $this->contentHandlerFactory
+			->getContentHandler( $this->contentModel )
+			->getDefaultFormat();
 	}
 
 	/**
@@ -121,8 +142,9 @@ class TextConflictHelper {
 
 	/**
 	 * Record a user encountering an edit conflict
+	 * @param User|null $user
 	 */
-	public function incrementConflictStats() {
+	public function incrementConflictStats( User $user = null ) {
 		$this->stats->increment( 'edit.failures.conflict' );
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
@@ -133,12 +155,16 @@ class TextConflictHelper {
 				'edit.failures.conflict.byNamespaceId.' . $this->title->getNamespace()
 			);
 		}
+		if ( $user ) {
+			$this->incrementStatsByUserEdits( $user->getEditCount(), 'edit.failures.conflict' );
+		}
 	}
 
 	/**
 	 * Record when a user has resolved an edit conflict
+	 * @param User|null $user
 	 */
-	public function incrementResolvedStats() {
+	public function incrementResolvedStats( User $user = null ) {
 		$this->stats->increment( 'edit.failures.conflict.resolved' );
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
@@ -149,6 +175,31 @@ class TextConflictHelper {
 				'edit.failures.conflict.resolved.byNamespaceId.' . $this->title->getNamespace()
 			);
 		}
+		if ( $user ) {
+			$this->incrementStatsByUserEdits(
+				$user->getEditCount(),
+				'edit.failures.conflict.resolved'
+			);
+		}
+	}
+
+	/**
+	 * @param int|null $userEdits
+	 * @param string $keyPrefixBase
+	 */
+	protected function incrementStatsByUserEdits( $userEdits, $keyPrefixBase ) {
+		if ( $userEdits === null ) {
+			$userBucket = 'anon';
+		} elseif ( $userEdits > 200 ) {
+			$userBucket = 'over200';
+		} elseif ( $userEdits > 100 ) {
+			$userBucket = 'over100';
+		} elseif ( $userEdits > 10 ) {
+			$userBucket = 'over10';
+		} else {
+			$userBucket = 'under11';
+		}
+		$this->stats->increment( $keyPrefixBase . '.byUserEdits.' . $userBucket );
 	}
 
 	/**
@@ -166,12 +217,16 @@ class TextConflictHelper {
 	 * HTML to build the textbox1 on edit conflicts
 	 *
 	 * @param array $customAttribs
+	 * @return string HTML
 	 */
 	public function getEditConflictMainTextBox( array $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
 		$classes = $builder->getTextboxProtectionCSSClasses( $this->title );
 
-		$attribs = [ 'tabindex' => 1 ];
+		$attribs = [
+			'aria-label' => $this->out->msg( 'edit-textarea-aria-label' )->text(),
+			'tabindex' => 1,
+		];
 		$attribs += $customAttribs;
 
 		$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
@@ -183,8 +238,10 @@ class TextConflictHelper {
 			$this->title
 		);
 
-		$this->out->addHTML(
-			Html::textarea( 'wpTextbox1', $builder->addNewLineAtEnd( $this->storedversion ), $attribs )
+		return Html::textarea(
+			'wpTextbox1',
+			$builder->addNewLineAtEnd( $this->storedversion ),
+			$attribs
 		);
 	}
 
@@ -217,7 +274,7 @@ class TextConflictHelper {
 
 		$yourContent = $this->toEditContent( $this->yourtext );
 		$storedContent = $this->toEditContent( $this->storedversion );
-		$handler = ContentHandler::getForModelID( $this->contentModel );
+		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 		$diffEngine = $handler->createDifferenceEngine( $this->out );
 
 		$diffEngine->setContent( $yourContent, $storedContent );

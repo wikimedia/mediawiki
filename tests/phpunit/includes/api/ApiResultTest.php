@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers ApiResult
  * @group API
  */
-class ApiResultTest extends MediaWikiTestCase {
+class ApiResultTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ApiResult
@@ -85,9 +87,7 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$arr = [];
 		$title = Title::newFromText( "MediaWiki:Foobar" );
-		$obj = new stdClass;
-		$obj->foo = 1;
-		$obj->bar = 2;
+		$obj = (object)[ 'foo' => 1, 'bar' => 2 ];
 		ApiResult::setValue( $arr, 'title', $title );
 		ApiResult::setValue( $arr, 'obj', $obj );
 		$this->assertSame( [
@@ -219,8 +219,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			1 => "\xc3\xa1",
 		], $arr );
 
-		$obj = new stdClass;
-		$obj->{'1'} = 'one';
+		$obj = (object)[ 1 => 'one' ];
 		$arr = [];
 		ApiResult::setValue( $arr, 'foo', $obj );
 		$this->assertSame( [
@@ -335,9 +334,7 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$result->reset();
 		$title = Title::newFromText( "MediaWiki:Foobar" );
-		$obj = new stdClass;
-		$obj->foo = 1;
-		$obj->bar = 2;
+		$obj = (object)[ 'foo' => 1, 'bar' => 2 ];
 		$result->addValue( null, 'title', $title );
 		$result->addValue( null, 'obj', $obj );
 		$this->assertSame( [
@@ -477,7 +474,9 @@ class ApiResultTest extends MediaWikiTestCase {
 		$this->assertSame( 15, $result->getSize() );
 
 		$result = new ApiResult( 10 );
-		$formatter = new ApiErrorFormatter( $result, Language::factory( 'en' ), 'none', false );
+		$formatter = new ApiErrorFormatter( $result,
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			'none', false );
 		$result->setErrorFormatter( $formatter );
 		$this->assertFalse( $result->addValue( null, 'foo', '12345678901' ) );
 		$this->assertTrue( $result->addValue( null, 'foo', '12345678901', ApiResult::NO_SIZE_CHECK ) );
@@ -522,8 +521,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		], $result->getResultData() );
 
 		$result = new ApiResult( 8388608 );
-		$obj = new stdClass;
-		$obj->{'1'} = 'one';
+		$obj = (object)[ 1 => 'one' ];
 		$arr = [];
 		$result->addValue( $arr, 'foo', $obj );
 		$this->assertSame( [

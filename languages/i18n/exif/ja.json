@@ -11,6 +11,7 @@
 			"Shirayuki",
 			"Suisui",
 			"Whym",
+			"Yusuke1109",
 			"ネイ"
 		]
 	},
@@ -303,6 +304,12 @@
 	"exif-scenetype-1": "直接撮影された画像",
 	"exif-customrendered-0": "通常処理",
 	"exif-customrendered-1": "特殊処理",
+	"exif-customrendered-2": "HDR（オリジナルが保存されていない）",
+	"exif-customrendered-3": "HDR（オリジナルが保存されている）",
+	"exif-customrendered-4": "オリジナル（HDR用）",
+	"exif-customrendered-6": "パノラマ",
+	"exif-customrendered-7": "ポートレートHDR",
+	"exif-customrendered-8": "ポートレート",
 	"exif-exposuremode-0": "露出自動",
 	"exif-exposuremode-1": "露出マニュアル",
 	"exif-exposuremode-2": "オートブラケット",

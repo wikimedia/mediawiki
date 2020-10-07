@@ -95,7 +95,7 @@ class ExternalUserNames {
 	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
-		if ( !User::isUsableName( $name ) ) {
+		if ( User::getCanonicalName( $name, 'usable' ) === false ) {
 			return $name;
 		}
 
@@ -107,7 +107,7 @@ class ExternalUserNames {
 			// See if any extension wants to create it.
 			if ( !isset( $this->triedCreations[$name] ) ) {
 				$this->triedCreations[$name] = true;
-				if ( !Hooks::run( 'ImportHandleUnknownUser', [ $name ] ) &&
+				if ( !Hooks::runner()->onImportHandleUnknownUser( $name ) &&
 					User::idFromName( $name, User::READ_LATEST )
 				) {
 					return $name;

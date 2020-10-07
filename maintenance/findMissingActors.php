@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -31,6 +33,16 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class FindMissingActors extends Maintenance {
+
+	/**
+	 * @var UserFactory|null
+	 */
+	private $userFactory;
+
+	/**
+	 * @var UserNameUtils|null
+	 */
+	private $userNameUtils;
 
 	/**
 	 * @var LoadBalancer|null
@@ -73,18 +85,16 @@ class FindMissingActors extends Maintenance {
 		$this->setBatchSize( 1000 );
 	}
 
-	/**
-	 * The $userFactory and $userNameUtils only exist to prevent the function signature having
-	 * a breaking change in MediaWiki 1.35.0 as this file has been backported to 1.34.3.
-	 */
 	public function initializeServices(
-		$userFactory = null,
-		$userNameUtils = null,
+		?UserFactory $userFactory = null,
+		?UserNameUtils $userNameUtils = null,
 		?LoadBalancer $loadBalancer = null,
 		?LBFactory $lbFactory = null
 	) {
 		$services = MediaWikiServices::getInstance();
 
+		$this->userFactory = $userFactory ?? $this->userFactory ?? $services->getUserFactory();
+		$this->userNameUtils = $userNameUtils ?? $this->userNameUtils ?? $services->getUserNameUtils();
 		$this->loadBalancer = $loadBalancer ?? $this->loadBalancer ?? $services->getDBLoadBalancer();
 		$this->lbFactory = $lbFactory ?? $this->lbFactory ?? $services->getDBLoadBalancerFactory();
 	}
@@ -105,19 +115,19 @@ class FindMissingActors extends Maintenance {
 			return null;
 		}
 
-		$user = User::newFromName( $name );
+		$user = $this->userFactory->newFromName( $name );
 
 		if ( !$user ) {
 			$this->fatalError( "Not a valid user name: '$user'" );
 		}
 
-		$name = User::getCanonicalName( $name );
+		$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
 
 		if ( $user->isRegistered() ) {
 			$this->output( "Using existing user: '$user'\n" );
-		} elseif ( !User::isValidUserName( $name ) ) {
+		} elseif ( !$this->userNameUtils->isValid( $name ) ) {
 			$this->fatalError( "Not a valid user name: '$name'" );
-		} elseif ( !User::isUsableName( $name ) ) {
+		} elseif ( !$this->userNameUtils->isUsable( $name ) ) {
 			$this->output( "Using system user: '$name'\n" );
 		} else {
 			$this->fatalError( "Unknown user: '$name'" );

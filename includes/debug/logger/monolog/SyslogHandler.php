@@ -48,12 +48,12 @@ use Monolog\Logger;
 class SyslogHandler extends SyslogUdpHandler {
 
 	/**
-	 * @var string $appname
+	 * @var string
 	 */
 	private $appname;
 
 	/**
-	 * @var string $hostname
+	 * @var string
 	 */
 	private $hostname;
 

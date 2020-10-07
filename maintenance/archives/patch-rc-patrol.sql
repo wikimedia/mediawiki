@@ -6,4 +6,3 @@
 
 ALTER TABLE /*$wgDBprefix*/recentchanges
 	ADD COLUMN rc_patrolled tinyint(3) unsigned NOT NULL default '0';
-

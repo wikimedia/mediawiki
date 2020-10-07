@@ -11,7 +11,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	/** @var HttpRequestFactory */
 	private $factory;
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->oldHttpEngine = Http::$httpEngine;
 		Http::$httpEngine = static::$httpEngine;
@@ -31,12 +31,10 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		Http::$httpEngine = $this->oldHttpEngine;
 	}
-
-	// --------------------
 
 	public function testIsRedirect() {
 		$request = $this->factory->create( 'http://httpbin.org/get' );
@@ -179,7 +177,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$data = json_decode( $data, true );
-		$this->assertInternalType( 'array', $data );
+		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'origin', $data );
 	}
 
@@ -206,8 +204,6 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( MWHttpRequest::class, $request );
 	}
 
-	// --------------------
-
 	/**
 	 * Verifies that the request was successful, returned valid JSON and the given field of that
 	 * JSON data is as expected.
@@ -218,7 +214,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	protected function assertResponseFieldValue( $key, $expectedValue, MWHttpRequest $response ) {
 		$this->assertSame( 200, $response->getStatus(), 'response status is not 200' );
 		$data = json_decode( $response->getContent(), true );
-		$this->assertInternalType( 'array', $data, 'response is not JSON' );
+		$this->assertIsArray( $data, 'response is not JSON' );
 		$keyPath = '';
 		foreach ( (array)$key as $keySegment ) {
 			$keyPath .= ( $keyPath ? '.' : '' ) . $keySegment;

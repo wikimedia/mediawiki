@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @file
  * @ingroup Database
  *
+ * @stable to extend
  * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
@@ -39,6 +40,8 @@ abstract class DBAccessBase implements IDBAccessObject {
 	protected $dbDomain = false;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param string|bool $dbDomain The target wiki's DB domain
 	 */
 	public function __construct( $dbDomain = false ) {

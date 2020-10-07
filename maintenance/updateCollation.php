@@ -36,8 +36,8 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup Maintenance
  */
 class UpdateCollation extends Maintenance {
-	const BATCH_SIZE = 100; // Number of rows to process in one batch
-	const SYNC_INTERVAL = 5; // Wait for replica DBs after this many batches
+	private const BATCH_SIZE = 100; // Number of rows to process in one batch
+	private const SYNC_INTERVAL = 5; // Wait for replica DBs after this many batches
 
 	public $sizeHistogram = [];
 
@@ -136,7 +136,7 @@ TEXT
 			} else {
 				$this->output( "Fixing collation for $count rows.\n" );
 			}
-			wfWaitForSlaves();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		}
 		$count = 0;
 		$batchConds = [];
@@ -242,7 +242,7 @@ TEXT
 	 * @param IDatabase $dbw
 	 * @return string
 	 */
-	function getBatchCondition( $row, $dbw ) {
+	private function getBatchCondition( $row, $dbw ) {
 		if ( $this->hasOption( 'previous-collation' ) ) {
 			$fields = [ 'cl_to', 'cl_type', 'cl_from' ];
 		} else {
@@ -274,7 +274,7 @@ TEXT
 		return $cond;
 	}
 
-	function updateSortKeySizeHistogram( $key ) {
+	private function updateSortKeySizeHistogram( $key ) {
 		$length = strlen( $key );
 		if ( !isset( $this->sizeHistogram[$length] ) ) {
 			$this->sizeHistogram[$length] = 0;
@@ -282,7 +282,7 @@ TEXT
 		$this->sizeHistogram[$length]++;
 	}
 
-	function showSortKeySizeHistogram() {
+	private function showSortKeySizeHistogram() {
 		$maxLength = max( array_keys( $this->sizeHistogram ) );
 		if ( $maxLength == 0 ) {
 			return;

@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 
 /**
  * @group API
@@ -43,15 +43,15 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$subset = [
 			'id' => $block->getId(),
 			'user' => $badActor->getName(),
 			'expiry' => $block->getExpiry(),
 		];
-		$this->assertArraySubset( $subset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testExecuteSitewide() {
@@ -72,8 +72,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$subset = [
 			'id' => $block->getId(),
@@ -81,7 +81,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'expiry' => $block->getExpiry(),
 			'partial' => !$block->isSitewide(),
 		];
-		$this->assertArraySubset( $subset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testExecuteRestrictions() {
@@ -135,13 +135,13 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$flagSubset = array_merge( $subset, [
 			'partial' => !$block->isSitewide(),
 		] );
-		$this->assertArraySubset( $flagSubset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $flagSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'restrictions', $data['query']['blocks'][0] );
 
 		// Test requesting the restrictions.
@@ -150,8 +150,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'list' => 'blocks',
 			'bkprop' => 'id|user|expiry|restrictions'
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$restrictionsSubset = array_merge( $subset, [
 			'restrictions' => [
@@ -167,7 +167,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				],
 			],
 		] );
-		$this->assertArraySubset( $restrictionsSubset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $restrictionsSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'partial', $data['query']['blocks'][0] );
 	}
 }

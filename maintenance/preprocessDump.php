@@ -26,7 +26,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 
 require_once __DIR__ . '/dumpIterator.php';
 
@@ -53,7 +52,7 @@ class PreprocessDump extends DumpIterator {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'cache', 'Use and populate the preprocessor cache.', false, false );
-		$this->addOption( 'preprocessor', 'Preprocessor to use.', false, false );
+		$this->addOption( 'preprocessor', 'This option is ignored', false, false );
 	}
 
 	public function getDbType() {
@@ -61,31 +60,23 @@ class PreprocessDump extends DumpIterator {
 	}
 
 	public function checkOptions() {
-		global $wgParserConf, $wgPreprocessorCacheThreshold;
+		global $wgPreprocessorCacheThreshold;
 
 		if ( !$this->hasOption( 'cache' ) ) {
 			$wgPreprocessorCacheThreshold = false;
 		}
 
-		if ( $this->hasOption( 'preprocessor' ) ) {
-			$name = $this->getOption( 'preprocessor' );
-		} elseif ( isset( $wgParserConf['preprocessorClass'] ) ) {
-			$name = $wgParserConf['preprocessorClass'];
-		} else {
-			$name = Preprocessor_DOM::class;
-		}
-
 		$parser = MediaWikiServices::getInstance()->getParser();
 		$parser->firstCallInit();
-		$this->mPreprocessor = new $name( $parser );
+		$this->mPreprocessor = new Preprocessor_Hash( $parser );
 	}
 
 	/**
 	 * Callback function for each revision, preprocessToObj()
-	 * @param Revision $rev
+	 * @param WikiRevision $rev
 	 */
-	public function processRevision( $rev ) {
-		$content = $rev->getContent( RevisionRecord::RAW );
+	public function processRevision( WikiRevision $rev ) {
+		$content = $rev->getContent();
 
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return;

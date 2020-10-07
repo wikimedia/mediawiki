@@ -29,85 +29,85 @@ use MediaWiki\Revision\RevisionRecord;
  * @since 1.25
  */
 class ChangeTagsLogItem extends RevisionItemBase {
-    public function getIdField() {
-        return 'log_id';
-    }
+	public function getIdField() {
+		return 'log_id';
+	}
 
-    public function getTimestampField() {
-        return 'log_timestamp';
-    }
+	public function getTimestampField() {
+		return 'log_timestamp';
+	}
 
-    public function getAuthorIdField() {
-        return 'log_user';
-    }
+	public function getAuthorIdField() {
+		return 'log_user';
+	}
 
-    public function getAuthorNameField() {
-        return 'log_user_text';
-    }
+	public function getAuthorNameField() {
+		return 'log_user_text';
+	}
 
-    public function getAuthorActorField() {
-        return 'log_actor';
-    }
+	public function getAuthorActorField() {
+		return 'log_actor';
+	}
 
-    public function canView() {
-        return LogEventsList::userCan(
-            $this->row, RevisionRecord::SUPPRESSED_ALL, $this->list->getUser()
-        );
-    }
+	public function canView() {
+		return LogEventsList::userCan(
+			$this->row, RevisionRecord::SUPPRESSED_ALL, $this->list->getUser()
+		);
+	}
 
-    public function canViewContent() {
-        return true; // none
-    }
+	public function canViewContent() {
+		return true; // none
+	}
 
-    /**
-     * @return string Comma-separated list of tags
-     */
-    public function getTags() {
-        return $this->row->ts_tags;
-    }
+	/**
+	 * @return string Comma-separated list of tags
+	 */
+	public function getTags() {
+		return $this->row->ts_tags;
+	}
 
-    /**
-     * @return string A HTML <li> element representing this revision, showing
-     * change tags and everything
-     */
-    public function getHTML() {
-        $date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
-            $this->row->log_timestamp, $this->list->getUser() ) );
-        $title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
-        $formatter = LogFormatter::newFromRow( $this->row );
-        $formatter->setContext( $this->list->getContext() );
-        $formatter->setAudience( LogFormatter::FOR_THIS_USER );
+	/**
+	 * @return string A HTML <li> element representing this revision, showing
+	 * change tags and everything
+	 */
+	public function getHTML() {
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->row->log_timestamp, $this->list->getUser() ) );
+		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
+		$formatter = LogFormatter::newFromRow( $this->row );
+		$formatter->setContext( $this->list->getContext() );
+		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
-        // Log link for this page
-        $loglink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-            SpecialPage::getTitleFor( 'Log' ),
-            $this->list->msg( 'log' )->text(),
-            [],
-            [ 'page' => $title->getPrefixedText() ]
-        );
-        $loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
-        // User links and action text
-        $action = $formatter->getActionText();
+		// Log link for this page
+		$loglink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+			SpecialPage::getTitleFor( 'Log' ),
+			$this->list->msg( 'log' )->text(),
+			[],
+			[ 'page' => $title->getPrefixedText() ]
+		);
+		$loglink = $this->list->msg( 'parentheses' )->rawParams( $loglink )->escaped();
+		// User links and action text
+		$action = $formatter->getActionText();
 
-        $comment = $this->list->getLanguage()->getDirMark() .
-            $formatter->getComment();
+		$comment = $this->list->getLanguage()->getDirMark() .
+			$formatter->getComment();
 
-        if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
-            $comment = '<span class="history-deleted">' . $comment . '</span>';
-        }
+		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
+			$comment = '<span class="history-deleted">' . $comment . '</span>';
+		}
 
-        $content = "$loglink $date $action $comment";
-        $attribs = [];
-        $tags = $this->getTags();
-        if ( $tags ) {
-            list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
-                $tags,
-                'edittags',
-                $this->list->getContext()
-            );
-            $content .= " $tagSummary";
-            $attribs['class'] = implode( ' ', $classes );
-        }
-        return Xml::tags( 'li', $attribs, $content );
-    }
+		$content = "$loglink $date $action $comment";
+		$attribs = [];
+		$tags = $this->getTags();
+		if ( $tags ) {
+			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+				$tags,
+				'edittags',
+				$this->list->getContext()
+			);
+			$content .= " $tagSummary";
+			$attribs['class'] = implode( ' ', $classes );
+		}
+		return Xml::tags( 'li', $attribs, $content );
+	}
 }

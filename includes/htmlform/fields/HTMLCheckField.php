@@ -2,8 +2,15 @@
 
 /**
  * A checkbox field
+ *
+ * @stable to extend
  */
 class HTMLCheckField extends HTMLFormField {
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputHTML( $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
@@ -43,6 +50,7 @@ class HTMLCheckField extends HTMLFormField {
 
 	/**
 	 * Get the OOUI version of this field.
+	 * @stable to override
 	 * @since 1.26
 	 * @param string $value
 	 * @return OOUI\CheckboxInputWidget The checkbox widget.
@@ -77,6 +85,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * ...unless OOUI is being used, in which case we actually return
 	 * the label here.
 	 *
+	 * @stable to override
 	 * @return string
 	 */
 	public function getLabel() {
@@ -94,6 +103,7 @@ class HTMLCheckField extends HTMLFormField {
 
 	/**
 	 * Get label alignment when generating field for OOUI.
+	 * @stable to override
 	 * @return string 'left', 'right', 'top' or 'inline'
 	 */
 	protected function getLabelAlignOOUI() {
@@ -102,6 +112,7 @@ class HTMLCheckField extends HTMLFormField {
 
 	/**
 	 * checkboxes don't need a label.
+	 * @stable to override
 	 * @return bool
 	 */
 	protected function needsLabel() {
@@ -109,6 +120,7 @@ class HTMLCheckField extends HTMLFormField {
 	}
 
 	/**
+	 * @stable to override
 	 * @param WebRequest $request
 	 *
 	 * @return bool

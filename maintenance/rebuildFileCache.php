@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that builds file cache for content pages.
+ * Maintenance script that builds the file cache.
  *
  * @ingroup Maintenance
  */
@@ -35,10 +35,11 @@ class RebuildFileCache extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Build file cache for content pages' );
+		$this->addDescription( 'Build the file cache' );
 		$this->addOption( 'start', 'Page_id to start from', false, true );
 		$this->addOption( 'end', 'Page_id to end on', false, true );
 		$this->addOption( 'overwrite', 'Refresh page cache' );
+		$this->addOption( 'all', 'Build the file cache for pages in all namespaces, not just content pages' );
 		$this->setBatchSize( 100 );
 	}
 
@@ -48,7 +49,7 @@ class RebuildFileCache extends Maintenance {
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
 		$wgUseFileCache = false;
-		//  Avoid DB writes (like enotif/counters)
+		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
 
@@ -75,7 +76,7 @@ class RebuildFileCache extends Maintenance {
 		}
 		$end = intval( $end );
 
-		$this->output( "Building content page file cache from page {$start}!\n" );
+		$this->output( "Building page file cache from page_id {$start}!\n" );
 
 		$dbr = $this->getDB( DB_REPLICA );
 		$batchSize = $this->getBatchSize();
@@ -88,6 +89,14 @@ class RebuildFileCache extends Maintenance {
 			: $dbr->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
 		if ( !$start ) {
 			$this->fatalError( "Nothing to do." );
+		}
+
+		$where = [];
+		if ( !$this->getOption( 'all' ) ) {
+			// If 'all' isn't passed as an option, just fall back to previous behaviour
+			// of using content namespaces
+			$where['page_namespace'] =
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
 		}
 
 		// Mock request (hack, no real client)
@@ -104,9 +113,7 @@ class RebuildFileCache extends Maintenance {
 			// Get the pages
 			$res = $dbr->select( 'page',
 				[ 'page_namespace', 'page_title', 'page_id' ],
-				[ 'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getContentNamespaces(),
-					"page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
+				$where + [ "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__,
 				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]
 			);

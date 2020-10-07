@@ -1,8 +1,8 @@
 <?php
 
-class DiffHistoryBlobTest extends MediaWikiTestCase {
+class DiffHistoryBlobTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->checkPHPExtension( 'hash' );

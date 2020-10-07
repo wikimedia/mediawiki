@@ -24,15 +24,15 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special:Listredirects - Lists all the redirects on the wiki.
  * @ingroup SpecialPage
  */
 class SpecialListRedirects extends QueryPage {
-	function __construct( $name = 'Listredirects' ) {
+	public function __construct( $name = 'Listredirects' ) {
 		parent::__construct( $name );
 	}
 
@@ -40,11 +40,11 @@ class SpecialListRedirects extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -67,7 +67,7 @@ class SpecialListRedirects extends QueryPage {
 		];
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'p1.page_namespace', 'p1.page_title' ];
 	}
 
@@ -77,7 +77,7 @@ class SpecialListRedirects extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
 			return;
 		}
@@ -119,7 +119,7 @@ class SpecialListRedirects extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );

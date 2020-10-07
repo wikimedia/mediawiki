@@ -66,7 +66,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	 * Main execution point
 	 * @param string|null $par
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->getOutput()->disallowUserJs();
 		$this->requireLogin();
 		$this->addHelpLink( 'Manual:Bot_passwords' );

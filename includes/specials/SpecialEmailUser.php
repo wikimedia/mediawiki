@@ -32,7 +32,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	protected $mTarget;
 
 	/**
-	 * @var User|string $mTargetObj
+	 * @var User|string
 	 */
 	protected $mTargetObj;
 
@@ -132,7 +132,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			case 'badaccess':
 				throw new PermissionsError( 'sendemail' );
 			case 'blockedemailuser':
-				throw $this->getBlockedEmailError();
+				throw new UserBlockedError( $this->getUser()->getBlock() );
 			case 'actionthrottledtext':
 				throw new ThrottledError;
 			case 'mailnologin':
@@ -171,7 +171,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	public static function getTarget( $target, User $sender ) {
 		if ( $target == '' ) {
-			wfDebug( "Target is empty.\n" );
+			wfDebug( "Target is empty." );
 
 			return 'notarget';
 		}
@@ -192,36 +192,36 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	public static function validateTarget( $target, User $sender ) {
 		if ( !$target instanceof User || !$target->getId() ) {
-			wfDebug( "Target is invalid user.\n" );
+			wfDebug( "Target is invalid user." );
 
 			return 'notarget';
 		}
 
 		if ( !$target->isEmailConfirmed() ) {
-			wfDebug( "User has no valid email.\n" );
+			wfDebug( "User has no valid email." );
 
 			return 'noemail';
 		}
 
 		if ( !$target->canReceiveEmail() ) {
-			wfDebug( "User does not allow user emails.\n" );
+			wfDebug( "User does not allow user emails." );
 
 			return 'nowikiemail';
 		}
 
 		if ( !$target->getOption( 'email-allow-new-users' ) && $sender->isNewbie() ) {
-			wfDebug( "User does not allow user emails from new users.\n" );
+			wfDebug( "User does not allow user emails from new users." );
 
 			return 'nowikiemail';
 		}
 
-		$blacklist = $target->getOption( 'email-blacklist', '' );
-		if ( $blacklist ) {
-			$blacklist = MultiUsernameFilter::splitIds( $blacklist );
+		$muteList = $target->getOption( 'email-blacklist', '' );
+		if ( $muteList ) {
+			$muteList = MultiUsernameFilter::splitIds( $muteList );
 			$lookup = CentralIdLookup::factory();
 			$senderId = $lookup->centralIdFromLocalUser( $sender );
-			if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {
-				wfDebug( "User does not allow user emails from this user.\n" );
+			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
+				wfDebug( "User does not allow user emails from this user." );
 
 				return 'nowikiemail';
 			}
@@ -261,7 +261,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
-			wfDebug( "User is blocked from sending e-mail.\n" );
+			wfDebug( "User is blocked from sending e-mail." );
 
 			return "blockedemailuser";
 		}
@@ -269,15 +269,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// Check the ping limiter without incrementing it - we'll check it
 		// again later and increment it on a successful send
 		if ( $user->pingLimiter( 'emailuser', 0 ) ) {
-			wfDebug( "Ping limiter triggered.\n" );
+			wfDebug( "Ping limiter triggered." );
 
 			return 'actionthrottledtext';
 		}
 
 		$hookErr = false;
 
-		Hooks::run( 'UserCanSendEmail', [ &$user, &$hookErr ] );
-		Hooks::run( 'EmailUserPermissionsErrors', [ $user, $editToken, &$hookErr ] );
+		Hooks::runner()->onUserCanSendEmail( $user, $hookErr );
+		Hooks::runner()->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 
 		if ( $hookErr ) {
 			return $hookErr;
@@ -296,6 +296,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'Target' => [
 				'type' => 'user',
 				'exists' => true,
+				'required' => true,
 				'label' => $this->msg( 'emailusername' )->text(),
 				'id' => 'emailusertarget',
 				'autofocus' => true,
@@ -304,7 +305,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		], $this->getContext() );
 
 		$htmlForm
-			->setMethod( 'post' )
 			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
 			->setFormIdentifier( 'userForm' )
 			->setId( 'askusername' )
@@ -336,7 +336,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->setWrapperLegendMsg( 'email-legend' )
 			->loadData();
 
-		if ( !Hooks::run( 'EmailUserForm', [ &$htmlForm ] ) ) {
+		if ( !$this->getHookRunner()->onEmailUserForm( $htmlForm ) ) {
 			return false;
 		}
 
@@ -393,7 +393,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		$error = false;
-		if ( !Hooks::run( 'EmailUser', [ &$to, &$from, &$subject, &$text, &$error ] ) ) {
+		if ( !Hooks::runner()->onEmailUser( $to, $from, $subject, $text, $error ) ) {
 			if ( $error instanceof Status ) {
 				return $error;
 			} elseif ( $error === false || $error === '' || $error === [] ) {
@@ -414,7 +414,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				// Ugh. Either a raw HTML string, or something that's supposed
 				// to be treated like one.
 				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
-				wfDeprecated( "EmailUser hook returning a $type as \$error", '1.29' );
+				wfDeprecatedMsg( "An EmailUser hook returned a $type as \$error, " .
+					"this is deprecated since MediaWiki 1.29",
+					'1.29', false, false );
 				return Status::newFatal( new ApiRawMessage(
 					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
 				) );
@@ -470,7 +472,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					$target->getName(), $subject )->text();
 				$ccText = $text;
 
-				Hooks::run( 'EmailUserCC', [ &$ccTo, &$ccFrom, &$ccSubject, &$ccText ] );
+				Hooks::runner()->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
 
 				if ( $config->get( 'UserEmailUseReplyTo' ) ) {
 					$mailFrom = new MailAddress(
@@ -490,7 +492,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$status->merge( $ccStatus );
 			}
 
-			Hooks::run( 'EmailUserComplete', [ $to, $from, $subject, $text ] );
+			Hooks::runner()->onEmailUserComplete( $to, $from, $subject, $text );
 
 			return $status;
 		}
@@ -516,18 +518,5 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
-	}
-
-	/**
-	 * Builds an error message based on the block params
-	 *
-	 * @return ErrorPageError
-	 */
-	private function getBlockedEmailError() {
-		$block = $this->getUser()->mBlock;
-		$params = $block->getBlockErrorParams( $this->getContext() );
-
-		$msg = $block->isSitewide() ? 'blockedtext' : 'blocked-email-user';
-		return new ErrorPageError( 'blockedtitle', $msg, $params );
 	}
 }

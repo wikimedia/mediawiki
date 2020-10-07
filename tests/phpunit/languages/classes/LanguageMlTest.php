@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageMl
  */
 class LanguageMlTest extends LanguageClassesTestCase {
@@ -48,12 +49,11 @@ class LanguageMlTest extends LanguageClassesTestCase {
 			throw new Exception( 'Expected output must differ.' );
 		}
 
-		$this->setMwGlobals( 'wgFixMalayalamUnicode', true );
-		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ml-normalised form' );
-
-		$this->setMwGlobals( 'wgFixMalayalamUnicode', false );
-		$this->hideDeprecated( '$wgFixMalayalamUnicode = false' );
-		$this->assertSame( $input, $this->getLang()->normalize( $input ), 'regular normalised form' );
+		$this->assertSame(
+			$expected,
+			$this->getLang()->normalize( $input ),
+			'ml-normalised form'
+		);
 	}
 
 	public static function provideNormalize() {
@@ -61,6 +61,14 @@ class LanguageMlTest extends LanguageClassesTestCase {
 			[
 				'ല്‍',
 				'ൽ',
+			],
+			[
+				'ര്‍',
+				'ർ',
+			],
+			[
+				'ള്‍',
+				'ൾ',
 			],
 		];
 	}

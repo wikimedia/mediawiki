@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Web access for files temporarily stored by UploadStash.
  *
@@ -47,7 +49,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * This service is really for thumbnails and other such previews while
 	 * uploading.
 	 */
-	const MAX_SERVE_BYTES = 1048576; // 1MB
+	private const MAX_SERVE_BYTES = 1048576; // 1MB
 
 	public function __construct() {
 		parent::__construct( 'UploadStash', 'upload' );
@@ -66,7 +68,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public function execute( $subPage ) {
 		$this->useTransactionalTimeLimit();
 
-		$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
+		$this->stash = MediaWikiServices::getInstance()->getRepoGroup()
+			->getLocalRepo()->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 
 		if ( $subPage === null || $subPage === '' ) {
@@ -211,11 +214,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// n.b. MIME type may be different from original (ogx original -> jpeg thumb)
 		$thumbFile = new UnregisteredLocalFile( false,
 			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
-		if ( !$thumbFile ) {
-			throw new UploadStashFileNotFoundException(
-				$this->msg( 'uploadstash-file-not-found-no-object' )
-			);
-		}
 
 		$this->outputLocalFile( $thumbFile );
 	}
@@ -373,8 +371,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 */
 	public static function tryClearStashedUploads( $formData, $form ) {
 		if ( isset( $formData['Clear'] ) ) {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $form->getUser() );
-			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) . "\n" );
+			$stash = MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->getUploadStash( $form->getUser() );
+			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) );
 
 			if ( !$stash->clear() ) {
 				return Status::newFatal( 'uploadstash-errclear' );

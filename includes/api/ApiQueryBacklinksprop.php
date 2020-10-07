@@ -172,7 +172,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$sortby[$bl_from] = 'int';
 
 		// Now use the $sortby to figure out the continuation
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != count( $sortby ) );
 			$where = '';
@@ -211,7 +211,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$this->addFields( array_keys( $sortby ) );
 		$this->addFields( [ 'bl_namespace' => $bl_namespace, 'bl_title' => $bl_title ] );
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$fld_pageid = isset( $prop['pageid'] );
 			$fld_title = isset( $prop['title'] );
 			$fld_redirect = isset( $prop['redirect'] );
@@ -285,7 +285,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			if ( $fld_title ) {
 				$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
 			}

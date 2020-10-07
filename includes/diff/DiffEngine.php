@@ -69,7 +69,7 @@ class DiffEngine {
 	public $added;
 	public $heuristicUsed;
 
-	function __construct( $tooLong = 2000000, $powLimit = 1.45 ) {
+	public function __construct( $tooLong = 2000000, $powLimit = 1.45 ) {
 		$this->tooLong = $tooLong;
 		$this->powLimit = $powLimit;
 	}
@@ -158,7 +158,7 @@ class DiffEngine {
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 *
 	 * @param string[] $lines
-	 * @param string[] $changed
+	 * @param string[] &$changed
 	 * @param string[] $other_changed
 	 */
 	private function shiftBoundaries( array $lines, array &$changed, array $other_changed ) {
@@ -354,7 +354,7 @@ class DiffEngine {
 			if ( $this->m * $this->n > $this->tooLong ) {
 				// limit complexity to D^POW_LIMIT for long sequences
 				$this->maxDifferences = floor( $this->maxDifferences ** ( $this->powLimit - 1.0 ) );
-				wfDebug( "Limiting max number of differences to $this->maxDifferences\n" );
+				wfDebug( "Limiting max number of differences to $this->maxDifferences" );
 			}
 
 			/*
@@ -412,7 +412,7 @@ class DiffEngine {
 		$this->added = $added;
 	}
 
-	function diff_range( $from_lines, $to_lines ) {
+	private function diff_range( $from_lines, $to_lines ) {
 		// Diff and store locally
 		$this->diff( $from_lines, $to_lines );
 		unset( $from_lines, $to_lines );
@@ -701,7 +701,7 @@ class DiffEngine {
 		$snake0 = $bottoml1 + $most_progress[0];
 		$snake1 = $bottoml2 + $most_progress[1];
 		$snake2 = 0;
-		wfDebug( "Computing the LCS is too expensive. Using a heuristic.\n" );
+		wfDebug( "Computing the LCS is too expensive. Using a heuristic." );
 		$this->heuristicUsed = true;
 
 		return 5; /*

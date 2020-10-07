@@ -22,6 +22,8 @@
  */
 
 /**
+ * @stable to extend
+ *
  * @ingroup SpecialPage
  */
 abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
@@ -31,7 +33,16 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 	/** @var string Name of subpage of redirect target */
 	protected $redirSubpage;
 
-	function __construct(
+	/**
+	 * @stable to call
+	 *
+	 * @param string $name
+	 * @param string $redirName
+	 * @param bool $redirSubpage
+	 * @param array $allowedRedirectParams
+	 * @param array $addedRedirectParams
+	 */
+	public function __construct(
 		$name, $redirName, $redirSubpage = false,
 		$allowedRedirectParams = [], $addedRedirectParams = []
 	) {

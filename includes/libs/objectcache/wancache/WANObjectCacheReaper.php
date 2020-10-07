@@ -171,7 +171,7 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 						'ctime' => $curValue ? $curValue['ctime'] : date( 'c' )
 					];
 				},
-				IExpiringStore::TTL_INDEFINITE
+				BagOStuff::TTL_INDEFINITE
 			);
 
 			$pos = $lastOkEvent['pos'];

@@ -2,21 +2,25 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MediaWikiServices;
 
 class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param array $optionsArray
 	 */
 	private static function newObj( array $optionsArray = [] ) : LanguageNameUtils {
-		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
-			$optionsArray,
-			[
-				'ExtraLanguageNames' => [],
-				'LanguageCode' => 'en',
-				'UsePigLatinVariant' => false,
-			]
-		) );
+		return new LanguageNameUtils(
+			new ServiceOptions(
+				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
+				$optionsArray,
+				[
+					'ExtraLanguageNames' => [],
+					'LanguageCode' => 'en',
+					'UsePigLatinVariant' => false,
+				]
+			),
+			MediaWikiServices::getInstance()->getHookContainer()
+		);
 	}
 
 	use LanguageNameUtilsTestTrait;
@@ -52,15 +56,15 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 		return $this->newObj()->getLanguageName( ...$args );
 	}
 
-	private static function getFileName( ...$args ) {
+	private function getFileName( ...$args ) {
 		return self::newObj()->getFileName( ...$args );
 	}
 
-	private static function getMessagesFileName( $code ) {
+	private function getMessagesFileName( $code ) {
 		return self::newObj()->getMessagesFileName( $code );
 	}
 
-	private static function getJsonMessagesFileName( $code ) {
+	private function getJsonMessagesFileName( $code ) {
 		return self::newObj()->getJsonMessagesFileName( $code );
 	}
 }

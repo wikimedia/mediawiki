@@ -20,8 +20,8 @@
  * @author Florian Schmidt
  */
 
-use Composer\Semver\VersionParser;
 use Composer\Semver\Constraint\Constraint;
+use Composer\Semver\VersionParser;
 
 /**
  * Provides functions to check a set of extensions with dependencies against
@@ -31,12 +31,12 @@ use Composer\Semver\Constraint\Constraint;
  */
 class VersionChecker {
 	/**
-	 * @var Constraint|bool representing $wgVersion
+	 * @var Constraint|bool representing MediaWiki core
 	 */
 	private $coreVersion = false;
 
 	/**
-	 * @var Constraint|bool representing PHP version
+	 * @var Constraint|bool representing the PHP engine
 	 */
 	private $phpVersion = false;
 
@@ -151,7 +151,7 @@ class VersionChecker {
 	 *     }
 	 *
 	 * @param array $extDependencies All extensions that depend on other ones
-	 * @return array
+	 * @return array[] List of errors
 	 */
 	public function checkArray( array $extDependencies ) {
 		$errors = [];

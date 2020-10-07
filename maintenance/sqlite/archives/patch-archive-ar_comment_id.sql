@@ -43,4 +43,3 @@ CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timesta
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
 COMMIT;
-

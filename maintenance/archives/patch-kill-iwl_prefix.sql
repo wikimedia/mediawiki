@@ -4,4 +4,3 @@
 --
 
 DROP INDEX /*i*/iwl_prefix ON /*_*/iwlinks;
-

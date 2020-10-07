@@ -21,11 +21,11 @@
 
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Special\SpecialPageFactory;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 
 /**
  * @since 1.32
@@ -58,64 +58,52 @@ class ParserFactory {
 	/** @var BadFileLookup */
 	private $badFileLookup;
 
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	/**
-	 * Old parameter list, which we support for backwards compatibility, were:
-	 *   array $parserConf See $wgParserConf documentation
-	 *   MagicWordFactory $magicWordFactory
-	 *   Language $contLang Content language
-	 *   string $urlProtocols As returned from wfUrlProtocols()
-	 *   SpecialPageFactory $spFactory
-	 *   Config $siteConfig
-	 *   LinkRendererFactory $linkRendererFactory
-	 *   NamespaceInfo|null $nsInfo
-	 *
-	 * Some type declarations were intentionally omitted so that the backwards compatibility code
-	 * would work. When backwards compatibility is no longer required, we should remove it, and
-	 * and add the omitted type declarations.
-	 *
-	 * @param ServiceOptions|array $svcOptions
+	 * Track calls to Parser constructor to aid in deprecation of direct
+	 * Parser invocation.  This is temporary: it will be removed once the
+	 * deprecation notice period is over and the underlying method calls
+	 * are refactored.
+	 * @internal
+	 * @var int
+	 */
+	public static $inParserFactory = 0;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/**
+	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
 	 * @param string $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory $spFactory
 	 * @param LinkRendererFactory $linkRendererFactory
-	 * @param NamespaceInfo|LinkRendererFactory|null $nsInfo
-	 * @param LoggerInterface|null $logger
-	 * @param BadFileLookup|null $badFileLookup
+	 * @param NamespaceInfo $nsInfo
+	 * @param LoggerInterface $logger
+	 * @param BadFileLookup $badFileLookup
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param HookContainer $hookContainer
 	 * @since 1.32
 	 */
 	public function __construct(
-		$svcOptions,
+		ServiceOptions $svcOptions,
 		MagicWordFactory $magicWordFactory,
 		Language $contLang,
-		$urlProtocols,
+		string $urlProtocols,
 		SpecialPageFactory $spFactory,
-		$linkRendererFactory,
-		$nsInfo = null,
-		$logger = null,
-		BadFileLookup $badFileLookup = null
+		LinkRendererFactory $linkRendererFactory,
+		NamespaceInfo $nsInfo,
+		LoggerInterface $logger,
+		BadFileLookup $badFileLookup,
+		LanguageConverterFactory $languageConverterFactory,
+		HookContainer $hookContainer
 	) {
-		// @todo Do we need to retain compat for constructing this class directly?
-		if ( !$nsInfo ) {
-			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
-			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		}
-		if ( $linkRendererFactory instanceof Config ) {
-			// Old calling convention had an array in the format of $wgParserConf as the first
-			// parameter, and a Config as the sixth, with LinkRendererFactory as the seventh.
-			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
-			$svcOptions = new ServiceOptions( Parser::$constructorOptions,
-				$svcOptions,
-				[ 'class' => Parser::class,
-					'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
-				func_get_arg( 5 )
-			);
-			$linkRendererFactory = func_get_arg( 6 );
-			$nsInfo = func_num_args() > 7 ? func_get_arg( 7 ) : null;
-		}
-		$svcOptions->assertRequiredOptions( Parser::$constructorOptions );
+		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
-		wfDebug( __CLASS__ . ": using preprocessor: {$svcOptions->get( 'preprocessorClass' )}\n" );
+		wfDebug( __CLASS__ . ": using default preprocessor" );
 
 		$this->svcOptions = $svcOptions;
 		$this->magicWordFactory = $magicWordFactory;
@@ -124,27 +112,37 @@ class ParserFactory {
 		$this->specialPageFactory = $spFactory;
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;
-		$this->logger = $logger ?: new NullLogger();
-		$this->badFileLookup = $badFileLookup ??
-			MediaWikiServices::getInstance()->getBadFileLookup();
+		$this->logger = $logger;
+		$this->badFileLookup = $badFileLookup;
+		$this->languageConverterFactory = $languageConverterFactory;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
+	 * Creates a new parser
+	 *
 	 * @return Parser
 	 * @since 1.32
 	 */
 	public function create() : Parser {
-		return new Parser(
-			$this->svcOptions,
-			$this->magicWordFactory,
-			$this->contLang,
-			$this,
-			$this->urlProtocols,
-			$this->specialPageFactory,
-			$this->linkRendererFactory,
-			$this->nsInfo,
-			$this->logger,
-			$this->badFileLookup
-		);
+		self::$inParserFactory++;
+		try {
+			return new Parser(
+				$this->svcOptions,
+				$this->magicWordFactory,
+				$this->contLang,
+				$this,
+				$this->urlProtocols,
+				$this->specialPageFactory,
+				$this->linkRendererFactory,
+				$this->nsInfo,
+				$this->logger,
+				$this->badFileLookup,
+				$this->languageConverterFactory,
+				$this->hookContainer
+			);
+		} finally {
+			self::$inParserFactory--;
+		}
 	}
 }

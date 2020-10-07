@@ -36,7 +36,7 @@ class LanguageFi extends Language {
 	 * @param string $case
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['fi'][$case][$word] ) ) {
 			return $wgGrammarForms['fi'][$case][$word];
@@ -88,7 +88,7 @@ class LanguageFi extends Language {
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string
 	 */
-	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
 		/*
 			'ago', 'now', 'today', 'this', 'next',
 			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth',
@@ -144,8 +144,9 @@ class LanguageFi extends Language {
 			'month' => 'kuukausi',
 			'years' => 'vuotta',
 			'year' => 'vuosi',
-			'infinite' => 'ikuisesti',
-			'indefinite' => 'ikuisesti'
+			'infinite' => 'ikuinen',
+			'indefinite' => 'ikuinen',
+			'infinity' => 'ikuinen'
 		];
 
 		$final = '';

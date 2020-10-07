@@ -12,7 +12,6 @@
 		return data;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Enable inline confirmation for given clickable element (like `<a />` or `<button />`).
 	 *
@@ -92,9 +91,6 @@
 		if ( $element.hasClass( 'jquery-confirmable-element' ) ) {
 			$wrapper = $element.closest( '.jquery-confirmable-wrapper' );
 			$interface = $wrapper.find( '.jquery-confirmable-interface' );
-			$text = $interface.find( '.jquery-confirmable-text' );
-			$buttonYes = $interface.find( '.jquery-confirmable-button-yes' );
-			$buttonNo = $interface.find( '.jquery-confirmable-button-no' );
 
 			interfaceWidth = $interface.data( 'jquery-confirmable-width' );
 			elementWidth = $element.data( 'jquery-confirmable-width' );
@@ -176,6 +172,7 @@
 
 	/**
 	 * Default options. Overridable primarily for internationalisation handling.
+	 *
 	 * @property {Object} defaultOptions
 	 */
 	$.fn.confirmable.defaultOptions = {

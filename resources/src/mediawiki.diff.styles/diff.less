@@ -1,0 +1,210 @@
+/*!
+ * Diff rendering
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+.diff {
+	border: 0;
+	border-spacing: 4px;
+	margin: 0;
+	width: 100%;
+	/* Ensure that colums are of equal width */
+	table-layout: fixed;
+
+	td {
+		padding: 0.33em 0.5em;
+
+		&.diff-marker {
+			/* Compensate padding for increased font-size */
+			padding: 0.25em;
+			text-align: right;
+			font-weight: bold;
+			font-size: 1.25em;
+			line-height: 1.2;
+		}
+
+		div {
+			/* Force-wrap very long lines such as URLs or page-widening char strings */
+			word-wrap: break-word;
+		}
+	}
+
+	col.diff-marker {
+		width: 2%;
+	}
+
+	.diff-content {
+		width: 48%;
+	}
+}
+
+.diff-title {
+	vertical-align: top;
+}
+
+.diff-notice,
+.diff-multi,
+.diff-otitle,
+.diff-ntitle {
+	text-align: center;
+}
+
+.diff-lineno {
+	font-weight: bold;
+}
+
+.mw-diff-inline-added,
+.mw-diff-inline-changed,
+.mw-diff-inline-deleted {
+	ins,
+	del {
+		display: inline-block;
+		text-decoration: none;
+	}
+}
+
+.mw-diff-inline-added ins,
+.mw-diff-inline-changed ins {
+	background: #a3d3ff;
+}
+
+.mw-diff-inline-deleted del,
+.mw-diff-inline-changed del {
+	background: #ffe49c;
+}
+
+.diff-addedline,
+.diff-deletedline,
+.diff-context {
+	font-size: 13px;
+	line-height: 1.6;
+	vertical-align: top;
+	white-space: pre-wrap;
+	border-style: solid;
+	border-width: 1px 1px 1px 4px;
+	border-radius: 0.33em;
+
+	// Allow editfont to be set on container while only
+	// affect wikitext content.
+	// These classes match mw-editfont-*
+	.diff-editfont-monospace & {
+		font-family: monospace, monospace;
+	}
+
+	.diff-editfont-sans-serif & {
+		font-family: sans-serif;
+	}
+
+	.diff-editfont-serif & {
+		font-family: serif;
+	}
+}
+
+.diff-context {
+	background: #f8f9fa;
+	border-color: #eaecf0;
+	color: #202122;
+}
+
+.diff-addedline {
+	border-color: #a3d3ff;
+}
+
+.diff-deletedline {
+	border-color: #ffe49c;
+}
+
+.diffchange {
+	font-weight: bold;
+	text-decoration: none;
+
+	.diff-addedline &,
+	.diff-deletedline & {
+		border-radius: 0.33em;
+		padding: 0.25em 0;
+	}
+
+	.diff-addedline & {
+		background: #d8ecff;
+	}
+
+	.diff-deletedline & {
+		background: #feeec8;
+	}
+}
+
+/* Correct user & content directionality when viewing a diff */
+.diff-currentversion-title,
+.diff {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+.diff-contentalign-right td {
+	/* @noflip */
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.diff-contentalign-left td {
+	/* @noflip */
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+.diff-multi,
+.diff-otitle,
+.diff-ntitle,
+.diff-lineno {
+	direction: ltr !important; /* stylelint-disable-line declaration-no-important */
+	unicode-bidi: embed;
+}
+
+.mw-diff-slot-header {
+	text-align: center;
+}
+
+/*!
+ * Wikidiff2 rendering for moved paragraphs
+ */
+
+.mw-diff-movedpara-left,
+.mw-diff-movedpara-right {
+	&,
+	&:visited,
+	&:active {
+		display: block;
+		color: transparent;
+	}
+
+	&:hover {
+		text-decoration: none;
+		color: transparent;
+	}
+
+	&:after {
+		display: block;
+		color: #202122;
+		margin-top: -1.25em;
+	}
+}
+
+.mw-diff-movedpara-left:after,
+.rtl .mw-diff-movedpara-right:after {
+	content: '↪';
+}
+
+.mw-diff-movedpara-right:after,
+.rtl .mw-diff-movedpara-left:after {
+	content: '↩';
+}
+
+#mw-inlinediff-header {
+	#mw-diff-otitle1,
+	#mw-diff-otitle2,
+	#mw-diff-otitle3,
+	#mw-diff-otitle5 {
+		display: none;
+	}
+}

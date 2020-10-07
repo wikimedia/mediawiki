@@ -17,8 +17,8 @@
  *
  * @file
  */
-use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
@@ -46,17 +46,17 @@ class RedisConnRef implements LoggerAwareInterface {
 	/**
 	 * No authentication errors.
 	 */
-	const AUTH_NO_ERROR = 200;
+	private const AUTH_NO_ERROR = 200;
 
 	/**
 	 * Temporary authentication error; recovered by reauthenticating.
 	 */
-	const AUTH_ERROR_TEMPORARY = 201;
+	private const AUTH_ERROR_TEMPORARY = 201;
 
 	/**
 	 * Authentication error was permanent and could not be recovered.
 	 */
-	const AUTH_ERROR_PERMANENT = 202;
+	private const AUTH_ERROR_PERMANENT = 202;
 
 	/**
 	 * @param RedisConnectionPool $pool
@@ -295,7 +295,7 @@ class RedisConnRef implements LoggerAwareInterface {
 		return $this->conn === $conn;
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		$this->pool->freeConnection( $this->server, $this->conn );
 	}
 }

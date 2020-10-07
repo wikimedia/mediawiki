@@ -4,13 +4,9 @@
 		"../../.eslintrc.json"
 	],
 	"globals": {
-		"sinon": false
+		"sinon": "readonly"
 	},
 	"rules": {
-		"operator-linebreak": "off",
-		"quote-props": [ "error", "as-needed" ],
-		"valid-jsdoc": "off",
-		"qunit/require-expect": "off",
 		"qunit/resolve-async": "off",
 		"no-jquery/no-parse-html-literal": "off"
 	}

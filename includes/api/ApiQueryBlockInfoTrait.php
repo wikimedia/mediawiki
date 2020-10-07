@@ -20,6 +20,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @ingroup API
@@ -68,27 +69,49 @@ trait ApiQueryBlockInfoTrait {
 	 * @{
 	 */
 
-	/** @see ApiBase::getDB */
+	/**
+	 * @see ApiBase::getDB
+	 * @return IDatabase
+	 */
 	abstract protected function getDB();
 
-	/** @see ApiBase::getPermissionManager */
+	/**
+	 * @see ApiBase::getPermissionManager
+	 * @return PermissionManager
+	 */
 	abstract protected function getPermissionManager(): PermissionManager;
 
-	/** @see IContextSource::getUser */
+	/**
+	 * @see IContextSource::getUser
+	 * @return User
+	 */
 	abstract public function getUser();
 
-	/** @see ApiQueryBase::addTables */
+	/**
+	 * @see ApiQueryBase::addTables
+	 * @param string|array $tables
+	 * @param string|null $alias
+	 */
 	abstract protected function addTables( $tables, $alias = null );
 
-	/** @see ApiQueryBase::addFields */
+	/**
+	 * @see ApiQueryBase::addFields
+	 * @param array|string $fields
+	 */
 	abstract protected function addFields( $fields );
 
-	/** @see ApiQueryBase::addWhere */
+	/**
+	 * @see ApiQueryBase::addWhere
+	 * @param string|array $conds
+	 */
 	abstract protected function addWhere( $conds );
 
-	/** @see ApiQueryBase::addJoinConds */
+	/**
+	 * @see ApiQueryBase::addJoinConds
+	 * @param array $conds
+	 */
 	abstract protected function addJoinConds( $conds );
 
-	/**@}*/
+	/** @} */
 
 }

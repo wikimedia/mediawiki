@@ -92,7 +92,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Handle our many different possible input types
 		$ids = $request->getVal( 'ids' );
-		if ( !is_null( $ids ) ) {
+		if ( $ids !== null ) {
 			// Allow CSV from the form hidden field, or a single ID for show/hide links
 			$this->ids = explode( ',', $ids );
 		} else {
@@ -133,14 +133,19 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$this->reason = $request->getVal( 'wpReason' );
 		// We need a target page!
-		if ( is_null( $this->targetObj ) ) {
+		if ( $this->targetObj === null ) {
 			$output->addWikiMsg( 'undelete-header' );
 			return;
 		}
 
 		// Check blocks
 		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
-			throw new UserBlockedError( $user->getBlock() );
+			throw new UserBlockedError(
+				$user->getBlock(),
+				$user,
+				$this->getLanguage(),
+				$request->getIP()
+			);
 		}
 
 		// Give a link to the logs/hist for this page
@@ -209,7 +214,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * @return ChangeTagsList
 	 */
 	protected function getList() {
-		if ( is_null( $this->revList ) ) {
+		if ( $this->revList === null ) {
 			$this->revList = ChangeTagsList::factory( $this->typeName, $this->getContext(),
 				$this->targetObj, $this->ids );
 		}
@@ -403,11 +408,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Evaluate incoming request data
 		$tagList = $request->getArray( 'wpTagList' );
-		if ( is_null( $tagList ) ) {
+		if ( $tagList === null ) {
 			$tagList = [];
 		}
 		$existingTags = $request->getVal( 'wpExistingTags' );
-		if ( is_null( $existingTags ) || $existingTags === '' ) {
+		if ( $existingTags === null || $existingTags === '' ) {
 			$existingTags = [];
 		} else {
 			$existingTags = explode( ',', $existingTags );

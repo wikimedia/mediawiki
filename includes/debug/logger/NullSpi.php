@@ -39,7 +39,7 @@ use Psr\Log\NullLogger;
 class NullSpi implements Spi {
 
 	/**
-	 * @var \Psr\Log\NullLogger $singleton
+	 * @var \Psr\Log\NullLogger
 	 */
 	protected $singleton;
 

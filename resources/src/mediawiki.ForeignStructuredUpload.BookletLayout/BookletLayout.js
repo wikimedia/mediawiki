@@ -12,7 +12,7 @@
 	 *         }
 	 *     } );
 	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( 'body' ).append( windowManager.$element );
+	 *     $( document.body ).append( windowManager.$element );
 	 *     windowManager.addWindows( [ uploadDialog ] );
 	 *
 	 * @class mw.ForeignStructuredUpload.BookletLayout
@@ -72,11 +72,13 @@
 
 						// Load license messages from the remote wiki if we don't have these messages locally
 						// (this means that we only load messages from the foreign wiki for custom config)
+						// These messages are documented where msgPromise resolves
 						if ( mw.message( 'upload-form-label-own-work-message-' + msgs ).exists() ) {
 							msgPromise = $.Deferred().resolve();
 						} else {
 							msgPromise = booklet.upload.apiPromise.then( function ( api ) {
 								return api.loadMessages( [
+									// These messages are documented where msgPromise resolves
 									'upload-form-label-own-work-message-' + msgs,
 									'upload-form-label-not-own-work-message-' + msgs,
 									'upload-form-label-not-own-work-local-' + msgs
@@ -87,8 +89,15 @@
 						// Update license messages
 						return msgPromise.then( function () {
 							var $labels;
+							// The following messages are used here:
+							// * upload-form-label-own-work-message-generic-local
+							// * upload-form-label-own-work-message-generic-foreign
 							booklet.$ownWorkMessage.msg( 'upload-form-label-own-work-message-' + msgs );
+							// * upload-form-label-not-own-work-message-generic-local
+							// * upload-form-label-not-own-work-message-generic-foreign
 							booklet.$notOwnWorkMessage.msg( 'upload-form-label-not-own-work-message-' + msgs );
+							// * upload-form-label-not-own-work-local-generic-local
+							// * upload-form-label-not-own-work-local-generic-foreign
 							booklet.$notOwnWorkLocal.msg( 'upload-form-label-not-own-work-local-' + msgs );
 
 							$labels = $( [
@@ -108,6 +117,7 @@
 								} );
 						} );
 					}, function ( errorMsg ) {
+						// eslint-disable-next-line mediawiki/msg-doc
 						booklet.getPage( 'upload' ).$element.msg( errorMsg );
 						return $.Deferred().resolve();
 					} )

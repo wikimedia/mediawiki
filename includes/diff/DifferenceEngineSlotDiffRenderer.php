@@ -20,6 +20,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * B/C adapter for turning a DifferenceEngine into a SlotDiffRenderer.
@@ -38,7 +39,10 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 
 		// Set state to loaded. This should not matter to any of the methods invoked by
 		// the adapter, but just in case a load does get triggered somehow, make sure it's a no-op.
-		$fakeContent = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT )->makeEmptyContent();
+		$fakeContent = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( CONTENT_MODEL_WIKITEXT )
+				->makeEmptyContent();
 		$this->differenceEngine->setContent( $fakeContent, $fakeContent );
 
 		$this->differenceEngine->markAsSlotDiffRenderer();

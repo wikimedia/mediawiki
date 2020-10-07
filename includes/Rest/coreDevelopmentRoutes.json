@@ -1,0 +1,29 @@
+[
+	{
+		"path": "/coredev/v0/me/contributions",
+		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
+		"services": [
+			"ContributionsLookup",
+			"UserFactory",
+			"UserNameUtils"
+		],
+		"mode" : "me"
+	},
+	{
+		"path": "/coredev/v0/user/{name}/contributions",
+		"class": "MediaWiki\\Rest\\Handler\\UserContributionsHandler",
+		"services": [
+			"ContributionsLookup",
+			"UserFactory",
+			"UserNameUtils"
+		],
+		"mode" : "user"
+	},
+	{
+		"path": "/coredev/v0/me/contributions/count",
+		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
+		"services": [
+			"ContributionsLookup"
+		]
+	}
+]

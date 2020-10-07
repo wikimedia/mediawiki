@@ -1,20 +1,9 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia",
-		"wikimedia/node",
-		"wikimedia/language/es2017"
+		"wikimedia/selenium"
 	],
-	"env": {
-		"mocha": true
-	},
 	"globals": {
-		"$": false,
-		"browser": false,
-		"mw": false
-	},
-	"rules": {
-		"prefer-template": "off",
-		"one-var": [ "error", { "initialized": "never", "uninitialized": "always" } ]
+		"mw": "readonly"
 	}
 }

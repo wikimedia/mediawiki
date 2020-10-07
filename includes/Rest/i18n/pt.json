@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu",
+			"Mansil alfalb"
+		]
+	},
+	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
+	"rest-wrong-method": "O método pedido ($1) não era {{PLURAL:$3|o método permitido para este caminho|um dos métodos permitidos para este caminho}} ($2)",
+	"rest-no-match": "O caminho relativo pedido ($1) não corresponde a nenhuma rotina de tratamento conhecida",
+	"rest-nonexistent-title": "O título especificado ($1) não existe",
+	"rest-nonexistent-title-revision": "A revisão especificada ($1) não existe para a página especificada ($2)",
+	"rest-nonexistent-revision": "A revisão especificada ($1) não existe.",
+	"rest-permission-denied-anon": "Não acessível por um utilizador anónimo",
+	"rest-permission-denied-title": "O utilizador não tem os direitos para ler o título ($1)",
+	"rest-permission-denied-revision": "O utilizador não tem acesso à revisão pedida ($1).",
+	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
+	"rest-pagehistory-param-range-error": "O identificador da revisão tem de ser maior do que 0",
+	"rest-pagehistory-timestamp-error": "Não foi possível obter a data e hora da revisão especificada ($1)",
+	"rest-pagehistorycount-type-unrecognized": "O tipo de contagem especificado ($1) não é válido",
+	"rest-pagehistorycount-parameters-invalid": "A combinação especificada de parâmetros não é suportada.",
+	"rest-compare-page-mismatch": "As revisões especificadas pertencem a páginas diferentes; a recusar a comparação.",
+	"rest-compare-permission-denied": "O utilizador não tem acesso às revisões pedidas",
+	"rest-compare-nonexistent": "A revisão especificada pelo parâmetro $1 não existe.",
+	"rest-compare-inaccessible": "A revisão especificada pelo parâmetro $1 não é acessível pelo público.",
+	"rest-compare-wrong-content": "O segmento $1 da revisão especificada pelo parâmetro $2 tem um tipo de conteúdo que não pode ser convertido para texto.",
+	"rest-compare-wikidiff2": "O ponto final requer wikidiff2 1.9.0 ou posterior.",
+	"rest-pagehistorycount-too-many-revisions": "O título especificado contém demasiadas revisões para recuperar esta contagem.",
+	"rest-search-error": "Erro ao devolver os resultados da pesquisa: $1",
+	"rest-page-source-type-error": "O tipo de conteúdo da fonte da página pedida não é suportado",
+	"rest-no-revision": "Não foi possível obter a revisão do título $1",
+	"rest-media-too-many-links": "Forma encontradas demasiadas hiperligações para conteúdos multimédia no título $1 (são permitidas $2)",
+	"rest-html-backend-error": "Não foi possível obter o HTML do Parsoid",
+	"rest-bad-json-body": "Corpo do pedido inválido; tem de ser um objeto JSON.",
+	"rest-json-body-parse-error": "A análise sintática do corpo do pedido como JSON falhou: $1",
+	"rest-missing-body-field": "O campo obrigatório \"$1\" está em falta no corpo do pedido.",
+	"rest-bad-content-model": "Modelo de conteúdo incorreto: $1",
+	"rest-update-cannot-create-page": "A página \"$1# não pode ser criada porque já existe. Para atualizar a página existente, forneça o identificador da revisão base na estrutura que se encontra sob a chave \"latest\" no corpo do pedido.",
+	"rest-extraneous-csrf-token": "Foi encontrada uma chave CSRF supérflua. As chaves CSRF não podem ser utilisadas ao usar mecanismos de autenticação como o OAuth, que são seguros contra ataques de CSRF.",
+	"rest-cannot-load-file": "Não é possível carregar o ficheiro do título `$1`."
+}

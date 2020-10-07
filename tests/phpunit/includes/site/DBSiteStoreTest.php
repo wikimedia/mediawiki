@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DBSiteStoreTest extends MediaWikiTestCase {
+class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return DBSiteStore
@@ -91,14 +91,14 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 		$site = $store->getSite( 'ertrywuutr' );
 		$this->assertInstanceOf( Site::class, $site );
 		$this->assertEquals( 'en', $site->getLanguageCode() );
-		$this->assertTrue( is_int( $site->getInternalId() ) );
-		$this->assertTrue( $site->getInternalId() >= 0 );
+		$this->assertIsInt( $site->getInternalId() );
+		$this->assertGreaterThanOrEqual( 0, $site->getInternalId() );
 
 		$site = $store->getSite( 'sdfhxujgkfpth' );
 		$this->assertInstanceOf( Site::class, $site );
 		$this->assertEquals( 'nl', $site->getLanguageCode() );
-		$this->assertTrue( is_int( $site->getInternalId() ) );
-		$this->assertTrue( $site->getInternalId() >= 0 );
+		$this->assertIsInt( $site->getInternalId() );
+		$this->assertGreaterThanOrEqual( 0, $site->getInternalId() );
 	}
 
 	/**

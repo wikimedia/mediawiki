@@ -1,11 +1,11 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -102,7 +102,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( MWException::class, "name 'test!invalid' is invalid" );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "name 'test!invalid' is invalid" );
 		$resourceLoader->register( 'test!invalid', [] );
 	}
 
@@ -111,8 +112,9 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidType() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( InvalidArgumentException::class, 'Invalid module info' );
-		$resourceLoader->register( 'test', new stdClass() );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid module info' );
+		$resourceLoader->register( [ 'test' => (object)[] ] );
 	}
 
 	/**
@@ -370,9 +372,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceDupe() {
 		$rl = new EmptyResourceLoader;
-		$this->setExpectedException(
-			MWException::class, 'ResourceLoader duplicate source addition error'
-		);
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( 'Cannot register source' );
 		$rl->addSource( 'foo', 'https://example.org/w/load.php' );
 		$rl->addSource( 'foo', 'https://example.com/w/load.php' );
 	}
@@ -382,7 +383,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceInvalid() {
 		$rl = new EmptyResourceLoader;
-		$this->setExpectedException( MWException::class, 'with no "loadScript" key' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'must have a "loadScript" key' );
 		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
 	}
 
@@ -542,7 +544,8 @@ END
 	 * @covers ResourceLoader::makeLoaderImplementScript
 	 */
 	public function testMakeLoaderImplementScriptInvalid() {
-		$this->setExpectedException( MWException::class, 'Invalid scripts error' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Script must be a' );
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest() );
 		$rl->makeLoaderImplementScript(
@@ -669,12 +672,8 @@ END
 			$this->assertEquals( $rl->getLoadScript( $name ), $sources[$name]['loadScript'] );
 		}
 
-		try {
-			$rl->getLoadScript( 'thiswasneverreigstered' );
-			$this->assertTrue( false, 'ResourceLoader::getLoadScript should have thrown an exception' );
-		} catch ( MWException $e ) {
-			$this->assertTrue( true );
-		}
+		$this->expectException( UnexpectedValueException::class );
+		$rl->getLoadScript( 'thiswasneverregistered' );
 	}
 
 	protected function getFailFerryMock( $getter = 'getScript' ) {

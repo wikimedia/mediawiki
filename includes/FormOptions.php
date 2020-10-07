@@ -38,25 +38,25 @@ class FormOptions implements ArrayAccess {
 	 */
 	/* @{ */
 	/** Mark value for automatic detection (for simple data types only) */
-	const AUTO = -1;
+	public const AUTO = -1;
 	/** String type, maps guessType() to WebRequest::getText() */
-	const STRING = 0;
+	public const STRING = 0;
 	/** Integer type, maps guessType() to WebRequest::getInt() */
-	const INT = 1;
+	public const INT = 1;
 	/** Float type, maps guessType() to WebRequest::getFloat()
 	 * @since 1.23
 	 */
-	const FLOAT = 4;
+	public const FLOAT = 4;
 	/** Boolean type, maps guessType() to WebRequest::getBool() */
-	const BOOL = 2;
+	public const BOOL = 2;
 	/** Integer type or null, maps to WebRequest::getIntOrNull()
 	 * This is useful for the namespace selector.
 	 */
-	const INTNULL = 3;
+	public const INTNULL = 3;
 	/** Array type, maps guessType() to WebRequest::getArray()
 	 * @since 1.29
 	 */
-	const ARR = 5;
+	public const ARR = 5;
 	/* @} */
 
 	/**
@@ -421,5 +421,6 @@ class FormOptions implements ArrayAccess {
 	public function offsetUnset( $name ) {
 		$this->delete( $name );
 	}
+
 	/* @} */
 }

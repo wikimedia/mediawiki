@@ -8,7 +8,6 @@
 .redirectMsg p {
 	overflow: hidden;
 	height: 0;
-	zoom: 1;
 }
 
 .redirectText {
@@ -29,7 +28,6 @@
 	padding: 0;
 	padding-left: 42px;
 	background: transparent url( images/nextredirect-ltr.png ) bottom left no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/nextredirect-ltr.svg );
 }
 
@@ -37,7 +35,6 @@
 .mw-content-ltr .redirectText li:first-child {
 	padding-left: 47px;
 	background: transparent url( images/redirect-ltr.png ) bottom left no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/redirect-ltr.svg );
 }
 
@@ -48,7 +45,6 @@
 	padding: 0;
 	padding-right: 42px;
 	background: transparent url( images/nextredirect-rtl.png ) bottom right no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/nextredirect-rtl.svg );
 }
 
@@ -56,6 +52,5 @@
 .mw-content-rtl .redirectText li:first-child {
 	padding-right: 47px;
 	background: transparent url( images/redirect-rtl.png ) bottom right no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/redirect-rtl.svg );
 }

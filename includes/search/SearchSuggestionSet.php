@@ -30,7 +30,6 @@ class SearchSuggestionSet {
 	private $suggestions = [];
 
 	/**
-	 *
 	 * @var array
 	 */
 	private $pageMap = [];
@@ -153,7 +152,7 @@ class SearchSuggestionSet {
 		if ( $this->getSize() > 0 && $suggestion->getScore() <= $this->getBestScore() ) {
 			$suggestion->setScore( $this->getBestScore() + 1 );
 		}
-		array_unshift( $this->suggestions,  $suggestion );
+		array_unshift( $this->suggestions, $suggestion );
 		if ( $pageID ) {
 			$this->pageMap[$pageID] = true;
 		}

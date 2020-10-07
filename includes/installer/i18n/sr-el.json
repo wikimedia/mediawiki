@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Сербијана",
 			"Obsuser",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Сербијана"
 		]
 	},
 	"config-desc": "Instalacioni program za MediaWiki",
@@ -36,7 +36,6 @@
 	"config-page-install": "Instaliraj",
 	"config-page-complete": "Završeno!",
 	"config-page-restart": "Ponovno pokretanje instalacije",
-	"config-page-readme": "Pročitaj me",
 	"config-page-releasenotes": "Napomene o izdanju",
 	"config-page-copying": "Kopiranje",
 	"config-page-upgradedoc": "Nadogradnja",
@@ -48,9 +47,8 @@
 	"config-env-good": "Okruženje je provereno.\nMožete da instalirate MediaWiki.",
 	"config-env-bad": "Okruženje je provereno.\nNe možete da instalirate MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
-	"config-env-hhvm": "HHVM $1 je instaliran.",
-	"config-unicode-using-intl": "Koristi se [https://pecl.php.net/intl dodatak intl PECL] za normalizaciju Unikoda.",
-	"config-outdated-sqlite": "<strong>Upozorenje:</strong> imate SQLite $1, koji je niži od najmanje tražene verzije ($2). SQLite će biti nedostupan.",
+	"config-unicode-using-intl": "Koristi se [https://php.net/manual/en/book.intl.php dodatak PHP intl] za normalizaciju Unikoda.",
+	"config-outdated-sqlite": "<strong>Upozorenje:</strong> imate SQLite $2, koji je niži od najmanje tražene verzije $1. SQLite će biti nedostupan.",
 	"config-no-fts3": "<strong>Upozorenje:</strong> SQLite je kompajliran bez [//sqlite.org/fts3.html FTS3 modula], funkcije pretrage biće nedostupne na ovoj bazi podataka.",
 	"config-pcre-old": "<strong>Neotklonjiva greška:</strong> Neophodan je PCRE $1 ili noviji.\nVaš binarni PHP je povezan sa PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Više informacija].",
 	"config-pcre-no-utf8": "<strong>Neotklonjiva greška:</strong> Izgleda da je PCRE modul PHP-a  kompajliran bez PCRE_UTF8 podrške.\nMediaWiki zahteva UTF-8 podršku za ispravno funkcionisanje.",
@@ -96,7 +94,7 @@
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki podržava sledeće sisteme baza podataka:\n\n$1\n\nAko ne vidite sistem koji pokušavate da koristite na listi ispod, onda pratite povezana uputstva iznad kako biste omogućili podršku.",
-	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] je primarna meta za MediaWiki i najbolje je podržana. MediaWiki takođe radi sa [{{int:version-db-mysql-url}} MySQL-om] i [{{int:version-db-percona-url}} Percona Server-om], koji su kompatibilni sa MariaDB-om. ([https://www.php.net/manual/en/mysqli.installation.php Kako kompajlirati PHP sa podrškom MySQL-a])",
+	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] je primarna meta za Medijaviki i najbolje je podržana. Medijaviki radi i sa [{{int:version-db-mysql-url}} MySQL-om] i [{{int:version-db-percona-url}} Percona Server-om], koji su kompatibilni sa MariaDB-om. ([https://www.php.net/manual/en/mysqli.installation.php Kako kompajlirati PHP sa podrškom MySQL-a])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] je popularan sistem baza podataka otvorenog koda kao alternativa MySQL-u. ([https://www.php.net/manual/en/pgsql.installation.php Kako kompajlirati PHP sa podrškom PostgreSQL-a])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] je lagan sistem baze podataka koji je veoma dobro podržan. ([https://www.php.net/manual/en/pdo.installation.php Kako kompajlirati PHP sa podrškom SQLite-a], koristi PDO)",
 	"config-header-mysql": "Podešavanja MariaDB/MySQL-a",
@@ -252,6 +250,7 @@
 	"config-install-done": "<strong>Čestitamo!</strong>\nInstalirali ste MediaWiki.\n\nInstalacioni program je generisao datoteku <code>LocalSettings.php</code>.\nOna sadrži svu vašu konfiguraciju.\n\nMoraćete da je preuzmete i stavite u bazu vaše viki instalacije (isti direktorijum kao index.php). Preuzimanje bi automatski trebalo početi.\n\nAko preuzimanje nije ponuđeno, ili ako ga otkažete, možete ponovo pokrenuti preuzimanje tako što ćete kliknuti na dolenavedenu vezu:\n\n$3\n\n<strong>Napomena:</strong> Ako to odmah ne uradite, ova generisana konfiguraciona datoteka neće vam biti dostupna kasnije ako izađete iz instalacije bez preuzimanja.\n\nKada je to učinjeno, možete da <strong>[$2 posetite svoj viki]</strong>.",
 	"config-install-done-path": "<strong>Čestitamo!</strong>\nInstalirali ste MediaWiki.\n\nInstalacioni program je generisao datoteku <code>LocalSettings.php</code>.\nOna sadrži svu vašu konfiguraciju.\n\nMoraćete da je preuzmete i stavite u <code>$4</code>. Preuzimanje bi automatski trebalo početi.\n\nAko preuzimanje nije ponuđeno, ili ako ga otkažete, možete ponovo pokrenuti preuzimanje tako što ćete kliknuti na dolenavedenu vezu:\n\n$3\n\n<strong>Napomena:</strong> Ako to odmah ne uradite, ova generisana konfiguraciona datoteka neće vam biti dostupna kasnije ako izađete iz instalacije bez preuzimanja.\n\nKada je to učinjeno, možete da <strong>[$2 posetite svoj viki]</strong>.",
 	"config-install-success": "MediaWiki je uspešno instaliran. Sada možete posetiti <$1$2> da biste videli svoj viki.\nAko imate pitanja, pogledajte našu listu često postavljanih pitanja: <https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> ili koristite jedan od foruma za podršku koji su povezani na toj stranici.",
+	"config-install-db-success": "Baza podataka je uspešno podešena",
 	"config-download-localsettings": "Preuzmi datoteku <code>LocalSettings.php</code>",
 	"config-help": "pomoć",
 	"config-help-tooltip": "kliknite da biste proširili",

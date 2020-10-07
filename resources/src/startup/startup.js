@@ -4,7 +4,7 @@
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
 /* eslint-disable no-implicit-globals */
-/* global $VARS, $CODE, RLQ:true, NORLQ:true */
+/* global $CODE, RLQ:true, NORLQ:true */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -26,7 +26,7 @@
  *
  * Browsers we support in our no-javascript run-time (Grade C):
  * - Chrome 1+
- * - IE 6+
+ * - IE 8+
  * - Firefox 3+
  * - Safari 3+
  * - Opera 15+
@@ -109,16 +109,16 @@ if ( !isCompatible( navigator.userAgent ) ) {
 	$CODE.defineLoader();
 
 	/**
-	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
+	 * The $CODE placeholder is substituted in ResourceLoaderStartUpModule.php.
 	 */
 	( function () {
 		/* global mw */
+		var queue;
 
 		$CODE.registrations();
 
-		mw.config.set( $VARS.configuration );
 		// For the current page
-		mw.config.set( window.RLCONF || {} );
+		mw.config.set( window.RLCONF || {} ); // mw.loader needs wgCSPNonce and wgUserName
 		mw.loader.state( window.RLSTATE || {} );
 		mw.loader.load( window.RLPAGEMODULES || [] );
 
@@ -136,7 +136,11 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		// arrivals will also be processed. Late arrival can happen because
 		// startup.js is executed asynchronously, concurrently with the streaming
 		// response of the HTML.
-		RLQ = window.RLQ || [];
+		queue = window.RLQ || [];
+		// Replace RLQ with an empty array, then process the things that were
+		// in RLQ previously. We have to do this to avoid an infinite loop:
+		// non-function items are added back to RLQ by the processing step.
+		RLQ = [];
 		RLQ.push = function ( fn ) {
 			if ( typeof fn === 'function' ) {
 				fn();
@@ -148,9 +152,9 @@ if ( !isCompatible( navigator.userAgent ) ) {
 				RLQ[ RLQ.length ] = fn;
 			}
 		};
-		while ( RLQ[ 0 ] ) {
+		while ( queue[ 0 ] ) {
 			// Process all values gathered so far
-			RLQ.push( RLQ.shift() );
+			RLQ.push( queue.shift() );
 		}
 
 		// Clear and disable the Grade C queue

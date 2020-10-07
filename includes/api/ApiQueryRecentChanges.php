@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -36,6 +37,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, 'rc' );
 	}
 
+	/** @var CommentStore */
 	private $commentStore;
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
@@ -67,7 +69,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->tokenFunctions = [
 			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
-		Hooks::run( 'APIQueryRecentChangesTokens', [ &$this->tokenFunctions ] );
+		$this->getHookRunner()->onAPIQueryRecentChangesTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
@@ -98,7 +100,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// The patrol token is always the same, let's exploit that
 			static $cachedPatrolToken = null;
 
-			if ( is_null( $cachedPatrolToken ) ) {
+			if ( $cachedPatrolToken === null ) {
 				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
 			}
 
@@ -154,7 +156,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->addTables( 'recentchanges' );
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$db = $this->getDB();
@@ -177,7 +179,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 
-		if ( !is_null( $params['type'] ) ) {
+		if ( $params['type'] !== null ) {
 			try {
 				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
 			} catch ( Exception $e ) {
@@ -186,16 +188,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$title = $params['title'];
-		if ( !is_null( $title ) ) {
+		if ( $title !== null ) {
 			$titleObj = Title::newFromText( $title );
-			if ( is_null( $titleObj ) ) {
+			if ( $titleObj === null ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
 			$this->addWhereFld( 'rc_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'rc_title', $titleObj->getDBkey() );
 		}
 
-		if ( !is_null( $params['show'] ) ) {
+		if ( $params['show'] !== null ) {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
@@ -269,19 +271,19 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			// Don't query by user ID here, it might be able to use the rc_user_text index.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['user'], false ), false );
+				->getWhere( $this->getDB(), 'rc_user', $params['user'], false );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( $actorQuery['conds'] );
 		}
 
-		if ( !is_null( $params['excludeuser'] ) ) {
+		if ( $params['excludeuser'] !== null ) {
 			// Here there's no chance to use the rc_user_text index, so allow ID to be used.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['excludeuser'], false ) );
+				->getWhere( $this->getDB(), 'rc_user', $params['excludeuser'] );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
@@ -300,7 +302,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$showRedirects = false;
 		/* Determine what properties we need to display. */
-		if ( !is_null( $params['prop'] ) ) {
+		if ( $params['prop'] !== null ) {
 			$prop = array_flip( $params['prop'] );
 
 			/* Set up internal members based upon params. */
@@ -347,7 +349,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( !is_null( $params['tag'] ) ) {
+		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( [ 'change_tag' => [ 'JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
@@ -360,7 +362,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		// Paranoia: avoid brute force searches (T19342)
-		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$this->getPermissionManager()
@@ -403,12 +405,59 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addJoinConds( $commentQuery['joins'] );
 		}
 
-		if ( $this->fld_user || $this->fld_userid || !is_null( $this->token ) ) {
+		if ( $this->fld_user || $this->fld_userid || $this->token !== null ) {
 			// Token needs rc_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
 			$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addFields( $actorQuery['fields'] );
 			$this->addJoinConds( $actorQuery['joins'] );
+		}
+
+		if ( $params['slot'] !== null ) {
+			try {
+				$slotId = MediaWikiServices::getInstance()->getSlotRoleStore()->getId(
+					$params['slot']
+				);
+			} catch ( \Exception $e ) {
+				$slotId = null;
+			}
+
+			$this->addTables( [
+				'slot' => 'slots', 'parent_slot' => 'slots'
+			] );
+			$this->addJoinConds( [
+				'slot' => [ 'LEFT JOIN', [
+					'rc_this_oldid = slot.slot_revision_id',
+					'slot.slot_role_id' => $slotId,
+				] ],
+				'parent_slot' => [ 'LEFT JOIN', [
+					'rc_last_oldid = parent_slot.slot_revision_id',
+					'parent_slot.slot_role_id' => $slotId,
+				] ]
+			] );
+			// Detecting whether the slot has been touched as follows:
+			// 1. if slot_origin=slot_revision_id then the slot has been newly created or edited
+			// with this revision
+			// 2. otherwise if the content of a slot is different to the content of its parent slot,
+			// then the content of the slot has been changed in this revision
+			// (probably by a revert)
+			$this->addWhere(
+				'slot.slot_origin = slot.slot_revision_id OR ' .
+				'slot.slot_content_id != parent_slot.slot_content_id OR ' .
+				'(slot.slot_content_id IS NULL AND parent_slot.slot_content_id IS NOT NULL) OR ' .
+				'(slot.slot_content_id IS NOT NULL AND parent_slot.slot_content_id IS NULL)'
+			);
+			// Only include changes that touch page content (i.e. RC_NEW, RC_EDIT)
+			$changeTypes = RecentChange::parseToRCType(
+				array_intersect( $params['type'], [ 'new', 'edit' ] )
+			);
+			if ( count( $changeTypes ) ) {
+				$this->addWhereFld( 'rc_type', $changeTypes );
+			} else {
+				// Calling $this->addWhere() with an empty array does nothing, so explicitly
+				// add an unsatisfiable condition
+				$this->addWhere( 'rc_type IS NULL' );
+			}
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -417,6 +466,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$count = 0;
 		/* Perform the actual query. */
 		$res = $this->select( __METHOD__, [], $hookData );
+
+		if ( $this->fld_title && $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'rc' );
+		}
 
 		$revids = [];
 		$titles = [];
@@ -439,7 +492,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				/* Extract the data from a single row. */
 				$vals = $this->extractRowInfo( $row );
 
@@ -460,7 +513,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			/* Format the result */
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'rc' );
 		} elseif ( $params['generaterevisions'] ) {
@@ -622,7 +675,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( !is_null( $this->token ) ) {
+		if ( $this->token !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
@@ -666,7 +719,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
 		}
-		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
@@ -675,6 +728,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
+		sort( $slotRoles, SORT_STRING );
+
 		return [
 			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -696,10 +752,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'excludeuser' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'tag' => null,
 			'prop' => [
@@ -764,6 +824,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'generaterevisions' => false,
+			'slot' => [
+				ApiBase::PARAM_TYPE => $slotRoles
+			],
 		];
 	}
 

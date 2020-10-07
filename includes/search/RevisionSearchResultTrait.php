@@ -1,6 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Transitional trait used to share the methods between SearchResult and RevisionSearchResult.
@@ -11,9 +14,9 @@ use MediaWiki\MediaWikiServices;
  */
 trait RevisionSearchResultTrait {
 	/**
-	 * @var Revision
+	 * @var RevisionRecord
 	 */
-	protected $mRevision = null;
+	protected $mRevisionRecord = null;
 
 	/**
 	 * @var File
@@ -21,7 +24,7 @@ trait RevisionSearchResultTrait {
 	protected $mImage = null;
 
 	/**
-	 * @var Title
+	 * @var Title|null
 	 */
 	protected $mTitle;
 
@@ -32,20 +35,24 @@ trait RevisionSearchResultTrait {
 
 	/**
 	 * Initialize from a Title and if possible initializes a corresponding
-	 * Revision and File.
+	 * RevisionRecord and File.
 	 *
-	 * @param Title $title
+	 * @param Title|null $title
 	 */
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
-		$services = MediaWikiServices::getInstance();
-		if ( !is_null( $this->mTitle ) ) {
+		if ( $title !== null ) {
+			$services = MediaWikiServices::getInstance();
 			$id = false;
-			Hooks::run( 'SearchResultInitFromTitle', [ $title, &$id ] );
-			$this->mRevision = Revision::newFromTitle(
-				$this->mTitle, $id, Revision::READ_NORMAL );
-			if ( $this->mTitle->getNamespace() === NS_FILE ) {
-				$this->mImage = $services->getRepoGroup()->findFile( $this->mTitle );
+			Hooks::runner()->onSearchResultInitFromTitle( $title, $id );
+
+			$this->mRevisionRecord = $services->getRevisionLookup()->getRevisionByTitle(
+				$title,
+				$id,
+				RevisionLookup::READ_NORMAL
+			);
+			if ( $title->getNamespace() === NS_FILE ) {
+				$this->mImage = $services->getRepoGroup()->findFile( $title );
 			}
 		}
 	}
@@ -56,7 +63,7 @@ trait RevisionSearchResultTrait {
 	 * @return bool
 	 */
 	public function isBrokenTitle() {
-		return is_null( $this->mTitle );
+		return $this->mTitle === null;
 	}
 
 	/**
@@ -65,11 +72,11 @@ trait RevisionSearchResultTrait {
 	 * @return bool
 	 */
 	public function isMissingRevision() {
-		return !$this->mRevision && !$this->mImage;
+		return !$this->mRevisionRecord && !$this->mImage;
 	}
 
 	/**
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		return $this->mTitle;
@@ -88,8 +95,8 @@ trait RevisionSearchResultTrait {
 	 */
 	protected function initText() {
 		if ( !isset( $this->mText ) ) {
-			if ( $this->mRevision != null ) {
-				$content = $this->mRevision->getContent();
+			if ( $this->mRevisionRecord != null ) {
+				$content = $this->mRevisionRecord->getContent( SlotRecord::MAIN );
 				$this->mText = $content !== null ? $content->getTextForSearchIndex() : '';
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
@@ -152,8 +159,8 @@ trait RevisionSearchResultTrait {
 	 * @return string Timestamp
 	 */
 	public function getTimestamp() {
-		if ( $this->mRevision ) {
-			return $this->mRevision->getTimestamp();
+		if ( $this->mRevisionRecord ) {
+			return $this->mRevisionRecord->getTimestamp();
 		} elseif ( $this->mImage ) {
 			return $this->mImage->getTimestamp();
 		}

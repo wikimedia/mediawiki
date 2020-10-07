@@ -5,27 +5,9 @@
  * @todo Split tests into providers and test methods
  */
 
-class LocalFileTest extends MediaWikiTestCase {
-
-	/** @var LocalRepo */
-	private $repo_hl0;
-	/** @var LocalRepo */
-	private $repo_hl2;
-	/** @var LocalRepo */
-	private $repo_lc;
-	/** @var File */
-	private $file_hl0;
-	/** @var File */
-	private $file_hl2;
-	/** @var File */
-	private $file_lc;
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( 'wgCapitalLinks', true );
-
-		$info = [
+class LocalFileTest extends MediaWikiIntegrationTestCase {
+	private static function getDefaultInfo() {
+		return [
 			'name' => 'test',
 			'directory' => '/testdir',
 			'url' => '/testurl',
@@ -40,146 +22,248 @@ class LocalFileTest extends MediaWikiTestCase {
 				]
 			] )
 		];
-		$this->repo_hl0 = new LocalRepo( [ 'hashLevels' => 0 ] + $info );
-		$this->repo_hl2 = new LocalRepo( [ 'hashLevels' => 2 ] + $info );
-		$this->repo_lc = new LocalRepo( [ 'initialCapital' => false ] + $info );
-		$this->file_hl0 = $this->repo_hl0->newFile( 'test!' );
-		$this->file_hl2 = $this->repo_hl2->newFile( 'test!' );
-		$this->file_lc = $this->repo_lc->newFile( 'test!' );
 	}
 
 	/**
 	 * @covers File::getHashPath
+	 * @dataProvider provideGetHashPath
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
 	 */
-	public function testGetHashPath() {
-		$this->assertSame( '', $this->file_hl0->getHashPath() );
-		$this->assertEquals( 'a/a2/', $this->file_hl2->getHashPath() );
-		$this->assertEquals( 'c/c4/', $this->file_lc->getHashPath() );
+	public function testGetHashPath( $expected, $capitalLinks, array $info ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getHashPath() );
+	}
+
+	public static function provideGetHashPath() {
+		return [
+			[ '', true, [ 'hashLevels' => 0 ] ],
+			[ 'a/a2/', true, [ 'hashLevels' => 2 ] ],
+			[ 'c/c4/', false, [ 'initialCapital' => false ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getRel
+	 * @dataProvider provideGetRel
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
 	 */
-	public function testGetRel() {
-		$this->assertEquals( 'Test!', $this->file_hl0->getRel() );
-		$this->assertEquals( 'a/a2/Test!', $this->file_hl2->getRel() );
-		$this->assertEquals( 'c/c4/test!', $this->file_lc->getRel() );
+	public function testGetRel( $expected, $capitalLinks, array $info ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getRel() );
+	}
+
+	public static function provideGetRel() {
+		return [
+			[ 'Test!', true, [ 'hashLevels' => 0 ] ],
+			[ 'a/a2/Test!', true, [ 'hashLevels' => 2 ] ],
+			[ 'c/c4/test!', false, [ 'initialCapital' => false ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getUrlRel
+	 * @dataProvider provideGetUrlRel
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
 	 */
-	public function testGetUrlRel() {
-		$this->assertEquals( 'Test%21', $this->file_hl0->getUrlRel() );
-		$this->assertEquals( 'a/a2/Test%21', $this->file_hl2->getUrlRel() );
-		$this->assertEquals( 'c/c4/test%21', $this->file_lc->getUrlRel() );
+	public function testGetUrlRel( $expected, $capitalLinks, array $info ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getUrlRel() );
+	}
+
+	public static function provideGetUrlRel() {
+		return [
+			[ 'Test%21', true, [ 'hashLevels' => 0 ] ],
+			[ 'a/a2/Test%21', true, [ 'hashLevels' => 2 ] ],
+			[ 'c/c4/test%21', false, [ 'initialCapital' => false ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getArchivePath
+	 * @dataProvider provideGetArchivePath
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetArchivePath() {
-		$this->assertEquals(
-			'mwstore://local-backend/test-public/archive',
-			$this->file_hl0->getArchivePath()
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-public/archive/a/a2',
-			$this->file_hl2->getArchivePath()
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-public/archive/!',
-			$this->file_hl0->getArchivePath( '!' )
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-public/archive/a/a2/!',
-			$this->file_hl2->getArchivePath( '!' )
-		);
+	public function testGetArchivePath( $expected, $capitalLinks, array $info, array $args ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getArchivePath( ...$args ) );
+	}
+
+	public static function provideGetArchivePath() {
+		return [
+			[ 'mwstore://local-backend/test-public/archive', true, [ 'hashLevels' => 0 ], [] ],
+			[ 'mwstore://local-backend/test-public/archive/a/a2', true, [ 'hashLevels' => 2 ], [] ],
+			[
+				'mwstore://local-backend/test-public/archive/!',
+				true, [ 'hashLevels' => 0 ], [ '!' ]
+			], [
+				'mwstore://local-backend/test-public/archive/a/a2/!',
+				true, [ 'hashLevels' => 2 ], [ '!' ]
+			],
+		];
 	}
 
 	/**
 	 * @covers File::getThumbPath
+	 * @dataProvider provideGetThumbPath
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetThumbPath() {
-		$this->assertEquals(
-			'mwstore://local-backend/test-thumb/Test!',
-			$this->file_hl0->getThumbPath()
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-thumb/a/a2/Test!',
-			$this->file_hl2->getThumbPath()
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-thumb/Test!/x',
-			$this->file_hl0->getThumbPath( 'x' )
-		);
-		$this->assertEquals(
-			'mwstore://local-backend/test-thumb/a/a2/Test!/x',
-			$this->file_hl2->getThumbPath( 'x' )
-		);
+	public function testGetThumbPath( $expected, $capitalLinks, array $info, array $args ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getThumbPath( ...$args ) );
+	}
+
+	public static function provideGetThumbPath() {
+		return [
+			[ 'mwstore://local-backend/test-thumb/Test!', true, [ 'hashLevels' => 0 ], [] ],
+			[ 'mwstore://local-backend/test-thumb/a/a2/Test!', true, [ 'hashLevels' => 2 ], [] ],
+			[
+				'mwstore://local-backend/test-thumb/Test!/x',
+				true, [ 'hashLevels' => 0 ], [ 'x' ]
+			], [
+				'mwstore://local-backend/test-thumb/a/a2/Test!/x',
+				true, [ 'hashLevels' => 2 ], [ 'x' ]
+			],
+		];
 	}
 
 	/**
 	 * @covers File::getArchiveUrl
+	 * @dataProvider provideGetArchiveUrl
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetArchiveUrl() {
-		$this->assertEquals( '/testurl/archive', $this->file_hl0->getArchiveUrl() );
-		$this->assertEquals( '/testurl/archive/a/a2', $this->file_hl2->getArchiveUrl() );
-		$this->assertEquals( '/testurl/archive/%21', $this->file_hl0->getArchiveUrl( '!' ) );
-		$this->assertEquals( '/testurl/archive/a/a2/%21', $this->file_hl2->getArchiveUrl( '!' ) );
+	public function testGetArchiveUrl( $expected, $capitalLinks, array $info, array $args ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getArchiveUrl( ...$args ) );
+	}
+
+	public static function provideGetArchiveUrl() {
+		return [
+			[ '/testurl/archive', true, [ 'hashLevels' => 0 ], [] ],
+			[ '/testurl/archive/a/a2', true, [ 'hashLevels' => 2 ], [] ],
+			[ '/testurl/archive/%21', true, [ 'hashLevels' => 0 ], [ '!' ] ],
+			[ '/testurl/archive/a/a2/%21', true, [ 'hashLevels' => 2 ], [ '!' ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getThumbUrl
+	 * @dataProvider provideGetThumbUrl
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetThumbUrl() {
-		$this->assertEquals( '/testurl/thumb/Test%21', $this->file_hl0->getThumbUrl() );
-		$this->assertEquals( '/testurl/thumb/a/a2/Test%21', $this->file_hl2->getThumbUrl() );
-		$this->assertEquals( '/testurl/thumb/Test%21/x', $this->file_hl0->getThumbUrl( 'x' ) );
-		$this->assertEquals( '/testurl/thumb/a/a2/Test%21/x', $this->file_hl2->getThumbUrl( 'x' ) );
+	public function testGetThumbUrl( $expected, $capitalLinks, array $info, array $args ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getThumbUrl( ...$args ) );
+	}
+
+	public static function provideGetThumbUrl() {
+		return [
+			[ '/testurl/thumb/Test%21', true, [ 'hashLevels' => 0 ], [] ],
+			[ '/testurl/thumb/a/a2/Test%21', true, [ 'hashLevels' => 2 ], [] ],
+			[ '/testurl/thumb/Test%21/x', true, [ 'hashLevels' => 0 ], [ 'x' ] ],
+			[ '/testurl/thumb/a/a2/Test%21/x', true, [ 'hashLevels' => 2 ], [ 'x' ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getArchiveVirtualUrl
+	 * @dataProvider provideGetArchiveVirtualUrl
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetArchiveVirtualUrl() {
-		$this->assertEquals( 'mwrepo://test/public/archive', $this->file_hl0->getArchiveVirtualUrl() );
-		$this->assertEquals(
-			'mwrepo://test/public/archive/a/a2',
-			$this->file_hl2->getArchiveVirtualUrl()
-		);
-		$this->assertEquals(
-			'mwrepo://test/public/archive/%21',
-			$this->file_hl0->getArchiveVirtualUrl( '!' )
-		);
-		$this->assertEquals(
-			'mwrepo://test/public/archive/a/a2/%21',
-			$this->file_hl2->getArchiveVirtualUrl( '!' )
-		);
+	public function testGetArchiveVirtualUrl(
+		$expected, $capitalLinks, array $info, array $args
+	) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getArchiveVirtualUrl( ...$args ) );
+	}
+
+	public static function provideGetArchiveVirtualUrl() {
+		return [
+			[ 'mwrepo://test/public/archive', true, [ 'hashLevels' => 0 ], [] ],
+			[ 'mwrepo://test/public/archive/a/a2', true, [ 'hashLevels' => 2 ], [] ],
+			[ 'mwrepo://test/public/archive/%21', true, [ 'hashLevels' => 0 ], [ '!' ] ],
+			[ 'mwrepo://test/public/archive/a/a2/%21', true, [ 'hashLevels' => 2 ], [ '!' ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getThumbVirtualUrl
+	 * @dataProvider provideGetThumbVirtualUrl
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
+	 * @param array $args
 	 */
-	public function testGetThumbVirtualUrl() {
-		$this->assertEquals( 'mwrepo://test/thumb/Test%21', $this->file_hl0->getThumbVirtualUrl() );
-		$this->assertEquals( 'mwrepo://test/thumb/a/a2/Test%21', $this->file_hl2->getThumbVirtualUrl() );
-		$this->assertEquals(
-			'mwrepo://test/thumb/Test%21/%21',
-			$this->file_hl0->getThumbVirtualUrl( '!' )
-		);
-		$this->assertEquals(
-			'mwrepo://test/thumb/a/a2/Test%21/%21',
-			$this->file_hl2->getThumbVirtualUrl( '!' )
-		);
+	public function testGetThumbVirtualUrl( $expected, $capitalLinks, array $info, array $args ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getThumbVirtualUrl( ...$args ) );
+	}
+
+	public static function provideGetThumbVirtualUrl() {
+		return [
+			[ 'mwrepo://test/thumb/Test%21', true, [ 'hashLevels' => 0 ], [] ],
+			[ 'mwrepo://test/thumb/a/a2/Test%21', true, [ 'hashLevels' => 2 ], [] ],
+			[ 'mwrepo://test/thumb/Test%21/%21', true, [ 'hashLevels' => 0 ], [ '!' ] ],
+			[ 'mwrepo://test/thumb/a/a2/Test%21/%21', true, [ 'hashLevels' => 2 ], [ '!' ] ],
+		];
 	}
 
 	/**
 	 * @covers File::getUrl
+	 * @dataProvider provideGetUrl
+	 * @param string $expected
+	 * @param bool $capitalLinks
+	 * @param array $info
 	 */
-	public function testGetUrl() {
-		$this->assertEquals( '/testurl/Test%21', $this->file_hl0->getUrl() );
-		$this->assertEquals( '/testurl/a/a2/Test%21', $this->file_hl2->getUrl() );
+	public function testGetUrl( $expected, $capitalLinks, array $info ) {
+		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+
+		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
+			->newFile( 'test!' )->getUrl() );
+	}
+
+	public static function provideGetUrl() {
+		return [
+			[ '/testurl/Test%21', true, [ 'hashLevels' => 0 ] ],
+			[ '/testurl/a/a2/Test%21', true, [ 'hashLevels' => 2 ] ],
+		];
 	}
 
 	/**
@@ -198,21 +282,24 @@ class LocalFileTest extends MediaWikiTestCase {
 	 * @covers File::getUser
 	 */
 	public function testGetUserForNonExistingFile() {
-		$this->assertSame( 'Unknown user', $this->file_hl0->getUser() );
-		$this->assertSame( 0, $this->file_hl0->getUser( 'id' ) );
+		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
+		$this->assertSame( 'Unknown user', $file->getUser() );
+		$this->assertSame( 0, $file->getUser( 'id' ) );
 	}
 
 	/**
 	 * @covers File::getUser
 	 */
 	public function testDescriptionShortUrlForNonExistingFile() {
-		$this->assertNull( $this->file_hl0->getDescriptionShortUrl() );
+		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
+		$this->assertNull( $file->getDescriptionShortUrl() );
 	}
 
 	/**
 	 * @covers File::getUser
 	 */
 	public function testDescriptionTextForNonExistingFile() {
-		$this->assertFalse( $this->file_hl0->getDescriptionText() );
+		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
+		$this->assertFalse( $file->getDescriptionText() );
 	}
 }

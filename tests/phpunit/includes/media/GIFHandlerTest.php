@@ -8,10 +8,18 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/** @var GIFHandler */
 	protected $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->handler = new GIFHandler();
+	}
+
+	/**
+	 * @return string Value of GIFHandler::BROKEN_FILE
+	 */
+	private function brokenFile() : string {
+		$const = new ReflectionClassConstant( GIFHandler::class, 'BROKEN_FILE' );
+		return $const->getValue();
 	}
 
 	/**
@@ -19,7 +27,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
-		$this->assertEquals( GIFHandler::BROKEN_FILE, $res );
+		$this->assertEquals( $this->brokenFile(), $res );
 	}
 
 	/**
@@ -71,10 +79,10 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public static function provideIsMetadataValid() {
+	public function provideIsMetadataValid() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
-			[ GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ],
+			[ $this->brokenFile(), GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
 			[ null, GIFHandler::METADATA_BAD ],
 			[ 'Something invalid!', GIFHandler::METADATA_BAD ],
@@ -158,7 +166,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	public function testGetLength( $filename, $expectedLength ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
 		$actualLength = $file->getLength();
-		$this->assertEquals( $expectedLength, $actualLength, '', 0.00001 );
+		$this->assertEqualsWithDelta( $expectedLength, $actualLength, 0.00001 );
 	}
 
 	public function provideGetLength() {

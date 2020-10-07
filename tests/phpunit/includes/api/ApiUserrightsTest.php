@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiUserrightsTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
@@ -96,7 +96,8 @@ class ApiUserrightsTest extends ApiTestCase {
 	) {
 		$params['action'] = 'userrights';
 
-		$this->setExpectedException( ApiUsageException::class, $expectedException );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( $expectedException );
 
 		if ( !$user ) {
 			// If 'user' or 'userid' is specified and $user was not specified,
@@ -305,7 +306,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * @param array $expectedGroups Array of expected groups
 	 */
 	public function testAddAndRemoveGroups(
-		array $permissions = null, array $groupsToChange, array $expectedGroups
+		?array $permissions, array $groupsToChange, array $expectedGroups
 	) {
 		if ( $permissions !== null ) {
 			$this->setPermissions( $permissions[0], $permissions[1] );

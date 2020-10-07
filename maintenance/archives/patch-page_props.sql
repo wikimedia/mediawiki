@@ -6,4 +6,3 @@ CREATE TABLE /*$wgDBprefix*/page_props (
 
   PRIMARY KEY (pp_page,pp_propname)
 ) /*$wgDBTableOptions*/;
-

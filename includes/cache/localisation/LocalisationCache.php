@@ -20,9 +20,11 @@
  * @file
  */
 
-use CLDRPluralRuleParser\Evaluator;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
+use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use Psr\Log\LoggerInterface;
 
@@ -39,7 +41,7 @@ use Psr\Log\LoggerInterface;
  * as grammatical transformation, is done by the caller.
  */
 class LocalisationCache {
-	const VERSION = 4;
+	public const VERSION = 4;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -70,6 +72,9 @@ class LocalisationCache {
 	 * @var LoggerInterface
 	 */
 	private $logger;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var callable[] See comment for parameter in constructor */
 	private $clearStoreCallbacks;
@@ -249,14 +254,16 @@ class LocalisationCache {
 	 *   used to clear other caches that depend on this one, such as ResourceLoader's
 	 *   MessageBlobStore.
 	 * @param LanguageNameUtils $langNameUtils
+	 * @param HookContainer $hookContainer
 	 * @throws MWException
 	 */
-	function __construct(
+	public function __construct(
 		ServiceOptions $options,
 		LCStore $store,
 		LoggerInterface $logger,
 		array $clearStoreCallbacks,
-		LanguageNameUtils $langNameUtils
+		LanguageNameUtils $langNameUtils,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -265,6 +272,7 @@ class LocalisationCache {
 		$this->logger = $logger;
 		$this->clearStoreCallbacks = $clearStoreCallbacks;
 		$this->langNameUtils = $langNameUtils;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Keep this separate from $this->options so it can be mutable
 		$this->manualRecache = $options->get( 'manualRecache' );
@@ -557,6 +565,7 @@ class LocalisationCache {
 				}
 			}
 		} elseif ( $_fileType == 'aliases' ) {
+			// @phan-suppress-next-line PhanImpossibleCondition May be set in included file
 			if ( isset( $aliases ) ) {
 				$data['aliases'] = $aliases;
 			}
@@ -743,8 +752,8 @@ class LocalisationCache {
 	 * @param mixed $fallbackValue
 	 */
 	protected function mergeItem( $key, &$value, $fallbackValue ) {
-		if ( !is_null( $value ) ) {
-			if ( !is_null( $fallbackValue ) ) {
+		if ( $value !== null ) {
+			if ( $fallbackValue !== null ) {
 				if ( in_array( $key, self::$mergeableMapKeys ) ) {
 					$value = $value + $fallbackValue;
 				} elseif ( in_array( $key, self::$mergeableListKeys ) ) {
@@ -826,7 +835,9 @@ class LocalisationCache {
 			'core' => "$IP/languages/i18n",
 			'exif' => "$IP/languages/i18n/exif",
 			'api' => "$IP/includes/api/i18n",
+			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
+			'paramvalidator' => "$IP/includes/libs/ParamValidator/i18n",
 		] + $this->options->get( 'MessagesDirs' );
 	}
 
@@ -857,11 +868,12 @@ class LocalisationCache {
 		}
 
 		# Fill in the fallback if it's not there already
-		if ( ( is_null( $coreData['fallback'] ) || $coreData['fallback'] === false ) && $code === 'en' ) {
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
+		if ( ( $coreData['fallback'] === null || $coreData['fallback'] === false ) && $code === 'en' ) {
 			$coreData['fallback'] = false;
 			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'] = [];
 		} else {
-			if ( !is_null( $coreData['fallback'] ) ) {
+			if ( $coreData['fallback'] !== null ) {
 				$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
 			} else {
 				$coreData['fallbackSequence'] = [];
@@ -947,7 +959,7 @@ class LocalisationCache {
 						continue;
 					}
 
-					if ( is_null( $coreData[ $key ] ) || $this->isMergeableKey( $key ) ) {
+					if ( ( $coreData[ $key ] ) === null || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $csData[ $key ], $fbData[ $key ] );
 					}
 				}
@@ -955,7 +967,7 @@ class LocalisationCache {
 
 			# Allow extensions an opportunity to adjust the data for this
 			# fallback
-			Hooks::run( 'LocalisationCacheRecacheFallback', [ $this, $csCode, &$csData ] );
+			$this->hookRunner->onLocalisationCacheRecacheFallback( $this, $csCode, $csData );
 
 			# Merge the data for this fallback into the final array
 			if ( $csCode === $code ) {
@@ -966,7 +978,8 @@ class LocalisationCache {
 						continue;
 					}
 
-					if ( is_null( $allData[$key] ) || $this->isMergeableKey( $key ) ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+					if ( $allData[$key] === null || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $allData[$key], $csData[$key] );
 					}
 				}
@@ -1012,9 +1025,9 @@ class LocalisationCache {
 		}
 		# Run hooks
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
-		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$unused ] );
+		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
-		if ( is_null( $allData['namespaceNames'] ) ) {
+		if ( $allData['namespaceNames'] === null ) {
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}

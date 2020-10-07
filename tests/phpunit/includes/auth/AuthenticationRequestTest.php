@@ -6,16 +6,16 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  * @covers \MediaWiki\Auth\AuthenticationRequest
  */
-class AuthenticationRequestTest extends \MediaWikiTestCase {
+class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 	public function testBasics() {
 		$mock = $this->getMockForAbstractClass( AuthenticationRequest::class );
 
 		$this->assertSame( get_class( $mock ), $mock->getUniqueId() );
 
-		$this->assertType( 'array', $mock->getMetadata() );
+		$this->assertIsArray( $mock->getMetadata() );
 
 		$ret = $mock->describeCredentials();
-		$this->assertInternalType( 'array', $ret );
+		$this->assertIsArray( $ret );
 		$this->assertArrayHasKey( 'provider', $ret );
 		$this->assertInstanceOf( \Message::class, $ret['provider'] );
 		$this->assertArrayHasKey( 'account', $ret );
@@ -203,6 +203,8 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		// Basic combining
 
+		$this->assertEquals( [], AuthenticationRequest::mergeFieldInfo( [] ) );
+
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1 ] );
 		$expect = $req1->getFieldInfo();
 		foreach ( $expect as $name => &$options ) {
@@ -277,7 +279,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 		$ret = $mock->loadFromSubmission( $data );
 		if ( is_array( $expectState ) ) {
 			$this->assertTrue( $ret );
-			$expect = call_user_func( [ get_class( $mock ), '__set_state' ], $expectState );
+			$expect = $mock::__set_state( $expectState );
 			$this->assertEquals( $expect, $mock );
 		} else {
 			$this->assertFalse( $ret );

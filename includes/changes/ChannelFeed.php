@@ -24,6 +24,7 @@
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
  *
+ * @stable to extend
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
@@ -32,14 +33,19 @@ abstract class ChannelFeed extends FeedItem {
 	protected $templateParser;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param string|Title $title Feed's title
 	 * @param string $description
 	 * @param string $url URL uniquely designating the feed.
 	 * @param string $date Feed's date
 	 * @param string $author Author's user name
 	 * @param string $comments
+	 *
 	 */
-	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+	public function __construct(
+		$title, $description, $url, $date = '', $author = '', $comments = ''
+	) {
 		parent::__construct( $title, $description, $url, $date, $author, $comments );
 		$this->templateParser = new TemplateParser();
 	}
@@ -89,9 +95,8 @@ abstract class ChannelFeed extends FeedItem {
 		header( "Content-type: $mimetype; charset=UTF-8" );
 
 		// Set a sane filename
-		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
-			->getExtensionsForType( $mimetype );
-		$ext = $exts ? strtok( $exts, ' ' ) : 'xml';
+		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $mimetype ) ?? 'xml';
 		header( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
 
 		if ( $wgVaryOnXFP ) {
@@ -102,6 +107,8 @@ abstract class ChannelFeed extends FeedItem {
 
 	/**
 	 * Return an internet media type to be sent in the headers.
+	 *
+	 * @stable to override
 	 *
 	 * @return string
 	 */

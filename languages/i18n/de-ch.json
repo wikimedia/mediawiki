@@ -1,20 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Das Schäfchen",
+			"Doc Taxon",
 			"Filzstift",
+			"FriedhelmW",
 			"Geitost",
 			"Ianusius",
+			"J. 'mach' wust",
 			"Kghbln",
+			"L*E*D",
+			"Macofe",
+			"Marcell0",
 			"MichaelFrey",
 			"SVG",
 			"The Evil IP address",
-			"Umherirrender",
-			"Das Schäfchen",
-			"FriedhelmW",
-			"J. 'mach' wust",
-			"Macofe",
-			"Marcell0",
-			"L*E*D"
+			"Umherirrender"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den «Letzten Änderungen» ausblenden",
@@ -122,7 +123,6 @@
 	"user-mail-no-addy": "Versuchte, ein E-Mail ohne Angabe einer E-Mail-Adresse zu versenden",
 	"user-mail-no-body": "Es wurde versucht, ein E-Mail mit einem leeren oder zu kurzen Textkörper zu versenden.",
 	"resetpass_announce": "Um die Anmeldung abzuschliessen, musst du ein neues Passwort festlegen.",
-	"passwordreset-emailsentemail": "Ein Passwortzurücksetzungs-E-Mail wurde versandt.",
 	"missingsummary": "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf «$1» klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 	"missingcommentheader": "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf «$1» klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 	"blockedtext": "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''\n\nDie Sperrung wurde von $1 durchgeführt.\nAls Grund wurde ''$2'' angegeben.\n\n* Beginn der Sperre: $8\n* Ende der Sperre: $6\n* Sperre betrifft: $7\n\nDu kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.\nDu kannst die «E-Mail an diesen Benutzer»-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für dich gesperrt wurde.\nDeine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.\nBitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
@@ -254,7 +254,6 @@
 	"emailuserfooter": "Dieses E-Mail wurde von {{SITENAME}}-Benutzer «$1» an «$2» gesendet.",
 	"addedwatchtext": "Die Seite «[[:$1]]» wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.\nSpätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet.",
 	"removedwatchtext": "Die Seite «[[:$1]]» wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.",
-	"watcherrortext": "Beim Ändern der Beobachtungslisteneinstellungen für «$1» ist ein Fehler aufgetreten.",
 	"excontent": "Inhalt war: «$1»",
 	"excontentauthor": "Inhalt war: «$1» (einziger Bearbeiter: [[Special:Contributions/$2|$2]])",
 	"exbeforeblank": "Inhalt vor dem Leeren der Seite: «$1»",
@@ -374,5 +373,6 @@
 	"feedback-thanks": "Vielen Dank. Deine Rückmeldung wurde auf der Seite «[$2 $1]» gespeichert.",
 	"searchsuggest-search": "{{SITENAME}} durchsuchen",
 	"api-error-unknown-warning": "Unbekannte Warnung: «$1»",
-	"api-error-unknownerror": "Unbekannter Fehler: «$1»"
+	"api-error-unknownerror": "Unbekannter Fehler: «$1»",
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>."
 }

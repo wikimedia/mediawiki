@@ -67,6 +67,7 @@ class ChangesFeed {
 	 * Generate the feed items given a row from the database.
 	 * @param object $rows IDatabase resource with recentchanges rows
 	 * @return array
+	 * @suppress PhanTypeInvalidDimOffset False positives in the foreach
 	 */
 	public static function buildItems( $rows ) {
 		$items = [];
@@ -94,7 +95,7 @@ class ChangesFeed {
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->isValid()
+			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->canExist()
 				? $title->getTalkPage()->getFullURL()
 				: '';
 

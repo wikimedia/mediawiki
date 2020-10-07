@@ -4,6 +4,12 @@
 	animation: @arguments; // Chrome 43+, Firefox 16+, IE 10+, Edge 12+, Safari 9+, Opera 12.10 & 30+, iOS 9+, Android 47+
 }
 
+.animation-delay( ... ) {
+	-webkit-animation-delay: @arguments; // Chrome 4-42, Safari 4-8, Opera 15-29, Android 2.1-4.4.4
+	-moz-animation-delay: @arguments; // Firefox 5-15
+	animation-delay: @arguments; // Chrome 43+, Firefox 16+, IE 10+, Edge 12+, Safari 9+, Opera 12.10 & 30+, iOS 9+, Android 47+
+}
+
 .transform-rotate( @deg ) {
 	-webkit-transform: rotate( @deg );
 	-moz-transform: rotate( @deg );

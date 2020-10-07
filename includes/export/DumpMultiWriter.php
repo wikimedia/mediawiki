@@ -35,7 +35,7 @@ class DumpMultiWriter {
 	/**
 	 * @param array $sinks
 	 */
-	function __construct( $sinks ) {
+	public function __construct( $sinks ) {
 		$this->sinks = $sinks;
 		$this->count = count( $sinks );
 	}
@@ -43,7 +43,7 @@ class DumpMultiWriter {
 	/**
 	 * @param string $string
 	 */
-	function writeOpenStream( $string ) {
+	public function writeOpenStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenStream( $string );
 		}
@@ -52,7 +52,7 @@ class DumpMultiWriter {
 	/**
 	 * @param string $string
 	 */
-	function writeCloseStream( $string ) {
+	public function writeCloseStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeCloseStream( $string );
 		}
@@ -62,7 +62,7 @@ class DumpMultiWriter {
 	 * @param object $page
 	 * @param string $string
 	 */
-	function writeOpenPage( $page, $string ) {
+	public function writeOpenPage( $page, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenPage( $page, $string );
 		}
@@ -71,7 +71,7 @@ class DumpMultiWriter {
 	/**
 	 * @param string $string
 	 */
-	function writeClosePage( $string ) {
+	public function writeClosePage( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeClosePage( $string );
 		}
@@ -81,7 +81,7 @@ class DumpMultiWriter {
 	 * @param object $rev
 	 * @param string $string
 	 */
-	function writeRevision( $rev, $string ) {
+	public function writeRevision( $rev, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeRevision( $rev, $string );
 		}
@@ -90,7 +90,7 @@ class DumpMultiWriter {
 	/**
 	 * @param array $newnames
 	 */
-	function closeRenameAndReopen( $newnames ) {
+	public function closeRenameAndReopen( $newnames ) {
 		$this->closeAndRename( $newnames, true );
 	}
 
@@ -98,7 +98,7 @@ class DumpMultiWriter {
 	 * @param array $newnames
 	 * @param bool $open
 	 */
-	function closeAndRename( $newnames, $open = false ) {
+	public function closeAndRename( $newnames, $open = false ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->closeAndRename( $newnames[$i], $open );
 		}
@@ -107,7 +107,7 @@ class DumpMultiWriter {
 	/**
 	 * @return array
 	 */
-	function getFilenames() {
+	public function getFilenames() {
 		$filenames = [];
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$filenames[] = $this->sinks[$i]->getFilenames();

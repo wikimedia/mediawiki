@@ -8,11 +8,11 @@ namespace MediaWiki\Rest;
  *
  * run() must be declared in the subclass. It cannot be declared as abstract
  * here because it has a variable parameter list.
- * @todo Declare it as abstract after dropping HHVM
  *
+ * @stable to extend
  * @package MediaWiki\Rest
  */
-class SimpleHandler extends Handler {
+abstract class SimpleHandler extends Handler {
 	public function execute() {
 		$paramSettings = $this->getParamSettings();
 		$validatedParams = $this->getValidatedParams();

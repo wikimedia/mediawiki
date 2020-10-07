@@ -12,6 +12,7 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  *
  * The result is the array of usernames
  *
+ * @stable to extend
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {
@@ -32,12 +33,17 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			return true;
 		}
 
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			return false;
 		}
 
 		// $value is a string, because HTMLForm fields store their values as strings
 		$usersArray = explode( "\n", $value );
+
+		if ( isset( $this->mParams['max'] ) && ( count( $usersArray ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
+		}
+
 		foreach ( $usersArray as $username ) {
 			$result = parent::validate( $username, $alldata );
 			if ( $result !== true ) {
@@ -74,7 +80,27 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['placeholder'] = $this->msg( 'mw-widgets-usersmultiselect-placeholder' )->plain();
 		}
 
-		if ( !is_null( $value ) ) {
+		if ( isset( $this->mParams['max'] ) ) {
+			$params['tagLimit'] = $this->mParams['max'];
+		}
+
+		if ( isset( $this->mParams['ipallowed'] ) ) {
+			$params['ipAllowed'] = $this->mParams['ipallowed'];
+		}
+
+		if ( isset( $this->mParams['iprange'] ) ) {
+			$params['ipRangeAllowed'] = $this->mParams['iprange'];
+		}
+
+		if ( isset( $this->mParams['iprangelimits'] ) ) {
+			$params['ipRangeLimits'] = $this->mParams['iprangelimits'];
+		}
+
+		if ( isset( $this->mParams['input'] ) ) {
+			$params['input'] = $this->mParams['input'];
+		}
+
+		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}

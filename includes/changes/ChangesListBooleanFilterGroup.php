@@ -14,7 +14,7 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Type marker, used by JavaScript
 	 */
-	const TYPE = 'send_unselected_if_any';
+	public const TYPE = 'send_unselected_if_any';
 
 	/**
 	 * Create a new filter group with the specified configuration

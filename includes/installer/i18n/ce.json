@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Sasan700",
-			"Умар",
-			"Seb35"
+			"Seb35",
+			"Умар"
 		]
 	},
 	"config-desc": "MediaWiki инсталлятор",
@@ -22,7 +22,6 @@
 	"config-page-install": "ХӀоттор",
 	"config-page-complete": "Кийчча ю!",
 	"config-page-restart": "Юху доладе дӀахӀоттор",
-	"config-page-readme": "Еша со",
 	"config-page-releasenotes": "Версех лаьцна хаам",
 	"config-page-copying": "Лицензи",
 	"config-page-upgradedoc": "Карлаяккхар",

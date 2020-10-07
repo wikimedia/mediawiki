@@ -64,7 +64,9 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = [];
-		if ( Hooks::run( 'SpecialStatsAddExtra', [ &$extraStats, $this->getContext() ] ) ) {
+		if ( $this->getHookRunner()->onSpecialStatsAddExtra(
+			$extraStats, $this->getContext() )
+		) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 
@@ -82,7 +84,7 @@ class SpecialStatistics extends SpecialPage {
 	/**
 	 * Format a row
 	 * @param string $text Description of the row
-	 * @param float $number A statistical number
+	 * @param float|string $number A statistical number
 	 * @param array $trExtraParams Params to table row, see Html::elememt
 	 * @param string $descMsg Message key
 	 * @param array|string $descMsgParam Message parameters

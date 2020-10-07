@@ -9,4 +9,3 @@ CREATE TABLE querycachetwo (
 CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
 CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
-

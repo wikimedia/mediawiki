@@ -5,7 +5,7 @@
  *
  * @covers UploadStash
  */
-class UploadStashTest extends MediaWikiTestCase {
+class UploadStashTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var TestUser[] Array of UploadStashTestUser
 	 */
@@ -16,7 +16,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	 */
 	private $tmpFile;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tmpFile = $this->getNewTempFile();
@@ -36,23 +36,6 @@ class UploadStashTest extends MediaWikiTestCase {
 				[]
 			)
 		];
-	}
-
-	/**
-	 * @todo give this test a real name explaining what is being tested here
-	 */
-	public function testT31408() {
-		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
-
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$stash = new UploadStash( $repo );
-
-		// Throws exception caught by PHPUnit on failure
-		$file = $stash->stashFile( $this->tmpFile );
-		// We'll never reach this point if we hit T31408
-		$this->assertTrue( true, 'Unrecognized file without extension' );
-
-		$stash->removeFile( $file->getFileKey() );
 	}
 
 	public static function provideInvalidRequests() {
@@ -90,25 +73,5 @@ class UploadStashTest extends MediaWikiTestCase {
 	 */
 	public function testValidRequestWithValidRequests( $request ) {
 		$this->assertTrue( UploadFromStash::isValidRequest( $request ) );
-	}
-
-	public function testExceptionWhenStoreTempFails() {
-		$mockRepoStoreStatusResult = Status::newFatal( 'TEST_ERROR' );
-		$mockRepo = $this->getMockBuilder( FileRepo::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mockRepo->expects( $this->once() )
-			->method( 'storeTemp' )
-			->willReturn( $mockRepoStoreStatusResult );
-
-		$stash = new UploadStash( $mockRepo );
-		try {
-			$stash->stashFile( $this->tmpFile );
-			$this->fail( 'Expected UploadStashFileException not thrown' );
-		} catch ( UploadStashFileException $e ) {
-			$this->assertInstanceOf( ILocalizedException::class, $e );
-		} catch ( Exception $e ) {
-			$this->fail( 'Unexpected exception class ' . get_class( $e ) );
-		}
 	}
 }

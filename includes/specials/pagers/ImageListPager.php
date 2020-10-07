@@ -24,8 +24,8 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ImageListPager extends TablePager {
 
@@ -51,8 +51,17 @@ class ImageListPager extends TablePager {
 
 	protected $mTableName = 'image';
 
-	public function __construct( IContextSource $context, $userName = null, $search = '',
-		$including = false, $showAll = false, LinkRenderer $linkRenderer
+	/**
+	 * The unique sort fields for the sort options for unique pagniate
+	 */
+	private const INDEX_FIELDS = [
+		'img_timestamp' => [ 'img_timestamp', 'img_name' ],
+		'img_name' => [ 'img_name' ],
+		'img_size' => [ 'img_size', 'img_name' ],
+	];
+
+	public function __construct( IContextSource $context, $userName, $search,
+		$including, $showAll, LinkRenderer $linkRenderer
 	) {
 		$this->setContext( $context );
 
@@ -61,7 +70,7 @@ class ImageListPager extends TablePager {
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::makeTitleSafe( NS_USER, $userName );
-			if ( is_null( $nt ) ) {
+			if ( $nt === null ) {
 				$this->outputUserDoesNotExist( $userName );
 			} else {
 				$this->mUserName = $nt->getText();
@@ -105,7 +114,7 @@ class ImageListPager extends TablePager {
 	 *
 	 * @return User|null
 	 */
-	function getRelevantUser() {
+	public function getRelevantUser() {
 		return $this->mUser;
 	}
 
@@ -135,7 +144,7 @@ class ImageListPager extends TablePager {
 		$prefix = $table === 'image' ? 'img' : 'oi';
 		$conds = [];
 
-		if ( !is_null( $this->mUserName ) ) {
+		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
 			$dbr = wfGetDB( DB_REPLICA );
 			$actorWhere = ActorMigration::newMigration()->getWhere(
@@ -175,7 +184,7 @@ class ImageListPager extends TablePager {
 	 * @return-taint onlysafefor_sql
 	 * @return array
 	 */
-	function getFieldNames() {
+	protected function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = [
 				'img_timestamp' => $this->msg( 'listfiles_date' )->text(),
@@ -183,7 +192,7 @@ class ImageListPager extends TablePager {
 				'thumb' => $this->msg( 'listfiles_thumb' )->text(),
 				'img_size' => $this->msg( 'listfiles_size' )->text(),
 			];
-			if ( is_null( $this->mUserName ) ) {
+			if ( $this->mUserName === null ) {
 				// Do not show username if filtering by username
 				$this->mFieldNames['img_user_text'] = $this->msg( 'listfiles_user' )->text();
 			}
@@ -201,11 +210,11 @@ class ImageListPager extends TablePager {
 		return $this->mFieldNames;
 	}
 
-	function isFieldSortable( $field ) {
+	protected function isFieldSortable( $field ) {
 		if ( $this->mIncluding ) {
 			return false;
 		}
-		$sortable = [ 'img_timestamp', 'img_name', 'img_size' ];
+		$sortable = array_keys( self::INDEX_FIELDS );
 		/* For reference, the indicies we can use for sorting are:
 		 * On the image table: img_user_timestamp/img_usertext_timestamp/img_actor_timestamp,
 		 * img_size, img_timestamp
@@ -214,7 +223,7 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad.
 		 */
-		if ( $this->getConfig()->get( 'MiserMode' ) && !is_null( $this->mUserName ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
 			if ( $field === 'img_timestamp' ) {
 				return true;
@@ -235,7 +244,7 @@ class ImageListPager extends TablePager {
 		return in_array( $field, $sortable );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		// Hacky Hacky Hacky - I want to get query info
 		// for two different tables, without reimplementing
 		// the pager class.
@@ -325,7 +334,7 @@ class ImageListPager extends TablePager {
 	 * @return FakeResultWrapper
 	 * @throws MWException
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
@@ -341,10 +350,12 @@ class ImageListPager extends TablePager {
 
 		# Hacky...
 		$oldIndex = $this->mIndexField;
-		if ( substr( $this->mIndexField, 0, 4 ) !== 'img_' ) {
-			throw new MWException( "Expected to be sorting on an image table field" );
+		foreach ( $this->mIndexField as &$index ) {
+			if ( substr( $index, 0, 4 ) !== 'img_' ) {
+				throw new MWException( "Expected to be sorting on an image table field" );
+			}
+			$index = 'oi_' . substr( $index, 4 );
 		}
-		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
 			$this->buildQueryInfo( $offset, $limit, $order );
@@ -374,7 +385,7 @@ class ImageListPager extends TablePager {
 		$topRes2 = $res2->next();
 		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
-			if ( strcmp( $topRes1->{$this->mIndexField}, $topRes2->{$this->mIndexField} ) > 0 ) {
+			if ( strcmp( $topRes1->{$this->mIndexField[0]}, $topRes2->{$this->mIndexField[0]} ) > 0 ) {
 				if ( !$ascending ) {
 					$resultArray[] = $topRes1;
 					$topRes1 = $res1->next();
@@ -404,8 +415,12 @@ class ImageListPager extends TablePager {
 		return new FakeResultWrapper( $resultArray );
 	}
 
-	function getDefaultSort() {
-		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && is_null( $this->mUserName ) ) {
+	public function getIndexField() {
+		return [ self::INDEX_FIELDS[$this->mSort] ];
+	}
+
+	public function getDefaultSort() {
+		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && $this->mUserName === null ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {
@@ -437,13 +452,13 @@ class ImageListPager extends TablePager {
 	 *   - top: Message
 	 * @throws MWException
 	 */
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		$services = MediaWikiServices::getInstance();
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
-				$file = RepoGroup::singleton()->getLocalRepo()->findFile( $value, $opt );
+				$file = $services->getRepoGroup()->getLocalRepo()->findFile( $value, $opt );
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
@@ -525,7 +540,7 @@ class ImageListPager extends TablePager {
 		}
 	}
 
-	function getForm() {
+	public function getForm() {
 		$formDescriptor = [];
 		$formDescriptor['limit'] = [
 			'type' => 'select',
@@ -596,9 +611,9 @@ class ImageListPager extends TablePager {
 		return parent::getSortHeaderClass() . ' listfiles_sort';
 	}
 
-	function getPagingQueries() {
+	public function getPagingQueries() {
 		$queries = parent::getPagingQueries();
-		if ( !is_null( $this->mUserName ) ) {
+		if ( $this->mUserName !== null ) {
 			# Append the username to the query string
 			foreach ( $queries as &$query ) {
 				if ( $query !== false ) {
@@ -610,16 +625,16 @@ class ImageListPager extends TablePager {
 		return $queries;
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$queries = parent::getDefaultQuery();
-		if ( !isset( $queries['user'] ) && !is_null( $this->mUserName ) ) {
+		if ( !isset( $queries['user'] ) && $this->mUserName !== null ) {
 			$queries['user'] = $this->mUserName;
 		}
 
 		return $queries;
 	}
 
-	function getTitle() {
+	public function getTitle() {
 		return SpecialPage::getTitleFor( 'Listfiles' );
 	}
 }

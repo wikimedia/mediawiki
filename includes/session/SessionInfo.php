@@ -27,16 +27,19 @@ namespace MediaWiki\Session;
  * Value object returned by SessionProvider
  *
  * This holds the data necessary to construct a Session.
+ * May require services to be injected into the constructor.
+ *
+ * @newable
  *
  * @ingroup Session
  * @since 1.27
  */
 class SessionInfo {
 	/** Minimum allowed priority */
-	const MIN_PRIORITY = 1;
+	public const MIN_PRIORITY = 1;
 
 	/** Maximum allowed priority */
-	const MAX_PRIORITY = 100;
+	public const MAX_PRIORITY = 100;
 
 	/** @var SessionProvider|null */
 	private $provider;
@@ -69,6 +72,8 @@ class SessionInfo {
 	private $providerMetadata = null;
 
 	/**
+	 * @stable to call
+	 *
 	 * @param int $priority Session priority
 	 * @param array $data
 	 *  - provider: (SessionProvider|null) If not given, the provider will be
@@ -157,7 +162,6 @@ class SessionInfo {
 			$this->idIsSafe = $data['idIsSafe'];
 			$this->forceUse = $data['forceUse'] && $this->provider;
 		} else {
-			// @phan-suppress-next-line PhanUndeclaredMethod
 			$this->id = $this->provider->getManager()->generateSessionId();
 			$this->idIsSafe = true;
 			$this->forceUse = false;

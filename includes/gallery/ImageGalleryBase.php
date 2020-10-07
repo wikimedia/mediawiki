@@ -26,12 +26,16 @@ use MediaWiki\MediaWikiServices;
  * Image gallery
  *
  * Add images to the gallery using add(), then render that list to HTML using toHTML().
- *
+ * @stable to extend
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
+	public const LOADING_DEFAULT = 1;
+	public const LOADING_LAZY = 2;
+
 	/**
-	 * @var array Gallery images
+	 * @var array[] Gallery images
+	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array,5:int}>
 	 */
 	protected $mImages;
 
@@ -109,7 +113,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @return ImageGalleryBase
 	 * @throws MWException
 	 */
-	static function factory( $mode = false, IContextSource $context = null ) {
+	public static function factory( $mode = false, IContextSource $context = null ) {
 		self::loadModes();
 		if ( !$context ) {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
@@ -140,7 +144,7 @@ abstract class ImageGalleryBase extends ContextSource {
 				'slideshow' => SlideshowImageGallery::class,
 			];
 			// Allow extensions to make a new gallery format.
-			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );
+			Hooks::runner()->onGalleryGetModes( self::$modeMapping );
 		}
 	}
 
@@ -149,10 +153,15 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * You should not call this directly, but instead use
 	 * ImageGalleryBase::factory().
+	 *
+	 * @stable to call
+	 * @note constructors of subclasses must have a compatible signature
+	 *       for use by the factory() method.
+	 *
 	 * @param string $mode
 	 * @param IContextSource|null $context
 	 */
-	function __construct( $mode = 'traditional', IContextSource $context = null ) {
+	public function __construct( $mode = 'traditional', IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -181,7 +190,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param Parser $parser
 	 */
-	function setParser( $parser ) {
+	public function setParser( $parser ) {
 		$this->mParser = $parser;
 	}
 
@@ -189,7 +198,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Set bad image flag
 	 * @param bool $flag
 	 */
-	function setHideBadImages( $flag = true ) {
+	public function setHideBadImages( $flag = true ) {
 		$this->mHideBadImages = $flag;
 	}
 
@@ -198,7 +207,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param string $caption
 	 */
-	function setCaption( $caption ) {
+	public function setCaption( $caption ) {
 		$this->mCaption = htmlspecialchars( $caption );
 	}
 
@@ -254,6 +263,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * to allow extensions to add additional parameters to
 	 * <gallery> parser tag.
 	 *
+	 * @stable to override
+	 *
 	 * @param array $options Attributes of gallery tag
 	 */
 	public function setAdditionalOptions( $options ) {
@@ -268,14 +279,22 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function add(
+			$title,
+			$html = '',
+			$alt = '',
+			$link = '',
+			$handlerOpts = [],
+			$loading = self::LOADING_DEFAULT
+		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts ];
-		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading ];
+		wfDebug( 'ImageGallery::add ' . $title->getText() );
 	}
 
 	/**
@@ -287,18 +306,27 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
 	 */
-	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function insert(
+			$title,
+			$html = '',
+			$alt = '',
+			$link = '',
+			$handlerOpts = [],
+			$loading = self::LOADING_DEFAULT
+		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts ] );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading ] );
 	}
 
 	/**
 	 * Returns the list of images this gallery contains
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<int,array{0:Title,1:string,2:string,3:string,4:array}>
 	 */
 	public function getImages() {
 		return $this->mImages;
@@ -308,7 +336,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * isEmpty() returns true if the gallery contains no images
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return empty( $this->mImages );
 	}
 
@@ -318,7 +346,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowDimensions( $f ) {
+	public function setShowDimensions( $f ) {
 		$this->mShowDimensions = (bool)$f;
 	}
 
@@ -328,7 +356,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowBytes( $f ) {
+	public function setShowBytes( $f ) {
 		$this->mShowBytes = (bool)$f;
 	}
 
@@ -338,7 +366,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowFilename( $f ) {
+	public function setShowFilename( $f ) {
 		$this->mShowFilename = (bool)$f;
 	}
 
@@ -351,7 +379,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param array $attribs Array of HTML attribute pairs
 	 */
-	function setAttributes( $attribs ) {
+	public function setAttributes( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 

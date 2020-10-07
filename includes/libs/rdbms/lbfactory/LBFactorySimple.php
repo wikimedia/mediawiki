@@ -34,13 +34,13 @@ class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer[] */
 	private $externalLBs = [];
 
+	/** @var array Configuration for the LoadMonitor to use within LoadBalancer instances */
+	private $loadMonitorConfig;
+
 	/** @var array[] Map of (server index => server config map) */
 	private $mainServers = [];
 	/** @var array[][] Map of (cluster => server index => server config map) */
 	private $externalServersByCluster = [];
-
-	/** @var string */
-	private $loadMonitorClass;
 
 	/**
 	 * @see LBFactory::__construct()
@@ -53,26 +53,25 @@ class LBFactorySimple extends LBFactory {
 	 *      replication sync checks (intended for archive servers with unchanging data).
 	 *   - externalClusters : map of cluster names to server arrays. The servers arrays have the
 	 *      same format as "servers" above.
+	 *   - loadMonitor: LoadMonitor::__construct() parameters with "class" field. [optional]
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
 		$this->mainServers = $conf['servers'] ?? [];
-		foreach ( $this->mainServers as $i => $server ) {
-			if ( $i == 0 ) {
-				$this->mainServers[$i]['master'] = true;
-			} else {
-				$this->mainServers[$i]['replica'] = true;
-			}
-		}
-
 		foreach ( ( $conf['externalClusters'] ?? [] ) as $cluster => $servers ) {
 			foreach ( $servers as $index => $server ) {
 				$this->externalServersByCluster[$cluster][$index] = $server;
 			}
 		}
 
-		$this->loadMonitorClass = $conf['loadMonitorClass'] ?? LoadMonitor::class;
+		if ( isset( $conf['loadMonitor'] ) ) {
+			$this->loadMonitorConfig = $conf['loadMonitor'];
+		} elseif ( isset( $conf['loadMonitorClass'] ) ) { // b/c
+			$this->loadMonitorConfig = [ 'class' => $conf['loadMonitorClass'] ];
+		} else {
+			$this->loadMonitorConfig = [ 'class' => LoadMonitor::class ];
+		}
 	}
 
 	public function newMainLB( $domain = false, $owner = null ) {
@@ -121,7 +120,7 @@ class LBFactorySimple extends LBFactory {
 			$this->baseLoadBalancerParams( $owner ),
 			[
 				'servers' => $servers,
-				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],
+				'loadMonitor' => $this->loadMonitorConfig,
 			]
 		) );
 		$this->initLoadBalancer( $lb );

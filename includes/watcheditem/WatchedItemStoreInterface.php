@@ -32,12 +32,12 @@ interface WatchedItemStoreInterface {
 	/**
 	 * @since 1.31
 	 */
-	const SORT_ASC = 'ASC';
+	public const SORT_ASC = 'ASC';
 
 	/**
 	 * @since 1.31
 	 */
-	const SORT_DESC = 'DESC';
+	public const SORT_DESC = 'DESC';
 
 	/**
 	 * Count the number of individual items that are watched by the user.
@@ -137,13 +137,16 @@ interface WatchedItemStoreInterface {
 	public function loadWatchedItem( UserIdentity $user, LinkTarget $target );
 
 	/**
-	 * @since 1.31
+	 * @since 1.31 Method Added
+	 * @since 1.35 Allows 'sortByExpiry' as a key in $options
 	 *
 	 * @param UserIdentity $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
 	 *        'sort' => string optional sorting by namespace ID and title
 	 *                     one of the self::SORT_* constants
+	 *        'sortByExpiry' => bool optional sorts by expiration date, with the titles
+	 *                     that will expire soonest at the top.
 	 *
 	 * @return WatchedItem[]
 	 */
@@ -162,6 +165,19 @@ interface WatchedItemStoreInterface {
 	public function isWatched( UserIdentity $user, LinkTarget $target );
 
 	/**
+	 * Whether the page is only being watched temporarily (has expiry).
+	 * Must be called separately for Subject & Talk namespaces.
+	 *
+	 * @since 1.35
+	 *
+	 * @param UserIdentity $user
+	 * @param LinkTarget $target
+	 *
+	 * @return bool
+	 */
+	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool;
+
+	/**
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user
@@ -177,22 +193,28 @@ interface WatchedItemStoreInterface {
 	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
-	 * @since 1.31
+	 * @since 1.31 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 *
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp().
+	 *   null will not create an expiry, or leave it unchanged should one already exist.
 	 */
-	public function addWatch( UserIdentity $user, LinkTarget $target );
+	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null );
 
 	/**
-	 * @since 1.31
+	 * @since 1.31 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 *
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 *
 	 * @return bool success
 	 */
-	public function addWatchBatchForUser( UserIdentity $user, array $targets );
+	public function addWatchBatchForUser( UserIdentity $user, array $targets, ?string $expiry = null );
 
 	/**
 	 * Removes an entry for the UserIdentity watching the LinkTarget
@@ -230,8 +252,9 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user The user to reset the timestamps for
+	 * @param string|int|null $timestamp Value to set all timestamps to, null to clear them
 	 */
-	public function resetAllNotificationTimestampsForUser( UserIdentity $user );
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null );
 
 	/**
 	 * @since 1.31
@@ -303,13 +326,24 @@ interface WatchedItemStoreInterface {
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget );
 
 	/**
-	 * Queues a job that will clear the users watchlist using the Job Queue.
+	 * Synchronously clear the users watchlist.
 	 *
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user
 	 */
 	public function clearUserWatchedItems( UserIdentity $user );
+
+	/**
+	 * Does the size of the users watchlist require clearUserWatchedItemsUsingJobQueue() to be used
+	 * instead of clearUserWatchedItems()
+	 *
+	 * @since 1.35
+	 *
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool;
 
 	/**
 	 * Queues a job that will clear the users watchlist using the Job Queue.
@@ -319,6 +353,15 @@ interface WatchedItemStoreInterface {
 	 * @param UserIdentity $user
 	 */
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user );
+
+	/**
+	 * Probabilistically add a job to purge the expired watchlist items.
+	 *
+	 * @since 1.35
+	 *
+	 * @param float $watchlistPurgeRate The value of the $wgWatchlistPurgeRate configuration variable.
+	 */
+	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void;
 
 	/**
 	 * @since 1.32
@@ -345,4 +388,25 @@ interface WatchedItemStoreInterface {
 	 */
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, LinkTarget $target );
+
+	/**
+	 * Get the number of watchlist items that expire before the current time.
+	 *
+	 * @since 1.35
+	 *
+	 * @return int
+	 */
+	public function countExpired(): int;
+
+	/**
+	 * Remove some number of expired watchlist items.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $limit The number of items to remove.
+	 * @param bool $deleteOrphans Whether to also delete `watchlist_expiry` rows that have no
+	 * related `watchlist` rows (because not all code knows about the expiry table yet). This runs
+	 * two extra queries, so is only done from the purgeExpiredWatchlistItems.php maintenance script.
+	 */
+	public function removeExpired( int $limit, bool $deleteOrphans = false ): void;
 }

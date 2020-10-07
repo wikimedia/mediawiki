@@ -32,7 +32,7 @@ class UnprotectAction extends ProtectAction {
 	}
 
 	public function show() {
-		$this->page->unprotect();
+		$this->getArticle()->unprotect();
 	}
 
 	public function doesWrites() {

@@ -92,9 +92,9 @@ class TempFSFile extends FSFile {
 		// the current process.
 		// The user is included as if various scripts are run by different users they will likely
 		// not be able to access each others temporary files.
-		if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
+		if ( PHP_OS_FAMILY === 'Windows' ) {
 			$tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mwtmp-' . get_current_user();
-			if ( !file_exists( $tmp ) ) {
+			if ( !is_dir( $tmp ) ) {
 				mkdir( $tmp );
 			}
 			if ( is_dir( $tmp ) && is_writable( $tmp ) ) {
@@ -185,7 +185,7 @@ class TempFSFile extends FSFile {
 	/**
 	 * Cleans up after the temporary file by deleting it
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( $this->canDelete ) {
 			$this->purge();
 		}

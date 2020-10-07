@@ -75,9 +75,9 @@ abstract class ApiFormatBase extends ApiBase {
 		} elseif ( $this->getIsHtml() ) {
 			return 'api-result.html';
 		} else {
-			$exts = MediaWikiServices::getInstance()->getMimeAnalyzer()
-				->getExtensionsForType( $this->getMimeType() );
-			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
+			$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $this->getMimeType() )
+				?? strtolower( $this->mFormat );
 			return "api-result.$ext";
 		}
 	}
@@ -292,7 +292,7 @@ abstract class ApiFormatBase extends ApiBase {
 				}
 			}
 
-			if ( Hooks::run( 'ApiFormatHighlight', [ $context, $result, $mime, $format ] ) ) {
+			if ( $this->getHookRunner()->onApiFormatHighlight( $context, $result, $mime, $format ) ) {
 				$out->addHTML(
 					Html::element( 'pre', [ 'class' => 'api-pretty-content' ], $result )
 				);

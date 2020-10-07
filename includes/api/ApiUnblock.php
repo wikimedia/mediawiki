@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * API module that facilitates the unblocking of users. Requires API write mode
@@ -58,7 +59,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( !is_null( $params['tags'] ) ) {
+		if ( $params['tags'] !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
@@ -76,7 +77,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		$data = [
-			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
+			'Target' => $params['id'] === null ? $params['user'] : "#{$params['id']}",
 			'Reason' => $params['reason'],
 			'Tags' => $params['tags']
 		];
@@ -109,9 +110,13 @@ class ApiUnblock extends ApiBase {
 			'id' => [
 				ApiBase::PARAM_TYPE => 'integer',
 			],
-			'user' => null,
+			'user' => [
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
+			],
 			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'reason' => '',
 			'tags' => [

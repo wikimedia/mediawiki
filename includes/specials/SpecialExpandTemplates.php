@@ -44,9 +44,9 @@ class SpecialExpandTemplates extends SpecialPage {
 	protected $removeNowiki;
 
 	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
-	const MAX_INCLUDE_SIZE = 50000000;
+	private const MAX_INCLUDE_SIZE = 50000000;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'ExpandTemplates' );
 	}
 
@@ -54,7 +54,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * Show the special page
 	 * @param string|null $subpage
 	 */
-	function execute( $subpage ) {
+	public function execute( $subpage ) {
 		$this->setHeaders();
 		$this->addHelpLink( 'Help:ExpandTemplates' );
 
@@ -74,7 +74,6 @@ class SpecialExpandTemplates extends SpecialPage {
 			$this->removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
 			$options = ParserOptions::newFromContext( $this->getContext() );
 			$options->setRemoveComments( $this->removeComments );
-			$options->setTidy( true );
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
 
 			$parser = MediaWikiServices::getInstance()->getParser();
@@ -118,11 +117,8 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$config = $this->getConfig();
-			if ( MWTidy::isEnabled() && $options->getTidy() ) {
-				$tmp = MWTidy::tidy( $tmp );
-			} else {
-				wfDeprecated( 'disabling tidy', '1.33' );
-			}
+
+			$tmp = MWTidy::tidy( $tmp );
 
 			$out->addHTML( $tmp );
 

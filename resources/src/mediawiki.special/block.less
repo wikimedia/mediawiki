@@ -8,24 +8,27 @@
 
 @ooui-spacing-radio-label: 26 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.85714286em`≈`26px`.
 
-body.mw-special-Block {
-	.mw-block-editing-restriction.oo-ui-fieldLayout {
-		margin-left: @ooui-spacing-radio-label;
+.mw-block-editing-restriction.oo-ui-fieldLayout {
+	margin-left: @ooui-spacing-radio-label;
+	margin-top: 8px;
+}
+
+.mw-block-restriction.oo-ui-fieldLayout.oo-ui-labelElement {
+	margin-left: 2 * @ooui-spacing-radio-label;
+	margin-top: 8px;
+
+	.oo-ui-tagMultiselectWidget,
+	.oo-ui-textInputWidget {
+		max-width: 50em - 2 * @ooui-spacing-radio-label;
 	}
+}
 
-	.mw-block-restriction.oo-ui-fieldLayout {
-		margin-left: 2 * @ooui-spacing-radio-label;
-
-		.oo-ui-widget {
-			max-width: 50em - 2 * @ooui-spacing-radio-label;
-		}
-	}
-
-	.oo-ui-panelLayout-framed {
+.mw-special-Block .mw-htmlform {
+	> .oo-ui-panelLayout-framed {
 		border: 0;
 	}
 
-	.oo-ui-panelLayout-padded {
+	> .oo-ui-panelLayout-padded {
 		padding: 0;
 	}
 }

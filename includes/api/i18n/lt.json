@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zygimantus",
+			"1233qwer1234qwer4",
 			"Eitvys200",
+			"Homo",
 			"Hugo.arg",
-			"Homo"
+			"Tomasdd",
+			"Zygimantus"
 		]
 	},
 	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
@@ -44,6 +46,7 @@
 	"apihelp-emailuser-summary": "Siųsti el. laišką naudotojui.",
 	"apihelp-emailuser-param-target": "El. laiško gavėjas.",
 	"apihelp-emailuser-param-subject": "Temos antraštė.",
+	"apihelp-emailuser-param-text": "Email body.",
 	"apihelp-emailuser-param-ccme": "Siųsti šio laiško kopiją man.",
 	"apihelp-emailuser-example-email": "Siųsti el. pašto vartotojui <kbd>WikiSysop</kbd> su tekstu <kbd>Content</kbd>.",
 	"apihelp-expandtemplates-param-title": "Puslapio pavadinimas.",
@@ -324,7 +327,7 @@
 	"apihelp-upload-example-url": "Įkelti iš URL.",
 	"apihelp-upload-example-filekey": "Baigti įkėlimą, kuris nepavyko dėl įspėjimų.",
 	"apihelp-userrights-summary": "Keisti vartotoju grupės narystę.",
-	"apihelp-userrights-param-user": "Vartotojo vardas.",
+	"apihelp-userrights-param-user": "Vartotojas.",
 	"apihelp-userrights-param-userid": "Vartotojo ID.",
 	"apihelp-userrights-param-add": "Pridėti vartotoją į šias grupes.",
 	"apihelp-userrights-param-remove": "Pašalinti vartotoją iš šių grupių.",
@@ -342,11 +345,7 @@
 	"api-help-license-noname": "Licencija: [[$1|Žiūrėti nuorodą]]",
 	"api-help-license-unknown": "Licencija: <span class=\"apihelp-unknown\">nežinoma</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametras|Parametrai}}:",
-	"api-help-param-required": "Šis parametras yra reikalingas.",
 	"api-help-datatypes-header": "Duomenų tipai",
-	"api-help-param-limit": "Leidžiama ne daugiau nei $1.",
-	"api-help-param-limit2": "Leidžiama ne daugiau nei $1 ($2 robotams).",
-	"api-help-param-default": "Numatytasis: $1",
 	"api-help-param-default-empty": "Numatytasis: <span class=\"apihelp-empty\">(tuščia)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nėra aprašymo)</span>",
 	"api-help-examples": "{{PLURAL:$1|Pavyzdys|Pavyzdžiai}}:",
@@ -401,7 +400,6 @@
 	"apierror-sectionreplacefailed": "Nepavyko sujungti atnaujinto skyriaus.",
 	"apierror-specialpage-cantexecute": "Neturite teisės peržiūrėti šio specialaus puslapio rezultatus.",
 	"apierror-stashwrongowner": "Neteisingas savininkas: $1",
-	"apierror-timeout": "Serveris neatsakė per numatytą laiką.",
 	"apierror-unknownerror-nocode": "Nežinoma klaida.",
 	"apierror-unknownerror": "Nežinoma klaida: „$1“.",
 	"apierror-unknownformat": "Neatpažintas formatas „$1“.",

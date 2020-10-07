@@ -78,7 +78,7 @@ class ApiRsd extends ApiBase {
 	 * in-production examples listing several blogging and micrblogging
 	 * APIs.
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	protected function getRsdApiList() {
 		$apis = [
@@ -100,7 +100,7 @@ class ApiRsd extends ApiBase {
 				]
 			],
 		];
-		Hooks::run( 'ApiRsdServiceApis', [ &$apis ] );
+		$this->getHookRunner()->onApiRsdServiceApis( $apis );
 
 		return $apis;
 	}

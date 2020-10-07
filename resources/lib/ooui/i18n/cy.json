@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"DChan (WMF)",
+			"Ed g2s",
+			"Jdforrester",
 			"Lloffiwr",
 			"Robin Owain",
-			"ОйЛ",
-			"DChan (WMF)",
-			"Jdforrester",
-			"Ed g2s"
+			"ОйЛ"
 		]
 	},
 	"ooui-outline-control-move-down": "Symud yr eitem i lawr",

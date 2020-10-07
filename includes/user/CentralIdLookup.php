@@ -26,11 +26,12 @@ use Wikimedia\ObjectFactory;
  * cluster-wide IDs.
  *
  * @since 1.27
+ * @stable to extend
  */
 abstract class CentralIdLookup implements IDBAccessObject {
 	// Audience options for accessors
-	const AUDIENCE_PUBLIC = 1;
-	const AUDIENCE_RAW = 2;
+	public const AUDIENCE_PUBLIC = 1;
+	public const AUDIENCE_RAW = 2;
 
 	/** @var CentralIdLookup[] */
 	private static $instances = [];
@@ -75,7 +76,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * as they will not necessarily work with *all* other wikis,
 	 * and it can be hard to tell if another wiki is in the same set as this one or not.
 	 *
-	 * @since 1.34.3
+	 * @since 1.35
 	 *
 	 * @return CentralIdLookup|null
 	 */
@@ -252,6 +253,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * Given a central user ID, return a local User object
 	 * @note Unlike nameFromCentralId(), this does guarantee that the local
 	 *  user exists and is attached to the central account.
+	 * @stable to override
 	 * @param int $id Central user ID
 	 * @param int|User $audience One of the audience constants, or a specific user
 	 * @param int $flags IDBAccessObject read flags
@@ -274,6 +276,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 
 	/**
 	 * Given a local User object, return the central ID
+	 * @stable to override
 	 * @note Unlike centralIdFromName(), this does guarantee that the local
 	 *  user is attached to the central account.
 	 * @param User $user Local user

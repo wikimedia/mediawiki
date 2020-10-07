@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Factory class for SearchEngine.
@@ -15,12 +17,17 @@ class SearchEngineFactory {
 	 */
 	private $config;
 
-	public function __construct( SearchEngineConfig $config ) {
+	/** @var HookContainer */
+	private $hookContainer;
+
+	public function __construct( SearchEngineConfig $config, HookContainer $hookContainer ) {
 		$this->config = $config;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
 	 * Create SearchEngine of the given type.
+	 *
 	 * @param string|null $type
 	 * @return SearchEngine
 	 */
@@ -37,11 +44,25 @@ class SearchEngineFactory {
 			$class = self::getSearchEngineClass( $lb );
 		}
 
-		if ( is_subclass_of( $class, SearchDatabase::class ) ) {
-			return new $class( $lb );
+		$mappings = $this->config->getSearchMappings();
+
+		if ( isset( $mappings[$class] ) ) {
+			$spec = $mappings[$class];
 		} else {
-			return new $class();
+			// Convert non mapped classes to ObjectFactory spec
+			$spec = [ 'class' => $class ];
 		}
+
+		$args = [];
+
+		if ( isset( $spec['class'] ) && is_subclass_of( $spec['class'], SearchDatabase::class ) ) {
+			$args['extraArgs'][] = $lb;
+		}
+
+		/** @var SearchEngine $engine */
+		$engine = ObjectFactory::getObjectFromSpec( $spec, $args );
+		$engine->setHookContainer( $this->hookContainer );
+		return $engine;
 	}
 
 	/**

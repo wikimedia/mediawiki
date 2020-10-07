@@ -32,10 +32,9 @@ use MediaWiki\Revision\RevisionRecord;
  * @method RevDelItem next()
  * @method RevDelItem reset()
  * @method RevDelItem current()
- * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class RevDelList extends RevisionListBase {
-	function __construct( IContextSource $context, Title $title, array $ids ) {
+	public function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
 	}
@@ -319,7 +318,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * Reload the list data from the master DB. This can be done after setVisibility()
 	 * to allow $item->getHTML() to show the new data.
 	 */
-	function reloadFromMaster() {
+	public function reloadFromMaster() {
 		$dbw = wfGetDB( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 	}

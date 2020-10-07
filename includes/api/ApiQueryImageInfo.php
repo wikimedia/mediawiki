@@ -28,14 +28,14 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
-	const TRANSFORM_LIMIT = 50;
+	public const TRANSFORM_LIMIT = 50;
 	private static $transformCount = 0;
 
 	public function __construct( ApiQuery $query, $moduleName, $prefix = 'ii' ) {
 		// We allow a subclass to override the prefix, to create a related API
 		// module. Some other parts of MediaWiki construct this with a null
 		// $prefix, which used to be ignored when this only took two arguments
-		if ( is_null( $prefix ) ) {
+		if ( $prefix === null ) {
 			$prefix = 'ii';
 		}
 		parent::__construct( $query, $moduleName, $prefix );
@@ -72,7 +72,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			asort( $titles ); // Ensure the order is always the same
 
 			$fromTitle = null;
-			if ( !is_null( $params['continue'] ) ) {
+			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$fromTitle = strval( $cont[0] );
@@ -95,10 +95,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				];
 			}, $titles );
 
+			$services = MediaWikiServices::getInstance();
+			$repoGroup = $services->getRepoGroup();
 			if ( $params['localonly'] ) {
-				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $findTitles );
+				$images = $repoGroup->getLocalRepo()->findFiles( $findTitles );
 			} else {
-				$images = RepoGroup::singleton()->findFiles( $findTitles );
+				$images = $repoGroup->findFiles( $findTitles );
 			}
 
 			$result = $this->getResult();
@@ -110,8 +112,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !isset( $images[$title] ) ) {
 					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
 						// uploadwarning and badfile need info about non-existing files
-						$images[$title] = MediaWikiServices::getInstance()->getRepoGroup()
-							->getLocalRepo()->newFile( $title );
+						$images[$title] = $repoGroup->getLocalRepo()->newFile( $title );
 						// Doesn't exist, so set an empty image repository
 						$info['imagerepository'] = '';
 					} else {
@@ -144,7 +145,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['imagerepository'] = $img->getRepoName();
 				}
 				if ( isset( $prop['badfile'] ) ) {
-					$info['badfile'] = (bool)MediaWikiServices::getInstance()->getBadFileLookup()
+					$info['badfile'] = (bool)$services->getBadFileLookup()
 						->isBadFile( $title, $badFileContextTitle );
 				}
 
@@ -173,8 +174,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Check that the current version is within the start-end boundaries
 				$gotOne = false;
 				if (
-					( is_null( $start ) || $img->getTimestamp() <= $start ) &&
-					( is_null( $params['end'] ) || $img->getTimestamp() >= $params['end'] )
+					( $start === null || $img->getTimestamp() <= $start ) &&
+					( $params['end'] === null || $img->getTimestamp() >= $params['end'] )
 				) {
 					$gotOne = true;
 
@@ -505,7 +506,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $url ) {
 			if ( $exists ) {
-				if ( !is_null( $thumbParams ) ) {
+				if ( $thumbParams !== null ) {
 					$mto = $file->transform( $thumbParams );
 					self::$transformCount++;
 					if ( $mto && !$mto->isError() ) {
@@ -609,12 +610,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return int Count
 	 */
-	static function getTransformCount() {
+	protected static function getTransformCount() {
 		return self::$transformCount;
 	}
 
 	/**
-	 *
 	 * @param array $metadata
 	 * @param ApiResult $result
 	 * @return array

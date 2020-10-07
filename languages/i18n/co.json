@@ -4,10 +4,11 @@
 			"Ale Mister",
 			"Ale Mister (on co.wikipedia.org)",
 			"Img (on co.wikipedia.org)",
-			"Paulu",
-			"아라",
+			"Jumpy01",
 			"Jun Misugi",
-			"Jumpy01"
+			"Matma Rex",
+			"Paulu",
+			"아라"
 		]
 	},
 	"tog-hideminor": "Piattà e mudifiche minore in l'ultime mudifiche",
@@ -422,7 +423,7 @@
 	"specialloguserlabel": "Utilizatore:",
 	"speciallogtitlelabel": "Titulu:",
 	"log": "Righjistramenti",
-	"all-logs-page": "Tutte l'azzioni",
+	"all-logs-page": "Tutte l'azzioni publiche",
 	"allpages": "Tutte e pagine",
 	"nextpage": "Pagina seguente ($1)",
 	"prevpage": "Pagina precedente ($1)",
@@ -626,5 +627,6 @@
 	"logentry-newusers-create": "U participante $3 hè statu creatu da $1",
 	"rightsnone": "(nessunu)",
 	"searchsuggest-search": "Circà in {{SITENAME}}",
-	"expand_templates_output": "Risultatu"
+	"expand_templates_output": "Risultatu",
+	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media"
 }

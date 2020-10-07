@@ -6,6 +6,8 @@
  *
  * Currently only supports passing 'hide-if' data.
  * @phan-file-suppress PhanUndeclaredMethod
+ *
+ * @stable to extend
  */
 trait HTMLFormElement {
 

@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
@@ -51,15 +53,15 @@ class NamespaceInfo {
 	/** @var ServiceOptions */
 	private $options;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Definitions of the NS_ constants are in Defines.php
 	 *
-	 * @todo Make this const when HHVM support is dropped (T192166)
-	 *
-	 * @var array
 	 * @internal
 	 */
-	public static $canonicalNames = [
+	public const CANONICAL_NAMES = [
 		NS_MEDIA            => 'Media',
 		NS_SPECIAL          => 'Special',
 		NS_MAIN             => '',
@@ -81,12 +83,10 @@ class NamespaceInfo {
 	];
 
 	/**
-	 * TODO Make this const when HHVM support is dropped (T192166)
-	 *
 	 * @since 1.34
-	 * @var array
+	 * @internal
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'AllowImageMoving',
 		'CanonicalNamespaceNames',
 		'CapitalLinkOverrides',
@@ -101,10 +101,12 @@ class NamespaceInfo {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( ServiceOptions $options ) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+	public function __construct( ServiceOptions $options, HookContainer $hookContainer ) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -127,19 +129,49 @@ class NamespaceInfo {
 	}
 
 	/**
+	 * Throw if given index isn't an integer or integer-like string and so can't be a valid namespace.
+	 *
+	 * @param int|string $index
+	 * @param string $method
+	 *
+	 * @throws InvalidArgumentException
+	 * @return int Cleaned up namespace index
+	 */
+	private function makeValidNamespace( $index, $method ) {
+		if ( !(
+			is_int( $index )
+			// Namespace index numbers as strings
+			|| ctype_digit( $index )
+			// Negative numbers as strings
+			|| ( $index[0] === '-' && ctype_digit( substr( $index, 1 ) ) )
+		) ) {
+			throw new InvalidArgumentException(
+				"$method called with non-integer (" . gettype( $index ) . ") namespace '$index'"
+			);
+		}
+
+		return intval( $index );
+	}
+
+	/**
 	 * Can pages in the given namespace be moved?
 	 *
 	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
+		if ( !$this->options->get( 'AllowImageMoving' ) ) {
+			wfDeprecatedMsg( 'Setting $wgAllowImageMoving to false was deprecated in MediaWiki 1.35',
+				'1.35', false, false );
+		}
+
 		$result = $index >= NS_MAIN &&
 			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) );
 
 		/**
 		 * @since 1.20
 		 */
-		Hooks::run( 'NamespaceIsMovable', [ $index, &$result ] );
+		$this->hookRunner->onNamespaceIsMovable( $index, $result );
 
 		return $result;
 	}
@@ -161,6 +193,8 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isTalk( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		return $index > NS_MAIN
 			&& $index % 2;
 	}
@@ -174,6 +208,8 @@ class NamespaceInfo {
 	 *         (e.g. NS_SPECIAL).
 	 */
 	public function getTalk( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		$this->isMethodValidFor( $index, __METHOD__ );
 		return $this->isTalk( $index )
 			? $index
@@ -237,6 +273,8 @@ class NamespaceInfo {
 	 * @return int
 	 */
 	public function getSubject( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		# Handle special namespaces
 		if ( $index < NS_MAIN ) {
 			return $index;
@@ -353,7 +391,7 @@ class NamespaceInfo {
 			if ( is_array( $this->options->get( 'ExtraNamespaces' ) ) ) {
 				$this->canonicalNamespaces += $this->options->get( 'ExtraNamespaces' );
 			}
-			Hooks::run( 'CanonicalNamespaces', [ &$this->canonicalNamespaces ] );
+			$this->hookRunner->onCanonicalNamespaces( $this->canonicalNamespaces );
 		}
 		return $this->canonicalNamespaces;
 	}
@@ -396,7 +434,7 @@ class NamespaceInfo {
 	 * @return array
 	 */
 	public function getValidNamespaces() {
-		if ( is_null( $this->validNamespaces ) ) {
+		if ( $this->validNamespaces === null ) {
 			$this->validNamespaces = [];
 			foreach ( array_keys( $this->getCanonicalNamespaces() ) as $ns ) {
 				if ( $ns >= 0 ) {
@@ -409,8 +447,6 @@ class NamespaceInfo {
 
 		return $this->validNamespaces;
 	}
-
-	/*
 
 	/**
 	 * Does this namespace ever have a talk namespace?
@@ -616,6 +652,6 @@ class NamespaceInfo {
 	 * @return int[]
 	 */
 	public static function getCommonNamespaces() {
-		return array_keys( self::$canonicalNames );
+		return array_keys( self::CANONICAL_NAMES );
 	}
 }

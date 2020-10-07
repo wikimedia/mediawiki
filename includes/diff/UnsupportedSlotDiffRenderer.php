@@ -36,8 +36,6 @@ class UnsupportedSlotDiffRenderer extends SlotDiffRenderer {
 	private $localizer;
 
 	/**
-	 * UnsupportedSlotDiffRenderer constructor.
-	 *
 	 * @param MessageLocalizer $localizer
 	 */
 	public function __construct( MessageLocalizer $localizer ) {

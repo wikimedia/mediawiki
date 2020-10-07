@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Language
  * @covers LanguageKk
  * @covers LanguageKk_cyrl
  * @covers KkConverter

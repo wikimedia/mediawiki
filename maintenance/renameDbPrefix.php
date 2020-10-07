@@ -72,7 +72,7 @@ class RenameDbPrefix extends Maintenance {
 		$count = 0;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$res = $dbw->query( "SHOW TABLES " . $dbw->buildLike( $old, $dbw->anyString() ) );
+		$res = $dbw->query( "SHOW TABLES " . $dbw->buildLike( $old, $dbw->anyString() ), __METHOD__ );
 		foreach ( $res as $row ) {
 			// XXX: odd syntax. MySQL outputs an oddly cased "Tables of X"
 			// sort of message. Best not to try $row->x stuff...
@@ -84,7 +84,7 @@ class RenameDbPrefix extends Maintenance {
 				$this->output( "Renaming table $table to $newTable\n" );
 				$oldTableEnc = $dbw->addIdentifierQuotes( $table );
 				$newTableEnc = $dbw->addIdentifierQuotes( $newTable );
-				$dbw->query( "RENAME TABLE $oldTableEnc TO $newTableEnc" );
+				$dbw->query( "RENAME TABLE $oldTableEnc TO $newTableEnc", __METHOD__ );
 			}
 			$count++;
 		}

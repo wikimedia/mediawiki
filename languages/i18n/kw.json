@@ -1,6 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"GwikorFrank",
 			"Kernoweger",
 			"Kw-Moon",
 			"MF-Warburg",
@@ -40,7 +42,7 @@
 	"tog-showhiddencats": "Diskwedhes klassys kudhys",
 	"tog-useeditwarning": "Gul ow gwarnya pan gyssiv folen janjya gans chanjyow nag yw gwithys",
 	"underline-always": "Pub prys",
-	"underline-never": "Jammes",
+	"underline-never": "Nevra",
 	"underline-default": "Defowt an beurel po an grohen",
 	"editfont-monospace": "Font unnspasys",
 	"editfont-sansserif": "Font sans-serif",
@@ -356,7 +358,6 @@
 	"passwordreset-domain": "Tiredh:",
 	"passwordreset-email": "Trigva ebost:",
 	"passwordreset-emailtitle": "Manylyon agas akont war {{SITENAME}}",
-	"passwordreset-emailsentemail": "Ebost dassettya ger tremena re beu danvenys.",
 	"changeemail": "Chanjya trigva ebost",
 	"changeemail-header": "Chanjya trigva ebost an akont",
 	"changeemail-oldemail": "Agas trigva ebost a-lemmyn:",
@@ -436,7 +437,7 @@
 	"histfirst": "an kottha",
 	"histlast": "an nowettha",
 	"historysize": "({{PLURAL:$1|1 bayt}})",
-	"historyempty": "(gwag)",
+	"historyempty": "gwag",
 	"history-feed-title": "Istori amendya",
 	"history-feed-description": "Istori amendya rag an folen-ma war an wiki",
 	"history-feed-item-nocomment": "$1 dhe $2",

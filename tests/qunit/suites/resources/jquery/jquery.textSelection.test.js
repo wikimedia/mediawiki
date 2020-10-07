@@ -33,8 +33,8 @@
 	 * @param {string} options.description Description
 	 * @param {string} options.input Input
 	 * @param {string} options.output Output
-	 * @param {int} options.start Starting char for selection
-	 * @param {int} options.end Ending char for selection
+	 * @param {number} options.start Starting char for selection
+	 * @param {number} options.end Ending char for selection
 	 * @param {Object} options.params Additional parameters for $().textSelection( 'encapsulateText' )
 	 */
 	function encapsulateTest( options ) {
@@ -56,7 +56,7 @@
 		}, opt.after );
 
 		QUnit.test( opt.description, function ( assert ) {
-			var $textarea, start, end, options, text, selected;
+			var $textarea, start, end, opts, text, selected;
 
 			$textarea = $( '<textarea>' );
 
@@ -68,10 +68,10 @@
 			end = opt.before.end;
 
 			// Clone opt.replace
-			options = $.extend( {}, opt.replace );
-			options.selectionStart = start;
-			options.selectionEnd = end;
-			$textarea.textSelection( 'encapsulateSelection', options );
+			opts = $.extend( {}, opt.replace );
+			opts.selectionStart = start;
+			opts.selectionEnd = end;
+			$textarea.textSelection( 'encapsulateSelection', opts );
 
 			text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, '\n' );
 

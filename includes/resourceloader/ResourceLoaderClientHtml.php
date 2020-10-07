@@ -28,26 +28,25 @@ use Wikimedia\WrappedStringList;
  * @since 1.28
  */
 class ResourceLoaderClientHtml {
-
 	/** @var ResourceLoaderContext */
 	private $context;
 
 	/** @var ResourceLoader */
 	private $resourceLoader;
 
-	/** @var array */
+	/** @var array<string,string|null|false> */
 	private $options;
 
-	/** @var array */
+	/** @var array<string,mixed> */
 	private $config = [];
 
-	/** @var array */
+	/** @var string[] */
 	private $modules = [];
 
-	/** @var array */
+	/** @var string[] */
 	private $moduleStyles = [];
 
-	/** @var array */
+	/** @var array<string,string> */
 	private $exemptStates = [];
 
 	/** @var array */
@@ -58,7 +57,7 @@ class ResourceLoaderClientHtml {
 	 * @param array $options [optional] Array of options
 	 *  - 'target': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
 	 *  - 'safemode': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
-	 *  - 'nonce': From OutputPage::getCSPNonce().
+	 *  - 'nonce': From OutputPage->getCSP->getNonce().
 	 */
 	public function __construct( ResourceLoaderContext $context, array $options = [] ) {
 		$this->context = $context;
@@ -75,7 +74,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param array $vars Array of key/value pairs
 	 */
-	public function setConfig( array $vars ) {
+	public function setConfig( array $vars ) : void {
 		foreach ( $vars as $key => $value ) {
 			$this->config[$key] = $value;
 		}
@@ -84,18 +83,18 @@ class ResourceLoaderClientHtml {
 	/**
 	 * Ensure one or more modules are loaded.
 	 *
-	 * @param array $modules Array of module names
+	 * @param string[] $modules Array of module names
 	 */
-	public function setModules( array $modules ) {
+	public function setModules( array $modules ) : void {
 		$this->modules = $modules;
 	}
 
 	/**
 	 * Ensure the styles of one or more modules are loaded.
 	 *
-	 * @param array $modules Array of module names
+	 * @param string[] $modules Array of module names
 	 */
-	public function setModuleStyles( array $modules ) {
+	public function setModuleStyles( array $modules ) : void {
 		$this->moduleStyles = $modules;
 	}
 
@@ -104,16 +103,13 @@ class ResourceLoaderClientHtml {
 	 *
 	 * See OutputPage::buildExemptModules() for use cases.
 	 *
-	 * @param array $states Module state keyed by module name
+	 * @param array<string,string> $states Module state keyed by module name
 	 */
-	public function setExemptStates( array $states ) {
+	public function setExemptStates( array $states ) : void {
 		$this->exemptStates = $states;
 	}
 
-	/**
-	 * @return array
-	 */
-	private function getData() {
+	private function getData() : array {
 		if ( $this->data ) {
 			// @codeCoverageIgnoreStart
 			return $this->data;
@@ -223,7 +219,7 @@ class ResourceLoaderClientHtml {
 	}
 
 	/**
-	 * @return array Attribute key-value pairs for the HTML document element
+	 * @return array<string,string> Attributes pairs for the HTML document element
 	 */
 	public function getDocumentAttributes() {
 		return [ 'class' => 'client-nojs' ];
@@ -236,7 +232,7 @@ class ResourceLoaderClientHtml {
 	 * - Async external script-src.
 	 *
 	 * Reasons:
-	 * - Script execution may be blocked on preceeding stylesheets.
+	 * - Script execution may be blocked on preceding stylesheets.
 	 * - Async scripts are not blocked on stylesheets.
 	 * - Inline scripts can't be asynchronous.
 	 * - For styles, earlier is better.
@@ -353,7 +349,7 @@ JAVASCRIPT;
 		return WrappedString::join( "\n", $chunks );
 	}
 
-	private function getContext( $group, $type ) {
+	private function getContext( $group, $type ) : ResourceLoaderContext {
 		return self::makeContext( $this->context, $group, $type );
 	}
 
@@ -363,31 +359,30 @@ JAVASCRIPT;
 
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
 		array $extraQuery = []
-	) {
-		// Create new ResourceLoaderContext so that $extraQuery is supported (eg. for 'sync=1').
-		$req = new FauxRequest( array_merge( $mainContext->getRequest()->getValues(), $extraQuery ) );
+	) : DerivativeResourceLoaderContext {
+		// Allow caller to setVersion() and setModules()
+		$ret = new DerivativeResourceLoaderContext( $mainContext );
 		// Set 'only' if not combined
-		$req->setVal( 'only', $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
+		$ret->setOnly( $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
 		// Remove user parameter in most cases
 		if ( $group !== 'user' && $group !== 'private' ) {
-			$req->setVal( 'user', null );
+			$ret->setUser( null );
 		}
-		$context = new ResourceLoaderContext( $mainContext->getResourceLoader(), $req );
-		// Allow caller to setVersion() and setModules()
-		$ret = new DerivativeResourceLoaderContext( $context );
-		$ret->setContentOverrideCallback( $mainContext->getContentOverrideCallback() );
+		if ( isset( $extraQuery['raw'] ) ) {
+			$ret->setRaw( true );
+		}
 		return $ret;
 	}
 
 	/**
-	 * Explicily load or embed modules on a page.
+	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param ResourceLoaderContext $mainContext
 	 * @param array $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage::getCSPNonce)
+	 *  (from OutputPage->getCSP->getNonce())
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,
@@ -472,10 +467,8 @@ JAVASCRIPT;
 							// Use cases:
 							// - startup (naturally because this is what will define mw.loader)
 							// - html5shiv (loads synchronously in old IE before the async startup module arrives)
-							// - QUnit (needed in SpecialJavaScriptTest before async startup)
 							$chunk = Html::element( 'script', [
-								// The 'sync' option is only supported in combination with 'raw'.
-								'async' => !isset( $extraQuery['sync'] ),
+								'async' => true,
 								'src' => $url
 							] );
 						} else {

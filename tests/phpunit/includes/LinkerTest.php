@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * @group Database
  */
@@ -236,6 +239,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
+			// TODO: update tests when the default changes
+			'wgFragmentMode' => [ 'legacy' ],
 		] );
 
 		if ( $title === false ) {
@@ -284,6 +289,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'<span dir="auto"><span class="autocomment">: </span> // Edit via via</span>',
 				// Regression test for T222857
 				"/*  */ // Edit via via",
+			],
+			[
+				'<span dir="auto"><span class="autocomment">: </span> foobar</span>',
+				// Regression test for T222857
+				"/**/ foobar",
 			],
 			[
 				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> post</span>',
@@ -464,34 +474,37 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$summary = CommentStoreComment::newUnsavedComment( 'Some comment!' );
 		$updater->saveRevision( $summary );
 
-		$rollbackOutput = Linker::generateRollback( $page->getRevision(), $context );
+		$rollbackOutput = Linker::generateRollback( $page->getRevisionRecord(), $context );
 		$modules = $context->getOutput()->getModules();
-		$currentRev = $page->getRevision();
-		$oldestRev = $page->getOldestRevision();
+		$currentRev = $page->getRevisionRecord();
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$oldestRev = $revisionLookup->getFirstRevision( $page->getTitle() );
 
 		$this->assertEquals( $expectedModules, $modules );
-		$this->assertEquals( $user->getName(), $currentRev->getUserText() );
+		$this->assertInstanceOf( RevisionRecord::class, $currentRev );
+		$this->assertInstanceOf( User::class, $currentRev->getUser() );
+		$this->assertEquals( $user->getName(), $currentRev->getUser()->getName() );
 		$this->assertEquals(
 			static::getTestSysop()->getUser(),
-			$oldestRev->getUserText()
+			$oldestRev->getUser()->getName()
 		);
 
 		$ids = [];
 		$r = $oldestRev;
 		while ( $r ) {
 			$ids[] = $r->getId();
-			$r = $r->getNext();
+			$r = $revisionLookup->getNextRevision( $r );
 		}
 		$this->assertEquals( [ $oldestRev->getId(), $currentRev->getId() ], $ids );
 
-		$this->assertContains( 'rollback 1 edit', $rollbackOutput );
+		$this->assertStringContainsString( 'rollback 1 edit', $rollbackOutput );
 	}
 
 	public static function provideCasesForRollbackGeneration() {
 		return [
 			[
 				true,
-				[ 'mediawiki.page.rollback.confirmation' ],
+				[ 'mediawiki.misc-authed-curate' ],
 				'Rollback_Test_Page'
 			],
 			[
@@ -513,6 +526,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 			[
 				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
 				'[[ :Special:BlankPage]]',
+				null,
+			],
+			[
+				'[[Foo<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
+				'[[Foo[[Special:BlankPage]]',
 				null,
 			],
 			[
@@ -648,5 +666,45 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
 		$out = Linker::link( $title );
 		$this->assertEquals( $expected, $out );
+	}
+
+	public static function provideTooltipAndAccesskeyAttribs() {
+		return [
+			'Watch no expiry' => [
+				'ca-watch', [], null, [ 'title' => 'Add this page to your watchlist [w]', 'accesskey' => 'w' ]
+			],
+			'Key does not exist' => [
+				'key-does-not-exist', [], null, []
+			],
+			'Unwatch no expiry' => [
+				'ca-unwatch', [], null, [ 'title' => 'Remove this page from your watchlist [w]',
+					'accesskey' => 'w' ]
+			],
+		];
+	}
+
+	/**
+	 * @covers Linker::tooltipAndAccesskeyAttribs
+	 * @dataProvider provideTooltipAndAccesskeyAttribs
+	 */
+	public function testTooltipAndAccesskeyAttribs( $name, $msgParams, $options, $expected ) {
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
+		$user = $this->createMock( User::class );
+		$user->method( 'isRegistered' )->willReturn( true );
+		$user->method( 'isLoggedIn' )->willReturn( true );
+
+		$title = SpecialPage::getTitleFor( 'Blankpage' );
+
+		$context = RequestContext::getMain();
+		$context->setTitle( $title );
+		$context->setUser( $user );
+
+		$watchedItemWithoutExpiry = new WatchedItem( $user, $title, null, null );
+
+		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
+
+		$this->assertEquals( $expected, $result );
 	}
 }

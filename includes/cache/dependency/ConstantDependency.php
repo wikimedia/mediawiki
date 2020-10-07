@@ -28,7 +28,7 @@ class ConstantDependency extends CacheDependency {
 	private $name;
 	private $value;
 
-	function __construct( $name ) {
+	public function __construct( $name ) {
 		$this->name = $name;
 		$this->value = constant( $name );
 	}
@@ -36,7 +36,7 @@ class ConstantDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		return constant( $this->name ) != $this->value;
 	}
 }

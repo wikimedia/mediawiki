@@ -1,0 +1,97 @@
+[
+	{
+		"name": "site_identifiers",
+		"comment": "Links local site identifiers to their corresponding site.",
+		"columns": [
+			{
+				"name": "si_type",
+				"comment": "local key type, ie 'interwiki' or 'langlink'",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "si_key",
+				"comment": "local key value, ie 'en' or 'wiktionary'",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "si_site",
+				"comment": "Key on site.site_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "site_ids_site", "columns": [ "si_site" ], "unique": false },
+			{ "name": "site_ids_key", "columns": [ "si_key" ], "unique": false }
+		],
+		"pk": [ "si_type", "si_key" ]
+	},
+	{
+		"name": "updatelog",
+		"comment": "A table to log updates, one text key row per update.",
+		"columns": [
+			{
+				"name": "ul_key",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ul_value",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false }
+			}
+		],
+		"indexes": [],
+		"pk": [ "ul_key" ]
+	},
+	{
+		"name": "actor",
+		"comment": "The \"actor\" table associates user names or IP addresses with integers for the benefit of other tables that need to refer to either logged-in or logged-out users. If something can only ever be done by logged-in users, it can refer to the user table directly.",
+		"columns": [
+			{
+				"name": "actor_id",
+				"comment": "Unique ID to identify each actor",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "actor_user",
+				"comment": "Key to user.user_id, or NULL for anonymous edits",
+				"type": "integer",
+				"options": { "unsigned": true, "notNull": false }
+			},
+			{
+				"name": "actor_name",
+				"comment": "Text username or IP address",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "actor_user", "columns": [ "actor_user" ], "unique": true },
+			{ "name": "actor_name", "columns": [ "actor_name" ], "unique": true }
+		],
+		"pk": [ "actor_id" ]
+	},
+	{
+		"name": "user_former_groups",
+		"comment": "Stores the groups the user has once belonged to. The user may still belong to these groups (check user_groups). Autopromotion of users to groups from which they were removed can be restricted by using wgAutopromoteOnce instead of wgAutopromote.",
+		"columns": [
+			{
+				"name": "ufg_user",
+				"comment": "Key to user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "ufg_group",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [],
+		"pk": [ "ufg_user", "ufg_group" ]
+	}
+]

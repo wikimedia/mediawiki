@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class MaintenanceTest extends MaintenanceBaseTestCase {
 
 	/**
-	 * @see MaintenanceBaseTestCase::getMaintenanceClass
+	 * @inheritDoc
 	 */
 	protected function getMaintenanceClass() {
 		return Maintenance::class;
@@ -40,7 +40,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	/**
 	 * @dataProvider provideOutputData
 	 */
-	function testOutput( $outputs, $expected, $extraNL ) {
+	public function testOutput( $outputs, $expected, $extraNL ) {
 		foreach ( $outputs as $data ) {
 			if ( is_array( $data ) ) {
 				list( $msg, $channel ) = $data;
@@ -193,7 +193,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	/**
 	 * @dataProvider provideOutputChanneledData
 	 */
-	function testOutputChanneled( $outputs, $expected, $extraNL ) {
+	public function testOutputChanneled( $outputs, $expected, $extraNL ) {
 		foreach ( $outputs as $data ) {
 			if ( is_array( $data ) ) {
 				list( $msg, $channel ) = $data;
@@ -305,66 +305,66 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		];
 	}
 
-	function testCleanupChanneledClean() {
+	public function testCleanupChanneledClean() {
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "", false );
 	}
 
-	function testCleanupChanneledAfterOutput() {
+	public function testCleanupChanneledAfterOutput() {
 		$this->maintenance->output( "foo" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
-	function testCleanupChanneledAfterOutputWNullChannel() {
+	public function testCleanupChanneledAfterOutputWNullChannel() {
 		$this->maintenance->output( "foo", null );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
-	function testCleanupChanneledAfterOutputWChannel() {
+	public function testCleanupChanneledAfterOutputWChannel() {
 		$this->maintenance->output( "foo", "bazChannel" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterNLOutput() {
+	public function testCleanupChanneledAfterNLOutput() {
 		$this->maintenance->output( "foo\n" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterNLOutputWNullChannel() {
+	public function testCleanupChanneledAfterNLOutputWNullChannel() {
 		$this->maintenance->output( "foo\n", null );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterNLOutputWChannel() {
+	public function testCleanupChanneledAfterNLOutputWChannel() {
 		$this->maintenance->output( "foo\n", "bazChannel" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterOutputChanneledWOChannel() {
+	public function testCleanupChanneledAfterOutputChanneledWOChannel() {
 		$this->maintenance->outputChanneled( "foo" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterOutputChanneledWNullChannel() {
+	public function testCleanupChanneledAfterOutputChanneledWNullChannel() {
 		$this->maintenance->outputChanneled( "foo", null );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testCleanupChanneledAfterOutputChanneledWChannel() {
+	public function testCleanupChanneledAfterOutputChanneledWChannel() {
 		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutput() {
+	public function testMultipleMaintenanceObjectsInteractionOutput() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->output( "foo" );
@@ -376,7 +376,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputWNullChannel() {
+	public function testMultipleMaintenanceObjectsInteractionOutputWNullChannel() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->output( "foo", null );
@@ -388,7 +388,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputWChannel() {
+	public function testMultipleMaintenanceObjectsInteractionOutputWChannel() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->output( "foo", "bazChannel" );
@@ -400,7 +400,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputWNullChannelNL() {
+	public function testMultipleMaintenanceObjectsInteractionOutputWNullChannelNL() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->output( "foo\n", null );
@@ -412,7 +412,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputWChannelNL() {
+	public function testMultipleMaintenanceObjectsInteractionOutputWChannelNL() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->output( "foo\n", "bazChannel" );
@@ -424,7 +424,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputChanneled() {
+	public function testMultipleMaintenanceObjectsInteractionOutputChanneled() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->outputChanneled( "foo" );
@@ -436,7 +436,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputChanneledWNullChannel() {
+	public function testMultipleMaintenanceObjectsInteractionOutputChanneledWNullChannel() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->outputChanneled( "foo", null );
@@ -448,7 +448,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionOutputChanneledWChannel() {
+	public function testMultipleMaintenanceObjectsInteractionOutputChanneledWChannel() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->outputChanneled( "foo", "bazChannel" );
@@ -460,7 +460,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
-	function testMultipleMaintenanceObjectsInteractionCleanupChanneledWChannel() {
+	public function testMultipleMaintenanceObjectsInteractionCleanupChanneledWChannel() {
 		$m2 = $this->createMaintenance();
 
 		$this->maintenance->outputChanneled( "foo", "bazChannel" );
@@ -499,7 +499,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->assertSame( $conf, $this->maintenance->getConfig() );
 	}
 
-	function testParseArgs() {
+	public function testParseArgs() {
 		$m2 = $this->createMaintenance();
 
 		// Create an option with an argument allowed to be specified multiple times

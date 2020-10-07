@@ -10,8 +10,8 @@ use Psr\Log\NullLogger;
  * @covers LocalisationCache
  * @author Niklas Laxström
  */
-class LocalisationCacheTest extends MediaWikiTestCase {
-	protected function setUp() {
+class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgExtensionMessagesFiles' => [],
@@ -20,9 +20,10 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param array $hooks Hook overrides
 	 * @return LocalisationCache
 	 */
-	protected function getMockLocalisationCache() {
+	protected function getMockLocalisationCache( $hooks = [] ) {
 		global $IP;
 
 		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
@@ -56,6 +57,8 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 			'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName'
 		) );
 
+		$hookContainer = $this->createHookContainer( $hooks );
+
 		$lc = $this->getMockBuilder( LocalisationCache::class )
 			->setConstructorArgs( [
 				new ServiceOptions( LocalisationCache::CONSTRUCTOR_OPTIONS, [
@@ -67,7 +70,8 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 				new LCStoreDB( [] ),
 				new NullLogger,
 				[],
-				$mockLangNameUtils
+				$mockLangNameUtils,
+				$hookContainer
 			] )
 			->setMethods( [ 'getMessagesDirs' ] )
 			->getMock();
@@ -124,7 +128,8 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	public function testRecacheFallbacksWithHooks() {
 		// Use hook to provide updates for messages. This is what the
 		// LocalisationUpdate extension does. See T70781.
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+
+		$lc = $this->getMockLocalisationCache( [
 			'LocalisationCacheRecacheFallback' => [
 				function (
 					LocalisationCache $lc,
@@ -139,8 +144,6 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 				}
 			]
 		] );
-
-		$lc = $this->getMockLocalisationCache();
 		$lc->recache( 'ba' );
 		$this->assertEquals(
 			[

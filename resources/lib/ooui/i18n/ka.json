@@ -5,11 +5,11 @@
 			"David1010",
 			"Gleki",
 			"ITshnik",
+			"Kintrbr",
 			"MIKHEIL",
 			"NoiX180",
 			"Pras",
-			"Tokoko",
-			"Kintrbr"
+			"Tokoko"
 		]
 	},
 	"ooui-outline-control-move-down": "ელემენტის ქვემოთ გადატანა",
@@ -17,7 +17,7 @@
 	"ooui-outline-control-remove": "წაშლა",
 	"ooui-toolbar-more": "მეტი",
 	"ooui-toolgroup-expand": "მეტი",
-	"ooui-toolgroup-collapse": "რამდენიმე",
+	"ooui-toolgroup-collapse": "ნაკლები",
 	"ooui-item-remove": "წაშლა",
 	"ooui-dialog-message-accept": "კარგი",
 	"ooui-dialog-message-reject": "გაუქმება",

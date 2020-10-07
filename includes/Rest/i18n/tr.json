@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK",
+			"Grkn gll"
+		]
+	},
+	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",
+	"rest-wrong-method": "İstek yöntemi ($1), {{PLURAL:$3|bu yol için izin verilen yöntem|bu yol için izin verilen yöntemlerden biri}}  değildi ($2)",
+	"rest-no-match": "İstenen göreceli yol ($1) bilinen herhangi bir işleyiciyle eşleşmedi",
+	"rest-nonexistent-title": "Belirtilen başlık ($1) mevcut değil",
+	"rest-nonexistent-title-revision": "Belirtilen revizyon ($1) belirtilen sayfa için mevcut değil ($2)",
+	"rest-nonexistent-revision": "İstenen revizyon ($1) mevcut değil",
+	"rest-permission-denied-anon": "Anonim kullanıcı tarafından erişilemiyor",
+	"rest-permission-denied-title": "Kullanıcının başlık okuma hakkı yok ($1)",
+	"rest-permission-denied-revision": "Kullanıcının istenen revizyona erişimi yok ($1).",
+	"rest-pagehistory-incompatible-params": "\"older_than\" ve \"newer_than\" parametrelerinin her ikisi de belirtilemez",
+	"rest-pagehistory-param-range-error": "Revizyon kimliği 0'dan büyük olmalıdır",
+	"rest-pagehistory-timestamp-error": "Belirtilen revizyon için zaman damgası alınamadı ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Belirtilen sayı türü ($1) geçerli değil",
+	"rest-pagehistorycount-parameters-invalid": "Belirtilen parametrelerin kombinasyonu desteklenmiyor.",
+	"rest-compare-page-mismatch": "Belirtilen revizyonlar farklı sayfalara aittir; onları karşılaştırmayı reddetti.",
+	"rest-compare-permission-denied": "Kullanıcı istenen revizyonlara erişemiyor",
+	"rest-compare-nonexistent": "$1 parametresi tarafından belirtilen düzeltme mevcut değil.",
+	"rest-compare-inaccessible": "$1 parametresi tarafından belirtilen revizyona halka açık değil.",
+	"rest-compare-wrong-content": "$2 parametresi tarafından belirtilen revizyonun $1 slotu, metne dönüştürülemeyen bir içerik türüne sahiptir.",
+	"rest-compare-wikidiff2": "Bu son nokta, wikidiff2 1.9.0 veya daha yenisini gerektirir.",
+	"rest-pagehistorycount-too-many-revisions": "Belirtilen başlık bu sayıyı almak için çok fazla düzeltme içeriyor.",
+	"rest-search-error": "Arama sonuçlarını döndürürken hata oluştu: $1",
+	"rest-page-source-type-error": "İstenen sayfa kaynağının içerik türü desteklenmiyor",
+	"rest-no-revision": "$1 başlık için düzeltme alınamadı",
+	"rest-media-too-many-links": "$1 başlığında çok fazla medya bağlantısı bulundu ($2 izin verilir)",
+	"rest-html-backend-error": "Parsoid HTML getirilemedi",
+	"rest-bad-json-body": "Bozuk istek gövdesi, bir JSON nesnesi olmalıdır.",
+	"rest-json-body-parse-error": "İstek gövdesi JSON olarak ayrıştırılamadı: $1",
+	"rest-missing-body-field": "İstek gövdesinde \"$1\" zorunlu alanı eksik.",
+	"rest-bad-content-model": "Kötü içerik modeli: $1",
+	"rest-update-cannot-create-page": "\"$1\" sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde \"en son\" tuşu altındaki yapıda temel düzeltme kimliğini girin.",
+	"rest-extraneous-csrf-token": "Yabancı CSRF jetonu bulundu. CSRF saldırılarına karşı güvenli olan OAuth gibi kimlik doğrulama mekanizmaları kullanılırken CSRF belirteçleri kullanılmamalıdır.",
+	"rest-cannot-load-file": "\"$1\" başlıklı dosya yüklenemiyor."
+}

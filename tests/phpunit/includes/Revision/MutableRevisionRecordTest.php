@@ -11,7 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 use User;
@@ -21,11 +21,11 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\MutableRevisionRecord
  * @covers \MediaWiki\Revision\RevisionRecord
  */
-class MutableRevisionRecordTest extends MediaWikiTestCase {
+class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 
 	use RevisionRecordTests;
 
-	function setUp() {
+	protected function setUp() : void {
 		Title::clearCaches();
 		parent::setUp();
 	}
@@ -110,7 +110,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		Title $title,
 		$wikiId = false
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new MutableRevisionRecord( $title, $wikiId );
 	}
 
@@ -145,7 +145,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function testGetMainContentWhenEmpty() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$this->assertNull( $record->getContent( SlotRecord::MAIN ) );
 	}
 
@@ -160,7 +160,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->assertFalse( $record->hasSlot( SlotRecord::MAIN ) );
 
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$record->getSlot( SlotRecord::MAIN );
 	}
 
@@ -203,6 +203,23 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 'someHash', $record->getSha1() );
 	}
 
+	public function testResetSha1() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+		$fooHash = $record->getSha1();
+
+		// setting the content directly updates the hash
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'barx' ) );
+		$barxHash = $record->getSha1();
+		$this->assertNotSame( $fooHash, $barxHash );
+
+		// setting the content indirectly also updates the hash
+		$record->getSlots()->setContent( 'aux', new WikitextContent( 'frump' ) );
+		$frumpHash = $record->getSha1();
+		$this->assertNotSame( $barxHash, $frumpHash );
+	}
+
 	public function testGetSlots() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->assertInstanceOf( MutableRevisionSlots::class, $record->getSlots() );
@@ -213,6 +230,23 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $record->getSize() );
 		$record->setSize( 775 );
 		$this->assertSame( 775, $record->getSize() );
+	}
+
+	public function testResetSize() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+		$fooSize = $record->getSize();
+
+		// setting the content directly updates the hash
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'barx' ) );
+		$barxSize = $record->getSize();
+		$this->assertNotSame( $fooSize, $barxSize );
+
+		// setting the content indirectly also updates the hash
+		$record->getSlots()->setContent( 'aux', new WikitextContent( 'frump' ) );
+		$frumpSize = $record->getSize();
+		$this->assertNotSame( $barxSize, $frumpSize );
 	}
 
 	public function testSetGetComment() {
@@ -303,10 +337,10 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function provideNotReadyForInsertion() {
 		/** @var Title $title */
-		$title = $this->getMock( Title::class );
+		$title = $this->createMock( Title::class );
 
 		/** @var User $user */
-		$user = $this->getMock( User::class );
+		$user = $this->createMock( User::class );
 
 		/** @var CommentStoreComment $comment */
 		$comment = $this->getMockBuilder( CommentStoreComment::class )
@@ -348,5 +382,39 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 	 */
 	public function testNotReadyForInsertion( $rev ) {
 		$this->assertFalse( $rev->isReadyForInsertion() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
+	 */
+	public function testIsCurrent() {
+		$rev = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->assertFalse( $rev->isCurrent(),
+			MutableRevisionRecord::class . ' cannot be stored current revision' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::hasSameContent
+	 */
+	public function testHasSameContent() {
+		$rev1 = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->assertTrue( $rev1->hasSameContent( $rev1 ) );
+
+		$rev2 = new MutableRevisionRecord( Title::newFromText( 'Bar' ) );
+		$rev1->setSize( 1 );
+		$rev2->setSize( 2 );
+		$this->assertFalse( $rev1->hasSameContent( $rev2 ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::audienceCan
+	 */
+	public function testAudienceCan() {
+		$rev = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'A User object must be given when checking FOR_THIS_USER audience.'
+		);
+		$rev->audienceCan( RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER );
 	}
 }

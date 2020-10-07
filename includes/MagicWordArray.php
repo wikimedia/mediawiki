@@ -1,7 +1,7 @@
 <?php
 
 /**
- * See docs/magicword.txt.
+ * See docs/magicword.md.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ class MagicWordArray {
 	/** @var array */
 	private $hash;
 
+	/** @var string[]|null */
 	private $baseRegex;
 
 	private $regex;
@@ -77,7 +78,7 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function getHash() {
-		if ( is_null( $this->hash ) ) {
+		if ( $this->hash === null ) {
 			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
 				$magic = $this->factory->get( $name );
@@ -97,8 +98,8 @@ class MagicWordArray {
 	 * Get the base regex
 	 * @return string[]
 	 */
-	public function getBaseRegex() {
-		if ( is_null( $this->baseRegex ) ) {
+	public function getBaseRegex() : array {
+		if ( $this->baseRegex === null ) {
 			$this->baseRegex = [ 0 => '', 1 => '' ];
 			$allGroups = [];
 			foreach ( $this->names as $name ) {
@@ -130,9 +131,10 @@ class MagicWordArray {
 	/**
 	 * Get an unanchored regex that does not match parameters
 	 * @return string[]
+	 * @suppress PhanTypeArraySuspiciousNullable False positive
 	 */
 	public function getRegex() {
-		if ( is_null( $this->regex ) ) {
+		if ( $this->regex === null ) {
 			$base = $this->getBaseRegex();
 			$this->regex = [ '', '' ];
 			if ( $this->baseRegex[0] !== '' ) {

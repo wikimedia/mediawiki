@@ -7,7 +7,7 @@ can be found at:
   https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Code
   https://www.mediawiki.org/wiki/Special:MyLanguage/Developer_hub
 API documentation is automatically generated and updated daily at:
-  https://doc.wikimedia.org/mediawiki-core/master/php/html/
+  https://doc.wikimedia.org/mediawiki-core/master/php/
 
 You can get a fresh version using 'make doc' or mwdocgen.php in the
 ../maintenance/ directory.

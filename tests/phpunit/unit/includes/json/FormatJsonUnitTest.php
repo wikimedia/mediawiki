@@ -22,7 +22,7 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testEncoderPrettyPrinting( $pretty, $expectedIndent ) {
 		$obj = [
-			'emptyObject' => new stdClass,
+			'emptyObject' => (object)[],
 			'emptyArray' => [],
 			'string' => 'foobar\\',
 			'filledArray' => [
@@ -111,22 +111,22 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	public function testEncodeFail() {
 		// Set up a recursive object that can't be encoded.
-		$a = new stdClass;
-		$b = new stdClass;
+		$a = (object)[];
+		$b = (object)[];
 		$a->b = $b;
 		$b->a = $a;
 		$this->assertFalse( FormatJson::encode( $a ) );
 	}
 
 	public function testDecodeReturnType() {
-		$this->assertInternalType(
-			'object',
+		$this->assertIsObject(
+
 			FormatJson::decode( '{"Name": "Cheeso", "Rank": 7}' ),
 			'Default to object'
 		);
 
-		$this->assertInternalType(
-			'array',
+		$this->assertIsArray(
+
 			FormatJson::decode( '{"Name": "Cheeso", "Rank": 7}', true ),
 			'Optional array'
 		);
@@ -180,8 +180,10 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	public static function provideParseErrors() {
 		return [
-			[ 'aaa' ],
-			[ '{"j": 1 ] }' ],
+			[ 'aaa', 'json-error-syntax' ],
+			[ '{"j": 1 ] }', 'json-error-state-mismatch' ],
+			[ chr( 0 ), 'json-error-ctrl-char' ],
+			[ '"\ud834"', 'json-error-utf16' ],
 		];
 	}
 
@@ -189,10 +191,14 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideParseErrors
 	 * @param mixed $value
 	 */
-	public function testParseErrors( $value ) {
+	public function testParseErrors( $value, $error ) {
 		$st = FormatJson::parse( $value );
 		$this->assertInstanceOf( Status::class, $st );
 		$this->assertFalse( $st->isOK() );
+		$this->assertTrue(
+			$st->hasMessage( $error ),
+			"Does not have $error message"
+		);
 	}
 
 	public function provideStripComments() {
@@ -351,12 +357,8 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expect, FormatJson::encode(
 			FormatJson::decode( $json, true ) ) );
 
-		// Decoding to object differs between supported PHP versions
+		// Decoding to object differed for PHP versions less than 7.1
 		$obj = FormatJson::decode( $json );
-		if ( version_compare( PHP_VERSION, '7.1', '<' ) ) {
-			$this->assertEquals( 'foo', $obj->_empty_ );
-		} else {
-			$this->assertEquals( 'foo', $obj->{$php71Name} );
-		}
+		$this->assertEquals( 'foo', $obj->{$php71Name} );
 	}
 }

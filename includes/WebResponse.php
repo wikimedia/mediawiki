@@ -190,7 +190,7 @@ class WebResponse {
 			return;
 		}
 
-		if ( !Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
+		if ( !Hooks::runner()->onWebResponseSetCookie( $name, $value, $expire, $options ) ) {
 			return;
 		}
 
@@ -236,10 +236,8 @@ class WebResponse {
 
 		wfDebugLog( 'cookie', $logDesc );
 		if ( $func === 'setrawcookie' ) {
-			// @phan-suppress-next-line PhanAccessMethodInternal
 			SetCookieCompat::setrawcookie( $prefixedName, $value, $setOptions );
 		} else {
-			// @phan-suppress-next-line PhanAccessMethodInternal
 			SetCookieCompat::setcookie( $prefixedName, $value, $setOptions );
 		}
 		self::$setCookies[$key] = $deleting ? null : $optionsForDeduplication;

@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Alison",
+			"DannyS712",
 			"Kaganer",
 			"MacTire02",
+			"Macofe",
 			"Shimmin Beg",
-			"아라",
 			"Xð",
-			"Macofe"
+			"아라"
 		]
 	},
 	"tog-underline": "Cur linnaghyn fo chianglaghyn:",
@@ -306,7 +307,6 @@
 	"passwordreset-username": "Dt'ennym ymmydeyr:",
 	"passwordreset-email": "Enmys post-L:",
 	"passwordreset-emailelement": "Ennym ymmydeyr: \n$1\n\nFockle arrey shallidagh: \n$2",
-	"passwordreset-emailsentemail": "Ta post-l cur gys cooinaghtyn er ny chur dhyt.",
 	"changeemail-none": "(gyn)",
 	"summary": "Giare-choontey:",
 	"subject": "Cooish/kione-linney:",
@@ -369,7 +369,7 @@
 	"history-fieldset-title": "Femblal shennaghys",
 	"histfirst": "By hoshee",
 	"histlast": "By yerree",
-	"historyempty": "(follym)",
+	"historyempty": "follym",
 	"history-feed-title": "Shennaghys yn aavriwnys",
 	"history-feed-description": "Shennaghys aavriwnys y duillag shoh er yn wiki",
 	"history-feed-item-nocomment": "$1 ec $2",

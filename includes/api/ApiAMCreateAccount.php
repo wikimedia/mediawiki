@@ -20,8 +20,9 @@
  * @file
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Create an account with AuthManager
@@ -63,8 +64,8 @@ class ApiAMCreateAccount extends ApiBase {
 			}
 		}
 
-		$helper = new ApiAuthManagerHelper( $this );
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
+		$helper = new ApiAuthManagerHelper( $this, $manager );
 
 		// Make sure it's possible to create accounts
 		if ( !$manager->canCreateAccounts() ) {

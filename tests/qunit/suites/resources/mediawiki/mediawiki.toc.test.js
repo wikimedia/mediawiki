@@ -1,40 +1,51 @@
 ( function () {
-	QUnit.module( 'mediawiki.toc', QUnit.newMwEnvironment( {
-		setup: function () {
-			// Prevent live cookies from interferring with the test
-			this.stub( $, 'cookie' ).returns( null );
+	QUnit.module( 'mediawiki.toc', {
+		beforeEach: function () {
+			this.getCookie = this.stub( mw.cookie, 'get' ).returns( null );
+			this.setCookie = this.stub( mw.cookie, 'set' ).returns( null );
+			this.tocHtml = '<div class="toc" role="navigation">' +
+				'<input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" />' +
+				'<div class="toctitle" lang="en" dir="ltr">' +
+				'<span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span>' +
+				'</div>' +
+				'<ul><li class="toclevel-1 tocsection-1">…</li></ul>' +
+				'</div>';
 		}
-	} ) );
+	} );
 
-	QUnit.test( 'toggleToc', function ( assert ) {
-		var tocHtml, $toc, $toggleLink, $tocList;
+	QUnit.test( 'Use toggle', function ( assert ) {
+		var tocNode, tocList, tocToggle;
 
-		assert.strictEqual( $( '.toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
-
-		tocHtml = '<div id="toc" class="toc">' +
-			'<div class="toctitle" lang="en" dir="ltr">' +
-			'<h2>Contents</h2>' +
-			'</div>' +
-			'<ul><li></li></ul>' +
-			'</div>';
-		$toc = $( tocHtml );
-		$( '#qunit-fixture' ).append( $toc );
+		tocNode = $.parseHTML( this.tocHtml )[ 0 ];
+		tocList = tocNode.querySelector( 'ul' );
+		tocToggle = tocNode.querySelector( '.toctogglelabel' );
+		$( '#qunit-fixture' ).append( tocNode );
 		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
 
-		$tocList = $toc.find( 'ul' ).first();
-		$toggleLink = $toc.find( '.togglelink' );
+		assert.strictEqual( getComputedStyle( tocList ).display, 'block', 'Initial list state' );
+		assert.strictEqual( this.getCookie.callCount, 1, 'Initial cookie reads' );
+		assert.strictEqual( this.setCookie.callCount, 0, 'Initial cookie writes' );
 
-		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is added to the table of contents' );
+		tocToggle.click();
+		assert.strictEqual( getComputedStyle( tocList ).display, 'none', 'Final list state' );
 
-		// eslint-disable-next-line no-jquery/no-class-state
-		assert.strictEqual( $toc.hasClass( 'tochidden' ), false, 'The table of contents is now visible' );
+		assert.propEqual( this.setCookie.args[ 0 ], [ 'hidetoc', '1' ], 'Cookie set' );
+		assert.strictEqual( this.getCookie.callCount, 1, 'Final cookie reads' );
+		assert.strictEqual( this.setCookie.callCount, 1, 'Final cookie writes' );
+	} );
 
-		$toggleLink.trigger( 'click' );
-		return $tocList.promise().then( function () {
-			// eslint-disable-next-line no-jquery/no-class-state
-			assert.strictEqual( $toc.hasClass( 'tochidden' ), true, 'The table of contents is now hidden' );
-			$toggleLink.trigger( 'click' );
-			return $tocList.promise();
-		} );
+	QUnit.test( 'Initially hidden', function ( assert ) {
+		var tocNode, tocList;
+
+		this.getCookie.returns( '1' );
+
+		tocNode = $.parseHTML( this.tocHtml )[ 0 ];
+		tocList = tocNode.querySelector( 'ul' );
+		$( '#qunit-fixture' ).append( tocNode );
+		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
+
+		assert.strictEqual( getComputedStyle( tocList ).display, 'none', 'Initial list state' );
+		assert.strictEqual( this.getCookie.callCount, 1, 'Initial cookie reads' );
+		assert.strictEqual( this.setCookie.callCount, 0, 'Initial cookie writes' );
 	} );
 }() );

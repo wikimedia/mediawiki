@@ -36,8 +36,9 @@ class ClearInterwikiCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalDatabases, $wgMemc;
+		global $wgLocalDatabases;
 		$dbr = $this->getDB( DB_REPLICA );
+		$cache = ObjectCache::getLocalClusterInstance();
 		$res = $dbr->select( 'interwiki', [ 'iw_prefix' ], '', __METHOD__ );
 		$prefixes = [];
 		foreach ( $res as $row ) {
@@ -47,7 +48,7 @@ class ClearInterwikiCache extends Maintenance {
 		foreach ( $wgLocalDatabases as $wikiId ) {
 			$this->output( "$wikiId..." );
 			foreach ( $prefixes as $prefix ) {
-				$wgMemc->delete( "$wikiId:interwiki:$prefix" );
+				$cache->delete( "$wikiId:interwiki:$prefix" );
 			}
 			$this->output( "done\n" );
 		}

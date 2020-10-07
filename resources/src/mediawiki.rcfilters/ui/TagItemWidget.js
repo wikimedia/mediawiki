@@ -88,6 +88,7 @@ TagItemWidget.prototype.updateUiBasedOnState = function () {
 	if ( labelMsg ) {
 		this.setLabel( $( '<div>' ).append(
 			$( '<bdi>' ).html(
+				// eslint-disable-next-line mediawiki/msg-doc
 				mw.message( labelMsg, mw.html.escape( this.itemModel.getLabel() ) ).parse()
 			)
 		).contents() );

@@ -1,3 +1,5 @@
+'use strict';
+
 const MWBot = require( 'mwbot' );
 
 module.exports = {
@@ -27,65 +29,23 @@ module.exports = {
 	},
 
 	/**
-	 * Shortcut for `MWBot#edit( .. )`.
-	 * Default username, password and base URL is used unless specified
-	 *
-	 * @since 0.1.0
-	 * @see <https://www.mediawiki.org/wiki/API:Edit>
-	 * @param {string} title
-	 * @param {string} content
-	 * @param {string} username - Optional
-	 * @param {string} password - Optional
-	 * @param {baseUrl} baseUrl - Optional
-	 * @return {Object} Promise for API action=edit response data.
-	 */
-	async edit( title,
-		content,
-		username = browser.config.mwUser,
-		password = browser.config.mwPwd,
-		baseUrl = browser.config.baseUrl
-	) {
-		const bot = await this.bot( username, password, baseUrl );
-		return await bot.edit( title, content, `Created or updated page with "${content}"` );
-	},
-
-	/**
-	 * Shortcut for `MWBot#delete( .. )`.
-	 *
-	 * @since 0.1.0
-	 * @see <https://www.mediawiki.org/wiki/API:Delete>
-	 * @param {string} title
-	 * @param {string} reason
-	 * @return {Object} Promise for API action=delete response data.
-	 */
-	async delete( title, reason ) {
-		const bot = await this.bot();
-		return await bot.delete( title, reason );
-	},
-
-	/**
 	 * Shortcut for `MWBot#request( { acount: 'createaccount', .. } )`.
 	 *
 	 * @since 0.1.0
 	 * @see <https://www.mediawiki.org/wiki/API:Account_creation>
-	 * @param {string} username
-	 * @param {string} password
+	 * @param {MWBot} adminBot
+	 * @param {string} username New user name
+	 * @param {string} password New user password
 	 * @return {Object} Promise for API action=createaccount response data.
 	 */
-	async createAccount( username, password ) {
-		const bot = new MWBot();
+	async createAccount( adminBot, username, password ) {
+		await adminBot.getCreateaccountToken();
 
-		// Log in as admin
-		await bot.loginGetCreateaccountToken( {
-			apiUrl: `${browser.config.baseUrl}/api.php`,
-			username: browser.config.mwUser,
-			password: browser.config.mwPwd
-		} );
 		// Create the new account
-		return await bot.request( {
+		return await adminBot.request( {
 			action: 'createaccount',
 			createreturnurl: browser.config.baseUrl,
-			createtoken: bot.createaccountToken,
+			createtoken: adminBot.createaccountToken,
 			username: username,
 			password: password,
 			retype: password
@@ -97,18 +57,17 @@ module.exports = {
 	 *
 	 * @since 0.3.0
 	 * @see <https://www.mediawiki.org/wiki/API:Block>
-	 * @param {string} [username] defaults to user making the request
+	 * @param {MWBot} adminBot
+	 * @param {string} [username] defaults to blocking the admin user
 	 * @param {string} [expiry] default is not set. For format see API docs
 	 * @return {Object} Promise for API action=block response data.
 	 */
-	async blockUser( username, expiry ) {
-		const bot = await this.bot();
-		// block user. default = admin
-		return await bot.request( {
+	async blockUser( adminBot, username, expiry ) {
+		return await adminBot.request( {
 			action: 'block',
 			user: username || browser.config.mwUser,
 			reason: 'browser test',
-			token: bot.editToken,
+			token: adminBot.editToken,
 			expiry
 		} );
 	},
@@ -118,17 +77,16 @@ module.exports = {
 	 *
 	 * @since 0.3.0
 	 * @see <https://www.mediawiki.org/wiki/API:Block>
-	 * @param {string} [username] defaults to user making the request
+	 * @param {MWBot} adminBot
+	 * @param {string} [username] defaults to unblocking the admin user
 	 * @return {Object} Promise for API action=unblock response data.
 	 */
-	async unblockUser( username ) {
-		const bot = await this.bot();
-		// unblock user. default = admin
-		return await bot.request( {
+	async unblockUser( adminBot, username ) {
+		return await adminBot.request( {
 			action: 'unblock',
 			user: username || browser.config.mwUser,
 			reason: 'browser test done',
-			token: bot.editToken
+			token: adminBot.editToken
 		} );
 	}
 };

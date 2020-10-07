@@ -1,0 +1,19 @@
+module.exports = {
+	data: function () {
+		return {
+			hello: 'world'
+		};
+	}
+};;
+module.exports.template = "<!-- Outer comment --> \
+	<div class=\"mw-vue-test\"> \
+		<!-- \
+			Inner comment \
+			with multiple lines \
+			and tabs \
+		--> \
+		<p>Hello\\n<\/p> \
+		<p>{{ hello }}<\/p> \
+		<pre>			foo\\\n			bar \
+		<\/pre> \
+	<\/div>";

@@ -46,7 +46,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -87,7 +87,13 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 
 		$result = $this->getResult();
 		$count = 0;
-		foreach ( $this->select( __METHOD__ ) as $row ) {
+		$res = $this->select( __METHOD__ );
+
+		if ( $fld_title && $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
+		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...

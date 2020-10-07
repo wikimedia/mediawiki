@@ -1,14 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Angel sm",
 			"Clerc",
+			"DannyS712",
 			"Fiestoforo",
 			"Kaniw",
 			"Lin linao",
+			"Ndołkah",
 			"Poquil",
 			"Remember the dot",
-			"아라",
-			"Angel sm"
+			"아라"
 		]
 	},
 	"tog-underline": "Miñcewirilpe lasun",
@@ -184,6 +186,7 @@
 	"nstab-template": "Adtükupeyüm",
 	"nstab-help": "Kelluwe",
 	"nstab-category": "Trokiñ",
+	"mainpage-nstab": "Ñizol Wvbgiñ",
 	"nosuchaction": "Mülelay feychi femün",
 	"error": "Welulkan",
 	"missing-article": "Feychi ngülümdunguwe kintulay feychi wülngiñ ñi wirin, welu nienuafulu. Ñi üy ta \"$1\" $2.\n\nChi kiñe rakizuamün ta pünefalkülenuchi kalelu kam nülkükawlelu liftungepelu wülngiñ ñi rupañmael.\n\nFemnuale, welulkafuy feychi küzauwe. Feypimi tüfachi dungu kiñe [[Special:ListUsers/sysop|ngünefe]]. Wirituymi feychi URL.",
@@ -206,6 +209,7 @@
 	"mailmypassword": "Amulün we nülawe werküwe mew",
 	"loginlanguagelabel": "Cezugun: $1",
 	"pt-login": "Konkülen",
+	"pt-createaccount": "Zewman rakim",
 	"resetpass-submit-cancel": "Katrüntukun",
 	"summary": "Pichi trokiñündungu:",
 	"subject": "Dungu/üy:",
@@ -252,7 +256,7 @@
 	"history-show-deleted": "Liftungepelu malün müten",
 	"histfirst": "Wüne",
 	"histlast": "Doy we",
-	"historyempty": "(welli)",
+	"historyempty": "welli",
 	"history-feed-item-nocomment": "$1 $2 mew",
 	"rev-delundel": "pengelün/ellkan",
 	"rev-showdeleted": "pegelpe",

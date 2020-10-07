@@ -10,7 +10,7 @@ use Wikimedia\ObjectFactory;
  * @group Database
  * @group medium
  */
-class ApiModuleManagerTest extends MediaWikiTestCase {
+class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getModuleManager() {
 		$request = new FauxRequest();
@@ -363,13 +363,11 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage $spec must define a class name
-	 */
 	public function testAddModuleWithIncompleteSpec() {
 		$moduleManager = $this->getModuleManager();
 
+		$this->expectException( \InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$spec must define a class name' );
 		$moduleManager->addModule(
 			'logout',
 			'action',

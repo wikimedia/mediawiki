@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 /**
  * This is a value object for authentication requests with a username and password
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */
@@ -33,6 +34,10 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string Password, again */
 	public $retype = null;
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getFieldInfo() {
 		if ( $this->action === AuthManager::ACTION_REMOVE ) {
 			return [];
@@ -76,6 +81,10 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 		return $ret;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function describeCredentials() {
 		return [
 			'provider' => wfMessage( 'authmanager-provider-password' ),

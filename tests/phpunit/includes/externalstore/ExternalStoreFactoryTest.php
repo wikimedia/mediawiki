@@ -6,23 +6,19 @@ use Wikimedia\Rdbms\LBFactory;
  * @covers ExternalStoreFactory
  * @covers ExternalStoreAccess
  */
-class ExternalStoreFactoryTest extends MediaWikiTestCase {
+class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @expectedException ExternalStoreException
-	 */
 	public function testExternalStoreFactory_noStores1() {
 		$factory = new ExternalStoreFactory( [], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( 'ForTesting' );
 	}
 
-	/**
-	 * @expectedException ExternalStoreException
-	 */
 	public function testExternalStoreFactory_noStores2() {
 		$factory = new ExternalStoreFactory( [], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( 'foo' );
 	}
 
@@ -44,10 +40,10 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideStoreNames
-	 * @expectedException ExternalStoreException
 	 */
 	public function testExternalStoreFactory_someStore_noProtoMatch( $proto ) {
 		$factory = new ExternalStoreFactory( [ 'SomeOtherClassName' ], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( $proto );
 	}
 
@@ -121,7 +117,7 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 		$v2 = wfRandomString();
 		$v3 = wfRandomString();
 
-		$this->assertEquals( false, $storeLocal->fetchFromURL( 'memory://cluster1/1' ) );
+		$this->assertFalse( $storeLocal->fetchFromURL( 'memory://cluster1/1' ) );
 
 		$url1 = 'memory://cluster1/1';
 		$this->assertEquals(
@@ -143,8 +139,8 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 		// There is only one active store type
 		$this->assertEquals( $v2, $storeLocal->fetchFromURL( $url2 ) );
 		$this->assertEquals( $v3, $storeOther->fetchFromURL( $url3 ) );
-		$this->assertEquals( false, $storeOther->fetchFromURL( $url2 ) );
-		$this->assertEquals( false, $storeLocal->fetchFromURL( $url3 ) );
+		$this->assertFalse( $storeOther->fetchFromURL( $url2 ) );
+		$this->assertFalse( $storeLocal->fetchFromURL( $url3 ) );
 
 		$res = $access->fetchFromURLs( [ $url1, $url2, $url3 ] );
 		$this->assertEquals( [ $url1 => $v1, $url2 => $v2, $url3 => false ], $res, "Local-only" );

@@ -19,7 +19,7 @@
 		return userInfoPromise;
 	}
 
-	// mw.user with the properties options and tokens gets defined in mediawiki.js.
+	// mw.user with the properties options and tokens gets defined in mediawiki.base.js.
 	$.extend( mw.user, {
 
 		/**
@@ -41,7 +41,7 @@
 		 *
 		 * See https://en.wikipedia.org/wiki/Birthday_attack#Mathematics
 		 * n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))
-
+		 *
 		 * @return {string} 80 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
@@ -136,29 +136,23 @@
 		},
 
 		/**
-		 * Retrieve a random ID persisted in sessionStorage, generating it if needed
+		 * Retrieve a random ID, generating it if needed
 		 *
-		 * This ID is stored in sessionStorage and persists within a single tab,
-		 * including between page views through links and form submissions,
-		 * and when going forwards/backwards in browser history, and when restoring
-		 * a closed tab, or restoring a closed browser session.
+		 * This ID is shared across windows, tabs, and page views. It is persisted
+		 * for the duration of one browser session (until the browser app is closed),
+		 * unless the user evokes a "restore previous session" feature that some browsers have.
 		 *
-		 * This is different from session cookies, because it is not shared between
-		 * tabs of the same browser. Two simultaneous pageviews in the same browser
-		 * can have different session IDs. The ID is also not re-used when opening
-		 * a new tab to a website after fully closing others.
-		 *
-		 * See https://phabricator.wikimedia.org/T118063#4547178 and
-		 * https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
-		 * for more information.
+		 * **Note:** Server-side code must never interpret or modify this value.
 		 *
 		 * @return {string} Random session ID
 		 */
 		sessionId: function () {
-			var sessionId = mw.storage.session.get( 'mwuser-sessionId' );
-			if ( !sessionId ) {
+			var sessionId = mw.cookie.get( 'mwuser-sessionId' );
+			if ( sessionId === null ) {
 				sessionId = mw.user.generateRandomSessionId();
-				mw.storage.session.set( 'mwuser-sessionId', sessionId );
+				// Setting the `expires` field to `null` means that the cookie should
+				// persist (shared across windows and tabs) until the browser is closed.
+				mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
 			}
 			return sessionId;
 		},

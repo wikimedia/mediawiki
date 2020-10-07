@@ -18,10 +18,12 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class FindMissingFiles extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Find registered files with no corresponding file.' );
@@ -31,10 +33,10 @@ class FindMissingFiles extends Maintenance {
 		$this->setBatchSize( 300 );
 	}
 
-	function execute() {
+	public function execute() {
 		$lastName = $this->getOption( 'start', '' );
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$dbr = $repo->getReplicaDB();
 		$be = $repo->getBackend();
 		$batchSize = $this->getBatchSize();
@@ -89,14 +91,15 @@ class FindMissingFiles extends Maintenance {
 			if ( count( $pathsByName ) ) {
 				$ores = $dbr->select( 'oldimage',
 					[ 'oi_name', 'oi_archive_name' ],
-					[ 'oi_name' => array_keys( $pathsByName ) ],
+					[ 'oi_name' => array_map( 'strval', array_keys( $pathsByName ) ) ],
 					__METHOD__
 				);
 
 				$checkPaths = [];
 				foreach ( $ores as $row ) {
 					if ( !strlen( $row->oi_archive_name ) ) {
-						continue; // broken row
+						// broken row
+						continue;
 					}
 					$file = $repo->newFromArchiveName( $row->oi_name, $row->oi_archive_name );
 					$checkPaths[] = $file->getPath();

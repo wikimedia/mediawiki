@@ -18,6 +18,9 @@
  * @file
  */
 
+// Per https://phabricator.wikimedia.org/T241091
+// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+
 /**
  * Module augmented with context-specific LESS variables.
  *
@@ -31,7 +34,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 * @inheritDoc
 	 */
 	public function __construct(
-		$options = [],
+		array $options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
@@ -50,19 +53,17 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * Exclude a set of messages from a JSON string representation
+	 * Return a subset of messages from a JSON string representation.
 	 *
-	 * @param string $blob
-	 * @param array $exclusions
-	 * @return object $blob
+	 * @param string $blob JSON
+	 * @param string[] $whitelist
+	 * @return array
 	 */
-	protected function excludeMessagesFromBlob( $blob, $exclusions ) {
+	private function pluckFromMessageBlob( $blob, array $whitelist ) : array {
 		$data = json_decode( $blob, true );
-		// unset the LESS variables so that they are not forwarded to JavaScript
-		foreach ( $exclusions as $key ) {
-			unset( $data[$key] );
-		}
-		return (object)$data;
+		// Keep only the messages intended for LESS export
+		// (opposite of getMesssages essentially).
+		return array_intersect_key( $data, array_flip( $whitelist ) );
 	}
 
 	/**
@@ -70,21 +71,35 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 */
 	protected function getMessageBlob( ResourceLoaderContext $context ) {
 		$blob = parent::getMessageBlob( $context );
-		return json_encode( $this->excludeMessagesFromBlob( $blob, $this->lessVariables ) );
+		return json_encode( (object)$this->pluckFromMessageBlob( $blob, $this->messages ) );
 	}
 
+	// phpcs:disable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
 	/**
-	 * Takes a message and wraps it in quotes for compatibility with LESS parser
-	 * (ModifyVars) method so that the variable can be loaded and made available to stylesheets.
-	 * Note this does not take care of CSS escaping. That will be taken care of as part
-	 * of CSS Janus.
+	 * Escape and wrap a message value as literal string for LESS.
+	 *
+	 * This mostly lets CSSMin escape it and wrap it, but also escape single quotes
+	 * for compatibility with LESS's feature of variable interpolation into other strings.
+	 * This is relatively rare for most use of LESS, but for messages it is quite common.
+	 *
+	 * Example:
+	 *
+	 * @code
+	 *     @x: "foo's";
+	 *     .eg { content: 'Value is @{x}'; }
+	 * @endcode
+	 *
+	 * Produces output: `.eg { content: 'Value is foo's'; }`.
+	 * (Tested in less.php 1.8.1, and Less.js 2.7)
 	 *
 	 * @param string $msg
-	 * @return string wrapped LESS variable definition
+	 * @return string wrapped LESS variable value
 	 */
 	private static function wrapAndEscapeMessage( $msg ) {
 		return str_replace( "'", "\'", CSSMin::serializeStringValue( $msg ) );
 	}
+
+	// phpcs:enable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
 
 	/**
 	 * Get language-specific LESS variables for this module.
@@ -94,10 +109,10 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 */
 	protected function getLessVars( ResourceLoaderContext $context ) {
 		$blob = parent::getMessageBlob( $context );
-		$lessMessages = $this->excludeMessagesFromBlob( $blob, $this->messages );
+		$messages = $this->pluckFromMessageBlob( $blob, $this->lessVariables );
 
 		$vars = parent::getLessVars( $context );
-		foreach ( $lessMessages as $msgKey => $value ) {
+		foreach ( $messages as $msgKey => $value ) {
 			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $value );
 		}
 		return $vars;

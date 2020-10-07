@@ -122,7 +122,7 @@ class Orphans extends Maintenance {
 					$rev_user_text,
 					$comment ) );
 				if ( $fix ) {
-					$dbw->delete( 'revision', [ 'rev_id' => $row->rev_id ] );
+					$dbw->delete( 'revision', [ 'rev_id' => $row->rev_id ], __METHOD__ );
 				}
 			}
 			if ( !$fix ) {
@@ -155,13 +155,15 @@ class Orphans extends Maintenance {
 		$result = $dbw->query( "
 			SELECT *
 			FROM $page LEFT JOIN $revision ON page_latest=rev_id
-		" );
+		", __METHOD__ );
 		$found = 0;
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		foreach ( $result as $row ) {
 			$result2 = $dbw->query( "
 				SELECT MAX(rev_timestamp) as max_timestamp
 				FROM $revision
-				WHERE rev_page=" . (int)( $row->page_id )
+				WHERE rev_page=" . (int)( $row->page_id ),
+				__METHOD__
 			);
 			$row2 = $dbw->fetchObject( $result2 );
 			if ( $row2 ) {
@@ -183,9 +185,12 @@ class Orphans extends Maintenance {
 							'rev_id',
 							[
 								'rev_page' => $row->page_id,
-								'rev_timestamp' => $row2->max_timestamp ] );
+								'rev_timestamp' => $row2->max_timestamp
+							],
+							__METHOD__
+						);
 						$this->output( "... updating to revision $maxId\n" );
-						$maxRev = Revision::newFromId( $maxId );
+						$maxRev = $revLookup->getRevisionById( $maxId );
 						$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 						$article = WikiPage::factory( $title );
 						$article->updateRevisionOn( $dbw, $maxRev );

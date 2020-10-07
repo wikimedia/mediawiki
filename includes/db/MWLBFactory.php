@@ -24,6 +24,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -51,9 +52,9 @@ abstract class MWLBFactory {
 		'DBssl',
 		'DBtype',
 		'DBuser',
-		'DBWindowsAuthentication',
 		'DebugDumpSql',
 		'DebugLogFile',
+		'DebugToolbar',
 		'ExternalServers',
 		'SQLiteDataDir',
 		'SQLMode',
@@ -146,8 +147,8 @@ abstract class MWLBFactory {
 					$lbConf['serverTemplate']['schema'] = $options->get( 'DBmwschema' );
 				}
 				$lbConf['serverTemplate']['sqlMode'] = $options->get( 'SQLMode' );
+				$serversCheck = [ $lbConf['serverTemplate'] ];
 			}
-			$serversCheck = [ $lbConf['serverTemplate'] ] ?? [];
 		}
 
 		self::assertValidServerConfigs(
@@ -156,7 +157,9 @@ abstract class MWLBFactory {
 			$options->get( 'DBprefix' )
 		);
 
-		$lbConf = self::injectObjectCaches( $lbConf, $srvCache, $mainStash, $wanCache );
+		$lbConf['srvCache'] = $srvCache;
+		$lbConf['memStash'] = $mainStash;
+		$lbConf['wanCache'] = $wanCache;
 
 		return $lbConf;
 	}
@@ -197,7 +200,10 @@ abstract class MWLBFactory {
 		}
 
 		$flags = $server['flags'] ?? DBO_DEFAULT;
-		if ( $options->get( 'DebugDumpSql' ) || $options->get( 'DebugLogFile' ) ) {
+		if ( $options->get( 'DebugDumpSql' )
+			|| $options->get( 'DebugLogFile' )
+			|| $options->get( 'DebugToolbar' )
+		) {
 			$flags |= DBO_DEBUG;
 		}
 		$server['flags'] = $flags;
@@ -208,35 +214,6 @@ abstract class MWLBFactory {
 		];
 
 		return $server;
-	}
-
-	/**
-	 * @param array $lbConf
-	 * @param BagOStuff $sCache
-	 * @param BagOStuff $mStash
-	 * @param WANObjectCache $wCache
-	 * @return array
-	 */
-	private static function injectObjectCaches(
-		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
-	) {
-		// Fallback if APC style caching is not an option
-		if ( $sCache instanceof EmptyBagOStuff ) {
-			$sCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
-		}
-
-		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
-			$lbConf['srvCache'] = $sCache;
-		}
-		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
-			$lbConf['memStash'] = $mStash;
-		}
-		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
-			$lbConf['wanCache'] = $wCache;
-		}
-
-		return $lbConf;
 	}
 
 	/**
@@ -316,45 +293,40 @@ abstract class MWLBFactory {
 	}
 
 	/**
-	 * Returns the LBFactory class to use and the load balancer configuration.
+	 * Decide which LBFactory class to use.
 	 *
-	 * @todo instead of this, use a ServiceContainer for managing the different implementations.
-	 *
+	 * @internal For use by ServiceWiring
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
-	 * @internal For use with service wiring
 	 */
 	public static function getLBFactoryClass( array $config ) {
-		// For configuration backward compatibility after removing
-		// underscores from class names in MediaWiki 1.23.
-		$bcClasses = [
-			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
-			'LBFactory_Multi' => 'LBFactoryMulti'
-		];
-
-		$class = $config['class'];
-
-		if ( isset( $bcClasses[$class] ) ) {
-			$class = $bcClasses[$class];
-			wfDeprecated(
-				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
-				'1.23'
-			);
-		}
-
-		// For configuration backward compatibility after moving classes to namespaces (1.29)
 		$compat = [
+			// For LocalSettings.php compat after removing underscores (since 1.23).
+			'LBFactory_Single' => Wikimedia\Rdbms\LBFactorySingle::class,
+			'LBFactory_Simple' => Wikimedia\Rdbms\LBFactorySimple::class,
+			'LBFactory_Multi' => Wikimedia\Rdbms\LBFactoryMulti::class,
+			// For LocalSettings.php compat after moving classes to namespaces (since 1.29).
 			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
 			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
 			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
 		];
 
-		if ( isset( $compat[$class] ) ) {
-			$class = $compat[$class];
-		}
+		$class = $config['class'];
+		return $compat[$class] ?? $class;
+	}
 
-		return $class;
+	/**
+	 * @param ILBFactory $lbFactory
+	 */
+	public static function setDomainAliases( ILBFactory $lbFactory ) {
+		$domain = DatabaseDomain::newFromId( $lbFactory->getLocalDomainID() );
+		// For compatibility with hyphenated $wgDBname values on older wikis, handle callers
+		// that assume corresponding database domain IDs and wiki IDs have identical values
+		$rawLocalDomain = strlen( $domain->getTablePrefix() )
+			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
+			: (string)$domain->getDatabase();
+
+		$lbFactory->setDomainAliases( [ $rawLocalDomain => $domain ] );
 	}
 
 	/**
@@ -363,16 +335,10 @@ abstract class MWLBFactory {
 	 * @internal For use with service wiring
 	 */
 	public static function logDeprecation( $msg ) {
-		global $wgDevelopmentWarnings;
-
 		if ( isset( self::$loggedDeprecations[$msg] ) ) {
 			return;
 		}
 		self::$loggedDeprecations[$msg] = true;
-
-		if ( $wgDevelopmentWarnings ) {
-			trigger_error( $msg, E_USER_DEPRECATED );
-		}
-		wfDebugLog( 'deprecated', $msg, 'private' );
+		MWDebug::sendRawDeprecated( $msg, true, wfGetCaller() );
 	}
 }

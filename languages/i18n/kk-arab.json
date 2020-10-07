@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"GaiJin",
 			"Kaztrans",
-			"아라",
 			"Macofe",
-			"Vlad5250"
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "سىلتەمەنىڭ استىن سىز:",
@@ -218,7 +219,7 @@
 	"nospecialpagetext": "<strong>جارامسىز ارنايى بەتتى سۇرادىڭىز.</strong>\n\nجارامدى ارنايى بەت ٴتىزىمىن [[Special:SpecialPages|{{int:specialpages}}]] دەگەننەن تابا الاسىز.",
 	"error": "قاتە",
 	"databaseerror": "دەرەكقور قاتەسى",
-	"laggedslavemode": "قۇلاقتاندىرۋ: بەتتە جۋىقتاعى جاڭالاۋلار بولماۋى مۇمكىن.",
+	"laggedreplicamode": "قۇلاقتاندىرۋ: بەتتە جۋىقتاعى جاڭالاۋلار بولماۋى مۇمكىن.",
 	"readonly": "دەرەكقورى قۇلىپتالعان",
 	"enterlockreason": "قۇلىپتاۋ سەبەبىن, قاي ۋاقىتقا دەيىن قۇلىپتالعانىن كىرىستىرىپ, ەنگىزىڭىز",
 	"readonlytext": "بۇل دەرەكقور جاڭادان جازۋ جانە باسقا وزگەرىستەر جاساۋدان اعىمدا قۇلىپتالىنعان, مۇمكىن كۇندە-كۇن دەرەكقوردى باپتاۋ ٴۇشىن, بۇنى بىتىرگەننەن سوڭ قالىپتى ىسكە قايتارىلادى.\n\nقۇلىپتاعان اكىمشى بۇنى بىلاي تۇسىندىرەدى: $1",
@@ -393,7 +394,6 @@
 	"undo-failure": "بۇل وڭدەمە جوققا شىعارىلمايدى, سەبەبى ارادا قاقتىعىستى وڭدەمەلەر بار.",
 	"undo-norev": "بۇل وڭدەمە جوققا شىعارىلمايدى, سەبەبى بۇل جوق نەمەسە جويىلعان.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User_talk:$2|تالقىلاۋى]]) ىستەگەن ٴنومىر $1 نۇسقاسىن جوققا شىعاردى",
-	"cantcreateaccount-text": "بۇل IP جايدان ('''$1''') جاڭا تىركەلگى جاساۋىن [[User:$3|$3]] بۇعاتتاعان.\n\n$3 كەلتىرىلگەن سەبەبى: ''$2''",
 	"viewpagelogs": "بۇل بەت ٴۇشىن جۋرنال وقىيعالارىن قاراۋ",
 	"nohistory": "مىندا بۇل بەتتىنىڭ تۇزەتۋ تارىيحى جوق.",
 	"currentrev": "اعىمدىق تۇزەتۋ",
@@ -411,7 +411,7 @@
 	"histfirst": "ەڭ العاشقىسىنا",
 	"histlast": "ەڭ سوڭعىسىنا",
 	"historysize": "($1 بايت)",
-	"historyempty": "(بوس)",
+	"historyempty": "بوس",
 	"history-feed-title": "تۇزەتۋ تارىيحى",
 	"history-feed-description": "مىنا ۋىيكىيدەگى بۇل بەتتىڭ تۇزەتۋ تارىيحى",
 	"history-feed-item-nocomment": "$2 كەزىندەگى $1 دەگەن",
@@ -1174,7 +1174,7 @@
 	"allmessagesdefault": "ادەپكى ٴماتىنى",
 	"allmessagescurrent": "اعىمدىق ٴماتىنى",
 	"allmessagestext": "مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.\nەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [https://translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
+	"allmessages-not-supported-database": "'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
 	"thumbnail-more": "ۇلكەيتۋ",
 	"filemissing": "جوعالعان فايل",
 	"thumbnail_error": "نوباي قۇرۋ قاتەسى: $1",

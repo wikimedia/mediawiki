@@ -59,6 +59,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var bool */
 	private $isDirty = false;
 
+	/** @var bool */
+	private $isFast = false;
+
 	/** @var Status|bool */
 	private $error = false;
 
@@ -76,8 +79,18 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$revid, $useParserCache, $revision = null, $audience = RevisionRecord::FOR_PUBLIC
 	) {
 		if ( is_string( $revision ) ) { // BC: very old style call
-			$modelId = $page->getRevision()->getContentModel();
-			$format = $page->getRevision()->getContentFormat();
+			$revRecord = $page->getRevisionRecord();
+			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
+			$modelId = $mainSlot->getModel();
+			$format = $mainSlot->getFormat();
+
+			if ( $format === null ) {
+				$format = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $modelId )
+					->getDefaultFormat();
+			}
+
 			$revision = ContentHandler::makeContent( $revision, $page->getTitle(), $modelId, $format );
 		}
 
@@ -140,6 +153,15 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 	/**
+	 * Get whether the ParserOutput was retrieved in fast stale mode
+	 *
+	 * @return bool
+	 */
+	public function getIsFastStale() {
+		return $this->isFast;
+	}
+
+	/**
 	 * Get a Status object in case of error or false otherwise
 	 *
 	 * @return Status|bool
@@ -165,9 +187,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		if ( $this->revision !== null ) {
 			$rev = $this->revision;
 		} elseif ( $isCurrent ) {
-			$rev = $this->page->getRevision()
-				? $this->page->getRevision()->getRevisionRecord()
-				: null;
+			$rev = $this->page->getRevisionRecord();
 		} else {
 			$rev = $this->revisionStore->getRevisionByTitle( $this->page->getTitle(), $this->revid );
 		}
@@ -234,27 +254,53 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
-			wfDebug( __METHOD__ . ": parser cache miss\n" );
+			wfDebug( __METHOD__ . ": parser cache miss" );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": parser cache hit\n" );
+			wfDebug( __METHOD__ . ": parser cache hit" );
 			return true;
 		}
 	}
 
 	/**
+	 * @param bool $fast Fast stale request
 	 * @return bool
 	 */
-	public function fallback() {
+	public function fallback( $fast ) {
 		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
+
+		$fastMsg = '';
+		if ( $this->parserOutput && $fast ) {
+			/* Check if the stale response is from before the last write to the
+			 * DB by this user. Declining to return a stale response in this
+			 * case ensures that the user will see their own edit after page
+			 * save.
+			 *
+			 * Note that the CP touch time is the timestamp of the shutdown of
+			 * the save request, so there is a bias towards avoiding fast stale
+			 * responses of potentially several seconds.
+			 */
+			$lastWriteTime = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+				->getChronologyProtectorTouched();
+			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
+			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
+				wfDebugLog( 'dirty', "declining to send dirty output since cache time " .
+					$cacheTime . " is before last write time $lastWriteTime" );
+				// Forget this ParserOutput -- we will request it again if
+				// necessary in slow mode. There might be a newer entry
+				// available by that time.
+				$this->parserOutput = false;
+				return false;
+			}
+			$this->isFast = true;
+			$fastMsg = 'fast ';
+		}
 
 		if ( $this->parserOutput === false ) {
 			wfDebugLog( 'dirty', 'dirty missing' );
-			wfDebug( __METHOD__ . ": no dirty cache\n" );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": sending dirty output\n" );
-			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}" );
+			wfDebugLog( 'dirty', "{$fastMsg}dirty output {$this->cacheKey}" );
 			$this->isDirty = true;
 			return true;
 		}

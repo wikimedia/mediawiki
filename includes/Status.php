@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
@@ -36,10 +38,15 @@
  * unconditionally, i.e. both on success and on failure -- so that the
  * developer of the calling code is reminded that the function can fail, and
  * so that a lack of error-handling will be explicit.
+ *
+ * @newable
  */
 class Status extends StatusValue {
 	/** @var callable|false */
 	public $cleanCallback = false;
+
+	/** @var MessageLocalizer|null */
+	protected $messageLocalizer;
 
 	/**
 	 * Succinct helper method to wrap a StatusValue
@@ -75,7 +82,7 @@ class Status extends StatusValue {
 	 * @return mixed
 	 * @throws RuntimeException
 	 */
-	function __get( $name ) {
+	public function __get( $name ) {
 		if ( $name === 'ok' ) {
 			return $this->isOK();
 		}
@@ -94,7 +101,7 @@ class Status extends StatusValue {
 	 * @param mixed $value
 	 * @throws RuntimeException
 	 */
-	function __set( $name, $value ) {
+	public function __set( $name, $value ) {
 		if ( $name === 'ok' ) {
 			$this->setOK( $value );
 		} elseif ( !property_exists( $this, $name ) ) {
@@ -103,6 +110,20 @@ class Status extends StatusValue {
 		} else {
 			throw new RuntimeException( "Cannot set '$name' property." );
 		}
+	}
+
+	/**
+	 * Makes this Status object use the given localizer instead of the global one.
+	 * If it is an IContextSource or a ResourceLoaderContext, it will also be used to
+	 * determine the interface language.
+	 * @note This setting does not survive serialization. That's usually for the best
+	 *   (there's no guarantee we'll still have the same localization settings after
+	 *   unserialization); it is the caller's responsibility to set the localizer again
+	 *   if needed.
+	 * @param MessageLocalizer $messageLocalizer
+	 */
+	public function setMessageLocalizer( MessageLocalizer $messageLocalizer ) {
+		$this->messageLocalizer = $messageLocalizer;
 	}
 
 	/**
@@ -115,10 +136,17 @@ class Status extends StatusValue {
 	 * ]
 	 *
 	 * @return Status[]
-	 * @suppress PhanUndeclaredProperty Status vs StatusValue
 	 */
 	public function splitByErrorType() {
 		list( $errorsOnlyStatus, $warningsOnlyStatus ) = parent::splitByErrorType();
+		// phan/phan#2133?
+		'@phan-var Status $errorsOnlyStatus';
+		'@phan-var Status $warningsOnlyStatus';
+
+		if ( $this->messageLocalizer ) {
+			$errorsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
+			$warningsOnlyStatus->setMessageLocalizer( $this->messageLocalizer );
+		}
 		$errorsOnlyStatus->cleanCallback =
 			$warningsOnlyStatus->cleanCallback = $this->cleanCallback;
 
@@ -150,32 +178,15 @@ class Status extends StatusValue {
 	}
 
 	/**
-	 * @param string|Language|null|StubUserLang $lang Language to use for processing
-	 *  messages, or null to default to the user language.
-	 * @return Language|StubUserLang
-	 */
-	protected function languageFromParam( $lang ) {
-		if ( $lang === null ) {
-			return RequestContext::getMain()->getLanguage();
-		}
-		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
-			return $lang;
-		}
-		return Language::factory( $lang );
-	}
-
-	/**
 	 * Get the error list as a wikitext formatted list
 	 *
 	 * @param string|bool $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string|bool $longContext A long enclosing context message name, for a list
-	 * @param string|Language|null|StubUserLang $lang Language to use for processing messages
+	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
 	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
-		$lang = $this->languageFromParam( $lang );
-
 		$rawErrors = $this->getErrors();
 		if ( count( $rawErrors ) === 0 ) {
 			if ( $this->isOK() ) {
@@ -190,9 +201,9 @@ class Status extends StatusValue {
 		if ( count( $rawErrors ) === 1 ) {
 			$s = $this->getErrorMessage( $rawErrors[0], $lang )->plain();
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s )->inLanguage( $lang )->plain();
+				$s = $this->msgInLang( $shortContext, $lang, $s )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMessage( $longContext, "* $s\n" )->inLanguage( $lang )->plain();
+				$s = $this->msgInLang( $longContext, $lang, "* $s\n" )->plain();
 			}
 		} else {
 			$errors = $this->getErrorMessageArray( $rawErrors, $lang );
@@ -201,9 +212,9 @@ class Status extends StatusValue {
 			}
 			$s = '* ' . implode( "\n* ", $errors ) . "\n";
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s )->inLanguage( $lang )->plain();
+				$s = $this->msgInLang( $longContext, $lang, $s )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMessage( $shortContext, "\n$s\n" )->inLanguage( $lang )->plain();
+				$s = $this->msgInLang( $shortContext, $lang, "\n$s\n" )->plain();
 			}
 		}
 		return $s;
@@ -226,12 +237,10 @@ class Status extends StatusValue {
 	 *
 	 * @param string|string[]|bool $shortContext A message name or an array of message names.
 	 * @param string|string[]|bool $longContext A message name or an array of message names.
-	 * @param string|Language|null $lang Language to use for processing messages
+	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false, $lang = null ) {
-		$lang = $this->languageFromParam( $lang );
-
 		$rawErrors = $this->getErrors();
 		if ( count( $rawErrors ) === 0 ) {
 			if ( $this->isOK() ) {
@@ -246,11 +255,11 @@ class Status extends StatusValue {
 		if ( count( $rawErrors ) === 1 ) {
 			$s = $this->getErrorMessage( $rawErrors[0], $lang );
 			if ( $shortContext ) {
-				$s = wfMessage( $shortContext, $s )->inLanguage( $lang );
+				$s = $this->msgInLang( $shortContext, $lang, $s );
 			} elseif ( $longContext ) {
 				$wrapper = new RawMessage( "* \$1\n" );
 				$wrapper->params( $s )->parse();
-				$s = wfMessage( $longContext, $wrapper )->inLanguage( $lang );
+				$s = $this->msgInLang( $longContext, $lang, $wrapper );
 			}
 		} else {
 			$msgs = $this->getErrorMessageArray( $rawErrors, $lang );
@@ -260,11 +269,11 @@ class Status extends StatusValue {
 			$s->params( $msgs )->parse();
 
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $s )->inLanguage( $lang );
+				$s = $this->msgInLang( $longContext, $lang, $s );
 			} elseif ( $shortContext ) {
 				$wrapper = new RawMessage( "\n\$1\n", [ $s ] );
 				$wrapper->parse();
-				$s = wfMessage( $shortContext, $wrapper )->inLanguage( $lang );
+				$s = $this->msgInLang( $shortContext, $lang, $wrapper );
 			}
 		}
 
@@ -286,20 +295,24 @@ class Status extends StatusValue {
 			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
 			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				$msg = wfMessage( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ) );
+				$msg = $this->msg( $error['message'], array_map( function ( $param ) {
+					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
+				}, $this->cleanParams( $error['params'] ) ) );
 			} else {
 				$msgName = array_shift( $error );
-				$msg = wfMessage( $msgName,
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
+				$msg = $this->msg( $msgName, array_map( function ( $param ) {
+					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
+				}, $this->cleanParams( $error ) ) );
 			}
 		} elseif ( is_string( $error ) ) {
-			$msg = wfMessage( $error );
+			$msg = $this->msg( $error );
 		} else {
 			throw new UnexpectedValueException( 'Got ' . get_class( $error ) . ' for key.' );
 		}
 
-		$msg->inLanguage( $this->languageFromParam( $lang ) );
+		if ( $lang ) {
+			$msg->inLanguage( $lang );
+		}
 		return $msg;
 	}
 
@@ -312,9 +325,9 @@ class Status extends StatusValue {
 	 * @return string
 	 */
 	public function getHTML( $shortContext = false, $longContext = false, $lang = null ) {
-		$lang = $this->languageFromParam( $lang );
 		$text = $this->getWikiText( $shortContext, $longContext, $lang );
-		$out = MessageCache::singleton()->parse( $text, null, true, true, $lang );
+		$out = MediaWikiServices::getInstance()->getMessageCache()
+			->parse( $text, null, true, true, $lang );
 		return $out instanceof ParserOutput
 			? $out->getText( [ 'enableSectionEditLinks' => false ] )
 			: $out;
@@ -327,7 +340,6 @@ class Status extends StatusValue {
 	 * @return Message[]
 	 */
 	protected function getErrorMessageArray( $errors, $lang = null ) {
-		$lang = $this->languageFromParam( $lang );
 		return array_map( function ( $e ) use ( $lang ) {
 			return $this->getErrorMessage( $e, $lang );
 		}, $errors );
@@ -336,7 +348,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of errors (but not warnings)
 	 *
-	 * @return array A list in which each entry is an array with a message key as its first element.
+	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @deprecated since 1.25
 	 */
@@ -347,7 +359,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of warnings (but not errors)
 	 *
-	 * @return array A list in which each entry is an array with a message key as its first element.
+	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @deprecated since 1.25
 	 */
@@ -361,7 +373,7 @@ class Status extends StatusValue {
 	 * @note this handles RawMessage poorly
 	 *
 	 * @param string|bool $type
-	 * @return array
+	 * @return array[]
 	 */
 	protected function getStatusArray( $type = false ) {
 		$result = [];
@@ -387,17 +399,47 @@ class Status extends StatusValue {
 	/**
 	 * Don't save the callback when serializing, because Closures can't be
 	 * serialized and we're going to clear it in __wakeup anyway.
+	 * Don't save the localizer, because it can be pretty much anything. Restoring it is
+	 * the caller's responsibility (otherwise it will just fall back to the global request context).
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
-		return array_diff( $keys, [ 'cleanCallback' ] );
+		return array_diff( $keys, [ 'cleanCallback', 'messageLocalizer' ] );
 	}
 
 	/**
 	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
 	 */
-	function __wakeup() {
+	public function __wakeup() {
 		$this->cleanCallback = false;
+		$this->messageLocalizer = null;
+	}
+
+	/**
+	 * @param string|MessageSpecifier $key
+	 * @param string|string[] ...$params
+	 * @return Message
+	 */
+	private function msg( $key, ...$params ) : Message {
+		if ( $this->messageLocalizer ) {
+			return $this->messageLocalizer->msg( $key, ...$params );
+		} else {
+			return wfMessage( $key, ...$params );
+		}
+	}
+
+	/**
+	 * @param string|MessageSpecifier $key
+	 * @param string|Language|StubUserLang|null $lang
+	 * @param mixed ...$params
+	 * @return Message
+	 */
+	private function msgInLang( $key, $lang, ...$params ) : Message {
+		$msg = $this->msg( $key, ...$params );
+		if ( $lang ) {
+			$msg->inLanguage( $lang );
+		}
+		return $msg;
 	}
 }

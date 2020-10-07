@@ -67,7 +67,7 @@ class ImageBuilder extends Maintenance {
 	/** @var string */
 	private $table;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		global $wgUpdateCompatibleMetadata;
@@ -98,15 +98,15 @@ class ImageBuilder extends Maintenance {
 	/**
 	 * @return LocalRepo
 	 */
-	function getRepo() {
+	private function getRepo() {
 		if ( $this->repo === null ) {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		return $this->repo;
 	}
 
-	function build() {
+	private function build() {
 		$this->buildImage();
 		$this->buildOldImage();
 	}
@@ -115,7 +115,7 @@ class ImageBuilder extends Maintenance {
 	 * @param int $count
 	 * @param string $table
 	 */
-	function init( $count, $table ) {
+	private function init( $count, $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
 		$this->count = $count;
@@ -123,7 +123,7 @@ class ImageBuilder extends Maintenance {
 		$this->table = $table;
 	}
 
-	function progress( $updated ) {
+	private function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
 		if ( $this->processed % 100 != 0 ) {
@@ -150,7 +150,7 @@ class ImageBuilder extends Maintenance {
 		flush();
 	}
 
-	function buildTable( $table, $key, $queryInfo, $callback ) {
+	private function buildTable( $table, $key, $queryInfo, $callback ) {
 		$count = $this->dbw->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
@@ -170,12 +170,12 @@ class ImageBuilder extends Maintenance {
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );
 	}
 
-	function buildImage() {
+	private function buildImage() {
 		$callback = [ $this, 'imageCallback' ];
 		$this->buildTable( 'image', 'img_name', LocalFile::getQueryInfo(), $callback );
 	}
 
-	function imageCallback( $row, $copy ) {
+	private function imageCallback( $row, $copy ) {
 		// Create a File object from the row
 		// This will also upgrade it
 		$file = $this->getRepo()->newFileFromRow( $row );
@@ -183,12 +183,12 @@ class ImageBuilder extends Maintenance {
 		return $file->getUpgraded();
 	}
 
-	function buildOldImage() {
+	private function buildOldImage() {
 		$this->buildTable( 'oldimage', 'oi_archive_name', OldLocalFile::getQueryInfo(),
 			[ $this, 'oldimageCallback' ] );
 	}
 
-	function oldimageCallback( $row, $copy ) {
+	private function oldimageCallback( $row, $copy ) {
 		// Create a File object from the row
 		// This will also upgrade it
 		if ( $row->oi_archive_name == '' ) {
@@ -201,23 +201,24 @@ class ImageBuilder extends Maintenance {
 		return $file->getUpgraded();
 	}
 
-	function crawlMissing() {
+	private function crawlMissing() {
 		$this->getRepo()->enumFiles( [ $this, 'checkMissingImage' ] );
 	}
 
-	function checkMissingImage( $fullpath ) {
+	private function checkMissingImage( $fullpath ) {
 		$filename = wfBaseName( $fullpath );
 		$row = $this->dbw->selectRow( 'image',
 			[ 'img_name' ],
 			[ 'img_name' => $filename ],
 			__METHOD__ );
 
-		if ( !$row ) { // file not registered
+		if ( !$row ) {
+			// file not registered
 			$this->addMissingImage( $filename, $fullpath );
 		}
 	}
 
-	function addMissingImage( $filename, $fullpath ) {
+	private function addMissingImage( $filename, $fullpath ) {
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
 		$services = MediaWikiServices::getInstance();
 
@@ -240,15 +241,19 @@ class ImageBuilder extends Maintenance {
 		}
 		if ( !$this->dryrun ) {
 			$file = $services->getRepoGroup()->getLocalRepo()->newFile( $filename );
-			if ( !$file->recordUpload(
+			$pageText = SpecialUpload::getInitialPageText(
+				'(recovered file, missing upload log entry)'
+			);
+			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$status = $file->recordUpload2(
 				'',
 				'(recovered file, missing upload log entry)',
-				'',
-				'',
-				'',
+				$pageText,
 				false,
-				$timestamp
-			) ) {
+				$timestamp,
+				$user
+			);
+			if ( !$status->isOK() ) {
 				$this->output( "Error uploading file $fullpath\n" );
 
 				return;

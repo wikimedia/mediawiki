@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Exception;
-use MediaWiki\MediaWikiServices;
 use DumpBackup;
+use Exception;
 use ManualLogEntry;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 use WikiExporter;
@@ -58,7 +58,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		return $logEntry->insert();
 	}
 
-	function addDBData() {
+	public function addDBData() {
 		$this->tablesUsed[] = 'logging';
 		$this->tablesUsed[] = 'user';
 
@@ -99,7 +99,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		}
 	}
 
-	function testPlain() {
+	public function testPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -124,7 +124,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->assertNotNull( $contLang, "Content language object validation" );
 		$namespace = $contLang->getNsText( NS_TALK );
-		$this->assertInternalType( 'string', $namespace );
+		$this->assertIsString( $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$asserter->assertLogItem( $this->logId2, "BackupDumperLogUserB",
 			$this->userId2, "SomeComment", "supress", "delete",
@@ -137,7 +137,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$asserter->assertDumpEnd();
 	}
 
-	function testXmlDumpsBackupUseCaseLogging() {
+	public function testXmlDumpsBackupUseCaseLogging() {
 		$this->checkHasGzip();
 
 		// Preparing the dump
@@ -179,7 +179,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->assertNotNull( $contLang, "Content language object validation" );
 		$namespace = $contLang->getNsText( NS_TALK );
-		$this->assertInternalType( 'string', $namespace );
+		$this->assertIsString( $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$asserter->assertLogItem( $this->logId2, "BackupDumperLogUserB",
 			$this->userId2, "SomeComment", "supress", "delete",

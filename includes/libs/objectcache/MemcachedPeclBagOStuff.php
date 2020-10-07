@@ -64,7 +64,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - allow_tcp_nagle_delay Whether to permit Nagle's algorithm for reducing packet count
 	 * @param array $params
 	 */
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( $params );
 
 		// Default class-specific parameters
@@ -145,6 +145,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		if ( $params['serializer'] === 'php' ) {
 			$options[Memcached::OPT_SERIALIZER] = Memcached::SERIALIZER_PHP;
 		} elseif ( $params['serializer'] === 'igbinary' ) {
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !Memcached::HAVE_IGBINARY ) {
 				throw new RuntimeException(
 					__CLASS__ . ': the igbinary extension is not available ' .
@@ -264,6 +265,16 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$result = $this->acquireSyncClient()->decrement( $key, $value );
 
 		return $this->checkResult( $key, $result );
+	}
+
+	public function setNewPreparedValues( array $valueByKey ) {
+		// The PECL driver does the serializing and will not reuse anything from here
+		$sizes = [];
+		foreach ( $valueByKey as $value ) {
+			$sizes[] = $this->guessSerialValueSize( $value );
+		}
+
+		return $sizes;
 	}
 
 	/**

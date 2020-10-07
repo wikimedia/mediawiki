@@ -32,8 +32,8 @@
  *     $gen->getAutoload();
  */
 class AutoloadGenerator {
-	const FILETYPE_JSON = 'json';
-	const FILETYPE_PHP = 'php';
+	private const FILETYPE_JSON = 'json';
+	private const FILETYPE_PHP = 'php';
 
 	/**
 	 * @var string Root path of the project being scanned for classes
@@ -325,9 +325,9 @@ EOD;
 
 		if ( $fileinfo['type'] === self::FILETYPE_JSON ) {
 			return $this->generateJsonAutoload( $fileinfo['filename'] );
-		} else {
-			return $this->generatePHPAutoload( $commandName, $fileinfo['filename'] );
 		}
+
+		return $this->generatePHPAutoload( $commandName, $fileinfo['filename'] );
 	}
 
 	/**
@@ -339,23 +339,23 @@ EOD;
 	 * @return array
 	 */
 	public function getTargetFileinfo() {
-		$fileinfo = [
-			'filename' => $this->basepath . '/autoload.php',
-			'type' => self::FILETYPE_PHP
-		];
 		if ( file_exists( $this->basepath . '/extension.json' ) ) {
-			$fileinfo = [
+			return [
 				'filename' => $this->basepath . '/extension.json',
 				'type' => self::FILETYPE_JSON
 			];
-		} elseif ( file_exists( $this->basepath . '/skin.json' ) ) {
-			$fileinfo = [
+		}
+		if ( file_exists( $this->basepath . '/skin.json' ) ) {
+			return [
 				'filename' => $this->basepath . '/skin.json',
 				'type' => self::FILETYPE_JSON
 			];
 		}
 
-		return $fileinfo;
+		return [
+			'filename' => $this->basepath . '/autoload.php',
+			'type' => self::FILETYPE_PHP
+		];
 	}
 
 	/**
@@ -375,7 +375,7 @@ EOD;
 	 *  * languages/
 	 *  * maintenance/
 	 *  * mw-config/
-	 *  * /*.php
+	 *  * any `*.php` file in the base directory
 	 */
 	public function initMediaWikiDefault() {
 		foreach ( [ 'includes', 'languages', 'maintenance', 'mw-config' ] as $dir ) {

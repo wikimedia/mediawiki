@@ -17,8 +17,8 @@
 		}() );
 
 	/**
-	 * A wrapper for an HTML5 Storage interface (`localStorage` or `sessionStorage`)
-	 * that is safe to call on all browsers.
+	 * A wrapper for the HTML5 Storage interface (`localStorage` or `sessionStorage`)
+	 * that is safe to call in all browsers.
 	 *
 	 * @class mw.SafeStorage
 	 * @private
@@ -109,8 +109,33 @@
 	};
 
 	/**
-	 * A wrapper for the HTML5 `localStorage` interface
-	 * that is safe to call on all browsers.
+	 * A safe interface to HTML5 `localStorage`.
+	 *
+	 * This normalises differences across browsers and silences any and all
+	 * exceptions that may occur.
+	 *
+	 * **Note**: Storage keys are not automatically prefixed in relation to
+	 * MediaWiki and/or the current wiki. Always **prefix your keys** with "mw" to
+	 * avoid conflicts with other JavaScript libraries, gadgets, or third-party
+	 * JavaScript.
+	 *
+	 * **Warning**: There is no expiry feature in this API. This means **keys
+	 * are stored forever**, unless you re-discover and delete them manually.
+	 * Avoid keys with variable components. Instead store dynamic values
+	 * together under a single key so that you avoid leaving garbage behind,
+	 * which would fill up the limited space available.
+	 * See also <https://phabricator.wikimedia.org/T121646>.
+	 *
+	 * Example:
+	 *
+	 *     mw.storage.set( key, value );
+	 *     mw.storage.get( key );
+	 *
+	 * Example:
+	 *
+	 *     var local = require( 'mediawiki.storage' ).local;
+	 *     local.set( key, value );
+	 *     local.get( key );
 	 *
 	 * @class
 	 * @singleton
@@ -119,13 +144,35 @@
 	mw.storage = new SafeStorage( localStorage );
 
 	/**
-	 * A wrapper for the HTML5 `sessionStorage` interface
-	 * that is safe to call on all browsers.
+	 * A safe interface to HTML5 `sessionStorage`.
+	 *
+	 * This normalises differences across browsers and silences any and all
+	 * exceptions that may occur.
+	 *
+	 * **Note**: Data persisted via `sessionStorage` will persist for the lifetime
+	 * of the browser *tab*, not the browser *window*.
+	 * For longer-lasting persistence across tabs, refer to mw.storage or mw.cookie instead.
+	 *
+	 * Example:
+	 *
+	 *     mw.storage.session.set( key, value );
+	 *     mw.storage.session.get( key );
+	 *
+	 * Example:
+	 *
+	 *     var session = require( 'mediawiki.storage' ).session;
+	 *     session.set( key, value );
+	 *     session.get( key );
 	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage
 	 */
 	mw.storage.session = new SafeStorage( sessionStorage );
+
+	module.exports = {
+		local: mw.storage,
+		session: mw.storage.session
+	};
 
 }() );

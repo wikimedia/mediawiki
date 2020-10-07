@@ -3,6 +3,7 @@
 namespace Wikimedia\ParamValidator;
 
 use Psr\Http\Message\UploadedFileInterface;
+use Wikimedia\Message\DataMessageValue;
 
 /**
  * @covers Wikimedia\ParamValidator\SimpleCallbacks
@@ -72,17 +73,23 @@ class SimpleCallbacksTest extends \PHPUnit\Framework\TestCase {
 
 		$this->assertSame( [], $callbacks->getRecordedConditions() );
 
-		$ex1 = new ValidationException( 'foo', 'Foo!', [], 'foo', [] );
-		$callbacks->recordCondition( $ex1, [] );
-		$ex2 = new ValidationException( 'bar', null, [], 'barbar', [ 'bAr' => 'BaR' ] );
-		$callbacks->recordCondition( $ex2, [] );
-		$callbacks->recordCondition( $ex2, [] );
-		$this->assertSame( [ $ex1, $ex2, $ex2 ], $callbacks->getRecordedConditions() );
+		$m1 = DataMessageValue::new( 'XXX-from-test-1', [], 'foo' );
+		$callbacks->recordCondition( $m1, 'foo', 'Foo!', [], [] );
+		$m2 = DataMessageValue::new( 'XXX-from-test-2', [], 'barbar', [ 'bAr' => 'BaR' ] );
+		$callbacks->recordCondition( $m2, 'bar', null, [], [] );
+		$callbacks->recordCondition( $m2, 'bar', null, [], [] );
+		$this->assertSame( [
+			[ 'message' => $m1, 'name' => 'foo', 'value' => 'Foo!', 'settings' => [] ],
+			[ 'message' => $m2, 'name' => 'bar', 'value' => null, 'settings' => [] ],
+			[ 'message' => $m2, 'name' => 'bar', 'value' => null, 'settings' => [] ],
+		], $callbacks->getRecordedConditions() );
 
 		$callbacks->clearRecordedConditions();
 		$this->assertSame( [], $callbacks->getRecordedConditions() );
-		$callbacks->recordCondition( $ex1, [] );
-		$this->assertSame( [ $ex1 ], $callbacks->getRecordedConditions() );
+		$callbacks->recordCondition( $m1, 'foo', 'Foo!', [], [] );
+		$this->assertSame( [
+			[ 'message' => $m1, 'name' => 'foo', 'value' => 'Foo!', 'settings' => [] ],
+		], $callbacks->getRecordedConditions() );
 	}
 
 }

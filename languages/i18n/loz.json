@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Kaganer",
 			"Litingatinga Silozi",
 			"Ooswesthoesbes",
@@ -295,7 +296,7 @@
 	"histlegend": "Petuho seleksi: nyansulize selt sisebelisoni di radio e dusize enter.<br />\nInformasi: (bye) = petuho a nca selt,\n(pu-lila) = petuho a pre selt, p = pili kenki.",
 	"histfirst": "Pu-kona",
 	"histlast": "Pu-lila",
-	"historyempty": "(necafeti)",
+	"historyempty": "necafeti",
 	"history-feed-title": "Bundau di selt",
 	"history-feed-description": "Bundau di selt di petulo di wiki.",
 	"history-feed-item-nocomment": "$1 di $2",

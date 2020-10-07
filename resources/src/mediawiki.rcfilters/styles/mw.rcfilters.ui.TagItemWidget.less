@@ -1,6 +1,6 @@
-@import 'mediawiki.ui/variables';
-@import 'mw.rcfilters.mixins';
-@import 'mw.rcfilters.variables';
+@import 'mediawiki.ui/variables.less';
+@import 'mw.rcfilters.mixins.less';
+@import 'mw.rcfilters.variables.less';
 
 @size-circle: 20 / @font-size-system-ui / @font-size-vector;
 @margin-circle: 5 / @font-size-system-ui / @font-size-vector;
@@ -14,7 +14,7 @@
 		border-color: @colorGray12;
 
 		.oo-ui-labelElement-label {
-			color: @colorGray7;
+			color: @color-base--subtle;
 		}
 
 		.oo-ui-buttonWidget {
@@ -24,7 +24,9 @@
 
 	&.oo-ui-flaggedElement-invalid.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		.oo-ui-labelElement-label {
-			color: @colorDestructiveActive;
+			// Use `@color-destructive--active` due to TagitemWidget's grey background
+			// in order to stay iin WCAG 2.0 level AA contrast ratio requirement.
+			color: @color-destructive--active;
 		}
 	}
 
@@ -34,7 +36,7 @@
 	// and will be available in the next OOUI release.
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: @background-color-primary;
-		border-color: @colorProgressive;
+		border-color: @border-color-base--focus;
 	}
 
 	&-popup-content {

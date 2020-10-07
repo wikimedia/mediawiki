@@ -27,7 +27,10 @@
  * @ingroup Media
  */
 class TiffHandler extends ExifBitmapHandler {
-	const EXPENSIVE_SIZE_LIMIT = 10485760; // TIFF files over 10M are considered expensive to thumbnail
+	/**
+	 * TIFF files over 10M are considered expensive to thumbnail
+	 */
+	private const EXPENSIVE_SIZE_LIMIT = 10485760;
 
 	/**
 	 * Conversion to PNG for inline display can be disabled here...
@@ -92,7 +95,7 @@ class TiffHandler extends ExifBitmapHandler {
 			} catch ( Exception $e ) {
 				// BitmapMetadataHandler throws an exception in certain exceptional
 				// cases like if file does not exist.
-				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+				wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 				return ExifBitmapHandler::BROKEN_FILE;
 			}

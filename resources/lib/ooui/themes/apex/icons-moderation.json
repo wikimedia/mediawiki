@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"bookmarkOutline": {
 			"file": "../wikimediaui/images/icons/bookmarkOutline.svg"
@@ -32,6 +32,9 @@
 		"unLock": {
 			"file": "../wikimediaui/images/icons/unLock.svg"
 		},
+		"restore": {
+			"file": "../wikimediaui/images/icons/restore.svg"
+		},
 		"star": {
 			"file": "../wikimediaui/images/icons/star.svg"
 		},
@@ -46,9 +49,6 @@
 		},
 		"trash": {
 			"file": "../wikimediaui/images/icons/trash.svg"
-		},
-		"unTrash": {
-			"file": "../wikimediaui/images/icons/unTrash.svg"
 		},
 		"pushPin": {
 			"file": "../wikimediaui/images/icons/pushPin.svg"

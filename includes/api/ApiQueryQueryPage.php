@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Special\SpecialPageFactory;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
  * Query module to get the results of a QueryPage-based special page
@@ -121,7 +121,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 
 			$title = Title::makeTitle( $row->namespace, $row->title );
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$data = [];
 				if ( isset( $row->value ) ) {
 					$data['value'] = $row->value;
@@ -146,7 +146,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				$titles[] = $title;
 			}
 		}
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName(
 				[ 'query', $this->getModuleName(), 'results' ],
 				'page'

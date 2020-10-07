@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Bonevarluri",
-			"علی ساکی لرستانی",
-			"Mjbmr",
 			"Hosseinblue",
+			"Matma Rex",
+			"Mjbmr",
 			"MtDu",
 			"Shahriar dehghani",
-			"Shahriar.dehghani24"
+			"Shahriar.dehghani24",
+			"علی ساکی لرستانی"
 		]
 	},
 	"tog-underline": "لینکیا خط وه دومن",
@@ -641,6 +642,7 @@
 	"logentry-newusers-create": "حسآۉ کارڤأر $1 ڤابیە {{GENDER:$2|راس ڤیدھ }}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|بلم گیر کردھ ۉابی}} $3",
 	"searchsuggest-search": "جُستن",
+	"mw-widgets-mediasearch-noresults": "نتیجلی سیل نوابی.",
 	"specialmute": "بی‌صدا",
 	"userlogout-continue": "ایخیت برِیِتو وَدَر"
 }

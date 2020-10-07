@@ -84,7 +84,12 @@ class ResetPageRandom extends Maintenance {
 				'page',
 				'page_id',
 				[
-					'(' . $dbr->selectSQLText( 'revision', 'MIN(rev_timestamp)', 'rev_page=page_id' ) . ') ' .
+					'(' . $dbr->selectSQLText(
+						'revision',
+						'MIN(rev_timestamp)',
+						'rev_page=page_id',
+						__METHOD__
+					) . ') ' .
 						'BETWEEN ' . $dbr->addQuotes( $dbr->timestamp( $from ) ) .
 						' AND ' . $dbr->addQuotes( $dbr->timestamp( $to ) ),
 					'page_id > ' . $dbr->addQuotes( $batchStart )

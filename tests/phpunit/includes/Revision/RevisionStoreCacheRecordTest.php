@@ -2,15 +2,15 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use Title;
+use CommentStoreComment;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionSlots;
+use MediaWiki\Revision\RevisionStoreCacheRecord;
+use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use TextContent;
-use CommentStoreComment;
-use MediaWiki\Revision\RevisionStoreCacheRecord;
-use MediaWiki\Revision\RevisionSlots;
-use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStoreRecord;
+use Title;
 
 /**
  * @covers \MediaWiki\Revision\RevisionStoreCacheRecord

@@ -481,7 +481,7 @@ class Html {
 		$ret = '';
 		foreach ( $attribs as $key => $value ) {
 			// Support intuitive [ 'checked' => true/false ] form
-			if ( $value === false || is_null( $value ) ) {
+			if ( $value === false || $value === null ) {
 				continue;
 			}
 
@@ -566,7 +566,7 @@ class Html {
 	 * a warning is logged server-side.
 	 *
 	 * @param string $contents JavaScript
-	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage->getCSP()->getNonce()
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents, $nonce = null ) {
@@ -590,7 +590,7 @@ class Html {
 	 * "<script src=foo.js></script>".
 	 *
 	 * @param string $url
-	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage->getCSP()->getNonce()
 	 * @return string Raw HTML
 	 */
 	public static function linkedScript( $url, $nonce = null ) {
@@ -794,7 +794,7 @@ class Html {
 	 * Convenience function to produce an input element with type=hidden
 	 *
 	 * @param string $name Name attribute
-	 * @param string $value Value attribute
+	 * @param mixed $value Value attribute
 	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
@@ -865,7 +865,9 @@ class Html {
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
-				$nsName = $lang->convertNamespace( $nsId );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $lang );
+				$nsName = $converter->convertNamespace( $nsId );
 			}
 			$optionsOut[$nsId] = $nsName;
 		}
@@ -898,10 +900,8 @@ class Html {
 		if ( isset( $params['selected'] ) ) {
 			// If string only contains digits, convert to clean int. Selected could also
 			// be "all" or "" etc. which needs to be left untouched.
-			// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
-			// and returns false for already clean ints. Use regex instead..
-			if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
-				$params['selected'] = intval( $params['selected'] );
+			if ( !is_int( $params['selected'] ) && ctype_digit( (string)$params['selected'] ) ) {
+				$params['selected'] = (int)$params['selected'];
 			}
 			// else: leaves it untouched for later processing
 		} else {
@@ -1065,7 +1065,7 @@ class Html {
 	 * @param string[] $urls
 	 * @return string
 	 */
-	static function srcSet( array $urls ) {
+	public static function srcSet( array $urls ) {
 		$candidates = [];
 		foreach ( $urls as $density => $url ) {
 			// Cast density to float to strip 'x', then back to string to serve

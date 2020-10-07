@@ -22,12 +22,13 @@
  * @defgroup SpecialPage SpecialPage
  */
 
-namespace MediaWiki\Special;
+namespace MediaWiki\SpecialPage;
 
-use Hooks;
 use IContextSource;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use Profiler;
 use RequestContext;
@@ -64,10 +65,8 @@ use Wikimedia\ObjectFactory;
 class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
-	 * @todo Make this a const when we drop HHVM support (T192166).  It can still be private in PHP
-	 * 7.1.
 	 */
-	private static $coreList = [
+	private const CORE_LIST = [
 		// Maintenance Reports
 		'BrokenRedirects' => \SpecialBrokenRedirects::class,
 		'Deadendpages' => \SpecialDeadendPages::class,
@@ -112,7 +111,12 @@ class SpecialPageFactory {
 
 		// Users and rights
 		'Activeusers' => \SpecialActiveUsers::class,
-		'Block' => \SpecialBlock::class,
+		'Block' => [
+			'class' => \SpecialBlock::class,
+			'services' => [
+				'PermissionManager'
+			]
+		],
 		'Unblock' => \SpecialUnblock::class,
 		'BlockList' => \SpecialBlockList::class,
 		'AutoblockList' => \SpecialAutoblockList::class,
@@ -129,7 +133,12 @@ class SpecialPageFactory {
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
 		'Userrights' => \UserrightsPage::class,
-		'EditWatchlist' => \SpecialEditWatchlist::class,
+		'EditWatchlist' => [
+			'class' => \SpecialEditWatchlist::class,
+			'services' => [
+				'WatchedItemStore'
+			]
+		],
 		'PasswordPolicies' => \SpecialPasswordPolicies::class,
 
 		// Recent changes and logs
@@ -184,6 +193,12 @@ class SpecialPageFactory {
 		'Whatlinkshere' => \SpecialWhatLinksHere::class,
 		'MergeHistory' => \SpecialMergeHistory::class,
 		'ExpandTemplates' => \SpecialExpandTemplates::class,
+		'ChangeContentModel' => [
+			'class' => \SpecialChangeContentModel::class,
+			'services' => [
+				'ContentHandlerFactory',
+			],
+		],
 
 		// Other
 		'Booksources' => \SpecialBookSources::class,
@@ -192,6 +207,7 @@ class SpecialPageFactory {
 		'ApiHelp' => \SpecialApiHelp::class,
 		'Blankpage' => \SpecialBlankpage::class,
 		'Diff' => \SpecialDiff::class,
+		'EditPage' => \SpecialEditPage::class,
 		'EditTags' => [
 			'class' => \SpecialEditTags::class,
 			'services' => [
@@ -204,6 +220,9 @@ class SpecialPageFactory {
 		'MyLanguage' => \SpecialMyLanguage::class,
 		'Mypage' => \SpecialMypage::class,
 		'Mytalk' => \SpecialMytalk::class,
+		'PageHistory' => \SpecialPageHistory::class,
+		'PageInfo' => \SpecialPageInfo::class,
+		'Purge' => \SpecialPurge::class,
 		'Myuploads' => \SpecialMyuploads::class,
 		'AllMyUploads' => \SpecialAllMyUploads::class,
 		'NewSection' => \SpecialNewSection::class,
@@ -213,6 +232,7 @@ class SpecialPageFactory {
 			'class' => \SpecialRevisionDelete::class,
 			'services' => [
 				'PermissionManager',
+				'RepoGroup',
 			],
 		],
 		'RunJobs' => \SpecialRunJobs::class,
@@ -235,14 +255,17 @@ class SpecialPageFactory {
 	/** @var ObjectFactory */
 	private $objectFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
-	 * @since 1.33
+	 * @since 1.35
 	 */
-	public static $constructorOptions = [
-		'ContentHandlerUseDB',
+	public const CONSTRUCTOR_OPTIONS = [
 		'DisableInternalSearch',
 		'EmailAuthentication',
 		'EnableEmail',
@@ -256,16 +279,20 @@ class SpecialPageFactory {
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param ObjectFactory $objectFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contLang,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		HookContainer $hookContainer
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->objectFactory = $objectFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -285,7 +312,7 @@ class SpecialPageFactory {
 	 */
 	private function getPageList() : array {
 		if ( !is_array( $this->list ) ) {
-			$this->list = self::$coreList;
+			$this->list = self::CORE_LIST;
 
 			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
 				$this->list['Search'] = \SpecialSearch::class;
@@ -312,17 +339,12 @@ class SpecialPageFactory {
 				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
 			}
 
-			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
-				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
-			}
-
 			// Add extension special pages
 			$this->list = array_merge( $this->list, $this->options->get( 'SpecialPages' ) );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
-			Hooks::run( 'SpecialPage_initList', [ &$this->list ] );
-
+			$this->hookRunner->onSpecialPage_initList( $this->list );
 		}
 
 		return $this->list;
@@ -335,7 +357,7 @@ class SpecialPageFactory {
 	 * @return array
 	 */
 	private function getAliasList() : array {
-		if ( is_null( $this->aliases ) ) {
+		if ( $this->aliases === null ) {
 			$aliases = $this->contLang->getSpecialPageAliases();
 			$pageList = $this->getPageList();
 
@@ -433,9 +455,10 @@ class SpecialPageFactory {
 			$rec = $specialPageList[$realName];
 
 			if ( $rec instanceof SpecialPage ) {
-				wfDeprecated(
-					"a SpecialPage instance (for $realName) in " .
-					'$wgSpecialPages or from the SpecialPage_initList hook',
+				wfDeprecatedMsg(
+					"A SpecialPage instance for $realName was found in " .
+					'$wgSpecialPages or came from a SpecialPage_initList hook handler, ' .
+					'this was deprecated in MediaWiki 1.34',
 					'1.34'
 				);
 
@@ -453,6 +476,7 @@ class SpecialPageFactory {
 			}
 
 			if ( $page instanceof SpecialPage ) {
+				$page->setHookContainer( $this->hookContainer );
 				return $page;
 			}
 
@@ -731,7 +755,7 @@ class SpecialPageFactory {
 				"Perhaps no aliases are defined for it?" );
 		}
 
-		if ( $subpage !== false && !is_null( $subpage ) ) {
+		if ( $subpage !== false && $subpage !== null ) {
 			// Make sure it's in dbkey form
 			$subpage = str_replace( ' ', '_', $subpage );
 			$name = "$name/$subpage";
@@ -755,3 +779,6 @@ class SpecialPageFactory {
 		return null;
 	}
 }
+
+/** @deprecated since 1.35, use MediaWiki\\SpecialPage\\SpecialPageFactory */
+class_alias( SpecialPageFactory::class, 'MediaWiki\\Special\\SpecialPageFactory' );

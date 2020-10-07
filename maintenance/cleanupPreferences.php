@@ -92,7 +92,7 @@ class CleanupPreferences extends Maintenance {
 				'up_property NOT IN (' . $dbw->makeList( array_keys( $defaultUserOptions ) ) . ')',
 			];
 			// Allow extensions to add to the where clause to prevent deletion of their own prefs.
-			Hooks::run( 'DeleteUnknownPreferences', [ &$where, $dbw ] );
+			$this->getHookRunner()->onDeleteUnknownPreferences( $where, $dbw );
 			$this->deleteByWhere( $dbw, 'Dropping unknown preferences', $where );
 		}
 

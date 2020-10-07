@@ -19,6 +19,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -33,10 +34,23 @@ class ForeignResourceManager {
 	private $libDir;
 	private $tmpParentDir;
 	private $cacheDir;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $infoPrinter;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $errorPrinter;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $verbosePrinter;
 	private $action;
+	/** @var array[] */
 	private $registry;
 
 	/**
@@ -56,10 +70,10 @@ class ForeignResourceManager {
 	) {
 		$this->registryFile = $registryFile;
 		$this->libDir = $libDir;
-		$this->infoPrinter = $infoPrinter ?? function () {
+		$this->infoPrinter = $infoPrinter ?? function ( $_ ) {
 		};
 		$this->errorPrinter = $errorPrinter ?? $this->infoPrinter;
-		$this->verbosePrinter = $verbosePrinter ?? function () {
+		$this->verbosePrinter = $verbosePrinter ?? function ( $_ ) {
 		};
 
 		// Use a temporary directory under the destination directory instead
@@ -72,6 +86,8 @@ class ForeignResourceManager {
 	}
 
 	/**
+	 * @param string $action
+	 * @param string $module
 	 * @return bool
 	 * @throws Exception
 	 */
@@ -150,7 +166,10 @@ class ForeignResourceManager {
 		return rtrim( $key, '_' );
 	}
 
-	/** @return string|false */
+	/**
+	 * @param string $key
+	 * @return string|false
+	 */
 	private function cacheGet( $key ) {
 		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
 	}
@@ -167,7 +186,8 @@ class ForeignResourceManager {
 			return $data;
 		}
 
-		$req = MWHttpRequest::factory( $src, [ 'method' => 'GET', 'followRedirects' => false ] );
+		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->create( $src, [ 'method' => 'GET', 'followRedirects' => false ], __METHOD__ );
 		if ( !$req->execute()->isOK() ) {
 			throw new Exception( "Failed to download resource at {$src}" );
 		}

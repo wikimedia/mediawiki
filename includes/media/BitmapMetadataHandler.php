@@ -32,6 +32,10 @@ use Wikimedia\XMPReader\Reader as XMPReader;
  * and the various metadata extractors.
  *
  * @todo Other image formats.
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should become a stateless service, or a handler managed
+ *       registry for metadata handlers for different file types.
  * @ingroup Media
  */
 class BitmapMetadataHandler {
@@ -68,7 +72,7 @@ class BitmapMetadataHandler {
 			// Error reading the iptc hash information.
 			// This probably means the App13 segment is something other than what we expect.
 			// However, still try to read it, and treat it as if the hash didn't exist.
-			wfDebug( "Error parsing iptc data of file: " . $e->getMessage() . "\n" );
+			wfDebug( "Error parsing iptc data of file: " . $e->getMessage() );
 			$this->iptcType = 'iptc-no-hash';
 		}
 
@@ -86,7 +90,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename
 	 * @param string $byteOrder
 	 */
-	function getExif( $filename, $byteOrder ) {
+	public function getExif( $filename, $byteOrder ) {
 		global $wgShowEXIF;
 		if ( file_exists( $filename ) && $wgShowEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
@@ -103,7 +107,7 @@ class BitmapMetadataHandler {
 	 * @param array $metaArray Array of metadata values
 	 * @param string $type Type. defaults to other. if two things have the same type they're merged
 	 */
-	function addMetadata( $metaArray, $type = 'other' ) {
+	public function addMetadata( $metaArray, $type = 'other' ) {
 		if ( isset( $this->metadata[$type] ) ) {
 			/* merge with old data */
 			$metaArray = $metaArray + $this->metadata[$type];
@@ -121,7 +125,7 @@ class BitmapMetadataHandler {
 	 *
 	 * @return array Metadata array
 	 */
-	function getMetadataArray() {
+	public function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recommendation.
 		$temp = [];
@@ -156,7 +160,7 @@ class BitmapMetadataHandler {
 	 * @return array Metadata result array.
 	 * @throws MWException On invalid file.
 	 */
-	static function Jpeg( $filename ) {
+	public static function Jpeg( $filename ) {
 		$showXMP = XMPReader::isSupported();
 		$meta = new self();
 
@@ -296,7 +300,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename
 	 * @return string 'BE' or 'LE' or false
 	 */
-	static function getTiffByteOrder( $filename ) {
+	public static function getTiffByteOrder( $filename ) {
 		$fh = fopen( $filename, 'rb' );
 		if ( !$fh ) {
 			return false;

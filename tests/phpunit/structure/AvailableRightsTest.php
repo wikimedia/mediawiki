@@ -78,8 +78,9 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function checkMessagesExist( $prefix ) {
 		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
-		$allRights = MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
-		$allMessageKeys = Language::getMessageKeysFor( 'en' );
+		$services = MediaWikiServices::getInstance();
+		$allRights = $services->getPermissionManager()->getAllPermissions();
+		$allMessageKeys = $services->getLocalisationCache()->getSubitemList( 'en', 'messages' );
 
 		$messagesToCheck = [];
 		foreach ( $allMessageKeys as $message ) {

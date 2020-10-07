@@ -56,7 +56,9 @@ class FeedItem {
 	 * @param string $author Author's user name
 	 * @param string $comments
 	 */
-	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+	public function __construct(
+		$title, $description, $url, $date = '', $author = '', $comments = ''
+	) {
 		$this->title = $title;
 		$this->description = $description;
 		$this->url = $url;
@@ -218,5 +220,6 @@ class FeedItem {
 	public static function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
+
 	/** #@- */
 }

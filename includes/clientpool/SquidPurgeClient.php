@@ -20,12 +20,14 @@
  * @file
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * An HTTP 1.0 client built for the purposes of purging Squid and Varnish.
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel
  * manner.
  *
- * @todo Consider using MultiHttpClient.
+ * @deprecated Since 1.35 Use MultiHttpClient
  */
 class SquidPurgeClient {
 	/** @var string */
@@ -49,13 +51,13 @@ class SquidPurgeClient {
 	/** @var mixed */
 	protected $currentRequestIndex;
 
-	const EINTR = 4;
-	const EAGAIN = 11;
-	const EINPROGRESS = 115;
-	const BUFFER_SIZE = 8192;
+	public const EINTR = SOCKET_EINTR;
+	public const EAGAIN = SOCKET_EAGAIN;
+	public const EINPROGRESS = SOCKET_EINPROGRESS;
+	public const BUFFER_SIZE = 8192;
 
 	/**
-	 * @var resource|null The socket resource, or null for unconnected, or false
+	 * @var resource|false|null The socket resource, or null for unconnected, or false
 	 *   for disabled due to error.
 	 */
 	protected $socket;
@@ -147,9 +149,9 @@ class SquidPurgeClient {
 	 */
 	protected function getIP() {
 		if ( $this->ip === null ) {
-			if ( IP::isIPv4( $this->host ) ) {
+			if ( IPUtils::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
-			} elseif ( IP::isIPv6( $this->host ) ) {
+			} elseif ( IPUtils::isIPv6( $this->host ) ) {
 				throw new MWException( '$wgCdnServers does not support IPv6' );
 			} else {
 				Wikimedia\suppressWarnings();
@@ -193,16 +195,7 @@ class SquidPurgeClient {
 	 *
 	 * @param string $url Fully expanded URL (with host and protocol)
 	 */
-	//begin changes by southparkfan
-	// Miraheze specific PATCH: $mobileHeader was added
-	// because it's needed to add X-Device upon purge.
-	// When purging an url we call queuePurge twice
-	// with $mobileHeader first being 'desktop', and
-	// the second time being 'phone-tablet'.
-	// Due to Varnish' vcl_hash, this is needed in
-	// order to properly PURGE pages.
-	public function queuePurge( $url, $deviceHeader ) {
-	//end changes by southparkfan
+	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
 		$url = str_replace( "\n", '', $url ); // sanity
 		$request = [];
@@ -225,9 +218,6 @@ class SquidPurgeClient {
 		$request[] = "Connection: Keep-Alive";
 		$request[] = "Proxy-Connection: Keep-Alive";
 		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;
-		//begin changes by southparkfan
-		$request[] = "X-Device: " . $deviceHeader;
-		//end changes by southparkfan
 		// Two ''s to create \r\n\r\n
 		$request[] = '';
 		$request[] = '';
@@ -257,12 +247,12 @@ class SquidPurgeClient {
 			return;
 		}
 
+		$flags = 0;
+
 		if ( strlen( $this->writeBuffer ) <= self::BUFFER_SIZE ) {
 			$buf = $this->writeBuffer;
-			$flags = MSG_EOR;
 		} else {
 			$buf = substr( $this->writeBuffer, 0, self::BUFFER_SIZE );
-			$flags = 0;
 		}
 		Wikimedia\suppressWarnings();
 		$bytesSent = socket_send( $socket, $buf, strlen( $buf ), $flags );

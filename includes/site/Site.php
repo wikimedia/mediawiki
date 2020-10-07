@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Represents a single site.
  *
@@ -27,17 +29,17 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class Site implements Serializable {
-	const TYPE_UNKNOWN = 'unknown';
-	const TYPE_MEDIAWIKI = 'mediawiki';
+	public const TYPE_UNKNOWN = 'unknown';
+	public const TYPE_MEDIAWIKI = 'mediawiki';
 
-	const GROUP_NONE = 'none';
+	public const GROUP_NONE = 'none';
 
-	const ID_INTERWIKI = 'interwiki';
-	const ID_EQUIVALENT = 'equivalent';
+	public const ID_INTERWIKI = 'interwiki';
+	public const ID_EQUIVALENT = 'equivalent';
 
-	const SOURCE_LOCAL = 'local';
+	public const SOURCE_LOCAL = 'local';
 
-	const PATH_LINK = 'link';
+	public const PATH_LINK = 'link';
 
 	/**
 	 * A version ID that identifies the serialization structure used by getSerializationData()
@@ -46,7 +48,7 @@ class Site implements Serializable {
 	 *
 	 * @var string A string uniquely identifying the version of the serialization structure.
 	 */
-	const SERIAL_VERSION_ID = '2013-01-23';
+	public const SERIAL_VERSION_ID = '2013-01-23';
 
 	/**
 	 * @since 1.21
@@ -463,7 +465,11 @@ class Site implements Serializable {
 	 * @param string|null $languageCode
 	 */
 	public function setLanguageCode( $languageCode ) {
-		if ( $languageCode !== null && !Language::isValidCode( $languageCode ) ) {
+		if ( $languageCode !== null
+			&& !MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->isValidCode( $languageCode )
+		) {
 			throw new InvalidArgumentException( "$languageCode is not a valid language code." );
 		}
 		$this->languageCode = $languageCode;

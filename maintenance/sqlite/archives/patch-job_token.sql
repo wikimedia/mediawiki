@@ -5,4 +5,3 @@ ALTER TABLE /*_*/job ADD COLUMN job_token_timestamp varbinary(14) NULL default N
 
 CREATE INDEX /*i*/job_sha1 ON /*_*/job (job_sha1);
 CREATE INDEX /*i*/job_cmd_token ON /*_*/job (job_cmd,job_token,job_random);
-

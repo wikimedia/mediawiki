@@ -17,12 +17,6 @@ class PHPUnitMaintClass extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->setAllowUnregisteredOptions( true );
-		$this->addOption(
-			'debug-tests',
-			'Log testing activity to the PHPUnitCommand log channel (deprecated, always on).',
-			false, # not required
-			false # no arg needed
-		);
 		$this->addOption( 'use-filebackend', 'Use filebackend', false, true );
 		$this->addOption( 'use-bagostuff', 'Use bagostuff', false, true );
 		$this->addOption( 'use-jobqueue', 'Use jobqueue', false, true );
@@ -48,6 +42,8 @@ class PHPUnitMaintClass extends Maintenance {
 		self::requireTestsAutoloader();
 
 		TestSetup::applyInitialConfig();
+
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 	}
 
 	public function execute() {
@@ -65,35 +61,17 @@ class PHPUnitMaintClass extends Maintenance {
 			exit( 1 );
 		}
 
-		fwrite( STDERR, defined( 'HHVM_VERSION' ) ?
-			'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
-			'Using PHP ' . PHP_VERSION . "\n" );
+		// Start an output buffer to avoid headers being sent by constructors,
+		// data providers, etc. (T206476)
+		ob_start();
 
-		// Tell PHPUnit to ignore options meant for MediaWiki
-		$ignore = [];
-		foreach ( $this->mParams as $name => $param ) {
-			if ( empty( $param['withArg'] ) ) {
-				$ignore[] = $name;
-			} else {
-				$ignore[] = "$name=";
-			}
+		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
+
+		foreach ( MediaWikiCliOptions::$additionalOptions as $option => $default ) {
+			MediaWikiCliOptions::$additionalOptions[$option] = $this->getOption( $option );
 		}
 
-		// Pass through certain options to MediaWikiTestCase
-		$cliArgs = [];
-		foreach (
-			[
-				'use-filebackend',
-				'use-bagostuff',
-				'use-jobqueue',
-				'use-normal-tables',
-				'reuse-db'
-			] as $name
-		) {
-			$cliArgs[$name] = $this->getOption( $name );
-		}
-
-		$command = new MediaWikiPHPUnitCommand( $ignore, $cliArgs );
+		$command = new MediaWikiPHPUnitCommand();
 		$command->run( $_SERVER['argv'], true );
 	}
 
@@ -116,21 +94,41 @@ class PHPUnitMaintClass extends Maintenance {
 	 */
 	private function forceFormatServerArgv() {
 		$argv = [];
-		foreach ( $_SERVER['argv'] as $key => $arg ) {
+		for ( $key = 0; $key < count( $_SERVER['argv'] ); $key++ ) {
+			$arg = $_SERVER['argv'][$key];
+
 			if ( $key === 0 ) {
 				$argv[0] = $arg;
-			} elseif ( strstr( $arg, '=' ) ) {
-				foreach ( explode( '=', $arg, 2 ) as $argPart ) {
-					$argv[] = $argPart;
-				}
-			} else {
-				$argv[] = $arg;
+				continue;
 			}
+
+			if ( preg_match( '/^--(.*)$/', $arg, $match ) ) {
+				$opt = $match[1];
+				$parts = explode( '=', $opt, 2 );
+				$opt = $parts[0];
+
+				// Avoid confusing PHPUnit with MediaWiki-specific parameters
+				if ( isset( $this->mParams[$opt] ) ) {
+					if ( $this->mParams[$opt]['withArg'] && !isset( $parts[1] ) ) {
+						// skip the value after the option name as well
+						$key++;
+					}
+					continue;
+				}
+			}
+
+			$argv[] = $arg;
 		}
 		$_SERVER['argv'] = $argv;
 	}
 
+	protected function showHelp() {
+		parent::showHelp();
+		$this->output( "PHPUnit options are also accepted:\n\n" );
+		$command = new MediaWikiPHPUnitCommand();
+		$command->publicShowHelp();
+	}
 }
 
-$maintClass = 'PHPUnitMaintClass';
+$maintClass = PHPUnitMaintClass::class;
 require RUN_MAINTENANCE_IF_MAIN;

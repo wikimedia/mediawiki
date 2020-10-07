@@ -27,7 +27,7 @@ class FormOptionsTest extends \MediaWikiUnitTestCase {
 	 * so we assume the function is well tested already an use it to create
 	 * the fixture.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->object = new FormOptions;
 		$this->object->add( 'string1', 'string one' );
@@ -96,10 +96,10 @@ class FormOptionsTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
+		$this->expectException( MWException::class );
 		$this->object->guessType( null );
 	}
 }

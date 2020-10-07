@@ -1,12 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"A1",
 			"AS",
 			"Aced",
 			"Ahonc",
 			"Andriykopanytsia",
 			"Base",
+			"Dars",
+			"Esk78",
 			"Perohanych",
+			"Piramidion",
 			"RLuts",
 			"Sahran",
 			"Sergento",
@@ -14,11 +18,7 @@
 			"SteveR",
 			"Tel'et",
 			"Tifinaghes",
-			"Ата",
-			"Piramidion",
-			"A1",
-			"Dars",
-			"Esk78"
+			"Ата"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
@@ -34,7 +34,7 @@
 	"ooui-dialog-process-dismiss": "Приховати",
 	"ooui-dialog-process-retry": "Спробуйте ще раз",
 	"ooui-dialog-process-continue": "Продовжити",
-	"ooui-combobox-button-label": "Випадне вікно для комбінованого списку",
+	"ooui-combobox-button-label": "Перемкнути опції",
 	"ooui-selectfile-button-select": "Оберіть файл",
 	"ooui-selectfile-not-supported": "Вибір файлу не підтримується",
 	"ooui-selectfile-placeholder": "Жодного файлу не вибрано",

@@ -18,8 +18,9 @@
  * @file
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -35,12 +36,6 @@ use MediaWiki\Storage\PageEditStash;
  * @since 1.25
  */
 class ApiStashEdit extends ApiBase {
-	const ERROR_NONE = PageEditStash::ERROR_NONE; // b/c
-	const ERROR_PARSE = PageEditStash::ERROR_PARSE; // b/c
-	const ERROR_CACHE = PageEditStash::ERROR_CACHE; // b/c
-	const ERROR_UNCACHEABLE = PageEditStash::ERROR_UNCACHEABLE; // b/c
-	const ERROR_BUSY = PageEditStash::ERROR_BUSY; // b/c
-
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -53,7 +48,8 @@ class ApiStashEdit extends ApiBase {
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
 
-		if ( !ContentHandler::getForModelID( $params['contentmodel'] )
+		if ( !$this->getContentHandlerFactory()
+			->getContentHandler( $params['contentmodel'] )
 			->isSupportedFormat( $params['contentformat'] )
 		) {
 			$this->dieWithError(
@@ -89,11 +85,13 @@ class ApiStashEdit extends ApiBase {
 		$page = WikiPage::factory( $title );
 		if ( $page->exists() ) {
 			// Page exists: get the merged content with the proposed change
-			$baseRev = Revision::newFromPageId( $page->getId(), $params['baserevid'] );
+			$baseRev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByPageId( $page->getId(), $params['baserevid'] );
 			if ( !$baseRev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['baserevid'] ] );
 			}
-			$currentRev = $page->getRevision();
+			$currentRev = $page->getRevisionRecord();
 			if ( !$currentRev ) {
 				$this->dieWithError( [ 'apierror-missingrev-pageid', $page->getId() ], 'missingrev' );
 			}
@@ -112,13 +110,14 @@ class ApiStashEdit extends ApiBase {
 				$content = $editContent;
 			} else {
 				// Merge the edit into the current version
-				$baseContent = $baseRev->getContent();
-				$currentContent = $currentRev->getContent();
+				$baseContent = $baseRev->getContent( SlotRecord::MAIN );
+				$currentContent = $currentRev->getContent( SlotRecord::MAIN );
 				if ( !$baseContent || !$currentContent ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
 				}
-				$handler = ContentHandler::getForModelID( $baseContent->getModel() );
-				$content = $handler->merge3( $baseContent, $editContent, $currentContent );
+				$content = $this->getContentHandlerFactory()
+					->getContentHandler( $baseContent->getModel() )
+					->merge3( $baseContent, $editContent, $currentContent );
 			}
 		} else {
 			// New pages: use the user-provided content model
@@ -162,7 +161,7 @@ class ApiStashEdit extends ApiBase {
 	public function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
 		$editStash = MediaWikiServices::getInstance()->getPageEditStash();
 
-		return $editStash->parseAndCache( $page, $content, $user, $summary );
+		return $editStash->parseAndCache( $page, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {
@@ -187,13 +186,14 @@ class ApiStashEdit extends ApiBase {
 			],
 			'summary' => [
 				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => ''
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'baserevid' => [
@@ -217,5 +217,9 @@ class ApiStashEdit extends ApiBase {
 
 	public function isInternal() {
 		return true;
+	}
+
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }

@@ -25,8 +25,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * A special page to show pages ordered by the number of pages linking to them.
@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialMostLinked extends QueryPage {
-	function __construct( $name = 'Mostlinked' ) {
+	public function __construct( $name = 'Mostlinked' ) {
 		parent::__construct( $name );
 	}
 
@@ -42,7 +42,7 @@ class SpecialMostLinked extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -80,7 +80,7 @@ class SpecialMostLinked extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
@@ -91,7 +91,7 @@ class SpecialMostLinked extends QueryPage {
 	 * @param string $caption Text to display on the link
 	 * @return string
 	 */
-	function makeWlhLink( $title, $caption ) {
+	private function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
 
 		$linkRenderer = $this->getLinkRenderer();
@@ -106,7 +106,7 @@ class SpecialMostLinked extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return Html::element(

@@ -37,21 +37,21 @@ class LoadBalancerSingle extends LoadBalancer {
 	 *   - connection: An IDatabase connection object
 	 */
 	public function __construct( array $params ) {
-		if ( !isset( $params['connection'] ) ) {
+		/** @var IDatabase $conn */
+		$conn = $params['connection'] ?? null;
+		if ( !$conn ) {
 			throw new InvalidArgumentException( "Missing 'connection' argument." );
 		}
 
-		$this->db = $params['connection'];
+		$this->db = $conn;
 
 		parent::__construct( [
-			'servers' => [
-				[
-					'type' => $this->db->getType(),
-					'host' => $this->db->getServer(),
-					'dbname' => $this->db->getDBname(),
-					'load' => 1,
-				]
-			],
+			'servers' => [ [
+				'type' => $conn->getType(),
+				'host' => $conn->getServer(),
+				'dbname' => $conn->getDBname(),
+				'load' => 1,
+			] ],
 			'trxProfiler' => $params['trxProfiler'] ?? null,
 			'srvCache' => $params['srvCache'] ?? null,
 			'wanCache' => $params['wanCache'] ?? null,
@@ -60,7 +60,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		] );
 
 		if ( isset( $params['readOnlyReason'] ) ) {
-			$this->db->setLBInfo( 'readOnlyReason', $params['readOnlyReason'] );
+			$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $params['readOnlyReason'] );
 		}
 	}
 
@@ -78,7 +78,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		) );
 	}
 
-	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
+	protected function reallyOpenConnection( $i, DatabaseDomain $domain, array $lbInfo = [] ) {
 		return $this->db;
 	}
 

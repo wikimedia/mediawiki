@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2019 OOUI Team and other contributors.
+ * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2020-07-10T06:32:25Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -261,6 +261,12 @@
 }
 .oo-ui-toggleButtonWidget:last-child {
   margin-right: 0;
+}
+.oo-ui-toggleButtonWidget.oo-ui-widget-enabled.oo-ui-buttonElement-frameless.oo-ui-toggleWidget-on .oo-ui-buttonElement-button {
+  background-color: rgba(0, 0, 0, 0.13333333);
+}
+.oo-ui-toggleButtonWidget.oo-ui-widget-enabled.oo-ui-buttonElement-frameless.oo-ui-toggleWidget-on .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  color: #000;
 }
 
 .oo-ui-toggleSwitchWidget {
@@ -532,9 +538,6 @@
 .oo-ui-outlineControlsWidget-movers {
   float: right;
 }
-.oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
-  float: right;
-}
 .oo-ui-outlineControlsWidget-items > .oo-ui-buttonWidget,
 .oo-ui-outlineControlsWidget-movers > .oo-ui-buttonWidget {
   height: 2.5em;
@@ -601,6 +604,10 @@
   border-color: transparent;
   border-style: solid;
   padding: 0.5em 1em;
+}
+.oo-ui-tabOptionWidget > .oo-ui-labelElement-label {
+  color: inherit;
+  text-decoration: inherit;
 }
 .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
   cursor: default;
@@ -698,7 +705,6 @@
   outline: 0;
 }
 .oo-ui-tagMultiselectWidget-handle {
-  background-color: #fff;
   cursor: text;
   min-height: 2.4em;
   margin-right: 0.5em;
@@ -761,6 +767,9 @@
   right: 0;
   margin: 0 0.775em;
 }
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled {
+  background-color: #fff;
+}
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined:hover .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined-handle {
   border-color: rgba(0, 0, 0, 0.2);
 }
@@ -791,15 +800,17 @@
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input {
   color: #d45353;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled {
+  background-color: #f3f3f3;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled-handle {
   color: #ccc;
   border-color: #ddd;
-  background-color: #f3f3f3;
   text-shadow: 0 1px 1px #fff;
   cursor: default;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle > .oo-ui-iconElement-icon,
-.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled-handle > .oo-ui-iconElement-icon,
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled-handle > .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
 }
 .oo-ui-tagMultiselectWidget-popup > .oo-ui-popupWidget-popup {
@@ -848,21 +859,33 @@
 .oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
-.oo-ui-tagItemWidget > .oo-ui-buttonElement {
-  margin-top: -1.25em;
-  padding-left: 0.3em;
-}
 .oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   padding: 0;
-}
-.oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
-  min-width: 14px;
-  width: 1.09375em;
-  margin-right: -0.3em;
 }
 .oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-labelElement-label,
 .oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
   display: none;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled:not( .oo-ui-tagItemWidget-fixed ) {
+  padding-right: 1.796875em;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
+  display: block;
+  width: 1.5625em;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
+  display: block;
+  -webkit-transition: background-color 100ms;
+  -moz-transition: background-color 100ms;
+  transition: background-color 100ms;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
+  min-width: 14px;
+  width: 1.09375em;
+  margin: 0 0 0 0.234375em;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-disabled {
   opacity: 0.5;

@@ -27,21 +27,24 @@
  * @ingroup Media
  */
 class WebPHandler extends BitmapHandler {
-	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
 	/**
-	 * @var int Minimum chunk header size to be able to read all header types
+	 * Value to store in img_metadata if there was an error extracting metadata
 	 */
-	const MINIMUM_CHUNK_HEADER_LENGTH = 18;
+	private const BROKEN_FILE = '0';
 	/**
-	 * @var int version of the metadata stored in db records
+	 * Minimum chunk header size to be able to read all header types
 	 */
-	const _MW_WEBP_VERSION = 1;
+	private const MINIMUM_CHUNK_HEADER_LENGTH = 18;
+	/**
+	 * Version of the metadata stored in db records
+	 */
+	private const _MW_WEBP_VERSION = 1;
 
-	const VP8X_ICC = 32;
-	const VP8X_ALPHA = 16;
-	const VP8X_EXIF = 8;
-	const VP8X_XMP = 4;
-	const VP8X_ANIM = 2;
+	private const VP8X_ICC = 32;
+	private const VP8X_ALPHA = 16;
+	private const VP8X_EXIF = 8;
+	private const VP8X_XMP = 4;
+	private const VP8X_ANIM = 2;
 
 	public function getMetadata( $image, $filename ) {
 		$parsedWebPData = self::extractMetadata( $filename );
@@ -68,7 +71,7 @@ class WebPHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-				wfDebug( __METHOD__ . " invalid WebP metadata\n" );
+				wfDebug( __METHOD__ . " invalid WebP metadata" );
 
 				return self::METADATA_BAD;
 		}
@@ -76,7 +79,7 @@ class WebPHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_WEBP_VERSION'] )
 				|| $data['metadata']['_MW_WEBP_VERSION'] != self::_MW_WEBP_VERSION
 		) {
-				wfDebug( __METHOD__ . " old but compatible WebP metadata\n" );
+				wfDebug( __METHOD__ . " old but compatible WebP metadata" );
 
 				return self::METADATA_COMPATIBLE;
 		}
@@ -92,23 +95,23 @@ class WebPHandler extends BitmapHandler {
 	 * file is not a valid WebP file.
 	 */
 	public static function extractMetadata( $filename ) {
-		wfDebugLog( 'WebP', __METHOD__ . ": Extracting metadata from $filename\n" );
+		wfDebugLog( 'WebP', __METHOD__ . ": Extracting metadata from $filename" );
 
 		$info = RiffExtractor::findChunksFromFile( $filename, 100 );
 		if ( $info === false ) {
-			wfDebugLog( 'WebP', __METHOD__ . ": Not a valid RIFF file\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": Not a valid RIFF file" );
 			return false;
 		}
 
 		if ( $info['fourCC'] != 'WEBP' ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': FourCC was not WEBP: ' .
-				bin2hex( $info['fourCC'] ) . " \n" );
+				bin2hex( $info['fourCC'] ) );
 			return false;
 		}
 
 		$metadata = self::extractMetadataFromChunks( $info['chunks'], $filename );
 		if ( !$metadata ) {
-			wfDebugLog( 'WebP', __METHOD__ . ": No VP8 chunks found\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": No VP8 chunks found" );
 			return false;
 		}
 
@@ -117,7 +120,7 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * Extracts the image size and WebP type from a file based on the chunk list
-	 * @param array $chunks Chunks as extracted by RiffExtractor
+	 * @param array[] $chunks Chunks as extracted by RiffExtractor
 	 * @param string $filename
 	 * @return array Header data array with entries 'compression', 'width' and 'height', where
 	 * 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'
@@ -133,7 +136,7 @@ class WebPHandler extends BitmapHandler {
 
 			$chunkHeader = file_get_contents( $filename, false, null,
 				$chunk['start'], self::MINIMUM_CHUNK_HEADER_LENGTH );
-			wfDebugLog( 'WebP', __METHOD__ . ": {$chunk['fourCC']}\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": {$chunk['fourCC']}" );
 
 			switch ( $chunk['fourCC'] ) {
 				case 'VP8 ':
@@ -165,7 +168,7 @@ class WebPHandler extends BitmapHandler {
 		$syncCode = substr( $header, 11, 3 );
 		if ( $syncCode != "\x9D\x01\x2A" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid sync code: ' .
-				bin2hex( $syncCode ) . "\n" );
+				bin2hex( $syncCode ) );
 			return [];
 		}
 		// Bytes 14-17 are image size
@@ -188,9 +191,9 @@ class WebPHandler extends BitmapHandler {
 		// Bytes 0-3 are 'VP8L'
 		// Bytes 4-7 are chunk stream size
 		// Byte 8 is 0x2F called the signature
-		if ( $header{8} != "\x2F" ) {
+		if ( $header[8] != "\x2F" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
-				bin2hex( $header{8} ) . "\n" );
+				bin2hex( $header[8] ) );
 			return [];
 		}
 		// Bytes 9-12 contain the image size

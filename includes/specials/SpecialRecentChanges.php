@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * A special page that lists last changes made to the wiki
@@ -81,11 +81,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				]
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+			'queryCallable' => function ( $specialPageClassName, $context, IDatabase $dbr,
 				&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				sort( $selectedValues );
 				$notwatchedCond = 'wl_user IS NULL';
 				$watchedCond = 'wl_user IS NOT NULL';
+				if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+					// Expired watchlist items stay in the DB after their expiry time until they're purged,
+					// so it's not enough to only check for wl_user.
+					$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
+					$notwatchedCond = "wl_user IS NULL OR ( we_expiry IS NOT NULL AND we_expiry < $quotedNow )";
+					$watchedCond = "wl_user IS NOT NULL AND ( we_expiry IS NULL OR we_expiry >= $quotedNow )";
+				}
 				$newCond = 'rc_timestamp >= wl_notificationtimestamp';
 
 				if ( $selectedValues === [ 'notwatched' ] ) {
@@ -177,18 +184,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Whether or not the current query needs to use watchlist data: check that the current user can
+	 * use their watchlist and that this special page isn't being transcluded.
+	 *
+	 * @return bool
+	 */
+	private function needsWatchlistFeatures(): bool {
+		return !$this->including()
+			&& $this->getUser()->isLoggedIn()
+			&& MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'viewmywatchlist' );
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
 
-		if (
-			!$this->including() &&
-			$this->getUser()->isLoggedIn() &&
-			MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmywatchlist' )
-		) {
+		if ( $this->needsWatchlistFeatures() ) {
 			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
 			$watchlistGroup = $this->getFilterGroup( 'watchlist' );
 			$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
@@ -267,33 +282,53 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Add required values to a query's $tables, $fields, $joinConds, and $conds arrays to join to
+	 * the watchlist and watchlist_expiry tables where appropriate.
+	 *
+	 * @param IDatabase $dbr
+	 * @param string[] &$tables
+	 * @param string[] &$fields
+	 * @param mixed[] &$joinConds
+	 * @param mixed[] &$conds
+	 */
+	protected function addWatchlistJoins( IDatabase $dbr, &$tables, &$fields, &$joinConds, &$conds ) {
+		if ( !$this->needsWatchlistFeatures() ) {
+			return;
+		}
+
+		// Join on watchlist table.
+		$tables[] = 'watchlist';
+		$fields[] = 'wl_user';
+		$fields[] = 'wl_notificationtimestamp';
+		$joinConds['watchlist'] = [ 'LEFT JOIN', [
+			'wl_user' => $this->getUser()->getId(),
+			'wl_title=rc_title',
+			'wl_namespace=rc_namespace'
+		] ];
+
+		// Exclude expired watchlist items.
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $fields, $conds, $query_options,
 		$join_conds, FormOptions $opts
 	) {
 		$dbr = $this->getDB();
-		$user = $this->getUser();
 
 		$rcQuery = RecentChange::getQueryInfo();
 		$tables = array_merge( $tables, $rcQuery['tables'] );
 		$fields = array_merge( $rcQuery['fields'], $fields );
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
-		// JOIN on watchlist for users
-		if ( $user->isLoggedIn() && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'viewmywatchlist' )
-		) {
-			$tables[] = 'watchlist';
-			$fields[] = 'wl_user';
-			$fields[] = 'wl_notificationtimestamp';
-			$join_conds['watchlist'] = [ 'LEFT JOIN', [
-				'wl_user' => $user->getId(),
-				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
-			] ];
-		}
+		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
+		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
 
 		// JOIN on page, used for 'last revision' filter highlight
 		$tables[] = 'page';
@@ -438,7 +473,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 			}
 
-			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
+			$watched = !empty( $obj->wl_user );
+			if ( $watched && $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+				$notExpired = $obj->we_expiry === null
+					|| MWTimestamp::convert( TS_UNIX, $obj->we_expiry ) > wfTimestamp();
+				$watched = $watched && $notExpired;
+			}
+			$changeLine = $list->recentChangesLine( $rc, $watched, $counter );
 			if ( $changeLine !== false ) {
 				$rclistOutput .= $changeLine;
 				--$limit;
@@ -567,14 +608,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @param FormOptions $opts Unused
 	 */
-	function setTopText( FormOptions $opts ) {
+	public function setTopText( FormOptions $opts ) {
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$services = MediaWikiServices::getInstance();
+			$contLang = $services->getContentLanguage();
 			// Parse the message in this weird ugly way to preserve the ability to include interlanguage
 			// links in it (T172461). In the future when T66969 is resolved, perhaps we can just use
 			// $message->parse() instead. This code is copied from Message::parseText().
-			$parserOutput = MessageCache::singleton()->parse(
+			$parserOutput = $services->getMessageCache()->parse(
 				$message->plain(),
 				$this->getPageTitle(),
 				/*linestart*/true,
@@ -640,7 +682,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 * @return array
 	 */
-	function getExtraOptions( $opts ) {
+	public function getExtraOptions( $opts ) {
 		$opts->consumeValues( [
 			'namespace', 'invert', 'associated', 'tagfilter'
 		] );
@@ -656,7 +698,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// Don't fire the hook for subclasses. (Or should we?)
 		if ( $this->getName() === 'Recentchanges' ) {
-			Hooks::run( 'SpecialRecentChangesPanel', [ &$extraOpts, $opts ] );
+			$this->getHookRunner()->onSpecialRecentChangesPanel( $extraOpts, $opts );
 		}
 
 		return $extraOpts;
@@ -717,74 +759,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Filter $rows by categories set in $opts
-	 *
-	 * @deprecated since 1.31
-	 *
-	 * @param IResultWrapper &$rows Database rows
-	 * @param FormOptions $opts
-	 */
-	function filterByCategories( &$rows, FormOptions $opts ) {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
-
-		if ( $categories === [] ) {
-			return;
-		}
-
-		# Filter categories
-		$cats = [];
-		foreach ( $categories as $cat ) {
-			$cat = trim( $cat );
-			if ( $cat == '' ) {
-				continue;
-			}
-			$cats[] = $cat;
-		}
-
-		# Filter articles
-		$articles = [];
-		$a2r = [];
-		$rowsarr = [];
-		foreach ( $rows as $k => $r ) {
-			$nt = Title::makeTitle( $r->rc_namespace, $r->rc_title );
-			$id = $nt->getArticleID();
-			if ( $id == 0 ) {
-				continue; # Page might have been deleted...
-			}
-			if ( !in_array( $id, $articles ) ) {
-				$articles[] = $id;
-			}
-			if ( !isset( $a2r[$id] ) ) {
-				$a2r[$id] = [];
-			}
-			$a2r[$id][] = $k;
-			$rowsarr[$k] = $r;
-		}
-
-		# Shortcut?
-		if ( $articles === [] || $cats === [] ) {
-			return;
-		}
-
-		# Look up
-		$catFind = new CategoryFinder;
-		$catFind->seed( $articles, $cats, $opts['categories_any'] ? 'OR' : 'AND' );
-		$match = $catFind->run();
-
-		# Filter
-		$newrows = [];
-		foreach ( $match as $id ) {
-			foreach ( $a2r[$id] as $rev ) {
-				$k = $rev;
-				$newrows[$k] = $rowsarr[$k];
-			}
-		}
-		$rows = new FakeResultWrapper( array_values( $newrows ) );
-	}
-
-	/**
 	 * Makes change an option link which carries all the other options
 	 *
 	 * @param string $title
@@ -793,7 +767,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param bool $active Whether to show the link in bold
 	 * @return string
 	 */
-	function makeOptionsLink( $title, $override, $options, $active = false ) {
+	private function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $this->convertParamsForLink( $override + $options );
 
 		if ( $active ) {
@@ -814,7 +788,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param int $numRows Number of rows in the result to show after this header
 	 * @return string
 	 */
-	function optionsPanel( $defaults, $nondefaults, $numRows ) {
+	private function optionsPanel( $defaults, $nondefaults, $numRows ) {
 		$options = $nondefaults + $defaults;
 
 		$note = '';
@@ -904,7 +878,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'data-filter-name' => $filter->getName(),
 			];
 
-			if ( $filter->isFeatureAvailableOnStructuredUi( $this ) ) {
+			if ( $filter->isFeatureAvailableOnStructuredUi() ) {
 				$attribs['data-feature-in-structured-ui'] = true;
 			}
 

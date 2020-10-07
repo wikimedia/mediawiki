@@ -45,11 +45,11 @@ class SpecialTags extends SpecialPage {
 	 */
 	protected $softwareActivatedTags;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Tags' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Manual:Tags' );
@@ -73,7 +73,7 @@ class SpecialTags extends SpecialPage {
 		}
 	}
 
-	function showTagList() {
+	private function showTagList() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
@@ -94,6 +94,7 @@ class SpecialTags extends SpecialPage {
 				],
 				'Reason' => [
 					'type' => 'text',
+					'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 					'label' => $this->msg( 'tags-create-reason' )->plain(),
 					'size' => 50,
 				],
@@ -179,7 +180,9 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks ) {
+	private function doTagRow(
+		$tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks
+	) {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
@@ -189,7 +192,9 @@ class SpecialTags extends SpecialPage {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->text()
+				$this->msg( 'tags-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
 			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
@@ -201,7 +206,9 @@ class SpecialTags extends SpecialPage {
 			$desc .= ' ';
 			$editDescLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag-description" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->text()
+				$this->msg( 'tags-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}

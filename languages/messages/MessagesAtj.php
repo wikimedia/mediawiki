@@ -21,10 +21,15 @@ $namespaceNames = [
 	NS_FILE_TALK        => 'Ke_ici_aimihitonaniwok_natisinihikaniwoc',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Ke_ici_aimihitonaniwok_MediaWiki',
-	NS_TEMPLATE         => 'Tapapitcikesinihikan',
-	NS_TEMPLATE_TALK    => 'Ke_ici_arimotcikatek_tapapitcikesinihikan',
+	NS_TEMPLATE         => 'Tipapitcikesinihikan',
+	NS_TEMPLATE_TALK    => 'Ke_ici_arimotcikatek_tipapitcikesinihikan',
 	NS_HELP             => 'Witcihikoiin',
 	NS_HELP_TALK        => 'Ke_ici_aimihitonaniwok_witcihewinik',
 	NS_CATEGORY         => 'Tipanictawin',
 	NS_CATEGORY_TALK    => 'Ke_ici_aimihitonaniwok_tipanictawin',
+];
+
+$namespaceAliases = [
+	'Tapapitcikesinihikan' => NS_TEMPLATE,
+	'Ke_ici_arimotcikatek_tapapitcikesinihikan' => NS_TEMPLATE_TALK,
 ];

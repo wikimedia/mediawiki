@@ -11,15 +11,15 @@ use MediaWiki\MediaWikiServices;
  *
  * @group Database
  */
-class ImageListPagerTest extends MediaWikiTestCase {
+class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @expectedException MWException
-	 * @expectedExceptionMessage invalid_field
 	 * @covers ImageListPager::formatValue
 	 */
 	public function testFormatValuesThrowException() {
 		$page = new ImageListPager( RequestContext::getMain(), null, '', false, false,
 			MediaWikiServices::getInstance()->getLinkRenderer() );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( "invalid_field" );
 		$page->formatValue( 'invalid_field', 'invalid_value' );
 	}
 }

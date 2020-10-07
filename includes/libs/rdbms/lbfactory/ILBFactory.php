@@ -32,14 +32,14 @@ use InvalidArgumentException;
  */
 interface ILBFactory {
 	/** @var int Don't save DB positions at all */
-	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
+	public const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
 	/** @var int Save DB positions, but don't wait on remote DCs */
-	const SHUTDOWN_CHRONPROT_ASYNC = 1;
+	public const SHUTDOWN_CHRONPROT_ASYNC = 1;
 	/** @var int Save DB positions, waiting on all DCs */
-	const SHUTDOWN_CHRONPROT_SYNC = 2;
+	public const SHUTDOWN_CHRONPROT_SYNC = 2;
 
 	/** @var string Default main LB cluster name (do not change this) */
-	const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
+	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
 	 * Construct a manager of ILoadBalancer objects
@@ -330,10 +330,10 @@ interface ILBFactory {
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] );
 
 	/**
-	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
 	 * @return float|bool UNIX timestamp when client last touched the DB or false if not recent
 	 */
-	public function getChronologyProtectorTouched( $dbName );
+	public function getChronologyProtectorTouched( $domain = false );
 
 	/**
 	 * Disable the ChronologyProtector for all load balancers
@@ -389,6 +389,13 @@ interface ILBFactory {
 	public function setRequestInfo( array $info );
 
 	/**
+	 * @param int $seconds Default timeout for replication wait checks
+	 * @return int The previous default timeout
+	 * @since 1.35
+	 */
+	public function setDefaultReplicationWaitTimeout( $seconds );
+
+	/**
 	 * Make certain table names use their own database, schema, and table prefix
 	 * when passed into SQL queries pre-escaped and without a qualified database name
 	 *
@@ -412,8 +419,26 @@ interface ILBFactory {
 	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
-	 * @param string[] $aliases
+	 * @param string[] $aliases Map of (index alias => index name)
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Convert certain database domains to alternative ones.
+	 *
+	 * This can be used for backwards compatibility logic.
+	 *
+	 * @param DatabaseDomain[]|string[] $aliases Map of (domain alias => domain)
+	 * @since 1.35
+	 */
+	public function setDomainAliases( array $aliases );
+
+	/**
+	 * Get a TransactionProfiler used by this instance.
+	 *
+	 * @return TransactionProfiler
+	 * @since 1.35
+	 */
+	public function getTransactionProfiler(): TransactionProfiler;
 }

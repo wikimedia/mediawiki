@@ -10,7 +10,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Container\ContainerInterface;
 use User;
 use Wikimedia\ObjectFactory;
@@ -23,7 +23,7 @@ use Wikimedia\ObjectFactory;
  * @covers \MediaWiki\Rest\BasicAccess\BasicRequestAuthorizer
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicRequestAuthorizer
  */
-class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
+class MWBasicRequestAuthorizerTest extends MediaWikiIntegrationTestCase {
 	private function createRouter( $userRights, $request ) {
 		$user = User::newFromName( 'Test user' );
 		$objectFactory = new ObjectFactory(
@@ -42,17 +42,19 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
 			[],
+			'http://wiki.example.com',
 			'/rest',
 			new \EmptyBagOStuff(),
 			new ResponseFactory( [] ),
 			new MWBasicAuthorizer( $user, $permissionManager ),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, $user )
+			new Validator( $objectFactory, $permissionManager, $request, $user ),
+			$this->createHookContainer()
 		);
 	}
 
 	public function testReadDenied() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/hello' ) ] );
 		$router = $this->createRouter( [ 'read' => false ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
@@ -64,7 +66,7 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testReadAllowed() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/hello' ) ] );
 		$router = $this->createRouter( [ 'read' => true ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );

@@ -40,6 +40,7 @@
 			// Sanitize options.tag before it is used by any code. (Including Notification class methods)
 			options.tag = options.tag.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
 			if ( options.tag ) {
+				// eslint-disable-next-line mediawiki/class-doc
 				$notification.addClass( 'mw-notification-tag-' + options.tag );
 			} else {
 				delete options.tag;
@@ -49,6 +50,9 @@
 		if ( options.type ) {
 			// Sanitize options.type
 			options.type = options.type.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
+			// The following classes are used here:
+			// * mw-notification-type-error
+			// * mw-notification-type-warn
 			$notification.addClass( 'mw-notification-type-' + options.type );
 		}
 
@@ -282,7 +286,7 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, notif,
+		var offset, $overlay,
 			isFloating = false;
 
 		function updateAreaMode() {
@@ -301,8 +305,11 @@
 		$area = $( '.mw-notification-area[data-mw="interface"]' ).first();
 		if ( !$area.length ) {
 			$area = $( '<div>' ).addClass( 'mw-notification-area' );
-			// Prepend the notification area to the content area
-			mw.util.$content.prepend( $area );
+			// Create overlay div for the notification area
+			$overlay = $( '<div>' ).addClass( 'mw-notification-area-overlay' );
+			// Append the notification area to the overlay wrapper area
+			$overlay.append( $area );
+			mw.util.$content.prepend( $overlay );
 		}
 		$area
 			.addClass( 'mw-notification-area-layout' )
@@ -320,9 +327,10 @@
 					notif.close();
 				}
 			} )
-			// Stop click events from <a> tags from propogating to prevent clicking.
-			// on links from hiding a notification.
-			.on( 'click', 'a', function ( e ) {
+			// Stop click events from <a> and <select> tags from propagating to prevent clicks
+			// from hiding a notification. stopPropagation() bubbles up, not down,
+			// hence this should not conflict with OOUI's own click handlers.
+			.on( 'click', 'a, select, .oo-ui-dropdownInputWidget', function ( e ) {
 				e.stopPropagation();
 			} );
 
@@ -330,6 +338,7 @@
 		// Must be in the next frame to avoid synchronous layout
 		// computation from offset()/getBoundingClientRect().
 		rAF( function () {
+			var notif;
 			offset = $area.offset();
 
 			// Initial mode (reads, and then maybe writes)
@@ -387,7 +396,7 @@
 		 * Display a notification message to the user.
 		 *
 		 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
-		 * @param {Object} options The options to use for the notification.
+		 * @param {Object} [options] The options to use for the notification.
 		 *  See #defaults for details.
 		 * @return {mw.Notification} Notification object
 		 */
@@ -431,7 +440,7 @@
 		 *
 		 * - type:
 		 *   An optional string for the type of the message used for styling:
-		 *   Examples: 'info', 'warn', 'error'.
+		 *   Examples: 'info', 'warn', 'error', 'success'.
 		 *
 		 * - visibleTimeout:
 		 *   A boolean indicating if the autoHide timeout should be based on
@@ -468,7 +477,13 @@
 		autoHideLimit: 3
 	};
 
-	$( init );
+	if ( window.QUnit ) {
+		$area = $( document.body );
+	} else {
+		// Don't run UI logic while under test.
+		// Let the test control this instead.
+		$( init );
+	}
 
 	mw.notification = notification;
 

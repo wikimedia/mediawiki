@@ -68,13 +68,17 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		// and trailing slash if present.  This lets us use
 		// $wgCanonicalServer as a default value, which is very convenient.
 		$mparams['domain'] = preg_replace(
-			'/^(https?:\/\/)?([^\/:]+?)(:\d+)?\/?$/',
-			'$2',
+			'/^((https?:)?\/\/)?([^\/:]+?)(:\d+)?\/?$/',
+			'$3',
 			$mparams['domain']
 		);
 		parent::__construct( $mparams );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $reqs
+	 */
 	public function onRequests( array $reqs, Closure $idGenFunc ) {
 		if ( $this->params['parsoidCompat'] ) {
 			return $this->onParsoidRequests( $reqs, $idGenFunc );
@@ -112,7 +116,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 
 	/**
 	 * Remaps Parsoid v3 requests to RESTBase v1 requests.
-	 * @param array $reqs
+	 * @param array[] $reqs
 	 * @param Closure $idGeneratorFunc
 	 * @return array
 	 * @throws Exception

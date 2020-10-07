@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers BotPassword
  * @group Database
  */
-class BotPasswordTest extends MediaWikiTestCase {
+class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 	/** @var TestUser */
 	private $testUser;
@@ -17,7 +17,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 	/** @var string */
 	private $testUserName;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

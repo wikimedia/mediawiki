@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alluk.",
 			"Beluga",
 			"Crt",
 			"Harriv",
@@ -9,13 +10,12 @@
 			"Nike",
 			"Olli",
 			"Pxos",
+			"Pyscowicz",
 			"Samoasambia",
 			"Silvonen",
 			"Skalman",
 			"Stryn",
-			"VezonThunder",
-			"Alluk.",
-			"Pyscowicz"
+			"VezonThunder"
 		]
 	},
 	"ooui-outline-control-move-down": "Siirrä kohdetta alaspäin",

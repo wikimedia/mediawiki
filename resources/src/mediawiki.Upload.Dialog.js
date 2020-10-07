@@ -10,7 +10,7 @@
 	 *
 	 *     var uploadDialog = new mw.Upload.Dialog();
 	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( 'body' ).append( windowManager.$element );
+	 *     $( document.body ).append( windowManager.$element );
 	 *     windowManager.addWindows( [ uploadDialog ] );
 	 *     windowManager.openWindow( uploadDialog );
 	 *
@@ -58,19 +58,19 @@
 
 	/**
 	 * @inheritdoc
-	 * @property name
+	 * @property {string} name
 	 */
 	mw.Upload.Dialog.static.name = 'mwUploadDialog';
 
 	/**
 	 * @inheritdoc
-	 * @property title
+	 * @property {Function|string} title
 	 */
 	mw.Upload.Dialog.static.title = mw.msg( 'upload-dialog-title' );
 
 	/**
 	 * @inheritdoc
-	 * @property actions
+	 * @property {Object[]} actions
 	 */
 	mw.Upload.Dialog.static.actions = [
 		{

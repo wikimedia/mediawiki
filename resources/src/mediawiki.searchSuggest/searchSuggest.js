@@ -17,8 +17,7 @@
 				action: 'opensearch',
 				search: query,
 				namespace: namespace || searchNS,
-				limit: maxRows,
-				suggest: true
+				limit: maxRows
 			} ).done( function ( data, jqXHR ) {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
@@ -42,6 +41,17 @@
 			$searchInput = $( '#searchInput' ),
 			previousSearchText = $searchInput.val();
 
+		function serializeObject( fields ) {
+			var i,
+				obj = {};
+
+			for ( i = 0; i < fields.length; i++ ) {
+				obj[ fields[ i ].name ] = fields[ i ].value;
+			}
+
+			return obj;
+		}
+
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
 			var $form, baseHref, linkParams;
@@ -53,7 +63,7 @@
 				baseHref = $form.attr( 'action' );
 				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
-				linkParams = $form.serializeObject();
+				linkParams = serializeObject( $form.serializeArray() );
 
 				context.formData = {
 					textParam: context.data.$textbox.attr( 'name' ),
@@ -182,7 +192,7 @@
 				index: context.config.suggestions.indexOf( query )
 			} );
 
-			if ( $el.children().length === 0 ) {
+			if ( mw.user.options.get( 'search-match-redirect' ) && $el.children().length === 0 ) {
 				$el
 					.append(
 						$( '<div>' )

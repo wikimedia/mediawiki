@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ApiLogin
  */
 class ApiLoginTest extends ApiTestCase {
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'bot_passwords';
@@ -140,14 +140,57 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertSame( 'WrongToken', $ret[0]['login']['result'] );
 	}
 
+	public function testLostSession() {
+		$user = self::$users['sysop'];
+		$userName = $user->getUser()->getName();
+		$password = $user->getPassword();
+		$user->getUser()->logout();
+
+		$ret = $this->doApiRequest( [
+			'action' => 'query',
+			'meta' => 'tokens',
+			'type' => 'login',
+		] );
+
+		$this->assertArrayNotHasKey( 'warnings', $ret );
+
+		// Lose the session
+		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
+		$ret[2] = [];
+
+		$ret = $this->doApiRequest( [
+			'action' => 'login',
+			'lgtoken' => $ret[0]['query']['tokens']['logintoken'],
+			'lgname' => $userName,
+			'lgpassword' => $password,
+			'errorformat' => 'raw',
+		], $ret[2] );
+
+		$this->assertSame( [
+			'result' => 'Failed',
+			'reason' => [
+				'code' => 'sessionlost',
+				'key' => 'authpage-cannot-login-continue',
+				'params' => [],
+			],
+		], $ret[0]['login'] );
+	}
+
 	public function testBadPass() {
 		$user = self::$users['sysop'];
 		$userName = $user->getUser()->getName();
 		$user->getUser()->logout();
 
-		$ret = $this->doUserLogin( $userName, 'bad' );
+		$ret = $this->doUserLogin( $userName, 'bad', [ 'errorformat' => 'raw' ] );
 
-		$this->assertSame( 'Failed', $ret[0]['login']['result'] );
+		$this->assertSame( [
+			'result' => 'Failed',
+			'reason' => [
+				'code' => 'wrongpassword',
+				'key' => 'wrongpassword',
+				'params' => [],
+			],
+		], $ret[0]['login'] );
 	}
 
 	/**

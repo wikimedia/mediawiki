@@ -41,7 +41,7 @@ class CategoryPager extends AlphabeticPager {
 		}
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'category' ],
 			'fields' => [ 'cat_title', 'cat_pages' ],
@@ -49,11 +49,11 @@ class CategoryPager extends AlphabeticPager {
 		];
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'cat_title';
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		parent::getDefaultQuery();
 		unset( $this->mDefaultQuery['from'] );
 
@@ -75,7 +75,7 @@ class CategoryPager extends AlphabeticPager {
 		return parent::getBody();
 	}
 
-	function formatRow( $result ) {
+	public function formatRow( $result ) {
 		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
 		$text = $title->getText();
 		$link = $this->getLinkRenderer()->makeLink( $title, $text );

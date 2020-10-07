@@ -3,6 +3,8 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -11,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
  */
-class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 
 	private $manager = null;
 	private $config = null;
@@ -36,9 +38,20 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			$this->config,
 			MediaWikiServices::getInstance()->getMainConfig()
 		] );
+		$hookContainer = $this->createHookContainer();
 
 		if ( !$this->manager ) {
-			$this->manager = new AuthManager( new \FauxRequest(), $config );
+			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
+			$objectFactory = new \Wikimedia\ObjectFactory( $services );
+			$permManager = $this->createNoOpMock( PermissionManager::class );
+
+			$this->manager = new AuthManager(
+				new \FauxRequest(),
+				$config,
+				$objectFactory,
+				$permManager,
+				$hookContainer
+			);
 		}
 		$this->validity = \Status::newGood();
 
@@ -54,31 +67,22 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$provider->setConfig( $config );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setManager( $this->manager );
+		$provider->setHookContainer( $hookContainer );
 
 		return $provider;
 	}
 
 	protected function hookMailer( $func = null ) {
-		\Hooks::clear( 'AlternateUserMailer' );
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		if ( $func ) {
-			\Hooks::register( 'AlternateUserMailer', $func );
-			// Safety
-			\Hooks::register( 'AlternateUserMailer', function () {
-				return false;
-			} );
+			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', $func, true );
 		} else {
-			\Hooks::register( 'AlternateUserMailer', function () {
+			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', function () {
 				$this->fail( 'AlternateUserMailer hook called unexpectedly' );
 				return false;
-			} );
+			}, true );
 		}
-
-		return new ScopedCallback( function () {
-			\Hooks::clear( 'AlternateUserMailer' );
-			\Hooks::register( 'AlternateUserMailer', function () {
-				return false;
-			} );
-		} );
+		return $reset;
 	}
 
 	public function testBasics() {
@@ -105,6 +109,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'EnableEmail' => false,
 			'NewPasswordExpiry' => 100,
 			'PasswordReminderResendTime' => 101,
+			'AllowRequiringEmailForResets' => false,
 		] );
 
 		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
@@ -117,11 +122,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'emailEnabled' => true,
 			'newPasswordExpiry' => 42,
 			'passwordReminderResendTime' => 43,
+			'allowRequiringEmailForResets' => true,
 		] ) );
 		$p->setConfig( $config );
 		$this->assertSame( true, $p->emailEnabled );
 		$this->assertSame( 42, $p->newPasswordExpiry );
 		$this->assertSame( 43, $p->passwordReminderResendTime );
+		$this->assertSame( true, $p->allowRequiringEmail );
 	}
 
 	public function testTestUserCanAuthenticate() {
@@ -573,7 +580,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		{
 			$mailed = true;
 			$this->assertSame( $user->getEmail(), $to[0]->address );
-			$this->assertContains( $req->password, $body );
+			$this->assertStringContainsString( $req->password, $body );
 			return false;
 		} );
 		$provider->providerChangeAuthenticationData( $req );
@@ -704,7 +711,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		{
 			$mailed = true;
 			$this->assertSame( 'test@localhost.localdomain', $to[0]->address );
-			$this->assertContains( $req->password, $body );
+			$this->assertStringContainsString( $req->password, $body );
 			return false;
 		} );
 

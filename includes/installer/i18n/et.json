@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Pikne",
 			"Boxmein",
 			"Cumbril",
-			"Roland",
-			"Postituvi"
+			"Pikne",
+			"Postituvi",
+			"Roland"
 		]
 	},
 	"config-desc": "MediaWiki paigaldaja",
@@ -28,14 +28,12 @@
 	"config-page-install": "Paigaldamine",
 	"config-page-complete": "Valmis!",
 	"config-page-restart": "Alusta installimist uuesti",
-	"config-page-readme": "Loe mind",
 	"config-page-releasenotes": "Redaktsioonimärkmed",
 	"config-page-copying": "Kopeerimine",
 	"config-page-upgradedoc": "Uuendamine",
 	"config-page-existingwiki": "Olemasolev viki",
 	"config-restart": "Jah, tee taaskäivitus",
 	"config-env-php": "PHP $1 on paigaldatud.",
-	"config-env-hhvm": "HHVM $1 on installitud.",
 	"config-diff3-bad": "Tekstivõrdluse vahendit GNU diff3 ei leitud. Saad seda eirata, aga võid sattuda edaspidi sagedamini redigeerimiskonfliktidesse.",
 	"config-db-type": "Andmebaasi tüüp:",
 	"config-db-name": "Andmebaasi nimi (sidekriipsudeta):",
@@ -75,7 +73,7 @@
 	"config-install-step-done": "valmis",
 	"config-install-step-failed": "ebaõnnestus",
 	"config-install-user-alreadyexists": "Kasutaja \"$1\" on juba olemas",
-	"config-install-tables": "Tabelite loomine",
+	"config-install-tables": "Tabelite loomine, esimene samm",
 	"config-help": "abi",
 	"mainpagetext": "<strong>MediaWiki tarkvara on paigaldatud.</strong>",
 	"mainpagedocfooter": "Vikitarkvara kasutamise kohta leiad lisateavet [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kasutaja teatmikust].\n\n== Alustamine ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Häälestussätete loend]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki KKK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki versiooniuuenduste postiloend]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki lokaliseerimine]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Loe, kuidas vikis rämpspostitusi tõrjuda]"

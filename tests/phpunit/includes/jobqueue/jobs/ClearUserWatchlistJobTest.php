@@ -11,9 +11,9 @@ use MediaWiki\MediaWikiServices;
  * @license GPL-2.0-or-later
  * @author Addshore
  */
-class ClearUserWatchlistJobTest extends MediaWikiTestCase {
+class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users['ClearUserWatchlistJobTestUser']
 			= new TestUser( 'ClearUserWatchlistJobTestUser' );
@@ -57,13 +57,13 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 			] )
 		);
 
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 6, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 4, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 2, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
 		$this->assertSame( 0, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
@@ -73,4 +73,39 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 		$this->assertTrue( $watchedItemStore->isWatched( $user, new TitleValue( 1, 'C' ) ) );
 	}
 
+	public function testRunWithWatchlistExpiry() {
+		// Set up.
+		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		$user = $this->getUser();
+		$watchedItemStore = $this->getWatchedItemStore();
+
+		// Add two watched items, one with an expiry.
+		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'no expiry' ) );
+		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'has expiry' ), '1 week' );
+
+		// Get the IDs of these items.
+		$itemIds = $this->db->selectFieldValues(
+			[ 'watchlist' ],
+			'wl_id',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+
+		// Clear the watchlist by running the job.
+		$job = new ClearUserWatchlistJob( [
+			'userId' => $user->getId(),
+			'maxWatchlistId' => max( $itemIds ),
+		] );
+		JobQueueGroup::singleton()->push( $job );
+		$this->runJobs( 1 );
+
+		// Confirm that there are now no expiry records.
+		$watchedCount = $this->db->selectRowCount(
+			'watchlist_expiry',
+			'*',
+			[ 'we_item' => $itemIds ],
+			__METHOD__
+		);
+		$this->assertSame( 0, $watchedCount );
+	}
 }

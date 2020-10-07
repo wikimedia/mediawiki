@@ -100,13 +100,14 @@
 	min-width: 6em;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
-.apihelp-deprecated {
+/* stylelint-disable selector-class-pattern */
+.apihelp-deprecated,
+.apihelp-internal {
 	font-weight: bold;
 	color: #d33;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .apihelp-deprecated-value .oo-ui-labelElement-label {
 	text-decoration: line-through;
 }
+/* stylelint-enable selector-class-pattern */

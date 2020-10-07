@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 
 /**
  * Helper class for category membership changes
@@ -29,8 +30,8 @@ use MediaWiki\Revision\RevisionRecord;
 
 class CategoryMembershipChange {
 
-	const CATEGORY_ADDITION = 1;
-	const CATEGORY_REMOVAL = -1;
+	private const CATEGORY_ADDITION = 1;
+	private const CATEGORY_REMOVAL = -1;
 
 	/**
 	 * @var string Current timestamp, set during CategoryMembershipChange::__construct()
@@ -43,7 +44,7 @@ class CategoryMembershipChange {
 	private $pageTitle;
 
 	/**
-	 * @var Revision|null Latest Revision instance of the categorized page
+	 * @var RevisionRecord|null Latest Revision instance of the categorized page
 	 */
 	private $revision;
 
@@ -61,18 +62,27 @@ class CategoryMembershipChange {
 
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
-	 * @param Revision|null $revision Latest Revision instance of the categorized page
+	 * @param RevisionRecord|Revision|null $revision Latest Revision instance of the categorized page.
+	 *   Since 1.35 passing a Revision object is deprecated in favor of RevisionRecord.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( Title $pageTitle, Revision $revision = null ) {
+	public function __construct( Title $pageTitle, $revision = null ) {
 		$this->pageTitle = $pageTitle;
+		if ( $revision instanceof Revision ) {
+			wfDeprecatedMsg(
+				'Passing a Revision for the $revision parameter to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.35',
+				'1.35'
+			);
+			$revision = $revision->getRevisionRecord();
+		}
+		$this->revision = $revision;
 		if ( $revision === null ) {
 			$this->timestamp = wfTimestampNow();
 		} else {
 			$this->timestamp = $revision->getTimestamp();
 		}
-		$this->revision = $revision;
 		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
 	}
 
@@ -147,7 +157,7 @@ class CategoryMembershipChange {
 	 * @param string $comment Change summary
 	 * @param Title $pageTitle Title of the page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
-	 * @param Revision|null $revision
+	 * @param RevisionRecord|null $revision
 	 * @param bool $added true, if the category was added, false for removed
 	 *
 	 * @throws MWException
@@ -155,7 +165,7 @@ class CategoryMembershipChange {
 	private function notifyCategorization(
 		$timestamp,
 		Title $categoryTitle,
-		User $user = null,
+		?User $user,
 		$comment,
 		Title $pageTitle,
 		$lastTimestamp,
@@ -176,9 +186,14 @@ class CategoryMembershipChange {
 
 		# If no revision is given, the change was probably triggered by parser functions
 		if ( $revision !== null ) {
-			$correspondingRc = $this->revision->getRecentChange();
+			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
+			$correspondingRc = $revisionStore->getRecentChange( $this->revision );
 			if ( $correspondingRc === null ) {
-				$correspondingRc = $this->revision->getRecentChange( Revision::READ_LATEST );
+				$correspondingRc = $revisionStore->getRecentChange(
+					$this->revision,
+					RevisionStore::READ_LATEST
+				);
 			}
 			if ( $correspondingRc !== null ) {
 				$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
@@ -218,11 +233,9 @@ class CategoryMembershipChange {
 	 */
 	private function getUser() {
 		if ( $this->revision ) {
-			$userId = $this->revision->getUser( RevisionRecord::RAW );
-			if ( $userId === 0 ) {
-				return User::newFromName( $this->revision->getUserText( RevisionRecord::RAW ), false );
-			} else {
-				return User::newFromId( $userId );
+			$userIdentity = $this->revision->getUser( RevisionRecord::RAW );
+			if ( $userIdentity ) {
+				return User::newFromIdentity( $userIdentity );
 			}
 		}
 

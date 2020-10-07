@@ -73,7 +73,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			->setMethods( [ 'getDefinitionSummary' ] )->getMock();
 		$module->method( 'getDefinitionSummary' )->willReturn( [ 'a' => 'summary' ] );
 
-		$this->setExpectedException( LogicException::class, 'must call parent' );
+		$this->expectException( LogicException::class );
+		$this->expectExceptionMessage( 'must call parent' );
 		$module->getVersionHash( $context );
 	}
 
@@ -91,8 +92,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		] );
 		$this->assertEquals(
 			'mw.log.error(' .
-				'"JavaScript parse error: Parse error: Unexpected token; ' .
-				'token } expected in file \'input\' on line 3"' .
+				'"JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
+				'Parse error: Unexpected token; token } expected in file \'input\' on line 3"' .
 			');',
 			$module->getScript( $context ),
 			'Replace invalid syntax with error logging'
@@ -145,7 +146,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideBuildContentScripts
 	 * @covers ResourceLoaderModule::buildContent
 	 */
-	public function testBuildContentScripts( $raw, $build, $message = null ) {
+	public function testBuildContentScripts( $raw, $build, $message = '' ) {
 		$context = $this->getResourceLoaderContext();
 		$module = new ResourceLoaderTestModule( [
 			'script' => $raw

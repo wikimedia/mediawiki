@@ -27,12 +27,12 @@
 /**
  * MediaWiki default table style diff formatter
  * @todo document
- * @private
+ * @newable
  * @ingroup DifferenceEngine
  */
 class TableDiffFormatter extends DiffFormatter {
 
-	function __construct() {
+	public function __construct() {
 		$this->leadingContextLines = 2;
 		$this->trailingContextLines = 2;
 	}

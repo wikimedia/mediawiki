@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -37,6 +40,8 @@ class UserRightsProxy {
 	private $id;
 	/** @var array */
 	private $newOptions;
+	/** @var UserGroupManager */
+	private $userGroupManager;
 
 	/**
 	 * @see newFromId()
@@ -52,6 +57,9 @@ class UserRightsProxy {
 		$this->name = $name;
 		$this->id = intval( $id );
 		$this->newOptions = [];
+		$this->userGroupManager = MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( $dbDomain );
 	}
 
 	/**
@@ -196,7 +204,7 @@ class UserRightsProxy {
 	 * Replaces User::getUserGroups()
 	 * @return array
 	 */
-	function getGroups() {
+	public function getGroups() {
 		return array_keys( self::getGroupMemberships() );
 	}
 
@@ -206,8 +214,13 @@ class UserRightsProxy {
 	 * @return array
 	 * @since 1.29
 	 */
-	function getGroupMemberships() {
-		return UserGroupMembership::getMembershipsForUser( $this->id, $this->db );
+	public function getGroupMemberships() {
+		// TODO: We are creating an artificial UserIdentity to pass on to the user group manager.
+		// After all the relevant UserGroupMemberships methods are ported into UserGroupManager,
+		// the usages of this class will be changed into usages of the UserGroupManager,
+		// thus the need of this class and the need of this artificial UserIdentityValue will parish.
+		$user = new UserIdentityValue( $this->getId(), $this->getName(), 0 );
+		return $this->userGroupManager->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
 	}
 
 	/**
@@ -217,13 +230,14 @@ class UserRightsProxy {
 	 * @param string|null $expiry
 	 * @return bool
 	 */
-	function addGroup( $group, $expiry = null ) {
-		if ( $expiry ) {
-			$expiry = wfTimestamp( TS_MW, $expiry );
-		}
-
-		$ugm = new UserGroupMembership( $this->id, $group, $expiry );
-		return $ugm->insert( true, $this->db );
+	public function addGroup( $group, $expiry = null ) {
+		return $this->userGroupManager->addUserToGroup(
+			// TODO: Artificial UserIdentity just for passing the id and name.
+			// see comment in getGroupMemberships.
+			new UserIdentityValue( $this->getId(), $this->getName(), 0 ),
+			$group,
+			$expiry
+		);
 	}
 
 	/**
@@ -232,12 +246,13 @@ class UserRightsProxy {
 	 * @param string $group
 	 * @return bool
 	 */
-	function removeGroup( $group ) {
-		$ugm = UserGroupMembership::getMembership( $this->id, $group, $this->db );
-		if ( !$ugm ) {
-			return false;
-		}
-		return $ugm->delete( $this->db );
+	public function removeGroup( $group ) {
+		return $this->userGroupManager->removeUserFromGroup(
+			// TODO: Artificial UserIdentity just for passing the id and name.
+			// see comment in getGroupMemberships.
+			new UserIdentityValue( $this->getId(), $this->getName(), 0 ),
+			$group
+		);
 	}
 
 	/**
@@ -258,9 +273,11 @@ class UserRightsProxy {
 				'up_value' => $value,
 			];
 		}
-		$this->db->replace( 'user_properties',
+		$this->db->replace(
+			'user_properties',
 			[ [ 'up_user', 'up_property' ] ],
-			$rows, __METHOD__
+			$rows,
+			__METHOD__
 		);
 		$this->invalidateCache();
 	}
@@ -268,7 +285,7 @@ class UserRightsProxy {
 	/**
 	 * Replaces User::touchUser()
 	 */
-	function invalidateCache() {
+	public function invalidateCache() {
 		$this->db->update(
 			'user',
 			[ 'user_touched' => $this->db->timestamp() ],

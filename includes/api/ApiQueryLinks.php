@@ -27,8 +27,8 @@
  */
 class ApiQueryLinks extends ApiQueryGeneratorBase {
 
-	const LINKS = 'links';
-	const TEMPLATES = 'templates';
+	private const LINKS = 'links';
+	private const TEMPLATES = 'templates';
 
 	private $table, $prefix, $titlesParam, $helpUrl;
 
@@ -66,7 +66,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
@@ -113,7 +113,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -152,7 +152,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'pl' );
+
 			$count = 0;
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {

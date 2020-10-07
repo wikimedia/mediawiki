@@ -20,10 +20,10 @@
  * @file
  * @ingroup JobQueue
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * Job to update link tables for pages
@@ -40,11 +40,11 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  */
 class RefreshLinksJob extends Job {
 	/** @var int Lag safety margin when comparing root job times to last-refresh times */
-	const NORMAL_MAX_LAG = 10;
+	private const NORMAL_MAX_LAG = 10;
 	/** @var int How many seconds to wait for replica DBs to catch up */
-	const LAG_WAIT_TIMEOUT = 15;
+	private const LAG_WAIT_TIMEOUT = 15;
 
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// Avoid the overhead of de-duplication when it would be pointless
 		$this->removeDuplicates = (
@@ -84,7 +84,7 @@ class RefreshLinksJob extends Job {
 		return $job;
 	}
 
-	function run() {
+	public function run() {
 		$ok = true;
 
 		// Job to update all (or a range of) backlink pages for a page

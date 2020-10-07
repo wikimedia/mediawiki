@@ -1,0 +1,16 @@
+# Upstream code
+/resources/lib/
+/resources/src/jquery.tipsy/
+/resources/src/mediawiki.libs.jpegmeta/
+# Skip function
+/resources/src/skip-Promise.js
+
+# Build tooling
+/docs/
+/vendor/
+/tests/coverage/
+/tests/phpunit/data/registration/duplicate_keys.json
+
+# Nested projects
+/extensions/
+/skins/

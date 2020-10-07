@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"CERminator",
-			"Palapa",
 			"Emir Mujadzic",
+			"Palapa",
 			"Semso98",
 			"Srdjan m"
 		]
@@ -35,7 +35,6 @@
 	"config-page-install": "Instaliraj",
 	"config-page-complete": "Završeno!",
 	"config-page-restart": "Ponovno pokretanje instalacije",
-	"config-page-readme": "Pročitaj me",
 	"config-page-releasenotes": "Napomene o izdanju",
 	"config-page-copying": "Kopiranje",
 	"config-page-upgradedoc": "Nadogradnja",
@@ -46,7 +45,6 @@
 	"config-env-good": "Okruženje je provjereno.\nMožete instalirati MediaWiki.",
 	"config-env-bad": "Okruženje je provjereno.\nNe možete instalirati MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
-	"config-env-hhvm": "HHVM $1 je instaliran.",
 	"config-no-db": "Ne mogu pronaći pogodan upravljački program za bazu podataka! Morate ga instalirati za PHP-bazu.\n{{PLURAL:$2|Podržana je sljedeća vrsta|Podržane su sljedeće vrste}} baze podataka: $1.\n\nAko se sami kompajlirali PHP, omogućite klijent baze podataka u postavkama koristeći, naprimjer, <code>./configure --with-mysqli</code>.\nAko ste instalirali PHP iz paketa za Debian ili Ubuntu, onda također morate instalirati, naprimjer, paket <code>php-mysql</code>.",
 	"config-memory-raised": "<code>memory_limit</code> za PHP iznosi $1, povišen na $2.",
 	"config-memory-bad": "<strong>Upozorenje:</strong> <code>memory_limit</code> za PHP iznosi $1.\nOvo je vjerovatno premalo.\nInstalacija možda neće uspjeti!",

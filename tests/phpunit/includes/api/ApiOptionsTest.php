@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @group API
  * @group Database
@@ -9,7 +11,7 @@
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
 
-	/** @var PHPUnit_Framework_MockObject_MockObject */
+	/** @var MockObject */
 	private $mUserMock;
 	/** @var ApiOptions */
 	private $mTested;
@@ -19,7 +21,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private static $Success = [ 'options' => 'success' ];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mUserMock = $this->getMockBuilder( User::class )
@@ -74,7 +76,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'testradio' => 'option1',
 		] );
 		// Workaround for static caching in User::getDefaultOptions()
-		$this->setContentLang( Language::factory( 'qqq' ) );
+		$this->setContentLang( 'qqq' );
 	}
 
 	public function hookGetPreferences( $user, &$preferences ) {
@@ -170,12 +172,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		return $this->mTested->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testNoToken() {
 		$request = $this->getSampleRequest( [ 'token' => null ] );
 
+		$this->expectException( ApiUsageException::class );
 		$this->executeQuery( $request );
 	}
 

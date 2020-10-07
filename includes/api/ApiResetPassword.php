@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * Reset password, with AuthManager
@@ -101,6 +102,7 @@ class ApiResetPassword extends ApiBase {
 		$ret = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'email' => [
 				ApiBase::PARAM_TYPE => 'string',

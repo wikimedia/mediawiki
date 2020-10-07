@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Les Meloures",
 			"Robby",
-			"Soued031",
-			"Les Meloures"
+			"Soued031"
 		]
 	},
 	"exif-imagewidth": "Breet",
@@ -167,8 +167,8 @@
 	"exif-originaldocumentid": "Identifikatiounsnummer vum Original-Dokument",
 	"exif-licenseurl": "URL vum Copyright (Lizenz)",
 	"exif-morepermissionsurl": "Alternativ Lizenzinformatiounen",
-	"exif-attributionurl": "Wann dëst Wierk weiderbenotzt gëtt, da linkt w.e.g. op",
-	"exif-preferredattributionname": "Wann dëst Wierk weiderbenotzt gëtt, da nennt w.e.g.",
+	"exif-attributionurl": "Wann dëst Wierk weiderbenotzt gëtt, da linkt wgl. op",
+	"exif-preferredattributionname": "Wann dëst Wierk weiderbenotzt gëtt, da nennt wgl.",
 	"exif-pngfilecomment": "Bemierkung zum PNG-Fichier",
 	"exif-disclaimer": "Limitatioun vun der Responsabilitéit",
 	"exif-contentwarning": "Warnung iwwer den Inhalt",

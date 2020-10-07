@@ -1,14 +1,17 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
+ * TODO: refactor encodeJsVar() tests to be one method with a provider
  * @group Xml
  */
-class XmlTest extends MediaWikiTestCase {
+class XmlTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
-		$langObj = Language::factory( 'en' );
+		$langObj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$langObj->setNamespaces( [
 			-2 => 'Media',
 			-1 => 'Special',
@@ -34,11 +37,6 @@ class XmlTest extends MediaWikiTestCase {
 		] );
 	}
 
-	protected function tearDown() {
-		Language::factory( 'en' )->resetNamespaces();
-		parent::tearDown();
-	}
-
 	/**
 	 * @covers Xml::expandAttributes
 	 */
@@ -55,7 +53,7 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::expandAttributes
 	 */
 	public function testExpandAttributesException() {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		Xml::expandAttributes( 'string' );
 	}
 
@@ -414,7 +412,7 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarInt() {
-		$this->assertEquals(
+		$this->assertSame(
 			'123456',
 			Xml::encodeJsVar( 123456 ),
 			'encodeJsVar() with int'
@@ -425,9 +423,9 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarFloat() {
-		$this->assertEquals(
-			'1.23456',
-			Xml::encodeJsVar( 1.23456 ),
+		$this->assertSame(
+			'1.5',
+			Xml::encodeJsVar( 1.5 ),
 			'encodeJsVar() with float'
 		);
 	}

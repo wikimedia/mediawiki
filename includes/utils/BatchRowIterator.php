@@ -3,11 +3,6 @@
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Allows iterating a large number of rows in batches transparently.
- * By default when iterated over returns the full query result as an
- * array of rows.  Can be wrapped in RecursiveIteratorIterator to
- * collapse those arrays into a single stream of rows queried in batches.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,57 +21,65 @@ use Wikimedia\Rdbms\IDatabase;
  * @file
  * @ingroup Maintenance
  */
+
+/**
+ * Allows iterating a large number of rows in batches transparently.
+ * By default when iterated over returns the full query result as an
+ * array of rows.  Can be wrapped in RecursiveIteratorIterator to
+ * collapse those arrays into a single stream of rows queried in batches.
+ *
+ * @newable
+ */
 class BatchRowIterator implements RecursiveIterator {
 
 	/**
-	 * @var IDatabase $db The database to read from
+	 * @var IDatabase The database to read from
 	 */
 	protected $db;
 
 	/**
-	 * @var string|array $table The name or names of the table to read from
+	 * @var string|array The name or names of the table to read from
 	 */
 	protected $table;
 
 	/**
-	 * @var array $primaryKey The name of the primary key(s)
+	 * @var array The name of the primary key(s)
 	 */
 	protected $primaryKey;
 
 	/**
-	 * @var int $batchSize The number of rows to fetch per iteration
+	 * @var int The number of rows to fetch per iteration
 	 */
 	protected $batchSize;
 
 	/**
-	 * @var array $conditions Array of strings containing SQL conditions
-	 *  to add to the query
+	 * @var array Array of strings containing SQL conditions to add to the query
 	 */
 	protected $conditions = [];
 
 	/**
-	 * @var array $joinConditions
+	 * @var array
 	 */
 	protected $joinConditions = [];
 
 	/**
-	 * @var array $fetchColumns List of column names to select from the
-	 *  table suitable for use with IDatabase::select()
+	 * @var array List of column names to select from the table suitable for use
+	 *  with IDatabase::select()
 	 */
 	protected $fetchColumns;
 
 	/**
-	 * @var string $orderBy SQL Order by condition generated from $this->primaryKey
+	 * @var string SQL Order by condition generated from $this->primaryKey
 	 */
 	protected $orderBy;
 
 	/**
-	 * @var array $current The current iterator value
+	 * @var array The current iterator value
 	 */
 	private $current = [];
 
 	/**
-	 * @var int key 0-indexed number of pages fetched since self::reset()
+	 * @var int 0-indexed number of pages fetched since self::reset()
 	 */
 	private $key;
 
@@ -86,6 +89,8 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $options = [];
 
 	/**
+	 * @stable to call
+	 *
 	 * @param IDatabase $db The database to read from
 	 * @param string|array $table The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns

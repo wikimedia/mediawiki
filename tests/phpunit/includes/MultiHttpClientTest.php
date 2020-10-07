@@ -1,25 +1,37 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * The urls herein are not actually called, because we mock the return results.
  *
  * @covers MultiHttpClient
  */
-class MultiHttpClientTest extends MediaWikiTestCase {
+class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
+	/** @var MultiHttpClient|MockObject */
 	protected $client;
 
-	protected function setUp() {
-		parent::setUp();
+	/** @return MultiHttpClient|MockObject */
+	private function createClient( $options = [] ) {
 		$client = $this->getMockBuilder( MultiHttpClient::class )
-			->setConstructorArgs( [ [] ] )
+			->setConstructorArgs( [ $options ] )
 			->setMethods( [ 'isCurlEnabled' ] )->getMock();
 		$client->method( 'isCurlEnabled' )->willReturn( false );
-		$this->client = $client;
+		return $client;
+	}
+
+	protected function setUp() : void {
+		parent::setUp();
+		$this->client = $this->createClient( [] );
 	}
 
 	private function getHttpRequest( $statusValue, $statusCode, $headers = [] ) {
+		$options = [
+			'timeout' => 1,
+			'connectTimeout' => 1
+		];
 		$httpRequest = $this->getMockBuilder( PhpHttpRequest::class )
-			->setConstructorArgs( [ '', [] ] )
+			->setConstructorArgs( [ '', $options ] )
 			->getMock();
 		$httpRequest->expects( $this->any() )
 			->method( 'execute' )
@@ -35,6 +47,7 @@ class MultiHttpClientTest extends MediaWikiTestCase {
 
 	private function mockHttpRequestFactory( $httpRequest ) {
 		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
+			->disableOriginalConstructor()
 			->getMock();
 		$factory->expects( $this->any() )
 			->method( 'create' )
@@ -162,5 +175,104 @@ class MultiHttpClientTest extends MediaWikiTestCase {
 			$this->assertArrayHasKey( $name, $rhdrs );
 			$this->assertEquals( $value, $rhdrs[$name] );
 		}
+	}
+
+	public static function provideMultiHttpTimeout() {
+		return [
+			'default 10/30' => [
+				[],
+				[],
+				10,
+				30
+			],
+			'constructor override' => [
+				[ 'connTimeout' => 2, 'reqTimeout' => 3 ],
+				[],
+				2,
+				3
+			],
+			'run override' => [
+				[],
+				[ 'connTimeout' => 2, 'reqTimeout' => 3 ],
+				2,
+				3
+			],
+			'constructor max option limits default' => [
+				[ 'maxConnTimeout' => 2, 'maxReqTimeout' => 3 ],
+				[],
+				2,
+				3
+			],
+			'constructor max option limits regular constructor option' => [
+				[
+					'maxConnTimeout' => 2,
+					'maxReqTimeout' => 3,
+					'connTimeout' => 100,
+					'reqTimeout' => 100
+				],
+				[],
+				2,
+				3
+			],
+			'constructor max option greater than regular constructor option' => [
+				[
+					'maxConnTimeout' => 2,
+					'maxReqTimeout' => 3,
+					'connTimeout' => 1,
+					'reqTimeout' => 1
+				],
+				[],
+				1,
+				1
+			],
+			'constructor max option limits run option' => [
+				[
+					'maxConnTimeout' => 2,
+					'maxReqTimeout' => 3,
+				],
+				[
+					'connTimeout' => 100,
+					'reqTimeout' => 100
+				],
+				2,
+				3
+			],
+		];
+	}
+
+	/**
+	 * Test of timeout parameter handling
+	 * @dataProvider provideMultiHttpTimeout
+	 */
+	public function testMultiHttpTimeout( $createOptions, $runOptions,
+		$expectedConnTimeout, $expectedReqTimeout
+	) {
+		$url = 'http://www.example.test';
+		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200 );
+		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$factory->expects( $this->any() )
+			->method( 'create' )
+			->with(
+				$url,
+				$this->callback(
+					function ( $options ) use ( $expectedReqTimeout, $expectedConnTimeout ) {
+						return $options['timeout'] === $expectedReqTimeout
+							&& $options['connectTimeout'] === $expectedConnTimeout;
+					}
+				)
+			)
+			->willReturn( $httpRequest );
+		$this->setService( 'HttpRequestFactory', $factory );
+
+		$client = $this->createClient( $createOptions );
+
+		$client->run(
+			[ 'method' => 'GET', 'url' => $url ],
+			$runOptions
+		);
+
+		$this->assertTrue( true );
 	}
 }

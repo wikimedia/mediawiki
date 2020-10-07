@@ -3,7 +3,7 @@
 /**
  * @covers ChangesListBooleanFilter
  */
-class ChangesListBooleanFilterTest extends MediaWikiTestCase {
+class ChangesListBooleanFilterTest extends MediaWikiIntegrationTestCase {
 	public function testGetJsData() {
 		$group = new ChangesListBooleanFilterGroup( [
 			'name' => 'group',
@@ -126,8 +126,8 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$foo->isFeatureAvailableOnStructuredUi(),
 			'Same filter appears on both'
 		);
@@ -141,8 +141,7 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$bar->isFeatureAvailableOnStructuredUi(),
 			'Only on unstructured UI'
 		);
@@ -156,8 +155,8 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$baz->isFeatureAvailableOnStructuredUi(),
 			'Legacy filter does not appear directly in new UI, but equivalent ' .
 				'does and is marked with isReplacedInStructuredUi'

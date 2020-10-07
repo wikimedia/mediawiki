@@ -20,16 +20,16 @@
 
 namespace MediaWiki\Tests\EditPage;
 
-use Language;
 use MediaWiki\EditPage\TextboxBuilder;
-use MediaWikiTestCase;
+use MediaWiki\MediaWikiServices;
+use MediaWikiIntegrationTestCase;
 use Title;
 use User;
 
 /**
  * @covers \MediaWiki\EditPage\TextboxBuilder
  */
-class TextboxBuilderTest extends MediaWikiTestCase {
+class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 
 	public function provideAddNewLineAtEnd() {
 		return [
@@ -55,7 +55,8 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 			->getMock();
 		$title->expects( $this->any() )
 			->method( 'getPageLanguage' )
-			->will( $this->returnValue( Language::factory( 'en' ) ) );
+			->will( $this->returnValue(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
 
 		$builder = new TextboxBuilder();
 		$attribs = $builder->buildTextboxAttribs(
@@ -65,7 +66,7 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 			$title
 		);
 
-		$this->assertInternalType( 'array', $attribs );
+		$this->assertIsArray( $attribs );
 		// custom attrib showed up
 		$this->assertArrayHasKey( 'data-foo', $attribs );
 		// classes merged properly (string)

@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Das Schäfchen",
+			"Doc Taxon",
 			"Geitost",
 			"Laximilian scoken",
 			"Mucalexx",
 			"Revolus",
 			"Wdwd",
-			"✓",
-			"Das Schäfchen"
+			"✓"
 		]
 	},
 	"january": "Jänner",
@@ -16,5 +17,6 @@
 	"january-gen": "Jänners",
 	"february-gen": "Febers",
 	"jan": "Jän",
-	"linksearch-text": "Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter, wie beispielsweise <code>*.beispiel.at</code>, benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“, angegeben werden. <br />{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: $1 (Standard ist http, falls kein Protokoll angegeben ist.)"
+	"linksearch-text": "Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter, wie beispielsweise <code>*.beispiel.at</code>, benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“, angegeben werden. <br />{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: $1 (Standard ist http, falls kein Protokoll angegeben ist.)",
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>."
 }

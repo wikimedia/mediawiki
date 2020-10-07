@@ -46,7 +46,7 @@ OO.inheritClass( ChangesLimitAndDateButtonWidget, OO.ui.Widget );
  * Respond to model initialize event
  */
 ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
-	var changesLimitPopupWidget, selectedItem, currentValue, datePopupWidget,
+	var selectedItem, currentValue, datePopupWidget,
 		displayGroupModel = this.model.getGroup( 'display' );
 
 	this.limitGroupModel = this.model.getGroup( 'limit' );
@@ -59,7 +59,7 @@ ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
 	// model is initialized.
 	// Note: This will be fixed soon!
 	if ( this.limitGroupModel && this.daysGroupModel ) {
-		changesLimitPopupWidget = new ChangesLimitPopupWidget(
+		this.changesLimitPopupWidget = new ChangesLimitPopupWidget(
 			this.limitGroupModel,
 			this.groupByPageItemModel
 		);
@@ -88,17 +88,23 @@ ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
 				$autoCloseIgnore: this.$overlay,
 				$content: $( '<div>' ).append(
 					// TODO: Merge ChangesLimitPopupWidget with DatePopupWidget into one common widget
-					changesLimitPopupWidget.$element,
+					this.changesLimitPopupWidget.$element,
 					datePopupWidget.$element
 				)
 			}
 		} );
+
+		this.button.popup.connect( this, { ready: 'onPopupInitialized' } );
+		this.button.popup.connect( this, { closing: 'onPopupClosing' } );
+		this.button.popup.$element.attr( 'aria-label',
+			mw.msg( 'rcfilters-limit-and-date-popup-dialog-aria-label' )
+		);
 		this.updateButtonLabel();
 
 		// Events
 		this.limitGroupModel.connect( this, { update: 'updateButtonLabel' } );
 		this.daysGroupModel.connect( this, { update: 'updateButtonLabel' } );
-		changesLimitPopupWidget.connect( this, {
+		this.changesLimitPopupWidget.connect( this, {
 			limit: 'onPopupLimit',
 			groupByPage: 'onPopupGroupByPage'
 		} );
@@ -106,6 +112,22 @@ ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
 
 		this.$element.append( this.button.$element );
 	}
+};
+
+/**
+ * Respond to popup initialized event
+ *
+ */
+ChangesLimitAndDateButtonWidget.prototype.onPopupInitialized = function () {
+	this.changesLimitPopupWidget.$element.find( '*[tabindex]' ).first().trigger( 'focus' );
+};
+
+/**
+ * Respond to popup closing event
+ *
+ */
+ChangesLimitAndDateButtonWidget.prototype.onPopupClosing = function () {
+	this.button.$button.trigger( 'focus' );
 };
 
 /**
@@ -152,15 +174,17 @@ ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
 	var message,
 		limit = this.limitGroupModel.findSelectedItems()[ 0 ],
 		label = limit && limit.getLabel(),
-		days = this.daysGroupModel.findSelectedItems()[ 0 ],
-		daysParamName = Number( days.getParamName() ) < 1 ?
-			'rcfilters-days-show-hours' :
-			'rcfilters-days-show-days';
+		days = this.daysGroupModel.findSelectedItems()[ 0 ];
 
 	// Update the label
 	if ( label && days ) {
 		message = mw.msg( 'rcfilters-limit-and-date-label', label,
-			mw.msg( daysParamName, days.getLabel() )
+			mw.msg(
+				Number( days.getParamName() ) < 1 ?
+					'rcfilters-days-show-hours' :
+					'rcfilters-days-show-days',
+				days.getLabel()
+			)
 		);
 		this.button.setLabel( message );
 	}

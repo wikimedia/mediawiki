@@ -100,7 +100,7 @@ more stuff
 			}
 		}
 
-		$page->doDeleteArticle( '' );
+		$page->doDeleteArticleReal( '', $this->getTestSysop()->getUser() );
 	}
 
 	public static function dataGetSection() {
@@ -373,7 +373,7 @@ just a test"
 		$redirectTarget = null;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'InternalParseBeforeLinks' => [
-				function ( &$parser, &$text, &$stripState ) use ( &$wikitext, &$redirectTarget ) {
+				function ( Parser $parser, $text, $stripState ) use ( &$wikitext, &$redirectTarget ) {
 					$wikitext = $text;
 					$redirectTarget = $parser->getOptions()->getRedirectTarget();
 				}

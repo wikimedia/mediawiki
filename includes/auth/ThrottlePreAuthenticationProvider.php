@@ -105,8 +105,8 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 
 		$ip = $this->manager->getRequest()->getIP();
 
-		if ( !\Hooks::run( 'ExemptFromAccountCreationThrottle', [ $ip ] ) ) {
-			$this->logger->debug( __METHOD__ . ": a hook allowed account creation w/o throttle\n" );
+		if ( !$this->getHookRunner()->onExemptFromAccountCreationThrottle( $ip ) ) {
+			$this->logger->debug( __METHOD__ . ": a hook allowed account creation w/o throttle" );
 			return \StatusValue::newGood();
 		}
 

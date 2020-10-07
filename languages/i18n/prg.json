@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
 			"Kaganer",
+			"Macofe",
 			"Nertiks",
 			"Peteris",
-			"아라",
-			"Macofe",
-			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā",
@@ -231,7 +232,7 @@
 	"nospecialpagetext": "<strong>Ni ast stawīdan speciālin pāusan.</strong>\n\nListi stēisan preiēiminan speciālin pāusan aupalla si [[Special:SpecialPages|stwi]].",
 	"error": "Blānda",
 	"databaseerror": "Dātanbazis blānda",
-	"laggedslavemode": "Nōda: Šin pāusan mazzi ni turritun ēn sen ukanāunaisins ernaunīnsenins.",
+	"laggedreplicamode": "Nōda: Šin pāusan mazzi ni turritun ēn sen ukanāunaisins ernaunīnsenins.",
 	"readonly": "Dātanbazi ast auklaūtan",
 	"enterlockreason": "Dāis brewīnslin stesse dātanbazis auklaūsenin be enkaīnintan etklaūsenes kērdan",
 	"readonlytext": "Dātanbazi ast tēntiskai izklaūtan - ni mazīngi enwestun nāunans neggi kitawīdintun ekzistīntins infōrmaciōnins. Druwīminai, brewīnsli ast perwaldīsnas dīlasenei. Kaddan tenēi wīrst wanginnusis si, dātanbazi wīrst dīlawusi nōrmalai.\n\nPerwaldītajs, kas ast izklaūwuns dātanbazin, ast dāwuns ripīntin eīskinsnan: $1",
@@ -416,7 +417,6 @@
 	"undo-failure": "Ni mazīngi etwārtai wartīntun redigīsenin, kōnfliktas sen persirzdausnas wersiōnins paggan.",
 	"undo-norev": "Redigīsenis ni mazzi būtwei etwārtai wartīntan, beggi ni ekzistijja anga pastāi āupausintan.",
 	"undo-summary": "Etwārtai wartīnsna stēisan wersiōnin $1 teīktan pra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusiōni]])",
-	"cantcreateaccount-text": "Rekkenas teīksenis iz šan IP adressin (\"$1\") pastāi drēuditan pra [[User:$3|$3]].\n\nBrewīnsli dātan pra $3 ast \"$2\"",
 	"viewpagelogs": "Wīdais šisse pāusas regīsterins",
 	"nohistory": "Ni ast redigīsnas istōrija per šin pāusan.",
 	"currentrev": "Bigantī wersiōni",
@@ -437,7 +437,7 @@
 	"histfirst": "Ezze pagaūseņu",
 	"histlast": "Ezze wangai",
 	"historysize": "({{PLURAL:$1|1 bāitan|$1 bāitai}})",
-	"historyempty": "(pāustan)",
+	"historyempty": "pāustan",
 	"history-feed-title": "Wersiōnin istōrija",
 	"history-feed-description": "Wersiōnin istōrija šisses wiki pāusan",
 	"history-feed-item-nocomment": "$1 $2",

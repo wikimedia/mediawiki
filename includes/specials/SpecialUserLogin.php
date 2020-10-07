@@ -124,7 +124,8 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 
 		# Run any hooks; display injected HTML if any, else redirect
 		$injected_html = '';
-		Hooks::run( 'UserLoginComplete', [ &$user, &$injected_html, $direct ] );
+		$this->getHookRunner()->onUserLoginComplete(
+			$user, $injected_html, $direct );
 
 		if ( $injected_html !== '' || $extraMessages ) {
 			$this->showSuccessPage( 'success', $this->msg( 'loginsuccesstitle' ),

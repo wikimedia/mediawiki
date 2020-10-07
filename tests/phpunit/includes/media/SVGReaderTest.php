@@ -32,7 +32,7 @@ class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	function assertMetadata( $infile, $expected ) {
+	private function assertMetadata( $infile, $expected ) {
 		try {
 			$svgReader = new SVGReader( $infile );
 			$data = $svgReader->getMetadata();

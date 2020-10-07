@@ -34,7 +34,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	 */
 	private $actualStore;
 
-	const DB_READONLY_ERROR = 'The watchlist is currently readonly.';
+	private const DB_READONLY_ERROR = 'The watchlist is currently readonly.';
 
 	/**
 	 * Initialy set WatchedItemStore that will be used in cases where writing is not needed.
@@ -89,6 +89,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		return $this->actualStore->isWatched( $user, $target );
 	}
 
+	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool {
+		return $this->actualStore->isTempWatched( $user, $target );
+	}
+
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ) {
 		return $this->actualStore->getNotificationTimestampsBatch( $user, $targets );
 	}
@@ -105,11 +109,15 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function addWatch( UserIdentity $user, LinkTarget $target ) {
+	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function addWatchBatchForUser( UserIdentity $user, array $targets ) {
+	public function addWatchBatchForUser(
+		UserIdentity $user,
+		array $targets,
+		?string $expiry = null
+	) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
@@ -131,7 +139,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function resetAllNotificationTimestampsForUser( UserIdentity $user ) {
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
@@ -148,7 +156,15 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user ) {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
+	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
@@ -160,5 +176,13 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		$timestamp, UserIdentity $user, LinkTarget $target
 	) {
 		return wfTimestampOrNull( TS_MW, $timestamp );
+	}
+
+	public function countExpired(): int {
+		return $this->actualStore->countExpired();
+	}
+
+	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 }

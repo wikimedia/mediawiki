@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special page for listing the articles with the fewest revisions.
@@ -30,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * @author Martin Drashkov
  */
 class SpecialFewestRevisions extends QueryPage {
-	function __construct( $name = 'Fewestrevisions' ) {
+	public function __construct( $name = 'Fewestrevisions' ) {
 		parent::__construct( $name );
 	}
 
@@ -38,7 +40,7 @@ class SpecialFewestRevisions extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -62,7 +64,7 @@ class SpecialFewestRevisions extends QueryPage {
 		];
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -71,7 +73,7 @@ class SpecialFewestRevisions extends QueryPage {
 	 * @param object $result Database row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$nt ) {
 			return Html::element(
@@ -85,8 +87,8 @@ class SpecialFewestRevisions extends QueryPage {
 			);
 		}
 		$linkRenderer = $this->getLinkRenderer();
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->
-			convert( htmlspecialchars( $nt->getPrefixedText() ) );
+
+		$text = $this->getLanguageConverter()->convertHtml( $nt->getPrefixedText() );
 		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();
@@ -100,6 +102,16 @@ class SpecialFewestRevisions extends QueryPage {
 		) . $redirect;
 
 		return $this->getLanguage()->specialList( $plink, $nlink );
+	}
+
+	/**
+	 * Cache page existence for performance
+	 *
+	 * @param IDatabase $db
+	 * @param IResultWrapper $res
+	 */
+	protected function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
 	}
 
 	protected function getGroupName() {

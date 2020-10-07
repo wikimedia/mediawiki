@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -100,6 +101,7 @@ class ImportTextFiles extends Maintenance {
 		$failCount = 0;
 		$skipCount = 0;
 
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		foreach ( $files as $file => $text ) {
 			$pageName = $prefix . pathinfo( $file, PATHINFO_FILENAME );
 			$timestamp = $useTimestamp ? wfTimestamp( TS_UNIX, filemtime( $file ) ) : wfTimestampNow();
@@ -114,7 +116,7 @@ class ImportTextFiles extends Maintenance {
 
 			$exists = $title->exists();
 			$oldRevID = $title->getLatestRevID();
-			$oldRev = $oldRevID ? Revision::newFromId( $oldRevID ) : null;
+			$oldRevRecord = $oldRevID ? $revLookup->getRevisionById( $oldRevID ) : null;
 			$actualTitle = $title->getPrefixedText();
 
 			if ( $exists ) {
@@ -138,7 +140,10 @@ class ImportTextFiles extends Maintenance {
 			$rev->setComment( $summary );
 			$rev->setTimestamp( $timestamp );
 
-			if ( $exists && $overwrite && $rev->getContent()->equals( $oldRev->getContent() ) ) {
+			if ( $exists &&
+				$overwrite &&
+				$rev->getContent()->equals( $oldRevRecord->getContent( SlotRecord::MAIN ) )
+			) {
 				$this->output( "File for title $actualTitle contains no changes from the current " .
 					"revision. Skipping.\n" );
 				$skipCount++;
@@ -162,8 +167,8 @@ class ImportTextFiles extends Maintenance {
 			// Create the RecentChanges entry if necessary
 			if ( $rc && $status ) {
 				if ( $exists ) {
-					if ( is_object( $oldRev ) ) {
-						$oldContent = $oldRev->getContent();
+					if ( is_object( $oldRevRecord ) ) {
+						$oldContent = $oldRevRecord->getContent( SlotRecord::MAIN );
 						RecentChange::notifyEdit(
 							$timestamp,
 							$title,
@@ -171,13 +176,14 @@ class ImportTextFiles extends Maintenance {
 							$user,
 							$summary,
 							$oldRevID,
-							$oldRev->getTimestamp(),
+							$oldRevRecord->getTimestamp(),
 							$bot,
 							'',
-							$oldContent ? $oldContent->getSize() : 0,
-							$rev->getContent()->getSize(),
+							$oldRevRecord->getSize(),
+							$rev->getSize(),
 							$newId,
-							1 /* the pages don't need to be patrolled */
+							// the pages don't need to be patrolled
+							1
 						);
 					}
 				} else {
@@ -189,7 +195,7 @@ class ImportTextFiles extends Maintenance {
 						$summary,
 						$bot,
 						'',
-						$rev->getContent()->getSize(),
+						$rev->getSize(),
 						$newId,
 						1
 					);

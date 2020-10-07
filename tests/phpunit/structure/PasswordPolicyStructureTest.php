@@ -1,6 +1,6 @@
 <?php
 
-class PasswordPolicyStructureTest extends MediaWikiTestCase {
+class PasswordPolicyStructureTest extends MediaWikiIntegrationTestCase {
 
 	public function provideChecks() {
 		global $wgPasswordPolicy;

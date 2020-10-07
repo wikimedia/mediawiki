@@ -1,12 +1,12 @@
 /*!
- * OOjs v3.0.0 optimised for jQuery
+ * OOjs v5.0.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2019 OOjs Team and other contributors.
+ * Copyright 2011-2020 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2019-08-28T15:41:06Z
+ * Date: 2020-05-05T19:28:30Z
  */
 ( function ( global ) {
 
@@ -846,8 +846,7 @@ OO.isPlainObject = $.isPlainObject;
 	 * hard-to-understand code with hidden side-effects and dependencies.
 	 *
 	 * @param {string} event Type of event
-	 * @param {...any} args First in a list of variadic arguments
-	 *  passed to event handler (optional)
+	 * @param {...any} [args] Arguments passed to the event handler
 	 * @return {boolean} Whether the event was handled by at least one listener
 	 */
 	OO.EventEmitter.prototype.emit = function ( event ) {
@@ -905,8 +904,7 @@ OO.isPlainObject = $.isPlainObject;
 	 * hard-to-understand code with hidden side-effects and dependencies.
 	 *
 	 * @param {string} event Type of event
-	 * @param {...any} args First in a list of variadic arguments
-	 *  passed to event handler (optional)
+	 * @param {...any} [args] Arguments passed to the event handler
 	 * @return {boolean} Whether the event was handled by at least one listener
 	 */
 	OO.EventEmitter.prototype.emitThrow = function ( event ) {
@@ -996,7 +994,7 @@ OO.isPlainObject = $.isPlainObject;
 	 *  List of event bindings keyed by event name. Values can be either method names, functions or
 	 *  arrays containing a method name.
 	 *  NOTE: To allow matching call sites with connect(), array values are allowed to contain the
-	 *  parameters as well, but only the method name is used to find bindings. Tt is discouraged to
+	 *  parameters as well, but only the method name is used to find bindings. It is discouraged to
 	 *  have multiple bindings for the same event to the same listener, but if used (and only the
 	 *  parameters vary), disconnecting one variation of (event name, event listener, parameters)
 	 *  will disconnect other variations as well.
@@ -1050,6 +1048,8 @@ OO.isPlainObject = $.isPlainObject;
 		this.items = [];
 		this.aggregateItemEvents = {};
 	};
+
+	OO.initClass( OO.EmitterList );
 
 	/* Events */
 

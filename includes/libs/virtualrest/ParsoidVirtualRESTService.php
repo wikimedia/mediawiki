@@ -47,15 +47,19 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	public function __construct( array $params ) {
 		// for backwards compatibility:
 		if ( isset( $params['URL'] ) ) {
+			wfDeprecatedMsg(
+				'Using all-caps URL parameter to $wgVirtualRestConfig ' .
+				'was deprecated in MediaWiki 1.35', '1.35'
+			);
 			$params['url'] = $params['URL'];
 			unset( $params['URL'] );
 		}
 		// set up defaults and merge them with the given params
+		$defaultURL = wfExpandUrl( wfScript( 'rest' ), PROTO_CANONICAL );
 		$mparams = array_merge( [
 			'name' => 'parsoid',
-			'url' => 'http://localhost:8000/',
-			'prefix' => 'localhost',
-			'domain' => 'localhost',
+			'url' => $defaultURL,
+			'domain' => wfParseUrl( $defaultURL )['host'] ?? 'localhost',
 			'timeout' => null,
 			'forwardCookies' => false,
 			'HTTPProxy' => null,
@@ -68,13 +72,17 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		// and trailing slash if present.  This lets us use
 		// $wgCanonicalServer as a default value, which is very convenient.
 		$mparams['domain'] = preg_replace(
-			'/^(https?:\/\/)?([^\/:]+?)(:\d+)?\/?$/',
-			'$2',
+			'/^((https?:)?\/\/)?([^\/:]+?)(:\d+)?\/?$/',
+			'$3',
 			$mparams['domain']
 		);
 		parent::__construct( $mparams );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $reqs
+	 */
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
 		$result = [];
 		foreach ( $reqs as $key => $req ) {
@@ -104,8 +112,8 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			if ( $reqType !== 'page' && $reqType !== 'transform' ) {
 				throw new Exception( "Request action must be either 'page' or 'transform'" );
 			}
-			if ( $format !== 'html' && $format !== 'wikitext' ) {
-				throw new Exception( "Request format must be either 'html' or 'wt'" );
+			if ( $format !== 'html' && $format !== 'wikitext' && $format !== 'lint' ) {
+				throw new Exception( "Request format must be 'html', 'wt' or 'lint'" );
 			}
 			// replace /local/ with the current domain
 			$req['url'] = preg_replace( '#^local/#', $this->params['domain'] . '/', $req['url'] );
@@ -121,6 +129,10 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			if ( $this->params['forwardCookies'] ) {
 				$req['headers']['Cookie'] = $this->params['forwardCookies'];
 			}
+			// Parsoid/PHP is a MW instance, so it needs the Host header set,
+			// otherwise the server replies with a 404, so apply it unconditionally
+			// to all requests
+			$req['headers']['Host'] = $this->params['domain'];
 			$result[$key] = $req;
 		}
 		return $result;

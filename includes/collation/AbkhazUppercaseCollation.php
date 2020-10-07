@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class AbkhazUppercaseCollation extends CustomUppercaseCollation {
 
 	public function __construct() {
@@ -88,6 +90,6 @@ class AbkhazUppercaseCollation extends CustomUppercaseCollation {
 			'Џь',
 			'ь',
 			'ә',
-		], Language::factory( 'ab' ) );
+		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ab' ) );
 	}
 }

@@ -51,13 +51,13 @@ class RepoGroup {
 	protected $cache;
 
 	/** Maximum number of cache items */
-	const MAX_CACHE_SIZE = 500;
+	private const MAX_CACHE_SIZE = 500;
 
 	/**
 	 * @deprecated since 1.34, use MediaWikiServices::getRepoGroup
 	 * @return RepoGroup
 	 */
-	static function singleton() {
+	public static function singleton() {
 		return MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
@@ -65,7 +65,7 @@ class RepoGroup {
 	 * @deprecated since 1.34, use MediaWikiTestCase::overrideMwServices() or similar. This will
 	 * cause bugs if you don't reset all other services that depend on this one at the same time.
 	 */
-	static function destroySingleton() {
+	public static function destroySingleton() {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 	}
 
@@ -74,7 +74,7 @@ class RepoGroup {
 	 *   tests
 	 * @param RepoGroup $instance
 	 */
-	static function setSingleton( $instance ) {
+	public static function setSingleton( $instance ) {
 		$services = MediaWikiServices::getInstance();
 		$services->disableService( 'RepoGroup' );
 		$services->redefineService( 'RepoGroup',
@@ -95,7 +95,7 @@ class RepoGroup {
 	 *   constructor as the first parameter.
 	 * @param WANObjectCache $wanCache
 	 */
-	function __construct( $localInfo, $foreignInfo, $wanCache ) {
+	public function __construct( $localInfo, $foreignInfo, $wanCache ) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
 		$this->cache = new MapCacheLRU( self::MAX_CACHE_SIZE );
@@ -118,7 +118,7 @@ class RepoGroup {
 	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool,latest?:bool} $options
 	 * @return File|bool False if title is not found
 	 */
-	function findFile( $title, $options = [] ) {
+	public function findFile( $title, $options = [] ) {
 		if ( !is_array( $options ) ) {
 			// MW 1.15 compat
 			$options = [ 'time' => $options ];
@@ -191,7 +191,7 @@ class RepoGroup {
 	 *       All titles are returned as string DB keys and the inner array is associative.
 	 * @return array Map of (file name => File objects) for matches
 	 */
-	function findFiles( array $inputItems, $flags = 0 ) {
+	public function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -226,7 +226,7 @@ class RepoGroup {
 	 * @param Title $title
 	 * @return bool|Title
 	 */
-	function checkRedirect( Title $title ) {
+	public function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -254,7 +254,7 @@ class RepoGroup {
 	 * @param array $options Option array, same as findFile()
 	 * @return File|bool File object or false if it is not found
 	 */
-	function findFileFromKey( $hash, $options = [] ) {
+	public function findFileFromKey( $hash, $options = [] ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -278,7 +278,7 @@ class RepoGroup {
 	 * @param string $hash Base 36 SHA-1 hash
 	 * @return File[]
 	 */
-	function findBySha1( $hash ) {
+	public function findBySha1( $hash ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -298,7 +298,7 @@ class RepoGroup {
 	 * @param array $hashes Base 36 SHA-1 hashes
 	 * @return array Array of array of File objects
 	 */
-	function findBySha1s( array $hashes ) {
+	public function findBySha1s( array $hashes ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -320,7 +320,7 @@ class RepoGroup {
 	 * @param string|int $index
 	 * @return bool|FileRepo
 	 */
-	function getRepo( $index ) {
+	public function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -335,7 +335,7 @@ class RepoGroup {
 	 * @param string $name
 	 * @return FileRepo|bool
 	 */
-	function getRepoByName( $name ) {
+	public function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -354,7 +354,7 @@ class RepoGroup {
 	 *
 	 * @return LocalRepo
 	 */
-	function getLocalRepo() {
+	public function getLocalRepo() {
 		/** @var LocalRepo $repo */
 		$repo = $this->getRepo( 'local' );
 
@@ -369,7 +369,7 @@ class RepoGroup {
 	 * @param array $params Optional additional parameters to pass to the function
 	 * @return bool
 	 */
-	function forEachForeignRepo( $callback, $params = [] ) {
+	public function forEachForeignRepo( $callback, $params = [] ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -386,7 +386,7 @@ class RepoGroup {
 	 * Does the installation have any foreign repos set up?
 	 * @return bool
 	 */
-	function hasForeignRepos() {
+	public function hasForeignRepos() {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -396,7 +396,7 @@ class RepoGroup {
 	/**
 	 * Initialise the $repos array
 	 */
-	function initialiseRepos() {
+	public function initialiseRepos() {
 		if ( $this->reposInitialised ) {
 			return;
 		}
@@ -428,7 +428,7 @@ class RepoGroup {
 	 * @throws MWException
 	 * @return string[] Containing repo, zone and rel
 	 */
-	function splitVirtualUrl( $url ) {
+	private function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
 			throw new MWException( __METHOD__ . ': unknown protocol' );
 		}
@@ -445,7 +445,7 @@ class RepoGroup {
 	 * @param string $fileName
 	 * @return array
 	 */
-	function getFileProps( $fileName ) {
+	public function getFileProps( $fileName ) {
 		if ( FileRepo::isVirtualUrl( $fileName ) ) {
 			list( $repoName, /* $zone */, /* $rel */ ) = $this->splitVirtualUrl( $fileName );
 			if ( $repoName === '' ) {

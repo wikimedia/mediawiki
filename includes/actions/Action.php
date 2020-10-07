@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -35,27 +37,38 @@ use MediaWiki\MediaWikiServices;
  * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
  * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
+ *
+ * @stable to extend
  */
 abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Page on which we're performing the action
 	 * @since 1.17
-	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
+	 * @deprecated since 1.35, use {@link getArticle()} ?? {@link getWikiPage()}. Must be removed.
+	 * @internal
+	 *
+	 * @var WikiPage|Article|ImagePage|CategoryPage|Page
 	 */
 	protected $page;
 
 	/**
+	 * @var Article
+	 * @since 1.35
+	 */
+	private $article;
+
+	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
 	 * @since 1.17
-	 * @var IContextSource $context
+	 * @var IContextSource
 	 */
 	protected $context;
 
 	/**
 	 * The fields used to create the HTMLForm
 	 * @since 1.17
-	 * @var array $fields
+	 * @var array
 	 */
 	protected $fields;
 
@@ -66,7 +79,10 @@ abstract class Action implements MessageLocalizer {
 	 * @param array $overrides
 	 * @return bool|null|string|callable|Action
 	 */
-	final private static function getClass( $action, array $overrides ) {
+	final private static function getClass(
+		string $action,
+		array $overrides
+	) {
 		global $wgActions;
 		$action = strtolower( $action );
 
@@ -88,24 +104,39 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
-	 * @param string $action
-	 * @param Page $page
+	 *
+	 * @param string|null $action Null is hard-deprecated since 1.35
+	 * @param Article|WikiPage|Page $article Calling with anything
+	 *  other than Article is hard-deprecated since 1.35
 	 * @param IContextSource|null $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
-
+	final public static function factory(
+		?string $action,
+		Page $article,
+		IContextSource $context = null
+	) {
+		if ( !is_string( $action ) ) {
+			wfDeprecated( __METHOD__ . ' with null $action', '1.35' );
+			return null;
+		}
+		if ( !$article instanceof Article ) {
+			wfDeprecated(
+				__METHOD__ . ' with ' . get_class( $article ),
+				'1.35'
+			);
+		}
+		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
 				return false;
 			}
-			return new $classOrCallable( $page, $context );
+			return new $classOrCallable( $article, $context );
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
-			return $classOrCallable( $page, $context );
+			return $classOrCallable( $article, $context );
 		}
 
 		return $classOrCallable;
@@ -152,7 +183,12 @@ abstract class Action implements MessageLocalizer {
 			return 'view';
 		}
 
-		$action = self::factory( $actionName, $context->getWikiPage(), $context );
+		$action = self::factory(
+			$actionName,
+			Article::newFromWikiPage( $context->getWikiPage(), $context ),
+			$context
+		);
+
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -167,7 +203,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param string $name Name of an action
 	 * @return bool
 	 */
-	final public static function exists( $name ) {
+	final public static function exists( string $name ) : bool {
 		return self::getClass( $name, [] ) !== null;
 	}
 
@@ -179,14 +215,9 @@ abstract class Action implements MessageLocalizer {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
-		} elseif ( $this->page instanceof Article ) {
-			// NOTE: $this->page can be a WikiPage, which does not have a context.
-			wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
-			return $this->page->getContext();
 		}
-
-		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain().' );
-		return RequestContext::getMain();
+		wfDebug( __METHOD__ . ": no context known, falling back to Article's context." );
+		return $this->getArticle()->getContext();
 	}
 
 	/**
@@ -239,13 +270,34 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
+	 * Get a WikiPage object
+	 * @since 1.35
+	 *
+	 * @return WikiPage
+	 */
+	final public function getWikiPage() : WikiPage {
+		return $this->getArticle()->getPage();
+	}
+
+	/**
+	 * Get a Article object
+	 * @since 1.35
+	 * Overriding this method is deprecated since 1.35
+	 *
+	 * @return Article|ImagePage|CategoryPage
+	 */
+	public function getArticle() {
+		return $this->article;
+	}
+
+	/**
 	 * Shortcut to get the Title object from the page
 	 * @since 1.17
 	 *
 	 * @return Title
 	 */
 	final public function getTitle() {
-		return $this->page->getTitle();
+		return $this->getWikiPage()->getTitle();
 	}
 
 	/**
@@ -261,20 +313,69 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
+	/**
+	 * @since 1.35
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return new HookRunner( $this->getHookContainer() );
+	}
+
+	/**
 	 * Only public since 1.21
 	 *
-	 * @param Page $page
+	 * @stable to call
+	 *
+	 * @param Article|WikiPage|Page $page
+	 * 	Calling with anything other then Article is deprecated since 1.35
 	 * @param IContextSource|null $context
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
+	public function __construct(
+		Page $page,
+		IContextSource $context = null
+	) {
 		if ( $context === null ) {
 			wfWarn( __METHOD__ . ' called without providing a Context object.' );
-			// NOTE: We could try to initialize $context using $page->getContext(),
-			//      if $page is an Article. That however seems to not work seamlessly.
 		}
 
-		$this->page = $page;
+		$this->page = $page;// @todo remove b/c
+		$this->article = self::convertPageToArticle( $page, $context, __METHOD__ );
 		$this->context = $context;
+	}
+
+	private static function convertPageToArticle(
+		Page $page,
+		?IContextSource $context,
+		string $method
+	) : Article {
+		if ( $page instanceof Article ) {
+			return $page;
+		}
+
+		if ( !$page instanceof WikiPage ) {
+			throw new LogicException(
+				$method . ' called with unknown Page: ' . get_class( $page )
+			);
+		}
+
+		wfDeprecated(
+			$method . ' with: ' . get_class( $page ),
+			'1.35'
+		);
+
+		return Article::newFromWikiPage(
+			$page,
+			$context ?? RequestContext::getMain()
+		);
 	}
 
 	/**
@@ -289,6 +390,7 @@ abstract class Action implements MessageLocalizer {
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
 	 * @since 1.17
+	 * @stable to override
 	 *
 	 * @return string|null
 	 */
@@ -301,14 +403,16 @@ abstract class Action implements MessageLocalizer {
 	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
 	 * must throw subclasses of ErrorPageError
 	 * @since 1.17
+	 * @stable to override
 	 *
-	 * @param User $user The user to check, or null to use the context user
+	 * @param User $user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
 	 */
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
 		if ( $right !== null ) {
-			$errors = $this->getTitle()->getUserPermissionsErrors( $right, $user );
+			$errors = MediaWikiServices::getInstance()->getPermissionManager()
+				->getPermissionErrors( $right, $user, $this->getTitle() );
 			if ( count( $errors ) ) {
 				throw new PermissionsError( $right, $errors );
 			}
@@ -318,7 +422,12 @@ abstract class Action implements MessageLocalizer {
 		if ( $this->requiresUnblock() && $user->isBlockedFrom( $this->getTitle() ) ) {
 			$block = $user->getBlock();
 			if ( $block ) {
-				throw new UserBlockedError( $block );
+				throw new UserBlockedError(
+					$block,
+					$user,
+					$this->getLanguage(),
+					$this->getRequest()->getIP()
+				);
 			}
 
 			throw new PermissionsError( $this->getName(), [ 'badaccess-group0' ] );
@@ -335,6 +444,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action requires the wiki not to be locked
 	 * @since 1.17
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -345,6 +455,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action can still be executed by a blocked user
 	 * @since 1.17
+	 * @stable to override
 	 *
 	 * @return bool
 	 */
@@ -355,6 +466,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Set output headers for noindexing etc.  This function will not be called through
 	 * the execute() entry point, so only put UI-related stuff in here.
+	 * @stable to override
 	 * @since 1.17
 	 */
 	protected function setHeaders() {
@@ -368,6 +480,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the name that goes in the \<h1\> page title
 	 *
+	 * @stable to override
 	 * @return string
 	 */
 	protected function getPageTitle() {
@@ -377,6 +490,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the description that goes below the \<h1\> tag
 	 * @since 1.17
+	 * @stable to override
 	 *
 	 * @return string HTML
 	 */
@@ -429,6 +543,7 @@ abstract class Action implements MessageLocalizer {
 	 * Indicates whether this action may perform database writes
 	 * @return bool
 	 * @since 1.27
+	 * @stable to override
 	 */
 	public function doesWrites() {
 		return false;

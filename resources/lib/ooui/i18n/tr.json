@@ -1,26 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
+			"1917 Ekim Devrimi",
+			"BaRaN6161 TURK",
 			"Emperyan",
+			"Hedda",
 			"Incelemeelemani",
 			"LuCKY",
 			"Maidis",
+			"McAang",
+			"Meelo",
 			"Rapsar",
+			"Sayginer",
 			"Talha Samil Cakir",
 			"TurkishStyles",
-			"Sayginer",
-			"Meelo",
-			"McAang",
-			"Uğurkent",
-			"1917 Ekim Devrimi",
-			"Hedda"
+			"Uğurkent"
 		]
 	},
 	"ooui-outline-control-move-down": "Ögeyi aşağı taşı",
 	"ooui-outline-control-move-up": "Ögeyi yukarı taşı",
 	"ooui-outline-control-remove": "Ögeyi kaldır",
 	"ooui-toolbar-more": "Daha fazla",
-	"ooui-toolgroup-expand": "Dahası",
+	"ooui-toolgroup-expand": "Daha fazla",
 	"ooui-toolgroup-collapse": "Daha az",
 	"ooui-item-remove": "Kaldır",
 	"ooui-dialog-message-accept": "Tamam",
@@ -29,6 +30,7 @@
 	"ooui-dialog-process-dismiss": "Kapat",
 	"ooui-dialog-process-retry": "Tekrar dene",
 	"ooui-dialog-process-continue": "Devam et",
+	"ooui-combobox-button-label": "Seçenekler arasında geçiş yap",
 	"ooui-selectfile-button-select": "Dosya seç",
 	"ooui-selectfile-not-supported": "Dosya seçimi desteklenmiyor",
 	"ooui-selectfile-placeholder": "Herhangi bir dosya seçilmedi",

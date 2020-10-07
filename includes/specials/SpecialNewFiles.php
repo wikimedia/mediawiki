@@ -207,7 +207,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/**
 	 * Send the text to be displayed above the options
 	 */
-	function setTopText() {
+	public function setTopText() {
 		$message = $this->msg( 'newimagestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();

@@ -217,7 +217,7 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		$reason = [ 'hookaborted' ];
-		if ( !Hooks::run( 'UnblockUser', [ &$block, &$performer, &$reason ] ) ) {
+		if ( !Hooks::runner()->onUnblockUser( $block, $performer, $reason ) ) {
 			return $reason;
 		}
 
@@ -226,7 +226,7 @@ class SpecialUnblock extends SpecialPage {
 			return [ [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ] ];
 		}
 
-		Hooks::run( 'UnblockUserComplete', [ $block, $performer ] );
+		Hooks::runner()->onUnblockUserComplete( $block, $performer );
 
 		# Unset _deleted fields as needed
 		if ( $block->getHideName() ) {

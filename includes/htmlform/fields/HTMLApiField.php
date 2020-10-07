@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * @stable to extend
+ */
 class HTMLApiField extends HTMLFormField {
 	public function getTableRow( $value ) {
 		return '';

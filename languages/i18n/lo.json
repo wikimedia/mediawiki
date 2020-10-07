@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aefgh39622",
+			"Iberia2011",
 			"Passawuth",
 			"Tuinui",
-			"아라",
-			"Iberia2011",
-			"Aefgh39622"
+			"아라"
 		]
 	},
 	"tog-underline": "ການຂີດເສັ້ນກ້ອງລິງກ໌:",
@@ -281,7 +281,7 @@
 	"error": "ຂໍ້ຜິດພາດ",
 	"databaseerror": "ມີຂໍ້ຜິດພາດກ່ຽວກັບຖານຂໍ້ມູນ",
 	"databaseerror-error": "ຂໍ້ຜິດພາດ: $1",
-	"laggedslavemode": "<strong>ຄຳເຕືອນ:</strong> ໜ້ານີ້ອາດຈະບໍ່ລວມຂໍ້ມູນລ້າສຸດ.",
+	"laggedreplicamode": "<strong>ຄຳເຕືອນ:</strong> ໜ້ານີ້ອາດຈະບໍ່ລວມຂໍ້ມູນລ້າສຸດ.",
 	"readonly": "ຖານຂໍ້ມູນຖືກລັອກ",
 	"enterlockreason": "ກະລຸນາຂຽນເຫດຜົນໃນການລັອກ, ລວມທັງປະມານເວລາທີ່ຈະປົດລັອກ",
 	"missingarticle-diff": "(ສ່ວນຕ່າງ: $1, $2)",
@@ -379,7 +379,6 @@
 	"retypenew": "ພິມລະຫັດຜ່ານໃໝ່ອີກ:",
 	"resetpass_submit": "ຕັ້ງລະຫັດຜ່ານ ແລະ ເຊັນເຂົ້າ",
 	"changepassword-success": "ລະຫັດຜ່ານຂອງທ່ານຖືກປ່ຽນແລ້ວ!",
-	"passwordreset-invalidemail": "ທີ່ຢູ່ອີເມລບໍ່ຖືກຕ້ອງ",
 	"summary": "ຄຳອະທິບາຍໂດຍຫຍໍ້:",
 	"subject": "ຫົວຂໍ້:",
 	"minoredit": "ນີ້ແມ່ນການດັດແກ້ເລັກນ້ອຍ",
@@ -416,7 +415,6 @@
 	"template-protected": "(ປົກປ້ອງ)",
 	"template-semiprotected": "(ເຄິ່ງປົກປ້ອງ)",
 	"nocreatetext": "{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.\nທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].",
-	"cantcreateaccount-text": "ການສ້າງບັນຊີ ຈາກ IP ນີ້ (<b>$1</b>) ໄດ້ຖືກຫ້າມ ໂດຍ [[User:$3|$3]].\n\nເຫດຜົນ ໃຫ້ໄວ້ ໂດຍ $3 ແມ່ນ ''$2''",
 	"viewpagelogs": "ເບິ່ງບັນທຶກ ຂອງ ໜ້ານີ້",
 	"nohistory": "ຍັງບໍ່ມີ ປະຫວັດການດັດແກ້ໜ້ານີ້ເທື່ອ.",
 	"currentrev": "ສະບັບປະຈຸບັນ",

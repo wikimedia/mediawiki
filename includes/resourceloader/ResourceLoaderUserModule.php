@@ -27,7 +27,6 @@
  * @internal
  */
 class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
-
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 	protected $targets = [ 'desktop', 'mobile' ];
 

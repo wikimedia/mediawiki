@@ -32,7 +32,7 @@
  */
 class FileOpBatch {
 	/* Timeout related parameters */
-	const MAX_BATCH_SIZE = 1000; // integer
+	private const MAX_BATCH_SIZE = 1000; // integer
 
 	/**
 	 * Attempt to perform a series of file operations.
@@ -142,20 +142,19 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param array $pPerformOps Batches of file ops (batches use original indexes)
+	 * @param FileOp[][] $pPerformOps Batches of file ops (batches use original indexes)
 	 * @param StatusValue $status
 	 */
 	protected static function runParallelBatches( array $pPerformOps, StatusValue $status ) {
 		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
-			/** @var FileOp[] $performOpsBatch */
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
 				// Log the remaining ops as failed for recovery...
 				foreach ( $performOpsBatch as $i => $fileOp ) {
 					$status->success[$i] = false;
 					++$status->failCount;
-					$performOpsBatch[$i]->logFailure( 'attempt_aborted' );
+					$fileOp->logFailure( 'attempt_aborted' );
 				}
 				continue;
 			}

@@ -3,9 +3,9 @@
 /**
  * @group Media
  */
-class BitmapMetadataHandlerTest extends MediaWikiTestCase {
+class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgShowEXIF', false );
@@ -126,8 +126,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	public function testPNGXMP() {
 		$this->checkPHPExtension( 'xml' );
 
-		$handler = new BitmapMetadataHandler();
-		$result = $handler->PNG( $this->filePath . 'xmp.png' );
+		$result = BitmapMetadataHandler::PNG( $this->filePath . 'xmp.png' );
 		$expected = [
 			'frameCount' => 0,
 			'loopCount' => 1,
@@ -146,8 +145,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * @covers BitmapMetadataHandler::png
 	 */
 	public function testPNGNative() {
-		$handler = new BitmapMetadataHandler();
-		$result = $handler->PNG( $this->filePath . 'Png-native-test.png' );
+		$result = BitmapMetadataHandler::PNG( $this->filePath . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
 		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] );
 	}
@@ -156,8 +154,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * @covers BitmapMetadataHandler::getTiffByteOrder
 	 */
 	public function testTiffByteOrder() {
-		$handler = new BitmapMetadataHandler();
-		$res = $handler->getTiffByteOrder( $this->filePath . 'test.tiff' );
+		$res = BitmapMetadataHandler::getTiffByteOrder( $this->filePath . 'test.tiff' );
 		$this->assertEquals( 'LE', $res );
 	}
 }

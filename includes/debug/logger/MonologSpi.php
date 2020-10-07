@@ -21,8 +21,8 @@
 namespace MediaWiki\Logger;
 
 use MediaWiki\Logger\Monolog\BufferHandler;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -116,13 +116,13 @@ use Wikimedia\ObjectFactory;
 class MonologSpi implements Spi {
 
 	/**
-	 * @var array $singletons
+	 * @var array
 	 */
 	protected $singletons;
 
 	/**
 	 * Configuration for creating new loggers.
-	 * @var array $config
+	 * @var array[][]
 	 */
 	protected $config;
 

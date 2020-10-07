@@ -1,10 +1,16 @@
+'use strict';
+
 const assert = require( 'assert' );
 const Api = require( 'wdio-mediawiki/Api' );
 const RecentChangesPage = require( '../pageobjects/recentchanges.page' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:RecentChanges', function () {
-	let content, name;
+	let content, name, bot;
+
+	before( async () => {
+		bot = await Api.bot();
+	} );
 
 	beforeEach( function () {
 		browser.deleteAllCookies();
@@ -13,8 +19,8 @@ describe( 'Special:RecentChanges', function () {
 	} );
 
 	it( 'shows page creation', function () {
-		browser.call( function () {
-			return Api.edit( name, content );
+		browser.call( async () => {
+			await bot.edit( name, content );
 		} );
 
 		RecentChangesPage.open();

@@ -22,8 +22,8 @@
  * @author Brian Wolff
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @ingroup SpecialPage
@@ -32,16 +32,16 @@ class SpecialMediaStatistics extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
 
 	/**
-	 * @var int $totalPerType Combined file size of all files in a section
+	 * @var int Combined file size of all files in a section
 	 */
 	protected $totalPerType = 0;
 
 	/**
-	 * @var int $totalSize Combined file size of all files
+	 * @var int Combined file size of all files
 	 */
 	protected $totalSize = 0;
 
-	function __construct( $name = 'MediaStatistics' ) {
+	public function __construct( $name = 'MediaStatistics' ) {
 		parent::__construct( $name );
 		// Generally speaking there is only a small number of file types,
 		// so just show all of them.
@@ -104,7 +104,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * tables will be fragmented.
 	 * @return array Fields to sort by
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
 	}
 
@@ -241,17 +241,15 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	private function getExtensionList( $mime ) {
 		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
-			->getExtensionsForType( $mime );
-		if ( $exts === null ) {
+			->getExtensionsFromMimeType( $mime );
+		if ( !$exts ) {
 			return '';
 		}
-		$extArray = explode( ' ', $exts );
-		$extArray = array_unique( $extArray );
-		foreach ( $extArray as &$ext ) {
+		foreach ( $exts as &$ext ) {
 			$ext = htmlspecialchars( '.' . $ext );
 		}
 
-		return $this->getLanguage()->commaList( $extArray );
+		return $this->getLanguage()->commaList( $exts );
 	}
 
 	/**

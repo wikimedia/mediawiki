@@ -23,6 +23,8 @@
 /**
  * Interface for mutable configuration instances
  *
+ * @stable to implement
+ *
  * @since 1.24
  */
 interface MutableConfig {

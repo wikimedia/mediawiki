@@ -33,24 +33,22 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 */
 	protected $user_comment;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		global $wgExtensionMessagesFiles;
 		self::$oldExtMsgFiles = $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles['LogTests'] = __DIR__ . '/LogTests.i18n.php';
-		Language::clearCaches();
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		global $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles = self::$oldExtMsgFiles;
-		Language::clearCaches();
 
 		parent::tearDownAfterClass();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -226,11 +224,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = LogFormatter::newFromEntry( $entry );
 
-		$this->context->setLanguage( Language::factory( 'qqx' ) );
+		$this->context->setLanguage( 'qqx' );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
-		$this->assertContains( '(empty-username)', $logParam );
+		$this->assertStringContainsString( '(empty-username)', $logParam );
 	}
 
 	/**
@@ -278,7 +276,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$formatter->setContext( $this->context );
 
 		$element = $formatter->getPerformerElement();
-		$this->assertContains( 'User:Test', $element );
+		$this->assertStringContainsString( 'User:Test', $element );
 	}
 
 	/**

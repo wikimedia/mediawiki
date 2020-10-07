@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest;
 
+use InvalidArgumentException;
 use MediaWiki\Rest\StringStream;
 
 /** @covers \MediaWiki\Rest\StringStream */
@@ -116,15 +117,15 @@ class StringStreamTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $ss->read( $length ) );
 	}
 
-	/** @expectedException \InvalidArgumentException */
 	public function testReadBeyondEnd() {
 		$ss = new StringStream( 'abc' );
+		$this->expectException( InvalidArgumentException::class );
 		$ss->seek( 1, SEEK_END );
 	}
 
-	/** @expectedException \InvalidArgumentException */
 	public function testReadBeforeStart() {
 		$ss = new StringStream( 'abc' );
+		$this->expectException( InvalidArgumentException::class );
 		$ss->seek( -1 );
 	}
 }

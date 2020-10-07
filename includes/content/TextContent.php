@@ -32,6 +32,8 @@ use MediaWiki\MediaWikiServices;
  *
  * TextContent instances are immutable
  *
+ * @newable
+ * @stable to extend
  * @ingroup Content
  */
 class TextContent extends AbstractContent {
@@ -42,6 +44,7 @@ class TextContent extends AbstractContent {
 	protected $mText;
 
 	/**
+	 * @stable to call
 	 * @param string $text
 	 * @param string $model_id
 	 * @throws MWException
@@ -72,6 +75,13 @@ class TextContent extends AbstractContent {
 		return $this; # NOTE: this is ok since TextContent are immutable.
 	}
 
+	/**
+	 * @stable to override
+	 *
+	 * @param int $maxlength
+	 *
+	 * @return string
+	 */
 	public function getTextForSummary( $maxlength = 250 ) {
 		$text = $this->getText();
 
@@ -84,6 +94,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text's size in bytes.
 	 *
+	 * @stable to override
+	 *
 	 * @return int
 	 */
 	public function getSize() {
@@ -95,6 +107,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns true if this content is not a redirect, and $wgArticleCountMethod
 	 * is "any".
+	 *
+	 * @stable to override
 	 *
 	 * @param bool|null $hasLinks If it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
@@ -130,6 +144,9 @@ class TextContent extends AbstractContent {
 	 * Returns the text represented by this Content object, as a string.
 	 *
 	 * @since 1.33
+	 * @note This method should not be overwritten by subclasses. If a subclass find itself in
+	 * need to override this method, it should probably not be based on TextContent, but
+	 * should rather extend AbstractContent instead.
 	 *
 	 * @return string The raw text.
 	 */
@@ -140,6 +157,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
+	 * @stable to override
+	 *
 	 * @return string The raw text.
 	 */
 	public function getTextForSearchIndex() {
@@ -149,6 +168,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns attempts to convert this content object to wikitext,
 	 * and then returns the text string. The conversion may be lossy.
+	 *
+	 * @stable to override
 	 *
 	 * @note this allows any text-based content to be transcluded as if it was wikitext.
 	 *
@@ -189,6 +210,8 @@ class TextContent extends AbstractContent {
 	 * At a minimum, subclasses should make sure to call TextContent::normalizeLineEndings()
 	 * either directly or part of Parser::preSaveTransform().
 	 *
+	 * @stable to override
+	 *
 	 * @param Title $title
 	 * @param User $user
 	 * @param ParserOptions $popts
@@ -205,6 +228,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Diff this content object with another content object.
 	 *
+	 * @stable to override
 	 * @since 1.21
 	 *
 	 * @param Content $that The other content object to compare this content object to.
@@ -247,6 +271,8 @@ class TextContent extends AbstractContent {
 	 * Subclasses may override this to provide custom content processing.
 	 * For custom HTML generation alone, it is sufficient to override getHtml().
 	 *
+	 * @stable to override
+	 *
 	 * @param Title $title Context title for parsing
 	 * @param int $revId Revision ID (for {{REVISIONID}})
 	 * @param ParserOptions $options
@@ -282,32 +308,16 @@ class TextContent extends AbstractContent {
 	 * If further information is to be derived from the content (such as
 	 * categories), the fillParserOutput() method can be overridden instead.
 	 *
-	 * For backwards-compatibility, this default implementation just calls
-	 * getHighlightHtml().
+	 * @stable to override
 	 *
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		return $this->getHighlightHtml();
-	}
-
-	/**
-	 * Generates an HTML version of the content, for display.
-	 *
-	 * This default implementation returns an HTML-escaped version
-	 * of the raw text content.
-	 *
-	 * @note The functionality of this method should really be implemented
-	 * in getHtml(), and subclasses should override getHtml() if needed.
-	 * getHighlightHtml() is kept around for backward compatibility with
-	 * extensions that already override it.
-	 *
-	 * @deprecated since 1.24. Use getHtml() instead. In particular, subclasses overriding
-	 *     getHighlightHtml() should override getHtml() instead.
-	 *
-	 * @return string An HTML representation of the content
-	 */
-	protected function getHighlightHtml() {
+		// TODO: Remove in MediaWiki 1.36
+		if ( method_exists( $this, 'getHighlightHtml' ) ) {
+			wfDeprecated( 'getHighlightHtml', '1.24' );
+			throw new Exception( 'getHighlightHtml() is not called any more!' );
+		}
 		return htmlspecialchars( $this->getText() );
 	}
 
@@ -315,12 +325,15 @@ class TextContent extends AbstractContent {
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
+	 * @stable to override
+	 *
 	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
 	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not
 	 *     allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if that
 	 *     conversion is not supported.
+	 * @throws MWUnknownContentModelException
 	 *
 	 * @see Content::convert()
 	 */
@@ -331,7 +344,7 @@ class TextContent extends AbstractContent {
 			return $converted;
 		}
 
-		$toHandler = ContentHandler::getForModelID( $toModel );
+		$toHandler = $this->getContentHandlerFactory()->getContentHandler( $toModel );
 
 		if ( $toHandler instanceof TextContentHandler ) {
 			// NOTE: ignore content serialization format - it's just text anyway.

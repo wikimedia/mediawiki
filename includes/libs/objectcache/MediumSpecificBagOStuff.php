@@ -55,8 +55,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var callable[] */
 	protected $busyCallbacks = [];
 
+	/** @var array[] Map of (key => (PHP variable value, serialized value)) */
+	protected $preparedValues = [];
+
 	/** @var string Component to use for key construction of blob segment keys */
-	const SEGMENT_COMPONENT = 'segment';
+	private const SEGMENT_COMPONENT = 'segment';
 
 	/**
 	 * @see BagOStuff::__construct()
@@ -779,7 +782,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$segmentSize = $this->segmentationSize;
 			$maxTotalSize = $this->segmentedValueMaxSize;
 
-			$serialized = $this->serialize( $value );
+			$serialized = $this->getSerialized( $value, $key );
 			$size = strlen( $serialized );
 			if ( $size > $maxTotalSize ) {
 				$this->logger->warning(
@@ -896,7 +899,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a global cache key.
 	 *
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
@@ -908,7 +911,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
@@ -931,6 +934,107 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	public function getSegmentedValueMaxSize() {
 		return $this->segmentedValueMaxSize;
+	}
+
+	public function setNewPreparedValues( array $valueByKey ) {
+		$this->preparedValues = [];
+
+		$sizes = [];
+		foreach ( $valueByKey as $key => $value ) {
+			if ( $value === false ) {
+				$sizes[] = null; // not storable, don't bother
+				continue;
+			}
+
+			$serialized = $this->serialize( $value );
+			$sizes[] = ( $serialized !== false ) ? strlen( $serialized ) : null;
+
+			$this->preparedValues[$key] = [ $value, $serialized ];
+		}
+
+		return $sizes;
+	}
+
+	/**
+	 * Get the serialized form a value, using any applicable prepared value
+	 *
+	 * @see BagOStuff::setNewPreparedValues()
+	 *
+	 * @param mixed $value
+	 * @param string $key
+	 * @return string|int String/integer representation
+	 * @since 1.35
+	 */
+	protected function getSerialized( $value, $key ) {
+		// Reuse any available prepared (serialized) value
+		if ( array_key_exists( $key, $this->preparedValues ) ) {
+			list( $prepValue, $prepSerialized ) = $this->preparedValues[$key];
+			// Normally, this comparison should only take a few microseconds to confirm a match.
+			// Using "===" on variables of different types is always fast. It is also fast for
+			// variables of matching type int, float, bool, null, and object. Lastly, it is fast
+			// for comparing arrays/strings if they are copy-on-write references, which should be
+			// the case at this point, assuming prepareValues() was called correctly.
+			if ( $prepValue === $value ) {
+				unset( $this->preparedValues[$key] );
+
+				return $prepSerialized;
+			}
+		}
+
+		return $this->serialize( $value );
+	}
+
+	/**
+	 * Estimate the size of a variable once serialized
+	 *
+	 * @param mixed $value
+	 * @param int $depth Current stack depth
+	 * @param int &$loops Number of iterable nodes visited
+	 * @return int|null Size in bytes; null for unsupported variable types
+	 * @since 1.35
+	 */
+	protected function guessSerialValueSize( $value, $depth = 0, &$loops = 0 ) {
+		// Include serialization format overhead estimates roughly based on serialize(),
+		// without counting . Also, int/float variables use the largest case
+		// byte size for numbers of that type; this avoids CPU overhead for large arrays.
+		switch ( gettype( $value ) ) {
+			case 'string':
+				// E.g. "<type><delim1><quote><value><quote><delim2>"
+				return strlen( $value ) + 5;
+			case 'integer':
+				// E.g. "<type><delim1><sign><2^63><delim2>";
+				// ceil(log10 (2^63)) = 19
+				return 23;
+			case 'double':
+				// E.g. "<type><delim1><sign><2^52><esign><2^10><delim2>"
+				// ceil(log10 (2^52)) = 16 and ceil(log10 (2^10)) = 4
+				return 25;
+			case 'boolean':
+				// E.g. "true" becomes "1" and "false" is not storable
+				return $value ? 1 : null;
+			case 'NULL':
+				return 1; // "\0"
+			case 'array':
+			case 'object':
+				// Give up up and guess if there is too much depth
+				if ( $depth >= 5 && $loops >= 256 ) {
+					return 1024;
+				}
+
+				++$loops;
+				// E.g. "<type><delim1><brace><<Kn><Vn> for all n><brace><delim2>"
+				$size = 5;
+				// Note that casting to an array includes private object members
+				foreach ( (array)$value as $k => $v ) {
+					// Inline the recursive result here for performance
+					$size += is_string( $k ) ? ( strlen( $k ) + 5 ) : 23;
+					$size += $this->guessSerialValueSize( $v, $depth + 1, $loops );
+				}
+
+				return $size;
+			default:
+				return null; // invalid
+		}
 	}
 
 	/**

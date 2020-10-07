@@ -49,10 +49,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 
 		$prop = $params['prop'];
-		if ( !is_null( $prop ) ) {
+		if ( $prop !== null ) {
 			$prop = array_flip( $prop );
 			$fld_blockinfo = isset( $prop['blockinfo'] );
 			$fld_editcount = isset( $prop['editcount'] );
@@ -71,8 +70,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addTables( 'user' );
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = is_null( $params['from'] ) ? null : $this->getCanonicalUserName( $params['from'] );
-		$to = is_null( $params['to'] ) ? null : $this->getCanonicalUserName( $params['to'] );
+		$from = $params['from'] === null ? null : $this->getCanonicalUserName( $params['from'] );
+		$to = $params['to'] === null ? null : $this->getCanonicalUserName( $params['to'] );
 
 		# MySQL can't figure out that 'user_name' and 'qcc_title' are the same
 		# despite the JOIN condition, so manually sort on the correct one.
@@ -84,12 +83,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
 
-		if ( !is_null( $params['prefix'] ) ) {
+		if ( $params['prefix'] !== null ) {
 			$this->addWhere( $userFieldToSort .
 				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
 		}
 
-		if ( !is_null( $params['rights'] ) && count( $params['rights'] ) ) {
+		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
 			$groups = [];
 			foreach ( $params['rights'] as $r ) {
 				$groups = array_merge( $groups, $this->getPermissionManager()
@@ -105,7 +104,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			$groups = array_unique( $groups );
 
-			if ( is_null( $params['group'] ) ) {
+			if ( $params['group'] === null ) {
 				$params['group'] = $groups;
 			} else {
 				$params['group'] = array_unique( array_merge( $params['group'], $groups ) );
@@ -114,7 +113,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$this->requireMaxOneParameter( $params, 'group', 'excludegroup' );
 
-		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
+		if ( $params['group'] !== null && count( $params['group'] ) ) {
 			// Filter only users that belong to a given group. This might
 			// produce as many rows-per-user as there are groups being checked.
 			$this->addTables( 'user_groups', 'ug1' );
@@ -131,7 +130,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$maxDuplicateRows *= count( $params['group'] );
 		}
 
-		if ( !is_null( $params['excludegroup'] ) && count( $params['excludegroup'] ) ) {
+		if ( $params['excludegroup'] !== null && count( $params['excludegroup'] ) ) {
 			// Filter only users don't belong to a given group. This can only
 			// produce one row-per-user, because we only keep on "no match".
 			$this->addTables( 'user_groups', 'ug1' );
@@ -187,7 +186,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$joins = [
 				'actor' => [ 'JOIN', 'rc_actor = actor_id' ],
 			];
-			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+			$timestamp = $db->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [
 				'recentactions' => '(' . $db->selectSQLText(
 					$tables,
@@ -267,7 +266,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				);
 			}
 
-			if ( $fld_blockinfo && !is_null( $row->ipb_id ) ) {
+			if ( $fld_blockinfo && $row->ipb_id !== null ) {
 				$data += $this->getBlockDetails( DatabaseBlock::newFromRow( $row ) );
 			}
 			if ( $row->ipb_deleted ) {
@@ -325,8 +324,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		return 'anon-public-user-private';
 	}
 
-	public function getAllowedParams() {
+	public function getAllowedParams( $flags = 0 ) {
 		$userGroups = User::getAllGroups();
+
+		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			sort( $userGroups );
+		}
 
 		return [
 			'from' => null,

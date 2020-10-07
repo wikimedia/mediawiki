@@ -36,32 +36,33 @@ use Wikimedia\Rdbms\Database;
  * @since 1.17
  */
 class MessageBlobStore implements LoggerAwareInterface {
-
-	/* @var ResourceLoader */
+	/** @var ResourceLoader */
 	private $resourceloader;
 
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	protected $logger;
 
-	/**
-	 * @var WANObjectCache
-	 */
+	/** @var WANObjectCache */
 	protected $wanCache;
 
 	/**
 	 * @param ResourceLoader $rl
 	 * @param LoggerInterface|null $logger
+	 * @param WANObjectCache|null $wanObjectCache
 	 */
-	public function __construct( ResourceLoader $rl, LoggerInterface $logger = null ) {
+	public function __construct(
+		ResourceLoader $rl,
+		?LoggerInterface $logger,
+		?WANObjectCache $wanObjectCache
+	) {
 		$this->resourceloader = $rl;
 		$this->logger = $logger ?: new NullLogger();
 
 		// NOTE: when changing this assignment, make sure the code in the instantiator for
 		// LocalisationCache which calls MessageBlobStore::clearGlobalCacheEntry() uses the
 		// same cache object.
-		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$this->wanCache = $wanObjectCache ?: MediaWikiServices::getInstance()
+			->getMainWANObjectCache();
 	}
 
 	/**
@@ -91,7 +92,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @since 1.27
 	 * @param ResourceLoaderModule[] $modules Array of module objects keyed by name
 	 * @param string $lang Language code
-	 * @return array An array mapping module names to message blobs
+	 * @return string[] An array mapping module names to message blobs
 	 */
 	public function getBlobs( array $modules, $lang ) {
 		// Each cache key for a message blob by module name and language code also has a generic
@@ -163,8 +164,8 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 *
 	 * @param string $key Message key
 	 */
-	public function updateMessage( $key ) {
-		$moduleNames = $this->getResourceLoader()->getModulesByMessage( $key );
+	public function updateMessage( $key ) : void {
+		$moduleNames = $this->resourceloader->getModulesByMessage( $key );
 		foreach ( $moduleNames as $moduleName ) {
 			// Uses a holdoff to account for database replica DB lag (for MessageCache)
 			$this->wanCache->touchCheckKey( $this->wanCache->makeKey( __CLASS__, $moduleName ) );
@@ -194,14 +195,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 		//   in cache contexts (e.g. languages, skins). Setting a hold-off on this key could
 		//   cause a cache stampede since no values would be stored for several seconds.
 		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_TTL_NONE );
-	}
-
-	/**
-	 * @since 1.27
-	 * @return ResourceLoader
-	 */
-	protected function getResourceLoader() {
-		return $this->resourceloader;
 	}
 
 	/**

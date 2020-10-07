@@ -10,7 +10,7 @@ use MediaWiki\Shell\Shell;
  */
 class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 	}
 
@@ -22,7 +22,6 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 *
 	 * @dataProvider providePixelFormats
 	 * @covers BitmapHandler::imageMagickSubsampling
 	 */
@@ -47,7 +46,7 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 		$this->assertTrue( !$thumb->isError(), "created JPEG thumbnail for pixel format $fmtStr" );
 
 		$path = $thumb->getLocalCopyPath();
-		$this->assertTrue( is_string( $path ), "path returned for JPEG thumbnail for $fmtStr" );
+		$this->assertIsString( $path, "path returned for JPEG thumbnail for $fmtStr" );
 
 		$result = Shell::command( 'identify',
 			'-format',

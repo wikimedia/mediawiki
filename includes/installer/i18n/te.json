@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Veeven",
 			"Chaduvari",
+			"Macofe",
 			"Ravichandra",
-			"Macofe"
+			"Veeven"
 		]
 	},
 	"config-desc": "మీడియావికీ కొరకై స్థాపకి",
@@ -36,7 +36,6 @@
 	"config-page-install": "స్థాపించు",
 	"config-page-complete": "పూర్తయ్యింది!",
 	"config-page-restart": "స్థాపనను తిరిగి ప్రారంభించు",
-	"config-page-readme": "నన్ను చదవండి",
 	"config-page-releasenotes": "విడుదల విశేషాలు",
 	"config-page-copying": "కాపీ చేస్తున్నాం",
 	"config-page-upgradedoc": "ఉన్నతీకరిస్తున్నాం",
@@ -78,7 +77,7 @@
 	"config-db-prefix-help": "ఒకటి కంటే ఎక్కువ వికీలను గానీ, లేదా మీడియావికీ తో పాటు మరో వెబ్ అప్లికేషన్ను గానీ ఒకే డేటాబేసు నుండి వాడదలిస్తే, టేబులు పేర్లకు ముందు ఓ ఆదిపదాన్ని (ప్రిఫిక్స్) ను ఎంచుకోండి. ఈ విధంగా పేర్ల ఘర్షణను నివారింవచ్చు. \nస్పేసులను వాడకండి.\n\nఈ ఫీల్డును సాధారణంగా ఖాళీగా ఉంచేస్తారు.",
 	"config-mysql-old": "MySQL $1 గానీ ఆ తరువాతిది గానీ కావాలి. మీకు $2 ఉంది.",
 	"config-db-port": "డేటాబేసు పోర్టు:",
-	"config-db-schema": "MediaWiki కొరకు స్కీమా:",
+	"config-db-schema": "మీడియావికీ కొరకు స్కీమా (హైఫన్లు లేకుండా):",
 	"config-db-schema-help": "మామూలుగా ఈ స్కీమా సరిపోతుంది.\nఅవసరమని మీకు తెలిస్తేనే మార్చండి.",
 	"config-pg-test-error": "డేటాబేసు <strong>$1</strong> కి కనెక్టు కాలేకపోయాం: $2",
 	"config-sqlite-dir": "SQLite డేటా డైరెక్టరీ:",

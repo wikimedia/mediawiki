@@ -8,6 +8,45 @@
 	content: '. .';
 }
 
+/**
+ * Rather than use an existing element, we have a specific element for designating
+ * the separation of certain elements by a semicolon.
+ * This is a variant of the rule mw-changeslist-separator rule above but uses a semicolon
+ * rather than a the two dots. It's not clear why we use different things for separation, and
+ * when adding this I was unable to see any information that led to its change. A designer in the
+ * future of a developer who has the energy to invest may explore this more and see if these two
+ * classes can be combined.
+ *
+ * There is lots of context on this rule in https://phabricator.wikimedia.org/T233649
+ *
+ * # History page
+ *
+ * The history page should never have a semicolon as there is never a mw-title element.
+ * Previous attempts to add the semicolon used the timestamp and a before pseudo element
+ * but this led to problems as the history page also uses this element and there is no
+ * easy way to distinguish it from other elements and never any need to have a semicolon
+ * on the history page.
+ *
+ * # Special:RecentChanges
+ *
+ * has always had a semicolon and motivation for moving this change here.
+ *
+ * # Special:Watchlist
+ *
+ * Note that before this change was introduced, the Special:Watchlist page
+ * didn't have a semicolon after the title. This caused some confusion to
+ * editors (https://phabricator.wikimedia.org/T237685) but this rule makes it
+ * consistent with Special:RecentChanges. To disable the semicolon on the watchlist
+ * would be additional CSS to reset the content of this pseudo element for that specific
+ * page, but we should not accrue that technical debt without some strong arguments for
+ * doing so - and they should be documented!
+ * # Special:Contributions
+ * Never use semicolon on this page. Always use “. .” as separators.
+ */
+.mw-changeslist-separator--semicolon:before {
+	content: '@{msg-semicolon-separator}';
+}
+
 .mw-rollback-link {
 	&:before {
 		content: '@{msg-brackets-start}';

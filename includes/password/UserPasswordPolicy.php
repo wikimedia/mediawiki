@@ -177,7 +177,7 @@ class UserPasswordPolicy {
 			$this->policies['default']
 		);
 
-		Hooks::run( 'PasswordPoliciesForUser', [ $user, &$effectivePolicy ] );
+		Hooks::runner()->onPasswordPoliciesForUser( $user, $effectivePolicy );
 
 		return $effectivePolicy;
 	}
@@ -198,7 +198,7 @@ class UserPasswordPolicy {
 			if ( in_array( $group, $userGroups ) ) {
 				$effectivePolicy = self::maxOfPolicies(
 					$effectivePolicy,
-					$policies[$group]
+					$policy
 				);
 			}
 		}

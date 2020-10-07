@@ -29,7 +29,7 @@
  * Extends DiffOp. Used to mark strings that have been
  * changed from the first string array (both added and subtracted).
  *
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpChange extends DiffOp {

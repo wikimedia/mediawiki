@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -46,9 +46,9 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 	public function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
-		if ( !$dbw->tableExists( 'revision' ) ) {
+		if ( !$dbw->tableExists( 'revision', __METHOD__ ) ) {
 			$this->fatalError( "revision table does not exist" );
-		} elseif ( !$dbw->tableExists( 'archive' ) ) {
+		} elseif ( !$dbw->tableExists( 'archive', __METHOD__ ) ) {
 			$this->fatalError( "archive table does not exist" );
 		} elseif ( !$dbw->fieldExists( 'revision', 'rev_len', __METHOD__ ) ) {
 			$this->output( "rev_len column does not exist\n\n", true );
@@ -56,11 +56,23 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			return false;
 		}
 
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 		$this->output( "Populating rev_len column\n" );
-		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev', Revision::getQueryInfo() );
+		$rev = $this->doLenUpdates(
+			'revision',
+			'rev_id',
+			'rev',
+			$revisionStore->getQueryInfo()
+		);
 
 		$this->output( "Populating ar_len column\n" );
-		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::getArchiveQueryInfo() );
+		$ar = $this->doLenUpdates(
+			'archive',
+			'ar_id',
+			'ar',
+			$revisionStore->getArchiveQueryInfo()
+		);
 
 		$this->output( "rev_len and ar_len population complete "
 			. "[$rev revision rows, $ar archive rows].\n" );
@@ -104,7 +116,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 						"{$prefix}_len IS NULL",
 						$dbr->makeList( [
 							"{$prefix}_len = 0",
-							"{$prefix}_sha1 != " . $dbr->addQuotes( 'phoiac9h4m842xq45sp7s6u21eteeq1' ), // sha1( "" )
+							// sha1( "" )
+							"{$prefix}_sha1 != " . $dbr->addQuotes( 'phoiac9h4m842xq45sp7s6u21eteeq1' ),
 						], IDatabase::LIST_AND )
 					], IDatabase::LIST_OR )
 				],
@@ -141,22 +154,24 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$dbw = $this->getDB( DB_MASTER );
 
-		$rev = ( $table === 'archive' )
-			? Revision::newFromArchiveRow( $row )
-			: new Revision( $row );
+		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
+		if ( $table === 'archive' ) {
+			$revRecord = $revFactory->newRevisionFromArchiveRow( $row );
+		} else {
+			$revRecord = $revFactory->newRevisionFromRow( $row );
+		}
 
-		$content = $rev->getContent( RevisionRecord::RAW );
-		if ( !$content ) {
+		if ( !$revRecord ) {
 			# This should not happen, but sometimes does (T22757)
 			$id = $row->$idCol;
-			$this->output( "Content of $table $id unavailable!\n" );
+			$this->output( "RevisionRecord of $table $id unavailable!\n" );
 
 			return false;
 		}
 
 		# Update the row...
 		$dbw->update( $table,
-			[ "{$prefix}_len" => $content->getSize() ],
+			[ "{$prefix}_len" => $revRecord->getSize() ],
 			[ $idCol => $row->$idCol ],
 			__METHOD__
 		);

@@ -11,9 +11,9 @@ use MediaWiki\MediaWikiServices;
  * @license GPL-2.0-or-later
  * @author Addshore
  */
-class RefreshLinksJobTest extends MediaWikiTestCase {
+class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'page';

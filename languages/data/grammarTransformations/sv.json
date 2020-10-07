@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby (jhsoby@gmail.com)"
+		],
+		"comment": "Rule for genitive in Swedish"
+	},
+	"genitive": [
+		[ "([^a-zåäöáàæøéèüćč])$", "$1:s" ],
+		[ "([sxz])$", "$1" ],
+		[ "$", "s" ]
+	]
+}

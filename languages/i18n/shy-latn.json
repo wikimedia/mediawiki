@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Vikoula5"
 		]
 	},
@@ -291,7 +292,7 @@
 	"databaseerror-query": "Tuttra : $1",
 	"databaseerror-function": "Tuccḍa: $1",
 	"databaseerror-error": "Agul: $1",
-	"laggedslavemode": "<strong>Aɣtal:</strong> Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.",
+	"laggedreplicamode": "<strong>Aɣtal:</strong> Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.",
 	"readonly": "Database d tamsekkert",
 	"enterlockreason": "Ini ayɣer tsekkreḍ database, ini daɣen melmi ara ad ifukk asekker",
 	"readonlytext": "Taffa n isefka teskweṛ akka tura ɣef sebba n kra n inekcam d usnifel-nniḍen, ahat ɣef kra n uxeddim n uṣeggem, ticki ifuk ad tuɣal.\n\nAndbal n unagraw iṣekṛen taffa yenna-d acimi: $1",
@@ -521,8 +522,6 @@
 	"passwordreset-emailtext-ip": "Yiwen (Ahat kečč/kem, seg tansa IP $1) yessutered awennez n awal n uɛaddi i {{SITENAME}} ($4). {{PLURAL:$3|Amiḍan n useqdac agi yeqqen|imiḍanen n iseqdacen agi qqenen}} s tansa e-mail agi :\n\n$2\n\n{{PLURAL:$3|Awal n uɛaddi uɛḍil agi ad i aff tasewti-s|Awalen n uɛaddi uɛḍilen agi ad affen taseweti nsen}} deg {{PLURAL:$5|yiwen ass|$5 ussan}}. Ilaq tura ad qqeneḍ dɣa ad freneḍ awal n uɛaddi amaynut. Lukan mačči d kečč/kem i xedmen asuter agi, naɣ tecfiḍ tura i awal n uɛaddi inek/inem, tzemreḍ ad eǧǧeḍ izen agi.",
 	"passwordreset-emailtext-user": "Aseqdac $1 ɣef {{SITENAME}} yessutered awennez n awal n uɛaddi i {{SITENAME}} ($4). {{PLURAL:$3|Amiḍan n useqdac agi yeqqen|imiḍanen n iseqdacen agi qqenen}} s tansa e-mail agi :\n\n$2\n\n{{PLURAL:$3|Awal n uɛaddi uɛḍil agi ad i aff tasewti-s|Awalen n uɛaddi uɛḍilen agi ad affen taseweti nsen}} deg {{PLURAL:$5|yiwen ass|$5 ussan}}. Ilaq tura ad qqeneḍ dɣa ad freneḍ awal n uɛaddi amaynut. Lukan mačči d kečč/kem i xedmen asuter agi, naɣ tecfiḍ tura i awal n uɛaddi inek/inem, tzemreḍ ad eǧǧeḍ izen agi.",
 	"passwordreset-emailelement": "Isem n useqdac : \n$1\n\nAwal n uɛddi akudan : \n$2",
-	"passwordreset-emailsentemail": "Ma yella imayl-agi icudd ar umiḍan-ik, awennez n wawal uffir ad yettwazen ar yimayl.",
-	"passwordreset-invalidemail": "Tansa imayl d tarameɣtut",
 	"changeemail": "Beddel neɣ kkes tansa n imayl",
 	"changeemail-no-info": "Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.",
 	"changeemail-oldemail": "Tansa e-mail n tura:",
@@ -663,7 +662,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Asentel d ilem",
 	"content-json-empty-array": "Talfelwit d tilemt",
-	"deprecated-self-close-category": "Asebter iseqdacen yir tiṛekkizin HTM tumdilin tiwurmanin",
 	"expensive-parserfunction-warning": "'''Ɣur-wet :''' Asebter agi yesɛa aṭas n tiɣriwin ar tiseɣnin ɣlayen n umsisleḍ taseddast.\nIlaq ad i sɛu ddaw n  $2 {{PLURAL:$2|tiɣri|tiɣriwin }}, wannag tura {{PLURAL:$1|tella $1 tiɣri|llant $1 tiɣriwin}}.",
 	"expensive-parserfunction-category": "Isebtar yesɛan aṭas tiɣriwin ɣlayen n tiseeɣnin n umsisleḍ taseddast",
 	"post-expand-template-inclusion-warning": "<strong>Ɣur-wet:</strong> Asebter agi yesɛa aṭas tilɣatin. Kra n tilɣatin ur zemrent ara ad seqdacent.",
@@ -688,8 +686,6 @@
 	"undo-nochange": "Ad yettban d akken abeddel yettwasefsex yakan.",
 	"undo-summary": "Ssefsu tasiwelt $1 sɣur [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]])",
 	"undo-summary-username-hidden": "Semmewet tacaggart $1 sɣur amseqdac yeffren",
-	"cantcreateaccount-text": "Asnulfu n umiḍan seg tansa IP (<b>$1</b>) tekyef sɣur [[User:$3|$3]].\n\nTaɣẓint n $3 : <em>$2</em>",
-	"cantcreateaccount-range-text": "Asnulfu n umiḍan seg tansiwin IP deg tagrumma <strong>$1</strong>, i sseddan tansa inek/inem IP (<strong>$4</strong>), twawḥelen sɣur [[User:$3|$3]].\n\nTaɣẓint i-d yefka/tefka $3 : <em>$2</em>",
 	"viewpagelogs": "Ẓer aɣmis n usebter-agi",
 	"nohistory": "Ulac amezruy n yibeddlen i usebter-agi.",
 	"currentrev": "Tasiwelt n tura",
@@ -710,7 +706,7 @@
 	"histfirst": "tiqdimin",
 	"histlast": "timaynutin",
 	"historysize": "({{PLURAL:$1|1 atamḍan|$1 itamḍanen}})",
-	"historyempty": "(amecluc)",
+	"historyempty": "amecluc",
 	"history-feed-title": "Amezruy n tsiwelt",
 	"history-feed-description": "Amezruy n tsiwelt n usebter-agi deg wiki",
 	"history-feed-item-nocomment": "$1 deg $2",

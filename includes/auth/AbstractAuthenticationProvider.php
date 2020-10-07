@@ -22,10 +22,13 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
 
 /**
  * A base class that implements some of the boilerplate for an AuthenticationProvider
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */
@@ -36,6 +39,10 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	protected $manager;
 	/** @var Config */
 	protected $config;
+	/** @var HookContainer */
+	private $hookContainer;
+	/** @var HookRunner */
+	private $hookRunner;
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
@@ -45,8 +52,17 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 		$this->manager = $manager;
 	}
 
+	/**
+	 * @stable to override
+	 * @param Config $config
+	 */
 	public function setConfig( Config $config ) {
 		$this->config = $config;
+	}
+
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -55,5 +71,23 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	 */
 	public function getUniqueId() {
 		return static::class;
+	}
+
+	/**
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() : HookContainer {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() : HookRunner {
+		return $this->hookRunner;
 	}
 }

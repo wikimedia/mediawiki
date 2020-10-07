@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Usingha",
-			"Uttam Singha, Dec 2006",
-			"아라",
+			"Bodhisattwa",
+			"DannyS712",
 			"Macofe",
 			"MtDu",
-			"Bodhisattwa"
+			"Usingha",
+			"Uttam Singha, Dec 2006",
+			"아라"
 		]
 	},
 	"tog-underline": "লিঙ্কর তলে দুরগ দিক:",
@@ -247,7 +248,7 @@
 	"nospecialpagetext": "<strong>তি অবৈধ পাতা আহানর কা হেইচা করিসত।</strong>\n\n[[Special:SpecialPages|{{int:specialpages}}]]-এহানাত বৈধ পাতার লাতঙগ পেইতেই।",
 	"error": "লালুইসে",
 	"databaseerror": "ডাটাবেসর লাল",
-	"laggedslavemode": "'''সিঙুইস:''' পাতা এহানাত হাদি এহানার পতানি নেই।",
+	"laggedreplicamode": "'''সিঙুইস:''' পাতা এহানাত হাদি এহানার পতানি নেই।",
 	"readonly": "ডাটাবেস গাথি লাগিসে",
 	"enterlockreason": "তালা দেনার কারণহান মাত, লগে কুম্পাগা মুকিতেই অহান মাত",
 	"readonlytext": "নুৱা ভুক্তি বারো আর আর পতানির কাম চলের আরো ডাটাবেজহান বন্ধ ইসে। হয়ত ডাটাবেজহান পাজালানির কাম চলের, খানি থায়া চুমিতই।\n\nডান্ডি করেকুরাগই যেগই এহান বন্ধ করিসে অগই কারণহান দেখাদেরতাই:  $1",
@@ -467,7 +468,7 @@
 	"histfirst": "হাব্বিত্ত পুরানা",
 	"histlast": "হাব্বিত্ত নুৱা",
 	"historysize": "({{PLURAL:$1|১ বাইট|$1 বাইট}})",
-	"historyempty": "(হুদালা)",
+	"historyempty": "হুদালা",
 	"history-feed-title": "ইতিহাসহান চুমকর",
 	"history-feed-item-nocomment": "$1 খেন্তাম $2 ত",
 	"rev-deleted-comment": "(পতানির সারাংশ থেইকরলাং)",

@@ -21,29 +21,31 @@
  * @ingroup SpecialPage
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Class definition for a wanted query page like
  * WantedPages, WantedTemplates, etc
+ * @stable to extend
  * @ingroup SpecialPage
  */
 abstract class WantedQueryPage extends QueryPage {
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
 	/**
 	 * Cache page existence for performance
+	 * @stable to override
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	protected function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
@@ -53,14 +55,17 @@ abstract class WantedQueryPage extends QueryPage {
 	 * kluge for Special:WantedFiles, which may contain false
 	 * positives for files that exist e.g. in a shared repo (bug
 	 * 6220).
+	 * @stable to override
 	 * @return bool
 	 */
-	function forceExistenceCheck() {
+	protected function forceExistenceCheck() {
 		return false;
 	}
 
 	/**
 	 * Format an individual result
+	 *
+	 * @stable to override
 	 *
 	 * @param Skin $skin Skin to use for UI elements
 	 * @param object $result Result row
@@ -75,13 +80,7 @@ abstract class WantedQueryPage extends QueryPage {
 					? '<del>' . $linkRenderer->makeLink( $title ) . '</del>'
 					: $linkRenderer->makeLink( $title );
 			} else {
-				$pageLink = $linkRenderer->makeLink(
-					$title,
-					null,
-					[],
-					[],
-					[ 'broken' ]
-				);
+				$pageLink = $linkRenderer->makeBrokenLink( $title );
 			}
 			return $this->getLanguage()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );
 		} else {
@@ -102,6 +101,8 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @note This will only be run if the page is cached (ie $wgMiserMode = true)
 	 *   unless forceExistenceCheck() is true.
 	 * @since 1.24
+	 * @stable to override
+	 *
 	 * @param Title $title
 	 * @return bool
 	 */
@@ -125,10 +126,11 @@ abstract class WantedQueryPage extends QueryPage {
 	/**
 	 * Order by title for pages with the same number of links to them
 	 *
+	 * @stable to override
 	 * @return array
 	 * @since 1.29
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'value DESC', 'namespace', 'title' ];
 	}
 
@@ -138,19 +140,21 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Do NOT change this to true unless you remove the phrase DESC in getOrderFiels above.
 	 * If you do a database error will be thrown due to double adding DESC to query!
 	 *
+	 * @stable to override
 	 * @return bool
 	 * @since 1.29
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
 	/**
 	 * Also use the order fields returned by getOrderFields when fetching from the cache.
+	 * @stable to override
 	 * @return array
 	 * @since 1.29
 	 */
-	function getCacheOrderFields() {
+	protected function getCacheOrderFields() {
 		return $this->getOrderFields();
 	}
 

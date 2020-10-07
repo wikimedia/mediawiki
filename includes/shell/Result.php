@@ -18,6 +18,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 namespace MediaWiki\Shell;
 
 /**
@@ -40,7 +42,7 @@ class Result {
 	 * @param string $stdout
 	 * @param string|null $stderr
 	 */
-	public function __construct( $exitCode, $stdout, $stderr = null ) {
+	public function __construct( int $exitCode, string $stdout, ?string $stderr ) {
 		$this->exitCode = $exitCode;
 		$this->stdout = $stdout;
 		$this->stderr = $stderr;
@@ -51,7 +53,7 @@ class Result {
 	 *
 	 * @return int
 	 */
-	public function getExitCode() {
+	public function getExitCode() : int {
 		return $this->exitCode;
 	}
 
@@ -60,7 +62,7 @@ class Result {
 	 *
 	 * @return string
 	 */
-	public function getStdout() {
+	public function getStdout() : string {
 		return $this->stdout;
 	}
 
@@ -70,7 +72,7 @@ class Result {
 	 *
 	 * @return string|null
 	 */
-	public function getStderr() {
+	public function getStderr() : ?string {
 		return $this->stderr;
 	}
 }

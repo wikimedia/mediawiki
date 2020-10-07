@@ -45,10 +45,6 @@ class NukePage extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		$tbl_pag = $dbw->tableName( 'page' );
-		$tbl_rec = $dbw->tableName( 'recentchanges' );
-		$tbl_rev = $dbw->tableName( 'revision' );
-
 		# Get page ID
 		$this->output( "Searching for \"$name\"..." );
 		$title = Title::newFromText( $name );
@@ -60,21 +56,23 @@ class NukePage extends Maintenance {
 
 			# Get corresponding revisions
 			$this->output( "Searching for revisions..." );
-			$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			$revs = [];
-			foreach ( $res as $row ) {
-				$revs[] = $row->rev_id;
-			}
+
+			$revs = $dbw->selectFieldValues(
+				'revision',
+				'rev_id',
+				[ 'rev_page' => $id ],
+				__METHOD__
+			);
 			$count = count( $revs );
 			$this->output( "found $count.\n" );
 
 			# Delete the page record and associated recent changes entries
 			if ( $delete ) {
 				$this->output( "Deleting page record..." );
-				$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
+				$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 				$this->output( "done.\n" );
 				$this->output( "Cleaning up recent changes..." );
-				$dbw->query( "DELETE FROM $tbl_rec WHERE rc_cur_id = $id" );
+				$dbw->delete( 'recentchanges', [ 'rc_cur_id' => $id ], __METHOD__ );
 				$this->output( "done.\n" );
 			}
 
@@ -91,7 +89,8 @@ class NukePage extends Maintenance {
 			# Update stats as appropriate
 			if ( $delete ) {
 				$this->output( "Updating site stats..." );
-				$ga = $isGoodArticle ? -1 : 0; // if it was good, decrement that too
+				// if it was good, decrement that too
+				$ga = $isGoodArticle ? -1 : 0;
 				$stats = SiteStatsUpdate::factory( [
 					'edits' => -$count,
 					'articles' => $ga,
@@ -110,10 +109,7 @@ class NukePage extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		$tbl_rev = $dbw->tableName( 'revision' );
-
-		$set = implode( ', ', $ids );
-		$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
+		$dbw->delete( 'revision', [ 'rev_id' => $ids ], __METHOD__ );
 
 		$this->commitTransaction( $dbw, __METHOD__ );
 	}

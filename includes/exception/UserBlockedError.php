@@ -19,17 +19,40 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Show an error when the user tries to do something whilst blocked.
  *
+ * @newable
  * @since 1.18
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
-	public function __construct( AbstractBlock $block ) {
-		// @todo FIXME: Implement a more proper way to get context here.
-		$params = $block->getPermissionsError( RequestContext::getMain() );
-		parent::__construct( 'blockedtitle', array_shift( $params ), $params );
+	/**
+	 * @stable to call
+	 * @param AbstractBlock $block
+	 * @param User|null $user
+	 * @param Language|null $language
+	 * @param string|null $ip
+	 */
+	public function __construct(
+		AbstractBlock $block,
+		User $user = null,
+		Language $language = null,
+		$ip = null
+	) {
+		if ( $user === null || $language === null || $ip === null ) {
+			// If any of these are not passed in, use the global context
+			$context = RequestContext::getMain();
+			$user = $context->getUser();
+			$language = $context->getLanguage();
+			$ip = $context->getRequest()->getIP();
+		}
+
+		// @todo This should be passed in via the constructor
+		$message = MediaWikiServices::getInstance()->getBlockErrorFormatter()
+			->getMessage( $block, $user, $language, $ip );
+		parent::__construct( 'blockedtitle', $message );
 	}
 }

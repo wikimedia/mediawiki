@@ -20,8 +20,8 @@
  *
  * @file
  */
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 class PurgeJobUtils {
 	/**
@@ -30,7 +30,7 @@ class PurgeJobUtils {
 	 *
 	 * @param IDatabase $dbw
 	 * @param int $namespace Namespace number
-	 * @param array $dbkeys
+	 * @param string[] $dbkeys
 	 */
 	public static function invalidatePages( IDatabase $dbw, $namespace, array $dbkeys ) {
 		if ( $dbkeys === [] ) {

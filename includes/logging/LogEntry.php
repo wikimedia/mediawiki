@@ -26,6 +26,7 @@
 /**
  * Interface for log entries. Every log entry has these methods.
  *
+ * @unstable for implementation, extensions should subclass LogEntryBase instead.
  * @since 1.19
  */
 interface LogEntry {

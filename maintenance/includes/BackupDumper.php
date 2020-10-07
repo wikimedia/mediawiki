@@ -29,8 +29,8 @@ require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @ingroup Dump
@@ -109,7 +109,7 @@ abstract class BackupDumper extends Maintenance {
 	/**
 	 * @param array|null $args For backward compatibility
 	 */
-	function __construct( $args = null ) {
+	public function __construct( $args = null ) {
 		parent::__construct();
 		$this->stderr = fopen( "php://stderr", "wt" );
 
@@ -152,7 +152,7 @@ abstract class BackupDumper extends Maintenance {
 	 * @param string $name
 	 * @param string $class Name of output filter plugin class
 	 */
-	function registerOutput( $name, $class ) {
+	public function registerOutput( $name, $class ) {
 		$this->outputTypes[$name] = $class;
 	}
 
@@ -160,7 +160,7 @@ abstract class BackupDumper extends Maintenance {
 	 * @param string $name
 	 * @param string $class Name of filter plugin class
 	 */
-	function registerFilter( $name, $class ) {
+	public function registerFilter( $name, $class ) {
 		$this->filterTypes[$name] = $class;
 	}
 
@@ -171,7 +171,7 @@ abstract class BackupDumper extends Maintenance {
 	 *   method that takes a BackupDumper as a parameter.
 	 * @param string $file Full or relative path to the PHP file to load, or empty
 	 */
-	function loadPlugin( $class, $file ) {
+	public function loadPlugin( $class, $file ) {
 		if ( $file != '' ) {
 			require_once $file;
 		}
@@ -179,14 +179,14 @@ abstract class BackupDumper extends Maintenance {
 		$register( $this );
 	}
 
-	function execute() {
+	public function execute() {
 		throw new MWException( 'execute() must be overridden in subclasses' );
 	}
 
 	/**
 	 * Processes arguments and sets $this->$sink accordingly
 	 */
-	function processOptions() {
+	protected function processOptions() {
 		$sink = null;
 		$sinks = [];
 
@@ -213,7 +213,7 @@ abstract class BackupDumper extends Maintenance {
 						$this->fatalError( 'Invalid output parameter' );
 					}
 					list( $type, $file ) = $split;
-					if ( !is_null( $sink ) ) {
+					if ( $sink !== null ) {
 						$sinks[] = $sink;
 					}
 					if ( !isset( $this->outputTypes[$type] ) ) {
@@ -228,7 +228,7 @@ abstract class BackupDumper extends Maintenance {
 
 					break;
 				case 'filter':
-					if ( is_null( $sink ) ) {
+					if ( $sink === null ) {
 						$sink = new DumpOutput();
 					}
 
@@ -272,7 +272,7 @@ abstract class BackupDumper extends Maintenance {
 			$this->server = $this->getOption( 'server' );
 		}
 
-		if ( is_null( $sink ) ) {
+		if ( $sink === null ) {
 			$sink = new DumpOutput();
 		}
 		$sinks[] = $sink;
@@ -284,7 +284,7 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 
-	function dump( $history, $text = WikiExporter::TEXT ) {
+	public function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
 		if ( ini_get( 'display_errors' ) ) {
@@ -312,7 +312,7 @@ abstract class BackupDumper extends Maintenance {
 			} else {
 				$exporter->allLogs();
 			}
-		} elseif ( is_null( $this->pages ) ) {
+		} elseif ( $this->pages === null ) {
 			# Page dumps: all or by page ID range
 			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId, $this->orderRevs );
@@ -339,13 +339,13 @@ abstract class BackupDumper extends Maintenance {
 	 * constant per-revision rate.
 	 * @param int $history WikiExporter::CURRENT or WikiExporter::FULL
 	 */
-	function initProgress( $history = WikiExporter::FULL ) {
+	public function initProgress( $history = WikiExporter::FULL ) {
 		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
 		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
 
 		$dbr = $this->forcedDb;
 		if ( $this->forcedDb === null ) {
-			$dbr = $this->getDB( DB_REPLICA );
+			$dbr = $this->getDB( DB_REPLICA, [ 'dump' ] );
 		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = microtime( true );
@@ -359,7 +359,7 @@ abstract class BackupDumper extends Maintenance {
 	 * connection by name.
 	 * @return IMaintainableDatabase
 	 */
-	function backupDb() {
+	protected function backupDb() {
 		if ( $this->forcedDb !== null ) {
 			return $this->forcedDb;
 		}
@@ -381,39 +381,39 @@ abstract class BackupDumper extends Maintenance {
 	 *
 	 * @param IMaintainableDatabase $db The database connection to use
 	 */
-	function setDB( IMaintainableDatabase $db ) {
+	public function setDB( IMaintainableDatabase $db ) {
 		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		if ( isset( $this->lb ) ) {
-			$this->lb->closeAll();
+			$this->lb->closeAll( __METHOD__ );
 		}
 	}
 
-	function backupServer() {
+	protected function backupServer() {
 		global $wgDBserver;
 
 		return $this->server ?: $wgDBserver;
 	}
 
-	function reportPage() {
+	public function reportPage() {
 		$this->pageCount++;
 	}
 
-	function revCount() {
+	public function revCount() {
 		$this->revCount++;
 		$this->report();
 	}
 
-	function report( $final = false ) {
+	public function report( $final = false ) {
 		if ( $final xor ( $this->revCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
 
-	function showReport() {
+	public function showReport() {
 		if ( $this->reporting ) {
 			$now = wfTimestamp( TS_DB );
 			$nowts = microtime( true );
@@ -454,7 +454,7 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 
-	function progress( $string ) {
+	protected function progress( $string ) {
 		if ( $this->reporting ) {
 			fwrite( $this->stderr, $string . "\n" );
 		}

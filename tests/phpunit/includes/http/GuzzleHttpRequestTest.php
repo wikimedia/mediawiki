@@ -3,8 +3,8 @@
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * class for tests of GuzzleHttpRequest
@@ -14,7 +14,13 @@ use GuzzleHttp\Psr7\Request;
  * @covers GuzzleHttpRequest
  * @covers MWHttpRequest
  */
-class GuzzleHttpRequestTest extends MediaWikiTestCase {
+class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
+	/** @var int[] */
+	private $timeoutOptions = [
+		'timeout' => 1,
+		'connectTimeout' => 1
+	];
+
 	/**
 	 * Placeholder url to use for various tests.  This is never contacted, but we must use
 	 * a url of valid format to avoid validation errors.
@@ -50,7 +56,8 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$handler = HandlerStack::create( new MockHandler( [ new Response( 200, [
 			'status' => 200,
 		], $this->exampleBodyText ) ] ) );
-		$r = new GuzzleHttpRequest( $this->exampleUrl, [ 'handler' => $handler ] );
+		$r = new GuzzleHttpRequest( $this->exampleUrl,
+			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$r->execute();
 
 		$this->assertEquals( 200, $r->getStatus() );
@@ -65,7 +72,7 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
 			'callback' => [ $this, 'processHttpDataChunk' ],
 			'handler' => $handler,
-		] );
+		] + $this->timeoutOptions );
 		$r->execute();
 
 		$this->assertEquals( 200, $r->getStatus() );
@@ -79,7 +86,7 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		], $this->exampleBodyText ) ] ) );
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
 			'handler' => $handler,
-		] );
+		] + $this->timeoutOptions );
 		$r->setCallback( [ $this, 'processHttpDataChunk' ] );
 		$r->execute();
 
@@ -98,7 +105,7 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
 			'handler' => $handler,
 			'sink' => new MWCallbackStream( [ $this, 'processHttpDataChunk' ] ),
-		] );
+		] + $this->timeoutOptions );
 		$r->execute();
 
 		$this->assertEquals( 200, $r->getStatus() );
@@ -106,7 +113,7 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 	}
 
 	public function testBadUrl() {
-		$r = new GuzzleHttpRequest( '' );
+		$r = new GuzzleHttpRequest( '', $this->timeoutOptions );
 		$s = $r->execute();
 		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
 
@@ -118,7 +125,8 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$handler = HandlerStack::create( new MockHandler( [ new GuzzleHttp\Exception\ConnectException(
 			'Mock Connection Exception', new Request( 'GET', $this->exampleUrl )
 		) ] ) );
-		$r = new GuzzleHttpRequest( $this->exampleUrl, [ 'handler' => $handler ] );
+		$r = new GuzzleHttpRequest( $this->exampleUrl,
+			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
 		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
 
@@ -130,7 +138,8 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$handler = HandlerStack::create( new MockHandler( [ new GuzzleHttp\Exception\RequestException(
 			'Connection timed out', new Request( 'GET', $this->exampleUrl )
 		) ] ) );
-		$r = new GuzzleHttpRequest( $this->exampleUrl, [ 'handler' => $handler ] );
+		$r = new GuzzleHttpRequest( $this->exampleUrl,
+			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
 		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
 
@@ -142,7 +151,8 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$handler = HandlerStack::create( new MockHandler( [ new Response( 404, [
 			'status' => '404',
 		] ) ] ) );
-		$r = new GuzzleHttpRequest( $this->exampleUrl, [ 'handler' => $handler ] );
+		$r = new GuzzleHttpRequest( $this->exampleUrl,
+			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$s = $r->execute();
 		$errorMsg = $s->getErrorsByType( 'error' )[0]['message'];
 
@@ -156,18 +166,88 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 	public function testPostBody() {
 		$container = [];
 		$history = Middleware::history( $container );
-		$stack = HandlerStack::create();
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
 		$stack->push( $history );
 		$client = new GuzzleHttpRequest( $this->exampleUrl, [
 			'method' => 'POST',
 			'handler' => $stack,
 			'post' => 'key=value',
-		] );
+		] + $this->timeoutOptions );
 		$client->execute();
 
 		$request = $container[0]['request'];
 		$this->assertEquals( 'POST', $request->getMethod() );
 		$this->assertEquals( 'application/x-www-form-urlencoded',
 			$request->getHeader( 'Content-Type' )[0] );
+	}
+
+	/**
+	 * Test POSTed multipart request body with custom content type
+	 */
+	public function testPostBodyContentType() {
+		$container = [];
+		$history = Middleware::history( $container );
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
+		$stack->push( $history );
+		$boundary = 'boundary';
+		$client = new GuzzleHttpRequest( $this->exampleUrl, [
+				'method' => 'POST',
+				'handler' => $stack,
+				'postData' => new \GuzzleHttp\Psr7\MultipartStream( [ [
+					'name' => 'a',
+					'contents' => 'b'
+				] ] ),
+			] + $this->timeoutOptions );
+		$client->setHeader( 'Content-Type', 'text/mwtest' );
+		$client->execute();
+
+		$request = $container[0]['request'];
+		$this->assertEquals( 'text/mwtest',
+			$request->getHeader( 'Content-Type' )[0] );
+	}
+
+	/*
+	 * Test that cookies from CookieJar were sent in the outgoing request.
+	 */
+	public function testCookieSent() {
+		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$expectedCookies = [ 'cookie1' => 'value1', 'anothercookie' => 'secondvalue' ];
+		$jar = new CookieJar;
+		foreach ( $expectedCookies as $key => $val ) {
+			$jar->setCookie( $key, $val, [ 'domain' => $domain ] );
+		}
+
+		$container = [];
+		$history = Middleware::history( $container );
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
+		$stack->push( $history );
+		$client = new GuzzleHttpRequest( $this->exampleUrl, [
+			'method' => 'POST',
+			'handler' => $stack,
+			'post' => 'key=value',
+		] + $this->timeoutOptions );
+		$client->setCookieJar( $jar );
+		$client->execute();
+
+		$request = $container[0]['request'];
+		$this->assertEquals( [ 'cookie1=value1; anothercookie=secondvalue' ],
+			$request->getHeader( 'Cookie' ) );
+	}
+
+	/*
+	 * Test that cookies returned by HTTP response were added back into the CookieJar.
+	 */
+	public function testCookieReceived() {
+		$handler = HandlerStack::create( new MockHandler( [ new Response( 200, [
+			'status' => 200,
+			'Set-Cookie' => [ 'cookie1=value1', 'anothercookie=secondvalue' ]
+		] ) ] ) );
+		$r = new GuzzleHttpRequest( $this->exampleUrl,
+			[ 'handler' => $handler ] + $this->timeoutOptions );
+		$r->execute();
+
+		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$this->assertEquals( 'cookie1=value1; anothercookie=secondvalue',
+			$r->getCookieJar()->serializeToHttpRequest( '/', $domain ) );
 	}
 }

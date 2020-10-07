@@ -38,49 +38,49 @@ abstract class ChangesListFilterGroup {
 	/**
 	 * Name (internal identifier)
 	 *
-	 * @var string $name
+	 * @var string
 	 */
 	protected $name;
 
 	/**
 	 * i18n key for title
 	 *
-	 * @var string $title
+	 * @var string
 	 */
 	protected $title;
 
 	/**
 	 * i18n key for header of What's This?
 	 *
-	 * @var string|null $whatsThisHeader
+	 * @var string|null
 	 */
 	protected $whatsThisHeader;
 
 	/**
 	 * i18n key for body of What's This?
 	 *
-	 * @var string|null $whatsThisBody
+	 * @var string|null
 	 */
 	protected $whatsThisBody;
 
 	/**
 	 * URL of What's This? link
 	 *
-	 * @var string|null $whatsThisUrl
+	 * @var string|null
 	 */
 	protected $whatsThisUrl;
 
 	/**
 	 * i18n key for What's This? link
 	 *
-	 * @var string|null $whatsThisLinkText
+	 * @var string|null
 	 */
 	protected $whatsThisLinkText;
 
 	/**
 	 * Type, from a TYPE constant of a subclass
 	 *
-	 * @var string $type
+	 * @var string
 	 */
 	protected $type;
 
@@ -88,14 +88,14 @@ abstract class ChangesListFilterGroup {
 	 * Priority integer.  Higher values means higher up in the
 	 * group list.
 	 *
-	 * @var string $priority
+	 * @var string
 	 */
 	protected $priority;
 
 	/**
 	 * Associative array of filters, as ChangesListFilter objects, with filter name as key
 	 *
-	 * @var array $filters
+	 * @var array
 	 */
 	protected $filters;
 
@@ -103,7 +103,7 @@ abstract class ChangesListFilterGroup {
 	 * Whether this group is full coverage.  This means that checking every item in the
 	 * group means no changes list (e.g. RecentChanges) entries are filtered out.
 	 *
-	 * @var bool $isFullCoverage
+	 * @var bool
 	 */
 	protected $isFullCoverage;
 
@@ -111,7 +111,7 @@ abstract class ChangesListFilterGroup {
 	 * Array of associative arrays with conflict information.  See
 	 * setUnidirectionalConflict
 	 *
-	 * @var array $conflictingGroups
+	 * @var array
 	 */
 	protected $conflictingGroups = [];
 
@@ -119,13 +119,13 @@ abstract class ChangesListFilterGroup {
 	 * Array of associative arrays with conflict information.  See
 	 * setUnidirectionalConflict
 	 *
-	 * @var array $conflictingFilters
+	 * @var array
 	 */
 	protected $conflictingFilters = [];
 
-	const DEFAULT_PRIORITY = -100;
+	private const DEFAULT_PRIORITY = -100;
 
-	const RESERVED_NAME_CHAR = '_';
+	private const RESERVED_NAME_CHAR = '_';
 
 	/**
 	 * Create a new filter group with the specified configuration

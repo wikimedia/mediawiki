@@ -1,0 +1,9 @@
+/* Override styles from 'mediawiki.diff.styles' that mess with QUnit's diffs */
+/* stylelint-disable-next-line selector-class-pattern */
+#qunit-tests table.diff {
+	border: 0;
+	white-space: normal;
+	border-spacing: 0;
+	table-layout: auto;
+	width: auto;
+}

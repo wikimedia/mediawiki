@@ -18,24 +18,22 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
-use Wikimedia\Rdbms\MySQLField;
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\MySQLField;
 
 /**
  * Mysql update list and mysql-specific update functions.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  * @property Wikimedia\Rdbms\DatabaseMysqlBase $db
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			[ 'disableContentHandlerUseDB' ],
-
 			// 1.2
 			[ 'addField', 'ipblocks', 'ipb_id', 'patch-ipblocks.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ],
@@ -71,12 +69,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'archive', 'ar_rev_id', 'patch-archive-rev_id.sql' ],
 			[ 'addField', 'page', 'page_len', 'patch-page_len.sql' ],
 			[ 'dropField', 'revision', 'inverse_timestamp', 'patch-inverse_timestamp.sql' ],
-			[ 'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ],
+			[ 'ifTableNotExists', 'content',
+				'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ],
 			[ 'addField', 'revision', 'rev_deleted', 'patch-rev_deleted.sql' ],
 			[ 'addField', 'image', 'img_width', 'patch-img_width.sql' ],
 			[ 'addField', 'image', 'img_metadata', 'patch-img_metadata.sql' ],
 			[ 'addField', 'user', 'user_email_token', 'patch-user_email_token.sql' ],
-			[ 'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ],
+			[ 'ifTableNotExists', 'content',
+				'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ],
 			[ 'doNamespaceSize' ],
 			[ 'addField', 'image', 'img_media_type', 'patch-img_media_type.sql' ],
 			[ 'doPagelinksUpdate' ],
@@ -101,9 +101,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'querycache_info', 'patch-querycacheinfo.sql' ],
 			[ 'addTable', 'filearchive', 'patch-filearchive.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_anon_only', 'patch-ipb_anon_only.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_ns_usertext',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_ns_usertext',
 				'patch-recentchanges-utindex.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_user_text',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_user_text',
 				'patch-rc_user_text-index.sql' ],
 
 			// 1.9
@@ -132,11 +132,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'ipblocks', 'ipb_block_email', 'patch-ipb_emailban.sql' ],
 			[ 'doCategorylinksIndicesUpdate' ],
 			[ 'addField', 'oldimage', 'oi_metadata', 'patch-oi_metadata.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
 				'patch-archive-user-index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'image', 'img_usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'image', 'img_usertext_timestamp',
 				'patch-image-user-index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'oldimage', 'oi_usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'oldimage', 'oi_usertext_timestamp',
 				'patch-oldimage-user-index.sql' ],
 			[ 'addField', 'archive', 'ar_page_id', 'patch-archive-page_id.sql' ],
 			[ 'addField', 'image', 'img_sha1', 'patch-img_sha1.sql' ],
@@ -145,7 +145,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'protected_titles', 'patch-protected_titles.sql' ],
 
 			// 1.13
-			[ 'ifNoActorTable', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
+			[ 'ifTableNotExists', 'actor', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
 			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
 			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -154,8 +154,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_newtalk', 'user_last_timestamp', 'patch-user_last_timestamp.sql' ],
 			[ 'doPopulateParentId' ],
 			[ 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ],
-			[ 'doMaybeProfilingMemoryUpdate' ],
-			[ 'ifNoActorTable', 'doFilearchiveIndicesUpdate' ],
+			[ 'ifTableNotExists', 'actor', 'doFilearchiveIndicesUpdate' ],
 
 			// 1.14
 			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
@@ -168,9 +167,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'ifNoActorTable', 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
+			[ 'ifTableNotExists', 'actor',
+				'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
 			# listed separately from the previous update because 1.16 was released without this update
-			[ 'ifNoActorTable', 'doLogUsertextPopulation' ],
+			[ 'ifTableNotExists', 'actor', 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
@@ -189,7 +189,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ],
 			[ 'addIndexIfNoneExist',
 				'archive', [ 'ar_revid', 'ar_revid_uniq' ], 'patch-archive_ar_revid.sql' ],
-			[ 'doLangLinksLengthUpdate' ],
 
 			// 1.18
 			[ 'doUserNewTalkTimestampNotNull' ],
@@ -209,25 +208,28 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addfield', 'job', 'job_timestamp', 'patch-jobs-add-timestamp.sql' ],
 
 			// 1.20
-			[ 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_user',
+				'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id.sql' ],
 			[ 'addIndex', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id-index.sql' ],
 			[ 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ],
 
 			// 1.21
-			[ 'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
-			[ 'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ],
-			[ 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
-			[ 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_text_id',
+				'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_text_id',
+				'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ],
+			[ 'ifFieldExists', 'archive', 'ar_text_id',
+				'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
+			[ 'ifFieldExists', 'archive', 'ar_text_id',
+				'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
 			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
-			[ 'enableContentHandlerUseDB' ],
 			[ 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],
 			[ 'addTable', 'sites', 'patch-sites.sql' ],
 			[ 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ],
 			[ 'addField', 'job', 'job_token', 'patch-job_token.sql' ],
 			[ 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ],
-			[ 'doEnableProfiling' ],
 			[ 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ],
 			[ 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ],
 			[ 'modifyField', 'user_former_groups', 'ufg_group',
@@ -245,9 +247,9 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.23
 			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_type_time',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'logging', 'log_user_text_type_time',
 				'patch-logging_user_text_type_time_index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_time',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'logging', 'log_user_text_time',
 				'patch-logging_user_text_time_index.sql' ],
 			[ 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ],
 			[ 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ],
@@ -294,14 +296,15 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doNonUniquePlTlIl' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
 				'patch-rename-ar_usertext_timestamp.sql' ],
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'ifTableNotExists', 'actor',
+				'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
@@ -400,7 +403,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
 			[ 'migrateImageCommentTemp' ],
 
-			// 1,33
+			// 1.33
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
 			[ 'dropTable', 'valid_tag' ],
 			[ 'dropTable', 'tag_summary' ],
@@ -426,6 +429,18 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'recentchanges', 'rc_user', 'patch-drop-recentchanges-user-fields.sql' ],
 			[ 'dropField', 'logging', 'log_user', 'patch-drop-logging-user-fields.sql' ],
 			[ 'addIndex', 'user_newtalk', 'un_user_ip', 'patch-rename-mysql-user_newtalk-indexes.sql' ],
+
+			// 1.35
+			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
+			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
+			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
+				'patch-ipblocks-rename-ipb_address.sql' ],
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
+			[ 'doLanguageLinksLengthSync' ],
+			[ 'doFixIpbAddressUniqueIndex' ],
+			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
+			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
 		];
 	}
 
@@ -470,7 +485,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $info as $row ) {
 				if ( $row->Column_name == $field ) {
 					$this->output( "...index $index on table $table includes field $field.\n" );
-
 					return true;
 				}
 			}
@@ -548,53 +562,78 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Check if we need to add talk page rows to the watchlist
 	 */
-	function doWatchlistUpdate() {
-		$talk = $this->db->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
-		$nontalk = $this->db->selectField(
-			'watchlist',
-			'count(*)',
-			'NOT (wl_namespace & 1)',
-			__METHOD__
-		);
-		if ( $talk == $nontalk ) {
-			$this->output( "...watchlist talk page rows already present.\n" );
+	protected function doWatchlistUpdate() {
+		global $wgUpdateRowsPerQuery;
 
+		$sql = $this->db->unionQueries(
+			[
+				// Missing talk page rows (corresponding subject page row exists)
+				$this->db->selectSQLText(
+					[ 'wlsubject' => 'watchlist', 'wltalk' => 'watchlist' ],
+					[
+						'wl_user' => 'wlsubject.wl_user',
+						'wl_namespace' => 'wlsubject.wl_namespace | 1',
+						'wl_title' => 'wlsubject.wl_title',
+						'wl_notificationtimestamp' => 'wlsubject.wl_notificationtimestamp'
+					],
+					[ 'NOT (wlsubject.wl_namespace & 1)', 'wltalk.wl_namespace IS NULL' ],
+					__METHOD__,
+					[],
+					[
+						'wltalk' => [ 'LEFT JOIN', [
+							'wltalk.wl_user = wlsubject.wl_user',
+							'wltalk.wl_namespace = (wlsubject.wl_namespace | 1)',
+							'wltalk.wl_title = wlsubject.wl_title'
+						] ]
+					]
+				),
+				// Missing subject page rows (corresponding talk page row exists)
+				$this->db->selectSQLText(
+					[ 'wltalk' => 'watchlist', 'wlsubject' => 'watchlist' ],
+					[
+						'wl_user' => 'wltalk.wl_user',
+						'wl_namespace' => 'wltalk.wl_namespace & ~1',
+						'wl_title' => 'wltalk.wl_title',
+						'wl_notificationtimestamp' => 'wltalk.wl_notificationtimestamp'
+					],
+					[ 'wltalk.wl_namespace & 1', 'wlsubject.wl_namespace IS NULL' ],
+					__METHOD__,
+					[],
+					[
+						'wlsubject' => [ 'LEFT JOIN', [
+							'wlsubject.wl_user = wltalk.wl_user',
+							'wlsubject.wl_namespace = (wltalk.wl_namespace & ~1)',
+							'wlsubject.wl_title = wltalk.wl_title'
+						] ]
+					]
+				)
+			],
+			true // use a non-distinct UNION to avoid overhead
+		);
+
+		$res = $this->db->query( $sql, __METHOD__ );
+
+		if ( !$res->numRows() ) {
+			$this->output( "...watchlist talk page rows already present.\n" );
 			return;
 		}
 
-		$insertOpts = [ 'IGNORE' ];
-		$selectOpts = [];
+		$this->output( "Adding missing corresponding talk/subject watchlist page rows... " );
 
-		// If wl_id exists, make insertSelect() more replication-safe by
-		// ordering on that column. If not, hint that it should be safe anyway.
-		if ( $this->db->fieldExists( 'watchlist', 'wl_id', __METHOD__ ) ) {
-			$selectOpts['ORDER BY'] = 'wl_id';
-		} else {
-			$insertOpts[] = 'NO_AUTO_COLUMNS';
+		$rowBatch = [];
+		foreach ( $res as $row ) {
+			$rowBatch[] = (array)$row;
+			if ( count( $rowBatch ) >= $wgUpdateRowsPerQuery ) {
+				$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
+				$rowBatch = [];
+			}
 		}
+		$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
 
-		$this->output( "Adding missing watchlist talk page rows... " );
-		$this->db->insertSelect( 'watchlist', 'watchlist',
-			[
-				'wl_user' => 'wl_user',
-				'wl_namespace' => 'wl_namespace | 1',
-				'wl_title' => 'wl_title',
-				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
-			], [ 'NOT (wl_namespace & 1)' ], __METHOD__, $insertOpts, $selectOpts );
-		$this->output( "done.\n" );
-
-		$this->output( "Adding missing watchlist subject page rows... " );
-		$this->db->insertSelect( 'watchlist', 'watchlist',
-			[
-				'wl_user' => 'wl_user',
-				'wl_namespace' => 'wl_namespace & ~1',
-				'wl_title' => 'wl_title',
-				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
-			], [ 'wl_namespace & 1' ], __METHOD__, $insertOpts, $selectOpts );
 		$this->output( "done.\n" );
 	}
 
-	function doSchemaRestructuring() {
+	protected function doSchemaRestructuring() {
 		if ( $this->db->tableExists( 'page', __METHOD__ ) ) {
 			$this->output( "...page table already exists.\n" );
 
@@ -1088,26 +1127,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doMaybeProfilingMemoryUpdate() {
-		if ( !$this->doTable( 'profiling' ) ) {
-			return true;
-		}
-
-		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			return true;
-		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
-			$this->output( "...profiling table has pf_memory field.\n" );
-
-			return true;
-		}
-
-		return $this->applyPatch(
-			'patch-profiling-memory.sql',
-			false,
-			'Adding pf_memory field to table profiling'
-		);
-	}
-
 	protected function doFilearchiveIndicesUpdate() {
 		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 		if ( !$info ) {
@@ -1118,7 +1137,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doNonUniquePlTlIl() {
-		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
+		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already non-UNIQUE.\n" );
 
@@ -1166,20 +1185,42 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doLangLinksLengthUpdate() {
-		$langlinks = $this->db->tableName( 'langlinks' );
-		$res = $this->db->query( "SHOW COLUMNS FROM $langlinks LIKE 'll_lang'" );
-		$row = $this->db->fetchObject( $res );
+	protected function doLanguageLinksLengthSync() {
+		$sync = [
+			[ 'table' => 'l10n_cache', 'field' => 'lc_lang' ],
+			[ 'table' => 'langlinks', 'field' => 'll_lang' ],
+			[ 'table' => 'sites', 'field' => 'site_language' ],
+		];
 
-		if ( $row && $row->Type == "varbinary(10)" ) {
-			$this->applyPatch(
-				'patch-langlinks-ll_lang-20.sql',
-				false,
-				'Updating length of ll_lang in langlinks'
-			);
-		} else {
-			$this->output( "...ll_lang is up-to-date.\n" );
+		foreach ( $sync as $s ) {
+			$table = $this->db->tableName( $s['table'] );
+			$field = $s['field'];
+			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'", __METHOD__ );
+			$row = $this->db->fetchObject( $res );
+
+			if ( $row && $row->Type !== "varbinary(35)" ) {
+				$this->applyPatch(
+					"patch-{$s['table']}-$field-35.sql",
+					false,
+					"Updating length of $field in $table"
+				);
+			} else {
+				$this->output( "...$field is up-to-date.\n" );
+			}
 		}
+	}
+
+	protected function doFixIpbAddressUniqueIndex() {
+		if ( !$this->indexHasField( 'ipblocks', 'ipb_address_unique', 'ipb_anon_only' ) ) {
+			$this->output( "...ipb_address_unique index up-to-date.\n" );
+			return;
+		}
+
+		$this->applyPatch(
+			'patch-ipblocks-fix-ipb_address_unique.sql',
+			false,
+			'Removing ipb_anon_only column from ipb_address_unique index'
+		);
 	}
 
 	protected function doUserNewTalkTimestampNotNull() {
@@ -1205,7 +1246,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doIwlinksIndexNonUnique() {
-		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from' );
+		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
 
@@ -1263,12 +1304,12 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doRevisionPageRevIndexNonUnique() {
 		if ( !$this->doTable( 'revision' ) ) {
 			return true;
-		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id' ) ) {
+		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id', __METHOD__ ) ) {
 			$this->output( "...rev_page_id index not found on revision.\n" );
 			return true;
 		}
 
-		if ( !$this->db->indexUnique( 'revision', 'rev_page_id' ) ) {
+		if ( !$this->db->indexUnique( 'revision', 'rev_page_id', __METHOD__ ) ) {
 			$this->output( "...rev_page_id index already non-unique.\n" );
 			return true;
 		}
@@ -1282,7 +1323,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doExtendCommentLengths() {
 		$table = $this->db->tableName( 'revision' );
-		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'" );
+		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'", __METHOD__ );
 		$row = $this->db->fetchObject( $res );
 
 		if ( $row && ( $row->Type !== "varbinary(767)" || $row->Default !== "" ) ) {

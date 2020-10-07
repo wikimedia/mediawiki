@@ -19,4 +19,3 @@ ALTER TABLE /*$wgDBprefix*/image
 	ADD INDEX img_major_mime (img_major_mime);
 ALTER TABLE /*$wgDBprefix*/image
 	ADD INDEX img_minor_mime (img_minor_mime);
-

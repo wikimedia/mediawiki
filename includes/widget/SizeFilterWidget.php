@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Widget;
 
-use \OOUI\RadioSelectInputWidget;
-use \OOUI\TextInputWidget;
-use \OOUI\LabelWidget;
+use OOUI\LabelWidget;
+use OOUI\RadioSelectInputWidget;
+use OOUI\TextInputWidget;
 
 /**
  * Select and input widget.

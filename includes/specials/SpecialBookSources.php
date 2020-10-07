@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Special page outputs information on sourcing a book with a particular ISBN
@@ -157,14 +158,16 @@ class SpecialBookSources extends SpecialPage {
 		$isbn = self::cleanIsbn( $isbn );
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
-		Hooks::run( 'BookInformation', [ $isbn, $out ] );
+		$this->getHookRunner()->onBookInformation( $isbn, $out );
 
 		# Check for a local page such as Project:Book_sources and use that if available
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_PROJECT, $page ); # Show list in content language
 		if ( is_object( $title ) && $title->exists() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$content = $rev->getContent();
+			$rev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByTitle( $title );
+			$content = $rev->getContent( SlotRecord::MAIN );
 
 			if ( $content instanceof TextContent ) {
 				// XXX: in the future, this could be stored as structured data, defining a list of book sources

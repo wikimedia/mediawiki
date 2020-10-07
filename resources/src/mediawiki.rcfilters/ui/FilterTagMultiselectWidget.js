@@ -22,7 +22,7 @@ var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
  * @cfg {boolean} [collapsed] Filter area is collapsed
  */
 FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
-	var rcFiltersRow,
+	var $rcFiltersRow,
 		title = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-activefilters' ),
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -41,6 +41,13 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.currentView = this.model.getCurrentView();
 	this.collapsed = false;
 	this.isMobile = config.isMobile;
+
+	// Has to be before the parent constructor, because the parent constructor may call setValue()
+	// which causes the onChangeTags handler to run (T245073)
+	this.emptyFilterMessage = new OO.ui.LabelWidget( {
+		label: mw.msg( 'rcfilters-empty-filter' ),
+		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-emptyFilters' ]
+	} );
 
 	// Parent
 	FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -98,6 +105,8 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		}
 	}, config ) );
 
+	this.input.$input.attr( 'aria-label', mw.msg( 'rcfilters-search-placeholder' ) );
+
 	this.savedQueryTitle = new OO.ui.LabelWidget( {
 		label: '',
 		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-savedQueryTitle' ]
@@ -139,10 +148,6 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		} );
 	}
 
-	this.emptyFilterMessage = new OO.ui.LabelWidget( {
-		label: mw.msg( 'rcfilters-empty-filter' ),
-		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-emptyFilters' ]
-	} );
 	this.$content.append( this.emptyFilterMessage.$element );
 
 	// Events
@@ -172,7 +177,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	// wide the button is; the button also changes its width depending
 	// on language and its state, so the safest way to present both side
 	// by side is with a table layout
-	rcFiltersRow = $( '<div>' )
+	$rcFiltersRow = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-row' )
 		.append(
 			this.$content
@@ -181,7 +186,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		);
 
 	if ( !mw.user.isAnon() ) {
-		rcFiltersRow.append(
+		$rcFiltersRow.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-cell' )
 				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
@@ -196,9 +201,10 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.restructureViewsSelectWidget();
 
 	// Event
-	this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
+	this.viewsSelectWidget.aggregate( { click: 'buttonClick' } );
+	this.viewsSelectWidget.connect( this, { buttonClick: 'onViewsSelectWidgetButtonClick' } );
 
-	rcFiltersRow.append(
+	$rcFiltersRow.append(
 		$( '<div>' )
 			.addClass( 'mw-rcfilters-ui-cell' )
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-reset' )
@@ -225,7 +231,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		$( '<div>' )
 			.addClass( 'mw-rcfilters-ui-table' )
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters' )
-			.append( rcFiltersRow )
+			.append( $rcFiltersRow )
 	);
 
 	// Initialize
@@ -251,12 +257,13 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 /* Methods */
 
 /**
- * Create a OOUI ButtonSelectWidget. The buttons are framed and have additional CSS
+ * Create a OOUI ButtonGroupWidget. The buttons are framed and have additional CSS
  * classes applied on mobile.
- * @return {OO.ui.ButtonSelectWidget}
+ *
+ * @return {OO.ui.ButtonGroupWidget}
  */
 FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
-	return new OO.ui.ButtonSelectWidget( {
+	var viewsSelectWidget = new OO.ui.ButtonGroupWidget( {
 		classes: this.isMobile ?
 			[
 				'mw-rcfilters-ui-table',
@@ -266,14 +273,15 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 				'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget'
 			],
 		items: [
-			new OO.ui.ButtonOptionWidget( {
+			new OO.ui.ButtonWidget( {
 				framed: !!this.isMobile,
 				data: 'namespaces',
 				icon: 'article',
 				label: mw.msg( 'namespaces' ),
+				title: mw.msg( 'rcfilters-view-namespaces-tooltip' ),
 				classes: this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : []
 			} ),
-			new OO.ui.ButtonOptionWidget( {
+			new OO.ui.ButtonWidget( {
 				framed: !!this.isMobile,
 				data: 'tags',
 				icon: 'tag',
@@ -283,6 +291,12 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 			} )
 		]
 	} );
+
+	viewsSelectWidget.items.forEach( function ( item ) {
+		item.$button.attr( 'aria-label', item.title );
+	} );
+
+	return viewsSelectWidget;
 };
 
 /**
@@ -323,13 +337,12 @@ FilterTagMultiselectWidget.prototype.restructureViewsSelectWidget = function () 
 };
 
 /**
- * Respond to view select widget choose event
+ * Respond to button click event
  *
- * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
+ * @param {OO.ui.ButtonWidget} buttonWidget Clicked widget
  */
-FilterTagMultiselectWidget.prototype.onViewsSelectWidgetChoose = function ( buttonOptionWidget ) {
-	this.controller.switchView( buttonOptionWidget.getData() );
-	this.viewsSelectWidget.selectItem( null );
+FilterTagMultiselectWidget.prototype.onViewsSelectWidgetButtonClick = function ( buttonWidget ) {
+	this.controller.switchView( buttonWidget.getData() );
 	this.focus();
 };
 

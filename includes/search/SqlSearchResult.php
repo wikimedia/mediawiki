@@ -27,7 +27,6 @@ class SqlSearchResult extends RevisionSearchResult {
 	private $terms;
 
 	/**
-	 * SqlSearchResult constructor.
 	 * @param Title $title
 	 * @param string[] $terms list of parsed terms
 	 */
@@ -37,7 +36,7 @@ class SqlSearchResult extends RevisionSearchResult {
 	}
 
 	/**
-	 * return string[]
+	 * @return string[]
 	 */
 	public function getTermMatches(): array {
 		return $this->terms;
@@ -47,7 +46,7 @@ class SqlSearchResult extends RevisionSearchResult {
 	 * @param array $terms Terms to highlight (this parameter is deprecated)
 	 * @return string Highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet( $terms = [] ) {
+	public function getTextSnippet( $terms = [] ) {
 		global $wgAdvancedSearchHighlighting;
 		$this->initText();
 

@@ -27,12 +27,12 @@ class PageRestriction extends AbstractRestriction {
 	/**
 	 * @inheritDoc
 	 */
-	const TYPE = 'page';
+	public const TYPE = 'page';
 
 	/**
 	 * @inheritDoc
 	 */
-	const TYPE_ID = 1;
+	public const TYPE_ID = 1;
 
 	/**
 	 * @var \Title|bool

@@ -30,6 +30,7 @@ use Wikimedia\ObjectFactory;
  * Note that cache key construction will use the first cache backend in the list,
  * so make sure that the other backends can handle such keys (e.g. via encoding).
  *
+ * @newable
  * @ingroup Cache
  */
 class MultiWriteBagOStuff extends BagOStuff {
@@ -44,7 +45,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	private static $UPGRADE_TTL = 3600;
 
 	/**
-	 * $params include:
+	 * @stable to call
+	 * @param array $params
 	 *   - caches: A numbered array of either ObjectFactory::getObjectFromSpec
 	 *      arrays yielding BagOStuff objects or direct BagOStuff objects.
 	 *      If using the former, the 'args' field *must* be set.
@@ -53,14 +55,13 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      in the order they are defined. However, lock()/unlock() calls
 	 *      only use the primary store.
 	 *   - replication: Either 'sync' or 'async'. This controls whether writes
-	 *      to secondary stores are deferred when possible. Async writes
-	 *      require setting 'asyncHandler'. HHVM register_postsend_function() function.
+	 *      to secondary stores are deferred when possible. To use 'async' writes
+	 *      requires the 'asyncHandler' option to be set as well.
 	 *      Async writes can increase the chance of some race conditions
 	 *      or cause keys to expire seconds later than expected. It is
 	 *      safe to use for modules when cached values: are immutable,
 	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
 	 *      validation against the DB, or merge() is used to handle races.
-	 * @param array $params
 	 * @phan-param array{caches:array<int,array|BagOStuff>,replication:string} $params
 	 * @throws InvalidArgumentException
 	 */
@@ -365,6 +366,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	public function addBusyCallback( callable $workCallback ) {
 		$this->caches[0]->addBusyCallback( $workCallback );
+	}
+
+	public function setNewPreparedValues( array $valueByKey ) {
+		return $this->caches[0]->setNewPreparedValues( $valueByKey );
 	}
 
 	public function setMockTime( &$time ) {

@@ -32,11 +32,11 @@
  * @ingroup SpecialPage
  */
 class SpecialWantedTemplates extends WantedQueryPage {
-	function __construct( $name = 'Wantedtemplates' ) {
+	public function __construct( $name = 'Wantedtemplates' ) {
 		parent::__construct( $name );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'templatelinks', 'page' ],
 			'fields' => [

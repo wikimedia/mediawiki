@@ -48,11 +48,10 @@ $templateParser = new TemplateParser();
 
 # Render error page if no LocalSettings file can be found
 try {
-	global $wgVersion;
 	echo $templateParser->processTemplate(
 		'NoLocalSettings',
 		[
-			'wgVersion' => ( $wgVersion ?? 'VERSION' ),
+			'version' => ( defined( 'MW_VERSION' ) ? MW_VERSION : 'VERSION' ),
 			'path' => $path,
 			'localSettingsExists' => file_exists( MW_CONFIG_FILE ),
 			'installerStarted' => $installerStarted

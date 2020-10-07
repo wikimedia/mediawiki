@@ -7,9 +7,5 @@
 	height: 22px;
 	cursor: pointer;
 	vertical-align: middle;
-	/* Modern browsers */
 	display: inline-block;
-	/* IE7 */
-	zoom: 1;
-	*display: inline; /* stylelint-disable declaration-block-no-duplicate-properties */
 }

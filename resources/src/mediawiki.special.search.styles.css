@@ -1,22 +1,6 @@
 /* Special:Search */
 
 /* stylelint-disable selector-class-pattern */
-
-/*
- * Fixes sister projects box moving down the extract
- * of the first result (T18886).
- * It only happens when the window is small and
- * This changes slightly the layout for big screens
- * where there was space for the extracts and the
- * sister projects and thus it showed like in any
- * other browser.
- *
- * This will only affect IE 7 and lower
- */
-.searchresult {
-	display: inline !ie;
-}
-
 .searchresults {
 	margin: 1em 0 1em 0.4em;
 }
@@ -41,9 +25,9 @@
 }
 
 .mw-search-results li {
-	padding-bottom: 1.2em;
-	list-style: none;
-	list-style-image: none;
+	list-style: none none;
+	/* Rely on `padding-bottom` here to add on top of `.content li` provided `margin`. */
+	padding-bottom: 24px;
 }
 
 .mw-search-results li a {
@@ -85,7 +69,7 @@
 }
 
 .search-types .current a {
-	color: #222;
+	color: #202122;
 	cursor: default;
 }
 

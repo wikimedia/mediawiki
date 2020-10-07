@@ -10,6 +10,6 @@ class SearchNearMatchResultSetTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $resultSet->numRows() );
 
 		$resultSet = new SearchNearMatchResultSet( Title::newMainPage() );
-		$this->assertEquals( 1, $resultSet->numRows() );
+		$this->assertSame( 1, $resultSet->numRows() );
 	}
 }

@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"जनक राज भट्ट",
-			"बिप्लब आनन्द",
-			"रमेश सिंह बोहरा",
-			"राम प्रसाद जोशी",
+			"Fitoschido",
 			"Macofe",
 			"Matma Rex",
 			"Nirajan pant",
-			"Fitoschido"
+			"जनक राज भट्ट",
+			"पर्वत सुबेदी",
+			"बिप्लब आनन्द",
+			"रमेश सिंह बोहरा",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"tog-underline": "सम्बन्ध निम्न रेखाङ्कन:",
@@ -246,7 +247,6 @@
 	"versionrequiredtext": "ये पाना प्रयोग गर्नका लागि MediaWiki $1 संस्करण चाहिन्छ ।\nहेर  [[Special:Version|version page]]",
 	"ok": "भयो",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": " \"$1\" बठे निकालियाऽ",
 	"youhavenewmessages": "{{PLURAL:$3|तम सित छन}} $1 ($2)।",
@@ -306,7 +306,7 @@
 	"databaseerror-function": "फङ्सन : $1",
 	"databaseerror-error": "गल्ती: $1",
 	"transaction-duration-limit-exceeded": "To avoid creating high replication lag, this transaction was aborted because the write duration ($1) exceeded the $2 second limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
-	"laggedslavemode": "<strong>चेतावनी:</strong> पानामी हालका अद्यतनहरू नहुनस्कदान ।",
+	"laggedreplicamode": "<strong>चेतावनी:</strong> पानामी हालका अद्यतनहरू नहुनस्कदान ।",
 	"readonly": "डेटाबेस बन्द गरिया छ",
 	"enterlockreason": "ताल्चा मार्नुको कारण दिया, साथै ताल्चा हटाउने समयको अवधि अनुमान लगा।",
 	"readonlytext": "नौला प्रविष्टी रे और संशोधनअन खिलाई डाटाबेस अइल बन्द अरीरैछ़, सम्भबत: नियमित डाटाबेस रख-रखाउ खिलाइ, जै पछा यो सामान्य अवस्था मी आसलो। \n\nव्यवस्थापक जईले यो बन्द अरिराइछ उनले येइ स्पष्टीकरण दीराइछ़: $1",
@@ -520,8 +520,6 @@
 	"passwordreset-email": "इमेल ठेगाना:",
 	"passwordreset-emailtitle": "{{SITENAME}}मा खाता विवरण",
 	"passwordreset-emailelement": "प्रयोगकर्ताको नाम: \n$1\n\nअस्थाई पासवर्ड: \n$2",
-	"passwordreset-emailsentemail": "यदि यो इमेल ठेगाना तम सित सम्बन्धित छ भण्या, तब यक पासवर्ड रिसेट इमेल पठाएलो।",
-	"passwordreset-invalidemail": "अबैध ई-मेल ठेगाना",
 	"changeemail": "इमेल ठेगाना बदेल वा हटा",
 	"changeemail-header": "तमरो इमेल ठेगाना बदेल्लाइ एइ फाराम पुराइ भरऽ। यदि तम तमरा खाता बठेइ कसै लै इमेल ठेगाना सितोऽ सम्बन्ध हटौन चाहन्छऽ भण्या, फाराम बुजौन्ज्याँ नौलो इमेल ठेगाना भण्ण्या ठौर खालि छाण्याऽ।",
 	"changeemail-oldemail": "अईलको इमेल-ठेगाना:",
@@ -649,7 +647,7 @@
 	"previousrevision": "← पुरानो संशोधन",
 	"nextrevision": "नयाँ संशोधन →",
 	"currentrevisionlink": "अहिलको पुनरावलोकन",
-	"cur": "वर्तमान पाना लिङ्क इतिहास",
+	"cur": "वर्तमान पृष्ठको सूत्र इतिहास",
 	"next": "दोसरो",
 	"last": "पैल्लिको",
 	"page_first": "पैल्लो",
@@ -1144,7 +1142,7 @@
 	"deleteprotected": "यै पानालाई सुरक्षित गर्याकोले तमी यैलाई मेटाउन सक्दाइनौ ।",
 	"rollback": "सम्पादनहरू उल्टाउन्या",
 	"rollbacklink": "पैल्लिका रुपमि फर्काउन्या",
-	"rollbacklinkcount": "रोल्ब्याक $1 {{PLURAL:$1|सम्पादन|सम्पादनहरू}}",
+	"rollbacklinkcount": "पूर्ववत $1 {{PLURAL:$1|सम्पादन|सम्पादनहरू}}",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|कुरडी]])द्वारा [[User:$1|$1]]द्वारा गर्याको पछिल्लो संशोधनतर्फ उल्टायाका सम्पादनहरू",
 	"rollback-success": "$1द्वारा उल्टायाका सम्पादनहरू;\nपछिल्लो संशोधनमी $2द्वारा परिवर्तन गरिबर पुनः फर्कायाको।",
 	"protectlogpage": "सुरक्षण लग",
@@ -1411,5 +1409,6 @@
 	"expand_templates_preview_fail_html": "<em>किनकि {{SITENAME}} सिधै एचटिएमयल सक्षम छ र तमीले लग इन गर्या छैनौ, पूर्वावलोकन लुकाइयाको छ ताकि सम्भावित जाभास्क्रिप्ट आक्रमणलाई रोक्द सकियोस् ।</em>\n\n<strong>यदि यो मान्य पूर्ववावलोकन प्रयास हो भण्या पुन प्रयास गर ।</strong>\nयदि यसले कार्य पूर्ण भएन भण्या [[Special:UserLogout|लग आउट गरिबर]] फेरी लग इन गर्या ।",
 	"expand_templates_preview_fail_html_anon": "<em>किनकि {{SITENAME}} सिधै एचटिएमयल सक्षम छ र तमीले लग इन गर्या छैनौ, पूर्वावलोकन लुकाइयाको छ ताकि सम्भावित जाभास्क्रिप्ट आक्रमणलाई रोक्द सकियोस् ।</em>\n\n<strong>यदि यो मान्य पूर्वावलोकन प्रयास हो भण्या कृपया [[Special:UserLogin|लग इन गरिबर]] पुनः प्रयास गर्या ।</strong>",
 	"default-skin-not-found": "ओह! तमरो विकिको पूर्व निर्धारित खोल जस्तो कि <code dir=\"ltr\">$wgDefaultSkin</code> मी बताइयाको<code>$1</code>, उपलब्ध नाईथिन् ।\n\nतमरो इन्स्टलेसन यी खोलहरूलाई सम्मिलित गर्दछ {{PLURAL:$4|खोल|खोलहरू}}। हेर [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manual: खोललाई सम्मिलित गर्नु] ताकि तमीलाई जानकारी होस् कि कसरि {{PLURAL:$4|उसलाई|उसलाई सम्मिलित गर्न सकियोस् र निर्धारितलाई तय गद्दे}}।\n\n$2\n\n; यदि तमीले अहिले मीडियाविकि इन्स्टाल गर्याका छौ:\n: तमीले सम्भवत गिटबठे इन्स्टाल गर्याका छौ, वा सिधै स्रोत कोडबठे गर्याका छौ जैको लागि कुनै अर्कै तारिका प्रयोग गरियाको छ । यो आशा अनुरूप छ । कोशिश गर केहि खोलहरू\n[https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's मीडियाविकिको खोल डाइरेक्ट्रीबाट डाउनलोड गद्या], जैको लागि तमी:\n:* डाउनलोड गर [https://www.mediawiki.org/wiki/Download टरबल इन्स्टालर], जुन कयौं खोलहरू र विस्तारमी उपलब्ध छन्। तमी खोलहरूको कोड <code>skins/</code> त्यसको डाइरेक्ट्रीबाट कपी-पेस्ट गद्द सक्द्या हौ। \n:* व्यक्तिगत खोलहरू टरबलबठे डाउनलोड गर\n[https://www.mediawiki.org/wiki/Special:SkinDistributor मीडिया विकि] बठे।\n:* [https://www.mediawiki.org/wiki/Download_from_Git#Using_Git_to_download_MediaWiki_skins गिटको प्रयोग गरेर डाउनलोड गद्द सकन्छौ]।\n: यदि तमी विकासकर्ता हौ भण्या यसो गद्दा तमरो गिट-रिपजिटरीमी केहि हुनुहुँदैन । \n; यदि तमीले अहिले मीडियाविकिलाई अपग्रेड गर्याका छौ:\n: मीडियाविकि १.२४ र यैको नवीन रूप स्वतः रूपले खोलहरूलाई सक्षम गद्दैनन् (हेर [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Manual:खोलहरूको स्वतः खोज])। तमी निम्नलिखितलाई पेस्ट गद्द सकन्छौ: {{PLURAL:$5|लाइन|लाइनहरू}}  <code>LocalSettings.php</code> मी ताकि {{PLURAL:$5|उसले|सबै}} सक्षम होस् जस्तो कि तमीले इन्स्टाल गर्याको {{PLURAL:$5|खोल|खोलहरू}}को मामिलामी:\n\n<pre dir=\"ltr\">$3</pre>\n\n; यदि तमीले अहिले परिवर्तन गर्याका छौ<code>LocalSettings.php</code>:\n: खोल नामहरूको अगाडी डबल-क्लिक गर जसले तमलाई विभिन्न प्रकारहरूको विकल्प दिन्छ।",
+	"mw-widgets-mediasearch-noresults": "कोइ नतिजालै नाइभेटिया",
 	"date-range-from": "मिति बठेः"
 }

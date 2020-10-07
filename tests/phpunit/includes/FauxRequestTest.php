@@ -2,35 +2,29 @@
 
 use MediaWiki\Session\SessionManager;
 
-class FauxRequestTest extends PHPUnit\Framework\TestCase {
+class FauxRequestTest extends MediaWikiIntegrationTestCase {
 
-	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
-
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
-		$this->orgWgServer = $GLOBALS['wgServer'];
-	}
-
-	public function tearDown() {
-		$GLOBALS['wgServer'] = $this->orgWgServer;
-		parent::tearDown();
+		$this->setMwGlobals( 'wgServer', '//wiki.test' );
 	}
 
 	/**
 	 * @covers FauxRequest::__construct
 	 */
 	public function testConstructInvalidData() {
-		$this->setExpectedException( MWException::class, 'bogus data' );
-		$req = new FauxRequest( 'x' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'bogus data' );
+		new FauxRequest( 'x' );
 	}
 
 	/**
 	 * @covers FauxRequest::__construct
 	 */
 	public function testConstructInvalidSession() {
-		$this->setExpectedException( MWException::class, 'bogus session' );
-		$req = new FauxRequest( [], false, 'x' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'bogus session' );
+		new FauxRequest( [], false, 'x' );
 	}
 
 	/**
@@ -49,7 +43,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetText() {
 		$req = new FauxRequest( [ 'x' => 'Value' ] );
-		$this->assertEquals( 'Value', $req->getText( 'x' ) );
+		$this->assertSame( 'Value', $req->getText( 'x' ) );
 		$this->assertSame( '', $req->getText( 'z' ) );
 	}
 
@@ -84,7 +78,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	public function testGetValues() {
 		$values = [ 'x' => 'Value', 'y' => '' ];
 		$req = new FauxRequest( $values );
-		$this->assertEquals( $values, $req->getValues() );
+		$this->assertSame( $values, $req->getValues() );
 	}
 
 	/**
@@ -94,9 +88,9 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$values = [ 'x' => 'Value', 'y' => '' ];
 
 		$req = new FauxRequest( $values );
-		$this->assertEquals( $values, $req->getQueryValues() );
+		$this->assertSame( $values, $req->getQueryValues() );
 		$req = new FauxRequest( $values, /*wasPosted*/ true );
-		$this->assertEquals( [], $req->getQueryValues() );
+		$this->assertSame( [], $req->getQueryValues() );
 	}
 
 	/**
@@ -104,9 +98,9 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetMethod() {
 		$req = new FauxRequest( [] );
-		$this->assertEquals( 'GET', $req->getMethod() );
+		$this->assertSame( 'GET', $req->getMethod() );
 		$req = new FauxRequest( [], /*wasPosted*/ true );
-		$this->assertEquals( 'POST', $req->getMethod() );
+		$this->assertSame( 'POST', $req->getMethod() );
 	}
 
 	/**
@@ -129,11 +123,11 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( null, $req->getCookie( 'z', '' ) );
 
 		$req->setCookie( 'x', 'Value', '' );
-		$this->assertEquals( 'Value', $req->getCookie( 'x', '' ) );
+		$this->assertSame( 'Value', $req->getCookie( 'x', '' ) );
 
 		$req->setCookies( [ 'x' => 'One', 'y' => 'Two' ], '' );
-		$this->assertEquals( 'One', $req->getCookie( 'x', '' ) );
-		$this->assertEquals( 'Two', $req->getCookie( 'y', '' ) );
+		$this->assertSame( 'One', $req->getCookie( 'x', '' ) );
+		$this->assertSame( 'Two', $req->getCookie( 'y', '' ) );
 	}
 
 	/**
@@ -150,7 +144,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( null, $req->getCookie( 'z' ) );
 
 		$req->setCookie( 'x', 'Value' );
-		$this->assertEquals( 'Value', $req->getCookie( 'x' ) );
+		$this->assertSame( 'Value', $req->getCookie( 'x' ) );
 
 		$wgCookiePrefix = $oldPrefix;
 	}
@@ -160,7 +154,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetRequestURL_disallowed() {
 		$req = new FauxRequest();
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$req->getRequestURL();
 	}
 
@@ -171,17 +165,16 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	public function testSetRequestURL() {
 		$req = new FauxRequest();
 		$req->setRequestURL( 'https://example.org' );
-		$this->assertEquals( 'https://example.org', $req->getRequestURL() );
+		$this->assertSame( 'https://example.org', $req->getRequestURL() );
 	}
 
 	/**
 	 * @covers FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_disallowed() {
-		$GLOBALS['wgServer'] = '//wiki.test';
 		$req = new FauxRequest();
 
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$req->getFullRequestURL();
 	}
 
@@ -189,7 +182,6 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 * @covers FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_http() {
-		$GLOBALS['wgServer'] = '//wiki.test';
 		$req = new FauxRequest();
 		$req->setRequestURL( '/path' );
 
@@ -203,7 +195,6 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 * @covers FauxRequest::getFullRequestURL
 	 */
 	public function testGetFullRequestURL_https() {
-		$GLOBALS['wgServer'] = '//wiki.test';
 		$req = new FauxRequest( [], false, null, 'https' );
 		$req->setRequestURL( '/path' );
 
@@ -219,11 +210,11 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testProtocol() {
 		$req = new FauxRequest();
-		$this->assertEquals( 'http', $req->getProtocol() );
+		$this->assertSame( 'http', $req->getProtocol() );
 		$req = new FauxRequest( [], false, null, 'http' );
-		$this->assertEquals( 'http', $req->getProtocol() );
+		$this->assertSame( 'http', $req->getProtocol() );
 		$req = new FauxRequest( [], false, null, 'https' );
-		$this->assertEquals( 'https', $req->getProtocol() );
+		$this->assertSame( 'https', $req->getProtocol() );
 	}
 
 	/**
@@ -237,13 +228,13 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$request = new FauxRequest();
 		$request->setHeader( 'Accept', $value );
 
-		$this->assertEquals( $request->getHeader( 'Nonexistent' ), false );
-		$this->assertEquals( $request->getHeader( 'Accept' ), $value );
-		$this->assertEquals( $request->getHeader( 'ACCEPT' ), $value );
-		$this->assertEquals( $request->getHeader( 'accept' ), $value );
-		$this->assertEquals(
-			$request->getHeader( 'Accept', WebRequest::GETHEADER_LIST ),
-			[ 'text/plain', 'text/html' ]
+		$this->assertSame( false, $request->getHeader( 'Nonexistent' ) );
+		$this->assertSame( $value, $request->getHeader( 'Accept' ) );
+		$this->assertSame( $value, $request->getHeader( 'ACCEPT' ) );
+		$this->assertSame( $value, $request->getHeader( 'accept' ) );
+		$this->assertSame(
+			[ 'text/plain', 'text/html' ],
+			$request->getHeader( 'Accept', WebRequest::GETHEADER_LIST )
 		);
 	}
 
@@ -255,15 +246,8 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 
 		$request = new FauxRequest();
 
-		$this->assertEquals(
-			[],
-			$request->getAllHeaders()
-		);
-
-		$this->assertEquals(
-			false,
-			$request->getHeader( 'test' )
-		);
+		$this->assertSame( [], $request->getAllHeaders() );
+		$this->assertSame( false, $request->getHeader( 'test' ) );
 	}
 
 	/**
@@ -274,7 +258,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$values = [ 'x' => 'Value', 'y' => '' ];
 
 		$req = new FauxRequest( [], false, /*session*/ $values );
-		$this->assertEquals( $values, $req->getSessionArray() );
+		$this->assertSame( $values, $req->getSessionArray() );
 
 		$req = new FauxRequest();
 		$this->assertSame( null, $req->getSessionArray() );

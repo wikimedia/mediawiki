@@ -108,8 +108,14 @@ class PrevNextNavigationRenderer {
 	 * @param string $class Value of the "class" attribute of the link
 	 * @return string HTML fragment
 	 */
-	private function numLink( Title $title, $offset, $limit, array $query, $link,
-							  $tooltipMsg, $class
+	private function numLink(
+		Title $title,
+		$offset,
+		$limit,
+		array $query,
+		$link,
+		$tooltipMsg,
+		$class
 	) {
 		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
 		$tooltip = $this->messageLocalizer->msg( $tooltipMsg )->title( $title )

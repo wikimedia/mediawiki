@@ -111,6 +111,7 @@ $specialPageAliases = [
 	'CreateAccount'             => [ 'HesapOluştur' ],
 	'Deadendpages'              => [ 'BağlantısızSayfalar' ],
 	'DeletedContributions'      => [ 'SilinenKatkılar' ],
+	'Diff'                      => [ 'Fark' ],
 	'DoubleRedirects'           => [ 'ÇiftYönlendirmeler' ],
 	'EditWatchlist'             => [ 'İzlemeListesiDüzenle' ],
 	'Emailuser'                 => [ 'E-postaGönder' ],

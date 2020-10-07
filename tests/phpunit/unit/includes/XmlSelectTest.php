@@ -10,12 +10,12 @@ class XmlSelectTest extends \MediaWikiUnitTestCase {
 	 */
 	protected $select;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->select = new XmlSelect();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		$this->select = null;
 	}
@@ -164,9 +164,8 @@ class XmlSelectTest extends \MediaWikiUnitTestCase {
 		);
 
 		# inexistent keys should give us 'null'
-		$this->assertEquals(
-			$this->select->getAttribute( 'I DO NOT EXIT' ),
-			null
+		$this->assertNull(
+			$this->select->getAttribute( 'I DO NOT EXIT' )
 		);
 
 		# verify string / integer

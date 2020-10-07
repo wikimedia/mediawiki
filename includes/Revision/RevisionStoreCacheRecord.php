@@ -22,10 +22,10 @@
 
 namespace MediaWiki\Revision;
 
-use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Title;
 use User;
 
@@ -55,7 +55,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
-	function __construct(
+	public function __construct(
 		$callback,
 		Title $title,
 		UserIdentity $user,

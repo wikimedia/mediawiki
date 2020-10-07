@@ -20,14 +20,17 @@
 namespace MediaWiki\Permissions;
 
 use Action;
+use Article;
 use Exception;
-use Hooks;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Special\SpecialPageFactory;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
 use NamespaceInfo;
@@ -36,7 +39,6 @@ use SpecialPage;
 use Title;
 use User;
 use Wikimedia\ScopedCallback;
-use WikiPage;
 
 /**
  * A service class for checking permissions
@@ -47,13 +49,13 @@ use WikiPage;
 class PermissionManager {
 
 	/** @var string Does cheap permission checks from replica DBs (usable for GUI creation) */
-	const RIGOR_QUICK = 'quick';
+	public const RIGOR_QUICK = 'quick';
 
 	/** @var string Does cheap and expensive checks possibly from a replica DB */
-	const RIGOR_FULL = 'full';
+	public const RIGOR_FULL = 'full';
 
 	/** @var string Does cheap and expensive checks, using the master as needed */
-	const RIGOR_SECURE = 'secure';
+	public const RIGOR_SECURE = 'secure';
 
 	/**
 	 * @since 1.34
@@ -85,6 +87,12 @@ class PermissionManager {
 
 	/** @var string[]|null Cached results of getAllRights() */
 	private $allRights;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
@@ -192,18 +200,24 @@ class PermissionManager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
+	 * @param BlockErrorFormatter $blockErrorFormatter
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
-		NamespaceInfo $nsInfo
+		NamespaceInfo $nsInfo,
+		BlockErrorFormatter $blockErrorFormatter,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
+		$this->blockErrorFormatter = $blockErrorFormatter;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -263,7 +277,7 @@ class PermissionManager {
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 *
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	public function getPermissionErrors(
 		$action,
@@ -323,7 +337,7 @@ class PermissionManager {
 		$allowUsertalk = $user->isAllowUsertalk();
 
 		// Allow extensions to let a blocked user access a particular page
-		Hooks::run( 'UserIsBlockedFrom', [ $user, $title, &$blocked, &$allowUsertalk ] );
+		$this->hookRunner->onUserIsBlockedFrom( $user, $title, $blocked, $allowUsertalk );
 
 		return $blocked;
 	}
@@ -342,7 +356,7 @@ class PermissionManager {
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 *
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 * @throws Exception
 	 */
 	private function getPermissionErrorsInternal(
@@ -430,18 +444,19 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 		// Use getUserPermissionsErrors instead
 		$result = '';
-		if ( !Hooks::run( 'userCan', [ &$title, &$user, $action, &$result ] ) ) {
+		if ( !$this->hookRunner->onUserCan( $title, $user, $action, $result ) ) {
 			return $result ? [] : [ [ 'badaccess-group0' ] ];
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$title, &$user, $action, &$result ] ) ) {
+		if ( !$this->hookRunner->onGetUserPermissionsErrors( $title, $user, $action, $result ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$rigor !== self::RIGOR_QUICK
 			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$title, &$user, $action, &$result ] )
+			&& !$this->hookRunner->onGetUserPermissionsErrorsExpensive(
+				$title, $user, $action, $result )
 		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
@@ -513,8 +528,8 @@ class PermissionManager {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
 		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
-				   || $this->isSameSpecialPage( 'PasswordReset', $title )
-				   || $this->isSameSpecialPage( 'Userlogout', $title )
+			|| $this->isSameSpecialPage( 'PasswordReset', $title )
+			|| $this->isSameSpecialPage( 'Userlogout', $title )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
@@ -564,7 +579,7 @@ class PermissionManager {
 
 		if ( !$whitelisted ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
-			Hooks::run( 'TitleReadWhitelist', [ $title, $user, &$whitelisted ] );
+			$this->hookRunner->onTitleReadWhitelist( $title, $user, $whitelisted );
 			if ( !$whitelisted ) {
 				$errors[] = $this->missingPermissionError( $action, $short );
 			}
@@ -669,15 +684,20 @@ class PermissionManager {
 		// in actions being blocked that shouldn't be.
 		$actionObj = null;
 		if ( Action::exists( $action ) ) {
-			// TODO: this drags a ton of dependencies in, would be good to avoid WikiPage
+			// TODO: this drags a ton of dependencies in, would be good to avoid Article
 			//  instantiation and decouple it creating an ActionPermissionChecker interface
-			$wikiPage = WikiPage::factory( Title::newFromLinkTarget( $page, 'clone' ) );
 			// Creating an action will perform several database queries to ensure that
 			// the action has not been overridden by the content type.
 			// FIXME: avoid use of RequestContext since it drags in User and Title dependencies
 			//  probably we may use fake context object since it's unlikely that Action uses it
 			//  anyway. It would be nice if we could avoid instantiating the Action at all.
-			$actionObj = Action::factory( $action, $wikiPage, RequestContext::getMain() );
+			$title = Title::newFromLinkTarget( $page, 'clone' );
+			$context = RequestContext::getMain();
+			$actionObj = Action::factory(
+				$action,
+				Article::newFromTitle( $title, $context ),
+				$context
+			);
 			// Ensure that the retrieved action matches the restriction.
 			if ( $actionObj && $actionObj->getRestriction() !== $action ) {
 				$actionObj = null;
@@ -689,7 +709,14 @@ class PermissionManager {
 		if ( !$actionObj || $actionObj->requiresUnblock() ) {
 			if ( $this->isBlockedFrom( $user, $page, $useReplica ) ) {
 				// @todo FIXME: Pass the relevant context into this function.
-				$errors[] = $block->getPermissionsError( RequestContext::getMain() );
+				$context = RequestContext::getMain();
+				$message = $this->blockErrorFormatter->getMessage(
+					$block,
+					$context->getUser(),
+					$context->getLanguage(),
+					$context->getRequest()->getIP()
+				);
+				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
 			}
 		}
 
@@ -723,8 +750,8 @@ class PermissionManager {
 		// TODO: remove when LinkTarget usage will expand further
 		$title = Title::newFromLinkTarget( $page );
 
-		if ( !Hooks::run( 'TitleQuickPermissions',
-			[ $title, $user, $action, &$errors, ( $rigor !== self::RIGOR_QUICK ), $short ] )
+		if ( !$this->hookRunner->onTitleQuickPermissions( $title, $user, $action,
+			$errors, $rigor !== self::RIGOR_QUICK, $short )
 		) {
 			return $errors;
 		}
@@ -776,11 +803,14 @@ class PermissionManager {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
 			} elseif ( !$this->userHasRight( $user, 'move-rootuserpages' )
-					   && $title->getNamespace() == NS_USER && !$isSubPage ) {
+				&& $title->getNamespace() == NS_USER
+				&& !$isSubPage
+			) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-user-page' ];
 			} elseif ( !$this->userHasRight( $user, 'move-categorypages' )
-					   && $title->getNamespace() == NS_CATEGORY ) {
+				&& $title->getNamespace() == NS_CATEGORY
+			) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
 			}
@@ -834,7 +864,8 @@ class PermissionManager {
 			if ( !$this->userHasRight( $user, $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
 			} elseif ( $title->areRestrictionsCascading() &&
-					   !$this->userHasRight( $user, 'protect' ) ) {
+				!$this->userHasRight( $user, 'protect' )
+			) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
 			}
 		}
@@ -869,11 +900,6 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
-			# We /could/ use the protection level on the source page, but it's
-			# fairly ugly as we have to establish a precedence hierarchy for pages
-			# included by multiple cascade-protected pages. So just restrict
-			# it to people with 'protect' permission, as they could remove the
-			# protection anyway.
 			list( $cascadingSources, $restrictions ) = $title->getCascadeProtectionSources();
 			# Cascading protection depends on more than this page...
 			# Several cascading protected pages may include this page...
@@ -956,14 +982,22 @@ class PermissionManager {
 			// Check for immobile pages
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
 				// Specific message for this case
-				$errors[] = [ 'immobile-source-namespace', $title->getNsText() ];
+				$nsText = $title->getNsText();
+				if ( $nsText === '' ) {
+					$nsText = wfMessage( 'blanknamespace' )->text();
+				}
+				$errors[] = [ 'immobile-source-namespace', $nsText ];
 			} elseif ( !$title->isMovable() ) {
 				// Less specific message for rarer cases
 				$errors[] = [ 'immobile-source-page' ];
 			}
 		} elseif ( $action == 'move-target' ) {
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
-				$errors[] = [ 'immobile-target-namespace', $title->getNsText() ];
+				$nsText = $title->getNsText();
+				if ( $nsText === '' ) {
+					$nsText = wfMessage( 'blanknamespace' )->text();
+				}
+				$errors[] = [ 'immobile-target-namespace', $nsText ];
 			} elseif ( !$title->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];
 			}
@@ -1070,7 +1104,7 @@ class PermissionManager {
 
 		if ( $action != 'patrol' ) {
 			$error = null;
-			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
+			// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
 			if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
 				$error = [ 'sitecssprotected', $action ];
@@ -1078,13 +1112,9 @@ class PermissionManager {
 				$error = [ 'sitejsonprotected', $action ];
 			} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
-			} elseif ( $title->isRawHtmlMessage() ) {
-				// Raw HTML can be used to deploy CSS or JS so require rights for both.
-				if ( !$this->userHasRight( $user, 'editsitejs' ) ) {
-					$error = [ 'sitejsprotected', $action ];
-				} elseif ( !$this->userHasRight( $user, 'editsitecss' ) ) {
-					$error = [ 'sitecssprotected', $action ];
-				}
+			}
+			if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
+				$error = [ 'siterawhtmlprotected', $action ];
 			}
 
 			if ( $error ) {
@@ -1168,7 +1198,7 @@ class PermissionManager {
 				}
 			}
 		} else {
-			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for
+			// Users need edituser* to edit others' CSS/JSON/JS subpages, except for
 			// deletion/suppression which cannot be used for attacks and we want to avoid the
 			// situation where an unprivileged user can post abusive content on their subpages
 			// and only very highly privileged users could remove it.
@@ -1218,13 +1248,11 @@ class PermissionManager {
 	 * Check if user is allowed to make any action
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
-	 * @suppress PhanCommentParamWithoutRealParam
+	 * @param string ...$actions
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAnyRight( UserIdentity $user ) {
-		$actions = array_slice( func_get_args(), 1 );
+	public function userHasAnyRight( UserIdentity $user, ...$actions ) {
 		foreach ( $actions as $action ) {
 			if ( $this->userHasRight( $user, $action ) ) {
 				return true;
@@ -1237,13 +1265,11 @@ class PermissionManager {
 	 * Check if user is allowed to make all actions
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
-	 * @suppress PhanCommentParamWithoutRealParam
+	 * @param string ...$actions
 	 * @return bool True if user is allowed to perform *all* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAllRights( UserIdentity $user ) {
-		$actions = array_slice( func_get_args(), 1 );
+	public function userHasAllRights( UserIdentity $user, ...$actions ) {
 		foreach ( $actions as $action ) {
 			if ( !$this->userHasRight( $user, $action ) ) {
 				return false;
@@ -1268,7 +1294,7 @@ class PermissionManager {
 			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
 				$user->getEffectiveGroups()
 			);
-			Hooks::run( 'UserGetRights', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
+			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -1283,7 +1309,8 @@ class PermissionManager {
 				}
 			}
 
-			Hooks::run( 'UserGetRightsRemove', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
+			$this->hookRunner->onUserGetRightsRemove(
+				$user, $this->usersRights[ $rightsCacheKey ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->usersRights[ $rightsCacheKey ] = array_values(
 				array_unique( $this->usersRights[ $rightsCacheKey ] )
@@ -1314,7 +1341,7 @@ class PermissionManager {
 	 *
 	 * @since 1.34
 	 *
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 */
 	public function invalidateUsersRightsCache( $user = null ) {
 		if ( $user !== null ) {
@@ -1354,7 +1381,7 @@ class PermissionManager {
 		$groupPermissions = $this->options->get( 'GroupPermissions' );
 		$revokePermissions = $this->options->get( 'RevokePermissions' );
 		return isset( $groupPermissions[$group][$role] ) && $groupPermissions[$group][$role] &&
-			   !( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
+			!( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
 	}
 
 	/**
@@ -1452,7 +1479,7 @@ class PermissionManager {
 		}
 
 		// Allow extensions to say false
-		if ( !Hooks::run( 'UserIsEveryoneAllowed', [ $right ] ) ) {
+		if ( !$this->hookRunner->onUserIsEveryoneAllowed( $right ) ) {
 			$this->cachedRights[$right] = false;
 			return false;
 		}
@@ -1478,14 +1505,14 @@ class PermissionManager {
 			} else {
 				$this->allRights = $this->coreRights;
 			}
-			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
+			$this->hookRunner->onUserGetAllRights( $this->allRights );
 		}
 		return $this->allRights;
 	}
 
 	/**
 	 * Determines if $user is unable to edit pages in namespace because it has been protected.
-	 * @param $index
+	 * @param int $index
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
@@ -1574,6 +1601,18 @@ class PermissionManager {
 		}
 
 		return $usableLevels;
+	}
+
+	/**
+	 * Check if user is allowed to edit sitewide pages that contain raw HTML.
+	 * Pages listed in $wgRawHtmlMessages allow raw HTML which can be used to deploy CSS or JS
+	 * code to all users so both rights are required to edit them.
+	 *
+	 * @param UserIdentity $user
+	 * @return bool True if user has both rights
+	 */
+	private function userCanEditRawHtmlPage( UserIdentity $user ) {
+		return $this->userHasAllRights( $user, 'editsitecss', 'editsitejs' );
 	}
 
 	/**

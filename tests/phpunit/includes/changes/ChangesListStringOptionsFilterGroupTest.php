@@ -5,10 +5,8 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ChangesListStringOptionsFilterGroup
  */
-class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
-	/**
-	 * @expectedException MWException
-	 */
+class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCase {
+
 	public function testIsFullCoverage() {
 		$falseGroup = TestingAccessWrapper::newFromObject(
 			new ChangesListStringOptionsFilterGroup( [
@@ -16,7 +14,8 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 				'filters' => [],
 				'isFullCoverage' => false,
 				'queryCallable' => function () {
-				}
+				},
+				'default' => '',
 			] )
 		);
 
@@ -25,7 +24,8 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 			$falseGroup->isFullCoverage
 		);
 
-		// Should throw due to missing isFullCoverage
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'You must specify isFullCoverage' );
 		$undefinedFullCoverageGroup = new ChangesListStringOptionsFilterGroup( [
 			'name' => 'othergroup',
 			'filters' => [],

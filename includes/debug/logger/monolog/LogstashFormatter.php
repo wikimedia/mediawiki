@@ -84,12 +84,12 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 
 	/**
 	 * Use a more user-friendly trace format than NormalizerFormatter
-	 * @param \Exception|\Throwable $e
+	 * @param \Throwable $e
 	 * @return array
 	 */
 	protected function normalizeException( $e ) {
-		if ( !$e instanceof \Exception && !$e instanceof \Throwable ) {
-			throw new \InvalidArgumentException( 'Exception/Throwable expected, got '
+		if ( !$e instanceof \Throwable ) {
+			throw new \InvalidArgumentException( 'Throwable expected, got '
 				. gettype( $e ) . ' / ' . get_class( $e ) );
 		}
 

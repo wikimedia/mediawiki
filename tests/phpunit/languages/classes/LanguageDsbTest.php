@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageDsb
  */
 class LanguageDsbTest extends LanguageClassesTestCase {

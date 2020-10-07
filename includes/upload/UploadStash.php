@@ -52,8 +52,8 @@
  */
 class UploadStash {
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
-	const KEY_FORMAT_REGEX = '/^[\w\-\.]+\.\w*$/';
-	const MAX_US_PROPS_SIZE = 65535;
+	public const KEY_FORMAT_REGEX = '/^[\w\-\.]+\.\w*$/';
+	private const MAX_US_PROPS_SIZE = 65535;
 
 	/**
 	 * repository that this uses to store temp files
@@ -144,14 +144,14 @@ class UploadStash {
 			if ( strlen( $this->fileMetadata[$key]['us_props'] ) ) {
 				$this->fileProps[$key] = unserialize( $this->fileMetadata[$key]['us_props'] );
 			} else { // b/c for rows with no us_props
-				wfDebug( __METHOD__ . " fetched props for $key from file\n" );
+				wfDebug( __METHOD__ . " fetched props for $key from file" );
 				$path = $this->fileMetadata[$key]['us_path'];
 				$this->fileProps[$key] = $this->repo->getFileProps( $path );
 			}
 		}
 
 		if ( !$this->files[$key]->exists() ) {
-			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
+			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist" );
 			// @todo Is this not an UploadStashFileNotFoundException case?
 			throw new UploadStashBadPathException(
 				wfMessage( 'uploadstash-bad-path' )
@@ -205,7 +205,7 @@ class UploadStash {
 	 */
 	public function stashFile( $path, $sourceType = null ) {
 		if ( !is_file( $path ) ) {
-			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
+			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist" );
 			throw new UploadStashBadPathException(
 				wfMessage( 'uploadstash-bad-path' )
 			);
@@ -213,7 +213,7 @@ class UploadStash {
 
 		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$fileProps = $mwProps->getPropsFromPath( $path, true );
-		wfDebug( __METHOD__ . " stashing file at '$path'\n" );
+		wfDebug( __METHOD__ . " stashing file at '$path'" );
 
 		// we will be initializing from some tmpnam files that don't have extensions.
 		// most of MediaWiki assumes all uploaded files have good extensions. So, we fix this.
@@ -244,7 +244,7 @@ class UploadStash {
 			);
 		}
 
-		wfDebug( __METHOD__ . " key for '$path': $key\n" );
+		wfDebug( __METHOD__ . " key for '$path': $key" );
 
 		// if not already in a temporary area, put it there
 		$storeStatus = $this->repo->storeTemp( basename( $pathWithGoodExtension ), $path );
@@ -282,7 +282,7 @@ class UploadStash {
 		}
 
 		// insert the file metadata into the db.
-		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
+		wfDebug( __METHOD__ . " inserting $stashPath under $key" );
 		$dbw = $this->repo->getMasterDB();
 
 		$serializedFileProps = serialize( $fileProps );
@@ -342,7 +342,7 @@ class UploadStash {
 			);
 		}
 
-		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId . "\n" );
+		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId );
 		$dbw = $this->repo->getMasterDB();
 		$dbw->delete(
 			'uploadstash',
@@ -405,7 +405,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function removeFileNoAuth( $key ) {
-		wfDebug( __METHOD__ . " clearing row $key\n" );
+		wfDebug( __METHOD__ . " clearing row $key" );
 
 		// Ensure we have the UploadStashFile loaded for this key
 		$this->getFile( $key, true );
@@ -471,30 +471,20 @@ class UploadStash {
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
 	 * @param string $path
-	 * @throws UploadStashFileException
 	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
 		global $wgFileBlacklist;
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
-		$extension = null;
+
 		if ( $n !== false ) {
 			$extension = $n ? substr( $path, $n + 1 ) : '';
 		} else {
 			// If not, assume that it should be related to the MIME type of the original file.
 			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mimeType = $magic->guessMimeType( $path );
-			$extensions = explode( ' ', $magic->getExtensionsForType( $mimeType ) );
-			if ( count( $extensions ) ) {
-				$extension = $extensions[0];
-			}
-		}
-
-		if ( is_null( $extension ) ) {
-			throw new UploadStashFileException(
-				wfMessage( 'uploadstash-no-extension' )
-			);
+			$extension = $magic->getExtensionFromMimeTypeOrNull( $mimeType );
 		}
 
 		$extension = File::normalizeExtension( $extension );
@@ -502,7 +492,7 @@ class UploadStash {
 			// The file should already be checked for being evil.
 			// However, if somehow we got here, we definitely
 			// don't want to give it an extension of .php and
-			// put it in a web accesible directory.
+			// put it in a web accessible directory.
 			return '';
 		}
 

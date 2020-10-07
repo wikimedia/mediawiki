@@ -40,6 +40,12 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
 			$showAll = $this->getRequest()->getBool( 'ilshowall', false );
 		}
+		// Sanitize usernames to avoid symbols in the title of page.
+		$sanitizedUserName = User::getCanonicalName( $userName, false );
+		if ( $sanitizedUserName ) {
+			$userName = $sanitizedUserName;
+		}
+
 		if ( $userName ) {
 			$pageTitle = $this->msg( 'listfiles_subpage', $userName );
 		} else {

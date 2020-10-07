@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiFormatTestBase extends MediaWikiTestCase {
+abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Name of the formatter being tested
@@ -90,7 +90,8 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 		array $data, $expect, array $params = [], array $options = []
 	) {
 		if ( $expect instanceof Exception ) {
-			$this->setExpectedException( get_class( $expect ), $expect->getMessage() );
+			$this->expectException( get_class( $expect ) );
+			$this->expectExceptionMessage( $expect->getMessage() );
 			$this->encodeData( $params, $data, $options ); // Should throw
 		} else {
 			$this->assertSame( $expect, $this->encodeData( $params, $data, $options ) );

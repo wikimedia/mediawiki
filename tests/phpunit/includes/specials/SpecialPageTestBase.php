@@ -11,17 +11,17 @@
  * @author Addshore
  * @author Thiemo Kreuz
  */
-abstract class SpecialPageTestBase extends MediaWikiTestCase {
+abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 
 	private $obLevel;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->obLevel = ob_get_level();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		$obLevel = ob_get_level();
 
 		while ( ob_get_level() > $this->obLevel ) {

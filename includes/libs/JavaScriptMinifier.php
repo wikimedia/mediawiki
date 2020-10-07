@@ -33,48 +33,48 @@ class JavaScriptMinifier {
 	 * States are named after the next expected item. We only distinguish states when the
 	 * distinction is relevant for our purpose.
 	 */
-	const STATEMENT                = 0;
-	const CONDITION                = 1;
-	const PROPERTY_ASSIGNMENT      = 2;
-	const EXPRESSION               = 3;
-	const EXPRESSION_NO_NL         = 4; // only relevant for semicolon insertion
-	const EXPRESSION_OP            = 5;
-	const EXPRESSION_FUNC          = 6;
-	const EXPRESSION_TERNARY       = 7; // used to determine the role of a colon
-	const EXPRESSION_TERNARY_OP    = 8;
-	const EXPRESSION_TERNARY_FUNC  = 9;
-	const PAREN_EXPRESSION         = 10; // expression which is not on the top level
-	const PAREN_EXPRESSION_OP      = 11;
-	const PAREN_EXPRESSION_FUNC    = 12;
-	const PROPERTY_EXPRESSION      = 13; // expression which is within an object literal
-	const PROPERTY_EXPRESSION_OP   = 14;
-	const PROPERTY_EXPRESSION_FUNC = 15;
+	private const STATEMENT                = 0;
+	private const CONDITION                = 1;
+	private const PROPERTY_ASSIGNMENT      = 2;
+	private const EXPRESSION               = 3;
+	private const EXPRESSION_NO_NL         = 4; // only relevant for semicolon insertion
+	private const EXPRESSION_OP            = 5;
+	private const EXPRESSION_FUNC          = 6;
+	private const EXPRESSION_TERNARY       = 7; // used to determine the role of a colon
+	private const EXPRESSION_TERNARY_OP    = 8;
+	private const EXPRESSION_TERNARY_FUNC  = 9;
+	private const PAREN_EXPRESSION         = 10; // expression which is not on the top level
+	private const PAREN_EXPRESSION_OP      = 11;
+	private const PAREN_EXPRESSION_FUNC    = 12;
+	private const PROPERTY_EXPRESSION      = 13; // expression which is within an object literal
+	private const PROPERTY_EXPRESSION_OP   = 14;
+	private const PROPERTY_EXPRESSION_FUNC = 15;
 
 	/* Token types */
-	const TYPE_UN_OP       = 101; // unary operators
-	const TYPE_INCR_OP     = 102; // ++ and --
-	const TYPE_BIN_OP      = 103; // binary operators
-	const TYPE_ADD_OP      = 104; // + and - which can be either unary or binary ops
-	const TYPE_HOOK        = 105; // ?
-	const TYPE_COLON       = 106; // :
-	const TYPE_COMMA       = 107; // ,
-	const TYPE_SEMICOLON   = 108; // ;
-	const TYPE_BRACE_OPEN  = 109; // {
-	const TYPE_BRACE_CLOSE = 110; // }
-	const TYPE_PAREN_OPEN  = 111; // ( and [
-	const TYPE_PAREN_CLOSE = 112; // ) and ]
-	const TYPE_RETURN      = 113; // keywords: break, continue, return, throw
-	const TYPE_IF          = 114; // keywords: catch, for, with, switch, while, if
-	const TYPE_DO          = 115; // keywords: case, var, finally, else, do, try
-	const TYPE_FUNC        = 116; // keywords: function
-	const TYPE_LITERAL     = 117; // all literals, identifiers and unrecognised tokens
+	private const TYPE_UN_OP       = 101; // unary operators
+	private const TYPE_INCR_OP     = 102; // ++ and --
+	private const TYPE_BIN_OP      = 103; // binary operators
+	private const TYPE_ADD_OP      = 104; // + and - which can be either unary or binary ops
+	private const TYPE_HOOK        = 105; // ?
+	private const TYPE_COLON       = 106; // :
+	private const TYPE_COMMA       = 107; // ,
+	private const TYPE_SEMICOLON   = 108; // ;
+	private const TYPE_BRACE_OPEN  = 109; // {
+	private const TYPE_BRACE_CLOSE = 110; // }
+	private const TYPE_PAREN_OPEN  = 111; // ( and [
+	private const TYPE_PAREN_CLOSE = 112; // ) and ]
+	private const TYPE_RETURN      = 113; // keywords: break, continue, return, throw
+	private const TYPE_IF          = 114; // keywords: catch, for, with, switch, while, if
+	private const TYPE_DO          = 115; // keywords: case, var, finally, else, do, try
+	private const TYPE_FUNC        = 116; // keywords: function
+	private const TYPE_LITERAL     = 117; // all literals, identifiers and unrecognised tokens
 
-	const ACTION_GOTO = 201;
-	const ACTION_PUSH = 202;
-	const ACTION_POP = 203;
+	private const ACTION_GOTO = 201;
+	private const ACTION_PUSH = 202;
+	private const ACTION_POP = 203;
 
 	// Sanity limit to avoid excessive memory usage
-	const STACK_LIMIT = 1000;
+	private const STACK_LIMIT = 1000;
 
 	/**
 	 * Maximum line length
@@ -843,7 +843,7 @@ class JavaScriptMinifier {
 		return $out;
 	}
 
-	static function parseError( $fullJavascript, $position, $errorMsg ) {
+	public static function parseError( $fullJavascript, $position, $errorMsg ) {
 		// TODO: Handle the error: trigger_error, throw exception, return false...
 		return false;
 	}

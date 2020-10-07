@@ -79,8 +79,10 @@ class SearchSqlite extends SearchDatabase {
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
-				$convertedVariants = MediaWikiServices::getInstance()->getContentLanguage()->
-					autoConvertToAllVariants( $term );
+
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter();
+				$convertedVariants = $converter->autoConvertToAllVariants( $term );
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
@@ -125,7 +127,7 @@ class SearchSqlite extends SearchDatabase {
 			}
 
 		} else {
-			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
+			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'" );
 		}
 
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
@@ -189,10 +191,10 @@ class SearchSqlite extends SearchDatabase {
 		$filteredTerm =
 			$this->filter( MediaWikiServices::getInstance()->getContentLanguage()->lc( $term ) );
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
-		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ) );
+		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ), __METHOD__ );
 
 		$total = null;
-		$totalResult = $dbr->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
+		$totalResult = $dbr->query( $this->getCountQuery( $filteredTerm, $fulltext ), __METHOD__ );
 		$row = $totalResult->fetchObject();
 		if ( $row ) {
 			$total = intval( $row->c );
@@ -207,7 +209,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @return string
 	 */
 	private function queryNamespaces() {
-		if ( is_null( $this->namespaces ) ) {
+		if ( $this->namespaces === null ) {
 			return '';  # search all
 		}
 		if ( $this->namespaces === [] ) {

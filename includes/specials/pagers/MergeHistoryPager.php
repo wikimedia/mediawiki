@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Pager
  */
@@ -81,16 +83,20 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return '';
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRevisionRow( $row );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
 
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		// TODO inject a RevisionStore into SpecialMergeHistory and pass it to
+		// the MergeHistoryPager constructor
+		$revQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page', 'user' ] );
 		return [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
@@ -99,7 +105,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		];
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'rev_timestamp';
 	}
 }

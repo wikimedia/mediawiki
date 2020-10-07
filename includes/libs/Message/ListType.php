@@ -8,14 +8,14 @@ namespace Wikimedia\Message;
  */
 class ListType {
 	/** A comma-separated list */
-	const COMMA = 'comma';
+	public const COMMA = 'comma';
 
 	/** A semicolon-separated list */
-	const SEMICOLON = 'semicolon';
+	public const SEMICOLON = 'semicolon';
 
 	/** A pipe-separated list */
-	const PIPE = 'pipe';
+	public const PIPE = 'pipe';
 
 	/** A natural-language list separated by "and" */
-	const AND = 'text';
+	public const AND = 'text';
 }

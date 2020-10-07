@@ -8,10 +8,10 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Shell\Shell
  * @group Shell
  */
-class ShellTest extends MediaWikiTestCase {
+class ShellTest extends MediaWikiIntegrationTestCase {
 
 	public function testIsDisabled() {
-		$this->assertInternalType( 'bool', Shell::isDisabled() ); // sanity
+		$this->assertIsBool( Shell::isDisabled() ); // sanity
 	}
 
 	/**
@@ -21,7 +21,7 @@ class ShellTest extends MediaWikiTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
 		}
-		$this->assertSame( $expected, call_user_func_array( [ Shell::class, 'escape' ], $args ) );
+		$this->assertSame( $expected, Shell::escape( ...$args ) );
 	}
 
 	public function provideEscape() {
@@ -63,7 +63,7 @@ class ShellTest extends MediaWikiTestCase {
 		$command->params( 'safe' )
 			->unsafeParams( 'unsafe' );
 
-		$this->assertType( Command::class, $command );
+		$this->assertInstanceOf( Command::class, $command );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 

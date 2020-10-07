@@ -45,16 +45,14 @@
 		 * @return {jQuery.Promise} API response
 		 */
 		create: function ( title, params, content ) {
-			return this.postWithEditToken( $.extend( {
+			return this.postWithEditToken( $.extend( this.assertCurrentUser( {
 				action: 'edit',
 				title: String( title ),
 				text: content,
 				formatversion: '2',
-
-				// Protect against errors and conflicts
-				assert: mw.config.get( 'wgUserName' ) ? 'user' : undefined,
+				// Protect against conflicts
 				createonly: true
-			}, params ) ).then( function ( data ) {
+			} ), params ) ).then( function ( data ) {
 				return data.edit;
 			} );
 		},
@@ -71,7 +69,7 @@
 		 *             return revision.content.replace( 'foo', 'bar' );
 		 *         } )
 		 *         .then( function () {
-		 *             console.log( 'Saved! ');
+		 *             console.log( 'Saved!' );
 		 *         } );
 		 *
 		 * Set save parameters by returning an object instead of a string:
@@ -88,7 +86,7 @@
 		 *         }
 		 *     )
 		 *     .then( function () {
-		 *         console.log( 'Saved! ');
+		 *         console.log( 'Saved!' );
 		 *     } );
 		 *
 		 * Transform asynchronously by returning a promise.
@@ -105,7 +103,7 @@
 		 *                 } );
 		 *         } )
 		 *         .then( function () {
-		 *             console.log( 'Saved! ');
+		 *             console.log( 'Saved!' );
 		 *         } );
 		 *
 		 * @since 1.28

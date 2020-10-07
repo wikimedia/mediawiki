@@ -26,20 +26,24 @@ use MediaWiki\MediaWikiServices;
 /**
  * Highlight bits of wikitext
  *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should use a factory in the future.
  * @ingroup Search
  */
 class SearchHighlighter {
-	const DEFAULT_CONTEXT_LINES = 2;
-	const DEFAULT_CONTEXT_CHARS = 75;
+	public const DEFAULT_CONTEXT_LINES = 2;
+	public const DEFAULT_CONTEXT_CHARS = 75;
 
 	protected $mCleanWikitext = true;
 
 	/**
+	 * @stable to call
 	 * @warning If you pass false to this constructor, then
 	 *  the caller is responsible for HTML escaping.
 	 * @param bool $cleanupWikitext
 	 */
-	function __construct( $cleanupWikitext = true ) {
+	public function __construct( $cleanupWikitext = true ) {
 		$this->mCleanWikitext = $cleanupWikitext;
 	}
 
@@ -146,6 +150,7 @@ class SearchHighlighter {
 			$this->splitAndAdd( $textExt, $count, substr( $text, $start ) );
 			break;
 		}
+		'@phan-var string[] $textExt';
 
 		$all = $textExt + $otherExt; // these have disjunct key sets
 
@@ -305,11 +310,11 @@ class SearchHighlighter {
 	/**
 	 * Split text into lines and add it to extracts array
 	 *
-	 * @param array &$extracts Index -> $line
+	 * @param string[] &$extracts Index -> $line
 	 * @param int &$count
 	 * @param string $text
 	 */
-	function splitAndAdd( &$extracts, &$count, $text ) {
+	private function splitAndAdd( &$extracts, &$count, $text ) {
 		$split = explode( "\n", $this->mCleanWikitext ? $this->removeWiki( $text ) : $text );
 		foreach ( $split as $line ) {
 			$tt = trim( $line );
@@ -325,7 +330,7 @@ class SearchHighlighter {
 	 * @param array $matches
 	 * @return string
 	 */
-	function caseCallback( $matches ) {
+	private function caseCallback( $matches ) {
 		if ( strlen( $matches[0] ) > 1 ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			return '[' . $contLang->lc( $matches[0] ) .
@@ -345,7 +350,7 @@ class SearchHighlighter {
 	 * @param int|null &$posEnd (out) actual end position
 	 * @return string
 	 */
-	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
+	private function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
 		if ( $start != 0 ) {
 			$start = $this->position( $text, $start, 1 );
 		}
@@ -355,10 +360,10 @@ class SearchHighlighter {
 			$end = $this->position( $text, $end );
 		}
 
-		if ( !is_null( $posStart ) ) {
+		if ( $posStart !== null ) {
 			$posStart = $start;
 		}
-		if ( !is_null( $posEnd ) ) {
+		if ( $posEnd !== null ) {
 			$posEnd = $end;
 		}
 
@@ -377,7 +382,7 @@ class SearchHighlighter {
 	 * @param int $offset Offset to found index
 	 * @return int Nearest nonletter index, or beginning of utf8 char if none
 	 */
-	function position( $text, $point, $offset = 0 ) {
+	private function position( $text, $point, $offset = 0 ) {
 		$tolerance = 10;
 		$s = max( 0, $point - $tolerance );
 		$l = min( strlen( $text ), $point + $tolerance ) - $s;
@@ -416,9 +421,8 @@ class SearchHighlighter {
 	 * @param int &$contextchars Length of snippet
 	 * @param array &$out Map for highlighted snippets
 	 * @param array &$offsets Map of starting points of snippets
-	 * @protected
 	 */
-	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
+	private function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
 		if ( $linesleft == 0 ) {
 			return; // nothing to do
 		}
@@ -457,11 +461,10 @@ class SearchHighlighter {
 
 	/**
 	 * Basic wikitext removal
-	 * @protected
 	 * @param string $text
 	 * @return mixed
 	 */
-	function removeWiki( $text ) {
+	private function removeWiki( $text ) {
 		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text );
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
@@ -489,7 +492,7 @@ class SearchHighlighter {
 	 * @param array $matches
 	 * @return string
 	 */
-	function linkReplace( $matches ) {
+	private function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );
 		if ( $colon === false ) {
 			return $matches[2]; // replace with caption

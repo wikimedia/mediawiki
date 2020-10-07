@@ -85,7 +85,7 @@ class DnsSrvDiscoverer {
 
 	/**
 	 * @param array $server
-	 * @param array $servers
+	 * @param array[] $servers
 	 * @return array[]
 	 */
 	public function removeServer( $server, array $servers ) {

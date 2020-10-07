@@ -77,7 +77,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFileFromRow
 	 */
 	public function testNewFileFromRow_invalid() {
-		$this->setExpectedException( 'MWException', 'LocalRepo::newFileFromRow: invalid row' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'LocalRepo::newFileFromRow: invalid row' );
 
 		$row = (object)[
 			"img_user" => '1',
@@ -176,8 +177,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'makeKey' ] )
 			->getMock();
 		$mockWan->expects( $this->exactly( 2 ) )->method( 'makeKey' )->withConsecutive(
-			[ 'image_redirect', md5( 'Redirect' ) ],
-			[ 'filerepo', 'local', 'image_redirect', md5( 'Redirect' ) ]
+			[ 'file_redirect', md5( 'Redirect' ) ],
+			[ 'filerepo', 'local', 'file_redirect', md5( 'Redirect' ) ]
 		)->will( $this->onConsecutiveCalls( false, 'somekey' ) );
 
 		$repo = $this->newRepo( [ 'wanCache' => $mockWan ] );
@@ -192,7 +193,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::checkRedirect
 	 */
 	public function testCheckRedirect_invalidFile() {
-		$this->setExpectedException( MWException::class, '`Notafile` is not a valid file title.' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( '`Notafile` is not a valid file title.' );
 		$this->newRepo()->checkRedirect( Title::makeTitle( NS_MAIN, 'Notafile' ) );
 	}
 

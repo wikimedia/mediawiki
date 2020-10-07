@@ -1,7 +1,5 @@
 <?php
 /**
- * Fetching and processing of interface messages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,9 +23,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
- * The Message class provides methods which fulfil two basic services:
- *  - fetching interface messages
- *  - processing messages into a variety of formats
+ * The Message class deals with fetching and processing of interface message
+ * into a variety of formats.
  *
  * First implemented with MediaWiki 1.17, the Message class is intended to
  * replace the old wfMsg* functions that over time grew unusable.
@@ -139,8 +136,8 @@ use MediaWiki\MediaWikiServices;
  *     wfMessage( 'key', 'apple', 'pear' )->text();
  * @endcode
  *
- * Shortcut for escaping the message too, similar to wfMsgHTML(), but
- * parameters are not replaced after escaping by default.
+ * Shortcut for escaping the message. Parameters are not replaced after escaping
+ * by default.
  * @code
  *     $escaped = wfMessage( 'key' )
  *          ->rawParams( 'apple' )
@@ -158,18 +155,20 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
+ * @newable
+ * @ingroup Language
  */
 class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */
-	const FORMAT_PLAIN = 'plain';
+	public const FORMAT_PLAIN = 'plain';
 	/** Use normal wikitext -> HTML parsing (the result will be wrapped in a block-level HTML tag) */
-	const FORMAT_BLOCK_PARSE = 'block-parse';
+	public const FORMAT_BLOCK_PARSE = 'block-parse';
 	/** Use normal wikitext -> HTML parsing but strip the block-level wrapper */
-	const FORMAT_PARSE = 'parse';
+	public const FORMAT_PARSE = 'parse';
 	/** Transform {{..}} constructs but don't transform to HTML */
-	const FORMAT_TEXT = 'text';
+	public const FORMAT_TEXT = 'text';
 	/** Transform {{..}} constructs, HTML-escape the result */
-	const FORMAT_ESCAPED = 'escaped';
+	public const FORMAT_ESCAPED = 'escaped';
 
 	/**
 	 * Mapping from Message::listParam() types to Language methods.
@@ -240,6 +239,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected $message;
 
 	/**
+	 * @stable to call
 	 * @since 1.17
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of
 	 * message keys to try and use the first non-empty message for, or a
@@ -291,7 +291,13 @@ class Message implements MessageSpecifier, Serializable {
 			'parameters' => $this->parameters,
 			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
-			'titlestr' => $this->title ? $this->title->getFullText() : null,
+			// Optimisation: Avoid cost of TitleFormatter on serialize,
+			// and especially cost of TitleParser (via Title::newFromText)
+			// on retrieval.
+			'titlevalue' => ( $this->title
+				? [ 0 => $this->title->getNamespace(), 1 => $this->title->getDBkey() ]
+				: null
+			),
 		] );
 	}
 
@@ -312,13 +318,16 @@ class Message implements MessageSpecifier, Serializable {
 		$this->parameters = $data['parameters'];
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
-		$this->language = $data['language'] ? Language::factory( $data['language'] ) : false;
+		$this->language = $data['language']
+			? MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $data['language'] )
+			: false;
 
-		if ( isset( $data['titlestr'] ) ) {
+		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
+		if ( isset( $data['titlevalue'] ) ) {
+			$this->title = Title::makeTitle( $data['titlevalue'][0], $data['titlevalue'][1] );
+		} elseif ( isset( $data['titlestr'] ) ) {
 			$this->title = Title::newFromText( $data['titlestr'] );
-		} elseif ( isset( $data['title'] ) && $data['title'] instanceof Title ) {
-			// Old serializations from before December 2018
-			$this->title = $data['title'];
 		} else {
 			$this->title = null; // Explicit for sanity
 		}
@@ -725,7 +734,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * turned off.
 	 *
 	 * @since 1.17
-	 * @param Language|string $lang Language code or Language object.
+	 * @param Language|StubUserLang|string $lang Language code or Language object.
 	 * @return Message $this
 	 * @throws MWException
 	 */
@@ -736,7 +745,8 @@ class Message implements MessageSpecifier, Serializable {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
 			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
-				$this->language = Language::factory( $lang );
+				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $lang );
 			}
 		} elseif ( $lang instanceof StubUserLang ) {
 			$this->language = false;
@@ -1192,15 +1202,12 @@ class Message implements MessageSpecifier, Serializable {
 			} elseif ( isset( $param['list'] ) ) {
 				return $this->formatListParam( $param['list'], $param['type'], $format );
 			} else {
-				if ( !is_scalar( $param ) ) {
-					$param = serialize( $param );
-				}
 				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',
 					[
 						'exception' => new Exception,
 						'msgkey' => $this->getKey(),
-						'param' => htmlspecialchars( $param ),
+						'param' => htmlspecialchars( serialize( $param ) ),
 					]
 				);
 
@@ -1243,7 +1250,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Wikitext parsed into HTML.
 	 */
 	protected function parseText( $string ) {
-		$out = MessageCache::singleton()->parse(
+		$out = MediaWikiServices::getInstance()->getMessageCache()->parse(
 			$string,
 			$this->title,
 			/*linestart*/true,
@@ -1273,7 +1280,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
-		return MessageCache::singleton()->transform(
+		return MediaWikiServices::getInstance()->getMessageCache()->transform(
 			$string,
 			$this->interface,
 			$this->getLanguage(),
@@ -1291,7 +1298,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	protected function fetchMessage() {
 		if ( $this->message === null ) {
-			$cache = MessageCache::singleton();
+			$cache = MediaWikiServices::getInstance()->getMessageCache();
 
 			foreach ( $this->keysToTry as $key ) {
 				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage() );

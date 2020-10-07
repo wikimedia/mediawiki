@@ -28,6 +28,7 @@ DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS watchlist_expiry_we_item_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -59,16 +60,6 @@ CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
-CREATE SEQUENCE actor_actor_id_seq;
-CREATE TABLE actor (
-  actor_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('actor_actor_id_seq'),
-  actor_user INTEGER,
-  actor_name    TEXT     NOT NULL
-);
-ALTER SEQUENCE actor_actor_id_seq OWNED BY actor.actor_id;
-CREATE UNIQUE INDEX actor_user ON actor (actor_user);
-CREATE UNIQUE INDEX actor_name ON actor (actor_name);
-
 CREATE TABLE user_groups (
   ug_user    INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ug_group   TEXT         NOT NULL,
@@ -78,15 +69,9 @@ CREATE TABLE user_groups (
 CREATE INDEX user_groups_group  ON user_groups (ug_group);
 CREATE INDEX user_groups_expiry ON user_groups (ug_expiry);
 
-CREATE TABLE user_former_groups (
-  ufg_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ufg_group  TEXT     NOT NULL
-);
-CREATE UNIQUE INDEX ufg_user_group ON user_former_groups (ufg_user, ufg_group);
-
 CREATE TABLE user_newtalk (
-  user_id              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  user_ip              TEXT             NULL,
+  user_id              INTEGER          NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  user_ip              TEXT             NOT NULL DEFAULT '',
   user_last_timestamp  TIMESTAMPTZ
 );
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
@@ -144,25 +129,20 @@ CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
   rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_text_id        INTEGER          NULL, -- FK
-  rev_comment        TEXT         NOT NULL DEFAULT '',
-  rev_user           INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
-  rev_user_text      TEXT         NOT NULL DEFAULT '',
+  rev_comment_id     INTEGER      NOT NULL DEFAULT 0,
+  rev_actor          INTEGER      NOT NULL DEFAULT 0,
   rev_timestamp      TIMESTAMPTZ  NOT NULL,
   rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   rev_deleted        SMALLINT     NOT NULL  DEFAULT 0,
   rev_len            INTEGER          NULL,
   rev_parent_id      INTEGER          NULL,
-  rev_sha1           TEXT         NOT NULL DEFAULT '',
-  rev_content_model  TEXT,
-  rev_content_format TEXT
+  rev_sha1           TEXT         NOT NULL DEFAULT ''
 );
 ALTER SEQUENCE revision_rev_id_seq OWNED BY revision.rev_id;
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
-CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
 CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
-CREATE INDEX rev_user_idx           ON revision (rev_user);
-CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
+CREATE INDEX rev_actor_timestamp    ON revision (rev_actor,rev_timestamp,rev_id);
+CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
 
 CREATE TABLE revision_comment_temp (
 	revcomment_rev        INTEGER NOT NULL,
@@ -179,8 +159,8 @@ CREATE TABLE revision_actor_temp (
   PRIMARY KEY (revactor_rev, revactor_actor)
 );
 CREATE UNIQUE INDEX revactor_rev ON revision_actor_temp (revactor_rev);
-CREATE INDEX rev_actor_timestamp ON revision_actor_temp (revactor_actor,revactor_timestamp);
-CREATE INDEX rev_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
+CREATE INDEX revactor_actor_timestamp ON revision_actor_temp (revactor_actor,revactor_timestamp);
+CREATE INDEX revactor_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
 
 CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
 CREATE TABLE ip_changes (
@@ -248,11 +228,8 @@ CREATE TABLE archive (
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   ar_rev_id         INTEGER      NOT NULL,
-  ar_text_id        INTEGER      NOT NULL  DEFAULT 0,
   ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
-  ar_len            INTEGER          NULL,
-  ar_content_model  TEXT,
-  ar_content_format TEXT
+  ar_len            INTEGER          NULL
 );
 ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
@@ -303,7 +280,7 @@ CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
 
 CREATE TABLE redirect (
-  rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  rd_from       INTEGER  NOT NULL PRIMARY KEY REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rd_namespace  SMALLINT NOT NULL,
   rd_title      TEXT     NOT NULL,
   rd_interwiki  TEXT     NULL,
@@ -418,7 +395,7 @@ CREATE TABLE ipblocks (
   ipb_sitewide          SMALLINT     NOT NULL  DEFAULT 1
 );
 ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
-CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only);
+CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
@@ -726,16 +703,6 @@ $mw$
   SELECT 1;
 $mw$;
 
--- This table is not used unless profiling is turned on
-CREATE TABLE profiling (
-  pf_count   INTEGER         NOT NULL DEFAULT 0,
-  pf_time    FLOAT           NOT NULL DEFAULT 0,
-  pf_memory  FLOAT           NOT NULL DEFAULT 0,
-  pf_name    TEXT            NOT NULL,
-  pf_server  TEXT            NULL
-);
-CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
-
 CREATE TABLE protected_titles (
   pt_namespace   SMALLINT    NOT NULL,
   pt_title       TEXT        NOT NULL,
@@ -747,12 +714,6 @@ CREATE TABLE protected_titles (
 
   PRIMARY KEY (pt_namespace, pt_title)
 );
-
-CREATE TABLE updatelog (
-  ul_key TEXT NOT NULL PRIMARY KEY,
-  ul_value TEXT
-);
-
 
 CREATE SEQUENCE category_cat_id_seq;
 CREATE TABLE category (
@@ -838,12 +799,10 @@ CREATE INDEX site_protocol ON sites (site_protocol);
 CREATE INDEX site_domain ON sites (site_domain);
 CREATE INDEX site_forward ON sites (site_forward);
 
-CREATE TABLE site_identifiers (
-  si_site   INTEGER NOT NULL,
-  si_type   TEXT    NOT NULL,
-  si_key    TEXT    NOT NULL,
-
-  PRIMARY KEY (si_type, si_key)
+CREATE SEQUENCE watchlist_expiry_we_item_seq;
+CREATE TABLE watchlist_expiry (
+  we_item   INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('watchlist_expiry_we_item_seq'),
+  we_expiry TIMESTAMPTZ NOT NULL
 );
-CREATE INDEX si_site ON site_identifiers (si_site);
-CREATE INDEX si_key ON site_identifiers (si_key);
+ALTER SEQUENCE watchlist_expiry_we_item_seq OWNED BY watchlist_expiry.we_item;
+CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);

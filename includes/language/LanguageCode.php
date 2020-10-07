@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
@@ -35,10 +34,9 @@ class LanguageCode {
 	 * @var array Mapping from deprecated MediaWiki-internal language code
 	 *   to replacement MediaWiki-internal language code.
 	 *
-	 * @since 1.30
 	 * @see https://meta.wikimedia.org/wiki/Special_language_codes
 	 */
-	private static $deprecatedLanguageCodeMapping = [
+	private const DEPRECATED_LANGUAGE_CODE_MAPPING = [
 		// Note that als is actually a valid ISO 639 code (Tosk Albanian), but it
 		// was previously used in MediaWiki for Alsatian, which comes under gsw
 		'als' => 'gsw', // T25215
@@ -74,11 +72,10 @@ class LanguageCode {
 	 * @var array Mapping from nonstandard MediaWiki-internal codes to
 	 *   BCP 47 codes
 	 *
-	 * @since 1.32
 	 * @see https://meta.wikimedia.org/wiki/Special_language_codes
 	 * @see https://phabricator.wikimedia.org/T125073
 	 */
-	private static $nonstandardLanguageCodeMapping = [
+	private const NON_STANDARD_LANGUAGE_CODE_MAPPING = [
 		// All codes returned by Language::fetchLanguageNames() validated
 		// against IANA registry at
 		//   https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
@@ -125,7 +122,7 @@ class LanguageCode {
 	 * @since 1.29
 	 */
 	public static function getDeprecatedCodeMapping() {
-		return self::$deprecatedLanguageCodeMapping;
+		return self::DEPRECATED_LANGUAGE_CODE_MAPPING;
 	}
 
 	/**
@@ -142,10 +139,10 @@ class LanguageCode {
 	 */
 	public static function getNonstandardLanguageCodeMapping() {
 		$result = [];
-		foreach ( self::$deprecatedLanguageCodeMapping as $code => $ignore ) {
+		foreach ( self::DEPRECATED_LANGUAGE_CODE_MAPPING as $code => $ignore ) {
 			$result[$code] = self::bcp47( $code );
 		}
-		foreach ( self::$nonstandardLanguageCodeMapping as $code => $ignore ) {
+		foreach ( self::NON_STANDARD_LANGUAGE_CODE_MAPPING as $code => $ignore ) {
 			$result[$code] = self::bcp47( $code );
 		}
 		return $result;
@@ -162,7 +159,7 @@ class LanguageCode {
 	 * @since 1.30
 	 */
 	public static function replaceDeprecatedCodes( $code ) {
-		return self::$deprecatedLanguageCodeMapping[$code] ?? $code;
+		return self::DEPRECATED_LANGUAGE_CODE_MAPPING[$code] ?? $code;
 	}
 
 	/**
@@ -177,8 +174,8 @@ class LanguageCode {
 	 */
 	public static function bcp47( $code ) {
 		$code = self::replaceDeprecatedCodes( strtolower( $code ) );
-		if ( isset( self::$nonstandardLanguageCodeMapping[$code] ) ) {
-			$code = self::$nonstandardLanguageCodeMapping[$code];
+		if ( isset( self::NON_STANDARD_LANGUAGE_CODE_MAPPING[$code] ) ) {
+			$code = self::NON_STANDARD_LANGUAGE_CODE_MAPPING[$code];
 		}
 		$codeSegment = explode( '-', $code );
 		$codeBCP = [];

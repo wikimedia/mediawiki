@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -14,7 +15,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		return wfWikiID();
 	}
 
-	private function getLockManagerGroupFactory() {
+	private function getLockManagerGroupFactory( $domain ) : LockManagerGroupFactory {
 		return MediaWikiServices::getInstance()->getLockManagerGroupFactory();
 	}
 
@@ -48,14 +49,17 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$services = MediaWikiServices::getInstance();
 
+		$obj = FileBackendGroup::singleton();
+
 		foreach ( $serviceMembers as $key => $name ) {
-			if ( $key === 'srvCache' ) {
-				$this->$key = ObjectCache::getLocalServerInstance( 'hash' );
-			} else {
-				$this->$key = $services->getService( $name );
+			$this->$key = $services->getService( $name );
+			if ( $key === 'srvCache' && $this->$key instanceof EmptyBagOStuff ) {
+				// ServiceWiring will have created its own HashBagOStuff that we don't have a
+				// reference to. Set null instead.
+				$this->srvCache = null;
 			}
 		}
 
-		return FileBackendGroup::singleton();
+		return $obj;
 	}
 }

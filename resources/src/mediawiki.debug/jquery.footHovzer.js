@@ -7,7 +7,7 @@
 
 	function getHovzer() {
 		if ( $hovzer === undefined ) {
-			$hovzer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer' ).appendTo( 'body' );
+			$hovzer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer' ).appendTo( document.body );
 		}
 		return $hovzer;
 	}
@@ -46,7 +46,7 @@
 		update: function () {
 			var $body;
 
-			$body = $( 'body' );
+			$body = $( document.body );
 
 			if ( $spacer === undefined ) {
 				$spacer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer-spacer' );

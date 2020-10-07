@@ -14,7 +14,7 @@ use MediaWiki\Shell\Shell;
  */
 class FirejailCommandIntegrationTest extends PHPUnit\Framework\TestCase {
 
-	public function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		if ( Shell::isDisabled() ) {
 			$this->markTestSkipped( 'shelling out is disabled' );

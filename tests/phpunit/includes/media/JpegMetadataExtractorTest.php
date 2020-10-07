@@ -13,7 +13,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
 	protected $filePath;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->filePath = __DIR__ . '/../../data/media/';
@@ -52,7 +52,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testBinaryCommentStripped() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-comment-binary.jpg' );
-		$this->assertEmpty( $res['COM'] );
+		$this->assertSame( [], $res['COM'] );
 	}
 
 	/* Very rarely a file can have multiple comments.
@@ -119,7 +119,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 		// test file truncated right after a segment, which previously
 		// caused an infinite loop looking for the next segment byte.
 		// Should get past infinite loop and throw in wfUnpack()
-		$this->setExpectedException( 'MWException' );
+		$this->expectException( MWException::class );
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-segment-loop1.jpg' );
 	}
 
@@ -128,7 +128,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 		// would cause a seek past end of file. Seek past end of file
 		// doesn't actually fail, but prevents further reading and was
 		// devolving into the previous case (testInfiniteRead).
-		$this->setExpectedException( 'MWException' );
+		$this->expectException( MWException::class );
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-segment-loop2.jpg' );
 	}
 }

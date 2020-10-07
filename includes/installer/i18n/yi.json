@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Har-wradim",
 			"פוילישער",
-			"පසිඳු කාවින්ද",
-			"Har-wradim"
+			"පසිඳු කාවින්ද"
 		]
 	},
 	"config-desc": "דער אינסטאלירער פאר מעדיעוויקי",
@@ -28,7 +28,6 @@
 	"config-page-install": "אינסטאלירן",
 	"config-page-complete": "פארטיק!",
 	"config-page-restart": "ווידער־אנהייבן אינסטאלאציע",
-	"config-page-readme": "לייענט מיך",
 	"config-page-releasenotes": "ווערסיע־הערות",
 	"config-page-copying": "קאפיע",
 	"config-page-upgradedoc": "ראנג־העכערן",
@@ -38,7 +37,6 @@
 	"config-env-good": "מ'האט קאנטראלירט די סביבה.\nאיר קענט אינסטאלירן מעדיעוויקי.",
 	"config-env-bad": "מ'האט קאנטראלירט די סביבה.\nאיר קענט נישט אינסטאלירן מעדיעוויקי.",
 	"config-env-php": "PHP $1 איז אינצטאלירט.",
-	"config-env-hhvm": "HHVM $1 איז אינסטאלירט.",
 	"config-apc": "[https://www.php.net/apc APC] איז אינסטאַלירט",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] איז אינסטאַלירט",
 	"config-diff3-bad": "GNU diff3 נישט געטראפן.",

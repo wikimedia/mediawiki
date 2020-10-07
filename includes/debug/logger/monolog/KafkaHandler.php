@@ -65,7 +65,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	/**
 	 * @var array defaults for constructor options
 	 */
-	private static $defaultOptions = [
+	private const DEFAULT_OPTIONS = [
 		'alias' => [], // map from monolog channel to kafka topic
 		'swallowExceptions' => false, // swallow exceptions sending records
 		'logExceptions' => null, // A PSR3 logger to inform about errors
@@ -83,7 +83,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	) {
 		parent::__construct( $level, $bubble );
 		$this->produce = $produce;
-		$this->options = array_merge( self::$defaultOptions, $options );
+		$this->options = array_merge( self::DEFAULT_OPTIONS, $options );
 	}
 
 	/**
@@ -139,6 +139,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 
 	/**
 	 * @inheritDoc
+	 * @phan-param array[] $batch
 	 */
 	public function handleBatch( array $batch ) {
 		$channels = [];

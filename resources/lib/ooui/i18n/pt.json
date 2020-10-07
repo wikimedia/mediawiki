@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Athena in Wonderland",
 			"Cainamarques",
 			"Fúlvio",
 			"GoEThe",
@@ -8,11 +9,10 @@
 			"Helder.wiki",
 			"Jaideraf",
 			"Jdforrester",
-			"Luckas",
-			"Vitorvicentevalente",
-			"SandroHc",
 			"Jkb8",
-			"Athena in Wonderland"
+			"Luckas",
+			"SandroHc",
+			"Vitorvicentevalente"
 		]
 	},
 	"ooui-outline-control-move-down": "Mover item para baixo",

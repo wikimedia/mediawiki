@@ -23,13 +23,15 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\MediaWikiServices;
-use MWException;
-use Psr\Log\LoggerInterface;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
 use FauxRequest;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
+use MWException;
+use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 use Wikimedia\ObjectFactory;
@@ -59,6 +61,12 @@ final class SessionManager implements SessionManagerInterface {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var Config */
 	private $config;
@@ -167,6 +175,12 @@ final class SessionManager implements SessionManagerInterface {
 			$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
 		}
 
+		if ( isset( $options['hookContainer'] ) ) {
+			$this->setHookContainer( $options['hookContainer'] );
+		} else {
+			$this->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		}
+
 		if ( isset( $options['store'] ) ) {
 			if ( !$options['store'] instanceof BagOStuff ) {
 				throw new \InvalidArgumentException(
@@ -177,6 +191,7 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			$store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
 		}
+
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
@@ -185,6 +200,15 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	public function getSessionForRequest( WebRequest $request ) {
@@ -377,7 +401,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * The intention is that the named account will never again be usable for
 	 * normal login (i.e. there is no way to undo the prevention of access).
 	 *
-	 * @private For use from \User::newSystemUser only
+	 * @internal For use from \User::newSystemUser only
 	 * @param string $username
 	 */
 	public function preventSessionsForUser( $username ) {
@@ -391,7 +415,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Test if a user is prevented
-	 * @private For use from SessionBackend only
+	 * @internal For use from SessionBackend only
 	 * @param string $username
 	 * @return bool
 	 */
@@ -407,10 +431,12 @@ final class SessionManager implements SessionManagerInterface {
 		if ( $this->sessionProviders === null ) {
 			$this->sessionProviders = [];
 			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
+				/** @var SessionProvider */
 				$provider = ObjectFactory::getObjectFromSpec( $spec );
 				$provider->setLogger( $this->logger );
 				$provider->setConfig( $this->config );
 				$provider->setManager( $this );
+				$provider->setHookContainer( $this->hookContainer );
 				if ( isset( $this->sessionProviders[(string)$provider] ) ) {
 					// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 					throw new \UnexpectedValueException( "Duplicate provider name \"$provider\"" );
@@ -438,7 +464,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Save all active sessions on shutdown
-	 * @private For internal use with register_shutdown_function()
+	 * @internal For internal use with register_shutdown_function()
 	 */
 	public function shutdown() {
 		if ( $this->allSessionBackends ) {
@@ -478,7 +504,7 @@ final class SessionManager implements SessionManagerInterface {
 		// Sort the SessionInfos. Then find the first one that can be
 		// successfully loaded, and then all the ones after it with the same
 		// priority.
-		usort( $infos, 'MediaWiki\\Session\\SessionInfo::compare' );
+		usort( $infos, [ SessionInfo::class, 'compare' ] );
 		$retInfos = [];
 		while ( $infos ) {
 			$info = array_pop( $infos );
@@ -792,10 +818,9 @@ final class SessionManager implements SessionManagerInterface {
 		// hook, this can allow for tying a session to an IP address or the
 		// like.
 		$reason = 'Hook aborted';
-		if ( !\Hooks::run(
-			'SessionCheckInfo',
-			[ &$reason, $info, $request, $metadata, $data ]
-		) ) {
+		if ( !$this->hookRunner->onSessionCheckInfo(
+			$reason, $info, $request, $metadata, $data )
+		) {
 			$this->logger->warning( 'Session "{session}": ' . $reason, [
 				'session' => $info,
 			] );
@@ -807,7 +832,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Create a Session corresponding to the passed SessionInfo
-	 * @private For use by a SessionProvider that needs to specially create its
+	 * @internal For use by a SessionProvider that needs to specially create its
 	 *  own Session. Most session providers won't need this.
 	 * @param SessionInfo $info
 	 * @param WebRequest $request
@@ -839,6 +864,7 @@ final class SessionManager implements SessionManagerInterface {
 				$info,
 				$this->store,
 				$this->logger,
+				$this->hookContainer,
 				$this->config->get( 'ObjectCacheSessionExpiry' )
 			);
 			$this->allSessionBackends[$id] = $backend;
@@ -867,7 +893,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Deregister a SessionBackend
-	 * @private For use from \MediaWiki\Session\SessionBackend only
+	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
 	 */
 	public function deregisterSessionBackend( SessionBackend $backend ) {
@@ -885,7 +911,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Change a SessionBackend's ID
-	 * @private For use from \MediaWiki\Session\SessionBackend only
+	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
 	 */
 	public function changeBackendId( SessionBackend $backend ) {
@@ -920,7 +946,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Call setters on a PHPSessionHandler
-	 * @private Use PhpSessionHandler::install()
+	 * @internal Use PhpSessionHandler::install()
 	 * @param PHPSessionHandler $handler
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
@@ -929,7 +955,8 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
-	 * @protected Unit tests only
+	 * @note Unit tests only
+	 * @internal
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

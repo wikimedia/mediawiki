@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rachitrali",
-			"아라",
-			"Obaid Raza",
-			"Macofe",
-			"Saraiki",
+			"Amire80",
 			"BukhariSaeed",
+			"DannyS712",
 			"Fitoschido",
-			"Amire80"
+			"Macofe",
+			"Obaid Raza",
+			"Rachitrali",
+			"Saraiki",
+			"아라"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -241,7 +242,6 @@
 	"versionrequiredtext": "ھیہ صفحہو استعمال کوریکو بچے میڈیاویکیو $1 نسخہو ضرورت شیر.\n\n[[Special:Version|version page]]",
 	"ok": "ٹھیک شیر",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "‘‘$1’’ نقل کاردو",
 	"youhavenewmessages": "تہ بچے ای $1 شیر۔ ($2)",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|آپ کے لیے}} {{PLURAL:$3|کسی دوسرے صارف|$3 صارفین}} کی جانب سے $1 ($2)۔",
@@ -300,7 +300,7 @@
 	"databaseerror-query": "کیوری: $1",
 	"databaseerror-function": "فنکشن:$ 1",
 	"databaseerror-error": "نقص: $1",
-	"laggedslavemode": "Warning: Page may not contain recent updates.\nخبردار: منکھن شیر کہ صفحہا موجودہ بتاریخہ جات شامل نو بونی",
+	"laggedreplicamode": "Warning: Page may not contain recent updates.\nخبردار: منکھن شیر کہ صفحہا موجودہ بتاریخہ جات شامل نو بونی",
 	"readonly": "ڈیٹابیسا قلف لیگی شیر",
 	"enterlockreason": "قلفو بچے کیہ وجہ درج کورے، بشمولِ تخمینہ کہ قلفو کیاوت کھولاو کورونو بوئے",
 	"readonlytext": "ڈیٹابیس  شاید معمولو اصلاحو بچے نوغ اندراجاتن اوچے خور ترمیماتن بچے قلف کورونو بیتی شیر ھیغار آچی ھیہ عام حالتہ گوی.\nمنتظم، کا کہ قلف لیگیے آسور، ھیہ تفصیلو فراہم کوری آسور: $1",
@@ -561,7 +561,7 @@
 	"histfirst": "قدیم ترین",
 	"histlast": "تازہ ترین",
 	"historysize": "({{PLURAL:$1|1 بائٹ|$1 بائٹ}})",
-	"historyempty": "(خالی)",
+	"historyempty": "خالی",
 	"history-feed-title": "تاریخچۂ نظرثانی",
 	"history-feed-description": "ویکیپیڈیا ھیہ صفحو تاریخچۂ نظرثانی",
 	"history-feed-item-nocomment": "$1 تا $2",

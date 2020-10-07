@@ -6,15 +6,11 @@ use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
-use MediaWikiTestCase;
 
 /**
  * @covers \Wikimedia\Message\MessageValue
- * @covers \Wikimedia\Message\ListParam
- * @covers \Wikimedia\Message\ScalarParam
- * @covers \Wikimedia\Message\MessageParam
  */
-class MessageValueTest extends MediaWikiTestCase {
+class MessageValueTest extends \PHPUnit\Framework\TestCase {
 	public static function provideConstruct() {
 		return [
 			[
@@ -38,9 +34,23 @@ class MessageValueTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $mv->dump() );
 	}
 
+	/** @dataProvider provideConstruct */
+	public function testNew( $input, $expected ) {
+		$mv = MessageValue::new( 'key', $input );
+		$this->assertSame( $expected, $mv->dump() );
+	}
+
 	public function testGetKey() {
 		$mv = new MessageValue( 'key' );
 		$this->assertSame( 'key', $mv->getKey() );
+	}
+
+	public function testGetParams() {
+		$mv = new MessageValue( 'key', [ 'a', 'b' ] );
+		$this->assertEquals( [
+			new ScalarParam( ParamType::TEXT, 'a' ),
+			new ScalarParam( ParamType::TEXT, 'b' ),
+		], $mv->getParams() );
 	}
 
 	public function testParams() {
@@ -112,8 +122,8 @@ class MessageValueTest extends MediaWikiTestCase {
 		$mv = new MessageValue( 'key' );
 		$mv2 = $mv->shortDurationParams( 1, 2 );
 		$this->assertSame( '<message key="key">' .
-			'<timeperiod>1</timeperiod>' .
-			'<timeperiod>2</timeperiod>' .
+			'<period>1</period>' .
+			'<period>2</period>' .
 			'</message>',
 			$mv->dump() );
 		$this->assertSame( $mv, $mv2 );
@@ -185,7 +195,7 @@ class MessageValueTest extends MediaWikiTestCase {
 		$this->assertSame( $mv, $mv2 );
 	}
 
-	public function tesSemicolonListParams() {
+	public function testSemicolonListParams() {
 		$mv = new MessageValue( 'key' );
 		$mv2 = $mv->semicolonListParams( [ 'a', 'b' ] );
 		$this->assertSame( '<message key="key">' .

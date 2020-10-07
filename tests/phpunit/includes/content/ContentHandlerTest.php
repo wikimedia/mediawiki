@@ -7,9 +7,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group ContentHandler
  * @group Database
  */
-class ContentHandlerTest extends MediaWikiTestCase {
+class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -39,7 +39,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		// Reset LinkCache
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
 
@@ -207,7 +207,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
-	 * @expectedException MWException
+	 *
 	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_NonTextContent_fail() {
@@ -215,6 +215,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$content = new DummyContentForTesting( "hello world" );
 
+		$this->expectException( MWException::class );
 		ContentHandler::getContentText( $content );
 	}
 
@@ -472,7 +473,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
 		$this->assertInstanceOf( ParserOutput::class, $out );
-		$this->assertContains( 'one who smiths', $out->getRawText() );
+		$this->assertStringContainsString( 'one who smiths', $out->getRawText() );
 	}
 
 	/**
@@ -609,4 +610,37 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}
 
+	private function getMockContentHander() {
+		$handler = $this->getMockBuilder( ContentHandler::class )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+		return $handler;
+	}
+
+	public function providerGetPageViewLanguage() {
+		yield [ NS_FILE, 'sr', 'sr-ec', 'sr-ec' ];
+		yield [ NS_FILE, 'sr', 'sr', 'sr' ];
+		yield [ NS_MEDIAWIKI, 'sr-ec', 'sr', 'sr-ec' ];
+		yield [ NS_MEDIAWIKI, 'sr', 'sr-ec', 'sr' ];
+	}
+
+	/**
+	 * @dataProvider providerGetPageViewLanguage
+	 * @covers ContentHandler::getPageViewLanguage
+	 */
+	public function testGetPageViewLanguage( $namespace, $lang, $variant, $expected ) {
+		$contentHandler = $this->getMockContentHander();
+
+		$title = Title::newFromText( "SimpleTitle", $namespace );
+
+		$this->setMwGlobals( [
+			'wgDefaultLanguageVariant' => $variant,
+		] );
+
+		$this->setUserLang( $lang );
+		$this->setContentLang( $lang );
+
+		$pageViewLanguage = $contentHandler->getPageViewLanguage( $title );
+		$this->assertEquals( $expected, $pageViewLanguage->getCode() );
+	}
 }

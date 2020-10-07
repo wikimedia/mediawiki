@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to populate the fa_sha1 field.
  *
@@ -60,6 +62,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 		$batchSize = $this->getBatchSize();
 		$done = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		do {
 			$res = $dbw->select(
@@ -94,13 +97,14 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 			// print status and let replica DBs catch up
 			$this->output( sprintf(
 				"id %d done (up to %d), %5.3f%%  \r", $lastId, $endId, $lastId / $endId * 100 ) );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		} while ( true );
 
 		$processingTime = microtime( true ) - $startTime;
 		$this->output( sprintf( "\nDone %d files in %.1f seconds\n", $done, $processingTime ) );
 
-		return true; // we only updated *some* files, don't log
+		// we only updated *some* files, don't log
+		return true;
 	}
 }
 

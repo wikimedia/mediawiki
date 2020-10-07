@@ -107,7 +107,7 @@ class XmlTypeCheck {
 	 *        dtd_handler: Callback given the full text of the <!DOCTYPE declaration.
 	 *        require_safe_dtd: Only allow non-recursive entities in internal dtd (default true)
 	 */
-	function __construct( $input, $filterCallback = null, $isFile = true, $options = [] ) {
+	public function __construct( $input, $filterCallback = null, $isFile = true, $options = [] ) {
 		$this->filterCallback = $filterCallback;
 		$this->parserOptions = array_merge( $this->parserOptions, $options );
 		$this->validateFromInput( $input, $isFile );
@@ -185,14 +185,12 @@ class XmlTypeCheck {
 	}
 
 	private function readNext( XMLReader $reader ) {
-		set_error_handler( [ $this, 'XmlErrorHandler' ] );
+		set_error_handler( function ( $line, $file ) {
+			$this->wellFormed = false;
+		} );
 		$ret = $reader->read();
 		restore_error_handler();
 		return $ret;
-	}
-
-	public function XmlErrorHandler( $errno, $errstr ) {
-		$this->wellFormed = false;
 	}
 
 	private function validate( $reader ) {
@@ -208,7 +206,7 @@ class XmlTypeCheck {
 				$this->processingInstructionHandler( $reader->name, $reader->value );
 			}
 			if ( $reader->nodeType === XMLReader::DOC_TYPE ) {
-				$this->DTDHandler( $reader );
+				$this->dtdHandler( $reader );
 			}
 		} while ( $reader->nodeType != XMLReader::ELEMENT );
 
@@ -327,12 +325,7 @@ class XmlTypeCheck {
 		$callbackReturn = false;
 
 		if ( is_callable( $this->filterCallback ) ) {
-			$callbackReturn = call_user_func(
-				$this->filterCallback,
-				$name,
-				$attribs,
-				$data
-			);
+			$callbackReturn = ( $this->filterCallback )( $name, $attribs, $data );
 		}
 		if ( $callbackReturn ) {
 			// Filter hit!
@@ -356,8 +349,8 @@ class XmlTypeCheck {
 	private function processingInstructionHandler( $target, $data ) {
 		$callbackReturn = false;
 		if ( $this->parserOptions['processing_instruction_handler'] ) {
-			$callbackReturn = call_user_func(
-				$this->parserOptions['processing_instruction_handler'],
+			// @phan-suppress-next-line PhanTypeInvalidCallable false positive
+			$callbackReturn = $this->parserOptions['processing_instruction_handler'](
 				$target,
 				$data
 			);
@@ -374,7 +367,7 @@ class XmlTypeCheck {
 	 *
 	 * @param XMLReader $reader Reader currently pointing at DOCTYPE node.
 	 */
-	private function DTDHandler( XMLReader $reader ) {
+	private function dtdHandler( XMLReader $reader ) {
 		$externalCallback = $this->parserOptions['external_dtd_handler'];
 		$generalCallback = $this->parserOptions['dtd_handler'];
 		$checkIfSafe = $this->parserOptions['require_safe_dtd'];
@@ -385,7 +378,7 @@ class XmlTypeCheck {
 		$callbackReturn = false;
 
 		if ( $generalCallback ) {
-			$callbackReturn = call_user_func( $generalCallback, $dtd );
+			$callbackReturn = $generalCallback( $dtd );
 		}
 		if ( $callbackReturn ) {
 			// Filter hit!
@@ -396,8 +389,7 @@ class XmlTypeCheck {
 
 		$parsedDTD = $this->parseDTD( $dtd );
 		if ( $externalCallback && isset( $parsedDTD['type'] ) ) {
-			$callbackReturn = call_user_func(
-				$externalCallback,
+			$callbackReturn = $externalCallback(
 				$parsedDTD['type'],
 				$parsedDTD['publicid'] ?? null,
 				$parsedDTD['systemid'] ?? null
@@ -407,7 +399,6 @@ class XmlTypeCheck {
 			// Filter hit!
 			$this->filterMatch = true;
 			$this->filterMatchType = $callbackReturn;
-			$callbackReturn = false;
 		}
 
 		if ( $checkIfSafe && isset( $parsedDTD['internal'] ) &&
@@ -438,7 +429,6 @@ class XmlTypeCheck {
 	 * @return bool true if safe.
 	 */
 	private function checkDTDIsSafe( $internalSubset ) {
-		$offset = 0;
 		$res = preg_match(
 			'/^(?:\s*<!ENTITY\s+\S+\s+' .
 				'(?:"(?:&[^"%&;]{1,64};|(?:[^"%&]|&amp;|&quot;){0,255})"' .

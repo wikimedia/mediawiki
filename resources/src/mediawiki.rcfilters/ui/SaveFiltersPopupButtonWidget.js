@@ -142,16 +142,17 @@ SaveFiltersPopupButtonWidget.prototype.onPopupReady = function () {
 
 /**
  * Respond to "set as default" checkbox change
+ *
  * @param {boolean} checked State of the checkbox
  */
 SaveFiltersPopupButtonWidget.prototype.onSetAsDefaultChange = function ( checked ) {
-	var messageKey = checked ?
-		'rcfilters-savedqueries-apply-and-setdefault-label' :
-		'rcfilters-savedqueries-apply-label';
-
 	this.applyButton
 		.setIcon( checked ? 'pushPin' : null )
-		.setLabel( mw.msg( messageKey ) );
+		.setLabel( mw.msg(
+			checked ?
+				'rcfilters-savedqueries-apply-and-setdefault-label' :
+				'rcfilters-savedqueries-apply-label'
+		) );
 };
 
 /**

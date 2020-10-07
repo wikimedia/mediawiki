@@ -7,7 +7,7 @@
  * @covers ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix
@@ -71,7 +71,7 @@ class ApiQueryTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$this->assertEquals( 2, count( $data[0]['query']['pages'] ) );
+		$this->assertCount( 2, $data[0]['query']['pages'] );
 
 		$this->assertArrayHasKey( -2, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( -1, $data[0]['query']['pages'] );
@@ -88,7 +88,7 @@ class ApiQueryTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$this->assertEquals( 1, count( $data[0]['query']['pages'] ) );
+		$this->assertCount( 1, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( -1, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
 	}
@@ -102,7 +102,7 @@ class ApiQueryTest extends ApiTestCase {
 	 * @param string $expectException
 	 * @dataProvider provideTestTitlePartToKey
 	 */
-	function testTitlePartToKey( $titlePart, $namespace, $expected, $expectException ) {
+	public function testTitlePartToKey( $titlePart, $namespace, $expected, $expectException ) {
 		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
 		] );
@@ -118,7 +118,7 @@ class ApiQueryTest extends ApiTestCase {
 			'ApiUsageException thrown by titlePartToKey' );
 	}
 
-	function provideTestTitlePartToKey() {
+	public function provideTestTitlePartToKey() {
 		return [
 			[ 'a  b  c', NS_MAIN, 'A_b_c', false ],
 			[ 'x', NS_MAIN, 'X', false ],
@@ -170,7 +170,7 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'export', $data[0]['query'] );
 		// This response field contains an XML document even if no pages were exported
-		$this->assertNotContains( $title->getPrefixedText(), $data[0]['query']['export'] );
+		$this->assertStringNotContainsString( $title->getPrefixedText(), $data[0]['query']['export'] );
 	}
 
 	public function testIsReadMode() {

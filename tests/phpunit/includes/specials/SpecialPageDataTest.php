@@ -9,7 +9,7 @@
  */
 class SpecialPageDataTest extends SpecialPageTestBase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setContentLang( 'qqx' );
@@ -126,7 +126,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 			foreach ( $expHeaders as $name => $exp ) {
 				$value = $response->getHeader( $name );
 				$this->assertNotNull( $value, "header: $name" );
-				$this->assertInternalType( 'string', $value, "header: $name" );
+				$this->assertIsString( $value, "header: $name" );
 				$this->assertRegExp( $exp, $value, "header: $name" );
 			}
 		} catch ( HttpError $e ) {
@@ -141,7 +141,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 
 		list( $output, ) = $this->executeSpecialPage( '', $request );
 
-		$this->assertContains( '(pagedata-text)', $output );
+		$this->assertStringContainsString( '(pagedata-text)', $output );
 	}
 
 }

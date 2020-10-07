@@ -29,6 +29,7 @@
 class LanguageSl extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
+
 	/**
 	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
 	 *
@@ -37,7 +38,7 @@ class LanguageSl extends Language {
 	 *
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['sl'][$case][$word] ) ) {
 			return $wgGrammarForms['sl'][$case][$word];

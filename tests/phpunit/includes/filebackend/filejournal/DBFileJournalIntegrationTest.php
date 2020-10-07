@@ -21,7 +21,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
@@ -33,15 +33,15 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getJournal( $options = [] ) {
-		return FileJournal::factory(
-			$options + [ 'class' => DBFileJournal::class, 'domain' => wfWikiID() ],
-			'local-backend' );
+		return new DBFileJournal(
+			$options + [ 'domain' => wfWikiID(), 'backend' => 'local-backend' ] );
 	}
 
 	/**
 	 * @covers ::doLogChangeBatch
 	 */
 	public function testDoLogChangeBatch_exceptionDbConnect() {
+		$this->setNullLogger( 'DBConnection' );
 		$journal = $this->getJournal( [ 'domain' => 'no-such-domain' ] );
 
 		$this->assertEquals(
@@ -53,10 +53,10 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::doLogChangeBatch
 	 */
 	public function testDoLogChangeBatch_exceptionDbQuery() {
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'testing' );
-
+		$this->setNullLogger( 'DBQuery' );
 		$journal = $this->getJournal();
 
+		// Null value for 'op' will make the query fail
 		$this->assertEquals(
 			StatusValue::newFatal( 'filejournal-fail-dbquery', 'local-backend' ),
 			$journal->logChangeBatch(

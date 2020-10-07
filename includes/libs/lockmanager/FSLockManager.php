@@ -56,11 +56,11 @@ class FSLockManager extends LockManager {
 	 * @param array $config Includes:
 	 *   - lockDirectory : Directory containing the lock files
 	 */
-	function __construct( array $config ) {
+	public function __construct( array $config ) {
 		parent::__construct( $config );
 
 		$this->lockDir = $config['lockDirectory'];
-		$this->isWindows = ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' );
+		$this->isWindows = ( PHP_OS_FAMILY === 'Windows' );
 	}
 
 	/**
@@ -246,7 +246,7 @@ class FSLockManager extends LockManager {
 	/**
 	 * Make sure remaining locks get cleared for sanity
 	 */
-	function __destruct() {
+	public function __destruct() {
 		while ( count( $this->locksHeld ) ) {
 			foreach ( $this->locksHeld as $path => $locks ) {
 				$this->doSingleUnlock( $path, self::LOCK_EX );

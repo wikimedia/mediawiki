@@ -3,8 +3,8 @@
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 
@@ -257,63 +257,56 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * AbstractBlock::getPermissionsError is deprecated. Block errors are tested
+	 * properly in BlockErrorFormatterTest::testGetMessage.
+	 *
 	 * @covers ::getPermissionsError
-	 * @dataProvider provideGetPermissionsError
 	 */
-	public function testGetPermissionsError( $ids, $expectedIdsMsg ) {
-		// Some block options
-		$timestamp = time();
-		$target = '1.2.3.4';
-		$byText = 'MediaWiki default';
-		$formattedByText = "\u{202A}{$byText}\u{202C}";
-		$reason = '';
-		$expiry = 'infinite';
+	public function testGetPermissionsError() {
+		$timestamp = '20000101000000';
 
-		$block = $this->getMockBuilder( CompositeBlock::class )
-			->setMethods( [ 'getIds', 'getBlockErrorParams' ] )
+		$compositeBlock = new CompositeBlock( [
+			'timestamp' => $timestamp,
+			'originalBlocks' => [
+				new SystemBlock( [
+					'systemBlock' => 'test1',
+				] ),
+				new SystemBlock( [
+					'systemBlock' => 'test2',
+				] )
+			]
+		] );
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$request = $this->getMockBuilder( FauxRequest::class )
+			->setMethods( [ 'getIP' ] )
 			->getMock();
-		$block->method( 'getIds' )
-			->willReturn( $ids );
-		$block->method( 'getBlockErrorParams' )
-			->willReturn( [
-				$formattedByText,
-				$reason,
-				$target,
-				$formattedByText,
-				null,
-				$timestamp,
-				$target,
-				$expiry,
-			] );
+		$request->method( 'getIP' )
+			->willReturn( '1.2.3.4' );
+		$context->setRequest( $request );
 
-		$this->assertSame( [
-			'blockedtext-composite',
-			$formattedByText,
-			$reason,
-			$target,
-			$formattedByText,
-			$expectedIdsMsg,
-			$timestamp,
-			$target,
-			$expiry,
-		], $block->getPermissionsError( RequestContext::getMain() ) );
-	}
+		$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$message = $formatter->getMessage(
+			$compositeBlock,
+			$context->getUser(),
+			$context->getLanguage(),
+			$context->getRequest()->getIP()
+		);
 
-	public static function provideGetPermissionsError() {
-		return [
-			'All original blocks are system blocks' => [
-				[],
+		$this->assertSame( 'blockedtext-composite', $message->getKey() );
+		$this->assertSame(
+			[
+				'',
+				'no reason given',
+				'1.2.3.4',
+				'',
 				'Your IP address appears in multiple blacklists',
+				'infinite',
+				'',
+				'00:00, 1 January 2000',
 			],
-			'One original block is a database block' => [
-				[ 100 ],
-				'Relevant block IDs: #100 (your IP address may also be blacklisted)',
-			],
-			'Several original blocks are database blocks' => [
-				[ 100, 101, 102 ],
-				'Relevant block IDs: #100, #101, #102 (your IP address may also be blacklisted)',
-			],
-		];
+			$message->getParams()
+		);
 	}
 
 	/**

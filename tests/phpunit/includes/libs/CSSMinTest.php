@@ -6,9 +6,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group ResourceLoader
  * @group CSSMin
  */
-class CSSMinTest extends MediaWikiTestCase {
+class CSSMinTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// For wfExpandUrl
@@ -272,7 +272,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::remapOne
 	 */
 	public function testRemap( $message, $params, $expectedOutput ) {
-		$remapped = call_user_func_array( 'CSSMin::remap', $params );
+		$remapped = CSSMin::remap( ...$params );
 
 		$messageAdd = " Case: $message";
 		$this->assertEquals(
@@ -338,7 +338,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin
 	 */
 	public function testRemapEmptyUrl( $params, $expected ) {
-		$remapped = call_user_func_array( 'CSSMin::remap', $params );
+		$remapped = CSSMin::remap( ...$params );
 		$this->assertEquals( $expected, $remapped, 'Ignore empty url' );
 	}
 
@@ -447,12 +447,12 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Embedded file',
 				'foo { /* @embed */ background: url(red.gif); }',
-				"foo { background: url($red); background: url(http://localhost/w/red.gif?34ac6)!ie; }",
+				"foo { background: url($red); }",
 			],
 			[
 				'Embedded file, other comments before the rule',
 				"foo { /* Bar. */ /* @embed */ background: url(red.gif); }",
-				"foo { /* Bar. */ background: url($red); /* Bar. */ background: url(http://localhost/w/red.gif?34ac6)!ie; }",
+				"foo { /* Bar. */ background: url($red); }",
 			],
 			[
 				'Can not re-embed data: URIs',
@@ -472,8 +472,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Embedded file (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif); }',
-				"foo { background: url($red); "
-					. "background: url(http://localhost/w/red.gif?34ac6)!ie; }",
+				"foo { background: url($red); }",
 			],
 			[
 				'Can not embed large files',
@@ -494,29 +493,22 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Two embedded files in one rule',
 				'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
-				"foo { background: url($red), url($green); "
-					. "background: url(http://localhost/w/red.gif?34ac6), "
-					. "url(http://localhost/w/green.gif?13651)!ie; }",
+				"foo { background: url($red), url($green); }",
 			],
 			[
 				'Two embedded files in one rule (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
-				"foo { background: url($red), url($green); "
-					. "background: url(http://localhost/w/red.gif?34ac6), "
-					. "url(http://localhost/w/green.gif?13651)!ie; }",
+				"foo { background: url($red), url($green); }",
 			],
 			[
 				'Two embedded files in one rule (inline @embed), one too large',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(large.png); }',
-				"foo { background: url($red), url(http://localhost/w/large.png?e3d1f); "
-					. "background: url(http://localhost/w/red.gif?34ac6), "
-					. "url(http://localhost/w/large.png?e3d1f)!ie; }",
+				"foo { background: url($red), url(http://localhost/w/large.png?e3d1f); }",
 			],
 			[
 				'Practical example with some noise',
 				'foo { /* @embed */ background: #f9f9f9 url(red.gif) 0 0 no-repeat; }',
-				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; "
-					. "background: #f9f9f9 url(http://localhost/w/red.gif?34ac6) 0 0 no-repeat!ie; }",
+				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; }",
 			],
 			[
 				'Does not mess with other properties',
@@ -601,17 +593,17 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Embedded file with comment before url',
 				'foo { /* @embed */ background: /* some {funny;} comment */ url(red.gif); }',
-				"foo { background: /* some {funny;} comment */ url($red); background: /* some {funny;} comment */ url(http://localhost/w/red.gif?34ac6)!ie; }",
+				"foo { background: /* some {funny;} comment */ url($red); }",
 			],
 			[
 				'Embedded file with comments inside and outside the rule',
 				'foo { /* @embed */ background: url(red.gif) /* some {foo;} comment */; /* some {bar;} comment */ }',
-				"foo { background: url($red) /* some {foo;} comment */; background: url(http://localhost/w/red.gif?34ac6) /* some {foo;} comment */!ie; /* some {bar;} comment */ }",
+				"foo { background: url($red) /* some {foo;} comment */; /* some {bar;} comment */ }",
 			],
 			[
 				'Embedded file with comment outside the rule',
 				'foo { /* @embed */ background: url(red.gif); /* some {funny;} comment */ }',
-				"foo { background: url($red); background: url(http://localhost/w/red.gif?34ac6)!ie; /* some {funny;} comment */ }",
+				"foo { background: url($red); /* some {funny;} comment */ }",
 			],
 			[
 				'Rule with two urls, each with comments',

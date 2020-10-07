@@ -22,8 +22,7 @@ use Wikimedia\RunningStat;
 
 /**
  * Convenience class for working with XHProf profiling data
- * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
- * package for use with PHP5 (Zend PHP) and is built-in to HHVM 3.3.0.
+ * <https://github.com/phacility/xhprof>. XHProf can be installed via PECL.
  *
  * @copyright © 2014 Wikimedia Foundation and contributors
  * @since 1.28
@@ -31,25 +30,25 @@ use Wikimedia\RunningStat;
 class XhprofData {
 
 	/**
-	 * @var array $config
+	 * @var array
 	 */
 	protected $config;
 
 	/**
 	 * Hierarchical profiling data returned by xhprof.
-	 * @var array $hieraData
+	 * @var array[]
 	 */
 	protected $hieraData;
 
 	/**
 	 * Per-function inclusive data.
-	 * @var array[] $inclusive
+	 * @var array[][]
 	 */
 	protected $inclusive;
 
 	/**
 	 * Per-function inclusive and exclusive data.
-	 * @var array[] $complete
+	 * @var array[]
 	 */
 	protected $complete;
 
@@ -118,8 +117,8 @@ class XhprofData {
 	 * Remove data for functions that are not included in the 'include'
 	 * configuration array.
 	 *
-	 * @param array $data Raw xhprof data
-	 * @return array
+	 * @param array[] $data Raw xhprof data
+	 * @return array[]
 	 */
 	protected function pruneData( $data ) {
 		if ( !$this->config['include'] ) {
@@ -153,7 +152,7 @@ class XhprofData {
 	 * - max: Maximum value
 	 * - variance: Variance (spread) of the values
 	 *
-	 * @return array[]
+	 * @return array[][]
 	 * @see getRawData()
 	 * @see getCompleteMetrics()
 	 */
@@ -164,40 +163,40 @@ class XhprofData {
 			$hasMu = isset( $main['mu'] );
 			$hasAlloc = isset( $main['alloc'] );
 
-			$this->inclusive = [];
+			$inclusive = [];
 			foreach ( $this->hieraData as $key => $stats ) {
 				list( $parent, $child ) = self::splitKey( $key );
-				if ( !isset( $this->inclusive[$child] ) ) {
-					$this->inclusive[$child] = [
+				if ( !isset( $inclusive[$child] ) ) {
+					$inclusive[$child] = [
 						'ct' => 0,
 						'wt' => new RunningStat(),
 					];
 					if ( $hasCpu ) {
-						$this->inclusive[$child]['cpu'] = new RunningStat();
+						$inclusive[$child]['cpu'] = new RunningStat();
 					}
 					if ( $hasMu ) {
-						$this->inclusive[$child]['mu'] = new RunningStat();
-						$this->inclusive[$child]['pmu'] = new RunningStat();
+						$inclusive[$child]['mu'] = new RunningStat();
+						$inclusive[$child]['pmu'] = new RunningStat();
 					}
 					if ( $hasAlloc ) {
-						$this->inclusive[$child]['alloc'] = new RunningStat();
-						$this->inclusive[$child]['free'] = new RunningStat();
+						$inclusive[$child]['alloc'] = new RunningStat();
+						$inclusive[$child]['free'] = new RunningStat();
 					}
 				}
 
-				$this->inclusive[$child]['ct'] += $stats['ct'];
+				$inclusive[$child]['ct'] += $stats['ct'];
 				foreach ( $stats as $stat => $value ) {
 					if ( $stat === 'ct' ) {
 						continue;
 					}
 
-					if ( !isset( $this->inclusive[$child][$stat] ) ) {
+					if ( !isset( $inclusive[$child][$stat] ) ) {
 						// Ignore unknown stats
 						continue;
 					}
 
 					for ( $i = 0; $i < $stats['ct']; $i++ ) {
-						$this->inclusive[$child][$stat]->addObservation(
+						$inclusive[$child][$stat]->addObservation(
 							$value / $stats['ct']
 						);
 					}
@@ -206,14 +205,14 @@ class XhprofData {
 
 			// Convert RunningStat instances to static arrays and add
 			// percentage stats.
-			foreach ( $this->inclusive as $func => $stats ) {
+			foreach ( $inclusive as $func => $stats ) {
 				foreach ( $stats as $name => $value ) {
 					if ( $value instanceof RunningStat ) {
 						$total = $value->getMean() * $value->getCount();
 						$percent = ( isset( $main[$name] ) && $main[$name] )
 							? 100 * $total / $main[$name]
 							: 0;
-						$this->inclusive[$func][$name] = [
+						$inclusive[$func][$name] = [
 							'total' => $total,
 							'min' => $value->min,
 							'mean' => $value->getMean(),
@@ -225,9 +224,10 @@ class XhprofData {
 				}
 			}
 
-			uasort( $this->inclusive, self::makeSortFunction(
+			uasort( $inclusive, self::makeSortFunction(
 				$this->config['sort'], 'total'
 			) );
+			$this->inclusive = $inclusive;
 		}
 		return $this->inclusive;
 	}

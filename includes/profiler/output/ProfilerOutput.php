@@ -16,13 +16,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 
 /**
- * Base class for profiling output
+ * Base class for profiling output.
  *
- * Since 1.25
+ * @ingroup Profiler
+ * @since 1.25
  */
 abstract class ProfilerOutput {
 	/** @var Profiler */

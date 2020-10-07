@@ -19,6 +19,8 @@
  *
  * @file
  */
+
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -36,7 +38,7 @@ class LinkFilter {
 	 * Increment this when makeIndexes output changes. It'll cause
 	 * maintenance/refreshExternallinksIndex.php to run from update.php.
 	 */
-	const VERSION = 1;
+	public const VERSION = 1;
 
 	/**
 	 * Check whether $content contains a link to $filterEntry
@@ -122,22 +124,22 @@ class LinkFilter {
 		// IPv6? RFC 3986 syntax.
 		if ( preg_match( '/^\[([0-9a-f:*]+)\]$/', rawurldecode( $host ), $m ) ) {
 			$ip = $m[1];
-			if ( IP::isValid( $ip ) ) {
-				return 'V6.' . implode( '.', explode( ':', IP::sanitizeIP( $ip ) ) ) . '.';
+			if ( IPUtils::isValid( $ip ) ) {
+				return 'V6.' . implode( '.', explode( ':', IPUtils::sanitizeIP( $ip ) ) ) . '.';
 			}
 			if ( substr( $ip, -2 ) === ':*' ) {
 				$cutIp = substr( $ip, 0, -2 );
-				if ( IP::isValid( "{$cutIp}::" ) ) {
+				if ( IPUtils::isValid( "{$cutIp}::" ) ) {
 					// Wildcard IP doesn't contain "::", so multiple parts can be wild
 					$ct = count( explode( ':', $ip ) ) - 1;
 					return 'V6.' .
-						implode( '.', array_slice( explode( ':', IP::sanitizeIP( "{$cutIp}::" ) ), 0, $ct ) ) .
+						implode( '.', array_slice( explode( ':', IPUtils::sanitizeIP( "{$cutIp}::" ) ), 0, $ct ) ) .
 						'.*.';
 				}
-				if ( IP::isValid( "{$cutIp}:1" ) ) {
+				if ( IPUtils::isValid( "{$cutIp}:1" ) ) {
 					// Wildcard IP does contain "::", so only the last part is wild
 					return 'V6.' .
-						substr( implode( '.', explode( ':', IP::sanitizeIP( "{$cutIp}:1" ) ) ), 0, -1 ) .
+						substr( implode( '.', explode( ':', IPUtils::sanitizeIP( "{$cutIp}:1" ) ) ), 0, -1 ) .
 						'*.';
 				}
 			}

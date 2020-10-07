@@ -30,6 +30,7 @@
  * @author Kwj2772
  * @author LFM
  * @author Leehoy
+ * @author lens0021
  * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author Priviet
@@ -100,6 +101,7 @@ $specialPageAliases = [
 	'DeletedContributions'      => [ '삭제된기여' ],
 	'Diff'                      => [ '차이' ],
 	'DoubleRedirects'           => [ '이중넘겨주기' ],
+	'EditPage'                  => [ '문서편집', '편집' ],
 	'EditTags'                  => [ '태그편집' ],
 	'EditWatchlist'             => [ '주시문서목록편집' ],
 	'Emailuser'                 => [ '이메일보내기', '이메일' ],
@@ -113,6 +115,7 @@ $specialPageAliases = [
 	'Invalidateemail'           => [ '이메일인증취소', '이메일인증해제' ],
 	'JavaScriptTest'            => [ '자바스크립트시험', '자바스크립트테스트' ],
 	'LinkSearch'                => [ '링크검색', '링크찾기' ],
+	'LinkAccounts'              => [ '계정연결' ],
 	'Listadmins'                => [ '관리자목록', '관리자' ],
 	'Listbots'                  => [ '봇목록', '봇' ],
 	'Listfiles'                 => [ '파일목록', '그림목록', '파일', '그림' ],
@@ -143,9 +146,12 @@ $specialPageAliases = [
 	'Mytalk'                    => [ '내사용자토론' ],
 	'Myuploads'                 => [ '내가올린파일' ],
 	'Newimages'                 => [ '새파일', '새그림' ],
+	'NewSection'                => [ '새문단' ],
 	'Newpages'                  => [ '새문서' ],
 	'PagesWithProp'             => [ '속성별문서' ],
 	'PageData'                  => [ '문서데이터' ],
+	'PageHistory'               => [ '문서역사', '역사' ],
+	'PageInfo'                  => [ '문서정보', '정보' ],
 	'PageLanguage'              => [ '문서언어' ],
 	'PasswordPolicies'          => [ '비밀번호정책' ],
 	'PasswordReset'             => [ '비밀번호재설정', '비밀번호초기화' ],
@@ -154,6 +160,7 @@ $specialPageAliases = [
 	'Prefixindex'               => [ '접두어찾기' ],
 	'Protectedpages'            => [ '보호된문서' ],
 	'Protectedtitles'           => [ '생성보호된문서', '만들기보호된문서' ],
+	'Purge'                     => [ '새로고침' ],
 	'Randompage'                => [ '임의문서' ],
 	'RandomInCategory'          => [ '분류안의임의문서' ],
 	'Randomredirect'            => [ '임의넘겨주기' ],
@@ -367,7 +374,7 @@ $magicWords = [
 
 $bookstoreList = [
 	'Aladin.co.kr' => 'https://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
-	'National Library of Korea' => 'http://www.nl.go.kr/search/web_search/search/list.php?search_field1=all&tmode=1&value1=$1',
+	'National Library of Korea' => 'http://www.nl.go.kr/nl/search/search.jsp?all=on&topF1=cheonggu&kwd=$1',
 	'Naver' => 'https://book.naver.com/search/search.nhn?query=$1',
 	'inherit' => true,
 ];

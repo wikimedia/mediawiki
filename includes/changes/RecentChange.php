@@ -21,6 +21,7 @@
  */
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Utility class for creating new RC entries
@@ -62,6 +63,7 @@ use MediaWiki\MediaWikiServices;
  * temporary:       not stored in the database
  *      notificationtimestamp
  *      numberofWatchingusers
+ *      watchlistExpiry        for temporary watchlist items
  *
  * @todo Deprecate access to mAttribs (direct or via getAttributes). Right now
  *  we're having to include both rc_comment and rc_comment_text/rc_comment_data
@@ -70,25 +72,25 @@ use MediaWiki\MediaWikiServices;
 class RecentChange implements Taggable {
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
-	const SRC_EDIT = 'mw.edit';
-	const SRC_NEW = 'mw.new';
-	const SRC_LOG = 'mw.log';
-	const SRC_EXTERNAL = 'mw.external'; // obsolete
-	const SRC_CATEGORIZE = 'mw.categorize';
+	public const SRC_EDIT = 'mw.edit';
+	public const SRC_NEW = 'mw.new';
+	public const SRC_LOG = 'mw.log';
+	public const SRC_EXTERNAL = 'mw.external'; // obsolete
+	public const SRC_CATEGORIZE = 'mw.categorize';
 
-	const PRC_UNPATROLLED = 0;
-	const PRC_PATROLLED = 1;
-	const PRC_AUTOPATROLLED = 2;
+	public const PRC_UNPATROLLED = 0;
+	public const PRC_PATROLLED = 1;
+	public const PRC_AUTOPATROLLED = 2;
 
 	/**
 	 * @var bool For save() - save to the database only, without any events.
 	 */
-	const SEND_NONE = true;
+	public const SEND_NONE = true;
 
 	/**
 	 * @var bool For save() - do emit the change to RCFeeds (usually public).
 	 */
-	const SEND_FEED = false;
+	public const SEND_FEED = false;
 
 	/** @var array */
 	public $mAttribs = [];
@@ -108,6 +110,11 @@ class RecentChange implements Taggable {
 	public $notificationtimestamp;
 
 	/**
+	 * @var string|null The expiry time, if this is a temporary watchlist item.
+	 */
+	public $watchlistExpiry;
+
+	/**
 	 * @var int Line number of recent change. Default -1.
 	 */
 	public $counter = -1;
@@ -120,7 +127,7 @@ class RecentChange implements Taggable {
 	/**
 	 * @var array Array of change types
 	 */
-	private static $changeTypes = [
+	private const CHANGE_TYPES = [
 		'edit' => RC_EDIT,
 		'new' => RC_NEW,
 		'log' => RC_LOG,
@@ -158,10 +165,10 @@ class RecentChange implements Taggable {
 			return $retval;
 		}
 
-		if ( !array_key_exists( $type, self::$changeTypes ) ) {
+		if ( !array_key_exists( $type, self::CHANGE_TYPES ) ) {
 			throw new MWException( "Unknown type '$type'" );
 		}
-		return self::$changeTypes[$type];
+		return self::CHANGE_TYPES[$type];
 	}
 
 	/**
@@ -171,7 +178,7 @@ class RecentChange implements Taggable {
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {
-		return array_search( $rcType, self::$changeTypes, true ) ?: "$rcType";
+		return array_search( $rcType, self::CHANGE_TYPES, true ) ?: "$rcType";
 	}
 
 	/**
@@ -182,7 +189,7 @@ class RecentChange implements Taggable {
 	 * @return array
 	 */
 	public static function getChangeTypes() {
-		return array_keys( self::$changeTypes );
+		return array_keys( self::CHANGE_TYPES );
 	}
 
 	/**
@@ -386,9 +393,7 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rc = $this;
-		Hooks::run( 'RecentChange_save', [ &$rc ] );
+		Hooks::runner()->onRecentChange_save( $this );
 
 		if ( count( $this->tags ) ) {
 			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],
@@ -407,7 +412,7 @@ class RecentChange implements Taggable {
 
 			// Never send an RC notification email about categorization changes
 			if (
-				Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) &&
+				Hooks::runner()->onAbortEmailNotification( $editor, $title, $this ) &&
 				$this->mAttribs['rc_type'] != RC_CATEGORIZE
 			) {
 				// @FIXME: This would be better as an extension hook
@@ -502,13 +507,17 @@ class RecentChange implements Taggable {
 	/**
 	 * Mark a given change as patrolled
 	 *
+	 * @deprecated since 1.35, use doMarkPatrolled directly
+	 *
 	 * @param RecentChange|int $change RecentChange or corresponding rc_id
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
+	 * @return array[]|null See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change, $auto = false, $tags = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		global $wgUser;
 
 		$change = $change instanceof RecentChange
@@ -531,10 +540,12 @@ class RecentChange implements Taggable {
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
+	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
+
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
@@ -553,17 +564,19 @@ class RecentChange implements Taggable {
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
-		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
-		if ( !Hooks::run( 'MarkPatrolled',
-					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto, &$tags ] )
+		$errors = array_merge(
+			$errors,
+			$permManager->getPermissionErrors( $right, $user, $this->getTitle() )
+		);
+		if ( !Hooks::runner()->onMarkPatrolled(
+			$this->getAttribute( 'rc_id' ), $user, false, $auto, $tags )
 		) {
 			$errors[] = [ 'hookaborted' ];
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
 		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) &&
-				!MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'autopatrol' )
+			!$permManager->userHasRight( $user, 'autopatrol' )
 		) {
 			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
 		}
@@ -579,10 +592,8 @@ class RecentChange implements Taggable {
 		// Log this patrol event
 		PatrolLog::record( $this, $auto, $user, $tags );
 
-		Hooks::run(
-			'MarkPatrolledComplete',
-			[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ]
-		);
+		Hooks::runner()->onMarkPatrolledComplete(
+			$this->getAttribute( 'rc_id' ), $user, false, $auto );
 
 		return [];
 	}
@@ -907,7 +918,7 @@ class RecentChange implements Taggable {
 	public static function newForCategorization(
 		$timestamp,
 		Title $categoryTitle,
-		User $user = null,
+		?User $user,
 		$comment,
 		Title $pageTitle,
 		$oldRevId,
@@ -1017,6 +1028,11 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_user'] = $user->getId();
 		$this->mAttribs['rc_user_text'] = $user->getName();
 		$this->mAttribs['rc_actor'] = $user->getActorId();
+
+		// Watchlist expiry.
+		if ( isset( $row->we_expiry ) && $row->we_expiry ) {
+			$this->watchlistExpiry = wfTimestamp( TS_MW, $row->we_expiry );
+		}
 	}
 
 	/**
@@ -1104,7 +1120,7 @@ class RecentChange implements Taggable {
 	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
 		if ( $ip ) {
-			if ( !IP::isIPAddress( $ip ) ) {
+			if ( !IPUtils::isIPAddress( $ip ) ) {
 				throw new MWException( "Attempt to write \"" . $ip .
 					"\" as an IP address into recent changes" );
 			}

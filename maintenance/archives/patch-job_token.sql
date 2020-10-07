@@ -6,4 +6,3 @@ ALTER TABLE /*_*/job
 
 CREATE INDEX /*i*/job_sha1 ON /*_*/job (job_sha1);
 CREATE INDEX /*i*/job_cmd_token ON /*_*/job (job_cmd,job_token,job_random);
-

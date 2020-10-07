@@ -25,7 +25,7 @@
  * @since 1.34
  */
 class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
-	public function __construct( $options = [], $localBasePath = null ) {
+	public function __construct( array $options = [], $localBasePath = null ) {
 		parent::__construct( $options, $localBasePath );
 
 		if ( !isset( $this->definition['icons'] ) || !$this->definition['icons'] ) {
@@ -37,11 +37,12 @@ class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
 		$this->definition['themeImages'] = 'icons';
 	}
 
-	private function getIcons() {
+	private function getIcons() : array {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Checked in the constructor
 		return $this->definition['icons'];
 	}
 
-	protected function loadOOUIDefinition( $theme, $unused ) {
+	protected function loadOOUIDefinition( $theme, $unused ) : array {
 		// This is shared between instances of this class, so we only have to load the JSON files once
 		static $data = [];
 
@@ -71,7 +72,7 @@ class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
 		return $definition;
 	}
 
-	public static function extractLocalBasePath( $options, $localBasePath = null ) {
+	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
 		global $IP;
 		if ( $localBasePath === null ) {
 			$localBasePath = $IP;

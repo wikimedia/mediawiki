@@ -92,7 +92,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$info = $data['query']['pages'][$page->getId()];
 		$this->assertArrayHasKey( 'actions', $info );
 		$this->assertArrayHasKey( 'edit', $info['actions'] );
-		$this->assertInternalType( 'array', $info['actions']['edit'] );
+		$this->assertIsArray( $info['actions']['edit'] );
 		$this->assertSame( [], $info['actions']['edit'] );
 	}
 
@@ -135,7 +135,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$info = $data['query']['pages'][$page->getId()];
 		$this->assertArrayHasKey( 'actions', $info );
 		$this->assertArrayHasKey( 'edit', $info['actions'] );
-		$this->assertInternalType( 'array', $info['actions']['edit'] );
+		$this->assertIsArray( $info['actions']['edit'] );
 		$this->assertArrayHasKey( 0, $info['actions']['edit'] );
 		$this->assertArrayHasKey( 'code', $info['actions']['edit'][0] );
 		$this->assertSame( 'blocked', $info['actions']['edit'][0]['code'] );

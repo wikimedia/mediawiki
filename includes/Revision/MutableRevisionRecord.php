@@ -28,12 +28,15 @@ use InvalidArgumentException;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
+use MWTimestamp;
 use Title;
 use Wikimedia\Assert\Assert;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
  * Provides setters for all fields.
+ *
+ * @newable
  *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\MutableRevisionRecord
@@ -70,13 +73,17 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
+	 * @stable to call.
+	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, $dbDomain = false ) {
-		$slots = new MutableRevisionSlots();
+	public function __construct( Title $title, $dbDomain = false ) {
+		$slots = new MutableRevisionSlots( [], function () {
+			$this->resetAggregateValues();
+		} );
 
 		parent::__construct( $title, $slots, $dbDomain );
 	}
@@ -115,7 +122,6 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mSlots->setSlot( $slot );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -129,7 +135,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
 		$this->mSlots->inheritSlot( $parentSlot );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -148,7 +153,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function setContent( $role, Content $content ) {
 		$this->mSlots->setContent( $role, $content );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -165,7 +169,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -224,12 +227,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
-	 * @param string $timestamp A timestamp understood by wfTimestamp
+	 * @param string $timestamp A timestamp understood by MWTimestamp
 	 */
 	public function setTimestamp( $timestamp ) {
 		Assert::parameterType( 'string', $timestamp, '$timestamp' );
 
-		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
+		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
 	}
 
 	/**
@@ -327,6 +330,7 @@ class MutableRevisionRecord extends RevisionRecord {
 
 	/**
 	 * Invalidate cached aggregate values such as hash and size.
+	 * Used as a callback by MutableRevisionSlots.
 	 */
 	private function resetAggregateValues() {
 		$this->mSize = null;

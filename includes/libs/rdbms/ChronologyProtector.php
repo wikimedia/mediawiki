@@ -23,11 +23,11 @@
 
 namespace Wikimedia\Rdbms;
 
+use BagOStuff;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
-use BagOStuff;
 
 /**
  * Helper class for mitigating DB replication lag in order to provide "session consistency"
@@ -35,6 +35,8 @@ use BagOStuff;
  * This helps to ensure a consistent ordering of events as seen by an client
  *
  * Kind of like Hawking's [[Chronology Protection Agency]].
+ *
+ * @internal
  */
 class ChronologyProtector implements LoggerAwareInterface {
 	/** @var BagOStuff */
@@ -67,11 +69,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 	protected $shutdownTouchDBs = [];
 
 	/** @var int Seconds to store positions */
-	const POSITION_TTL = 60;
+	public const POSITION_TTL = 60;
 	/** @var int Seconds to store position write index cookies (safely less than POSITION_TTL) */
-	const POSITION_COOKIE_TTL = 10;
+	public const POSITION_COOKIE_TTL = 10;
 	/** @var int Max time to wait for positions to appear */
-	const POS_STORE_WAIT_TIMEOUT = 5;
+	private const POS_STORE_WAIT_TIMEOUT = 5;
 
 	/**
 	 * @param BagOStuff $store
@@ -152,7 +154,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$pos = $startupPositions[$masterName] ?? null;
 		if ( $pos instanceof DBMasterPos ) {
-			$this->logger->debug( __METHOD__ . ": pos for DB '$masterName' set to '$pos'\n" );
+			$this->logger->debug( __METHOD__ . ": pos for DB '$masterName' set to '$pos'" );
 			$lb->waitFor( $pos );
 		}
 	}
@@ -179,11 +181,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 		if ( $lb->hasStreamingReplicaServers() ) {
 			$pos = $lb->getReplicaResumePos();
 			if ( $pos ) {
-				$this->logger->debug( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
+				$this->logger->debug( __METHOD__ . ": LB for '$masterName' has pos $pos" );
 				$this->shutdownPositions[$masterName] = $pos;
 			}
 		} else {
-			$this->logger->debug( __METHOD__ . ": DB '$masterName' touched\n" );
+			$this->logger->debug( __METHOD__ . ": DB '$masterName' touched" );
 		}
 		$this->shutdownTouchDBs[$masterName] = 1;
 	}
@@ -214,14 +216,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( $this->shutdownPositions === [] ) {
-			$this->logger->debug( __METHOD__ . ": no master positions to save\n" );
+			$this->logger->debug( __METHOD__ . ": no master positions to save" );
 
 			return []; // nothing to save
 		}
 
 		$this->logger->debug(
 			__METHOD__ . ": saving master pos for " .
-			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
+			implode( ', ', array_keys( $this->shutdownPositions ) )
 		);
 
 		// CP-protected writes should overwhelmingly go to the master datacenter, so merge the
@@ -253,7 +255,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
 			$this->logger->warning( __METHOD__ . ": failed to save master pos for " .
-				implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
+				implode( ', ', array_keys( $this->shutdownPositions ) )
 			);
 		} elseif ( $mode === 'sync' &&
 			$store->getQoS( $store::ATTR_SYNCWRITES ) < $store::QOS_SYNCWRITES_BE
@@ -269,25 +271,28 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @param ILoadBalancer $lb The load balancer. Prior to 1.35, the first parameter was the
+	 *   master name.
 	 * @return float|bool UNIX timestamp when client last touched the DB; false if not on record
-	 * @since 1.28
+	 * @since 1.35
 	 */
-	public function getTouched( $dbName ) {
-		return $this->store->get( $this->getTouchedKey( $this->store, $dbName ) );
+	public function getTouched( ILoadBalancer $lb ) {
+		$masterName = $lb->getServerName( $lb->getWriterIndex() );
+		return $this->store->get( $this->getTouchedKey( $this->store, $masterName ) );
 	}
 
 	/**
 	 * @param BagOStuff $store
-	 * @param string $dbName
+	 * @param string $masterName
 	 * @return string
 	 */
-	private function getTouchedKey( BagOStuff $store, $dbName ) {
-		return $store->makeGlobalKey( __CLASS__, 'mtime', $this->clientId, $dbName );
+	private function getTouchedKey( BagOStuff $store, $masterName ) {
+		return $store->makeGlobalKey( __CLASS__, 'mtime', $this->clientId, $masterName );
 	}
 
 	/**
 	 * Load in previous master positions for the client
+	 * @return DBMasterPos[]
 	 */
 	protected function getStartupMasterPositions() {
 		if ( $this->initialized ) {
@@ -295,7 +300,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$this->initialized = true;
-		$this->logger->debug( __METHOD__ . ": client ID is {$this->clientId} (read)\n" );
+		$this->logger->debug( __METHOD__ . ": client ID is {$this->clientId} (read)" );
 
 		if ( $this->wait ) {
 			// If there is an expectation to see master positions from a certain write
@@ -348,10 +353,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 			}
 
 			$this->startupPositions = $data ? $data['positions'] : [];
-			$this->logger->debug( __METHOD__ . ": key is {$this->key} (read)\n" );
+			$this->logger->debug( __METHOD__ . ": key is {$this->key} (read)" );
 		} else {
 			$this->startupPositions = [];
-			$this->logger->debug( __METHOD__ . ": key is {$this->key} (unread)\n" );
+			$this->logger->debug( __METHOD__ . ": key is {$this->key} (unread)" );
 		}
 
 		return $this->startupPositions;

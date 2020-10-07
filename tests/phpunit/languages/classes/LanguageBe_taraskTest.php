@@ -6,6 +6,7 @@
  */
 class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	// phpcs:enable
+
 	/**
 	 * Make sure the language code we are given is indeed
 	 * be-tarask. This is to ensure LanguageClassesTestCase
@@ -43,7 +44,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	 * @covers Language::commafy
 	 */
 	public function testDoesNotCommafyFourDigitsNumber() {
-		$this->assertEquals( '1234', $this->getLang()->commafy( '1234' ) );
+		$this->assertSame( '1234', $this->getLang()->commafy( '1234' ) );
 	}
 
 	/**

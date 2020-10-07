@@ -1,3 +1,5 @@
+'use strict';
+
 const Page = require( 'wdio-mediawiki/Page' );
 
 class CreateAccountPage extends Page {
@@ -5,7 +7,7 @@ class CreateAccountPage extends Page {
 	get password() { return $( '#wpPassword2' ); }
 	get confirmPassword() { return $( '#wpRetype' ); }
 	get create() { return $( '#wpCreateaccount' ); }
-	get heading() { return $( '#firstHeading' ); }
+	get heading() { return $( '.firstHeading' ); }
 
 	open() {
 		super.openTitle( 'Special:CreateAccount' );

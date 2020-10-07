@@ -177,12 +177,22 @@ class SpecialUpload extends SpecialPage {
 
 		# Check blocks
 		if ( $user->isBlockedFromUpload() ) {
-			throw new UserBlockedError( $user->getBlock() );
+			throw new UserBlockedError(
+				$user->getBlock(),
+				$user,
+				$this->getLanguage(),
+				$this->getRequest()->getIP()
+			);
 		}
 
 		// Global blocks
 		if ( $user->isBlockedGlobally() ) {
-			throw new UserBlockedError( $user->getGlobalBlock() );
+			throw new UserBlockedError(
+				$user->getGlobalBlock(),
+				$user,
+				$this->getLanguage(),
+				$this->getRequest()->getIP()
+			);
 		}
 
 		# Check whether we actually want to allow changing stuff
@@ -204,10 +214,8 @@ class SpecialUpload extends SpecialPage {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$upload = $this;
-			if ( !Hooks::run( 'UploadForm:initial', [ &$upload ] ) ) {
-				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
+			if ( !$this->getHookRunner()->onUploadForm_initial( $this ) ) {
+				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 
 				return;
 			}
@@ -494,10 +502,8 @@ class SpecialUpload extends SpecialPage {
 
 			return;
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		if ( !Hooks::run( 'UploadForm:BeforeProcessing', [ &$upload ] ) ) {
-			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
+		if ( !$this->getHookRunner()->onUploadForm_BeforeProcessing( $this ) ) {
+			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file." );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
 			// and UploadBase::verifyFile.
@@ -515,7 +521,8 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// Verify permissions for this title
-		$permErrors = $this->mUpload->verifyTitlePermissions( $this->getUser() );
+		$user = $this->getUser();
+		$permErrors = $this->mUpload->verifyTitlePermissions( $user );
 		if ( $permErrors !== true ) {
 			$code = array_shift( $permErrors[0] );
 			$this->showRecoverableUploadError( $this->msg( $code, $permErrors[0] )->parse() );
@@ -527,14 +534,14 @@ class SpecialUpload extends SpecialPage {
 
 		// Check warnings if necessary
 		if ( !$this->mIgnoreWarning ) {
-			$warnings = $this->mUpload->checkWarnings();
+			$warnings = $this->mUpload->checkWarnings( $user );
 			if ( $this->showUploadWarning( $warnings ) ) {
 				return;
 			}
 		}
 
 		// This is as late as we can throttle, after expected issues have been handled
-		if ( UploadBase::isThrottled( $this->getUser() ) ) {
+		if ( UploadBase::isThrottled( $user ) ) {
 			$this->showRecoverableUploadError(
 				$this->msg( 'actionthrottledtext' )->escaped()
 			);
@@ -550,7 +557,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		$changeTags = $this->getRequest()->getVal( 'wpChangeTags' );
-		if ( is_null( $changeTags ) || $changeTags === '' ) {
+		if ( $changeTags === null || $changeTags === '' ) {
 			$changeTags = [];
 		} else {
 			$changeTags = array_filter( array_map( 'trim', explode( ',', $changeTags ) ) );
@@ -558,7 +565,7 @@ class SpecialUpload extends SpecialPage {
 
 		if ( $changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$changeTags, $this->getUser() );
+				$changeTags, $user );
 			if ( !$changeTagsStatus->isOK() ) {
 				$this->showUploadError( $this->getOutput()->parseAsInterface(
 					$changeTagsStatus->getWikiText( false, false, $this->getLanguage() )
@@ -572,7 +579,7 @@ class SpecialUpload extends SpecialPage {
 			$this->mComment,
 			$pageText,
 			$this->mWatchthis,
-			$this->getUser(),
+			$user,
 			$changeTags
 		);
 
@@ -588,9 +595,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		Hooks::run( 'SpecialUploadComplete', [ &$upload ] );
+		$this->getHookRunner()->onSpecialUploadComplete( $this );
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 
@@ -646,7 +651,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// allow extensions to modify the content
-		Hooks::run( 'UploadForm:getInitialPageText', [ &$pageText, $msg, $config ] );
+		Hooks::runner()->onUploadForm_getInitialPageText( $pageText, $msg, $config );
 
 		return $pageText;
 	}

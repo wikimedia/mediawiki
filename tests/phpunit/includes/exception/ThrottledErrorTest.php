@@ -4,7 +4,7 @@
  * @covers ThrottledError
  * @author Addshore
  */
-class ThrottledErrorTest extends MediaWikiTestCase {
+class ThrottledErrorTest extends MediaWikiIntegrationTestCase {
 
 	public function testExceptionSetsStatusCode() {
 		$this->setMwGlobals( 'wgOut', $this->getMockWgOut() );
@@ -14,7 +14,7 @@ class ThrottledErrorTest extends MediaWikiTestCase {
 			ob_start();
 			$e->report();
 			$text = ob_get_clean();
-			$this->assertContains( $e->getText(), $text );
+			$this->assertStringContainsString( $e->getText(), $text );
 		}
 	}
 

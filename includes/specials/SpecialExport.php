@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialExport extends SpecialPage {
-	private $curonly, $doExport, $pageLinkDepth, $templates;
+	protected $curonly, $doExport, $pageLinkDepth, $templates;
 
 	public function __construct() {
 		parent::__construct( 'Export' );
@@ -135,7 +135,7 @@ class SpecialExport extends SpecialPage {
 					$history['limit'] = $limit;
 				}
 
-				if ( !is_null( $offset ) ) {
+				if ( $offset !== null ) {
 					$history['offset'] = $offset;
 				}
 
@@ -179,8 +179,8 @@ class SpecialExport extends SpecialPage {
 			// Cancel output buffering and gzipping if set
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
-			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
-			$request->response()->header( "X-Robots-Tag: noindex,nofollow" );
+			$request->response()->header( 'Content-type: application/xml; charset=utf-8' );
+			$request->response()->header( 'X-Robots-Tag: noindex,nofollow' );
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
@@ -326,7 +326,7 @@ class SpecialExport extends SpecialPage {
 	/**
 	 * @return bool
 	 */
-	private function userCanOverrideExportDepth() {
+	protected function userCanOverrideExportDepth() {
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->userHasRight( $this->getUser(), 'override-export-depth' );
@@ -341,7 +341,7 @@ class SpecialExport extends SpecialPage {
 	 *   not returning full history)
 	 * @param bool $exportall Whether to export everything
 	 */
-	private function doExport( $page, $history, $list_authors, $exportall ) {
+	protected function doExport( $page, $history, $list_authors, $exportall ) {
 		// If we are grabbing everything, enable full history and ignore the rest
 		if ( $exportall ) {
 			$history = WikiExporter::FULL;
@@ -374,7 +374,7 @@ class SpecialExport extends SpecialPage {
 
 			// Normalize titles to the same format and remove dupes, see T19374
 			foreach ( $pages as $k => $v ) {
-				$pages[$k] = str_replace( " ", "_", $v );
+				$pages[$k] = str_replace( ' ', '_', $v );
 			}
 
 			$pages = array_unique( $pages );
@@ -395,7 +395,7 @@ class SpecialExport extends SpecialPage {
 			foreach ( $pages as $page ) {
 				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
-				if ( is_null( $title ) ) {
+				if ( $title === null ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}
@@ -416,7 +416,7 @@ class SpecialExport extends SpecialPage {
 	 * @param Title $title
 	 * @return string[]
 	 */
-	private function getPagesFromCategory( $title ) {
+	protected function getPagesFromCategory( $title ) {
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
 		$name = $title->getDBkey();
@@ -443,7 +443,7 @@ class SpecialExport extends SpecialPage {
 	 * @param int $nsindex
 	 * @return string[]
 	 */
-	private function getPagesFromNamespace( $nsindex ) {
+	protected function getPagesFromNamespace( $nsindex ) {
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -470,7 +470,7 @@ class SpecialExport extends SpecialPage {
 	 * @param array $pageSet Associative array indexed by titles for output
 	 * @return array Associative array index by titles
 	 */
-	private function getTemplates( $inputPages, $pageSet ) {
+	protected function getTemplates( $inputPages, $pageSet ) {
 		return $this->getLinks( $inputPages, $pageSet,
 			'templatelinks',
 			[ 'namespace' => 'tl_namespace', 'title' => 'tl_title' ],
@@ -483,7 +483,7 @@ class SpecialExport extends SpecialPage {
 	 * @param int $depth
 	 * @return int
 	 */
-	private function validateLinkDepth( $depth ) {
+	protected function validateLinkDepth( $depth ) {
 		if ( $depth < 0 ) {
 			return 0;
 		}
@@ -511,7 +511,7 @@ class SpecialExport extends SpecialPage {
 	 * @param int $depth
 	 * @return array
 	 */
-	private function getPageLinks( $inputPages, $pageSet, $depth ) {
+	protected function getPageLinks( $inputPages, $pageSet, $depth ) {
 		for ( ; $depth > 0; --$depth ) {
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
@@ -533,7 +533,7 @@ class SpecialExport extends SpecialPage {
 	 * @param array $join
 	 * @return array
 	 */
-	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
+	protected function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		foreach ( $inputPages as $page ) {

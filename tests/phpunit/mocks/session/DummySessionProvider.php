@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Session\SessionProvider;
-use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\UserInfo;
 
 /**
@@ -12,7 +12,7 @@ use MediaWiki\Session\UserInfo;
  */
 class DummySessionProvider extends SessionProvider {
 
-	const ID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+	public const ID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 	public function provideSessionInfo( WebRequest $request ) {
 		return new SessionInfo( SessionInfo::MIN_PRIORITY, [

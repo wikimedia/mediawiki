@@ -56,10 +56,11 @@ $wgContLang
 	Language object associated with the wiki being viewed.
 
 $wgParser
-	Parser object. Parser extensions register their hooks here.
+	Parser object. Parser extensions used to register their hooks here;
+	modern code should use the ParserFirstCallInit hook.
 
 $wgRequest
 	WebRequest object, to get request data
 
-$wgMemc, $messageMemc
+$wgMemc
 	Object caches

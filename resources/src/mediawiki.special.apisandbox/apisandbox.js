@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
-		$content, panel, booklet, oldhash, windowManager,
+		panel, booklet, oldhash, windowManager,
 		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
@@ -243,6 +243,11 @@
 				) {
 					item.$element.addClass( 'apihelp-deprecated-value' );
 				}
+				if ( this.paramInfo.internalvalues &&
+					this.paramInfo.internalvalues.indexOf( data ) >= 0
+				) {
+					item.$element.addClass( 'apihelp-internal-value' );
+				}
 				return item;
 			}
 		},
@@ -272,8 +277,8 @@
 			multi: function () {
 				var map = this.paramInfo.submodules,
 					v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
-				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( v ) {
-					return { value: v, path: map[ v ] };
+				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( val ) {
+					return { value: val, path: map[ val ] };
 				} );
 			}
 		},
@@ -415,6 +420,7 @@
 
 				case 'string':
 				case 'user':
+				case 'expiry':
 					if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.TagMultiselectWidget( {
 							allowArbitrary: true,
@@ -472,9 +478,7 @@
 					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					if ( Util.apiBool( pi.enforcerange ) ) {
-						widget.setRange( pi.min || -Infinity, pi.max || Infinity );
-					}
+					widget.setRange( pi.min || -Infinity, pi.max || Infinity );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
@@ -484,7 +488,7 @@
 						required: Util.apiBool( pi.required )
 					} );
 					widget.setValidation( function ( value ) {
-						var n, pi = this.paramInfo;
+						var n, info = this.paramInfo;
 
 						if ( value === 'max' ) {
 							return true;
@@ -492,11 +496,11 @@
 							n = +value;
 							return !isNaN( n ) && isFinite( n ) &&
 								Math.floor( n ) === n &&
-								n >= pi.min && n <= pi.apiSandboxMax;
+								n >= info.min && n <= info.apiSandboxMax;
 						}
 					} );
 					pi.min = pi.min || 0;
-					pi.apiSandboxMax = mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max;
+					pi.apiSandboxMax = ( mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max ) || pi.max;
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;
@@ -571,6 +575,9 @@
 						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
 							config.classes.push( 'apihelp-deprecated-value' );
 						}
+						if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
+							config.classes.push( 'apihelp-internal-value' );
+						}
 						return new OO.ui.MenuOptionWidget( config );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
@@ -607,6 +614,14 @@
 								this.$element.toggleClass(
 									'apihelp-deprecated-value',
 									pi.deprecatedvalues.indexOf( item.data ) >= 0
+								);
+							}, [], widget );
+						}
+						if ( pi.internalvalues ) {
+							widget.getMenu().on( 'select', function ( item ) {
+								this.$element.toggleClass(
+									'apihelp-internal-value',
+									pi.internalvalues.indexOf( item.data ) >= 0
 								);
 							}, [], widget );
 						}
@@ -725,12 +740,13 @@
 		 */
 		formatRequest: function ( displayParams, rawParams ) {
 			var jsonLayout,
+				apiUrl = new mw.Uri( mw.util.wikiScript( 'api' ) ).toString(),
 				items = [
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
 						data: new mw.widgets.CopyTextLayout( {
 							label: Util.parseMsg( 'apisandbox-request-url-label' ),
-							copyText: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+							copyText: apiUrl + '?' + $.param( displayParams )
 						} )
 					} ),
 					new OO.ui.MenuOptionWidget( {
@@ -787,12 +803,11 @@
 		 * Automatically called on $.ready()
 		 */
 		init: function () {
-			var $toolbar;
-
-			$content = $( '#mw-apisandbox' );
+			var $toolbar,
+				$content = $( '#mw-apisandbox' );
 
 			windowManager = new OO.ui.WindowManager();
-			$( 'body' ).append( windowManager.$element );
+			$( document.body ).append( windowManager.$element );
 			windowManager.addWindows( {
 				errorAlert: new OO.ui.MessageDialog()
 			} );
@@ -1007,10 +1022,10 @@
 
 				// Count how many times `value` occurs in `array`.
 				function countValues( value, array ) {
-					var count, i;
+					var count, n;
 					count = 0;
-					for ( i = 0; i < array.length; i++ ) {
-						if ( array[ i ] === value ) {
+					for ( n = 0; n < array.length; n++ ) {
+						if ( array[ n ] === value ) {
 							count++;
 						}
 					}
@@ -1154,16 +1169,16 @@
 					}
 				} )
 					.catch( function ( code, data, result, jqXHR ) {
-						var deferred = $.Deferred();
+						var d = $.Deferred();
 
 						if ( code !== 'http' ) {
 							// Not really an error, work around mw.Api thinking it is.
-							deferred.resolve( result, jqXHR );
+							d.resolve( result, jqXHR );
 						} else {
 							// Just forward it.
-							deferred.reject.apply( deferred, arguments );
+							d.reject.apply( d, arguments );
 						}
-						return deferred.promise();
+						return d.promise();
 					} )
 					.then( function ( data, jqXHR ) {
 						var m, loadTime, button, clear,
@@ -1269,7 +1284,7 @@
 		 * pages and then re-submits the query.
 		 */
 		fixTokenAndResend: function () {
-			var page, subpages, i, k,
+			var page, subpages, i, key,
 				ok = true,
 				tokenWait = { dummy: true },
 				checkPages = [ pages.main ],
@@ -1288,11 +1303,11 @@
 				page = checkPages.shift();
 
 				if ( page.tokenWidget ) {
-					k = page.apiModule + page.tokenWidget.paramInfo.name;
-					tokenWait[ k ] = page.tokenWidget.fetchToken();
-					tokenWait[ k ]
-						.done( success.bind( page.tokenWidget, k ) )
-						.fail( failure.bind( page.tokenWidget, k ) );
+					key = page.apiModule + page.tokenWidget.paramInfo.name;
+					tokenWait[ key ] = page.tokenWidget.fetchToken();
+					tokenWait[ key ]
+						.done( success.bind( page.tokenWidget, key ) )
+						.fail( failure.bind( page.tokenWidget, key ) );
 				}
 
 				subpages = page.getSubpages();
@@ -1374,6 +1389,7 @@
 
 	/**
 	 * Create a widget and the FieldLayouts it needs
+	 *
 	 * @private
 	 * @param {Object} ppi API paraminfo data for the parameter
 	 * @param {string} name API parameter name
@@ -1383,7 +1399,7 @@
 	 * @return {OO.ui.FieldLayout} return.helpField
 	 */
 	ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
-		var j, l, widget, descriptionContainer, tmp, flag, count, button, widgetField, helpField, layoutConfig;
+		var j, l, widget, $descriptionContainer, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
 
 		widget = Util.createWidgetForParameter( ppi );
 		if ( ppi.tokentype ) {
@@ -1393,20 +1409,20 @@
 			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
 		}
 
-		descriptionContainer = $( '<div>' );
+		$descriptionContainer = $( '<div>' );
 
-		tmp = Util.parseHTML( ppi.description );
-		tmp.filter( 'dl' ).makeCollapsible( {
+		$tmp = Util.parseHTML( ppi.description );
+		$tmp.filter( 'dl' ).makeCollapsible( {
 			collapsed: true
 		} ).children( '.mw-collapsible-toggle' ).each( function () {
 			var $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
-		descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( tmp ) );
+		$descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( j = 0; j < ppi.info.length; j++ ) {
-				descriptionContainer.append( $( '<div>' )
+				$descriptionContainer.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( ppi.info[ j ] ) )
 				);
@@ -1421,27 +1437,17 @@
 				break;
 
 			case 'limit':
-				if ( ppi.highmax !== undefined ) {
-					descriptionContainer.append( $( '<div>' )
-						.addClass( 'info' )
-						.append(
-							Util.parseMsg(
-								'api-help-param-limit2', ppi.max, ppi.highmax
-							),
-							' ',
-							Util.parseMsg( 'apisandbox-param-limit' )
-						)
-					);
-				} else {
-					descriptionContainer.append( $( '<div>' )
-						.addClass( 'info' )
-						.append(
-							Util.parseMsg( 'api-help-param-limit', ppi.max ),
-							' ',
-							Util.parseMsg( 'apisandbox-param-limit' )
-						)
-					);
-				}
+				$descriptionContainer.append( $( '<div>' )
+					.addClass( 'info' )
+					.append(
+						Util.parseMsg(
+							'paramvalidator-help-type-number-minmax', 1,
+							ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
+						),
+						' ',
+						Util.parseMsg( 'apisandbox-param-limit' )
+					)
+				);
 				break;
 
 			case 'integer':
@@ -1453,10 +1459,10 @@
 					tmp += 'max';
 				}
 				if ( tmp !== '' ) {
-					descriptionContainer.append( $( '<div>' )
+					$descriptionContainer.append( $( '<div>' )
 						.addClass( 'info' )
 						.append( Util.parseMsg(
-							'api-help-param-integer-' + tmp,
+							'paramvalidator-help-type-number-' + tmp,
 							Util.apiBool( ppi.multi ) ? 2 : 1,
 							ppi.min, ppi.max
 						) )
@@ -1483,45 +1489,45 @@
 			}
 			if ( count > ppi.lowlimit ) {
 				tmp.push(
-					mw.message( 'api-help-param-multi-max', ppi.lowlimit, ppi.highlimit ).parse()
+					mw.message( 'paramvalidator-help-multi-max', ppi.lowlimit, ppi.highlimit ).parse()
 				);
 			}
 			if ( tmp.length ) {
-				descriptionContainer.append( $( '<div>' )
+				$descriptionContainer.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( tmp.join( ' ' ) ) )
 				);
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
-				.append( Util.parseMsg( 'api-help-param-maxbytes', ppi.maxbytes ) )
+				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) )
 			);
 		}
 		if ( 'maxchars' in ppi ) {
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
-				.append( Util.parseMsg( 'api-help-param-maxchars', ppi.maxchars ) )
+				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) )
 			);
 		}
 		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {
-			tmp = $();
+			$tmp = $();
 			for ( j = 0, l = ppi.usedTemplateVars.length; j < l; j++ ) {
-				tmp = tmp.add( $( '<var>' ).text( ppi.usedTemplateVars[ j ] ) );
+				$tmp = $tmp.add( $( '<var>' ).text( ppi.usedTemplateVars[ j ] ) );
 				if ( j === l - 2 ) {
-					tmp = tmp.add( mw.message( 'and' ).parseDom() );
-					tmp = tmp.add( mw.message( 'word-separator' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'and' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'word-separator' ).parseDom() );
 				} else if ( j !== l - 1 ) {
-					tmp = tmp.add( mw.message( 'comma-separator' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'comma-separator' ).parseDom() );
 				}
 			}
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg(
 					'apisandbox-templated-parameter-reason',
 					ppi.usedTemplateVars.length,
-					tmp
+					$tmp
 				) )
 			);
 		}
@@ -1533,7 +1539,7 @@
 			} ), {
 				align: 'inline',
 				classes: [ 'mw-apisandbox-help-field' ],
-				label: descriptionContainer
+				label: $descriptionContainer
 			}
 		);
 
@@ -1575,6 +1581,7 @@
 
 	/**
 	 * Update templated parameters in the page
+	 *
 	 * @private
 	 * @param {Object} [params] Query parameters for initializing the widgets
 	 */
@@ -1602,11 +1609,11 @@
 
 		// This bit duplicates the PHP logic in ApiBase::extractRequestParams().
 		// If you update this, see if that needs updating too.
-		toProcess = pi.templatedparameters.map( function ( p ) {
+		toProcess = pi.templatedparameters.map( function ( info ) {
 			return {
-				name: prefix + p.name,
-				info: p,
-				vars: $.extend( {}, p.templatevars ),
+				name: prefix + info.name,
+				info: info,
+				vars: $.extend( {}, info.templatevars ),
 				usedVars: []
 			};
 		} );
@@ -1784,7 +1791,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, tmp,
+				var prefix, i, j, tmp, $tmp,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1858,11 +1865,11 @@
 							width: 'auto',
 							padded: true,
 							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
-								var a = $( '<a>' )
+								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
 									.html( example.description );
-								a.find( 'a' ).contents().unwrap(); // Can't nest links
-								return $( '<li>' ).append( a );
+								$a.find( 'a' ).contents().unwrap(); // Can't nest links
+								return $( '<li>' ).append( $a );
 							} ) )
 						}
 					} ) );
@@ -1939,7 +1946,7 @@
 				}
 
 				that.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
-				tmp = $( '<fieldset>' )
+				$tmp = $( '<fieldset>' )
 					.toggle( !that.deprecatedItemsFieldset.isEmpty() )
 					.append(
 						$( '<legend>' ).append(
@@ -1952,10 +1959,10 @@
 					.appendTo( that.$element );
 				that.deprecatedItemsFieldset.on( 'add', function () {
 					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
-				}, [], tmp );
+				}, [], $tmp );
 				that.deprecatedItemsFieldset.on( 'remove', function () {
 					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
-				}, [], tmp );
+				}, [], $tmp );
 
 				// Load stored params, if any, then update the booklet if we
 				// have subpages (or else just update our valid-indicator).

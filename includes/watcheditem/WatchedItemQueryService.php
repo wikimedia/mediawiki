@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -20,39 +22,39 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class WatchedItemQueryService {
 
-	const DIR_OLDER = 'older';
-	const DIR_NEWER = 'newer';
+	public const DIR_OLDER = 'older';
+	public const DIR_NEWER = 'newer';
 
-	const INCLUDE_FLAGS = 'flags';
-	const INCLUDE_USER = 'user';
-	const INCLUDE_USER_ID = 'userid';
-	const INCLUDE_COMMENT = 'comment';
-	const INCLUDE_PATROL_INFO = 'patrol';
-	const INCLUDE_AUTOPATROL_INFO = 'autopatrol';
-	const INCLUDE_SIZES = 'sizes';
-	const INCLUDE_LOG_INFO = 'loginfo';
-	const INCLUDE_TAGS = 'tags';
+	public const INCLUDE_FLAGS = 'flags';
+	public const INCLUDE_USER = 'user';
+	public const INCLUDE_USER_ID = 'userid';
+	public const INCLUDE_COMMENT = 'comment';
+	public const INCLUDE_PATROL_INFO = 'patrol';
+	public const INCLUDE_AUTOPATROL_INFO = 'autopatrol';
+	public const INCLUDE_SIZES = 'sizes';
+	public const INCLUDE_LOG_INFO = 'loginfo';
+	public const INCLUDE_TAGS = 'tags';
 
 	// FILTER_* constants are part of public API (are used in ApiQueryWatchlist and
 	// ApiQueryWatchlistRaw classes) and should not be changed.
 	// Changing values of those constants will result in a breaking change in the API
-	const FILTER_MINOR = 'minor';
-	const FILTER_NOT_MINOR = '!minor';
-	const FILTER_BOT = 'bot';
-	const FILTER_NOT_BOT = '!bot';
-	const FILTER_ANON = 'anon';
-	const FILTER_NOT_ANON = '!anon';
-	const FILTER_PATROLLED = 'patrolled';
-	const FILTER_NOT_PATROLLED = '!patrolled';
-	const FILTER_AUTOPATROLLED = 'autopatrolled';
-	const FILTER_NOT_AUTOPATROLLED = '!autopatrolled';
-	const FILTER_UNREAD = 'unread';
-	const FILTER_NOT_UNREAD = '!unread';
-	const FILTER_CHANGED = 'changed';
-	const FILTER_NOT_CHANGED = '!changed';
+	public const FILTER_MINOR = 'minor';
+	public const FILTER_NOT_MINOR = '!minor';
+	public const FILTER_BOT = 'bot';
+	public const FILTER_NOT_BOT = '!bot';
+	public const FILTER_ANON = 'anon';
+	public const FILTER_NOT_ANON = '!anon';
+	public const FILTER_PATROLLED = 'patrolled';
+	public const FILTER_NOT_PATROLLED = '!patrolled';
+	public const FILTER_AUTOPATROLLED = 'autopatrolled';
+	public const FILTER_NOT_AUTOPATROLLED = '!autopatrolled';
+	public const FILTER_UNREAD = 'unread';
+	public const FILTER_NOT_UNREAD = '!unread';
+	public const FILTER_CHANGED = 'changed';
+	public const FILTER_NOT_CHANGED = '!changed';
 
-	const SORT_ASC = 'ASC';
-	const SORT_DESC = 'DESC';
+	public const SORT_ASC = 'ASC';
+	public const SORT_DESC = 'DESC';
 
 	/**
 	 * @var ILoadBalancer
@@ -74,18 +76,30 @@ class WatchedItemQueryService {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/**
+	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
+	 */
+	private $expiryEnabled;
+
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
 		WatchedItemStoreInterface $watchedItemStore,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		HookContainer $hookContainer,
+		bool $expiryEnabled = false
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->permissionManager = $permissionManager;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->expiryEnabled = $expiryEnabled;
 	}
 
 	/**
@@ -94,7 +108,7 @@ class WatchedItemQueryService {
 	private function getExtensions() {
 		if ( $this->extensions === null ) {
 			$this->extensions = [];
-			Hooks::run( 'WatchedItemQueryServiceExtensions', [ &$this->extensions, $this ] );
+			$this->hookRunner->onWatchedItemQueryServiceExtensions( $this->extensions, $this );
 		}
 		return $this->extensions;
 	}
@@ -313,12 +327,24 @@ class WatchedItemQueryService {
 		$conds = $this->getWatchedItemsForUserQueryConds( $db, $user, $options );
 		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
 
+		$tables = 'watchlist';
+		$joinConds = [];
+		if ( $this->expiryEnabled ) {
+			// If expiries are enabled, join with the watchlist_expiry table and exclude expired items.
+			$tables = [ 'watchlist', 'watchlist_expiry' ];
+			$conds[] = $db->makeList(
+				[ 'we_expiry' => null, 'we_expiry > ' . $db->addQuotes( $db->timestamp() ) ],
+				$db::LIST_OR
+			);
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+		}
 		$res = $db->select(
-			'watchlist',
+			$tables,
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			$conds,
 			__METHOD__,
-			$dbOptions
+			$dbOptions,
+			$joinConds
 		);
 
 		$watchedItems = [];
@@ -352,6 +378,11 @@ class WatchedItemQueryService {
 
 	private function getWatchedItemsWithRCInfoQueryTables( array $options ) {
 		$tables = [ 'recentchanges', 'watchlist' ];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+		}
+
 		if ( !$options['allRevisions'] ) {
 			$tables[] = 'page';
 		}
@@ -379,6 +410,10 @@ class WatchedItemQueryService {
 			'rc_deleted',
 			'wl_notificationtimestamp'
 		];
+
+		if ( $this->expiryEnabled ) {
+			$fields[] = 'we_expiry';
+		}
 
 		$rcIdFields = [
 			'rc_cur_id',
@@ -430,6 +465,10 @@ class WatchedItemQueryService {
 	) {
 		$watchlistOwnerId = $this->getWatchlistOwnerId( $user, $options );
 		$conds = [ 'wl_user' => $watchlistOwnerId ];
+
+		if ( $this->expiryEnabled ) {
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $db->addQuotes( $db->timestamp() );
+		}
 
 		if ( !$options['allRevisions'] ) {
 			$conds[] = $db->makeList(
@@ -724,6 +763,11 @@ class WatchedItemQueryService {
 				]
 			]
 		];
+
+		if ( $this->expiryEnabled ) {
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+		}
+
 		if ( !$options['allRevisions'] ) {
 			$joinConds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 		}

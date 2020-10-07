@@ -1,7 +1,7 @@
 <?php
 
-use Wikimedia\Rdbms\TransactionProfiler;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * @covers \Wikimedia\Rdbms\TransactionProfiler

@@ -4,6 +4,7 @@
 			"Byrial",
 			"Christian List",
 			"EPO",
+			"Jhertel",
 			"Peter Alberti",
 			"Saederup92"
 		]
@@ -18,8 +19,8 @@
 	"exif-planarconfiguration": "Dataretning",
 	"exif-ycbcrsubsampling": "Subsamplingrate fra Y til C",
 	"exif-ycbcrpositioning": "Y og C positionering",
-	"exif-xresolution": "Horisontal opløsning",
-	"exif-yresolution": "Vertikal opløsning",
+	"exif-xresolution": "Vandret opløsning",
+	"exif-yresolution": "Lodret opløsning",
 	"exif-stripoffsets": "Bileddata-forskydning",
 	"exif-rowsperstrip": "Antal linjer pr. stribe",
 	"exif-stripbytecounts": "Bytes pr. komprimeret stribe",

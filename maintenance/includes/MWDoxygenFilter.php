@@ -20,7 +20,6 @@
  * @file
  * @ingroup Maintenance
  * @phan-file-suppress PhanInvalidCommentForDeclarationType False negative about about `@var`
- * @phan-file-suppress PhanUnextractableAnnotation False negative about about `@var`
  */
 
 /**

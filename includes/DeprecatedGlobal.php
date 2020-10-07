@@ -30,15 +30,15 @@ class DeprecatedGlobal extends StubObject {
 	/**
 	 * @param string $name Global name
 	 * @param callable|string $callback Factory function or class name to construct
-	 * @param bool|string $version Version global was deprecated in
+	 * @param string|false $version Version global was deprecated in
 	 */
-	function __construct( $name, $callback, $version = false ) {
+	public function __construct( $name, $callback, $version = false ) {
 		parent::__construct( $name, $callback );
 		$this->version = $version;
 	}
 
 	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore,PSR2.Classes.PropertyDeclaration.ScopeMissing
-	function _newObject() {
+	public function _newObject() {
 		/* Put the caller offset for wfDeprecated as 6, as
 		 * that gives the function that uses this object, since:
 		 * 1 = this function ( _newObject )

@@ -21,13 +21,20 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
+use OOUI\IconWidget;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
-	const CSS_CLASS_PREFIX = 'mw-changeslist-';
+	use ProtectedHookAccessorTrait;
+
+	public const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
 	/**
 	 * @var Skin
@@ -88,7 +95,7 @@ class ChangesList extends ContextSource {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
-		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list, $groups ] ) ) {
+		if ( Hooks::runner()->onFetchChangesList( $user, $sk, $list, $groups ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
 			return $new ?
@@ -263,7 +270,7 @@ class ChangesList extends ContextSource {
 		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
 
-		if ( is_null( $flagInfos ) ) {
+		if ( $flagInfos === null ) {
 			global $wgRecentChangesFlags;
 			$flagInfos = [];
 			foreach ( $wgRecentChangesFlags as $key => $value ) {
@@ -310,7 +317,7 @@ class ChangesList extends ContextSource {
 	 * @param IResultWrapper|array $rows
 	 */
 	public function initChangesListRows( $rows ) {
-		Hooks::run( 'ChangesListInitRows', [ $this, $rows ] );
+		$this->getHookRunner()->onChangesListInitRows( $this, $rows );
 	}
 
 	/**
@@ -407,7 +414,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * Render the date and time of a revision in the current user language
 	 * based on whether the user is able to view this information or not.
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @param User $user
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
@@ -415,12 +422,21 @@ class ChangesList extends ContextSource {
 	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
 	 * @return string HTML
 	 */
-	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
+	public static function revDateLink(
+		RevisionRecord $rev,
+		User $user,
+		Language $lang,
+		$title = null
+	) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$user
+		) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$title ?? $rev->getTitle(),
+				$title ?? $rev->getPageAsLinkTarget(),
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
 				[ 'oldid' => $rev->getId() ]
@@ -523,6 +539,9 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Get the HTML link to the changed page, possibly with a prefix from hook handlers, and a
+	 * suffix for temporarily watched items.
+	 *
 	 * @param RecentChange &$rc
 	 * @param bool $unpatrolled
 	 * @param bool $watched
@@ -551,12 +570,45 @@ class ChangesList extends ContextSource {
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
-		# Avoid PHP 7.1 warning from passing $this by reference
-		$changesList = $this;
-		Hooks::run( 'ChangesListInsertArticleLink',
-			[ &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
+		$this->getHookRunner()->onChangesListInsertArticleLink( $this, $articlelink,
+			$s, $rc, $unpatrolled, $watched );
 
-		return "{$s} {$articlelink}";
+		// Watchlist expiry icon.
+		$watchlistExpiry = '';
+		if ( isset( $rc->watchlistExpiry ) && $rc->watchlistExpiry ) {
+			$watchlistExpiry = $this->getWatchlistExpiry( $rc );
+		}
+
+		return "{$s} {$articlelink}{$watchlistExpiry}";
+	}
+
+	/**
+	 * Get HTML to display the clock icon for watched items that have a watchlist expiry time.
+	 * @since 1.35
+	 * @param RecentChange $recentChange
+	 * @return string The HTML to display an indication of the expiry time.
+	 */
+	public function getWatchlistExpiry( RecentChange $recentChange ): string {
+		$item = WatchedItem::newFromRecentChange( $recentChange, $this->getUser() );
+		// Guard against expired items, even though they shouldn't come here.
+		if ( $item->isExpired() ) {
+			return '';
+		}
+		$daysLeftText = $item->getExpiryInDaysText( $this->getContext() );
+		// Matching widget is also created in ChangesListSpecialPage, for the legend.
+		$widget = new IconWidget( [
+			'icon' => 'clock',
+			'title' => $daysLeftText,
+			'classes' => [ 'mw-changesList-watchlistExpiry' ],
+		] );
+		// Add labels for assistive technologies.
+		$widget->setAttributes( [
+			'role' => 'img',
+			'aria-label' => $this->msg( 'watchlist-expires-in-aria-label' )->text(),
+		] );
+		// Add spaces around the widget (the page title is to one side,
+		// and a semicolon or opening-parenthesis to the other).
+		return " $widget ";
 	}
 
 	/**
@@ -568,8 +620,16 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
-		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
-		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+		// This uses the semi-colon separator unless there's a watchlist expiry date for the entry,
+		// because in that case the timestamp is preceeded by a clock icon.
+		// A space is important after mw-changeslist-separator--semicolon to make sure
+		// that whatever comes before it is distinguishable.
+		// (Otherwise your have the text of titles pushing up against the timestamp)
+		// A specific element is used for this purpose as `mw-changeslist-date` is used in a variety
+		// of other places with a different position and the information proceeding getTimestamp can vary.
+		$separatorClass = $rc->watchlistExpiry ? 'mw-changeslist-separator' : 'mw-changeslist-separator--semicolon';
+		return Html::element( 'span', [ 'class' => $separatorClass ] ) . ' ' .
+			'<span class="mw-changeslist-date">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
@@ -728,16 +788,22 @@ class ChangesList extends ContextSource {
 			if ( MediaWikiServices::getInstance()->getPermissionManager()
 				->quickUserCan( 'rollback', $this->getUser(), $title )
 			) {
-				$rev = new Revision( [
-					'title' => $title,
-					'id' => $rc->mAttribs['rc_this_oldid'],
-					'user' => $rc->mAttribs['rc_user'],
-					'user_text' => $rc->mAttribs['rc_user_text'],
-					'actor' => $rc->mAttribs['rc_actor'] ?? null,
-					'deleted' => $rc->mAttribs['rc_deleted']
-				] );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext(),
-					[ 'noBrackets' ] );
+				$revRecord = new MutableRevisionRecord( $title );
+				$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
+				$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
+				$user = new UserIdentityValue(
+					(int)$rc->mAttribs['rc_user'],
+					$rc->mAttribs['rc_user_text'],
+					(int)( $rc->mAttribs['rc_actor'] ?? 0 )
+				);
+				$revRecord->setUser( $user );
+
+				$s .= ' ';
+				$s .= Linker::generateRollback(
+					$revRecord,
+					$this->getContext(),
+					[ 'noBrackets' ]
+				);
 			}
 		}
 	}

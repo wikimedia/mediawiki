@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API Module to merge page histories
  * @ingroup API
@@ -87,7 +89,8 @@ class ApiMergeHistory extends ApiBase {
 	 * @return Status
 	 */
 	protected function merge( Title $from, Title $to, $timestamp, $reason ) {
-		$mh = new MergeHistory( $from, $to, $timestamp );
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $from, $to, $timestamp );
 
 		return $mh->merge( $this->getUser(), $reason );
 	}

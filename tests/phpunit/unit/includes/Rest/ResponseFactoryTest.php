@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use ArrayIterator;
+use InvalidArgumentException;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWikiUnitTestCase;
@@ -22,11 +23,11 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	private function createResponseFactory() {
 		$fakeTextFormatter = new class implements ITextFormatter {
-			function getLangCode() {
+			public function getLangCode() {
 				return 'qqx';
 			}
 
-			function format( MessageValue $message ) {
+			public function format( MessageValue $message ) {
 				return $message->getKey();
 			}
 		};
@@ -92,9 +93,9 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 304, $response->getStatusCode() );
 	}
 
-	/** @expectedException \InvalidArgumentException */
 	public function testCreateHttpErrorInvalid() {
 		$rf = $this->createResponseFactory();
+		$this->expectException( InvalidArgumentException::class );
 		$rf->createHttpError( 200 );
 	}
 
@@ -153,9 +154,9 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $body->getContents() );
 	}
 
-	/** @expectedException \InvalidArgumentException */
 	public function testCreateFromReturnValueInvalid() {
 		$rf = $this->createResponseFactory();
+		$this->expectException( InvalidArgumentException::class );
 		$rf->createFromReturnValue( new ArrayIterator );
 	}
 

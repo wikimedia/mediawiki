@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"LongJohn nl",
+			"Mainframe98"
+		]
+	},
+	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
+	"rest-nonexistent-title": "De opgegeven titel ($1) bestaat niet",
+	"rest-nonexistent-revision": "De opgevraagde versie ($1) bestaat niet.",
+	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
+	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
+	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen"
+}

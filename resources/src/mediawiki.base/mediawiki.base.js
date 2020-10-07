@@ -23,6 +23,13 @@
 		trackHandlers = [],
 		queue;
 
+	// Apply site-level config
+	mw.config.set( require( './config.json' ) );
+
+	// Load other files in the package
+	require( './mediawiki.errorLogger.js' );
+	require( './legacy.wikibits.js' );
+
 	/**
 	 * Object constructor for messages.
 	 *
@@ -106,7 +113,7 @@
 			var text = this.map.get( this.key );
 			if (
 				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
-				( !text || text === '(' + this.key + ')' )
+				text === '(' + this.key + ')'
 			) {
 				text = '(' + this.key + '$*)';
 			}
@@ -229,9 +236,6 @@
 		 * @return {boolean}
 		 */
 		exists: function () {
-			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
-				return true;
-			}
 			return this.map.exists( this.key );
 		}
 	};
@@ -246,7 +250,7 @@
 	 * want to add a new global, or the global is bad and needs containment
 	 * or wrapping.
 	 *
-	 * @property
+	 * @property {Object}
 	 */
 	mw.libs = {};
 
@@ -340,6 +344,19 @@
 	};
 
 	/**
+	 * @see mw.notification#notify
+	 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
+	 * @param {Object} [options] See mw.notification#defaults for the defaults.
+	 * @return {jQuery.Promise}
+	 */
+	mw.notify = function ( message, options ) {
+		// Lazy load
+		return mw.loader.using( 'mediawiki.notification', function () {
+			return mw.notification.notify( message, options );
+		} );
+	};
+
+	/**
 	 * Track an analytic event.
 	 *
 	 * This method provides a generic means for MediaWiki JavaScript code to capture state
@@ -349,11 +366,11 @@
 	 * well-defined purpose.
 	 *
 	 * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
-	 * events that match their subcription, including those that fired before the handler was
+	 * events that match their subscription, including those that fired before the handler was
 	 * bound.
 	 *
 	 * @param {string} topic Topic name
-	 * @param {Object} [data] Data describing the event, encoded as an object
+	 * @param {Object|number|string} [data] Data describing the event.
 	 */
 	mw.track = function ( topic, data ) {
 		mwLoaderTrack( topic, data );
@@ -364,8 +381,7 @@
 	 * Register a handler for subset of analytic events, specified by topic.
 	 *
 	 * Handlers will be called once for each tracked event, including any events that fired before the
-	 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
-	 * the exact time at which the event fired, a string 'topic' property naming the event, and a
+	 * handler was registered; 'this' is set to a plain object with a topic' property naming the event, and a
 	 * 'data' property which is an object of event-specific data. The event topic and event data are
 	 * also passed to the callback as the first and second arguments, respectively.
 	 *
@@ -547,14 +563,11 @@
 			 *
 			 * @param {string} name The tag name.
 			 * @param {Object} [attrs] An object with members mapping element names to values
-			 * @param {string|mw.html.Raw|mw.html.Cdata|null} [contents=null] The contents of the element.
+			 * @param {string|mw.html.Raw|null} [contents=null] The contents of the element.
 			 *
 			 *  - string: Text to be escaped.
 			 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
 			 *  - this.Raw: The raw value is directly included.
-			 *  - this.Cdata: The raw value is directly included. An exception is
-			 *    thrown if it contains any illegal ETAGO delimiter.
-			 *    See <https://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 			 * @return {string} HTML
 			 */
 			element: function ( name, attrs, contents ) {
@@ -580,29 +593,17 @@
 				}
 				// Regular open tag
 				s += '>';
-				switch ( typeof contents ) {
-					case 'string':
-						// Escaped
-						s += this.escape( contents );
-						break;
-					case 'number':
-					case 'boolean':
-						// Convert to string
-						s += String( contents );
-						break;
-					default:
-						if ( contents instanceof this.Raw ) {
-							// Raw HTML inclusion
-							s += contents.value;
-						} else if ( contents instanceof this.Cdata ) {
-							// CDATA
-							if ( /<\/[a-zA-z]/.test( contents.value ) ) {
-								throw new Error( 'Illegal end tag found in CDATA' );
-							}
-							s += contents.value;
-						} else {
-							throw new Error( 'Invalid type of contents' );
-						}
+				if ( typeof contents === 'string' ) {
+					// Escaped
+					s += this.escape( contents );
+				} else if ( typeof contents === 'number' || typeof contents === 'boolean' ) {
+					// Convert to string
+					s += String( contents );
+				} else if ( contents instanceof this.Raw ) {
+					// Raw HTML inclusion
+					s += contents.value;
+				} else {
+					throw new Error( 'Invalid content type' );
 				}
 				s += '</' + name + '>';
 				return s;
@@ -617,23 +618,23 @@
 			 */
 			Raw: function ( value ) {
 				this.value = value;
-			},
-
-			/**
-			 * Wrapper object for CDATA element contents passed to mw.html.element()
-			 *
-			 * @class mw.html.Cdata
-			 * @constructor
-			 * @param {string} value
-			 */
-			Cdata: function ( value ) {
-				this.value = value;
 			}
 		};
 	}() );
 
 	/**
-	 * Execute a function as soon as one or more required modules are ready.
+	 * Execute a function after one or more modules are ready.
+	 *
+	 * Use this method if you need to dynamically control which modules are loaded
+	 * and/or when they loaded (instead of declaring them as dependencies directly
+	 * on your module.)
+	 *
+	 * This uses the same loader as for regular module dependencies. This means
+	 * ResourceLoader will not re-download or re-execute a module for the second
+	 * time if something else already needed it. And the same browser HTTP cache,
+	 * and localStorage are checked before considering to fetch from the network.
+	 * And any on-going requests from other dependencies or using() calls are also
+	 * automatically re-used.
 	 *
 	 * Example of inline dependency on OOjs:
 	 *
@@ -647,7 +648,7 @@
 	 *         var util = require( 'mediawiki.util' );
 	 *     } );
 	 *
-	 * Since MediaWiki 1.23 this also returns a promise.
+	 * Since MediaWiki 1.23 this returns a promise.
 	 *
 	 * Since MediaWiki 1.28 the promise is resolved with a `require` function.
 	 *

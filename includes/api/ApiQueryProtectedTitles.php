@@ -40,7 +40,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -70,7 +70,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'pt_namespace', $params['dir'], null, null );
 		$this->addWhereRange( 'pt_title', $params['dir'], null, null );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = ( $params['dir'] === 'newer' ? '>' : '<' );
@@ -98,6 +98,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'pt' );
+		}
+
 		$count = 0;
 		$result = $this->getResult();
 
@@ -114,14 +118,14 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			}
 
 			$title = Title::makeTitle( $row->pt_namespace, $row->pt_title );
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->pt_timestamp );
 				}
 
-				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) ) {
+				if ( isset( $prop['user'] ) && $row->user_name !== null ) {
 					$vals['user'] = $row->user_name;
 				}
 
@@ -159,7 +163,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName(
 				[ 'query', $this->getModuleName() ],
 				$this->getModulePrefix()
@@ -170,7 +174,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getCacheMode( $params ) {
-		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		} else {

@@ -54,14 +54,14 @@ class LocalPasswordPrimaryAuthenticationProvider
 	 * @return \stdClass|null
 	 */
 	protected function getPasswordResetData( $username, $row ) {
-		$now = wfTimestamp();
+		$now = (int)wfTimestamp();
 		$expiration = wfTimestampOrNull( TS_UNIX, $row->user_password_expires );
-		if ( $expiration === null || $expiration >= $now ) {
+		if ( $expiration === null || (int)$expiration >= $now ) {
 			return null;
 		}
 
 		$grace = $this->config->get( 'PasswordExpireGrace' );
-		if ( $expiration + $grace < $now ) {
+		if ( (int)$expiration + $grace < $now ) {
 			$data = [
 				'hard' => true,
 				'msg' => \Status::newFatal( 'resetpass-expired' )->getMessage(),

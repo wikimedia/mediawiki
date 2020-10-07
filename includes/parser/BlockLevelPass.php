@@ -21,6 +21,7 @@
  *
  * @file
  * @ingroup Parser
+ * @internal
  */
 class BlockLevelPass {
 	private $DTopen = false;
@@ -30,15 +31,15 @@ class BlockLevelPass {
 	private $text;
 
 	# State constants for the definition list colon extraction
-	const COLON_STATE_TEXT = 0;
-	const COLON_STATE_TAG = 1;
-	const COLON_STATE_TAGSTART = 2;
-	const COLON_STATE_CLOSETAG = 3;
-	const COLON_STATE_TAGSLASH = 4;
-	const COLON_STATE_COMMENT = 5;
-	const COLON_STATE_COMMENTDASH = 6;
-	const COLON_STATE_COMMENTDASHDASH = 7;
-	const COLON_STATE_LC = 8;
+	private const COLON_STATE_TEXT = 0;
+	private const COLON_STATE_TAG = 1;
+	private const COLON_STATE_TAGSTART = 2;
+	private const COLON_STATE_CLOSETAG = 3;
+	private const COLON_STATE_TAGSLASH = 4;
+	private const COLON_STATE_COMMENT = 5;
+	private const COLON_STATE_COMMENTDASH = 6;
+	private const COLON_STATE_COMMENTDASHDASH = 7;
+	private const COLON_STATE_LC = 8;
 
 	/**
 	 * Make lists from lines starting with ':', '*', '#', etc.
@@ -46,6 +47,7 @@ class BlockLevelPass {
 	 * @param string $text
 	 * @param bool $lineStart Whether or not this is at the start of a line.
 	 * @return string The lists rendered as HTML
+	 * @internal
 	 */
 	public static function doBlockLevels( $text, $lineStart ) {
 		$pass = new self( $text, $lineStart );
@@ -265,6 +267,7 @@ class BlockLevelPass {
 
 				# Close all the prefixes which aren't shared.
 				while ( $commonPrefixLength < $lastPrefixLength ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$output .= $this->closeList( $lastPrefix[$lastPrefixLength - 1] );
 					--$lastPrefixLength;
 				}
@@ -317,7 +320,7 @@ class BlockLevelPass {
 					'/<('
 						. "({$blockElems})|\\/({$antiBlockElems})|"
 						// Always suppresses
-						. '\\/?(tr|dt|dd|li)'
+						. '\\/?(tr|caption|dt|dd|li)'
 						. ')\\b/iS',
 					$t
 				);
@@ -436,7 +439,7 @@ class BlockLevelPass {
 	 * @param string &$before Set to everything before the ':'
 	 * @param string &$after Set to everything after the ':'
 	 * @throws MWException
-	 * @return string The position of the ':', or false if none found
+	 * @return string|false The position of the ':', or false if none found
 	 */
 	private function findColonNoLinks( $str, &$before, &$after ) {
 		if ( !preg_match( '/:|<|-\{/', $str, $m, PREG_OFFSET_CAPTURE ) ) {
@@ -550,7 +553,7 @@ class BlockLevelPass {
 						} else {
 							# ignore the excess close tag, but keep looking for
 							# colons. (This matches Parsoid behavior.)
-							wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
+							wfDebug( __METHOD__ . ": Invalid input; too many close tags" );
 						}
 						$state = self::COLON_STATE_TEXT;
 					}
@@ -590,7 +593,7 @@ class BlockLevelPass {
 		if ( $ltLevel > 0 || $lcLevel > 0 ) {
 			wfDebug(
 				__METHOD__ . ": Invalid input; not enough close tags " .
-				"(level $ltLevel/$lcLevel, state $state)\n"
+				"(level $ltLevel/$lcLevel, state $state)"
 			);
 			return false;
 		}

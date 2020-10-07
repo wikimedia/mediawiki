@@ -50,7 +50,7 @@ class NamespaceAwareForeignTitleFactory implements ForeignTitleFactory {
 	 */
 	public function __construct( $foreignNamespaces ) {
 		$this->foreignNamespaces = $foreignNamespaces;
-		if ( !is_null( $foreignNamespaces ) ) {
+		if ( $foreignNamespaces !== null ) {
 			$this->foreignNamespacesFlipped = [];
 			foreach ( $foreignNamespaces as $id => $name ) {
 				$newKey = self::normalizeNamespaceName( $name );
@@ -71,7 +71,7 @@ class NamespaceAwareForeignTitleFactory implements ForeignTitleFactory {
 	public function createForeignTitle( $title, $ns = null ) {
 		// Export schema version 0.5 and earlier (MW 1.18 and earlier) does not
 		// contain a <ns> tag, so we need to be able to handle that case.
-		if ( is_null( $ns ) ) {
+		if ( $ns === null ) {
 			return self::parseTitleNoNs( $title );
 		} else {
 			return self::parseTitleWithNs( $title, $ns );

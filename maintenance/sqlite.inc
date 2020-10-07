@@ -59,7 +59,8 @@ class Sqlite {
 			'integer',
 			'real',
 			'text',
-			'blob', // NULL type is omitted intentionally
+			'blob',
+			// NULL type is omitted intentionally
 		] );
 
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -80,7 +81,7 @@ class Sqlite {
 				$columns = $db->query( "PRAGMA table_info({$table->name})", __METHOD__ );
 				foreach ( $columns as $col ) {
 					if ( !isset( $allowedTypes[strtolower( $col->type )] ) ) {
-						$db->close();
+						$db->close( __METHOD__ );
 
 						return "Table {$table->name} has column {$col->name} with non-native type '{$col->type}'";
 					}
@@ -89,7 +90,7 @@ class Sqlite {
 		} catch ( DBError $e ) {
 			return $e->getMessage();
 		}
-		$db->close();
+		$db->close( __METHOD__ );
 
 		return true;
 	}

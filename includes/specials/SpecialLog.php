@@ -107,14 +107,12 @@ class SpecialLog extends SpecialPage {
 			$offenderName = $opts->getValue( 'offender' );
 			$offender = empty( $offenderName ) ? null : User::newFromName( $offenderName, false );
 			if ( $offender ) {
-				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ];
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => (string)$offender->getActorId() ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types
-			Hooks::run(
-				'SpecialLogAddLogSearchRelations',
-				[ $opts->getValue( 'type' ), $this->getRequest(), &$qc ]
-			);
+			$this->getHookRunner()->onSpecialLogAddLogSearchRelations(
+				$opts->getValue( 'type' ), $this->getRequest(), $qc );
 		}
 
 		# Some log types are only for a 'User:' title but we might have been given
@@ -153,7 +151,7 @@ class SpecialLog extends SpecialPage {
 			'rights',
 		];
 
-		Hooks::run( 'GetLogTypesOnUser', [ &$types ] );
+		Hooks::runner()->onGetLogTypesOnUser( $types );
 		return $types;
 	}
 
@@ -285,7 +283,7 @@ class SpecialLog extends SpecialPage {
 					'type' => 'submit',
 					'name' => 'revisiondelete',
 					'value' => '1',
-					'class' => "deleterevision-log-submit mw-log-deleterevision-button"
+					'class' => "deleterevision-log-submit mw-log-deleterevision-button mw-ui-button"
 				],
 				$this->msg( 'showhideselectedlogentries' )->text()
 			) . "\n";
@@ -297,7 +295,7 @@ class SpecialLog extends SpecialPage {
 					'type' => 'submit',
 					'name' => 'editchangetags',
 					'value' => '1',
-					'class' => "editchangetags-log-submit mw-log-editchangetags-button"
+					'class' => "editchangetags-log-submit mw-log-editchangetags-button mw-ui-button"
 				],
 				$this->msg( 'log-edit-tags' )->text()
 			) . "\n";

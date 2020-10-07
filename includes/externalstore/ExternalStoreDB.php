@@ -20,13 +20,13 @@
  * @file
  */
 
-use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 
 /**
  * DB accessible external objects.
@@ -131,10 +131,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @inheritDoc
 	 */
 	public function isReadOnly( $location ) {
-<<<<<<< HEAD
-		$lb = $this->getLoadBalancer( $location );
-		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
-=======
 		if ( parent::isReadOnly( $location ) ) {
 			return true;
 		}
@@ -142,7 +138,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$lb = $this->getLoadBalancer( $location );
 		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
->>>>>>> e2509cbd3077ef80de2d8e2a1217340b55c7039f
 		return ( $lb->getReadOnlyReason( $domainId ) !== false );
 	}
 
@@ -182,6 +177,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @deprecated since 1.34
 	 */
 	public function getSlave( $cluster ) {
+		wfDeprecated( '1.34', __METHOD__ );
 		return $this->getReplica( $cluster );
 	}
 
@@ -207,13 +203,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
-<<<<<<< HEAD
-		if ( isset( $this->params['wiki'] ) && $this->params['wiki'] !== false ) {
-			return $this->params['wiki']; // explicit domain
-=======
 		if ( $this->isDbDomainExplicit ) {
 			return $this->dbDomain; // explicit foreign domain
->>>>>>> e2509cbd3077ef80de2d8e2a1217340b55c7039f
 		}
 
 		if ( isset( $server['dbname'] ) ) {

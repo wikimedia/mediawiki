@@ -3,12 +3,12 @@
 /**
  * @group Upload
  */
-class UploadBaseTest extends MediaWikiTestCase {
+class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 	/** @var UploadTestHandler */
 	protected $upload;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->upload = new UploadTestHandler;
@@ -647,8 +647,8 @@ class UploadTestHandler extends UploadBase {
 			[ $this, 'checkSvgScriptCallback' ],
 			false,
 			[
-				'processing_instruction_handler' => 'UploadBase::checkSvgPICallback',
-				'external_dtd_handler' => 'UploadBase::checkSvgExternalDTD'
+				'processing_instruction_handler' => [ UploadBase::class, 'checkSvgPICallback' ],
+				'external_dtd_handler' => [ UploadBase::class, 'checkSvgExternalDTD' ],
 			]
 		);
 		return [ $check->wellFormed, $check->filterMatch ];

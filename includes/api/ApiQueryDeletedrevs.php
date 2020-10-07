@@ -21,9 +21,12 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\NameTableAccessException;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -83,26 +86,26 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$mode = 'all';
 		if ( count( $titles ) > 0 ) {
 			$mode = 'revs';
-		} elseif ( !is_null( $params['user'] ) ) {
+		} elseif ( $params['user'] !== null ) {
 			$mode = 'user';
 		}
 
 		if ( $mode == 'revs' || $mode == 'user' ) {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
 			foreach ( [ 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ] as $p ) {
-				if ( !is_null( $params[$p] ) ) {
+				if ( $params[$p] !== null ) {
 					$this->dieWithError( [ 'apierror-deletedrevs-param-not-1-2', $p ], 'badparams' );
 				}
 			}
 		} else {
 			foreach ( [ 'start', 'end' ] as $p ) {
-				if ( !is_null( $params[$p] ) ) {
+				if ( $params[$p] !== null ) {
 					$this->dieWithError( [ 'apierror-deletedrevs-param-not-3', $p ], 'badparams' );
 				}
 			}
 		}
 
-		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null && $params['excludeuser'] !== null ) {
 			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
@@ -117,7 +120,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'archive' ) ] );
 		}
 
-		if ( !is_null( $params['tag'] ) ) {
+		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
@@ -146,7 +149,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->getResult()->addParsedLimit( $this->getModuleName(), $limit );
 		}
 
-		$this->validateLimit( 'limit', $limit, 1, $userMax, $botMax );
+		$limit = $this->getMain()->getParamValidator()->validateValue(
+			$this, 'limit', $limit, [
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => $userMax,
+				IntegerDef::PARAM_MAX2 => $botMax,
+				IntegerDef::PARAM_IGNORE_RANGE => true,
+			]
+		);
 
 		if ( $fld_token ) {
 			// Undelete tokens are identical for all pages, so we cache one here
@@ -178,23 +189,23 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', User::newFromName( $params['user'], false ), false );
+				->getWhere( $db, 'ar_user', $params['user'], false );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( $actorQuery['conds'] );
-		} elseif ( !is_null( $params['excludeuser'] ) ) {
+		} elseif ( $params['excludeuser'] !== null ) {
 			// Here there's no chance of using ar_usertext_timestamp.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', User::newFromName( $params['excludeuser'], false ) );
+				->getWhere( $db, 'ar_user', $params['excludeuser'] );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
-		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			// Paranoia: avoid brute force searches (T19342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
@@ -212,7 +223,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $mode == 'all' || $mode == 'revs' ) {
@@ -288,7 +299,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_revid ) {
 				$rev['revid'] = (int)$row->ar_rev_id;
 			}
-			if ( $fld_parentid && !is_null( $row->ar_parent_id ) ) {
+			if ( $fld_parentid && $row->ar_parent_id !== null ) {
 				$rev['parentid'] = (int)$row->ar_parent_id;
 			}
 			if ( $fld_user || $fld_userid ) {
@@ -296,7 +307,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['userhidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_USER, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_USER,
+					$user
+				) ) {
 					if ( $fld_user ) {
 						$rev['user'] = $row->ar_user_text;
 					}
@@ -311,7 +326,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['commenthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_COMMENT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_COMMENT,
+					$user
+				) ) {
 					$comment = $commentStore->getComment( 'ar_comment', $row )->text;
 					if ( $fld_comment ) {
 						$rev['comment'] = $comment;
@@ -334,7 +353,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['sha1hidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_TEXT,
+					$user
+				) ) {
 					if ( $row->ar_sha1 != '' ) {
 						$rev['sha1'] = Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
 					} else {
@@ -347,7 +370,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['texthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_TEXT,
+					$user
+				) ) {
 					ApiResult::setContentValue( $rev, 'text',
 						$revisionStore->newRevisionFromArchiveRow( $row )
 							->getContent( SlotRecord::MAIN )->serialize() );
@@ -442,10 +469,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			],
 			'tag' => null,
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'excludeuser' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'prop' => [
 				ApiBase::PARAM_DFLT => 'user|comment',

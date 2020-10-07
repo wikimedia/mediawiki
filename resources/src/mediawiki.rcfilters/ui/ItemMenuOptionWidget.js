@@ -117,16 +117,24 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 		);
 	}
 
+	// The following classes are used here:
+	// * mw-rcfilters-ui-itemMenuOptionWidget-view-default
+	// * mw-rcfilters-ui-itemMenuOptionWidget-view-namespaces
+	// * mw-rcfilters-ui-itemMenuOptionWidget-view-tags
 	this.$element
 		.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget' )
 		.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-view-' + this.itemModel.getGroupModel().getView() )
 		.append( $widgetRow );
 
 	if ( this.itemModel.getIdentifiers() ) {
+		// The following classes are used here:
+		// * mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject
+		// * mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk
 		this.itemModel.getIdentifiers().forEach( function ( ident ) {
 			classes.push( 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident );
 		} );
 
+		// eslint-disable-next-line mediawiki/class-doc
 		this.$element.addClass( classes );
 	}
 

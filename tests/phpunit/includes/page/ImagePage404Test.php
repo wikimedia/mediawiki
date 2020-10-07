@@ -8,7 +8,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 		return parent::getRepoOptions() + [ 'transformVia404' => true ];
 	}
 
-	function setUp() {
+	protected function setUp() : void {
 		$this->setMwGlobals( 'wgImageLimits', [
 			[ 320, 240 ],
 			[ 640, 480 ],
@@ -19,7 +19,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 		parent::setUp();
 	}
 
-	function getImagePage( $filename ) {
+	private function getImagePage( $filename ) {
 		$title = Title::makeTitleSafe( NS_FILE, $filename );
 		$file = $this->dataFile( $filename );
 		$iPage = new ImagePage( $title );
@@ -33,7 +33,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param int $expectedNumberThumbs How many thumbnails to show
 	 */
-	function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
+	public function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
 		$iPage = $this->getImagePage( $filename );
 		$reflection = new ReflectionClass( $iPage );
 		$reflMethod = $reflection->getMethod( 'getThumbSizes' );
@@ -43,7 +43,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 		$this->assertEquals( count( $actual ), $expectedNumberThumbs );
 	}
 
-	function providerGetThumbSizes() {
+	public function providerGetThumbSizes() {
 		return [
 			[ 'animated.gif', 6 ],
 			[ 'Toll_Texas_1.svg', 6 ],

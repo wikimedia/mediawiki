@@ -7,7 +7,7 @@
 
 /**
  * Tests for Armenian (Հայերեն)
- *
+ * @group Language
  * @covers LanguageHy
  */
 class LanguageHyTest extends LanguageClassesTestCase {

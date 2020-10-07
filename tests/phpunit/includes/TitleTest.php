@@ -8,17 +8,29 @@ use MediaWiki\MediaWikiServices;
  * @group Database
  * @group Title
  */
-class TitleTest extends MediaWikiTestCase {
-	protected function setUp() {
+class TitleTest extends MediaWikiIntegrationTestCase {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 			'wgMetaNamespace' => 'Project',
+			'wgServer' => 'https://example.org',
+			'wgCanonicalServer' => 'https://example.org',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+			'wgArticlePath' => '/wiki/$1',
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
+	}
+
+	protected function tearDown() : void {
+		parent::tearDown();
+		// delete dummy pages
+		$this->getNonexistingTestPage( 'UTest1' );
+		$this->getNonexistingTestPage( 'UTest2' );
 	}
 
 	/**
@@ -284,10 +296,12 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param string $action
 	 * @param array|string|bool $expected Required error
 	 *
-	 * @covers \Mediawiki\Permissions\PermissionManager::checkReadPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkReadPermissions
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
+		$this->hideDeprecated( 'Title::userCan' );
+
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
 		// as a string. Thus we cast to a [] to honor $wgWhitelistReadRegexp
@@ -297,7 +311,7 @@ class TitleTest extends MediaWikiTestCase {
 		}
 
 		$this->setMwGlobals( [
-			// So User::isEveryoneAllowed( 'read' ) === false
+			// So PermissionManager::isEveryoneAllowed( 'read' ) === false
 			'wgGroupPermissions' => [ '*' => [ 'read' => false ] ],
 			'wgWhitelistRead' => [ 'some random non sense title' ],
 			'wgWhitelistReadRegexp' => $whitelistRegexp,
@@ -469,8 +483,16 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideBaseTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ],
 			[ 'User:Foo / Bar / Baz', 'Foo / Bar ' ],
+			[ 'User:Foo/', 'Foo' ],
+			[ 'User:Foo/Bar/', 'Foo/Bar' ],
+			[ 'User:/', '/' ],
+			[ 'User://', '/' ],
+			[ 'User:/oops/', '/oops' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba/Zamba/Mamba' ],
+			[ 'User://x//y//z//', '//x//y//z/' ],
 		];
 	}
 
@@ -503,10 +525,18 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideRootTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
 			[ 'User:Foo / Bar / Baz', 'Foo ' ],
-			[ 'Talk:////', '////' ],
-			[ 'Template:////', '////' ],
+			[ 'User:Foo/', 'Foo' ],
+			[ 'User:Foo/Bar/', 'Foo' ],
+			[ 'User:/', '/' ],
+			[ 'User://', '/' ],
+			[ 'User:/oops/', '/oops' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba' ],
+			[ 'User://x//y//z//', '//x' ],
+			[ 'Talk:////', '///' ],
+			[ 'Template:////', '///' ],
 			[ 'Template:Foo////', 'Foo' ],
 			[ 'Template:Foo////Bar', 'Foo' ],
 		];
@@ -528,8 +558,15 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideSubpageTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
 			[ 'User:John_Doe/subOne', 'subOne' ],
+			[ 'User:/', '/' ],
+			[ 'User://', '' ],
+			[ 'User:/oops/', '' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '' ],
+			[ 'User://x//y//z//', '' ],
+			[ 'Template:Foo', 'Foo' ]
 		];
 	}
 
@@ -548,7 +585,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getSubpage
 	 */
 	public function testSubpage( $title, $sub, LinkTarget $expected ) {
-		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createMock( InterwikiLookup::class );
 		$interwikiLookup->expects( $this->any() )
 			->method( 'isValidInterwiki' )
 			->willReturnCallback(
@@ -718,7 +755,16 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param bool $isValid
 	 */
 	public function testIsValid( Title $title, $isValid ) {
-		$this->assertEquals( $isValid, $title->isValid(), $title->getPrefixedText() );
+		$iwLookup = $this->createMock( InterwikiLookup::class );
+		$iwLookup->method( 'isValidInterwiki' )
+			->willReturn( true );
+
+		$this->setService(
+			'InterwikiLookup',
+			$iwLookup
+		);
+
+		$this->assertEquals( $isValid, $title->isValid(), $title->getFullText() );
 	}
 
 	public static function provideIsValid() {
@@ -727,6 +773,42 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
 			[ Title::makeTitle( NS_MAIN, '|' ), false ],
 			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), true ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
+			[ Title::makeTitle( -33, 'Test' ), false ],
+			[ Title::makeTitle( 77663399, 'Test' ), false ],
+		];
+	}
+
+	/**
+	 * @covers Title::canExist
+	 * @dataProvider provideCanExist
+	 * @param Title $title
+	 * @param bool $canExist
+	 */
+	public function testCanExist( Title $title, $canExist ) {
+		$this->assertEquals( $canExist, $title->canExist(), $title->getFullText() );
+	}
+
+	public static function provideCanExist() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '|' ), false ],
+			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'acme' ), false ],
 			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
 			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
 			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
@@ -736,6 +818,11 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
 			[ Title::makeTitle( -33, 'Test' ), false ],
 			[ Title::makeTitle( 77663399, 'Test' ), false ],
+
+			// Valid but can't exist
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), false ],
 		];
 	}
 
@@ -765,13 +852,12 @@ class TitleTest extends MediaWikiTestCase {
 		$linkCache->clearLink( $title );
 		$linkCache->addBadLinkObj( $title );
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$title->exists(),
 			'exists() should rely on link cache unless READ_LATEST is used'
 		);
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$title->exists( Title::READ_LATEST ),
 			'exists() should re-query database when READ_LATEST is used'
 		);
@@ -906,7 +992,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getTalkPageIfDefined
 	 */
 	public function testGetTalkPage_bad( Title $title ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title->getTalkPage();
 	}
 
@@ -972,7 +1058,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getOtherPage
 	 */
 	public function testGetOtherPage_bad( Title $title ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title->getOtherPage();
 	}
 
@@ -1328,6 +1414,337 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame(
 			'Prime Article',
 			Title::newMainPage( $local )->getText()
+		);
+	}
+
+	/**
+	 * @covers Title::loadRestrictions
+	 */
+	public function testLoadRestrictions() {
+		$title = Title::newFromText( 'UTPage1' );
+		$title->loadRestrictions();
+		$this->assertTrue( $title->areRestrictionsLoaded() );
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->loadRestrictions();
+		$this->assertTrue( $title->areRestrictionsLoaded() );
+		$this->assertEquals(
+			$title->getRestrictionExpiry( 'create' ),
+			'infinity'
+		);
+		$page = $this->getNonexistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+		$protectExpiry = wfTimestamp( TS_MW, time() + 10000 );
+		$cascade = 0;
+		$page->doUpdateRestrictions(
+			[ 'create' => 'sysop' ],
+			[ 'create' => $protectExpiry ],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+		$title->mRestrictionsLoaded = false;
+		$title->loadRestrictions();
+		$this->assertSame(
+			$title->getRestrictionExpiry( 'create' ),
+			$protectExpiry
+		);
+	}
+
+	public function provideRestrictionsRows() {
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'edit',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => 'infinity'
+		] ] ];
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'edit',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => 'infinity'
+		] ] ];
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'move',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => wfTimestamp( TS_MW, time() + 10000 )
+		] ] ];
+	}
+
+	/**
+	 * @covers Title::loadRestrictionsFromRows
+	 * @dataProvider provideRestrictionsRows
+	 */
+	public function testloadRestrictionsFromRows( $rows ) {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->loadRestrictionsFromRows( $rows );
+		$this->assertSame(
+			$rows[0]->pr_level,
+			$title->getRestrictions( $rows[0]->pr_type )[0]
+		);
+		$this->assertSame(
+			$rows[0]->pr_expiry,
+			$title->getRestrictionExpiry( $rows[0]->pr_type )
+		);
+	}
+
+	/**
+	 * @covers Title::getRestrictions
+	 */
+	public function testGetRestrictions() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'a' => [ 'sysop' ],
+			'b' => [ 'sysop' ],
+			'c' => [ 'sysop' ]
+		];
+		$title->mRestrictionsLoaded = true;
+		$this->assertArrayEquals( [ 'sysop' ], $title->getRestrictions( 'a' ) );
+		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
+		// TODO: maybe test if loadRestrictionsFromRows() is called?
+	}
+
+	/**
+	 * @covers Title::getAllRestrictions
+	 */
+	public function testGetAllRestrictions() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'a' => [ 'sysop' ],
+			'b' => [ 'sysop' ],
+			'c' => [ 'sysop' ]
+		];
+		$title->mRestrictionsLoaded = true;
+		$this->assertArrayEquals(
+			$title->mRestrictions,
+			$title->getAllRestrictions()
+		);
+	}
+
+	/**
+	 * @covers Title::getRestrictionExpiry
+	 */
+	public function testGetRestrictionExpiry() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mRestrictionsExpiry' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, [
+			'a' => 'infinity', 'b' => 'infinity', 'c' => 'infinity'
+		] );
+		$title->mRestrictionsLoaded = true;
+		$this->assertSame( 'infinity', $title->getRestrictionExpiry( 'a' ) );
+		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
+	}
+
+	/**
+	 * @covers Title::getTitleProtection
+	 */
+	public function testGetTitleProtection() {
+		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
+		$title->mTitleProtection = false;
+		$this->assertFalse(
+
+			$title->getTitleProtection()
+		);
+	}
+
+	/**
+	 * @covers Title::isSemiProtected
+	 */
+	public function testIsSemiProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'edit' => [ 'sysop' ]
+		];
+		$this->setMwGlobals( [
+			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
+		] );
+		$this->assertFalse(
+
+			$title->isSemiProtected( 'edit' )
+		);
+		$title->mRestrictions = [
+			'edit' => [ 'autoconfirmed' ]
+		];
+		$this->assertTrue(
+
+			$title->isSemiProtected( 'edit' )
+		);
+	}
+
+	/**
+	 * @covers Title::deleteTitleProtection
+	 */
+	public function testDeleteTitleProtection() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->assertFalse(
+
+			$title->getTitleProtection()
+		);
+	}
+
+	/**
+	 * @covers Title::isProtected
+	 */
+	public function testIsProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->setMwGlobals( [
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+			'wgRestrictionTypes' => [ 'create', 'edit', 'move', 'upload' ]
+		] );
+		$title->mRestrictions = [
+			'edit' => [ 'sysop' ]
+		];
+		$this->assertFalse(
+
+			$title->isProtected( 'edit' )
+		);
+		$title->mRestrictions = [
+			'edit' => [ 'test' ]
+		];
+		$this->assertFalse(
+
+			$title->isProtected( 'edit' )
+		);
+	}
+
+	/**
+	 * @covers Title::isNamespaceProtected
+	 */
+	public function testIsNamespaceProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->setMwGlobals( [
+			'wgNamespaceProtection' => []
+		] );
+		$this->assertFalse(
+
+			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
+		);
+		$this->setMwGlobals( [
+			'wgNamespaceProtection' => [
+				NS_MAIN => [ 'edit-main' ]
+			]
+		] );
+		$this->assertTrue(
+
+			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
+		);
+	}
+
+	/**
+	 * @covers Title::isCascadeProtected
+	 */
+	public function testIsCascadeProtected() {
+		$page = $this->getExistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, true );
+		$this->assertTrue( $title->isCascadeProtected() );
+		$reflection_property->setValue( $title, null );
+		$this->assertFalse( $title->isCascadeProtected() );
+		$reflection_property->setValue( $title, null );
+		$cascade = 1;
+		$anotherPage = $this->getExistingTestPage( 'UTest2' );
+		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
+			[],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+		$this->assertTrue( $title->isCascadeProtected() );
+	}
+
+	/**
+	 * @covers Title::getCascadeProtectionSources
+	 */
+	public function testGetCascadeProtectionSources() {
+		$page = $this->getExistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+
+		$title->mCascadeSources = [];
+		$this->assertArrayEquals(
+			[ [], [] ],
+			$title->getCascadeProtectionSources( true )
+		);
+
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, true );
+		$this->assertArrayEquals(
+			[ true, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$reflection_property->setValue( $title, null );
+		$this->assertArrayEquals(
+			[ false, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$reflection_property->setValue( $title, null );
+		$this->assertArrayEquals(
+			[ [], [] ],
+			$title->getCascadeProtectionSources( true )
+		);
+
+		// TODO: this might partially duplicate testIsCascadeProtected method above
+
+		$cascade = 1;
+		$anotherPage = $this->getExistingTestPage( 'UTest2' );
+		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
+			[],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+
+		$this->assertArrayEquals(
+			[ true, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$result = $title->getCascadeProtectionSources( true );
+		$this->assertArrayEquals(
+			$result[1],
+			[ 'edit' => [ 'sysop' ] ]
+		);
+		$this->assertTrue(
+			array_key_exists( $anotherPage->getTitle()->getArticleID(), $result[0] )
+		);
+	}
+
+	/**
+	 * @covers Title::getCdnUrls
+	 */
+	public function testGetCdnUrls() {
+		$this->assertEquals(
+			[
+				'https://example.org/wiki/Example',
+				'https://example.org/w/index.php?title=Example&action=history',
+			],
+			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
+			'article'
 		);
 	}
 }

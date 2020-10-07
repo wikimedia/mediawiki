@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
-use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 
@@ -18,7 +18,7 @@ use Title;
  * @covers \MediaWiki\Revision\RevisionArchiveRecord
  * @covers \MediaWiki\Revision\RevisionRecord
  */
-class RevisionArchiveRecordTest extends MediaWikiTestCase {
+class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 	use RevisionRecordTests;
 
@@ -265,8 +265,16 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $wikiId );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
+	 */
+	public function testIsCurrent() {
+		$rev = $this->newRevision();
+		$this->assertFalse( $rev->isCurrent(),
+			RevisionArchiveRecord::class . ' cannot be stored current revision' );
+	}
 }

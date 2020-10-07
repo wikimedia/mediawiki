@@ -23,6 +23,7 @@
  *
  * If possible, use ApiBase::dieWithError() instead of throwing this directly.
  *
+ * @newable
  * @ingroup API
  */
 class ApiUsageException extends MWException implements ILocalizedException {
@@ -31,12 +32,15 @@ class ApiUsageException extends MWException implements ILocalizedException {
 	protected $status;
 
 	/**
+	 *
+	 * @stable to call
 	 * @param ApiBase|null $module API module responsible for the error, if known
 	 * @param StatusValue $status Status holding errors
 	 * @param int $httpCode HTTP error code to use
+	 * @param Throwable|null $previous Previous exception
 	 */
 	public function __construct(
-		ApiBase $module = null, StatusValue $status, $httpCode = 0
+		?ApiBase $module, StatusValue $status, $httpCode = 0, Throwable $previous = null
 	) {
 		if ( $status->isOK() ) {
 			throw new InvalidArgumentException( __METHOD__ . ' requires a fatal Status' );
@@ -49,7 +53,7 @@ class ApiUsageException extends MWException implements ILocalizedException {
 		// customized by the local wiki.
 		$enMsg = clone $this->getApiMessage();
 		$enMsg->inLanguage( 'en' )->useDatabase( false );
-		parent::__construct( ApiErrorFormatter::stripMarkup( $enMsg->text() ), $httpCode );
+		parent::__construct( ApiErrorFormatter::stripMarkup( $enMsg->text() ), $httpCode, $previous );
 	}
 
 	/**
@@ -58,15 +62,17 @@ class ApiUsageException extends MWException implements ILocalizedException {
 	 * @param string|null $code See ApiMessage::create()
 	 * @param array|null $data See ApiMessage::create()
 	 * @param int $httpCode HTTP error code to use
+	 * @param Throwable|null $previous Previous exception
 	 * @return static
 	 */
 	public static function newWithMessage(
-		ApiBase $module = null, $msg, $code = null, $data = null, $httpCode = 0
+		?ApiBase $module, $msg, $code = null, $data = null, $httpCode = 0, Throwable $previous = null
 	) {
 		return new static(
 			$module,
 			StatusValue::newFatal( ApiMessage::create( $msg, $code, $data ) ),
-			$httpCode
+			$httpCode,
+			$previous
 		);
 	}
 
@@ -119,7 +125,8 @@ class ApiUsageException extends MWException implements ILocalizedException {
 
 		return get_class( $this ) . ": {$enMsg->getApiCode()}: {$text} "
 			. "in {$this->getFile()}:{$this->getLine()}\n"
-			. "Stack trace:\n{$this->getTraceAsString()}";
+			. "Stack trace:\n{$this->getTraceAsString()}"
+			. $this->getPrevious() ? "\n\nNext {$this->getPrevious()}" : "";
 	}
 
 }

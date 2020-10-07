@@ -20,6 +20,7 @@
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\IPUtils;
 use Wikimedia\ObjectFactory;
 use Wikimedia\WaitConditionLoop;
 
@@ -218,7 +219,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		do {
 			// Pick a random etcd server from dns
 			$server = $dsd->pickServer( $servers );
-			$host = IP::combineHostAndPort( $server['target'], $server['port'] );
+			$host = IPUtils::combineHostAndPort( $server['target'], $server['port'] );
 			// Try to load the config from this particular server
 			$response = $this->fetchAllFromEtcdServer( $host );
 			if ( is_array( $response['config'] ) || $response['retry'] ) {
@@ -302,6 +303,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		}
 
 		foreach ( $dirNode['nodes'] as $node ) {
+			'@phan-var array $node';
 			$baseName = basename( $node['key'] );
 			$fullName = $dirName === '' ? $baseName : "$dirName/$baseName";
 			if ( !empty( $node['dir'] ) ) {

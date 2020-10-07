@@ -24,6 +24,7 @@
 /**
  * Base class for the output of MediaHandler::doTransform() and File::transform().
  *
+ * @stable to extend
  * @ingroup Media
  */
 abstract class MediaTransformOutput {
@@ -80,6 +81,8 @@ abstract class MediaTransformOutput {
 	/**
 	 * Get the final extension of the thumbnail.
 	 * Returns false for scripted transformations.
+	 * @stable to override
+	 *
 	 * @return string|bool
 	 */
 	public function getExtension() {
@@ -87,6 +90,8 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * @stable to override
+	 *
 	 * @return string|bool The thumbnail URL
 	 */
 	public function getUrl() {
@@ -94,6 +99,8 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * @stable to override
+	 *
 	 * @return string|bool The permanent thumbnail storage path
 	 */
 	public function getStoragePath() {
@@ -101,6 +108,8 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * @stable to override
+	 *
 	 * @param string $storagePath The permanent storage path
 	 * @return void
 	 */

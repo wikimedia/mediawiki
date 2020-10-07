@@ -1,11 +1,12 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ScopedCallback;
 
 class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|PageProps
+	 * @return MockObject|PageProps
 	 */
 	private function getMockPageProps() {
 		return $this->getMockBuilder( PageProps::class )

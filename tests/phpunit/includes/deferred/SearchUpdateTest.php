@@ -3,14 +3,14 @@
 /**
  * @group Search
  */
-class SearchUpdateTest extends MediaWikiTestCase {
+class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var SearchUpdate
 	 */
 	private $su;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->su = new SearchUpdate( 0, Title::newMainPage() );
 	}

@@ -31,7 +31,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const UTF8_OK = 1;
+	public const UTF8_OK = 1;
 
 	/**
 	 * Skip escaping the characters '<', '>', and '&', which have special meanings in
@@ -43,7 +43,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const XMLMETA_OK = 2;
+	public const XMLMETA_OK = 2;
 
 	/**
 	 * Skip escaping as many characters as reasonably possible.
@@ -52,7 +52,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const ALL_OK = self::UTF8_OK | self::XMLMETA_OK;
+	public const ALL_OK = self::UTF8_OK | self::XMLMETA_OK;
 
 	/**
 	 * If set, treat JSON objects '{...}' as associative arrays. Without this option,
@@ -60,21 +60,21 @@ class FormatJson {
 	 *
 	 * @since 1.24
 	 */
-	const FORCE_ASSOC = 0x100;
+	public const FORCE_ASSOC = 0x100;
 
 	/**
 	 * If set, attempt to fix invalid JSON.
 	 *
 	 * @since 1.24
 	 */
-	const TRY_FIXING = 0x200;
+	public const TRY_FIXING = 0x200;
 
 	/**
 	 * If set, strip comments from input before parsing as JSON.
 	 *
 	 * @since 1.25
 	 */
-	const STRIP_COMMENTS = 0x400;
+	public const STRIP_COMMENTS = 0x400;
 
 	/**
 	 * Characters problematic in JavaScript.
@@ -82,15 +82,15 @@ class FormatJson {
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
 	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
 	 */
-	private static $badChars = [
+	private const BAD_CHARS = [
 		"\u{2028}", // U+2028 LINE SEPARATOR
 		"\u{2029}", // U+2029 PARAGRAPH SEPARATOR
 	];
 
 	/**
-	 * Escape sequences for characters listed in FormatJson::$badChars.
+	 * Escape sequences for characters listed in FormatJson::BAD_CHARS.
 	 */
-	private static $badCharsEscaped = [
+	private const BAD_CHARS_ESCAPED = [
 		'\u2028', // U+2028 LINE SEPARATOR
 		'\u2029', // U+2029 PARAGRAPH SEPARATOR
 	];
@@ -142,7 +142,7 @@ class FormatJson {
 			}
 		}
 		if ( $escaping & self::UTF8_OK ) {
-			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
+			$json = str_replace( self::BAD_CHARS, self::BAD_CHARS_ESCAPED, $json );
 		}
 
 		return $json;
@@ -215,6 +215,9 @@ class FormatJson {
 			}
 		}
 
+		// JSON_ERROR_RECURSION, JSON_ERROR_INF_OR_NAN,
+		// JSON_ERROR_UNSUPPORTED_TYPE, JSON_ERROR_INVALID_PROPERTY_NAME,
+		// are all encode errors that we don't need to care about here.
 		switch ( $code ) {
 			case JSON_ERROR_NONE:
 				return Status::newGood( $result );
@@ -235,14 +238,8 @@ class FormatJson {
 			case JSON_ERROR_UTF8:
 				$msg = 'json-error-utf8';
 				break;
-			case JSON_ERROR_RECURSION:
-				$msg = 'json-error-recursion';
-				break;
-			case JSON_ERROR_INF_OR_NAN:
-				$msg = 'json-error-inf-or-nan';
-				break;
-			case JSON_ERROR_UNSUPPORTED_TYPE:
-				$msg = 'json-error-unsupported-type';
+			case JSON_ERROR_UTF16:
+				$msg = 'json-error-utf16';
 				break;
 		}
 		return Status::newFatal( $msg );

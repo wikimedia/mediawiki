@@ -7,6 +7,7 @@
 			$target = $root.find( '#wpTimeCorrection' );
 
 		if (
+			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			!$target.length ||
 			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
 		) {
@@ -17,12 +18,7 @@
 		// Guesses Timezone from browser and updates fields onchange.
 
 		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-		try {
-			timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
-		} catch ( err ) {
-			// This preference could theoretically be disabled ($wgHiddenPrefs)
-			timezoneWidget = null;
-		}
+		timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 
 		$localtimeHolder = $( '#wpLocalTime' );
 		servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
@@ -60,7 +56,7 @@
 		}
 
 		function updateTimezoneSelection() {
-			var minuteDiff, localTime,
+			var timeZone, minuteDiff, localTime, newValue,
 				type = timezoneWidget.dropdowninput.getValue();
 
 			if ( type === 'other' ) {
@@ -70,10 +66,29 @@
 			} else {
 				// Time zone not manually specified by user
 				if ( type === 'guess' ) {
-					// Get browser timezone & fill it in
+					// If available, get the named time zone from the browser.
+					// (We also support older browsers where this API is not available.)
+					try {
+						// This may return undefined
+						timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+					} catch ( err ) {
+						timeZone = null;
+					}
+
+					// Get the time offset
 					minuteDiff = -( new Date().getTimezoneOffset() );
-					timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
-					timezoneWidget.dropdowninput.setValue( 'other' );
+
+					if ( timeZone ) {
+						// Try to save both time zone and offset
+						newValue = 'ZoneInfo|' + minuteDiff + '|' + timeZone;
+						timezoneWidget.dropdowninput.setValue( newValue );
+					}
+					if ( !timeZone || timezoneWidget.dropdowninput.getValue() !== newValue ) {
+						// No time zone, or it's unknown to MediaWiki. Save only offset
+						timezoneWidget.dropdowninput.setValue( 'other' );
+						timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
+					}
+
 				} else {
 					// Grab data from the dropdown value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
@@ -89,11 +104,9 @@
 			$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 		}
 
-		if ( timezoneWidget ) {
-			timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
-			timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
-			updateTimezoneSelection();
-		}
+		timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
+		timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
+		updateTimezoneSelection();
 
 	} );
 }() );

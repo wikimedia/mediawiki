@@ -1,6 +1,10 @@
 <?php
 /**
- * PHP script to stream out an image thumbnail.
+ * The web entry point for retrieving media thumbnails, created by a MediaHandler
+ * subclass or proxy request if FileRepo::getThumbProxyUrl is configured.
+ *
+ * This script may also resize an image on-demand, if it isn't found in the
+ * configured FileBackend storage.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +22,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
  * @ingroup Media
  */
 
@@ -32,21 +37,25 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 }
 require __DIR__ . '/includes/WebStart.php';
 
-// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
-$wgTrivialMimeDetection = true;
+wfThumbMain();
 
-if ( defined( 'THUMB_HANDLER' ) ) {
-	// Called from thumb_handler.php via 404; extract params from the URI...
-	wfThumbHandle404();
-} else {
-	// Called directly, use $_GET params
-	wfStreamThumb( $wgRequest->getQueryValuesOnly() );
+function wfThumbMain() {
+	global $wgTrivialMimeDetection, $wgRequest;
+
+	// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
+	$wgTrivialMimeDetection = true;
+
+	if ( defined( 'THUMB_HANDLER' ) ) {
+		// Called from thumb_handler.php via 404; extract params from the URI...
+		wfThumbHandle404();
+	} else {
+		// Called directly, use $_GET params
+		wfStreamThumb( $wgRequest->getQueryValuesOnly() );
+	}
+
+	$mediawiki = new MediaWiki();
+	$mediawiki->doPostOutputShutdown();
 }
-
-$mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown( 'fast' );
-
-// --------------------------------------------------------------------------
 
 /**
  * Handle a thumbnail request via thumbnail file URL
@@ -54,25 +63,17 @@ $mediawiki->doPostOutputShutdown( 'fast' );
  * @return void
  */
 function wfThumbHandle404() {
-	global $wgArticlePath;
-
-	# Set action base paths so that WebRequest::getPathInfo()
-	# recognizes the "X" as the 'title' in ../thumb_handler.php/X urls.
-	# Note: If Custom per-extension repo paths are set, this may break.
-	$repo = RepoGroup::singleton()->getLocalRepo();
-	$oldArticlePath = $wgArticlePath;
-	$wgArticlePath = $repo->getZoneUrl( 'thumb' ) . '/$1';
-
-	$matches = WebRequest::getPathInfo();
-
-	$wgArticlePath = $oldArticlePath;
-
-	if ( !isset( $matches['title'] ) ) {
-		wfThumbError( 404, 'Could not determine the name of the requested thumbnail.' );
-		return;
+	// Determine the request path relative to the thumbnail zone base
+	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+	$baseUrl = $repo->getZoneUrl( 'thumb' );
+	if ( substr( $baseUrl, 0, 1 ) === '/' ) {
+		$basePath = $baseUrl;
+	} else {
+		$basePath = parse_url( $baseUrl, PHP_URL_PATH );
 	}
+	$relPath = WebRequest::getRequestPathSuffix( $basePath );
 
-	$params = wfExtractThumbRequestInfo( $matches['title'] ); // basic wiki URL param extracting
+	$params = wfExtractThumbRequestInfo( $relPath ); // basic wiki URL param extracting
 	if ( $params == null ) {
 		wfThumbError( 400, 'The specified thumbnail parameters are not recognized.' );
 		return;
@@ -125,10 +126,11 @@ function wfStreamThumb( array $params ) {
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
+	$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
 	if ( $isTemp ) {
-		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		$repo = $localRepo->getTempRepo();
 		$img = new UnregisteredLocalFile( null, $repo,
 			# Temp files are hashed based on the name without the timestamp.
 			# The thumbnails will be hashed based on the entire name however.
@@ -147,9 +149,9 @@ function wfStreamThumb( array $params ) {
 			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			return;
 		}
-		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
+		$img = $localRepo->newFromArchiveName( $title, $fileName );
 	} else {
-		$img = wfLocalFile( $fileName );
+		$img = $localRepo->newFile( $fileName );
 	}
 
 	// Check the source file title
@@ -195,10 +197,10 @@ function wfStreamThumb( array $params ) {
 			// Check for file redirect
 			// Since redirects are associated with pages, not versions of files,
 			// we look for the most current version to see if its a redirect.
-			$possRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
-			if ( $possRedirFile && !is_null( $possRedirFile->getRedirected() ) ) {
+			$possRedirFile = $localRepo->findFile( $img->getName() );
+			if ( $possRedirFile && $possRedirFile->getRedirected() !== null ) {
 				$redirTarget = $possRedirFile->getName();
-				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
+				$targetFile = $localRepo->newFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
 				if ( $targetFile->exists() ) {
 					$newThumbName = $targetFile->thumbName( $params );
 					if ( $isOld ) {
@@ -541,7 +543,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
  * @return array|null Associative params array or null
  */
 function wfExtractThumbRequestInfo( $thumbRel ) {
-	$repo = RepoGroup::singleton()->getLocalRepo();
+	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 	$hashDirReg = $subdirReg = '';
 	$hashLevels = $repo->getHashLevels();
@@ -647,6 +649,15 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 
 	MediaWiki\HeaderCallback::warnIfHeadersSent();
 
+	if ( headers_sent() ) {
+		LoggerFactory::getInstance( 'thumbnail' )->error(
+			'Error after output had been started. Output may be corrupt or truncated. ' .
+			'Original error: ' . ( $msgText ?: $msgHtml ) . " (Status $status)",
+			$context
+		);
+		return;
+	}
+
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 400 || $status == 404 || $status == 429 ) {
@@ -655,7 +666,7 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 		HttpStatus::header( 403 );
 		header( 'Vary: Cookie' );
 	} else {
-		LoggerFactory::getInstance( 'thumb' )->error( $msgText ?: $msgHtml, $context );
+		LoggerFactory::getInstance( 'thumbnail' )->error( $msgText ?: $msgHtml, $context );
 		HttpStatus::header( 500 );
 	}
 	if ( $wgShowHostnames ) {

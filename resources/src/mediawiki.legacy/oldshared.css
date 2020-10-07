@@ -1,7 +1,12 @@
 /**
  * oldshared.css
  * This file contains CSS settings common to Wikistandard, Nostalgia and
- * CologneBlue, the old pre-Monobook skins
+ * CologneBlue, the old pre-Monobook skins.
+ *
+ * This file and it's corresponding ResourceLoader module are deprecated,
+ * move it to the calling skin repo if necessary, see T242177.
+ * Both, Nostalgia and CologneBlue have already moved it to their own repos.
+ * Wikistandard is not available any more.
  */
 
 /* stylelint-disable selector-class-pattern */
@@ -125,7 +130,6 @@ div.magnify a {
 	height: 11px;
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background: url( images/magnify-clip-ltr.png ) center center no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
@@ -173,10 +177,6 @@ img {
 	text-align: center;
 	display: inline-block;
 	display: table;
-
-	/* IE7 and earlier */
-	zoom: 1;
-	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reptilien.19831209BE1"
+		]
+	},
+	"rest-search-error": "Aroke dins l’&nbsp;rindaedje des rzultats do rcweraedje&nbsp;: $1",
+	"rest-no-revision": "Nén possibe di rapexhî li modêye pol tite $1",
+	"rest-html-backend-error": "Nén possibe di rprinde li côde HTML di Parsoid",
+	"rest-bad-json-body": "Li coir del ricweste n’&nbsp;est nén bon, ça doet esse on obdjet JSON.",
+	"rest-json-body-parse-error": "Aroke dins l’&nbsp;corwaitaedje do coir del ricweste JSON&nbsp;: $1",
+	"rest-bad-content-model": "Li modele di contnou n’&nbsp;est nén bon&nbsp;: $1"
+}

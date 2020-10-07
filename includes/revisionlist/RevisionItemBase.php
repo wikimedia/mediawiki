@@ -36,7 +36,7 @@ abstract class RevisionItemBase {
 	 * @param RevisionListBase $list
 	 * @param object $row DB result row
 	 */
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		$this->list = $list;
 		$this->row = $row;
 	}
@@ -44,7 +44,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name associated with the ID list.
 	 * Override this function.
-	 * @return null
+	 * @return string|null
 	 */
 	public function getIdField() {
 		return null;
@@ -53,7 +53,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing timestamps.
 	 * Override this function.
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getTimestampField() {
 		return false;
@@ -62,7 +62,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user ids.
 	 * Override this function.
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getAuthorIdField() {
 		return false;
@@ -71,7 +71,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user names.
 	 * Override this function.
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getAuthorNameField() {
 		return false;
@@ -81,7 +81,7 @@ abstract class RevisionItemBase {
 	 * Get the DB field name storing actor ids.
 	 * Override this function.
 	 * @since 1.31
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getAuthorActorField() {
 		return false;
@@ -93,7 +93,7 @@ abstract class RevisionItemBase {
 	 */
 	public function getId() {
 		$field = $this->getIdField();
-		return $this->row->$field;
+		return intval( $this->row->$field );
 	}
 
 	/**

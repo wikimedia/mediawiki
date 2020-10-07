@@ -34,15 +34,17 @@ use MediaWiki\MediaWikiServices;
 /**
  * Base class for file repositories
  *
+ * See [the architecture doc](@ref filerepoarch) for more information.
+ *
  * @ingroup FileRepo
  */
 class FileRepo {
-	const DELETE_SOURCE = 1;
-	const OVERWRITE = 2;
-	const OVERWRITE_SAME = 4;
-	const SKIP_LOCKING = 8;
+	public const DELETE_SOURCE = 1;
+	public const OVERWRITE = 2;
+	public const OVERWRITE_SAME = 4;
+	public const SKIP_LOCKING = 8;
 
-	const NAME_AND_TIME_ONLY = 1;
+	public const NAME_AND_TIME_ONLY = 1;
 
 	/** @var bool Whether to fetch commons image description pages and display
 	 *    them on the local wiki
@@ -144,13 +146,16 @@ class FileRepo {
 
 	/**
 	 * @var string
-	 * @protected Use $this->getName(). Public for back-compat only
+	 * @note Use $this->getName(). Public for back-compat only
+	 * @todo make protected
 	 */
 	public $name;
 
 	/**
+	 * @see Documentation of info options at $wgLocalFileRepo
 	 * @param array|null $info
 	 * @throws MWException
+	 * @phan-assert array $info
 	 */
 	public function __construct( array $info = null ) {
 		// Verify required settings presence
@@ -168,7 +173,8 @@ class FileRepo {
 		if ( $info['backend'] instanceof FileBackend ) {
 			$this->backend = $info['backend']; // useful for testing
 		} else {
-			$this->backend = FileBackendGroup::singleton()->get( $info['backend'] );
+			$this->backend =
+				MediaWikiServices::getInstance()->getFileBackendGroup()->get( $info['backend'] );
 		}
 
 		// Optional settings that can have no value
@@ -184,8 +190,22 @@ class FileRepo {
 		}
 
 		// Optional settings that have a default
-		$this->initialCapital = $info['initialCapital'] ??
+		$localCapitalLinks =
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE );
+		$this->initialCapital = $info['initialCapital'] ?? $localCapitalLinks;
+		if ( $localCapitalLinks && !$this->initialCapital ) {
+			// If the local wiki's file namespace requires an initial capital, but a foreign file
+			// repo doesn't, complications will result. Linker code will want to auto-capitalize the
+			// first letter of links to files, but those links might actually point to files on
+			// foreign wikis with initial-lowercase names. This combination is not likely to be
+			// used by anyone anyway, so we just outlaw it to save ourselves the bugs. If you want
+			// to include a foreign file repo with initialCapital false, set your local file
+			// namespace to not be capitalized either.
+			throw new InvalidArgumentException(
+				'File repos with initial capital false are not allowed on wikis where the File ' .
+				'namespace has initial capital true' );
+		}
+
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
 		if ( isset( $info['thumbUrl'] ) ) {
 			$this->thumbUrl = $info['thumbUrl'];
@@ -350,7 +370,7 @@ class FileRepo {
 	}
 
 	/**
-	 * The the storage container and base path of a zone
+	 * The storage container and base path of a zone
 	 *
 	 * @param string $zone
 	 * @return array (container, base path) or (null, null)
@@ -451,11 +471,12 @@ class FileRepo {
 			if ( $img ) {
 				$img->load( $flags );
 				if ( $img->exists() ) {
+					global $wgUser;
 					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 						return $img; // always OK
 					} elseif ( !empty( $options['private'] ) &&
 						$img->userCan( File::DELETED_FILE,
-							$options['private'] instanceof User ? $options['private'] : null
+							$options['private'] instanceof User ? $options['private'] : $wgUser
 						)
 					) {
 						return $img;
@@ -553,11 +574,12 @@ class FileRepo {
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
 			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
+				global $wgUser;
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
 				} elseif ( !empty( $options['private'] ) &&
 					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : null
+						$options['private'] instanceof User ? $options['private'] : $wgUser
 					)
 				) {
 					return $img;
@@ -658,7 +680,7 @@ class FileRepo {
 			$this->initialCapital !=
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE )
 		) {
-			$name = $title->getUserCaseDBKey();
+			$name = $title->getDBkey();
 			if ( $this->initialCapital ) {
 				$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );
 			}
@@ -768,18 +790,18 @@ class FileRepo {
 	 */
 	public function getDescriptionUrl( $name ) {
 		$encName = wfUrlencode( $name );
-		if ( !is_null( $this->descBaseUrl ) ) {
+		if ( $this->descBaseUrl !== null ) {
 			# "http://example.com/wiki/File:"
 			return $this->descBaseUrl . $encName;
 		}
-		if ( !is_null( $this->articleUrl ) ) {
+		if ( $this->articleUrl !== null ) {
 			# "http://example.com/wiki/$1"
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions.
 			return str_replace( '$1',
 				"Image:$encName", $this->articleUrl );
 		}
-		if ( !is_null( $this->scriptDirUrl ) ) {
+		if ( $this->scriptDirUrl !== null ) {
 			# "http://example.com/w"
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions,
@@ -802,7 +824,7 @@ class FileRepo {
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
 		$query = 'action=render';
-		if ( !is_null( $lang ) ) {
+		if ( $lang !== null ) {
 			$query .= '&uselang=' . urlencode( $lang );
 		}
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -893,7 +915,7 @@ class FileRepo {
 			list( $src, $dstZone, $dstRel ) = $triplet;
 			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 			wfDebug( __METHOD__
-				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )\n"
+				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )"
 			);
 			// Resolve source path
 			if ( $src instanceof FSFile ) {
@@ -1131,7 +1153,7 @@ class FileRepo {
 
 		$temp = $this->getVirtualUrl( 'temp' );
 		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
-			wfDebug( __METHOD__ . ": Invalid temp virtual URL\n" );
+			wfDebug( __METHOD__ . ": Invalid temp virtual URL" );
 
 			return false;
 		}
@@ -1600,7 +1622,7 @@ class FileRepo {
 	 * Get the size of a file with a given virtual URL/storage path
 	 *
 	 * @param string $virtualUrl
-	 * @return int|bool False on failure
+	 * @return int|false
 	 */
 	public function getFileSize( $virtualUrl ) {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
@@ -1680,6 +1702,9 @@ class FileRepo {
 				$path .= '/' . substr( $hexString, 0, $hexPos + 1 );
 			}
 			$iterator = $this->backend->getFileList( [ 'dir' => $path ] );
+			if ( $iterator === null ) {
+				throw new MWException( __METHOD__ . ': could not get file listing for ' . $path );
+			}
 			foreach ( $iterator as $name ) {
 				// Each item returned is a public file
 				call_user_func( $callback, "{$path}/{$name}" );
@@ -1706,7 +1731,7 @@ class FileRepo {
 	 *
 	 * @return callable
 	 */
-	function getErrorCleanupFunction() {
+	private function getErrorCleanupFunction() {
 		switch ( $this->pathDisclosureProtection ) {
 			case 'none':
 			case 'simple': // b/c
@@ -1724,7 +1749,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	function paranoidClean( $param ) {
+	public function paranoidClean( $param ) {
 		return '[hidden]';
 	}
 
@@ -1734,7 +1759,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	function passThrough( $param ) {
+	public function passThrough( $param ) {
 		return $param;
 	}
 
@@ -1742,10 +1767,11 @@ class FileRepo {
 	 * Create a new fatal error
 	 *
 	 * @param string $message
+	 * @param mixed ...$parameters
 	 * @return Status
 	 */
-	public function newFatal( $message /*, parameters...*/ ) {
-		$status = Status::newFatal( ...func_get_args() );
+	public function newFatal( $message, ...$parameters ) {
+		$status = Status::newFatal( $message, ...$parameters );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;
@@ -1833,9 +1859,10 @@ class FileRepo {
 	 * The parameters are the parts of the key.
 	 *
 	 * STUB
+	 * @param mixed ...$args
 	 * @return bool
 	 */
-	public function getSharedCacheKey( /*...*/ ) {
+	public function getSharedCacheKey( ...$args ) {
 		return false;
 	}
 
@@ -1844,10 +1871,10 @@ class FileRepo {
 	 * not shared with remote instances of the repo.
 	 * The parameters are the parts of the key.
 	 *
+	 * @param mixed ...$args
 	 * @return string
 	 */
-	public function getLocalCacheKey( /*...*/ ) {
-		$args = func_get_args();
+	public function getLocalCacheKey( ...$args ) {
 		array_unshift( $args, 'filerepo', $this->getName() );
 
 		return $this->wanCache->makeKey( ...$args );

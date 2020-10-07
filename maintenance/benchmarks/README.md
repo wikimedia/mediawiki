@@ -11,5 +11,5 @@ For example:
 
 ## Fixtures
 
-* australia-untidy.html.gz: Representative input text for benchmarkTidy.php.
+* tidy/australia-untidy.html.gz: Representative input text for benchmarkTidy.php.
   It needs to be decompressed before use.

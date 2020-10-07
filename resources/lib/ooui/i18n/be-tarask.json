@@ -2,12 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"EugeneZelenko",
-			"Wizardist",
-			"Чаховіч Уладзіслаў",
-			"Zedlik",
+			"Nerogaf",
 			"Red Winged Duck",
 			"Renessaince",
-			"Nerogaf"
+			"Wizardist",
+			"Zedlik",
+			"Чаховіч Уладзіслаў"
 		]
 	},
 	"ooui-outline-control-move-down": "Перасунуць элемэнт ніжэй",
@@ -23,7 +23,7 @@
 	"ooui-dialog-process-dismiss": "Прапусьціць",
 	"ooui-dialog-process-retry": "Паспрабаваць зноў",
 	"ooui-dialog-process-continue": "Працягваць",
-	"ooui-combobox-button-label": "Выпадаючае вакенца для камбінаванага сьпісу",
+	"ooui-combobox-button-label": "Пераключыць можнасьці",
 	"ooui-selectfile-button-select": "Абраць файл",
 	"ooui-selectfile-not-supported": "Выбар файлу не падтрымліваецца",
 	"ooui-selectfile-placeholder": "Ніводзін файл не абраны",

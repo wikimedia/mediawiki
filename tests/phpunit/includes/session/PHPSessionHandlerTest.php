@@ -2,15 +2,17 @@
 
 namespace MediaWiki\Session;
 
+use BadMethodCallException;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
-use MediaWikiTestCase;
+use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
  * @covers MediaWiki\Session\PHPSessionHandler
  */
-class PHPSessionHandlerTest extends MediaWikiTestCase {
+class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function getResetter( &$rProp = null ) {
 		$reset = [];
@@ -309,8 +311,6 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDisabled
-	 * @expectedException BadMethodCallException
-	 * @expectedExceptionMessage Attempt to use PHP session management
 	 */
 	public function testDisabled( $method, $args ) {
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
@@ -324,7 +324,9 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		$rProp->setValue( $handler );
 		$reset = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $oldValue ] );
 
-		call_user_func_array( [ $handler, $method ], $args );
+		$this->expectException( BadMethodCallException::class );
+		$this->expectExceptionMessage( "Attempt to use PHP session management" );
+		$handler->$method( ...$args );
 	}
 
 	public static function provideDisabled() {
@@ -338,8 +340,6 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideWrongInstance
-	 * @expectedException UnexpectedValueException
-	 * @expectedExceptionMessageRegExp /: Wrong instance called!$/
 	 */
 	public function testWrongInstance( $method, $args ) {
 		$handler = $this->getMockBuilder( PHPSessionHandler::class )
@@ -348,7 +348,9 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			->getMock();
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'enable' );
 
-		call_user_func_array( [ $handler, $method ], $args );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessageMatches( "/: Wrong instance called!$/" );
+		$handler->$method( ...$args );
 	}
 
 	public static function provideWrongInstance() {

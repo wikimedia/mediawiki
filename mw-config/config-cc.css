@@ -18,8 +18,7 @@ body {
 }
 
 /**
- * Looks like you have to specify the width of #menu
- * or IE5 Mac stretches it all the way across the div, and
+ * Looks like you have to specify the width of #menu as
  * Opera streches it half way.
  */
 

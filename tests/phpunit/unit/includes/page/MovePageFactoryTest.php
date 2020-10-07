@@ -1,18 +1,18 @@
 <?php
 
-use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageCommandFactory;
 
 /**
- * @covers MediaWiki\Page\MovePageFactory
+ * @covers MediaWiki\Page\PageCommandFactory
  */
 class MovePageFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;
 
-	protected function getFactoryClass() {
-		return MovePageFactory::class;
+	protected static function getFactoryClass() {
+		return PageCommandFactory::class;
 	}
 
-	protected function getInstanceClass() {
+	protected static function getInstanceClass() {
 		return MovePage::class;
 	}
 

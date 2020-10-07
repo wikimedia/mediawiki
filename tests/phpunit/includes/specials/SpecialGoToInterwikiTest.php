@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers SpecialGoToInterwiki
  */
-class SpecialGoToInterwikiTest extends MediaWikiTestCase {
+class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute() {
 		$this->setService( 'InterwikiLookup', new InterwikiLookupAdapter(
@@ -51,7 +51,7 @@ class SpecialGoToInterwikiTest extends MediaWikiTestCase {
 		$goToInterwiki->setContext( $context );
 		$goToInterwiki->execute( 'nonlocal:Foo' );
 		$this->assertSame( '', $context->getOutput()->getRedirect() );
-		$this->assertContains( Title::newFromText( 'nonlocal:Foo' )->getFullURL(),
+		$this->assertStringContainsString( Title::newFromText( 'nonlocal:Foo' )->getFullURL(),
 			$context->getOutput()->getHTML() );
 
 		RequestContext::resetMain();
@@ -66,7 +66,7 @@ class SpecialGoToInterwikiTest extends MediaWikiTestCase {
 		$goToInterwiki->setContext( $context );
 		$goToInterwiki->execute( 'force/local:Foo' );
 		$this->assertSame( '', $context->getOutput()->getRedirect() );
-		$this->assertContains( Title::newFromText( 'local:Foo' )->getFullURL(),
+		$this->assertStringContainsString( Title::newFromText( 'local:Foo' )->getFullURL(),
 			$context->getOutput()->getHTML() );
 
 		RequestContext::resetMain();
@@ -74,7 +74,7 @@ class SpecialGoToInterwikiTest extends MediaWikiTestCase {
 		$goToInterwiki->setContext( $context );
 		$goToInterwiki->execute( 'force/nonlocal:Foo' );
 		$this->assertSame( '', $context->getOutput()->getRedirect() );
-		$this->assertContains( Title::newFromText( 'nonlocal:Foo' )->getFullURL(),
+		$this->assertStringContainsString( Title::newFromText( 'nonlocal:Foo' )->getFullURL(),
 			$context->getOutput()->getHTML() );
 	}
 

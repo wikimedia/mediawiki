@@ -1,12 +1,11 @@
-var GroupWidget = require( './GroupWidget.js' ),
-	SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
+var SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
 	SavedLinksListWidget;
 
 /**
  * Quick links widget
  *
  * @class mw.rcfilters.ui.SavedLinksListWidget
- * @extends OO.ui.Widget
+ * @extends OO.ui.ButtonMenuSelectWidget
  *
  * @constructor
  * @param {mw.rcfilters.Controller} controller Controller
@@ -28,42 +27,41 @@ SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, m
 	config = config || {};
 
 	// Parent
-	SavedLinksListWidget.parent.call( this, config );
-
-	this.controller = controller;
-	this.model = model;
-	this.$overlay = config.$overlay || this.$element;
-
-	this.placeholderItem = new OO.ui.DecoratedOptionWidget( {
-		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
-		label: $labelNoEntries,
-		icon: 'bookmark'
-	} );
-
-	this.menu = new GroupWidget( {
-		events: {
-			click: 'menuItemClick',
-			delete: 'menuItemDelete',
-			default: 'menuItemDefault',
-			edit: 'menuItemEdit'
-		},
-		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],
-		items: [ this.placeholderItem ]
-	} );
-	this.button = new OO.ui.PopupButtonWidget( {
+	SavedLinksListWidget.parent.call( this, $.extend( {
 		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
 		label: mw.msg( 'rcfilters-quickfilters' ),
 		icon: 'bookmark',
 		indicator: 'down',
 		$overlay: this.$overlay,
-		popup: {
+		menu: {
+			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],
+			horizontalPosition: 'end',
 			width: 300,
-			anchor: false,
-			align: 'backwards',
-			$autoCloseIgnore: this.$overlay,
-			$content: this.menu.$element
+			popup: {
+				$autoCloseIgnore: this.$overlay
+				// $content: this.menu.$element
+			}
 		}
+	}, config ) );
+
+	this.controller = controller;
+	this.model = model;
+	this.$overlay = config.$overlay || this.$element;
+
+	this.placeholderItem = new OO.ui.MenuOptionWidget( {
+		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
+		label: $labelNoEntries,
+		icon: 'bookmark'
 	} );
+
+	this.menu.aggregate( {
+		click: 'menuItemClick',
+		delete: 'menuItemDelete',
+		default: 'menuItemDefault',
+		edit: 'menuItemEdit'
+	} );
+
+	this.menu.addItems( [ this.placeholderItem ].concat( config.items || [] ) );
 
 	// Events
 	this.model.connect( this, {
@@ -71,32 +69,31 @@ SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, m
 		remove: 'onModelRemoveItem'
 	} );
 	this.menu.connect( this, {
-		menuItemClick: 'onMenuItemClick',
+		choose: 'onMenuChoose',
 		menuItemDelete: 'onMenuItemRemove',
 		menuItemDefault: 'onMenuItemDefault',
 		menuItemEdit: 'onMenuItemEdit'
 	} );
+	// Disable key press handling for editing mode
+	this.menu.onDocumentKeyPressHandler = function () {};
 
 	this.placeholderItem.toggle( this.model.isEmpty() );
 	// Initialize
-	this.$element
-		.addClass( 'mw-rcfilters-ui-savedLinksListWidget' )
-		.append( this.button.$element );
+	this.$element.addClass( 'mw-rcfilters-ui-savedLinksListWidget' );
 };
 
 /* Initialization */
-OO.inheritClass( SavedLinksListWidget, OO.ui.Widget );
+OO.inheritClass( SavedLinksListWidget, OO.ui.ButtonMenuSelectWidget );
 
 /* Methods */
 
 /**
- * Respond to menu item click event
+ * Respond to menu choose event
  *
  * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
  */
-SavedLinksListWidget.prototype.onMenuItemClick = function ( item ) {
+SavedLinksListWidget.prototype.onMenuChoose = function ( item ) {
 	this.controller.applySavedQuery( item.getID() );
-	this.button.popup.toggle( false );
 };
 
 /**

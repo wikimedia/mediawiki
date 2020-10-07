@@ -41,7 +41,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @param string|bool $path Filesystem path to the thumb
 	 * @param array $parameters Associative array of parameters
 	 */
-	function __construct( $file, $url, $path = false, $parameters = [] ) {
+	public function __construct( $file, $url, $path = false, $parameters = [] ) {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
@@ -109,7 +109,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @throws MWException
 	 * @return string
 	 */
-	function toHtml( $options = [] ) {
+	public function toHtml( $options = [] ) {
 		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming, $wgNativeImageLazyLoading;
 
 		if ( func_num_args() == 2 ) {
@@ -126,8 +126,8 @@ class ThumbnailImage extends MediaTransformOutput {
 			'decoding' => 'async',
 		];
 
-		if ( $wgNativeImageLazyLoading ) {
-			$attribs['loading'] = 'lazy';
+		if ( $options['loading'] ?? $wgNativeImageLazyLoading ) {
+			$attribs['loading'] = $options['loading'] ?? 'lazy';
 		}
 
 		$elementTimingName = 'thumbnail';
@@ -211,7 +211,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
 		}
 
-		Hooks::run( 'ThumbnailBeforeProduceHTML', [ $this, &$attribs, &$linkAttribs ] );
+		Hooks::runner()->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}

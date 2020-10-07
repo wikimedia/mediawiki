@@ -34,7 +34,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.31
  */
 class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob {
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		parent::__construct( 'clearWatchlistNotifications', $params );
 
 		static $required = [ 'userId', 'casTime' ];

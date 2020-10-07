@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mousa",
-			"Koroğlu",
+			"Alp Er Tunqa",
+			"E THP",
 			"Ebrahimi-amir",
-			"Alp Er Tunqa"
+			"Koroğlu",
+			"Mousa"
 		]
 	},
 	"config-desc": "مئدیاویکی قوروجوسو",
@@ -23,11 +24,21 @@
 	"config-page-install": "قور",
 	"config-page-complete": "قورتاردی!",
 	"config-page-restart": "قورماغی یئنی‌دن باشلات",
-	"config-page-readme": "منی اوخو",
+	"config-page-copying": "کپی اولونور",
+	"config-page-upgradedoc": "یوکلتمک",
+	"config-page-existingwiki": "مووجود ویکی",
+	"config-help-restart": "داخیل ائتدیینیز بوتون قئیدلری سیلمکله یوکله‌مه پروسئ‌سینی یئنی‌دن باشلاتماق ایستییرسینیز؟",
+	"config-restart": "بله یئنی دن باشلا",
+	"config-sidebar-license": "کپی ائتمک",
+	"config-sidebar-upgrade": "یوکلتمک",
 	"config-env-php": "PHP $1 قورولوبدور.",
-	"config-env-hhvm": "HHVM $1 قورولوبدور.",
+	"config-apc": "[https://www.php.net/apc APC] نصب اولونوب.",
+	"config-apcu": "[https://www.php.net/apcu APCu] نصب اولونوب",
+	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب اولونوب.",
+	"config-no-cache-apcu": "<strong>ایخطار:</strong> پیوند [https://www.php.net/apcu APCu] یا [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] تاپیلمادی. شئین ذخیره سی چالیشمیر.",
 	"config-using-server": "«<nowiki>$1</nowiki>» سِروِر آدی ایشلنیر.",
 	"config-using-uri": "«<nowiki>$1$2</nowiki>» سِروِر آدرسی ایشلنیر.",
+	"config-db-type": "نوع پایگاه اطلاعات:\nپایگاه بیلگی نوعلاری:",
 	"config-site-name": "ویکی آدی:",
 	"config-ns-generic": "پروژه",
 	"config-admin-box": "ایداره‌چی حسابی",

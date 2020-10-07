@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 
 namespace Wikimedia\Rdbms;
@@ -25,6 +24,8 @@ namespace Wikimedia\Rdbms;
  * Lazy-loaded wrapper for simplification and scrubbing of SQL queries for profiling
  *
  * @since 1.34
+ * @ingroup Profiler
+ * @ingroup Database
  */
 class GeneralizedSql {
 	/** @var string */

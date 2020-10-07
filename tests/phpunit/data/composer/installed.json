@@ -572,12 +572,11 @@
                 "email": "sebastian@phpunit.de"
             }
         ],
-        "description": "Provides functionality to handle HHVM/PHP environments",
+        "description": "Provides functionality to handle PHP environments",
         "homepage": "http://www.github.com/sebastianbergmann/environment",
         "keywords": [
             "Xdebug",
-            "environment",
-            "hhvm"
+            "environment"
         ]
     },
     {
@@ -797,67 +796,6 @@
         "homepage": "https://github.com/sebastianbergmann/php-text-template/",
         "keywords": [
             "template"
-        ]
-    },
-    {
-        "name": "phpunit/phpunit-mock-objects",
-        "version": "5.0.6",
-        "version_normalized": "5.0.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-            "reference": "33fd41a76e746b8fa96d00b49a23dadfa8334cdf"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/33fd41a76e746b8fa96d00b49a23dadfa8334cdf",
-            "reference": "33fd41a76e746b8fa96d00b49a23dadfa8334cdf",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/instantiator": "^1.0.5",
-            "php": "^7.0",
-            "phpunit/php-text-template": "^1.2.1",
-            "sebastian/exporter": "^3.1"
-        },
-        "conflict": {
-            "phpunit/phpunit": "<6.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^6.5"
-        },
-        "suggest": {
-            "ext-soap": "*"
-        },
-        "time": "2018-01-06T05:45:45+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
-            }
-        ],
-        "description": "Mock Object library for PHPUnit",
-        "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
-        "keywords": [
-            "mock",
-            "xunit"
         ]
     },
     {

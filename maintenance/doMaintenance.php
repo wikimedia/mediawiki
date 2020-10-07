@@ -34,14 +34,22 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // Wasn't included from the file scope, halt execution (probably wanted the class)
 // If a class is using commandLine.inc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
+// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
 if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 
+// @phan-suppress-next-line PhanImpossibleConditionInGlobalScope
 if ( !$maintClass || !class_exists( $maintClass ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.\n";
 	exit( 1 );
 }
+
+// Define the MediaWiki entrypoint
+define( 'MEDIAWIKI', true );
+
+// This environment variable is ensured present by Maintenance.php.
+$IP = getenv( 'MW_INSTALL_PATH' );
 
 // Get an object to start us off
 /** @var Maintenance $maintenance */

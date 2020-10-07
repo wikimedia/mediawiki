@@ -21,6 +21,8 @@
  * @ingroup Upload
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements uploading from previously stored file.
  *
@@ -48,16 +50,16 @@ class UploadFromStash extends UploadBase {
 		if ( $repo ) {
 			$this->repo = $repo;
 		} else {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		if ( $stash ) {
 			$this->stash = $stash;
 		} else {
 			if ( $user ) {
-				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() );
 			} else {
-				wfDebug( __METHOD__ . " creating new UploadStash instance with no user\n" );
+				wfDebug( __METHOD__ . " creating new UploadStash instance with no user" );
 			}
 
 			$this->stash = new UploadStash( $this->repo, $user );

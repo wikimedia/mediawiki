@@ -23,6 +23,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -31,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RefreshFileHeaders extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Script to update file HTTP headers' );
 		$this->addOption( 'verbose', 'Output information about each file.', false, false, 'v' );
@@ -50,7 +52,7 @@ class RefreshFileHeaders extends Maintenance {
 	}
 
 	public function execute() {
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$start = str_replace( ' ', '_', $this->getOption( 'start', '' ) ); // page on img_name
 		$end = str_replace( ' ', '_', $this->getOption( 'end', '' ) ); // page on img_name
 		 // filter by img_media_type

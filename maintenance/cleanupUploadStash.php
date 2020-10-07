@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -44,7 +46,7 @@ class CleanupUploadStash extends Maintenance {
 	public function execute() {
 		global $wgUploadStashMaxAge;
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$tempRepo = $repo->getTempRepo();
 
 		$dbr = $repo->getReplicaDB();
@@ -76,6 +78,8 @@ class CleanupUploadStash extends Maintenance {
 			// out-of-date someday
 			$stash = new UploadStash( $repo );
 
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 			$i = 0;
 			foreach ( $keys as $key ) {
 				$i++;
@@ -87,7 +91,7 @@ class CleanupUploadStash extends Maintenance {
 					$this->output( "Failed removing stashed upload with key: $key ($type)\n" );
 				}
 				if ( $i % 100 == 0 ) {
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 					$this->output( "$i\n" );
 				}
 			}
@@ -97,9 +101,12 @@ class CleanupUploadStash extends Maintenance {
 		// Delete all the corresponding thumbnails...
 		$dir = $tempRepo->getZonePath( 'thumb' );
 		$iterator = $tempRepo->getBackend()->getFileList( [ 'dir' => $dir, 'adviseStat' => 1 ] );
+		if ( $iterator === null ) {
+			$this->fatalError( "Could not get file listing." );
+		}
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
-		$batch = []; // operation batch
+		$batch = [];
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];
@@ -120,12 +127,17 @@ class CleanupUploadStash extends Maintenance {
 		// Apparently lots of stash files are not registered in the DB...
 		$dir = $tempRepo->getZonePath( 'public' );
 		$iterator = $tempRepo->getBackend()->getFileList( [ 'dir' => $dir, 'adviseStat' => 1 ] );
+		if ( $iterator === null ) {
+			$this->fatalError( "Could not get file listing." );
+		}
 		$this->output( "Deleting orphaned temp files...\n" );
-		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check
+		if ( strpos( $dir, '/local-temp' ) === false ) {
+			// sanity check
 			$this->fatalError( "Temp repo is not using the temp container." );
 		}
+
 		$i = 0;
-		$batch = []; // operation batch
+		$batch = [];
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];
@@ -147,8 +159,7 @@ class CleanupUploadStash extends Maintenance {
 	protected function doOperations( FileRepo $tempRepo, array $ops ) {
 		$status = $tempRepo->getBackend()->doQuickOperations( $ops );
 		if ( !$status->isOK() ) {
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			$this->error( print_r( $status->getErrorsArray(), true ) );
+			$this->error( print_r( Status::wrap( $status )->getErrorsArray(), true ) );
 		}
 	}
 }

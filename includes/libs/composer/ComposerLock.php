@@ -9,6 +9,7 @@
 class ComposerLock {
 	/**
 	 * @var array[]
+	 * @phan-var array{packages:array{name:string,version:string,type:string,license?:string,authors?:mixed,description?:string}}
 	 */
 	private $contents;
 

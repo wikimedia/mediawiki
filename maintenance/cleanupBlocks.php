@@ -43,7 +43,7 @@ class CleanupBlocks extends Maintenance {
 		$db = $this->getDB( DB_MASTER );
 		$blockQuery = DatabaseBlock::getQueryInfo();
 
-		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
+		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)', [], __METHOD__ );
 
 		// Step 1: Clean up any duplicate user blocks
 		$batchSize = $this->getBatchSize();
@@ -57,7 +57,7 @@ class CleanupBlocks extends Maintenance {
 				'ipblocks',
 				[ 'ipb_user' ],
 				[
-					"ipb_user >= " . (int)$from,
+					"ipb_user >= " . $from,
 					"ipb_user <= " . (int)$to,
 				],
 				__METHOD__,
@@ -131,7 +131,7 @@ class CleanupBlocks extends Maintenance {
 				[ 'ipb_id', 'user_name' ],
 				[
 					'ipb_user = user_id',
-					"ipb_user >= " . (int)$from,
+					"ipb_user >= " . $from,
 					"ipb_user <= " . (int)$to,
 					'ipb_address != user_name',
 				],

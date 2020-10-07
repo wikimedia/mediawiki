@@ -27,6 +27,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Library for creating and parsing MW-style timestamps. Based on the JS
  * library that does the same thing.
  *
+ * @newable
+ *
  * @since 1.20
  */
 class MWTimestamp extends ConvertibleTimestamp {
@@ -162,10 +164,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 
 		$ts = '';
 		$diff = $this->diff( $relativeTo );
-		if ( Hooks::run(
-			'GetRelativeTimestamp',
-			[ &$ts, &$diff, $this, $relativeTo, $user, $lang ]
-		) ) {
+		if ( Hooks::runner()->onGetRelativeTimestamp(
+			$ts, $diff, $this, $relativeTo, $user, $lang )
+		) {
 			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
 			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )
 				->inLanguage( $lang )->text();

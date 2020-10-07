@@ -53,10 +53,8 @@ class OldChangesList extends ChangesList {
 
 		$attribs = $this->getDataAttributes( $rc );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$list = $this;
-		if ( !Hooks::run( 'OldChangesListRecentChangesLine',
-			[ &$list, &$html, $rc, &$classes, &$attribs ] )
+		if ( !$this->getHookRunner()->onOldChangesListRecentChangesLine(
+			$this, $html, $rc, $classes, $attribs )
 		) {
 			return false;
 		}
@@ -71,7 +69,7 @@ class OldChangesList extends ChangesList {
 		$html = $this->getHighlightsContainerDiv() . $html;
 		$attribs['class'] = implode( ' ', $classes );
 
-		return $dateheader . Html::rawElement( 'li', $attribs,  $html ) . "\n";
+		return $dateheader . Html::rawElement( 'li', $attribs, $html ) . "\n";
 	}
 
 	/**

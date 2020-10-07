@@ -53,7 +53,7 @@ class ForeignTitleTest extends \MediaWikiUnitTestCase {
 	public function testBasic( ForeignTitle $title, $expectedId, $expectedName,
 		$expectedText
 	) {
-		$this->assertEquals( true, $title->isNamespaceIdKnown() );
+		$this->assertTrue( $title->isNamespaceIdKnown() );
 		$this->assertEquals( $expectedId, $title->getNamespaceId() );
 		$this->assertEquals( $expectedName, $title->getNamespaceName() );
 		$this->assertEquals( $expectedText, $title->getText() );
@@ -62,13 +62,13 @@ class ForeignTitleTest extends \MediaWikiUnitTestCase {
 	public function testUnknownNamespaceCheck() {
 		$title = new ForeignTitle( null, 'this', 'that' );
 
-		$this->assertEquals( false, $title->isNamespaceIdKnown() );
+		$this->assertFalse( $title->isNamespaceIdKnown() );
 		$this->assertEquals( 'this', $title->getNamespaceName() );
 		$this->assertEquals( 'that', $title->getText() );
 	}
 
 	public function testUnknownNamespaceError() {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title = new ForeignTitle( null, 'this', 'that' );
 		$title->getNamespaceId();
 	}

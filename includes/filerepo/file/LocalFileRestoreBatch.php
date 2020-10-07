@@ -44,10 +44,10 @@ class LocalFileRestoreBatch {
 	private $unsuppress = false;
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param bool $unsuppress
 	 */
-	function __construct( File $file, $unsuppress = false ) {
+	public function __construct( LocalFile $file, $unsuppress = false ) {
 		$this->file = $file;
 		$this->cleanupBatch = [];
 		$this->ids = [];
@@ -171,14 +171,14 @@ class LocalFileRestoreBatch {
 				$sha1 = substr( $sha1, 1 );
 			}
 
-			if ( is_null( $row->fa_major_mime ) || $row->fa_major_mime == 'unknown'
-				|| is_null( $row->fa_minor_mime ) || $row->fa_minor_mime == 'unknown'
-				|| is_null( $row->fa_media_type ) || $row->fa_media_type == 'UNKNOWN'
-				|| is_null( $row->fa_metadata )
+			if ( $row->fa_major_mime === null || $row->fa_major_mime == 'unknown'
+				|| $row->fa_minor_mime === null || $row->fa_minor_mime == 'unknown'
+				|| $row->fa_media_type === null || $row->fa_media_type == 'UNKNOWN'
+				|| $row->fa_metadata === null
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
-				$props = RepoGroup::singleton()->getFileProps( $deletedUrl );
+				$props = MediaWikiServices::getInstance()->getRepoGroup()->getFileProps( $deletedUrl );
 			} else {
 				$props = [
 					'minor_mime' => $row->fa_minor_mime,
@@ -320,13 +320,13 @@ class LocalFileRestoreBatch {
 		// If store batch is empty (all files are missing), deletion is to be considered successful
 		if ( $status->successCount > 0 || !$storeBatch || $repo->hasSha1Storage() ) {
 			if ( !$exists ) {
-				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current\n" );
+				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current" );
 
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
 
 				$this->file->purgeEverything();
 			} else {
-				wfDebug( __METHOD__ . " restored {$status->successCount} as archived versions\n" );
+				wfDebug( __METHOD__ . " restored {$status->successCount} as archived versions" );
 				$this->file->purgeDescription();
 			}
 		}
@@ -338,7 +338,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a store batch.
-	 * @param array $triplets
+	 * @param array[] $triplets
 	 * @return Status
 	 */
 	protected function removeNonexistentFiles( $triplets ) {

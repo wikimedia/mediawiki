@@ -9,15 +9,10 @@
  */
 class CssContentTest extends JavaScriptContentTest {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
-		// Anon user
-		$user = new User();
-		$user->setName( '127.0.0.1' );
-
 		$this->setMwGlobals( [
-			'wgUser' => $user,
 			'wgTextModelsToParse' => [
 				CONTENT_MODEL_CSS,
 			]
@@ -34,7 +29,7 @@ class CssContentTest extends JavaScriptContentTest {
 				'MediaWiki:Test.css',
 				null,
 				"hello <world>\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"
+				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world>\n\n</pre>"
 			],
 			[
 				'MediaWiki:Test.css',

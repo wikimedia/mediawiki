@@ -4,9 +4,9 @@
 			"Fohanno",
 			"Fulup",
 			"Gwendal",
+			"Macofe",
 			"Y-M D",
-			"아라",
-			"Macofe"
+			"아라"
 		]
 	},
 	"config-desc": "Poellad staliañ MediaWiki",
@@ -38,7 +38,6 @@
 	"config-page-install": "Staliañ",
 	"config-page-complete": "Graet !",
 	"config-page-restart": "Adlañsañ ar staliadur",
-	"config-page-readme": "Lennit-me",
 	"config-page-releasenotes": "Notennoù stumm",
 	"config-page-copying": "O eilañ",
 	"config-page-upgradedoc": "O hizivaat",
@@ -51,7 +50,6 @@
 	"config-env-good": "Gwiriet eo bet an endro.\nGallout a rit staliañ MediaWiki.",
 	"config-env-bad": "Gwiriet eo bet an endro.\nNe c'hallit ket staliañ MediaWiki.",
 	"config-env-php": "Staliet eo PHP $1.",
-	"config-env-hhvm": "HHVM $1 zo staliet.",
 	"config-unicode-using-intl": "Oc'h implijout [https://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Diwallit</strong> : N'haller ket ober gant an [https://pecl.php.net/intl intl astenn PECL] evit merañ reoladur Unicode; distreiñ d'ar stumm gorrek emplementet e PHP-rik.\nMa rit war-dro ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations reolennadur Unicode].",
 	"config-unicode-update-warning": "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].\nDleout a rafec'h [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
@@ -79,7 +77,6 @@
 	"config-using-uri": "Oc'h implijout ar servijour URL \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Diwallit :'''Bresk eo ho kavlec'h pellgargañ dre ziouer <code>$1</code> rak gallout a ra erounit ne vern pe skript.\nha pa vefe gwiriet gant MediaWiki an holl restroù pellgarget eo erbedet-groñs da [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security serriñ ar breskter surentez-mañ] a-rao gweredekaat ar pellgargañ.",
 	"config-no-cli-uploads-check": "<strong>Diwallit :</strong> N'eo ket bet gwiriet ho kavlec'h enporzhiañ dre ziouer (<code>$1</code>) e-keñver breskted erounezadur skriptoù tidek e-pad staliadur CLI.",
-	"config-brokenlibxml": "Ur meskad stummoù PHP ha libxml2 dreinek a vez implijet gant ho reizhiad. Gallout a ra breinañ ar roadennoù e MediaWiki hag en arloadoù web all.\nHizivait da libxml2 2.7.3 pe nevesoc'h ([https://bugs.php.net/bug.php?id=45996 draen renablet gant PHP]).\nStaliadur c'hwitet.",
 	"config-suhosin-max-value-length": "Staliet eo Suhosin ha bevennin a ra <code>hirder</code> an arventenn GET da $1 okted.\nParzh ResourceLoader Mediawiki a zoujo d'ar vevenn-se met se a zisteray ar varregezh. \nMa c'hallit e tlefec'h spisaat <code>suhosin.get.max_value_length</code> da 1024 pe uheloc'h e <code>php.ini</code>, ha merkañ <code>$wgResourceLoaderMaxQueryLength</code> gant an hevelep talvoud e <code>LocalSettings.php</code>.",
 	"config-db-type": "Doare an diaz roadennoù :",
 	"config-db-host": "Anv implijer an diaz roadennoù :",

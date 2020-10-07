@@ -17,7 +17,6 @@ class GenerateRandomImages extends Maintenance {
 
 	public function execute() {
 		$getOptSpec = [
-			'dictionaryFile::',
 			'minWidth::',
 			'maxWidth::',
 			'minHeight::',
@@ -41,5 +40,5 @@ class GenerateRandomImages extends Maintenance {
 	}
 }
 
-$maintClass = 'GenerateRandomImages';
+$maintClass = GenerateRandomImages::class;
 require RUN_MAINTENANCE_IF_MAIN;

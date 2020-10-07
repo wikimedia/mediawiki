@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2019 OOUI Team and other contributors.
+ * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:03Z
+ * Date: 2020-07-10T06:31:58Z
  */
 ( function ( OO ) {
 
@@ -50,7 +50,7 @@
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function SearchTool() {
- *         SearchTool.parent.apply( this, arguments );
+ *         SearchTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -70,7 +70,7 @@
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
- *         SettingsTool.parent.apply( this, arguments );
+ *         SettingsTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
@@ -85,7 +85,7 @@
  *
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.parent.apply( this, arguments );
+ *         StuffTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
@@ -170,7 +170,7 @@
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function SearchTool() {
- *         SearchTool.parent.apply( this, arguments );
+ *         SearchTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -190,7 +190,7 @@
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
- *         SettingsTool.parent.apply( this, arguments );
+ *         SettingsTool.super.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
@@ -210,7 +210,7 @@
  *
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.parent.apply( this, arguments );
+ *         StuffTool.super.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
@@ -310,7 +310,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Toolbar.parent.call( this, config );
+	OO.ui.Toolbar.super.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -664,7 +664,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Tool.parent.call( this, config );
+	OO.ui.Tool.super.call( this, config );
 
 	// Properties
 	this.toolGroup = toolGroup;
@@ -1003,7 +1003,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ToolGroup.parent.call( this, config );
+	OO.ui.ToolGroup.super.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, config );
@@ -1119,7 +1119,7 @@ OO.ui.ToolGroup.static.name = null;
  */
 OO.ui.ToolGroup.prototype.isDisabled = function () {
 	return this.autoDisabled ||
-		OO.ui.ToolGroup.parent.prototype.isDisabled.apply( this, arguments );
+		OO.ui.ToolGroup.super.prototype.isDisabled.apply( this, arguments );
 };
 
 /**
@@ -1138,7 +1138,7 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
 		}
 		this.autoDisabled = allDisabled;
 	}
-	OO.ui.ToolGroup.parent.prototype.updateDisabled.apply( this, arguments );
+	OO.ui.ToolGroup.super.prototype.updateDisabled.apply( this, arguments );
 };
 
 /**
@@ -1399,7 +1399,7 @@ OO.ui.ToolGroup.prototype.destroy = function () {
  */
 OO.ui.ToolFactory = function OoUiToolFactory() {
 	// Parent constructor
-	OO.ui.ToolFactory.parent.call( this );
+	OO.ui.ToolFactory.super.call( this );
 };
 
 /* Setup */
@@ -1617,7 +1617,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolGroup, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.PopupTool.parent.call( this, toolGroup, config );
+	OO.ui.PopupTool.super.call( this, toolGroup, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PopupElement.call( this, config );
@@ -1683,7 +1683,7 @@ OO.ui.PopupTool.prototype.onPopupToggle = function ( isVisible ) {
  *     // defined elsewhere.
  *
  *     function SettingsTool() {
- *         SettingsTool.parent.apply( this, arguments );
+ *         SettingsTool.super.apply( this, arguments );
  *     };
  *     OO.inheritClass( SettingsTool, OO.ui.ToolGroupTool );
  *     SettingsTool.static.name = 'settings';
@@ -1718,7 +1718,7 @@ OO.ui.ToolGroupTool = function OoUiToolGroupTool( toolGroup, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.ToolGroupTool.parent.call( this, toolGroup, config );
+	OO.ui.ToolGroupTool.super.call( this, toolGroup, config );
 
 	// Properties
 	this.innerToolGroup = this.createGroup( this.constructor.static.groupConfig );
@@ -1826,7 +1826,7 @@ OO.ui.ToolGroupTool.prototype.createGroup = function ( group ) {
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function SearchTool() {
- *         SearchTool.parent.apply( this, arguments );
+ *         SearchTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -1911,7 +1911,7 @@ OO.ui.BarToolGroup = function OoUiBarToolGroup( toolbar, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.BarToolGroup.parent.call( this, toolbar, config );
+	OO.ui.BarToolGroup.super.call( this, toolbar, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-barToolGroup' );
@@ -1979,7 +1979,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.PopupToolGroup.parent.call( this, toolbar, config );
+	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
 
 	// Properties
 	this.active = false;
@@ -2019,6 +2019,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	this.$handle
 		.addClass( 'oo-ui-popupToolGroup-handle' )
 		.attr( 'role', 'button' )
+		.attr( 'aria-expanded', 'false' )
 		.append( this.$icon, this.$label, this.$indicator );
 	// If the pop-up should have a header, add it to the top of the toolGroup.
 	// Note: If this feature is useful for other widgets, we could abstract it into an
@@ -2056,7 +2057,7 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.TabIndexedElement );
  */
 OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 	// Parent method
-	OO.ui.PopupToolGroup.parent.prototype.setDisabled.apply( this, arguments );
+	OO.ui.PopupToolGroup.super.prototype.setDisabled.apply( this, arguments );
 
 	if ( this.isDisabled() && this.isElementAttached() ) {
 		this.setActive( false );
@@ -2095,7 +2096,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	) {
 		this.setActive( false );
 	}
-	return OO.ui.PopupToolGroup.parent.prototype.onMouseKeyUp.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 };
 
 /**
@@ -2125,7 +2126,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
 			this.setActive( false );
 		}
 	}
-	return OO.ui.PopupToolGroup.parent.prototype.onMouseKeyDown.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onMouseKeyDown.call( this, e );
 };
 
 /**
@@ -2214,6 +2215,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.$clippable.css( 'left', '' );
 			this.$element.addClass( 'oo-ui-popupToolGroup-active' );
 			this.$group.addClass( 'oo-ui-popupToolGroup-active-tools' );
+			this.$handle.attr( 'aria-expanded', true );
 			this.togglePositioning( true );
 			this.toggleClipping( true );
 
@@ -2255,6 +2257,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			);
 			this.$element.removeClass( 'oo-ui-popupToolGroup-active' );
 			this.$group.removeClass( 'oo-ui-popupToolGroup-active-tools' );
+			this.$handle.attr( 'aria-expanded', false );
 			this.togglePositioning( false );
 			this.toggleClipping( false );
 		}
@@ -2288,7 +2291,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *
  *     // Configure and register two tools
  *     function SettingsTool() {
- *         SettingsTool.parent.apply( this, arguments );
+ *         SettingsTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
@@ -2301,7 +2304,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     toolFactory.register( SettingsTool );
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.parent.apply( this, arguments );
+ *         StuffTool.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
@@ -2380,7 +2383,7 @@ OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
 	this.collapsibleTools = [];
 
 	// Parent constructor
-	OO.ui.ListToolGroup.parent.call( this, toolbar, config );
+	OO.ui.ListToolGroup.super.call( this, toolbar, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-listToolGroup' );
@@ -2407,7 +2410,7 @@ OO.ui.ListToolGroup.static.name = 'list';
 OO.ui.ListToolGroup.prototype.populate = function () {
 	var i, len, allowCollapse = [];
 
-	OO.ui.ListToolGroup.parent.prototype.populate.call( this );
+	OO.ui.ListToolGroup.super.prototype.populate.call( this );
 
 	// Update the list of collapsible tools
 	if ( this.allowCollapse !== undefined ) {
@@ -2439,7 +2442,7 @@ OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
 	var ExpandCollapseTool;
 	if ( this.expandCollapseTool === undefined ) {
 		ExpandCollapseTool = function () {
-			ExpandCollapseTool.parent.apply( this, arguments );
+			ExpandCollapseTool.super.apply( this, arguments );
 		};
 
 		OO.inheritClass( ExpandCollapseTool, OO.ui.Tool );
@@ -2475,9 +2478,9 @@ OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 		// HACK: Prevent the popup list from being hidden. Skip the PopupToolGroup implementation
 		// (which hides the popup list when a tool is selected) and call ToolGroup's implementation
 		// directly.
-		return OO.ui.ListToolGroup.parent.parent.prototype.onMouseKeyUp.call( this, e );
+		return OO.ui.ListToolGroup.super.super.prototype.onMouseKeyUp.call( this, e );
 	} else {
-		return OO.ui.ListToolGroup.parent.prototype.onMouseKeyUp.call( this, e );
+		return OO.ui.ListToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 	}
 };
 
@@ -2527,7 +2530,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     function SettingsTool() {
- *         SettingsTool.parent.apply( this, arguments );
+ *         SettingsTool.super.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
@@ -2546,7 +2549,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     toolFactory.register( SettingsTool );
  *
  *     function StuffTool() {
- *         StuffTool.parent.apply( this, arguments );
+ *         StuffTool.super.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
@@ -2620,7 +2623,7 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.MenuToolGroup.parent.call( this, toolbar, config );
+	OO.ui.MenuToolGroup.super.call( this, toolbar, config );
 
 	// Events
 	this.toolbar.connect( this, {

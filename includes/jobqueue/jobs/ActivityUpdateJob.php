@@ -34,7 +34,7 @@ use MediaWiki\Linker\LinkTarget;
  * @since 1.26
  */
 class ActivityUpdateJob extends Job {
-	function __construct( LinkTarget $title, array $params ) {
+	public function __construct( LinkTarget $title, array $params ) {
 		$title = Title::newFromLinkTarget( $title );
 
 		parent::__construct( 'activityUpdateJob', $title, $params );

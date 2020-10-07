@@ -7,7 +7,7 @@
 	"--builtin-classes": true,
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
-	"--external": "Blob,File,FileList,HTMLDocument,HTMLElement,HTMLIframeElement,HTMLInputElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument",
+	"--external": "Blob,File,FileList,HTMLDocument,HTMLElement,HTMLIFrameElement,HTMLInputElement,HTMLBodyElement,HTMLHtmlElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument",
 	"--output": "docs/js",
 	"--exclude": [
 		"resources/src/jquery.tablesorter",
@@ -19,7 +19,8 @@
 		"resources/src/mediawiki.legacy",
 		"resources/src/mediawiki.libs.jpegmeta/jpegmeta.js",
 		"resources/src/mediawiki.skinning",
-		"resources/src/startup/startup.js"
+		"resources/src/startup/startup.js",
+		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",

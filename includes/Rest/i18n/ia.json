@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"rest-prefix-mismatch": "Le cammino requestate ($1) non es intra le cammino radice del REST API ($2)",
+	"rest-wrong-method": "Le methodo del requesta ($1) non es {{PLURAL:$3|le methodo|inter le methodos}} permittite pro iste cammino ($2)",
+	"rest-no-match": "Le cammino relative requestate ($1) non corresponde a un gestor cognoscite",
+	"rest-nonexistent-title": "Le titulo specificate ($1) non existe",
+	"rest-nonexistent-title-revision": "Le version specificate ($1) non existe pro le pagina specificate ($2)",
+	"rest-nonexistent-revision": "Le version specificate ($1) non existe",
+	"rest-permission-denied-title": "Le usator non ha le derecto de leger le titulo ($1)",
+	"rest-permission-denied-revision": "Le usator non ha accesso al version requestate ($1).",
+	"rest-pagehistory-incompatible-params": "Le parametros \"older_than\" e \"newer_than\" non pote esser specificate simultaneemente",
+	"rest-pagehistory-param-range-error": "Le ID del version debe esser superior a 0",
+	"rest-pagehistory-timestamp-error": "Impossibile obtener le data e hora del version specificate ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Le typo de numero specificate ($1) non es valide",
+	"rest-pagehistorycount-parameters-invalid": "Le combination specificate de parametros non es supportate.",
+	"rest-compare-page-mismatch": "Le versiones specificate pertine a paginas differente; non es possibile comparar los.",
+	"rest-compare-permission-denied": "Le usator non ha accesso al versiones requestate",
+	"rest-compare-nonexistent": "Le version specificate per le parametro $1 non existe.",
+	"rest-compare-inaccessible": "Le version specificate per le parametro $1 non es accessibile pro le publico.",
+	"rest-compare-wrong-content": "Le segmento $1 del version specificate per le parametro $2 ha un typo de contento que non pote esser convertite in texto.",
+	"rest-compare-wikidiff2": "Iste puncto terminal require wikidiff2 1.9.0 o plus recente.",
+	"rest-pagehistorycount-too-many-revisions": "Le titulo specificate contine troppo de versiones pro recuperar iste numero.",
+	"rest-search-error": "Error al retornar le resultatos del recerca: $1",
+	"rest-page-source-type-error": "Le typo de contento del fonte del pagina requestate non es supportate",
+	"rest-no-revision": "Impossibile recuperar le version del titulo $1",
+	"rest-media-too-many-links": "Troppo de ligamines multimedial trovate sur le titulo $1 ($2 permittite)",
+	"rest-html-backend-error": "Impossibile recuperar le HTML de Parsoid"
+}

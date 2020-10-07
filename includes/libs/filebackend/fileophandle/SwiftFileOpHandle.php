@@ -22,9 +22,6 @@
  * @author Russ Nelson
  */
 
-/**
- * @see FileBackendStoreOpHandle
- */
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var array[] List of HTTP request maps for MultiHttpClient */
 	public $httpOp;
@@ -34,10 +31,10 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var int Class CONTINUE_* constant */
 	public $state = self::CONTINUE_IF_OK;
 
-	/** @var int Continue with the next requests stages if no errors occured */
-	const CONTINUE_IF_OK = 0;
+	/** @var int Continue with the next requests stages if no errors occurred */
+	public const CONTINUE_IF_OK = 0;
 	/** @var int Cancel the next requests stages */
-	const CONTINUE_NO = 1;
+	public const CONTINUE_NO = 1;
 
 	/**
 	 * Construct a handle to be use with SwiftFileOpHandle::doExecuteOpHandlesInternal()

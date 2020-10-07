@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Borichèt",
 			"Dragonòt",
 			"Krinkle",
-			"아라",
-			"Amire80",
 			"Macofe",
+			"MaxSem",
 			"Seb35",
-			"MaxSem"
+			"아라"
 		]
 	},
 	"config-desc": "L'instalador për mediaWiki",
@@ -40,7 +40,6 @@
 	"config-page-install": "Instala",
 	"config-page-complete": "Completa!",
 	"config-page-restart": "Fé torna parte l'instalassion",
-	"config-page-readme": "Lesme",
 	"config-page-releasenotes": "Nòte ëd publicassion",
 	"config-page-copying": "Copié",
 	"config-page-upgradedoc": "Agiorné",
@@ -53,7 +52,6 @@
 	"config-env-good": "L'ambient a l'é stàit controlà.\nIt peule instalé MediaWiki.",
 	"config-env-bad": "L'ambient a l'é stàit controlà.\nIt peule pa instalé MediaWiki.",
 	"config-env-php": "PHP $1 a l'é instalà.",
-	"config-env-hhvm": "HHVM $1 a l'é instalà.",
 	"config-unicode-using-intl": "As deuvra l'[https://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
 	"config-unicode-pure-php-warning": "'''Avis:''' L'[https://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode, da già che l'implementassion an PHP pur a faliss për lentëssa.\nS'a gestiss un sit a àut tràfich, a dovrìa lese cheicòs an sla [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisassion Unicode].",
 	"config-unicode-update-warning": "'''Avis:''' La version instalà dlë spassiador ëd normalisassion Unicode a deuvra na version veja ëd la librarìa dël [http://site.icu-project.org/ proget ICU].\nA dovrìa fé n'[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations agiornament] s'a l'é anteressà a dovré Unicode.",
@@ -76,7 +74,6 @@
 	"config-using-uri": "Utilisassion ëd l'anliura ëd servent «<nowiki>$1$2</nowiki>».",
 	"config-uploads-not-safe": "'''Avis:''' Sò dossié stàndard për carié <code>$1</code> a l'é vulneràbil a l'esecussion ëd qualsëssìa senari.\nBele che MediaWiki a contròla j'aspet ëd sicurëssa ëd tùit j'archivi carià, a l'é motobin arcomandà ëd [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security saré ës përtus ëd sicurëssa] prima d'abilité ij cariament.",
 	"config-no-cli-uploads-check": "'''Avis:''' Toa cartela predefinìa për j-amportassion (<code>$1</code>) a l'é nen controlà a propòsit ëd la vulnerabilità\nd'esecussion ëd senari arbitrari durant l'istalassion CLI.",
-	"config-brokenlibxml": "Sò sistema a l'ha na combinassion ëd version PHP e libxml2 che a l'ha dij bigat e a peul provoché la corussion ëd dat ëstërmà an MediaWiki e d'àutre aplicassion për l'aragnà.\nCh'a agiorna a PHP 5.2.9 o pi neuv e libxml2 2.7.3 o pi neuv ([https://bugs.php.net/bug.php?id=45996 bigat archivià con PHP]).\nAnstalassion abortìa.",
 	"config-suhosin-max-value-length": "Suhosin a l'é instalà e a lìmita la <code>longheur</code> dël paràmetr GET a $1 byte. Ël component ResourceLoader ëd MediaWiki a travajerà an rispetand ës lìmit, ma sòn a degraderà le prestassion. Se possìbil, a dovrìa amposté <code>suhosin.get.max_value_length</code> a 1024 o pi àut an <code>php.ini</code>, e amposté <code>$wgResourceLoaderMaxQueryLength</code> al midem valor an <code>LocalSettings.php</code>.",
 	"config-db-type": "Sòrt ëd base ëd dàit:",
 	"config-db-host": "Ospitant ëd la base ëd dàit:",

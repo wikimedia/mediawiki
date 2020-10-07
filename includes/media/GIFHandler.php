@@ -27,14 +27,17 @@
  * @ingroup Media
  */
 class GIFHandler extends BitmapHandler {
-	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
+	/**
+	 * Value to store in img_metadata if there was error extracting metadata
+	 */
+	private const BROKEN_FILE = '0';
 
 	public function getMetadata( $image, $filename ) {
 		try {
 			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
 		} catch ( Exception $e ) {
 			// Broken file?
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			return self::BROKEN_FILE;
 		}
@@ -82,7 +85,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function getImageArea( $image ) {
+	public function getImageArea( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -100,7 +103,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function isAnimatedImage( $image ) {
+	public function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -117,14 +120,13 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		global $wgMaxAnimatedGifArea;
-		$answer = $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
 
-		return $answer;
+		return $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-gif';
 	}
 
@@ -139,7 +141,7 @@ class GIFHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . " invalid GIF metadata\n" );
+			wfDebug( __METHOD__ . " invalid GIF metadata" );
 
 			return self::METADATA_BAD;
 		}
@@ -147,7 +149,7 @@ class GIFHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
 			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION
 		) {
-			wfDebug( __METHOD__ . " old but compatible GIF metadata\n" );
+			wfDebug( __METHOD__ . " old but compatible GIF metadata" );
 
 			return self::METADATA_COMPATIBLE;
 		}

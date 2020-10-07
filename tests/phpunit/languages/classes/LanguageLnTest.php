@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageLn.php */
+/** Tests for MediaWiki languages/classes/LanguageLn.php
+ * @group Language
+ */
 class LanguageLnTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

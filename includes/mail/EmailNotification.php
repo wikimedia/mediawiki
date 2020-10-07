@@ -50,15 +50,15 @@ class EmailNotification {
 	/**
 	 * Notification is due to user's user talk being edited
 	 */
-	const USER_TALK = 'user_talk';
+	private const USER_TALK = 'user_talk';
 	/**
 	 * Notification is due to a watchlisted page being edited
 	 */
-	const WATCHLIST = 'watchlist';
+	private const WATCHLIST = 'watchlist';
 	/**
 	 * Notification because user is notified for all changes
 	 */
-	const ALL_CHANGES = 'all_changes';
+	private const ALL_CHANGES = 'all_changes';
 
 	protected $subject, $body, $replyto, $from;
 	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;
@@ -100,14 +100,16 @@ class EmailNotification {
 	 * @param bool $minorEdit
 	 * @param bool $oldid (default: false)
 	 * @param string $pageStatus (default: 'changed')
+	 * @return bool Whether an email job was created or not.
+	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 */
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
 		$minorEdit, $oldid = false, $pageStatus = 'changed'
-	) {
+	): bool {
 		global $wgEnotifMinorEdits, $wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
-			return;
+			return false;
 		}
 
 		// update wl_notificationtimestamp for watchers
@@ -158,6 +160,8 @@ class EmailNotification {
 				]
 			) );
 		}
+
+		return $sendEmail;
 	}
 
 	/**
@@ -210,7 +214,7 @@ class EmailNotification {
 
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
 
-		Hooks::run( 'UpdateUserMailerFormattedPageStatus', [ &$formattedPageStatus ] );
+		Hooks::runner()->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new MWException( 'Not a valid page status!' );
 		}
@@ -243,7 +247,7 @@ class EmailNotification {
 						// @TODO Partial blocks should not prevent the user from logging in.
 						//       see: https://phabricator.wikimedia.org/T208895
 						&& !( $wgBlockDisablesLogin && $watchingUser->getBlock() )
-						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
+						&& Hooks::runner()->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
 						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
 					}
@@ -277,26 +281,26 @@ class EmailNotification {
 			$targetUser = User::newFromName( $title->getText() );
 
 			if ( !$targetUser || $targetUser->isAnon() ) {
-				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
+				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
-				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
+				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent" );
 			} elseif ( $wgBlockDisablesLogin && $targetUser->getBlock() ) {
 				// @TODO Partial blocks should not prevent the user from logging in.
 				//       see: https://phabricator.wikimedia.org/T208895
-				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent\n" );
+				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent" );
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
 				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
 			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
-					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
-				} elseif ( !Hooks::run( 'AbortTalkPageEmailNotification', [ $targetUser, $title ] ) ) {
-					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
+					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email" );
+				} elseif ( !Hooks::runner()->onAbortTalkPageEmailNotification( $targetUser, $title ) ) {
+					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user" );
 				} else {
-					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
+					wfDebug( __METHOD__ . ": sending talk page update notification" );
 					return true;
 				}
 			} else {
-				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
+				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications" );
 			}
 		}
 		return false;

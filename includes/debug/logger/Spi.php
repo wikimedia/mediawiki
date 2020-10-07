@@ -30,6 +30,8 @@ namespace MediaWiki\Logger;
  * and registers it via the LoggerFactory::registerProvider() static method.
  *
  * @see \MediaWiki\Logger\LoggerFactory
+ * @stable to implement
+ *
  * @since 1.25
  * @copyright © 2014 Wikimedia Foundation and contributors
  */

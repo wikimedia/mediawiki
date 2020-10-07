@@ -23,8 +23,8 @@
 
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerAwareInterface;
 use BagOStuff;
+use Psr\Log\LoggerAwareInterface;
 use WANObjectCache;
 
 /**

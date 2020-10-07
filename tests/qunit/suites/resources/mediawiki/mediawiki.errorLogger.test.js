@@ -8,6 +8,7 @@
 			errorLine = '123',
 			errorColumn = '45',
 			errorObject = new Error( 'Foo' ),
+			errorStackTrace = mw.errorLogger.crossBrowserStackTrace( errorObject.stack || '' ),
 			oldHandler = this.sandbox.stub();
 
 		this.sandbox.stub( mw, 'track' );
@@ -24,7 +25,7 @@
 		w.onerror( errorMessage, errorUrl, errorLine, errorColumn, errorObject );
 		sinon.assert.calledWithExactly( mw.track, 'global.error',
 			sinon.match( { errorMessage: errorMessage, url: errorUrl, lineNumber: errorLine,
-				columnNumber: errorColumn, errorObject: errorObject } ) );
+				columnNumber: errorColumn, stackTrace: errorStackTrace, errorObject: errorObject } ) );
 
 		w = { onerror: oldHandler };
 

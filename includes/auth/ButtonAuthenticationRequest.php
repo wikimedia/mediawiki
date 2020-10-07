@@ -22,9 +22,11 @@
 namespace MediaWiki\Auth;
 
 use Message;
+use RawMessage;
 
 /**
  * This is an authentication request that just implements a simple button.
+ * @stable to extend
  * @ingroup Auth
  * @since 1.27
  */
@@ -39,6 +41,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	protected $help;
 
 	/**
+	 * @stable to call
 	 * @param string $name Button name
 	 * @param Message $label Button label
 	 * @param Message $help Button help
@@ -51,10 +54,18 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		$this->required = $required ? self::REQUIRED : self::OPTIONAL;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getUniqueId() {
 		return parent::getUniqueId() . ':' . $this->name;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getFieldInfo() {
 		return [
 			$this->name => [
@@ -81,21 +92,22 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @stable to override
 	 * @param array $data
 	 * @return AuthenticationRequest|static
 	 */
 	public static function __set_state( $data ) {
 		if ( !isset( $data['label'] ) ) {
-			$data['label'] = new \RawMessage( '$1', $data['name'] );
+			$data['label'] = new RawMessage( '$1', $data['name'] );
 		} elseif ( is_string( $data['label'] ) ) {
-			$data['label'] = new \Message( $data['label'] );
+			$data['label'] = new Message( $data['label'] );
 		} elseif ( is_array( $data['label'] ) ) {
 			$data['label'] = Message::newFromKey( ...$data['label'] );
 		}
 		if ( !isset( $data['help'] ) ) {
-			$data['help'] = new \RawMessage( '$1', $data['name'] );
+			$data['help'] = new RawMessage( '$1', $data['name'] );
 		} elseif ( is_string( $data['help'] ) ) {
-			$data['help'] = new \Message( $data['help'] );
+			$data['help'] = new Message( $data['help'] );
 		} elseif ( is_array( $data['help'] ) ) {
 			$data['help'] = Message::newFromKey( ...$data['help'] );
 		}

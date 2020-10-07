@@ -62,8 +62,8 @@ class ClassCollectorTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCases
 	 */
-	public function testGetClasses( $code, array $classes, $message = null ) {
+	public function testGetClasses( $code, array $classes ) {
 		$cc = new ClassCollector();
-		$this->assertEquals( $classes, $cc->getClasses( "<?php\n$code" ), $message );
+		$this->assertEquals( $classes, $cc->getClasses( "<?php\n$code" ) );
 	}
 }

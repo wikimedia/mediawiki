@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-icon",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"alignCenter": {
 			"file": "../wikimediaui/images/icons/alignCenter.svg"
@@ -13,10 +13,6 @@
 		},
 		"attachment": {
 			"file": "../wikimediaui/images/icons/attachment.svg"
-		},
-		"beaker": {
-			"file": "../wikimediaui/images/icons/labFlask.svg",
-			"deprecated": "Renamed since v0.34.1, use 'labFlask' instead."
 		},
 		"calendar": {
 			"file": "../wikimediaui/images/icons/calendar.svg"
@@ -115,10 +111,16 @@
 			"file": "../wikimediaui/images/icons/table.svg"
 		},
 		"tableAddColumnAfter": {
-			"file": "../wikimediaui/images/icons/tableAddColumnAfter.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tableAddColumnAfter-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tableAddColumnAfter-rtl.svg"
+			}
 		},
 		"tableAddColumnBefore": {
-			"file": "../wikimediaui/images/icons/tableAddColumnBefore.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tableAddColumnBefore-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tableAddColumnBefore-rtl.svg"
+			}
 		},
 		"tableAddRowAfter": {
 			"file": "../wikimediaui/images/icons/tableAddRowAfter.svg"
@@ -133,10 +135,16 @@
 			"file": "../wikimediaui/images/icons/tableMergeCells.svg"
 		},
 		"tableMoveColumnAfter": {
-			"file": "../wikimediaui/images/icons/tableMoveColumnAfter.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tableMoveColumnAfter-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tableMoveColumnAfter-rtl.svg"
+			}
 		},
 		"tableMoveColumnBefore": {
-			"file": "../wikimediaui/images/icons/tableMoveColumnBefore.svg"
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tableMoveColumnBefore-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tableMoveColumnBefore-rtl.svg"
+			}
 		},
 		"tableMoveRowAfter": {
 			"file": "../wikimediaui/images/icons/tableMoveRowAfter.svg"

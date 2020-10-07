@@ -7,9 +7,9 @@
 			"Klutzy",
 			"Kwj2772",
 			"Mooozi",
-			"아라",
 			"Revi",
-			"Ykhwong"
+			"Ykhwong",
+			"아라"
 		]
 	},
 	"exif-imagewidth": "너비",
@@ -281,6 +281,8 @@
 	"exif-customrendered-3": "HDR (원본 저장)",
 	"exif-customrendered-4": "원본 (HDR용)",
 	"exif-customrendered-6": "파노라마",
+	"exif-customrendered-7": "HDR 인물 사진",
+	"exif-customrendered-8": "인물 사진",
 	"exif-exposuremode-0": "자동 노출",
 	"exif-exposuremode-1": "수동 노출",
 	"exif-exposuremode-2": "자동 노출 브래킷",

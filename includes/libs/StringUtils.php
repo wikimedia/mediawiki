@@ -41,7 +41,7 @@ class StringUtils {
 	 * @param string $value String to check
 	 * @return bool Whether the given $value is a valid UTF-8 encoded string
 	 */
-	static function isUtf8( $value ) {
+	public static function isUtf8( $value ) {
 		return mb_check_encoding( (string)$value, 'UTF-8' );
 	}
 
@@ -56,7 +56,7 @@ class StringUtils {
 	 * @param bool $nested True iff the delimiters are allowed to nest.
 	 * @return ArrayIterator
 	 */
-	static function delimiterExplode( $startDelim, $endDelim, $separator,
+	public static function delimiterExplode( $startDelim, $endDelim, $separator,
 		$subject, $nested = false ) {
 		$inputPos = 0;
 		$lastPos = 0;
@@ -115,7 +115,7 @@ class StringUtils {
 	 * @param string $subject
 	 * @return string
 	 */
-	static function hungryDelimiterReplace( $startDelim, $endDelim, $replace, $subject ) {
+	public static function hungryDelimiterReplace( $startDelim, $endDelim, $replace, $subject ) {
 		$segments = explode( $startDelim, $subject );
 		$output = array_shift( $segments );
 		foreach ( $segments as $s ) {
@@ -154,7 +154,7 @@ class StringUtils {
 	 * @throws InvalidArgumentException
 	 * @return string
 	 */
-	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,
+	private static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,
 		$subject, $flags = ''
 	) {
 		$inputPos = 0;
@@ -245,7 +245,9 @@ class StringUtils {
 	 * @param string $flags Regular expression flags
 	 * @return string The string with the matches replaced
 	 */
-	static function delimiterReplace( $startDelim, $endDelim, $replace, $subject, $flags = '' ) {
+	public static function delimiterReplace(
+		$startDelim, $endDelim, $replace, $subject, $flags = ''
+	) {
 		return self::delimiterReplaceCallback(
 			$startDelim, $endDelim,
 			function ( array $matches ) use ( $replace ) {
@@ -256,37 +258,6 @@ class StringUtils {
 	}
 
 	/**
-	 * More or less "markup-safe" explode()
-	 * Ignores any instances of the separator inside `<...>`
-	 * @param string $separator
-	 * @param string $text
-	 * @return array
-	 */
-	static function explodeMarkup( $separator, $text ) {
-		$placeholder = "\x00";
-
-		// Remove placeholder instances
-		$text = str_replace( $placeholder, '', $text );
-
-		// Replace instances of the separator inside HTML-like tags with the placeholder
-		$cleaned = self::delimiterReplaceCallback(
-			'<', '>',
-			function ( array $matches ) use ( $separator, $placeholder ) {
-				return str_replace( $separator, $placeholder, $matches[0] );
-			},
-			$text
-		);
-
-		// Explode, then put the replaced separators back in
-		$items = explode( $separator, $cleaned );
-		foreach ( $items as $i => $str ) {
-			$items[$i] = str_replace( $placeholder, $separator, $str );
-		}
-
-		return $items;
-	}
-
-	/**
 	 * More or less "markup-safe" str_replace()
 	 * Ignores any instances of the separator inside `<...>`
 	 * @param string $search
@@ -294,7 +265,7 @@ class StringUtils {
 	 * @param string $text
 	 * @return string
 	 */
-	static function replaceMarkup( $search, $replace, $text ) {
+	public static function replaceMarkup( $search, $replace, $text ) {
 		$placeholder = "\x00";
 
 		// Remove placeholder instances
@@ -340,10 +311,9 @@ class StringUtils {
 	 * @param string $string
 	 * @return string
 	 */
-	static function escapeRegexReplacement( $string ) {
+	public static function escapeRegexReplacement( $string ) {
 		$string = str_replace( '\\', '\\\\', $string );
-		$string = str_replace( '$', '\\$', $string );
-		return $string;
+		return str_replace( '$', '\\$', $string );
 	}
 
 	/**
@@ -353,7 +323,7 @@ class StringUtils {
 	 * @param string $subject
 	 * @return ArrayIterator|ExplodeIterator
 	 */
-	static function explode( $separator, $subject ) {
+	public static function explode( $separator, $subject ) {
 		if ( substr_count( $subject, $separator ) > 1000 ) {
 			return new ExplodeIterator( $separator, $subject );
 		} else {

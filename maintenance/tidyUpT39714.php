@@ -1,5 +1,8 @@
 <?php
+
 require_once __DIR__ . '/Maintenance.php';
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Fixes all rows affected by T39714
@@ -19,9 +22,11 @@ class TidyUpT39714 extends Maintenance {
 			__METHOD__
 		);
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $result as $row ) {
 			$ids = explode( ',', explode( "\n", $row->log_params )[0] );
-			$result = $this->getDB( DB_REPLICA )->select( // Work out what log entries were changed here.
+			// Work out what log entries were changed here.
+			$result = $this->getDB( DB_REPLICA )->select(
 				'logging',
 				'log_type',
 				[ 'log_id' => $ids ],
@@ -38,7 +43,7 @@ class TidyUpT39714 extends Maintenance {
 					[ 'log_id' => $row->log_id ],
 					__METHOD__
 				);
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}

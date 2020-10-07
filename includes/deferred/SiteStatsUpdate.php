@@ -37,7 +37,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	protected $images = 0;
 
 	/** @var string[] Map of (table column => counter type) */
-	private static $counters = [
+	private const COUNTERS = [
 		'ss_total_edits'   => 'edits',
 		'ss_total_pages'   => 'pages',
 		'ss_good_articles' => 'articles',
@@ -46,7 +46,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	];
 
 	// @todo deprecate this constructor
-	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
+	public function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->edits = $edits;
 		$this->articles = $good;
 		$this->pages = $pages;
@@ -58,7 +58,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		Assert::parameterType( __CLASS__, $update, '$update' );
 		'@phan-var SiteStatsUpdate $update';
 
-		foreach ( self::$counters as $field ) {
+		foreach ( self::COUNTERS as $field ) {
 			$this->$field += $update->$field;
 		}
 	}
@@ -72,12 +72,12 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$update = new self( 0, 0, 0 );
 
 		foreach ( $deltas as $name => $unused ) {
-			if ( !in_array( $name, self::$counters ) ) { // T187585
+			if ( !in_array( $name, self::COUNTERS ) ) { // T187585
 				throw new UnexpectedValueException( __METHOD__ . ": no field called '$name'" );
 			}
 		}
 
-		foreach ( self::$counters as $field ) {
+		foreach ( self::COUNTERS as $field ) {
 			$update->$field = $deltas[$field] ?? 0;
 		}
 
@@ -89,7 +89,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$stats = $services->getStatsdDataFactory();
 
 		$deltaByType = [];
-		foreach ( self::$counters as $type ) {
+		foreach ( self::COUNTERS as $type ) {
 			$delta = $this->$type;
 			if ( $delta !== 0 ) {
 				$stats->updateCount( "site.$type", $delta );
@@ -102,12 +102,18 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
 				$set = [];
-				foreach ( self::$counters as $column => $type ) {
+				foreach ( self::COUNTERS as $field => $type ) {
 					$delta = (int)$deltaByType[$type];
 					if ( $delta > 0 ) {
-						$set[] = "$column=$column+" . abs( $delta );
+						$set[] = "$field=" . $dbw->buildGreatest(
+							[ $field => $dbw->addIdentifierQuotes( $field ) . '+' . abs( $delta ) ],
+							0
+						);
 					} elseif ( $delta < 0 ) {
-						$set[] = "$column=$column-" . abs( $delta );
+						$set[] = "$field=" . $dbw->buildGreatest(
+							[ 'new' => $dbw->addIdentifierQuotes( $field ) . '-' . abs( $delta ) ],
+							0
+						);
 					}
 				}
 

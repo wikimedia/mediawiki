@@ -1,9 +1,8 @@
-/* eslint-env node, es6 */
-var i, chars = [];
+'use strict';
 
-for ( i = 0; i <= 0x10ffff; i++ ) {
-	// eslint-disable-next-line no-restricted-properties
+const chars = [];
+
+for ( let i = 0; i <= 0x10ffff; i++ ) {
 	chars.push( String.fromCodePoint( i ).toUpperCase() );
 }
-// eslint-disable-next-line no-console
 console.log( JSON.stringify( chars ) );

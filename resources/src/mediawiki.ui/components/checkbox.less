@@ -1,5 +1,5 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 // Checkbox
 //
@@ -11,26 +11,24 @@
 //
 // Markup:
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-3">
-//   <label for="kss-example-3">Standard checkbox</label>
+//   <input type="checkbox" id="component-example-3">
+//   <label for="component-example-3">Standard checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-3-checked" checked>
-//   <label for="kss-example-3-checked">Standard checked checkbox</label>
+//   <input type="checkbox" id="component-example-3-checked" checked>
+//   <label for="component-example-3-checked">Standard checked checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-3-disabled" disabled>
-//   <label for="kss-example-3-disabled">Disabled checkbox</label>
+//   <input type="checkbox" id="component-example-3-disabled" disabled>
+//   <label for="component-example-3-disabled">Disabled checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-3-disabled-checked" disabled checked>
-//   <label for="kss-example-3-disabled-checked">Disabled checked checkbox</label>
+//   <input type="checkbox" id="component-example-3-disabled-checked" disabled checked>
+//   <label for="component-example-3-disabled-checked">Disabled checked checkbox</label>
 // </div>
-//
-// Styleguide 3.
 .mw-ui-checkbox {
 	display: inline-block;
-	line-height: @sizeInputBinary;
+	line-height: @size-input-binary;
 	vertical-align: middle;
 }
 
@@ -51,8 +49,8 @@
 		display: table-cell;
 		position: relative;
 		// Ensure the invisible input takes up the required `width` & `height`
-		width: @sizeInputBinary;
-		height: @sizeInputBinary;
+		width: @size-input-binary;
+		height: @size-input-binary;
 		// Support: Firefox mobile to override user-agent stylesheet, see T73750
 		max-width: none;
 		margin: 0;
@@ -80,11 +78,11 @@
 			// Ensure alignment of checkbox to middle of the text in long labels, see T85241
 			top: 50%;
 			left: 0;
-			width: @sizeInputBinary;
-			height: @sizeInputBinary;
-			margin-top: -( @sizeInputBinary / 2 );
+			width: @size-input-binary;
+			height: @size-input-binary;
+			margin-top: -( @size-input-binary / 2 );
 			border: 1px solid @colorGray7;
-			border-radius: @borderRadius;
+			border-radius: @border-radius-base;
 		}
 
 		// Apply a checkmark on the pseudo `:before` element when the input is checked
@@ -107,40 +105,42 @@
 
 			// `:focus` has to come first, otherwise a specificity race with `:hover:focus` etc is necessary
 			&:focus + label:before {
-				border-color: @colorProgressive;
-				box-shadow: @boxShadowWidgetFocus;
+				border-color: @border-color-base--focus;
+				box-shadow: @box-shadow-base--focus;
 			}
 
 			&:hover + label:before {
-				border-color: @colorProgressive;
+				// FIXME: Replace with WikimediaUI Base `@border-color*` var when available.
+				border-color: @color-primary--hover;
 			}
 
 			&:active + label:before {
-				background-color: @colorProgressiveActive;
-				border-color: @borderColorInputBinaryActive;
-				box-shadow: @boxShadowInputBinaryActive;
+				background-color: @background-color-input-binary--active;
+				border-color: @border-color-input-binary--active;
+				box-shadow: @box-shadow-input-binary--active;
 			}
 
 			&:checked {
 				& + label:before {
-					background-color: @backgroundColorInputBinaryChecked;
-					border-color: @borderColorInputBinaryChecked;
+					background-color: @background-color-input-binary--checked;
+					border-color: @border-color-input-binary--checked;
 				}
 
 				&:focus + label:before {
-					background-color: @backgroundColorInputBinaryChecked;
-					border-color: @borderColorInputBinaryChecked;
-					box-shadow: @boxShadowProgressiveFocus;
+					background-color: @background-color-input-binary--checked;
+					border-color: @border-color-input-binary--checked;
+					box-shadow: @box-shadow-primary--focus;
 				}
 
 				&:hover + label:before {
-					background-color: @colorProgressiveHighlight;
-					border-color: @colorProgressiveHighlight;
+					// FIXME: Replace with WikimediaUI Base vars when available.
+					background-color: @color-primary--hover;
+					border-color: @color-primary--hover;
 				}
 
 				&:active + label:before {
-					background-color: @backgroundColorInputBinaryActive;
-					border-color: @borderColorInputBinaryActive;
+					background-color: @background-color-input-binary--active;
+					border-color: @border-color-input-binary--active;
 				}
 			}
 		}

@@ -39,6 +39,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 		if ( whatsThisMessages.header ) {
 			$popupContent.append(
 				( new OO.ui.LabelWidget( {
+					// eslint-disable-next-line mediawiki/msg-doc
 					label: mw.msg( whatsThisMessages.header ),
 					classes: [ 'mw-rcfilters-ui-filterMenuSectionOptionWidget-whatsThisButton-popup-content-header' ]
 				} ) ).$element
@@ -47,6 +48,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 		if ( whatsThisMessages.body ) {
 			$popupContent.append(
 				( new OO.ui.LabelWidget( {
+					// eslint-disable-next-line mediawiki/msg-doc
 					label: mw.msg( whatsThisMessages.body ),
 					classes: [ 'mw-rcfilters-ui-filterMenuSectionOptionWidget-whatsThisButton-popup-content-body' ]
 				} ) ).$element
@@ -58,6 +60,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 					framed: false,
 					flags: [ 'progressive' ],
 					href: whatsThisMessages.url,
+					// eslint-disable-next-line mediawiki/msg-doc
 					label: mw.msg( whatsThisMessages.linkText ),
 					classes: [ 'mw-rcfilters-ui-filterMenuSectionOptionWidget-whatsThisButton-popup-content-link' ]
 				} ) ).$element
@@ -88,6 +91,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 	this.model.connect( this, { update: 'updateUiBasedOnState' } );
 
 	// Initialize
+	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
 		.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget' )
 		.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget-name-' + this.model.getName() )

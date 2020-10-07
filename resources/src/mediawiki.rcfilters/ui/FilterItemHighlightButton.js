@@ -72,6 +72,12 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 	);
 
 	mw.rcfilters.HighlightColors.forEach( function ( c ) {
+		// The following classes are used here:
+		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c1
+		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c2
+		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c3
+		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c4
+		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c5
 		widget.$icon
 			.toggleClass(
 				'mw-rcfilters-ui-filterItemHighlightButton-circle-color-' + c,

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS /*_*/sites (
   site_source                varbinary(32)       NOT NULL,
 
   -- Language code of the sites primary language.
-  site_language              varbinary(32)       NOT NULL,
+  site_language              varbinary(35)       NOT NULL,
 
   -- Protocol of the site, ie 'http://', 'irc://', '//'
   -- This field is an index for lookups and is build from type specific data in site_data.
@@ -53,7 +53,6 @@ CREATE INDEX /*i*/sites_domain ON /*_*/sites (site_domain);
 CREATE INDEX /*i*/sites_forward ON /*_*/sites (site_forward);
 
 
-
 -- Links local site identifiers to their corresponding site.
 CREATE TABLE IF NOT EXISTS /*_*/site_identifiers (
   -- Key on site.site_id
@@ -63,9 +62,10 @@ CREATE TABLE IF NOT EXISTS /*_*/site_identifiers (
   si_type                    varbinary(32)       NOT NULL,
 
   -- local key value, ie 'en' or 'wiktionary'
-  si_key                     varbinary(32)       NOT NULL
+  si_key                     varbinary(32)       NOT NULL,
+
+  PRIMARY KEY (si_type, si_key)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key);
 CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
 CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);

@@ -41,10 +41,11 @@ class CopyFileOp extends FileOp {
 		$srcExists = $this->fileExists( $this->params['src'], $predicates );
 		if ( $srcExists === false ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
-				$this->doOperation = false; // no-op
+				$this->cancelled = true; // no-op
 				// Update file existence predicates (cache 404s)
-				$predicates['exists'][$this->params['src']] = false;
-				$predicates['sha1'][$this->params['src']] = false;
+				$predicates[self::ASSUMED_EXISTS][$this->params['src']] = false;
+				$predicates[self::ASSUMED_SIZE][$this->params['src']] = false;
+				$predicates[self::ASSUMED_SHA1][$this->params['src']] = false;
 
 				return $status; // nothing to do
 			} else {
@@ -60,10 +61,12 @@ class CopyFileOp extends FileOp {
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
 		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
+
+		// Update file existence predicates if the operation is expected to be allowed to run
 		if ( $status->isOK() ) {
-			// Update file existence predicates
-			$predicates['exists'][$this->params['dst']] = true;
-			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+			$predicates[self::ASSUMED_EXISTS][$this->params['dst']] = true;
+			$predicates[self::ASSUMED_SIZE][$this->params['dst']] = $this->sourceSize;
+			$predicates[self::ASSUMED_SHA1][$this->params['dst']] = $this->sourceSha1;
 		}
 
 		return $status; // safe to call attempt()

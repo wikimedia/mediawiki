@@ -49,6 +49,8 @@
  * from Config itself). Objects that represent persistent data stores do not
  * belong here either. Session state changes should only be propagated on
  * shutdown by separate persistence handler objects, for example.
+ *
+ * @unstable for implementation, extensions should subclass ContextSource instead.
  */
 interface IContextSource extends MessageLocalizer {
 

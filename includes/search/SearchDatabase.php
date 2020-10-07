@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Base search engine base class for database-backed searches
+ * @stable to extend
  * @ingroup Search
  * @since 1.23
  */

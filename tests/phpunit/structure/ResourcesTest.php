@@ -13,16 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
  */
-class ResourcesTest extends MediaWikiTestCase {
-
-	/**
-	 * @dataProvider provideResourceFiles
-	 */
-	public function testFileExistence( $filename, $module, $resource ) {
-		$this->assertFileExists( $filename,
-			"File '$resource' referenced by '$module' must exist."
-		);
-	}
+class ResourcesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideMediaStylesheets
@@ -81,7 +72,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public function testMissingMessages() {
 		$data = self::getAllModules();
-		$lang = Language::factory( 'en' );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
@@ -178,7 +169,6 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public static function provideMediaStylesheets() {
 		$data = self::getAllModules();
-		$cases = [];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
@@ -195,12 +185,10 @@ class ResourcesTest extends MediaWikiTestCase {
 
 			$styleFiles = $getStyleFiles->invoke( $module, $data['context'] );
 
-			$flip = $module->getFlip( $data['context'] );
-
 			foreach ( $styleFiles as $media => $files ) {
 				if ( $media && $media !== 'all' ) {
 					foreach ( $files as $file ) {
-						$cases[] = [
+						yield [
 							$moduleName,
 							$media,
 							$file,
@@ -209,7 +197,6 @@ class ResourcesTest extends MediaWikiTestCase {
 								'cssText' => $readStyleFile->invoke(
 									$module,
 									$file,
-									$flip,
 									$data['context']
 								)
 							],
@@ -218,17 +205,13 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 		}
-
-		return $cases;
 	}
 
 	/**
-	 * Get all resource files from modules that are an instance of
-	 * ResourceLoaderFileModule (or one of its subclasses).
+	 * Check all resource files from ResourceLoaderFileModule modules.
 	 */
-	public static function provideResourceFiles() {
+	public function testResourceFiles() {
 		$data = self::getAllModules();
-		$cases = [];
 
 		// See also ResourceLoaderFileModule::__construct
 		$filePathProps = [
@@ -286,33 +269,50 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 
-			// Populate cases
 			foreach ( $files as $file ) {
-				$cases[] = [
+				$relativePath = ( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file );
+				$this->assertFileExists(
 					$moduleProxy->getLocalPath( $file ),
-					$moduleName,
-					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
-				];
+					"File '$relativePath' referenced by '$moduleName' must exist."
+				);
 			}
 
 			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
 			$moduleProxy->readStyleFiles(
 				$module->getStyleFiles( $data['context'] ),
-				$module->getFlip( $data['context'] ),
 				$data['context']
 			);
 
 			$missingLocalFileRefs = $moduleProxy->missingLocalFileRefs;
 
 			foreach ( $missingLocalFileRefs as $file ) {
-				$cases[] = [
+				$this->assertFileExists(
 					$file,
-					$moduleName,
-					$file,
-				];
+					"File '$file' referenced by '$moduleName' must exist."
+				);
 			}
 		}
+	}
 
-		return $cases;
+	/**
+	 * Check all image files from ResourceLoaderImageModule modules.
+	 */
+	public function testImageFiles() {
+		$data = self::getAllModules();
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			if ( !$module instanceof ResourceLoaderImageModule ) {
+				continue;
+			}
+
+			$imagesFiles = $module->getImages( $data['context'] );
+			foreach ( $imagesFiles as $file ) {
+				$relativePath = $file->getName();
+				$this->assertFileExists(
+					$file->getPath( $data['context'] ),
+					"File '$relativePath' referenced by '$moduleName' must exist."
+				);
+			}
+		}
 	}
 }

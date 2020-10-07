@@ -14,7 +14,7 @@
 		var blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
 			expiryWidget, editingWidget, editingRestrictionWidget, preventTalkPageEditWidget,
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget, data,
-			enablePartialBlocks, blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
+			blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
 
 		function preserveSelectedStateOnDisable( widget ) {
 			var widgetWasSelected;
@@ -51,7 +51,7 @@
 				// infinityValues are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
 				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
-				editingRestrictionValue = enablePartialBlocks ? editingRestrictionWidget.getValue() : 'sitewide',
+				editingRestrictionValue = editingRestrictionWidget.getValue(),
 				editingIsSelected = editingWidget.isSelected(),
 				isSitewide = editingIsSelected && editingRestrictionValue === 'sitewide';
 
@@ -67,24 +67,22 @@
 				watchUserWidget.setDisabled( isIpRange && !isEmpty );
 			}
 
-			if ( enablePartialBlocks ) {
-				editingRestrictionWidget.setDisabled( !editingIsSelected );
-				pageRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
-				namespaceRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
-				if ( blockAllowsUTEdit ) {
-					// Disable for partial blocks, unless the block is against the User_talk namespace
-					preventTalkPageEditWidget.setDisabled(
-						// Partial block that doesn't block editing
-						!editingIsSelected ||
-						// Partial block that blocks editing and doesn't block the User_talk namespace
-						(
-							editingRestrictionValue === 'partial' &&
-							namespaceRestrictionsWidget.getValue().indexOf(
-								String( mw.config.get( 'wgNamespaceIds' ).user_talk )
-							) === -1
-						)
-					);
-				}
+			editingRestrictionWidget.setDisabled( !editingIsSelected );
+			pageRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
+			namespaceRestrictionsWidget.setDisabled( !editingIsSelected || isSitewide );
+			if ( blockAllowsUTEdit ) {
+				// Disable for partial blocks, unless the block is against the User_talk namespace
+				preventTalkPageEditWidget.setDisabled(
+					// Partial block that doesn't block editing
+					!editingIsSelected ||
+					// Partial block that blocks editing and doesn't block the User_talk namespace
+					(
+						editingRestrictionValue === 'partial' &&
+						namespaceRestrictionsWidget.getValue().indexOf(
+							String( mw.config.get( 'wgNamespaceIds' ).user_talk )
+						) === -1
+					)
+				);
 			}
 
 			if ( !userChangedCreateAccount ) {
@@ -101,7 +99,6 @@
 
 		if ( blockTargetWidget ) {
 			data = require( './config.json' );
-			enablePartialBlocks = data.EnablePartialBlocks;
 			blockAllowsUTEdit = data.BlockAllowsUTEdit;
 			userChangedCreateAccount = mw.config.get( 'wgCreateAccountDirty' );
 			updatingBlockOptions = false;
@@ -120,19 +117,17 @@
 					userChangedCreateAccount = true;
 				}
 			} );
+			editingRestrictionWidget = OO.ui.infuse( $( '#mw-input-wpEditingRestriction' ) );
+			pageRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpPageRestrictions' ) );
+			namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
+			editingRestrictionWidget.on( 'change', updateBlockOptions );
+			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 
 			// Present for certain rights
 			watchUserWidget = infuseIfExists( $( '#mw-input-wpWatch' ) );
 			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) );
 
 			// Present for certain global configs
-			if ( enablePartialBlocks ) {
-				editingRestrictionWidget = OO.ui.infuse( $( '#mw-input-wpEditingRestriction' ) );
-				pageRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpPageRestrictions' ) );
-				namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
-				editingRestrictionWidget.on( 'change', updateBlockOptions );
-				namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
-			}
 			if ( blockAllowsUTEdit ) {
 				preventTalkPageEditWidget = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) );
 			}

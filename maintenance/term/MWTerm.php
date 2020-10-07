@@ -37,7 +37,7 @@
  * @ingroup TermColorer
  */
 class AnsiTermColorer {
-	function __construct() {
+	public function __construct() {
 	}
 
 	/**

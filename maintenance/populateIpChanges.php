@@ -27,6 +27,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Maintenance script that will find all rows in the revision table where
@@ -64,7 +65,7 @@ TEXT
 	public function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
 
-		if ( !$dbw->tableExists( 'ip_changes' ) ) {
+		if ( !$dbw->tableExists( 'ip_changes', __METHOD__ ) ) {
 			$this->fatalError( 'ip_changes table does not exist' );
 		}
 
@@ -116,11 +117,11 @@ TEXT
 			$insertRows = [];
 			foreach ( $rows as $row ) {
 				// Make sure this is really an IP, e.g. not maintenance user or imported revision.
-				if ( IP::isValid( $row->rev_user_text ) ) {
+				if ( IPUtils::isValid( $row->rev_user_text ) ) {
 					$insertRows[] = [
 						'ipc_rev_id' => $row->rev_id,
 						'ipc_rev_timestamp' => $row->rev_timestamp,
-						'ipc_hex' => IP::toHex( $row->rev_user_text ),
+						'ipc_hex' => IPUtils::toHex( $row->rev_user_text ),
 					];
 
 					$attempted++;

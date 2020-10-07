@@ -4,7 +4,7 @@
  * @group Database
  * @covers SpecialMyLanguage
  */
-class SpecialMyLanguageTest extends MediaWikiTestCase {
+class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		$titles = [
 			'Page/Another',

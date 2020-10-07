@@ -172,8 +172,7 @@
 					return;
 				}
 				// Remove any previously flagged errors
-				$( '#mw-upload-permitted' ).attr( 'class', '' );
-				$( '#mw-upload-prohibited' ).attr( 'class', '' );
+				$( '#mw-upload-permitted, #mw-upload-prohibited' ).removeClass();
 
 				path = $( this ).val();
 				// Find trailing part
@@ -279,6 +278,11 @@
 				s /= 1024;
 				sizeMsgs = sizeMsgs.slice( 1 );
 			}
+			// The following messages are used here:
+			// * size-bytes
+			// * size-kilobytes
+			// * size-megabytes
+			// * size-gigabytes
 			return mw.msg( sizeMsgs[ 0 ], Math.round( s ) );
 		}
 

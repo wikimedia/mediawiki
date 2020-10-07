@@ -45,7 +45,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
@@ -54,7 +54,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addTables( 'category' );
 		$this->addFields( 'cat_title' );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 1 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -120,7 +120,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 			// Normalize titles
 			$titleObj = Title::makeTitle( NS_CATEGORY, $row->cat_title );
-			if ( !is_null( $resultPageSet ) ) {
+			if ( $resultPageSet !== null ) {
 				$pages[] = $titleObj;
 			} else {
 				$item = [];
@@ -142,7 +142,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'c' );
 		} else {
 			$resultPageSet->populateFromTitles( $pages );

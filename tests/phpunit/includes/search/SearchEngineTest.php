@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancerSingle;
 
 /**
@@ -20,7 +21,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Search tests require MySQL or SQLite with FTS
@@ -43,9 +44,10 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$lb = LoadBalancerSingle::newFromConnection( $this->db );
 		$this->search = new $searchType( $lb );
+		$this->search->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		unset( $this->search );
 
 		parent::tearDown();
@@ -97,7 +99,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$this->markTestIncomplete( __CLASS__ . " does no yet support non-wikitext content "
 				. "in the main namespace" );
 		}
-		$this->assertTrue( is_object( $results ) );
+		$this->assertIsObject( $results );
 
 		$matches = [];
 		foreach ( $results as $row ) {
@@ -265,7 +267,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	) {
 		$this->search->setNamespaces( $namespaces );
 		$results = $this->search->completionSearch( $search );
-		$this->assertEquals( 1, $results->getSize() );
+		$this->assertSame( 1, $results->getSize() );
 		$this->assertEquals( $expectedSuggestion, $results->getSuggestions()[0]->getText() );
 	}
 
@@ -310,6 +312,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 					$mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
 				return true;
 			} );
+		$mockEngine->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 
 		$fields = $mockEngine->getSearchIndexFields();
 		$this->assertArrayHasKey( 'language', $fields );
@@ -381,13 +384,14 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$engine = new MockCompletionSearchEngine();
 		$engine->setLimitOffset( 10, 0 );
+		$engine->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 		$results = $engine->completionSearch( 'foo' );
 		$this->assertEquals( 5, $results->getSize() );
 		$this->assertTrue( $results->hasMoreResults() );
 
 		$engine->setLimitOffset( 10, 10 );
 		$results = $engine->completionSearch( 'foo' );
-		$this->assertEquals( 1, $results->getSize() );
+		$this->assertSame( 1, $results->getSize() );
 		$this->assertFalse( $results->hasMoreResults() );
 	}
 

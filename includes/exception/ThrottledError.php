@@ -21,10 +21,15 @@
 /**
  * Show an error when the user hits a rate limit.
  *
+ * @newable
  * @since 1.18
  * @ingroup Exception
  */
 class ThrottledError extends ErrorPageError {
+
+	/**
+	 * @stable to call
+	 */
 	public function __construct() {
 		parent::__construct(
 			'actionthrottled',

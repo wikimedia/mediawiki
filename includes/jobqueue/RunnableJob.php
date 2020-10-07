@@ -29,12 +29,14 @@
  * loaded by the application for the local DB domain. In that case, the general-purpose
  * JobSpecification class can be used instead.
  *
+ * @stable to implement
+ *
  * @ingroup JobQueue
  * @since 1.33
  */
 interface RunnableJob extends IJobSpecification {
 	/** @var int Job must not be wrapped in the usual explicit LBFactory transaction round */
-	const JOB_NO_EXPLICIT_TRX_ROUND = 1;
+	public const JOB_NO_EXPLICIT_TRX_ROUND = 1;
 
 	/**
 	 * Run the job

@@ -6,7 +6,6 @@ a.feedlink {
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
 	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	background-image: url( images/feed-icon.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/feed-icon.svg );
 	background-position: center left;
 	background-repeat: no-repeat;

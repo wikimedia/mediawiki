@@ -4,7 +4,6 @@
  * Exposed globally as `mw`, with `mediaWiki` as alias.
  *
  * @class mw
- * @alternateClassName mediaWiki
  * @singleton
  */
 /* global $VARS, $CODE */
@@ -13,7 +12,8 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.hasOwnProperty;
+		hasOwn = Object.hasOwnProperty,
+		console = window.console;
 
 	/**
 	 * FNV132 hash function
@@ -50,7 +50,7 @@
 		// <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
 		/**
 		 * @private
-		 * @class
+		 * @class StringSet
 		 */
 		StringSet = window.Set || function () {
 			var set = Object.create( null );
@@ -102,8 +102,7 @@
 	 */
 	function logError( topic, data ) {
 		var msg,
-			e = data.exception,
-			console = window.console;
+			e = data.exception;
 
 		if ( console && console.log ) {
 			msg = ( e ? 'Exception' : 'Error' ) +
@@ -230,132 +229,116 @@
 		},
 
 		/**
-		 * Check if one or more keys exist.
+		 * Check if a given key exists in the map.
 		 *
-		 * @param {Mixed} selection Key or array of keys to check
-		 * @return {boolean} True if the key(s) exist
+		 * @param {string} selection Key to check
+		 * @return {boolean} True if the key exists
 		 */
 		exists: function ( selection ) {
-			var i;
-			if ( Array.isArray( selection ) ) {
-				for ( i = 0; i < selection.length; i++ ) {
-					if ( typeof selection[ i ] !== 'string' || !( selection[ i ] in this.values ) ) {
-						return false;
-					}
-				}
-				return true;
-			}
 			return typeof selection === 'string' && selection in this.values;
 		}
 	};
 
 	defineFallbacks();
 
-	log = ( function () {
-		/**
-		 * Write a verbose message to the browser's console in debug mode.
-		 *
-		 * This method is mainly intended for verbose logging. It is a no-op in production mode.
-		 * In ResourceLoader debug mode, it will use the browser's console if available, with
-		 * fallback to creating a console interface in the DOM and logging messages there.
-		 *
-		 * See {@link mw.log} for other logging methods.
-		 *
-		 * @member mw
-		 * @param {...string} msg Messages to output to console.
-		 */
-		var log = function () {},
-			console = window.console;
+	/**
+	 * Write a verbose message to the browser's console in debug mode.
+	 *
+	 * This method is mainly intended for verbose logging. It is a no-op in production mode.
+	 * In ResourceLoader debug mode, it will use the browser's console if available.
+	 *
+	 * See {@link mw.log} for other logging methods.
+	 *
+	 * @member mw
+	 * @param {...string} msg Messages to output to console.
+	 */
+	log = function () {};
 
-		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
-		// when adding or removing mw.log methods below!
+	// Note: Keep list of log methods in sync with restoration in mediawiki.log.js!
 
-		/**
-		 * Collection of methods to help log messages to the console.
-		 *
-		 * @class mw.log
-		 * @singleton
-		 */
+	/**
+	 * Collection of methods to help log messages to the console.
+	 *
+	 * @class mw.log
+	 * @singleton
+	 */
 
-		/**
-		 * Write a message to the browser console's warning channel.
-		 *
-		 * This method is a no-op in browsers that don't implement the Console API.
-		 *
-		 * @param {...string} msg Messages to output to console
-		 */
-		log.warn = console && console.warn ?
-			Function.prototype.bind.call( console.warn, console ) :
-			function () {};
+	/**
+	 * Write a message to the browser console's warning channel.
+	 *
+	 * This method is a no-op in browsers that don't implement the Console API.
+	 *
+	 * @param {...string} msg Messages to output to console
+	 */
+	log.warn = console && console.warn ?
+		Function.prototype.bind.call( console.warn, console ) :
+		function () {};
 
-		/**
-		 * Write a message to the browser console's error channel.
-		 *
-		 * Most browsers also print a stacktrace when calling this method if the
-		 * argument is an Error object.
-		 *
-		 * This method is a no-op in browsers that don't implement the Console API.
-		 *
-		 * @since 1.26
-		 * @param {...Mixed} msg Messages to output to console
-		 */
-		log.error = console && console.error ?
-			Function.prototype.bind.call( console.error, console ) :
-			function () {};
+	/**
+	 * Write a message to the browser console's error channel.
+	 *
+	 * Most browsers also print a stacktrace when calling this method if the
+	 * argument is an Error object.
+	 *
+	 * This method is a no-op in browsers that don't implement the Console API.
+	 *
+	 * @since 1.26
+	 * @param {...Mixed} msg Messages to output to console
+	 */
+	log.error = console && console.error ?
+		Function.prototype.bind.call( console.error, console ) :
+		function () {};
 
-		/**
-		 * Create a property on a host object that, when accessed, will produce
-		 * a deprecation warning in the console.
-		 *
-		 * @param {Object} obj Host object of deprecated property
-		 * @param {string} key Name of property to create in `obj`
-		 * @param {Mixed} val The value this property should return when accessed
-		 * @param {string} [msg] Optional text to include in the deprecation message
-		 * @param {string} [logName] Name for the feature for logging and tracking
-		 *  purposes. Except for properties of the window object, tracking is only
-		 *  enabled if logName is set.
-		 */
-		log.deprecate = function ( obj, key, val, msg, logName ) {
-			var stacks;
-			function maybeLog() {
-				var name = logName || key,
-					trace = new Error().stack;
-				if ( !stacks ) {
-					stacks = new StringSet();
-				}
-				if ( !stacks.has( trace ) ) {
-					stacks.add( trace );
-					if ( logName || obj === window ) {
-						mw.track( 'mw.deprecate', name );
-					}
-					mw.log.warn(
-						'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
-					);
-				}
+	/**
+	 * Create a property on a host object that, when accessed, will produce
+	 * a deprecation warning in the console.
+	 *
+	 * @param {Object} obj Host object of deprecated property
+	 * @param {string} key Name of property to create in `obj`
+	 * @param {Mixed} val The value this property should return when accessed
+	 * @param {string} [msg] Optional text to include in the deprecation message
+	 * @param {string} [logName] Name for the feature for logging and tracking
+	 *  purposes. Except for properties of the window object, tracking is only
+	 *  enabled if logName is set.
+	 */
+	log.deprecate = function ( obj, key, val, msg, logName ) {
+		var stacks;
+		function maybeLog() {
+			var name = logName || key,
+				trace = new Error().stack;
+			if ( !stacks ) {
+				stacks = new StringSet();
 			}
-			// Support: Safari 5.0
-			// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
-			// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
-			try {
-				Object.defineProperty( obj, key, {
-					configurable: true,
-					enumerable: true,
-					get: function () {
-						maybeLog();
-						return val;
-					},
-					set: function ( newVal ) {
-						maybeLog();
-						val = newVal;
-					}
-				} );
-			} catch ( err ) {
-				obj[ key ] = val;
+			if ( !stacks.has( trace ) ) {
+				stacks.add( trace );
+				if ( logName || obj === window ) {
+					mw.track( 'mw.deprecate', name );
+				}
+				mw.log.warn(
+					'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
+				);
 			}
-		};
-
-		return log;
-	}() );
+		}
+		// Support: Safari 5.0
+		// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
+		// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
+		try {
+			Object.defineProperty( obj, key, {
+				configurable: true,
+				enumerable: true,
+				get: function () {
+					maybeLog();
+					return val;
+				},
+				set: function ( newVal ) {
+					maybeLog();
+					val = newVal;
+				}
+			} );
+		} catch ( err ) {
+			obj[ key ] = val;
+		}
+	};
 
 	/**
 	 * @class mw
@@ -397,7 +380,7 @@
 		trackQueue: [],
 
 		track: function ( topic, data ) {
-			mw.trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
+			mw.trackQueue.push( { topic: topic, data: data } );
 			// This method is extended by mediawiki.base to also fire events.
 		},
 
@@ -499,7 +482,7 @@
 			 *
 			 * See #implement and #execute for exact details on support for script, style and messages.
 			 *
-			 * Format:
+			 *     @example Format:
 			 *
 			 *     {
 			 *         'moduleName': {
@@ -545,7 +528,7 @@
 			 *    The module was registered client-side and requested, but the server denied knowledge
 			 *    of the module's existence.
 			 *
-			 * @property
+			 * @property {Object}
 			 * @private
 			 */
 			var registry = Object.create( null ),
@@ -573,7 +556,7 @@
 				 * Typically when a job is created for a module, the job's dependencies contain
 				 * both the required module and all its recursive dependencies.
 				 *
-				 * Format:
+				 *     @example Format:
 				 *
 				 *     {
 				 *         'dependencies': [ module names ],
@@ -605,7 +588,7 @@
 				marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
 				// For #addEmbeddedCSS()
-				nextCssBuffer,
+				lastCssBuffer,
 				rAF = window.requestAnimationFrame || setTimeout;
 
 			/**
@@ -634,9 +617,17 @@
 			 */
 			function flushCssBuffer( cssBuffer ) {
 				var i;
-				// Mark this object as inactive now so that further calls to addEmbeddedCSS() from
-				// the callbacks go to a new buffer instead of this one (T105973)
-				cssBuffer.active = false;
+				// Make sure the next call to addEmbeddedCSS() starts a new buffer.
+				// This must be done before we run the callbacks, as those may end up
+				// queueing new chunks which would be lost otherwise (T105973).
+				//
+				// There can be more than one buffer in-flight (given "@import", and
+				// generally due to race conditions). Only tell addEmbeddedCSS() to
+				// start a new buffer if we're currently flushing the last one that it
+				// started. If we're flushing an older buffer, keep the last one open.
+				if ( cssBuffer === lastCssBuffer ) {
+					lastCssBuffer = null;
+				}
 				newStyleTag( cssBuffer.cssText, marker );
 				for ( i = 0; i < cssBuffer.callbacks.length; i++ ) {
 					cssBuffer.callbacks[ i ]();
@@ -658,32 +649,24 @@
 			 *
 			 * @private
 			 * @param {string} cssText CSS text to be added in a `<style>` tag.
-			 * @param {Function} callback Called after the insertion has occurred
+			 * @param {Function} callback Called after the insertion has occurred.
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				// Create a buffer if:
-				// - We don't have one yet.
-				// - The previous one is closed.
+				// Start a new buffer if one of the following is true:
+				// - We've never started a buffer before, this will be our first.
+				// - The last buffer we created was flushed meanwhile, so start a new one.
 				// - The next CSS chunk syntactically needs to be at the start of a stylesheet (T37562).
-				if ( !nextCssBuffer || nextCssBuffer.active === false || cssText.slice( 0, '@import'.length ) === '@import' ) {
-					nextCssBuffer = {
+				if ( !lastCssBuffer || cssText.slice( 0, '@import'.length ) === '@import' ) {
+					lastCssBuffer = {
 						cssText: '',
-						callbacks: [],
-						active: null
+						callbacks: []
 					};
+					rAF( flushCssBuffer.bind( null, lastCssBuffer ) );
 				}
 
 				// Linebreak for somewhat distinguishable sections
-				nextCssBuffer.cssText += '\n' + cssText;
-				nextCssBuffer.callbacks.push( callback );
-
-				if ( nextCssBuffer.active === null ) {
-					nextCssBuffer.active = true;
-					// The flushCssBuffer callback has its parameter bound by reference, which means
-					// 1) We can still extend the buffer from our object reference after this point.
-					// 2) We can safely re-assign the variable (not the object) to start a new buffer.
-					rAF( flushCssBuffer.bind( null, nextCssBuffer ) );
-				}
+				lastCssBuffer.cssText += '\n' + cssText;
+				lastCssBuffer.callbacks.push( callback );
 			}
 
 			/**
@@ -994,6 +977,7 @@
 			 * For example, resolveRelativePath( '../foo.js', 'resources/src/bar/bar.js' )
 			 * returns 'resources/src/foo.js'.
 			 *
+			 * @private
 			 * @param {string} relativePath Relative file path, starting with ./ or ../
 			 * @param {string} basePath Path of the file (not directory) relativePath is relative to
 			 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
@@ -1029,6 +1013,7 @@
 
 			/**
 			 * Make a require() function scoped to a package file
+			 *
 			 * @private
 			 * @param {Object} moduleObj Module object from the registry
 			 * @param {string} basePath Path of the file this is scoped to. Used for relative paths.
@@ -1143,7 +1128,7 @@
 				var el = document.createElement( 'link' );
 
 				el.rel = 'stylesheet';
-				if ( media && media !== 'all' ) {
+				if ( media ) {
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
@@ -1747,7 +1732,7 @@
 				 * state; it is not a public interface for modifying the registry.
 				 *
 				 * @see #registry
-				 * @property
+				 * @property {Object}
 				 * @private
 				 */
 				moduleRegistry: registry,
@@ -1756,7 +1741,7 @@
 				 * Exposed for testing and debugging only.
 				 *
 				 * @see #batchRequest
-				 * @property
+				 * @property {number}
 				 * @private
 				 */
 				maxQueryLength: $VARS.maxQueryLength,
@@ -1777,19 +1762,38 @@
 				 * @private
 				 */
 				work: function () {
-					var implementations, sourceModules,
-						batch = [],
-						q = 0;
+					var q, module, implementation,
+						storedImplementations = [],
+						storedNames = [],
+						requestNames = [],
+						batch = new StringSet();
 
-					// Appends a list of modules from the queue to the batch
-					for ( ; q < queue.length; q++ ) {
-						// Only load modules which are registered
-						if ( queue[ q ] in registry && registry[ queue[ q ] ].state === 'registered' ) {
-							// Prevent duplicate entries
-							if ( batch.indexOf( queue[ q ] ) === -1 ) {
-								batch.push( queue[ q ] );
-								// Mark registered modules as loading
-								registry[ queue[ q ] ].state = 'loading';
+					mw.loader.store.init();
+
+					// Iterate the list of requested modules, and do one of three things:
+					// - 1) Nothing (if already loaded or being loaded).
+					// - 2) Eval the cached implementation from the module store.
+					// - 3) Request from network.
+					q = queue.length;
+					while ( q-- ) {
+						module = queue[ q ];
+						// Only consider modules which are the initial 'registered' state
+						if ( module in registry && registry[ module ].state === 'registered' ) {
+							// Ignore duplicates
+							if ( !batch.has( module ) ) {
+								// Progress the state machine
+								registry[ module ].state = 'loading';
+								batch.add( module );
+
+								implementation = mw.loader.store.get( module );
+								if ( implementation ) {
+									// Module store enabled and contains this module/version
+									storedImplementations.push( implementation );
+									storedNames.push( module );
+								} else {
+									// Module store disabled or doesn't have this module/version
+									requestNames.push( module );
+								}
 							}
 						}
 					}
@@ -1801,50 +1805,32 @@
 					// which are already loaded.
 					queue = [];
 
-					if ( !batch.length ) {
-						return;
-					}
+					asyncEval( storedImplementations, function ( err ) {
+						var failed;
+						// Not good, the cached mw.loader.implement calls failed! This should
+						// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
+						// Depending on how corrupt the string is, it is likely that some
+						// modules' implement() succeeded while the ones after the error will
+						// never run and leave their modules in the 'loading' state forever.
+						mw.loader.store.stats.failed++;
 
-					mw.loader.store.init();
-					if ( mw.loader.store.enabled ) {
-						implementations = [];
-						sourceModules = [];
-						batch = batch.filter( function ( module ) {
-							var implementation = mw.loader.store.get( module );
-							if ( implementation ) {
-								implementations.push( implementation );
-								sourceModules.push( module );
-								return false;
-							}
-							return true;
+						// Since this is an error not caused by an individual module but by
+						// something that infected the implement call itself, don't take any
+						// risks and clear everything in this cache.
+						mw.loader.store.clear();
+
+						mw.trackError( 'resourceloader.exception', {
+							exception: err,
+							source: 'store-eval'
 						} );
-						asyncEval( implementations, function ( err ) {
-							var failed;
-							// Not good, the cached mw.loader.implement calls failed! This should
-							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
-							// Depending on how corrupt the string is, it is likely that some
-							// modules' implement() succeeded while the ones after the error will
-							// never run and leave their modules in the 'loading' state forever.
-							mw.loader.store.stats.failed++;
-
-							// Since this is an error not caused by an individual module but by
-							// something that infected the implement call itself, don't take any
-							// risks and clear everything in this cache.
-							mw.loader.store.clear();
-
-							mw.trackError( 'resourceloader.exception', {
-								exception: err,
-								source: 'store-eval'
-							} );
-							// Re-add the failed ones that are still pending back to the batch
-							failed = sourceModules.filter( function ( module ) {
-								return registry[ module ].state === 'loading';
-							} );
-							batchRequest( failed );
+						// For any failed ones, fallback to requesting from network
+						failed = storedNames.filter( function ( module ) {
+							return registry[ module ].state === 'loading';
 						} );
-					}
+						batchRequest( failed );
+					} );
 
-					batchRequest( batch );
+					batchRequest( requestNames );
 				},
 
 				/**
@@ -1852,6 +1838,7 @@
 				 *
 				 * The #work() method will use this information to split up requests by source.
 				 *
+				 *     @example
 				 *     mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
 				 *
 				 * @private
@@ -2028,17 +2015,6 @@
 						}
 						setAndPropagate( module, state );
 					}
-				},
-
-				/**
-				 * Get the version of a module.
-				 *
-				 * @param {string} module Name of module
-				 * @return {string|null} The version, or null if the module (or its version) is not
-				 *  in the registry.
-				 */
-				getVersion: function ( module ) {
-					return module in registry ? registry[ module ].version : null;
 				},
 
 				/**
@@ -2235,17 +2211,16 @@
 					get: function ( module ) {
 						var key;
 
-						if ( !this.enabled ) {
-							return false;
+						if ( this.enabled ) {
+							key = getModuleKey( module );
+							if ( key in this.items ) {
+								this.stats.hits++;
+								return this.items[ key ];
+							}
+
+							this.stats.misses++;
 						}
 
-						key = getModuleKey( module );
-						if ( key in this.items ) {
-							this.stats.hits++;
-							return this.items[ key ];
-						}
-
-						this.stats.misses++;
 						return false;
 					},
 
@@ -2256,11 +2231,10 @@
 					 * @param {string} module Module name
 					 */
 					add: function ( module ) {
-						if ( !this.enabled ) {
-							return;
+						if ( this.enabled ) {
+							this.queue.push( module );
+							this.requestUpdate();
 						}
-						this.queue.push( module );
-						this.requestUpdate();
 					},
 
 					/**

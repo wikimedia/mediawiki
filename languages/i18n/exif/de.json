@@ -8,9 +8,9 @@
 			"Omnipaedista",
 			"Purodha",
 			"Red Baron",
+			"Tobi 406",
 			"Umherirrender",
-			"W (aka Wuzur)",
-			"Tobi 406"
+			"W (aka Wuzur)"
 		]
 	},
 	"exif-imagewidth": "Breite",
@@ -275,7 +275,11 @@
 	"exif-scenetype-1": "Normal",
 	"exif-customrendered-0": "Standard",
 	"exif-customrendered-1": "Benutzerdefiniert",
+	"exif-customrendered-2": "HDR (kein gespeichertes Original)",
+	"exif-customrendered-3": "HDR (Original gespeichert)",
+	"exif-customrendered-4": "Original (für HDR)",
 	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "Porträt-HDR",
 	"exif-customrendered-8": "Poträt",
 	"exif-exposuremode-0": "Automatische Belichtung",
 	"exif-exposuremode-1": "Manuelle Belichtung",

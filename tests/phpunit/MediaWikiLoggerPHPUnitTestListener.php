@@ -1,15 +1,22 @@
 <?php
 
+use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi;
-use MediaWiki\Logger\LogCapturingSpi;
+use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\TestListener;
+use PHPUnit\Framework\TestListenerDefaultImplementation;
+use PHPUnit\Framework\Warning;
 
 /**
  * Replaces the logging SPI on each test run. This allows
  * another component (the printer) to fetch the logs when
  * reporting why a test failed.
  */
-class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListener {
+class MediaWikiLoggerPHPUnitTestListener implements TestListener {
+	use TestListenerDefaultImplementation;
+
 	/** @var Spi|null */
 	private $originalSpi;
 	/** @var Spi|null */
@@ -18,42 +25,40 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	/**
 	 * A test started.
 	 *
-	 * @param PHPUnit_Framework_Test $test
+	 * @param Test $test
 	 */
-	public function startTest( PHPUnit_Framework_Test $test ) {
+	public function startTest( Test $test ) : void {
 		$this->lastTestLogs = null;
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
 	}
 
-	public function addRiskyTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addRiskyTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addIncompleteTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addSkippedTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addError( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addError( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addWarning( PHPUnit_Framework_Test $test, PHPUnit\Framework\Warning $e, $time ) {
+	public function addWarning( Test $test, Warning $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addFailure( PHPUnit_Framework_Test $test,
-		PHPUnit_Framework_AssertionFailedError $e, $time
-	) {
+	public function addFailure( Test $test, AssertionFailedError $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	private function augmentTestWithLogs( PHPUnit_Framework_Test $test ) {
+	private function augmentTestWithLogs( Test $test ) {
 		if ( $this->spi ) {
 			$logs = $this->spi->getLogs();
 			$formatted = $this->formatLogs( $logs );
@@ -64,10 +69,10 @@ class MediaWikiLoggerPHPUnitTestListener extends PHPUnit_Framework_BaseTestListe
 	/**
 	 * A test ended.
 	 *
-	 * @param PHPUnit_Framework_Test $test
+	 * @param Test $test
 	 * @param float $time
 	 */
-	public function endTest( PHPUnit_Framework_Test $test, $time ) {
+	public function endTest( Test $test, $time ) : void {
 		LoggerFactory::registerProvider( $this->originalSpi );
 		$this->originalSpi = null;
 		$this->spi = null;
