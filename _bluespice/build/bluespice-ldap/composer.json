@@ -9,6 +9,7 @@
 		"mediawiki/ldap-authorization": "dev-master",
 		"mediawiki/ldap-groups": "dev-master",
 		"mediawiki/ldap-provider": "dev-master",
-		"mediawiki/ldap-user-info": "dev-master"
+		"mediawiki/ldap-user-info": "dev-master",
+		"mediawiki/ldap-sync-all": "dev-master"
 	}
 }
