@@ -1060,6 +1060,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		);
 
+		// Prevent real HTTP requests from tests
+		$newServices->resetServiceForTesting( 'HttpRequestFactory' );
+		$newServices->redefineService(
+			'HttpRequestFactory',
+			function ( MediaWikiServices $services ) {
+				return new NullHttpRequestFactory();
+			}
+		);
+
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
 		self::resetLegacyGlobals();
