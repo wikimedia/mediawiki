@@ -2211,7 +2211,7 @@
 	"activeusers-groups": "Karberanê aidê gruba bımocne :",
 	"activeusers-excludegroups": "Karberanê aidê gruba ca tepışê:",
 	"activeusers-noresult": "Karberi nêdiyayê.",
-	"activeusers-submit": "Karberanê aktivan bıasene",
+	"activeusers-submit": "Karberanê aktifan bımocne",
 	"listgrouprights": "heqê grubê karberi",
 	"listgrouprights-summary": "wikiya cêrın a ke tede grubê karberi nişane biyê, listeya heqê cıresayişê inan o.\nqey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed]] belka esto.",
 	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">Heqa daiye</span>\n* <span class=\"listgrouprights-revoked\">Heqa gıreti</span>",
