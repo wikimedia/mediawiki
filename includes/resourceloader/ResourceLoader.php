@@ -188,9 +188,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$result = self::applyFilter( $filter, $data );
 			$cache->set( $key, $result, 24 * 3600 );
 		} else {
-			//begin changes by southparkfan
-			// $stats->increment( "resourceloader_cache.$filter.hit" );
-			//end changes by southparkfan
+			$stats->increment( "resourceloader_cache.$filter.hit" );
 		}
 		if ( $result === null ) {
 			// Cached failure
