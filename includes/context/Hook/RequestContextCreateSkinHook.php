@@ -20,8 +20,9 @@ interface RequestContextCreateSkinHook {
 	 * @since 1.35
 	 *
 	 * @param IContextSource $context RequestContext the skin is being created for
-	 * @param Skin|string &$skin Variable reference you may set a Skin instance or string key on to
-	 *   override the skin that will be used for the context
+	 * @param null|string|Skin &$skin A variable reference you may modify to set
+	 *        a Skin instance or string key on to override the skin that will be
+	 *        used for the context.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onRequestContextCreateSkin( $context, &$skin );
