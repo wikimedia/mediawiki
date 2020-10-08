@@ -168,7 +168,6 @@ class ImportTextFiles extends Maintenance {
 			if ( $rc && $status ) {
 				if ( $exists ) {
 					if ( is_object( $oldRevRecord ) ) {
-						$oldContent = $oldRevRecord->getContent( SlotRecord::MAIN );
 						RecentChange::notifyEdit(
 							$timestamp,
 							$title,
