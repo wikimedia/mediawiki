@@ -71,6 +71,9 @@ abstract class AbstractBlock {
 	 */
 	public $mHideName = false;
 
+	/** @var bool */
+	protected $isHardblock;
+
 	/** @var User|string|null */
 	protected $target;
 
@@ -106,6 +109,7 @@ abstract class AbstractBlock {
 			'reason'          => '',
 			'timestamp'       => '',
 			'hideName'        => false,
+			'anonOnly'        => false,
 		];
 
 		$options += $defaults;
@@ -115,6 +119,7 @@ abstract class AbstractBlock {
 		$this->setReason( $options['reason'] );
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setHideName( (bool)$options['hideName'] );
+		$this->isHardblock( !$options['anonOnly'] );
 	}
 
 	/**
@@ -253,6 +258,23 @@ abstract class AbstractBlock {
 	 */
 	public function isUsertalkEditAllowed( $x = null ) {
 		return wfSetVar( $this->allowUsertalk, $x );
+	}
+
+	/**
+	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
+	 *
+	 * Note that users are always hardblocked, since they're logged in by definition.
+	 *
+	 * @since 1.36 Moved up from DatabaseBlock
+	 * @param bool|null $x
+	 * @return bool
+	 */
+	public function isHardblock( $x = null ) {
+		wfSetVar( $this->isHardblock, $x );
+
+		return $this->getType() == self::TYPE_USER
+			? true
+			: $this->isHardblock;
 	}
 
 	/**

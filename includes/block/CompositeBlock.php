@@ -55,6 +55,7 @@ class CompositeBlock extends AbstractBlock {
 		$this->originalBlocks = $options[ 'originalBlocks' ];
 
 		$this->setHideName( $this->propHasValue( 'mHideName', true ) );
+		$this->isHardblock( $this->propHasValue( 'isHardblock', true ) );
 		$this->isSitewide( $this->propHasValue( 'isSitewide', true ) );
 		$this->isEmailBlocked( $this->propHasValue( 'mBlockEmail', true ) );
 		$this->isCreateAccountBlocked( $this->propHasValue( 'blockCreateAccount', true ) );
