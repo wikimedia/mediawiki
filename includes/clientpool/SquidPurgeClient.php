@@ -193,9 +193,11 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
+	 * Southparkfan: Add X-Device header
+	 *
 	 * @param string $url Fully expanded URL (with host and protocol)
 	 */
-	public function queuePurge( $url ) {
+	public function queuePurge( $url, $deviceHeader ) {
 		global $wgSquidPurgeUseHostHeader;
 		$url = str_replace( "\n", '', $url ); // sanity
 		$request = [];
@@ -218,6 +220,9 @@ class SquidPurgeClient {
 		$request[] = "Connection: Keep-Alive";
 		$request[] = "Proxy-Connection: Keep-Alive";
 		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;
+		if ( $deviceHeader ) {
+			$request[] = "X-Device: " . $deviceHeader;
+		}
 		// Two ''s to create \r\n\r\n
 		$request[] = '';
 		$request[] = '';

@@ -293,26 +293,32 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		$reqs = [];
 		foreach ( $urls as $url ) {
-			$urlInfo = wfParseUrl( self::expand( $url ) );
-			$urlHost = strlen( $urlInfo['port'] ?? null )
-				? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
-				: $urlInfo['host'];
-			$urlPath = strlen( $urlInfo['query'] ?? null )
-				? wfAppendQuery( $urlInfo['path'], $urlInfo['query'] )
-				: $urlInfo['path'];
-			$baseReq = [
-				'method' => 'PURGE',
-				'url' => $urlPath,
-				'headers' => [
-					'Host' => $urlHost,
-					'Connection' => 'Keep-Alive',
-					'Proxy-Connection' => 'Keep-Alive',
-					'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__
-				]
-			];
-			foreach ( $wgCdnServers as $server ) {
-				$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
+			// Southparkfan hack start (adds x-device)
+			foreach ( [ 'desktop', 'phone-tablet' ] as $deviceHeader ) {
+				$urlInfo = wfParseUrl( self::expand( $url ) );
+				$urlHost = strlen( $urlInfo['port'] ?? null )
+					? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
+					: $urlInfo['host'];
+				$urlPath = strlen( $urlInfo['query'] ?? null )
+					? wfAppendQuery( $urlInfo['path'], $urlInfo['query'] )
+					: $urlInfo['path'];
+				$baseReq = [
+					'method' => 'PURGE',
+					'url' => $urlPath,
+					'headers' => [
+						'Host' => $urlHost,
+						'Connection' => 'Keep-Alive',
+						'Proxy-Connection' => 'Keep-Alive',
+						'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__,
+						'X-Device' => $deviceHeader
+
+					]
+				];
+				foreach ( $wgCdnServers as $server ) {
+					$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
+				}
 			}
+			// Southparkfan hack end
 		}
 
 		$http = MediaWikiServices::getInstance()->getHttpRequestFactory()
