@@ -1377,3 +1377,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-TranslationNotifications
 	branch = REL1_35
 	ignore = dirty
+[submodule "skins/Truglass"]
+	path = skins/Truglass
+	url = https://github.com/wikimedia/mediawiki-skins-Truglass
+	branch = master
+	ignore = dirty
