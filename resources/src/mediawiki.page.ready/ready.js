@@ -161,20 +161,50 @@ function isSearchInput( element ) {
  * @param {string} moduleName Name of a module
  */
 function loadSearchModule( moduleName ) {
+	// T251544: Collect search performance metrics to compare Vue search with
+	// mediawiki.searchSuggest performance. Marks and Measures will only be
+	// recorded on the Vector skin.
+	//
+	// Vue search isn't loaded through this function so we are only collecting
+	// legacy search performance metrics here.
+	var shouldTestSearch = !!( moduleName === 'mediawiki.searchSuggest' &&
+		mw.config.get( 'skin' ) === 'vector' &&
+		window.performance &&
+		performance.mark &&
+		performance.measure &&
+		performance.getEntriesByName ),
+		loadStartMark = 'mwVectorLegacySearchLoadStart',
+		loadEndMark = 'mwVectorLegacySearchLoadEnd';
+
+	function requestSearchModule() {
+		if ( shouldTestSearch ) {
+			performance.mark( loadStartMark );
+		}
+		mw.loader.using( moduleName, function () {
+			if ( shouldTestSearch && performance.getEntriesByName( loadStartMark ).length ) {
+				performance.mark( loadEndMark );
+				performance.measure( 'mwVectorLegacySearchLoadStartToLoadEnd', loadStartMark, loadEndMark );
+			}
+		} );
+	}
+
 	// Load the module once a search input is focussed.
 	function eventListener( e ) {
 		if ( isSearchInput( e.target ) ) {
-			mw.loader.load( moduleName );
+			requestSearchModule();
+
 			document.removeEventListener( 'focusin', eventListener );
 		}
 	}
-	document.addEventListener( 'focusin', eventListener );
 
 	// Load the module now if the search input is already focused,
 	// because the user started typing before the JavaScript arrived.
 	if ( document.activeElement && isSearchInput( document.activeElement ) ) {
-		mw.loader.load( moduleName );
+		requestSearchModule();
+		return;
 	}
+
+	document.addEventListener( 'focusin', eventListener );
 }
 
 // Skins may decide to disable this behaviour or use an alternative module.
