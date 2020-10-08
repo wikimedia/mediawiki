@@ -193,6 +193,8 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
+	 * Southparkfan: Add X-Device header
+	 *
 	 * @param string $url Fully expanded URL (with host and protocol)
 	 */
 	public function queuePurge( $url, $deviceHeader ) {
