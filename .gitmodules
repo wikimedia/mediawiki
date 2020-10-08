@@ -1376,3 +1376,7 @@
 	path = extensions/TranslationNotifications
 	url = https://github.com/wikimedia/mediawiki-extensions-TranslationNotifications
 	branch = REL1_34
+[submodule "skins/Truglass"]
+	path = skins/Truglass
+	url = https://github.com/wikimedia/mediawiki-skins-Truglass
+	branch = master
