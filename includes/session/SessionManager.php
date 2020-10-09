@@ -1057,7 +1057,6 @@ final class SessionManager implements SessionManagerInterface {
 			$message = 'IP change within the same session';
 			$logData += [
 				'oldIp' => $data['ip'],
-				'newIp' => $ip,
 				'oldIpRecorded' => $data['timestamp'],
 			];
 		}
@@ -1077,6 +1076,8 @@ final class SessionManager implements SessionManagerInterface {
 			$logData += [
 				'session' => $session->getId(),
 				'user' => $session->getUser()->getName(),
+				'clientip' => $ip,
+				'userAgent' => $session->getRequest()->getHeader( 'user-agent' ),
 			];
 			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
 			$logger->log( $logLevel, $message, $logData );
