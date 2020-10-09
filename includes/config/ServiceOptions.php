@@ -20,6 +20,8 @@ use Wikimedia\Assert\Assert;
  * optional options. This makes sense for services, since they shouldn't be constructed by
  * outside code.)
  *
+ * @newable since 1.36
+ *
  * @since 1.34
  */
 class ServiceOptions {
@@ -27,6 +29,8 @@ class ServiceOptions {
 	private $options = [];
 
 	/**
+	 * @stable to call since 1.36
+	 *
 	 * @param string[] $keys Which keys to extract from $sources
 	 * @param Config|array ...$sources Each source is either a Config object or an array. If the
 	 *  same key is present in two sources, the first one takes precedence. Keys that are not in
