@@ -10,6 +10,7 @@
 			"Maidis",
 			"McAang",
 			"Meelo",
+			"MuratTheTurkish",
 			"Rapsar",
 			"Sayginer",
 			"Talha Samil Cakir",
@@ -33,9 +34,11 @@
 	"ooui-dialog-process-continue": "Devam et",
 	"ooui-combobox-button-label": "Seçenekler arasında geçiş yap",
 	"ooui-selectfile-button-select": "Dosya seç",
+	"ooui-selectfile-button-select-multiple": "Dosya seç",
 	"ooui-selectfile-not-supported": "Dosya seçimi desteklenmiyor",
 	"ooui-selectfile-placeholder": "Herhangi bir dosya seçilmedi",
 	"ooui-selectfile-dragdrop-placeholder": "Dosyayı buraya aç",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Dosyaları buraya bırak",
 	"ooui-popup-widget-close-button-aria-label": "Kapat",
 	"ooui-field-help": "Yardım"
 }

@@ -111,8 +111,12 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$store = new TestBagOStuff();
 		$logger = new \TestLogger( true, function ( $m ) {
-			// Discard all log events starting with expected prefix
-			return preg_match( '/^SessionBackend "\{session\}" /', $m ) ? null : $m;
+			return (
+				// Discard all log events starting with expected prefix
+				preg_match( '/^SessionBackend "\{session\}" /', $m )
+				// Also discard logs from T264793
+				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
+			) ? null : $m;
 		} );
 		$manager = new SessionManager( [
 			'store' => $store,

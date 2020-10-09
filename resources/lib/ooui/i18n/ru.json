@@ -7,6 +7,7 @@
 			"Iluvatar",
 			"KPu3uC B Poccuu",
 			"Kalan",
+			"Kareyac",
 			"Mailman",
 			"MaxBioHazard",
 			"Meshkov.a",
@@ -38,8 +39,10 @@
 	"ooui-dialog-process-continue": "Продолжить",
 	"ooui-combobox-button-label": "Выпадающее меню",
 	"ooui-selectfile-button-select": "Выберите файл",
+	"ooui-selectfile-button-select-multiple": "Выберите файлы",
 	"ooui-selectfile-not-supported": "Выбор файла не поддерживается",
 	"ooui-selectfile-placeholder": "Не выбран файл",
 	"ooui-selectfile-dragdrop-placeholder": "Перетащите файл сюда",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Перетащите файлы сюда",
 	"ooui-field-help": "Справка"
 }

@@ -28,6 +28,7 @@
 	"ooui-dialog-process-retry": "Prøv igen",
 	"ooui-dialog-process-continue": "Fortsæt",
 	"ooui-selectfile-button-select": "Vælg en fil",
+	"ooui-selectfile-button-select-multiple": "Vælg filer",
 	"ooui-selectfile-placeholder": "Ingen filer er valgt",
 	"ooui-selectfile-dragdrop-placeholder": "Smid filen her",
 	"ooui-popup-widget-close-button-aria-label": "Luk",

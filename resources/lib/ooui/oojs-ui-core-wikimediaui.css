@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.3
+ * OOUI v0.40.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-09-02T15:43:15Z
+ * Date: 2020-10-07T21:26:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -508,6 +508,12 @@
   display: table;
 }
 .oo-ui-fieldLayout:after {
+  clear: both;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body:after,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body:after {
+  content: ' ';
+  display: block;
   clear: both;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,

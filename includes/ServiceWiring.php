@@ -116,6 +116,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -212,7 +213,8 @@ return [
 			new ServiceOptions(
 				BlockUtils::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
-			)
+			),
+			$services->getUserFactory()
 		);
 	},
 
@@ -1336,7 +1338,10 @@ return [
 	},
 
 	'UserFactory' => function ( MediaWikiServices $services ) : UserFactory {
-		return new UserFactory( $services->getUserNameUtils() );
+		return new UserFactory(
+			$services->getDBLoadBalancer(),
+			$services->getUserNameUtils()
+		);
 	},
 
 	'UserGroupManager' => function ( MediaWikiServices $services ) : UserGroupManager {
@@ -1357,6 +1362,14 @@ return [
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
 				User::newFromIdentity( $user )->invalidateCache();
 			} ]
+		);
+	},
+
+	'UserNamePrefixSearch' => function ( MediaWikiServices $services ) : UserNamePrefixSearch {
+		return new UserNamePrefixSearch(
+			$services->getDBLoadBalancer(),
+			$services->getPermissionManager(),
+			$services->getUserFactory()
 		);
 	},
 

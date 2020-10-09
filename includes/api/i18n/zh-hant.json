@@ -51,6 +51,7 @@
 	"apihelp-block-param-allowusertalk": "允許使用者編輯自己的討論頁（依據<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>的設定）。",
 	"apihelp-block-param-reblock": "若使用者已被封鎖，覆寫既有的封鎖設定值。",
 	"apihelp-block-param-watchuser": "監視使用者或 IP 位址的使用者頁面與對話頁面。",
+	"apihelp-block-param-watchlistexpiry": "監視清單期限時間戳記。忽略此參數會維持目前期限不變。",
 	"apihelp-block-param-tags": "在封鎖日誌裡更改套用到項目的標籤。",
 	"apihelp-block-param-partial": "封鎖使用者訪問特殊頁面或命名空間，而不是整個網站。",
 	"apihelp-block-param-pagerestrictions": "封鎖使用者做出編輯的標題清單。僅在 <var>partial</var> 被設定為 true 時套用。",

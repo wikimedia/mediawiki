@@ -73,7 +73,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.8 to 1.10.9.
 * wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
-* Updated OOUI from 0.39.3 to 0.40.3.
+* Updated OOUI from 0.39.3 to 0.40.4.
 * Updated jquery.client from 2.0.2 to 3.0.0.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.0.1.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
@@ -92,11 +92,11 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === Bug fixes in 1.36 ===
-(T190285) ApiEditPage module used to switch 'undo' and 'undoafter' parameters,
-if it founds you reversed them (based on assumption that higher revision ID
-indicates a later revision). The assumption is not always true and is hindering
-proper edit undoing in some cases, hence the logic has been removed.
-Reversing the paramaters will now lead to edit conflict or undefined behavior.
+* (T190285) ApiEditPage module used to switch 'undo' and 'undoafter' parameters,
+  if it founds you reversed them (based on assumption that higher revision ID
+  indicates a later revision). The assumption is not always true and is
+  hindering proper edit undoing in some cases, hence the logic has been removed.
+  Reversing the paramaters will now lead to edit conflict or undefined behavior.
 * …
 
 === Action API changes in 1.36 ===

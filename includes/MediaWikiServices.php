@@ -78,6 +78,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1369,6 +1370,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserGroupManagerFactory() : UserGroupManagerFactory {
 		return $this->getService( 'UserGroupManagerFactory' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UserNamePrefixSearch
+	 */
+	public function getUserNamePrefixSearch() : UserNamePrefixSearch {
+		return $this->getService( 'UserNamePrefixSearch' );
 	}
 
 	/**

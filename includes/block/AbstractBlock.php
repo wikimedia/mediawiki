@@ -29,7 +29,6 @@ use Message;
 use RequestContext;
 use Title;
 use User;
-use Wikimedia\IPUtils;
 
 /**
  * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
@@ -72,6 +71,9 @@ abstract class AbstractBlock {
 	 */
 	public $mHideName = false;
 
+	/** @var bool */
+	protected $isHardblock;
+
 	/** @var User|string|null */
 	protected $target;
 
@@ -107,6 +109,7 @@ abstract class AbstractBlock {
 			'reason'          => '',
 			'timestamp'       => '',
 			'hideName'        => false,
+			'anonOnly'        => false,
 		];
 
 		$options += $defaults;
@@ -116,6 +119,7 @@ abstract class AbstractBlock {
 		$this->setReason( $options['reason'] );
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setHideName( (bool)$options['hideName'] );
+		$this->isHardblock( !$options['anonOnly'] );
 	}
 
 	/**
@@ -257,6 +261,23 @@ abstract class AbstractBlock {
 	}
 
 	/**
+	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
+	 *
+	 * Note that users are always hardblocked, since they're logged in by definition.
+	 *
+	 * @since 1.36 Moved up from DatabaseBlock
+	 * @param bool|null $x
+	 * @return bool
+	 */
+	public function isHardblock( $x = null ) {
+		wfSetVar( $this->isHardblock, $x );
+
+		return $this->getType() == self::TYPE_USER
+			? true
+			: $this->isHardblock;
+	}
+
+	/**
 	 * Determine whether the block prevents a given right. A right
 	 * may be blacklisted or whitelisted, or determined from a
 	 * property on the block object. For certain rights, the property
@@ -379,54 +400,9 @@ abstract class AbstractBlock {
 	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
-		# We may have been through this before
-		if ( $target instanceof UserIdentity ) {
-			$userObj = User::newFromIdentity( $target );
-			if ( IPUtils::isValid( $target->getName() ) ) {
-				return [ $userObj, self::TYPE_IP ];
-			} else {
-				return [ $userObj, self::TYPE_USER ];
-			}
-		} elseif ( $target === null ) {
-			return [ null, null ];
-		}
-
-		$target = trim( $target );
-
-		if ( IPUtils::isValid( $target ) ) {
-			# We can still create a User if it's an IP address, but we need to turn
-			# off validation checking (which would exclude IP addresses)
-			return [
-				User::newFromName( IPUtils::sanitizeIP( $target ), false ),
-				self::TYPE_IP
-			];
-
-		} elseif ( IPUtils::isValidRange( $target ) ) {
-			# Can't create a User from an IP range
-			return [ IPUtils::sanitizeRange( $target ), self::TYPE_RANGE ];
-		}
-
-		# Consider the possibility that this is not a username at all
-		# but actually an old subpage (T31797)
-		if ( strpos( $target, '/' ) !== false ) {
-			# An old subpage, drill down to the user behind it
-			$target = explode( '/', $target )[0];
-		}
-
-		$userObj = User::newFromName( $target );
-		if ( $userObj instanceof User ) {
-			# Note that since numbers are valid usernames, a $target of "12345" will be
-			# considered a User.  If you want to pass a block ID, prepend a hash "#12345",
-			# since hash characters are not valid in usernames or titles generally.
-			return [ $userObj, self::TYPE_USER ];
-
-		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
-			# Autoblock reference in the form "#12345"
-			return [ substr( $target, 1 ), self::TYPE_AUTO ];
-
-		} else {
-			return [ null, null ];
-		}
+		return MediaWikiServices::getInstance()
+			->getBlockUtils()
+			->parseBlockTarget( $target );
 	}
 
 	/**

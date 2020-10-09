@@ -70,6 +70,18 @@
 		"stop": {
 			"file": "images/icons/stop.svg"
 		},
+		"volumeDown": {
+			"file": {
+				"ltr": "images/icons/volumeDown-ltr.svg",
+				"rtl": "images/icons/volumeDown-rtl.svg"
+			}
+		},
+		"volumeOff": {
+			"file": {
+				"ltr": "images/icons/volumeOff-ltr.svg",
+				"rtl": "images/icons/volumeOff-rtl.svg"
+			}
+		},
 		"volumeUp": {
 			"file": {
 				"ltr": "images/icons/volumeUp-ltr.svg",

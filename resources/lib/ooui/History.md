@@ -1,4 +1,23 @@
 # OOUI Release History
+## v0.40.4 / 2020-10-07
+### Styles
+* FieldLayout: Upstream clearfix from demo (Ed Sanders)
+
+### Code
+* DropdownInputWidget: Fix failing when 1st element is a group (Thiemo Kreuz)
+* SelectFileWidget: Add specific messages for multiple file widgets (Ed Sanders)
+* SelectFileWidget: Allow using showDropTarget=true with multiple=true (Ed Sanders)
+* TextInputWidget: support non-boolean autocomplete values (Gergő Tisza)
+* PHP Tag: Handle stringifiable PHP values (Gergő Tisza)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.3 (libraryupgrader)
+* icons: Add 'volumeDown*' and 'volumeOff*' and optimize 'volumeUp' further (Volker E.)
+* icons: Manually optimize userAdd/Contributions/Group icons (Thiemo Kreuz)
+* icons: Merge paths in 'recentChanges' icons (Thiemo Kreuz)
+* icons: Re-crush with SVGO (Volker E.)
+* icons: Remove not needed `fill-rule="…"` and `clip-rule="…"` (Thiemo Kreuz)
+* icons: Remove not needed transformations from 'recentChanges' (Thiemo Kreuz)
+
+
 ## v0.40.3 / 2020-09-02
 ### Styles
 * Update 'wikimedia-ui-base' to v0.17.0 and remove obsolete variable definitions (Volker E.)
