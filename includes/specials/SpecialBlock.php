@@ -957,6 +957,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool
 	 */
 	public static function canBlockEmail( UserIdentity $user ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		return MediaWikiServices::getInstance()
 			->getBlockPermissionCheckerFactory()
 			->newBlockPermissionChecker( null, User::newFromIdentity( $user ) )
