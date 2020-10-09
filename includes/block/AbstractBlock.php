@@ -327,68 +327,6 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Get/set whether the block prevents a given action
-	 *
-	 * @deprecated since 1.33, use appliesToRight to determine block
-	 *  behaviour, and specific methods to get/set properties
-	 * @param string $action Action to check
-	 * @param bool|null $x Value for set, or null to just get value
-	 * @return bool|null Null for unrecognized rights.
-	 */
-	public function prevents( $action, $x = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		$config = RequestContext::getMain()->getConfig();
-		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
-		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
-
-		$res = null;
-		switch ( $action ) {
-			case 'edit':
-				# For now... <evil laugh>
-				$res = true;
-				break;
-			case 'createaccount':
-				$res = wfSetVar( $this->blockCreateAccount, $x );
-				break;
-			case 'sendemail':
-				$res = wfSetVar( $this->mBlockEmail, $x );
-				break;
-			case 'upload':
-				// Until T6995 is completed
-				$res = $this->isSitewide();
-				break;
-			case 'editownusertalk':
-				// NOTE: this check is not reliable on partial blocks
-				// since partially blocked users are always allowed to edit
-				// their own talk page unless a restriction exists on the
-				// page or User_talk: namespace
-				wfSetVar( $this->allowUsertalk, $x === null ? null : !$x );
-				$res = !$this->isUsertalkEditAllowed();
-
-				// edit own user talk can be disabled by config
-				if ( !$blockAllowsUTEdit ) {
-					$res = true;
-				}
-				break;
-			case 'read':
-				$res = false;
-				break;
-			case 'purge':
-				$res = false;
-				break;
-		}
-		if ( !$res && $blockDisablesLogin ) {
-			// If a block would disable login, then it should
-			// prevent any action that all users cannot do
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-			$anon = new User;
-			$res = $permissionManager->userHasRight( $anon, $action ) ? $res : true;
-		}
-
-		return $res;
-	}
-
-	/**
 	 * From an existing block, get the target and the type of target.
 	 * Note that, except for null, it is always safe to treat the target
 	 * as a string; for User objects this will return User::__toString()
@@ -486,25 +424,6 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Get the user who implemented this block
-	 * @deprecated since 1.35. Use getBy/getByName instead
-	 * @return null User object or null. May name a foreign user.
-	 */
-	public function getBlocker() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return null;
-	}
-
-	/**
-	 * Set the user who implemented (or will implement) this block
-	 * @deprecated since 1.35. Moved to DatabaseBlock
-	 * @param User|string $user Local User object or username string
-	 */
-	public function setBlocker( $user ) {
-		wfDeprecated( __METHOD__, '1.35' );
-	}
-
-	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
@@ -522,26 +441,6 @@ abstract class AbstractBlock {
 				$context->getRequest()->getIP()
 			);
 		return array_merge( [ [ $message->getKey() ], $message->getParams() ] );
-	}
-
-	/**
-	 * Get block information used in different block error messages
-	 *
-	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
-	 *  extract the params from the Message object using Message::getParams.
-	 * @since 1.33
-	 * @param IContextSource $context
-	 * @return array
-	 */
-	public function getBlockErrorParams( IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getBlockErrorFormatter()->getMessage(
-				$this,
-				$context->getUser(),
-				$context->getLanguage(),
-				$context->getRequest()->getIP()
-			)->getParams();
 	}
 
 	/**
