@@ -171,7 +171,7 @@ class SkinMustache extends SkinTemplate {
 			// HTML strings
 			'html-site-notice' => $this->getSiteNotice(),
 			'html-user-message' => $newTalksHtml ?
-				Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : '',
+				Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : null,
 			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
 			'html-body-content' => $this->wrapHTML( $out->getTitle(), $bodyContent ),

@@ -14,7 +14,14 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialUnblock( MediaWikiServices::getInstance()->getUnblockUserFactory() );
+		$services = MediaWikiServices::getInstance();
+		return new SpecialUnblock(
+			$services->getUnblockUserFactory(),
+			$services->getBlockUtils(),
+			$services->getUserNameUtils(),
+			$services->getUserNamePrefixSearch(),
+			$services->getSpecialPageFactory()
+		);
 	}
 
 	protected function tearDown() : void {
