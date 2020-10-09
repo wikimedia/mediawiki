@@ -54,13 +54,17 @@ class TableCleanup extends Maintenance {
 		$this->reportInterval = $this->getOption( 'reporting-interval', $this->reportInterval );
 
 		$this->dryrun = $this->hasOption( 'dry-run' );
+
 		if ( $this->dryrun ) {
-			$wgUser = User::newFromName( 'Conversion script' );
+			$user = User::newFromName( 'Conversion script' );
 			$this->output( "Checking for bad titles...\n" );
 		} else {
-			$wgUser = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
+			$user = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
 			$this->output( "Checking and fixing bad titles...\n" );
 		}
+		// Support deprecated use of the global
+		$wgUser = $user;
+
 		$this->runTable( $this->defaultParams );
 	}
 
