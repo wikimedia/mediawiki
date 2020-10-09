@@ -212,7 +212,7 @@ class RevisionRenderer {
 
 		// short circuit if there is only the main slot
 		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] ) {
-			return $rrev->getSlotParserOutput( SlotRecord::MAIN );
+			return $rrev->getSlotParserOutput( SlotRecord::MAIN, $hints );
 		}
 
 		// move main slot to front
