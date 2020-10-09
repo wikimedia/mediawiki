@@ -237,7 +237,7 @@ because of Phabricator reports.
   - ::getCookieValue
   - ::getIdFromCookieValue
   - ::shouldTrackWithCookie
-* The static public callback function SpecialUnblock::processUIUnblock has been
+* The public static callback function SpecialUnblock::processUIUnblock has been
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
 * ChangeTags::truncateTagDescription, deprecated in 1.35, has been removed.
@@ -254,6 +254,9 @@ because of Phabricator reports.
   - ::purgeExpired - use UserGroupManager::purgeExpired
   - ::getMembershipsForUser - use UserGroupManager::getUserGroupMemberships
   - ::getMembership - use UserGroupManager::getUserGroupMemberships
+* The public static callback function SpecialBlock::validateTargetField has been
+  removed. This method was for internal use only, and appears unused outside of
+  MediaWiki core.
 * …
 
 === Deprecations in 1.36 ===

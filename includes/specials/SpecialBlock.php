@@ -22,13 +22,18 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockUser;
+use MediaWiki\Block\BlockUserFactory;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
 
 /**
@@ -42,6 +47,21 @@ class SpecialBlock extends FormSpecialPage {
 	 * @var PermissionManager
 	 */
 	private $permissionManager;
+
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	/** @var BlockPermissionCheckerFactory */
+	private $blockPermissionCheckerFactory;
+
+	/** @var BlockUserFactory */
+	private $blockUserFactory;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
 
 	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo)
@@ -63,10 +83,30 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var array */
 	protected $preErrors = [];
 
-	public function __construct( PermissionManager $permissionManager ) {
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param BlockUtils $blockUtils
+	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
+	 * @param BlockUserFactory $blockUserFactory
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 */
+	public function __construct(
+		PermissionManager $permissionManager,
+		BlockUtils $blockUtils,
+		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
+		BlockUserFactory $blockUserFactory,
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch
+	) {
 		parent::__construct( 'Block', 'block' );
 
 		$this->permissionManager = $permissionManager;
+		$this->blockUtils = $blockUtils;
+		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
+		$this->blockUserFactory = $blockUserFactory;
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
 	}
 
 	public function doesWrites() {
@@ -82,13 +122,9 @@ class SpecialBlock extends FormSpecialPage {
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
 		# T17810: blocked admins should have limited access here
-		$blockUserValidator = MediaWikiServices::getInstance()
-			->getBlockPermissionCheckerFactory()
-			->newBlockPermissionChecker(
-				$this->target,
-				$user
-			);
-		$status = $blockUserValidator->checkBlockPermissions();
+		$status = $this->blockPermissionCheckerFactory
+			->newBlockPermissionChecker( $this->target, $user )
+			->checkBlockPermissions();
 		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
@@ -180,7 +216,15 @@ class SpecialBlock extends FormSpecialPage {
 			'size' => '45',
 			'autofocus' => true,
 			'required' => true,
-			'validation-callback' => [ __CLASS__, 'validateTargetField' ],
+			'validation-callback' => function ( $value, $alldata, $form ) {
+				$status = $this->blockUtils->validateTarget( $value );
+				if ( !$status->isOK() ) {
+					$errors = $status->getErrorsArray();
+
+					return $form->msg( ...$errors[0] );
+				}
+				return true;
+			},
 			'section' => 'target',
 		];
 
@@ -242,7 +286,10 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'actions',
 		];
 
-		if ( self::canBlockEmail( $user ) ) {
+		if ( $this->blockPermissionCheckerFactory
+			->newBlockPermissionChecker( null, $user )
+			->checkEmailPermissions()
+		) {
 			$a['DisableEmail'] = [
 				'type' => 'check',
 				'label-message' => 'ipbemailban',
@@ -352,7 +399,7 @@ class SpecialBlock extends FormSpecialPage {
 		$fields['Target']['default'] = (string)$this->target;
 
 		if ( $this->target ) {
-			$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $this->target );
+			$status = $this->blockUtils->validateTarget( $this->target );
 			if ( !$status->isOK() ) {
 				$errors = $status->getErrorsArray();
 				$this->preErrors = array_merge( $this->preErrors, $errors );
@@ -637,7 +684,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Several parameters are handled for backwards compatability. 'wpTarget' is
 	 * prioritized, since it matches the HTML form.
 	 *
-	 * @deprecated since 1.36. Use AbstractBlock::parseTarget directly instead.
+	 * @deprecated since 1.36. Use BlockUtils::parseBlockTarget directly instead.
 	 *
 	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
@@ -665,26 +712,6 @@ class SpecialBlock extends FormSpecialPage {
 			}
 		}
 		return $targetAndType;
-	}
-
-	/**
-	 * HTMLForm field validation-callback for Target field.
-	 * @since 1.18
-	 * @internal since 1.36, use BlockUtils directly instead
-	 * @param string $value
-	 * @param array $alldata
-	 * @param HTMLForm $form
-	 * @return Message|true
-	 */
-	public static function validateTargetField( $value, $alldata, $form ) {
-		$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $value );
-		if ( !$status->isOK() ) {
-			$errors = $status->getErrorsArray();
-
-			return $form->msg( ...$errors[0] );
-		} else {
-			return true;
-		}
 	}
 
 	/**
@@ -724,7 +751,31 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|array
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		$performer = $context->getUser();
+		$services = MediaWikiServices::getInstance();
+		return self::processFormInternal(
+			$data,
+			$context->getUser(),
+			$services->getBlockUserFactory(),
+			$services->getBlockUtils()
+		);
+	}
+
+	/**
+	 * Implementation details for processForm
+	 * Own function to allow sharing the deprecated code with non-deprecated and service code
+	 *
+	 * @param array $data
+	 * @param User $performer
+	 * @param BlockUserFactory $blockUserFactory
+	 * @param BlockUtils $blockUtils
+	 * @return bool|array
+	 */
+	private static function processFormInternal(
+		array $data,
+		User $performer,
+		BlockUserFactory $blockUserFactory,
+		BlockUtils $blockUtils
+	) {
 		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
 
@@ -739,7 +790,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		/** @var User $target */
-		list( $target, $type ) = AbstractBlock::parseTarget( $data['Target'] );
+		list( $target, $type ) = $blockUtils->parseBlockTarget( $data['Target'] );
 		if ( $type == DatabaseBlock::TYPE_USER ) {
 			$user = $target;
 			$target = $user->getName();
@@ -818,9 +869,9 @@ class SpecialBlock extends FormSpecialPage {
 			$blockOptions['isEmailBlocked'] = $data['DisableEmail'];
 		}
 
-		$blockUser = MediaWikiServices::getInstance()->getBlockUserFactory()->newBlockUser(
+		$blockUser = $blockUserFactory->newBlockUser(
 			$target,
-			$context->getUser(),
+			$performer,
 			$data['Expiry'],
 			$blockReason,
 			$blockOptions,
@@ -947,7 +998,12 @@ class SpecialBlock extends FormSpecialPage {
 			$data['PageRestrictions'] = '';
 			$data['NamespaceRestrictions'] = '';
 		}
-		return self::processForm( $data, $form->getContext() );
+		return self::processFormInternal(
+			$data,
+			$this->getUser(),
+			$this->blockUserFactory,
+			$this->blockUtils
+		);
 	}
 
 	/**
@@ -969,13 +1025,14 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {
