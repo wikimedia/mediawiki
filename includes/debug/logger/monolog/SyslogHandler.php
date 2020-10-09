@@ -83,12 +83,14 @@ class SyslogHandler extends SyslogUdpHandler {
 	protected function makeCommonSyslogHeader( $severity ) {
 		$pri = $severity + $this->facility;
 
-		// Goofy date format courtesy of RFC 3164 :(
-		// RFC 3164 actually specifies that the day of month should be space
-		// padded rather than unpadded but this seems to work with rsyslog and
-		// Logstash.
-		$timestamp = date( 'M j H:i:s' );
+		// BEGIN Miraheze specific code
+		// Syslog-ng refuses th parse logs where the timestamp is 'M j' instead
+		// of 'M  j' (extra whitespace, yes)
+		// -- Southparkfan 2020-10-09
+		$timestamp = date( 'M  j H:i:s' );
 
-		return "<{$pri}>{$timestamp} {$this->hostname} {$this->appname}: ";
+		// Do not include {$this->hostname} in the log rule, unnecessary
+		return "<{$pri}>{$timestamp} {$this->appname}: ";
+		// END Miraheze specific code
 	}
 }
