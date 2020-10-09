@@ -32,6 +32,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use User;
 use WebRequest;
 use Wikimedia\ObjectFactory;
@@ -987,6 +988,99 @@ final class SessionManager implements SessionManagerInterface {
 			$logData['userVerified'] = $info->getUserInfo()->isVerified();
 		}
 		$this->logger->info( 'Failed to load session, unpersisting', $logData );
+	}
+
+	/**
+	 * If the same session is suddenly used from a different IP, that's potentially due
+	 * to a session leak, so log it. In the vast majority of cases it is a false positive
+	 * due to a user switching connections, but we are interested in an audit track where
+	 * we can look up a specific username, so a noisy log is fine.
+	 * Also log changes to the mwuser cookie, an analytics cookie set by mediawiki.user.js
+	 * which should be a little less noisy.
+	 * @private For use in Setup.php only
+	 * @param Session|null $session For testing only
+	 */
+	public function logPotentialSessionLeakage( Session $session = null ) {
+		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
+		$session = $session ?: self::getGlobalSession();
+		$suspiciousIpExpiry = $this->config->get( 'SuspiciousIpExpiry' );
+
+		if ( $suspiciousIpExpiry === false
+			// We only care about logged-in users.
+			|| !$session->isPersistent() || $session->getUser()->isAnon()
+			// We only care about cookie-based sessions.
+			|| !( $session->getProvider() instanceof CookieSessionProvider )
+		) {
+			return;
+		}
+		try {
+			$ip = $session->getRequest()->getIP();
+		} catch ( \MWException $e ) {
+			return;
+		}
+		if ( $ip === '127.0.0.1' || $proxyLookup->isConfiguredProxy( $ip ) ) {
+			return;
+		}
+		$mwuser = $session->getRequest()->getCookie( 'mwuser-sessionId' );
+		$now = \MWTimestamp::now( TS_UNIX );
+
+		// Record (and possibly log) that the IP is using the current session.
+		// Don't touch the stored data unless we are changing the IP or re-adding an expired one.
+		// This is slightly inaccurate (when an existing IP is seen again, the expiry is not
+		// extended) but that shouldn't make much difference and limits the session write frequency.
+		$data = $session->get( 'SessionManager-logPotentialSessionLeakage', [] )
+			+ [ 'ip' => null, 'mwuser' => null, 'timestamp' => 0 ];
+		// Ignore old IP records; users change networks over time. mwuser is a session cookie and the
+		// SessionManager session id is also a session cookie so there shouldn't be any problem there.
+		if ( $data['ip'] &&
+			( $now - $data['timestamp'] > $suspiciousIpExpiry )
+		) {
+			$data['ip'] = $data['timestamp'] = null;
+		}
+
+		if ( $data['ip'] !== $ip || $data['mwuser'] !== $mwuser ) {
+			$session->set( 'SessionManager-logPotentialSessionLeakage',
+				[ 'ip' => $ip, 'mwuser' => $mwuser, 'timestamp' => $now ] );
+		}
+
+		$ipChanged = ( $data['ip'] && $data['ip'] !== $ip );
+		$mwuserChanged = ( $data['mwuser'] && $data['mwuser'] !== $mwuser );
+		$logLevel = $message = null;
+		$logData = [];
+		// IPs change all the time. mwuser is a session cookie that's only set when missing,
+		// so it should only change when the browser session ends which ends the SessionManager
+		// session as well. Unless we are dealing with a very weird client, such as a bot that
+		//manipulates cookies and can run Javascript, it should not change.
+		// IP and mwuser changing at the same time would be *very* suspicious.
+		if ( $ipChanged ) {
+			$logLevel = LogLevel::INFO;
+			$message = 'IP change within the same session';
+			$logData += [
+				'oldIp' => $data['ip'],
+				'newIp' => $ip,
+				'oldIpRecorded' => $data['timestamp'],
+			];
+		}
+		if ( $mwuserChanged ) {
+			$logLevel = LogLevel::NOTICE;
+			$message = 'mwuser change within the same session';
+			$logData += [
+				'oldMwuser' => $data['mwuser'],
+				'newMwuser' => $mwuser,
+			];
+		}
+		if ( $ipChanged && $mwuserChanged ) {
+			$logLevel = LogLevel::WARNING;
+			$message = 'IP and mwuser change within the same session';
+		}
+		if ( $logLevel ) {
+			$logData += [
+				'session' => $session->getId(),
+				'user' => $session->getUser()->getName(),
+			];
+			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
+			$logger->log( $logLevel, $message, $logData );
+		}
 	}
 
 	/** @} */

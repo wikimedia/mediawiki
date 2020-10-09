@@ -2668,6 +2668,15 @@ $wgObjectCacheSessionExpiry = 3600;
 $wgPHPSessionHandling = 'enable';
 
 /**
+ * Time in seconds to remember IPs for, for the purposes of logging IP changes within the
+ * same session. This is meant more for debugging errors in the authentication system than
+ * for detecting abuse.
+ * @since 1.36
+ * @var int|bool False to disable
+ */
+$wgSuspiciousIpExpiry = false;
+
+/**
  * Number of internal PBKDF2 iterations to use when deriving session secrets.
  *
  * @since 1.28
