@@ -3332,7 +3332,7 @@
 	"tag-mw-replace-description": "Urejanja, ki odstranijo več kot 90 % vsebine strani",
 	"tag-mw-rollback": "Vrnitev",
 	"tag-mw-rollback-description": "Urejanja, ki vrnejo prejšnja urejanja s povezavo za vrnitev",
-	"tag-mw-undo": "Razveljavljeno",
+	"tag-mw-undo": "Razveljavitev",
 	"tag-mw-undo-description": "Urejanja, ki razveljavijo prejšnja urejanja z uporabo povezave za razveljavitev",
 	"tag-mw-manual-revert": "Ročna vrnitev",
 	"tag-mw-manual-revert-description": "Urejanja, ki ročno povrnejo stran na točno predhodno stanje",

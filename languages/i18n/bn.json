@@ -1360,7 +1360,7 @@
 	"action-upload_by_url": "একটি ইউআরএল থেকে এই ফাইলটি আপলোড করার",
 	"action-writeapi": "এপিআই লেখা ব্যবহার করার",
 	"action-delete": "এই পাতাটি অপসারণ করার",
-	"action-delete-redirect": "একক সংশোধনযুক্ত পুনর্নির্দেশগুলি উপরিলিখনের",
+	"action-delete-redirect": "একক সংস্করণযুক্ত পুনর্নির্দেশগুলো পুনর্লিখন",
 	"action-deleterevision": "সংশোধনটি মুছে ফেলার",
 	"action-deletelogentry": "লগের ভুক্তি অপসারণ করার",
 	"action-deletedhistory": "পাতার অপসারিত ইতিহাস দেখার",
