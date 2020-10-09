@@ -18,8 +18,14 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
+		$services = MediaWikiServices::getInstance();
 		return new SpecialBlock(
-			MediaWikiServices::getInstance()->getPermissionManager()
+			$services->getPermissionManager(),
+			$services->getBlockUtils(),
+			$services->getBlockPermissionCheckerFactory(),
+			$services->getBlockUserFactory(),
+			$services->getUserNameUtils(),
+			$services->getUserNamePrefixSearch()
 		);
 	}
 

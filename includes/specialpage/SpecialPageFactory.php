@@ -121,7 +121,12 @@ class SpecialPageFactory {
 		'Block' => [
 			'class' => \SpecialBlock::class,
 			'services' => [
-				'PermissionManager'
+				'PermissionManager',
+				'BlockUtils',
+				'BlockPermissionCheckerFactory',
+				'BlockUserFactory',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
 			]
 		],
 		'Unblock' => [
