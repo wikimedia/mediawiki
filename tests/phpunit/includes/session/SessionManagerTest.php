@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWikiIntegrationTestCase;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -1522,5 +1523,131 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::WARNING, 'Session "{session}": User token mismatch' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
+	}
+
+	/**
+	 * @dataProvider provideLogPotentialSessionLeakage
+	 */
+	public function testLogPotentialSessionLeakage(
+		$ip, $mwuser, $sessionData, $expectedSessionData, $expectedLogLevel
+	) {
+		\MWTimestamp::setFakeTime( 1234567 );
+		$this->setMwGlobals( 'wgSuspiciousIpExpiry', 600 );
+		$manager = new SessionManager();
+		$logger = $this->createMock( LoggerInterface::class );
+		$this->setLogger( 'session-ip', $logger );
+		$request = new \FauxRequest();
+		$request->setIP( $ip );
+		$request->setCookie( 'mwuser-sessionId', $mwuser );
+
+		$proxyLookup = $this->createMock( \ProxyLookup::class );
+		$proxyLookup->method( 'isConfiguredProxy' )->willReturnCallback( function ( $ip ) {
+			return $ip === '11.22.33.44';
+		} );
+		$this->setService( 'ProxyLookup', $proxyLookup );
+
+		$session = $this->createMock( Session::class );
+		$session->method( 'isPersistent' )->willReturn( true );
+		$session->method( 'getUser' )->willReturn( User::newFromName( 'UTSysop' ) );
+		$session->method( 'getRequest' )->willReturn( $request );
+		$session->method( 'getProvider' )->willReturn(
+			$this->createMock( CookieSessionProvider::class ) );
+		$session->method( 'get' )
+			->with( 'SessionManager-logPotentialSessionLeakage' )
+			->willReturn( $sessionData );
+		$session->expects( $this->exactly( isset( $expectedSessionData ) ) )->method( 'set' )
+			->with( 'SessionManager-logPotentialSessionLeakage', $expectedSessionData );
+
+		$logger->expects( $this->exactly( isset( $expectedLogLevel ) ) )->method( 'log' )
+			->with( $expectedLogLevel );
+
+		$manager->logPotentialSessionLeakage( $session );
+	}
+
+	public function provideLogPotentialSessionLeakage() {
+		$now = 1234567;
+		$valid = $now - 100;
+		$expired = $now - 1000;
+		return [
+			'no log for new IP' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => null,
+				'sessionData' => [],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => null, 'timestamp' => $now ],
+				'expectedLogLevel' => null,
+			],
+			'no log for same IP' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => null,
+				'sessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => null, 'timestamp' => $valid ],
+				'expectedSessionData' => null,
+				'expectedLogLevel' => null,
+			],
+			'no log for expired IP' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => null,
+				'sessionData' => [ 'ip' => '10.20.30.40', 'mwuser' => null, 'timestamp' => $expired ],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => null, 'timestamp' => $now ],
+				'expectedLogLevel' => null,
+			],
+			'INFO log for changed IP' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => null,
+				'sessionData' => [ 'ip' => '10.20.30.40', 'mwuser' => null, 'timestamp' => $valid ],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => null, 'timestamp' => $now ],
+				'expectedLogLevel' => LogLevel::INFO,
+			],
+
+			'no log for new mwuser' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => 'new',
+				'sessionData' => [],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'new', 'timestamp' => $now ],
+				'expectedLogLevel' => null,
+			],
+			'no log for same mwuser' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => 'old',
+				'sessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'old', 'timestamp' => $valid ],
+				'expectedSessionData' => null,
+				'expectedLogLevel' => null,
+			],
+			'NOTICE log for changed mwuser' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => 'new',
+				'sessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'old', 'timestamp' => $valid ],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'new', 'timestamp' => $now ],
+				'expectedLogLevel' => LogLevel::NOTICE,
+			],
+			'no expiration for mwuser' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => 'new',
+				'sessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'old', 'timestamp' => $expired ],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'new', 'timestamp' => $now ],
+				'expectedLogLevel' => LogLevel::NOTICE,
+			],
+			'WARNING log for changed IP + mwuser' => [
+				'ip' => '1.2.3.4',
+				'mwuser' => 'new',
+				'sessionData' => [ 'ip' => '10.20.30.40', 'mwuser' => 'old', 'timestamp' => $valid ],
+				'expectedSessionData' => [ 'ip' => '1.2.3.4', 'mwuser' => 'new', 'timestamp' => $now ],
+				'expectedLogLevel' => LogLevel::WARNING,
+			],
+
+			'special IPs are ignored (1)' => [
+				'ip' => '127.0.0.1',
+				'mwuser' => 'new',
+				'sessionData' => [ 'ip' => '10.20.30.40', 'mwuser' => 'old', 'timestamp' => $valid ],
+				'expectedSessionData' => null,
+				'expectedLogLevel' => null,
+			],
+			'special IPs are ignored (2)' => [
+				'ip' => '11.22.33.44',
+				'mwuser' => 'new',
+				'sessionData' => [ 'ip' => '10.20.30.40', 'mwuser' => 'old', 'timestamp' => $valid ],
+				'expectedSessionData' => null,
+				'expectedLogLevel' => null,
+			],
+		];
 	}
 }

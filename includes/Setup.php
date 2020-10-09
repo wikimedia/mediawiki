@@ -825,3 +825,8 @@ if ( !$wgCommandLineMode ) {
 }
 
 $wgFullyInitialised = true;
+
+// T264370
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	MediaWiki\Session\SessionManager::singleton()->logPotentialSessionLeakage();
+}
