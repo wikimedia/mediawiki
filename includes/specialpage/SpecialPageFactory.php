@@ -133,6 +133,10 @@ class SpecialPageFactory {
 			'class' => \SpecialUnblock::class,
 			'services' => [
 				'UnblockUserFactory',
+				'BlockUtils',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+				'SpecialPageFactory',
 			]
 		],
 		'BlockList' => [
