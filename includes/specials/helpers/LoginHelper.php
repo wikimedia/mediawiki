@@ -65,7 +65,7 @@ class LoginHelper extends ContextSource {
 		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
 	) {
 		$config = $this->getConfig();
-		if ( $type !== 'error' && $wgRedirectOnLogin !== null ) {
+		if ( $type !== 'error' && $config->get( 'RedirectOnLogin' ) !== null ) {
 			$returnTo = $config->get( 'RedirectOnLogin' );
 			$returnToQuery = [];
 		} elseif ( is_string( $returnToQuery ) ) {
