@@ -919,11 +919,11 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
+	 * @deprecated since 1.36, use BlockPermissionChecker instead
 	 * @param User|string|null $target Target to block or unblock; could be a User object,
 	 *   or username/IP address, or null when the target is not known yet (e.g. when
 	 *   displaying Special:Block)
 	 * @param User $performer User doing the request
-	 * @deprecated since 1.36, use BlockPermissionChecker instead
 	 * @return bool|string True or error message key
 	 */
 	public static function checkUnblockSelf( $target, User $performer ) {
