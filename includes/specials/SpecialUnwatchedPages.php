@@ -24,8 +24,9 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -35,8 +36,23 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialUnwatchedPages extends QueryPage {
 
-	public function __construct( $name = 'Unwatchedpages' ) {
-		parent::__construct( $name, 'unwatchedpages' );
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
+	) {
+		parent::__construct( 'Unwatchedpages', 'unwatchedpages' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isExpensive() {
@@ -58,8 +74,7 @@ class SpecialUnwatchedPages extends QueryPage {
 			return;
 		}
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 		}
@@ -69,7 +84,7 @@ class SpecialUnwatchedPages extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		return [
 			'tables' => [ 'page', 'watchlist' ],
 			'fields' => [

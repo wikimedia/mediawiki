@@ -88,7 +88,13 @@ class SpecialPageFactory {
 		'Unusedcategories' => \SpecialUnusedCategories::class,
 		'Unusedimages' => \SpecialUnusedImages::class,
 		'Unusedtemplates' => \SpecialUnusedTemplates::class,
-		'Unwatchedpages' => \SpecialUnwatchedPages::class,
+		'Unwatchedpages' => [
+			'class' => \SpecialUnwatchedPages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Wantedcategories' => \SpecialWantedCategories::class,
 		'Wantedfiles' => \WantedFilesPage::class,
 		'Wantedpages' => \WantedPagesPage::class,
