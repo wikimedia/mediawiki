@@ -259,7 +259,15 @@ class SpecialPageFactory {
 		'Export' => \SpecialExport::class,
 		'Import' => \SpecialImport::class,
 		'Undelete' => \SpecialUndelete::class,
-		'Whatlinkshere' => \SpecialWhatLinksHere::class,
+		'Whatlinkshere' => [
+			'class' => \SpecialWhatLinksHere::class,
+			'services' => [
+				'DBLoadBalancer',
+				'LinkBatchFactory',
+				'PermissionManager',
+				'ContentHandlerFactory',
+			]
+		],
 		'MergeHistory' => \SpecialMergeHistory::class,
 		'ExpandTemplates' => \SpecialExpandTemplates::class,
 		'ChangeContentModel' => [
