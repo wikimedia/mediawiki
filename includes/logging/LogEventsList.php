@@ -557,7 +557,7 @@ class LogEventsList extends ContextSource {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as restricted log type.
 	 *
-	 * @param stdClass $type
+	 * @param string $type
 	 * @param User $user User to check
 	 * @return bool
 	 */
