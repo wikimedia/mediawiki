@@ -373,8 +373,19 @@ class SpecialPageFactory {
 				'SearchEngineFactory',
 			]
 		],
-		'Upload' => \SpecialUpload::class,
-		'UploadStash' => \SpecialUploadStash::class,
+		'Upload' => [
+			'class' => \SpecialUpload::class,
+			'services' => [
+				'RepoGroup',
+				'PermissionManager',
+			]
+		],
+		'UploadStash' => [
+			'class' => \SpecialUploadStash::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
 
 		// Data and tools
