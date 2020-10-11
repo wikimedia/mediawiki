@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -31,8 +30,16 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialMostInterwikis extends QueryPage {
-	public function __construct( $name = 'Mostinterwikis' ) {
-		parent::__construct( $name );
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( 'Mostinterwikis' );
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function isExpensive() {
@@ -53,8 +60,7 @@ class SpecialMostInterwikis extends QueryPage {
 				'title' => 'page_title',
 				'value' => 'COUNT(*)'
 			], 'conds' => [
-				'page_namespace' =>
-					MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces()
+				'page_namespace' => $this->namespaceInfo->getContentNamespaces()
 			], 'options' => [
 				'HAVING' => 'COUNT(*) > 1',
 				'GROUP BY' => [

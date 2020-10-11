@@ -259,10 +259,20 @@ class SpecialPageFactory {
 		// High use pages
 		'Mostlinkedcategories' => \SpecialMostLinkedCategories::class,
 		'Mostimages' => \MostimagesPage::class,
-		'Mostinterwikis' => \SpecialMostInterwikis::class,
+		'Mostinterwikis' => [
+			'class' => \SpecialMostInterwikis::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Mostlinked' => \SpecialMostLinked::class,
 		'Mostlinkedtemplates' => \SpecialMostLinkedTemplates::class,
-		'Mostcategories' => \SpecialMostCategories::class,
+		'Mostcategories' => [
+			'class' => \SpecialMostCategories::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Mostrevisions' => [
 			'class' => \SpecialMostRevisions::class,
 			'services' => [
