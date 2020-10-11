@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -64,6 +65,10 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	private function getMigration( $stage ) {
+		return new ActorMigration( $stage, MediaWikiServices::getInstance()->getUserNameUtils() );
+	}
+
 	/**
 	 * @dataProvider provideConstructor
 	 * @param int $stage
@@ -71,7 +76,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testConstructor( $stage, $exceptionMsg ) {
 		try {
-			$m = new ActorMigration( $stage );
+			$m = $this->getMigration( $stage );
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
 			}
@@ -118,7 +123,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetJoin( $stage, $key, $expect ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getJoin( $key );
 		$this->assertEquals( $expect, $result );
 	}
@@ -295,7 +300,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getWhere( $this->db, $key, $users, $useId );
 		$this->assertEquals( $expect, $result );
 	}
@@ -518,7 +523,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'ActorMigration::getWhere: Value for $users must be a UserIdentity or array, got string'
 		);
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getWhere( $this->db, 'am1_user', 'Foo' );
 	}
 
@@ -570,7 +575,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$actorKey = ( $key === 'am3_xxx' ? $key : substr( $key, 0, -5 ) ) . '_actor';
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			$w = new ActorMigration( $writeStage );
+			$w = $this->getMigration( $writeStage );
 
 			if ( $usesTemp ) {
 				list( $fields, $callback ) = $w->getInsertValuesWithTempTable( $this->db, $key, $user );
@@ -602,7 +607,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			}
 
 			foreach ( $possibleReadStages as $readStage ) {
-				$r = new ActorMigration( $readStage );
+				$r = $this->getMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );
 				$row = $this->db->selectRow(
@@ -649,7 +654,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWrong( $stage ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Must use getInsertValuesWithTempTable() for am2_user" );
 		$m->getInsertValues( $this->db, 'am2_user', $this->getTestUser()->getUser() );
@@ -660,7 +665,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Must use getInsertValues() for am1_user" );
 		$m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
@@ -675,7 +680,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$wrap->formerTempTables += [ 'am1_user' => '1.30' ];
 
 		$this->hideDeprecated( 'ActorMigration::getInsertValuesWithTempTable for am1_user' );
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
 		$this->assertIsCallable( $callback );
@@ -697,7 +702,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			],
 		];
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
 		$this->expectException( InvalidArgumentException::class );
@@ -716,7 +721,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
 		$userIdentity->method( 'getActorId' )->willReturn( 0 );
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'am2_user', $userIdentity );
 		$id = ++self::$amId;
@@ -739,7 +744,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			(int)$row->am2_actor
 		);
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
 		if ( $stage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$this->assertSame( $user->getId(), $fields['dummy_user'] );
@@ -768,7 +773,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param string $isNotAnon
 	 */
 	public function testIsAnon( $stage, $isAnon, $isNotAnon ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->assertSame( $isAnon, $m->isAnon( 'foo' ) );
 		$this->assertSame( $isNotAnon, $m->isNotAnon( 'foo' ) );
 	}
