@@ -67,7 +67,13 @@ class SpecialPageFactory {
 		'BrokenRedirects' => \SpecialBrokenRedirects::class,
 		'Deadendpages' => \SpecialDeadendPages::class,
 		'DoubleRedirects' => \SpecialDoubleRedirects::class,
-		'Longpages' => \SpecialLongPages::class,
+		'Longpages' => [
+			'class' => \SpecialLongPages::class,
+			'services' => [
+				// Same as for Shortpages
+				'NamespaceInfo',
+			]
+		],
 		'Ancientpages' => \SpecialAncientPages::class,
 		'Lonelypages' => \SpecialLonelyPages::class,
 		'Fewestrevisions' => [
@@ -80,7 +86,13 @@ class SpecialPageFactory {
 		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
-		'Shortpages' => \SpecialShortPages::class,
+		'Shortpages' => [
+			'class' => \SpecialShortPages::class,
+			'services' => [
+				// Same as for Longpages
+				'NamespaceInfo',
+			]
+		],
 		'Uncategorizedcategories' => \SpecialUncategorizedCategories::class,
 		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
 		'Uncategorizedpages' => \SpecialUncategorizedPages::class,
@@ -228,7 +240,12 @@ class SpecialPageFactory {
 			]
 		],
 		'Version' => \SpecialVersion::class,
-		'Lockdb' => \SpecialLockdb::class,
+		'Lockdb' => [
+			'class' => \SpecialLockdb::class,
+			'services' => [
+				'ContentLanguage',
+			]
+		],
 		'Unlockdb' => \SpecialUnlockdb::class,
 
 		// Redirecting special pages
@@ -242,10 +259,20 @@ class SpecialPageFactory {
 		// High use pages
 		'Mostlinkedcategories' => \SpecialMostLinkedCategories::class,
 		'Mostimages' => \MostimagesPage::class,
-		'Mostinterwikis' => \SpecialMostInterwikis::class,
+		'Mostinterwikis' => [
+			'class' => \SpecialMostInterwikis::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Mostlinked' => \SpecialMostLinked::class,
 		'Mostlinkedtemplates' => \SpecialMostLinkedTemplates::class,
-		'Mostcategories' => \SpecialMostCategories::class,
+		'Mostcategories' => [
+			'class' => \SpecialMostCategories::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Mostrevisions' => [
 			'class' => \SpecialMostRevisions::class,
 			'services' => [
@@ -278,7 +305,13 @@ class SpecialPageFactory {
 		],
 
 		// Other
-		'Booksources' => \SpecialBookSources::class,
+		'Booksources' => [
+			'class' => \SpecialBookSources::class,
+			'services' => [
+				'RevisionLookup',
+				'ContentLanguage',
+			]
+		],
 
 		// Unlisted / redirects
 		'ApiHelp' => \SpecialApiHelp::class,
