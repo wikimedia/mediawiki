@@ -21,8 +21,11 @@
  * @todo Use some variant of Pager or something; the pagination here is lousy.
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Implements Special:Whatlinkshere
@@ -38,10 +41,37 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var Title */
 	protected $target;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
-	public function __construct() {
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param PermissionManager $permissionManager
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory,
+		PermissionManager $permissionManager,
+		IContentHandlerFactory $contentHandlerFactory
+	) {
 		parent::__construct( 'Whatlinkshere' );
+		$this->loadBalancer = $loadBalancer;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->permissionManager = $permissionManager;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function execute( $par ) {
@@ -108,7 +138,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 */
 	private function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		$out = $this->getOutput();
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );
@@ -301,8 +331,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		// use LinkBatch to make sure, that all required data (associated with Titles)
 		// is loaded in one query
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$lb = $linkBatchFactory->newLinkBatch();
+		$lb = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $rows as $row ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}
@@ -452,13 +481,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
-				->getContentHandler( $target->getContentModel() )
+			$this->contentHandlerFactory->getContentHandler( $target->getContentModel() )
 				->supportsDirectEditing()
 		) {
 			if ( $editText !== null ) {
