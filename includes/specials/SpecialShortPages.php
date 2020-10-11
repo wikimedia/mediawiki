@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -33,8 +32,15 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialShortPages extends QueryPage {
 
-	public function __construct( $name = 'Shortpages' ) {
-		parent::__construct( $name );
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( 'Shortpages' );
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function isSyndicated() {
@@ -47,7 +53,7 @@ class SpecialShortPages extends QueryPage {
 		$tables = [ 'page' ];
 		$conds = [
 			'page_namespace' => array_diff(
-				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces(),
+				$this->namespaceInfo->getContentNamespaces(),
 				$blacklist
 			),
 			'page_is_redirect' => 0

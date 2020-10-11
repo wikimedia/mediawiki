@@ -25,8 +25,13 @@
  * @ingroup SpecialPage
  */
 class SpecialLongPages extends SpecialShortPages {
-	public function __construct( $name = 'Longpages' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( $namespaceInfo );
+		$this->mName = 'Longpages';
 	}
 
 	protected function sortDescending() {
