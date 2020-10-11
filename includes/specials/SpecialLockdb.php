@@ -21,18 +21,19 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * A form to make the database readonly (eg for maintenance purposes).
  *
  * @ingroup SpecialPage
  */
 class SpecialLockdb extends FormSpecialPage {
-	protected $reason = '';
 
-	public function __construct() {
+	/** @var Language */
+	private $contentLanguage;
+
+	public function __construct( Language $contentLanguage ) {
 		parent::__construct( 'Lockdb', 'siteadmin' );
+		$this->contentLanguage = $contentLanguage;
 	}
 
 	public function doesWrites() {
@@ -92,11 +93,10 @@ class SpecialLockdb extends FormSpecialPage {
 		}
 		fwrite( $fp, $data['Reason'] );
 		$timestamp = wfTimestampNow();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		fwrite( $fp, "\n<p>" . $this->msg( 'lockedbyandtime',
 			$this->getUser()->getName(),
-			$contLang->date( $timestamp, false, false ),
-			$contLang->time( $timestamp, false, false )
+			$this->contentLanguage->date( $timestamp, false, false ),
+			$this->contentLanguage->time( $timestamp, false, false )
 		)->inContentLanguage()->text() . "</p>\n" );
 		fclose( $fp );
 

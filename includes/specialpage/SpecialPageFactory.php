@@ -240,7 +240,12 @@ class SpecialPageFactory {
 			]
 		],
 		'Version' => \SpecialVersion::class,
-		'Lockdb' => \SpecialLockdb::class,
+		'Lockdb' => [
+			'class' => \SpecialLockdb::class,
+			'services' => [
+				'ContentLanguage',
+			]
+		],
 		'Unlockdb' => \SpecialUnlockdb::class,
 
 		// Redirecting special pages
