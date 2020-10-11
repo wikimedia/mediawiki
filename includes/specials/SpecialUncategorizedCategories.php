@@ -34,8 +34,9 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	public function __construct( $name = 'Uncategorizedcategories' ) {
-		parent::__construct( $name );
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( $namespaceInfo );
+		$this->mName = 'Uncategorizedcategories';
 		$this->requestedNamespace = NS_CATEGORY;
 	}
 
@@ -69,11 +70,10 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {
-			$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $exceptionList ) . ' )';
+			$query['conds'][] = 'page_title not in ( ' . $this->getRecacheDB()->makeList( $exceptionList ) . ' )';
 		}
 
 		return $query;

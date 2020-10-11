@@ -108,10 +108,28 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 			]
 		],
-		'Uncategorizedcategories' => \SpecialUncategorizedCategories::class,
+		'Uncategorizedcategories' => [
+			'class' => \SpecialUncategorizedCategories::class,
+			'services' => [
+				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
+				'NamespaceInfo',
+			]
+		],
 		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
-		'Uncategorizedpages' => \SpecialUncategorizedPages::class,
-		'Uncategorizedtemplates' => \SpecialUncategorizedTemplates::class,
+		'Uncategorizedpages' => [
+			'class' => \SpecialUncategorizedPages::class,
+			'services' => [
+				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedTemplates
+				'NamespaceInfo',
+			]
+		],
+		'Uncategorizedtemplates' => [
+			'class' => \SpecialUncategorizedTemplates::class,
+			'services' => [
+				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedPages
+				'NamespaceInfo',
+			]
+		],
 		'Unusedcategories' => \SpecialUnusedCategories::class,
 		'Unusedimages' => \SpecialUnusedImages::class,
 		'Unusedtemplates' => \SpecialUnusedTemplates::class,
