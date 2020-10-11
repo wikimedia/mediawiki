@@ -295,7 +295,13 @@ class SpecialPageFactory {
 		],
 
 		// Other
-		'Booksources' => \SpecialBookSources::class,
+		'Booksources' => [
+			'class' => \SpecialBookSources::class,
+			'services' => [
+				'RevisionLookup',
+				'ContentLanguage',
+			]
+		],
 
 		// Unlisted / redirects
 		'ApiHelp' => \SpecialApiHelp::class,
