@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * A special page looking for page without any category.
  *
@@ -33,9 +31,16 @@ class SpecialUncategorizedPages extends PageQueryPage {
 	/** @var int|false */
 	protected $requestedNamespace = false;
 
-	public function __construct( $name = 'Uncategorizedpages' ) {
-		parent::__construct( $name );
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo ) {
+		parent::__construct( 'Uncategorizedpages' );
 		$this->addHelpLink( 'Help:Categories' );
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	protected function sortDescending() {
@@ -63,8 +68,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 				'cl_from IS NULL',
 				'page_namespace' => $this->requestedNamespace !== false
 						? $this->requestedNamespace
-						: MediaWikiServices::getInstance()->getNamespaceInfo()->
-							getContentNamespaces(),
+						: $this->namespaceInfo->getContentNamespaces(),
 				'page_is_redirect' => 0
 			],
 			'join_conds' => [
@@ -77,8 +81,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
 		if ( $this->requestedNamespace === false &&
-			count( MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getContentNamespaces() ) > 1
+			count( $this->namespaceInfo->getContentNamespaces() ) > 1
 		) {
 			return [ 'page_namespace', 'page_title' ];
 		}
