@@ -21,8 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -39,13 +39,18 @@ class SpecialChangeEmail extends FormSpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var AuthManager */
+	private $authManager;
+
 	/**
 	 * @param PermissionManager $permManager
+	 * @param AuthManager $authManager
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct( PermissionManager $permManager, AuthManager $authManager ) {
 		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 
 		$this->permManager = $permManager;
+		$this->authManager = $authManager;
 	}
 
 	public function doesWrites() {
@@ -56,8 +61,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		return MediaWikiServices::getInstance()->getAuthManager()
-			->allowsPropertyChange( 'emailaddress' );
+		return $this->authManager->allowsPropertyChange( 'emailaddress' );
 	}
 
 	/**
@@ -76,8 +80,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function checkExecutePermissions( User $user ) {
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->getAuthManager()->allowsPropertyChange( 'emailaddress' ) ) {
+		if ( !$this->authManager->allowsPropertyChange( 'emailaddress' ) ) {
 			throw new ErrorPageError( 'changeemail', 'cannotchangeemail' );
 		}
 

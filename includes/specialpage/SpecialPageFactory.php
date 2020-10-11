@@ -415,6 +415,7 @@ class SpecialPageFactory {
 					'class' => \SpecialChangeEmail::class,
 					'services' => [
 						'PermissionManager',
+						'AuthManager',
 					],
 				];
 			}
