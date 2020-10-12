@@ -1,5 +1,4 @@
 <?php
-return; // Disabled. Needs Parsoid
 
 //Config decription can be found here:
 //https://www.mediawiki.org/wiki/Extension:VisualEditor
@@ -37,11 +36,19 @@ $encFullPath = base64_encode( $fullPath );
 
 // Linking with Parsoid
 $wgVirtualRestConfig['modules']['parsoid'] = array(
-	// URL to the Parsoid instance
-	// Use port 8142 if you use the Debian package
-	'url' => 'http://127.0.0.1:8000',
-	'domain' => $encFullPath,
+	'url' => $GLOBALS['wgServer'] . $GLOBALS['wgScriptPath'] . '/rest.php',
+	'domain' => $GLOBALS['wgServer'],
 	'forwardCookies' => true
 );
 
 $wgVisualEditorEnableWikitext = true;
+
+//Use new bundeled PHP version of Parsoid
+//https://www.mediawiki.org/wiki/Parsoid/PHP
+wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
+$GLOBALS['wgParsoidSettings'] = [
+	'useSelser' => true,
+	'rtTestMode' => false,
+	'linting' => false
+];
+$GLOBALS['wgEnableRestAPI'] = true;
