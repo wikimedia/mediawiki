@@ -257,7 +257,13 @@ class SpecialPageFactory {
 		// Media reports and uploads
 		'Listfiles' => \SpecialListFiles::class,
 		'Filepath' => \SpecialFilepath::class,
-		'MediaStatistics' => \SpecialMediaStatistics::class,
+		'MediaStatistics' => [
+			'class' => \SpecialMediaStatistics::class,
+			'services' => [
+				'MimeAnalyzer',
+				'DBLoadBalancer',
+			]
+		],
 		'MIMEsearch' => \SpecialMIMESearch::class,
 		'FileDuplicateSearch' => \SpecialFileDuplicateSearch::class,
 		'Upload' => \SpecialUpload::class,
