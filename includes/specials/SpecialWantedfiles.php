@@ -33,8 +33,18 @@ use MediaWiki\MediaWikiServices;
  */
 class WantedFilesPage extends WantedQueryPage {
 
-	public function __construct( $name = 'Wantedfiles' ) {
-		parent::__construct( $name );
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/**
+	 * @param RepoGroup|string $repoGroup
+	 */
+	public function __construct( $repoGroup ) {
+		parent::__construct( is_string( $repoGroup ) ? $repoGroup : 'Wantedfiles' );
+		// This class is extended and therefor fallback to global state - T265301
+		$this->repoGroup = $repoGroup instanceof RepoGroup
+			? $repoGroup
+			: MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
 	protected function getPageHeader() {
@@ -79,7 +89,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * @return bool
 	 */
 	protected function likelyToHaveFalsePositives() {
-		return MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos();
+		return $this->repoGroup->hasForeignRepos();
 	}
 
 	/**
@@ -106,7 +116,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * @return bool
 	 */
 	protected function existenceCheck( Title $title ) {
-		return (bool)MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+		return (bool)$this->repoGroup->findFile( $title );
 	}
 
 	public function getQueryInfo() {
