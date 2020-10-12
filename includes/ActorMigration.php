@@ -22,6 +22,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -109,11 +110,15 @@ class ActorMigration {
 	/** @var int Combination of SCHEMA_COMPAT_* constants */
 	private $stage;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @internal
 	 * @param int $stage
+	 * @param UserNameUtils $userNameUtils
 	 */
-	public function __construct( $stage ) {
+	public function __construct( $stage, UserNameUtils $userNameUtils ) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
 		}
@@ -131,6 +136,7 @@ class ActorMigration {
 		}
 
 		$this->stage = $stage;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -274,14 +280,11 @@ class ActorMigration {
 	 * @return int The new actor ID
 	 */
 	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
-		// TODO: inject
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-
 		$q = [
 			'actor_user' => $user->getId() ?: null,
 			'actor_name' => (string)$user->getName(),
 		];
-		if ( $q['actor_user'] === null && $userNameUtils->isUsable( $q['actor_name'] ) ) {
+		if ( $q['actor_user'] === null && $this->userNameUtils->isUsable( $q['actor_name'] ) ) {
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a usable name that is not an existing user: ' .
 				"user_id={$user->getId()} user_name=\"{$user->getName()}\""

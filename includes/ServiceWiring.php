@@ -130,7 +130,10 @@ use Wikimedia\UUID\GlobalIdGenerator;
 
 return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
-		return new ActorMigration( SCHEMA_COMPAT_NEW );
+		return new ActorMigration(
+			SCHEMA_COMPAT_NEW,
+			$services->getUserNameUtils()
+		);
 	},
 
 	'AuthManager' => function ( MediaWikiServices $services ) : AuthManager {
