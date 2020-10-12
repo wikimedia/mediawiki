@@ -212,6 +212,8 @@ $wgAutoloadClasses += [
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
+	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
+	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
 	'MediaWiki\\Session\\DummySessionBackend'
 		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",

@@ -2,6 +2,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -336,6 +337,72 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// We just check here that the hook we added in testSetTemporaryHook() is no longer present.
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$this->assertFalse( $hookContainer->isRegistered( 'MWITCT_Dummy_Hook' ) );
+	}
+
+	/**
+	 * @covers NullHttpRequestFactory
+	 * @covers NullMultiHttpClient
+	 */
+	public function testHttpRequestsArePrevented() {
+		$httpRequestFactory = $this->getServiceContainer()->getHttpRequestFactory();
+
+		$prevented = true;
+		try {
+			$httpRequestFactory->get( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'get() should fail' );
+
+		try {
+			$httpRequestFactory->post( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'post() should fail' );
+
+		try {
+			$httpRequestFactory->request( 'HEAD', 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'request() should fail' );
+
+		try {
+			$httpRequestFactory->create( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'create() should fail' );
+
+		$multiClient = $httpRequestFactory->createMultiClient();
+		$req = [ 'url' => 'http://0.0.0.0/' ];
+
+		try {
+			$multiClient->run( $req );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'MultiHttpRequest::run() should fail' );
+
+		try {
+			$multiClient->runMulti( [ $req ] );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'MultiHttpRequest::runMulti() should fail' );
 	}
 
 }
