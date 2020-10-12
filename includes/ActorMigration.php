@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -110,15 +111,23 @@ class ActorMigration {
 	/** @var int Combination of SCHEMA_COMPAT_* constants */
 	private $stage;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
 	/**
 	 * @internal
 	 * @param int $stage
+	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 */
-	public function __construct( $stage, UserNameUtils $userNameUtils ) {
+	public function __construct(
+		$stage,
+		UserFactory $userFactory,
+		UserNameUtils $userNameUtils
+	) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
 		}
@@ -136,6 +145,7 @@ class ActorMigration {
 		}
 
 		$this->stage = $stage;
+		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -388,7 +398,11 @@ class ActorMigration {
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
 			// We need to be able to assign an actor ID if none exists
 			if ( !$user instanceof User && !$user->getActorId() ) {
-				$user = User::newFromAnyId( $user->getId(), $user->getName(), null );
+				$user = $this->userFactory->newFromAnyId(
+					$user->getId(),
+					$user->getName(),
+					null
+				);
 			}
 			$id = $user->getActorId( $dbw );
 
