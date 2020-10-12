@@ -6,6 +6,8 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
+ * @todo Can this be converted to unit tests?
+ *
  * @group Blocking
  * @coversDefaultClass \MediaWiki\Block\BlockErrorFormatter
  */

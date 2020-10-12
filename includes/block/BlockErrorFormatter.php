@@ -22,6 +22,7 @@ namespace MediaWiki\Block;
 
 use CommentStoreComment;
 use Language;
+use MediaWiki\User\UserFactory;
 use Message;
 use User;
 
@@ -32,6 +33,17 @@ use User;
  * @since 1.35
  */
 class BlockErrorFormatter {
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/**
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct( UserFactory $userFactory ) {
+		$this->userFactory = $userFactory;
+	}
+
 	/**
 	 * Get a block error message. Different message keys are chosen depending on the
 	 * block features. Message paramaters are formatted for the specified user and
@@ -137,7 +149,7 @@ class BlockErrorFormatter {
 			return $blockerName;
 		}
 
-		$blocker = User::newFromId( $blockerId );
+		$blocker = $this->userFactory->newFromId( (int)$blockerId );
 		$blockerUserpage = $blocker->getUserPage();
 		$blockerText = $language->embedBidi( $blockerUserpage->getText() );
 		return "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
