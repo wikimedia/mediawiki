@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that lists most linked pages that does not exist
  *
@@ -28,8 +30,15 @@
  */
 class WantedPagesPage extends WantedQueryPage {
 
-	public function __construct( $name = 'Wantedpages' ) {
-		parent::__construct( $name );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Wantedpages' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isIncludable() {
@@ -49,7 +58,7 @@ class WantedPagesPage extends WantedQueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$count = $this->getConfig()->get( 'WantedPagesThreshold' ) - 1;
 		$query = [
 			'tables' => [

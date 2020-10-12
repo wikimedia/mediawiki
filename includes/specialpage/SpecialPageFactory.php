@@ -148,7 +148,12 @@ class SpecialPageFactory {
 		],
 		'Wantedcategories' => \SpecialWantedCategories::class,
 		'Wantedfiles' => \WantedFilesPage::class,
-		'Wantedpages' => \WantedPagesPage::class,
+		'Wantedpages' => [
+			'class' => \WantedPagesPage::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Wantedtemplates' => \SpecialWantedTemplates::class,
 
 		// List of pages
