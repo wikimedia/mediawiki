@@ -140,6 +140,12 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
+	'MediaWiki\Tests\Parser\ParserCacheSerializationTestCases' =>
+		"$testDir/phpunit/includes/parser/ParserCacheSerializationTestCases.php",
+	'MediaWiki\Tests\Parser\SerializationTestTrait' =>
+		"$testDir/phpunit/includes/parser/SerializationTestTrait.php",
+	'MediaWiki\Tests\Parser\SerializationTestUtils' =>
+		"$testDir/phpunit/includes/parser/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/resourceloader
 	'ResourceLoaderImageModuleTest' =>

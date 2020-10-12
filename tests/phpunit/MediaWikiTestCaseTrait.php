@@ -141,7 +141,7 @@ trait MediaWikiTestCaseTrait {
 	 * @param bool $ordered If the order of the values should match
 	 * @param bool $named If the keys should match
 	 */
-	protected function assertArrayEquals(
+	public function assertArrayEquals(
 		array $expected, array $actual, $ordered = false, $named = false
 	) {
 		if ( !$ordered ) {
