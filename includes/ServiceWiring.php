@@ -897,7 +897,8 @@ return [
 			$config->get( 'CacheEpoch' ),
 			$services->getHookContainer(),
 			$services->getStatsdDataFactory(),
-			LoggerFactory::getInstance( 'ParserCache' )
+			LoggerFactory::getInstance( 'ParserCache' ),
+			$config->get( 'ParserCacheUseJson' )
 		);
 	},
 

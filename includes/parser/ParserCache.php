@@ -76,13 +76,13 @@ class ParserCache {
 	private $logger;
 
 	/**
-	 * @note Temporary feature flag. Remove after successful migration of live system.
+	 * @note Temporary feature flag, remove before 1.36 is released.
 	 * @var bool
 	 */
 	private $writeJson = false;
 
 	/**
-	 * @note Temporary feature flag. Remove after successful migration of live system.
+	 * @note Temporary feature flag, remove before 1.36 is released.
 	 * @var bool
 	 */
 	private $readJson = false;
@@ -99,6 +99,7 @@ class ParserCache {
 	 * @param HookContainer $hookContainer
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
+	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
 		string $name,
@@ -106,7 +107,8 @@ class ParserCache {
 		string $cacheEpoch,
 		HookContainer $hookContainer,
 		IBufferingStatsdDataFactory $stats,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		$useJson = false
 	) {
 		$this->name = $name;
 		$this->cache = $cache;
@@ -114,6 +116,8 @@ class ParserCache {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = $stats;
 		$this->logger = $logger;
+		$this->readJson = $useJson;
+		$this->writeJson = $useJson;
 	}
 
 	/**
