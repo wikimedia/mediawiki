@@ -20,9 +20,11 @@
  * @file
  * @ingroup SpecialPage
  */
-
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -32,8 +34,36 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialDoubleRedirects extends QueryPage {
-	public function __construct( $name = 'DoubleRedirects' ) {
-		parent::__construct( $name );
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var IDatabase */
+	private $dbr;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		PermissionManager $permissionManager,
+		IContentHandlerFactory $contentHandlerFactory,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
+	) {
+		parent::__construct( 'DoubleRedirects' );
+		$this->permissionManager = $permissionManager;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 	}
 
 	public function isExpensive() {
@@ -54,7 +84,6 @@ class SpecialDoubleRedirects extends QueryPage {
 
 	private function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
-		$dbr = wfGetDB( DB_REPLICA );
 		$retval = [
 			'tables' => [
 				'ra' => 'redirect',
@@ -86,7 +115,7 @@ class SpecialDoubleRedirects extends QueryPage {
 
 				// Need to check both NULL and "" for some reason,
 				// apparently either can be stored for non-iw entries.
-				'ra.rd_interwiki IS NULL OR ra.rd_interwiki = ' . $dbr->addQuotes( '' ),
+				'ra.rd_interwiki IS NULL OR ra.rd_interwiki = ' . $this->dbr->addQuotes( '' ),
 
 				'pb.page_namespace = ra.rd_namespace',
 				'pb.page_title = ra.rd_title',
@@ -127,21 +156,16 @@ class SpecialDoubleRedirects extends QueryPage {
 			if ( isset( $result->b_namespace ) ) {
 				$deep = $result;
 			} else {
-				$dbr = wfGetDB( DB_REPLICA );
 				$qi = $this->reallyGetQueryInfo(
 					$result->namespace,
 					$result->title
 				);
-				$res = $dbr->select(
+				$deep = $this->dbr->selectRow(
 					$qi['tables'],
 					$qi['fields'],
 					$qi['conds'],
 					__METHOD__
 				);
-
-				if ( $res ) {
-					$deep = $dbr->fetchObject( $res ) ?: false;
-				}
 			}
 		}
 
@@ -155,13 +179,9 @@ class SpecialDoubleRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
-				->getContentHandler( $titleA->getContentModel() )
+			$this->contentHandlerFactory->getContentHandler( $titleA->getContentModel() )
 				->supportsDirectEditing()
 		) {
 			$edit = $linkRenderer->makeKnownLink(
@@ -219,8 +239,7 @@ class SpecialDoubleRedirects extends QueryPage {
 			return;
 		}
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			if ( isset( $row->b_namespace ) ) {

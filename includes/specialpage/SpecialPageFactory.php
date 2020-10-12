@@ -64,14 +64,29 @@ class SpecialPageFactory {
 	 */
 	private const CORE_LIST = [
 		// Maintenance Reports
-		'BrokenRedirects' => \SpecialBrokenRedirects::class,
+		'BrokenRedirects' => [
+			'class' => \SpecialBrokenRedirects::class,
+			'services' => [
+				'PermissionManager',
+				'ContentHandlerFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Deadendpages' => [
 			'class' => \SpecialDeadendPages::class,
 			'services' => [
 				'NamespaceInfo',
 			]
 		],
-		'DoubleRedirects' => \SpecialDoubleRedirects::class,
+		'DoubleRedirects' => [
+			'class' => \SpecialDoubleRedirects::class,
+			'services' => [
+				'PermissionManager',
+				'ContentHandlerFactory',
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Longpages' => [
 			'class' => \SpecialLongPages::class,
 			'services' => [
@@ -98,7 +113,13 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 			]
 		],
-		'Withoutinterwiki' => \SpecialWithoutInterwiki::class,
+		'Withoutinterwiki' => [
+			'class' => \SpecialWithoutInterwiki::class,
+			'services' => [
+				'NamespaceInfo',
+				'DBLoadBalancer',
+			]
+		],
 		'Protectedpages' => \SpecialProtectedpages::class,
 		'Protectedtitles' => \SpecialProtectedtitles::class,
 		'Shortpages' => [
@@ -133,10 +154,21 @@ class SpecialPageFactory {
 		'Unusedcategories' => \SpecialUnusedCategories::class,
 		'Unusedimages' => \SpecialUnusedImages::class,
 		'Unusedtemplates' => \SpecialUnusedTemplates::class,
-		'Unwatchedpages' => \SpecialUnwatchedPages::class,
+		'Unwatchedpages' => [
+			'class' => \SpecialUnwatchedPages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Wantedcategories' => \SpecialWantedCategories::class,
 		'Wantedfiles' => \WantedFilesPage::class,
-		'Wantedpages' => \WantedPagesPage::class,
+		'Wantedpages' => [
+			'class' => \WantedPagesPage::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Wantedtemplates' => \SpecialWantedTemplates::class,
 
 		// List of pages
@@ -251,7 +283,13 @@ class SpecialPageFactory {
 		// Media reports and uploads
 		'Listfiles' => \SpecialListFiles::class,
 		'Filepath' => \SpecialFilepath::class,
-		'MediaStatistics' => \SpecialMediaStatistics::class,
+		'MediaStatistics' => [
+			'class' => \SpecialMediaStatistics::class,
+			'services' => [
+				'MimeAnalyzer',
+				'DBLoadBalancer',
+			]
+		],
 		'MIMEsearch' => \SpecialMIMESearch::class,
 		'FileDuplicateSearch' => \SpecialFileDuplicateSearch::class,
 		'Upload' => \SpecialUpload::class,
@@ -282,7 +320,12 @@ class SpecialPageFactory {
 		'Unlockdb' => \SpecialUnlockdb::class,
 
 		// Redirecting special pages
-		'LinkSearch' => \SpecialLinkSearch::class,
+		'LinkSearch' => [
+			'class' => \SpecialLinkSearch::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Randompage' => \RandomPage::class,
 		'RandomInCategory' => \SpecialRandomInCategory::class,
 		'Randomredirect' => \SpecialRandomredirect::class,
