@@ -111,6 +111,7 @@ class SpecialPageFactory {
 		'Uncategorizedcategories' => [
 			'class' => \SpecialUncategorizedCategories::class,
 			'services' => [
+				'DBLoadBalancer',
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
 			]
