@@ -1,12 +1,63 @@
 <?php
 
+use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
+use MediaWiki\Tests\Parser\SerializationTestTrait;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers ParserOutput
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
 class ParserOutputTest extends MediaWikiLangTestCase {
+	use SerializationTestTrait;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		MWTimestamp::setFakeTime( ParserCacheSerializationTestCases::FAKE_TIME );
+		$this->setMwGlobals( [
+			'wgParserCacheExpireTime' => ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
+		] );
+	}
+
+	protected function tearDown(): void {
+		MWTimestamp::setFakeTime( null );
+		parent::tearDown();
+	}
+
+	/**
+	 * Overrides SerializationTestTrait::getClassToTest
+	 * @return string
+	 */
+	protected function getClassToTest() {
+		return ParserOutput::class;
+	}
+
+	/**
+	 * Overrides SerializationTestTrait::getSerializedDataPath
+	 * @return string
+	 */
+	protected function getSerializedDataPath(): string {
+		return __DIR__ . '/../../data/ParserCache';
+	}
+
+	/**
+	 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
+	 * @return array
+	 */
+	protected function getTestInstancesAndAssertions(): array {
+		return ParserCacheSerializationTestCases::getParserOutputTestCases();
+	}
+
+	/**
+	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
+	 * @return array
+	 */
+	protected function getSupportedSerializationFormats(): array {
+		return ParserCacheSerializationTestCases::getSupportedSerializationFormats(
+			$this->getClassToTest() );
+	}
 
 	public static function provideIsLinkInternal() {
 		return [
@@ -31,12 +82,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			// But they don't match strange things like this
 			[ false, '//example.org', 'irc://example.org' ],
 		];
-	}
-
-	protected function tearDown() : void {
-		MWTimestamp::setFakeTime( false );
-
-		parent::tearDown();
 	}
 
 	/**
@@ -956,26 +1001,6 @@ EOF
 		$this->assertSame( $time, $po->getCacheTime() );
 	}
 
-	public static function provideOldSerialized() {
-		return [
-			// phpcs:ignore Generic.Files.LineLength
-			'1.34.0-wmf.15' => [ 'O:12:"ParserOutput":43:{s:5:"mText";s:0:"";s:14:"mLanguageLinks";a:0:{}s:11:"mCategories";a:0:{}s:11:"mIndicators";a:0:{}s:10:"mTitleText";s:0:"";s:6:"mLinks";a:0:{}s:10:"mTemplates";a:0:{}s:12:"mTemplateIds";a:0:{}s:7:"mImages";a:0:{}s:18:"mFileSearchOptions";a:0:{}s:14:"mExternalLinks";a:0:{}s:15:"mInterwikiLinks";a:0:{}s:11:"mNewSection";b:0;s:15:"mHideNewSection";b:0;s:10:"mNoGallery";b:0;s:10:"mHeadItems";a:0:{}s:8:"mModules";a:0:{}s:13:"mModuleStyles";a:0:{}s:13:"mJsConfigVars";a:0:{}s:12:"mOutputHooks";a:0:{}s:9:"mWarnings";a:0:{}s:9:"mSections";a:0:{}s:11:"mProperties";a:0:{}s:8:"mTOCHTML";s:0:"";s:10:"mTimestamp";N;s:11:"mEnableOOUI";b:0;s:26:"\\000ParserOutput\\000mIndexPolicy";s:0:"";s:30:"\\000ParserOutput\\000mAccessedOptions";a:0:{}s:28:"\\000ParserOutput\\000mExtensionData";a:0:{}s:30:"\\000ParserOutput\\000mLimitReportData";a:0:{}s:32:"\\000ParserOutput\\000mLimitReportJSData";a:0:{}s:34:"\\000ParserOutput\\000mPreventClickjacking";b:0;s:20:"\\000ParserOutput\\000mFlags";a:0:{}s:31:"\\000ParserOutput\\000mSpeculativeRevId";N;s:35:"\\000ParserOutput\\000revisionTimestampUsed";N;s:36:"\\000ParserOutput\\000revisionUsedSha1Base36";N;s:32:"\\000ParserOutput\\000mWrapperDivClasses";a:0:{}s:32:"\\000ParserOutput\\000mMaxAdaptiveExpiry";d:INF;s:12:"mUsedOptions";N;s:8:"mVersion";s:5:"1.6.4";s:10:"mCacheTime";s:0:"";s:12:"mCacheExpiry";N;s:16:"mCacheRevisionId";N;}' ]
-		];
-	}
-
-	/**
-	 * Ensure that old ParserOutput objects can be unserialized and reserialized without an error
-	 * (T229366).
-	 *
-	 * @dataProvider provideOldSerialized
-	 * @covers ParserOutput::__sleep()
-	 */
-	public function testOldSerialized( $serialized ) {
-		$po = unserialize( stripcslashes( $serialized ) );
-		$reserialized = serialize( $po );
-		$this->assertStringStartsWith( 'O:', $reserialized );
-	}
-
 	/**
 	 * @covers ParserOutput::addExtraCSPScriptSrc
 	 * @covers ParserOutput::addExtraCSPDefaultSrc
@@ -1001,5 +1026,4 @@ EOF
 		$this->assertEquals( $po->getExtraCSPDefaultSrcs(),  [ 'baz.com' ], 'Default' );
 		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [ 'fred.com', 'xyzzy.com' ], 'Style' );
 	}
-
 }
