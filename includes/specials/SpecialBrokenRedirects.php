@@ -21,8 +21,10 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -32,8 +34,30 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialBrokenRedirects extends QueryPage {
-	public function __construct( $name = 'BrokenRedirects' ) {
-		parent::__construct( $name );
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		PermissionManager $permissionManager,
+		IContentHandlerFactory $contentHandlerFactory,
+		ILoadBalancer $loadBalancer
+	) {
+		parent::__construct( 'BrokenRedirects' );
+		$this->permissionManager = $permissionManager;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isExpensive() {
@@ -53,7 +77,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		return [
 			'tables' => [
@@ -114,7 +138,6 @@ class SpecialBrokenRedirects extends QueryPage {
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
@@ -131,11 +154,9 @@ class SpecialBrokenRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
-				->getContentHandler( $fromObj->getContentModel() )
+			$this->contentHandlerFactory->getContentHandler( $fromObj->getContentModel() )
 				->supportsDirectEditing()
 		) {
 			$links[] = $linkRenderer->makeKnownLink(
@@ -150,7 +171,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if ( $permissionManager->userHasRight( $this->getUser(), 'delete' ) ) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'delete' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),

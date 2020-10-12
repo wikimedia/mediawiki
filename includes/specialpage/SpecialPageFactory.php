@@ -64,14 +64,29 @@ class SpecialPageFactory {
 	 */
 	private const CORE_LIST = [
 		// Maintenance Reports
-		'BrokenRedirects' => \SpecialBrokenRedirects::class,
+		'BrokenRedirects' => [
+			'class' => \SpecialBrokenRedirects::class,
+			'services' => [
+				'PermissionManager',
+				'ContentHandlerFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Deadendpages' => [
 			'class' => \SpecialDeadendPages::class,
 			'services' => [
 				'NamespaceInfo',
 			]
 		],
-		'DoubleRedirects' => \SpecialDoubleRedirects::class,
+		'DoubleRedirects' => [
+			'class' => \SpecialDoubleRedirects::class,
+			'services' => [
+				'PermissionManager',
+				'ContentHandlerFactory',
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Longpages' => [
 			'class' => \SpecialLongPages::class,
 			'services' => [
