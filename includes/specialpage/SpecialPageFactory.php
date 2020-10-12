@@ -320,7 +320,12 @@ class SpecialPageFactory {
 		'Unlockdb' => \SpecialUnlockdb::class,
 
 		// Redirecting special pages
-		'LinkSearch' => \SpecialLinkSearch::class,
+		'LinkSearch' => [
+			'class' => \SpecialLinkSearch::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Randompage' => \RandomPage::class,
 		'RandomInCategory' => \SpecialRandomInCategory::class,
 		'Randomredirect' => \SpecialRandomredirect::class,
