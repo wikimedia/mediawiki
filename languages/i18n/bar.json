@@ -808,7 +808,7 @@
 	"watchlistanontext": "Du muasst dé $1, um deih Beówchtungslisten z' seeng óder Eihträg borweiten z' kenner.",
 	"watchnologin": "Du bist néd auhgmödt",
 	"addwatch": "Zua Beówochtungslisten dazuadoah",
-	"addedwatchtext": "Dé Seiten „[[:$1]]“ is zua deiner [[Special:Watchlist|Beówochtungslisten]] dazuadauh worn.\nÄnderrungen an derer Seiten und voh da Dischkrierseiten wern do glistt und in da Ywersicht voh dé [[Special:RecentChanges|létzden Änderrungen]] auf Fettschrieft auhzoagt.\n\nWaunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, druck oafoch auf da jeeweiling Seiten auf „nimmer beówochten“.",
+	"addedwatchtext": "Dé Seiten „[[:$1]]“ und dé Dischkrierseiten is zua deiner [[Special:Watchlist|Beówochtungslisten]] dazuadauh worn.",
 	"removewatch": "Voh da Beówochtungslisten wegdoah",
 	"removedwatchtext": "D' Seiten „[[:$1]]“ is voh deiner [[Special:Watchlist|Beówochtungslisten]] wegdauh worn.",
 	"watch": "Beobochtn",

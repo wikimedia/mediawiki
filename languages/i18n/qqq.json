@@ -384,7 +384,7 @@
 	"search-ignored-headings": "Headings that will be ignored by search. You can translate the text, including \"Leave this line exactly as it is\". Some lines of this messages have one (1) leading space.",
 	"searchbutton": "The button you can see in the sidebar, below the search input box. The \"Go\" button is {{msg-mw|Searcharticle}}.\n{{Identical|Search}}",
 	"go": "Appears next to the search button. Goes directly to the page with that name, if it exists.\n\nSee also:\n* {{msg-mw|Go}}\n* {{msg-mw|Accesskey-search-go}}\n* {{msg-mw|Tooltip-search-go}}\n{{Identical|Go}}",
-	"searcharticle": "Button description in the search menu displayed on every page. The \"Search\" button is {{msg-mw|Searchbutton}}.\n{{Identical|Go}}",
+	"searcharticle": "Button description in the search menu displayed on every page. The \"Search\" button is {{msg-mw|Searchbutton}}.\n{{Identical|Go}}\nNote however that some wikis (e.g. French Wikipedia) have chosen to translate this search submission button differently as ''Read'', rather than ''Go'':\n{{Identical|Read}}",
 	"history": "{{Identical|Page history}}",
 	"history_short": "Text used on the history tab.\n\n{{Identical|History}}",
 	"history_small": "Uncapitalized version of {{msg-mw|History short}}.\n\n{{Identical|History}}",

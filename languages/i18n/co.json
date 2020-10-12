@@ -8,6 +8,7 @@
 			"Jun Misugi",
 			"Matma Rex",
 			"Paulu",
+			"S4b1nuz E.656",
 			"아라"
 		]
 	},
@@ -624,7 +625,7 @@
 	"tags-edit": "mudificà",
 	"logentry-delete-delete": "$1 ha cancellatu a pagina $3",
 	"logentry-move-move": "$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4",
-	"logentry-newusers-create": "U participante $3 hè statu creatu da $1",
+	"logentry-newusers-create": "U participante $1 hè statu {{GENDER:$2|creatu}}",
 	"rightsnone": "(nessunu)",
 	"searchsuggest-search": "Circà in {{SITENAME}}",
 	"expand_templates_output": "Risultatu",
