@@ -596,7 +596,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 
-		if ( $option == 'flat' ) {
+		if ( $option == 'flat' && count( $validFooterLinks ) ) {
 			// fold footerlinks into a single array using a bit of trickery
 			$validFooterLinks = call_user_func_array(
 				'array_merge',
