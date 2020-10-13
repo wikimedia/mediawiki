@@ -364,7 +364,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'MIMEsearch' => \SpecialMIMESearch::class,
+		'MIMEsearch' => [
+			'class' => \SpecialMIMESearch::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'FileDuplicateSearch' => [
 			'class' => \SpecialFileDuplicateSearch::class,
 			'services' => [

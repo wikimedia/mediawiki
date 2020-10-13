@@ -22,6 +22,8 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Searches the database for files of the requested MIME type, comparing this with the
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
@@ -30,8 +32,15 @@
 class SpecialMIMESearch extends QueryPage {
 	protected $major, $minor, $mime;
 
-	public function __construct( $name = 'MIMEsearch' ) {
-		parent::__construct( $name );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'MIMEsearch' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isExpensive() {
@@ -135,7 +144,7 @@ class SpecialMIMESearch extends QueryPage {
 	}
 
 	protected function getSuggestionsForTypes() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$lastMajor = null;
 		$suggestions = [];
 		$result = $dbr->select(
