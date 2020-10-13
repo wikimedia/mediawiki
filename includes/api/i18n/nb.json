@@ -40,6 +40,7 @@
 	"apihelp-block-param-allowusertalk": "La brukeren redigere sin egen diskusjonsside (avhenger av <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Overstyr den gamle blokkeringen om brukeren allerede er blokkert.",
 	"apihelp-block-param-watchuser": "Overvåk brukerens eller IP-adressas bruker- og brukerdiskusjonssider.",
+	"apihelp-block-param-watchlistexpiry": "Utløpstidsstempel for overvåkningslisten. Utelat denne parameteren fullstendig for å la den gjeldende utløpstiden være uendret.",
 	"apihelp-block-param-tags": "Endre taggene slik at de brukes på elementet i blokk-loggen.",
 	"apihelp-block-param-partial": "Blokker brukeren fra visse sider eller navnerom i stedet for fra hele nettstedet.",
 	"apihelp-block-param-pagerestrictions": "Liste over titler som brukeren skal blokkeres fra å redigere. Gjelder bare når <var>partial</var> er satt til true.",
