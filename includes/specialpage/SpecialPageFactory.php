@@ -291,18 +291,44 @@ class SpecialPageFactory {
 		],
 
 		// Authentication
-		'Userlogin' => \SpecialUserLogin::class,
+		'Userlogin' => [
+			'class' => \SpecialUserLogin::class,
+			'services' => [
+				'AuthManager',
+			]
+		],
 		'Userlogout' => \SpecialUserLogout::class,
 		'CreateAccount' => [
 			'class' => \SpecialCreateAccount::class,
 			'services' => [
 				'PermissionManager',
+				'AuthManager',
 			]
 		],
-		'LinkAccounts' => \SpecialLinkAccounts::class,
-		'UnlinkAccounts' => \SpecialUnlinkAccounts::class,
-		'ChangeCredentials' => \SpecialChangeCredentials::class,
-		'RemoveCredentials' => \SpecialRemoveCredentials::class,
+		'LinkAccounts' => [
+			'class' => \SpecialLinkAccounts::class,
+			'services' => [
+				'AuthManager',
+			]
+		],
+		'UnlinkAccounts' => [
+			'class' => \SpecialUnlinkAccounts::class,
+			'services' => [
+				'AuthManager',
+			]
+		],
+		'ChangeCredentials' => [
+			'class' => \SpecialChangeCredentials::class,
+			'services' => [
+				'AuthManager',
+			]
+		],
+		'RemoveCredentials' => [
+			'class' => \SpecialRemoveCredentials::class,
+			'services' => [
+				'AuthManager',
+			]
+		],
 
 		// Users and rights
 		'Activeusers' => [
@@ -364,6 +390,7 @@ class SpecialPageFactory {
 			'class' => \SpecialBotPasswords::class,
 			'services' => [
 				'PasswordFactory',
+				'AuthManager',
 			]
 		],
 		'PasswordReset' => [

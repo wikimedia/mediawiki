@@ -12,8 +12,12 @@ class SpecialRemoveCredentials extends SpecialChangeCredentials {
 
 	protected static $loadUserData = false;
 
-	public function __construct() {
-		parent::__construct( 'RemoveCredentials' );
+	/**
+	 * @param AuthManager $authManager
+	 */
+	public function __construct( AuthManager $authManager ) {
+		parent::__construct( $authManager );
+		$this->mName = 'RemoveCredentials';
 	}
 
 	protected function getDefaultAction( $subPage ) {

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -50,11 +51,13 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 	/**
 	 * @param PasswordFactory $passwordFactory
+	 * @param AuthManager $authManager
 	 */
-	public function __construct( PasswordFactory $passwordFactory ) {
+	public function __construct( PasswordFactory $passwordFactory, AuthManager $authManager ) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 		$this->passwordFactory = $passwordFactory;
+		$this->setAuthManager( $authManager );
 	}
 
 	/**
