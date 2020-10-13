@@ -140,7 +140,29 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			return;
 		}
 
+		$revertedRevision = null;
 		foreach ( $revertedRevisionIds as $revId ) {
+			$previousRevision = $revertedRevision;
+
+			$revertedRevision = $this->revisionStore->getRevisionById( $revId );
+			if ( $revertedRevision === null ) {
+				// Shouldn't happen, but necessary for static analysis
+				continue;
+			}
+
+			if ( $previousRevision === null ) {
+				$previousRevision = $this->revisionStore->getPreviousRevision(
+					$revertedRevision
+				);
+			}
+			if ( $previousRevision !== null &&
+				$revertedRevision->hasSameContent( $previousRevision )
+			) {
+				// This is a null revision (e.g. a page move or protection record)
+				// See: T265312
+				continue;
+			}
+
 			$this->markAsReverted(
 				$revId,
 				$extraParams
@@ -232,17 +254,36 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 * @return bool
 	 */
 	private function handleSingleRevertedEdit() : bool {
-		if ( $this->editResult->getOldestRevertedRevisionId() ===
+		if ( $this->editResult->getOldestRevertedRevisionId() !==
 			$this->editResult->getNewestRevertedRevisionId()
 		) {
-			$this->markAsReverted(
-				$this->editResult->getOldestRevertedRevisionId(),
-				$this->getTagExtraParams()
-			);
+			return false;
+		}
+
+		$revertedRevision = $this->getOldestRevertedRevision();
+		if ( $revertedRevision === null ||
+			$revertedRevision->isDeleted( RevisionRecord::DELETED_TEXT )
+		) {
 			return true;
 		}
 
-		return false;
+		$previousRevision = $this->revisionStore->getPreviousRevision(
+			$revertedRevision
+		);
+		if ( $previousRevision !== null &&
+			$revertedRevision->hasSameContent( $previousRevision )
+		) {
+			// Ignore the very rare case of a null edit. This should not occur unless
+			// someone does something weird with the page's history before the update
+			// is executed.
+			return true;
+		}
+
+		$this->markAsReverted(
+			$this->editResult->getOldestRevertedRevisionId(),
+			$this->getTagExtraParams()
+		);
+		return true;
 	}
 
 	/**
