@@ -79,7 +79,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 *
 	 * @return CentralIdLookup|null
 	 */
-	public static function factoryNonLocal(): self {
+	public static function factoryNonLocal() {
 		$centralIdLookup = self::factory();
 
 		if ( $centralIdLookup instanceof LocalIdLookup ) {
