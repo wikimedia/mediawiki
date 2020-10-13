@@ -222,8 +222,11 @@ class WatchAction extends FormAction {
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
+			$oldWatchPeriod = $oldWatchedItem->getExpiry() === null
+				? 'infinity'
+				: $oldWatchedItem->getExpiry();
 			$changingWatchStatus = $changingWatchStatus ||
-				$oldWatchedItem->getExpiry() !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
+				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
 		}
 
 		if ( $changingWatchStatus ) {
