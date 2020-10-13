@@ -176,7 +176,9 @@ return [
 	},
 
 	'BlockErrorFormatter' => function ( MediaWikiServices $services ) : BlockErrorFormatter {
-		return new BlockErrorFormatter();
+		return new BlockErrorFormatter(
+			$services->getUserFactory()
+		);
 	},
 
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
