@@ -268,7 +268,7 @@
 	"config-install-user-grant-failed": "منح الصلاحية للمستخدم \"$1\" فشل: $2",
 	"config-install-user-missing": "المستخدم المحدد \"$1\" غير موجود",
 	"config-install-user-missing-create": "المستخدم المحدد \"$1\" غير موجود. يُرجَى النقر على مربع \"إنشاء حساب\" أدناه إذا كنت تريد إنشاءه.",
-	"config-install-tables": "إنشاء الجداول",
+	"config-install-tables": "إنشاء الجداول، الخطوة الأولى",
 	"config-install-tables-exist": "<strong>تحذير:</strong> يبدو أن جداول ميدياويكي موجودة بالفعل; تخطي الإنشاء.",
 	"config-install-tables-failed": "<strong>خطأ:</strong> فشل إنشاء الجدول بسبب الخطأ التالي: $1",
 	"config-install-interwiki": "ملء جدول الإنترويكي الإفتراضي",

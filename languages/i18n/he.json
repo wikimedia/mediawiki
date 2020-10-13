@@ -2431,7 +2431,7 @@
 	"unprotectedarticle": "ההגנה הוסרה מהדף \"[[$1]]\"",
 	"movedarticleprotection": "הגדרות ההגנה של הדף \"[[$2]]\" הועברו לדף \"[[$1]]\"",
 	"protectedarticle-comment": "{{GENDER:$2|הפעיל|הפעילה}} הגנה על הדף \"[[$1]]\"",
-	"modifiedarticleprotection-comment": "{{GENDER:$2|שינה|שינתה|שינ(ת)ה}} את הגדרות ההגנה של הדף \"[[$1]]\"",
+	"modifiedarticleprotection-comment": "{{GENDER:$2|שינה|שינתה}} את רמת ההגנה של הדף \"[[$1]]\"",
 	"unprotectedarticle-comment": "{{GENDER:$2|הסיר|הסירה}} את ההגנה מהדף \"[[$1]]\"",
 	"protect-title": "שינוי רמת ההגנה של הדף \"$1\"",
 	"protect-title-notallowed": "הצגת רמת ההגנה של הדף \"$1\"",
