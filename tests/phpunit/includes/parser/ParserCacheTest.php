@@ -107,6 +107,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataMissing() {
+		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 
 		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY );
@@ -121,6 +122,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataAllGood() {
+		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
@@ -141,6 +143,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataExpired() {
+		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
@@ -166,6 +169,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataOutdated() {
+		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon(), $this->cacheTime );
@@ -507,9 +511,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$options1 = ParserOptions::newFromAnon();
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
 
-		$outputKey = TestingAccessWrapper::newFromObject( $cache )->getParserOutputKey(
+		$outputKey = $cache->makeParserOutputKey(
 			$this->page,
-			$options1->optionsHash( $parserOutput->getUsedOptions() )
+			$options1,
+			$parserOutput->getUsedOptions()
 		);
 
 		$bag->set( $outputKey, 'bad data' );
@@ -525,9 +530,11 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * We want to be sure that we don't crash horribly if we have to roll
 	 * back to a version of the code that doesn't know about JSON.
 	 *
+	 * @covers ParserCache::getMetadata
 	 * @covers ParserCache::getKey
 	 */
 	public function testCorruptMetadata() {
+		$this->hideDeprecated( 'ParserCache::getKey' );
 		$bag = new HashBagOStuff();
 		$cache = $this->createParserCache( null, $bag );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
@@ -535,15 +542,15 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$options1 = ParserOptions::newFromAnon();
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
 
-		$optionsKey = TestingAccessWrapper::newFromObject( $cache )->getOptionsKey(
+		$optionsKey = TestingAccessWrapper::newFromObject( $cache )->makeMetadataKey(
 			$this->page
 		);
 
 		$bag->set( $optionsKey, 'bad data' );
 
 		// just make sure we don't crash and burn
-		$result = $cache->getKey( $this->page, $options1, false );
-		$this->assertFalse( $result );
+		$this->assertNull( $cache->getMetadata( $this->page ) );
+		$this->assertFalse( $cache->getKey( $this->page, $options1, false ) );
 	}
 
 }
