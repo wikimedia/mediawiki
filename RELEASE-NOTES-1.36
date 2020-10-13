@@ -323,6 +323,8 @@ because of Phabricator reports.
 * SpecialBlock::validateTarget has been deprecated, use BlockUtils instead.
 * SpecialBlock::validateTargetField has been deprecated for external use,
   use BlockUtils instead.
+* ParserCache::getKey has been deprecated. Use ParserCache::getMetadata and
+  ParserCache::makeParserOutputKey instead.
 * …
 
 === Other changes in 1.36 ===
