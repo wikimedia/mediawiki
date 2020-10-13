@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A special page that expands submitted templates, parser functions,
@@ -46,8 +46,20 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var Parser */
+	private $parser;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param Parser $parser
+	 */
+	public function __construct( PermissionManager $permissionManager, Parser $parser ) {
 		parent::__construct( 'ExpandTemplates' );
+		$this->permissionManager = $permissionManager;
+		$this->parser = $parser;
 	}
 
 	/**
@@ -76,10 +88,9 @@ class SpecialExpandTemplates extends SpecialPage {
 			$options->setRemoveComments( $this->removeComments );
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
 
-			$parser = MediaWikiServices::getInstance()->getParser();
 			if ( $this->generateXML ) {
-				$parser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
-				$dom = $parser->preprocessToDom( $input );
+				$this->parser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
+				$dom = $this->parser->preprocessToDom( $input );
 
 				if ( method_exists( $dom, 'saveXML' ) ) {
 					// @phan-suppress-next-line PhanUndeclaredMethod
@@ -90,7 +101,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				}
 			}
 
-			$output = $parser->preprocess( $input, $title, $options );
+			$output = $this->parser->preprocess( $input, $title, $options );
 		} else {
 			$this->removeComments = $request->getBool( 'wpRemoveComments', true );
 			$this->removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
@@ -247,7 +258,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	private function generateHtml( Title $title, $text ) {
 		$popts = ParserOptions::newFromContext( $this->getContext() );
 		$popts->setTargetLanguage( $title->getPageLanguage() );
-		return MediaWikiServices::getInstance()->getParser()->parse( $text, $title, $popts );
+		return $this->parser->parse( $text, $title, $popts );
 	}
 
 	/**
@@ -269,10 +280,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			// allowed and a valid edit token is not provided (T73111). However, MediaWiki
 			// does not currently provide logged-out users with CSRF protection; in that case,
 			// do not show the preview unless anonymous editing is allowed.
-			if ( $user->isAnon() && !MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'edit' )
-			) {
+			if ( $user->isAnon() && !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
 				$error = [ 'expand_templates_preview_fail_html_anon' ];
 			} elseif ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ), '', $request ) ) {
 				$error = [ 'expand_templates_preview_fail_html' ];
