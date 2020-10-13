@@ -382,11 +382,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/Poll"]
-	path = extensions/Poll
-	url = https://github.com/wikimedia/mediawiki-extensions-Poll
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
 	url = https://github.com/wikimedia/mediawiki-extensions-Editcount.git
