@@ -169,7 +169,7 @@ class SkinMustache extends SkinTemplate {
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
 			// HTML strings
-			'html-site-notice' => $this->getSiteNotice(),
+			'html-site-notice' => $this->getSiteNotice() ?: null,
 			'html-user-message' => $newTalksHtml ?
 				Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : null,
 			'html-title' => $out->getPageTitle(),
