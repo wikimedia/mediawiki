@@ -220,7 +220,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
 			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
-			$logger->info( '{time} {title}', [
+			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
 				'title' => $this->page->getTitle()->getPrefixedDBkey(),
 				'ns' => $this->page->getTitle()->getNamespace(),
