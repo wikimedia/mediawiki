@@ -162,7 +162,12 @@ class SpecialPageFactory {
 			]
 		],
 		'Wantedcategories' => \SpecialWantedCategories::class,
-		'Wantedfiles' => \WantedFilesPage::class,
+		'Wantedfiles' => [
+			'class' => \WantedFilesPage::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'Wantedpages' => [
 			'class' => \WantedPagesPage::class,
 			'services' => [
