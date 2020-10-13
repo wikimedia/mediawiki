@@ -21,12 +21,15 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Parser\ParserCacheMetadata;
+
 /**
  * Parser cache specific expiry check.
  *
  * @ingroup Parser
  */
-class CacheTime {
+class CacheTime implements ParserCacheMetadata {
+
 	/**
 	 * @var string[] ParserOptions which have been taken into account to produce output.
 	 */
@@ -55,7 +58,7 @@ class CacheTime {
 	public $mCacheRevisionId = null;
 
 	/**
-	 * @return string TS_MW timestamp
+	 * @return string|int TS_MW timestamp
 	 */
 	public function getCacheTime() {
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
@@ -88,7 +91,7 @@ class CacheTime {
 	 * @since 1.23
 	 * @return int|null Revision id, if any was set
 	 */
-	public function getCacheRevisionId() {
+	public function getCacheRevisionId(): ?int {
 		return $this->mCacheRevisionId;
 	}
 
@@ -130,7 +133,7 @@ class CacheTime {
 	 * value of $wgParserCacheExpireTime.
 	 * @return int
 	 */
-	public function getCacheExpiry() {
+	public function getCacheExpiry(): int {
 		global $wgParserCacheExpireTime;
 
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
@@ -196,5 +199,15 @@ class CacheTime {
 	public function isDifferentRevision( $id ) {
 		$cached = $this->getCacheRevisionId();
 		return $cached !== null && $id !== $cached;
+	}
+
+	/**
+	 * Returns the options from its ParserOptions which have been taken
+	 * into account to produce the output.
+	 * @since 1.36
+	 * @return string[]
+	 */
+	public function getUsedOptions(): array {
+		return $this->mUsedOptions;
 	}
 }

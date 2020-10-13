@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Parser\ParserCacheMetadata;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -33,16 +34,17 @@ class ParserCache {
 	/**
 	 * Constants for self::getKey()
 	 * @since 1.30
+	 * @since 1.36 the constants were made public
 	 */
 
 	/** Use only current data */
-	private const USE_CURRENT_ONLY = 0;
+	public const USE_CURRENT_ONLY = 0;
 
 	/** Use expired data if current data is unavailable */
-	private const USE_EXPIRED = 1;
+	public const USE_EXPIRED = 1;
 
 	/** Use expired data or data from different revisions if current data is unavailable */
-	private const USE_OUTDATED = 2;
+	public const USE_OUTDATED = 2;
 
 	/**
 	 * Use expired data and data from different revisions, and if all else
@@ -104,7 +106,7 @@ class ParserCache {
 	/**
 	 * @param WikiPage $wikiPage
 	 * @param string $hash
-	 * @return mixed|string
+	 * @return string
 	 */
 	private function getParserOutputKey( WikiPage $wikiPage, $hash ) {
 		global $wgRequest;
@@ -113,8 +115,7 @@ class ParserCache {
 		$pageid = $wikiPage->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
-		$key = $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
-		return $key;
+		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 	}
 
 	/**
@@ -148,14 +149,7 @@ class ParserCache {
 	 * @return string
 	 */
 	public function getETag( WikiPage $wikiPage, $popts ) {
-		return 'W/"'
-			. $this->getParserOutputKey(
-				$wikiPage,
-				$popts->optionsHash(
-					ParserOptions::allCacheVaryingOptions(),
-					$wikiPage->getTitle()
-				)
-			)
+		return 'W/"' . $this->makeParserOutputKey( $wikiPage, $popts )
 			. "--" . $wikiPage->getTouched() . '"';
 	}
 
@@ -199,6 +193,7 @@ class ParserCache {
 	 *  boolean true is treated as USE_ANYTHING.
 	 * @return bool|mixed|string
 	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
+	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
 	 */
 	public function getKey( WikiPage $wikiPage, $popts, $useOutdated = self::USE_ANYTHING ) {
 		if ( is_bool( $useOutdated ) ) {
@@ -212,59 +207,110 @@ class ParserCache {
 			$popts = ParserOptions::newFromUser( $popts );
 		}
 
-		// Determine the options which affect this article
-		$optionsKey = $this->cache->get(
-			$this->getOptionsKey( $wikiPage ), BagOStuff::READ_VERIFIED );
-		if ( $optionsKey instanceof CacheTime ) {
+		$metadata = $this->getMetadata( $wikiPage, $useOutdated );
+		if ( !$metadata ) {
+			if ( $useOutdated < self::USE_ANYTHING ) {
+				return false;
+			}
+			$usedOptions = ParserOptions::allCacheVaryingOptions();
+		} else {
+			$usedOptions = $metadata->getUsedOptions();
+		}
+
+		return $this->makeParserOutputKey( $wikiPage, $popts, $usedOptions );
+	}
+
+	/**
+	 * Returns the ParserCache metadata about the given page
+	 * considering the given options.
+	 *
+	 * @note Which parser options influence the cache key
+	 * is controlled via ParserOutput::recordOption() or
+	 * ParserOptions::addExtraKey().
+	 *
+	 * @param WikiPage $wikiPage
+	 * @param int $staleConstraint one of the self::USE_ constants
+	 * @return ParserCacheMetadata|null
+	 * @since 1.36
+	 */
+	public function getMetadata(
+		WikiPage $wikiPage,
+		int $staleConstraint = self::USE_ANYTHING
+	): ?ParserCacheMetadata {
+		$metadata = $this->cache->get(
+			$this->getOptionsKey( $wikiPage ),
+			BagOStuff::READ_VERIFIED
+		);
+		if ( $metadata instanceof CacheTime ) {
 			if (
-				$useOutdated < self::USE_EXPIRED
-				&& $optionsKey->expired( $wikiPage->getTouched() )
+				$staleConstraint < self::USE_EXPIRED
+				&& $metadata->expired( $wikiPage->getTouched() )
 			) {
 				$this->incrementStats( $wikiPage, "miss.expired" );
 				$this->logger->debug( 'Parser options key expired', [
 					'name' => $this->name,
 					'touched' => $wikiPage->getTouched(),
 					'epoch' => $this->cacheEpoch,
-					'cache_time' => $optionsKey->getCacheTime()
+					'cache_time' => $metadata->getCacheTime()
 				] );
-				return false;
-			} elseif ( $useOutdated < self::USE_OUTDATED &&
-				$optionsKey->isDifferentRevision( $wikiPage->getLatest() )
+				return null;
+			} elseif ( $staleConstraint < self::USE_OUTDATED &&
+				$metadata->isDifferentRevision( $wikiPage->getLatest() )
 			) {
 				$this->incrementStats( $wikiPage, "miss.revid" );
 				$this->logger->debug( 'ParserOutput key is for an old revision', [
 					'name' => $this->name,
 					'rev_id' => $wikiPage->getLatest(),
-					'cached_rev_id' => $optionsKey->getCacheRevisionId()
+					'cached_rev_id' => $metadata->getCacheRevisionId()
 				] );
-				return false;
+				return null;
 			}
-
-			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
 
 			// HACK: The property 'mUsedOptions' was made private in the initial
 			// deployment of mediawiki 1.36.0-wmf.11. Thus anything it stored is
 			// broken and incompatible with wmf.10. We can't use RejectParserCacheValue
 			// because that hook does not run until later.
 			// See https://phabricator.wikimedia.org/T264257
-			if ( !isset( $optionsKey->mUsedOptions ) ) {
-				wfDebugLog( "ParserCache", "Bad ParserOutput key from wmf.11 T264257" );
-				return false;
+			if ( !isset( $metadata->mUsedOptions ) ) {
+				$this->logger->debug( 'Bad ParserOutput key from wmf.11 T264257', [
+					'name' => $this->name
+				] );
+				return null;
 			}
-			$usedOptions = $optionsKey->mUsedOptions;
+
 			$this->logger->debug( 'Parser cache options found', [
 				'name' => $this->name
 			] );
-		} else {
-			if ( $useOutdated < self::USE_ANYTHING ) {
-				return false;
-			}
-			$usedOptions = ParserOptions::allCacheVaryingOptions();
+			return $metadata;
 		}
+		return null;
+	}
 
+	/**
+	 * Get a key that will be used by the ParserCache to store the content
+	 * for a given page considering the given options and the array of
+	 * used options.
+	 *
+	 * @warning The exact format of the key is considered internal and is subject
+	 * to change, thus should not be used as storage or long-term caching key.
+	 * This is intended to be used for logging or keying something transient.
+	 *
+	 * @param WikiPage $wikiPage
+	 * @param ParserOptions $options
+	 * @param array|null $usedOptions Defaults to all cache verying options.
+	 * @return string
+	 * @internal
+	 * @since 1.36
+	 */
+	public function makeParserOutputKey(
+		WikiPage $wikiPage,
+		ParserOptions $options,
+		array $usedOptions = null
+	): string {
+		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
 		return $this->getParserOutputKey(
 			$wikiPage,
-			$popts->optionsHash( $usedOptions, $wikiPage->getTitle() )
+			$options->optionsHash( $usedOptions, $wikiPage->getTitle() )
 		);
 	}
 
@@ -287,15 +333,21 @@ class ParserCache {
 
 		$touched = $wikiPage->getTouched();
 
-		$parserOutputKey = $this->getKey( $wikiPage, $popts,
+		$parserOutputMetadata = $this->getMetadata(
+			$wikiPage,
 			$useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY
 		);
-		if ( $parserOutputKey === false ) {
+		if ( !$parserOutputMetadata ) {
 			$this->incrementStats( $wikiPage, 'miss.absent' );
 			return false;
 		}
 
-		$casToken = null;
+		$parserOutputKey = $this->makeParserOutputKey(
+			$wikiPage,
+			$popts,
+			$parserOutputMetadata->getUsedOptions()
+		);
+
 		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value instanceof ParserOutput ) {
@@ -370,17 +422,20 @@ class ParserCache {
 				$revId = $revision ? $revision->getId() : null;
 			}
 
-			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
-			$optionsKey->updateCacheExpiry( $expire );
+			$metadata = new CacheTime;
+			$metadata->mUsedOptions = $parserOutput->getUsedOptions();
+			$metadata->updateCacheExpiry( $expire );
 
-			$optionsKey->setCacheTime( $cacheTime );
+			$metadata->setCacheTime( $cacheTime );
 			$parserOutput->setCacheTime( $cacheTime );
-			$optionsKey->setCacheRevisionId( $revId );
+			$metadata->setCacheRevisionId( $revId );
 			$parserOutput->setCacheRevisionId( $revId );
 
-			$parserOutputKey = $this->getParserOutputKey( $wikiPage,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $wikiPage->getTitle() ) );
+			$parserOutputKey = $this->makeParserOutputKey(
+				$wikiPage,
+				$popts,
+				$metadata->getUsedOptions()
+			);
 
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
@@ -389,7 +444,7 @@ class ParserCache {
 				" and timestamp $cacheTime" .
 				" and revision id $revId";
 
-			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
+			$parserOutput->addCacheMessage( $msg );
 
 			$this->logger->debug( 'Saved in parser cache', [
 				'name' => $this->name,
@@ -407,7 +462,7 @@ class ParserCache {
 			);
 
 			// ...and its pointer
-			$this->cache->set( $this->getOptionsKey( $wikiPage ), $optionsKey, $expire );
+			$this->cache->set( $this->getOptionsKey( $wikiPage ), $metadata, $expire );
 
 			$this->hookRunner->onParserCacheSaveComplete(
 				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
