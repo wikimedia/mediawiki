@@ -66,7 +66,12 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	private function getMigration( $stage ) {
-		return new ActorMigration( $stage, MediaWikiServices::getInstance()->getUserNameUtils() );
+		$mwServices = MediaWikiServices::getInstance();
+		return new ActorMigration(
+			$stage,
+			$mwServices->getUserFactory(),
+			$mwServices->getUserNameUtils()
+		);
 	}
 
 	/**
