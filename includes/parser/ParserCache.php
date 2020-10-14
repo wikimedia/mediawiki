@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Parser\ParserCacheMetadata;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Assert\Assert;
 
 /**
  * @ingroup Cache Parser
@@ -75,6 +76,18 @@ class ParserCache {
 	private $logger;
 
 	/**
+	 * @note Temporary feature flag, remove before 1.36 is released.
+	 * @var bool
+	 */
+	private $writeJson = false;
+
+	/**
+	 * @note Temporary feature flag, remove before 1.36 is released.
+	 * @var bool
+	 */
+	private $readJson = false;
+
+	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 *
 	 * This class use an invalidation strategy that is compatible with
@@ -86,6 +99,7 @@ class ParserCache {
 	 * @param HookContainer $hookContainer
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
+	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
 		string $name,
@@ -93,7 +107,8 @@ class ParserCache {
 		string $cacheEpoch,
 		HookContainer $hookContainer,
 		IBufferingStatsdDataFactory $stats,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		$useJson = false
 	) {
 		$this->name = $name;
 		$this->cache = $cache;
@@ -101,6 +116,8 @@ class ParserCache {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = $stats;
 		$this->logger = $logger;
+		$this->readJson = $useJson;
+		$this->writeJson = $useJson;
 	}
 
 	/**
@@ -215,10 +232,24 @@ class ParserCache {
 		WikiPage $wikiPage,
 		int $staleConstraint = self::USE_ANYTHING
 	): ?ParserCacheMetadata {
+		$pageKey = $this->makeMetadataKey( $wikiPage );
 		$metadata = $this->cache->get(
-			$this->makeMetadataKey( $wikiPage ),
+			$pageKey,
 			BagOStuff::READ_VERIFIED
 		);
+
+		// NOTE: If the value wasn't serialized to JSON when being stored,
+		//       we may already have a ParserOutput object here. This used
+		//       to be the default behavior before 1.36. We need to retain
+		//       support so we can handle cached objects after an update
+		//       from an earlier revision.
+		// NOTE: Support for reading string values from the cache must be
+		//       deployed a while before starting to write JSON to the cache,
+		//       in case we have to revert either change.
+		if ( is_string( $metadata ) && $this->readJson ) {
+			$metadata = $this->restoreFromJson( $metadata, $pageKey );
+		}
+
 		if ( $metadata instanceof CacheTime ) {
 			if (
 				$staleConstraint < self::USE_EXPIRED
@@ -339,9 +370,8 @@ class ParserCache {
 			$parserOutputMetadata->getUsedOptions()
 		);
 
-		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
-		if ( !$value instanceof ParserOutput ) {
+		if ( $value === false ) {
 			$this->incrementStats( $wikiPage, "miss.absent" );
 			$this->logger->debug( 'ParserOutput cache miss', [
 				'name' => $this->name
@@ -349,6 +379,24 @@ class ParserCache {
 			return false;
 		}
 
+		// NOTE: If the value wasn't serialized to JSON when being stored,
+		//       we may already have a ParserOutput object here. This used
+		//       to be the default behavior before 1.36. We need to retain
+		//       support so we can handle cached objects after an update
+		//       from an earlier revision.
+		// NOTE: Support for reading string values from the cache must be
+		//       deployed a while before starting to write JSON to the cache,
+		//       in case we have to revert either change.
+		if ( is_string( $value ) && $this->readJson ) {
+			$value = $this->restoreFromJson( $value, $parserOutputKey );
+		}
+
+		if ( !$value instanceof ParserOutput ) {
+			$this->logger->debug( "ParserOutput bad endtry.", [ 'name' => $this->name ] );
+			return false;
+		}
+
+		/** @var ParserOutput $value */
 		$this->logger->debug( 'ParserOutput cache found', [
 			'name' => $this->name
 		] );
@@ -444,19 +492,32 @@ class ParserCache {
 				'rev_id' => $revId
 			] );
 
-			// Save the parser output
-			$this->cache->set(
-				$parserOutputKey,
-				$parserOutput,
-				$expire,
-				BagOStuff::WRITE_ALLOW_SEGMENTS
-			);
+			$pageKey = $this->makeMetadataKey( $wikiPage );
 
-			// ...and its pointer
-			$this->cache->set( $this->makeMetadataKey( $wikiPage ), $metadata, $expire );
+			if ( $this->writeJson ) {
+				$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
+				$metadataData = $this->encodeAsJson( $metadata, $pageKey );
+			} else {
+				// rely on implicit PHP serialization in the cache
+				$parserOutputData = $parserOutput;
+				$metadataData = $metadata;
+			}
 
-			$this->hookRunner->onParserCacheSaveComplete(
-				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
+			if ( $parserOutputData && $metadataData ) {
+				// Save the parser output
+				$this->cache->set(
+					$parserOutputKey,
+					$parserOutputData,
+					$expire,
+					BagOStuff::WRITE_ALLOW_SEGMENTS
+				);
+
+				// ...and its pointer
+				$this->cache->set( $pageKey, $metadataData, $expire );
+
+				$this->hookRunner->onParserCacheSaveComplete(
+					$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
+			}
 		} elseif ( $expire <= 0 ) {
 			$this->logger->debug(
 				'Parser output was marked as uncacheable and has not been saved',
@@ -475,5 +536,85 @@ class ParserCache {
 	 */
 	public function getCacheStorage() {
 		return $this->cache;
+	}
+
+	/**
+	 * @note setter for temporary feature flags, for use in testing.
+	 * @internal
+	 * @param bool $readJson
+	 * @param bool $writeJson
+	 */
+	public function setJsonSupport( bool $readJson, bool $writeJson ): void {
+		$this->readJson = $readJson;
+		$this->writeJson = $writeJson;
+	}
+
+	/**
+	 * @param string $jsonData
+	 * @param string $key
+	 *
+	 * @return CacheTime|null
+	 */
+	private function restoreFromJson( string $jsonData, string $key ) {
+		$jsonData = FormatJson::decode( $jsonData, true );
+		if ( !$jsonData ) {
+			$this->logger->error(
+				"Invalid JSON",
+				[ 'cache_key' => $key, 'json_error' => json_last_error(), ] );
+			return null;
+		}
+
+		if ( !isset( $jsonData['_type_'] ) ) {
+			$this->logger->error( "No _type_ field in JSON data",
+				[ 'cache_key' => $key ]
+			);
+			return null;
+		}
+
+		// NOTE: Allowing the factory method to be specified directly in the data is tempting,
+		//       but would be insecure. Information in $jsonData must be considered unsafe,
+		//       since an attacker gaining access to the network could write to e.g. memcache.
+		$type = $jsonData['_type_'];
+		$factoryMapping = [
+			'CacheTime' => [ CacheTime::class, 'newFromJson' ],
+			'ParserOutput' => [ ParserOutput::class, 'newFromJson' ],
+		];
+
+		if ( !isset( $factoryMapping[$type] ) ) {
+			$this->logger->error( "Unknown value in _type_ field in JSON data",
+				[ 'cache_key' => $key, 'json_type' => $type ]
+			);
+			return null;
+		}
+
+		$factory = $factoryMapping[$type];
+		$obj = $factory( $jsonData );
+
+		Assert::postcondition(
+			$obj instanceof CacheTime,
+			'Factory method must return a CacheTime instance'
+		);
+
+		return $obj;
+	}
+
+	/**
+	 * @param CacheTime $obj
+	 * @param string $key
+	 *
+	 * @return string|null
+	 */
+	private function encodeAsJson( CacheTime $obj, string $key ) {
+		$data = $obj->jsonSerialize();
+		$json = FormatJson::encode( $data );
+
+		if ( !$json ) {
+			$this->logger->error(
+				"JSON encoding failed!",
+				[ 'cache_key' => $key, 'json_error' => json_last_error(), ]
+			);
+		}
+
+		return $json ?: null;
 	}
 }

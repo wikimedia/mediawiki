@@ -553,4 +553,73 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $cache->getKey( $this->page, $options1, false ) );
 	}
 
+	/**
+	 * Test whats happen when we turn on JSON support but there
+	 * are still old entries in the cache.
+	 *
+	 * @covers ParserCache::get
+	 */
+	public function testMigrationToJson() {
+		$cache = $this->createParserCache();
+		$cache->setJsonSupport( false, false );
+
+		$parserOutput1 = new ParserOutput( 'Lorem Ipsum' );
+
+		$options = ParserOptions::newFromAnon();
+		$cache->save( $parserOutput1, $this->page, $options, $this->cacheTime );
+
+		// emulate migration to JSON
+		$cache->setJsonSupport( true, true );
+
+		// make sure we can load non-json cache data
+		$cachedOutput = $cache->get( $this->page, $options );
+		$this->assertEquals( $parserOutput1, $cachedOutput );
+
+		// now test that the cache works when using JSON
+		$parserOutput2 = new ParserOutput( 'dolor sit amet' );
+		$cache->save( $parserOutput2, $this->page, $options, $this->cacheTime );
+
+		// make sure we can load json cache data
+		$cachedOutput = $cache->get( $this->page, $options );
+		$this->assertEquals( $parserOutput2, $cachedOutput );
+	}
+
+	/**
+	 * Test whats happen when we have to roll back from supporting JSON
+	 * to not supporting JSON.
+	 *
+	 * @covers ParserCache::get
+	 */
+	public function testRollbackFromJson() {
+		$cache = $this->createParserCache();
+		$cache->setJsonSupport( true, true );
+
+		$parserOutput1 = new ParserOutput( 'Lorem Ipsum' );
+
+		$options = ParserOptions::newFromAnon();
+		$cache->save( $parserOutput1, $this->page, $options, $this->cacheTime );
+
+		// emulate rolling back to not writing but still reading JSON
+		$cache->setJsonSupport( true, false );
+
+		// make sure we can load json cache data
+		$cachedOutput = $cache->get( $this->page, $options );
+		$this->assertEquals( $parserOutput1, $cachedOutput );
+
+		// emulate rolling back to not reading JSON
+		$cache->setJsonSupport( false, false );
+
+		// make sure we don't crash and burn
+		$cachedOutput = $cache->get( $this->page, $options );
+		$this->assertFalse( $cachedOutput );
+
+		// now test that the cache works without JSON
+		$parserOutput2 = new ParserOutput( 'dolor sit amet' );
+		$cache->save( $parserOutput2, $this->page, $options, $this->cacheTime );
+
+		// make sure we can load non-json cache data
+		$cachedOutput = $cache->get( $this->page, $options );
+		$this->assertEquals( $parserOutput2, $cachedOutput );
+	}
+
 }

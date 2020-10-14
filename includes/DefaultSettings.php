@@ -9664,6 +9664,14 @@ $wgRevertedTagMaxDepth = 15;
 $wgRestAllowCrossOriginCookieAuth = false;
 
 /**
+ * Temporary feature flag for selectively enabling JSON serialization in th e parser cache.
+ * @see T263579
+ * @internal
+ * @todo remove before 1.36 is released. JSON should have become the default by then.
+ */
+$wgParserCacheUseJson = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

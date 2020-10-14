@@ -56,24 +56,33 @@ class ParserCacheFactory {
 	private $instanceCache = [];
 
 	/**
+	 * @note Temporary feature flag, remove before 1.36 is released.
+	 * @var bool
+	 */
+	private $useJson = false;
+
+	/**
 	 * @param BagOStuff $cacheBackend
 	 * @param string $cacheEpoch
 	 * @param HookContainer $hookContainer
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
+	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
 		BagOStuff $cacheBackend,
 		string $cacheEpoch,
 		HookContainer $hookContainer,
 		IBufferingStatsdDataFactory $stats,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		$useJson = false
 	) {
 		$this->cacheBackend = $cacheBackend;
 		$this->cacheEpoch = $cacheEpoch;
 		$this->hookContainer = $hookContainer;
 		$this->stats = $stats;
 		$this->logger = $logger;
+		$this->useJson = $useJson;
 	}
 
 	/**
@@ -84,14 +93,17 @@ class ParserCacheFactory {
 	public function getInstance( string $name ) : ParserCache {
 		if ( !isset( $this->instanceCache[$name] ) ) {
 			$this->logger->debug( "Creating ParserCache instance for {$name}" );
-			$this->instanceCache[$name] = new ParserCache(
+			$cache = new ParserCache(
 				$name,
 				$this->cacheBackend,
 				$this->cacheEpoch,
 				$this->hookContainer,
 				$this->stats,
-				$this->logger
+				$this->logger,
+				$this->useJson
 			);
+
+			$this->instanceCache[$name] = $cache;
 		}
 		return $this->instanceCache[$name];
 	}

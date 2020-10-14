@@ -1692,4 +1692,154 @@ class ParserOutput extends CacheTime {
 		return max( $a, $b );
 	}
 
+	/**
+	 * Returns a JSON serializable structure representing this ParserOutput instance.
+	 * @see newFromJson()
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function jsonSerialize() {
+		$data = [
+			'_type_' => 'ParserOutput',
+
+			'Text' => $this->mText,
+			'LanguageLinks' => $this->mLanguageLinks,
+			'Categories' => $this->mCategories,
+			'Indicators' => $this->mIndicators,
+			'TitleText' => $this->mTitleText,
+			'Links' => $this->mLinks,
+			'LinksSpecial' => $this->mLinksSpecial,
+			'Templates' => $this->mTemplates,
+			'TemplateIds' => $this->mTemplateIds,
+			'Images' => $this->mImages,
+			'FileSearchOptions' => $this->mFileSearchOptions,
+			'ExternalLinks' => $this->mExternalLinks,
+			'InterwikiLinks' => $this->mInterwikiLinks,
+			'NewSection' => $this->mNewSection,
+			'HideNewSection' => $this->mHideNewSection,
+			'NoGallery' => $this->mNoGallery,
+			'HeadItems' => $this->mHeadItems,
+			'Modules' => $this->mModules,
+			'ModuleStyles' => $this->mModuleStyles,
+			'JsConfigVars' => $this->mJsConfigVars,
+			'OutputHooks' => $this->mOutputHooks,
+			'Warnings' => $this->mWarnings,
+			'Sections' => $this->mSections,
+			'Properties' => $this->mProperties, // may contain arbitrary structures!
+			'TOCHTML' => $this->mTOCHTML,
+			'Timestamp' => $this->mTimestamp,
+			'EnableOOUI' => $this->mEnableOOUI,
+			'IndexPolicy' => $this->mIndexPolicy,
+			'AccessedOptions' => $this->mAccessedOptions,
+			'ExtensionData' => $this->mExtensionData,  // may contain arbitrary structures!
+			'LimitReportData' => $this->mLimitReportData,
+			'LimitReportJSData' => $this->mLimitReportJSData,
+			'ParseStartTime' => $this->mParseStartTime,
+			'PreventClickjacking' => $this->mPreventClickjacking,
+			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
+			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
+			'ExtraStyleSrcs' => $this->mExtraStyleSrcs,
+			'Flags' => $this->mFlags,
+			'SpeculativeRevId' => $this->mSpeculativeRevId,
+			'SpeculativePageIdUsed' => $this->speculativePageIdUsed,
+			'RevisionTimestampUsed' => $this->revisionTimestampUsed,
+			'RevisionUsedSha1Base36' => $this->revisionUsedSha1Base36,
+			'WrapperDivClasses' => $this->mWrapperDivClasses,
+		];
+
+		// Fill in missing fields from parents. Array addition does not override existing fields.
+		$data += parent::jsonSerialize();
+
+		// TODO: make more fields optional!
+
+		if ( $this->mMaxAdaptiveExpiry !== INF ) {
+			// NOTE: JSON can't encode infinity!
+			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Construct a ParserOutput instance from a structure returned by jsonSerialize()
+	 *
+	 * @see jsonSerialize()
+	 * @since 1.36
+	 *
+	 * @param string|array|object $jsonData
+	 * @return CacheTime
+	 * @throws InvalidArgumentException
+	 */
+	public static function newFromJson( $jsonData ) {
+		if ( is_string( $jsonData ) ) {
+			$jsonData = FormatJson::decode( $jsonData, true );
+			if ( !$jsonData ) {
+				// TODO: in PHP 7.3, we can use JsonException
+				throw new InvalidArgumentException( 'Bad JSON' );
+			}
+		}
+
+		if ( is_object( $jsonData ) ) {
+			$jsonData = (array)$jsonData;
+		}
+
+		$output = new ParserOutput();
+		$output->initFromJson( $jsonData );
+
+		return $output;
+	}
+
+	/**
+	 * Initialize member fields from an array returned by jsonSerialize().
+	 * @param array $jsonData
+	 */
+	protected function initFromJson( array $jsonData ) {
+		parent::initFromJson( $jsonData );
+
+		$this->mText = $jsonData['Text'];
+		$this->mLanguageLinks = $jsonData['LanguageLinks'];
+		$this->mCategories = $jsonData['Categories'];
+		$this->mIndicators = $jsonData['Indicators'];
+		$this->mTitleText = $jsonData['TitleText'];
+		$this->mLinks = $jsonData['Links'];
+		$this->mLinksSpecial = $jsonData['LinksSpecial'];
+		$this->mTemplates = $jsonData['Templates'];
+		$this->mTemplateIds = $jsonData['TemplateIds'];
+		$this->mImages = $jsonData['Images'];
+		$this->mFileSearchOptions = $jsonData['FileSearchOptions'];
+		$this->mExternalLinks = $jsonData['ExternalLinks'];
+		$this->mInterwikiLinks = $jsonData['InterwikiLinks'];
+		$this->mNewSection = $jsonData['NewSection'];
+		$this->mHideNewSection = $jsonData['HideNewSection'];
+		$this->mNoGallery = $jsonData['NoGallery'];
+		$this->mHeadItems = $jsonData['HeadItems'];
+		$this->mModules = $jsonData['Modules'];
+		$this->mModuleStyles = $jsonData['ModuleStyles'];
+		$this->mJsConfigVars = $jsonData['JsConfigVars'];
+		$this->mOutputHooks = $jsonData['OutputHooks'];
+		$this->mWarnings = $jsonData['Warnings'];
+		$this->mSections = $jsonData['Sections'];
+		$this->mProperties = $jsonData['Properties'];
+		$this->mTOCHTML = $jsonData['TOCHTML'];
+		$this->mTimestamp = $jsonData['Timestamp'];
+		$this->mEnableOOUI = $jsonData['EnableOOUI'];
+		$this->mIndexPolicy = $jsonData['IndexPolicy'];
+		$this->mAccessedOptions = $jsonData['AccessedOptions'];
+		$this->mExtensionData = $jsonData['ExtensionData'];
+		$this->mLimitReportData = $jsonData['LimitReportData'];
+		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
+		$this->mParseStartTime = $jsonData['ParseStartTime'];
+		$this->mPreventClickjacking = $jsonData['PreventClickjacking'];
+		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
+		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'];
+		$this->mExtraStyleSrcs = $jsonData['ExtraStyleSrcs'];
+		$this->mFlags = $jsonData['Flags'];
+		$this->mSpeculativeRevId = $jsonData['SpeculativeRevId'];
+		$this->speculativePageIdUsed = $jsonData['SpeculativePageIdUsed'];
+		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'];
+		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
+		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
+		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
+	}
 }
