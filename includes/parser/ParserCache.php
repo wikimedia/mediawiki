@@ -482,15 +482,7 @@ class ParserCache {
 			$msg = "Saved in parser cache with key $parserOutputKey" .
 				" and timestamp $cacheTime" .
 				" and revision id $revId";
-
 			$parserOutput->addCacheMessage( $msg );
-
-			$this->logger->debug( 'Saved in parser cache', [
-				'name' => $this->name,
-				'key' => $parserOutputKey,
-				'cache_time' => $cacheTime,
-				'rev_id' => $revId
-			] );
 
 			$pageKey = $this->makeMetadataKey( $wikiPage );
 
@@ -517,6 +509,13 @@ class ParserCache {
 
 				$this->hookRunner->onParserCacheSaveComplete(
 					$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
+
+				$this->logger->debug( 'Saved in parser cache', [
+					'name' => $this->name,
+					'key' => $parserOutputKey,
+					'cache_time' => $cacheTime,
+					'rev_id' => $revId
+				] );
 			}
 		} elseif ( $expire <= 0 ) {
 			$this->logger->debug(
@@ -606,15 +605,32 @@ class ParserCache {
 	 */
 	private function encodeAsJson( CacheTime $obj, string $key ) {
 		$data = $obj->jsonSerialize();
-		$json = FormatJson::encode( $data );
 
+		$json = FormatJson::encode( $data );
 		if ( !$json ) {
-			$this->logger->error(
-				"JSON encoding failed!",
-				[ 'cache_key' => $key, 'json_error' => json_last_error(), ]
-			);
+			$this->logger->error( "JSON encoding failed", [
+				'name' => $this->name,
+				'cache_key' => $key,
+				'json_error' => json_last_error(),
+			] );
+			return null;
 		}
 
-		return $json ?: null;
+		// Detect if the array contained any properties non-serializable
+		// to json. We will not be able to deserialize the value correctly
+		// anyway, so return null. This is done after calling FormatJson::encode
+		// to avoid walking over circular structures.
+		$unserializablePath = FormatJson::detectNonSerializableData( $data );
+		if ( $unserializablePath ) {
+			$objClass = get_class( $obj );
+			$this->logger->error( "Non-serializable {$objClass} property set", [
+				'name' => $this->name,
+				'cache_key' => $key,
+				'path' => $unserializablePath,
+			] );
+			return null;
+		}
+
+		return $json;
 	}
 }

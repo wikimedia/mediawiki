@@ -1140,20 +1140,15 @@ class ParserOutput extends CacheTime {
 	 * @code
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
+	 *
+	 * @note Only scalar values, e.g. numbers, strings, arrays are supported
+	 * as a value. Attempt to set a class instance as a page property will
+	 * break ParserCache for the page.
+	 *
 	 * @param string $name
 	 * @param mixed $value
 	 */
 	public function setProperty( $name, $value ) {
-		$unserializablePath = FormatJson::detectNonSerializableData( $value );
-		if ( $unserializablePath ) {
-			LoggerFactory::getInstance( 'ParserOutput' )->warning(
-				'Non-serializable page property set',
-				[
-					'name' => $name,
-					'path' => $unserializablePath,
-				]
-			);
-		}
 		$this->mProperties[$name] = $value;
 	}
 
@@ -1241,6 +1236,10 @@ class ParserOutput extends CacheTime {
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
 	 *
+	 * @note Only scalar values, e.g. numbers, strings, arrays are supported
+	 * as a value. Attempt to set a class instance as a extension data will
+	 * break ParserCache for the page.
+	 *
 	 * @since 1.21
 	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
@@ -1253,16 +1252,6 @@ class ParserOutput extends CacheTime {
 		if ( $value === null ) {
 			unset( $this->mExtensionData[$key] );
 		} else {
-			$unserializablePath = FormatJson::detectNonSerializableData( $value );
-			if ( $unserializablePath ) {
-				LoggerFactory::getInstance( 'ParserOutput' )->warning(
-					'Non-serializable extension data set',
-					[
-						'key' => $key,
-						'path' => $unserializablePath,
-					]
-				);
-			}
 			$this->mExtensionData[$key] = $value;
 		}
 	}

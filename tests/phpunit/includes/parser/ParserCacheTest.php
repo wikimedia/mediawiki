@@ -12,8 +12,12 @@ use NullStatsdDataFactory;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
+use TestLogger;
 use Title;
+use User;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
@@ -62,11 +66,13 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param HookContainer|null $hookContainer
 	 * @param BagOStuff|null $storage
+	 * @param LoggerInterface|null $logger
 	 * @return ParserCache
 	 */
 	private function createParserCache(
 		HookContainer $hookContainer = null,
-		BagOStuff $storage = null
+		BagOStuff $storage = null,
+		LoggerInterface $logger = null
 	): ParserCache {
 		return new ParserCache(
 			'test',
@@ -74,7 +80,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			'19900220000000',
 			$hookContainer ?: $this->createHookContainer( [] ),
 			new NullStatsdDataFactory(),
-			new NullLogger()
+			$logger ?: new NullLogger()
 		);
 	}
 
@@ -622,4 +628,39 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $parserOutput2, $cachedOutput );
 	}
 
+	/**
+	 * @covers ParserCache::encodeAsJson
+	 */
+	public function testNonSerializableJsonIsReported() {
+		$testLogger = new TestLogger( true );
+		$cache = $this->createParserCache( null, null, $testLogger );
+		$cache->setJsonSupport( true, true );
+
+		$parserOutput = $this->createDummyParserOutput();
+		$parserOutput->setExtensionData( 'test', new User() );
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
+		$this->assertArrayEquals(
+			[ [ LogLevel::ERROR, 'Non-serializable ParserOutput property set' ] ],
+			$testLogger->getBuffer()
+		);
+	}
+
+	/**
+	 * @covers ParserCache::encodeAsJson
+	 */
+	public function testCyclicStructuresDoNotBlowUpInJson() {
+		$testLogger = new TestLogger( true );
+		$cache = $this->createParserCache( null, null, $testLogger );
+		$cache->setJsonSupport( true, true );
+
+		$parserOutput = $this->createDummyParserOutput();
+		$cyclicArray = [ 'a' => 'b' ];
+		$cyclicArray['c'] = &$cyclicArray;
+		$parserOutput->setExtensionData( 'test', $cyclicArray );
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
+		$this->assertArrayEquals(
+			[ [ LogLevel::ERROR, 'JSON encoding failed' ] ],
+			$testLogger->getBuffer()
+		);
+	}
 }
