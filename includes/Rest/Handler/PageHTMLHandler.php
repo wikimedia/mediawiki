@@ -14,6 +14,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
 use RestbaseVirtualRESTService;
+use TitleFactory;
 use TitleFormatter;
 use UIDGenerator;
 use VirtualRESTServiceClient;
@@ -45,6 +46,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
+	 * @param TitleFactory $titleFactory
 	 * @param VirtualRESTServiceClient $virtualRESTServiceClient
 	 */
 	public function __construct(
@@ -52,9 +54,16 @@ class PageHTMLHandler extends LatestPageContentHandler {
 		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory,
 		VirtualRESTServiceClient $virtualRESTServiceClient
 	) {
-		parent::__construct( $config, $permissionManager, $revisionLookup, $titleFormatter );
+		parent::__construct(
+			$config,
+			$permissionManager,
+			$revisionLookup,
+			$titleFormatter,
+			$titleFactory
+		);
 
 		$this->restClient = $virtualRESTServiceClient;
 	}
