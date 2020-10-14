@@ -2535,7 +2535,7 @@
 	"year": "Din anul (și dinainte):",
 	"date": "Din data (și dinainte):",
 	"sp-contributions-blocklog": "jurnal blocări",
-	"sp-contributions-suppresslog": "Contribuții suprimate ale {{GENDER:$1|utilizatorului}}",
+	"sp-contributions-suppresslog": "contribuții suprimate ale {{GENDER:$1|utilizatorului|utilizatoarei|utilizatorului}}",
 	"sp-contributions-deleted": "contribuțiile șterse ale {{GENDER:$1|utilizatorului}}",
 	"sp-contributions-uploads": "încărcări",
 	"sp-contributions-logs": "jurnale",

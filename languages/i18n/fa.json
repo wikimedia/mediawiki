@@ -2351,7 +2351,7 @@
 	"deletionlog": "سیاههٔ حذف",
 	"log-name-create": "سیاههٔ ایجاد صفحه",
 	"log-description-create": "در زیر فهرست صفحاتی که اخیراً ایجاد شده‌اند قرار دارد.",
-	"logentry-create-create": "$1 صفحهٔ $3 را {{GENDER:$2|ساخته}}",
+	"logentry-create-create": "$1 صفحهٔ $3 را {{GENDER:$2|ایجاد کرد}}",
 	"reverted": "به نسخهٔ قدیمی‌تر واگردانده شد",
 	"deletecomment": "دلیل:",
 	"deleteotherreason": "دلیل دیگر/اضافی:",
