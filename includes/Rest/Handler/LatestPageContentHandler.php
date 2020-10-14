@@ -9,6 +9,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use RequestContext;
 use Title;
+use TitleFactory;
 use TitleFormatter;
 use User;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -36,17 +37,22 @@ abstract class LatestPageContentHandler extends SimpleHandler {
 	/** @var Title|bool */
 	private $titleObject;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @param Config $config
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		Config $config,
 		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory
 	) {
 		$this->config = $config;
 		$this->permissionManager = $permissionManager;
@@ -55,6 +61,7 @@ abstract class LatestPageContentHandler extends SimpleHandler {
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -62,7 +69,8 @@ abstract class LatestPageContentHandler extends SimpleHandler {
 	 */
 	protected function getTitle() {
 		if ( $this->titleObject === null ) {
-			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
+			$this->titleObject =
+				$this->titleFactory->newFromText( $this->getValidatedParams()['title'] ) ?? false;
 		}
 		return $this->titleObject;
 	}
