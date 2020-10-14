@@ -77,7 +77,8 @@
 			"MainConfig",
 			"PermissionManager",
 			"RevisionLookup",
-			"TitleFormatter"
+			"TitleFormatter",
+			"TitleFactory"
 		]
 	},
 	{
@@ -88,6 +89,7 @@
 			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
+			"TitleFactory",
 			"VirtualRESTServiceClient"
 		],
 		"format": "bare"
@@ -100,6 +102,7 @@
 			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
+			"TitleFactory",
 			"VirtualRESTServiceClient"
 		],
 		"format": "html"
@@ -112,6 +115,7 @@
 			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
+			"TitleFactory",
 			"VirtualRESTServiceClient"
 		],
 		"format": "with_html"
