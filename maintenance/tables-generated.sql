@@ -303,3 +303,10 @@ CREATE TABLE /*_*/user_groups (
   INDEX ug_expiry (ug_expiry),
   PRIMARY KEY(ug_user, ug_group)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/querycache_info (
+  qci_type VARBINARY(32) DEFAULT '' NOT NULL,
+  qci_timestamp BINARY(14) DEFAULT '19700101000000' NOT NULL,
+  PRIMARY KEY(qci_type)
+) /*$wgDBTableOptions*/;
