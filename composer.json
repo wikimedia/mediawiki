@@ -141,7 +141,6 @@
 		"merge-plugin": {
 			"include": [
 				"composer.local.json",
-				"extensions/CookieWarning/composer.json",
 				"extensions/Wikibase/composer.json"
 			],
 			"merge-dev": false
