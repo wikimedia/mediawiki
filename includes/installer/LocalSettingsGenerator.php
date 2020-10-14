@@ -370,6 +370,10 @@ ${serverSetting}
 
 {$this->dbSettings}
 
+# Shared database table
+# This has no effect unless \$wgSharedDB is also set.
+\$wgSharedTables[] = \"actor\";
+
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
 \$wgMemCachedServers = $mcservers;
