@@ -1714,6 +1714,17 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'TrackingCategories' => static function ( MediaWikiServices $services ): TrackingCategories {
+		return new TrackingCategories(
+			new ServiceOptions(
+				TrackingCategories::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getNamespaceInfo(),
+			$services->getTitleFactory()
+		);
+	},
+
 	'UnblockUserFactory' => static function ( MediaWikiServices $services ): UnblockUserFactory {
 		return $services->getService( '_UserBlockCommandFactory' );
 	},
