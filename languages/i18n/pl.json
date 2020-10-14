@@ -2696,7 +2696,7 @@
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Inna blokada automatyczna|Inne blokady automatyczne}}",
 	"ipblocklist": "Zablokowani użytkownicy",
 	"ipblocklist-legend": "Znajdź zablokowanego użytkownika",
-	"blocklist-userblocks": "Ukryj blokady konta",
+	"blocklist-userblocks": "Ukryj blokady kont",
 	"blocklist-tempblocks": "Ukryj tymczasowe blokady",
 	"blocklist-indefblocks": "Ukryj blokady nałołożone na zawsze",
 	"blocklist-addressblocks": "Ukryj blokady pojedynczych adresów IP",
