@@ -1377,3 +1377,8 @@
 	url = https://github.com/wikimedia/mediawiki-skins-Truglass
 	branch = master
 	ignore = dirty
+[submodule "extensions/EventStreamConfig"]
+	path = extensions/EventStreamConfig
+	url = https://github.com/wikimedia/mediawiki-extensions-EventStreamConfig.git
+	branch = REL1_35
+	ignore = dirty
