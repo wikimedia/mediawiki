@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Special page lists various statistics, including the contents of
  * `site_stats`, plus page view details if enabled
@@ -33,8 +31,15 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	public function __construct() {
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/**
+	 * @param NamespaceInfo $nsInfo
+	 */
+	public function __construct( NamespaceInfo $nsInfo ) {
 		parent::__construct( 'Statistics' );
+		$this->nsInfo = $nsInfo;
 	}
 
 	public function execute( $par ) {
@@ -211,8 +216,7 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$msg = $this->msg( 'grouppage-' . $groupname )->inContentLanguage();
 			if ( $msg->isBlank() ) {
-				$grouppageLocalized = MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getCanonicalName( NS_PROJECT ) . ':' . $groupname;
+				$grouppageLocalized = $this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $groupname;
 			} else {
 				$grouppageLocalized = $msg->text();
 			}
