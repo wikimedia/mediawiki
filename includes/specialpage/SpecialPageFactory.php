@@ -519,6 +519,7 @@ class SpecialPageFactory {
 					'class' => \SpecialConfirmEmail::class,
 					'services' => [
 						'PermissionManager',
+						'UserFactory',
 					]
 				];
 				$this->list['Invalidateemail'] = \SpecialEmailInvalidate::class;
