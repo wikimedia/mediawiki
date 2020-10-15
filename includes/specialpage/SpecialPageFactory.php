@@ -521,7 +521,12 @@ class SpecialPageFactory {
 						'PermissionManager',
 					]
 				];
-				$this->list['Invalidateemail'] = \SpecialEmailInvalidate::class;
+				$this->list['Invalidateemail'] = [
+					'class' => \SpecialEmailInvalidate::class,
+					'services' => [
+						'UserFactory',
+					]
+				];
 			}
 
 			if ( $this->options->get( 'EnableEmail' ) ) {
