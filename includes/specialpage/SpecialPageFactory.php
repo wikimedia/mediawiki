@@ -433,7 +433,12 @@ class SpecialPageFactory {
 			],
 		],
 		'RunJobs' => \SpecialRunJobs::class,
-		'Specialpages' => \SpecialSpecialpages::class,
+		'Specialpages' => [
+			'class' => \SpecialSpecialpages::class,
+			'services' => [
+				'SpecialPageFactory',
+			]
+		],
 		'PageData' => \SpecialPageData::class,
 	];
 
