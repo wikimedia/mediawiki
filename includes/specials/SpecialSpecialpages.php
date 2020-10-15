@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
  * A special page that lists special pages
@@ -30,8 +30,15 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialSpecialpages extends UnlistedSpecialPage {
 
-	public function __construct() {
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/**
+	 * @param SpecialPageFactory $specialPageFactory
+	 */
+	public function __construct( SpecialPageFactory $specialPageFactory ) {
 		parent::__construct( 'Specialpages' );
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	public function execute( $par ) {
@@ -52,8 +59,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function getPageGroups() {
-		$pages = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			getUsablePages( $this->getUser() );
+		$pages = $this->specialPageFactory->getUsablePages( $this->getUser() );
 
 		if ( $pages === [] ) {
 			# Yeah, that was pointless. Thanks for coming.
