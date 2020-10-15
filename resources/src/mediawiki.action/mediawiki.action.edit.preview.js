@@ -119,7 +119,7 @@
 			$wikiDiff.hide();
 
 			$.extend( postData, {
-				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarnings',
 				text: $textbox.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
@@ -135,7 +135,7 @@
 
 			parseRequest = api.post( postData );
 			parseRequest.done( function ( response ) {
-				var newList, $displaytitle, $content, $parent, $list;
+				var newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader;
 				if ( response.parse.jsconfigvars ) {
 					mw.config.set( response.parse.jsconfigvars );
 				}
@@ -248,8 +248,31 @@
 					$parent = $list.parent();
 					$list.detach().empty().append( newList ).prependTo( $parent );
 				}
+				arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
+				$previewHeader = $( '<div>' )
+					.addClass( 'previewnote' )
+					.append( $( '<h2>' )
+						.attr( 'id', 'mw-previewheader' )
+						.text( mw.message( 'preview' ).escaped() )
+					)
+					.append( $( '<div>' )
+						.addClass( 'warningbox' )
+						.append( mw.message( 'previewnote' ).parseDom() )
+						.append( ' ' )
+						.append( $( '<span>' )
+							.addClass( 'mw-continue-editing' )
+							.append( $( '<a>' )
+								.attr( 'href', '#' + $editform.attr( 'id' ) )
+								.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
+							)
+						)
+					);
+				response.parse.parsewarnings.forEach( function ( warning ) {
+					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
+				} );
 
 				if ( response.parse.text ) {
+					$wikiPreview.find( '.previewnote' ).remove();
 					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
 					$content
 						.detach()
@@ -258,7 +281,7 @@
 					mw.hook( 'wikipage.content' ).fire( $content );
 
 					// Reattach
-					$wikiPreview.append( $content );
+					$wikiPreview.append( $previewHeader ).append( $content );
 
 					$wikiPreview.show();
 				}

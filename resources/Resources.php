@@ -1184,6 +1184,7 @@ return [
 		],
 		'messages' => [
 			// Keep these message keys in sync with EditPage#setHeaders
+			'continue-editing',
 			'creating',
 			'editconflict',
 			'editing',
@@ -1194,7 +1195,9 @@ return [
 			'summary-preview',
 			'subject-preview',
 			'parentheses',
+			'preview',
 			'previewerrortext',
+			'previewnote',
 			'templatesusedpreview',
 		],
 	],
