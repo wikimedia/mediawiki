@@ -18,6 +18,7 @@ use PHPUnit\Framework\Assert;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use ReadOnlyMode;
 use StatusValue;
 use WebRequest;
 use Wikimedia\ObjectFactory;
@@ -38,6 +39,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	protected $objectFactory;
 	/** @var PermissionManager */
 	protected $permManager;
+	/** @var ReadOnlyMode */
+	protected $readOnlyMode;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -168,6 +171,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->permManager ) {
 			$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
 		}
+		if ( $regen || !$this->readOnlyMode ) {
+			$this->readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+		}
 		if ( $regen || !$this->hookContainer ) {
 			// Set up a HookContainer similar to the normal one except that it
 			// gets global hooks from $this->authHooks instead of $wgHooks
@@ -199,7 +205,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->config,
 			$this->objectFactory,
 			$this->permManager,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->readOnlyMode
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
@@ -2567,7 +2574,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( $username, $user->getName() );
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( [
-			[ LogLevel::DEBUG, 'denied by wfReadOnly(): {reason}' ],
+			[ LogLevel::DEBUG, 'denied because of read only mode: {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 		$readOnlyMode->setReason( false );

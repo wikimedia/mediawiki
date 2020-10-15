@@ -50,7 +50,8 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$config,
 				$objectFactory,
 				$permManager,
-				$hookContainer
+				$hookContainer,
+				MediaWikiServices::getInstance()->getReadOnlyMode()
 			);
 		}
 		$this->validity = \Status::newGood();

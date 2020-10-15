@@ -129,7 +129,8 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
 			$services->getPermissionManager(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getReadOnlyMode()
 		);
 
 		$provider = $this->getMockForAbstractClass(
