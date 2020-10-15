@@ -31,6 +31,7 @@ use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use ReadOnlyMode;
 use Status;
 use StatusValue;
 use User;
@@ -163,6 +164,9 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
@@ -178,13 +182,15 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param ObjectFactory $objectFactory
 	 * @param PermissionManager $permManager
 	 * @param HookContainer $hookContainer
+	 * @param ReadOnlyMode $readOnlyMode
 	 */
 	public function __construct(
 		WebRequest $request,
 		Config $config,
 		ObjectFactory $objectFactory,
 		PermissionManager $permManager,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ReadOnlyMode $readOnlyMode
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -193,6 +199,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
+		$this->readOnlyMode = $readOnlyMode;
 	}
 
 	/**
@@ -1010,8 +1017,8 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	public function checkAccountCreatePermissions( User $creator ) {
 		// Wiki is read-only?
-		if ( wfReadOnly() ) {
-			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
+		if ( $this->readOnlyMode->isReadOnly() ) {
+			return Status::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
 		}
 
 		$permErrors = $this->permManager->getPermissionErrors(
@@ -1611,14 +1618,15 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Wiki is read-only?
-		if ( wfReadOnly() ) {
-			$this->logger->debug( __METHOD__ . ': denied by wfReadOnly(): {reason}', [
+		if ( $this->readOnlyMode->isReadOnly() ) {
+			$reason = $this->readOnlyMode->getReason();
+			$this->logger->debug( __METHOD__ . ': denied because of read only mode: {reason}', [
 				'username' => $username,
-				'reason' => wfReadOnlyReason(),
+				'reason' => $reason,
 			] );
 			$user->setId( 0 );
 			$user->loadFromId();
-			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
+			return Status::newFatal( wfMessage( 'readonlytext', $reason ) );
 		}
 
 		// Check the session, if we tried to create this user already there's

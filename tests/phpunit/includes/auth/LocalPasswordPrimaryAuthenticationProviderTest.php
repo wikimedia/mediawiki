@@ -50,7 +50,8 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$config,
 				$objectFactory,
 				$permManager,
-				$hookContainer
+				$hookContainer,
+				MediaWikiServices::getInstance()->getReadOnlyMode()
 			);
 		}
 		$this->validity = \Status::newGood();
