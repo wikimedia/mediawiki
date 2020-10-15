@@ -258,18 +258,18 @@ class WANObjectCache implements
 	private static $FLD_GENERATION_TIME = 6;
 
 	/** @var string Single character value mutex key component */
-	private static $TYPE_VALUE = 'v';
+	private const TYPE_VALUE = 'v';
 	/** @var string Single character timestamp key component */
-	private static $TYPE_TIMESTAMP = 't';
+	private const TYPE_TIMESTAMP = 't';
 	/** @var string Single character mutex key component */
-	private static $TYPE_MUTEX = 'm';
+	private const TYPE_MUTEX = 'm';
 	/** @var string Single character interium key component */
-	private static $TYPE_INTERIM = 'i';
+	private const TYPE_INTERIM = 'i';
 	/** @var string Single character cool-off key component */
-	private static $TYPE_COOLOFF = 'c';
+	private const TYPE_COOLOFF = 'c';
 
 	/** @var string Prefix for tombstone key values */
-	private static $PURGE_VAL_PREFIX = 'PURGED:';
+	private const PURGE_VAL_PREFIX = 'PURGED:';
 
 	/**
 	 * @param array $params
@@ -454,7 +454,7 @@ class WANObjectCache implements
 		$infoByKey = [];
 
 		// Order-corresponding list of value keys for the provided base keys
-		$valueKeys = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
+		$valueKeys = $this->makeSisterKeys( $keys, self::TYPE_VALUE );
 
 		$fullKeysNeeded = $valueKeys;
 		$checkKeysForAll = [];
@@ -463,13 +463,13 @@ class WANObjectCache implements
 			// Note: avoid array_merge() inside loop in case there are many keys
 			if ( is_int( $i ) ) {
 				// Single check key that applies to all value keys
-				$fullKey = $this->makeSisterKey( $checkKeyOrKeyGroup, self::$TYPE_TIMESTAMP );
+				$fullKey = $this->makeSisterKey( $checkKeyOrKeyGroup, self::TYPE_TIMESTAMP );
 				$fullKeysNeeded[] = $fullKey;
 				$checkKeysForAll[] = $fullKey;
 			} else {
 				// List of check keys that apply to a specific value key
 				foreach ( (array)$checkKeyOrKeyGroup as $checkKey ) {
-					$fullKey = $this->makeSisterKey( $checkKey, self::$TYPE_TIMESTAMP );
+					$fullKey = $this->makeSisterKey( $checkKey, self::TYPE_TIMESTAMP );
 					$fullKeysNeeded[] = $fullKey;
 					$checkKeysByKey[$i][] = $fullKey;
 				}
@@ -747,13 +747,13 @@ class WANObjectCache implements
 
 		if ( $creating ) {
 			$ok = $this->cache->add(
-				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$this->makeSisterKey( $key, self::TYPE_VALUE ),
 				$wrapped,
 				$storeTTL
 			);
 		} else {
 			$ok = $this->cache->merge(
-				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$this->makeSisterKey( $key, self::TYPE_VALUE ),
 				function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 					// A string value means that it is a tombstone; do nothing in that case
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
@@ -830,11 +830,11 @@ class WANObjectCache implements
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
 		if ( $ttl <= 0 ) {
 			// Publish the purge to all datacenters
-			$ok = $this->relayDelete( $this->makeSisterKey( $key, self::$TYPE_VALUE ) );
+			$ok = $this->relayDelete( $this->makeSisterKey( $key, self::TYPE_VALUE ) );
 		} else {
 			// Publish the purge to all datacenters
 			$ok = $this->relayPurge(
-				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$this->makeSisterKey( $key, self::TYPE_VALUE ),
 				$ttl,
 				self::HOLDOFF_TTL_NONE
 			);
@@ -933,7 +933,7 @@ class WANObjectCache implements
 	final public function getMultiCheckKeyTime( array $keys ) {
 		$rawKeys = [];
 		foreach ( $keys as $key ) {
-			$rawKeys[$key] = $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP );
+			$rawKeys[$key] = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 		}
 
 		$rawValues = $this->cache->getMulti( $rawKeys );
@@ -998,7 +998,7 @@ class WANObjectCache implements
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		// Publish the purge to all datacenters
 		$ok = $this->relayPurge(
-			$this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ),
+			$this->makeSisterKey( $key, self::TYPE_TIMESTAMP ),
 			self::$CHECK_KEY_TTL,
 			$holdoff
 		);
@@ -1038,7 +1038,7 @@ class WANObjectCache implements
 	 */
 	final public function resetCheckKey( $key ) {
 		// Publish the purge to all datacenters
-		$ok = $this->relayDelete( $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ) );
+		$ok = $this->relayDelete( $this->makeSisterKey( $key, self::TYPE_TIMESTAMP ) );
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_reset." . ( $ok ? 'ok' : 'error' ) );
@@ -1603,7 +1603,7 @@ class WANObjectCache implements
 	private function claimStampedeLock( $key ) {
 		// Note that locking is not bypassed due to I/O errors; this avoids stampedes
 		return $this->cache->add(
-			$this->makeSisterKey( $key, self::$TYPE_MUTEX ),
+			$this->makeSisterKey( $key, self::TYPE_MUTEX ),
 			1,
 			self::$LOCK_TTL
 		);
@@ -1619,7 +1619,7 @@ class WANObjectCache implements
 			// datacenter cache servers via OperationSelectorRoute (for increased consistency).
 			// Since that would be excessive for these locks, use TOUCH to expire the key.
 			$this->cache->changeTTL(
-				$this->makeSisterKey( $key, self::$TYPE_MUTEX ),
+				$this->makeSisterKey( $key, self::TYPE_MUTEX ),
 				$this->getCurrentTime() - 60
 			);
 		}
@@ -1699,7 +1699,7 @@ class WANObjectCache implements
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
-		$valueKey = $this->makeSisterKey( $key, self::$TYPE_VALUE );
+		$valueKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
 		list( $estimatedSize ) = $this->cache->setNewPreparedValues( [ $valueKey => $value ] );
 
 		if ( !$hasLock ) {
@@ -1727,7 +1727,7 @@ class WANObjectCache implements
 				$this->cache->clearLastError();
 				if (
 					!$this->cache->add(
-						$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
+						$this->makeSisterKey( $key, self::TYPE_COOLOFF ),
 						1,
 						self::$COOLOFF_TTL
 					) &&
@@ -1792,7 +1792,7 @@ class WANObjectCache implements
 
 		if ( $this->useInterimHoldOffCaching ) {
 			$wrapped = $this->cache->get(
-				$this->makeSisterKey( $key, self::$TYPE_INTERIM )
+				$this->makeSisterKey( $key, self::TYPE_INTERIM )
 			);
 
 			list( $value, $keyInfo ) = $this->unwrap( $wrapped, $now );
@@ -1816,7 +1816,7 @@ class WANObjectCache implements
 
 		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
 		$this->cache->merge(
-			$this->makeSisterKey( $key, self::$TYPE_INTERIM ),
+			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
 			function () use ( $wrapped ) {
 				return $wrapped;
 			},
@@ -2082,13 +2082,13 @@ class WANObjectCache implements
 	 */
 	final public function reap( $key, $purgeTimestamp, &$isStale = false ) {
 		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
-		$wrapped = $this->cache->get( $this->makeSisterKey( $key, self::$TYPE_VALUE ) );
+		$wrapped = $this->cache->get( $this->makeSisterKey( $key, self::TYPE_VALUE ) );
 		if ( is_array( $wrapped ) && $wrapped[self::$FLD_TIME] < $minAsOf ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale value key '$key'." );
 			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
 			$ok = $this->cache->changeTTL(
-				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$this->makeSisterKey( $key, self::TYPE_VALUE ),
 				$ttlReap
 			);
 			if ( !$ok ) {
@@ -2114,13 +2114,13 @@ class WANObjectCache implements
 	 */
 	final public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
 		$purge = $this->parsePurgeValue(
-			$this->cache->get( $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ) )
+			$this->cache->get( $this->makeSisterKey( $key, self::TYPE_TIMESTAMP ) )
 		);
 		if ( $purge && $purge[self::$PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
 			$ok = $this->cache->changeTTL(
-				$this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ),
+				$this->makeSisterKey( $key, self::TYPE_TIMESTAMP ),
 				self::TTL_SECOND
 			);
 			if ( !$ok ) {
@@ -2752,7 +2752,7 @@ class WANObjectCache implements
 		if (
 			!isset( $segments[0] ) ||
 			!isset( $segments[1] ) ||
-			"{$segments[0]}:" !== self::$PURGE_VAL_PREFIX
+			"{$segments[0]}:" !== self::PURGE_VAL_PREFIX
 		) {
 			return false;
 		}
@@ -2779,7 +2779,7 @@ class WANObjectCache implements
 	 * @return string Wrapped purge value
 	 */
 	private function makePurgeValue( $timestamp, $holdoff ) {
-		return self::$PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
+		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
 	}
 
 	/**
@@ -2840,17 +2840,17 @@ class WANObjectCache implements
 		}
 
 		// Get all the value keys to fetch...
-		$keysWarmup = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
+		$keysWarmup = $this->makeSisterKeys( $keys, self::TYPE_VALUE );
 		// Get all the check keys to fetch...
 		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
 			// Note: avoid array_merge() inside loop in case there are many keys
 			if ( is_int( $i ) ) {
 				// Single check key that applies to all value keys
-				$keysWarmup[] = $this->makeSisterKey( $checkKeyOrKeyGroup, self::$TYPE_TIMESTAMP );
+				$keysWarmup[] = $this->makeSisterKey( $checkKeyOrKeyGroup, self::TYPE_TIMESTAMP );
 			} else {
 				// List of check keys that apply to a specific value key
 				foreach ( (array)$checkKeyOrKeyGroup as $checkKey ) {
-					$keysWarmup[] = $this->makeSisterKey( $checkKey, self::$TYPE_TIMESTAMP );
+					$keysWarmup[] = $this->makeSisterKey( $checkKey, self::TYPE_TIMESTAMP );
 				}
 			}
 		}
