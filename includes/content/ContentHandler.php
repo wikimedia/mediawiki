@@ -1449,7 +1449,15 @@ abstract class ContentHandler {
 		return $parserOutput;
 	}
 
-	private function latestRevision( WikiPage $page ): RevisionRecord {
+	/**
+	 * Get the latest revision of the given $page,
+	 * fetching it from the master if necessary.
+	 *
+	 * @param WikiPage $page
+	 * @return RevisionRecord
+	 * @since 1.36 (previously private)
+	 */
+	protected function latestRevision( WikiPage $page ): RevisionRecord {
 		$revRecord = $page->getRevisionRecord();
 		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible
