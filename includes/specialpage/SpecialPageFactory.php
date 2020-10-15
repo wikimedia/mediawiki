@@ -308,7 +308,12 @@ class SpecialPageFactory {
 				'PermissionManager',
 			],
 		],
-		'Statistics' => \SpecialStatistics::class,
+		'Statistics' => [
+			'class' => \SpecialStatistics::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
 			'services' => [
