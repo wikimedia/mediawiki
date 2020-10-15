@@ -1438,6 +1438,7 @@ return [
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
+			$services->getUserFactory(),
 			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
 	},

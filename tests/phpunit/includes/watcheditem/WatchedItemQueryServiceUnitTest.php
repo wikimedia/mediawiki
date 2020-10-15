@@ -2,6 +2,7 @@
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
@@ -80,6 +81,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 			$this->getMockWatchedItemStore(),
 			$mockPM ?: $this->getMockPermissionManager(),
 			$this->createHookContainer(),
+			$this->createMock( UserFactory::class ),
 			false
 		);
 	}
