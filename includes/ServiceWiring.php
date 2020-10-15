@@ -144,7 +144,8 @@ return [
 			$services->getObjectFactory(),
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->getUserNameUtils()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;

@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
@@ -66,13 +67,15 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
 		$hookContainer = $this->createHookContainer();
+		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$authManager = new AuthManager(
 			new \FauxRequest(),
 			new \HashConfig(),
 			$objectFactory,
 			$permManager,
 			$hookContainer,
-			MediaWikiServices::getInstance()->getReadOnlyMode()
+			MediaWikiServices::getInstance()->getReadOnlyMode(),
+			$userNameUtils
 		);
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();
