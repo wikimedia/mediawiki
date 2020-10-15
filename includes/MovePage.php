@@ -802,7 +802,7 @@ class MovePage {
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
-		if ( $nt->exists() ) {
+		if ( $nt->getArticleId() ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
 		} else {
