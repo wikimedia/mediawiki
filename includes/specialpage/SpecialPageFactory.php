@@ -193,7 +193,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'TrackingCategories' => \SpecialTrackingCategories::class,
+		'TrackingCategories' => [
+			'class' => \SpecialTrackingCategories::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 
 		// Authentication
 		'Userlogin' => \SpecialUserLogin::class,
