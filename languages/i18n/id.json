@@ -2437,7 +2437,7 @@
 	"cantrollback": "Tidak dapat membatalkan suntingan.\nKontributor terakhir adalah satu-satunya penulis halaman ini.",
 	"alreadyrolled": "Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nPengguna lain telah menyunting atau melakukan pengembalian terhadap halaman ini.\n\nSuntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Komentar penyuntingan adalah: <em>$1</em>.",
-	"revertpage": "←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dibatalkan ke versi terakhir oleh [[User:$1|$1]]",
+	"revertpage": "Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dibatalkan ke versi terakhir oleh [[User:$1|$1]]",
 	"revertpage-anon": "Membatalkan suntingan dari [[Special:Contributions/$2|$2]] ke versi terakhir oleh [[User:$1|$1]]",
 	"revertpage-nouser": "Mengembalikan suntingan oleh (nama pengguna dihapus) ke suntingan terakhir oleh [[User:$1|$1]]",
 	"rollback-success": "Pembatalan suntingan oleh {{GENDER:$3|$1}}; dibatalkan ke versi terakhir oleh {{GENDER:$4|$2}}.",
