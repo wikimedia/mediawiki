@@ -14,6 +14,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\User\UserNameUtils;
 use PHPUnit\Framework\Assert;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -46,6 +47,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	private $hookContainer;
 	/** @var array */
 	private $authHooks;
+
+	/** @var UserNameUtils */
+	protected $userNameUtils;
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -193,6 +197,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->objectFactory
 			);
 		}
+		if ( $regen || !$this->userNameUtils ) {
+			$this->userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
 		}
@@ -206,7 +213,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->objectFactory,
 			$this->permManager,
 			$this->hookContainer,
-			$this->readOnlyMode
+			$this->readOnlyMode,
+			$this->userNameUtils
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );

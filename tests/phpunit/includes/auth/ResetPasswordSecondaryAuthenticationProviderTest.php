@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -92,8 +93,16 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
 		$hookContainer = $this->createHookContainer();
-		$manager = new AuthManager( new \FauxRequest, $config, $objectFactory,
-			$permManager, $hookContainer, MediaWikiServices::getInstance()->getReadOnlyMode() );
+		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
+		$manager = new AuthManager(
+			new \FauxRequest,
+			$config,
+			$objectFactory,
+			$permManager,
+			$hookContainer,
+			MediaWikiServices::getInstance()->getReadOnlyMode(),
+			$userNameUtils
+		);
 		$provider->setManager( $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 

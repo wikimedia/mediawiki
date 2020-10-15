@@ -28,6 +28,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -143,6 +144,9 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/** @var AuthenticationProvider[] */
 	private $allAuthenticationProviders = [];
 
@@ -183,6 +187,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param PermissionManager $permManager
 	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -190,7 +195,8 @@ class AuthManager implements LoggerAwareInterface {
 		ObjectFactory $objectFactory,
 		PermissionManager $permManager,
 		HookContainer $hookContainer,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		UserNameUtils $userNameUtils
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -200,6 +206,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
 		$this->readOnlyMode = $readOnlyMode;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -1648,7 +1655,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the username creatable?
-		if ( !User::isCreatableName( $username ) ) {
+		if ( !$this->userNameUtils->isCreatable( $username ) ) {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not creatable', [
 				'username' => $username,
 			] );
@@ -1841,7 +1848,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		if ( $user->getId() === 0 ) {
-			if ( !User::isUsableName( $user->getName() ) ) {
+			if ( !$this->userNameUtils->isUsable( $user->getName() ) ) {
 				$msg = wfMessage( 'noname' );
 			} else {
 				$msg = wfMessage( 'authmanager-userdoesnotexist', $user->getName() );

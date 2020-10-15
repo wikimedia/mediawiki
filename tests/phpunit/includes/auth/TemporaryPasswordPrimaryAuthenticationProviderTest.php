@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -44,6 +45,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$objectFactory = new \Wikimedia\ObjectFactory( $services );
 			$permManager = $this->createNoOpMock( PermissionManager::class );
+			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
 				new \FauxRequest(),
@@ -51,7 +53,8 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$objectFactory,
 				$permManager,
 				$hookContainer,
-				MediaWikiServices::getInstance()->getReadOnlyMode()
+				MediaWikiServices::getInstance()->getReadOnlyMode(),
+				$userNameUtils
 			);
 		}
 		$this->validity = \Status::newGood();

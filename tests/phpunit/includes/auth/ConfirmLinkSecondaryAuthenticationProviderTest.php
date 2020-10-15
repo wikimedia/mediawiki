@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -143,7 +144,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				MediaWikiServices::getInstance()->getObjectFactory(),
 				$this->createNoOpMock( PermissionManager::class ),
 				MediaWikiServices::getInstance()->getHookContainer(),
-				MediaWikiServices::getInstance()->getReadOnlyMode()
+				MediaWikiServices::getInstance()->getReadOnlyMode(),
+				$this->createNoOpMock( UserNameUtils::class )
 			] )
 			->getMock();
 		$manager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
@@ -236,10 +238,20 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$request = new \FauxRequest();
 		$services = $this->createNoOpMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
-		$manager = new AuthManager( $request, $config, $objectFactory, $permManager, $hookContainer, $readOnlyMode );
+		$mwServices = MediaWikiServices::getInstance();
+		$permManager = $mwServices->getPermissionManager();
+		$hookContainer = $mwServices->getHookContainer();
+		$readOnlyMode = $mwServices->getReadOnlyMode();
+		$userNameUtils = $mwServices->getUserNameUtils();
+		$manager = new AuthManager(
+			$request,
+			$config,
+			$objectFactory,
+			$permManager,
+			$hookContainer,
+			$readOnlyMode,
+			$userNameUtils
+		);
 		$provider->setManager( $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 

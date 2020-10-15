@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
 
 /**
  * Special page allows users to request email confirmation message, and handles
@@ -33,16 +34,21 @@ use MediaWiki\Permissions\PermissionManager;
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {
 
-	/** @var PermissionManager $permManager */
+	/** @var PermissionManager */
 	private $permManager;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/**
 	 * @param PermissionManager $permManager
+	 * @param UserFactory $userFactory
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct( PermissionManager $permManager, UserFactory $userFactory ) {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 
 		$this->permManager = $permManager;
+		$this->userFactory = $userFactory;
 	}
 
 	public function doesWrites() {
@@ -158,7 +164,11 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	private function attemptConfirm( $code ) {
-		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
+		$user = $this->userFactory->newFromConfirmationCode(
+			$code,
+			UserFactory::READ_LATEST
+		);
+
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 
