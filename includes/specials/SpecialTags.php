@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A special page that lists tags for edits
@@ -45,8 +45,15 @@ class SpecialTags extends SpecialPage {
 	 */
 	protected $softwareActivatedTags;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct( PermissionManager $permissionManager ) {
 		parent::__construct( 'Tags' );
+		$this->permissionManager = $permissionManager;
 	}
 
 	public function execute( $par ) {
@@ -79,10 +86,9 @@ class SpecialTags extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$userCanManage = $permissionManager->userHasRight( $user, 'managechangetags' );
-		$userCanDelete = $permissionManager->userHasRight( $user, 'deletechangetags' );
-		$userCanEditInterface = $permissionManager->userHasRight( $user, 'editinterface' );
+		$userCanManage = $this->permissionManager->userHasRight( $user, 'managechangetags' );
+		$userCanDelete = $this->permissionManager->userHasRight( $user, 'deletechangetags' );
+		$userCanEditInterface = $this->permissionManager->userHasRight( $user, 'editinterface' );
 
 		// Show form to create a tag
 		if ( $userCanManage ) {
@@ -339,9 +345,7 @@ class SpecialTags extends SpecialPage {
 
 	protected function showDeleteTagForm( $tag ) {
 		$user = $this->getUser();
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'deletechangetags' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'deletechangetags' ) ) {
 			throw new PermissionsError( 'deletechangetags' );
 		}
 
@@ -401,9 +405,7 @@ class SpecialTags extends SpecialPage {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 
 		$user = $this->getUser();
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'managechangetags' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'managechangetags' ) ) {
 			throw new PermissionsError( 'managechangetags' );
 		}
 

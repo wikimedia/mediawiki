@@ -283,7 +283,12 @@ class SpecialPageFactory {
 		'Newpages' => \SpecialNewpages::class,
 		'Recentchanges' => \SpecialRecentChanges::class,
 		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
-		'Tags' => \SpecialTags::class,
+		'Tags' => [
+			'class' => \SpecialTags::class,
+			'services' => [
+				'PermissionManager',
+			]
+		],
 
 		// Media reports and uploads
 		'Listfiles' => \SpecialListFiles::class,
