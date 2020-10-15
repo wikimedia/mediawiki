@@ -283,7 +283,12 @@ class SpecialPageFactory {
 		'Newpages' => \SpecialNewpages::class,
 		'Recentchanges' => \SpecialRecentChanges::class,
 		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
-		'Tags' => \SpecialTags::class,
+		'Tags' => [
+			'class' => \SpecialTags::class,
+			'services' => [
+				'PermissionManager',
+			]
+		],
 
 		// Media reports and uploads
 		'Listfiles' => \SpecialListFiles::class,
@@ -308,7 +313,12 @@ class SpecialPageFactory {
 				'PermissionManager',
 			],
 		],
-		'Statistics' => \SpecialStatistics::class,
+		'Statistics' => [
+			'class' => \SpecialStatistics::class,
+			'services' => [
+				'NamespaceInfo',
+			]
+		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
 			'services' => [
@@ -527,7 +537,12 @@ class SpecialPageFactory {
 						'UserFactory',
 					]
 				];
-				$this->list['Invalidateemail'] = \SpecialEmailInvalidate::class;
+				$this->list['Invalidateemail'] = [
+					'class' => \SpecialEmailInvalidate::class,
+					'services' => [
+						'UserFactory',
+					]
+				];
 			}
 
 			if ( $this->options->get( 'EnableEmail' ) ) {
