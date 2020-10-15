@@ -15,14 +15,9 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	var $sortable, $collapsible,
 		dependencies = [];
 	if ( config.collapsible ) {
-		if ( mw.loader.getState( 'jquery.makeCollapsible' ) === 'registered' &&
-			$content.find( '.mw-collapsible' ).length
-		) {
-			// The module 'jquery.makeCollapsible' gets normally loaded by
-			// Skin::getDefaultModules() when there is a 'mw-collapsible' in the content.
-			// Because of any case this is not happened. Load the module now.
-			mw.loader.load( 'jquery.makeCollapsible' );
-			mw.log.warn( 'Module jquery.makeCollapsible is not preloaded.' );
+		$collapsible = $content.find( '.mw-collapsible' );
+		if ( $collapsible.length ) {
+			dependencies.push( 'jquery.makeCollapsible' );
 		}
 	}
 	if ( config.sortable ) {

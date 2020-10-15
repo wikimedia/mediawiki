@@ -370,10 +370,6 @@
 		return this;
 	};
 
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.mw-collapsible' ).makeCollapsible();
-	} );
-
 	/**
 	 * @class jQuery
 	 * @mixins jQuery.plugin.makeCollapsible
