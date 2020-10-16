@@ -331,6 +331,8 @@ because of Phabricator reports.
 * The PHPUnit6And8Compat class, used to provide compatibility with PHPUnit 6,
   was removed without deprecation. This class was introduced during the
   upgrade to PHPUnit 8, but never used.
+* ParserCache::getETag has been deprecated, instead build suitable etag
+  explicitly.
 * …
 
 === Other changes in 1.36 ===
