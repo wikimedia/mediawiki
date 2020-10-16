@@ -430,7 +430,13 @@ class SpecialPageFactory {
 				'PermissionManager',
 			],
 		],
-		'Emailuser' => \SpecialEmailUser::class,
+		'Emailuser' => [
+			'class' => \SpecialEmailUser::class,
+			'services' => [
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'Movepage' => \MovePageForm::class,
 		'Mycontributions' => \SpecialMycontributions::class,
 		'MyLanguage' => \SpecialMyLanguage::class,
