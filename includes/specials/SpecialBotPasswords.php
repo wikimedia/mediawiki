@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Let users manage bot passwords
@@ -46,9 +45,16 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var Psr\Log\LoggerInterface */
 	private $logger = null;
 
-	public function __construct() {
+	/** @var PasswordFactory */
+	private $passwordFactory;
+
+	/**
+	 * @param PasswordFactory $passwordFactory
+	 */
+	public function __construct( PasswordFactory $passwordFactory ) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
+		$this->passwordFactory = $passwordFactory;
 	}
 
 	/**
@@ -168,7 +174,6 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
-			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 			$dbr = BotPassword::getDB( DB_REPLICA );
 			$res = $dbr->select(
@@ -179,7 +184,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			);
 			foreach ( $res as $row ) {
 				try {
-					$password = $passwordFactory->newFromCiphertext( $row->bp_password );
+					$password = $this->passwordFactory->newFromCiphertext( $row->bp_password );
 					$passwordInvalid = $password instanceof InvalidPassword;
 					unset( $password );
 				} catch ( PasswordError $ex ) {
@@ -324,8 +329,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = BotPassword::generatePassword( $this->getConfig() );
-			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
-			$password = $passwordFactory->newFromPlaintext( $this->password );
+			$password = $this->passwordFactory->newFromPlaintext( $this->password );
 		} else {
 			$password = null;
 		}

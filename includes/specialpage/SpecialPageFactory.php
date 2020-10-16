@@ -252,7 +252,12 @@ class SpecialPageFactory {
 			],
 		],
 		'ChangePassword' => \SpecialChangePassword::class,
-		'BotPasswords' => \SpecialBotPasswords::class,
+		'BotPasswords' => [
+			'class' => \SpecialBotPasswords::class,
+			'services' => [
+				'PasswordFactory',
+			]
+		],
 		'PasswordReset' => [
 			'class' => \SpecialPasswordReset::class,
 			'services' => [
