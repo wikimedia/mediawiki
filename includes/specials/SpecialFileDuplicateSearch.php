@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Implements Special:FileDuplicateSearch
  *
@@ -25,6 +23,8 @@ use MediaWiki\MediaWikiServices;
  * @author Raimond Spekking, based on Special:MIMESearch by Ævar Arnfjörð Bjarmason
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+
 /**
  * Searches the database for files of the requested hash, comparing this with the
  * 'img_sha1' field in the image table.
@@ -39,8 +39,29 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 */
 	protected $file = null;
 
-	public function __construct( $name = 'FileDuplicateSearch' ) {
-		parent::__construct( $name );
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param RepoGroup $repoGroup
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		RepoGroup $repoGroup,
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'FileDuplicateSearch' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->repoGroup = $repoGroup;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function isSyndicated() {
@@ -65,7 +86,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @return array Array of File objects
 	 */
 	private function getDupes() {
-		return MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $this->hash );
+		return $this->repoGroup->findBySha1( $this->hash );
 	}
 
 	/**
@@ -108,7 +129,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		$this->hash = '';
 		$title = Title::newFromText( $this->filename, NS_FILE );
 		if ( $title && $title->getText() != '' ) {
-			$this->file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+			$this->file = $this->repoGroup->findFile( $title );
 		}
 
 		$out = $this->getOutput();
@@ -186,8 +207,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	}
 
 	private function doBatchLookups( $list ) {
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		/** @var File $file */
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );
@@ -209,12 +229,10 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert(
-			htmlspecialchars( $nt->getText() )
-		);
+		$text = $this->getLanguageConverter()->convert( $nt->getText() );
 		$plink = $linkRenderer->makeLink(
 			$nt,
-			new HtmlArmor( $text )
+			$text
 		);
 
 		$userText = $result->getUser( 'text' );
@@ -248,7 +266,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 			// No prefix suggestion outside of file namespace
 			return [];
 		}
-		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
+		$searchEngine = $this->searchEngineFactory->create();
 		$searchEngine->setLimitOffset( $limit, $offset );
 		// Autocomplete subpage the same as a normal search, but just for files
 		$searchEngine->setNamespaces( [ NS_FILE ] );
