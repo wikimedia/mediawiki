@@ -89,7 +89,7 @@ class BlockPermissionChecker {
 	}
 
 	/**
-	 * Check base permission of the unblock
+	 * Check base permission that apply to either block or unblock
 	 *
 	 * @since 1.36
 	 * @param bool $checkHideuser
