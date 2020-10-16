@@ -2,6 +2,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -403,6 +405,32 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertTrue( $prevented, 'MultiHttpRequest::runMulti() should fail' );
+	}
+
+	public function testEditPage() {
+		// NOTE: can't use a data provider, since creating Title or WikiPage instances
+		//       is not safe without the test DB having been initialized.
+
+		$this->assertEditPage( 'Hello Wörld A', __METHOD__, 'Hello Wörld A' );
+		$this->assertEditPage( 'Hello Wörld B', __METHOD__, new TextContent( 'Hello Wörld B' ) );
+		$this->assertEditPage( 'Hello Wörld C', Title::newFromText( __METHOD__ ), 'Hello Wörld C' );
+		$this->assertEditPage(
+			'Hello Wörld D',
+			new WikiPage( Title::newFromText( __METHOD__ ) ),
+			'Hello Wörld D'
+		);
+	}
+
+	public function assertEditPage( $expected, $page, $content ) {
+		$status = $this->editPage( $page, $content );
+		$this->assertTrue( $status->isOK() );
+		$this->assertNotNull( $status->getValue()['revision-record'] );
+
+		/** @var RevisionRecord $rev */
+		$rev = $status->getValue()['revision-record'];
+		$cnt = $rev->getContent( SlotRecord::MAIN );
+
+		$this->assertSame( $expected, $cnt->serialize() );
 	}
 
 }

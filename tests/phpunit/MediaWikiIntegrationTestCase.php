@@ -2375,8 +2375,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param string $pageName Page title
-	 * @param string $text Content of the page
+	 * @param string|Title|WikiPage $page the page to edit
+	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
 	 * @param User|null $user If null, $this->getTestUser()->getUser() is used.
@@ -2387,8 +2387,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *         needsDB() method.
 	 */
 	protected function editPage(
-		$pageName,
-		$text,
+		$page,
+		$content,
 		$summary = '',
 		$defaultNs = NS_MAIN,
 		User $user = null
@@ -2398,15 +2398,26 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
-		$title = Title::newFromText( $pageName, $defaultNs );
-		$page = WikiPage::factory( $title );
+		if ( $page instanceof WikiPage ) {
+			$title = $page->getTitle();
+		} elseif ( $page instanceof Title ) {
+			$title = $page;
+			$page = WikiPage::factory( $title );
+		} else {
+			$title = Title::newFromText( $page, $defaultNs );
+			$page = WikiPage::factory( $title );
+		}
 
 		if ( $user === null ) {
 			$user = $this->getTestUser()->getUser();
 		}
 
+		if ( is_string( $content ) ) {
+			$content = ContentHandler::makeContent( $content, $title );
+		}
+
 		return $page->doEditContent(
-			ContentHandler::makeContent( $text, $title ),
+			$content,
 			$summary,
 			0,
 			false,
