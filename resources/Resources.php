@@ -1104,7 +1104,8 @@ return [
 				'prefix' => 'CookiePrefix',
 				'domain' => 'CookieDomain',
 				'path' => 'CookiePath',
-				'expires' => 'CookieExpiration'
+				'expires' => 'CookieExpiration',
+				'sameSiteLegacy' => 'UseSameSiteLegacyCookies',
 			] ],
 		],
 		'dependencies' => 'jquery.cookie',
