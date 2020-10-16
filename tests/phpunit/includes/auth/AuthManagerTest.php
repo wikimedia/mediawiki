@@ -2445,10 +2445,10 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$username = self::usernameForCreation();
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
-		$this->initializeManager();
 
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$this->initializeManager( true );
 
 		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
 			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
@@ -2526,6 +2526,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$m = str_replace( 'MediaWiki\\Auth\\AuthManager::autoCreateUser: ', '', $m );
 			return $m;
 		} );
+		$this->logger = $logger;
 		$this->manager->setLogger( $logger );
 
 		try {
@@ -2637,7 +2638,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// IP unable to create accounts
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
-		$session->clear();
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
@@ -2658,7 +2660,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
-		$session->clear();
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_MAINT, true );
@@ -2670,7 +2673,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', true );
-		$session->clear();
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
@@ -2679,7 +2683,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
-		$session->clear();
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
