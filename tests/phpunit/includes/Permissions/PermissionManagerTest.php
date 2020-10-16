@@ -148,150 +148,130 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
-		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
-		getFormattedNsText( NS_PROJECT );
+		$prefix = MediaWikiServices::getInstance()
+			->getContentLanguage()
+			->getFormattedNsText( NS_PROJECT );
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "createtalk" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "createpage" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ "nocreatetext" ] ], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, "createpage" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, "createtalk" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "createtalk" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "createpage" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_TALK );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, "createpage" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, "createtalk" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'create', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'create', $this->user, $this->title );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
 		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
 		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->overrideUserPermissions( $this->user, "movefile" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->overrideUserPermissions( $this->user, "" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
 		$this->overrideUserPermissions( $this->user, "movefile" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move', $this->user, $this->title );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
@@ -338,43 +318,36 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 			$this->setUser( 'anon' );
 			$this->overrideUserPermissions( $this->user, 'move' );
-			$res = MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title );
+			$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 			$this->assertEquals( [], $res );
 
 			$this->overrideUserPermissions( $this->user, '' );
-			$res = MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title );
+			$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 			$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 		}
 
 		$this->setTitle( NS_USER );
 		$this->setUser( $this->userName );
 		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move-target', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->overrideUserPermissions( $this->user, "move" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move-target', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 		$this->assertEquals( [ [ 'cant-move-to-user-page' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move-target', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_USER, "User/subpage" );
 		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move-target', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->overrideUserPermissions( $this->user, "move" );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'move-target', $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title );
 		$this->assertEquals( [], $res );
 
 		$this->setUser( 'anon' );
@@ -400,54 +373,109 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		foreach ( [ "edit", "protect", "" ] as $action ) {
 			$this->overrideUserPermissions( $this->user );
-			$this->assertEquals( $check[$action][0],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors( $action, $this->user, $this->title, true ) );
-			$this->assertEquals( $check[$action][0],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors(
-						$action, $this->user, $this->title, PermissionManager::RIGOR_FULL ) );
-			$this->assertEquals( $check[$action][0],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors(
-						$action, $this->user, $this->title, PermissionManager::RIGOR_SECURE ) );
+			$this->assertEquals(
+				$check[$action][0],
+				$permissionManager->getPermissionErrors( $action, $this->user, $this->title, true )
+			);
+			$this->assertEquals(
+				$check[$action][0],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_FULL
+				)
+			);
+			$this->assertEquals(
+				$check[$action][0],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_SECURE
+				)
+			);
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
 			$this->setMwGlobals( 'wgGroupPermissions', [] );
 
-			$this->assertEquals( $check[$action][1],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors( $action, $this->user, $this->title, true ) );
-			$this->assertEquals( $check[$action][1],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors(
-						$action, $this->user, $this->title, PermissionManager::RIGOR_FULL ) );
-			$this->assertEquals( $check[$action][1],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors(
-						$action, $this->user, $this->title, PermissionManager::RIGOR_SECURE ) );
+			$this->assertEquals(
+				$check[$action][1],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					true
+				)
+			);
+			$this->assertEquals(
+				$check[$action][1],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_FULL
+				)
+			);
+			$this->assertEquals(
+				$check[$action][1],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_SECURE
+				)
+			);
 			$this->setMwGlobals( 'wgGroupPermissions', $old );
 
 			$this->overrideUserPermissions( $this->user, $action );
-			$this->assertEquals( $check[$action][2],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors( $action, $this->user, $this->title, true ) );
-			$this->assertEquals( $check[$action][2],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors( $action, $this->user, $this->title, PermissionManager::RIGOR_FULL ) );
-			$this->assertEquals( $check[$action][2],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->getPermissionErrors(
-						$action, $this->user, $this->title, PermissionManager::RIGOR_SECURE ) );
+			$this->assertEquals(
+				$check[$action][2],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					true
+				)
+			);
+			$this->assertEquals(
+				$check[$action][2],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_FULL
+				)
+			);
+			$this->assertEquals(
+				$check[$action][2],
+				$permissionManager->getPermissionErrors(
+					$action,
+					$this->user,
+					$this->title,
+					PermissionManager::RIGOR_SECURE
+				)
+			);
 
 			$this->overrideUserPermissions( $this->user, $action );
-			$this->assertEquals( $check[$action][3],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->userCan( $action, $this->user, $this->title, true ) );
-			$this->assertEquals( $check[$action][3],
-				MediaWikiServices::getInstance()->getPermissionManager()
-					->quickUserCan( $action, $this->user, $this->title ) );
+			$this->assertEquals(
+				$check[$action][3],
+				$permissionManager->userCan(
+					$action,
+					$this->user,
+					$this->title,
+					true
+				)
+			);
+			$this->assertEquals(
+				$check[$action][3],
+				$permissionManager->quickUserCan(
+					$action,
+					$this->user,
+					$this->title
+				)
+			);
 			# count( User::getGroupsWithPermissions( $action ) ) < 1
 		}
 	}
@@ -457,32 +485,30 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$result2 = $result;
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
 		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $perm );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( $action, $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result, $res );
 
 		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
 		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $perm );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( $action, $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result2, $res );
 
 		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
 		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $perm );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( $action, $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result2, $res );
 
 		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
 		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $perm );
-		$res = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( $action, $this->user, $this->title );
+		$res = $permissionManager->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result2, $res );
 	}
 
@@ -496,63 +522,67 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_SPECIAL );
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$this->assertEquals( [ [ 'badaccess-group0' ], [ 'ns-specialprotected' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title ) );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, 'bogus' );
 		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title ) );
 
 		$this->setTitle( NS_MAIN );
 		$this->overrideUserPermissions( $this->user, '' );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'badaccess-group0' ] ],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
 
 		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', [
 			NS_USER => [ 'bogus' ]
 		] );
 		$this->resetServices();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->overrideUserPermissions( $this->user, '' );
 
 		$this->setTitle( NS_USER );
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'namespaceprotected', 'User', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'badaccess-group0' ], [ 'namespaceprotected', 'User', 'bogus' ] ],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->overrideUserPermissions( $this->user, 'bogus' );
-		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'protectedinterface', 'bogus' ] ],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->overrideUserPermissions( $this->user, 'bogus' );
-		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'protectedinterface', 'bogus' ] ],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
 
 		$this->setMwGlobals( 'wgNamespaceProtection', null );
 		$this->resetServices();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->overrideUserPermissions( $this->user, 'bogus' );
 
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()
-				->userCan( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
+		$this->assertTrue( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, '' );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->userCan( 'bogus', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'badaccess-group0' ] ],
+			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
 	}
 
 	/**
@@ -584,8 +614,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testJsonConfigEditPermissions() {
-		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
-		getFormattedNsText( NS_PROJECT );
+		$prefix = MediaWikiServices::getInstance()
+			->getContentLanguage()
+			->getFormattedNsText( NS_PROJECT );
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->userName . '/test.json' );
@@ -817,49 +848,42 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$resultUserJs,
 		$resultPatrol
 	) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$this->overrideUserPermissions( $this->user );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultNone, $result );
 
 		$this->overrideUserPermissions( $this->user, 'editmyusercss' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultMyCss, $result );
 
 		$this->overrideUserPermissions( $this->user, 'editmyuserjson' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultMyJson, $result );
 
 		$this->overrideUserPermissions( $this->user, 'editmyuserjs' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultMyJs, $result );
 
 		$this->overrideUserPermissions( $this->user, 'editusercss' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultUserCss, $result );
 
 		$this->overrideUserPermissions( $this->user, 'edituserjson' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultUserJson, $result );
 
 		$this->overrideUserPermissions( $this->user, 'edituserjs' );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( $resultUserJs, $result );
 
 		$this->overrideUserPermissions( $this->user );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'patrol', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'patrol', $this->user, $this->title );
 		$this->assertEquals( reset( $resultPatrol[0] ), reset( $result[0] ) );
 
 		$this->overrideUserPermissions( $this->user, [ 'edituserjs', 'edituserjson', 'editusercss' ] );
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'bogus', $this->user, $this->title );
+		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
 	}
 
@@ -873,20 +897,23 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
-		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
-		getFormattedNsText( NS_PROJECT );
+		$prefix = MediaWikiServices::getInstance()
+			->getContentLanguage()
+			->getFormattedNsText( NS_PROJECT );
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$this->setTitle( NS_MAIN );
 		$this->title->mRestrictionsLoaded = true;
 		$this->overrideUserPermissions( $this->user, "edit" );
 		$this->title->mRestrictions = [ "bogus" => [ 'bogus', "sysop", "protect", "" ] ];
 
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
+		);
 
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()
-				->quickUserCan( 'edit', $this->user, $this->title ) );
+		$this->assertTrue( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
 
 		$this->title->mRestrictions = [ "edit" => [ 'bogus', "sysop", "protect", "" ],
 			"bogus" => [ 'bogus', "sysop", "protect", "" ] ];
@@ -895,80 +922,72 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
 			[ 'protectedpagetext', 'editprotected', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
 			[ 'protectedpagetext', 'editprotected', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'edit', $this->user, $this->title ) );
 		$this->overrideUserPermissions( $this->user );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
 			[ 'protectedpagetext', 'editprotected', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [ [ 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ],
 			[ 'protectedpagetext', 'bogus', 'edit' ],
 			[ 'protectedpagetext', 'editprotected', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'edit', $this->user, $this->title ) );
 		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [
 			[ 'protectedpagetext', 'bogus', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'edit', $this->user, $this->title ) );
 
 		$this->title->mCascadeRestriction = true;
 		$this->overrideUserPermissions( $this->user, "edit" );
 
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->quickUserCan( 'bogus', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->quickUserCan( 'bogus', $this->user, $this->title ) );
 
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
-				'edit', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
 
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
 			[ 'protectedpagetext', 'editprotected', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
 			[ 'protectedpagetext', 'editprotected', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'edit', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
-				'bogus', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->quickUserCan( 'bogus', $this->user, $this->title ) );
 
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
-				'edit', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
 
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ],
 			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ],
 			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'edit', $this->user, $this->title ) );
 	}
 
@@ -987,21 +1006,21 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			"bogus" => [ 'bogus', "sysop", "protect", "" ]
 		];
 
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'bogus', $this->user, $this->title ) );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$this->assertFalse( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [
 			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
 			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
 			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
+			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'edit', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
+		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
+		);
 	}
 
 	/**
@@ -1018,83 +1037,78 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->title->mTitleProtection['reason'] = 'test';
 		$this->title->mCascadeRestriction = false;
 
-		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'create', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'create', $this->user, $this->title ) );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$this->assertEquals(
+			[ [ 'titleprotected', 'Useruser', 'test' ] ],
+			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
 
 		$this->title->mTitleProtection['permission'] = 'editprotected';
 		$this->overrideUserPermissions( $this->user, [ 'createpage', 'protect' ] );
-		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'create', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'create', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'titleprotected', 'Useruser', 'test' ] ],
+			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, [ 'createpage', 'editprotected' ] );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'create', $this->user, $this->title ) );
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'create', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
+		);
+		$this->assertTrue( $permissionManager->userCan( 'create', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, [ 'createpage' ] );
-		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'create', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'create', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'titleprotected', 'Useruser', 'test' ] ],
+			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
 		$this->overrideUserPermissions( $this->user, [ "move" ] );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'immobile-source-namespace', 'Media' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'immobile-source-namespace', 'Media' ] ],
+			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
+		);
 
 		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move', $this->user, $this->title ) );
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
+		);
+		$this->assertTrue( $permissionManager->userCan( 'move', $this->user, $this->title ) );
 
 		$this->title->mInterwiki = "no";
-		$this->assertEquals( [ [ 'immobile-source-page' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'immobile-source-page' ] ],
+			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move-target', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'immobile-target-namespace', 'Media' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
+		$this->assertFalse( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'immobile-target-namespace', 'Media' ] ],
+			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
+		);
 
 		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move-target', $this->user, $this->title ) );
+		$this->assertEquals(
+			[],
+			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
+		);
+		$this->assertTrue( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
 
 		$this->title->mInterwiki = "no";
-		$this->assertEquals( [ [ 'immobile-target-page' ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertFalse(
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'move-target', $this->user, $this->title ) );
+		$this->assertEquals(
+			[ [ 'immobile-target-page' ] ],
+			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
+		);
+		$this->assertFalse( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
 	}
 
 	/**
@@ -1145,7 +1159,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// quickUserCan should ignore user blocks
 		$this->assertTrue(
-
 			$permissionManager->quickUserCan( 'move-target', $this->user, $this->title )
 		);
 	}
@@ -1714,19 +1727,21 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::userHasRight
 	 */
 	public function testUserHasRight() {
-		$result = MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$result = $permissionManager->userHasRight(
 			$this->getTestUser( 'unittesters' )->getUser(),
 			'test'
 		);
 		$this->assertTrue( $result );
 
-		$result = MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
+		$result = $permissionManager->userHasRight(
 			$this->getTestUser( 'formertesters' )->getUser(),
 			'runtest'
 		);
 		$this->assertFalse( $result );
 
-		$result = MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
+		$result = $permissionManager->userHasRight(
 			$this->getTestUser( 'formertesters' )->getUser(),
 			''
 		);
@@ -1737,13 +1752,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::groupHasPermission
 	 */
 	public function testGroupHasPermission() {
-		$result = MediaWikiServices::getInstance()->getPermissionManager()->groupHasPermission(
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$result = $permissionManager->groupHasPermission(
 			'unittesters',
 			'test'
 		);
 		$this->assertTrue( $result );
 
-		$result = MediaWikiServices::getInstance()->getPermissionManager()->groupHasPermission(
+		$result = $permissionManager->groupHasPermission(
 			'formertesters',
 			'runtest'
 		);
@@ -1754,12 +1771,12 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::isEveryoneAllowed
 	 */
 	public function testIsEveryoneAllowed() {
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->isEveryoneAllowed( 'editmyoptions' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$result = $permissionManager->isEveryoneAllowed( 'editmyoptions' );
 		$this->assertTrue( $result );
 
-		$result = MediaWikiServices::getInstance()->getPermissionManager()
-			->isEveryoneAllowed( 'test' );
+		$result = $permissionManager->isEveryoneAllowed( 'test' );
 		$this->assertFalse( $result );
 	}
 
