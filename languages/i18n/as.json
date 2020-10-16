@@ -214,6 +214,7 @@
 	"talk": "আলোচনা",
 	"views": "দৰ্শন",
 	"toolbox": "সঁজুলিসমূহ",
+	"cactions": "অধিক",
 	"tool-link-userrights": "{{GENDER:$1|সদস্য}} গোটসমূহ সলাওক",
 	"tool-link-userrights-readonly": "{{GENDER:$1|সদস্য}} গোটসমূহ চাওক",
 	"tool-link-emailuser": "এই {{GENDER:$1|সদস্যজনক}} ইমেইল কৰক",
@@ -2840,5 +2841,6 @@
 	"mw-widgets-abandonedit-title": "আপুনি নিশ্চিতনে?",
 	"mw-widgets-mediasearch-input-placeholder": "মিডিয়া সন্ধান কৰক",
 	"mw-widgets-mediasearch-noresults": "কোনো ফলাফল পোৱা নগ'ল।",
+	"mw-widgets-usersmultiselect-placeholder": "আৰু অধিক যোগ কৰক...",
 	"randomrootpage": "যাদৃচ্ছিক মূল পৃষ্ঠা"
 }
