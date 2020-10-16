@@ -484,6 +484,9 @@ class SpecialPageFactory {
 			'class' => \SpecialChangeContentModel::class,
 			'services' => [
 				'ContentHandlerFactory',
+				'ContentModelChangeFactory',
+				'SpamChecker',
+				'RevisionLookup',
 			],
 		],
 
