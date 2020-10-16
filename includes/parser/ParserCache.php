@@ -165,11 +165,13 @@ class ParserCache {
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 *
+	 * @deprecated since 1.36
 	 * @param WikiPage $wikiPage
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
 	public function getETag( WikiPage $wikiPage, $popts ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return 'W/"' . $this->makeParserOutputKey( $wikiPage, $popts )
 			. "--" . $wikiPage->getTouched() . '"';
 	}
