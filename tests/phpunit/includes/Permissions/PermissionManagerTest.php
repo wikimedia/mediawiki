@@ -3,18 +3,18 @@
 namespace MediaWiki\Tests\Permissions;
 
 use Action;
+use Content;
 use ContentHandler;
 use FauxRequest;
-use LoggedServiceOptions;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWikiLangTestCase;
@@ -586,305 +586,188 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
+	 * Does not include testing the `editmyuserjsredirect` functionality
+	 *
+	 * @dataProvider provideTestCheckUserConfigPermissions
+	 * @param string $pageTitle Does not include the namespace prefix
+	 * @param array $rights What rights the user should be given
+	 * @param string $action
+	 * @param string|bool $pageType 'css', 'js', 'json', or false for none of those
+	 * @param array $expectedErrors
 	 */
-	public function testJsConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->userName . '/test.js' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testJsonConfigEditPermissions() {
-		$prefix = MediaWikiServices::getInstance()
-			->getContentLanguage()
-			->getFormattedNsText( NS_PROJECT );
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->userName . '/test.json' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testCssConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->userName . '/test.css' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testOtherJsConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testOtherJsonConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->altUserName . '/test.json' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testOtherCssConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	public function testJsConfigRedirectEditPermissions() {
-		$revision = null;
-		$user = $this->getTestUser()->getUser();
-		$otherUser = $this->getTestUser( 'sysop' )->getUser();
-		$localJsTitle = Title::newFromText( 'User:' . $user->getName() . '/foo.js' );
-		$otherLocalJsTitle = Title::newFromText( 'User:' . $user->getName() . '/foo2.js' );
-		$nonlocalJsTitle = Title::newFromText( 'User:' . $otherUser->getName() . '/foo.js' );
-
-		$services = MediaWikiServices::getInstance();
-		$revisionLookup = $this->getMockBuilder( RevisionLookup::class )
-			->setMethods( [ 'getRevisionByTitle' ] )
-			->getMockForAbstractClass();
-		$revisionLookup->method( 'getRevisionByTitle' )
-			->willReturnCallback( function ( LinkTarget $page ) use (
-				$services, &$revision, $localJsTitle
-			) {
-				if ( $localJsTitle->equals( Title::newFromLinkTarget( $page ) ) ) {
-					return $revision;
-				} else {
-					return $services->getRevisionLookup()->getRevisionByTitle( $page );
-				}
-			} );
-		$permissionManager = new PermissionManager(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				PermissionManager::CONSTRUCTOR_OPTIONS,
-				[
-					'WhitelistRead' => [],
-					'WhitelistReadRegexp' => [],
-					'EmailConfirmToEdit' => false,
-					'BlockDisablesLogin' => false,
-					'GroupPermissions' => [],
-					'RevokePermissions' => [],
-					'AvailableRights' => [],
-					'NamespaceProtection' => [],
-					'RestrictionLevels' => []
-				]
-			),
-			$services->getSpecialPageFactory(),
-			$revisionLookup,
-			$services->getNamespaceInfo(),
-			$services->getBlockErrorFormatter(),
-			$services->getHookContainer()
-		);
-		$this->setService( 'PermissionManager', $permissionManager );
-
-		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'editmyuserjs' ] );
-
-		$revision = $this->getJavascriptRevision( $localJsTitle, $user, '/* script */' );
-		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
-		$this->assertSame( [], $errors );
-
-		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $otherLocalJsTitle, $user );
-		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
-		$this->assertSame( [], $errors );
-
-		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $nonlocalJsTitle, $user );
-		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
-		$this->assertSame( [ [ 'mycustomjsredirectprotected', 'edit' ] ], $errors );
-
-		$permissionManager->overrideUserRightsForTesting( $user,
-			[ 'edit', 'editmyuserjs', 'editmyuserjsredirect' ] );
-
-		$revision = $this->getJavascriptRedirectRevision( $localJsTitle, $nonlocalJsTitle, $user );
-		$errors = $permissionManager->getPermissionErrors( 'edit', $user, $localJsTitle );
-		$this->assertSame( [], $errors );
-	}
-
-	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testOtherNonConfigEditPermissions() {
-		$this->setUser( $this->userName );
-
-		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	/**
-	 * @todo This should use data providers like the other methods here.
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 */
-	public function testPatrolActionConfigEditPermissions() {
-		$this->setUser( 'anon' );
-		$this->setTitle( NS_USER, 'ToPatrolOrNotToPatrol' );
-		$this->runConfigEditPermissions(
-			[ [ 'badaccess-group0' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-groups' ] ]
-		);
-	}
-
-	protected function runConfigEditPermissions(
-		$resultNone,
-		$resultMyCss,
-		$resultMyJson,
-		$resultMyJs,
-		$resultUserCss,
-		$resultUserJson,
-		$resultUserJs,
-		$resultPatrol
+	public function testCheckUserConfigPermissions(
+		$pageTitle,
+		$rights,
+		$action,
+		$pageType,
+		$expectedErrors
 	) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		// $this->userUser cannot be accessed in the dataProvider, since that is called before ::setUp()
+		$user = $this->createMock( User::class );
+		$user->method( 'getId' )->willReturn( 123 );
+		$user->method( 'getName' )->willReturn( 'NameOfActingUser' );
 
-		$this->overrideUserPermissions( $this->user );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultNone, $result );
+		$service = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager = TestingAccessWrapper::newFromObject( $service );
 
-		$this->overrideUserPermissions( $this->user, 'editmyusercss' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultMyCss, $result );
+		// Mock title for the config page methods
+		$title = $this->createMock( Title::class );
+		$title->method( 'getText' )->willReturn( $pageTitle );
+		$title->method( 'isUserCssConfigPage' )->willReturn( $pageType === 'css' );
+		$title->method( 'isUserJsonConfigPage' )->willReturn( $pageType === 'json' );
+		$title->method( 'isUserJsConfigPage' )->willReturn( $pageType === 'js' );
 
-		$this->overrideUserPermissions( $this->user, 'editmyuserjson' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultMyJson, $result );
+		// Override user rights
+		$permissionManager->overrideUserRightsForTesting( $user, $rights );
 
-		$this->overrideUserPermissions( $this->user, 'editmyuserjs' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultMyJs, $result );
+		$result = $permissionManager->checkUserConfigPermissions(
+			$action,
+			$user,
+			[], // starting errors
+			PermissionManager::RIGOR_QUICK, // unused
+			true, // $short, unused
+			$title
+		);
+		$this->assertEquals( $expectedErrors, $result );
+	}
 
-		$this->overrideUserPermissions( $this->user, 'editusercss' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultUserCss, $result );
+	public function provideTestCheckUserConfigPermissions() {
+		yield 'Patrol ignored' => [ 'NameOfActingUser/subpage', [], 'patrol', false, [] ];
+		yield 'Own non-config' => [ 'NameOfActingUser/subpage', [], 'edit', false, [] ];
+		yield 'Other non-config' => [ 'NameOfAnotherUser/subpage', [], 'edit', false, [] ];
+		yield "Delete other subpage" => [ 'NameOfAnotherUser/subpage', [], 'delete', false, [] ];
 
-		$this->overrideUserPermissions( $this->user, 'edituserjson' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultUserJson, $result );
+		foreach ( [ 'css', 'json', 'js' ] as $type ) {
+			// User editing their own subpages, everything okay
+			// ensure that we don't run the checks for redirects now, those are done separately
+			yield "Own $type with editmyuser*" => [
+				'NameOfActingUser/subpage.' . $type,
+				[ "editmyuser{$type}", 'editmyuserjsredirect' ],
+				'edit',
+				$type,
+				[]
+			];
 
-		$this->overrideUserPermissions( $this->user, 'edituserjs' );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( $resultUserJs, $result );
+			// Interface admin editing own subpages, everything okay
+			yield "Own $type with edituser*" => [
+				'NameOfActingUser/subpage.' . $type,
+				[ "edituser{$type}" ],
+				'edit',
+				$type,
+				[]
+			];
 
-		$this->overrideUserPermissions( $this->user );
-		$result = $permissionManager->getPermissionErrors( 'patrol', $this->user, $this->title );
-		$this->assertEquals( reset( $resultPatrol[0] ), reset( $result[0] ) );
+			// User with no rights editing own subpages, problematic
+			yield "Own $type with no rights" => [
+				'NameOfActingUser/subpage.' . $type,
+				[],
+				'edit',
+				$type,
+				[ [ "mycustom{$type}protected", 'edit' ] ]
+			];
 
-		$this->overrideUserPermissions( $this->user, [ 'edituserjs', 'edituserjson', 'editusercss' ] );
-		$result = $permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
+			// Interface admin editing other user's subpages, everything okay
+			yield "Other $type with edituser*" => [
+				'NameOfAnotherUser/subpage.' . $type,
+				[ "edituser{$type}" ],
+				'edit',
+				$type,
+				[]
+			];
+
+			// Normal user editing other user's subpages, problematic
+			yield "Other $type with no rights" => [
+				'NameOfAnotherUser/subpage.' . $type,
+				[],
+				'edit',
+				$type,
+				[ [ "custom{$type}protected", 'edit' ] ]
+			];
+		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
+	 *
+	 * @dataProvider provideTestCheckUserConfigPermissionsForRedirect
+	 * @param bool $canEditOwnRedirect
+	 * @param bool $isRedirect
+	 * @param int $targetNamespace
+	 * @param string $targetText
+	 * @param bool $expectErrors
+	 */
+	public function testCheckUserConfigPermissionsForRedirect(
+		$canEditOwnRedirect,
+		$isRedirect,
+		$targetNamespace,
+		$targetText,
+		$expectErrors
+	) {
+		// $this->userUser cannot be accessed in the dataProvider, since that is called before ::setUp()
+		$user = $this->createMock( User::class );
+		$user->method( 'getId' )->willReturn( 123 );
+		$user->method( 'getName' )->willReturn( 'NameOfActingUser' );
+
+		$service = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager = TestingAccessWrapper::newFromObject( $service );
+
+		// Mock title for the config page methods
+		$title = $this->createMock( Title::class );
+		$title->method( 'getText' )->willReturn( 'NameOfActingUser/common.js' );
+		$title->method( 'isUserCssConfigPage' )->willReturn( false );
+		$title->method( 'isUserJsonConfigPage' )->willReturn( false );
+		$title->method( 'isUserJsConfigPage' )->willReturn( true );
+
+		// Override user rights
+		$rights = [ 'editmyuserjs' ];
+		if ( $canEditOwnRedirect ) {
+			$rights[] = 'editmyuserjsredirect';
+		}
+		$permissionManager->overrideUserRightsForTesting( $user, $rights );
+
+		if ( $isRedirect ) {
+			$target = $this->createMock( Title::class );
+			$target->method( 'inNamespace' )
+				->with( $this->equalTo( NS_USER ) )
+				->willReturn( $targetNamespace === NS_USER );
+
+			$target->method( 'getText' )->willReturn( $targetText );
+		} else {
+			$target = null;
+		}
+		$content = $this->createMock( Content::class );
+		$content->method( 'getUltimateRedirectTarget' )->willReturn( $target );
+
+		$revisionRecord = $this->createMock( RevisionRecord::class );
+		$revisionRecord->method( 'getContent' )->willReturn( $content );
+
+		$revisionLookup = $this->createMock( RevisionLookup::class );
+		$revisionLookup->method( 'getRevisionByTitle' )
+			->with( $this->equalTo( $title ) )
+			->willReturn( $revisionRecord );
+		$permissionManager->revisionLookup = $revisionLookup;
+
+		$result = $permissionManager->checkUserConfigPermissions(
+			'edit',
+			$user,
+			[], // starting errors
+			PermissionManager::RIGOR_QUICK, // unused
+			true, // $short, unused
+			$title
+		);
+		$this->assertEquals(
+			$expectErrors ? [ [ 'mycustomjsredirectprotected', 'edit' ] ] : [],
+			$result
+		);
+	}
+
+	public function provideTestCheckUserConfigPermissionsForRedirect() {
+		yield 'With `editmyuserjsredirect`' => [ true, true, NS_USER, 'NameOfActingUser/other.js', false ];
+		yield 'Not a redirect' => [ false, false, NS_USER, 'NameOfActingUser/other.js', false ];
+		yield 'Redirect out of user space' => [ false, true, NS_MAIN, 'MainPage.js', true ];
+		yield 'Redirect to different user' => [ false, true, NS_USER, 'NameOfAnotherUser/other.js', true ];
+		yield 'Redirect to own subpage' => [ false, true, NS_USER, 'NameOfActingUser/other.js', false ];
 	}
 
 	/**
