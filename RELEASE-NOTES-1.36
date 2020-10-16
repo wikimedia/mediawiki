@@ -325,6 +325,12 @@ because of Phabricator reports.
   use BlockUtils instead.
 * ParserCache::getKey has been deprecated. Use ParserCache::getMetadata and
   ParserCache::makeParserOutputKey instead.
+* The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4,
+  was removed. MediaWiki support for PHPUnit 4 ended with the removal of HHVM
+  support.
+* The PHPUnit6And8Compat class, used to provide compatibility with PHPUnit 6,
+  was removed without deprecation. This class was introduced during the
+  upgrade to PHPUnit 8, but never used.
 * …
 
 === Other changes in 1.36 ===
