@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "632ed5fca2ef2b81087b7bff994f6a9f",
+    "content-hash": "5dccce9fe4991fe55537e18e4d05d8ea",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
