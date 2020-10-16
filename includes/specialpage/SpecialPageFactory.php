@@ -179,7 +179,13 @@ class SpecialPageFactory {
 		// List of pages
 		'Allpages' => \SpecialAllPages::class,
 		'Prefixindex' => \SpecialPrefixindex::class,
-		'Categories' => \SpecialCategories::class,
+		'Categories' => [
+			'class' => \SpecialCategories::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Listredirects' => \SpecialListRedirects::class,
 		'PagesWithProp' => \SpecialPagesWithProp::class,
 		'TrackingCategories' => \SpecialTrackingCategories::class,
