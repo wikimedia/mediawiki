@@ -771,107 +771,81 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
-	 *
-	 * This test is failing per T201776.
-	 *
-	 * @group Broken
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkPageRestrictions
+	 *
+	 * @dataProvider provideTestCheckPageRestrictions
+	 * @param string $action
+	 * @param array $restrictions
+	 * @param array $rights
+	 * @param bool $cascading
+	 * @param array $expectedErrors
 	 */
-	public function testPageRestrictions() {
-		$prefix = MediaWikiServices::getInstance()
-			->getContentLanguage()
-			->getFormattedNsText( NS_PROJECT );
+	public function testCheckPageRestrictions(
+		$action,
+		$restrictions,
+		$rights,
+		$cascading,
+		$expectedErrors
+	) {
+		// $this->userUser cannot be accessed in the dataProvider, since that is called before ::setUp()
+		$user = $this->createMock( User::class );
+		$user->method( 'getId' )->willReturn( 123 );
+		$user->method( 'getName' )->willReturn( 'NameOfActingUser' );
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$service = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager = TestingAccessWrapper::newFromObject( $service );
 
-		$this->setTitle( NS_MAIN );
-		$this->title->mRestrictionsLoaded = true;
-		$this->overrideUserPermissions( $this->user, "edit" );
-		$this->title->mRestrictions = [ "bogus" => [ 'bogus', "sysop", "protect", "" ] ];
+		$title = $this->createMock( Title::class );
+		$title->expects( $this->once() )
+			->method( 'getRestrictions' )
+			->with( $this->equalTo( $action ) )
+			->willReturn( $restrictions );
+		$title->method( 'areRestrictionsCascading' )->willReturn( $cascading );
 
-		$this->assertEquals(
-			[],
-			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
+		$permissionManager->overrideUserRightsForTesting( $user, $rights );
+
+		$result = $permissionManager->checkPageRestrictions(
+			$action,
+			$user,
+			[], // starting errors
+			PermissionManager::RIGOR_QUICK, // unused
+			true, // $short, unused
+			$title
 		);
+		$this->assertEquals( $expectedErrors, $result );
+	}
 
-		$this->assertTrue( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
-
-		$this->title->mRestrictions = [ "edit" => [ 'bogus', "sysop", "protect", "" ],
-			"bogus" => [ 'bogus', "sysop", "protect", "" ] ];
-
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'protectedpagetext', 'bogus', 'bogus' ],
-			[ 'protectedpagetext', 'editprotected', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			$permissionManager->getPermissionErrors(
-				'bogus', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
-			[ 'protectedpagetext', 'editprotected', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			$permissionManager->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
-		$this->overrideUserPermissions( $this->user );
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'protectedpagetext', 'bogus', 'bogus' ],
-			[ 'protectedpagetext', 'editprotected', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			$permissionManager->getPermissionErrors(
-				'bogus', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ],
-			[ 'protectedpagetext', 'bogus', 'edit' ],
-			[ 'protectedpagetext', 'editprotected', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			$permissionManager->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
-		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'protectedpagetext', 'bogus', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			$permissionManager->getPermissionErrors(
-				'bogus', $this->user, $this->title ) );
-		$this->assertEquals( [
-			[ 'protectedpagetext', 'bogus', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			$permissionManager->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
-
-		$this->title->mCascadeRestriction = true;
-		$this->overrideUserPermissions( $this->user, "edit" );
-
-		$this->assertFalse( $permissionManager->quickUserCan( 'bogus', $this->user, $this->title ) );
-
-		$this->assertFalse( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
-
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'protectedpagetext', 'bogus', 'bogus' ],
-			[ 'protectedpagetext', 'editprotected', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			$permissionManager->getPermissionErrors(
-				'bogus', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
-			[ 'protectedpagetext', 'editprotected', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			$permissionManager->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
-
-		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
-		$this->assertFalse( $permissionManager->quickUserCan( 'bogus', $this->user, $this->title ) );
-
-		$this->assertFalse( $permissionManager->quickUserCan( 'edit', $this->user, $this->title ) );
-
-		$this->assertEquals( [ [ 'badaccess-group0' ],
-			[ 'protectedpagetext', 'bogus', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ],
-			[ 'protectedpagetext', 'protect', 'bogus' ] ],
-			$permissionManager->getPermissionErrors(
-				'bogus', $this->user, $this->title ) );
-		$this->assertEquals( [ [ 'protectedpagetext', 'bogus', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ],
-			[ 'protectedpagetext', 'protect', 'edit' ] ],
-			$permissionManager->getPermissionErrors(
-				'edit', $this->user, $this->title ) );
+	public function provideTestCheckPageRestrictions() {
+		yield 'No restrictions' => [ 'move', [], [], true, [] ];
+		yield 'Empty string' => [ 'edit', [ '' ], [], true, [] ];
+		yield 'Semi-protected, with rights' => [
+			'edit',
+			[ 'autoconfirmed' ],
+			[ 'editsemiprotected' ],
+			false,
+			[]
+		];
+		yield 'Sysop protected, no rights' => [
+			'edit',
+			[ 'sysop', ],
+			[],
+			false,
+			[ [ 'protectedpagetext', 'editprotected', 'edit' ] ]
+		];
+		yield 'Sysop protected and cascading, no protect' => [
+			'edit',
+			[ 'editprotected' ],
+			[ 'editprotected' ],
+			true,
+			[ [ 'protectedpagetext', 'protect', 'edit' ] ]
+		];
+		yield 'Sysop protected and cascading, with rights' => [
+			'edit',
+			[ 'editprotected' ],
+			[ 'editprotected', 'protect' ],
+			true,
+			[]
+		];
 	}
 
 	/**
