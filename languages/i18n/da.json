@@ -265,6 +265,7 @@
 	"talk": "Diskussion",
 	"views": "Visninger",
 	"toolbox": "Værktøjer",
+	"cactions": "Mere",
 	"tool-link-userrights": "Ændre {{GENDER:$1|bruger}}grupper",
 	"tool-link-userrights-readonly": "Se {{GENDER:$1|bruger}}grupper",
 	"tool-link-emailuser": "Send e-mail til denne {{GENDER:$1|bruger}}",
