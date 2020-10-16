@@ -186,7 +186,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Listredirects' => \SpecialListRedirects::class,
+		'Listredirects' => [
+			'class' => \SpecialListRedirects::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'PagesWithProp' => [
 			'class' => \SpecialPagesWithProp::class,
 			'services' => [
