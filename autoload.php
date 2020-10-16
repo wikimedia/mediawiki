@@ -1871,6 +1871,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\LoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitor.php',
 	'Wikimedia\\Rdbms\\LoadMonitorMySQL' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitorMySQL.php',
 	'Wikimedia\\Rdbms\\LoadMonitorNull' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitorNull.php',
+	'Wikimedia\\Rdbms\\MWPostgreSqlPlatform' => __DIR__ . '/includes/libs/rdbms/database/MWPostgreSqlPlatform.php',
 	'Wikimedia\\Rdbms\\MaintainableDBConnRef' => __DIR__ . '/includes/libs/rdbms/database/MaintainableDBConnRef.php',
 	'Wikimedia\\Rdbms\\MySQLField' => __DIR__ . '/includes/libs/rdbms/field/MySQLField.php',
 	'Wikimedia\\Rdbms\\MySQLMasterPos' => __DIR__ . '/includes/libs/rdbms/database/position/MySQLMasterPos.php',
