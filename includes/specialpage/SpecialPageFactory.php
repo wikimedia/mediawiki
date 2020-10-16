@@ -179,7 +179,13 @@ class SpecialPageFactory {
 		// List of pages
 		'Allpages' => \SpecialAllPages::class,
 		'Prefixindex' => \SpecialPrefixindex::class,
-		'Categories' => \SpecialCategories::class,
+		'Categories' => [
+			'class' => \SpecialCategories::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Listredirects' => \SpecialListRedirects::class,
 		'PagesWithProp' => \SpecialPagesWithProp::class,
 		'TrackingCategories' => \SpecialTrackingCategories::class,
@@ -277,7 +283,16 @@ class SpecialPageFactory {
 		],
 
 		// Recent changes and logs
-		'Newimages' => \SpecialNewFiles::class,
+		'Newimages' => [
+			'class' => \SpecialNewFiles::class,
+			'services' => [
+				'MimeAnalyzer',
+				'PermissionManager',
+				'ActorMigration',
+				'DBLoadBalancer',
+				'ContentLanguage',
+			]
+		],
 		'Log' => \SpecialLog::class,
 		'Watchlist' => \SpecialWatchlist::class,
 		'Newpages' => \SpecialNewpages::class,

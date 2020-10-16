@@ -21,7 +21,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
@@ -35,14 +35,18 @@ class CategoryPager extends AlphabeticPager {
 	 * @param IContextSource $context
 	 * @param string $from
 	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
 		IContextSource $context,
 		$from,
 		LinkRenderer $linkRenderer,
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $context, $linkRenderer );
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
@@ -50,7 +54,7 @@ class CategoryPager extends AlphabeticPager {
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
 		}
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function getQueryInfo() {

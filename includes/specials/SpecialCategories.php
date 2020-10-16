@@ -21,19 +21,31 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup SpecialPage
  */
 class SpecialCategories extends SpecialPage {
 
-	public function __construct() {
-		parent::__construct( 'Categories' );
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
-		// Since we don't control the constructor parameters, we can't inject services that way.
-		// Instead, we initialize services in the execute() method, and allow them to be overridden
-		// using the initServices() method.
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
+	) {
+		parent::__construct( 'Categories' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function execute( $par ) {
@@ -48,7 +60,8 @@ class SpecialCategories extends SpecialPage {
 			$this->getContext(),
 			$from,
 			$this->getLinkRenderer(),
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->loadBalancer
 		);
 		$cap->doQuery();
 

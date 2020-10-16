@@ -21,7 +21,8 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var FormOptions */
@@ -30,8 +31,38 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var string[] */
 	protected $mediaTypes;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/**
+	 * @param MimeAnalyzer $mimeAnalyzer
+	 * @param PermissionManager $permissionManager
+	 * @param ActorMigration $actorMigration
+	 * @param ILoadBalancer $loadBalancer
+	 * @param Language $contentLanguage
+	 */
+	public function __construct(
+		MimeAnalyzer $mimeAnalyzer,
+		PermissionManager $permissionManager,
+		ActorMigration $actorMigration,
+		ILoadBalancer $loadBalancer,
+		Language $contentLanguage
+	) {
 		parent::__construct( 'Newimages' );
+		$this->permissionManager = $permissionManager;
+		$this->actorMigration = $actorMigration;
+		$this->contentLanguage = $contentLanguage;
+		$this->loadBalancer = $loadBalancer;
+		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 	}
 
 	public function execute( $par ) {
@@ -39,8 +70,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:New images' );
@@ -102,7 +131,15 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->buildForm( $context );
 		}
 
-		$pager = new NewFilesPager( $context, $opts, $this->getLinkRenderer() );
+		$pager = new NewFilesPager(
+			$context,
+			$opts,
+			$this->getLinkRenderer(),
+			$this->permissionManager,
+			$this->actorMigration,
+			$this->loadBalancer,
+			UserCache::singleton()
+		);
 
 		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {
@@ -210,13 +247,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	public function setTopText() {
 		$message = $this->msg( 'newimagestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$this->getOutput()->addWikiTextAsContent(
 				Html::rawElement( 'div',
 					[
-
-						'lang' => $contLang->getHtmlCode(),
-						'dir' => $contLang->getDir()
+						'lang' => $this->contentLanguage->getHtmlCode(),
+						'dir' => $this->contentLanguage->getDir()
 					],
 					"\n" . $message->plain() . "\n"
 				)
