@@ -20,8 +20,11 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -36,8 +39,23 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	protected $mTargetObj;
 
-	public function __construct() {
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
+
+	/**
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 */
+	public function __construct(
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch
+	) {
 		parent::__construct( 'Emailuser' );
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
 	}
 
 	public function doesWrites() {
@@ -507,13 +525,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {
