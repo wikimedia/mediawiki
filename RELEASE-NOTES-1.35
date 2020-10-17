@@ -5,6 +5,7 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.0 ===
+* Parser: Adjust typehint to show that getTitle can return null.
 
 == MediaWiki 1.35.0 ==
 
