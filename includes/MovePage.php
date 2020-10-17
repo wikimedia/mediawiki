@@ -570,9 +570,17 @@ class MovePage {
 		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
 		$protected = $this->oldTitle->isProtected();
 
-		// Do the actual move; if this fails, it will throw an MWException(!)
-		$nullRevision = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
+		// Attempt the actual move
+		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
 			$changeTags );
+
+		if ( $moveAttemptResult instanceof Status ) {
+			// T265779: Attempt to delete target page failed
+			$dbw->cancelAtomic( __METHOD__ );
+			return $moveAttemptResult;
+		} else {
+			$nullRevision = $moveAttemptResult;
+		}
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
@@ -796,8 +804,7 @@ class MovePage {
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return RevisionRecord the revision created by the move
-	 * @throws MWException
+	 * @return RevisionRecord|Status The revision created by the move or Status object on failure
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
@@ -829,8 +836,7 @@ class MovePage {
 			);
 
 			if ( !$status->isGood() ) {
-				throw new MWException( 'Failed to delete page-move revision: '
-					. $status->getWikiText( false, false, 'en' ) );
+				return $status;
 			}
 
 			$nt->resetArticleID( false );
