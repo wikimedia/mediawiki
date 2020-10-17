@@ -90,7 +90,8 @@
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory",
-			"VirtualRESTServiceClient"
+			"ParserCacheFactory",
+			"WikiPageFactory"
 		],
 		"format": "bare"
 	},
@@ -103,7 +104,8 @@
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory",
-			"VirtualRESTServiceClient"
+			"ParserCacheFactory",
+			"WikiPageFactory"
 		],
 		"format": "html"
 	},
@@ -116,7 +118,8 @@
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory",
-			"VirtualRESTServiceClient"
+			"ParserCacheFactory",
+			"WikiPageFactory"
 		],
 		"format": "with_html"
 	},
