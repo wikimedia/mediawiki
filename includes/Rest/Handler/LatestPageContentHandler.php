@@ -82,7 +82,7 @@ abstract class LatestPageContentHandler extends SimpleHandler {
 		if ( $this->latestRevision === null ) {
 			$title = $this->getTitle();
 			if ( $title && $title->getArticleID() ) {
-				$this->latestRevision = $this->revisionLookup->getKnownCurrentRevision( $title );
+				$this->latestRevision = $this->revisionLookup->getRevisionByTitle( $title );
 			} else {
 				$this->latestRevision = false;
 			}
