@@ -1258,6 +1258,9 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 				target = textify( arg );
 				if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
 					$el.attr( 'href', target );
+					if ( target.search( '^' + mw.config.get( 'wgArticlePath' ).replace( /\$1/g, '.+?' ) + '$' ) === -1 ) {
+						$el.addClass( 'external' );
+					}
 				} else {
 					mw.log( 'External link in message had illegal target ' + target );
 					return appendWithoutParsing(

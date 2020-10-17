@@ -34,9 +34,9 @@
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
 			expectedListUsersSitename = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户' +
 				'Wiki</a>';
-			expectedLinkPagenamee = '<a href="https://example.org/wiki/Foo?bar=baz#val/2_%2B_2">Test</a>';
+			expectedLinkPagenamee = '<a href="https://example.org/wiki/Foo?bar=baz#val/2_%2B_2" class="external">Test</a>';
 
-			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
+			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php" class="external">index.php</a>';
 
 			formatText = mw.jqueryMsg.getMessageFunction( {
 				format: 'text'
@@ -163,17 +163,17 @@
 
 		assert.strictEqual(
 			formatParse( 'external-link-replace', 'http://example.org/?x=y&z' ),
-			'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
+			'Foo <a href="http://example.org/?x=y&amp;z" class="external">bar</a>',
 			'Href is not double-escaped in wikilink function'
 		);
 		assert.strictEqual(
 			formatParse( 'external-link-plural', 1, 'http://example.org' ),
-			'Foo is <a href="http://example.org">one</a> things.',
+			'Foo is <a href="http://example.org" class="external">one</a> things.',
 			'Link is expanded inside plural and is not escaped html'
 		);
 		assert.strictEqual(
 			formatParse( 'external-link-plural', 2, 'http://example.org' ),
-			'Foo <a href="http://example.org">two</a> things.',
+			'Foo <a href="http://example.org" class="external">two</a> things.',
 			'Link is expanded inside an explicit plural form and is not escaped html'
 		);
 		assert.strictEqual(
@@ -188,7 +188,7 @@
 		);
 		assert.strictEqual(
 			formatParse( 'external-link-plural', 6, 'http://example.org' ),
-			'Foo are <a href="http://example.org">some</a> things.',
+			'Foo are <a href="http://example.org" class="external">some</a> things.',
 			'Plural fallback to the "other" plural form'
 		);
 		assert.strictEqual(
@@ -447,12 +447,12 @@
 			[
 				'extlink-html-full',
 				'asd [http://example.org <strong>Example</strong>] asd',
-				'asd <a href="http://example.org"><strong>Example</strong></a> asd'
+				'asd <a href="http://example.org" class="external"><strong>Example</strong></a> asd'
 			],
 			[
 				'extlink-html-partial',
 				'asd [http://example.org foo <strong>Example</strong> bar] asd',
-				'asd <a href="http://example.org">foo <strong>Example</strong> bar</a> asd'
+				'asd <a href="http://example.org" class="external">foo <strong>Example</strong> bar</a> asd'
 			],
 			[
 				'wikilink-html-full',
@@ -485,32 +485,32 @@
 			[
 				'extlink-param-href-full',
 				'asd [$1 Example] asd',
-				'asd <a href="http://example.com">Example</a> asd'
+				'asd <a href="http://example.com" class="external">Example</a> asd'
 			],
 			[
 				'extlink-param-href-partial',
 				'asd [$1/example Example] asd',
-				'asd <a href="http://example.com/example">Example</a> asd'
+				'asd <a href="http://example.com/example" class="external">Example</a> asd'
 			],
 			[
 				'extlink-param-text-full',
 				'asd [http://example.org $2] asd',
-				'asd <a href="http://example.org">Text</a> asd'
+				'asd <a href="http://example.org" class="external">Text</a> asd'
 			],
 			[
 				'extlink-param-text-partial',
 				'asd [http://example.org Example $2] asd',
-				'asd <a href="http://example.org">Example Text</a> asd'
+				'asd <a href="http://example.org" class="external">Example Text</a> asd'
 			],
 			[
 				'extlink-param-both-full',
 				'asd [$1 $2] asd',
-				'asd <a href="http://example.com">Text</a> asd'
+				'asd <a href="http://example.com" class="external">Text</a> asd'
 			],
 			[
 				'extlink-param-both-partial',
 				'asd [$1/example Example $2] asd',
-				'asd <a href="http://example.com/example">Example Text</a> asd'
+				'asd <a href="http://example.com/example" class="external">Example Text</a> asd'
 			],
 			[
 				'wikilink-param-href-full',
@@ -617,7 +617,7 @@
 		);
 		assert.htmlEqual(
 			formatParse( 'external-link-replace', 'http://example.com' ),
-			'Foo <a href="http://example.com">bar</a>',
+			'Foo <a href="http://example.com" class="external">bar</a>',
 			'External link message processed when format is \'parse\''
 		);
 		assert.htmlEqual(
@@ -627,7 +627,7 @@
 		);
 		assert.htmlEqual(
 			formatParse( 'external-link-replace', '//example.com' ),
-			'Foo <a href="//example.com">bar</a>',
+			'Foo <a href="//example.com" class="external">bar</a>',
 			'External link message allows protocol-relative URL when processed'
 		);
 		assert.htmlEqual(
@@ -976,14 +976,14 @@
 		mw.messages.set( 'jquerymsg-script-and-external-link', '<script>alert( "jquerymsg-script-and-external-link test" );</script> [http://example.com <i>Foo</i> bar]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-script-and-external-link' ),
-			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><i>Foo</i> bar</a>',
+			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com" class="external"><i>Foo</i> bar</a>',
 			'HTML tags in external links not interfering with escaping of other tags'
 		);
 
 		mw.messages.set( 'jquerymsg-link-script', '[http://example.com <script>alert( "jquerymsg-link-script test" );</script>]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-link-script' ),
-			'<a href="http://example.com">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</a>',
+			'<a href="http://example.com" class="external">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</a>',
 			'Non-whitelisted HTML tag in external link anchor treated as text'
 		);
 
@@ -1019,7 +1019,7 @@
 		mw.messages.set( 'jquerymsg-wikitext-contents-parsed', '<i>[http://example.com Example]</i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-wikitext-contents-parsed' ),
-			'<i><a href="http://example.com">Example</a></i>',
+			'<i><a href="http://example.com" class="external">Example</a></i>',
 			'Contents of valid tag are treated as wikitext, so external link is parsed'
 		);
 
