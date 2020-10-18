@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -45,17 +46,23 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Emailuser' );
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function doesWrites() {
@@ -73,13 +80,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	protected function getFormFields() {
 		$linkRenderer = $this->getLinkRenderer();
+		$user = $this->getUser();
 		return [
 			'From' => [
 				'type' => 'info',
 				'raw' => 1,
 				'default' => $linkRenderer->makeLink(
-					$this->getUser()->getUserPage(),
-					$this->getUser()->getName()
+					$user->getUserPage(),
+					$user->getName()
 				),
 				'label-message' => 'emailfrom',
 				'id' => 'mw-emailuser-sender',
@@ -100,8 +108,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			],
 			'Subject' => [
 				'type' => 'text',
-				'default' => $this->msg( 'defemailsubject',
-					$this->getUser()->getName() )->inContentLanguage()->text(),
+				'default' => $this->msg( 'defemailsubject', $user->getName() )->inContentLanguage()->text(),
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
@@ -116,7 +123,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'CCMe' => [
 				'type' => 'check',
 				'label-message' => 'emailccme',
-				'default' => $this->getUser()->getBoolOption( 'ccmeonemails' ),
+				'default' => $this->userOptionsLookup->getBoolOption( $user, 'ccmeonemails' ),
 			],
 		];
 	}

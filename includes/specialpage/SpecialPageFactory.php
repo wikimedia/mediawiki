@@ -342,6 +342,7 @@ class SpecialPageFactory {
 				'RevisionLookup',
 				'NamespaceInfo',
 				'ActorMigration',
+				'UserOptionsLookup',
 			]
 		],
 		'Recentchanges' => \SpecialRecentChanges::class,
@@ -489,6 +490,7 @@ class SpecialPageFactory {
 			'services' => [
 				'PermissionManager',
 				'Parser',
+				'UserOptionsLookup',
 			],
 		],
 		'ChangeContentModel' => [
@@ -523,6 +525,7 @@ class SpecialPageFactory {
 			'services' => [
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'UserOptionsLookup',
 			]
 		],
 		'Movepage' => \MovePageForm::class,
