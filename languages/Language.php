@@ -889,14 +889,6 @@ class Language {
 	}
 
 	/**
-	 * @return array
-	 */
-	public function getExtraUserToggles() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return [];
-	}
-
-	/**
 	 * Get an array of language names, indexed by code.
 	 *
 	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
@@ -4810,78 +4802,6 @@ class Language {
 			$dirmark .
 			$this->msg( 'word-separator' )->escaped() .
 			$this->msg( 'parentheses' )->rawParams( $details )->escaped();
-	}
-
-	/**
-	 * Generate (prev x| next x) (20|50|100...) type links for paging
-	 *
-	 * @param Title $title Title object to link
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Optional URL query parameter string
-	 * @param bool $atend Optional param for specified if this is the last page
-	 * @return string
-	 * @deprecated since 1.34, use PrevNextNavigationRenderer::buildPrevNextNavigation()
-	 *  instead.
-	 */
-	public function viewPrevNext( Title $title, $offset, $limit,
-		array $query = [], $atend = false
-	) {
-		wfDeprecated( __METHOD__, '1.34' );
-		// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
-
-		# Make 'previous' link
-		$prev = wfMessage( 'prevn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if ( $offset > 0 ) {
-			$plink = $this->numLink( $title, max( $offset - $limit, 0 ), $limit,
-				$query, $prev, 'prevn-title', 'mw-prevlink' );
-		} else {
-			$plink = htmlspecialchars( $prev );
-		}
-
-		# Make 'next' link
-		$next = wfMessage( 'nextn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if ( $atend ) {
-			$nlink = htmlspecialchars( $next );
-		} else {
-			$nlink = $this->numLink( $title, $offset + $limit, $limit,
-				$query, $next, 'nextn-title', 'mw-nextlink' );
-		}
-
-		# Make links to set number of items per page
-		$numLinks = [];
-		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
-			$numLinks[] = $this->numLink( $title, $offset, $num,
-				$query, $this->formatNum( $num ), 'shown-title', 'mw-numlink' );
-		}
-
-		return wfMessage( 'viewprevnext' )->inLanguage( $this )->title( $title
-			)->rawParams( $plink, $nlink, $this->pipeList( $numLinks ) )->escaped();
-	}
-
-	/**
-	 * Helper function for viewPrevNext() that generates links
-	 *
-	 * @deprecated since 1.35, used with {@link viewPrevNext} only
-	 *
-	 * @param Title $title Title object to link
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Extra query parameters
-	 * @param string $link Text to use for the link; will be escaped
-	 * @param string $tooltipMsg Name of the message to use as tooltip
-	 * @param string $class Value of the "class" attribute of the link
-	 * @return string HTML fragment
-	 */
-	private function numLink( Title $title, $offset, $limit, array $query, $link,
-		$tooltipMsg, $class
-	) {
-		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
-		$tooltip = wfMessage( $tooltipMsg )->inLanguage( $this )->title( $title )
-			->numParams( $limit )->text();
-
-		return Html::element( 'a', [ 'href' => $title->getLocalURL( $query ),
-			'title' => $tooltip, 'class' => $class ], $link );
 	}
 
 	/**
