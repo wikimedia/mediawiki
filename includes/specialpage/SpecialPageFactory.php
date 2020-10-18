@@ -342,6 +342,7 @@ class SpecialPageFactory {
 				'RevisionLookup',
 				'NamespaceInfo',
 				'ActorMigration',
+				'UserOptionsLookup',
 			]
 		],
 		'Recentchanges' => \SpecialRecentChanges::class,

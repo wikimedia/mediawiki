@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -70,6 +71,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param CommentStore $commentStore
@@ -79,6 +83,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
@@ -88,7 +93,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		ILoadBalancer $loadBalancer,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Newpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -99,6 +105,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -108,10 +115,16 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
+		$opts->add(
+			'hidepatrolled',
+			$this->userOptionsLookup->getBoolOption( $this->getUser(), 'newpageshidepatrolled' )
+		);
 		$opts->add( 'hidebots', false );
 		$opts->add( 'hideredirs', true );
-		$opts->add( 'limit', $this->getUser()->getIntOption( 'rclimit' ) );
+		$opts->add(
+			'limit',
+			$this->userOptionsLookup->getIntOption( $this->getUser(), 'rclimit' )
+		);
 		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
