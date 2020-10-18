@@ -273,7 +273,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'usermaildisabled';
 		}
 
-		// Run this before $user->isAllowed, to show appropriate message to anons (T160309)
+		// Run this before checking 'sendemail' permission
+		// to show appropriate message to anons (T160309)
 		if ( !$user->isEmailConfirmed() ) {
 			return 'mailnologin';
 		}

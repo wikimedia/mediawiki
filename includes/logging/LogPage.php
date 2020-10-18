@@ -461,7 +461,8 @@ class LogPage {
 	 */
 	public function getRestriction() {
 		global $wgLogRestrictions;
-		// '' always returns true with $user->isAllowed()
+		// The empty string fallback will
+		// always return true in permission check
 		return $wgLogRestrictions[$this->type] ?? '';
 	}
 
