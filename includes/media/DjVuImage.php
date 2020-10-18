@@ -277,7 +277,10 @@ class DjVuImage {
 			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
 			if ( $retval == 0 ) {
 				# Strip some control characters
-				$txt = preg_replace( "/[\013\035\037]/", "", $txt );
+				# Ignore carriage returns
+				$txt = preg_replace( "/[\013]/", "", $txt );
+				# Replace runs of OCR region separators with a single extra line break
+				$txt = preg_replace( "/[\035\037]+/", "\n", $txt );
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
 					((?>    # Text to match is composed of atoms of either:
