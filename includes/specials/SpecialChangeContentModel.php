@@ -1,7 +1,9 @@
 <?php
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Page\ContentModelChangeFactory;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -10,18 +12,33 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var ContentModelChangeFactory */
+	private $contentModelChangeFactory;
+
+	/** @var SpamChecker */
+	private $spamChecker;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
 	/**
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @internal use @see SpecialPageFactory::getPage
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ContentModelChangeFactory $contentModelChangeFactory
+	 * @param SpamChecker $spamChecker
+	 * @param RevisionLookup $revisionLookup
 	 */
-	public function __construct( ?IContentHandlerFactory $contentHandlerFactory = null ) {
+	public function __construct(
+		IContentHandlerFactory $contentHandlerFactory,
+		ContentModelChangeFactory $contentModelChangeFactory,
+		SpamChecker $spamChecker,
+		RevisionLookup $revisionLookup
+	) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
 
-		if ( !$contentHandlerFactory ) {
-			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
-			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
-		}
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->contentModelChangeFactory = $contentModelChangeFactory;
+		$this->spamChecker = $spamChecker;
+		$this->revisionLookup = $revisionLookup;
 	}
 
 	public function doesWrites() {
@@ -89,9 +106,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
 
-		$this->oldRevision = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getRevisionByTitle( $titleObj ) ?: false;
+		$this->oldRevision = $this->revisionLookup->getRevisionByTitle( $titleObj ) ?: false;
 
 		if ( $this->oldRevision ) {
 			$oldContent = $this->oldRevision->getContent( SlotRecord::MAIN );
@@ -117,8 +132,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			],
 		];
 		if ( $this->title ) {
-			$spamChecker = MediaWikiServices::getInstance()->getSpamChecker();
-
 			$options = $this->getOptionsForTitle( $this->title );
 			if ( empty( $options ) ) {
 				throw new ErrorPageError(
@@ -146,13 +159,13 @@ class SpecialChangeContentModel extends FormSpecialPage {
 					'type' => 'text',
 					'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 					'name' => 'reason',
-					'validation-callback' => function ( $reason ) use ( $spamChecker ) {
+					'validation-callback' => function ( $reason ) {
 						if ( $reason === null || $reason === '' ) {
 							// Null on form display, or no reason given
 							return true;
 						}
 
-						$match = $spamChecker->checkSummary( $reason );
+						$match = $this->spamChecker->checkSummary( $reason );
 
 						if ( $match ) {
 							return $this->msg( 'spamprotectionmatch', $match )->parse();
@@ -195,9 +208,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$this->title = Title::newFromText( $data['pagetitle'] );
 		$page = WikiPage::factory( $this->title );
 
-		$changer = MediaWikiServices::getInstance()
-			->getContentModelChangeFactory()
-			->newContentModelChange(
+		$changer = $this->contentModelChangeFactory->newContentModelChange(
 				$user,
 				$page,
 				$data['model']

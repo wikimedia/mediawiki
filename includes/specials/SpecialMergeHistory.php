@@ -21,8 +21,11 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Special page allowing users with the appropriate permissions to
@@ -67,8 +70,35 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var int[] */
 	public $prevId;
 
-	public function __construct() {
+	/** @var MergeHistoryFactory */
+	private $mergeHistoryFactory;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/**
+	 * @param MergeHistoryFactory $mergeHistoryFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
+	 */
+	public function __construct(
+		MergeHistoryFactory $mergeHistoryFactory,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore
+	) {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
+		$this->mergeHistoryFactory = $mergeHistoryFactory;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
+		$this->revisionStore = $revisionStore;
 	}
 
 	public function doesWrites() {
@@ -199,7 +229,9 @@ class SpecialMergeHistory extends SpecialPage {
 			[],
 			$this->mTargetObj,
 			$this->mDestObj,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->loadBalancer,
+			$this->revisionStore
 		);
 		$haveRevisions = $revisions->getNumRows() > 0;
 
@@ -282,9 +314,7 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	public function formatRevisionRow( $row ) {
-		$revRecord = MediaWikiServices::getInstance()
-			->getRevisionFactory()
-			->newRevisionFromRow( $row );
+		$revRecord = $this->revisionStore->newRevisionFromRow( $row );
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -364,8 +394,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		// MergeHistory object
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
-		$mh = $factory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
+		$mh = $this->mergeHistoryFactory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
 
 		// Merge!
 		$mergeStatus = $mh->merge( $this->getUser(), $this->mComment );
