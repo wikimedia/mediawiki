@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A special page that expands submitted templates, parser functions,
@@ -52,14 +53,23 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var Parser */
 	private $parser;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param Parser $parser
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
-	public function __construct( PermissionManager $permissionManager, Parser $parser ) {
+	public function __construct(
+		PermissionManager $permissionManager,
+		Parser $parser,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( 'ExpandTemplates' );
 		$this->permissionManager = $permissionManager;
 		$this->parser = $parser;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -241,7 +251,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			[
 				'id' => 'output',
 				'readonly' => 'readonly',
-				'class' => 'mw-editfont-' . $this->getUser()->getOption( 'editfont' )
+				'class' => 'mw-editfont-' . $this->userOptionsLookup->getOption( $this->getUser(), 'editfont' )
 			]
 		);
 
