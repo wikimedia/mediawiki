@@ -84,10 +84,9 @@ class SyslogHandler extends SyslogUdpHandler {
 		$pri = $severity + $this->facility;
 
 		// BEGIN Miraheze specific code
-		// Syslog-ng refuses th parse logs where the timestamp is 'M j' instead
-		// of 'M  j' (extra whitespace, yes)
-		// -- Southparkfan 2020-10-09
-		$timestamp = date( 'M  j H:i:s' );
+		// Syslog-ng refuses to parse logs with the default timestamp format
+		// -- Southparkfan 2020-10-18
+		$timestamp = date( 'Y-m-d\\TH:i:s' );
 
 		// Do not include {$this->hostname} in the log rule, unnecessary
 		return "<{$pri}>{$timestamp} {$this->appname}: ";
