@@ -397,7 +397,14 @@ class SpecialPageFactory {
 			]
 		],
 		'DeletedContributions' => \SpecialDeletedContributions::class,
-		'Preferences' => \SpecialPreferences::class,
+		'Preferences' => [
+			'class' => \SpecialPreferences::class,
+			'services' => [
+				'PreferencesFactory',
+				'PermissionManager',
+				'UserOptionsManager',
+			]
+		],
 		'ResetTokens' => \SpecialResetTokens::class,
 		'Contributions' => \SpecialContributions::class,
 		'Listgrouprights' => [
