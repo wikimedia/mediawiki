@@ -318,7 +318,18 @@ class SpecialPageFactory {
 		],
 
 		// Media reports and uploads
-		'Listfiles' => \SpecialListFiles::class,
+		'Listfiles' => [
+			'class' => \SpecialListFiles::class,
+			'services' => [
+				'RepoGroup',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'Filepath' => \SpecialFilepath::class,
 		'MediaStatistics' => [
 			'class' => \SpecialMediaStatistics::class,

@@ -19,14 +19,15 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IResultWrapper;
+
 /**
  * @ingroup Pager
  */
-use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IResultWrapper;
-
 class ImageListPager extends TablePager {
 
 	protected $mFieldNames = null;
@@ -51,6 +52,21 @@ class ImageListPager extends TablePager {
 
 	protected $mTableName = 'image';
 
+	/** @var LocalRepo */
+	private $localRepo;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserCache */
+	private $userCache;
+
 	/**
 	 * The unique sort fields for the sort options for unique pagniate
 	 */
@@ -60,13 +76,39 @@ class ImageListPager extends TablePager {
 		'img_size' => [ 'img_size', 'img_name' ],
 	];
 
-	public function __construct( IContextSource $context, $userName, $search,
-		$including, $showAll, LinkRenderer $linkRenderer
+	/**
+	 * @param IContextSource $context
+	 * @param string $userName
+	 * @param string $search
+	 * @param bool $including
+	 * @param bool $showAll
+	 * @param LinkRenderer $linkRenderer
+	 * @param RepoGroup $repoGroup
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param CommentStore $commentStore
+	 * @param ActorMigration $actorMigration
+	 * @param UserCache $userCache
+	 */
+	public function __construct(
+		IContextSource $context,
+		$userName,
+		$search,
+		$including,
+		$showAll,
+		LinkRenderer $linkRenderer,
+		RepoGroup $repoGroup,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		CommentStore $commentStore,
+		ActorMigration $actorMigration,
+		UserCache $userCache
 	) {
 		$this->setContext( $context );
 
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
+		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::makeTitleSafe( NS_USER, $userName );
@@ -89,7 +131,6 @@ class ImageListPager extends TablePager {
 			$nt = Title::newFromText( $this->mSearch );
 
 			if ( $nt ) {
-				$dbr = wfGetDB( DB_REPLICA );
 				$this->mQueryConds[] = 'LOWER(img_name)' .
 					$dbr->buildLike( $dbr->anyString(),
 						strtolower( $nt->getDBkey() ), $dbr->anyString() );
@@ -105,8 +146,15 @@ class ImageListPager extends TablePager {
 		} else {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		}
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $dbr;
 
 		parent::__construct( $context, $linkRenderer );
+		$this->localRepo = $repoGroup->getLocalRepo();
+		$this->permissionManager = $permissionManager;
+		$this->commentStore = $commentStore;
+		$this->actorMigration = $actorMigration;
+		$this->userCache = $userCache;
 	}
 
 	/**
@@ -146,8 +194,8 @@ class ImageListPager extends TablePager {
 
 		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
-			$dbr = wfGetDB( DB_REPLICA );
-			$actorWhere = ActorMigration::newMigration()->getWhere(
+			$dbr = $this->getDatabase();
+			$actorWhere = $this->actorMigration->getWhere(
 				$dbr,
 				$prefix . '_user',
 				User::newFromName( $this->mUserName, false ),
@@ -160,7 +208,7 @@ class ImageListPager extends TablePager {
 		if ( $this->mSearch !== '' ) {
 			$nt = Title::newFromText( $this->mSearch );
 			if ( $nt ) {
-				$dbr = wfGetDB( DB_REPLICA );
+				$dbr = $this->getDatabase();
 				$conds[] = 'LOWER(' . $prefix . '_name)' .
 					$dbr->buildLike( $dbr->anyString(),
 						strtolower( $nt->getDBkey() ), $dbr->anyString() );
@@ -264,7 +312,7 @@ class ImageListPager extends TablePager {
 	 * @return array Query info
 	 */
 	protected function getQueryInfoReal( $table ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDatabase();
 		$prefix = $table === 'oldimage' ? 'oi' : 'img';
 
 		$tables = [ $table ];
@@ -288,14 +336,14 @@ class ImageListPager extends TablePager {
 		$options = $join_conds = [];
 
 		# Description field
-		$commentQuery = CommentStore::getStore()->getJoin( $prefix . '_description' );
+		$commentQuery = $this->commentStore->getJoin( $prefix . '_description' );
 		$tables += $commentQuery['tables'];
 		$fields += $commentQuery['fields'];
 		$join_conds += $commentQuery['joins'];
 		$fields['description_field'] = $dbr->addQuotes( "{$prefix}_description" );
 
 		# User fields
-		$actorQuery = ActorMigration::newMigration()->getJoin( $prefix . '_user' );
+		$actorQuery = $this->actorMigration->getJoin( $prefix . '_user' );
 		$tables += $actorQuery['tables'];
 		$join_conds += $actorQuery['joins'];
 		$fields['img_user'] = $actorQuery['fields'][$prefix . '_user'];
@@ -335,11 +383,12 @@ class ImageListPager extends TablePager {
 	 * @throws MWException
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
+		$dbr = $this->getDatabase();
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
 			$this->buildQueryInfo( $offset, $limit, $order );
-		$imageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+		$imageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		$this->mTableName = $prevTableName;
 
 		if ( !$this->mShowAll ) {
@@ -359,7 +408,7 @@ class ImageListPager extends TablePager {
 
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
 			$this->buildQueryInfo( $offset, $limit, $order );
-		$oldimageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+		$oldimageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 
 		$this->mTableName = $prevTableName;
 		$this->mIndexField = $oldIndex;
@@ -435,7 +484,7 @@ class ImageListPager extends TablePager {
 			$userIds[] = $row->img_user;
 		}
 		# Do a link batch query for names and userpages
-		UserCache::singleton()->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
 	}
 
 	/**
@@ -453,12 +502,11 @@ class ImageListPager extends TablePager {
 	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
-		$services = MediaWikiServices::getInstance();
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
-				$file = $services->getRepoGroup()->getLocalRepo()->findFile( $value, $opt );
+				$file = $this->localRepo->findFile( $value, $opt );
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
@@ -488,16 +536,14 @@ class ImageListPager extends TablePager {
 					);
 					$download = Xml::element(
 						'a',
-						[ 'href' => $services->getRepoGroup()->getLocalRepo()->newFile( $filePage )->getUrl() ],
+						[ 'href' => $this->localRepo->newFile( $filePage )->getUrl() ],
 						$imgfile
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
-					$permissionManager = $services->getPermissionManager();
-
-					if ( $permissionManager->userCan( 'delete', $this->getUser(), $filePage ) ) {
+					if ( $this->permissionManager->userCan( 'delete', $this->getUser(), $filePage ) ) {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
 
 						$delete = $linkRenderer->makeKnownLink(
@@ -514,7 +560,7 @@ class ImageListPager extends TablePager {
 				}
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
-					$name = User::whoIs( $this->mCurrentRow->img_user );
+					$name = $this->userCache->getProp( $this->mCurrentRow->img_user, 'name' );
 					$link = $linkRenderer->makeLink(
 						Title::makeTitle( NS_USER, $name ),
 						$name
@@ -528,7 +574,7 @@ class ImageListPager extends TablePager {
 				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
 			case 'img_description':
 				$field = $this->mCurrentRow->description_field;
-				$value = CommentStore::getStore()->getComment( $field, $this->mCurrentRow )->text;
+				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;
 				return Linker::formatComment( $value );
 			case 'count':
 				return $this->getLanguage()->formatNum( intval( $value ) + 1 );

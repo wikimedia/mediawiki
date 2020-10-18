@@ -16,8 +16,21 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ImageListPager::formatValue
 	 */
 	public function testFormatValuesThrowException() {
-		$page = new ImageListPager( RequestContext::getMain(), null, '', false, false,
-			MediaWikiServices::getInstance()->getLinkRenderer() );
+		$services = MediaWikiServices::getInstance();
+		$page = new ImageListPager(
+			RequestContext::getMain(),
+			null,
+			'',
+			false,
+			false,
+			$services->getLinkRenderer(),
+			$services->getRepoGroup(),
+			$services->getPermissionManager(),
+			$services->getDBLoadBalancer(),
+			$services->getCommentStore(),
+			$services->getActorMigration(),
+			UserCache::singleton()
+		);
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( "invalid_field" );
 		$page->formatValue( 'invalid_field', 'invalid_value' );
