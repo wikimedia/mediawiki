@@ -18,7 +18,9 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * A special page that allows users to modify their notification
@@ -36,24 +38,19 @@ class SpecialMute extends FormSpecialPage {
 	/** @var int */
 	private $targetCentralId;
 
-	/** @var bool */
-	private $enableUserEmailMuteList;
-
-	/** @var bool */
-	private $enableUserEmail;
-
 	/** @var CentralIdLookup */
 	private $centralIdLookup;
 
-	public function __construct() {
-		// TODO: inject all these dependencies once T222388 is resolved
-		$config = RequestContext::getMain()->getConfig();
-		$this->enableUserEmailMuteList = $config->get( 'EnableUserEmailBlacklist' );
-		$this->enableUserEmail = $config->get( 'EnableUserEmail' );
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
 
-		$this->centralIdLookup = CentralIdLookup::factory();
-
+	/**
+	 * @param UserOptionsManager $userOptionsManager
+	 */
+	public function __construct( UserOptionsManager $userOptionsManager ) {
 		parent::__construct( self::PAGE_NAME, '', false );
+		$this->centralIdLookup = CentralIdLookup::factory();
+		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**
@@ -148,7 +145,7 @@ class SpecialMute extends FormSpecialPage {
 			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $muteList );
+			$this->userOptionsManager->setOption( $user, $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -166,7 +163,7 @@ class SpecialMute extends FormSpecialPage {
 			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $muteList );
+			$this->userOptionsManager->setOption( $user, $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -188,10 +185,11 @@ class SpecialMute extends FormSpecialPage {
 	 * @inheritDoc
 	 */
 	protected function getFormFields() {
+		$config = $this->getConfig();
 		$fields = [];
 		if (
-			$this->enableUserEmailMuteList &&
-			$this->enableUserEmail &&
+			$config->get( 'EnableUserEmailBlacklist' ) &&
+			$config->get( 'EnableUserEmail' ) &&
 			$this->getUser()->getEmailAuthenticationTimestamp()
 		) {
 			$fields['email-blacklist'] = [
@@ -250,7 +248,7 @@ class SpecialMute extends FormSpecialPage {
 	 * @return array
 	 */
 	private function getMuteList( $userOption ) {
-		$muteList = $this->getUser()->getOption( $userOption );
+		$muteList = $this->userOptionsManager->getOption( $this->getUser(), $userOption );
 		if ( !$muteList ) {
 			return [];
 		}

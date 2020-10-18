@@ -689,7 +689,12 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'EnableSpecialMute' ) ) {
-				$this->list['Mute'] = \SpecialMute::class;
+				$this->list['Mute'] = [
+					'class' => \SpecialMute::class,
+					'services' => [
+						'UserOptionsManager',
+					]
+				];
 			}
 
 			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
