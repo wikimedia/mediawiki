@@ -644,8 +644,9 @@ class LogEventsList extends ContextSource {
 			$context = RequestContext::getMain();
 		}
 
+		$services = MediaWikiServices::getInstance();
 		// FIXME: Figure out how to inject this
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $services->getLinkRenderer();
 
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $context, $linkRenderer, $flags );
@@ -662,7 +663,10 @@ class LogEventsList extends ContextSource {
 			'',
 			'',
 			0,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getDBLoadBalancer(),
+			$services->getPermissionManager(),
+			$services->getActorMigration()
 		);
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
