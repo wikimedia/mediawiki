@@ -187,7 +187,12 @@ class SpecialPageFactory {
 			]
 		],
 		'Listredirects' => \SpecialListRedirects::class,
-		'PagesWithProp' => \SpecialPagesWithProp::class,
+		'PagesWithProp' => [
+			'class' => \SpecialPagesWithProp::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'TrackingCategories' => \SpecialTrackingCategories::class,
 
 		// Authentication
@@ -252,7 +257,12 @@ class SpecialPageFactory {
 			],
 		],
 		'ChangePassword' => \SpecialChangePassword::class,
-		'BotPasswords' => \SpecialBotPasswords::class,
+		'BotPasswords' => [
+			'class' => \SpecialBotPasswords::class,
+			'services' => [
+				'PasswordFactory',
+			]
+		],
 		'PasswordReset' => [
 			'class' => \SpecialPasswordReset::class,
 			'services' => [
@@ -295,7 +305,19 @@ class SpecialPageFactory {
 		],
 		'Log' => \SpecialLog::class,
 		'Watchlist' => \SpecialWatchlist::class,
-		'Newpages' => \SpecialNewpages::class,
+		'Newpages' => [
+			'class' => \SpecialNewpages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'CommentStore',
+				'ContentHandlerFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'RevisionLookup',
+				'NamespaceInfo',
+				'ActorMigration',
+			]
+		],
 		'Recentchanges' => \SpecialRecentChanges::class,
 		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
 		'Tags' => [
@@ -306,7 +328,18 @@ class SpecialPageFactory {
 		],
 
 		// Media reports and uploads
-		'Listfiles' => \SpecialListFiles::class,
+		'Listfiles' => [
+			'class' => \SpecialListFiles::class,
+			'services' => [
+				'RepoGroup',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'Filepath' => \SpecialFilepath::class,
 		'MediaStatistics' => [
 			'class' => \SpecialMediaStatistics::class,
@@ -316,7 +349,14 @@ class SpecialPageFactory {
 			]
 		],
 		'MIMEsearch' => \SpecialMIMESearch::class,
-		'FileDuplicateSearch' => \SpecialFileDuplicateSearch::class,
+		'FileDuplicateSearch' => [
+			'class' => \SpecialFileDuplicateSearch::class,
+			'services' => [
+				'LinkBatchFactory',
+				'RepoGroup',
+				'SearchEngineFactory',
+			]
+		],
 		'Upload' => \SpecialUpload::class,
 		'UploadStash' => \SpecialUploadStash::class,
 		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
@@ -463,7 +503,13 @@ class SpecialPageFactory {
 				'RepoGroup',
 			],
 		],
-		'RunJobs' => \SpecialRunJobs::class,
+		'RunJobs' => [
+			'class' => \SpecialRunJobs::class,
+			'services' => [
+				'JobRunner',
+				'ReadOnlyMode',
+			]
+		],
 		'Specialpages' => [
 			'class' => \SpecialSpecialpages::class,
 			'services' => [

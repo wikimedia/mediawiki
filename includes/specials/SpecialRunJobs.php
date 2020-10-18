@@ -21,16 +21,30 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Special page designed for running background tasks (internal use only)
  *
  * @ingroup SpecialPage
  */
 class SpecialRunJobs extends UnlistedSpecialPage {
-	public function __construct() {
+
+	/** @var JobRunner */
+	private $jobRunner;
+
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
+	/**
+	 * @param JobRunner $jobRunner
+	 * @param ReadOnlyMode $readOnlyMode
+	 */
+	public function __construct(
+		JobRunner $jobRunner,
+		ReadOnlyMode $readOnlyMode
+	) {
 		parent::__construct( 'RunJobs' );
+		$this->jobRunner = $jobRunner;
+		$this->readOnlyMode = $readOnlyMode;
 	}
 
 	public function doesWrites() {
@@ -40,7 +54,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	public function execute( $par = '' ) {
 		$this->getOutput()->disable();
 
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			wfHttpError( 423, 'Locked', 'Wiki is in read-only mode.' );
 			return;
 		}
@@ -108,8 +122,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	}
 
 	protected function doRun( array $params ) {
-		$runner = MediaWikiServices::getInstance()->getJobRunner();
-		return $runner->run( [
+		return $this->jobRunner->run( [
 			'type'     => $params['type'],
 			'maxJobs'  => $params['maxjobs'] ?: 1,
 			'maxTime'  => $params['maxtime'] ?: 30
