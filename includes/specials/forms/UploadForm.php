@@ -20,6 +20,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Sub class of HTMLForm that provides the form section of SpecialUpload
@@ -43,16 +44,56 @@ class UploadForm extends HTMLForm {
 	/** @var array */
 	protected $mMaxUploadSize = [];
 
-	public function __construct( array $options = [], IContextSource $context = null,
-		LinkRenderer $linkRenderer = null
+	/** @var LocalRepo */
+	private $localRepo;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/**
+	 * @param array $options
+	 * @param IContextSource|null $context
+	 * @param LinkRenderer|null $linkRenderer
+	 * @param PermissionManager|null $permissionManager
+	 * @param LocalRepo|null $localRepo
+	 * @param Language|null $contentLanguage
+	 * @param NamespaceInfo|null $nsInfo
+	 */
+	public function __construct(
+		array $options = [],
+		IContextSource $context = null,
+		LinkRenderer $linkRenderer = null,
+		PermissionManager $permissionManager = null,
+		LocalRepo $localRepo = null,
+		Language $contentLanguage = null,
+		NamespaceInfo $nsInfo = null
 	) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 		}
 
+		$services = MediaWikiServices::getInstance();
 		if ( !$linkRenderer ) {
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$linkRenderer = $services->getLinkRenderer();
 		}
+		if ( !$permissionManager ) {
+			$permissionManager = $services->getPermissionManager();
+		}
+		if ( !$localRepo ) {
+			$localRepo = $services->getRepoGroup()->getLocalRepo();
+		}
+		if ( !$contentLanguage ) {
+			$contentLanguage = $services->getContentLanguage();
+		}
+		if ( !$nsInfo ) {
+			$nsInfo = $services->getNamespaceInfo();
+		}
+		$this->localRepo = $localRepo;
+		$this->contentLanguage = $contentLanguage;
+		$this->nsInfo = $nsInfo;
 
 		$this->mWatch = !empty( $options['watch'] );
 		$this->mForReUpload = !empty( $options['forreupload'] );
@@ -76,10 +117,7 @@ class UploadForm extends HTMLForm {
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'editinterface' )
-		) {
+		if ( $permissionManager->userHasRight( $this->getUser(), 'editinterface' ) ) {
 			$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 			$licensesLink = $linkRenderer->makeKnownLink(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
@@ -258,8 +296,7 @@ class UploadForm extends HTMLForm {
 	protected function getDescriptionSection() {
 		$config = $this->getConfig();
 		if ( $this->mSessionKey ) {
-			$stash = MediaWikiServices::getInstance()->getRepoGroup()
-				->getLocalRepo()->getUploadStash( $this->getUser() );
+			$stash = $this->localRepo->getUploadStash( $this->getUser() );
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( Exception $e ) {
@@ -270,7 +307,7 @@ class UploadForm extends HTMLForm {
 				if ( $mto ) {
 					$this->addHeaderText(
 						'<div class="thumb t' .
-						MediaWikiServices::getInstance()->getContentLanguage()->alignEnd() . '">' .
+						$this->contentLanguage->alignEnd() . '">' .
 						Html::element( 'img', [
 							'src' => $mto->getUrl(),
 							'class' => 'thumbimage',
@@ -422,8 +459,7 @@ class UploadForm extends HTMLForm {
 			'wgCheckFileExtensions' => $config->get( 'CheckFileExtensions' ),
 			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgFileExtensions' => array_values( array_unique( $config->get( 'FileExtensions' ) ) ),
-			'wgCapitalizeUploads' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-				isCapitalized( NS_FILE ),
+			'wgCapitalizeUploads' => $this->nsInfo->isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		];

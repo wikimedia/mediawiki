@@ -43,15 +43,20 @@ class SpecialUpload extends SpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * @param RepoGroup|null $repoGroup
 	 * @param PermissionManager|null $permissionManager
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
 		RepoGroup $repoGroup = null,
 		PermissionManager $permissionManager = null,
-		UserOptionsLookup $userOptionsLookup = null
+		UserOptionsLookup $userOptionsLookup = null,
+		NamespaceInfo $nsInfo = null
 	) {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300
@@ -60,6 +65,7 @@ class SpecialUpload extends SpecialPage {
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 	}
 
 	public function doesWrites() {
@@ -281,18 +287,26 @@ class SpecialUpload extends SpecialPage {
 		# Initialize form
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new UploadForm( [
-			'watch' => $this->getWatchCheck(),
-			'forreupload' => $this->mForReUpload,
-			'sessionkey' => $sessionKey,
-			'hideignorewarning' => $hideIgnoreWarning,
-			'destwarningack' => (bool)$this->mDestWarningAck,
+		$form = new UploadForm(
+			[
+				'watch' => $this->getWatchCheck(),
+				'forreupload' => $this->mForReUpload,
+				'sessionkey' => $sessionKey,
+				'hideignorewarning' => $hideIgnoreWarning,
+				'destwarningack' => (bool)$this->mDestWarningAck,
 
-			'description' => $this->mComment,
-			'texttop' => $this->uploadFormTextTop,
-			'textaftersummary' => $this->uploadFormTextAfterSummary,
-			'destfile' => $this->mDesiredDestName,
-		], $context, $this->getLinkRenderer() );
+				'description' => $this->mComment,
+				'texttop' => $this->uploadFormTextTop,
+				'textaftersummary' => $this->uploadFormTextAfterSummary,
+				'destfile' => $this->mDesiredDestName,
+			],
+			$context,
+			$this->getLinkRenderer(),
+			$this->permissionManager,
+			$this->localRepo,
+			$this->getContentLanguage(),
+			$this->nsInfo
+		);
 
 		# Check the token, but only if necessary
 		if (
