@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Form for handling uploads and special page.
@@ -31,12 +32,25 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Upload
  */
 class SpecialUpload extends SpecialPage {
+
+	/** @var LocalRepo */
+	private $localRepo;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/**
-	 * Get data POSTed through the form and assign them to the object
-	 * @param WebRequest|null $request Data posted.
+	 * @param RepoGroup|null $repoGroup
+	 * @param PermissionManager|null $permissionManager
 	 */
-	public function __construct( $request = null ) {
+	public function __construct(
+		RepoGroup $repoGroup = null,
+		PermissionManager $permissionManager = null
+	) {
 		parent::__construct( 'Upload', 'upload' );
+		// This class is extended and therefor fallback to global state - T265300
+		$this->localRepo = ( $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup() )->getLocalRepo();
+		$this->permissionManager = $permissionManager ?? MediaWikiServices::getInstance()->getPermissionManager();
 	}
 
 	public function doesWrites() {
@@ -284,12 +298,10 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
-			$dbr = wfGetDB( DB_REPLICA );
-
 			LogEventsList::showLogExtract( $delNotice, [ 'delete', 'move' ],
 				$desiredTitleObj,
 				'', [ 'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
+					'conds' => [ 'log_action != ' . $this->localRepo->getReplicaDB()->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);
@@ -319,17 +331,16 @@ class SpecialUpload extends SpecialPage {
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
 			$count = $title->isDeleted();
-			if ( $count > 0 && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			if ( $count > 0 && $this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
 				$link = $this->msg(
-					$permissionManager->userHasRight( $user, 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
+					$this->permissionManager->userHasRight( $user, 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
 				)->rawParams( $restorelink )->parseAsBlock();
 				$this->getOutput()->addHTML(
 					Html::rawElement(
@@ -680,8 +691,7 @@ class SpecialUpload extends SpecialPage {
 			return true;
 		}
 
-		$local = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-			->newFile( $this->mDesiredDestName );
+		$local = $this->localRepo->newFile( $this->mDesiredDestName );
 		if ( $local && $local->exists() ) {
 			// We're uploading a new version of an existing file.
 			// No creation, so don't watch it if we're not already.
