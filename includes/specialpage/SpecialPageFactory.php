@@ -480,7 +480,19 @@ class SpecialPageFactory {
 		'ComparePages' => \SpecialComparePages::class,
 		'Export' => \SpecialExport::class,
 		'Import' => \SpecialImport::class,
-		'Undelete' => \SpecialUndelete::class,
+		'Undelete' => [
+			'class' => \SpecialUndelete::class,
+			'services' => [
+				'PermissionManager',
+				'RevisionFactory',
+				'RevisionRenderer',
+				'ContentHandlerFactory',
+				'ChangeTagDefStore',
+				'LinkBatchFactory',
+				'RepoGroup',
+				'DBLoadBalancer',
+			],
+		],
 		'Whatlinkshere' => [
 			'class' => \SpecialWhatLinksHere::class,
 			'services' => [

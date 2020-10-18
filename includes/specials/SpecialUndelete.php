@@ -21,11 +21,16 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -65,8 +70,59 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var RevisionFactory */
+	private $revisionFactory;
+
+	/** @var RevisionRenderer */
+	private $revisionRenderer;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var LocalRepo */
+	private $localRepo;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param RevisionFactory $revisionFactory
+	 * @param RevisionRenderer $revisionRenderer
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param NameTableStore $changeTagDefStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param RepoGroup $repoGroup
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		PermissionManager $permissionManager,
+		RevisionFactory $revisionFactory,
+		RevisionRenderer $revisionRenderer,
+		IContentHandlerFactory $contentHandlerFactory,
+		NameTableStore $changeTagDefStore,
+		LinkBatchFactory $linkBatchFactory,
+		RepoGroup $repoGroup,
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
+		$this->permissionManager = $permissionManager;
+		$this->revisionFactory = $revisionFactory;
+		$this->revisionRenderer = $revisionRenderer;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->localRepo = $repoGroup->getLocalRepo();
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function doesWrites() {
@@ -104,9 +160,8 @@ class SpecialUndelete extends SpecialPage {
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mDiffOnly = $request->getBool( 'diffonly', $this->getUser()->getOption( 'diffonly' ) );
 		$this->mComment = $request->getText( 'wpComment' );
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'suppressrevision' );
+		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) &&
+			$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 
 		if ( $this->isAllowed( 'undelete' ) ) {
@@ -151,13 +206,12 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	protected function isAllowed( $permission, User $user = null ) {
 		$user = $user ?: $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$block = $user->getBlock();
 
 		if ( $this->mTargetObj !== null ) {
-			return $permissionManager->userCan( $permission, $user, $this->mTargetObj );
+			return $this->permissionManager->userCan( $permission, $user, $this->mTargetObj );
 		} else {
-			$hasRight = $permissionManager->userHasRight( $user, $permission );
+			$hasRight = $this->permissionManager->userHasRight( $user, $permission );
 			$sitewideBlock = $block && $block->isSitewide();
 			return $permission === 'undelete' ? ( $hasRight && !$sitewideBlock ) : $hasRight;
 		}
@@ -182,10 +236,7 @@ class SpecialUndelete extends SpecialPage {
 		// If a user has the right to use this page, but is blocked from
 		// the target, show a block error.
 		if (
-			$this->mTargetObj && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->isBlockedFrom( $user, $this->mTargetObj )
-		) {
+			$this->mTargetObj && $this->permissionManager->isBlockedFrom( $user, $this->mTargetObj ) ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
@@ -213,10 +264,7 @@ class SpecialUndelete extends SpecialPage {
 			$out->addWikiMsg( 'undelete-header' );
 
 			# Not all users can just browse every deleted page from the list
-			if ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'browsearchive' )
-			) {
+			if ( $this->permissionManager->userHasRight( $user, 'browsearchive' ) ) {
 				$this->showSearchForm();
 			}
 
@@ -541,9 +589,8 @@ class SpecialUndelete extends SpecialPage {
 			// NOTE: non-text content has no source view, so always use rendered preview
 
 			$popts = $out->parserOptions();
-			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 
-			$rendered = $renderer->getRenderedRevision(
+			$rendered = $this->revisionRenderer->getRenderedRevision(
 				$revRecord,
 				$popts,
 				$user,
@@ -640,9 +687,7 @@ class SpecialUndelete extends SpecialPage {
 			RevisionRecord::RAW
 		)->getModel();
 
-		$diffEngine = MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $contentModel )
+		$diffEngine = $this->contentHandlerFactory->getContentHandler( $contentModel )
 			->createDifferenceEngine( $diffContext );
 
 		$diffEngine->setRevisions( $previousRevRecord, $currentRevRecord );
@@ -686,17 +731,17 @@ class SpecialUndelete extends SpecialPage {
 
 		$minor = $revRecord->isMinor() ? ChangesList::flag( 'minor' ) : '';
 
-		$tagIds = wfGetDB( DB_REPLICA )->selectFieldValues(
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$tagIds = $dbr->selectFieldValues(
 			'change_tag',
 			'ct_tag_id',
 			[ 'ct_rev_id' => $revRecord->getId() ],
 			__METHOD__
 		);
 		$tags = [];
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		foreach ( $tagIds as $tagId ) {
 			try {
-				$tags[] = $changeTagDefStore->getName( (int)$tagId );
+				$tags[] = $this->changeTagDefStore->getName( (int)$tagId );
 			} catch ( NameTableAccessException $exception ) {
 				continue;
 			}
@@ -774,9 +819,8 @@ class SpecialUndelete extends SpecialPage {
 		$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 		$response->header( 'Pragma: no-cache' );
 
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
-		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-		$repo->streamFileWithStatus( $path );
+		$path = $this->localRepo->getZonePath( 'deleted' ) . '/' . $this->localRepo->getDeletedHashPath( $key ) . $key;
+		$this->localRepo->streamFileWithStatus( $path );
 	}
 
 	protected function showHistory() {
@@ -812,8 +856,7 @@ class SpecialUndelete extends SpecialPage {
 
 		# Batch existence check on user and talk pages
 		if ( $haveRevisions ) {
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$batch = $linkBatchFactory->newLinkBatch();
+			$batch = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $revisions as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->ar_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->ar_user_text ) );
@@ -822,8 +865,7 @@ class SpecialUndelete extends SpecialPage {
 			$revisions->seek( 0 );
 		}
 		if ( $haveFiles ) {
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$batch = $linkBatchFactory->newLinkBatch();
+			$batch = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $files as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->fa_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->fa_user_text ) );
@@ -850,8 +892,7 @@ class SpecialUndelete extends SpecialPage {
 		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
 		# Show relevant lines from the suppression log:
 		$suppressLogPage = new LogPage( 'suppress' );
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $this->getUser(), 'suppressionlog' ) ) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressionlog' ) ) {
 			$out->addHTML( Xml::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
 			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
 		}
@@ -903,7 +944,7 @@ class SpecialUndelete extends SpecialPage {
 				] )
 			);
 
-			if ( $permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
+			if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
 				$fields[] = new OOUI\FieldLayout(
 					new OOUI\CheckboxInputWidget( [
 						'name' => 'wpUnsuppress',
@@ -943,7 +984,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $haveRevisions ) {
 			# Show the page's stored (deleted) history
 
-			if ( $permissionManager->userHasRight( $this->getUser(), 'deleterevision' ) ) {
+			if ( $this->permissionManager->userHasRight( $this->getUser(), 'deleterevision' ) ) {
 				$history .= Html::element(
 					'button',
 					[
@@ -995,9 +1036,7 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
-		$revRecord = MediaWikiServices::getInstance()
-			->getRevisionFactory()
-			->newRevisionFromArchiveRow(
+		$revRecord = $this->revisionFactory->newRevisionFromArchiveRow(
 				$row,
 				RevisionFactory::READ_NORMAL,
 				$this->mTargetObj
