@@ -524,6 +524,7 @@ class SpecialPageFactory {
 			'services' => [
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'UserOptionsLookup',
 			]
 		],
 		'Movepage' => \MovePageForm::class,
