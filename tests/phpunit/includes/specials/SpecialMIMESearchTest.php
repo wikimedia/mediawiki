@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @covers SpecialMIMESearch
@@ -10,7 +12,9 @@ class SpecialMIMESearchTest extends MediaWikiIntegrationTestCase {
 	private $page;
 
 	protected function setUp() : void {
-		$this->page = new SpecialMIMESearch;
+		$this->page = new SpecialMIMESearch(
+			MediaWikiServices::getInstance()->getDBLoadBalancer()
+		);
 		$context = new RequestContext();
 		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'MIMESearch' ) );
 		$context->setRequest( new FauxRequest() );
