@@ -2149,8 +2149,9 @@ $wgSharedPrefix = false;
 
 /**
  * @see $wgSharedDB
+ * The installer will add 'actor' to this list for all new wikis.
  */
-$wgSharedTables = [ 'user', 'user_properties', 'actor' ];
+$wgSharedTables = [ 'user', 'user_properties' ];
 
 /**
  * @see $wgSharedDB
