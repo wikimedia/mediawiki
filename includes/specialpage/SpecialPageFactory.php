@@ -316,7 +316,14 @@ class SpecialPageFactory {
 			]
 		],
 		'MIMEsearch' => \SpecialMIMESearch::class,
-		'FileDuplicateSearch' => \SpecialFileDuplicateSearch::class,
+		'FileDuplicateSearch' => [
+			'class' => \SpecialFileDuplicateSearch::class,
+			'services' => [
+				'LinkBatchFactory',
+				'RepoGroup',
+				'SearchEngineFactory',
+			]
+		],
 		'Upload' => \SpecialUpload::class,
 		'UploadStash' => \SpecialUploadStash::class,
 		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
