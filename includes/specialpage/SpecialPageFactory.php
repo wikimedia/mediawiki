@@ -291,7 +291,13 @@ class SpecialPageFactory {
 		'Preferences' => \SpecialPreferences::class,
 		'ResetTokens' => \SpecialResetTokens::class,
 		'Contributions' => \SpecialContributions::class,
-		'Listgrouprights' => \SpecialListGroupRights::class,
+		'Listgrouprights' => [
+			'class' => \SpecialListGroupRights::class,
+			'services' => [
+				'NamespaceInfo',
+				'UserGroupManager',
+			]
+		],
 		'Listgrants' => \SpecialListGrants::class,
 		'Listusers' => [
 			'class' => \SpecialListUsers::class,
@@ -474,7 +480,19 @@ class SpecialPageFactory {
 		'ComparePages' => \SpecialComparePages::class,
 		'Export' => \SpecialExport::class,
 		'Import' => \SpecialImport::class,
-		'Undelete' => \SpecialUndelete::class,
+		'Undelete' => [
+			'class' => \SpecialUndelete::class,
+			'services' => [
+				'PermissionManager',
+				'RevisionFactory',
+				'RevisionRenderer',
+				'ContentHandlerFactory',
+				'ChangeTagDefStore',
+				'LinkBatchFactory',
+				'RepoGroup',
+				'DBLoadBalancer',
+			],
+		],
 		'Whatlinkshere' => [
 			'class' => \SpecialWhatLinksHere::class,
 			'services' => [
