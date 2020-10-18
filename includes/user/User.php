@@ -614,6 +614,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromIdentity( UserIdentity $identity ) {
+		// Don't use the service if we already have a User object,
+		// so that User::newFromIdentity calls don't break things in unit tests.
+		if ( $identity instanceof User ) {
+			return $identity;
+		}
+
 		return MediaWikiServices::getInstance()
 			->getUserFactory()
 			->newFromUserIdentity( $identity );

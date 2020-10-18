@@ -711,7 +711,15 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
-				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
+				$this->list['PageLanguage'] = [
+					'class' => \SpecialPageLanguage::class,
+					'services' => [
+						'PermissionManager',
+						'ContentHandlerFactory',
+						'LanguageNameUtils',
+						'DBLoadBalancer',
+					]
+				];
 			}
 
 			// Add extension special pages
