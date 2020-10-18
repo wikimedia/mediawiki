@@ -187,7 +187,12 @@ class SpecialPageFactory {
 			]
 		],
 		'Listredirects' => \SpecialListRedirects::class,
-		'PagesWithProp' => \SpecialPagesWithProp::class,
+		'PagesWithProp' => [
+			'class' => \SpecialPagesWithProp::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'TrackingCategories' => \SpecialTrackingCategories::class,
 
 		// Authentication

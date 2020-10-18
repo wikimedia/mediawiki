@@ -22,6 +22,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special:PagesWithProp to search the page_props table
  * @ingroup SpecialPage
@@ -54,8 +56,15 @@ class SpecialPagesWithProp extends QueryPage {
 	 */
 	private $sortByValue = false;
 
-	public function __construct( $name = 'PagesWithProp' ) {
-		parent::__construct( $name );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'PagesWithProp' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isCacheable() {
@@ -240,7 +249,8 @@ class SpecialPagesWithProp extends QueryPage {
 			$opts['OFFSET'] = $offset;
 		}
 
-		$res = wfGetDB( DB_REPLICA )->select(
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$res = $dbr->select(
 			'page_props',
 			'pp_propname',
 			'',
