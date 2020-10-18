@@ -478,6 +478,7 @@ class SpecialPageFactory {
 			'services' => [
 				'PermissionManager',
 				'Parser',
+				'UserOptionsLookup',
 			],
 		],
 		'ChangeContentModel' => [
