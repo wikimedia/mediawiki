@@ -207,20 +207,11 @@ class SpecialStatistics extends SpecialPage {
 				|| $group == '*' ) {
 				continue;
 			}
-			$groupname = htmlspecialchars( $group );
-			$msg = $this->msg( 'group-' . $groupname );
-			if ( $msg->isBlank() ) {
-				$groupnameLocalized = $groupname;
-			} else {
-				$groupnameLocalized = $msg->text();
-			}
-			$msg = $this->msg( 'grouppage-' . $groupname )->inContentLanguage();
-			if ( $msg->isBlank() ) {
-				$grouppageLocalized = $this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $groupname;
-			} else {
-				$grouppageLocalized = $msg->text();
-			}
-			$linkTarget = Title::newFromText( $grouppageLocalized );
+			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
+			$linkTarget = UserGroupMembership::getGroupPage( $group )
+				?: Title::newFromText(
+					$this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $group
+				);
 
 			if ( $linkTarget ) {
 				$grouppage = $linkRenderer->makeLink(
@@ -239,7 +230,7 @@ class SpecialStatistics extends SpecialPage {
 			);
 			# Add a class when a usergroup contains no members to allow hiding these rows
 			$classZero = '';
-			$countUsers = SiteStats::numberingroup( $groupname );
+			$countUsers = SiteStats::numberingroup( $group );
 			if ( $countUsers == 0 ) {
 				$classZero = ' statistics-group-zero';
 			}
