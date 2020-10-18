@@ -442,7 +442,13 @@ class SpecialPageFactory {
 			]
 		],
 		'MergeHistory' => \SpecialMergeHistory::class,
-		'ExpandTemplates' => \SpecialExpandTemplates::class,
+		'ExpandTemplates' => [
+			'class' => \SpecialExpandTemplates::class,
+			'services' => [
+				'PermissionManager',
+				'Parser',
+			],
+		],
 		'ChangeContentModel' => [
 			'class' => \SpecialChangeContentModel::class,
 			'services' => [
