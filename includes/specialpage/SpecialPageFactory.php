@@ -186,14 +186,24 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Listredirects' => \SpecialListRedirects::class,
+		'Listredirects' => [
+			'class' => \SpecialListRedirects::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'PagesWithProp' => [
 			'class' => \SpecialPagesWithProp::class,
 			'services' => [
 				'DBLoadBalancer',
 			]
 		],
-		'TrackingCategories' => \SpecialTrackingCategories::class,
+		'TrackingCategories' => [
+			'class' => \SpecialTrackingCategories::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 
 		// Authentication
 		'Userlogin' => \SpecialUserLogin::class,
@@ -364,7 +374,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'MIMEsearch' => \SpecialMIMESearch::class,
+		'MIMEsearch' => [
+			'class' => \SpecialMIMESearch::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'FileDuplicateSearch' => [
 			'class' => \SpecialFileDuplicateSearch::class,
 			'services' => [

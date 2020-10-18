@@ -24,7 +24,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -33,8 +33,16 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialListRedirects extends QueryPage {
-	public function __construct( $name = 'Listredirects' ) {
-		parent::__construct( $name );
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	public function __construct( LinkBatchFactory $linkBatchFactory ) {
+		parent::__construct( 'Listredirects' );
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function isExpensive() {
@@ -83,8 +91,7 @@ class SpecialListRedirects extends QueryPage {
 			return;
 		}
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			$redirTarget = $this->getRedirectTarget( $row );

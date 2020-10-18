@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 
 /**
  * A special page that displays list of tracking categories
@@ -34,8 +34,16 @@ use MediaWiki\MediaWikiServices;
  */
 
 class SpecialTrackingCategories extends SpecialPage {
-	public function __construct() {
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	public function __construct( LinkBatchFactory $linkBatchFactory ) {
 		parent::__construct( 'TrackingCategories' );
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function execute( $par ) {
@@ -64,8 +72,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		$trackingCategories = new TrackingCategories( $this->getConfig() );
 		$categoryList = $trackingCategories->getTrackingCategories();
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $categoryList as $catMsg => $data ) {
 			$batch->addObj( $data['msg'] );
 			foreach ( $data['cats'] as $catTitle ) {
