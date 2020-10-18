@@ -260,6 +260,9 @@ because of Phabricator reports.
 * The public static callback function SpecialBlock::validateTargetField has been
   removed. This method was for internal use only, and appears unused outside of
   MediaWiki core.
+* The public static callback function SpecialUploadStash::tryClearStashedUploads
+  has been removed. This method was for internal use only, and appears unused
+  outside of MediaWiki core.
 * …
 
 === Deprecations in 1.36 ===

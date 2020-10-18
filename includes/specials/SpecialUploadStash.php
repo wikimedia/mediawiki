@@ -20,8 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Web access for files temporarily stored by UploadStash.
  *
@@ -39,6 +37,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
+	/** @var LocalRepo */
+	private $localRepo;
+
 	/**
 	 * Since we are directly writing the file to STDOUT,
 	 * we should not be reading in really big files and serving them out.
@@ -51,8 +52,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 */
 	private const MAX_SERVE_BYTES = 1048576; // 1MB
 
-	public function __construct() {
+	/**
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct( RepoGroup $repoGroup ) {
 		parent::__construct( 'UploadStash', 'upload' );
+		$this->localRepo = $repoGroup->getLocalRepo();
 	}
 
 	public function doesWrites() {
@@ -68,8 +73,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public function execute( $subPage ) {
 		$this->useTransactionalTimeLimit();
 
-		$this->stash = MediaWikiServices::getInstance()->getRepoGroup()
-			->getLocalRepo()->getUploadStash( $this->getUser() );
+		// This is not set in constructor, because the context with the user is not safe to be set
+		$this->stash = $this->localRepo->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 
 		if ( $subPage === null || $subPage === '' ) {
@@ -361,29 +366,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Static callback for the HTMLForm in showUploads, to process
-	 * Note the stash has to be recreated since this is being called in a static context.
-	 * This works, because there really is only one stash per logged-in user, despite appearances.
-	 *
-	 * @param array $formData
-	 * @param HTMLForm $form
-	 * @return Status
-	 */
-	public static function tryClearStashedUploads( $formData, $form ) {
-		if ( isset( $formData['Clear'] ) ) {
-			$stash = MediaWikiServices::getInstance()->getRepoGroup()
-				->getLocalRepo()->getUploadStash( $form->getUser() );
-			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) );
-
-			if ( !$stash->clear() ) {
-				return Status::newFatal( 'uploadstash-errclear' );
-			}
-		}
-
-		return Status::newGood();
-	}
-
-	/**
 	 * Default action when we don't have a subpage -- just show links to the uploads we have,
 	 * Also show a button to clear stashed files
 	 */
@@ -405,7 +387,17 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			]
 		], $context, 'clearStashedUploads' );
 		$form->setSubmitDestructive();
-		$form->setSubmitCallback( [ __CLASS__, 'tryClearStashedUploads' ] );
+		$form->setSubmitCallback( function ( $formData, $form ) {
+			if ( isset( $formData['Clear'] ) ) {
+				wfDebug( 'stash has: ' . print_r( $this->stash->listFiles(), true ) );
+
+				if ( !$this->stash->clear() ) {
+					return Status::newFatal( 'uploadstash-errclear' );
+				}
+			}
+
+			return Status::newGood();
+		} );
 		$form->setSubmitTextMsg( 'uploadstash-clear' );
 
 		$form->prepareForm();
