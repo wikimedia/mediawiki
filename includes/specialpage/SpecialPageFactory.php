@@ -503,7 +503,13 @@ class SpecialPageFactory {
 				'RepoGroup',
 			],
 		],
-		'RunJobs' => \SpecialRunJobs::class,
+		'RunJobs' => [
+			'class' => \SpecialRunJobs::class,
+			'services' => [
+				'JobRunner',
+				'ReadOnlyMode',
+			]
+		],
 		'Specialpages' => [
 			'class' => \SpecialSpecialpages::class,
 			'services' => [
