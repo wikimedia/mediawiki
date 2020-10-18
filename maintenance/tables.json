@@ -1023,5 +1023,43 @@
 		],
 		"indexes": [],
 		"pk": [ "qci_type" ]
+	},
+	{
+		"name": "watchlist",
+		"comment": "Used for caching expensive grouped queries that need two links (for example double-redirects)",
+		"columns": [
+			{
+				"name": "wl_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "wl_user",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "wl_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "wl_notificationtimestamp",
+				"comment": "Timestamp used to send notification e-mails and show 'updated since last visit' markers. Set to NULL when the user visits the latest revision of the page, which means that they should be sent an e-mail on the next change.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "wl_user", "columns": [ "wl_user", "wl_namespace", "wl_title" ], "unique": true },
+			{ "name": "namespace_title", "columns": [ "wl_namespace", "wl_title" ], "unique": false },
+			{ "name": "wl_user_notificationtimestamp", "columns": [ "wl_user", "wl_notificationtimestamp" ], "unique": false }
+		],
+		"pk": [ "wl_id" ]
 	}
 ]
