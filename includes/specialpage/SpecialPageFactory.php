@@ -291,7 +291,13 @@ class SpecialPageFactory {
 		'Preferences' => \SpecialPreferences::class,
 		'ResetTokens' => \SpecialResetTokens::class,
 		'Contributions' => \SpecialContributions::class,
-		'Listgrouprights' => \SpecialListGroupRights::class,
+		'Listgrouprights' => [
+			'class' => \SpecialListGroupRights::class,
+			'services' => [
+				'NamespaceInfo',
+				'UserGroupManager',
+			]
+		],
 		'Listgrants' => \SpecialListGrants::class,
 		'Listusers' => [
 			'class' => \SpecialListUsers::class,
