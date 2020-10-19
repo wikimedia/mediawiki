@@ -864,7 +864,7 @@
 	"history-empty": "Nu a fost găsită nicio versiune care să se potrivească solicitării.",
 	"rev-deleted-comment": "(descrierea modificării ștearsă)",
 	"rev-deleted-user": "(nume de utilizator șters)",
-	"rev-deleted-event": "(detaliile din jurnalul șterse)",
+	"rev-deleted-event": "(detaliile din jurnal șterse)",
 	"rev-deleted-user-contribs": "[nume de utilizator sau adresă IP ștearsă - modificare ascunsă din contribuții]",
 	"rev-deleted-text-permission": "Această versiune a paginii a fost <strong>ștearsă</strong>.\nMai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page=$1}} jurnalul ștergerilor].",
 	"rev-suppressed-text-permission": "Această versiune a paginii a fost <strong>suprimată</strong>.\nDetalii puteți găsi în [{{fullurl:{{#Special:Log}}/suppress|page=$1}} jurnalul suprimărilor].",

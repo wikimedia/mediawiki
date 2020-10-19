@@ -265,7 +265,7 @@
 	"talk": "Pembicaraan",
 	"views": "Tampilan",
 	"toolbox": "Perkakas",
-	"cactions": "Luaskan",
+	"cactions": "Lainnya",
 	"tool-link-userrights": "Simpan kelompok {{GENDER:$1|pengguna}}",
 	"tool-link-userrights-readonly": "Lihat kelompok {{GENDER:$1|pengguna}}",
 	"tool-link-emailuser": "Kirim surel ke {{GENDER:$1|pengguna}} ini",

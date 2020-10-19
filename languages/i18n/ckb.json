@@ -213,6 +213,7 @@
 	"talk": "وتووێژ",
 	"views": "بینینەکان",
 	"toolbox": "ئامرازەکان",
+	"cactions": "زیاتر",
 	"tool-link-userrights": "بینینی گرووپەکانی {{GENDER:$1|بەکارھێنەر}}",
 	"tool-link-userrights-readonly": "بینینی گرووپەکانی {{GENDER:$1|بەکارھێنەر}}",
 	"tool-link-emailuser": "ئیمەیلی ئەم {{GENDER:$1|بەکارھێنەر}}ە",

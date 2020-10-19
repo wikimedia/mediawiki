@@ -1279,7 +1279,7 @@
 	"right-editprotected": "עריכת דפים המוגנים ברמת ההגנה \"{{int:protect-level-sysop}}\"",
 	"right-editsemiprotected": "עריכת דפים המוגנים ברמת ההגנה \"{{int:protect-level-autoconfirmed}}\"",
 	"right-editcontentmodel": "שינוי מודל התוכן של דפים",
-	"right-editinterface": "עריכת הודעות המערכת",
+	"right-editinterface": "עריכת ממשק המשתמש",
 	"right-editusercss": "עריכת קובצי CSS של משתמשים אחרים",
 	"right-edituserjson": "עריכת קובצי JSON של משתמשים אחרים",
 	"right-edituserjs": "עריכת קובצי JavaScript של משתמשים אחרים",
