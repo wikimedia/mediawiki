@@ -305,15 +305,27 @@ class GenerateSitemap extends Maintenance {
 	 * @return IResultWrapper
 	 */
 	private function getPageRes( $namespace ) {
-		return $this->dbr->select( 'page',
+		return $this->dbr->select(
+			[ 'page', 'page_props' ],
 			[
 				'page_namespace',
 				'page_title',
 				'page_touched',
-				'page_is_redirect'
+				'page_is_redirect',
+				'pp_propname',
 			],
 			[ 'page_namespace' => $namespace ],
-			__METHOD__
+			__METHOD__,
+			[],
+			[
+				'page_props' => [
+					'LEFT JOIN',
+					[
+						'page_id = pp_page',
+						'pp_propname' => 'noindex'
+					]
+				]
+			]
 		);
 	}
 
@@ -335,7 +347,13 @@ class GenerateSitemap extends Maintenance {
 			$fns = $contLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)\n" );
 			$skippedRedirects = 0; // Number of redirects skipped for that namespace
+			$skippedNoindex = 0; // Number of pages with __NOINDEX__ switch for that NS
 			foreach ( $res as $row ) {
+				if ( $row->pp_propname === 'noindex' ) {
+					$skippedNoindex++;
+					continue;
+				}
+
 				if ( $this->skipRedirects && $row->page_is_redirect ) {
 					$skippedRedirects++;
 					continue;
@@ -378,6 +396,10 @@ class GenerateSitemap extends Maintenance {
 						$this->write( $this->file, $entry );
 					}
 				}
+			}
+
+			if ( $skippedNoindex > 0 ) {
+				$this->output( "  skipped $skippedNoindex page(s) with __NOINDEX__ switch\n" );
 			}
 
 			if ( $this->skipRedirects && $skippedRedirects > 0 ) {
