@@ -16,7 +16,6 @@
 	"rest-permission-denied-anon": "Not accessible by anonymous user",
 	"rest-permission-denied-title": "The user does not have rights to read title ($1)",
 	"rest-permission-denied-revision": "User doesn't have access to the requested revision ($1).",
-	"rest-resource-limit-exceeded": "Resources limits exceeded processing the request.",
 	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" and \"newer_than\" cannot both be specified",
 	"rest-pagehistory-param-range-error": "Revision id must be greater than 0",
 	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
