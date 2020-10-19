@@ -637,9 +637,13 @@ abstract class Maintenance {
 		}
 
 		if ( $missing ) {
-			$joined = implode( ', ', $missing );
-			$msg = "The following extensions are required to be installed "
-				. "for this script to run: $joined. Please enable them and then try again.";
+			if ( count( $missing ) === 1 ) {
+				$msg = 'The "' . $missing[ 0 ] . '" extension must be installed for this script to run. '
+					. 'Please enable it and then try again.';
+			} else {
+				$msg = 'The following extensions must be installed for this script to run: "'
+					. implode( '", "', $missing ) . '". Please enable them and then try again.';
+			}
 			$this->fatalError( $msg );
 		}
 	}
