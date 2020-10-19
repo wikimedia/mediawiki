@@ -293,3 +293,13 @@ CREATE TABLE /*_*/page_restrictions (
   INDEX pr_cascade (pr_cascade),
   PRIMARY KEY(pr_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/user_groups (
+  ug_user INT UNSIGNED DEFAULT 0 NOT NULL,
+  ug_group VARBINARY(255) DEFAULT '' NOT NULL,
+  ug_expiry VARBINARY(14) DEFAULT NULL,
+  INDEX ug_group (ug_group),
+  INDEX ug_expiry (ug_expiry),
+  PRIMARY KEY(ug_user, ug_group)
+) /*$wgDBTableOptions*/;
