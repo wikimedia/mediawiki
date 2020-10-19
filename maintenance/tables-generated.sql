@@ -277,3 +277,19 @@ CREATE TABLE /*_*/querycachetwo (
     qcc_type, qcc_namespacetwo, qcc_titletwo
   )
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/page_restrictions (
+  pr_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  pr_page INT NOT NULL,
+  pr_type VARBINARY(60) NOT NULL,
+  pr_level VARBINARY(60) NOT NULL,
+  pr_cascade TINYINT NOT NULL,
+  pr_user INT UNSIGNED DEFAULT NULL,
+  pr_expiry VARBINARY(14) DEFAULT NULL,
+  UNIQUE INDEX pr_pagetype (pr_page, pr_type),
+  INDEX pr_typelevel (pr_type, pr_level),
+  INDEX pr_level (pr_level),
+  INDEX pr_cascade (pr_cascade),
+  PRIMARY KEY(pr_id)
+) /*$wgDBTableOptions*/;

@@ -297,3 +297,20 @@ CREATE INDEX qcc_title ON /*_*/querycachetwo (
 CREATE INDEX qcc_titletwo ON /*_*/querycachetwo (
   qcc_type, qcc_namespacetwo, qcc_titletwo
 );
+
+
+CREATE TABLE /*_*/page_restrictions (
+  pr_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  pr_page INTEGER NOT NULL, pr_type BLOB NOT NULL,
+  pr_level BLOB NOT NULL, pr_cascade SMALLINT NOT NULL,
+  pr_user INTEGER UNSIGNED DEFAULT NULL,
+  pr_expiry BLOB DEFAULT NULL
+);
+
+CREATE UNIQUE INDEX pr_pagetype ON /*_*/page_restrictions (pr_page, pr_type);
+
+CREATE INDEX pr_typelevel ON /*_*/page_restrictions (pr_type, pr_level);
+
+CREATE INDEX pr_level ON /*_*/page_restrictions (pr_level);
+
+CREATE INDEX pr_cascade ON /*_*/page_restrictions (pr_cascade);

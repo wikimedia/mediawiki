@@ -308,3 +308,23 @@ CREATE INDEX qcc_title ON querycachetwo (
 CREATE INDEX qcc_titletwo ON querycachetwo (
   qcc_type, qcc_namespacetwo, qcc_titletwo
 );
+
+
+CREATE TABLE page_restrictions (
+  pr_id SERIAL NOT NULL,
+  pr_page INT NOT NULL,
+  pr_type TEXT NOT NULL,
+  pr_level TEXT NOT NULL,
+  pr_cascade SMALLINT NOT NULL,
+  pr_user INT DEFAULT NULL,
+  pr_expiry TIMESTAMPTZ DEFAULT NULL,
+  PRIMARY KEY(pr_id)
+);
+
+CREATE UNIQUE INDEX pr_pagetype ON page_restrictions (pr_page, pr_type);
+
+CREATE INDEX pr_typelevel ON page_restrictions (pr_type, pr_level);
+
+CREATE INDEX pr_level ON page_restrictions (pr_level);
+
+CREATE INDEX pr_cascade ON page_restrictions (pr_cascade);
