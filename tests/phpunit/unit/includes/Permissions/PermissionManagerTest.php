@@ -320,4 +320,187 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
+	 *
+	 * @dataProvider provideTestCheckQuickPermissions
+	 * @param int $namespace
+	 * @param string $pageTitle
+	 * @param bool $userIsAnon
+	 * @param string $action
+	 * @param array $rights
+	 * @param string $expectedError
+	 */
+	public function testCheckQuickPermissions(
+		int $namespace,
+		string $pageTitle,
+		bool $userIsAnon,
+		string $action,
+		array $rights,
+		string $expectedError
+	) {
+		// Convert string single error to the array of errors PermissionManager uses
+		$expectedErrors = ( $expectedError === '' ? [] : [ [ $expectedError ] ] );
+
+		$user = $this->createMock( User::class );
+		$user->method( 'getId' )->willReturn( $userIsAnon ? 0 : 123 );
+		$user->method( 'getName' )->willReturn( $userIsAnon ? '1.1.1.1' : 'NameOfActingUser' );
+		$user->method( 'isAnon' )->willReturn( $userIsAnon );
+
+		// NamespaceInfo - isTalk if namespace is odd, hasSubpages if NS_USER
+		$namespaceInfo = $this->createMock( NamespaceInfo::class );
+		$namespaceInfo->method( 'isTalk' )
+			->willReturnCallback(
+				function ( $ns ) {
+					return ( $ns > NS_MAIN && $ns % 2 === 1 );
+				}
+			);
+		$namespaceInfo->method( 'hasSubpages' )
+			->willReturnCallback(
+				// Only matters for user pages
+				function ( $ns ) {
+					return ( $ns === NS_USER );
+				}
+			);
+
+		// HookContainer - always return true (false tested separately)
+		$hookContainer = $this->createMock( HookContainer::class );
+		$hookContainer->method( 'run' )
+			->willReturn( true );
+
+		// Overrides needed in case `groupHasPermission` is called
+		$config = [
+			'GroupPermissions' => [
+				'autoconfirmed' => [
+					'move' => true
+				]
+			]
+		];
+
+		$permissionManager = $this->getPermissionManager( [
+			'config' => $config,
+			'namespaceInfo' => $namespaceInfo,
+			'hookContainer' => $hookContainer,
+		] );
+		$permissionManager->overrideUserRightsForTesting( $user, $rights );
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( $namespace );
+		$title->method( 'getText' )->willReturn( $pageTitle );
+
+		// Ensure that `missingPermissionError` doesn't call User::newFatalPermissionDeniedStatus
+		// which uses the global state
+		$short = true;
+
+		$result = $permissionManager->checkQuickPermissions(
+			$action,
+			$user,
+			[], // Starting errors
+			PermissionManager::RIGOR_QUICK, // unused
+			$short,
+			$title
+		);
+		$this->assertEquals( $expectedErrors, $result );
+	}
+
+	public function provideTestCheckQuickPermissions() {
+		// $namespace, $pageTitle, $userIsAnon, $action, $rights, $expectedError
+		// Four different possible errors when trying to create
+		yield 'Anon createtalk fail' => [
+			NS_TALK, 'Example', true, 'create', [], 'nocreatetext'
+		];
+		yield 'Anon createpage fail' => [
+			NS_MAIN, 'Example', true, 'create', [], 'nocreatetext'
+		];
+		yield 'User createtalk fail' => [
+			NS_TALK, 'Example', false, 'create', [], 'nocreate-loggedin'
+		];
+		yield 'User createpage fail' => [
+			NS_MAIN, 'Example', false, 'create', [], 'nocreate-loggedin'
+		];
+		yield 'Createpage pass' => [
+			NS_MAIN, 'Example', true, 'create', [ 'createpage' ], ''
+		];
+
+		// Three different namespace specific move failures, even if user has `move` rights
+		yield 'Move root user page fail' => [
+			NS_USER, 'Example', true, 'move', [ 'move' ], 'cant-move-user-page'
+		];
+		yield 'Move file fail' => [
+			NS_FILE, 'Example', true, 'move', [ 'move' ], 'movenotallowedfile'
+		];
+		yield 'Move category fail' => [
+			NS_CATEGORY, 'Example', true, 'move', [ 'move' ], 'cant-move-category-page'
+		];
+
+		// No move rights at all. Different failures depending on who is allowed to move.
+		// Test method sets group permissions to [ 'autoconfirmed' => [ 'move' => true ] ]
+		yield 'Anon move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', true, 'move', [], 'movenologintext'
+		];
+		yield 'User move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', false, 'move', [], 'movenotallowed'
+		];
+		yield 'Move pass' => [ NS_MAIN, 'Example', true, 'move', [ 'move' ], '' ];
+
+		// Three different possible failures for move target
+		yield 'Move-target no rights' => [
+			NS_MAIN, 'Example', false, 'move-target', [], 'movenotallowed'
+		];
+		yield 'Move-target to user root' => [
+			NS_USER, 'Example', false, 'move-target', [ 'move' ], 'cant-move-to-user-page'
+		];
+		yield 'Move-target to category' => [
+			NS_CATEGORY, 'Example', false, 'move-target', [ 'move' ], 'cant-move-to-category-page'
+		];
+		yield 'Move-target pass' => [
+			NS_MAIN, 'Example', false, 'move-target', [ 'move' ], ''
+		];
+
+		// Other actions without special handling
+		yield 'Missing rights for edit' => [
+			NS_MAIN, 'Example', false, 'edit', [], 'badaccess-group0'
+		];
+		yield 'Having rights for edit' => [
+			NS_MAIN, 'Example', false, 'edit', [ 'edit', ], ''
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
+	 */
+	public function testCheckQuickPermissionsHook() {
+		$title = $this->createMock( Title::class );
+		$user = $this->createMock( User::class );
+		$action = 'FakeActionGoesHere';
+
+		$hookCallback = function ( $hookTitle, $hookUser, $hookAction, &$errors, $doExpensiveQueries, $short )
+			use ( $user, $title, $action )
+		{
+			$this->assertSame( $title, $hookTitle );
+			$this->assertSame( $user, $hookUser );
+			$this->assertSame( $action, $hookAction );
+			$errors[] = [ 'Hook failure goes here' ];
+			return false;
+		};
+
+		$hookContainer = $this->createHookContainer( [ 'TitleQuickPermissions' => $hookCallback ] );
+
+		$permissionManager = $this->getPermissionManager( [
+			'hookContainer' => $hookContainer,
+		] );
+		$result = $permissionManager->checkQuickPermissions(
+			$action,
+			$user,
+			[], // Starting errors
+			PermissionManager::RIGOR_QUICK, // unused
+			true, // $short, unused,
+			$title
+		);
+		$this->assertEquals(
+			[ [ 'Hook failure goes here' ] ],
+			$result
+		);
+	}
+
 }
