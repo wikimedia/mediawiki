@@ -15,6 +15,7 @@
 	"rest-permission-denied-anon": "Für nicht angemeldete Benutzer nicht zugänglich",
 	"rest-permission-denied-title": "Der Benutzer hat keine Rechte zum Lesen des Titels ($1)",
 	"rest-permission-denied-revision": "Der Benutzer hat keinen Zugriff auf die angeforderte Version ($1).",
+	"rest-resource-limit-exceeded": "Die Ressourcengrenzen wurden bei der Bearbeitung der Anfrage überschritten.",
 	"rest-pagehistory-incompatible-params": "Die Parameter \"older_than\" und \"newer_than\" können nicht beide angegeben werden.",
 	"rest-pagehistory-param-range-error": "Die Versions-ID muss größer als 0 sein",
 	"rest-pagehistory-timestamp-error": "Zeitstempel für die angegebene Version kann nicht abgerufen werden ($1)",

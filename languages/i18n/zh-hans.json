@@ -3465,7 +3465,7 @@
 	"version-license-not-found": "未找到此扩展相关的详细授权信息。",
 	"version-credits-title": "$1贡献者名单",
 	"version-credits-not-found": "未找到此扩展相关的详细制作人信息。",
-	"version-poweredby-credits": "本Wiki由<strong>[https://www.mediawiki.org/ MediaWiki]</strong>驱动，版权所有 © 2001-$1 $2。",
+	"version-poweredby-credits": "本wiki由<strong>[https://www.mediawiki.org/ MediaWiki]</strong>驱动，版权所有 © 2001-$1 $2。",
 	"version-poweredby-others": "其他",
 	"version-poweredby-translators": "translatewiki.net上的翻译者",
 	"version-poweredby-various": "各作者",
