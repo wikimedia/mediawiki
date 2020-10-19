@@ -968,5 +968,40 @@
 			{ "name": "pr_cascade", "columns": [ "pr_cascade" ], "unique": false }
 		],
 		"pk": [ "pr_id" ]
+	},
+	{
+		"name": "user_groups",
+		"comment": "User permissions have been broken out to a separate table; this allows sites with a shared user table to have different permissions assigned to a user in each project. This table replaces the old user_rights field which used a comma-separated blob.",
+		"columns": [
+			{
+				"name": "ug_user",
+				"comment": "Key to user_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "ug_group",
+				"comment": "Group names are short symbolic string keys. The set of group names is open-ended, though in practice only some predefined ones are likely to be used. At runtime $wgGroupPermissions will associate group keys with particular permissions. A user will have the combined permissions of any group they're explicitly in, plus the implicit '*' and 'user' groups.",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "ug_expiry",
+				"comment": "Time at which the user group membership will expire. Set to NULL for a non-expiring (infinite) membership.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			}
+		],
+		"indexes": [
+			{ "name": "ug_group", "columns": [ "ug_group" ], "unique": false },
+			{ "name": "ug_expiry", "columns": [ "ug_expiry" ], "unique": false }
+		],
+		"pk": [ "ug_user", "ug_group"]
 	}
 ]
