@@ -9,32 +9,6 @@
 BEGIN;
 SET client_min_messages = 'ERROR';
 
-DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS actor_actor_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS comment_comment_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS text_old_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS page_restrictions_pr_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS filearchive_fa_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS uploadstash_us_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS watchlist_wl_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS watchlist_expiry_we_item_seq CASCADE;
-DROP FUNCTION IF EXISTS page_deleted() CASCADE;
-DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
-DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
-DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT) CASCADE;
-DROP TYPE IF EXISTS media_type CASCADE;
-
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
 CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_id                   INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('user_user_id_seq'),
