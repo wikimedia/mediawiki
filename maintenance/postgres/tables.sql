@@ -170,19 +170,6 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 );
 ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
 
-CREATE SEQUENCE page_restrictions_pr_id_seq;
-CREATE TABLE page_restrictions (
-  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq'),
-  pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  pr_type    TEXT         NOT NULL,
-  pr_level   TEXT         NOT NULL,
-  pr_cascade SMALLINT     NOT NULL,
-  pr_user    INTEGER          NULL,
-  pr_expiry  TIMESTAMPTZ      NULL
-);
-ALTER SEQUENCE page_restrictions_pr_id_seq OWNED BY page_restrictions.pr_id;
-ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
-
 CREATE TABLE page_props (
   pp_page      INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   pp_propname  TEXT     NOT NULL,
