@@ -4180,6 +4180,7 @@ class Language {
 	 * @return string
 	 */
 	public function convertTitle( $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->getConverter()->convertTitle( $title );
 	}
 
@@ -4298,6 +4299,7 @@ class Language {
 	 *   we need to transclude a template or update a category's link
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->getConverter()->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
@@ -4322,6 +4324,7 @@ class Language {
 	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
 	public function updateConversionTable( LinkTarget $linkTarget ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->getConverter()->updateConversionTable( $linkTarget );
 	}
 

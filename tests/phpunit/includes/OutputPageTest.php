@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
@@ -1184,9 +1185,37 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	) : OutputPage {
 		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
 
+		if ( $variantLinkCallback ) {
+			$mockContLang = $this->createMock( Language::class );
+			$mockContLang
+				->expects( $this->any() )
+				->method( 'convertHtml' )
+				->will( $this->returnCallback( function ( $arg ) {
+					return $arg;
+				} ) );
+
+			$mockLanguageConverter = $this
+				->createMock( ILanguageConverter::class );
+			$mockLanguageConverter
+				->expects( $this->any() )
+				->method( 'findVariantLink' )
+				->will( $this->returnCallback( $variantLinkCallback ) );
+
+			$languageConverterFactory = $this
+				->createMock( LanguageConverterFactory::class );
+			$languageConverterFactory
+				->expects( $this->any() )
+				->method( 'getLanguageConverter' )
+				->willReturn( $mockLanguageConverter );
+			$this->setService(
+				'LanguageConverterFactory',
+				$languageConverterFactory
+			);
+		}
+
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
-				   ->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
+			->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
 			->getMock();
 
 		$title = Title::newFromText( 'My test page' );
@@ -1205,21 +1234,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				}
 				return new FakeResultWrapper( $return );
 			} ) );
-
-		if ( $variantLinkCallback ) {
-			$mockContLang = $this->getMockBuilder( Language::class )
-				->setMethods( [ 'findVariantLink', 'convertHtml' ] )
-				->getMock();
-			$mockContLang->expects( $this->any() )
-				->method( 'findVariantLink' )
-				->will( $this->returnCallback( $variantLinkCallback ) );
-			$mockContLang->expects( $this->any() )
-				->method( 'convertHtml' )
-				->will( $this->returnCallback( function ( $arg ) {
-					return $arg;
-				} ) );
-			$this->setContentLang( $mockContLang );
-		}
 
 		$this->assertSame( [], $op->getCategories() );
 

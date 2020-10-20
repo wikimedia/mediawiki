@@ -86,18 +86,21 @@ class MediaWiki {
 			$ret = Title::newFromID( $curid );
 		} else {
 			$ret = Title::newFromURL( $title );
-			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
-			// in wikitext links to tell Parser to make a direct file link
-			if ( $ret !== null && $ret->getNamespace() === NS_MEDIA ) {
-				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
-			}
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			// Check variant links so that interwiki links don't have to worry
-			// about the possible different language variants
-			if (
-				$contLang->hasVariants() && $ret !== null && $ret->getArticleID() == 0
-			) {
-				$contLang->findVariantLink( $title, $ret );
+			if ( $ret !== null ) {
+				// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
+				// in wikitext links to tell Parser to make a direct file link
+				if ( $ret->getNamespace() === NS_MEDIA ) {
+					$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
+				}
+				// Check variant links so that interwiki links don't have to worry
+				// about the possible different language variants
+				$services = MediaWikiServices::getInstance();
+				$languageConverter = $services
+					->getLanguageConverterFactory()
+					->getLanguageConverter( $services->getContentLanguage() );
+				if ( $languageConverter->hasVariants() && !$ret->exists() ) {
+					$languageConverter->findVariantLink( $title, $ret );
+				}
 			}
 		}
 

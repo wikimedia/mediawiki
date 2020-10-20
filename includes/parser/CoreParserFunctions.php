@@ -814,7 +814,10 @@ class CoreParserFunctions {
 		if ( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
 		}
-		$parser->getContentLanguage()->findVariantLink( $name, $title, true );
+		$languageConverter = MediaWikiServices::getInstance()
+			->getLanguageConverterFactory()
+			->getLanguageConverter( $parser->getContentLanguage() );
+		$languageConverter->findVariantLink( $name, $title, true );
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
@@ -1452,5 +1455,4 @@ class CoreParserFunctions {
 		}
 		return '';
 	}
-
 }
