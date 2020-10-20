@@ -75,7 +75,18 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'writetest',
 				'nukeworld',
 				'modifytest',
-				'editmyoptions'
+				'editmyoptions',
+				'editinterface',
+
+				// Interface admin
+				'editsitejs',
+				'edituserjs',
+
+				// Admin
+				'delete',
+				'undelete',
+				'deletedhistory',
+				'deletedtext',
 			]
 		] );
 
@@ -89,6 +100,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setGroupPermissions( 'testwriters', 'modifytest', true );
 
 		$this->setGroupPermissions( '*', 'editmyoptions', true );
+
+		$this->setGroupPermissions( 'interface-admin', 'editinterface', true );
+		$this->setGroupPermissions( 'interface-admin', 'editsitejs', true );
+		$this->setGroupPermissions( 'interface-admin', 'edituserjs', true );
+		$this->setGroupPermissions( 'sysop', 'editinterface', true );
+		$this->setGroupPermissions( 'sysop', 'delete', true );
+		$this->setGroupPermissions( 'sysop', 'undelete', true );
+		$this->setGroupPermissions( 'sysop', 'deletedhistory', true );
+		$this->setGroupPermissions( 'sysop', 'deletedtext', true );
 
 		// Without this testUserBlock will use a non-English context on non-English MediaWiki
 		// installations (because of how Title::checkUserBlock is implemented) and fail.
@@ -1193,5 +1213,26 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
 		$this->assertArrayEquals( [], $pm->getPermissionErrors( 'delete-redirect', $user, $page ) );
+	}
+
+	/**
+	 * Enuser normal admins can view deleted javascript, but not restore it
+	 * See T202989
+	 */
+	public function testSysopInterfaceAdminRights() {
+		$interfaceAdmin = $this->getTestUser( [ 'interface-admin', 'sysop' ] )->getUser();
+		$admin = $this->getTestSysop()->getUser();
+
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$userJs = Title::newFromText( 'Example/common.js', NS_USER );
+
+		$this->assertTrue( $permManager->userCan( 'delete', $admin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'delete', $interfaceAdmin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'deletedhistory', $admin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'deletedhistory', $interfaceAdmin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'deletedtext', $admin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'deletedtext', $interfaceAdmin, $userJs ) );
+		$this->assertFalse( $permManager->userCan( 'undelete', $admin, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'undelete', $interfaceAdmin, $userJs ) );
 	}
 }

@@ -14,6 +14,7 @@ use MediaWikiUnitTestCase;
 use NamespaceInfo;
 use Title;
 use User;
+use UserCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -50,6 +51,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( BlockErrorFormatter::class );
 		$hookContainer = $options['hookContainer'] ??
 			$this->createMock( HookContainer::class );
+		$userCache = $options['userCache'] ??
+			$this->createMock( UserCache::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
@@ -57,7 +60,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$revisionLookup,
 			$namespaceInfo,
 			$blockErrorFormatter,
-			$hookContainer
+			$hookContainer,
+			$userCache
 		);
 
 		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );
