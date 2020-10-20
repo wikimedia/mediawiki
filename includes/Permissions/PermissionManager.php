@@ -407,6 +407,36 @@ class PermissionManager {
 				'checkActionPermissions',
 				'checkUserBlock'
 			];
+
+			// Exclude checkUserConfigPermissions on actions that cannot change the
+			// content of the configuration pages.
+			$skipUserConfigActions = [
+				// Allow patrolling per T21818
+				'patrol',
+
+				// Allow admins and oversighters to delete. For user pages we want to avoid the
+				// situation where an unprivileged user can post abusive content on
+				// their subpages and only very highly privileged users could remove it.
+				// See T200176.
+				'delete',
+				'deleterevision',
+				'suppressrevision',
+
+				// Allow admins and oversighters to view deleted content, even if they
+				// cannot restore it. See T202989
+				'deletedhistory',
+				'deletedtext',
+				'viewsuppressed',
+			];
+
+			if ( in_array( $action, $skipUserConfigActions, true ) ) {
+				$checks = array_diff(
+					$checks,
+					[ 'checkUserConfigPermissions' ]
+				);
+				// Reset numbering
+				$checks = array_values( $checks );
+			}
 		}
 
 		$errors = [];
@@ -1106,19 +1136,30 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
-		if ( $action != 'patrol' ) {
-			// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
-			// editinterface right. That's implemented as a restriction so no check needed here.
-			if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
-				$errors[] = [ 'sitecssprotected', $action ];
-			} elseif ( $title->isSiteJsonConfigPage() && !$this->userHasRight( $user, 'editsitejson' ) ) {
-				$errors[] = [ 'sitejsonprotected', $action ];
-			} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
-				$errors[] = [ 'sitejsprotected', $action ];
-			}
-			if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
-				$errors[] = [ 'siterawhtmlprotected', $action ];
-			}
+		if ( $action === 'patrol' ) {
+			return $errors;
+		}
+
+		if ( in_array( $action, [ 'deletedhistory', 'deletedtext', 'viewsuppressed' ], true ) ) {
+			// Allow admins and oversighters to view deleted content, even if they
+			// cannot restore it. See T202989
+			// Not using the same handling in `getPermissionErrorsInternal` as the checks
+			// for skipping `checkUserConfigPermissions` since normal admins can delete
+			// user scripts, but not sitedwide scripts
+			return $errors;
+		}
+
+		// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
+		// editinterface right. That's implemented as a restriction so no check needed here.
+		if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
+			$errors[] = [ 'sitecssprotected', $action ];
+		} elseif ( $title->isSiteJsonConfigPage() && !$this->userHasRight( $user, 'editsitejson' ) ) {
+			$errors[] = [ 'sitejsonprotected', $action ];
+		} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
+			$errors[] = [ 'sitejsprotected', $action ];
+		}
+		if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
+			$errors[] = [ 'siterawhtmlprotected', $action ];
 		}
 
 		return $errors;
@@ -1153,11 +1194,6 @@ class PermissionManager {
 
 		# Protect css/json/js subpages of user pages
 		# XXX: this might be better using restrictions
-
-		if ( $action === 'patrol' ) {
-			return $errors;
-		}
-
 		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $title->getText() ) ) {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
 			if (
@@ -1191,27 +1227,27 @@ class PermissionManager {
 				}
 			}
 		} else {
-			// Users need edituser* to edit others' CSS/JSON/JS subpages, except for
-			// deletion/suppression which cannot be used for attacks and we want to avoid the
-			// situation where an unprivileged user can post abusive content on their subpages
-			// and only very highly privileged users could remove it.
-			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
-				if (
-					$title->isUserCssConfigPage()
-					&& !$this->userHasRight( $user, 'editusercss' )
-				) {
-					$errors[] = [ 'customcssprotected', $action ];
-				} elseif (
-					$title->isUserJsonConfigPage()
-					&& !$this->userHasRight( $user, 'edituserjson' )
-				) {
-					$errors[] = [ 'customjsonprotected', $action ];
-				} elseif (
-					$title->isUserJsConfigPage()
-					&& !$this->userHasRight( $user, 'edituserjs' )
-				) {
-					$errors[] = [ 'customjsprotected', $action ];
-				}
+			// Users need edituser* to edit others' CSS/JSON/JS subpages.
+			// The checks to exclude deletion/suppression, which cannot be used for
+			// attacks and should be excluded to avoid the situation where an
+			// unprivileged user can post abusive content on their subpages
+			// and only very highly privileged users could remove it,
+			// are now a part of `getPermissionErrorsInternal` and this method isn't called.
+			if (
+				$title->isUserCssConfigPage()
+				&& !$this->userHasRight( $user, 'editusercss' )
+			) {
+				$errors[] = [ 'customcssprotected', $action ];
+			} elseif (
+				$title->isUserJsonConfigPage()
+				&& !$this->userHasRight( $user, 'edituserjson' )
+			) {
+				$errors[] = [ 'customjsonprotected', $action ];
+			} elseif (
+				$title->isUserJsConfigPage()
+				&& !$this->userHasRight( $user, 'edituserjs' )
+			) {
+				$errors[] = [ 'customjsprotected', $action ];
 			}
 		}
 
