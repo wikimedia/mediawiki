@@ -1284,7 +1284,6 @@ $wgAutoloadLocalClasses = [
 	'PreprocessDump' => __DIR__ . '/maintenance/preprocessDump.php',
 	'Preprocessor' => __DIR__ . '/includes/parser/Preprocessor.php',
 	'Preprocessor_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
-	'ProcessCacheLRU' => __DIR__ . '/includes/libs/ProcessCacheLRU.php',
 	'Processor' => __DIR__ . '/includes/registration/Processor.php',
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
 	'ProfilerExcimer' => __DIR__ . '/includes/profiler/ProfilerExcimer.php',

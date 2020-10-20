@@ -31,7 +31,6 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
  * the hasField(), getField(), and setField() methods can be used for entries that are field/value
  * maps themselves; such fields will have their own internally tracked last-modification timestamp.
  *
- * @see ProcessCacheLRU
  * @ingroup Cache
  * @since 1.23
  */
