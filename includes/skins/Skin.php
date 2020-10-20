@@ -2434,11 +2434,16 @@ abstract class Skin extends ContextSource {
 	 * @return string of HTML input
 	 */
 	final public function makeSearchInput( $attrs = [] ) {
+		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
 		$realAttrs = [
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
+			// T251664: Disable autocapitalization of input
+			// method when using fully case-sensitive titles.
+			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
 		];
+
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
 	}
