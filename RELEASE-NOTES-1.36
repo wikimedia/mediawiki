@@ -266,6 +266,7 @@ because of Phabricator reports.
 * Language::getExtraUserToggles and ::viewPrevNext, deprecated in 1.34, have
   been removed.
 * SVGMetadataExtractor class, deprecated in 1.34, has been removed.
+* ProcessCacheLRU class, deprecated in 1.32, has been removed.
 * …
 
 === Deprecations in 1.36 ===
