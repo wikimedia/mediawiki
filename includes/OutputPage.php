@@ -1386,6 +1386,8 @@ class OutputPage extends ContextSource {
 		) {
 			$services = MediaWikiServices::getInstance();
 			$linkRenderer = $services->getLinkRenderer();
+			$languageConverter = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() );
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
@@ -1394,11 +1396,12 @@ class OutputPage extends ContextSource {
 				if ( !$title ) {
 					continue;
 				}
-				$services->getContentLanguage()->findVariantLink( $category, $title, true );
+				$languageConverter->findVariantLink( $category, $title, true );
+
 				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
 					continue;
 				}
-				$text = $services->getContentLanguage()->convertHtml( $title->getText() );
+				$text = $languageConverter->convertHtml( $title->getText() );
 				$this->mCategories[$type][] = $title->getText();
 				$this->mCategoryLinks[$type][] = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
 			}
@@ -3344,9 +3347,10 @@ class OutputPage extends ContextSource {
 				$vars['wgUserNewMsgRevisionId'] = $userNewMsgRevId;
 			}
 		}
-		$contLang = $services->getContentLanguage();
-		if ( $contLang->hasVariants() ) {
-			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
+		$languageConverter = $services->getLanguageConverterFactory()
+			->getLanguageConverter( $services->getContentLanguage() );
+		if ( $languageConverter->hasVariants() ) {
+			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
 		$vars['wgIsProbablyEditable'] = $this->userCanEditOrCreate( $user, $title );
