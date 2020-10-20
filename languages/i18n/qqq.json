@@ -216,6 +216,7 @@
 			"Ата",
 			"פוילישער",
 			"ديفيد",
+			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
 			"아라"
 		]
@@ -870,7 +871,7 @@
 	"publishpage-start": "Text on the button to start the process create a new page on a public wiki. Usually just {{msg-mw|publishpage}} with an ellipsis (…).",
 	"publishchanges-start": "Text on the button to start the process save the changes to an existing page on a public wiki. Usually just {{msg-mw|publishchanges}} with an ellipsis (…).",
 	"preview": "The title of the Preview page shown after clicking the \"Show preview\" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.\n\n{{Identical|Preview}}",
-	"showpreview": "The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}} and {{msg-mw|savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showpreview}}\n* {{msg-mw|Accesskey-preview}}\n* {{msg-mw|Tooltip-preview}}\n{{Identical|Show preview}}",
+	"showpreview": "The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}}, {{msg-mw|savearticle}} and {{msg-mw|Publishchanges}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showpreview}}\n* {{msg-mw|Accesskey-preview}}\n* {{msg-mw|Tooltip-preview}}\n{{Identical|Show preview}}",
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
 	"blankarticle": "Notice displayed once after the user tries to save an empty page.\n\nParameters:\n* $1 – The label of the save button – one of {{msg-mw|savearticle}} or {{msg-mw|savechanges}} on save-labelled wiki, or {{msg-mw|publishpage}} or {{msg-mw|publishchanges}} on publish-labelled wikis.",
 	"anoneditwarning": "Shown when editing a page anonymously.\n\nParameters:\n* $1 – A link to log in, <nowiki>{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}</nowiki>\n* $2 – A link to sign up, <nowiki>{{fullurl:Special:CreateAccount|returnto={{FULLPAGENAMEE}}}}</nowiki>\n\nSee also:\n* {{msg-mw|Mobile-frontend-editor-anonwarning}}",
