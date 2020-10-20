@@ -38,6 +38,7 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
+use UserCache;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -92,6 +93,9 @@ class PermissionManager {
 
 	/** @var HookRunner */
 	private $hookRunner;
+
+	/** @var UserCache */
+	private $userCache;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
@@ -202,6 +206,7 @@ class PermissionManager {
 	 * @param NamespaceInfo $nsInfo
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
+	 * @param UserCache $userCache
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -209,7 +214,8 @@ class PermissionManager {
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo,
 		BlockErrorFormatter $blockErrorFormatter,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		UserCache $userCache
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -218,6 +224,7 @@ class PermissionManager {
 		$this->nsInfo = $nsInfo;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userCache = $userCache;
 	}
 
 	/**
@@ -970,8 +977,7 @@ class PermissionManager {
 				) {
 					$errors[] = [
 						'titleprotected',
-						// TODO: get rid of the User dependency
-						User::whoIs( $title_protection['user'] ),
+						$this->userCache->getProp( $title_protection['user'], 'name' ),
 						$title_protection['reason']
 					];
 				}

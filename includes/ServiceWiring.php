@@ -975,7 +975,8 @@ return [
 			$services->getRevisionLookup(),
 			$services->getNamespaceInfo(),
 			$services->getBlockErrorFormatter(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserCache()
 		);
 	},
 
