@@ -3616,6 +3616,7 @@
 	"searchsuggest-search": "Căutare în {{SITENAME}}",
 	"searchsuggest-containing": "conținând...",
 	"search-match-redirect-label": "Redirecționează la potrivile exacte în timpul căutării",
+	"api-clientside-error-noconnect": "Nu se poate conecta la server. Asigurați-vă că aveți o conexiune la internet funcțională și încercați din nou.",
 	"api-clientside-error-timeout": "Serverul nu a răspuns în timp util.",
 	"api-clientside-error-aborted": "Cererea a eșuat.",
 	"api-clientside-error-invalidresponse": "Răspuns invalid din partea serverului.",

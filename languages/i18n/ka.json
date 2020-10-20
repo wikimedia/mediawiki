@@ -733,6 +733,7 @@
 	"editpage-invalidcontentmodel-text": "კონტენტის მოდელი $1 არ არის მხარდაჭერილი.",
 	"editpage-notsupportedcontentformat-title": "კონტენტის ფორმატი შეუსაბამოა.",
 	"editpage-notsupportedcontentformat-text": "$1 შემცველობის ფორმატი არ არის მხარდაჭერილი $2 მოდელის შემცველობასთან",
+	"slot-name-main": "მთავარი",
 	"content-model-wikitext": "ვიკიტექსტი",
 	"content-model-text": "ჩვეულებრივი ტექსტი",
 	"content-model-javascript": "ჯავასკრიპტი",

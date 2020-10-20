@@ -16,7 +16,6 @@
 	"rest-permission-denied-anon": "Não acessível por usuário anônimo",
 	"rest-permission-denied-title": "O usuário não tem o direitos de ler o título ($1)",
 	"rest-permission-denied-revision": "O usuário não tem acesso à revisão solicitada ($1).",
-	"rest-resource-limit-exceeded": "Limites de recursos excedidos no processamento da solicitação.",
 	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
 	"rest-pagehistory-param-range-error": "O ID da revisão deve ser maior que 0",
 	"rest-pagehistory-timestamp-error": "Não foi possível recuperar o carimbo de data/hora para a revisão especificada ($1)",

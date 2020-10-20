@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Mlolthuis",
+			"Muotâ",
 			"Trondtr",
 			"Yupik"
 		]
@@ -78,7 +79,7 @@
 	"category-empty": "''Taan luokkaast iä lah siijđoh iäge tiátuvuárháh.''",
 	"hidden-categories": "{{PLURAL:$1|Čiehhum luokka|Čiehhum luokah}}",
 	"category-subcat-count": "{{PLURAL:$2|Taan luokast lii čuávuvâš vyeliluokka.|{{PLURAL:$1|Čuávuvâš vyeliluokka kulá|Čuávuvááh $1 vyeliluoka kuleh}} taan luokan. Vyeliluokai ubâlâš meeri luokkaast lii $2.}}",
-	"category-article-count": "{{PLURAL:$2|Taan luokast lii čuávuvâš sijđo.|{{PLURAL:$1|Čuávuvâš sijđo|Čuávuvááh $1 siijđo kuleh}} taan luokan. Siijđoi ubâlâš meeri luokast lii $2.}}",
+	"category-article-count": "{{PLURAL:$2|Taan luokkaast lii čuávuvâš sijđo.|{{PLURAL:$1|Čuávuvâš sijđo|Čuávuvááh $1 siijđo kuleh}} taan luokan. Siijđoi ubâlâš meeri luokkaast lii $2.}}",
 	"category-file-count": "{{PLURAL:$2|Taan luokkaast lii čuávuvâš tiätuvuárkká.|{{PLURAL:$1|Čuávuvâš tiátuvuárkká kulá|Čuávuvâš $1 tiätuvuárháh kuleh}} taan luokan. Tiätuvuárháh luokkaast láá ohcis $2.}}",
 	"listingcontinuesabbrev": "jotk.",
 	"noindex-category": "Ij-indeksistum siijđoh",
@@ -110,7 +111,7 @@
 	"history_short": "Historjá",
 	"history_small": "historjá",
 	"printableversion": "Printtimversio",
-	"permalink": "Avalaš liŋkkâ",
+	"permalink": "Avalâš liŋkkâ",
 	"print": "Printtii",
 	"view": "Čääiti",
 	"view-foreign": "Čääiti $1",
@@ -268,7 +269,7 @@
 	"previewnote": "<strong>Huámmáš! Taat lii esken siijđo muneversio.</strong>\nTuu toohâm nubástusah iä lah vyerkkejum.",
 	"continue-editing": "Sirduu hammimkiädán",
 	"editing": "Hämmejuvvoo sijđo $1",
-	"creating": "Rähtoo sijđo $1",
+	"creating": "Ráhtoo sijđo $1",
 	"editingsection": "Hämmejuvvoo uási siijđost $1",
 	"templatesused": "Taan siijđost {{PLURAL:$1|kevttum malli|kevttum maalih}}:",
 	"templatesusedpreview": "Munekeččâmist fáárust leijee {{PLURAL:$1|malli|maalih}}:",
