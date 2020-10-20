@@ -1437,7 +1437,6 @@ $wgAutoloadLocalClasses = [
 	'RunBatchedQuery' => __DIR__ . '/maintenance/runBatchedQuery.php',
 	'RunJobs' => __DIR__ . '/maintenance/runJobs.php',
 	'RunnableJob' => __DIR__ . '/includes/jobqueue/RunnableJob.php',
-	'SVGMetadataExtractor' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
 	'SVGReader' => __DIR__ . '/includes/media/SVGReader.php',
 	'SamplingStatsdClient' => __DIR__ . '/includes/libs/stats/SamplingStatsdClient.php',
 	'Sanitizer' => __DIR__ . '/includes/parser/Sanitizer.php',
