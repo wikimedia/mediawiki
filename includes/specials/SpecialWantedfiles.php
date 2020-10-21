@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Querypage that lists the most wanted files
@@ -38,13 +39,16 @@ class WantedFilesPage extends WantedQueryPage {
 
 	/**
 	 * @param RepoGroup|string $repoGroup
+	 * @param ILoadBalancer|null $loadBalancer
 	 */
-	public function __construct( $repoGroup ) {
+	public function __construct( $repoGroup, ILoadBalancer $loadBalancer = null ) {
 		parent::__construct( is_string( $repoGroup ) ? $repoGroup : 'Wantedfiles' );
 		// This class is extended and therefor fallback to global state - T265301
+		$services = MediaWikiServices::getInstance();
 		$this->repoGroup = $repoGroup instanceof RepoGroup
 			? $repoGroup
-			: MediaWikiServices::getInstance()->getRepoGroup();
+			: $services->getRepoGroup();
+		$this->setDBLoadBalancer( $loadBalancer ?? $services->getDBLoadBalancer() );
 	}
 
 	protected function getPageHeader() {

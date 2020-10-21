@@ -16,8 +16,8 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 		$mockContext->method( 'msg' )->willReturn( $msg );
 		$services = MediaWikiServices::getInstance();
 		$special = new SpecialUncategorizedCategories(
-			$services->getDBLoadBalancer(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getDBLoadBalancer()
 		);
 		$special->setContext( $mockContext );
 		$this->assertEquals( [

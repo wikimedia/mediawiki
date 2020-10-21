@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Implements Special:Ancientpages
  *
@@ -33,10 +35,12 @@ class SpecialAncientPages extends QueryPage {
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Ancientpages' );
 		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {

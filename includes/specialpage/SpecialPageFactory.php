@@ -76,6 +76,7 @@ class SpecialPageFactory {
 			'class' => \SpecialDeadendPages::class,
 			'services' => [
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'DoubleRedirects' => [
@@ -92,18 +93,21 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Shortpages
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Ancientpages' => [
 			'class' => \SpecialAncientPages::class,
 			'services' => [
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Lonelypages' => [
 			'class' => \SpecialLonelyPages::class,
 			'services' => [
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Fewestrevisions' => [
@@ -111,6 +115,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Mostrevisions
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Withoutinterwiki' => [
@@ -143,14 +148,15 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Longpages
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Uncategorizedcategories' => [
 			'class' => \SpecialUncategorizedCategories::class,
 			'services' => [
-				'DBLoadBalancer',
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
@@ -159,6 +165,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedTemplates
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Uncategorizedtemplates' => [
@@ -166,6 +173,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedPages
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Unusedcategories' => \SpecialUnusedCategories::class,
@@ -183,6 +191,7 @@ class SpecialPageFactory {
 			'class' => \WantedFilesPage::class,
 			'services' => [
 				'RepoGroup',
+				'DBLoadBalancer',
 			]
 		],
 		'Wantedpages' => [
@@ -207,6 +216,7 @@ class SpecialPageFactory {
 			'class' => \SpecialListRedirects::class,
 			'services' => [
 				'LinkBatchFactory',
+				'DBLoadBalancer',
 			]
 		],
 		'PagesWithProp' => [
@@ -412,6 +422,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'RepoGroup',
 				'SearchEngineFactory',
+				'DBLoadBalancer',
 			]
 		],
 		'Upload' => [
@@ -482,6 +493,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMostInterwikis::class,
 			'services' => [
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Mostlinked' => \SpecialMostLinked::class,
@@ -490,6 +502,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMostCategories::class,
 			'services' => [
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 		'Mostrevisions' => [
@@ -497,6 +510,7 @@ class SpecialPageFactory {
 			'services' => [
 				// Same as for Fewestrevisions
 				'NamespaceInfo',
+				'DBLoadBalancer',
 			]
 		],
 

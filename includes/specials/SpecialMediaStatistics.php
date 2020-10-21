@@ -45,9 +45,6 @@ class SpecialMediaStatistics extends QueryPage {
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param ILoadBalancer $loadBalancer
@@ -62,7 +59,7 @@ class SpecialMediaStatistics extends QueryPage {
 		$this->limit = 5000;
 		$this->shownavigation = false;
 		$this->mimeAnalyzer = $mimeAnalyzer;
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {
@@ -84,7 +81,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @return array
 	 */
 	public function getQueryInfo() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),

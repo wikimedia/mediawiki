@@ -26,6 +26,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -39,10 +40,12 @@ class SpecialListRedirects extends QueryPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( LinkBatchFactory $linkBatchFactory ) {
+	public function __construct( LinkBatchFactory $linkBatchFactory, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Listredirects' );
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {

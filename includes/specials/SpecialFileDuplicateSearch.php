@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Searches the database for files of the requested hash, comparing this with the
@@ -52,16 +53,19 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param RepoGroup $repoGroup
 	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		ILoadBalancer $loadBalancer
 	) {
 		parent::__construct( 'FileDuplicateSearch' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->repoGroup = $repoGroup;
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isSyndicated() {

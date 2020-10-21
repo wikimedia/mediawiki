@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -36,10 +37,12 @@ class SpecialMostInterwikis extends QueryPage {
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Mostinterwikis' );
 		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {

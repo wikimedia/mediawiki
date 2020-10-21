@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * @ingroup SpecialPage
  */
@@ -28,9 +30,10 @@ class SpecialLongPages extends SpecialShortPages {
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo ) {
-		parent::__construct( $namespaceInfo );
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
+		parent::__construct( $namespaceInfo, $loadBalancer );
 		$this->mName = 'Longpages';
 	}
 
