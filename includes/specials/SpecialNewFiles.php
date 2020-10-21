@@ -43,19 +43,24 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var Language */
 	private $contentLanguage;
 
+	/** @var UserCache */
+	private $userCache;
+
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param PermissionManager $permissionManager
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param Language $contentLanguage
+	 * @param UserCache $userCache
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		PermissionManager $permissionManager,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
-		Language $contentLanguage
+		Language $contentLanguage,
+		UserCache $userCache
 	) {
 		parent::__construct( 'Newimages' );
 		$this->permissionManager = $permissionManager;
@@ -63,6 +68,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->contentLanguage = $contentLanguage;
 		$this->loadBalancer = $loadBalancer;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
+		$this->userCache = $userCache;
 	}
 
 	public function execute( $par ) {
@@ -138,7 +144,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->actorMigration,
 			$this->loadBalancer,
-			UserCache::singleton()
+			$this->userCache
 		);
 
 		$out->addHTML( $pager->getBody() );

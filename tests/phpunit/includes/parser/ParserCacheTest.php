@@ -640,7 +640,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$parserOutput->setExtensionData( 'test', new User() );
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
 		$this->assertArrayEquals(
-			[ [ LogLevel::ERROR, 'Non-serializable ParserOutput property set' ] ],
+			[ [ LogLevel::ERROR, 'Non-serializable {class} property set' ] ],
 			$testLogger->getBuffer()
 		);
 	}

@@ -656,8 +656,8 @@ class ParserCache {
 		// to avoid walking over circular structures.
 		$unserializablePath = FormatJson::detectNonSerializableData( $data );
 		if ( $unserializablePath ) {
-			$objClass = get_class( $obj );
-			$this->logger->error( "Non-serializable {$objClass} property set", [
+			$this->logger->error( 'Non-serializable {class} property set', [
+				'class' => get_class( $obj ),
 				'name' => $this->name,
 				'cache_key' => $key,
 				'path' => $unserializablePath,

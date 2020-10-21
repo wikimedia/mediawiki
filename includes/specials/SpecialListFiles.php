@@ -49,6 +49,9 @@ class SpecialListFiles extends IncludableSpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var UserCache */
+	private $userCache;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param PermissionManager $permissionManager
@@ -57,6 +60,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 * @param ActorMigration $actorMigration
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserCache $userCache
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
@@ -65,7 +69,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
 		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserCache $userCache
 	) {
 		parent::__construct( 'Listfiles' );
 		$this->repoGroup = $repoGroup;
@@ -75,6 +80,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->actorMigration = $actorMigration;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userCache = $userCache;
 	}
 
 	public function execute( $par ) {
@@ -115,7 +121,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->loadBalancer,
 			$this->commentStore,
 			$this->actorMigration,
-			UserCache::singleton()
+			$this->userCache
 		);
 
 		$out = $this->getOutput();
