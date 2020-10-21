@@ -20,7 +20,8 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\MediaWikiServices;
+
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Implements Special:Prefixindex
@@ -39,8 +40,30 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
-	public function __construct() {
-		parent::__construct( 'Prefixindex' );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var LinkCache */
+	private $linkCache;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkCache $linkCache
+	 * @param Language $contentLanguage
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinkCache $linkCache,
+		Language $contentLanguage
+	) {
+		parent::__construct( $loadBalancer );
+		$this->mName = 'Prefixindex';
+		$this->loadBalancer = $loadBalancer;
+		$this->linkCache = $linkCache;
+		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -63,7 +86,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
-		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
+		$namespaces = $this->contentLanguage->getNamespaces();
 		$out->setPageTitle(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
@@ -146,7 +169,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
-		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
+		$namespaces = $this->contentLanguage->getNamespaces();
 		$res = null;
 		$n = 0;
 		$nextRow = null;
@@ -163,7 +186,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 			$conds = [
 				'page_namespace' => $namespace,
@@ -193,7 +216,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-prefixindex-list' ] );
-				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 				$prefixLength = strlen( $prefix );
 				foreach ( $res as $row ) {
@@ -203,7 +225,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 					}
 					$title = Title::newFromRow( $row );
 					// Make sure it gets into LinkCache
-					$linkCache->addGoodLinkObjFromRow( $title, $row );
+					$this->linkCache->addGoodLinkObjFromRow( $title, $row );
 					$displayed = $title->getText();
 					// Try not to generate unclickable links
 					if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
