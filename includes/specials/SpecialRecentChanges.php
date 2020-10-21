@@ -22,8 +22,10 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -40,13 +42,43 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	private $watchlistFilterGroupDefinition;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
+	/** @var MessageCache */
+	private $messageCache;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
-	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
-		parent::__construct( $name, $restriction );
-		// TODO Inject service
-		$this->userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+	/**
+	 * @param PermissionManager|null $permissionManager
+	 * @param WatchedItemStoreInterface|null $watchedItemStore
+	 * @param MessageCache|null $messageCache
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param UserOptionsLookup|null $userOptionsLookup
+	 */
+	public function __construct(
+		PermissionManager $permissionManager = null,
+		WatchedItemStoreInterface $watchedItemStore = null,
+		MessageCache $messageCache = null,
+		ILoadBalancer $loadBalancer = null,
+		UserOptionsLookup $userOptionsLookup = null
+	) {
+		parent::__construct( 'Recentchanges', '' );
+		// This class is extended and therefor fallback to global state - T265310
+		$services = MediaWikiServices::getInstance();
+		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
+		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
+		$this->messageCache = $messageCache ?? $services->getMessageCache();
+		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 
 		$this->watchlistFilterGroupDefinition = [
 			'name' => 'watchlist',
@@ -198,9 +230,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private function needsWatchlistFeatures(): bool {
 		return !$this->including()
 			&& $this->getUser()->isLoggedIn()
-			&& MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmywatchlist' );
+			&& $this->permissionManager->userHasRight( $this->getUser(), 'viewmywatchlist' );
 	}
 
 	/**
@@ -394,7 +424,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA, 'recentchanges' );
+		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'recentchanges' );
 	}
 
 	public function outputFeedLinks() {
@@ -472,7 +502,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
 				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
 					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchers(
+						$this->watchedItemStore->countWatchers(
 							new TitleValue( (int)$obj->rc_namespace, $obj->rc_title )
 						);
 				}
@@ -617,12 +647,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function setTopText( FormOptions $opts ) {
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$services = MediaWikiServices::getInstance();
 			$contLang = $this->getContentLanguage();
 			// Parse the message in this weird ugly way to preserve the ability to include interlanguage
 			// links in it (T172461). In the future when T66969 is resolved, perhaps we can just use
 			// $message->parse() instead. This code is copied from Message::parseText().
-			$parserOutput = $services->getMessageCache()->parse(
+			$parserOutput = $this->messageCache->parse(
 				$message->plain(),
 				$this->getPageTitle(),
 				/*linestart*/true,
