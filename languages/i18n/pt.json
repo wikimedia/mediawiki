@@ -743,7 +743,7 @@
 	"missing-revision-content": "Não foi possível carregar o conteúdo da revisão #$1 da página denominada \"$2\".",
 	"userpage-userdoesnotexist": "A conta \"$1\" não se encontra registada.\nVerifique se deseja realmente criar ou editar esta página, por favor.",
 	"userpage-userdoesnotexist-view": "A conta de utilizador \"$1\" não está registada.",
-	"blocked-notice-logextract": "Este utilizador está bloqueado.\nPara referência, o último registo de bloqueio é apresentado abaixo:",
+	"blocked-notice-logextract": "{{GENDER:$1|Este utilizador está bloqueado|Esta utilizadora está bloqueada}}.\nPara referência é apresentado abaixo o último registo de bloqueio:",
 	"clearyourcache": "<strong>Nota:</strong> Depois de gravar, poderá ter de contornar a <em>cache</em> do seu navegador para ver as alterações.\n* <strong>Firefox / Safari:</strong> Pressione <em>Shift</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em> ou <em>Ctrl-R</em> (<em>⌘-R</em> no Mac)\n* <strong>Google Chrome:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> no Mac)\n* <strong>Internet Explorer / Edge:</strong> Pressione <em>Ctrl</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Ir para <em>Menu → Configurações</em> (<em>Opera → Preferências</em> no Mac) e, em seguida, <em>Privacidade e segurança → Limpar dados de navegação → Imagens e ficheiros em cache</em>.",
 	"usercssyoucanpreview": "<strong>Dica:</strong> Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 	"userjsonyoucanpreview": "<strong>Dica:</strong> Use o botão \"{{int:showpreview}}\" para testar o seu novo JSON antes de gravar.",

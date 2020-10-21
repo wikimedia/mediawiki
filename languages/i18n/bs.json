@@ -220,6 +220,7 @@
 	"talk": "Razgovor",
 	"views": "Pregledi",
 	"toolbox": "Alati",
+	"cactions": "Više",
 	"tool-link-userrights": "Promijeni {{GENDER:$1|korisničke}} grupe",
 	"tool-link-userrights-readonly": "Vidi {{GENDER:$1|korisničke}} grupe",
 	"tool-link-emailuser": "Pošalji e-poruku {{GENDER:$1|korisniku|korisnici|korisniku/-ci}}",

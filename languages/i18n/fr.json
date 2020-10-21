@@ -2683,7 +2683,7 @@
 	"mycontris": "Contributions",
 	"anoncontribs": "Contributions",
 	"contribsub2": "Pour {{GENDER:$3|}}$1 ($2)",
-	"contributions-subtitle": "Pour {{GENDER:$3|}}$1",
+	"contributions-subtitle": "De {{GENDER:$3|}}$1",
 	"contributions-userdoesnotexist": "Le compte d’utilisateur « $1 » n’est pas enregistré.",
 	"negative-namespace-not-supported": "Les espaces de noms spéciaux avec des valeurs négatives ne sont pas pris en charge.",
 	"nocontribs": "Aucune modification correspondant à ces critères n’a été trouvée.",
