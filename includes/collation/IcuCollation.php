@@ -361,7 +361,7 @@ class IcuCollation extends Collation {
 			$digits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
 			$letters = array_diff( $letters, $digits );
 			foreach ( $digits as $digit ) {
-				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
+				$letters[] = $this->digitTransformLanguage->formatNumNoSeparators( $digit );
 			}
 		} elseif ( $this->locale === 'root' ) {
 			$letters = require "$IP/includes/collation/data/first-letters-root.php";

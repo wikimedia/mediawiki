@@ -45,7 +45,7 @@ class PatrolLogFormatter extends LogFormatter {
 
 		$target = $this->entry->getTarget();
 		$oldid = $params[3];
-		$revision = $this->context->getLanguage()->formatNum( $oldid, true );
+		$revision = $this->context->getLanguage()->formatNumNoSeparators( $oldid );
 
 		if ( $this->plaintext ) {
 			$revlink = $revision;

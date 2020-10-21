@@ -14,19 +14,27 @@ class LanguageNlTest extends LanguageClassesTestCase {
 	 * @covers Language::formatNum
 	 * @dataProvider provideFormatNum
 	 */
-	public function testFormatNum( $formatted, $unformatted ) {
+	public function testFormatNum( $unformatted, $formatted ) {
 		$this->assertEquals( $formatted, $this->getLang()->formatNum( $unformatted ) );
 	}
 
 	public function provideFormatNum() {
 		return [
-			[ '1.234.567', '1234567' ],
-			[ '12.345', '12345' ],
+			[ '1234567', '1.234.567' ],
+			[ '12345', '12.345' ],
 			[ '1', '1' ],
 			[ '123', '123' ],
-			[ '1.234', '1234' ],
-			[ '12.345,56', '12345.56' ],
-			[ ',1234556', '.1234556' ],
+			[ '1234', '1.234' ],
+			[ '12345.56', '12.345,56' ],
+			[ '.1234556', ',1234556' ],
+			[ '12345679812345678', '12.345.679.812.345.678' ],
+			[ '.12345', ',12345' ],
+			[ '-1200000', '-1.200.000' ],
+			[ '-98', '-98' ],
+			[ -98, '-98' ],
+			[ -12345678, '-12.345.678' ],
+			[ '', '' ],
+			[ null, '' ]
 		];
 	}
 }
