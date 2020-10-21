@@ -25,6 +25,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 		$this->context->setUser( $user );
 
+		RequestContext::getMain()->setTitle( $this->context->getTitle() );
+
 		$this->setMwGlobals( [
 			'wgTextModelsToParse' => [
 				CONTENT_MODEL_WIKITEXT,

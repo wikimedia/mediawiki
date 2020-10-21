@@ -301,6 +301,7 @@ class WikitextContent extends TextContent {
 
 		if ( $wgArticleCountMethod === 'link' ) {
 			if ( $hasLinks === null ) { # not known, find out
+				// @TODO: require an injected title
 				if ( !$title ) {
 					$context = RequestContext::getMain();
 					$title = $context->getTitle();
