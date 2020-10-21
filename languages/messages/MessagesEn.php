@@ -654,3 +654,5 @@ $preloadedMessages = [
 	'whatlinkshere',
 	'word-separator',
 ];
+
+$digitGroupingPattern = "#,##0.###";

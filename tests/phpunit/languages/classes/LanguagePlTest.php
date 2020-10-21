@@ -78,29 +78,29 @@ class LanguagePlTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers Language::commafy()
-	 * @dataProvider provideCommafyData
+	 * @covers Language::formatNum()
+	 * @dataProvider provideFormatNum
 	 */
-	public function testCommafy( $number, $numbersWithCommas ) {
+	public function testFormatNum( $number, $formattedNum, $desc ) {
 		$this->assertEquals(
-			$numbersWithCommas,
-			$this->getLang()->commafy( $number ),
-			"commafy('$number')"
+			$formattedNum,
+			$this->getLang()->formatNum( $number ),
+			$desc
 		);
 	}
 
-	public static function provideCommafyData() {
-		// Note that commafy() always uses English separators (',' and '.') instead of
-		// Polish (' ' and ','). There is another function that converts them later.
+	public static function provideFormatNum() {
 		return [
-			[ 1000, '1000' ],
-			[ 10000, '10,000' ],
-			[ 1000.0001, '1000.0001' ],
-			[ 10000.0001, '10,000.0001' ],
-			[ -1000, '-1000' ],
-			[ -10000, '-10,000' ],
-			[ -1000.0001, '-1000.0001' ],
-			[ -10000.0001, '-10,000.0001' ],
+			[ 1000, '1000', 'No change' ],
+			[ 10000, '10 000', 'Only separator transform. Separator is NO-BREAK Space, not Space' ],
+			[ 1000.0001, '1000,0001' ,
+				'No change since this is below minimumGroupingDigits, just separator transform' ],
+			[ 10000.123456, '10 000,123456', 'separator transform' ],
+			[ -1000, '-1000', 'No change.' ],
+			[ -10000, '-10 000', 'Only seperator transform' ],
+			[ -1000.0001, '-1000,0001',
+				'No change since this is below minimumGroupingDigits, just separator transform' ],
+			[ -10000.789, '-10 000,789', '' ],
 		];
 	}
 }

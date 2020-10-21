@@ -124,6 +124,6 @@ $digitTransformTable = [
 	'9' => '૯', # U+0AEF
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
 
 $linkTrail = "/^([\x{0A80}-\x{0AFF}]+)(.*)$/sDu";

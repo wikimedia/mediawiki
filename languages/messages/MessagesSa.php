@@ -283,4 +283,4 @@ $1', 'सङ्कुचितचित्र=$1', 'अङ्गुष्ठ=$1'
 	'protectionlevel'           => [ '1', 'रक्षास्तरः', 'रक्षास्तर', 'PROTECTIONLEVEL' ],
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
