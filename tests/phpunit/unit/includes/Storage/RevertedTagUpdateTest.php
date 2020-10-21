@@ -110,13 +110,16 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	 * @param int $pageId
 	 * @param int $revisionId
 	 * @param string $timestamp
+	 * @param string|null $sha1 SHA1 of the revision. When null, will generate
+	 *   a distinct SHA1 for the revision. Does not have to be a proper SHA1.
 	 *
 	 * @return MutableRevisionRecord
 	 */
 	private function getDummyRevision(
 		int $pageId = 100,
 		int $revisionId = 123,
-		string $timestamp = '20100101202020'
+		string $timestamp = '20100101202020',
+		?string $sha1 = null
 	) {
 		$revisionRecord = new MutableRevisionRecord(
 			$this->createMock( Title::class )
@@ -124,6 +127,9 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$revisionRecord->setId( $revisionId );
 		$revisionRecord->setTimestamp( $timestamp );
 		$revisionRecord->setPageId( $pageId );
+		// Not a valid SHA-1, but enough to make these revisions appear like they have
+		// different contents.
+		$revisionRecord->setSha1( $sha1 ?? strval( $revisionId ) );
 		return $revisionRecord;
 	}
 
@@ -641,23 +647,32 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Test marking multiple revisions as reverted.
+	 *
+	 * Also ensures that null revisions (e.g. move and protection entries) are not
+	 * marked as 'reverted', see: T265312
 	 */
 	public function testMultipleRevertedRevisions() {
 		$revisionStore = $this->createMock( RevisionStore::class );
 		$revisionStore->method( 'getRevisionById' )
 			->willReturnCallback( function ( int $id ) {
-				return $this->getDummyRevision( 100, $id );
+				return $this->getDummyRevision(
+					100,
+					$id,
+					'20100101202020',
+					// Make it appear as though rev 125 has the same content as 124
+					$id === 125 ? 124 : $id
+				);
 			} );
 		$revisionStore->expects( $this->once() )
 			->method( 'getRevisionIdsBetween' )
-			->willReturn( [ 123, 124, 125 ] );
+			->willReturn( [ 123, 124, 125, 126 ] );
 
 		$editResult = new EditResult(
 			false,
 			false,
 			EditResult::REVERT_UNDO,
 			123,
-			125,
+			126,
 			false,
 			false,
 			[ 'mw-undo' ]
@@ -667,12 +682,16 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags', 'getTags' ] )
 			->getMock();
+
+		// Revision 125 has the same content as 124, so it should not be marked
+		// as reverted. See: T265312
+		$reallyRevertedRevs = [ 123, 124, 126 ];
 		for ( $i = 0; $i <= 2; $i++ ) {
 			$this->setFutureChangeTagsAsserts(
 				// $i + 1 because getTags is invoked first
 				$futureChangeTags->expects( $this->at( $i + 1 ) )
 					->method( 'addTags' ),
-				$i + 123,
+				$reallyRevertedRevs[$i],
 				130,
 				$editResult
 			);
