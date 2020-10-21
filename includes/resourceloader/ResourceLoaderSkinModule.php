@@ -271,6 +271,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * @return array
 	 */
 	private function getLogoPreloadlinks() : array {
+		if ( !in_array( 'logo', $this->features ) ) {
+			return [];
+		}
+
 		$logo = $this->getLogoData( $this->getConfig() );
 
 		$logosPerDppx = [];

@@ -367,6 +367,30 @@ CSS
 	}
 
 	/**
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 */
+	public function testNoPreloadLogos() {
+		$module = new ResourceLoaderSkinModule( [ 'features' => [ 'logo' => false ] ] );
+		$context =
+			$this->getMockBuilder( ResourceLoaderContext::class )
+				->disableOriginalConstructor()
+				->getMock();
+		$preloadLinks = $module->getPreloadLinks( $context );
+		$this->assertArrayEquals( [], $preloadLinks );
+	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 */
+	public function testPreloadLogos() {
+		$module = new ResourceLoaderSkinModule();
+		$context = $this->getMockBuilder( ResourceLoaderContext::class )
+			->disableOriginalConstructor()->getMock();
+		$preloadLinks = $module->getPreloadLinks( $context );
+		$this->assertNotSameSize( [], $preloadLinks );
+	}
+
+	/**
 	 * Covers ResourceLoaderSkinModule::FEATURE_FILES, but not annotatable.
 	 *
 	 * @dataProvider provideFeatureFiles
