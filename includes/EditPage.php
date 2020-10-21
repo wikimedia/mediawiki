@@ -22,6 +22,8 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
@@ -66,7 +68,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Used for Unicode support checks
 	 */
-	public const UNICODE_CHECK = 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ';
+	public const UNICODE_CHECK = UnicodeConstraint::VALID_UNICODE;
 
 	/**
 	 * HTML id and name for the beginning of the edit form.
@@ -2040,11 +2042,19 @@ ERROR;
 			return $status;
 		}
 
-		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
-			$status->fatal( 'unicode-support-fail' );
-			$status->value = self::AS_UNICODE_NOT_SUPPORTED;
+		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+		// UnicodeConstraint: ensure that `$this->unicodeCheck` is the correct unicode
+		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner->addConstraint(
+			new UnicodeConstraint( $this->unicodeCheck )
+		);
+		if ( $constraintRunner->checkConstraints() === false ) {
+			$failed = $constraintRunner->getFailedConstraint();
+			$statusValue = $failed->getLegacyStatus();
+			$status = Status::wrap( $statusValue );
 			return $status;
 		}
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
 		$request = $this->context->getRequest();
 		$spam = $request->getText( 'wpAntispam' );
