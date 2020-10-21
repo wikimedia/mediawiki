@@ -60,7 +60,7 @@ class EditConstraintRunner {
 	 * Not all constraints are applicable to the action api or other methods of submitting
 	 * an edit
 	 *
-	 * For constraints that have dependencies, use the EditConstraintFactory (once that is created).
+	 * For constraints that have dependencies, use the EditConstraintFactory.
 	 *
 	 * @param IEditConstraint $constraint
 	 */

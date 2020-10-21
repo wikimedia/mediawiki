@@ -2043,11 +2043,25 @@ ERROR;
 		}
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
-		// UnicodeConstraint: ensure that `$this->unicodeCheck` is the correct unicode
+		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 		$constraintRunner = new EditConstraintRunner();
+
+		// UnicodeConstraint: ensure that `$this->unicodeCheck` is the correct unicode
 		$constraintRunner->addConstraint(
 			new UnicodeConstraint( $this->unicodeCheck )
 		);
+
+		// SimpleAntiSpamConstraint: ensure that the context request does not have
+		// `wpAntispam` set
+		$constraintRunner->addConstraint(
+			$constraintFactory->newSimpleAntiSpamConstraint(
+				$this->context->getRequest()->getText( 'wpAntispam' ),
+				$user,
+				$this->mTitle
+			)
+		);
+
+		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
 			$statusValue = $failed->getLegacyStatus();
@@ -2055,23 +2069,6 @@ ERROR;
 			return $status;
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
-
-		$request = $this->context->getRequest();
-		$spam = $request->getText( 'wpAntispam' );
-		if ( $spam !== '' ) {
-			wfDebugLog(
-				'SimpleAntiSpam',
-				$user->getName() .
-				' editing "' .
-				$this->mTitle->getPrefixedText() .
-				'" submitted bogus field "' .
-				$spam .
-				'"'
-			);
-			$status->fatal( 'spamprotectionmatch', false );
-			$status->value = self::AS_SPAM_ERROR;
-			return $status;
-		}
 
 		try {
 			# Construct Content object
@@ -2118,7 +2115,7 @@ ERROR;
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
-			$ip = $request->getIP();
+			$ip = $this->context->getRequest()->getIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );

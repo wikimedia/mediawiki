@@ -169,9 +169,12 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$req = new FauxRequest( $edit, true ); // session ??
 
+		$context = new RequestContext();
+		$context->setRequest( $req );
+		$context->setTitle( $title );
+		$context->setUser( $user );
 		$article = new Article( $title );
-		$article->getContext()->setTitle( $title );
-		$article->getContext()->setUser( $user );
+		$article->setContext( $context );
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
@@ -427,6 +430,19 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected successful update with given text" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
 		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
+	}
+
+	/**
+	 * @covers EditPage::internalAttemptSave
+	 */
+	public function testUpdatePageSpamError() {
+		$edit = [
+			'wpTextbox1' => 'one',
+			'wpSummary' => 'first update',
+			'wpAntispam' => 'tatata'
+		];
+		$this->assertEdit( 'EditPageTest_testUpdatePage', "zero", null, $edit,
+			EditPage::AS_SPAM_ERROR, null, "expected AS_SPAM_ERROR update" );
 	}
 
 	/**
