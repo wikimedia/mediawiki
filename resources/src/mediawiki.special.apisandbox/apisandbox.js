@@ -1399,7 +1399,7 @@
 	 * @return {OO.ui.FieldLayout} return.helpField
 	 */
 	ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
-		var j, l, widget, $descriptionContainer, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
+		var j, l, widget, helpLabel, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
 
 		widget = Util.createWidgetForParameter( ppi );
 		if ( ppi.tokentype ) {
@@ -1409,7 +1409,9 @@
 			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
 		}
 
-		$descriptionContainer = $( '<div>' );
+		helpLabel = new OO.ui.LabelWidget( {
+			classes: [ 'oo-ui-inline-help' ]
+		} );
 
 		$tmp = Util.parseHTML( ppi.description );
 		$tmp.filter( 'dl' ).makeCollapsible( {
@@ -1418,11 +1420,11 @@
 			var $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
-		$descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
+		helpLabel.$element.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( j = 0; j < ppi.info.length; j++ ) {
-				$descriptionContainer.append( $( '<div>' )
+				helpLabel.$element.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( ppi.info[ j ] ) )
 				);
@@ -1437,7 +1439,7 @@
 				break;
 
 			case 'limit':
-				$descriptionContainer.append( $( '<div>' )
+				helpLabel.$element.append( $( '<div>' )
 					.addClass( 'info' )
 					.append(
 						Util.parseMsg(
@@ -1459,7 +1461,7 @@
 					tmp += 'max';
 				}
 				if ( tmp !== '' ) {
-					$descriptionContainer.append( $( '<div>' )
+					helpLabel.$element.append( $( '<div>' )
 						.addClass( 'info' )
 						.append( Util.parseMsg(
 							'paramvalidator-help-type-number-' + tmp,
@@ -1493,20 +1495,20 @@
 				);
 			}
 			if ( tmp.length ) {
-				$descriptionContainer.append( $( '<div>' )
+				helpLabel.$element.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( tmp.join( ' ' ) ) )
 				);
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
-			$descriptionContainer.append( $( '<div>' )
+			helpLabel.$element.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) )
 			);
 		}
 		if ( 'maxchars' in ppi ) {
-			$descriptionContainer.append( $( '<div>' )
+			helpLabel.$element.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) )
 			);
@@ -1522,7 +1524,7 @@
 					$tmp = $tmp.add( mw.message( 'comma-separator' ).parseDom() );
 				}
 			}
-			$descriptionContainer.append( $( '<div>' )
+			helpLabel.$element.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg(
 					'apisandbox-templated-parameter-reason',
@@ -1532,14 +1534,14 @@
 			);
 		}
 
+		// TODO: Consder adding more options for the position of helpInline
+		// so that this can become part of the widgetField, instead of
+		// having to use a separate field.
 		helpField = new OO.ui.FieldLayout(
-			new OO.ui.Widget( {
-				$content: '\xa0',
-				classes: [ 'mw-apisandbox-spacer' ]
-			} ), {
-				align: 'inline',
-				classes: [ 'mw-apisandbox-help-field' ],
-				label: $descriptionContainer
+			helpLabel,
+			{
+				align: 'top',
+				classes: [ 'mw-apisandbox-help-field' ]
 			}
 		);
 

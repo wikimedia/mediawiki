@@ -38,12 +38,6 @@
 	width: 1%;
 }
 
-.mw-apisandbox-spacer {
-	display: inline-block;
-	height: 1px;
-	width: 5em;
-}
-
 .mw-apisandbox-help-field {
 	border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
 }
