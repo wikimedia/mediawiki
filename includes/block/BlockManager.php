@@ -404,7 +404,12 @@ class BlockManager {
 
 				if ( $ipList ) {
 					$this->logger->info(
-						"Hostname $hostname is {$ipList[0]}, it's a proxy says $basename!"
+						'Hostname {hostname} is {ipList}, it\'s a proxy says {basename}!',
+						[
+							'hostname' => $hostname,
+							'ipList' => $ipList[0],
+							'basename' => $basename,
+						]
 					);
 					$found = true;
 					break;
