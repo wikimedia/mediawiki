@@ -61,6 +61,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
@@ -1516,6 +1517,16 @@ return [
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getHookContainer()
+		);
+	},
+
+	'_EditConstraintFactory' => function ( MediaWikiServices $services ) : EditConstraintFactory {
+		// This service is internal and currently only exists because a significant number
+		// of dependencies will be needed by different constraints. It is not part of
+		// the public interface and has no corresponding method in MediaWikiServices
+		return new EditConstraintFactory(
+			// SimpleAntiSpamConstraint
+			LoggerFactory::getInstance( 'SimpleAntiSpam' )
 		);
 	},
 
