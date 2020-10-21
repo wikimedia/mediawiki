@@ -20,8 +20,9 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Logger\Spi;
 use MediaWiki\User\UserIdentity;
-use Psr\Log\LoggerInterface;
 use Title;
 
 /**
@@ -33,8 +34,11 @@ use Title;
  */
 class EditConstraintFactory {
 
-	/** @var LoggerInterface */
-	private $simpleAntiSpamLogger;
+	/** @var Spi */
+	private $loggerFactory;
+
+	/** @var SpamChecker */
+	private $spamRegexChecker;
 
 	/**
 	 * Some constraints have dependencies that need to be injected,
@@ -42,14 +46,20 @@ class EditConstraintFactory {
 	 * that need dependencies injected.
 	 *
 	 * The checks in EditPage use wfDebugLog and logged to different channels, hence the need
-	 * for multiple loggers here. TODO can they be combined into the same channel?
+	 * for multiple loggers retrieved from the Spi. TODO can they be combined into the same channel?
 	 *
-	 * @param LoggerInterface $simpleAntiSpamLogger Logger needed by SimpleAntiSpamConstraint
+	 * @param Spi $loggerFactory
+	 * @param SpamChecker $spamRegexChecker Needed by SpamRegexConstraint
 	 */
 	public function __construct(
-		LoggerInterface $simpleAntiSpamLogger
+		Spi $loggerFactory,
+		SpamChecker $spamRegexChecker
 	) {
-		$this->simpleAntiSpamLogger = $simpleAntiSpamLogger;
+		// Multiple
+		$this->loggerFactory = $loggerFactory;
+
+		// SpamRegexConstraint
+		$this->spamRegexChecker = $spamRegexChecker;
 	}
 
 	/**
@@ -64,9 +74,35 @@ class EditConstraintFactory {
 		Title $title
 	) : SimpleAntiSpamConstraint {
 		return new SimpleAntiSpamConstraint(
-			$this->simpleAntiSpamLogger,
+			$this->loggerFactory->getLogger( 'SimpleAntiSpam' ),
 			$input,
 			$user,
+			$title
+		);
+	}
+
+	/**
+	 * @param string $summary
+	 * @param string $sectionHeading
+	 * @param string $text
+	 * @param string $reqIP
+	 * @param Title $title
+	 * @return SpamRegexConstraint
+	 */
+	public function newSpamRegexConstraint(
+		string $summary,
+		string $sectionHeading,
+		string $text,
+		string $reqIP,
+		Title $title
+	) : SpamRegexConstraint {
+		return new SpamRegexConstraint(
+			$this->loggerFactory->getLogger( 'SpamRegex' ),
+			$this->spamRegexChecker,
+			$summary,
+			$sectionHeading,
+			$text,
+			$reqIP,
 			$title
 		);
 	}
