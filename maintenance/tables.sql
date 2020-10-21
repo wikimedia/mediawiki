@@ -1191,17 +1191,6 @@ CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_pa
 CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 
 
--- Details of updates to cached special pages
-CREATE TABLE /*_*/querycache_info (
-  -- Special page name
-  -- Corresponds to a qc_type value
-  qci_type varbinary(32) NOT NULL default '' PRIMARY KEY,
-
-  -- Timestamp of last update
-  qci_timestamp binary(14) NOT NULL default '19700101000000'
-) /*$wgDBTableOptions*/;
-
-
 -- Protected titles - nonexistent pages that have been protected
 CREATE TABLE /*_*/protected_titles (
   pt_namespace int NOT NULL,

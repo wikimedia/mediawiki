@@ -767,6 +767,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'user_groups', 'ug_group', '' ],
 			[ 'renameIndex', 'user_groups', 'user_groups_group', 'ug_group' ],
 			[ 'renameIndex', 'user_groups', 'user_groups_expiry', 'ug_expiry' ],
+			[ 'setDefault', 'querycache_info', 'qci_type', '' ],
+			[ 'setDefault', 'querycache_info', 'qci_timestamp', '1970-01-01 00:00:00+00' ],
+			[ 'changeNullableField', 'querycache_info', 'qci_type', 'NOT NULL', true ],
+			[ 'changeNullableField', 'querycache_info', 'qci_timestamp', 'NOT NULL', true ],
+			[ 'addIndex', 'querycache_info', 'querycache_info_pkey', 'patch-querycache_info-pk.sql' ],
 		];
 	}
 

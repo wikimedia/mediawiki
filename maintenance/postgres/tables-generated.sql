@@ -340,3 +340,10 @@ CREATE TABLE user_groups (
 CREATE INDEX ug_group ON user_groups (ug_group);
 
 CREATE INDEX ug_expiry ON user_groups (ug_expiry);
+
+
+CREATE TABLE querycache_info (
+  qci_type TEXT DEFAULT '' NOT NULL,
+  qci_timestamp TIMESTAMPTZ DEFAULT '1970-01-01 00:00:00+00' NOT NULL,
+  PRIMARY KEY(qci_type)
+);

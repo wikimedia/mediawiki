@@ -428,11 +428,6 @@ CREATE TABLE interwiki (
 );
 
 
-CREATE TABLE querycache_info (
-  qci_type       TEXT              UNIQUE,
-  qci_timestamp  TIMESTAMPTZ NULL
-);
-
 CREATE TABLE objectcache (
   keyname  TEXT                   UNIQUE,
   value    BYTEA        NOT NULL  DEFAULT '',
