@@ -345,6 +345,10 @@ because of Phabricator reports.
    - findVariantLink
    - convertTitle
    - updateConversionTable
+   - commafy
+* The mw.language.commafy client-side method has been deprecated, to match
+  the deprecation of Language::commafy.  Use mw.language.convertNumber
+  instead.
 * …
 
 === Other changes in 1.36 ===

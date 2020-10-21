@@ -165,6 +165,43 @@
 	}
 
 	/**
+	 * Apply pattern to format value as a string.
+	 *
+	 * Using patterns from [Unicode TR35](https://www.unicode.org/reports/tr35/#Number_Format_Patterns).
+	 *
+	 * @param {number} value
+	 * @param {string} pattern Pattern string as described by Unicode TR35
+	 * @param {number|null} [minimumGroupingDigits=null]
+	 * @throws {Error} If unable to find a number expression in `pattern`.
+	 * @return {string}
+	 * @private
+	 */
+	function commafyInternal( value, pattern, minimumGroupingDigits ) {
+		var numberPattern,
+			transformTable = mw.language.getSeparatorTransformTable(),
+			group = transformTable[ ',' ] || ',',
+			numberPatternRE = /[#0,]*[#0](?:\.0*#*)?/, // not precise, but good enough
+			decimal = transformTable[ '.' ] || '.',
+			patternList = pattern.split( ';' ),
+			positivePattern = patternList[ 0 ];
+
+		pattern = patternList[ ( value < 0 ) ? 1 : 0 ] || ( '-' + positivePattern );
+		numberPattern = positivePattern.match( numberPatternRE );
+
+		minimumGroupingDigits = minimumGroupingDigits !== undefined ? minimumGroupingDigits : null;
+
+		if ( !numberPattern ) {
+			throw new Error( 'unable to find a number expression in pattern: ' + pattern );
+		}
+
+		return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[ 0 ], {
+			minimumGroupingDigits: minimumGroupingDigits,
+			decimal: decimal,
+			group: group
+		} ) );
+	}
+
+	/**
 	 * Helper function to flip transformation tables.
 	 *
 	 * @param {...Object} Transformation tables
@@ -226,7 +263,7 @@
 					'digitGroupingPattern' ) || '#,##0.###';
 				minimumGroupingDigits = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 					'minimumGroupingDigits' ) || null;
-				numberString = mw.language.commafy( num, pattern, minimumGroupingDigits );
+				numberString = commafyInternal( num, pattern, minimumGroupingDigits );
 			}
 
 			if ( transformTable ) {
@@ -268,43 +305,25 @@
 		getSeparatorTransformTable: function () {
 			return mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 				'separatorTransformTable' ) || [];
-		},
-
-		/**
-		 * Apply pattern to format value as a string.
-		 *
-		 * Using patterns from [Unicode TR35](https://www.unicode.org/reports/tr35/#Number_Format_Patterns).
-		 *
-		 * @param {number} value
-		 * @param {string} pattern Pattern string as described by Unicode TR35
-		 * @param {number|null} [minimumGroupingDigits=null]
-		 * @throws {Error} If unable to find a number expression in `pattern`.
-		 * @return {string}
-		 */
-		commafy: function ( value, pattern, minimumGroupingDigits ) {
-			var numberPattern,
-				transformTable = mw.language.getSeparatorTransformTable(),
-				group = transformTable[ ',' ] || ',',
-				numberPatternRE = /[#0,]*[#0](?:\.0*#*)?/, // not precise, but good enough
-				decimal = transformTable[ '.' ] || '.',
-				patternList = pattern.split( ';' ),
-				positivePattern = patternList[ 0 ];
-
-			pattern = patternList[ ( value < 0 ) ? 1 : 0 ] || ( '-' + positivePattern );
-			numberPattern = positivePattern.match( numberPatternRE );
-			minimumGroupingDigits = minimumGroupingDigits !== undefined ? minimumGroupingDigits : null;
-
-			if ( !numberPattern ) {
-				throw new Error( 'unable to find a number expression in pattern: ' + pattern );
-			}
-
-			return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[ 0 ], {
-				minimumGroupingDigits: minimumGroupingDigits,
-				decimal: decimal,
-				group: group
-			} ) );
 		}
 
 	} );
+
+	/**
+	 * Apply pattern to format value as a string.
+	 *
+	 * Using patterns from [Unicode TR35](https://www.unicode.org/reports/tr35/#Number_Format_Patterns).
+	 *
+	 * @method commafy
+	 * @deprecated This function will be made private in a future release;
+	 *   it is poorly named, corresponds to a deprecated function in core, and
+	 *   its functionality should be rolled into convertNumber().
+	 * @param {number} value
+	 * @param {string} pattern Pattern string as described by Unicode TR35
+	 * @param {number|null} [minimumGroupingDigits=null]
+	 * @throws {Error} If unable to find a number expression in `pattern`.
+	 * @return {string}
+	 */
+	mw.log.deprecate( mw.language, 'commafy', commafyInternal, 'Use mw.language.convertNumber instead', 'mw.language.commafy' );
 
 }() );

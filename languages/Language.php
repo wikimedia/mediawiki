@@ -3425,6 +3425,7 @@ class Language {
 	 * @return string
 	 */
 	public function commafy( $number ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		// Validate the input argument.
 		if ( $number === null || $number === '' ) {
 			return '';

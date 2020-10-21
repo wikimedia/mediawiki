@@ -64,6 +64,12 @@
 		assert.strictEqual( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit with minimumGroupingDigits=2' );
 		assert.strictEqual( mw.language.convertNumber( 1800 ), '1800', 'formatting 4-digit with minimumGroupingDigits=2' );
 		assert.strictEqual( mw.language.convertNumber( 18000 ), '18.000', 'formatting 5-digit with minimumGroupingDigits=2' );
+
+		mw.language.setData( 'en', 'minimumGroupingDigits', 3 );
+		assert.strictEqual( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 1800 ), '1800', 'formatting 4-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 18000 ), '18000', 'formatting 5-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 180000 ), '180.000', 'formatting 6-digit with minimumGroupingDigits=3' );
 	} );
 
 	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {

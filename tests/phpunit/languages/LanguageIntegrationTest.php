@@ -1762,6 +1762,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideCommafyData
 	 */
 	public function testCommafy( $number, $numbersWithCommas ) {
+		$this->hideDeprecated( 'Language::commafy' );
 		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
 		$this->assertEquals(
 			$numbersWithCommas,
