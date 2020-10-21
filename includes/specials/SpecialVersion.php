@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\ExtensionInfo;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -48,8 +47,15 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected static $extensionTypes = false;
 
-	public function __construct() {
+	/** @var Parser */
+	private $parser;
+
+	/**
+	 * @param Parser $parser
+	 */
+	public function __construct( Parser $parser ) {
 		parent::__construct( 'Version' );
+		$this->parser = $parser;
 	}
 
 	/**
@@ -630,7 +636,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserTags() {
-		$tags = MediaWikiServices::getInstance()->getParser()->getTags();
+		$tags = $this->parser->getTags();
 
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
@@ -672,7 +678,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserFunctionHooks() {
-		$fhooks = MediaWikiServices::getInstance()->getParser()->getFunctionHooks();
+		$fhooks = $this->parser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
 			$out = Html::rawElement(
 				'h2',
