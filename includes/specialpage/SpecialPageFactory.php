@@ -478,8 +478,19 @@ class SpecialPageFactory {
 
 		// Page tools
 		'ComparePages' => \SpecialComparePages::class,
-		'Export' => \SpecialExport::class,
-		'Import' => \SpecialImport::class,
+		'Export' => [
+			'class' => \SpecialExport::class,
+			'services' => [
+				'PermissionManager',
+				'DBLoadBalancer',
+			]
+		],
+		'Import' => [
+			'class' => \SpecialImport::class,
+			'services' => [
+				'PermissionManager',
+			]
+		],
 		'Undelete' => [
 			'class' => \SpecialUndelete::class,
 			'services' => [
