@@ -23,6 +23,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\TextboxBuilder;
@@ -2068,7 +2069,7 @@ ERROR;
 			$status = Status::wrap( $statusValue );
 			return $status;
 		}
-		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 		try {
 			# Construct Content object
@@ -2095,34 +2096,47 @@ ERROR;
 				return $status;
 		}
 
-		# Check for spam
-		$spamRegexChecker = MediaWikiServices::getInstance()->getSpamChecker();
-		$match = $spamRegexChecker->checkSummary( $this->summary );
-		if ( $match === false && $this->section == 'new' ) {
-			# $wgSpamRegex is enforced on this new heading/summary because, unlike
-			# regular summaries, it is added to the actual wikitext.
-			if ( $this->sectiontitle !== '' ) {
-				# This branch is taken when the API is used with the 'sectiontitle' parameter.
-				$match = $spamRegexChecker->checkContent( $this->sectiontitle );
-			} else {
-				# This branch is taken when the "Add Topic" user interface is used, or the API
-				# is used with the 'summary' parameter.
-				$match = $spamRegexChecker->checkContent( $this->summary );
+		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+		// Create a new runner to avoid rechecking the prior constraints, use the same factory
+		$constraintRunner = new EditConstraintRunner();
+
+		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
+		if ( $this->section == 'new' ) {
+			// $wgSpamRegex is enforced on this new heading/summary because, unlike
+			// regular summaries, it is added to the actual wikitext.
+			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
+			// the summary is used which comes from the API `summary` parameter or the
+			// "Add Topic" user interface
+			$sectionHeadingToCheck = ( $this->sectiontitle !== '' ? $this->sectiontitle : $this->summary );
+		} else {
+			// No section heading to check
+			$sectionHeadingToCheck = '';
+		}
+
+		$constraintRunner->addConstraint(
+			$constraintFactory->newSpamRegexConstraint(
+				$this->summary,
+				$sectionHeadingToCheck,
+				$this->textbox1,
+				$this->context->getRequest()->getIP(),
+				$this->mTitle
+			)
+		);
+
+		// Check the constraints
+		if ( $constraintRunner->checkConstraints() === false ) {
+			$failed = $constraintRunner->getFailedConstraint();
+
+			if ( $failed instanceof SpamRegexConstraint ) {
+				$result['spam'] = $failed->getMatch();
 			}
-		}
-		if ( $match === false ) {
-			$match = $spamRegexChecker->checkContent( $this->textbox1 );
-		}
-		if ( $match !== false ) {
-			$result['spam'] = $match;
-			$ip = $this->context->getRequest()->getIP();
-			$pdbk = $this->mTitle->getPrefixedDBkey();
-			$match = str_replace( "\n", '', $match );
-			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
-			$status->fatal( 'spamprotectionmatch', $match );
-			$status->value = self::AS_SPAM_ERROR;
+
+			$statusValue = $failed->getLegacyStatus();
+			$status = Status::wrap( $statusValue );
 			return $status;
 		}
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
+
 		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
 			$this->hookError, $this->summary )
 		) {

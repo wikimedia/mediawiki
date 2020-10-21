@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -443,6 +444,28 @@ class EditPageTest extends MediaWikiLangTestCase {
 		];
 		$this->assertEdit( 'EditPageTest_testUpdatePage', "zero", null, $edit,
 			EditPage::AS_SPAM_ERROR, null, "expected AS_SPAM_ERROR update" );
+	}
+
+	/**
+	 * @covers EditPage::internalAttemptSave
+	 */
+	public function testUpdatePageSpamRegexError() {
+		$spamChecker = $this->createMock( SpamChecker::class );
+		$spamChecker->method( 'checkContent' )
+			->will( $this->returnArgument( 0 ) );
+		$spamChecker->method( 'checkSummary' )
+			->will( $this->returnArgument( 0 ) );
+		$this->setService( 'SpamChecker', $spamChecker );
+
+		// SpamRegexConstraint
+		$edit = [
+			'wpTextBox1' => 'two',
+			'wpSummary' => 'spam summary'
+		];
+		$this->assertEdit(
+			'EditPageTest_testUpdatePage', 'zero', null, $edit,
+			EditPage::AS_SPAM_ERROR, null, 'expected AS_SPAM_ERROR update'
+		);
 	}
 
 	/**
