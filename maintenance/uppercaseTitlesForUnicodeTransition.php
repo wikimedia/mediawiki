@@ -305,8 +305,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		if ( $this->isUserPage( $db, $newTitle->getNamespace(), $newTitle->getText() ) ) {
 			$munge = 'Target title\'s user exists';
 		} else {
-			$mp = new MovePage( $oldTitle, $newTitle );
-			$status = $mp->isValidMove();
+			$mpFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+			$status = $mpFactory->newMovePage( $oldTitle, $newTitle )->isValidMove();
 			if ( !$status->isOK() && (
 				$status->hasMessage( 'articleexists' ) || $status->hasMessage( 'redirectexists' ) ) ) {
 				$munge = 'Target title exists';
@@ -386,8 +386,9 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		$mp = new MovePage( $oldTitle, $newTitle );
-		$status = $mp->isValidMove();
+		$mpFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+		$movePage = $mpFactory->newMovePage( $oldTitle, $newTitle );
+		$status = $movePage->isValidMove();
 		if ( !$status->isOK() ) {
 			$this->error(
 				"Invalid move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}: "
@@ -408,7 +409,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return true;
 		}
 
-		$status = $mp->move( $this->user, $this->reason, false, $this->tags );
+		$status = $movePage->move( $this->user, $this->reason, false, $this->tags );
 		if ( !$status->isOK() ) {
 			$this->error(
 				"Move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()} failed: "
