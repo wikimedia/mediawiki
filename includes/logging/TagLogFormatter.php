@@ -50,7 +50,7 @@ class TagLogFormatter extends LogFormatter {
 			];
 		}
 
-		$formattedNumber = $this->context->getLanguage()->formatNum( $id, true );
+		$formattedNumber = $this->context->getLanguage()->formatNumNoSeparators( $id );
 		if ( $this->plaintext ) {
 			$link = $formattedNumber;
 		} elseif ( !$isRevLink || $target->exists() ) {
