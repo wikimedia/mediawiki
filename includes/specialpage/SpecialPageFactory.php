@@ -473,10 +473,33 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Randompage' => \RandomPage::class,
-		'RandomInCategory' => \SpecialRandomInCategory::class,
-		'Randomredirect' => \SpecialRandomredirect::class,
-		'Randomrootpage' => \SpecialRandomrootpage::class,
+		'Randompage' => [
+			'class' => \RandomPage::class,
+			'services' => [
+				'DBLoadBalancer',
+				'NamespaceInfo',
+			]
+		],
+		'RandomInCategory' => [
+			'class' => \SpecialRandomInCategory::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Randomredirect' => [
+			'class' => \SpecialRandomredirect::class,
+			'services' => [
+				'DBLoadBalancer',
+				'NamespaceInfo',
+			]
+		],
+		'Randomrootpage' => [
+			'class' => \SpecialRandomrootpage::class,
+			'services' => [
+				'DBLoadBalancer',
+				'NamespaceInfo',
+			]
+		],
 		'GoToInterwiki' => \SpecialGoToInterwiki::class,
 
 		// High use pages

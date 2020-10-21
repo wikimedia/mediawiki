@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Implements Special:Randomrootpage
  *
@@ -26,9 +28,17 @@
 
 class SpecialRandomrootpage extends RandomPage {
 
-	public function __construct() {
-		parent::__construct( 'Randomrootpage' );
-		$dbr = wfGetDB( DB_REPLICA );
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $nsInfo
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $nsInfo
+	) {
+		parent::__construct( $loadBalancer, $nsInfo );
+		$this->mName = 'Randomrootpage';
+		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$this->extra[] = 'page_title NOT ' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 	}
 
