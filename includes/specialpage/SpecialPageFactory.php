@@ -333,6 +333,7 @@ class SpecialPageFactory {
 				'ActorMigration',
 				'DBLoadBalancer',
 				'ContentLanguage',
+				'UserCache',
 			]
 		],
 		'Log' => \SpecialLog::class,
@@ -371,6 +372,7 @@ class SpecialPageFactory {
 				'ActorMigration',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'UserCache',
 			]
 		],
 		'Filepath' => \SpecialFilepath::class,
