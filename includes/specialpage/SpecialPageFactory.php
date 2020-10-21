@@ -159,7 +159,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Uncategorizedimages' => \SpecialUncategorizedImages::class,
+		'Uncategorizedimages' => [
+			'class' => \SpecialUncategorizedImages::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Uncategorizedpages' => [
 			'class' => \SpecialUncategorizedPages::class,
 			'services' => [
@@ -176,9 +181,24 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Unusedcategories' => \SpecialUnusedCategories::class,
-		'Unusedimages' => \SpecialUnusedImages::class,
-		'Unusedtemplates' => \SpecialUnusedTemplates::class,
+		'Unusedcategories' => [
+			'class' => \SpecialUnusedCategories::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Unusedimages' => [
+			'class' => \SpecialUnusedImages::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Unusedtemplates' => [
+			'class' => \SpecialUnusedTemplates::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Unwatchedpages' => [
 			'class' => \SpecialUnwatchedPages::class,
 			'services' => [
@@ -186,7 +206,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Wantedcategories' => \SpecialWantedCategories::class,
+		'Wantedcategories' => [
+			'class' => \SpecialWantedCategories::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Wantedfiles' => [
 			'class' => \WantedFilesPage::class,
 			'services' => [
@@ -200,7 +225,12 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Wantedtemplates' => \SpecialWantedTemplates::class,
+		'Wantedtemplates' => [
+			'class' => \SpecialWantedTemplates::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 
 		// List of pages
 		'Allpages' => \SpecialAllPages::class,
@@ -438,7 +468,12 @@ class SpecialPageFactory {
 				'RepoGroup',
 			]
 		],
-		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
+		'ListDuplicatedFiles' => [
+			'class' => \SpecialListDuplicatedFiles::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 
 		// Data and tools
 		'ApiSandbox' => [
@@ -487,8 +522,18 @@ class SpecialPageFactory {
 		'GoToInterwiki' => \SpecialGoToInterwiki::class,
 
 		// High use pages
-		'Mostlinkedcategories' => \SpecialMostLinkedCategories::class,
-		'Mostimages' => \MostimagesPage::class,
+		'Mostlinkedcategories' => [
+			'class' => \SpecialMostLinkedCategories::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Mostimages' => [
+			'class' => \MostimagesPage::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Mostinterwikis' => [
 			'class' => \SpecialMostInterwikis::class,
 			'services' => [
@@ -496,8 +541,18 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Mostlinked' => \SpecialMostLinked::class,
-		'Mostlinkedtemplates' => \SpecialMostLinkedTemplates::class,
+		'Mostlinked' => [
+			'class' => \SpecialMostLinked::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Mostlinkedtemplates' => [
+			'class' => \SpecialMostLinkedTemplates::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
 		'Mostcategories' => [
 			'class' => \SpecialMostCategories::class,
 			'services' => [
