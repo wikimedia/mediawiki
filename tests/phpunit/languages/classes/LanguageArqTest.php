@@ -20,7 +20,7 @@ class LanguageArqTest extends LanguageClassesTestCase {
 		return [
 			[ '1234567', '1.234.567' ],
 			[ '1234567.568', '1.234.567,568' ],
-			[ '-12.89', '-12,89' ]
+			[ '-12.89', '−12,89' ]
 		];
 	}
 
