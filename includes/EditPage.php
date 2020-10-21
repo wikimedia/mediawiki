@@ -2288,6 +2288,7 @@ ERROR;
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}" );
 			wfDebug( "revision: {$latest}, editRevId: {$this->editRevId}" );
 
+			$editConflictLogger = LoggerFactory::getInstance( 'EditConflict' );
 			// An edit conflict is detected if the current revision is different from the
 			// revision that was current when editing was initiated on the client.
 			// This is checked based on the timestamp and revision ID.
@@ -2303,12 +2304,13 @@ ERROR;
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
 						// a timeout but the first one actually went through.
-						wfDebug( __METHOD__
-							. ": duplicate new section submission; trigger edit conflict!" );
+						$editConflictLogger->debug(
+							'Duplicate new section submission; trigger edit conflict!'
+						);
 					} else {
 						// New comment; suppress conflict.
 						$this->isConflict = false;
-						wfDebug( __METHOD__ . ": conflict suppressed; new section" );
+						$editConflictLogger->debug( 'Conflict suppressed; new section' );
 					}
 				} elseif ( $this->section == ''
 					&& $this->edittime
@@ -2320,7 +2322,7 @@ ERROR;
 					)
 				) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user." );
+					$editConflictLogger->debug( 'Suppressing edit conflict, same user.' );
 					$this->isConflict = false;
 				}
 			}
@@ -2336,9 +2338,16 @@ ERROR;
 			$content = null;
 
 			if ( $this->isConflict ) {
-				wfDebug( __METHOD__
-					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
-					. " (id '{$this->editRevId}') (article time '{$timestamp}')" );
+				$editConflictLogger->debug(
+					'Conflict! Getting section {section} for time {editTime}'
+					. ' (id {editRevId}, article time {timestamp})',
+					[
+						'section' => $this->section,
+						'editTime' => $this->edittime,
+						'editRevId' => $this->editRevId,
+						'timestamp' => $timestamp,
+					]
+				);
 				// @TODO: replaceSectionAtRev() with base ID (not prior current) for ?oldid=X case
 				// ...or disable section editing for non-current revisions (not exposed anyway).
 				if ( $this->editRevId !== null ) {
@@ -2357,7 +2366,10 @@ ERROR;
 					);
 				}
 			} else {
-				wfDebug( __METHOD__ . ": getting section '{$this->section}'" );
+				$editConflictLogger->debug(
+					'Getting section {section}',
+					[ 'section' => $this->section ]
+				);
 				$content = $this->page->replaceSectionContent(
 					$this->section,
 					$textbox_content,
@@ -2366,7 +2378,7 @@ ERROR;
 			}
 
 			if ( $content === null ) {
-				wfDebug( __METHOD__ . ": activating conflict; section replace failed." );
+				$editConflictLogger->debug( 'Activating conflict; section replace failed.' );
 				$this->isConflict = true;
 				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
@@ -2374,11 +2386,11 @@ ERROR;
 				if ( $this->mergeChangesIntoContent( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge." );
+					$editConflictLogger->debug( 'Suppressing edit conflict, successful merge.' );
 				} else {
 					$this->section = '';
 					$this->textbox1 = ContentHandler::getContentText( $content );
-					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge." );
+					$editConflictLogger->debug( 'Keeping edit conflict, failed merge.' );
 				}
 			}
 

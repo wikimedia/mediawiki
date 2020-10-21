@@ -326,3 +326,10 @@ CREATE TABLE /*_*/user_groups (
 CREATE INDEX ug_group ON /*_*/user_groups (ug_group);
 
 CREATE INDEX ug_expiry ON /*_*/user_groups (ug_expiry);
+
+
+CREATE TABLE /*_*/querycache_info (
+  qci_type BLOB DEFAULT '' NOT NULL,
+  qci_timestamp BLOB DEFAULT '19700101000000' NOT NULL,
+  PRIMARY KEY(qci_type)
+);

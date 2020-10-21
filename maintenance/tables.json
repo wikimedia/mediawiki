@@ -1003,5 +1003,25 @@
 			{ "name": "ug_expiry", "columns": [ "ug_expiry" ], "unique": false }
 		],
 		"pk": [ "ug_user", "ug_group"]
+	},
+	{
+		"name": "querycache_info",
+		"comment": "Details of updates to cached special pages",
+		"columns": [
+			{
+				"name": "qci_type",
+				"comment": "Special page name. Corresponds to a qc_type value",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "" }
+			},
+			{
+				"name": "qci_timestamp",
+				"comment": "Timestamp of last update",
+				"type": "mwtimestamp",
+				"options": { "length": 14, "notnull": true, "default": "19700101000000" }
+			}
+		],
+		"indexes": [],
+		"pk": [ "qci_type" ]
 	}
 ]
