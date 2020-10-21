@@ -510,7 +510,12 @@ class ParserCache {
 
 			$msg = "Saved in parser cache with key $parserOutputKey" .
 				" and timestamp $cacheTime" .
-				" and revision id $revId";
+				" and revision id $revId.";
+			if ( $this->writeJson ) {
+				$msg .= " Serialized with JSON.";
+			} else {
+				$msg .= " Serialized with PHP.";
+			}
 			$parserOutput->addCacheMessage( $msg );
 
 			$pageKey = $this->makeMetadataKey( $wikiPage );
