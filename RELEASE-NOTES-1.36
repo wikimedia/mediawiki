@@ -219,6 +219,8 @@ because of Phabricator reports.
 * mw.Title.getDotExtension() from the 'mediawiki.Title' module was removed
   without deprecation. You should use mw.Title.getExtension() and prepend
   the dot if need be.
+* Profiler::getTemplated and Profiler::setTemplated, deprecated in 1.34,
+  have been removed.
 * Removed HookContainer::getOriginalHooksForTest() without deprecation.
   This method was introduced in 1.35 for internal use, and appears unused
   outside of MediaWiki core.
