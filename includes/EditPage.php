@@ -2085,17 +2085,6 @@ ERROR;
 			return $status;
 		}
 
-		# Check image redirect
-		if ( $this->mTitle->getNamespace() === NS_FILE &&
-			$textbox_content->isRedirect() &&
-			!$this->permManager->userHasRight( $user, 'upload' )
-		) {
-				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
-				$status->setResult( false, $code );
-
-				return $status;
-		}
-
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
@@ -2151,6 +2140,17 @@ ERROR;
 			return $status;
 		}
 
+		// Permission checks (image redirect, user block, `edit` rights, content model change)
+		if ( $this->mTitle->getNamespace() === NS_FILE &&
+			$textbox_content->isRedirect() &&
+			!$this->permManager->userHasRight( $user, 'upload' )
+		) {
+				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
+				$status->setResult( false, $code );
+
+				return $status;
+		}
+
 		if ( $this->permManager->isBlockedFrom( $user, $this->mTitle ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
@@ -2158,16 +2158,6 @@ ERROR;
 			}
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			return $status;
-		}
-
-		$this->contentLength = strlen( $this->textbox1 );
-		$config = $this->context->getConfig();
-		$maxArticleSize = $config->get( 'MaxArticleSize' );
-		if ( $this->contentLength > $maxArticleSize * 1024 ) {
-			// Error will be displayed by showEditForm()
-			$this->tooBig = true;
-			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
 			return $status;
 		}
 
@@ -2209,6 +2199,16 @@ ERROR;
 
 			$changingContentModel = true;
 			$oldContentModel = $this->mTitle->getContentModel();
+		}
+
+		$this->contentLength = strlen( $this->textbox1 );
+		$config = $this->context->getConfig();
+		$maxArticleSize = $config->get( 'MaxArticleSize' );
+		if ( $this->contentLength > $maxArticleSize * 1024 ) {
+			// Error will be displayed by showEditForm()
+			$this->tooBig = true;
+			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
+			return $status;
 		}
 
 		if ( $this->changeTags ) {
