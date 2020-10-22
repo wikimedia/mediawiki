@@ -90,9 +90,22 @@
 	tab-size: 4;
 }
 
+.mw-apisandbox-help-field,
+.mw-apisandbox-widget-field {
+	max-width: 70em;
+}
+
 .mw-apisandbox-widget-field .oo-ui-textInputWidget {
 	/* Leave at least enough space for icon, indicator, and a sliver of text */
 	min-width: 6em;
+}
+
+.mw-apisandbox-widget-field.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+	width: 30%;
+}
+
+.mw-apisandbox-widget-field.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+	width: 70%;
 }
 
 /* stylelint-disable selector-class-pattern */
