@@ -365,3 +365,35 @@ CREATE INDEX namespace_title ON watchlist (wl_namespace, wl_title);
 CREATE INDEX wl_user_notificationtimestamp ON watchlist (
   wl_user, wl_notificationtimestamp
 );
+
+
+CREATE TABLE sites (
+  site_id SERIAL NOT NULL,
+  site_global_key TEXT NOT NULL,
+  site_type TEXT NOT NULL,
+  site_group TEXT NOT NULL,
+  site_source TEXT NOT NULL,
+  site_language TEXT NOT NULL,
+  site_protocol TEXT NOT NULL,
+  site_domain VARCHAR(255) NOT NULL,
+  site_data TEXT NOT NULL,
+  site_forward SMALLINT NOT NULL,
+  site_config TEXT NOT NULL,
+  PRIMARY KEY(site_id)
+);
+
+CREATE UNIQUE INDEX sites_global_key ON sites (site_global_key);
+
+CREATE INDEX sites_type ON sites (site_type);
+
+CREATE INDEX sites_group ON sites (site_group);
+
+CREATE INDEX sites_source ON sites (site_source);
+
+CREATE INDEX sites_language ON sites (site_language);
+
+CREATE INDEX sites_protocol ON sites (site_protocol);
+
+CREATE INDEX sites_domain ON sites (site_domain);
+
+CREATE INDEX sites_forward ON sites (site_forward);
