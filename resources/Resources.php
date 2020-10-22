@@ -1804,7 +1804,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox' => [
-		'styles' => 'resources/src/mediawiki.special.apisandbox/apisandbox.css',
+		'styles' => 'resources/src/mediawiki.special.apisandbox/apisandbox.less',
 		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
