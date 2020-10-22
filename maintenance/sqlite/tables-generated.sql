@@ -380,3 +380,13 @@ CREATE INDEX sites_protocol ON /*_*/sites (site_protocol);
 CREATE INDEX sites_domain ON /*_*/sites (site_domain);
 
 CREATE INDEX sites_forward ON /*_*/sites (site_forward);
+
+
+CREATE TABLE /*_*/user_newtalk (
+  user_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  user_ip BLOB DEFAULT '' NOT NULL, user_last_timestamp BLOB DEFAULT NULL
+);
+
+CREATE INDEX un_user_id ON /*_*/user_newtalk (user_id);
+
+CREATE INDEX un_user_ip ON /*_*/user_newtalk (user_id);

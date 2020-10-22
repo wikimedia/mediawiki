@@ -792,6 +792,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'sites', 'site_protocol', 'sites_protocol' ],
 			[ 'renameIndex', 'sites', 'site_domain', 'sites_domain' ],
 			[ 'renameIndex', 'sites', 'site_forward', 'sites_forward' ],
+			[ 'dropFkey', 'user_newtalk', 'user_id ' ],
+			[ 'renameIndex', 'user_newtalk', 'user_newtalk_id', 'un_user_id' ],
+			[ 'renameIndex', 'user_newtalk', 'user_newtalk_ip', 'un_user_ip' ],
 		];
 	}
 

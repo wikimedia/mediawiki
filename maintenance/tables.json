@@ -1158,5 +1158,34 @@
 			{ "name": "sites_forward", "columns": [ "site_forward" ], "unique": false }
 		],
 		"pk": [ "site_id" ]
+	},
+	{
+		"name": "user_newtalk",
+		"comment": "Stores notifications of user talk page changes, for the display of the 'you have new messages' box",
+		"columns": [
+			{
+				"name": "user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "user_ip",
+				"comment": "If the user is an anonymous user their IP address is stored here since the user_id of 0 is ambiguous",
+				"type": "binary",
+				"options": { "length": 40, "notnull": true, "default": "" }
+			},
+			{
+				"name": "user_last_timestamp",
+				"comment": "The highest timestamp of revisions of the talk page viewed by this user",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "un_user_id", "columns": [ "user_id" ], "unique": false },
+			{ "name": "un_user_ip", "columns": [ "user_id" ], "unique": false }
+		],
+		"pk": []
 	}
+
 ]

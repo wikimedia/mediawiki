@@ -139,27 +139,6 @@ CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);
 CREATE INDEX /*i*/user_email_token ON /*_*/user (user_email_token);
 CREATE INDEX /*i*/user_email ON /*_*/user (user_email(50));
 
-
---
--- Stores notifications of user talk page changes, for the display
--- of the "you have new messages" box
---
-CREATE TABLE /*_*/user_newtalk (
-  -- Key to user.user_id
-  user_id int unsigned NOT NULL default 0,
-  -- If the user is an anonymous user their IP address is stored here
-  -- since the user_id of 0 is ambiguous
-  user_ip varbinary(40) NOT NULL default '',
-  -- The highest timestamp of revisions of the talk page viewed
-  -- by this user
-  user_last_timestamp varbinary(14) NULL default NULL
-) /*$wgDBTableOptions*/;
-
--- Indexes renamed for SQLite in 1.14
-CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
-CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
-
-
 --
 -- Core of the wiki: each page has an entry here which identifies
 -- it by title and contains some essential metadata.
