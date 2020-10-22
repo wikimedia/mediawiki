@@ -1,0 +1,10 @@
+--- TextExtracts.old/includes/ApiQueryExtracts.php	2020-06-05 08:51:12.143321552 +0200
++++ TextExtracts/includes/ApiQueryExtracts.php	2020-07-31 13:58:21.708317273 +0200
+@@ -88,6 +88,7 @@
+ 			|| $this->getMain()->getPrinter()->getFormat() == 'XML';
+ 		$result = $this->getResult();
+ 		$params = $this->params = $this->extractRequestParams();
++		$params['intro'] = $this->params['intro'] = false;
+ 		$this->requireMaxOneParameter( $params, 'chars', 'sentences' );
+ 		$continue = 0;
+ 		$limit = intval( $params['limit'] );

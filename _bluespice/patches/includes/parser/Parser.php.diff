@@ -1,0 +1,16 @@
+diff --git a/includes/parser/Parser.php b/includes/parser/Parser.php
+index eb5be140a0..1ac1424311 100644
+--- a/includes/parser/Parser.php
++++ b/includes/parser/Parser.php
+@@ -949,9 +949,9 @@ class Parser {
+ 	}
+ 
+ 	/**
+-	 * @return Title
++	 * @return Title|null
+ 	 */
+-	public function getTitle() : Title {
++	public function getTitle() : ?Title {
+ 		return $this->mTitle;
+ 	}
+ 
