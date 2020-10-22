@@ -2418,7 +2418,7 @@
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|a modificat}} modelul de conținut al paginii $3 din „$4” în „$5”",
 	"logentry-contentmodel-change-revertlink": "revenire",
 	"logentry-contentmodel-change-revert": "revenire",
-	"protectlogpage": "Jurnal protecții",
+	"protectlogpage": "Jurnal protejări",
 	"protectlogtext": "Mai jos se află o listă cu schimbări în ceea ce privește protejarea paginilor.\nConsultați [[Special:ProtectedPages|indexul paginilor protejate]] pentru o listă cu protecțiile în vigoare.",
 	"protectedarticle": "a protejat „[[$1]]”",
 	"modifiedarticleprotection": "schimbat nivelul de protecție pentru \"[[$1]]\"",

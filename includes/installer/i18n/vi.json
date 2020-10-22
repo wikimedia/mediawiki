@@ -264,6 +264,7 @@
 	"config-install-user-grant-failed": "Thất bại khi cấp quyền cho người dùng “$1”: $2",
 	"config-install-user-missing": "Người dùng chỉ định “$1” không tồn tại.",
 	"config-install-user-missing-create": "Người dùng chỉ định “$1” không tồn tại.\nKiểm hộp “mở tài khoản” ở dưới để tạo ra nó.",
+	"config-install-logo-blank": "Hãy nhập URL biểu trưng hợp lệ.",
 	"config-install-restore-services": "Đang phục hồi các dịch vụ MediaWiki",
 	"config-install-tables": "Đang tạo các bảng, bước đầu",
 	"config-install-tables-exist": "'''Cảnh báo:''' Các bảng MediaWiki hình như đã tồn tại.\nĐã bỏ qua việc tạo ra các bảng.",
