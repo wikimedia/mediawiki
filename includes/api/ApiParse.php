@@ -356,9 +356,13 @@ class ApiParse extends ApiBase {
 			// - Hook: LanguageLinks
 			// - Hook: OutputPageParserOutput
 			// - Hook: OutputPageMakeCategoryLinks
+			// - Hook: OutputPageBeforeHTML
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
 			$context->setWikiPage( $pageObj );
+			// Some hooks only apply to pages when action=view, which this API
+			// call is simulating.
+			$context->setRequest( new FauxRequest( [ 'action' => 'view' ] ) );
 
 			if ( $skin ) {
 				// Use the skin specified by 'useskin'
@@ -404,6 +408,9 @@ class ApiParse extends ApiBase {
 				'skin' => $context ? $context->getSkin() : null,
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
+			if ( $context ) {
+				Hooks::run( 'OutputPageBeforeHTML', [ $context->getOutput(), &$result_array['text'] ] );
+			}
 		}
 
 		if ( $params['summary'] !== null ||
