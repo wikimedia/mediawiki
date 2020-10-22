@@ -142,8 +142,8 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function getModuleProvider() {
 		$modules = [
-			'feedrecentchanges' => ApiFeedRecentChanges::class,
-			'feedcontributions' => [ 'class' => ApiFeedContributions::class ],
+			'disabled' => ApiDisabled::class,
+			'disabled2' => [ 'class' => ApiDisabled::class ],
 			'login' => [
 				'class' => ApiLogin::class,
 				'factory' => [ $this, 'newApiLogin' ],
@@ -159,14 +159,14 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 		return [
 			'legacy entry' => [
 				$modules,
-				'feedrecentchanges',
-				ApiFeedRecentChanges::class,
+				'disabled',
+				ApiDisabled::class,
 			],
 
 			'just a class' => [
 				$modules,
-				'feedcontributions',
-				ApiFeedContributions::class,
+				'disabled2',
+				ApiDisabled::class,
 			],
 
 			'with factory' => [
