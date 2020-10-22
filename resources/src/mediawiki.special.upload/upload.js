@@ -51,7 +51,8 @@
 			} ).done( function ( result ) {
 				var
 					resultOut = '',
-					page = result.query.pages[ 0 ];
+					page = result && result.query && result.query.pages && result.query.pages.length ?
+						result.query.pages[ 0 ] : {};
 				if ( page.imageinfo ) {
 					resultOut = page.imageinfo[ 0 ].html;
 				} else if ( page.invalidreason ) {
@@ -164,8 +165,10 @@
 			);
 		}
 
-		// fillDestFile setup
-		mw.config.get( 'wgUploadSourceIds' ).forEach( function ( sourceId ) {
+		// fillDestFile setup. Note if the upload wiki does not allow uploads,
+		// e.g. Polish Wikipedia -  this code still runs amnd this will be undefined,
+		// so fallback to empty array.
+		mw.config.get( 'wgUploadSourceIds', [] ).forEach( function ( sourceId ) {
 			$( '#' + sourceId ).on( 'change', function () {
 				var path, slash, backslash, fname;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
@@ -215,8 +218,8 @@
 
 				// Replace spaces by underscores
 				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed
-				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
+				// Capitalise first letter if needed. Note fname may be empty string.
+				if ( fname && mw.config.get( 'wgCapitalizeUploads' ) ) {
 					fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
 				}
 
