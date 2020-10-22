@@ -19,8 +19,10 @@
  */
 
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\Throttler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
+use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -62,7 +64,7 @@ class BotPassword implements IDBAccessObject {
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */
-	protected function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
+	private function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
 		$this->isSaved = $isSaved;
 		$this->flags = $flags;
 
@@ -134,13 +136,17 @@ class BotPassword implements IDBAccessObject {
 	 *  - user: (User) User object to create the password for. Overrides username and centralId.
 	 *  - username: (string) Username to create the password for. Overrides centralId.
 	 *  - centralId: (int) User central ID to create the password for.
-	 *  - appId: (string) App ID for the password.
+	 *  - appId: (string, required) App ID for the password.
 	 *  - restrictions: (MWRestrictions, optional) Restrictions.
 	 *  - grants: (string[], optional) Grants.
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
 	public static function newUnsaved( array $data, $flags = self::READ_NORMAL ) {
+		if ( isset( $data['user'] ) && ( !$data['user'] instanceof User ) ) {
+			return null;
+		}
+
 		$row = (object)[
 			'bp_user' => 0,
 			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
@@ -150,7 +156,8 @@ class BotPassword implements IDBAccessObject {
 		];
 
 		if (
-			$row->bp_app_id === '' || strlen( $row->bp_app_id ) > self::APPID_MAXLENGTH ||
+			$row->bp_app_id === '' ||
+			strlen( $row->bp_app_id ) > self::APPID_MAXLENGTH ||
 			!$row->bp_restrictions instanceof MWRestrictions ||
 			!is_array( $row->bp_grants )
 		) {
@@ -161,9 +168,7 @@ class BotPassword implements IDBAccessObject {
 		$row->bp_grants = FormatJson::encode( $row->bp_grants );
 
 		if ( isset( $data['user'] ) ) {
-			if ( !$data['user'] instanceof User ) {
-				return null;
-			}
+			// Must be a User object, already checked above
 			$row->bp_user = CentralIdLookup::factory()->centralIdFromLocalUser(
 				$data['user'], CentralIdLookup::AUDIENCE_RAW, $flags
 			);
@@ -242,7 +247,7 @@ class BotPassword implements IDBAccessObject {
 	 * Get the password
 	 * @return Password
 	 */
-	protected function getPassword() {
+	private function getPassword() {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->flags );
 		$db = self::getDB( $index );
 		$password = $db->selectField(
@@ -280,6 +285,11 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function save( $operation, Password $password = null ) {
+		// Ensure operation is valid
+		if ( $operation !== 'insert' && $operation !== 'update' ) {
+			return false;
+		}
+
 		$conds = [
 			'bp_user' => $this->centralId,
 			'bp_app_id' => $this->appId,
@@ -297,18 +307,13 @@ class BotPassword implements IDBAccessObject {
 		}
 
 		$dbw = self::getDB( DB_MASTER );
-		switch ( $operation ) {
-			case 'insert':
-				$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
-				break;
-
-			case 'update':
-				$dbw->update( 'bot_passwords', $fields, $conds, __METHOD__ );
-				break;
-
-			default:
-				return false;
+		if ( $operation === 'insert' ) {
+			$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
+		} else {
+			// Must be update, already checked above
+			$dbw->update( 'bot_passwords', $fields, $conds, __METHOD__ );
 		}
+
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
 			$this->token = $dbw->selectField( 'bot_passwords', 'bp_token', $conds, __METHOD__ );
@@ -322,12 +327,15 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function delete() {
-		$conds = [
-			'bp_user' => $this->centralId,
-			'bp_app_id' => $this->appId,
-		];
 		$dbw = self::getDB( DB_MASTER );
-		$dbw->delete( 'bot_passwords', $conds, __METHOD__ );
+		$dbw->delete(
+			'bot_passwords',
+			[
+				'bp_user' => $this->centralId,
+				'bp_app_id' => $this->appId,
+			],
+			__METHOD__
+		);
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
 			$this->token = '**unsaved**';
@@ -350,6 +358,9 @@ class BotPassword implements IDBAccessObject {
 
 	/**
 	 * Invalidate all passwords for a user, by central ID
+	 *
+	 * Currently unused outside of this class, should be combined with invalidateAllPasswordsForUser
+	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were invalidated
 	 */
@@ -384,6 +395,9 @@ class BotPassword implements IDBAccessObject {
 
 	/**
 	 * Remove all passwords for a user, by central ID
+	 *
+	 * Currently unused outside of this class, should be combined with removeAllPasswordsForUser
+	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were removed
 	 */
@@ -455,8 +469,7 @@ class BotPassword implements IDBAccessObject {
 			return Status::newFatal( 'botpasswords-disabled' );
 		}
 
-		$manager = MediaWiki\Session\SessionManager::singleton();
-		$provider = $manager->getProvider( BotPasswordSessionProvider::class );
+		$provider = SessionManager::singleton()->getProvider( BotPasswordSessionProvider::class );
 		if ( !$provider ) {
 			return Status::newFatal( 'botpasswords-no-provider' );
 		}
@@ -480,7 +493,7 @@ class BotPassword implements IDBAccessObject {
 
 		$throttle = null;
 		if ( !empty( $wgPasswordAttemptThrottle ) ) {
-			$throttle = new MediaWiki\Auth\Throttler( $wgPasswordAttemptThrottle, [
+			$throttle = new Throttler( $wgPasswordAttemptThrottle, [
 				'type' => 'botpassword',
 				'cache' => ObjectCache::getLocalClusterInstance(),
 			] );
