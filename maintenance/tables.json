@@ -1026,7 +1026,6 @@
 	},
 	{
 		"name": "watchlist",
-		"comment": "Used for caching expensive grouped queries that need two links (for example double-redirects)",
 		"columns": [
 			{
 				"name": "wl_id",
@@ -1056,9 +1055,24 @@
 			}
 		],
 		"indexes": [
-			{ "name": "wl_user", "columns": [ "wl_user", "wl_namespace", "wl_title" ], "unique": true },
-			{ "name": "namespace_title", "columns": [ "wl_namespace", "wl_title" ], "unique": false },
-			{ "name": "wl_user_notificationtimestamp", "columns": [ "wl_user", "wl_notificationtimestamp" ], "unique": false }
+			{
+				"name": "wl_user",
+				"columns": [ "wl_user", "wl_namespace", "wl_title" ],
+				"comment": "Special:Watchlist",
+				"unique": true
+			},
+			{
+				"name": "namespace_title",
+				"columns": [ "wl_namespace", "wl_title" ],
+				"comment": "Special:Movepage (WatchedItemStore::duplicateEntry)",
+				"unique": false
+			},
+			{
+				"name": "wl_user_notificationtimestamp",
+				"columns": [ "wl_user", "wl_notificationtimestamp" ],
+				"comment": "ApiQueryWatchlistRaw changed filter",
+				"unique": false
+			}
 		],
 		"pk": [ "wl_id" ]
 	}
