@@ -41,6 +41,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @var array
 	 */
 	public static $languagesWithVariants = [
+		'ban',
 		'en',
 		'crh',
 		'gan',
