@@ -292,28 +292,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Mark this call as templated or not
-	 *
-	 * @deprecated since 1.34 Use setAllowOutput() instead.
-	 * @param bool $t
-	 */
-	public function setTemplated( $t ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$this->allowOutput = ( $t === true );
-	}
-
-	/**
-	 * Was this call as templated or not
-	 *
-	 * @deprecated since 1.34 Use getAllowOutput() instead.
-	 * @return bool
-	 */
-	public function getTemplated() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getAllowOutput();
-	}
-
-	/**
 	 * Enable appending profiles to standard output.
 	 *
 	 * @since 1.34
