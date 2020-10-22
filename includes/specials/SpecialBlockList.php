@@ -25,7 +25,6 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -54,9 +53,6 @@ class SpecialBlockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
 	/** @var ActorMigration */
 	private $actorMigration;
 
@@ -68,7 +64,6 @@ class SpecialBlockList extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		SpecialPageFactory $specialPageFactory,
 		ActorMigration $actorMigration,
 		CommentStore $commentStore
 	) {
@@ -78,7 +73,6 @@ class SpecialBlockList extends SpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->specialPageFactory = $specialPageFactory;
 		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 	}
@@ -105,7 +99,7 @@ class SpecialBlockList extends SpecialPage {
 
 		if ( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
 			# B/C @since 1.18: Unblock interface is now at Special:Unblock
-			$title = $this->specialPageFactory->getTitleForAlias( 'Unblock/' . $this->target );
+			$title = $this->getSpecialPageFactory()->getTitleForAlias( 'Unblock/' . $this->target );
 			$out->redirect( $title->getFullURL() );
 
 			return;
@@ -247,7 +241,7 @@ class SpecialBlockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->permManager,
 			$this->loadBalancer,
-			$this->specialPageFactory,
+			$this->getSpecialPageFactory(),
 			$this->actorMigration,
 			$this->commentStore
 		);

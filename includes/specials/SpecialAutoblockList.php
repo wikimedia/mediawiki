@@ -24,7 +24,6 @@
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -47,9 +46,6 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
 	/** @var ActorMigration */
 	private $actorMigration;
 
@@ -61,7 +57,6 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
-	 * @param SpecialPageFactory $specialPageFactory
 	 * @param ActorMigration $actorMigration
 	 * @param CommentStore $commentStore
 	 */
@@ -70,7 +65,6 @@ class SpecialAutoblockList extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		SpecialPageFactory $specialPageFactory,
 		ActorMigration $actorMigration,
 		CommentStore $commentStore
 	) {
@@ -80,7 +74,6 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->specialPageFactory = $specialPageFactory;
 		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 	}
@@ -144,7 +137,7 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->permManager,
 			$this->loadBalancer,
-			$this->specialPageFactory,
+			$this->getSpecialPageFactory(),
 			$this->actorMigration,
 			$this->commentStore
 		);

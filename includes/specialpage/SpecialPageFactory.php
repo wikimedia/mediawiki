@@ -358,7 +358,6 @@ class SpecialPageFactory {
 				'BlockUtils',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
-				'SpecialPageFactory',
 			]
 		],
 		'BlockList' => [
@@ -368,7 +367,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
-				'SpecialPageFactory',
 				'ActorMigration',
 				'CommentStore',
 			],
@@ -380,7 +378,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
-				'SpecialPageFactory',
 				'ActorMigration',
 				'CommentStore',
 			],
@@ -818,9 +815,6 @@ class SpecialPageFactory {
 		],
 		'Specialpages' => [
 			'class' => \SpecialSpecialpages::class,
-			'services' => [
-				'SpecialPageFactory',
-			]
 		],
 		'PageData' => \SpecialPageData::class,
 	];
@@ -1104,6 +1098,7 @@ class SpecialPageFactory {
 			if ( $page instanceof SpecialPage ) {
 				$page->setHookContainer( $this->hookContainer );
 				$page->setContentLanguage( $this->contLang );
+				$page->setSpecialPageFactory( $this );
 				return $page;
 			}
 
