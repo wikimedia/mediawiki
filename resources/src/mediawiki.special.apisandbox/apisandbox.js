@@ -834,8 +834,7 @@
 			panel = new OO.ui.PanelLayout( {
 				classes: [ 'mw-apisandbox-container' ],
 				content: [ booklet ],
-				expanded: false,
-				framed: true
+				expanded: false
 			} );
 
 			pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
