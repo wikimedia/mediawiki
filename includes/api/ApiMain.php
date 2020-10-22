@@ -94,7 +94,14 @@ class ApiMain extends ApiBase {
 
 		// Write modules
 		'purge' => ApiPurge::class,
-		'setnotificationtimestamp' => ApiSetNotificationTimestamp::class,
+		'setnotificationtimestamp' => [
+			'class' => ApiSetNotificationTimestamp::class,
+			'services' => [
+				'DBLoadBalancer',
+				'RevisionStore',
+				'WatchedItemStore',
+			]
+		],
 		'rollback' => ApiRollback::class,
 		'delete' => ApiDelete::class,
 		'undelete' => ApiUndelete::class,
