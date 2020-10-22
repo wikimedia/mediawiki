@@ -772,6 +772,18 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'querycache_info', 'qci_type', 'NOT NULL', true ],
 			[ 'changeNullableField', 'querycache_info', 'qci_timestamp', 'NOT NULL', true ],
 			[ 'addIndex', 'querycache_info', 'querycache_info_pkey', 'patch-querycache_info-pk.sql' ],
+			[ 'setDefault', 'watchlist', 'wl_title', '' ],
+			[ 'changeField', 'watchlist', 'wl_namespace', 'INT', 0 ],
+			[ 'dropFkey', 'watchlist', 'wl_user' ],
+			[ 'dropPgIndex', 'watchlist', 'wl_user_namespace_title' ],
+			[ 'addPgIndex', 'watchlist', 'namespace_title', '(wl_namespace, wl_title)' ],
+			[ 'checkIndex', 'wl_user', [
+				[ 'wl_user', 'text_ops', 'btree', 1 ],
+				[ 'wl_namespace', 'int4_ops', 'btree', 1 ],
+				[ 'wl_title', 'text_ops', 'btree', 1 ],
+			],
+				'CREATE UNIQUE INDEX "wl_user" ON "watchlist" (wl_user, wl_namespace, wl_title) ' ],
+
 		];
 	}
 
