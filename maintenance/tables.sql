@@ -1006,33 +1006,6 @@ CREATE FULLTEXT INDEX /*i*/si_text ON /*_*/searchindex (si_text);
 
 
 --
--- Recognized interwiki link prefixes
---
-CREATE TABLE /*_*/interwiki (
-  -- The interwiki prefix, (e.g. "Meatball", or the language prefix "de")
-  iw_prefix varchar(32) NOT NULL PRIMARY KEY,
-
-  -- The URL of the wiki, with "$1" as a placeholder for an article name.
-  -- Any spaces in the name will be transformed to underscores before
-  -- insertion.
-  iw_url blob NOT NULL,
-
-  -- The URL of the file api.php
-  iw_api blob NOT NULL,
-
-  -- The name of the database (for a connection to be established with LBFactory::getMainLB( 'wikiid' ))
-  iw_wikiid varchar(64) NOT NULL,
-
-  -- A boolean value indicating whether the wiki is in this project
-  -- (used, for example, to detect redirect loops)
-  iw_local bool NOT NULL,
-
-  -- Boolean value indicating whether interwiki transclusions are allowed.
-  iw_trans tinyint NOT NULL default 0
-) /*$wgDBTableOptions*/;
-
-
---
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*_*/objectcache (

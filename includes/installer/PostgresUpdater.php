@@ -795,6 +795,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropFkey', 'user_newtalk', 'user_id ' ],
 			[ 'renameIndex', 'user_newtalk', 'user_newtalk_id', 'un_user_id' ],
 			[ 'renameIndex', 'user_newtalk', 'user_newtalk_ip', 'un_user_ip' ],
+			[ 'changeField', 'interwiki', 'iw_prefix', 'VARCHAR(32)', '' ],
+			[ 'changeField', 'interwiki', 'iw_wikiid', 'VARCHAR(64)', '' ],
 		];
 	}
 

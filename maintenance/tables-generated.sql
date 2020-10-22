@@ -358,3 +358,14 @@ CREATE TABLE /*_*/user_newtalk (
   INDEX un_user_id (user_id),
   INDEX un_user_ip (user_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/interwiki (
+  iw_prefix VARCHAR(32) NOT NULL,
+  iw_url BLOB NOT NULL,
+  iw_api BLOB NOT NULL,
+  iw_wikiid VARCHAR(64) NOT NULL,
+  iw_local TINYINT(1) NOT NULL,
+  iw_trans TINYINT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(iw_prefix)
+) /*$wgDBTableOptions*/;

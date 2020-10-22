@@ -407,3 +407,14 @@ CREATE TABLE user_newtalk (
 CREATE INDEX un_user_id ON user_newtalk (user_id);
 
 CREATE INDEX un_user_ip ON user_newtalk (user_id);
+
+
+CREATE TABLE interwiki (
+  iw_prefix VARCHAR(32) NOT NULL,
+  iw_url TEXT NOT NULL,
+  iw_api TEXT NOT NULL,
+  iw_wikiid VARCHAR(64) NOT NULL,
+  iw_local SMALLINT NOT NULL,
+  iw_trans SMALLINT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(iw_prefix)
+);
