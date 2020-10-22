@@ -1848,6 +1848,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
 								return $( '<li>' ).append( $( '<a>' )
 									.attr( { href: link, target: '_blank' } )
@@ -1866,6 +1867,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
 								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
