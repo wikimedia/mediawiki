@@ -834,8 +834,7 @@
 			panel = new OO.ui.PanelLayout( {
 				classes: [ 'mw-apisandbox-container' ],
 				content: [ booklet ],
-				expanded: false,
-				framed: true
+				expanded: false
 			} );
 
 			pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
@@ -1848,6 +1847,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
 								return $( '<li>' ).append( $( '<a>' )
 									.attr( { href: link, target: '_blank' } )
@@ -1866,6 +1866,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
 								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
