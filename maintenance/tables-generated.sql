@@ -310,3 +310,18 @@ CREATE TABLE /*_*/querycache_info (
   qci_timestamp BINARY(14) DEFAULT '19700101000000' NOT NULL,
   PRIMARY KEY(qci_type)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/watchlist (
+  wl_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  wl_user INT UNSIGNED NOT NULL,
+  wl_namespace INT DEFAULT 0 NOT NULL,
+  wl_title VARBINARY(255) DEFAULT '' NOT NULL,
+  wl_notificationtimestamp BINARY(14) DEFAULT NULL,
+  UNIQUE INDEX wl_user (wl_user, wl_namespace, wl_title),
+  INDEX namespace_title (wl_namespace, wl_title),
+  INDEX wl_user_notificationtimestamp (
+    wl_user, wl_notificationtimestamp
+  ),
+  PRIMARY KEY(wl_id)
+) /*$wgDBTableOptions*/;

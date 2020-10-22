@@ -1001,33 +1001,6 @@ CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_nam
 -- Article.php and friends (T139012)
 CREATE INDEX /*i*/rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);
 
-CREATE TABLE /*_*/watchlist (
-  wl_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  -- Key to user.user_id
-  wl_user int unsigned NOT NULL,
-
-  -- Key to page_namespace/page_title
-  -- Note that users may watch pages which do not exist yet,
-  -- or existed in the past but have been deleted.
-  wl_namespace int NOT NULL default 0,
-  wl_title varchar(255) binary NOT NULL default '',
-
-  -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
-  -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
-  -- of the page, which means that they should be sent an e-mail on the next change.
-  wl_notificationtimestamp varbinary(14)
-
-) /*$wgDBTableOptions*/;
-
--- Special:Watchlist
-CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
-
--- Special:Movepage (WatchedItemStore::duplicateEntry)
-CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
-
--- ApiQueryWatchlistRaw changed filter
-CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
-
 
 --
 -- When using the default MySQL search backend, page titles

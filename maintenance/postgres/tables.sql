@@ -403,21 +403,6 @@ CREATE INDEX rc_ip              ON recentchanges (rc_ip);
 CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 CREATE INDEX rc_this_oldid      ON recentchanges (rc_this_oldid);
 
-
-CREATE SEQUENCE watchlist_wl_id_seq;
-CREATE TABLE watchlist (
-  wl_id                     INTEGER     NOT NULL  PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq'),
-  wl_user                   INTEGER     NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  wl_namespace              SMALLINT    NOT NULL  DEFAULT 0,
-  wl_title                  TEXT        NOT NULL,
-  wl_notificationtimestamp  TIMESTAMPTZ
-);
-ALTER SEQUENCE watchlist_wl_id_seq OWNED BY watchlist.wl_id;
-CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
-CREATE INDEX wl_user ON watchlist (wl_user);
-CREATE INDEX wl_user_notificationtimestamp ON watchlist (wl_user, wl_notificationtimestamp);
-
-
 CREATE TABLE interwiki (
   iw_prefix  TEXT      NOT NULL  PRIMARY KEY,
   iw_url     TEXT      NOT NULL,

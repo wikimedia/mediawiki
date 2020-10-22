@@ -347,3 +347,21 @@ CREATE TABLE querycache_info (
   qci_timestamp TIMESTAMPTZ DEFAULT '1970-01-01 00:00:00+00' NOT NULL,
   PRIMARY KEY(qci_type)
 );
+
+
+CREATE TABLE watchlist (
+  wl_id SERIAL NOT NULL,
+  wl_user INT NOT NULL,
+  wl_namespace INT DEFAULT 0 NOT NULL,
+  wl_title TEXT DEFAULT '' NOT NULL,
+  wl_notificationtimestamp TIMESTAMPTZ DEFAULT NULL,
+  PRIMARY KEY(wl_id)
+);
+
+CREATE UNIQUE INDEX wl_user ON watchlist (wl_user, wl_namespace, wl_title);
+
+CREATE INDEX namespace_title ON watchlist (wl_namespace, wl_title);
+
+CREATE INDEX wl_user_notificationtimestamp ON watchlist (
+  wl_user, wl_notificationtimestamp
+);
