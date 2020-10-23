@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -58,15 +59,15 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getParserCache( $bag = null ) {
-		$hookContainer = $this->getServiceContainer()->getHookContainer();
-		$stats = $this->getServiceContainer()->getStatsdDataFactory();
-		$logger = new NullLogger();
-
-		if ( !$bag ) {
-			$bag = new HashBagOStuff();
-		}
-
-		$parserCache = new ParserCache( 'test', $bag, '', $hookContainer, $stats, $logger );
+		$parserCache = new ParserCache(
+			'test',
+			$bag ?: new HashBagOStuff(),
+			'',
+			$this->getServiceContainer()->getHookContainer(),
+			new JsonUnserializer(),
+			$this->getServiceContainer()->getStatsdDataFactory(),
+			new NullLogger()
+		);
 
 		// TODO: remove this once PoolWorkArticleView has the ParserCache injected
 		$this->setService( 'ParserCache', $parserCache );

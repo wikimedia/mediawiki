@@ -72,6 +72,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -528,6 +529,10 @@ return [
 		);
 	},
 
+	'JsonUnserializer' => function ( MediaWikiServices $services ) : JsonUnserializer {
+		return new JsonUnserializer();
+	},
+
 	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
 		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
 		return new LanguageConverterFactory( $usePigLatinVariant, function () use ( $services ) {
@@ -902,6 +907,7 @@ return [
 			$cache,
 			$config->get( 'CacheEpoch' ),
 			$services->getHookContainer(),
+			$services->getJsonUnserializer(),
 			$services->getStatsdDataFactory(),
 			LoggerFactory::getInstance( 'ParserCache' ),
 			$config->get( 'ParserCacheUseJson' )

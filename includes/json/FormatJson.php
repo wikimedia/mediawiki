@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Json\JsonUnserializable;
+
 /**
  * JSON formatter wrapper class
  */
@@ -328,11 +330,13 @@ class FormatJson {
 	 *
 	 *
 	 * @param mixed $value
+	 * @param bool $expectUnserialize
 	 * @param string $accumulatedPath
 	 * @return string|null JSON path to first encountered non-serializable property or null.
 	 */
 	private static function detectNonSerializableDataInternal(
 		$value,
+		bool $expectUnserialize,
 		string $accumulatedPath
 	): ?string {
 		if ( is_array( $value ) ||
@@ -340,13 +344,19 @@ class FormatJson {
 			foreach ( $value as $key => $propValue ) {
 				$propValueNonSerializablePath = self::detectNonSerializableDataInternal(
 					$propValue,
+					$expectUnserialize,
 					$accumulatedPath . '.' . $key
 				);
 				if ( $propValueNonSerializablePath ) {
 					return $propValueNonSerializablePath;
 				}
 			}
-		// Instances of classes other the \stdClass can not be serialized to JSON
+		} elseif ( ( $expectUnserialize && $value instanceof JsonUnserializable )
+			// Trust that JsonSerializable will correctly serialize.
+			|| ( !$expectUnserialize && $value instanceof JsonSerializable )
+		) {
+			return null;
+		// Instances of classes other the \stdClass or JsonSerializable can not be serialized to JSON.
 		} elseif ( !is_scalar( $value ) && $value !== null ) {
 			return $accumulatedPath;
 		}
@@ -357,11 +367,13 @@ class FormatJson {
 	 * Checks if the $value is JSON-serializable (contains only scalar values)
 	 * and returns a JSON-path to the first non-serializable property encountered.
 	 *
-	 * @since 1.36
 	 * @param mixed $value
+	 * @param bool $expectUnserialize whether to expect the $value to be unserializable with JsonUnserializer.
 	 * @return string|null JSON path to first encountered non-serializable property or null.
+	 * @see \MediaWiki\Json\JsonUnserializer
+	 * @since 1.36
 	 */
-	public static function detectNonSerializableData( $value ): ?string {
-		return self::detectNonSerializableDataInternal( $value, '$' );
+	public static function detectNonSerializableData( $value, bool $expectUnserialize = false ): ?string {
+		return self::detectNonSerializableDataInternal( $value, $expectUnserialize, '$' );
 	}
 }

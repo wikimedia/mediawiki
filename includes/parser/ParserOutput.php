@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Json\JsonUnserializable;
+use MediaWiki\Json\JsonUnserializableTrait;
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
@@ -27,6 +30,7 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 class ParserOutput extends CacheTime {
 	use GhostFieldAccessTrait;
+	use JsonUnserializableTrait;
 
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
@@ -1239,17 +1243,16 @@ class ParserOutput extends CacheTime {
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
 	 *
-	 * @note Only scalar values, e.g. numbers, strings, arrays are supported
-	 * as a value. Attempt to set a class instance as a extension data will
-	 * break ParserCache for the page.
-	 *
-	 * @since 1.21
+	 * @note Only scalar values, e.g. numbers, strings, arrays or MediaWiki\Json\JsonUnserializable
+	 * instances are supported as a value. Attempt to set other class instance as a extension data
+	 * will break ParserCache for the page.
 	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
 	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
-	 * @param mixed $value The value to set. Setting a value to null is equivalent to removing
-	 *   the value.
+	 * @param mixed|JsonUnserializable $value The value to set.
+	 *   Setting a value to null is equivalent to removing the value.
+	 * @since 1.21
 	 */
 	public function setExtensionData( $key, $value ) {
 		if ( $value === null ) {
@@ -1687,14 +1690,11 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Returns a JSON serializable structure representing this ParserOutput instance.
 	 * @see newFromJson()
-	 * @since 1.36
 	 *
 	 * @return array
 	 */
-	public function jsonSerialize() {
+	protected function toJsonArray(): array {
 		$data = [
-			'_type_' => 'ParserOutput',
-
 			'Text' => $this->mText,
 			'LanguageLinks' => $this->mLanguageLinks,
 			'Categories' => $this->mCategories,
@@ -1724,7 +1724,8 @@ class ParserOutput extends CacheTime {
 			'EnableOOUI' => $this->mEnableOOUI,
 			'IndexPolicy' => $this->mIndexPolicy,
 			'AccessedOptions' => $this->mAccessedOptions,
-			'ExtensionData' => $this->mExtensionData,  // may contain arbitrary structures!
+			// may contain arbitrary structures!
+			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
 			'LimitReportJSData' => $this->mLimitReportJSData,
 			'ParseStartTime' => $this->mParseStartTime,
@@ -1741,7 +1742,7 @@ class ParserOutput extends CacheTime {
 		];
 
 		// Fill in missing fields from parents. Array addition does not override existing fields.
-		$data += parent::jsonSerialize();
+		$data += parent::toJsonArray();
 
 		// TODO: make more fields optional!
 
@@ -1753,41 +1754,19 @@ class ParserOutput extends CacheTime {
 		return $data;
 	}
 
-	/**
-	 * Construct a ParserOutput instance from a structure returned by jsonSerialize()
-	 *
-	 * @see jsonSerialize()
-	 * @since 1.36
-	 *
-	 * @param string|array|object $jsonData
-	 * @return CacheTime
-	 * @throws InvalidArgumentException
-	 */
-	public static function newFromJson( $jsonData ) {
-		if ( is_string( $jsonData ) ) {
-			$jsonData = FormatJson::decode( $jsonData, true );
-			if ( !$jsonData ) {
-				// TODO: in PHP 7.3, we can use JsonException
-				throw new InvalidArgumentException( 'Bad JSON' );
-			}
-		}
-
-		if ( is_object( $jsonData ) ) {
-			$jsonData = (array)$jsonData;
-		}
-
-		$output = new ParserOutput();
-		$output->initFromJson( $jsonData );
-
-		return $output;
+	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json ) {
+		$parserOutput = new ParserOutput();
+		$parserOutput->initFromJson( $unserializer, $json );
+		return $parserOutput;
 	}
 
 	/**
 	 * Initialize member fields from an array returned by jsonSerialize().
+	 * @param JsonUnserializer $unserializer
 	 * @param array $jsonData
 	 */
-	protected function initFromJson( array $jsonData ) {
-		parent::initFromJson( $jsonData );
+	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
+		parent::initFromJson( $unserializer, $jsonData );
 		$this->mUsedOptions = null;
 
 		$this->mText = $jsonData['Text'];
@@ -1824,7 +1803,7 @@ class ParserOutput extends CacheTime {
 		} else {
 			$this->mAccessedOptions = $jsonData['AccessedOptions'];
 		}
-		$this->mExtensionData = $jsonData['ExtensionData'];
+		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mParseStartTime = $jsonData['ParseStartTime'];
