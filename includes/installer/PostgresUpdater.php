@@ -783,7 +783,15 @@ class PostgresUpdater extends DatabaseUpdater {
 				[ 'wl_title', 'text_ops', 'btree', 1 ],
 			],
 				'CREATE UNIQUE INDEX "wl_user" ON "watchlist" (wl_user, wl_namespace, wl_title) ' ],
-
+			[ 'changeField', 'sites', 'site_domain', 'VARCHAR(255)', '' ],
+			[ 'renameIndex', 'sites', 'site_global_key', 'sites_global_key' ],
+			[ 'renameIndex', 'sites', 'site_type', 'sites_type' ],
+			[ 'renameIndex', 'sites', 'site_group', 'sites_group' ],
+			[ 'renameIndex', 'sites', 'site_source', 'sites_source' ],
+			[ 'renameIndex', 'sites', 'site_language', 'sites_language' ],
+			[ 'renameIndex', 'sites', 'site_protocol', 'sites_protocol' ],
+			[ 'renameIndex', 'sites', 'site_domain', 'sites_domain' ],
+			[ 'renameIndex', 'sites', 'site_forward', 'sites_forward' ],
 		];
 	}
 

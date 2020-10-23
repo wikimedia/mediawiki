@@ -325,3 +325,27 @@ CREATE TABLE /*_*/watchlist (
   ),
   PRIMARY KEY(wl_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/sites (
+  site_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  site_global_key VARBINARY(64) NOT NULL,
+  site_type VARBINARY(32) NOT NULL,
+  site_group VARBINARY(32) NOT NULL,
+  site_source VARBINARY(32) NOT NULL,
+  site_language VARBINARY(35) NOT NULL,
+  site_protocol VARBINARY(32) NOT NULL,
+  site_domain VARCHAR(255) NOT NULL,
+  site_data BLOB NOT NULL,
+  site_forward TINYINT(1) NOT NULL,
+  site_config BLOB NOT NULL,
+  UNIQUE INDEX sites_global_key (site_global_key),
+  INDEX sites_type (site_type),
+  INDEX sites_group (site_group),
+  INDEX sites_source (site_source),
+  INDEX sites_language (site_language),
+  INDEX sites_protocol (site_protocol),
+  INDEX sites_domain (site_domain),
+  INDEX sites_forward (site_forward),
+  PRIMARY KEY(site_id)
+) /*$wgDBTableOptions*/;
