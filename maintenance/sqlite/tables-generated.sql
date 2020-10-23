@@ -349,3 +349,34 @@ CREATE INDEX namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 CREATE INDEX wl_user_notificationtimestamp ON /*_*/watchlist (
   wl_user, wl_notificationtimestamp
 );
+
+
+CREATE TABLE /*_*/sites (
+  site_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  site_global_key BLOB NOT NULL,
+  site_type BLOB NOT NULL,
+  site_group BLOB NOT NULL,
+  site_source BLOB NOT NULL,
+  site_language BLOB NOT NULL,
+  site_protocol BLOB NOT NULL,
+  site_domain VARCHAR(255) NOT NULL,
+  site_data BLOB NOT NULL,
+  site_forward SMALLINT NOT NULL,
+  site_config BLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX sites_global_key ON /*_*/sites (site_global_key);
+
+CREATE INDEX sites_type ON /*_*/sites (site_type);
+
+CREATE INDEX sites_group ON /*_*/sites (site_group);
+
+CREATE INDEX sites_source ON /*_*/sites (site_source);
+
+CREATE INDEX sites_language ON /*_*/sites (site_language);
+
+CREATE INDEX sites_protocol ON /*_*/sites (site_protocol);
+
+CREATE INDEX sites_domain ON /*_*/sites (site_domain);
+
+CREATE INDEX sites_forward ON /*_*/sites (site_forward);
