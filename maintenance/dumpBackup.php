@@ -43,7 +43,7 @@ WARNING: this is not a full database dump! It is merely for public export
          https://www.mediawiki.org/wiki/Backup
 TEXT
 		);
-		$this->stderr = fopen( "php://stderr", "wt" );
+
 		// Actions
 		$this->addOption( 'full', 'Dump all revisions of every page' );
 		$this->addOption( 'current', 'Dump only the latest revision of every page.' );
