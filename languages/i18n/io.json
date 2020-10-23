@@ -1648,6 +1648,7 @@
 	"trackingcategories": "Kategorii por kontrolo",
 	"trackingcategories-name": "Nomo di la mesajo",
 	"trackingcategories-desc": "Kriterii por inkluzar kategorii",
+	"restricted-displaytitle-ignored": "Pagini montranta tituli ignorata",
 	"restricted-displaytitle-ignored-desc": "La pagino havas nekonocita titulo <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, pro ol ne esas equivalanta a la nuna titulo di ica pagino.",
 	"mailnologin": "Ne sendar adreso",
 	"mailnologintext": "Vu mustas [[Special:UserLogin|enirir]] e havar valida e-adreso en vua [[Special:Preferences|preferaji]] por sendar e-posto ad altra uzanti.",
