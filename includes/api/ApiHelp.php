@@ -470,6 +470,12 @@ class ApiHelp extends ApiBase {
 					$help['parameters'] .= self::wrap(
 						$msg->numParams( count( $params ) ), 'apihelp-block-head', 'div'
 					);
+					if ( !$module->isMain() ) {
+						// Add a note explaining that other parameters may exist.
+						$help['parameters'] .= self::wrap(
+							$context->msg( 'api-help-parameters-note' ), 'apihelp-block-header', 'div'
+						);
+					}
 				}
 				$help['parameters'] .= Html::openElement( 'dl' );
 
