@@ -1259,6 +1259,12 @@ class FormatMetadata extends ContextSource {
 
 			return $this->getLanguage()->commaList( $out );
 		}
+		if ( is_numeric( $num ) ) {
+			if ( $round !== false ) {
+				$num = round( $num, $round );
+			}
+			return $this->getLanguage()->formatNum( $num );
+		}
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			if ( $m[2] != 0 ) {
 				$newNum = $m[1] / $m[2];
@@ -1270,13 +1276,9 @@ class FormatMetadata extends ContextSource {
 			}
 
 			return $this->getLanguage()->formatNum( $newNum );
-		} else {
-			if ( is_numeric( $num ) && $round !== false ) {
-				$num = round( $num, $round );
-			}
-
-			return $this->getLanguage()->formatNum( $num );
 		}
+		wfDeprecated( __METHOD__ . ' with non-numeric value', '1.36' );
+		return $num;
 	}
 
 	/**
