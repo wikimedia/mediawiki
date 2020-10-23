@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Parser;
 use BagOStuff;
 use EmptyBagOStuff;
 use HashBagOStuff;
+use InvalidArgumentException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
@@ -502,16 +503,40 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ParserCache::save
+	 */
+	public function testSaveNoText() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->createParserCache()->save(
+			new ParserOutput( null ),
+			$this->page,
+			ParserOptions::newFromAnon()
+		);
+	}
+
+	public function provideCorruptData() {
+		yield 'PHP serialization, bad data' => [ false, 'bla bla' ];
+		yield 'JSON serialization, bad data' => [ true, 'bla bla' ];
+		yield 'JSON serialization, no _type_' => [ true, '{"test":"test"}' ];
+		yield 'JSON serialization, wrong _type_' => [ true, '{"_type_":"bla bla"}' ];
+	}
+
+	/**
 	 * Test that we handle corrupt data gracefully.
 	 * This is important for forward-compatibility with JSON serialization.
 	 * We want to be sure that we don't crash horribly if we have to roll
 	 * back to a version of the code that doesn't know about JSON.
 	 *
+	 * @dataProvider provideCorruptData
 	 * @covers ParserCache::get
+	 * @covers ParserCache::restoreFromJson
+	 * @param bool $json
+	 * @param string $data
 	 */
-	public function testCorruptData() {
+	public function testCorruptData( bool $json, string $data ) {
 		$bag = new HashBagOStuff();
 		$cache = $this->createParserCache( null, $bag );
+		$cache->setJsonSupport( $json, $json );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newFromAnon();
@@ -523,11 +548,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$parserOutput->getUsedOptions()
 		);
 
-		$bag->set( $outputKey, 'bad data' );
+		$bag->set( $outputKey, $data );
 
 		// just make sure we don't crash and burn
-		$result = $cache->get( $this->page, $options1 );
-		$this->assertFalse( $result );
+		$this->assertFalse( $cache->get( $this->page, $options1 ) );
 	}
 
 	/**
