@@ -353,7 +353,7 @@ util = {
 		}
 
 		// Unhide portlet if it was hidden before
-		this.showPortlet( portletId );
+		util.showPortlet( portletId );
 
 		item = $( '<li>' ).append( link )[ 0 ];
 
