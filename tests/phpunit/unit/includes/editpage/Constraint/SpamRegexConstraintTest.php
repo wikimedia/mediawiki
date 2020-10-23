@@ -32,6 +32,7 @@ use Psr\Log\NullLogger;
  * @covers \MediaWiki\EditPage\Constraint\SpamRegexConstraint
  */
 class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
+	use EditConstraintTestTrait;
 
 	public function testPass() {
 		$summary = __METHOD__ . '-summary';
@@ -66,13 +67,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			'Request-IP',
 			$title
 		);
-		$this->assertSame(
-			IEditConstraint::CONSTRAINT_PASSED,
-			$constraint->checkConstraint()
-		);
-
-		$status = $constraint->getLegacyStatus();
-		$this->assertTrue( $status->isGood() );
+		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
@@ -104,17 +99,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			'Request-IP',
 			$title
 		);
-		$this->assertSame(
-			IEditConstraint::CONSTRAINT_FAILED,
-			$constraint->checkConstraint()
-		);
-
-		$status = $constraint->getLegacyStatus();
-		$this->assertFalse( $status->isGood() );
-		$this->assertSame(
-			IEditConstraint::AS_SPAM_ERROR,
-			$status->getValue()
-		);
+		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SPAM_ERROR );
 
 		$this->assertSame( [
 			[

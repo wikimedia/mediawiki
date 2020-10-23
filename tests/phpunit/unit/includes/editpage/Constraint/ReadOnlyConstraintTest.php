@@ -19,29 +19,30 @@
  */
 
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\EditPage\Constraint\UnicodeConstraint;
+use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 
 /**
- * Tests the UnicodeConstraint
+ * Tests the ReadOnlyConstraint
  *
  * @author DannyS712
  *
- * @covers \MediaWiki\EditPage\Constraint\UnicodeConstraint
+ * @covers \MediaWiki\EditPage\Constraint\ReadOnlyConstraint
  */
-class UnicodeConstraintTest extends MediaWikiUnitTestCase {
+class ReadOnlyConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	public function testPass() {
-		$constraint = new UnicodeConstraint( UnicodeConstraint::VALID_UNICODE );
+		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
+		$readOnlyMode->method( 'isReadOnly' )->willReturn( false );
+		$constraint = new ReadOnlyConstraint( $readOnlyMode );
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$constraint = new UnicodeConstraint( 'NotTheCorrectUnicode' );
-		$this->assertConstraintFailed(
-			$constraint,
-			IEditConstraint::AS_UNICODE_NOT_SUPPORTED
-		);
+		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
+		$readOnlyMode->method( 'isReadOnly' )->willReturn( true );
+		$constraint = new ReadOnlyConstraint( $readOnlyMode );
+		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_READ_ONLY_PAGE );
 	}
 
 }

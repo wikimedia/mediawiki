@@ -25,6 +25,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
+use MediaWiki\EditPage\Constraint\UserBlockConstraint;
+use MediaWiki\EditPage\Constraint\UserRateLimitConstraint;
 use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
@@ -2124,7 +2126,7 @@ ERROR;
 			$status = Status::wrap( $statusValue );
 			return $status;
 		}
-		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
 			$this->hookError, $this->summary )
@@ -2140,66 +2142,59 @@ ERROR;
 			return $status;
 		}
 
-		// Permission checks (image redirect, user block, `edit` rights, content model change)
-		if ( $this->mTitle->getNamespace() === NS_FILE &&
-			$textbox_content->isRedirect() &&
-			!$this->permManager->userHasRight( $user, 'upload' )
-		) {
-				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
-				$status->setResult( false, $code );
-
-				return $status;
-		}
-
-		if ( $this->permManager->isBlockedFrom( $user, $this->mTitle ) ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			if ( !wfReadOnly() ) {
-				$user->spreadAnyEditBlock();
-			}
-			# Check block state against master, thus 'false'.
-			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			return $status;
-		}
-
-		if ( !$this->permManager->userHasRight( $user, 'edit' ) ) {
-			if ( $user->isAnon() ) {
-				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
-				return $status;
-			} else {
-				$status->fatal( 'readonlytext' );
-				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
-				return $status;
-			}
-		}
+		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+		// Create a new runner to avoid rechecking the prior constraints, use the same factory
+		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner->addConstraint(
+			$constraintFactory->newEditRightConstraint( $user )
+		);
+		$constraintRunner->addConstraint(
+			$constraintFactory->newImageRedirectConstraint(
+				$this->mTitle,
+				$textbox_content->isRedirect(),
+				$user
+			)
+		);
+		$constraintRunner->addConstraint(
+			$constraintFactory->newUserBlockConstraint( $this->mTitle, $user )
+		);
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
-			if ( !$this->permManager->userHasRight( $user, 'editcontentmodel' ) ) {
-				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
-				return $status;
-			}
-			// Make sure the user can edit the page under the new content model too
-			$titleWithNewContentModel = clone $this->mTitle;
-			$titleWithNewContentModel->setContentModel( $this->contentModel );
-
-			$canEditModel = $this->permManager->userCan(
-				'editcontentmodel',
-				$user,
-				$titleWithNewContentModel
+			$constraintRunner->addConstraint(
+				$constraintFactory->newContentModelChangeConstraint(
+					$user,
+					$this->mTitle,
+					$this->contentModel
+				)
 			);
-
-			if (
-				!$canEditModel
-				|| !$this->permManager->userCan( 'edit', $user, $titleWithNewContentModel )
-			) {
-				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
-
-				return $status;
-			}
 
 			$changingContentModel = true;
 			$oldContentModel = $this->mTitle->getContentModel();
 		}
+
+		$constraintRunner->addConstraint(
+			$constraintFactory->newReadOnlyConstraint()
+		);
+
+		$constraintRunner->addConstraint(
+			new UserRateLimitConstraint( $user, $changingContentModel )
+		);
+
+		// Check the constraints
+		if ( $constraintRunner->checkConstraints() === false ) {
+			$failed = $constraintRunner->getFailedConstraint();
+
+			if ( $failed instanceof UserBlockConstraint && !wfReadOnly() ) {
+				// Auto-block user's IP if the account was "hard" blocked
+				$user->spreadAnyEditBlock();
+			}
+
+			$statusValue = $failed->getLegacyStatus();
+			$status = Status::wrap( $statusValue );
+			return $status;
+		}
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
 		$this->contentLength = strlen( $this->textbox1 );
 		$config = $this->context->getConfig();
@@ -2218,19 +2213,6 @@ ERROR;
 				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
 				return $changeTagsStatus;
 			}
-		}
-
-		if ( wfReadOnly() ) {
-			$status->fatal( 'readonlytext' );
-			$status->value = self::AS_READ_ONLY_PAGE;
-			return $status;
-		}
-		if ( $user->pingLimiter() || $user->pingLimiter( 'linkpurge', 0 )
-			|| ( $changingContentModel && $user->pingLimiter( 'editcontentmodel' ) )
-		) {
-			$status->fatal( 'actionthrottledtext' );
-			$status->value = self::AS_RATE_LIMITED;
-			return $status;
 		}
 
 		# If the article has been deleted while editing, don't save it without
