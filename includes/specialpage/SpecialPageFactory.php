@@ -431,7 +431,12 @@ class SpecialPageFactory {
 				'ContentLanguage'
 			]
 		],
-		'Version' => \SpecialVersion::class,
+		'Version' => [
+			'class' => \SpecialVersion::class,
+			'services' => [
+				'Parser',
+			]
+		],
 		'Lockdb' => [
 			'class' => \SpecialLockdb::class,
 			'services' => [
