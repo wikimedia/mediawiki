@@ -774,7 +774,7 @@
 	"userinvalidconfigtitle": "<strong>Waarschuwing:</strong>''' er is geen vormgeving \"$1\".\nUw eigen .css-, .json- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 	"updated": "(Bijgewerkt)",
 	"note": "<strong>Opmerking:</strong>",
-	"previewnote": "'''Let op: dit is een controlepagina.'''\nUw tekst is niet opgeslagen!",
+	"previewnote": "<strong>Let op: dit is een controlepagina.</strong>\nUw tekst is niet opgeslagen!",
 	"continue-editing": "Naar het bewerkingsvenster gaan",
 	"previewconflict": "Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.",
 	"session_fail_preview": "Uw bewerking is helaas niet opgeslagen omdat de sessiegegevens verloren zijn gegaan.\n\nMogelijk bent u automatisch afgemeld. <strong>Stel vast of u nog bent aangemeld en probeer het opnieuw.</strong>\nAls het dan nog niet lukt, [[Special:UserLogout|meld uzelf dan af]] en vervolgens weer aan, en controleer of uw browser wel cookies van deze site toestaat.",
