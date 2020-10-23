@@ -930,6 +930,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgIndex', 'recentchanges', 'rc_timestamp_bot' ],
 			[ 'addPgIndex', 'recentchanges', 'rc_ns_actor', '(rc_namespace, rc_actor)' ],
 			[ 'addPgIndex', 'recentchanges', 'rc_actor', '(rc_actor, rc_timestamp)' ],
+			[ 'dropIndex', 'objectcache', 'keyname', 'patch-objectcache_keyname-pk.sql' ],
+			[ 'changeField', 'objectcache', 'value', 'TEXT', '' ],
+			[ 'changeNullableField', 'objectcache', 'value', 'NULL', true ],
 		];
 	}
 

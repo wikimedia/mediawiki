@@ -672,3 +672,13 @@ CREATE INDEX oi_name_timestamp ON /*_*/oldimage (oi_name, oi_timestamp);
 CREATE INDEX oi_name_archive_name ON /*_*/oldimage (oi_name, oi_archive_name);
 
 CREATE INDEX oi_sha1 ON /*_*/oldimage (oi_sha1);
+
+
+CREATE TABLE /*_*/objectcache (
+  keyname BLOB DEFAULT '' NOT NULL,
+  value BLOB DEFAULT NULL,
+  exptime BLOB NOT NULL,
+  PRIMARY KEY(keyname)
+);
+
+CREATE INDEX exptime ON /*_*/objectcache (exptime);

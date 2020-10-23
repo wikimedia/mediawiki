@@ -1063,7 +1063,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				"CREATE TABLE $encTable (\n" .
 				"	keyname BLOB NOT NULL default '' PRIMARY KEY,\n" .
 				"	value BLOB,\n" .
-				"	exptime TEXT\n" .
+				"	exptime BLOB NOT NULL\n" .
 				")",
 				__METHOD__
 			);
