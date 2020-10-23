@@ -4786,7 +4786,7 @@ class Language {
 	/**
 	 * @param int $size Size of the unit
 	 * @param int $boundary Size boundary (1000, or 1024 in most cases)
-	 * @param string $messageKey Message key to be uesd
+	 * @param string $messageKey Message key to be used
 	 * @return string
 	 */
 	public function formatComputingNumbers( $size, $boundary, $messageKey ) {
