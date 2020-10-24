@@ -274,7 +274,12 @@ class FormatMetadata extends ContextSource {
 
 					// TODO: YCbCrCoefficients  #p27 (see annex E)
 					case 'ExifVersion':
-					case 'FlashpixVersion':
+					// PHP likes to be the odd one out with casing of FlashPixVersion;
+					// https://www.exif.org/Exif2-2.PDF#page=32 and
+					// https://www.digitalgalen.net/Documents/External/XMP/XMPSpecificationPart2.pdf#page=51
+					// both use FlashpixVersion. However, since at least 2002, PHP has used FlashPixVersion at
+					// https://github.com/php/php-src/blame/master/ext/exif/exif.c#L725
+					case 'FlashPixVersion':
 						$val = (int)$val / 100;
 						break;
 
