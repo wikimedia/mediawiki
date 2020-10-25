@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
@@ -54,7 +54,8 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @param int|null $namespace
 	 * @param string|null $sizetype
 	 * @param int|null $size
-	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
 		$form,
@@ -62,16 +63,19 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$type,
 		$level,
 		$namespace,
-		$sizetype = '',
-		$size = 0,
-		LinkBatchFactory $linkBatchFactory = null
+		$sizetype,
+		$size,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->level = $level;
 		$this->namespace = $namespace;
 		parent::__construct( $form->getContext() );
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	protected function getStartBody() {
@@ -103,15 +107,16 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @return array
 	 */
 	public function getQueryInfo() {
+		$dbr = $this->getDatabase();
 		$conds = $this->mConds;
-		$conds[] = 'pt_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
+		$conds[] = 'pt_expiry > ' . $dbr->addQuotes( $this->mDb->timestamp() ) .
 			' OR pt_expiry IS NULL';
 		if ( $this->level ) {
 			$conds['pt_create_perm'] = $this->level;
 		}
 
 		if ( $this->namespace !== null ) {
-			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
+			$conds[] = 'pt_namespace=' . $dbr->addQuotes( $this->namespace );
 		}
 
 		return [

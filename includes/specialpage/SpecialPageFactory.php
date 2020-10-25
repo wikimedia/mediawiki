@@ -131,7 +131,13 @@ class SpecialPageFactory {
 				'UserCache',
 			]
 		],
-		'Protectedtitles' => \SpecialProtectedtitles::class,
+		'Protectedtitles' => [
+			'class' => \SpecialProtectedtitles::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Shortpages' => [
 			'class' => \SpecialShortPages::class,
 			'services' => [
