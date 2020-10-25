@@ -520,6 +520,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'RepoGroup',
 				'DBLoadBalancer',
+				'UserOptionsLookup',
 			],
 		],
 		'Whatlinkshere' => [
