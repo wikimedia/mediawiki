@@ -501,7 +501,13 @@ class SpecialPageFactory {
 		],
 
 		// Page tools
-		'ComparePages' => \SpecialComparePages::class,
+		'ComparePages' => [
+			'class' => \SpecialComparePages::class,
+			'services' => [
+				'RevisionLookup',
+				'ContentHandlerFactory',
+			]
+		],
 		'Export' => [
 			'class' => \SpecialExport::class,
 			'services' => [
