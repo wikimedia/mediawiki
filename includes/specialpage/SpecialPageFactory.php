@@ -120,7 +120,17 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 			]
 		],
-		'Protectedpages' => \SpecialProtectedpages::class,
+		'Protectedpages' => [
+			'class' => \SpecialProtectedpages::class,
+			'services' => [
+				'LinkBatchFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'UserCache',
+			]
+		],
 		'Protectedtitles' => \SpecialProtectedtitles::class,
 		'Shortpages' => [
 			'class' => \SpecialShortPages::class,
@@ -132,6 +142,7 @@ class SpecialPageFactory {
 		'Uncategorizedcategories' => [
 			'class' => \SpecialUncategorizedCategories::class,
 			'services' => [
+				'DBLoadBalancer',
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
 			]
@@ -485,8 +496,19 @@ class SpecialPageFactory {
 
 		// Page tools
 		'ComparePages' => \SpecialComparePages::class,
-		'Export' => \SpecialExport::class,
-		'Import' => \SpecialImport::class,
+		'Export' => [
+			'class' => \SpecialExport::class,
+			'services' => [
+				'PermissionManager',
+				'DBLoadBalancer',
+			]
+		],
+		'Import' => [
+			'class' => \SpecialImport::class,
+			'services' => [
+				'PermissionManager',
+			]
+		],
 		'Undelete' => [
 			'class' => \SpecialUndelete::class,
 			'services' => [
@@ -566,7 +588,13 @@ class SpecialPageFactory {
 		],
 		'Movepage' => \MovePageForm::class,
 		'Mycontributions' => \SpecialMycontributions::class,
-		'MyLanguage' => \SpecialMyLanguage::class,
+		'MyLanguage' => [
+			'class' => \SpecialMyLanguage::class,
+			'services' => [
+				'LanguageNameUtils',
+				'ContentLanguage',
+			]
+		],
 		'Mypage' => \SpecialMypage::class,
 		'Mytalk' => \SpecialMytalk::class,
 		'PageHistory' => \SpecialPageHistory::class,

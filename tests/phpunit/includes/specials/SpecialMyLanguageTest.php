@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @covers SpecialMyLanguage
@@ -36,7 +38,11 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFindTitle( $expected, $subpage, $langCode, $userLang ) {
 		$this->setContentLang( $langCode );
-		$special = new SpecialMyLanguage();
+		$services = MediaWikiServices::getInstance();
+		$special = new SpecialMyLanguage(
+			$services->getLanguageNameUtils(),
+			$services->getContentLanguage()
+		);
 		$special->getContext()->setLanguage( $userLang );
 		// Test with subpages both enabled and disabled
 		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );

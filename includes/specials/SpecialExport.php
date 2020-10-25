@@ -24,7 +24,8 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -34,8 +35,23 @@ use MediaWiki\MediaWikiServices;
 class SpecialExport extends SpecialPage {
 	protected $curonly, $doExport, $pageLinkDepth, $templates;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param PermissionManager $permManager
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		PermissionManager $permManager,
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'Export' );
+		$this->permManager = $permManager;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function execute( $par ) {
@@ -327,9 +343,7 @@ class SpecialExport extends SpecialPage {
 	 * @return bool
 	 */
 	protected function userCanOverrideExportDepth() {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'override-export-depth' );
+		return $this->permManager->userHasRight( $this->getUser(), 'override-export-depth' );
 	}
 
 	/**
@@ -381,7 +395,7 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		$db = wfGetDB( DB_REPLICA );
+		$db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		$exporter = new WikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors;
@@ -390,8 +404,6 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$exporter->allPages();
 		} else {
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 			foreach ( $pages as $page ) {
 				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
@@ -400,7 +412,7 @@ class SpecialExport extends SpecialPage {
 					continue;
 				}
 
-				if ( !$permissionManager->userCan( 'read', $this->getUser(), $title ) ) {
+				if ( !$this->permManager->userCan( 'read', $this->getUser(), $title ) ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}
@@ -421,7 +433,7 @@ class SpecialExport extends SpecialPage {
 
 		$name = $title->getDBkey();
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$res = $dbr->select(
 			[ 'page', 'categorylinks' ],
 			[ 'page_namespace', 'page_title' ],
@@ -446,7 +458,7 @@ class SpecialExport extends SpecialPage {
 	protected function getPagesFromNamespace( $nsindex ) {
 		$maxPages = $this->getConfig()->get( 'ExportPagelistLimit' );
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$res = $dbr->select(
 			'page',
 			[ 'page_namespace', 'page_title' ],
@@ -534,7 +546,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	protected function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );

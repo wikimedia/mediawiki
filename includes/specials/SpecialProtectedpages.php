@@ -21,7 +21,9 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists protected pages
@@ -32,8 +34,47 @@ class SpecialProtectedpages extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserCache */
+	private $userCache;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param CommentStore $commentStore
+	 * @param ActorMigration $actorMigration
+	 * @param UserCache $userCache
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		CommentStore $commentStore,
+		ActorMigration $actorMigration,
+		UserCache $userCache
+	) {
 		parent::__construct( 'Protectedpages' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->commentStore = $commentStore;
+		$this->actorMigration = $actorMigration;
+		$this->userCache = $userCache;
 	}
 
 	public function execute( $par ) {
@@ -66,7 +107,12 @@ class SpecialProtectedpages extends SpecialPage {
 			$cascadeOnly,
 			$noRedirect,
 			$this->getLinkRenderer(),
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->commentStore,
+			$this->actorMigration,
+			$this->userCache
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(

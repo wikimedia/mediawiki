@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that lists uncategorized categories
  *
@@ -34,10 +36,21 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $namespaceInfo
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $namespaceInfo
+	) {
 		parent::__construct( $namespaceInfo );
 		$this->mName = 'Uncategorizedcategories';
 		$this->requestedNamespace = NS_CATEGORY;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -73,7 +86,8 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {
-			$query['conds'][] = 'page_title not in ( ' . $this->getRecacheDB()->makeList( $exceptionList ) . ' )';
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $exceptionList ) . ' )';
 		}
 
 		return $query;
