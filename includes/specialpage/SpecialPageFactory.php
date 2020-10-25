@@ -131,7 +131,13 @@ class SpecialPageFactory {
 				'UserCache',
 			]
 		],
-		'Protectedtitles' => \SpecialProtectedtitles::class,
+		'Protectedtitles' => [
+			'class' => \SpecialProtectedtitles::class,
+			'services' => [
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+			]
+		],
 		'Shortpages' => [
 			'class' => \SpecialShortPages::class,
 			'services' => [
@@ -495,7 +501,13 @@ class SpecialPageFactory {
 		],
 
 		// Page tools
-		'ComparePages' => \SpecialComparePages::class,
+		'ComparePages' => [
+			'class' => \SpecialComparePages::class,
+			'services' => [
+				'RevisionLookup',
+				'ContentHandlerFactory',
+			]
+		],
 		'Export' => [
 			'class' => \SpecialExport::class,
 			'services' => [

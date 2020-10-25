@@ -265,6 +265,10 @@ because of Phabricator reports.
 * The public static callback function SpecialUploadStash::tryClearStashedUploads
   has been removed. This method was for internal use only, and appears unused
   outside of MediaWiki core.
+* SpecialComparePages::showDiff() ::revOrTitle(), ::checkExistingTitle(),
+  and ::checkExistingRevision() were marked as @internal to allow for
+  breaking changes. They are no longer safe to call. The methods were
+  unused outside of MediaWiki core.
 * Language::getExtraUserToggles and ::viewPrevNext, deprecated in 1.34, have
   been removed.
 * SVGMetadataExtractor class, deprecated in 1.34, has been removed.

@@ -21,18 +21,33 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\TalkPageNotificationManager;
 
 /**
  * API module that clears the hasmsg flag for current user
  * @ingroup API
  */
 class ApiClearHasMsg extends ApiBase {
+
+	/** @var TalkPageNotificationManager */
+	private $talkPageNotificationManager;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param TalkPageNotificationManager $talkPageNotificationManager
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		TalkPageNotificationManager $talkPageNotificationManager
+	) {
+		parent::__construct( $main, $action );
+		$this->talkPageNotificationManager = $talkPageNotificationManager;
+	}
+
 	public function execute() {
-		$user = $this->getUser();
-		MediaWikiServices::getInstance()
-			->getTalkPageNotificationManager()
-			->removeUserHasNewMessages( $user );
+		$this->talkPageNotificationManager->removeUserHasNewMessages( $this->getUser() );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}

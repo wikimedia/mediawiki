@@ -132,7 +132,12 @@ class ApiMain extends ApiBase {
 		'watch' => ApiWatch::class,
 		'patrol' => ApiPatrol::class,
 		'import' => ApiImport::class,
-		'clearhasmsg' => ApiClearHasMsg::class,
+		'clearhasmsg' => [
+			'class' => ApiClearHasMsg::class,
+			'services' => [
+				'TalkPageNotificationManager',
+			]
+		],
 		'userrights' => ApiUserrights::class,
 		'options' => ApiOptions::class,
 		'imagerotate' => ApiImageRotate::class,
