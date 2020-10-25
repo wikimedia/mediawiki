@@ -24,7 +24,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -51,14 +50,15 @@ class SpecialImport extends SpecialPage {
 	private $assignKnownUsers;
 	private $usernamePrefix;
 
-	/**
-	 * @var PermissionManager
-	 */
+	/** @var PermissionManager */
 	private $permManager;
 
-	public function __construct() {
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'Import', 'import' );
-		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$this->permManager = $permManager;
 	}
 
 	public function doesWrites() {
