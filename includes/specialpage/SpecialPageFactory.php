@@ -588,7 +588,13 @@ class SpecialPageFactory {
 		],
 		'Movepage' => \MovePageForm::class,
 		'Mycontributions' => \SpecialMycontributions::class,
-		'MyLanguage' => \SpecialMyLanguage::class,
+		'MyLanguage' => [
+			'class' => \SpecialMyLanguage::class,
+			'services' => [
+				'LanguageNameUtils',
+				'ContentLanguage',
+			]
+		],
 		'Mypage' => \SpecialMypage::class,
 		'Mytalk' => \SpecialMytalk::class,
 		'PageHistory' => \SpecialPageHistory::class,

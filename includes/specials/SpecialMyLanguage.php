@@ -23,7 +23,7 @@
  * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageNameUtils;
 
 /**
  * Unlisted special page just to redirect the user to the translated version of
@@ -35,8 +35,24 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialMyLanguage extends RedirectSpecialArticle {
-	public function __construct() {
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/**
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param Language $contentLanguage
+	 */
+	public function __construct(
+		LanguageNameUtils $languageNameUtils,
+		Language $contentLanguage
+	) {
 		parent::__construct( 'MyLanguage' );
+		$this->languageNameUtils = $languageNameUtils;
+		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -65,7 +81,6 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	public function findTitle( $subpage ) {
-		$services = MediaWikiServices::getInstance();
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = null;
@@ -77,7 +92,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 				$pos = strrpos( $subpage, '/' );
 				$basepage = substr( $subpage, 0, $pos );
 				$code = substr( $subpage, $pos + 1 );
-				if ( strlen( $code ) && $services->getLanguageNameUtils()->isKnownLanguageTag( $code ) ) {
+				if ( strlen( $code ) && $this->languageNameUtils->isKnownLanguageTag( $code ) ) {
 					$base = Title::newFromText( $basepage );
 				}
 			}
@@ -94,9 +109,8 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		$uiLang = $this->getLanguage();
-		$contLang = $services->getContentLanguage();
 
-		if ( $uiLang->equals( $contLang ) ) {
+		if ( $uiLang->equals( $this->contentLanguage ) ) {
 			// Short circuit when the current UI language is the
 			// wiki's default language to avoid unnecessary page lookups.
 			return $base;
@@ -116,7 +130,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $lang !== $contLang->getCode() ) {
+			if ( $lang !== $this->contentLanguage->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
 					return $proposed;
