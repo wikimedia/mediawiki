@@ -640,7 +640,7 @@ class ParserCache {
 	private function encodeAsJson( CacheTime $obj, string $key ) {
 		$data = $obj->jsonSerialize();
 
-		$json = FormatJson::encode( $data );
+		$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
 		if ( !$json ) {
 			$this->logger->error( "JSON encoding failed", [
 				'name' => $this->name,
