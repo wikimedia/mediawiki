@@ -1,6 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\ContentModelChangeFactory;
 
 /**
  * Api module to change the content model of existing pages
@@ -12,6 +13,29 @@ use MediaWiki\MediaWikiServices;
  * @author DannyS712
  */
 class ApiChangeContentModel extends ApiBase {
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var ContentModelChangeFactory */
+	private $contentModelChangeFactory;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ContentModelChangeFactory $contentModelChangeFactory
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		IContentHandlerFactory $contentHandlerFactory,
+		ContentModelChangeFactory $contentModelChangeFactory
+	) {
+		parent::__construct( $main, $action );
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->contentModelChangeFactory = $contentModelChangeFactory;
+	}
 
 	/**
 	 * A lot of this code is based on SpecialChangeContentModel
@@ -30,13 +54,11 @@ class ApiChangeContentModel extends ApiBase {
 		$user = $this->getUser();
 
 		$this->checkUserRightsAny( 'editcontentmodel' );
-		$changer = MediaWikiServices::getInstance()
-			->getContentModelChangeFactory()
-			->newContentModelChange(
-				$user,
-				$wikiPage,
-				$newModel
-			);
+		$changer = $this->contentModelChangeFactory->newContentModelChange(
+			$user,
+			$wikiPage,
+			$newModel
+		);
 		// Status messages should be apierror-*
 		$changer->setMessagePrefix( 'apierror-' );
 		$errors = $changer->checkPermissions();
@@ -81,10 +103,10 @@ class ApiChangeContentModel extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$models = ContentHandler::getContentModels();
+		$models = $this->contentHandlerFactory->getContentModels();
 		$modelOptions = [];
 		foreach ( $models as $model ) {
-			$handler = ContentHandler::getForModelID( $model );
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
 			if ( !$handler->supportsDirectEditing() ) {
 				continue;
 			}
