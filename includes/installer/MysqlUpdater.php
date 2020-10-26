@@ -453,6 +453,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'querycache', 'qc_title', 'patch-querycache-qc_title-varbinary.sql' ],
 			[ 'modifyField', 'querycachetwo', 'qcc_title', 'patch-querycachetwo-qcc_title-varbinary.sql' ],
 			[ 'modifyField', 'watchlist', 'wl_title', 'patch-watchlist-wl_title-varbinary.sql' ],
+			[ 'modifyField', 'user_newtalk', 'user_last_timestamp',
+				'patch-user_newtalk-user_last_timestamp-binary.sql'
+			],
 		];
 	}
 

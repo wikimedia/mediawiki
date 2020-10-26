@@ -397,3 +397,13 @@ CREATE INDEX sites_protocol ON sites (site_protocol);
 CREATE INDEX sites_domain ON sites (site_domain);
 
 CREATE INDEX sites_forward ON sites (site_forward);
+
+
+CREATE TABLE user_newtalk (
+  user_id INT DEFAULT 0 NOT NULL, user_ip TEXT DEFAULT '' NOT NULL,
+  user_last_timestamp TIMESTAMPTZ DEFAULT NULL
+);
+
+CREATE INDEX un_user_id ON user_newtalk (user_id);
+
+CREATE INDEX un_user_ip ON user_newtalk (user_id);
