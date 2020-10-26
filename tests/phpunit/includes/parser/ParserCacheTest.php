@@ -663,4 +663,22 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$testLogger->getBuffer()
 		);
 	}
+
+	/**
+	 * Tests that unicode characters are not \u escaped
+	 * @covers ParserCache::encodeAsJson
+	 */
+	public function testJsonEncodeUnicode() {
+		$unicodeCharacter = "Э";
+		$cache = $this->createParserCache( null, new HashBagOStuff() );
+		$cache->setJsonSupport( true, true );
+		$parserOutput = $this->createDummyParserOutput();
+		$parserOutput->setText( $unicodeCharacter );
+		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
+		$json = $cache->getCacheStorage()->get(
+			$cache->makeParserOutputKey( $this->page, ParserOptions::newFromAnon() )
+		);
+		$this->assertStringNotContainsString( "\u003E", $json );
+		$this->assertStringContainsString( $unicodeCharacter, $json );
+	}
 }
