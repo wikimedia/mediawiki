@@ -35,14 +35,6 @@ INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
 
-CREATE TABLE user_newtalk (
-  user_id              INTEGER          NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  user_ip              TEXT             NOT NULL DEFAULT '',
-  user_last_timestamp  TIMESTAMPTZ
-);
-CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
-CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
-
 CREATE SEQUENCE page_page_id_seq;
 CREATE TABLE page (
   page_id            INTEGER        NOT NULL  PRIMARY KEY DEFAULT nextval('page_page_id_seq'),
