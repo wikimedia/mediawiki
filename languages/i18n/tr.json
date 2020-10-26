@@ -812,7 +812,7 @@
 	"readonlywarning": "<strong>Uyarı: Veritabanı bakım nedeniyle kilitlendi, bu yüzden düzenlemelerinizi şu anda kaydedemeyeceksiniz.</strong> \nMetninizi kopyalayıp bir metin dosyasına yapıştırıp daha sonra kullanmak üzere saklamak isteyebilirsiniz.\n\nKilitlemeyi yapan sistem yetkilisi şu açıklamayı eklemiştir: $1",
 	"protectedpagewarning": "<strong>Uyarı: Bu sayfa koruma altına alınmıştır ve yalnızca hizmetli olanlar tarafından değiştirilebilir.</strong>\nSon günlük girdisi referans amaçlı aşağıda verilmiştir:",
 	"semiprotectedpagewarning": "<strong>Not:</strong> Bu sayfa sadece otomatik onaylanmış kullanıcılar tarafından değiştirilebilir.\nSon günlük girdisi referans amaçlı aşağıda verilmiştir:",
-	"cascadeprotectedwarning": "<strong>Uyarı:</strong> Bu sayfa, yalnızca [[Special:ListGroupRights|belirli haklar]] sahibi olan kullanıcıların aşağıdaki basamaklı korumalı {{PLURAL:$1|sayfaya|sayfalara}} eklenmesi nedeniyle bu sayfayı düzenleyebileceği şekilde korunmuştur:",
+	"cascadeprotectedwarning": "<strong>Uyarı:</strong> Bu sayfa, yalnızca [[Special:ListGroupRights|belirli haklara]] sahip kullanıcıların düzenleyebileceği şekilde korumaya alınmıştır. Bunun nedeni, kademeli korumaya alınmış aşağıdaki {{PLURAL:$1|sayfada|sayfalarda}} görüntülenmesidir:",
 	"titleprotectedwarning": "<strong>Uyarı: Bu sayfa [[Special:ListGroupRights|belirli hakları]] olanların oluşturabilmeleri için kilitlenmiştir.</strong>\nSon günlük girdisi referans amaçlı aşağıda verilmiştir:",
 	"templatesused": "Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedpreview": "Bu önizlemede kullanılan {{PLURAL:$1|şablon|şablonlar}}:",

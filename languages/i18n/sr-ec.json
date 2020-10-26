@@ -2587,7 +2587,7 @@
 	"ipb-pages-label": "Странице:",
 	"ipb-namespaces-label": "Именски простори:",
 	"badipaddress": "Неважећа IP адреса",
-	"blockipsuccesssub": "Блокирање је успело",
+	"blockipsuccesssub": "Успешно блокирање",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] је {{GENDER:$1|блокиран|блокирана}}.<br />\nПогледајте [[Special:BlockList|списак]] за преглед блокада.",
 	"ipb-empty-block": "У поднетој блокади нема никаквих ограничења.",
 	"ipb-blockingself": "Блокираћете самог себе. Желите ли заиста да то урадите?",
