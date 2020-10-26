@@ -231,4 +231,24 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected['timeout'], $multi->reqTimeout );
 	}
 
+	/** @dataProvider provideCreateTimeouts */
+	public function testCreateGuzzleClient( $config, $createOptions, $expected ) {
+		$factory = $this->newFactory( $config );
+		$client = $factory->createGuzzleClient(
+			[
+				'timeout' => $createOptions['timeout'] ?? null,
+				'connect_timeout' => $createOptions['connectTimeout'] ?? null,
+				'maxTimeout' => $createOptions['maxTimeout'] ?? null,
+				'maxConnectTimeout' => $createOptions['maxConnectTimeout'] ?? null
+			]
+		);
+		$this->assertEquals(
+			$expected['connectTimeout'],
+			$client->getConfig( 'connect_timeout' )
+		);
+		$this->assertEquals(
+			$expected['timeout'],
+			$client->getConfig( 'timeout' )
+		);
+	}
 }

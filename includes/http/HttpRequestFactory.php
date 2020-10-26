@@ -20,6 +20,7 @@
 namespace MediaWiki\Http;
 
 use CurlHttpRequest;
+use GuzzleHttp\Client;
 use GuzzleHttpRequest;
 use Http;
 use MediaWiki\Config\ServiceOptions;
@@ -263,5 +264,40 @@ class HttpRequestFactory {
 			'logger' => $this->logger
 		];
 		return new MultiHttpClient( $options );
+	}
+
+	/**
+	 * Get a GuzzleHttp\Client instance.
+	 *
+	 * @since 1.36
+	 * @param array $config Client configuration settings.
+	 * @return Client
+	 *
+	 * @see \GuzzleHttp\RequestOptions for a list of available request options.
+	 * @see Client::__construct() for additional options.
+	 * Additional options that should not be used in production code:
+	 *	- maxTimeout          Override for the configured maximum timeout.
+	 *	- maxConnectTimeout   Override for the configured maximum connect timeout.
+	 */
+	public function createGuzzleClient( array $config = [] ): Client {
+		$config['timeout'] = $this->normalizeTimeout(
+			$config['timeout'] ?? null,
+			$config['maxTimeout'] ?? null,
+			$this->options->get( 'HTTPTimeout' ),
+			$this->options->get( 'HTTPMaxTimeout' )
+		);
+
+		$config['connect_timeout'] = $this->normalizeTimeout(
+			$config['connect_timeout'] ?? null,
+			$config['maxConnectTimeout'] ?? null,
+			$this->options->get( 'HTTPConnectTimeout' ),
+			$this->options->get( 'HTTPMaxConnectTimeout' )
+		);
+
+		if ( !isset( $config['headers']['User-Agent'] ) ) {
+			$config['headers']['User-Agent'] = $this->getUserAgent();
+		}
+
+		return new Client( $config );
 	}
 }
