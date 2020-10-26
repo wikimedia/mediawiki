@@ -1528,6 +1528,12 @@ return [
 			// Multiple constraints need loggers
 			LoggerFactory::getProvider(),
 
+			// Multiple
+			$services->getPermissionManager(),
+
+			// ReadOnlyConstraint
+			$services->getReadOnlyMode(),
+
 			// SpamRegexConstraint
 			$services->getSpamChecker()
 		);

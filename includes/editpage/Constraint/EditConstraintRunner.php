@@ -20,6 +20,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -32,6 +34,9 @@ use Wikimedia\Assert\Assert;
  * @author DannyS712
  */
 class EditConstraintRunner {
+
+	/** @var LoggerInterface */
+	private $logger;
 
 	/**
 	 * @var IEditConstraint[]
@@ -52,6 +57,8 @@ class EditConstraintRunner {
 	 */
 	public function __construct() {
 		// TODO allow passing an array here as the starting constraints?
+		// TODO consider injecting this?
+		$this->logger = LoggerFactory::getInstance( 'EditConstraintRunner' );
 	}
 
 	/**
@@ -78,7 +85,17 @@ class EditConstraintRunner {
 	 */
 	public function checkConstraints() : bool {
 		foreach ( $this->constraints as $constraint ) {
-			if ( $constraint->checkConstraint() !== IEditConstraint::CONSTRAINT_PASSED ) {
+			$result = $constraint->checkConstraint();
+			$fullClassName = explode( '\\', get_class( $constraint ) );
+			$this->logger->debug(
+				'Checked {class}, got result: {result}',
+				[
+					'class' => end( $fullClassName ),
+					'result' => $result
+				]
+			);
+
+			if ( $result !== IEditConstraint::CONSTRAINT_PASSED ) {
 				$this->failedConstraint = $constraint;
 				return false;
 			}

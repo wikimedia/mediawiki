@@ -19,60 +19,52 @@
  */
 
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
-use Psr\Log\LogLevel;
-use Psr\Log\NullLogger;
+use MediaWiki\EditPage\Constraint\UserBlockConstraint;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
- * Tests the SimpleAntiSpamConstraint
+ * Tests the UserBlockConstraint
  *
  * @author DannyS712
  *
- * @covers \MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint
+ * @covers \MediaWiki\EditPage\Constraint\UserBlockConstraint
  */
-class SimpleAntiSpamConstraintTest extends MediaWikiUnitTestCase {
+class UserBlockConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	public function testPass() {
-		$logger = new NullLogger();
-		$user = $this->createMock( User::class );
 		$title = $this->createMock( Title::class );
+		$user = $this->createMock( User::class );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->expects( $this->once() )
+			->method( 'isBlockedFrom' )
+			->with(
+				$this->equalTo( $user ),
+				$this->equalTo( $title )
+			)
+			->willReturn( false );
 
-		$constraint = new SimpleAntiSpamConstraint(
-			$logger,
-			'',
-			$user,
-			$title
-		);
+		$constraint = new UserBlockConstraint( $permissionManager, $title, $user );
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$logger = new TestLogger( true );
-		$user = $this->createMock( User::class );
-		$user->expects( $this->once() )
-			->method( 'getName' )
-			->willReturn( 'UserNameGoesHere' );
 		$title = $this->createMock( Title::class );
-		$title->expects( $this->once() )
-			->method( 'getPrefixedText' )
-			->willReturn( 'TitlePrefixedTextGoesHere' );
+		$user = $this->createMock( User::class );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->expects( $this->once() )
+			->method( 'isBlockedFrom' )
+			->with(
+				$this->equalTo( $user ),
+				$this->equalTo( $title )
+			)
+			->willReturn( true );
 
-		$constraint = new SimpleAntiSpamConstraint(
-			$logger,
-			'SpamContent',
-			$user,
-			$title
+		$constraint = new UserBlockConstraint( $permissionManager, $title, $user );
+		$this->assertConstraintFailed(
+			$constraint,
+			IEditConstraint::AS_BLOCKED_PAGE_FOR_USER
 		);
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SPAM_ERROR );
-
-		$this->assertSame( [
-			[
-				LogLevel::DEBUG,
-				'{name} editing "{title}" submitted bogus field "{input}"'
-			],
-		], $logger->getBuffer() );
-		$logger->clearBuffer();
 	}
 
 }
