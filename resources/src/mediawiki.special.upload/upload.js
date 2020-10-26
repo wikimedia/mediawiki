@@ -580,8 +580,11 @@
 
 		allowCloseWindow = mw.confirmCloseWindow( {
 			test: function () {
-				return $( '#wpUploadFile' ).get( 0 ).files.length !== 0 ||
-					$uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
+				var $wpUploadFile = $( '#wpUploadFile' );
+				// check for existence of #wpUploadFile in case a gadget removed it (T262844)
+				return (
+					$wpUploadFile.length && $wpUploadFile.get( 0 ).files.length !== 0
+				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
 			},
 
 			message: mw.msg( 'editwarning-warning' ),
