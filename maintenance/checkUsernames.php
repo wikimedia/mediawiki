@@ -23,10 +23,12 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to check that database usernames are actually valid.
  *
- * An existing usernames can become invalid if User::isValidUserName()
+ * An existing usernames can become invalid if UserNameUtils::isValid()
  * is altered or if we change the $wgMaxNameChars
  *
  * @ingroup Maintenance
@@ -41,6 +43,7 @@ class CheckUsernames extends Maintenance {
 
 	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 
 		$maxUserId = 0;
 		do {
@@ -55,7 +58,7 @@ class CheckUsernames extends Maintenance {
 			);
 
 			foreach ( $res as $row ) {
-				if ( !User::isValidUserName( $row->user_name ) ) {
+				if ( !$userNameUtils->isValid( $row->user_name ) ) {
 					$this->output( sprintf( "Found: %6d: '%s'\n", $row->user_id, $row->user_name ) );
 					wfDebugLog( 'checkUsernames', $row->user_name );
 				}
