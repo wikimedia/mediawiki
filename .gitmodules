@@ -1382,3 +1382,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-EventStreamConfig.git
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/SimpleBlogPage"]
+	path = extensions/SimpleBlogPage
+	url = https://github.com/1f604/SimpleBlogPage.git
+	branch = master
+	ignore = dirty
