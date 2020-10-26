@@ -451,7 +451,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 *
 	 * @return RequestContext
 	 */
-	public static function getMain() {
+	public static function getMain() : RequestContext {
 		if ( self::$instance === null ) {
 			self::$instance = new self;
 		}
