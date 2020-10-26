@@ -359,9 +359,11 @@ class ForeignAPIFile extends File {
 	private function purgeDescriptionPage() {
 		$services = MediaWikiServices::getInstance();
 		$url = $this->repo->getDescriptionRenderUrl(
-			$this->getName(), $services->getContentLanguage()->getCode() );
-		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5( $url ) );
+			$this->getName(),
+			$services->getContentLanguage()->getCode()
+		);
 
+		$key = $this->repo->getLocalCacheKey( 'file-remote-description', md5( $url ) );
 		$services->getMainWANObjectCache()->delete( $key );
 	}
 
@@ -369,7 +371,7 @@ class ForeignAPIFile extends File {
 	 * @param array $options
 	 */
 	public function purgeThumbnails( $options = [] ) {
-		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
+		$key = $this->repo->getLocalCacheKey( 'file-thumb-url', sha1( $this->getName() ) );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 
 		$files = $this->getThumbnails();
