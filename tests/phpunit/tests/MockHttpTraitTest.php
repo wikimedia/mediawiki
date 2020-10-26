@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\AssertionFailedError;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @covers MockHttpTrait
@@ -215,6 +216,69 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 
 		$data = $client->runMulti( $requests );
 		$this->assertSame( $expected, $data );
+	}
+
+	public function provideGuzzleClientData() {
+		yield [
+			'Hello Wörld',
+			new GuzzleHttp\Psr7\Response( 200, [], 'Hello Wörld' ),
+		];
+		yield [
+			new GuzzleHttp\Psr7\Response( 404, [ 'Test' => 'hi' ], 'nope' ),
+			new GuzzleHttp\Psr7\Response( 404, [ 'Test' => 'hi' ], 'nope' ),
+		];
+	}
+
+	/**
+	 * @dataProvider provideGuzzleClientData
+	 */
+	public function testFakeGuzzleClientEmulatesRequests( $response, $expected ) {
+		$client = $this->makeFakeGuzzleClient( $response );
+
+		$this->assertGuzzleResponse( $expected, $client->request( 'TEST', 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->get( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->put( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->post( 'http://b.example.com' ) );
+	}
+
+	/**
+	 * @dataProvider provideGuzzleClientData
+	 */
+	public function testInstallMockHttpEmulatesGuzzleClient( $response, $expected ) {
+		$client = $this->makeFakeGuzzleClient( $response );
+		$this->installMockHttp( $client );
+
+		$client = $this->getServiceContainer()->getHttpRequestFactory()
+			->createGuzzleClient();
+
+		$this->assertGuzzleResponse( $expected, $client->request( 'TEST', 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->get( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->put( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->post( 'http://b.example.com' ) );
+	}
+
+	/**
+	 * @dataProvider provideGuzzleClientData
+	 */
+	public function testMakeMockHttpRequestFactoryEmulatesGuzzleClient( $response, $expected ) {
+		$client = $this->makeFakeGuzzleClient( $response );
+		$client = $this->makeMockHttpRequestFactory( $client )
+			->createGuzzleClient();
+
+		$this->assertGuzzleResponse( $expected, $client->request( 'TEST', 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->get( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->put( 'http://b.example.com' ) );
+		$this->assertGuzzleResponse( $expected, $client->post( 'http://b.example.com' ) );
+	}
+
+	/**
+	 * @param ResponseInterface $expected
+	 * @param ResponseInterface $actual
+	 */
+	private function assertGuzzleResponse( $expected, ResponseInterface $actual ) {
+		$this->assertSame( $expected->getStatusCode(), $actual->getStatusCode(), 'Status' );
+		$this->assertSame( $expected->getHeaders(), $actual->getHeaders(), 'Headers' );
+		$this->assertSame( strval( $expected->getBody() ), strval( $actual->getBody() ), 'Body' );
 	}
 
 }
