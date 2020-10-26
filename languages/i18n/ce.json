@@ -1315,6 +1315,8 @@
 	"rcfilters-filter-showlinkedto-label": "Хьажоргаш йолучу агӀонашна тӀехь нисдарш гайта",
 	"rcfilters-filter-showlinkedto-option-label": "Хаьржинчуна <strong>тӀетоьвжина агӀонаш</strong>",
 	"rcfilters-target-page-placeholder": "Язъе агӀона цӀе (я категорин)",
+	"rcfilters-allcontents-label": "Ерриге цӀерийн меттигаш",
+	"rcfilters-alldiscussions-label": "Дерриге дийцарш",
 	"rcnotefrom": "Лахахь гайтина тӀера <strong>$2</strong> (хийцамаш <strong>$1</strong> кӀезиг).",
 	"rclistfromreset": "Терахь харжар дӀадаккха",
 	"rclistfrom": "Гайта хийцам {{CURRENTYEAR}} шеран {{CURRENTDAY}} {{CURRENTMONTHNAMEGEN}} {{CURRENTTIME}} бина болу",

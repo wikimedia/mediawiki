@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abdiafrizal",
+			"Amire80",
 			"Boesenbergia",
 			"NoiX180"
 		]
@@ -109,6 +110,7 @@
 	"jumptosearch": "sarè",
 	"aboutsite": "Parkara {{SITENAME}}",
 	"aboutpage": "Project:Bâb",
+	"copyright": "Kontèn tasaḍiyâ è bâbâ $1 kajhâbhâ bâḍâ katrangan laèn.",
 	"copyrightpage": "{{ns:project}}:Ha' cèpta",
 	"currentevents": "Lalampan jângkènè",
 	"currentevents-url": "Project:Lalampan jângkènè",
