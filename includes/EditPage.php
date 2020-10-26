@@ -2045,6 +2045,34 @@ ERROR;
 			return $status;
 		}
 
+		try {
+			# Construct Content object
+			$textbox_content = $this->toEditContent( $this->textbox1 );
+		} catch ( MWContentSerializationException $ex ) {
+			$status->fatal(
+				'content-failed-to-parse',
+				$this->contentModel,
+				$this->contentFormat,
+				$ex->getMessage()
+			);
+			$status->value = self::AS_PARSE_ERROR;
+			return $status;
+		}
+
+		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
+			$this->hookError, $this->summary )
+		) {
+			# Error messages etc. could be handled within the hook...
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR;
+			return $status;
+		} elseif ( $this->hookError != '' ) {
+			# ...or the hook could be expecting us to produce an error
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
+		}
+
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 		$constraintRunner = new EditConstraintRunner();
@@ -2064,33 +2092,6 @@ ERROR;
 			)
 		);
 
-		// Check the constraints
-		if ( $constraintRunner->checkConstraints() === false ) {
-			$failed = $constraintRunner->getFailedConstraint();
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
-		}
-		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-		try {
-			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch ( MWContentSerializationException $ex ) {
-			$status->fatal(
-				'content-failed-to-parse',
-				$this->contentModel,
-				$this->contentFormat,
-				$ex->getMessage()
-			);
-			$status->value = self::AS_PARSE_ERROR;
-			return $status;
-		}
-
-		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
-		// Create a new runner to avoid rechecking the prior constraints, use the same factory
-		$constraintRunner = new EditConstraintRunner();
-
 		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
 		if ( $this->section == 'new' ) {
 			// $wgSpamRegex is enforced on this new heading/summary because, unlike
@@ -2103,7 +2104,6 @@ ERROR;
 			// No section heading to check
 			$sectionHeadingToCheck = '';
 		}
-
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
@@ -2113,38 +2113,6 @@ ERROR;
 				$this->mTitle
 			)
 		);
-
-		// Check the constraints
-		if ( $constraintRunner->checkConstraints() === false ) {
-			$failed = $constraintRunner->getFailedConstraint();
-
-			if ( $failed instanceof SpamRegexConstraint ) {
-				$result['spam'] = $failed->getMatch();
-			}
-
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
-		}
-		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
-			$this->hookError, $this->summary )
-		) {
-			# Error messages etc. could be handled within the hook...
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR;
-			return $status;
-		} elseif ( $this->hookError != '' ) {
-			# ...or the hook could be expecting us to produce an error
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return $status;
-		}
-
-		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
-		// Create a new runner to avoid rechecking the prior constraints, use the same factory
-		$constraintRunner = new EditConstraintRunner();
 		$constraintRunner->addConstraint(
 			$constraintFactory->newEditRightConstraint( $user )
 		);
@@ -2176,7 +2144,6 @@ ERROR;
 		$constraintRunner->addConstraint(
 			$constraintFactory->newReadOnlyConstraint()
 		);
-
 		$constraintRunner->addConstraint(
 			new UserRateLimitConstraint( $user, $changingContentModel )
 		);
@@ -2185,7 +2152,9 @@ ERROR;
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
-			if ( $failed instanceof UserBlockConstraint && !wfReadOnly() ) {
+			if ( $failed instanceof SpamRegexConstraint ) {
+				$result['spam'] = $failed->getMatch();
+			} elseif ( $failed instanceof UserBlockConstraint && !wfReadOnly() ) {
 				// Auto-block user's IP if the account was "hard" blocked
 				$user->spreadAnyEditBlock();
 			}
