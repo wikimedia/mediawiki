@@ -138,6 +138,7 @@
 									$row.find( '.mw-changelist-line-inner-unwatched' )
 										.addBack( '.mw-enhanced-rc-nested' )
 										.removeClass( 'mw-changelist-line-inner-unwatched' );
+									$row.find( '.mw-changesList-watchlistExpiry' ).remove();
 								} );
 
 							mw.notify(
