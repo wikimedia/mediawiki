@@ -16,6 +16,7 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"composer-plugin-api": "^1.1",
 		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.3.0",
 		"ext-ctype": "*",

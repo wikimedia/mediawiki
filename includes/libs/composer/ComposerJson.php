@@ -24,7 +24,9 @@ class ComposerJson {
 		$deps = [];
 		if ( isset( $this->contents['require'] ) ) {
 			foreach ( $this->contents['require'] as $package => $version ) {
-				if ( $package !== "php" && strpos( $package, 'ext-' ) !== 0 ) {
+				// Examples of package dependancies that don't have a / in the name:
+				// php, ext-xml, composer-plugin-api
+				if ( strpos( $package, '/' ) !== false ) {
 					$deps[$package] = self::normalizeVersion( $version );
 				}
 			}
