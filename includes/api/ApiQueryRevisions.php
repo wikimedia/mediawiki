@@ -37,6 +37,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 	private $token = null;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}

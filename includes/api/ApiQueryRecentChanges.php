@@ -33,6 +33,10 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rc' );
 	}
