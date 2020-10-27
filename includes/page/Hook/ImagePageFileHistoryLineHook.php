@@ -22,7 +22,7 @@ interface ImagePageFileHistoryLineHook {
 	 *   1.27 it is an ImageHistoryList.
 	 * @param File $file
 	 * @param string &$line HTML of the history line
-	 * @param string &$css Line CSS class
+	 * @param string|null &$css Line CSS class
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onImagePageFileHistoryLine( $imageHistoryList, $file, &$line, &$css );
