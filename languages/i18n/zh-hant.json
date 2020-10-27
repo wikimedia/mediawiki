@@ -3259,7 +3259,7 @@
 	"scarytranscludefailed": "[模板 $1 讀取失敗]",
 	"scarytranscludefailed-httpstatus": "[模板 $1 讀取失敗：HTTP $2]",
 	"scarytranscludetoolong": "[URL 過長]",
-	"deletedwhileediting": "<strong>警告：</strong>此頁在您開始編輯之後已經被刪除﹗",
+	"deletedwhileediting": "<strong>警告：</strong>此頁在您開始編輯之後已經被刪除！",
 	"confirmrecreate": "在您編輯的同時，使用者 [[User:$1|$1]] ([[User talk:$1|討論]]) 刪除了此頁面，原因為：\n: <em>$2</em>\n請確認您是否真的要重新建立此頁面。",
 	"confirmrecreate-noreason": "在您編輯的同時，使用者 [[User:$1|$1]] ([[User talk:$1|討論]]) 刪除了此頁面，請確認您是否真的要重新建立此頁面。",
 	"recreate": "重新建立",
