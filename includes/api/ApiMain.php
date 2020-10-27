@@ -68,11 +68,24 @@ class ApiMain extends ApiBase {
 		'unlinkaccount' => ApiRemoveAuthenticationData::class,
 		'changeauthenticationdata' => ApiChangeAuthenticationData::class,
 		'removeauthenticationdata' => ApiRemoveAuthenticationData::class,
-		'resetpassword' => ApiResetPassword::class,
+		'resetpassword' => [
+			'class' => ApiResetPassword::class,
+			'services' => [
+				'PasswordReset',
+			]
+		],
 		'query' => ApiQuery::class,
 		'expandtemplates' => ApiExpandTemplates::class,
 		'parse' => ApiParse::class,
-		'stashedit' => ApiStashEdit::class,
+		'stashedit' => [
+			'class' => ApiStashEdit::class,
+			'services' => [
+				'ContentHandlerFactory',
+				'PageEditStash',
+				'RevisionLookup',
+				'StatsdDataFactory',
+			]
+		],
 		'opensearch' => ApiOpenSearch::class,
 		'feedcontributions' => ApiFeedContributions::class,
 		'feedrecentchanges' => ApiFeedRecentChanges::class,

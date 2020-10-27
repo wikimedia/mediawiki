@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
@@ -30,6 +29,25 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
  */
 class ApiResetPassword extends ApiBase {
 
+	/** @var PasswordReset */
+	private $passwordReset;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param PasswordReset $passwordReset
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		PasswordReset $passwordReset
+	) {
+		parent::__construct( $main, $action );
+
+		$this->passwordReset = $passwordReset;
+	}
+
+	/** @var bool */
 	private $hasAnyRoutes = null;
 
 	/**
@@ -64,14 +82,12 @@ class ApiResetPassword extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'email' );
 
-		$passwordReset = MediaWikiServices::getInstance()->getPasswordReset();
-
-		$status = $passwordReset->isAllowed( $this->getUser() );
+		$status = $this->passwordReset->isAllowed( $this->getUser() );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( Status::wrap( $status ) );
 		}
 
-		$status = $passwordReset->execute(
+		$status = $this->passwordReset->execute(
 			$this->getUser(), $params['user'], $params['email']
 		);
 		if ( !$status->isOK() ) {
