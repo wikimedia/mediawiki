@@ -72,7 +72,15 @@ class ApiMain extends ApiBase {
 		'query' => ApiQuery::class,
 		'expandtemplates' => ApiExpandTemplates::class,
 		'parse' => ApiParse::class,
-		'stashedit' => ApiStashEdit::class,
+		'stashedit' => [
+			'class' => ApiStashEdit::class,
+			'services' => [
+				'ContentHandlerFactory',
+				'PageEditStash',
+				'RevisionLookup',
+				'StatsdDataFactory',
+			]
+		],
 		'opensearch' => ApiOpenSearch::class,
 		'feedcontributions' => ApiFeedContributions::class,
 		'feedrecentchanges' => ApiFeedRecentChanges::class,
