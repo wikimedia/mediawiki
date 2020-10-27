@@ -41,10 +41,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 			'list' => 'search',
 			'srsearch' => 'my query',
 		] );
-		$titles = [];
-		foreach ( $response['query']['search'] as $result ) {
-			$titles[] = $result['title'];
-		}
+		$titles = array_column( $response['query']['search'], 'title' );
 		$this->assertEquals( $expect, $titles );
 	}
 

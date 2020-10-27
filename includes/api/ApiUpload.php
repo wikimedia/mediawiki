@@ -724,10 +724,7 @@ class ApiUpload extends ApiBase {
 			ApiResult::setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {
-				$dupes = [];
-				foreach ( $warnings['duplicate'] as $dupe ) {
-					$dupes[] = $dupe['fileName'];
-				}
+				$dupes = array_column( $warnings['duplicate'], 'fileName' );
 				ApiResult::setIndexedTagName( $dupes, 'duplicate' );
 				$warnings['duplicate'] = $dupes;
 			}

@@ -1168,11 +1168,7 @@ class LinksUpdate extends DataUpdate {
 		if ( $this->externalLinkInsertions === null ) {
 			return null;
 		}
-		$result = [];
-		foreach ( $this->externalLinkInsertions as $key => $value ) {
-			$result[] = $value['el_to'];
-		}
-		return $result;
+		return array_column( $this->externalLinkInsertions, 'el_to' );
 	}
 
 	/**
