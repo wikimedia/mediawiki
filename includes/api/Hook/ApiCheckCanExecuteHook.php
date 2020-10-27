@@ -21,7 +21,7 @@ interface ApiCheckCanExecuteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ApiBase $module Module object
+	 * @param ApiBase $module
 	 * @param User $user Current user
 	 * @param IApiMessage|Message|string|array &$message API message to die with.
 	 *  Specific values accepted depend on the MediaWiki version:

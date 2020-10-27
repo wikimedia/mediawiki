@@ -18,7 +18,7 @@ interface ParserBeforePreprocessHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Parser $parser Parser object
+	 * @param Parser $parser
 	 * @param string &$text text to parse
 	 * @param StripState $stripState StripState instance being used
 	 * @return bool|void True or no return value to continue or false to abort

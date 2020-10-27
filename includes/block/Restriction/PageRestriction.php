@@ -51,8 +51,6 @@ class PageRestriction extends AbstractRestriction {
 	}
 
 	/**
-	 * Set the title.
-	 *
 	 * @since 1.33
 	 * @param \Title $title
 	 * @return self
@@ -64,8 +62,6 @@ class PageRestriction extends AbstractRestriction {
 	}
 
 	/**
-	 * Get Title.
-	 *
 	 * @since 1.33
 	 * @return \Title|null
 	 */

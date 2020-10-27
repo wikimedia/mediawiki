@@ -306,7 +306,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @since 1.33
 	 * @param string $table Table name
 	 * @param string $field Field name
-	 * @param int[] $ids IDs
+	 * @param int[] $ids
 	 * @return int Count of IDs actually included
 	 */
 	protected function addWhereIDsFld( $table, $field, $ids ) {

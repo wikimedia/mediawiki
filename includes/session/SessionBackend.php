@@ -504,7 +504,6 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Set the "logged out" timestamp
 	 * @param int|null $ts
 	 */
 	public function setLoggedOutTimestamp( $ts = null ) {
@@ -531,7 +530,6 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Set provider metadata
 	 * @note For use by SessionProvider subclasses only
 	 * @param array|null $metadata
 	 */

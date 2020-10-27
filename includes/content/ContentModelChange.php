@@ -94,8 +94,6 @@ class ContentModelChange {
 	}
 
 	/**
-	 * Set the message prefix
-	 *
 	 * @param string $msgPrefix
 	 */
 	public function setMessagePrefix( $msgPrefix ) {
@@ -145,8 +143,6 @@ class ContentModelChange {
 	}
 
 	/**
-	 * Create the new content
-	 *
 	 * @return Status
 	 */
 	private function createNewContent() {

@@ -24,7 +24,7 @@ interface SpecialStatsAddExtraHook {
 	 *   "number" is the number to be displayed.
 	 *   or, <value> can be the number to be displayed and <name> is the
 	 *   message key to use in the name column,
-	 * @param IContextSource $context IContextSource object
+	 * @param IContextSource $context
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialStatsAddExtra( &$extraStats, $context );

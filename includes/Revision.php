@@ -485,8 +485,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user ID/name
-	 *
 	 * This should only be used for proposed revisions that turn out to be null edits
 	 *
 	 * @note Only supported on Revisions that were constructed based on associative arrays,

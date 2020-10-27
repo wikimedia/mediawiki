@@ -2371,7 +2371,6 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the configuration
 	 * @return array
 	 */
 	private function getConfiguration() {

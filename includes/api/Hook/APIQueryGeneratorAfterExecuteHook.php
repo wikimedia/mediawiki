@@ -19,7 +19,7 @@ interface APIQueryGeneratorAfterExecuteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ApiBase $module Module object
+	 * @param ApiBase $module
 	 * @param ApiPageSet $resultPageSet
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

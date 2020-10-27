@@ -463,9 +463,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return wfGetDB( DB_REPLICA, 'watchlist' );
 	}
 
-	/**
-	 * Output feed links.
-	 */
 	public function outputFeedLinks() {
 		$user = $this->getUser();
 		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );

@@ -87,7 +87,6 @@ class SparqlClient {
 	}
 
 	/**
-	 * Set client options
 	 * @param array $options
 	 * @return $this
 	 */
@@ -105,8 +104,6 @@ class SparqlClient {
 	}
 
 	/**
-	 * Set user agent string.
-	 *
 	 * Mote it is not recommended to completely override user agent for
 	 * most applications.
 	 * @see appendUserAgent() for recommended way of specifying user agent.

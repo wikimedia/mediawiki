@@ -17,7 +17,7 @@ interface SpecialUploadCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialUpload $form The SpecialUpload object
+	 * @param SpecialUpload $form
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialUploadComplete( $form );

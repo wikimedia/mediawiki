@@ -19,8 +19,7 @@ interface ChangeAuthenticationDataAuditHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param AuthenticationRequest $req AuthenticationRequest object
-	 *   describing the change (and target user)
+	 * @param AuthenticationRequest $req Object describing the change (and target user)
 	 * @param StatusValue $status StatusValue with the result of the action
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

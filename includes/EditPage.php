@@ -514,9 +514,7 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Set the context Title object
-	 *
-	 * @param Title|null $title Title object or null
+	 * @param Title|null $title
 	 */
 	public function setContextTitle( $title ) {
 		$this->mContextTitle = $title;
@@ -3822,9 +3820,6 @@ ERROR;
 		$this->context->getOutput()->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
 	}
 
-	/**
-	 * Show the header copyright warning.
-	 */
 	protected function showHeaderCopyrightWarning() {
 		$msg = 'editpage-head-copy-warn';
 		if ( !$this->context->msg( $msg )->isDisabled() ) {

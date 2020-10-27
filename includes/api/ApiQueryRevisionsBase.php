@@ -231,7 +231,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * Extract information from the RevisionRecord
 	 *
 	 * @since 1.32, takes a RevisionRecord instead of a Revision
-	 * @param RevisionRecord $revision Revision
+	 * @param RevisionRecord $revision
 	 * @param object $row Should have a field 'ts_tags' if $this->fld_tags is set
 	 * @return array
 	 */

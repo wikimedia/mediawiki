@@ -490,7 +490,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the skip function.
 	 * @return null|string
 	 * @throws RuntimeException If the file doesn't exist
 	 */

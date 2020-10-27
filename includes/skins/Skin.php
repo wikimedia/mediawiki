@@ -360,7 +360,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Set the "relevant" title
 	 * @see self::getRelevantTitle()
 	 * @param Title $t
 	 */
@@ -383,7 +382,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Set the "relevant" user
 	 * @see self::getRelevantUser()
 	 * @param User $u
 	 */
@@ -1974,8 +1972,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the site notice
-	 *
 	 * @return string HTML fragment
 	 */
 	public function getSiteNotice() {
@@ -2011,7 +2007,7 @@ abstract class Skin extends ContextSource {
 	 *   to be included in the link, like "&section=$section"
 	 * @param string|null $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param Language $lang Language object
+	 * @param Language $lang
 	 * @return string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip, Language $lang ) {

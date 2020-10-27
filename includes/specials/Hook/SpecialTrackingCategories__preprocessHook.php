@@ -18,7 +18,7 @@ interface SpecialTrackingCategories__preprocessHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialTrackingCategories $specialPage The SpecialTrackingCategories object
+	 * @param SpecialTrackingCategories $specialPage
 	 * @param array $trackingCategories Array of data from Special:TrackingCategories with msg and
 	 *   cats
 	 * @return bool|void True or no return value to continue or false to abort

@@ -26,9 +26,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * Provide HTML5 tags
-	 */
 	public static function provideHtml5Tags() {
 		$ESCAPED = true; # We want tag to be escaped
 		$VERBATIM = false; # We want to keep the tag

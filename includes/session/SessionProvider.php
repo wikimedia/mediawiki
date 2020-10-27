@@ -140,7 +140,6 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	}
 
 	/**
-	 * Set the hook container
 	 * @internal
 	 * @param HookContainer $hookContainer
 	 */

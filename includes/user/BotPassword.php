@@ -203,7 +203,6 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the app ID
 	 * @return string
 	 */
 	public function getAppId() {
@@ -211,7 +210,6 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the token
 	 * @return string
 	 */
 	public function getToken() {
@@ -219,7 +217,6 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the restrictions
 	 * @return MWRestrictions
 	 */
 	public function getRestrictions() {
@@ -227,7 +224,6 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the grants
 	 * @return string[]
 	 */
 	public function getGrants() {
@@ -244,7 +240,6 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the password
 	 * @return Password
 	 */
 	private function getPassword() {

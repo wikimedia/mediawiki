@@ -2020,7 +2020,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.32, use getDerivedDataUpdater instead.
 	 *
 	 * @param Content $content
-	 * @param Revision|RevisionRecord|null $revision Revision object.
+	 * @param Revision|RevisionRecord|null $revision
 	 *        Used with vary-revision or vary-revision-id. Passing a Revision object
 	 *        is hard deprecated since 1.35;
 	 * @param User|null $user

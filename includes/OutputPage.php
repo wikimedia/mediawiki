@@ -1114,8 +1114,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the subtitle
-	 *
 	 * @return string
 	 */
 	public function getSubtitle() {
