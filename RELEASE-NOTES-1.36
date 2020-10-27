@@ -309,6 +309,7 @@ because of Phabricator reports.
   unused outside of MediaWiki core.
 * Skin::subPageSubtitle() has been changed to private method. Callers should
   use Skin::prepareSubtitle().
+* wfForeignMemcKey() and wfMemcKey(), deprecated in 1.35, have been removed.
 * …
 
 === Deprecations in 1.36 ===
