@@ -472,6 +472,8 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 		$wgDummyLanguageCodes[$bcp47] = $wgDummyLanguageCodes[$code] ?? $code;
 	}
 }
+unset( $code ); // no global pollution; destroy reference
+unset( $bcp47 ); // no global pollution; destroy reference
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	Wikimedia\suppressWarnings();
@@ -800,6 +802,7 @@ $wgTitle = null;
 foreach ( $wgExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
+unset( $func ); // no global pollution; destroy reference
 
 // If the session user has a 0 id but a valid name, that means we need to
 // autocreate it.
