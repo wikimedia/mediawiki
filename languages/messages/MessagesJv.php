@@ -59,7 +59,8 @@ $namespaceAliases = [ // Kept former namespaces for backwards compatibility - T1
 $specialPageAliases = [
 	'Activeusers'               => [ 'Naraguna_giyat' ],
 	'Allmessages'               => [ 'Layang_sistem' ],
-	'AllMyUploads'              => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
+	// FIXME: Conflicts with Listfiles
+	// 'AllMyUploads'              => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
 	'Allpages'                  => [ 'Pratélan_kaca', 'Pratelan_kaca' ],
 	'ApiHelp'                   => [ 'Pitulung_API' ],
 	'ApiSandbox'                => [ 'Bak_wedhi_API' ],
@@ -100,7 +101,8 @@ $specialPageAliases = [
 	'LinkSearch'                => [ 'Golèk_pranala', 'Golek_pranala' ],
 	'Listadmins'                => [ 'Pratélan_panata', 'Pratelan_panata' ],
 	'Listbots'                  => [ 'Pratélan_bot', 'Pratelan_bot' ],
-	'Listfiles'                 => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
+	// FIXME: Conflicts with AllMyUploads
+	// 'Listfiles'                 => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
 	'Listgrouprights'           => [ 'Pratélan_hak_golongan', 'Pratelan_hak_golongan' ],
 	'Listgrants'                => [ 'Pratélan_idin', 'Pratelan_idin' ],
 	'Listredirects'             => [ 'Pratélan_alihan', 'Pratelan_alihan' ],
