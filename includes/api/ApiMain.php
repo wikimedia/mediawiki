@@ -68,7 +68,12 @@ class ApiMain extends ApiBase {
 		'unlinkaccount' => ApiRemoveAuthenticationData::class,
 		'changeauthenticationdata' => ApiChangeAuthenticationData::class,
 		'removeauthenticationdata' => ApiRemoveAuthenticationData::class,
-		'resetpassword' => ApiResetPassword::class,
+		'resetpassword' => [
+			'class' => ApiResetPassword::class,
+			'services' => [
+				'PasswordReset',
+			]
+		],
 		'query' => ApiQuery::class,
 		'expandtemplates' => ApiExpandTemplates::class,
 		'parse' => ApiParse::class,
