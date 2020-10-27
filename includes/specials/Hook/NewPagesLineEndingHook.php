@@ -18,7 +18,7 @@ interface NewPagesLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialNewPages $page The SpecialNewPages object
+	 * @param SpecialNewPages $page
 	 * @param string &$ret the HTML line
 	 * @param stdClass $row The database row for this page (the recentchanges record and a few extras
 	 *   - see NewPagesPager::getQueryInfo)

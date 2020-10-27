@@ -594,8 +594,6 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * Set the TTL
-	 *
 	 * @param int $ttl
 	 */
 	public function setTTL( $ttl ) {
@@ -605,8 +603,6 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * Get the TTL
-	 *
 	 * @return int|null
 	 */
 	public function getTTL() {

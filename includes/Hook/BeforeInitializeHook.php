@@ -22,7 +22,7 @@ interface BeforeInitializeHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title being used for request
-	 * @param null $unused Null
+	 * @param null $unused
 	 * @param OutputPage $output
 	 * @param User $user
 	 * @param WebRequest $request

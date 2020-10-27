@@ -17,7 +17,7 @@ interface UserSetEmailHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User object
+	 * @param User $user
 	 * @param string &$email new email, change this to override new email address
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

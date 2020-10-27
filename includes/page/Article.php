@@ -268,9 +268,6 @@ class Article implements Page {
 		return $this->mPage;
 	}
 
-	/**
-	 * Clear the object
-	 */
 	public function clear() {
 		$this->mContentLoaded = false;
 

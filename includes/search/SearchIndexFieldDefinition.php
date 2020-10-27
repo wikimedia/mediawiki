@@ -61,7 +61,6 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	}
 
 	/**
-	 * Get index type
 	 * @return string
 	 */
 	public function getIndexType() {
@@ -117,7 +116,6 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	}
 
 	/**
-	 * Get subfields
 	 * @return SearchIndexFieldDefinition[]
 	 */
 	public function getSubfields() {
@@ -125,7 +123,6 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	}
 
 	/**
-	 * Set subfields
 	 * @param SearchIndexFieldDefinition[] $subfields
 	 * @return $this
 	 */

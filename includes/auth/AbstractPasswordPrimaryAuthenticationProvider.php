@@ -51,7 +51,6 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	}
 
 	/**
-	 * Get the PasswordFactory
 	 * @return PasswordFactory
 	 */
 	protected function getPasswordFactory() {

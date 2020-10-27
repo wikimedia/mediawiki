@@ -368,7 +368,6 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Set the batch size.
 	 * @param int $s The number of operations to do in a batch
 	 */
 	protected function setBatchSize( $s = 0 ) {

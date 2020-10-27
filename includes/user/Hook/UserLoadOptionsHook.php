@@ -17,7 +17,7 @@ interface UserLoadOptionsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User object
+	 * @param User $user
 	 * @param array &$options Options, can be modified.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

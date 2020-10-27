@@ -19,7 +19,7 @@ interface SpecialContributions__formatRow__flagsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param IContextSource $context IContextSource object
+	 * @param IContextSource $context
 	 * @param stdClass $row Revision information from the database
 	 * @param string[] &$flags HTML fragments describing flags for this row
 	 * @return bool|void True or no return value to continue or false to abort

@@ -38,7 +38,7 @@ trait FactoryArgTestTrait {
 	 * $method is returned from getFactoryMethodName(), and $args is constructed by applying
 	 * getMockValueForParam() to the factory method's parameters.
 	 *
-	 * @param object $factory Factory object
+	 * @param object $factory
 	 * @return object Object created by factory
 	 */
 	protected function createInstanceFromFactory( $factory ) {

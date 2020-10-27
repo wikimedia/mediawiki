@@ -19,7 +19,7 @@ interface SpecialTrackingCategories__generateCatLinkHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialTrackingCategories $specialPage The SpecialTrackingCategories object
+	 * @param SpecialTrackingCategories $specialPage
 	 * @param Title $catTitle The Title object of the linked category
 	 * @param string &$html The Result html
 	 * @return bool|void True or no return value to continue or false to abort

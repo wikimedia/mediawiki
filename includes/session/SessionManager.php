@@ -105,8 +105,6 @@ final class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * Get the "global" session
-	 *
 	 * If PHP's session_id() has been set, returns that session. Otherwise
 	 * returns the session for RequestContext::getMain()->getRequest().
 	 *

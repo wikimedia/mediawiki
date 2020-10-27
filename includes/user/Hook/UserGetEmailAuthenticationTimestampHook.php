@@ -17,7 +17,7 @@ interface UserGetEmailAuthenticationTimestampHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User object
+	 * @param User $user
 	 * @param string &$timestamp Timestamp. Change this to override the local email
 	 *   authentication timestamp.
 	 * @return bool|void True or no return value to continue or false to abort

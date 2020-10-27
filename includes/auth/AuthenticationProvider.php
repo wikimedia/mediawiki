@@ -52,7 +52,6 @@ interface AuthenticationProvider extends LoggerAwareInterface {
 	public function setConfig( Config $config );
 
 	/**
-	 * Set the HookContainer
 	 * @param HookContainer $hookContainer
 	 */
 	public function setHookContainer( HookContainer $hookContainer );

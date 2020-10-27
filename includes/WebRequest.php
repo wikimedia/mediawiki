@@ -1152,8 +1152,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Set session data
-	 *
 	 * @note Prefer $this->getSession() instead if making multiple calls.
 	 * @param string $key Name of key in the session
 	 * @param mixed $data

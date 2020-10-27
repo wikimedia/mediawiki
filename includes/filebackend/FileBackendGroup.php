@@ -82,8 +82,6 @@ class FileBackendGroup {
 	}
 
 	/**
-	 * Destroy the singleton instance
-	 *
 	 * @deprecated since 1.35, test framework should reset services between tests instead
 	 */
 	public static function destroySingleton() {

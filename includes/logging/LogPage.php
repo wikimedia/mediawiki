@@ -222,10 +222,10 @@ class LogPage {
 	 *
 	 * @param string $type Log type
 	 * @param string $action Log action
-	 * @param Title|null $title Title object or null
+	 * @param Title|null $title
 	 * @param Skin|null $skin Skin object or null. If null, we want to use the wiki
 	 *   content language, since that will go to the IRC feed.
-	 * @param array $params Parameters
+	 * @param array $params
 	 * @param bool $filterWikilinks Whether to filter wiki links
 	 * @return string HTML
 	 */

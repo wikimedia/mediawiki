@@ -98,7 +98,6 @@ class ApiContinuationManager {
 	}
 
 	/**
-	 * Is the generator done?
 	 * @return bool
 	 */
 	public function isGeneratorDone() {

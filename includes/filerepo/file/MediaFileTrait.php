@@ -25,7 +25,7 @@
  */
 trait MediaFileTrait {
 	/**
-	 * @param File $file the file object
+	 * @param File $file
 	 * @param User $user user object (for permissions check)
 	 * @param array $transforms array of transforms to include in the response
 	 * @return array response data

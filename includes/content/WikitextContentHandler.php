@@ -118,7 +118,6 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Get file handler
 	 * @return FileContentHandler
 	 */
 	protected function getFileHandler() {
