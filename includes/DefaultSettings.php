@@ -1604,7 +1604,6 @@ $wgThumbnailMinimumBucketDistance = 50;
  *
  * @since 1.25
  */
-
 $wgUploadThumbnailRenderMap = [];
 
 /**
@@ -5455,7 +5454,7 @@ $wgBlockDisablesLogin = false;
  *
  * @par Example:
  * @code
- * $wgWhitelistRead = array ( "Main Page", "Wikipedia:Help");
+ * $wgWhitelistRead = [ "Main Page", "Wikipedia:Help" ];
  * @endcode
  *
  * Special:Userlogin and Special:ChangePassword are always allowed.
@@ -8082,7 +8081,7 @@ $wgPagePropLinkInvalidations = [
 $wgUseCategoryBrowser = false;
 
 /**
- *  On  category pages, show thumbnail gallery for images belonging to that
+ * On category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
 $wgCategoryMagicGallery = true;
@@ -8195,7 +8194,7 @@ $wgFilterLogTypes = [
  * Extensions with custom log types may add to this array.
  *
  * @since 1.19, if you follow the naming convention log-name-TYPE,
- * where TYPE is your log type, yoy don't need to use this array.
+ * where TYPE is your log type, you don't need to use this array.
  */
 $wgLogNames = [
 	'' => 'all-logs-page',
