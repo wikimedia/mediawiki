@@ -30,7 +30,6 @@ use ActorMigration;
 use CommentStore;
 use CommentStoreComment;
 use Content;
-use ContentHandler;
 use DBAccessObjectUtils;
 use FallbackContent;
 use IDBAccessObject;
@@ -2111,7 +2110,7 @@ class RevisionStore
 				$model = $slotRoleHandler->getDefaultModel( $title );
 			}
 
-			$contentHandler = ContentHandler::getForModelID( $model );
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
 			$content = $contentHandler->unserializeContent( $fields['text'] );
 			$slotContent = [ SlotRecord::MAIN => $content ];
 		} else {
