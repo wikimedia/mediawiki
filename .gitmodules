@@ -1219,7 +1219,7 @@
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
 	path = extensions/SpriteSheet
-	url = https://gitlab.com/hydrawiki/extensions/SpriteSheet.git
+	url = https://github.com/miraheze/SpriteSheet.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/LanguageSelector"]
