@@ -10,6 +10,7 @@
 			"LNDDYL",
 			"Lauhenry",
 			"Mark85296341",
+			"Pseudo Classes",
 			"Waihorace",
 			"Xiplus"
 		]
@@ -53,9 +54,9 @@
 	"exif-relatedsoundfile": "相關的音效檔案",
 	"exif-datetimeoriginal": "資料產生的日期時間",
 	"exif-datetimedigitized": "數位化的日期時間",
-	"exif-subsectime": "DateTime 次秒",
-	"exif-subsectimeoriginal": "DateTimeOriginal 次秒",
-	"exif-subsectimedigitized": "DateTimeDigitized 次秒",
+	"exif-subsectime": "時間數據亞秒數",
+	"exif-subsectimeoriginal": "文件建立時間數據亞秒數",
+	"exif-subsectimedigitized": "文件數位化時間數據亞秒數",
 	"exif-exposuretime": "曝光時間",
 	"exif-exposuretime-format": "$1 秒 ($2)",
 	"exif-fnumber": "光圈值",

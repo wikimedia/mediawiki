@@ -265,7 +265,7 @@
 	"apihelp-import-param-tags": "İçe aktarma günlüğündeki girişe ve içe aktarılan sayfalardaki boş revizyona uygulanacak etiketleri değiştirin.",
 	"apihelp-import-example-import": "Tam geçmişe sahip 100 ad alanına [[meta:Help:ParserFunctions]] aktarın.",
 	"apihelp-linkaccount-summary": "Bir üçüncü taraf sağlayıcıdan bir hesabı geçerli kullanıcıya bağlayın.",
-	"apihelp-linkaccount-example-link": "<kbd>Example</kbd> kullanıcısından bir hesaba bağlanma işlemini başlatın.",
+	"apihelp-linkaccount-example-link": "<kbd>Example</kbd> adlı kullanıcıdan bir hesaba bağlantı işlemini başlatın.",
 	"apihelp-login-summary": "Oturum açın ve kimlik doğrulama çerezlerini alın.",
 	"apihelp-login-extended-description": "Bu eylem yalnızca [[Special:BotPasswords]] ile birlikte kullanılmalıdır; ana hesap oturumu için kullanımdan kaldırılmıştır ve uyarı yapılmaksızın başarısız olabilir. Ana hesaba güvenli bir şekilde giriş yapmak için <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd> kullanın.",
 	"apihelp-login-extended-description-nobotpasswords": "Bu işlem kullanımdan kaldırılmıştır ve uyarı yapılmaksızın başarısız olabilir. Güvenli bir şekilde oturum açmak için <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd> kullanın.",
