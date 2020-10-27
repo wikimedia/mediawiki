@@ -22,7 +22,9 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
@@ -2071,6 +2073,8 @@ ERROR;
 			return $status;
 		}
 
+		$this->contentLength = strlen( $this->textbox1 );
+
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 		$constraintRunner = new EditConstraintRunner();
@@ -2145,42 +2149,41 @@ ERROR;
 		$constraintRunner->addConstraint(
 			new UserRateLimitConstraint( $user, $changingContentModel )
 		);
+		$constraintRunner->addConstraint(
+			// Same constraint is used to check size before and after merging the
+			// edits, which use different failure codes
+			$constraintFactory->newPageSizeConstraint(
+				$this->contentLength,
+				PageSizeConstraint::BEFORE_MERGE
+			)
+		);
+		if ( $this->changeTags ) {
+			$constraintRunner->addConstraint(
+				new ChangeTagsConstraint( $user, $this->changeTags )
+			);
+		}
 
 		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
-			if ( $failed instanceof SpamRegexConstraint ) {
+			if ( $failed instanceof PageSizeConstraint ) {
+				// Error will be displayed by showEditForm()
+				$this->tooBig = true;
+			} elseif ( $failed instanceof SpamRegexConstraint ) {
 				$result['spam'] = $failed->getMatch();
-			} elseif ( $failed instanceof UserBlockConstraint && !wfReadOnly() ) {
+			} elseif ( $failed instanceof UserBlockConstraint ) {
 				// Auto-block user's IP if the account was "hard" blocked
-				$user->spreadAnyEditBlock();
+				if ( !wfReadOnly() ) {
+					$user->spreadAnyEditBlock();
+				}
 			}
 
 			$statusValue = $failed->getLegacyStatus();
 			$status = Status::wrap( $statusValue );
 			return $status;
 		}
-		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
-
-		$this->contentLength = strlen( $this->textbox1 );
-		$config = $this->context->getConfig();
-		$maxArticleSize = $config->get( 'MaxArticleSize' );
-		if ( $this->contentLength > $maxArticleSize * 1024 ) {
-			// Error will be displayed by showEditForm()
-			$this->tooBig = true;
-			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
-			return $status;
-		}
-
-		if ( $this->changeTags ) {
-			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$this->changeTags, $user );
-			if ( !$changeTagsStatus->isOK() ) {
-				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
-				return $changeTagsStatus;
-			}
-		}
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
@@ -2437,11 +2440,32 @@ ERROR;
 
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
-		if ( $this->contentLength > $maxArticleSize * 1024 ) {
-			$this->tooBig = true;
-			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
+
+		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+		// Create a new runner to avoid rechecking the prior constraints, use the same factory
+		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner->addConstraint(
+			// Same constraint is used to check size before and after merging the
+			// edits, which use different failure codes
+			$constraintFactory->newPageSizeConstraint(
+				$this->contentLength,
+				PageSizeConstraint::AFTER_MERGE
+			)
+		);
+		// Check the constraints
+		if ( $constraintRunner->checkConstraints() === false ) {
+			$failed = $constraintRunner->getFailedConstraint();
+
+			if ( $failed instanceof PageSizeConstraint ) {
+				// Error will be displayed by showEditForm()
+				$this->tooBig = true;
+			}
+
+			$statusValue = $failed->getLegacyStatus();
+			$status = Status::wrap( $statusValue );
 			return $status;
 		}
+		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
 		$flags = EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |

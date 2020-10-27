@@ -20,6 +20,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
@@ -37,6 +38,15 @@ use User;
  * @author DannyS712
  */
 class EditConstraintFactory {
+
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [
+		// PageSizeConstraint
+		'MaxArticleSize',
+	];
+
+	/** @var ServiceOptions */
+	private $options;
 
 	/** @var Spi */
 	private $loggerFactory;
@@ -58,18 +68,23 @@ class EditConstraintFactory {
 	 * The checks in EditPage use wfDebugLog and logged to different channels, hence the need
 	 * for multiple loggers retrieved from the Spi. TODO can they be combined into the same channel?
 	 *
+	 * @param ServiceOptions $options
 	 * @param Spi $loggerFactory
 	 * @param PermissionManager $permissionManager
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param SpamChecker $spamRegexChecker
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		Spi $loggerFactory,
 		PermissionManager $permissionManager,
 		ReadOnlyMode $readOnlyMode,
 		SpamChecker $spamRegexChecker
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		// Multiple
+		$this->options = $options;
 		$this->loggerFactory = $loggerFactory;
 		$this->permissionManager = $permissionManager;
 
@@ -126,6 +141,22 @@ class EditConstraintFactory {
 			$title,
 			$isRedirect,
 			$user
+		);
+	}
+
+	/**
+	 * @param int $contentSize
+	 * @param string $type
+	 * @return PageSizeConstraint
+	 */
+	public function newPageSizeConstraint(
+		int $contentSize,
+		string $type
+	) : PageSizeConstraint {
+		return new PageSizeConstraint(
+			$this->options->get( 'MaxArticleSize' ),
+			$contentSize,
+			$type
 		);
 	}
 
