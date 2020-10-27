@@ -742,11 +742,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-AutoCreateCategoryPages
 	branch = master
 	ignore = dirty
-[submodule "extensions/CrossReference"]
-	path = extensions/CrossReference
-	url = https://github.com/gallandarakhneorg/mediawiki-crossreference
-	branch = master
-	ignore = dirty
 [submodule "extensions/PageForms"]
 	path = extensions/PageForms
 	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
