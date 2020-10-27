@@ -1116,22 +1116,6 @@ CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_pa
 CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 
 
--- Protected titles - nonexistent pages that have been protected
-CREATE TABLE /*_*/protected_titles (
-  pt_namespace int NOT NULL,
-  pt_title varchar(255) binary NOT NULL,
-  pt_user int unsigned NOT NULL,
-  pt_reason_id bigint unsigned NOT NULL,
-  pt_timestamp binary(14) NOT NULL,
-  pt_expiry varbinary(14) NOT NULL default '',
-  pt_create_perm varbinary(60) NOT NULL,
-
-  PRIMARY KEY (pt_namespace,pt_title)
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
-
-
 -- Name/value pairs indexed by page_id
 CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL,
