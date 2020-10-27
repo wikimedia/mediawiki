@@ -104,8 +104,8 @@ class SpecialPreferences extends SpecialPage {
 
 	/**
 	 * Get the preferences form to use.
-	 * @param User $user The user.
-	 * @param IContextSource $context The context.
+	 * @param User $user
+	 * @param IContextSource $context
 	 * @return PreferencesFormOOUI|HTMLForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {

@@ -71,9 +71,6 @@ class CloneDatabase {
 		$this->useTemporaryTables = $u;
 	}
 
-	/**
-	 * Clone the table structure
-	 */
 	public function cloneTableStructure() {
 		global $wgSharedTables, $wgSharedDB;
 		foreach ( $this->tablesToClone as $tbl ) {

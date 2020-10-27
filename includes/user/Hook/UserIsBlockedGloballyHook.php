@@ -17,7 +17,7 @@ interface UserIsBlockedGloballyHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User object
+	 * @param User $user
 	 * @param string $ip User's IP address
 	 * @param bool &$blocked Whether the user is blocked, to be modified by the hook
 	 * @param null &$block The Block object, to be modified by the hook

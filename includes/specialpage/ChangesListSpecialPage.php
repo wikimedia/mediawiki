@@ -1679,9 +1679,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->outputChangesList( $rows, $opts );
 	}
 
-	/**
-	 * Output feed links.
-	 */
 	public function outputFeedLinks() {
 		// nothing by default
 	}

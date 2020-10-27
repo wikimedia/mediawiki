@@ -49,8 +49,6 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test 'ok' and 'errors' getters.
-	 *
 	 * @covers Status::__get
 	 */
 	public function testOkAndErrorsGetters() {
@@ -71,8 +69,6 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test 'ok' setter.
-	 *
 	 * @covers Status::__set
 	 */
 	public function testOkSetter() {

@@ -60,7 +60,6 @@ interface ILanguageConverter {
 	public function getPreferredVariant();
 
 	/**
-	 * Get default variant.
 	 * This function would not be affected by user's settings
 	 * @return string The default variant code
 	 */

@@ -24,7 +24,7 @@ interface FileDeleteCompleteHook {
 	 * @param WikiFilePage $article In case all revisions of the file are deleted, a reference to
 	 *   the WikiFilePage associated with the file
 	 * @param User $user User who performed the deletion
-	 * @param string $reason Reason
+	 * @param string $reason
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onFileDeleteComplete( $file, $oldimage, $article, $user,

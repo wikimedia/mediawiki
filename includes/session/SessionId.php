@@ -51,7 +51,6 @@ final class SessionId {
 	}
 
 	/**
-	 * Get the ID
 	 * @return string
 	 */
 	public function getId() {
@@ -59,7 +58,6 @@ final class SessionId {
 	}
 
 	/**
-	 * Set the ID
 	 * @internal For use by \MediaWiki\Session\SessionManager only
 	 * @param string $id
 	 */

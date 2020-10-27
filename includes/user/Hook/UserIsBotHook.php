@@ -17,7 +17,7 @@ interface UserIsBotHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user The user
+	 * @param User $user
 	 * @param bool &$isBot Whether this is user a bot or not (boolean)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

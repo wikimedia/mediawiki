@@ -1283,8 +1283,6 @@ class Parser {
 	}
 
 	/**
-	 * Get the StripState
-	 *
 	 * @return StripState
 	 */
 	public function getStripState() {
@@ -3987,8 +3985,6 @@ class Parser {
 	}
 
 	/**
-	 * Increment the expensive function count
-	 *
 	 * @return bool False if the limit has been exceeded
 	 */
 	public function incrementExpensiveFunctionCount() {

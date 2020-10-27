@@ -17,7 +17,7 @@ interface APIHelpModifyOutputHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ApiBase $module Module object
+	 * @param ApiBase $module
 	 * @param string[] &$help Array of HTML strings to be joined for the output
 	 * @param array $options Array of formatting options passed to ApiHelp::getHelp
 	 * @param array &$tocData If a TOC is being generated, this array has keys as anchors in

@@ -282,7 +282,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set the user agent
 	 * @param string $UA
 	 */
 	public function setUserAgent( $UA ) {

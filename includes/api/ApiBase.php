@@ -572,7 +572,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the error formatter
 	 * @stable to override
 	 * @return ApiErrorFormatter
 	 */
@@ -600,7 +599,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the continuation manager
 	 * @return ApiContinuationManager|null
 	 */
 	public function getContinuationManager() {
@@ -614,7 +612,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Set the continuation manager
 	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( ApiContinuationManager $manager = null ) {

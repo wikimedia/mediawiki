@@ -96,7 +96,6 @@ class SearchSuggestion {
 	}
 
 	/**
-	 * Set the suggested title
 	 * @param Title|null $title
 	 */
 	public function setSuggestedTitle( Title $title = null ) {
@@ -116,7 +115,6 @@ class SearchSuggestion {
 	}
 
 	/**
-	 * Set the suggested title ID
 	 * @param int|null $suggestedTitleID
 	 */
 	public function setSuggestedTitleID( $suggestedTitleID = null ) {

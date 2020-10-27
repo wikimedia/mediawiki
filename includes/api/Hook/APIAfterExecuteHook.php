@@ -18,7 +18,7 @@ interface APIAfterExecuteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ApiBase $module Module object
+	 * @param ApiBase $module
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAPIAfterExecute( $module );

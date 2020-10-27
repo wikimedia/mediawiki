@@ -154,7 +154,6 @@ class ApiResult implements ApiSerializable {
 	}
 
 	/**
-	 * Set the error formatter
 	 * @since 1.25
 	 * @param ApiErrorFormatter $formatter
 	 */

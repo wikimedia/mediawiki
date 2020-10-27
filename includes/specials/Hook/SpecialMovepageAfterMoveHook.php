@@ -18,9 +18,9 @@ interface SpecialMovepageAfterMoveHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param MovePageForm $movePage MovePageForm object
-	 * @param Title $oldTitle Old title
-	 * @param Title $newTitle New title
+	 * @param MovePageForm $movePage
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialMovepageAfterMove( $movePage, $oldTitle, $newTitle );

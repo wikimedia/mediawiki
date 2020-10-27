@@ -1634,7 +1634,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Get the title
 	 * @return Title
 	 */
 	public function getTitle() {

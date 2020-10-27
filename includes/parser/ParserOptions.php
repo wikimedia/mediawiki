@@ -989,8 +989,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Set the redirect target.
-	 *
 	 * Note that setting or changing this does not *make* the page a redirect
 	 * or change its target, it merely records the information for reference
 	 * during the parse.

@@ -91,8 +91,6 @@ class TestUserRegistry {
 	}
 
 	/**
-	 * Clear the registry.
-	 *
 	 * TestUsers created by this class will not be deleted, but any handles
 	 * to existing immutable TestUsers will be deleted, ensuring these users
 	 * are not reused. We don't reset the counter or random string by design.

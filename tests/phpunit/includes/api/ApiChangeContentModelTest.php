@@ -44,9 +44,6 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		] );
 	}
 
-	/**
-	 * Test title must exist
-	 */
 	public function testTitleMustExist() {
 		$name = __METHOD__;
 

@@ -1492,9 +1492,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return true;
 	}
 
-	/**
-	 * Set up all test DBs
-	 */
 	public function setupAllTestDBs() {
 		global $wgDBprefix;
 

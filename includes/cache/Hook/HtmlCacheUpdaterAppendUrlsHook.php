@@ -24,7 +24,7 @@ interface HtmlCacheUpdaterAppendUrlsHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title of the page being updated
-	 * @param int $mode Mode
+	 * @param int $mode
 	 * @param array &$append Append URLs relating to the title
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

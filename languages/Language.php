@@ -482,8 +482,6 @@ class Language {
 	}
 
 	/**
-	 * Get the LocalisationCache instance
-	 *
 	 * @deprecated since 1.34, use MediaWikiServices
 	 * @return LocalisationCache
 	 */

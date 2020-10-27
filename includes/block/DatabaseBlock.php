@@ -1089,8 +1089,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get Restrictions.
-	 *
 	 * Getting the restrictions will perform a database query if the restrictions
 	 * are not already loaded.
 	 *
@@ -1121,8 +1119,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Set Restrictions.
-	 *
 	 * @since 1.33
 	 * @param Restriction[] $restrictions
 	 * @return self
