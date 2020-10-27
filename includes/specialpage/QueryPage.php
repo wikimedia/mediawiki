@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBError;
@@ -68,6 +69,9 @@ abstract class QueryPage extends SpecialPage {
 
 	/** @var ILoadBalancer|null */
 	private $loadBalancer = null;
+
+	/** @var LinkBatchFactory|null */
+	private $linkBatchFactory = null;
 
 	/**
 	 * Get a list of query page classes and their associated special pages,
@@ -123,6 +127,27 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		return $qp;
+	}
+
+	/**
+	 * @since 1.36
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	final protected function setLinkBatchFactory( LinkBatchFactory $linkBatchFactory ) {
+		$this->linkBatchFactory = $linkBatchFactory;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return LinkBatchFactory
+	 */
+	final protected function getLinkBatchFactory(): LinkBatchFactory {
+		if ( $this->linkBatchFactory === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		}
+		return $this->linkBatchFactory;
 	}
 
 	/**
@@ -820,6 +845,8 @@ abstract class QueryPage extends SpecialPage {
 	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
 	 * LinkCache information like page existence and information for stub color and redirect hints.
 	 *
+	 * @note Call self::setLinkBatchFactory from special page constructor when use
+	 *
 	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
 	 * @param null $ns Use this namespace for the given titles in the result wrapper,
@@ -830,8 +857,7 @@ abstract class QueryPage extends SpecialPage {
 			return;
 		}
 
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->getLinkBatchFactory()->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $ns ?? $row->namespace, $row->title );
 		}

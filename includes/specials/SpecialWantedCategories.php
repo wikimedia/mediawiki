@@ -23,6 +23,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -35,10 +36,15 @@ class SpecialWantedCategories extends WantedQueryPage {
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
 		parent::__construct( 'Wantedcategories' );
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function getQueryInfo() {

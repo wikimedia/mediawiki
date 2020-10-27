@@ -22,6 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -38,14 +39,17 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'Withoutinterwiki' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function execute( $par ) {

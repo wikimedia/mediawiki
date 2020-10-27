@@ -22,6 +22,7 @@
  * @author Brian Wolff
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -48,10 +49,12 @@ class SpecialMediaStatistics extends QueryPage {
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'MediaStatistics' );
 		// Generally speaking there is only a small number of file types,
@@ -60,6 +63,7 @@ class SpecialMediaStatistics extends QueryPage {
 		$this->shownavigation = false;
 		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function isExpensive() {
