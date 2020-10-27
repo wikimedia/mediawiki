@@ -1382,3 +1382,8 @@
 	url = https://github.com/1f604/SimpleBlogPage.git
 	branch = master
 	ignore = dirty
+[submodule "extensions/Video"]
+	path = extensions/Video
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Video
+	branch = REL1_35
+	ignore = dirty
