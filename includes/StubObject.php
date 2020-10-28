@@ -1,4 +1,8 @@
 <?php
+
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 /**
  * Delayed loading of global objects.
  *

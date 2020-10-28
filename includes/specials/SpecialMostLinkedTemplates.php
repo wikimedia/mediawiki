@@ -128,7 +128,7 @@ class SpecialMostLinkedTemplates extends QueryPage {
 	 * Make a "what links here" link for a given title
 	 *
 	 * @param Title $title Title to make the link for
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	private function makeWlhLink( $title, $result ) {
