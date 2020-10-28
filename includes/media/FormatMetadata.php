@@ -1012,15 +1012,27 @@ class FormatMetadata extends ContextSource {
 	 *   lang = language assoc array with keys being the lang code
 	 *   ul = unordered list, ol = ordered list
 	 *   type can also come from the '_type' member of $vals.
-	 * @param bool $noHtml If to avoid returning anything resembling HTML.
+	 * @param bool|IContextSource $noHtml If to avoid returning anything resembling HTML.
 	 *   (Ugly hack for backwards compatibility with old MediaWiki).
+	 *   Setting this parameter to true is deprecated since 1.36.  This
+	 *   parameter can be set to a context, in which case it will be used for
+	 *   $context and $noHtml will default to false.
 	 * @param bool|IContextSource $context
 	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
+	 * @deprecated since 1.36, appears to have no callers
 	 */
 	public static function flattenArrayContentLang( $vals, $type = 'ul',
 		$noHtml = false, $context = false
 	) {
+		// Allow $noHtml to be omitted.
+		if ( $noHtml instanceof IContextSource ) {
+			$context = $noHtml;
+			$noHtml = false;
+		}
+		if ( $noHtml ) {
+			wfDeprecated( __METHOD__ . ' with $noHtml = true', '1.36' );
+		}
 		$obj = new FormatMetadata;
 		if ( $context ) {
 			$obj->setContext( $context );
@@ -1047,6 +1059,7 @@ class FormatMetadata extends ContextSource {
 	 *   (Ugly hack for backwards compatibility with old mediawiki).
 	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
+	 * @internal
 	 */
 	public function flattenArrayReal( $vals, $type = 'ul', $noHtml = false ) {
 		if ( !is_array( $vals ) ) {
