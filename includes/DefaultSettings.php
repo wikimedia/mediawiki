@@ -7913,8 +7913,9 @@ $wgExtensionCredits = [];
  * Global list of hooks.
  *
  * The key is one of the events made available by MediaWiki, you can find
- * a description for most of them in docs/hooks.txt. The array is used
- * internally by Hook:run().
+ * a description for most of them in their respective hook interfaces. For
+ * overview of the hook system see docs/Hooks.md. The array is used internally
+ * by HookContainer::run().
  *
  * The value can be one of:
  *
