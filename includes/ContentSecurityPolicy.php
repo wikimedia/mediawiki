@@ -395,7 +395,7 @@ class ContentSecurityPolicy {
 	 * Get additional host names for the wiki (e.g. if static content loaded elsewhere)
 	 *
 	 * @note These are general load sources, not script sources
-	 * @return array Array of other urls for wiki (for use in default-src)
+	 * @return string[] Array of other urls for wiki (for use in default-src)
 	 */
 	private function getAdditionalSelfUrls() {
 		// XXX on a foreign repo, the included description page can have anything on it,

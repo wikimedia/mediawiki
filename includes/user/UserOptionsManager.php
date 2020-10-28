@@ -268,7 +268,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * new option kind is added.
 	 *
 	 * @see getOptionKinds
-	 * @return array Option kinds
+	 * @return string[] Option kinds
 	 */
 	public function listOptionKinds(): array {
 		return [
@@ -292,7 +292,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param IContextSource $context
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults user options.
-	 * @return array The key => kind mapping data
+	 * @return string[] The key => kind mapping data
 	 */
 	public function getOptionKinds(
 		UserIdentity $userIdentity,

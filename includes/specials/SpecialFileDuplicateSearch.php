@@ -83,14 +83,14 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	/**
 	 * Fetch dupes from all connected file repositories.
 	 *
-	 * @return array Array of File objects
+	 * @return File[]
 	 */
 	private function getDupes() {
 		return $this->repoGroup->findBySha1( $this->hash );
 	}
 
 	/**
-	 * @param array $dupes Array of File objects
+	 * @param File[] $dupes
 	 */
 	private function showList( $dupes ) {
 		$html = [];
@@ -206,9 +206,11 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		}
 	}
 
+	/**
+	 * @param File[] $list
+	 */
 	private function doBatchLookups( $list ) {
 		$batch = $this->linkBatchFactory->newLinkBatch();
-		/** @var File $file */
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );
 			if ( $file->isLocal() ) {

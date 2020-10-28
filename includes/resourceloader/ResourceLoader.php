@@ -476,9 +476,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a list of module names.
-	 *
-	 * @return array List of module names
+	 * @return string[]
 	 */
 	public function getModuleNames() {
 		return array_keys( $this->moduleInfos );
@@ -488,7 +486,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Get a list of module names with QUnit test suites.
 	 *
 	 * @internal For use by SpecialJavaScriptTest only
-	 * @return array
+	 * @return string[]
 	 * @codeCoverageIgnore
 	 */
 	public function getTestSuiteModuleNames() {

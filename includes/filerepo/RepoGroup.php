@@ -296,7 +296,7 @@ class RepoGroup {
 	 * Find all instances of files with this keys
 	 *
 	 * @param array $hashes Base 36 SHA-1 hashes
-	 * @return array Array of array of File objects
+	 * @return File[][]
 	 */
 	public function findBySha1s( array $hashes ) {
 		if ( !$this->reposInitialised ) {

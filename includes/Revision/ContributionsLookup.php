@@ -6,6 +6,7 @@ use ChangeTags;
 use ContribsPager;
 use FauxRequest;
 use MediaWiki\User\UserIdentity;
+use Message;
 use RequestContext;
 use User;
 
@@ -139,7 +140,7 @@ class ContributionsLookup {
 
 	/**
 	 * @param string[] $tagNames Array of tag names
-	 * @return array Associative array mapping tag name to a Message object containing the tag's display value
+	 * @return Message[] Associative array mapping tag name to a Message object containing the tag's display value
 	 */
 	private function getContributionTags( array $tagNames ): array {
 		$tagMetadata = [];

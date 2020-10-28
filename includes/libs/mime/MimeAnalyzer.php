@@ -1122,7 +1122,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @param string $fileName The file name (unused at present)
 	 * @param string $chunk The first 256 bytes of the file
 	 * @param string $proposed The MIME type proposed by the server
-	 * @return array
+	 * @return string[]
 	 */
 	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {
 		$ca = $this->getIEContentAnalyzer();

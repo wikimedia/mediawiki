@@ -3657,7 +3657,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
-	 * @return array Array of Title objects
+	 * @return Title[]
 	 */
 	public function getHiddenCategories() {
 		$result = [];

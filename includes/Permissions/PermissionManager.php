@@ -279,7 +279,7 @@ class PermissionManager {
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
-	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
+	 * @param string[] $ignoreErrors Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 *
 	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
@@ -1418,8 +1418,8 @@ class PermissionManager {
 	 *
 	 * @since 1.34
 	 *
-	 * @param array $groups Array of Strings List of internal group names
-	 * @return array Array of Strings List of permission key names for given groups combined
+	 * @param string[] $groups internal group names
+	 * @return string[] permission key names for given groups combined
 	 */
 	public function getGroupPermissions( $groups ) {
 		$rights = [];
@@ -1447,7 +1447,7 @@ class PermissionManager {
 	 * @since 1.34
 	 *
 	 * @param string $role Role to check
-	 * @return array Array of Strings List of internal group names with the given permission
+	 * @return string[] internal group names with the given permission
 	 */
 	public function getGroupsWithPermission( $role ) {
 		$allowedGroups = [];

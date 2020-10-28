@@ -90,7 +90,7 @@ class SvgHandler extends ImageHandler {
 	 * this list.
 	 *
 	 * @param File $file
-	 * @return array Array of language codes, or empty if no language switching supported.
+	 * @return string[] Array of language codes, or empty if no language switching supported.
 	 */
 	public function getAvailableLanguages( File $file ) {
 		$metadata = $file->getMetadata();

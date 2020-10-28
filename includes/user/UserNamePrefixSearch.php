@@ -72,7 +72,7 @@ class UserNamePrefixSearch {
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
-	 * @return string[] Array of strings
+	 * @return string[]
 	 * @throws InvalidArgumentException if $audience is invalid
 	 */
 	public function search( $audience, string $search, int $limit, int $offset = 0 ) : array {

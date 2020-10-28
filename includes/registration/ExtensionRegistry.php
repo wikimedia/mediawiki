@@ -77,7 +77,7 @@ class ExtensionRegistry {
 	/**
 	 * List of paths that should be loaded
 	 *
-	 * @var array
+	 * @var int[]
 	 */
 	protected $queued = [];
 
@@ -266,7 +266,7 @@ class ExtensionRegistry {
 	 * Get the current load queue. Not intended to be used
 	 * outside of the installer.
 	 *
-	 * @return array
+	 * @return int[]
 	 */
 	public function getQueue() {
 		return $this->queued;
@@ -323,7 +323,7 @@ class ExtensionRegistry {
 	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
-	 * @param array $queue keys are filenames, values are ignored
+	 * @param int[] $queue keys are filenames, values are ignored
 	 * @return array extracted info
 	 * @throws Exception
 	 * @throws ExtensionDependencyError
@@ -649,7 +649,7 @@ class ExtensionRegistry {
 	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
-	 * @param array $files
+	 * @param string[] $files
 	 * @return array
 	 */
 	protected static function processAutoLoader( $dir, array $files ) {

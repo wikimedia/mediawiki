@@ -317,7 +317,7 @@ class JobQueueGroup {
 	/**
 	 * Get the list of queue types
 	 *
-	 * @return array List of strings
+	 * @return string[]
 	 */
 	public function getQueueTypes() {
 		return array_keys( $this->getCachedConfigVar( 'wgJobClasses' ) );
@@ -326,7 +326,7 @@ class JobQueueGroup {
 	/**
 	 * Get the list of default queue types
 	 *
-	 * @return array List of strings
+	 * @return string[]
 	 */
 	public function getDefaultQueueTypes() {
 		global $wgJobTypesExcludedFromDefaultQueue;

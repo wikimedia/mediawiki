@@ -90,7 +90,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public const IGNORE_USER_RIGHTS = false;
 
 	/**
-	 * Array of Strings List of member variables which are saved to the
+	 * List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
@@ -1401,7 +1401,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
-	 * @return array Array of groups the user has been promoted to.
+	 * @return string[] Array of groups the user has been promoted to.
 	 *
 	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups
 	 * @see $wgAutopromoteOnce
@@ -2700,7 +2700,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param IContextSource $context
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
-	 * @return array The key => kind mapping data
+	 * @return string[] The key => kind mapping data
 	 * @deprecated since 1.35 Use UserOptionsManager::getOptionKinds instead
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
@@ -2843,7 +2843,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead
 	 *
 	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
 		return MediaWikiServices::getInstance()
@@ -2859,7 +2859,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.35 Use UserGroupManager::getUserImplicitGroups instead.
 	 *
 	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
 		return MediaWikiServices::getInstance()
@@ -3704,7 +3704,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * submission.
 	 *
 	 * @since 1.27
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
+	 * @param string|string[] $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return MediaWiki\Session\Token The new edit token
 	 */
@@ -3728,7 +3728,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * The $salt for 'edit' and 'csrf' tokens is the default (empty string).
 	 *
 	 * @since 1.19
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
+	 * @param string|string[] $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
@@ -4065,8 +4065,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
 	 *             ->getGroupPermissions() instead
 	 *
-	 * @param array $groups Array of Strings List of internal group names
-	 * @return array Array of Strings List of permission key names for given groups combined
+	 * @param string[] $groups internal group names
+	 * @return string[] permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
 		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupPermissions( $groups );
@@ -4079,7 +4079,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *             ->getGroupsWithPermission() instead
 	 *
 	 * @param string $role Role to check
-	 * @return array Array of Strings List of internal group names with the given permission
+	 * @return string[] internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
 		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupsWithPermission( $role );
@@ -4110,7 +4110,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
 	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead
-	 * @return array Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public static function getAllGroups() {
 		return MediaWikiServices::getInstance()
@@ -4119,9 +4119,8 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get a list of implicit groups
 	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead
-	 * @return array Array of Strings Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public static function getImplicitGroups() {
 		return MediaWikiServices::getInstance()

@@ -23,6 +23,7 @@
  * @since 1.19
  */
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -809,7 +810,7 @@ class LogFormatter {
 
 	/**
 	 * @stable to override
-	 * @return array Array of titles that should be preloaded with LinkBatch
+	 * @return LinkTarget[] Array of titles that should be preloaded with LinkBatch
 	 */
 	public function getPreloadTitles() {
 		return [];

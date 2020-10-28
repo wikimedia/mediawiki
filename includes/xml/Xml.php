@@ -802,8 +802,7 @@ class Xml {
 	}
 
 	/**
-	 * Build a table of data
-	 * @param array $rows An array of arrays of strings, each to be a row in a table
+	 * @param string[][] $rows
 	 * @param array $attribs An array of attributes to apply to the table tag [optional]
 	 * @param array|null $headers An array of strings to use as table headers [optional]
 	 * @return string
@@ -844,7 +843,7 @@ class Xml {
 	/**
 	 * Build a row for a table
 	 * @param array $attribs An array of attributes to apply to the tr tag
-	 * @param array $cells An array of strings to put in <td>
+	 * @param string[] $cells An array of strings to put in <td>
 	 * @return string
 	 */
 	public static function buildTableRow( $attribs, $cells ) {

@@ -373,7 +373,7 @@ class BlockManager {
 	 * Whether the given IP is in a given DNS blacklist.
 	 *
 	 * @param string $ip IP to check
-	 * @param array $bases Array of Strings: URL of the DNS blacklist
+	 * @param string[] $bases URL of the DNS blacklist
 	 * @return bool True if blacklisted.
 	 */
 	private function inDnsBlacklist( $ip, array $bases ) {

@@ -3402,7 +3402,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @param array $options Query option to Database::select()
 	 * @param string $table Table name
 	 * @param string $prefix Fields prefix
-	 * @return array Array of Title objects linking here
+	 * @return Title[] List of Titles linking here
 	 */
 	public function getLinksFrom( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
 		$id = $this->getArticleID();
@@ -3562,7 +3562,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get categories to which this Title belongs and return an array of
 	 * categories' names.
 	 *
-	 * @return array Array of parents in the form:
+	 * @return string[] Array of parents in the form:
 	 *     $parent => $currentarticle
 	 */
 	public function getParentCategories() {

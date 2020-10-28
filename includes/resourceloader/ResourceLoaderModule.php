@@ -283,7 +283,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext $context
-	 * @return array Array of URLs
+	 * @return string[]
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$resourceLoader = $context->getResourceLoader();
@@ -357,7 +357,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
 	 *
 	 * @stable to override
-	 * @return array List of message keys. Keys may occur more than once
+	 * @return string[] List of message keys. Keys may occur more than once
 	 */
 	public function getMessages() {
 		// Stub, override expected
@@ -397,7 +397,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext|null $context
-	 * @return array List of module names as strings
+	 * @return string[] List of module names as strings
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
 		// Stub, override expected
@@ -408,7 +408,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
 	 *
 	 * @stable to override
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public function getTargets() {
 		return $this->targets;

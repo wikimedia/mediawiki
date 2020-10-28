@@ -118,16 +118,16 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mLastModified = '';
 
-	/** @var array */
+	/** @var string[][] */
 	protected $mCategoryLinks = [];
 
-	/** @var array */
+	/** @var string[][] */
 	protected $mCategories = [
 		'hidden' => [],
 		'normal' => [],
 	];
 
-	/** @var array */
+	/** @var string[] */
 	protected $mIndicators = [];
 
 	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
@@ -493,10 +493,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
-	 * @param array $modules
+	 * @param string[] $modules
 	 * @param string|null $position Unused
 	 * @param string $type
-	 * @return array
+	 * @return string[]
 	 */
 	protected function filterModules( array $modules, $position = null,
 		$type = ResourceLoaderModule::TYPE_COMBINED
@@ -540,7 +540,7 @@ class OutputPage extends ContextSource {
 	 * @param string|null $position Unused
 	 * @param string $param
 	 * @param string $type
-	 * @return array Array of module names
+	 * @return string[] Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules',
 		$type = ResourceLoaderModule::TYPE_COMBINED
@@ -565,7 +565,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position Unused
-	 * @return array Array of module names
+	 * @return string[] Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
 		return $this->getModules( $filter, null, 'mModuleStyles',
@@ -1193,7 +1193,7 @@ class OutputPage extends ContextSource {
 	 * Return effective list of advertised feed types
 	 * @see addFeedLink()
 	 *
-	 * @return array Array of feed type names ( 'rss', 'atom' )
+	 * @return string[] Array of feed type names ( 'rss', 'atom' )
 	 */
 	protected function getAdvertisedFeedTypes() {
 		if ( $this->getConfig()->get( 'Feed' ) ) {
@@ -1459,7 +1459,7 @@ class OutputPage extends ContextSource {
 	 * hidden categories) and $link a HTML fragment with a link to the category
 	 * page
 	 *
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getCategoryLinks() {
 		return $this->mCategoryLinks;
@@ -1472,7 +1472,7 @@ class OutputPage extends ContextSource {
 	 *  * all: all categories of all types
 	 *  * hidden: only the hidden categories
 	 *  * normal: all categories, except hidden categories
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public function getCategories( $type = 'all' ) {
 		if ( $type === 'all' ) {
@@ -1494,7 +1494,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * In case of duplicate keys, existing values are overwritten.
 	 *
-	 * @param array $indicators
+	 * @param string[] $indicators
 	 * @since 1.25
 	 */
 	public function setIndicators( array $indicators ) {
@@ -1508,7 +1508,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * The array will be internally ordered by item keys.
 	 *
-	 * @return array Keys: identifiers, values: HTML contents
+	 * @return string[] Keys: identifiers, values: HTML contents
 	 * @since 1.25
 	 */
 	public function getIndicators() {

@@ -198,7 +198,7 @@ class LogPage {
 	/**
 	 * Get the list of valid log types
 	 *
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public static function validTypes() {
 		global $wgLogTypes;

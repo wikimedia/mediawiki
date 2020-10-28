@@ -1585,7 +1585,7 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Get a list of fields that are visible by default.
 	 *
-	 * @return array
+	 * @return string[]
 	 * @since 1.23
 	 */
 	public static function getVisibleFields() {

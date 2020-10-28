@@ -495,7 +495,7 @@ class NamespaceInfo {
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getContentNamespaces() {
 		$contentNamespaces = $this->options->get( 'ContentNamespaces' );
@@ -513,7 +513,7 @@ class NamespaceInfo {
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also NamespaceInfo::isSubject
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getSubjectNamespaces() {
 		return array_filter(
@@ -526,7 +526,7 @@ class NamespaceInfo {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also NamespaceInfo::isTalk
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getTalkNamespaces() {
 		return array_filter(

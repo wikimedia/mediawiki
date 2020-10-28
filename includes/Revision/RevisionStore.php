@@ -734,9 +734,7 @@ class RevisionStore
 	 * @param Title $title
 	 * @param int $parentId
 	 *
-	 * @return array [ 0 => array $revisionRow, 1 => callable  ]
-	 * @throws MWException
-	 * @throws MWUnknownContentModelException
+	 * @return array a revision table row
 	 */
 	private function getBaseRevisionRow(
 		IDatabase $dbw,
@@ -2435,7 +2433,7 @@ class RevisionStore
 	 *  - 'page': Join with the page table, and select fields to identify the page
 	 *  - 'user': Join with the user table, and select the user name
 	 *
-	 * @return array With three keys:
+	 * @return array[] With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`

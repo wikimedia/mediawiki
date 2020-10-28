@@ -27,12 +27,20 @@
  */
 class StringPrefixSearch extends PrefixSearch {
 
+	/**
+	 * @param Title[] $titles
+	 * @return string[]
+	 */
 	protected function titles( array $titles ) {
 		return array_map( function ( Title $t ) {
 			return $t->getPrefixedText();
 		}, $titles );
 	}
 
+	/**
+	 * @param string[] $strings
+	 * @return string[]
+	 */
 	protected function strings( array $strings ) {
 		return $strings;
 	}

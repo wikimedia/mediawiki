@@ -1244,7 +1244,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Filter out-of-range values from a list of positive integer IDs
 	 * @since 1.33
-	 * @param array $fields Array of pairs of table and field to check
+	 * @param string[][] $fields Array of pairs of table and field to check
 	 * @param (string|int)[] $ids IDs to filter. Strings in the array are
 	 *  expected to be stringified ints.
 	 * @return (string|int)[] Filtered IDs.

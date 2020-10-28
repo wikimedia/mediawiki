@@ -32,7 +32,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return array List of pages
+	 * @return array[]
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$config = $this->getConfig();

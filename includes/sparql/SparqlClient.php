@@ -136,7 +136,7 @@ class SparqlClient {
 	 * @param string $sparql query
 	 * @param bool $rawData Whether to return only values or full data objects
 	 *
-	 * @return array List of results, one row per array element
+	 * @return array[] List of results, one row per array element
 	 *               Each row will contain fields indexed by variable name.
 	 * @throws SparqlException
 	 */
@@ -192,7 +192,7 @@ class SparqlClient {
 	 * @param array $data SPARQL result
 	 * @param bool $rawData Whether to return only values or full data objects
 	 *
-	 * @return array List of results, one row per element.
+	 * @return array[] List of results, one row per element.
 	 */
 	private function extractData( $data, $rawData = false ) {
 		$result = [];

@@ -231,7 +231,7 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @see consumeValue()
 	 * @throws MWException If any option does not exist
-	 * @param array $names Array of option names as strings
+	 * @param string[] $names List of option names
 	 * @return array Array of option values, or the default values if they are null
 	 */
 	public function consumeValues( $names ) {

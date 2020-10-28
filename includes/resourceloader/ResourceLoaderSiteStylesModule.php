@@ -34,7 +34,7 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 	 * Get list of pages used by this module
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array List of pages
+	 * @return array[]
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$pages = [];

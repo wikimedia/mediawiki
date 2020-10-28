@@ -248,7 +248,7 @@ class PageProps {
 
 	/**
 	 * @param Title[]|TitleArray|Title $titles
-	 * @return array array of good page IDs
+	 * @return int[] List of good page IDs
 	 */
 	private function getGoodIDs( $titles ) {
 		$result = [];

@@ -378,7 +378,7 @@ JAVASCRIPT;
 	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param ResourceLoaderContext $mainContext
-	 * @param array $modules One or more module names
+	 * @param string[] $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
