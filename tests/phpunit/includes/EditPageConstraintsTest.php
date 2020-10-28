@@ -155,6 +155,27 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		return WikiPage::factory( $title );
 	}
 
+	/** ChangeTagsConstraint integration */
+	public function testChangeTagsConstraint() {
+		// Remove rights
+		$this->mergeMwGlobalArrayValue(
+			'wgRevokePermissions',
+			[ 'user' => [ 'applychangetags' => true ] ]
+		);
+		$edit = [
+			'wpTextbox1' => 'Text',
+			'wpChangeTags' => 'tag-name'
+		];
+		$this->assertEdit(
+			'EditPageTest_changeTagsConstraint',
+			null,
+			null,
+			$edit,
+			EditPage::AS_CHANGE_TAG_ERROR,
+			'expected AS_CHANGE_TAG_ERROR update'
+		);
+	}
+
 	/** ContentModelChangeConstraint integration */
 	public function testContentModelChangeConstraint() {
 		$user = $this->createMock( User::class );
@@ -259,6 +280,47 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	public function provideTestImageRedirectConstraint() {
 		yield 'Anonymous user' => [ true, EditPage::AS_IMAGE_REDIRECT_ANON ];
 		yield 'Registered user' => [ false, EditPage::AS_IMAGE_REDIRECT_LOGGED ];
+	}
+
+	/** PageSizeConstraint integration */
+	public function testPageSizeConstraintBeforeMerge() {
+		// Max size: 1 kilobyte
+		$this->setMwGlobals( [
+			'wgMaxArticleSize' => 1
+		] );
+
+		$edit = [
+			'wpTextbox1' => str_repeat( 'text', 1000 )
+		];
+		$this->assertEdit(
+			'EditPageTest_pageSizeConstraintBeforeMerge',
+			null,
+			null,
+			$edit,
+			EditPage::AS_CONTENT_TOO_BIG,
+			'expected AS_CONTENT_TOO_BIG update'
+		);
+	}
+
+	/** PageSizeConstraint integration */
+	public function testPageSizeConstraintAfterMerge() {
+		// Max size: 1 kilobyte
+		$this->setMwGlobals( [
+			'wgMaxArticleSize' => 1
+		] );
+
+		$edit = [
+			'wpSection' => 'new',
+			'wpTextbox1' => str_repeat( 'b', 600 )
+		];
+		$this->assertEdit(
+			'EditPageTest_pageSizeConstraintAfterMerge',
+			str_repeat( 'a', 600 ),
+			null,
+			$edit,
+			EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED,
+			'expected AS_MAX_ARTICLE_SIZE_EXCEEDED update'
+		);
 	}
 
 	/** ReadOnlyConstraint integration */

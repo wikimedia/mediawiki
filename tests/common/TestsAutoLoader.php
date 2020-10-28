@@ -224,7 +224,7 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes
 	'BadFileLookupTest' => "$testDir/phpunit/unit/includes/BadFileLookupTest.php",
 
-	# tests/phpunit/unit/includes/editpage/Constraint
+	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
 	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",
 
 	# tests/phpunit/unit/includes/filebackend

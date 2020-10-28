@@ -1525,10 +1525,12 @@ return [
 		// of dependencies will be needed by different constraints. It is not part of
 		// the public interface and has no corresponding method in MediaWikiServices
 		return new EditConstraintFactory(
-			// Multiple constraints need loggers
-			LoggerFactory::getProvider(),
-
 			// Multiple
+			new ServiceOptions(
+				EditConstraintFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			LoggerFactory::getProvider(),
 			$services->getPermissionManager(),
 
 			// ReadOnlyConstraint
