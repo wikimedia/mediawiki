@@ -3299,6 +3299,8 @@
 	"tag-mw-rollback-description": "Úpravy, ktorými boli predchádzajúce úpravy vrátené pomocou rollbacku",
 	"tag-mw-undo": "Vrátenie",
 	"tag-mw-undo-description": "Úpravy, ktorými sa rušia predchádzajúce úpravy pomocou odkazu „vrátiť“",
+	"tag-mw-manual-revert": "manuálne vrátenie",
+	"tag-mw-reverted": "vrátené",
 	"tags-title": "Značky",
 	"tags-intro": "Táto stránka obsahuje zoznam a význam značiek, ktorými môže softvér označovať jednotlivé úpravy.",
 	"tags-tag": "Názov značky",
