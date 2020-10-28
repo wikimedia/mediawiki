@@ -129,14 +129,14 @@ if ( is_array( $mode ) ) {
 }
 
 switch ( $mode ) {
-case 'text':
-	$suppressor = new TextSuppressor();
-	break;
-case 'checkstyle':
-	$suppressor = new CheckStyleSuppressor();
-	break;
-default:
-	$suppressor = new NoopSuppressor( $mode );
+	case 'text':
+		$suppressor = new TextSuppressor();
+		break;
+	case 'checkstyle':
+		$suppressor = new CheckStyleSuppressor();
+		break;
+	default:
+		$suppressor = new NoopSuppressor( $mode );
 }
 
 $input = file_get_contents( 'php://stdin' );

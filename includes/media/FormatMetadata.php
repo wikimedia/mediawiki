@@ -954,7 +954,6 @@ class FormatMetadata extends ContextSource {
 					case 'Event':
 					case 'OrginisationInImage':
 					case 'PersonInImage':
-
 						$val = htmlspecialchars( $val );
 						break;
 

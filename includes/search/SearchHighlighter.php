@@ -545,7 +545,7 @@ class SearchHighlighter {
 			}
 			--$contextlines;
 			// truncate function changes ... to relevant i18n message.
-			$pre = $contLang->truncateForVisual( $m[1], - $contextchars, '...', false );
+			$pre = $contLang->truncateForVisual( $m[1], -$contextchars, '...', false );
 
 			if ( count( $m ) < 3 ) {
 				$post = '';

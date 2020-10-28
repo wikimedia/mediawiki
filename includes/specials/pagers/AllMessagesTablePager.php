@@ -248,7 +248,7 @@ class AllMessagesTablePager extends TablePager {
 	public function formatValue( $field, $value ) {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
-			case 'am_title' :
+			case 'am_title':
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 				$translation = Linker::makeExternalLink(
@@ -284,8 +284,8 @@ class AllMessagesTablePager extends TablePager {
 				' ' .
 				$this->msg( 'parentheses' )->rawParams( $translation )->escaped();
 
-			case 'am_default' :
-			case 'am_actual' :
+			case 'am_default':
+			case 'am_actual':
 				return Sanitizer::escapeHtmlAllowEntities( $value );
 		}
 

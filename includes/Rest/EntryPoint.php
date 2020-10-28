@@ -31,8 +31,6 @@ class EntryPoint {
 	private static function createRouter(
 		IContextSource $context, RequestInterface $request
 	): Router {
-		global $IP;
-
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
