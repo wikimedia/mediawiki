@@ -3452,6 +3452,7 @@
 	"logentry-partialblock-block-page": "$2 {{PLURAL:$1|orrialdea|orrialdeak}}",
 	"logentry-partialblock-block-ns": "$2 {{PLURAL:$1|izen-eremua|izen-eremuak}}",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|blokeatuta}} {{GENDER:$4|$3}} $7 ediziotik  bukaerako denbora honekin $5 $6",
+	"logentry-partialblock-reblock": "$1 {{GENDER:$2|administratzaileak}} blokeo ezarpenak aldatu dizkio {{GENDER:$4|$3}} wikilariari: orain, galarazia du \"$7\" orria editatzea $5 $6 dataraino",
 	"logentry-suppress-block": "$1 {{GENDER:$2|administratzaileak}} {{GENDER:$4|$3}} blokeatu du. Iraupena: $5 $6",
 	"logentry-suppress-reblock": "$1 administratzaileak {{GENDER:$4|$3}} wikilariaren blokeoa {{GENDER:$2|aldatu du}}. Blokeoaldia: $5 $6",
 	"logentry-import-upload": "$1(e)k $3 {{GENDER:$2|inportatu du}} fitxategi-igoera bidez",
