@@ -224,7 +224,7 @@ class OutputPage extends ContextSource {
 	 */
 	private $mFeedLinks = [];
 
-	// Gwicke work on squid caching? Roughly from 2003.
+	/** @var bool Gwicke work on squid caching? Roughly from 2003. */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */

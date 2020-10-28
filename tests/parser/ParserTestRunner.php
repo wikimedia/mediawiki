@@ -54,12 +54,12 @@ class ParserTestRunner {
 	];
 
 	/**
-	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
+	 * @var bool Use temporary tables for the temporary database
 	 */
 	private $useTemporaryTables = true;
 
 	/**
-	 * @var array $setupDone The status of each setup function
+	 * @var array The status of each setup function
 	 */
 	private $setupDone = [
 		'staticSetup' => false,

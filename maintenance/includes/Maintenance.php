@@ -71,32 +71,32 @@ abstract class Maintenance {
 	 */
 	protected $mParams = [];
 
-	// Array of mapping short parameters to long ones
+	/** @var array Mapping short parameters to long ones */
 	protected $mShortParamsMap = [];
 
-	// Array of desired/allowed args
+	/** @var array Desired/allowed args */
 	protected $mArgList = [];
 
-	// This is the list of options that were actually passed
+	/** @var array This is the list of options that were actually passed */
 	protected $mOptions = [];
 
-	// This is the list of arguments that were actually passed
+	/** @var array This is the list of arguments that were actually passed */
 	protected $mArgs = [];
 
-	// Allow arbitrary options to be passed, or only specified ones?
+	/** @var bool Allow arbitrary options to be passed, or only specified ones? */
 	protected $mAllowUnregisteredOptions = false;
 
-	// Name of the script currently running
+	/** @var string|null Name of the script currently running */
 	protected $mSelf;
 
-	// Special vars for params that are always used
+	/** @var bool Special vars for params that are always used */
 	protected $mQuiet = false;
 	protected $mDbUser, $mDbPass;
 
-	// A description of the script, children should change this via addDescription()
+	/** @var string A description of the script, children should change this via addDescription() */
 	protected $mDescription = '';
 
-	// Have we already loaded our user input?
+	/** @var bool Have we already loaded our user input? */
 	protected $mInputLoaded = false;
 
 	/**

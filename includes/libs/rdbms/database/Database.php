@@ -172,7 +172,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
 	private $trxEndCallbacksSuppressed = false;
 
-	/** @var integer|null Rows affected by the last query to query() or its CRUD wrappers */
+	/** @var int|null Rows affected by the last query to query() or its CRUD wrappers */
 	protected $affectedRowCount;
 
 	/** @var float UNIX timestamp */

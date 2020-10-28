@@ -159,7 +159,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	private $articleCountMethod;
 
 	/**
-	 * @var boolean see $wgRCWatchCategoryMembership
+	 * @var bool see $wgRCWatchCategoryMembership
 	 */
 	private $rcWatchCategoryMembership = false;
 

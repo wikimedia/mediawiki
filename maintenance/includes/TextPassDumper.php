@@ -49,9 +49,11 @@ class TextPassDumper extends BackupDumper {
 	/** @var string|bool */
 	private $thisRole = null;
 
-	// when we spend more than maxTimeAllowed seconds on this run, we continue
-	// processing until we write out the next complete page, then save output file(s),
-	// rename it/them and open new one(s)
+	/**
+	 * @var int when we spend more than maxTimeAllowed seconds on this run, we continue
+	 * processing until we write out the next complete page, then save output file(s),
+	 * rename it/them and open new one(s)
+	 */
 	public $maxTimeAllowed = 0; // 0 = no limit
 
 	protected $input = "php://stdin";

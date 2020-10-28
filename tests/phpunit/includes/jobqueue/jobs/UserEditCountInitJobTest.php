@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  */
 class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 
-	/** @var User $user */
+	/** @var User */
 	private $user;
 
 	protected function setUp(): void {

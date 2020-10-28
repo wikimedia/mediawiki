@@ -52,7 +52,7 @@ class PHPVersionCheck {
 	var $format = 'text';
 
 	/**
-	 * @var string $scriptPath
+	 * @var string
 	 */
 	var $scriptPath = '/';
 

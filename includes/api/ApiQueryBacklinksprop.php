@@ -32,7 +32,7 @@
  */
 class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
-	// Data for the various modules implemented by this class
+	/** @var array Data for the various modules implemented by this class */
 	private static $settings = [
 		'redirects' => [
 			'code' => 'rd',

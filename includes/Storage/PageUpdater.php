@@ -132,7 +132,7 @@ class PageUpdater {
 	private $hookContainer;
 
 	/**
-	 * @var boolean see $wgUseAutomaticEditSummaries
+	 * @var bool see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
 	 */
 	private $useAutomaticEditSummaries = true;
@@ -148,7 +148,7 @@ class PageUpdater {
 	private $usePageCreationLog = true;
 
 	/**
-	 * @var boolean see $wgAjaxEditStash
+	 * @var bool see $wgAjaxEditStash
 	 */
 	private $ajaxEditStash = true;
 
