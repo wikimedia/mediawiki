@@ -66,7 +66,11 @@ class EditConstraintFactory {
 	 * that need dependencies injected.
 	 *
 	 * The checks in EditPage use wfDebugLog and logged to different channels, hence the need
-	 * for multiple loggers retrieved from the Spi. TODO can they be combined into the same channel?
+	 * for multiple loggers retrieved from the Spi. The channels used are:
+	 * - SimpleAntiSpam (in SimpleAntiSpamConstraint)
+	 * - SpamRegex (in SpamRegexConstraint)
+	 *
+	 * TODO can they be combined into the same channel?
 	 *
 	 * @param ServiceOptions $options
 	 * @param Spi $loggerFactory
