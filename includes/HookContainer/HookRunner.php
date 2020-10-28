@@ -3,8 +3,12 @@
 namespace MediaWiki\HookContainer;
 
 use Config;
+use IContextSource;
+use MediaWiki\Linker\LinkRenderer;
 use ResourceLoaderContext;
 use Skin;
+use SpecialPage;
+use Title;
 
 /**
  * This class provides an implementation of the core hook interfaces,
@@ -1332,7 +1336,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onContributionsToolLinks( $id, $title, &$tools, $specialPage ) {
+	public function onContributionsToolLinks( $id, Title $title, array &$tools, SpecialPage $specialPage ) {
 		return $this->container->run(
 			'ContributionsToolLinks',
 			[ $id, $title, &$tools, $specialPage ]
@@ -2014,7 +2018,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onHistoryPageToolLinks( $context, $linkRenderer, &$links ) {
+	public function onHistoryPageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links ) {
 		return $this->container->run(
 			'HistoryPageToolLinks',
 			[ $context, $linkRenderer, &$links ]
@@ -4039,7 +4043,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onUndeletePageToolLinks( $context, $linkRenderer, &$links ) {
+	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links ) {
 		return $this->container->run(
 			'UndeletePageToolLinks',
 			[ $context, $linkRenderer, &$links ]
