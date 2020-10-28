@@ -126,7 +126,7 @@
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://github.com/wikimedia/mediawiki-extensions-cldr
-	branch = REL1_35
+	branch = master
 	ignore = dirty
 [submodule "skins/CologneBlue"]
 	path = skins/CologneBlue
