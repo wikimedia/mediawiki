@@ -211,7 +211,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
-		$time = - microtime( true );
+		$time = -microtime( true );
 		$this->parserOutput = $renderedRevision->getRevisionParserOutput();
 		$time += microtime( true );
 
