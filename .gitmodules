@@ -635,7 +635,7 @@
 [submodule "extensions/LocalisationUpdate"]
 	path = extensions/LocalisationUpdate
 	url = https://github.com/wikimedia/mediawiki-extensions-LocalisationUpdate
-	branch = REL1_35
+	branch = master
 	ignore = dirty
 [submodule "extensions/Newsletter"]
 	path = extensions/Newsletter
