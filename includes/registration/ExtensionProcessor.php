@@ -584,7 +584,8 @@ class ExtensionProcessor implements Processor {
 			$basePath = $data['localBasePath'] ?? '';
 			$baseDir = $basePath === '' ? $dir : "$dir/$basePath";
 			foreach ( $data['scripts'] ?? [] as $scripts ) {
-				$this->attributes['MessagePosterModule']['scripts'][] = "$baseDir/$scripts";
+				$this->attributes['MessagePosterModule']['scripts'][] =
+					new ResourceLoaderFilePath( $scripts, $baseDir );
 			}
 			foreach ( $data['dependencies'] ?? [] as $dependency ) {
 				$this->attributes['MessagePosterModule']['dependencies'][] = $dependency;
