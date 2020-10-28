@@ -480,12 +480,12 @@ class AuthManager implements LoggerAwareInterface {
 				foreach ( $this->getPrimaryAuthenticationProviders() as $id => $provider ) {
 					$res = $provider->beginPrimaryAuthentication( $reqs );
 					switch ( $res->status ) {
-						case AuthenticationResponse::PASS;
+						case AuthenticationResponse::PASS:
 							$state['primary'] = $id;
 							$state['primaryResponse'] = $res;
 							$this->logger->debug( "Primary login with $id succeeded" );
 							break 2;
-						case AuthenticationResponse::FAIL;
+						case AuthenticationResponse::FAIL:
 							$this->logger->debug( "Login failed in primary authentication by $id" );
 							if ( $res->createRequest || $state['maybeLink'] ) {
 								$res->createRequest = new CreateFromLoginAuthenticationRequest(
@@ -499,11 +499,11 @@ class AuthManager implements LoggerAwareInterface {
 							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 								$res, null, $guessUserName, [] );
 							return $res;
-						case AuthenticationResponse::ABSTAIN;
+						case AuthenticationResponse::ABSTAIN:
 							// Continue loop
 							break;
-						case AuthenticationResponse::REDIRECT;
-						case AuthenticationResponse::UI;
+						case AuthenticationResponse::REDIRECT:
+						case AuthenticationResponse::UI:
 							$this->logger->debug( "Primary login with $id returned $res->status" );
 							$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 							$state['primary'] = $id;
@@ -548,11 +548,11 @@ class AuthManager implements LoggerAwareInterface {
 				$id = $provider->getUniqueId();
 				$res = $provider->continuePrimaryAuthentication( $reqs );
 				switch ( $res->status ) {
-					case AuthenticationResponse::PASS;
+					case AuthenticationResponse::PASS:
 						$state['primaryResponse'] = $res;
 						$this->logger->debug( "Primary login with $id succeeded" );
 						break;
-					case AuthenticationResponse::FAIL;
+					case AuthenticationResponse::FAIL:
 						$this->logger->debug( "Login failed in primary authentication by $id" );
 						if ( $res->createRequest || $state['maybeLink'] ) {
 							$res->createRequest = new CreateFromLoginAuthenticationRequest(
@@ -566,8 +566,8 @@ class AuthManager implements LoggerAwareInterface {
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, null, $guessUserName, [] );
 						return $res;
-					case AuthenticationResponse::REDIRECT;
-					case AuthenticationResponse::UI;
+					case AuthenticationResponse::REDIRECT:
+					case AuthenticationResponse::UI:
 						$this->logger->debug( "Primary login with $id returned $res->status" );
 						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $guessUserName );
 						$state['continueRequests'] = $res->neededRequests;
@@ -679,21 +679,21 @@ class AuthManager implements LoggerAwareInterface {
 					continue;
 				}
 				switch ( $res->status ) {
-					case AuthenticationResponse::PASS;
+					case AuthenticationResponse::PASS:
 						$this->logger->debug( "Secondary login with $id succeeded" );
 						// fall through
-					case AuthenticationResponse::ABSTAIN;
+					case AuthenticationResponse::ABSTAIN:
 						$state['secondary'][$id] = true;
 						break;
-					case AuthenticationResponse::FAIL;
+					case AuthenticationResponse::FAIL:
 						$this->logger->debug( "Login failed in secondary authentication by $id" );
 						$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $res ] );
 						$session->remove( 'AuthManager::authnState' );
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
 							$res, $user, $user->getName(), [] );
 						return $res;
-					case AuthenticationResponse::REDIRECT;
-					case AuthenticationResponse::UI;
+					case AuthenticationResponse::REDIRECT:
+					case AuthenticationResponse::UI:
 						$this->logger->debug( "Secondary login with $id returned " . $res->status );
 						$this->fillRequests( $res->neededRequests, self::ACTION_LOGIN, $user->getName() );
 						$state['secondary'][$id] = false;
@@ -1340,7 +1340,7 @@ class AuthManager implements LoggerAwareInterface {
 					}
 					$res = $provider->beginPrimaryAccountCreation( $user, $creator, $reqs );
 					switch ( $res->status ) {
-						case AuthenticationResponse::PASS;
+						case AuthenticationResponse::PASS:
 							$this->logger->debug( __METHOD__ . ": Primary creation passed by $id", [
 								'user' => $user->getName(),
 								'creator' => $creator->getName(),
@@ -1348,7 +1348,7 @@ class AuthManager implements LoggerAwareInterface {
 							$state['primary'] = $id;
 							$state['primaryResponse'] = $res;
 							break 2;
-						case AuthenticationResponse::FAIL;
+						case AuthenticationResponse::FAIL:
 							$this->logger->debug( __METHOD__ . ": Primary creation failed by $id", [
 								'user' => $user->getName(),
 								'creator' => $creator->getName(),
@@ -1356,11 +1356,11 @@ class AuthManager implements LoggerAwareInterface {
 							$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $res ] );
 							$session->remove( 'AuthManager::accountCreationState' );
 							return $res;
-						case AuthenticationResponse::ABSTAIN;
+						case AuthenticationResponse::ABSTAIN:
 							// Continue loop
 							break;
-						case AuthenticationResponse::REDIRECT;
-						case AuthenticationResponse::UI;
+						case AuthenticationResponse::REDIRECT:
+						case AuthenticationResponse::UI:
 							$this->logger->debug( __METHOD__ . ": Primary creation $res->status by $id", [
 								'user' => $user->getName(),
 								'creator' => $creator->getName(),
@@ -1407,14 +1407,14 @@ class AuthManager implements LoggerAwareInterface {
 				$id = $provider->getUniqueId();
 				$res = $provider->continuePrimaryAccountCreation( $user, $creator, $reqs );
 				switch ( $res->status ) {
-					case AuthenticationResponse::PASS;
+					case AuthenticationResponse::PASS:
 						$this->logger->debug( __METHOD__ . ": Primary creation passed by $id", [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
 						] );
 						$state['primaryResponse'] = $res;
 						break;
-					case AuthenticationResponse::FAIL;
+					case AuthenticationResponse::FAIL:
 						$this->logger->debug( __METHOD__ . ": Primary creation failed by $id", [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
@@ -1422,8 +1422,8 @@ class AuthManager implements LoggerAwareInterface {
 						$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $res ] );
 						$session->remove( 'AuthManager::accountCreationState' );
 						return $res;
-					case AuthenticationResponse::REDIRECT;
-					case AuthenticationResponse::UI;
+					case AuthenticationResponse::REDIRECT:
+					case AuthenticationResponse::UI:
 						$this->logger->debug( __METHOD__ . ": Primary creation $res->status by $id", [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
@@ -1510,17 +1510,17 @@ class AuthManager implements LoggerAwareInterface {
 					continue;
 				}
 				switch ( $res->status ) {
-					case AuthenticationResponse::PASS;
+					case AuthenticationResponse::PASS:
 						$this->logger->debug( __METHOD__ . ": Secondary creation passed by $id", [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
 						] );
 						// fall through
-					case AuthenticationResponse::ABSTAIN;
+					case AuthenticationResponse::ABSTAIN:
 						$state['secondary'][$id] = true;
 						break;
-					case AuthenticationResponse::REDIRECT;
-					case AuthenticationResponse::UI;
+					case AuthenticationResponse::REDIRECT:
+					case AuthenticationResponse::UI:
 						$this->logger->debug( __METHOD__ . ": Secondary creation $res->status by $id", [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
@@ -1530,7 +1530,7 @@ class AuthManager implements LoggerAwareInterface {
 						$state['continueRequests'] = $res->neededRequests;
 						$session->setSecret( 'AuthManager::accountCreationState', $state );
 						return $res;
-					case AuthenticationResponse::FAIL;
+					case AuthenticationResponse::FAIL:
 						throw new \DomainException(
 							get_class( $provider ) . "::{$func}() returned $res->status." .
 							' Secondary providers are not allowed to fail account creation, that' .
@@ -1893,26 +1893,26 @@ class AuthManager implements LoggerAwareInterface {
 
 			$res = $provider->beginPrimaryAccountLink( $user, $reqs );
 			switch ( $res->status ) {
-				case AuthenticationResponse::PASS;
+				case AuthenticationResponse::PASS:
 					$this->logger->info( "Account linked to {user} by $id", [
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
 					return $res;
 
-				case AuthenticationResponse::FAIL;
+				case AuthenticationResponse::FAIL:
 					$this->logger->debug( __METHOD__ . ": Account linking failed by $id", [
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
 					return $res;
 
-				case AuthenticationResponse::ABSTAIN;
+				case AuthenticationResponse::ABSTAIN:
 					// Continue loop
 					break;
 
-				case AuthenticationResponse::REDIRECT;
-				case AuthenticationResponse::UI;
+				case AuthenticationResponse::REDIRECT:
+				case AuthenticationResponse::UI:
 					$this->logger->debug( __METHOD__ . ": Account linking $res->status by $id", [
 						'user' => $user->getName(),
 					] );
@@ -2000,22 +2000,22 @@ class AuthManager implements LoggerAwareInterface {
 			$id = $provider->getUniqueId();
 			$res = $provider->continuePrimaryAccountLink( $user, $reqs );
 			switch ( $res->status ) {
-				case AuthenticationResponse::PASS;
+				case AuthenticationResponse::PASS:
 					$this->logger->info( "Account linked to {user} by $id", [
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
 					$session->remove( 'AuthManager::accountLinkState' );
 					return $res;
-				case AuthenticationResponse::FAIL;
+				case AuthenticationResponse::FAIL:
 					$this->logger->debug( __METHOD__ . ": Account linking failed by $id", [
 						'user' => $user->getName(),
 					] );
 					$this->callMethodOnProviders( 3, 'postAccountLink', [ $user, $res ] );
 					$session->remove( 'AuthManager::accountLinkState' );
 					return $res;
-				case AuthenticationResponse::REDIRECT;
-				case AuthenticationResponse::UI;
+				case AuthenticationResponse::REDIRECT:
+				case AuthenticationResponse::UI:
 					$this->logger->debug( __METHOD__ . ": Account linking $res->status by $id", [
 						'user' => $user->getName(),
 					] );

@@ -72,7 +72,7 @@
 		"hamcrest/hamcrest-php": "^2.0",
 		"johnkary/phpunit-speedtrap": "^3.1",
 		"justinrainbow/json-schema": "~5.2",
-		"mediawiki/mediawiki-codesniffer": "31.0.0",
+		"mediawiki/mediawiki-codesniffer": "32.0.0",
 		"mediawiki/mediawiki-phan-config": "0.10.3",
 		"monolog/monolog": "~1.25.3",
 		"nikic/php-parser": "4.10.0",

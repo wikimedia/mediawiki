@@ -46,10 +46,10 @@ class LanguageBs extends Language {
 		switch ( $case ) {
 			case 'instrumental': # instrumental
 				$word = 's ' . $word;
-			break;
+				break;
 			case 'lokativ': # locative
 				$word = 'o ' . $word;
-			break;
+				break;
 		}
 
 		# this will return the original value for 'nominativ' (nominative)
