@@ -2820,7 +2820,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 		$this->assertSame( null, $session->get( 'AuthManager::AutoCreateBlacklist' ) );
-		$this->assertNotEquals( false, $cache->get( $backoffKey ) );
+		$this->assertNotFalse( $cache->get( $backoffKey ) );
 		$cache->delete( $backoffKey );
 
 		// Test addToDatabase fails because the user already exists.

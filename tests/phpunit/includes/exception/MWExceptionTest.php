@@ -94,7 +94,7 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		$json = MWExceptionHandler::jsonSerializeException(
 			new $exception_class()
 		);
-		$this->assertNotEquals( false, $json,
+		$this->assertIsString( $json,
 			"The $exception_class exception should be JSON serializable, got false." );
 	}
 

@@ -360,14 +360,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				$db->startAtomic( __METHOD__ );
 			}
 			// Use only basic SQL and trivial types for these queries for compatibility
-			$this->assertNotSame(
-				false,
+			$this->assertNotFalse(
 				$db->query( "CREATE TABLE $table (id INT, time INT)", __METHOD__ ),
 				"table created"
 			);
 			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
-			$this->assertNotSame(
-				false,
+			$this->assertNotFalse(
 				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
 				"delete query"
 			);
