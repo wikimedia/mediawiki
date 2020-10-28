@@ -787,7 +787,8 @@ abstract class Installer {
 				'ss_active_users' => 0,
 				'ss_images' => 0
 			],
-			__METHOD__, 'IGNORE'
+			__METHOD__,
+			'IGNORE'
 		);
 
 		return Status::newGood();
@@ -955,8 +956,6 @@ abstract class Installer {
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
 			$this->showMessage( 'config-imagemagick', $convert );
-
-			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
 		} else {
@@ -1033,8 +1032,7 @@ abstract class Installer {
 		}
 
 		# Get a list of available locales.
-		$result = Shell::command( '/usr/bin/locale', '-a' )
-			->execute();
+		$result = Shell::command( '/usr/bin/locale', '-a' )->execute();
 
 		if ( $result->getExitCode() != 0 ) {
 			return true;
@@ -1225,6 +1223,9 @@ abstract class Installer {
 		];
 
 		// it would be good to check other popular languages here, but it'll be slow.
+		// TODO no need to have a loop if there is going to only be one script type
+
+		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
 		Wikimedia\suppressWarnings();
 
@@ -1237,8 +1238,11 @@ abstract class Installer {
 				}
 
 				try {
-					$text = MediaWikiServices::getInstance()->getHttpRequestFactory()->
-						get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
+					$text = $httpRequestFactory->get(
+						$url . $file,
+						[ 'timeout' => 3 ],
+						__METHOD__
+					);
 				} catch ( Exception $e ) {
 					// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
 					// extension.
@@ -1706,14 +1710,11 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function doGenerateKeys( $keys ) {
-		$status = Status::newGood();
-
 		foreach ( $keys as $name => $length ) {
 			$secretKey = MWCryptRand::generateHex( $length );
 			$this->setVar( $name, $secretKey );
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
@@ -1756,19 +1757,17 @@ abstract class Installer {
 			$ssUpdate = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 			$ssUpdate->doUpdate();
 		}
-		$status = Status::newGood();
 
 		if ( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
-			$this->subscribeToMediaWikiAnnounce( $status );
+			return $this->subscribeToMediaWikiAnnounce();
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
-	 * @param Status $s
+	 * @return Status
 	 */
-	private function subscribeToMediaWikiAnnounce( Status $s ) {
+	private function subscribeToMediaWikiAnnounce() {
 		$params = [
 			'email' => $this->getVar( '_AdminEmail' ),
 			'language' => 'en',
@@ -1783,15 +1782,20 @@ abstract class Installer {
 			$params['language'] = $myLang;
 		}
 
+		$status = Status::newGood();
 		if ( MWHttpRequest::canMakeRequests() ) {
-			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-				[ 'method' => 'POST', 'postData' => $params ], __METHOD__ )->execute();
+			$res = MWHttpRequest::factory(
+				$this->mediaWikiAnnounceUrl,
+				[ 'method' => 'POST', 'postData' => $params ],
+				__METHOD__
+			)->execute();
 			if ( !$res->isOK() ) {
-				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
+				$status->warning( 'config-install-subscribe-fail', $res->getMessage() );
 			}
 		} else {
-			$s->warning( 'config-install-subscribe-notpossible' );
+			$status->warning( 'config-install-subscribe-notpossible' );
 		}
+		return $status;
 	}
 
 	/**
@@ -1814,7 +1818,8 @@ abstract class Installer {
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$status = $page->doEditContent( $content,
+			$status = $page->doEditContent(
+				$content,
 				'',
 				EDIT_NEW,
 				false,
