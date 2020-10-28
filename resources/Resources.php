@@ -1169,7 +1169,17 @@ return [
 		],
 	],
 	'mediawiki.action.edit.preview' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.js',
+		'packageFiles' => [
+			'resources/src/mediawiki.action/mediawiki.action.edit.preview.js',
+			[
+				'name' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.parsedMessages.json',
+				'callback' => function ( MessageLocalizer $messageLocalizer ) {
+					return [
+						'previewnote' => $messageLocalizer->msg( 'previewnote' )->parse(),
+					];
+				}
+			]
+		],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.css',
 		'dependencies' => [
 			'jquery.spinner',
@@ -1197,7 +1207,6 @@ return [
 			'parentheses',
 			'preview',
 			'previewerrortext',
-			'previewnote',
 			'templatesusedpreview',
 		],
 	],
