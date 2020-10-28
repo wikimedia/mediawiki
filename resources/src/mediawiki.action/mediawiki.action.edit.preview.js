@@ -3,6 +3,8 @@
  */
 ( function () {
 
+	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' );
+
 	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
@@ -257,7 +259,7 @@
 					)
 					.append( $( '<div>' )
 						.addClass( 'warningbox' )
-						.append( mw.message( 'previewnote' ).parseDom() )
+						.html( parsedMessages.previewnote )
 						.append( ' ' )
 						.append( $( '<span>' )
 							.addClass( 'mw-continue-editing' )
