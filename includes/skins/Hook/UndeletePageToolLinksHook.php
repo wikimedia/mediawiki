@@ -24,5 +24,5 @@ interface UndeletePageToolLinksHook {
 	 * @param string[] &$links Array of HTML strings
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUndeletePageToolLinks( $context, $linkRenderer, &$links );
+	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links );
 }

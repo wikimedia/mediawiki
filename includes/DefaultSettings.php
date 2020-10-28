@@ -287,6 +287,14 @@ $wgUploadPath = false;
 $wgImgAuthPath = false;
 
 /**
+ * The base path for thumb_handler.php. This is used to interpret the request URL
+ * for requests to thumb_handler.php that do not match the base upload path.
+ *
+ * @since 1.36
+ */
+$wgThumbPath = false;
+
+/**
  * The filesystem path of the images directory. Defaults to "{$IP}/images".
  */
 $wgUploadDirectory = false;

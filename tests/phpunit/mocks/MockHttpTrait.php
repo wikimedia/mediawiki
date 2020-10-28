@@ -21,6 +21,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\NullLogger;
 
 /**
@@ -45,15 +46,16 @@ trait MockHttpTrait {
 	 * Install a mock HttpRequestFactory in MediaWikiServices, for the duration
 	 * of the current test case.
 	 *
-	 * @param null|string|array|callable|MWHttpRequest|MultiHttpClient $request A list of
-	 *        MWHttpRequest to return on consecutive calls to HttpRequestFactory::create().
+	 * @param null|string|array|callable|MWHttpRequest|MultiHttpClient|GuzzleHttp\Client $request
+	 *        A list of MWHttpRequest to return on consecutive calls to HttpRequestFactory::create().
 	 *        These MWHttpRequest also represent the desired response.
 	 *        For convenience, a single MWHttpRequest can be given,
 	 *        or a callable producing such an MWHttpRequest,
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
-	 *        If null or a MultiHttpClient is given instead of a MWHttpRequest,
-	 *        a call to create() will cause the test to fail.
+	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
+	 *        If null is given, any call to create(), createMultiClient() or createGuzzleClient()
+	 *        will cause the test to fail.
 	 */
 	private function installMockHttp( $request = null ) {
 		$this->setService( 'HttpRequestFactory', function () use ( $request ) {
@@ -87,7 +89,7 @@ trait MockHttpTrait {
 		/** @var HttpRequestFactory|MockObject $mockHttpRequestFactory */
 		$mockHttpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
 			->setConstructorArgs( [ $options, new NullLogger() ] )
-			->onlyMethods( [ 'create', 'createMultiClient' ] )
+			->onlyMethods( [ 'create', 'createMultiClient', 'createGuzzleClient' ] )
 			->getMock();
 
 		if ( $request instanceof MultiHttpClient ) {
@@ -98,10 +100,21 @@ trait MockHttpTrait {
 				->willReturnCallback( [ TestCase::class, 'fail' ] );
 		}
 
+		if ( $request instanceof GuzzleHttp\Client ) {
+			$mockHttpRequestFactory->method( 'createGuzzleClient' )
+				->willReturn( $request );
+		} else {
+			$mockHttpRequestFactory->method( 'createGuzzleClient' )
+				->willReturnCallback( [ TestCase::class, 'fail' ] );
+		}
+
 		if ( $request === null ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturnCallback( [ TestCase::class, 'fail' ] );
 		} elseif ( $request instanceof MultiHttpClient ) {
+			$mockHttpRequestFactory->method( 'create' )
+				->willReturnCallback( [ TestCase::class, 'fail' ] );
+		} elseif ( $request instanceof GuzzleHttp\Client ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturnCallback( [ TestCase::class, 'fail' ] );
 		} elseif ( $request instanceof MWHttpRequest ) {
@@ -247,6 +260,34 @@ trait MockHttpTrait {
 		);
 
 		return $mockHttpRequestMulti;
+	}
+
+	/**
+	 * Constructs a fake GuzzleHttp\Client which will return the given response.
+	 *
+	 * @note Not all methods on GuzzleHttp\Client are mocked, calling other methods will
+	 *       cause the test to fail.
+	 *
+	 * @param ResponseInterface|string $response The response to return.
+	 *
+	 * @return GuzzleHttp\Client
+	 */
+	private function makeFakeGuzzleClient( $response ) {
+		if ( is_string( $response ) ) {
+			$response = new GuzzleHttp\Psr7\Response( 200, [], $response );
+		}
+
+		$mockHttpClient = $this->createNoOpMock(
+			GuzzleHttp\Client::class,
+			[ 'request', 'get', 'put', 'post' ]
+		);
+
+		$mockHttpClient->method( 'request' )->willReturn( $response );
+		$mockHttpClient->method( 'get' )->willReturn( $response );
+		$mockHttpClient->method( 'put' )->willReturn( $response );
+		$mockHttpClient->method( 'post' )->willReturn( $response );
+
+		return $mockHttpClient;
 	}
 
 }
