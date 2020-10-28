@@ -26,7 +26,7 @@ class TestSetup {
 	 * of a Maintenance subclass
 	 */
 	public static function applyInitialConfig() {
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache, $wgSessionCacheType;
 		global $wgMainStash;
 		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
