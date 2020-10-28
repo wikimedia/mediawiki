@@ -122,6 +122,15 @@ class FormatMetadata extends ContextSource {
 				$type = 'ul'; // default unordered list.
 			}
 
+			// _formatted is a special value to indicate the subclass
+			// already handled & formatted this tag
+			if ( isset( $tags[$tag]['_formatted'] ) ) {
+				$tags[$tag] = $this->flattenArrayReal(
+					$tags[$tag]['_formatted'], $type
+				);
+				continue;
+			}
+
 			// This is done differently as the tag is an array.
 			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
 				// hour min sec array

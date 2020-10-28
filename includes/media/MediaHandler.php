@@ -546,6 +546,25 @@ abstract class MediaHandler {
 			'collapsed' => []
 		];
 
+		// Allow this MediaHandler to override formatting on certain values
+		foreach ( $metadataArray as $tag => $vals ) {
+			$v = $this->formatTag( $tag, $vals, $context );
+			if ( $v === false ) {
+				// Use default formatting
+				continue;
+			} elseif ( $v === null ) {
+				// Remove this tag, don't format it for display
+				unset( $metadataArray[$tag] );
+			} else {
+				// Allow subclass to override default formatting.
+				$metadataArray[$tag] = [ '_formatted' => $v ];
+				if ( isset( $v['_type'] ) ) {
+					$metadataArray[$tag]['_type'] = $v['_type'];
+					unset( $metadataArray[$tag]['_formatted']['_type'] );
+				}
+			}
+		}
+
 		$formatted = FormatMetadata::getFormattedData( $metadataArray, $context );
 		// Sort fields into visible and collapsed
 		$visibleFields = $this->visibleMetadataFields();
@@ -560,6 +579,22 @@ abstract class MediaHandler {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Override default formatting for the given metadata field.
+	 *
+	 * @stable to override
+	 *
+	 * @param string $key The metadata field key
+	 * @param string|array $vals The unformatted value of this metadata field
+	 * @param bool|IContextSource $context Context to use (optional)
+	 * @return false|null|string|array False to use default formatting, null
+	 *   to remove this tag from the formatted list; otherwise return
+	 *   a formatted HTML string (or array of them).
+	 */
+	protected function formatTag( string $key, $vals, $context = false ) {
+		return false; // Use default formatting
 	}
 
 	/**
