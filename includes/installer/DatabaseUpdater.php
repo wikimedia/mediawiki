@@ -132,27 +132,8 @@ abstract class DatabaseUpdater {
 	 * Cause extensions to register any updates they need to perform.
 	 */
 	private function loadExtensionSchemaUpdates() {
-		$this->initOldGlobals();
 		$this->loadExtensions();
 		Hooks::runner()->onLoadExtensionSchemaUpdates( $this );
-	}
-
-	/**
-	 * Initialize all of the old globals. One day this should all become
-	 * something much nicer
-	 */
-	private function initOldGlobals() {
-		global $wgExtNewTables, $wgExtNewFields, $wgExtPGNewFields,
-			$wgExtPGAlteredFields, $wgExtNewIndexes, $wgExtModifiedFields;
-
-		# For extensions only, should be populated via hooks
-		# $wgDBtype should be checked to specify the proper file
-		$wgExtNewTables = []; // table, dir
-		$wgExtNewFields = []; // table, column, dir
-		$wgExtPGNewFields = []; // table, column, column attributes; for PostgreSQL
-		$wgExtPGAlteredFields = []; // table, column, new type, conversion method; for PostgreSQL
-		$wgExtNewIndexes = []; // table, index, dir
-		$wgExtModifiedFields = []; // table, index, dir
 	}
 
 	/**
@@ -476,7 +457,6 @@ abstract class DatabaseUpdater {
 		}
 		if ( isset( $what['extensions'] ) ) {
 			$this->loadExtensionSchemaUpdates();
-			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 		}
 
@@ -600,51 +580,6 @@ abstract class DatabaseUpdater {
 		} else {
 			return true;
 		}
-	}
-
-	/**
-	 * Before 1.17, we used to handle updates via stuff like
-	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
-	 * of this in 1.17 but we want to remain back-compatible for a while. So
-	 * load up these old global-based things into our update list.
-	 *
-	 * @stable to override
-	 * @return array
-	 */
-	protected function getOldGlobalUpdates() {
-		global $wgExtNewFields, $wgExtNewTables, $wgExtModifiedFields,
-			$wgExtNewIndexes;
-
-		$updates = [];
-
-		foreach ( $wgExtNewTables as $tableRecord ) {
-			$updates[] = [
-				'addTable', $tableRecord[0], $tableRecord[1], true
-			];
-		}
-
-		foreach ( $wgExtNewFields as $fieldRecord ) {
-			$updates[] = [
-				'addField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		foreach ( $wgExtNewIndexes as $fieldRecord ) {
-			$updates[] = [
-				'addIndex', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		foreach ( $wgExtModifiedFields as $fieldRecord ) {
-			$updates[] = [
-				'modifyField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		return $updates;
 	}
 
 	/**

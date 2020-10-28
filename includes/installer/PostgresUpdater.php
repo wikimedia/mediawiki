@@ -798,45 +798,6 @@ class PostgresUpdater extends DatabaseUpdater {
 		];
 	}
 
-	protected function getOldGlobalUpdates() {
-		global $wgExtNewTables, $wgExtPGNewFields, $wgExtPGAlteredFields, $wgExtNewIndexes;
-
-		$updates = [];
-
-		# Add missing extension tables
-		foreach ( $wgExtNewTables as $tableRecord ) {
-			$updates[] = [
-				'addTable', $tableRecord[0], $tableRecord[1], true
-			];
-		}
-
-		# Add missing extension fields
-		foreach ( $wgExtPGNewFields as $fieldRecord ) {
-			$updates[] = [
-				'addPgField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2]
-			];
-		}
-
-		# Change altered columns
-		foreach ( $wgExtPGAlteredFields as $fieldRecord ) {
-			$updates[] = [
-				'changeField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2]
-			];
-		}
-
-		# Add missing extension indexes
-		foreach ( $wgExtNewIndexes as $fieldRecord ) {
-			$updates[] = [
-				'addPgExtIndex', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2]
-			];
-		}
-
-		return $updates;
-	}
-
 	protected function describeTable( $table ) {
 		$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute

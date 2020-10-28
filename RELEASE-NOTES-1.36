@@ -40,6 +40,11 @@ For notes on 1.35.x and older releases, see HISTORY.
 * $wgAllowImageMoving - This setting, deprecated in 1.35, has been removed.
   Use group permission settings instead. For example, to prevent sysops
   from moving files, set `$wgGroupPermissions['sysop']['movefile'] = false;`
+* $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes, $wgExtPGNewFields,
+  $wgExtPGAlteredFields, $wgExtModifiedFields — These settings were removed.
+  They became obsolete after 1.17 overhauled the database updater, but were kept
+  for backwards compatibility. The LoadExtensionSchemaUpdates hook should be
+  used instead.
 * …
 
 === New user-facing features in 1.36 ===
