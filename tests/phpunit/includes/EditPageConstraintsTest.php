@@ -34,38 +34,8 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Copied from EditPageTest
-	 *
-	 * @param WikiPage $page
-	 * @param string $timestamp
-	 */
-	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$dbw->update( 'revision',
-			[ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ],
-			[ 'rev_id' => $page->getLatest() ] );
-
-		$page->clear();
-	}
-
-	/**
-	 * Copied from EditPageTest
-	 *
-	 * User input text is passed to rtrim() by edit page. This is a simple
-	 * wrapper around assertEquals() which calls rrtrim() to normalize the
-	 * expected and actual texts.
-	 * @param string $expected
-	 * @param string $actual
-	 * @param string $msg
-	 */
-	protected function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
-		$this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
-	}
-
-	/**
-	 * Copied from EditPageTest
-	 * Performs an edit and checks the result.
+	 * Based on method in EditPageTest
+	 * Performs an edit and checks the result matches the expected failure code
 	 *
 	 * @param string|Title $title The title of the page to edit
 	 * @param string|null $baseText Some text to create the page with before attempting the edit.
@@ -82,16 +52,18 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 *              * wpSectionTitle: the section to edit
 	 *              * wpMinorEdit: mark as minor edit
 	 *              * wpWatchthis: whether to watch the page
-	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
-	 *                  Set to null to skip the check.
-	 * @param string|null $expectedText The text expected to be on the page after the edit.
-	 *                  Set to null to skip the check.
-	 * @param string|null $message An optional message to show along with any error message.
+	 * @param int $expectedCode The expected result code (EditPage::AS_XXX constants).
+	 * @param string $message Message to show along with any error message.
 	 *
 	 * @return WikiPage The page that was just edited, useful for getting the edit's rev_id, etc.
 	 */
-	protected function assertEdit( $title, $baseText, $user, array $edit,
-		$expectedCode = null, $expectedText = null, $message = null
+	protected function assertEdit(
+		$title,
+		$baseText,
+		$user,
+		array $edit,
+		$expectedCode,
+		$message
 	) {
 		if ( is_string( $title ) ) {
 			$ns = $this->getDefaultWikitextNS();
@@ -112,15 +84,26 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
 			$page->doEditContent( $content, "base text for test" );
-			$this->forceRevisionDate( $page, '20120101000000' );
+
+			// Set the latest timestamp back a while
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->update(
+				'revision',
+				[ 'rev_timestamp' => $dbw->timestamp( '20120101000000' ) ],
+				[ 'rev_id' => $page->getLatest() ]
+			);
+			$page->clear();
 
 			// sanity check
-			$page->clear();
 			$currentText = ContentHandler::getContentText( $page->getContent() );
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
-			$this->assertEditedTextEquals( $baseText, $currentText );
+			$this->assertEquals(
+				rtrim( $baseText ),
+				rtrim( $currentText ),
+				'Sanity check: page should have the text specified'
+			);
 		}
 
 		if ( $user == null ) {
@@ -158,30 +141,18 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$bot = isset( $edit['bot'] ) ? (bool)$edit['bot'] : false;
 
 		// this is where the edit happens!
-		// Note: don't want to use EditPage::AttemptSave, because it messes with $wgOut
+		// Note: don't want to use EditPage::attemptSave, because it messes with $wgOut
 		// and throws exceptions like PermissionsError
 		$status = $ep->internalAttemptSave( $result, $bot );
 
-		if ( $expectedCode !== null ) {
-			// check edit code
-			$this->assertEquals( $expectedCode, $status->value,
-				"Expected result code mismatch. $message" );
-		}
+		// check edit code
+		$this->assertSame(
+			$expectedCode,
+			$status->value,
+			"Expected result code mismatch. $message"
+		);
 
-		$page = WikiPage::factory( $title );
-
-		if ( $expectedText !== null ) {
-			// check resulting page text
-			$content = $page->getContent();
-			$text = ContentHandler::getContentText( $content );
-
-			# EditPage rtrim() the user input, so we alter our expected text
-			# to reflect that.
-			$this->assertEditedTextEquals( $expectedText, $text,
-				"Expected article text mismatch. $message" );
-		}
-
-		return $page;
+		return WikiPage::factory( $title );
 	}
 
 	/** ContentModelChangeConstraint integration */
@@ -215,7 +186,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$user,
 			$edit,
 			EditPage::AS_NO_CHANGE_CONTENT_MODEL,
-			null,
 			'expected AS_NO_CHANGE_CONTENT_MODEL update'
 		);
 	}
@@ -240,8 +210,12 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			'wpSummary' => 'Summary'
 		];
 		$this->assertEdit(
-			'EditPageTest_noEditRight', 'base text', $user, $edit,
-			$expectedErrorCode, null, 'expected AS_READ_ONLY_PAGE_* update'
+			'EditPageTest_noEditRight',
+			'base text',
+			$user,
+			$edit,
+			$expectedErrorCode,
+			'expected AS_READ_ONLY_PAGE_* update'
 		);
 	}
 
@@ -273,8 +247,12 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 		$title = Title::newFromText( 'Example.jpg', NS_FILE );
 		$this->assertEdit(
-			$title, null, $user, $edit,
-			$expectedErrorCode, null, 'expected AS_IMAGE_REDIRECT_* update'
+			$title,
+			null,
+			$user,
+			$edit,
+			$expectedErrorCode,
+			'expected AS_IMAGE_REDIRECT_* update'
 		);
 	}
 
@@ -298,7 +276,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			null,
 			$edit,
 			EditPage::AS_READ_ONLY_PAGE,
-			null,
 			'expected AS_READ_ONLY_PAGE update'
 		);
 	}
@@ -310,8 +287,14 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			'wpSummary' => 'first update',
 			'wpAntispam' => 'tatata'
 		];
-		$this->assertEdit( 'EditPageTest_testUpdatePageSpamError', "zero", null, $edit,
-			EditPage::AS_SPAM_ERROR, null, "expected AS_SPAM_ERROR update" );
+		$this->assertEdit(
+			'EditPageTest_testUpdatePageSpamError',
+			'zero',
+			null,
+			$edit,
+			EditPage::AS_SPAM_ERROR,
+			'expected AS_SPAM_ERROR update'
+		);
 	}
 
 	/** SpamRegexConstraint integration */
@@ -328,8 +311,12 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			'wpSummary' => 'spam summary'
 		];
 		$this->assertEdit(
-			'EditPageTest_testUpdatePageSpamRegexError', 'zero', null, $edit,
-			EditPage::AS_SPAM_ERROR, null, 'expected AS_SPAM_ERROR update'
+			'EditPageTest_testUpdatePageSpamRegexError',
+			'zero',
+			null,
+			$edit,
+			EditPage::AS_SPAM_ERROR,
+			'expected AS_SPAM_ERROR update'
 		);
 	}
 
@@ -359,7 +346,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			null,
 			$edit,
 			EditPage::AS_BLOCKED_PAGE_FOR_USER,
-			null,
 			'expected AS_BLOCKED_PAGE_FOR_USER update'
 		);
 	}
@@ -384,7 +370,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			null,
 			$edit,
 			EditPage::AS_RATE_LIMITED,
-			null,
 			'expected AS_RATE_LIMITED update'
 		);
 	}
