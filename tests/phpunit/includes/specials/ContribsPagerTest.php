@@ -198,6 +198,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	public function testCreateRevision() {
 		$this->hideDeprecated( 'ContribsPager::tryToCreateValidRevision' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
 		$pager = new ContribsPager( new RequestContext(), [
 			'target' => '116.17.184.5/32',
@@ -209,14 +210,14 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'foo' => 'bar'
 		];
 
-		$this->assertNull( $pager->tryToCreateValidRevision( $invalidRow ) );
-		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidRow ) );
+		$this->assertNull( $pager->tryToCreateValidRevision( $invalidRow, $title ) );
+		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidRow, $title ) );
 
 		$validRow = (object)[
 			'rev_id' => '2',
 			'rev_page' => '2',
-			'page_namespace' => '0',
-			'page_title' => __METHOD__,
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => $title->getDBkey(),
 			'rev_text_id' => '47',
 			'rev_timestamp' => '20180528192356',
 			'rev_minor_edit' => '0',
@@ -234,7 +235,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		$this->assertNotNull( $pager->tryToCreateValidRevision( $validRow ) );
-		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow ) );
+		$this->assertNotNull( $pager->tryToCreateValidRevision( $validRow, $title ) );
+		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow, $title ) );
 	}
 }
