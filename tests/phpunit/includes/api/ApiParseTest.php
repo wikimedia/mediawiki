@@ -884,13 +884,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitPageParse() {
-		$wgPoolCounterConf = [
+		$this->setMwGlobals( 'wgPoolCounterConf', [
 			'ApiParser' => [
 				'class' => MockPoolCounterFailing::class,
 			]
-		];
-
-		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+		] );
 
 		try{
 			$this->doApiRequest( [
@@ -904,13 +902,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitContentParse() {
-		$wgPoolCounterConf = [
+		$this->setMwGlobals( 'wgPoolCounterConf', [
 			'ApiParser' => [
 				'class' => MockPoolCounterFailing::class,
 			]
-		];
-
-		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+		] );
 
 		try{
 			$this->doApiRequest( [

@@ -29,12 +29,6 @@
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.False" /><!-- autofix -->
 		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.True" /><!-- autofix -->
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgCommandLineMode" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgFullyInitialised" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgOut" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgPoolCounterConf" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgSessionCacheType" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment" />
 	</rule>
