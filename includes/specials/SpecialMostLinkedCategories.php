@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -36,17 +37,23 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedCategories extends QueryPage {
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Mostlinkedcategories' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isSyndicated() {
@@ -95,7 +102,7 @@ class SpecialMostLinkedCategories extends QueryPage {
 			);
 		}
 
-		$text = $this->getLanguageConverter()->convertHtml( $nt->getText() );
+		$text = $this->languageConverter->convertHtml( $nt->getText() );
 
 		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();

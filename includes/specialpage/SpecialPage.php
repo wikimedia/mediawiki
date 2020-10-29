@@ -842,10 +842,12 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Shortcut to get language's converter
 	 *
+	 * @deprecated 1.36 Inject LanguageConverterFactory and store a ILanguageConverter instance
 	 * @return ILanguageConverter
 	 * @since 1.35
 	 */
 	protected function getLanguageConverter(): ILanguageConverter {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter();
 	}

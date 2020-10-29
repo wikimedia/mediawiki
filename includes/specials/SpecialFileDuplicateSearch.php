@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -49,23 +50,29 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param RepoGroup $repoGroup
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,
 		SearchEngineFactory $searchEngineFactory,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'FileDuplicateSearch' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->repoGroup = $repoGroup;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isSyndicated() {
@@ -236,7 +243,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
-		$text = $this->getLanguageConverter()->convert( $nt->getText() );
+		$text = $this->languageConverter->convert( $nt->getText() );
 		$plink = $linkRenderer->makeLink(
 			$nt,
 			$text

@@ -374,6 +374,8 @@ because of Phabricator reports.
 * SpecialBlock::validateTarget has been deprecated, use BlockUtils instead.
 * SpecialBlock::validateTargetField has been deprecated for external use,
   use BlockUtils instead.
+* SpecialPage::getLanguageConverter has been deprecated, use
+  LanguageConverterFactory::getLanguageConverter() directly.
 * ParserCache::getKey has been deprecated. Use ParserCache::getMetadata and
   ParserCache::makeParserOutputKey instead.
 * The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4,
