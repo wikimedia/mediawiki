@@ -9572,10 +9572,6 @@ $wgMainPageIsDomainRoot = false;
 /**
  * Whether to enable the watchlist expiry feature.
  *
- * DISCLAIMER: Enabling in production is discouraged for the time being.
- * A future MW 1.35 release will advertise this feature once it is stable.
- *
- * @warning EXPERIMENTAL
  * @since 1.35
  * @var bool
  */
