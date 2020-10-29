@@ -578,12 +578,12 @@ class ContribsPager extends RangeChronologicalPager {
 		Wikimedia\suppressWarnings();
 		try {
 			$revRecord = $revFactory->newRevisionFromRow( $row, 0, $title );
-			$validRevision = (bool)$revRecord->getId();
+			return $revRecord->getId() ? $revRecord : null;
 		} catch ( Exception $e ) {
-			$validRevision = false;
+			return null;
+		} finally {
+			Wikimedia\restoreWarnings();
 		}
-		Wikimedia\restoreWarnings();
-		return $validRevision ? $revRecord : null;
 	}
 
 	/**
