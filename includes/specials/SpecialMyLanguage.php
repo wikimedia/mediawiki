@@ -39,20 +39,14 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
-	/** @var Language */
-	private $contentLanguage;
-
 	/**
 	 * @param LanguageNameUtils $languageNameUtils
-	 * @param Language $contentLanguage
 	 */
 	public function __construct(
-		LanguageNameUtils $languageNameUtils,
-		Language $contentLanguage
+		LanguageNameUtils $languageNameUtils
 	) {
 		parent::__construct( 'MyLanguage' );
 		$this->languageNameUtils = $languageNameUtils;
-		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -109,8 +103,9 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		$uiLang = $this->getLanguage();
+		$contLang = $this->getContentLanguage();
 
-		if ( $uiLang->equals( $this->contentLanguage ) ) {
+		if ( $uiLang->equals( $contLang ) ) {
 			// Short circuit when the current UI language is the
 			// wiki's default language to avoid unnecessary page lookups.
 			return $base;
@@ -130,7 +125,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $lang !== $this->contentLanguage->getCode() ) {
+			if ( $lang !== $contLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
 					return $proposed;

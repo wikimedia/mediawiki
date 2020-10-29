@@ -28,12 +28,8 @@
  */
 class SpecialLockdb extends FormSpecialPage {
 
-	/** @var Language */
-	private $contentLanguage;
-
-	public function __construct( Language $contentLanguage ) {
+	public function __construct() {
 		parent::__construct( 'Lockdb', 'siteadmin' );
-		$this->contentLanguage = $contentLanguage;
 	}
 
 	public function doesWrites() {
@@ -93,10 +89,11 @@ class SpecialLockdb extends FormSpecialPage {
 		}
 		fwrite( $fp, $data['Reason'] );
 		$timestamp = wfTimestampNow();
+		$contLang = $this->getContentLanguage();
 		fwrite( $fp, "\n<p>" . $this->msg( 'lockedbyandtime',
 			$this->getUser()->getName(),
-			$this->contentLanguage->date( $timestamp, false, false ),
-			$this->contentLanguage->time( $timestamp, false, false )
+			$contLang->date( $timestamp, false, false ),
+			$contLang->time( $timestamp, false, false )
 		)->inContentLanguage()->text() . "</p>\n" );
 		fclose( $fp );
 

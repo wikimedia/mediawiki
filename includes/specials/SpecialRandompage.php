@@ -60,8 +60,7 @@ class RandomPage extends SpecialPage {
 		if ( is_string( $par ) ) {
 			// Testing for stringiness since we want to catch
 			// the empty string to mean main namespace only.
-			$this->setNamespace(
-				MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $par ) );
+			$this->setNamespace( $this->getContentLanguage()->getNsIndex( $par ) );
 		}
 
 		$title = $this->getRandomTitle();
@@ -87,7 +86,7 @@ class RandomPage extends SpecialPage {
 	 * @return string
 	 */
 	private function getNsList() {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getContentLanguage();
 		$nsNames = [];
 		foreach ( $this->namespaces as $n ) {
 			if ( $n === NS_MAIN ) {

@@ -341,8 +341,7 @@ class SpecialSearch extends SpecialPage {
 			$this->getHookContainer(),
 			$this->getSearchProfiles()
 		);
-		$filePrefix = MediaWikiServices::getInstance()->getContentLanguage()->
-			getFormattedNsText( NS_FILE ) . ':';
+		$filePrefix = $this->getContentLanguage()->getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
 			if ( !$this->getHookRunner()->onSpecialSearchResultsPrepend( $this, $out, $term ) ) {

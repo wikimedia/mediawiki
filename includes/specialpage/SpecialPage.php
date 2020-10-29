@@ -69,6 +69,9 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	protected $mContext;
 
+	/** @var Language|null */
+	private $contentLanguage;
+
 	/**
 	 * @var LinkRenderer|null
 	 */
@@ -665,7 +668,7 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	protected function outputHeader( $summaryMessageKey = '' ) {
 		if ( $summaryMessageKey == '' ) {
-			$msg = MediaWikiServices::getInstance()->getContentLanguage()->lc( $this->getName() ) .
+			$msg = $this->getContentLanguage()->lc( $this->getName() ) .
 				'-summary';
 		} else {
 			$msg = $summaryMessageKey;
@@ -779,6 +782,32 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * Shortcut to get content language
+	 *
+	 * @return Language
+	 * @since 1.36
+	 */
+	final public function getContentLanguage(): Language {
+		if ( $this->contentLanguage === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		}
+		return $this->contentLanguage;
+	}
+
+	/**
+	 * Set content language
+	 *
+	 * @internal For factory only
+	 * @param Language $contentLanguage
+	 * @since 1.36
+	 */
+	final public function setContentLanguage( Language $contentLanguage ) {
+		$this->contentLanguage = $contentLanguage;
+	}
+
+	/**
 	 * Shortcut to get language's converter
 	 *
 	 * @return ILanguageConverter
@@ -869,8 +898,7 @@ class SpecialPage implements MessageLocalizer {
 			return;
 		}
 
-		$lang = MediaWikiServices::getInstance()->getContentLanguage();
-		$msg = $this->msg( $lang->lc( $this->getName() ) . '-helppage' );
+		$msg = $this->msg( $this->getContentLanguage()->lc( $this->getName() ) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
 			$title = Title::newFromText( $msg->plain() );

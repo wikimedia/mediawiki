@@ -205,7 +205,6 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkCache',
-				'ContentLanguage',
 			]
 		],
 		'Categories' => [
@@ -361,7 +360,6 @@ class SpecialPageFactory {
 				'PermissionManager',
 				'ActorMigration',
 				'DBLoadBalancer',
-				'ContentLanguage',
 				'UserCache',
 			]
 		],
@@ -456,9 +454,6 @@ class SpecialPageFactory {
 		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
-			'services' => [
-				'ContentLanguage'
-			]
 		],
 		'Version' => [
 			'class' => \SpecialVersion::class,
@@ -468,9 +463,6 @@ class SpecialPageFactory {
 		],
 		'Lockdb' => [
 			'class' => \SpecialLockdb::class,
-			'services' => [
-				'ContentLanguage',
-			]
 		],
 		'Unlockdb' => \SpecialUnlockdb::class,
 
@@ -588,7 +580,6 @@ class SpecialPageFactory {
 			'class' => \SpecialBookSources::class,
 			'services' => [
 				'RevisionLookup',
-				'ContentLanguage',
 			]
 		],
 
@@ -617,7 +608,6 @@ class SpecialPageFactory {
 			'class' => \SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
-				'ContentLanguage',
 			]
 		],
 		'Mypage' => \SpecialMypage::class,
@@ -920,6 +910,7 @@ class SpecialPageFactory {
 
 			if ( $page instanceof SpecialPage ) {
 				$page->setHookContainer( $this->hookContainer );
+				$page->setContentLanguage( $this->contLang );
 				return $page;
 			}
 
