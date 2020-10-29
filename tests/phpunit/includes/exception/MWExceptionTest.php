@@ -20,11 +20,11 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTextUseOutputPage
 	 * @covers MWException::useOutputPage
 	 */
-	public function testUseOutputPage( $expected, $langObj, $wgFullyInitialised, $wgOut ) {
+	public function testUseOutputPage( $expected, $langObj, $fullyInitialised, $outputPage ) {
 		$this->setMwGlobals( [
 			'wgLang' => $langObj,
-			'wgFullyInitialised' => $wgFullyInitialised,
-			'wgOut' => $wgOut,
+			'wgFullyInitialised' => $fullyInitialised,
+			'wgOut' => $outputPage,
 		] );
 
 		$e = new MWException();
@@ -69,9 +69,9 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsCommandLine
 	 * @covers MWException::isCommandLine
 	 */
-	public function testisCommandLine( $expected, $wgCommandLineMode ) {
+	public function testisCommandLine( $expected, $commandLineMode ) {
 		$this->setMwGlobals( [
-			'wgCommandLineMode' => $wgCommandLineMode,
+			'wgCommandLineMode' => $commandLineMode,
 		] );
 		$e = new MWException();
 		$this->assertEquals( $expected, $e->isCommandLine() );
