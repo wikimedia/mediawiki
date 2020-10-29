@@ -3312,18 +3312,10 @@ class Language {
 			// The attribute value is used by adding it to the grouping separator value. If
 			// the input number has fewer integer digits, the grouping separator is suppressed.
 			$minimumGroupingDigits = $this->minimumGroupingDigits() ?? 0;
-			// Note that MediaWiki historically has had an off-by-off error
-			// in its definition minimumGroupingDigits, so (for example) pl
-			// sets minimumGroupingDigits = 2 where the Unicode CLDR would say
-			// that minimumGroupingDigits should be 1.  So subtract one from
-			// minimumGroupingDigits.  (T262500 will eventually fix this!)
-			if ( $minimumGroupingDigits > 1 ) {
-				$minimumGroupingDigits -= 1;
-			}
-			// Maximum length of a number to suppress digit grouping for.
+			// Minimum length of a number to do digit grouping on.
 			// http://unicode.org/reports/tr35/tr35-numbers.html#Examples_of_minimumGroupingDigits
-			$maximumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
-			if ( $minimumGroupingDigits && preg_match( '/^\-?\d{1,' . $maximumLength . '}(\.\d+)?$/', $number ) ) {
+			$minimumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
+			if ( $minimumGroupingDigits && !preg_match( '/^\-?\d{' . $minimumLength . '}/', $number ) ) {
 				// Even if number does not need commafy, do decimal
 				// separator tranformation.  For example 1234.56 becoms
 				// 1234,56 in pl with $minimumGroupingDigits = 2
