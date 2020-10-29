@@ -1909,7 +1909,7 @@ abstract class File implements IDBAccessObject {
 
 	/**
 	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return bool
+	 * @return array|false
 	 */
 	public function formatMetadata( $context = false ) {
 		if ( !$this->getHandler() ) {

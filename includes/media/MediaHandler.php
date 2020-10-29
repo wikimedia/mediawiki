@@ -522,7 +522,7 @@ abstract class MediaHandler {
 	 *
 	 * @param File $image
 	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array|bool
+	 * @return array|false
 	 */
 	public function formatMetadata( $image, $context = false ) {
 		return false;
