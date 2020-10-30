@@ -365,6 +365,8 @@ because of Phabricator reports.
 * The mw.language.commafy client-side method has been deprecated, to match
   the deprecation of Language::commafy.  Use mw.language.convertNumber
   instead.
+* Title::isDeleted() and Title::isDeletedQuick() have been deprecated. Please
+  use Title::getDeletedEditsCount() and Title::hasDeletedEdits() instead.
 * …
 
 === Other changes in 1.36 ===

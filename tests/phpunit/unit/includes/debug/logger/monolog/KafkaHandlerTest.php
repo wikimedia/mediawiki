@@ -49,7 +49,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider topicNamingProvider
 	 */
 	public function testTopicNaming( $options, $expect ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -86,7 +86,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider swallowsExceptionsWhenRequested
 	 */
 	public function testGetAvailablePartitionsException( $options, $expectException ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -117,7 +117,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider swallowsExceptionsWhenRequested
 	 */
 	public function testSendException( $options, $expectException ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -145,7 +145,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testHandlesNullFormatterResult() {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -179,7 +179,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testBatchHandlesNullFormatterResult() {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )

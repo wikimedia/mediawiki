@@ -10,6 +10,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiIntegrationTestCase;
+use OutputPage;
 use RequestContext;
 use Title;
 use User;
@@ -62,7 +63,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$request->setVal( 'wpSave', '' );
 		$context->setRequest( $request );
 
-		$outputPage = $this->createMock( 'OutputPage' );
+		$outputPage = $this->createMock( OutputPage::class );
 		$context->setOutput( $outputPage );
 		$context->setUser( $this->getTestSysop()->getUser() );
 

@@ -283,18 +283,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$output->addHTML( $topOut . $out );
 	}
 
-	/**
-	 * Return an array of subpages beginning with $search that this special page will accept.
-	 *
-	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return (usually 10)
-	 * @param int $offset Number of results to skip (usually 0)
-	 * @return string[] Matching subpages
-	 */
-	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
-	}
-
 	protected function getGroupName() {
 		return 'pages';
 	}

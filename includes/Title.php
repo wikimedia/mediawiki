@@ -3063,9 +3063,20 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Is there a version of this page in the deletion archive?
 	 *
+	 * @deprecated since 1.36. Use self::getDeletedEditsCount()
 	 * @return int The number of archived revisions
 	 */
 	public function isDeleted() {
+		return $this->getDeletedEditsCount();
+	}
+
+	/**
+	 * Is there a version of this page in the deletion archive?
+	 *
+	 * @since 1.36
+	 * @return int The number of archived revisions
+	 */
+	public function getDeletedEditsCount() {
 		if ( $this->mNamespace < 0 ) {
 			$n = 0;
 		} else {
@@ -3088,9 +3099,20 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Is there a version of this page in the deletion archive?
 	 *
+	 * @deprecated since 1.36, Use self::hasDeletedEdits()
 	 * @return bool
 	 */
 	public function isDeletedQuick() {
+		return $this->hasDeletedEdits();
+	}
+
+	/**
+	 * Is there a version of this page in the deletion archive?
+	 *
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function hasDeletedEdits() {
 		if ( $this->mNamespace < 0 ) {
 			return false;
 		}

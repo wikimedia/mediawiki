@@ -67,6 +67,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 				);
 				foreach ( $rows as $row ) {
 					$this->handleRow( $row );
+					$lastPage = $row->page_id;
 				}
 			} while ( $rows->numRows() >= $this->getBatchSize() );
 		}
