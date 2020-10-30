@@ -348,12 +348,13 @@ class ApiParse extends ApiBase {
 
 		$outputPage = null;
 		$context = null;
-		if ( $skin || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
-			// Enabling the skin via 'useskin', 'headhtml', or 'categorieshtml'
+		if ( $skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
+			// Enabling the skin via 'useskin', 'subtitle', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
 			// these hooks:
 			// - ParserOutputHooks
 			// - Hook: LanguageLinks
+			// - Hook: SkinSubPageSubtitle
 			// - Hook: OutputPageParserOutput
 			// - Hook: OutputPageMakeCategoryLinks
 			// - Hook: OutputPageBeforeHTML
@@ -377,6 +378,9 @@ class ApiParse extends ApiBase {
 			}
 
 			$outputPage = new OutputPage( $context );
+			// Required for subtitle to appear
+			$outputPage->setArticleFlag( true );
+
 			$outputPage->addParserOutputMetadata( $p_result );
 			if ( $this->content ) {
 				$outputPage->addContentOverride( $titleObj, $this->content );
@@ -465,6 +469,10 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
 				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
+		}
+
+		if ( isset( $prop['subtitle'] ) ) {
+			$result_array['subtitle'] = $context->getSkin()->prepareSubtitle();
 		}
 
 		if ( isset( $prop['headitems'] ) ) {
@@ -907,6 +915,7 @@ class ApiParse extends ApiBase {
 					'sections',
 					'revid',
 					'displaytitle',
+					'subtitle',
 					'headhtml',
 					'modules',
 					'jsconfigvars',
