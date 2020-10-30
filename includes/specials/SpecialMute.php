@@ -204,7 +204,7 @@ class SpecialMute extends FormSpecialPage {
 			];
 		}
 
-		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this, $fields );
+		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this->getTarget(), $this->getUser(), $fields );
 
 		if ( count( $fields ) == 0 ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-options' );
