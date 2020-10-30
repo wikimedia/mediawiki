@@ -457,12 +457,6 @@ class DjVuHandler extends ImageHandler {
 		}
 
 		$o = $tree->BODY[0]->PAGE[$page - 1];
-		if ( $o ) {
-			$txt = $o['value'];
-
-			return $txt;
-		} else {
-			return false;
-		}
+		return $o ? (string)$o['value'] : false;
 	}
 }

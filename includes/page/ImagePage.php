@@ -129,13 +129,12 @@ class ImagePage extends Article {
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->displayImg->formatMetadata( $this->getContext() );
-			$showmeta = $formattedMetadata !== false;
 		} else {
-			$showmeta = false;
+			$formattedMetadata = false;
 		}
 
 		if ( !$diff && $this->displayImg->exists() ) {
-			$out->addHTML( $this->showTOC( $showmeta ) );
+			$out->addHTML( $this->showTOC( (bool)$formattedMetadata ) );
 		}
 
 		if ( !$diff ) {
@@ -192,8 +191,7 @@ class ImagePage extends Article {
 			$out->addHTML( $html );
 		}
 
-		if ( $showmeta ) {
-			'@phan-var array $formattedMetadata';
+		if ( $formattedMetadata ) {
 			$out->addHTML( Xml::element(
 				'h2',
 				[ 'id' => 'metadata' ],

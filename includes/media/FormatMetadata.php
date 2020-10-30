@@ -80,7 +80,7 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * @param array $tags The Exif data to format ( as returned by
 	 *   Exif::getFilteredData() or BitmapMetadataHandler )
-	 * @param bool|IContextSource $context Context to use (optional)
+	 * @param IContextSource|false $context
 	 * @return array
 	 */
 	public static function getFormattedData( $tags, $context = false ) {
@@ -110,13 +110,13 @@ class FormatMetadata extends ContextSource {
 		foreach ( $tags as $tag => &$vals ) {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
-			if ( !is_array( $tags[$tag] ) ) {
+			if ( !is_array( $vals ) ) {
 				$vals = [ $vals ];
 			}
 
 			// _type is a special value to say what array type
-			if ( isset( $tags[$tag]['_type'] ) ) {
-				$type = $tags[$tag]['_type'];
+			if ( isset( $vals['_type'] ) ) {
+				$type = $vals['_type'];
 				unset( $vals['_type'] );
 			} else {
 				$type = 'ul'; // default unordered list.
@@ -143,20 +143,20 @@ class FormatMetadata extends ContextSource {
 				) {
 					continue;
 				}
-				$tags[$tag] = str_pad( intval( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
+				$vals = str_pad( intval( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( intval( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( intval( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
 
 				try {
-					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
+					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $vals );
 					// the 1971:01:01 is just a placeholder, and not shown to user.
 					if ( $time && intval( $time ) > 0 ) {
-						$tags[$tag] = $this->getLanguage()->time( $time );
+						$vals = $this->getLanguage()->time( $time );
 					}
 				} catch ( TimestampException $e ) {
 					// This shouldn't happen, but we've seen bad formats
 					// such as 4-digit seconds in the wild.
-					// leave $tags[$tag] as-is
+					// leave $vals as-is
 				}
 				continue;
 			}
