@@ -34,6 +34,7 @@ $namespaceAliases = [
 	'ܡܡܠܠܐ_ܕܡܬܚܫܚܢܐ' => NS_USER_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ܡܦܠܚܢ̈ܐ_ܙܪ̈ܝܙܐ' ],
 	'Allmessages'               => [ 'ܟܠܗܝܢ_ܐܓܪ̈ܬܐ' ],

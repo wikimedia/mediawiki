@@ -21,6 +21,7 @@ $fallback = 'zh-hant, zh-hans';
 
 $fallback8bitEncoding = 'Big5-HKSCS';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'ComparePages'              => [ '頁面比較' ],
 	'Unblock'                   => [ '解除封禁' ],

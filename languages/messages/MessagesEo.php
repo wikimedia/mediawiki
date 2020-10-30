@@ -50,6 +50,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Uzanto-Diskuto', 'female' => 'Uzantino-Diskuto' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivaj_uzantoj' ],
 	'Allmessages'               => [ 'Ĉiuj_mesaĝoj' ],
@@ -58,6 +59,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Malbona_titolo' ],
 	'Blankpage'                 => [ 'Malplena_paĝo' ],
 	'Block'                     => [ 'Forbari_IP-adreson' ],
+	'BlockList'                 => [ 'Forbarlisto_de_IP-adresoj', 'IP-adresa_forbarlisto' ],
 	'Booksources'               => [ 'Citoj_el_libroj' ],
 	'BrokenRedirects'           => [ 'Rompitaj_alidirektiloj' ],
 	'Categories'                => [ 'Kategorioj' ],
@@ -79,7 +81,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Pado_de_dosiero', 'Dosiero-pado' ],
 	'Import'                    => [ 'Enporti', 'Importi' ],
 	'Invalidateemail'           => [ 'Malvalidigi_retpoŝton' ],
-	'BlockList'                 => [ 'Forbarlisto_de_IP-adresoj', 'IP-adresa_forbarlisto' ],
 	'LinkSearch'                => [ 'Serĉi_ligilon' ],
 	'Listadmins'                => [ 'Listigi_administrantojn' ],
 	'Listbots'                  => [ 'Listigi_robotojn' ],

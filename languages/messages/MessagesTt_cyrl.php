@@ -114,6 +114,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Актив_кулланучылар' ],
 	'Allmessages'               => [ 'Барлык_хатлар' ],

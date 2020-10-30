@@ -37,6 +37,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Баҳси_гурӯҳ',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Корбарони_фаъол' ],
 	'Allmessages'               => [ 'Паёмҳои_системавӣ' ],
@@ -45,6 +46,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Номи_номусоид' ],
 	'Blankpage'                 => [ 'Саҳифаи_холӣ' ],
 	'Block'                     => [ 'Бастан' ],
+	'BlockList'                 => [ 'Феҳристи_басташудаҳо' ],
 	'Booksources'               => [ 'Манобеи_китобҳо' ],
 	'BrokenRedirects'           => [ 'Саҳифаҳои_равонакунии_кандашуда' ],
 	'Categories'                => [ 'Гурӯҳҳо' ],
@@ -68,14 +70,13 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'Қатъ_намудани_тасдиқоти_нишонаи_почтаи_электронӣ' ],
 	'JavaScriptTest'            => [ 'Тести_JavaScript' ],
-	'BlockList'                 => [ 'Феҳристи_басташудаҳо' ],
 	'LinkSearch'                => [ 'Ҷустани_пайвандҳо' ],
 	'Listadmins'                => [ 'Феҳристи_мудирон' ],
 	'Listbots'                  => [ 'Феҳристи_ботҳо' ],
+	'ListDuplicatedFiles'       => [ 'Феҳристи_парвандаҳои_такрорӣ' ],
 	'Listfiles'                 => [ 'Феҳристи_аксҳо' ],
 	'Listgrouprights'           => [ 'Феҳристи_гурӯҳҳои_корбарӣ' ],
 	'Listredirects'             => [ 'Феҳкристи_саҳифаҳои_равонакунӣ' ],
-	'ListDuplicatedFiles'       => [ 'Феҳристи_парвандаҳои_такрорӣ' ],
 	'Listusers'                 => [ 'Феҳристи_корбарон' ],
 	'Lockdb'                    => [ 'Қуфл_намудани_пойгоҳи_додаҳо' ],
 	'Log'                       => [ 'Гузоришҳо' ],

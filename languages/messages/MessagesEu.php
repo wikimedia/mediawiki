@@ -33,6 +33,7 @@ $namespaceAliases = [
 	'Irudi_eztabaida' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'MezuGuztiak' ],
 	'Allpages'                  => [ 'OrrialdeGuztiak' ],

@@ -56,6 +56,7 @@ $namespaceAliases = [
 	'Maota'                 => NS_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'PanggunoAktip', 'Pangguno_aktip' ],
 	'Allmessages'               => [ 'PasanSistim', 'Pasan_sistim' ],
@@ -64,6 +65,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'JudulBuruak', 'Judul_indak_rancak' ],
 	'Blankpage'                 => [ 'LamanKosong', 'Laman_kosong' ],
 	'Block'                     => [ 'Sakek', 'IPkanaiSakek', 'PanggunoTasakek' ],
+	'BlockList'                 => [ 'DaptaSakek', 'Dapta_pemblokiran', 'Dapta_IP_disakek' ],
 	'Booksources'               => [ 'SumberBuku', 'Sumber_buku' ],
 	'BrokenRedirects'           => [ 'PangaliahanRusak', 'Pangaliahan_rusak' ],
 	'Categories'                => [ 'Kategori' ],
@@ -85,7 +87,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Impor' ],
 	'Invalidateemail'           => [ 'BatalSurel', 'Batalan_surel' ],
 	'JavaScriptTest'            => [ 'TesSkripJava', 'Tes_skrip_Java' ],
-	'BlockList'                 => [ 'DaptaSakek', 'Dapta_pemblokiran', 'Dapta_IP_disakek' ],
 	'LinkSearch'                => [ 'CariPautan', 'Cari_pautan' ],
 	'Listadmins'                => [ 'DaptaPanguruih', 'Dapta_panguruih' ],
 	'Listbots'                  => [ 'DaptaBot' ],

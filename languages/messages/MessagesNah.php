@@ -59,6 +59,7 @@ $namespaceAliases = [
 	'Categoría_Discusión'	=> NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'MochīntīnZāzaniltin', 'TodasPáginas' ],
 	'Ancientpages'              => [ 'HuēhuehZāzaniltin', 'PáginasViejas' ],

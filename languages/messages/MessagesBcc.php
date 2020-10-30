@@ -50,12 +50,14 @@ $namespaceAliases = [
 	'بحث_رده' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'کل کوله یان' ],
 	'Allpages'                  => [ 'کل صفحات' ],
 	'Ancientpages'              => [ 'صفحات قدیمی' ],
 	'Blankpage'                 => [ 'صفحه هالیک' ],
 	'Block'                     => [ 'محدود آی پی' ],
+	'BlockList'                 => [ 'لیست محدوددیت آی پی' ],
 	'Booksources'               => [ 'منابع کتاب' ],
 	'BrokenRedirects'           => [ 'پرشتگین غیرمستقیم' ],
 	'Categories'                => [ 'دستجات' ],
@@ -72,7 +74,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'مسیر فایل' ],
 	'Import'                    => [ 'وارد' ],
 	'Invalidateemail'           => [ 'نامعتبرین ایمیل' ],
-	'BlockList'                 => [ 'لیست محدوددیت آی پی' ],
 	'Listadmins'                => [ 'لیست مدیران' ],
 	'Listbots'                  => [ 'لیست روباتان' ],
 	'Listfiles'                 => [ 'لیست عکس' ],

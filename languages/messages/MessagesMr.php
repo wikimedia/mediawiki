@@ -74,6 +74,7 @@ $namespaceAliases = [
 ];
 
 # !!# sqlविचारा is not in normalised form, which is Sqlविचारा or Sqlविचारा
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'सक्रिय_सदस्य' ],
 	'Allmessages'               => [ 'सर्व_निरोप' ],
@@ -81,6 +82,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'जुनी_पाने' ],
 	'Blankpage'                 => [ 'कोरे_पान' ],
 	'Block'                     => [ 'प्रतिबंध', 'अंकपत्ता_प्रतिबंध', 'सदस्य_प्रतिबंध' ],
+	'BlockList'                 => [ 'प्रतिबंधन_सुची' ],
 	'Booksources'               => [ 'पुस्तक_स्रोत' ],
 	'BrokenRedirects'           => [ 'चुकीची_पुनर्निर्देशने' ],
 	'Categories'                => [ 'वर्ग' ],
@@ -101,7 +103,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'संचिकेचा_पत्ता_(पाथ)' ],
 	'Import'                    => [ 'आयात' ],
 	'Invalidateemail'           => [ 'अग्राह्य_विपत्र' ],
-	'BlockList'                 => [ 'प्रतिबंधन_सुची' ],
 	'LinkSearch'                => [ 'दुवाशोध' ],
 	'Listadmins'                => [ 'प्रबंधकांची_यादी' ],
 	'Listbots'                  => [ 'सांगकाम्यांची_यादी' ],

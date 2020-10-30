@@ -35,6 +35,7 @@ $namespaceAliases = [
 	'Ewavaprilara' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Stakseem' ],
 	'Allpages'                  => [ 'Bueem' ],

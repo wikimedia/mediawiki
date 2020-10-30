@@ -34,6 +34,7 @@ $namespaceAliases = [
 	'Картинка_беседа' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Активни_потребители' ],
 	'Allmessages'               => [ 'Системни_съобщения' ],
@@ -41,6 +42,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Стари_страници' ],
 	'Blankpage'                 => [ 'Празна_страница' ],
 	'Block'                     => [ 'Блокиране' ],
+	'BlockList'                 => [ 'Блокирани_потребители' ],
 	'Booksources'               => [ 'Източници_на_книги' ],
 	'BrokenRedirects'           => [ 'Невалидни_пренасочвания' ],
 	'Categories'                => [ 'Категории' ],
@@ -59,7 +61,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Път_към_файл' ],
 	'Import'                    => [ 'Внасяне' ],
 	'Invalidateemail'           => [ 'Отмяна_на_е-поща' ],
-	'BlockList'                 => [ 'Блокирани_потребители' ],
 	'LinkSearch'                => [ 'Търсене_на_външни_препратки' ],
 	'Listadmins'                => [ 'Администратори' ],
 	'Listbots'                  => [ 'Ботове' ],
@@ -89,8 +90,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Всички_страници_с_представка', 'Представка' ],
 	'Protectedpages'            => [ 'Защитени_страници' ],
 	'Protectedtitles'           => [ 'Защитени_заглавия' ],
-	'Randompage'                => [ 'Случайна_страница' ],
 	'RandomInCategory'          => [ 'Случайна_страница_в_категория' ],
+	'Randompage'                => [ 'Случайна_страница' ],
 	'Randomredirect'            => [ 'Случайно_пренасочване' ],
 	'Recentchanges'             => [ 'Последни_промени' ],
 	'Recentchangeslinked'       => [ 'Свързани_промени' ],

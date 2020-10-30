@@ -36,6 +36,7 @@ $namespaceAliases = [
 	'Ọ̀rọ̀_àwòrán' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'GbogboÀwọnOjúewé' ],
 	'Categories'                => [ 'ÀwọnẸ̀ka' ],

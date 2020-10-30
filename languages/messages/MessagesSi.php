@@ -56,6 +56,7 @@ $namespaceAliases = [
 	'උදව_සාකච්ඡාව' => NS_HELP_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ක්‍රියාකාරී_පරිශීලකයන්' ],
 	'Allmessages'               => [ 'සියළු_පණිවුඩ' ],
@@ -64,6 +65,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'නුසුසුදු_මාතෘකාව' ],
 	'Blankpage'                 => [ 'හිස්_පිටුව' ],
 	'Block'                     => [ 'වාරණය_කරන්න', 'IP_වාරණය_කරන්න', 'පරිශීලක_වාරණය_කරන්න' ],
+	'BlockList'                 => [ 'වාරණ_ලැයිස්තුව', 'වාරණ_ලයිස්තුගතකරන්න_', 'IP_වාරණ_ලැයිස්තුව' ],
 	'Booksources'               => [ 'ග්‍රන්ථ_මූලාශ්‍ර' ],
 	'BrokenRedirects'           => [ 'භින්න_යළි-යොමුකිරීම්' ],
 	'Categories'                => [ 'ප්‍රවර්ග' ],
@@ -81,7 +83,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'ගොනු_පෙත' ],
 	'Import'                    => [ 'ආයාත_කරන්න' ],
 	'Invalidateemail'           => [ 'විද්‍යුත්_තැපෑල_අනීතික_කරන්න' ],
-	'BlockList'                 => [ 'වාරණ_ලැයිස්තුව', 'වාරණ_ලයිස්තුගතකරන්න_', 'IP_වාරණ_ලැයිස්තුව' ],
 	'LinkSearch'                => [ 'සබැඳි_ගවේෂණය' ],
 	'Listadmins'                => [ 'පරිපාලකයන්_ලැයිස්තුගත_කරන්න' ],
 	'Listbots'                  => [ 'රොබෝවන්_ලැයිස්තුගත_කරන්න' ],

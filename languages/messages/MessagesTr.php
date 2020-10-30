@@ -92,6 +92,7 @@ $namespaceAliases = [
 	'MedyaViki_tartışma' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktifKullanıcılar', 'EtkinKullanıcılar' ],
 	'Allmessages'               => [ 'Tümİletiler', 'TümMesajlar' ],
@@ -100,6 +101,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'KötüBaşlık', 'BozukBaşlık' ],
 	'Blankpage'                 => [ 'BoşSayfa' ],
 	'Block'                     => [ 'Engelle', 'IPEngelle' ],
+	'BlockList'                 => [ 'EngelListesi', 'IPEngelListesi', 'EngelListele' ],
 	'Booksources'               => [ 'KitapKaynakları' ],
 	'BrokenRedirects'           => [ 'BozukYönlendirmeler' ],
 	'Categories'                => [ 'Kategoriler', 'Ulamlar' ],
@@ -123,7 +125,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'İçeAktar', 'İçeriAktar' ],
 	'Invalidateemail'           => [ 'E-postaDoğrulamaİptal' ],
 	'JavaScriptTest'            => [ 'JavaScriptTesti' ],
-	'BlockList'                 => [ 'EngelListesi', 'IPEngelListesi', 'EngelListele' ],
 	'LinkSearch'                => [ 'BağArama', 'BağlantıArama' ],
 	'Listadmins'                => [ 'HizmetliListele', 'YöneticiListele', 'HizmetliListesi', 'YöneticiListesi' ],
 	'Listbots'                  => [ 'BotListele', 'BotListesi' ],
@@ -158,8 +159,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'ÖnekDizini' ],
 	'Protectedpages'            => [ 'KorunanSayfalar' ],
 	'Protectedtitles'           => [ 'KorunanBaşlıklar' ],
-	'Randompage'                => [ 'Rastgele', 'RastgeleSayfa' ],
 	'RandomInCategory'          => [ 'RastgeleKategori', 'RastgeleUlam' ],
+	'Randompage'                => [ 'Rastgele', 'RastgeleSayfa' ],
 	'Randomredirect'            => [ 'RastgeleYönlendirme' ],
 	'Recentchanges'             => [ 'SonDeğişiklikler' ],
 	'Recentchangeslinked'       => [ 'İlgiliDeğişiklikler' ],

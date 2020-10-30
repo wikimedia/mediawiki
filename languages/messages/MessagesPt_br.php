@@ -122,6 +122,7 @@ $dateFormats = [
 
 $separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usuários_ativos' ],
 	'Allmessages'               => [ 'Todas_as_mensagens', 'Todas_mensagens' ],
@@ -130,6 +131,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Título_inválido' ],
 	'Blankpage'                 => [ 'Página_em_branco' ],
 	'Block'                     => [ 'Bloquear', 'Bloquear_IP', 'Bloquear_utilizador', 'Bloquear_usuário' ],
+	'BlockList'                 => [ 'Registro_de_bloqueios', 'IPs_bloqueados', 'Utilizadores_bloqueados', 'Usuários_bloqueados', 'Registo_de_bloqueios' ],
 	'Booksources'               => [ 'Fontes_de_livros' ],
 	'BrokenRedirects'           => [ 'Redirecionamentos_quebrados' ],
 	'Categories'                => [ 'Categorias' ],
@@ -150,7 +152,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Diretório_de_arquivo', 'Diretório_de_ficheiro' ],
 	'Import'                    => [ 'Importar' ],
 	'Invalidateemail'           => [ 'Invalidar_e-mail' ],
-	'BlockList'                 => [ 'Registro_de_bloqueios', 'IPs_bloqueados', 'Utilizadores_bloqueados', 'Usuários_bloqueados', 'Registo_de_bloqueios' ],
 	'LinkSearch'                => [ 'Pesquisar_links' ],
 	'Listadmins'                => [ 'Lista_de_administradores', 'Administradores', 'Admins', 'Lista_de_admins' ],
 	'Listbots'                  => [ 'Lista_de_robôs', 'Bots', 'Lista_de_bots' ],

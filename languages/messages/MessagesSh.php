@@ -49,6 +49,7 @@ $datePreferenceMigrationMap = [
 	'ymd'
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivni_korisnici' ],
 	'Allmessages'               => [ 'Sve_poruke' ],

@@ -50,6 +50,7 @@ $namespaceAliases = [
 
 $namespaceGenderAliases = []; // T259003
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Идекпейжилер' ],
 	'Allmessages'               => [ 'Шупту_медеглелдер' ],

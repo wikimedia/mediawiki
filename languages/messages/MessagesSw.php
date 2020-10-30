@@ -46,12 +46,14 @@ $namespaceAliases = [
 	'Jamii_majadiliano'     => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'UjumbeZote' ],
 	'Allpages'                  => [ 'KurasaZote' ],
 	'Ancientpages'              => [ 'KurasazaZamani' ],
 	'Blankpage'                 => [ 'KurasaTupu' ],
 	'Block'                     => [ 'Zui', 'ZuiaIP', 'ZuiaMtumiaji' ],
+	'BlockList'                 => [ 'OrodhayaIPZilizozuiliwa' ],
 	'Booksources'               => [ 'ZuiaChanzo' ],
 	'BrokenRedirects'           => [ 'ElekezoIliovunjika' ],
 	'Categories'                => [ 'Jamii' ],
@@ -65,7 +67,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Toa' ],
 	'Fewestrevisions'           => [ 'MarejeoMadogo' ],
 	'Import'                    => [ 'Ingiza' ],
-	'BlockList'                 => [ 'OrodhayaIPZilizozuiliwa' ],
 	'LinkSearch'                => [ 'TafutaKiungo' ],
 	'Listadmins'                => [ 'OrodhayaWakabidhi' ],
 	'Listbots'                  => [ 'OrodhayaVikaragosi' ],

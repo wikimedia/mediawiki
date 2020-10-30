@@ -41,6 +41,7 @@ $namespaceAliases = [
 	'Doaimmat' => NS_SPECIAL,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktiivvalaš_geavaheaddjit' ],
 	'Allmessages'               => [ 'Buot_systemadieđáhusat', 'Buot_vuogádatdieđáhusat' ],
@@ -49,6 +50,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Veadjemeahttun_bajilčála' ],
 	'Blankpage'                 => [ 'Guoros_siidu' ],
 	'Block'                     => [ 'Hehtte', 'Hehtte_geavaheaddji', 'Hehtte_IP' ],
+	'BlockList'                 => [ 'Hehttenlistu', 'Listu_hehttemiin' ],
 	'Booksources'               => [ 'Girjegáldut' ],
 	'BrokenRedirects'           => [ 'Boatkanan_stivremat', 'Boatkanan_ođđasitstivremat' ],
 	'Categories'                => [ 'Kategoriijat' ],
@@ -63,7 +65,6 @@ $specialPageAliases = [
 	'Emailuser'                 => [ 'Sádde_e-poastta' ],
 	'Export'                    => [ 'Olggosfievrrit_siidduid' ],
 	'Import'                    => [ 'Sisafievrrit' ],
-	'BlockList'                 => [ 'Hehttenlistu', 'Listu_hehttemiin' ],
 	'Listadmins'                => [ 'Administráhtorlistu', 'Listu_administráhtoriin' ],
 	'Listbots'                  => [ 'Bohttalistu', 'Listu_bohtain' ],
 	'Listfiles'                 => [ 'Fiilalogahallan' ],

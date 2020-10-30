@@ -39,6 +39,7 @@ $namespaceAliases = [
 	'مدیا‌ویکی_دانیشیغی' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'چالیشقان_ایشلدن‌لر' ],
 	'Allmessages'               => [ 'بوتون_مئساژلار' ],

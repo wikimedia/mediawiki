@@ -64,6 +64,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Жигара_декъашхой' ],
 	'Allmessages'               => [ 'ГӀирса_хаамаш' ],
@@ -73,6 +74,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Хилийта_йиш_йоцу_цӀе' ],
 	'Blankpage'                 => [ 'Еса_агӀо' ],
 	'Block'                     => [ 'Блоктоха' ],
+	'BlockList'                 => [ 'Блоктоьхнарш' ],
 	'Booksources'               => [ 'Жайнийн_хьосташ' ],
 	'BrokenRedirects'           => [ 'ДIахаьдна_долу_дIасахьажораш' ],
 	'Categories'                => [ 'Категореш' ],
@@ -95,7 +97,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'Адрес_бакъдар_юхадаккха' ],
 	'JavaScriptTest'            => [ 'JavaScript_тестировать_ян' ],
-	'BlockList'                 => [ 'Блоктоьхнарш' ],
 	'LinkSearch'                => [ 'Хьажоргаш_лахар' ],
 	'Listadmins'                => [ 'Куьйгалхойн_могӀам' ],
 	'Listbots'                  => [ 'Боттийн_могӀам' ],

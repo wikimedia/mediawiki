@@ -39,6 +39,7 @@ $namespaceAliases = [
 	'კატეგორია_განხილვა'    => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'აქტიური_მომხმარებლები' ],
 	'Allmessages'               => [ 'ყველა_შეტყობინება' ],
@@ -47,6 +48,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ცუდი_სათაური' ],
 	'Blankpage'                 => [ 'ცარიელი_გვერდი' ],
 	'Block'                     => [ 'დაბლოკვა' ],
+	'BlockList'                 => [ 'ბლოკირებების_სია' ],
 	'BrokenRedirects'           => [ 'გაწყვეტილი_გადამისამართება' ],
 	'Categories'                => [ 'კატეგორიები' ],
 	'ChangeEmail'               => [ 'ელ-ფოსტის_შეცვლა' ],
@@ -61,7 +63,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'ექსპორტი' ],
 	'FileDuplicateSearch'       => [ 'ფაილის_დუბლიკატის_ძიება' ],
 	'Import'                    => [ 'იმპორტი' ],
-	'BlockList'                 => [ 'ბლოკირებების_სია' ],
 	'LinkSearch'                => [ 'ბმულის_ძიება' ],
 	'Listadmins'                => [ 'ადმინისტრატორების_სია' ],
 	'Listbots'                  => [ 'ბოტების_სია' ],

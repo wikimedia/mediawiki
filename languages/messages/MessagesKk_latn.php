@@ -258,11 +258,13 @@ $magicWords = [
 	'pagesize'                  => [ '1', 'BETMÖLŞERİ', 'БЕТМӨЛШЕРІ', 'PAGESIZE' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Barlıq_xabarlar' ],
 	'Allpages'                  => [ 'Barlıq_better' ],
 	'Ancientpages'              => [ 'Eski_better' ],
 	'Block'                     => [ 'Jaýdı_buğattaw', 'IP_buğattaw' ],
+	'BlockList'                 => [ 'Buğattalğandar' ],
 	'Booksources'               => [ 'Kitap_qaýnarları' ],
 	'BrokenRedirects'           => [ 'Jaramsız_aýdağıştar', 'Jaramsız_aýdatwlar' ],
 	'Categories'                => [ 'Sanattar' ],
@@ -279,7 +281,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Faýl_mekeni' ],
 	'Import'                    => [ 'Sırttan_alw' ],
 	'Invalidateemail'           => [ 'Quptamaw_xatı' ],
-	'BlockList'                 => [ 'Buğattalğandar' ],
 	'Listadmins'                => [ 'Äkimşiler', 'Äkimşi_tizimi' ],
 	'Listbots'                  => [ 'Bottar', 'Bottar_tizimi' ],
 	'Listfiles'                 => [ 'Swret_tizimi' ],

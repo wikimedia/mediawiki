@@ -40,6 +40,7 @@ $namespaceAliases = [
 	'مۇنازىرىسى$1' => NS_PROJECT_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'بارلىق_خەۋەرلەر' ],
 	'Allpages'                  => [ 'بارلىق_بەتلەر' ],

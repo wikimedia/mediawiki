@@ -53,6 +53,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Usuariu_alderique', 'female' => 'Usuaria_alderique' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Block'                     => [ 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ],
 	'Log'                       => [ 'Rexistru', 'Rexistros' ],

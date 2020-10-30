@@ -57,12 +57,14 @@ $namespaceAliases = [
 	'د_انځور_خبرې_اترې' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'ټول-پيغامونه' ],
 	'Allpages'                  => [ 'ټول_مخونه' ],
 	'Ancientpages'              => [ 'لرغوني_مخونه' ],
 	'Blankpage'                 => [ 'تش_مخ' ],
 	'Block'                     => [ 'بنديز،_د_آی_پي_بنديز،_بنديز_لګېدلی_کارن_Block' ],
+	'BlockList'                 => [ 'د_بنديزلړليک' ],
 	'Booksources'               => [ 'د_کتاب_سرچينې' ],
 	'Categories'                => [ 'وېشنيزې' ],
 	'ChangePassword'            => [ 'پټنوم_بدلول،_پټنوم_بيا_پر_ځای_کول،_د_بيا_پر_ځای_کولو_پاسپورټ' ],
@@ -70,7 +72,6 @@ $specialPageAliases = [
 	'CreateAccount'             => [ 'کارن-حساب_جوړول' ],
 	'DeletedContributions'      => [ 'ړنګې_شوي_ونډې' ],
 	'Export'                    => [ 'صادرول' ],
-	'BlockList'                 => [ 'د_بنديزلړليک' ],
 	'LinkSearch'                => [ 'د_تړنې_پلټنه' ],
 	'Listfiles'                 => [ 'د_انځورونو_لړليک' ],
 	'Listusers'                 => [ 'د_کارنانو_لړليک' ],

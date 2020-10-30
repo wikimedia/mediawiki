@@ -32,6 +32,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Toktok_bilong_grup',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Confirmemail'              => [ 'Orait long imel' ],
 	'Contributions'             => [ 'Ol senis bilong yusa' ],
