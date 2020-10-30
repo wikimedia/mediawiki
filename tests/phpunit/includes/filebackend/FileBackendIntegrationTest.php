@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -90,6 +91,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				'name' => 'localtesting',
 				'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 				'wikiId' => wfWikiID(),
+				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 				'containerPaths' => [
 					'unittest-cont1' => "{$tmpDir}/localtesting-cont1",
 					'unittest-cont2' => "{$tmpDir}/localtesting-cont2" ]
@@ -100,6 +102,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
 			'wikiId' => 'testdb',
+			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 			'backends' => [
 				[
 					'name' => 'localmultitesting1',
@@ -1966,8 +1969,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$backendName = $this->backendClass();
 		$base = self::baseStorePath();
 
-		// Should have no errors
+		// Should return null, because it is not a valid container
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont-notexists" ] );
+		$this->assertNull( $iter );
 
 		$files = [
 			"$base/unittest-cont1/e/test1.txt",
@@ -2019,6 +2023,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Actual listing (no trailing slash) at root
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1" ] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -2028,6 +2033,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			'dir' => "$base/unittest-cont1",
 			'adviseStat' => 1
 		] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -2035,6 +2041,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (with trailing slash) at root
 		$list = [];
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1/" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2055,6 +2062,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Actual listing (no trailing slash) at subdir
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -2064,6 +2072,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			'dir' => "$base/unittest-cont1/e/subdir2/subdir",
 			'adviseStat' => 1
 		] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -2071,6 +2080,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (with trailing slash) at subdir
 		$list = [];
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1/e/subdir2/subdir/" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2084,6 +2094,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Actual listing (top files only) at root
 		$iter = $this->backend->getTopFileList( [ 'dir' => "$base/unittest-cont1" ] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( [], $list, "Correct top file listing ($backendName)." );
@@ -2102,6 +2113,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$iter = $this->backend->getTopFileList(
 			[ 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ]
 		);
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
@@ -2111,6 +2123,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			'dir' => "$base/unittest-cont1/e/subdir2/subdir",
 			'adviseStat' => 1
 		] );
+		$this->assertNotNull( $iter );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
@@ -2120,6 +2133,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$iter = $this->backend->getFileList( [ 'dir' => "$base/unittest-cont1/not/exists" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $iter ) {
 			// no errors
 		}
@@ -2192,6 +2206,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (no trailing slash)
 		$list = [];
 		$iter = $this->backend->getTopDirectoryList( [ 'dir' => "$base/unittest-cont1" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2211,6 +2226,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (no trailing slash)
 		$list = [];
 		$iter = $this->backend->getTopDirectoryList( [ 'dir' => "$base/unittest-cont1/e" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2221,6 +2237,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (with trailing slash)
 		$list = [];
 		$iter = $this->backend->getTopDirectoryList( [ 'dir' => "$base/unittest-cont1/e/" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2237,6 +2254,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (no trailing slash)
 		$list = [];
 		$iter = $this->backend->getTopDirectoryList( [ 'dir' => "$base/unittest-cont1/e/subdir2" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2249,6 +2267,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$iter = $this->backend->getTopDirectoryList(
 			[ 'dir' => "$base/unittest-cont1/e/subdir2/" ]
 		);
+		$this->assertNotNull( $iter );
 
 		foreach ( $iter as $file ) {
 			$list[] = $file;
@@ -2287,6 +2306,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (recursive)
 		$list = [];
 		$iter = $this->backend->getDirectoryList( [ 'dir' => "$base/unittest-cont1/" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2304,6 +2324,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Actual listing (recursive)
 		$list = [];
 		$iter = $this->backend->getDirectoryList( [ 'dir' => "$base/unittest-cont1/e/subdir4" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2321,6 +2342,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
 
 		$iter = $this->backend->getDirectoryList( [ 'dir' => "$base/unittest-cont1/e/subdir1" ] );
+		$this->assertNotNull( $iter );
 		$items = $this->listToArray( $iter );
 		$this->assertEquals( [], $items, "Directory listing is empty." );
 
@@ -2329,6 +2351,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$iter = $this->backend->getDirectoryList( [ 'dir' => "$base/unittest-cont1/not/exists" ] );
+		$this->assertNotNull( $iter );
 		foreach ( $iter as $file ) {
 			// no errors
 		}
@@ -2337,6 +2360,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( [], $items, "Directory listing is empty." );
 
 		$iter = $this->backend->getDirectoryList( [ 'dir' => "$base/unittest-cont1/e/not/exists" ] );
+		$this->assertNotNull( $iter );
 		$items = $this->listToArray( $iter );
 		$this->assertEquals( [], $items, "Directory listing is empty." );
 	}
