@@ -216,7 +216,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		array $softwareChangeTags,
 		int $revertedTagMaxDepth
 	) {
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -272,7 +272,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	 * @param EditResult $editResult
 	 */
 	public function testInvalidEditResult( EditResult $editResult ) {
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -308,7 +308,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			'Could not find the newest or oldest reverted revision in the database.'
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -354,7 +354,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			'Could not find the revert revision in the database.'
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -425,7 +425,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			'The revert and reverted revisions belong to different pages.'
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -470,7 +470,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			'notice'
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags' ] )
 			->getMock();
@@ -513,7 +513,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			'notice'
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags', 'getTags' ] )
 			->getMock();
@@ -565,7 +565,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			[ 'mw-rollback' ]
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags', 'getTags' ] )
 			->getMock();
@@ -618,7 +618,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			[ 'mw-undo' ]
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags', 'getTags' ] )
 			->getMock();
@@ -678,7 +678,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			[ 'mw-undo' ]
 		);
 
-		$futureChangeTags = $this->getMockBuilder( 'FutureChangeTags' )
+		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
 			->allowMockingUnknownTypes()
 			->setMethods( [ 'addTags', 'getTags' ] )
 			->getMock();
