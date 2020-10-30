@@ -480,6 +480,7 @@ $specialPageAliases = [
 	'Mypage'                     => [ 'MyPage' ],
 	'Mytalk'                     => [ 'MyTalk' ],
 	'Myuploads'                  => [ 'MyUploads', 'MyFiles' ],
+	'NamespaceInfo'              => [ 'NamespaceInfo' ],
 	'Newimages'                  => [ 'NewFiles', 'NewImages' ],
 	'Newpages'                   => [ 'NewPages' ],
 	'NewSection'                 => [ 'NewSection', 'Newsection' ],

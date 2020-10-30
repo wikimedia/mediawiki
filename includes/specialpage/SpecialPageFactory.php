@@ -111,6 +111,7 @@ use MediaWiki\Specials\SpecialMostRevisions;
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Specials\SpecialMute;
 use MediaWiki\Specials\SpecialMyLanguage;
+use MediaWiki\Specials\SpecialNamespaceInfo;
 use MediaWiki\Specials\SpecialNewFiles;
 use MediaWiki\Specials\SpecialNewPages;
 use MediaWiki\Specials\SpecialNewSection;
@@ -867,6 +868,13 @@ class SpecialPageFactory {
 		],
 		'Unlockdb' => [
 			'class' => SpecialUnlockdb::class,
+		],
+		'NamespaceInfo' => [
+			'class' => SpecialNamespaceInfo::class,
+			'services' => [
+				'ContentLanguage',
+				'NamespaceInfo',
+			],
 		],
 
 		// Redirecting special pages
