@@ -123,7 +123,7 @@ class FormatMetadata extends ContextSource {
 			}
 
 			// _formatted is a special value to indicate the subclass
-			// already handled & formatted this tag
+			// already handled & formatted this tag as wikitext
 			if ( isset( $tags[$tag]['_formatted'] ) ) {
 				$tags[$tag] = $this->flattenArrayReal(
 					$tags[$tag]['_formatted'], $type
@@ -197,6 +197,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -219,6 +220,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -237,6 +239,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -249,6 +252,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -262,6 +266,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -277,6 +282,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -289,7 +295,7 @@ class FormatMetadata extends ContextSource {
 					// both use FlashpixVersion. However, since at least 2002, PHP has used FlashPixVersion at
 					// https://github.com/php/php-src/blame/master/ext/exif/exif.c#L725
 					case 'FlashPixVersion':
-						$val = (int)$val / 100;
+						$val = $this->literal( (int)$val / 100 );
 						break;
 
 					case 'ColorSpace':
@@ -300,6 +306,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -317,6 +324,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -331,6 +339,7 @@ class FormatMetadata extends ContextSource {
 					case 'DateTimeMetadata':
 						if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
 							$val = $this->msg( 'exif-unknowndate' )->text();
+							break;
 						} elseif ( preg_match(
 							'/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D',
 							$val
@@ -339,6 +348,7 @@ class FormatMetadata extends ContextSource {
 							$time = wfTimestamp( TS_MW, $val );
 							if ( $time && intval( $time ) > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
+								break;
 							}
 						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d)$/D', $val ) ) {
 							// No second field. Still format the same
@@ -347,6 +357,7 @@ class FormatMetadata extends ContextSource {
 							$time = wfTimestamp( TS_MW, $val . ':00' );
 							if ( $time && intval( $time ) > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
+								break;
 							}
 						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
 							// If only the date but not the time is filled in.
@@ -356,9 +367,11 @@ class FormatMetadata extends ContextSource {
 								. '000000' );
 							if ( $time && intval( $time ) > 0 ) {
 								$val = $this->getLanguage()->date( $time );
+								break;
 							}
 						}
 						// else it will just output $val without formatting it.
+						$val = $this->literal( $val );
 						break;
 
 					case 'ExposureProgram':
@@ -376,6 +389,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -399,6 +413,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -430,6 +445,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -463,6 +479,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -480,6 +497,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -491,6 +509,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -502,6 +521,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -522,6 +542,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -547,6 +568,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -561,6 +583,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -576,6 +599,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -589,6 +613,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -602,6 +627,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -615,6 +641,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -629,6 +656,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -643,6 +671,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -656,6 +685,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -676,6 +706,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -688,6 +719,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -702,6 +734,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -724,6 +757,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -737,6 +771,7 @@ class FormatMetadata extends ContextSource {
 								break;
 							default:
 								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -761,20 +796,24 @@ class FormatMetadata extends ContextSource {
 					// the make, model and software name to link to their articles.
 					case 'Make':
 					case 'Model':
-						$val = $this->exifMsg( $tag, '', $val );
+						$val = $this->exifMsg( $tag, '', $this->literal( $val ) );
 						break;
 
 					case 'Software':
 						if ( is_array( $val ) ) {
 							if ( count( $val ) > 1 ) {
 								// if its a software, version array.
-								$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
+								$val = $this->msg(
+									'exif-software-version-value',
+									$this->literal( $val[0] ),
+									$this->literal( $val[1] )
+								)->text();
 							} else {
 								// https://phabricator.wikimedia.org/T178130
-								$val = $this->exifMsg( $tag, '', $val[0] );
+								$val = $this->exifMsg( $tag, '', $this->literal( $val[0] ) );
 							}
 						} else {
-							$val = $this->exifMsg( $tag, '', $val );
+							$val = $this->exifMsg( $tag, '', $this->literal( $val ) );
 						}
 						break;
 
@@ -819,8 +858,10 @@ class FormatMetadata extends ContextSource {
 									$this->formatNum( $val ),
 									$this->formatNum( $fNumber, 2 )
 								)->text();
+								break;
 							}
 						}
+						$val = $this->literal( $val );
 						break;
 
 					case 'iimCategory':
@@ -848,6 +889,8 @@ class FormatMetadata extends ContextSource {
 									'iimcategory',
 									$val
 								);
+							default:
+								$val = $this->literal( $val );
 						}
 						break;
 					case 'SubjectNewsCode':
@@ -874,8 +917,10 @@ class FormatMetadata extends ContextSource {
 
 						if ( $urgency !== '' ) {
 							$val = $this->exifMsg( 'urgency',
-								$urgency, $val
+								$urgency, $this->literal( $val )
 							);
+						} else {
+							$val = $this->literal( $val );
 						}
 						break;
 
@@ -963,7 +1008,7 @@ class FormatMetadata extends ContextSource {
 					case 'Event':
 					case 'OrginisationInImage':
 					case 'PersonInImage':
-						$val = htmlspecialchars( $val );
+						$val = $this->literal( $val );
 						break;
 
 					case 'ObjectCycle':
@@ -974,7 +1019,7 @@ class FormatMetadata extends ContextSource {
 								$val = $this->exifMsg( $tag, $val );
 								break;
 							default:
-								$val = htmlspecialchars( $val );
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -983,6 +1028,9 @@ class FormatMetadata extends ContextSource {
 							case 'True':
 							case 'False':
 								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								$val = $this->literal( $val );
 								break;
 						}
 						break;
@@ -998,7 +1046,7 @@ class FormatMetadata extends ContextSource {
 						$lang = MediaWikiServices::getInstance()
 							->getLanguageNameUtils()
 							->getLanguageName( strtolower( $val ), $this->getLanguage()->getCode() );
-						$val = htmlspecialchars( $lang ?: $val );
+						$val = $this->literal( $lang ?: $val );
 						break;
 
 					default:
@@ -1185,10 +1233,10 @@ class FormatMetadata extends ContextSource {
 		}
 
 		if ( $noHtml ) {
-			$wrappedValue = $value;
+			$wrappedValue = $this->literal( $value );
 		} else {
 			$wrappedValue = '<span class="mw-metadata-lang-value">'
-				. $value . '</span>';
+				. $this->literal( $value ) . '</span>';
 		}
 
 		if ( $lang === false ) {
@@ -1236,10 +1284,25 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Convenience function for getFormattedData()
 	 *
+	 * @param string|int $val The literal value
+	 * @return string The value, properly escaped as wikitext -- with some
+	 *   exceptions to allow auto-linking, etc.
+	 */
+	protected function literal( $val ) {
+		// T266707: historically this has used htmlspecialchars to protect
+		// the string contents, but it should probably be changed to use
+		// wfEscapeWikitext() instead -- however, "we still want to auto-link
+		// urls" so wfEscapeWikitext isn't *quite* right...
+		return htmlspecialchars( $val );
+	}
+
+	/**
+	 * Convenience function for getFormattedData()
+	 *
 	 * @param string $tag The tag name to pass on
 	 * @param string|int $val The value of the tag
-	 * @param string|null $arg An argument to pass ($1)
-	 * @param string|null $arg2 A 2nd argument to pass ($2)
+	 * @param string|null $arg A wikitext argument to pass ($1)
+	 * @param string|null $arg2 A 2nd wikitext argument to pass ($2)
 	 * @return string The text content of "exif-$tag-$val" message in lower case
 	 */
 	private function exifMsg( $tag, $val, $arg = null, $arg2 = null ) {
@@ -1291,7 +1354,7 @@ class FormatMetadata extends ContextSource {
 			return $this->getLanguage()->formatNum( $newNum );
 		}
 		wfDeprecated( __METHOD__ . ' with non-numeric value', '1.36' );
-		return $num;
+		return $this->literal( $num );
 	}
 
 	/**
@@ -1415,7 +1478,7 @@ class FormatMetadata extends ContextSource {
 		}
 		if ( $cat !== '' ) {
 			$catMsg = $this->exifMsg( 'iimcategory', $cat );
-			$val = $this->exifMsg( 'subjectnewscode', '', $val, $catMsg );
+			$val = $this->exifMsg( 'subjectnewscode', '', $this->literal( $val ), $catMsg );
 		}
 
 		return $val;
@@ -1432,7 +1495,7 @@ class FormatMetadata extends ContextSource {
 	private function formatCoords( $coord, string $type ) {
 		if ( !is_numeric( $coord ) ) {
 			wfDebugLog( 'exif', __METHOD__ . ": \"$coord\" is not a number" );
-			return (string)$coord;
+			return $this->literal( (string)$coord );
 		}
 
 		$ref = '';
@@ -1461,7 +1524,7 @@ class FormatMetadata extends ContextSource {
 		$sec = $this->formatNum( $sec );
 
 		// Note the default message "$1° $2′ $3″ $4" ignores the 5th parameter
-		return $this->msg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord )->text();
+		return $this->msg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $this->literal( $coord ) )->text();
 	}
 
 	/**
@@ -1492,13 +1555,11 @@ class FormatMetadata extends ContextSource {
 			// This could happen if its using old
 			// iptc that just had this as a free-form
 			// text value.
-			// Note: We run this through htmlspecialchars
-			// partially to be consistent, and partially
-			// because people often insert >, etc into
+			// Note: people often insert >, etc into
 			// the metadata which should not be interpreted
 			// but we still want to auto-link urls.
 			foreach ( $vals as &$val ) {
-				$val = htmlspecialchars( $val );
+				$val = $this->literal( $val );
 			}
 
 			return $this->flattenArrayReal( $vals );
@@ -1520,18 +1581,18 @@ class FormatMetadata extends ContextSource {
 				// Todo: This can potentially be multi-line.
 				// Need to check how that works in XMP.
 				$street = '<span class="extended-address">'
-					. htmlspecialchars(
+					. $this->literal(
 						$vals['CiAdrExtadr'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiAdrCity'] ) ) {
 				$city = '<span class="locality">'
-					. htmlspecialchars( $vals['CiAdrCity'] )
+					. $this->literal( $vals['CiAdrCity'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiAdrCtry'] ) ) {
 				$country = '<span class="country-name">'
-					. htmlspecialchars( $vals['CiAdrCtry'] )
+					. $this->literal( $vals['CiAdrCtry'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiEmailWork'] ) ) {
@@ -1548,12 +1609,12 @@ class FormatMetadata extends ContextSource {
 						if ( strpos( $finalEmail, '<' ) !== false ) {
 							// Don't do fancy formatting to
 							// "My name" <foo@bar.com> style stuff
-							$emails[] = $finalEmail;
+							$emails[] = $this->literal( $finalEmail );
 						} else {
 							$emails[] = '[mailto:'
 								. $finalEmail
 								. ' <span class="email">'
-								. $finalEmail
+								. $this->literal( $finalEmail )
 								. '</span>]';
 						}
 					}
@@ -1562,25 +1623,25 @@ class FormatMetadata extends ContextSource {
 			}
 			if ( isset( $vals['CiTelWork'] ) ) {
 				$tel = '<span class="tel">'
-					. htmlspecialchars( $vals['CiTelWork'] )
+					. $this->literal( $vals['CiTelWork'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiAdrPcode'] ) ) {
 				$postal = '<span class="postal-code">'
-					. htmlspecialchars(
+					. $this->literal(
 						$vals['CiAdrPcode'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiAdrRegion'] ) ) {
 				// Note this is province/state.
 				$region = '<span class="region">'
-					. htmlspecialchars(
+					. $this->literal(
 						$vals['CiAdrRegion'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiUrlWork'] ) ) {
 				$url = '<span class="url">'
-					. htmlspecialchars( $vals['CiUrlWork'] )
+					. $this->literal( $vals['CiUrlWork'] )
 					. '</span>';
 			}
 
