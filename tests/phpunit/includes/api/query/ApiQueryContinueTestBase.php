@@ -138,13 +138,13 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				},
 				$q['allcategories'] ) ) . ')';
 		}
-		self::GetItems( $q, 'allpages', 'Pages', $print );
-		self::GetItems( $q, 'alllinks', 'Links', $print );
-		self::GetItems( $q, 'alltransclusions', 'Trnscl', $print );
+		self::getItems( $q, 'allpages', 'Pages', $print );
+		self::getItems( $q, 'alllinks', 'Links', $print );
+		self::getItems( $q, 'alltransclusions', 'Trnscl', $print );
 		print ' ' . implode( '  ', $print ) . "\n";
 	}
 
-	private static function GetItems( $q, $moduleName, $name, &$print ) {
+	private static function getItems( $q, $moduleName, $name, &$print ) {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
 				array_map(
