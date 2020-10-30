@@ -33,6 +33,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'wgRevokePermissions' => [],
 			'wgUseRCPatrol' => true,
 			'wgWatchlistExpiry' => true,
+			'wgAutoConfirmAge' => 0,
+			'wgAutoConfirmCount' => 0,
 		] );
 
 		$this->setUpPermissionGlobals();
