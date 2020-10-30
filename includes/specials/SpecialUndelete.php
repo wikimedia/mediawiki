@@ -102,6 +102,9 @@ class SpecialUndelete extends SpecialPage {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionStore $revisionStore
@@ -113,6 +116,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -124,7 +128,8 @@ class SpecialUndelete extends SpecialPage {
 		RepoGroup $repoGroup,
 		ILoadBalancer $loadBalancer,
 		UserOptionsLookup $userOptionsLookup,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -137,6 +142,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function doesWrites() {
@@ -1381,7 +1387,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

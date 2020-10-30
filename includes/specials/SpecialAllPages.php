@@ -49,15 +49,22 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param ILoadBalancer|null $loadBalancer
+	 * @param SearchEngineFactory|null $searchEngineFactory
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer = null
+		ILoadBalancer $loadBalancer = null,
+		SearchEngineFactory $searchEngineFactory = null
 	) {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309
-		$this->loadBalancer = $loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$services = MediaWikiServices::getInstance();
+		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
 	}
 
 	/**
@@ -392,7 +399,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

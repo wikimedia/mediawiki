@@ -37,19 +37,24 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param MessageCache $messageCache
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageCache $messageCache,
 		ILoadBalancer $loadBalancer,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct(
 			$permissionManager,
@@ -60,6 +65,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		);
 		$this->mName = 'Recentchangeslinked';
 		$this->loadBalancer = $loadBalancer;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function getDefaultOptions() {
@@ -304,7 +310,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function outputNoResults() {

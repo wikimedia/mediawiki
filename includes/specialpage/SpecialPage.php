@@ -565,19 +565,25 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * Perform a regular substring search for prefixSearchSubpages
+	 * @since 1.36 Added $searchEngineFactory parameter
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return (usually 10)
 	 * @param int $offset Number of results to skip (usually 0)
+	 * @param SearchEngineFactory|null $searchEngineFactory Provide the service
 	 * @return string[] Matching subpages
 	 */
-	protected function prefixSearchString( $search, $limit, $offset ) {
+	protected function prefixSearchString( $search, $limit, $offset, SearchEngineFactory $searchEngineFactory = null ) {
 		$title = Title::newFromText( $search );
 		if ( !$title || !$title->canExist() ) {
 			// No prefix suggestion in special and media namespace
 			return [];
 		}
 
-		$searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
+		$searchEngine = $searchEngineFactory
+			? $searchEngineFactory->create()
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			: MediaWikiServices::getInstance()->newSearchEngine();
 		$searchEngine->setLimitOffset( $limit, $offset );
 		$searchEngine->setNamespaces( [] );
 		$result = $searchEngine->defaultPrefixSearch( $search );
