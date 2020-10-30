@@ -521,7 +521,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $image
-	 * @param bool|IContextSource $context Context to use (optional)
+	 * @param IContextSource|false $context
 	 * @return array|false
 	 */
 	public function formatMetadata( $image, $context = false ) {
@@ -537,8 +537,8 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param array $metadataArray
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array Array for use displaying metadata.
+	 * @param IContextSource|false $context
+	 * @return array[] Array for use displaying metadata.
 	 */
 	protected function formatMetadataHelper( $metadataArray, $context = false ) {
 		$result = [

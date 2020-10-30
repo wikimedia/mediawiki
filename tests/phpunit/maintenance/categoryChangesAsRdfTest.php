@@ -264,6 +264,10 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$this->assertFileContains( $outFile, $update );
 	}
 
+	/**
+	 * FIXME see T266850
+	 * @group Broken
+	 */
 	public function testCategorization() {
 		$this->setMwGlobals( [ 'wgRCWatchCategoryMembership' => true ] );
 		$start = new MWTimestamp( "2020-07-31T10:00:00" );

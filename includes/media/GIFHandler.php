@@ -47,12 +47,12 @@ class GIFHandler extends BitmapHandler {
 
 	/**
 	 * @param File $image
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array|false
+	 * @param IContextSource|false $context
+	 * @return array[]|false
 	 */
 	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
-		if ( count( $meta ) === 0 ) {
+		if ( !$meta ) {
 			return false;
 		}
 
