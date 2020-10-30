@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use Config;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
@@ -494,7 +495,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	 * @covers Maintenance::setConfig
 	 */
 	public function testSetConfig() {
-		$conf = $this->createMock( 'Config' );
+		$conf = $this->createMock( Config::class );
 		$this->maintenance->setConfig( $conf );
 		$this->assertSame( $conf, $this->maintenance->getConfig() );
 	}

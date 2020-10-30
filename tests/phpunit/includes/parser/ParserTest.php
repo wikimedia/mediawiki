@@ -6,7 +6,7 @@
 class ParserTest extends MediaWikiIntegrationTestCase {
 	public function provideConstructorArguments() {
 		// Create a mock Config object that will satisfy ServiceOptions::__construct
-		$mockConfig = $this->createMock( 'Config' );
+		$mockConfig = $this->createMock( Config::class );
 		$mockConfig->method( 'has' )->willReturn( true );
 		$mockConfig->method( 'get' )->willReturn( 'I like otters.' );
 
@@ -29,23 +29,23 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			->method( 'getVariableIDs' )->willReturn( [] );
 
 		$newArgs = [
-			$this->createMock( 'MediaWiki\Config\ServiceOptions' ),
+			$this->createMock( MediaWiki\Config\ServiceOptions::class ),
 			$mwFactory,
-			$this->createMock( 'Language' ),
-			$this->createMock( 'ParserFactory' ),
+			$this->createMock( Language::class ),
+			$this->createMock( ParserFactory::class ),
 			'a snail can sleep for three years',
-			$this->createMock( 'MediaWiki\Special\SpecialPageFactory' ),
-			$this->createMock( 'MediaWiki\Linker\LinkRendererFactory' ),
-			$this->createMock( 'NamespaceInfo' )
+			$this->createMock( MediaWiki\Special\SpecialPageFactory::class ),
+			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
+			$this->createMock( NamespaceInfo::class )
 		];
 
 		$oldArgs = [
 			[],
 			$mwFactory,
-			$this->createMock( 'Language' ),
-			$this->createMock( 'ParserFactory' ),
+			$this->createMock( Language::class ),
+			$this->createMock( ParserFactory::class ),
 			'a snail can sleep for three years',
-			$this->createMock( 'MediaWiki\Special\SpecialPageFactory' )
+			$this->createMock( MediaWiki\Special\SpecialPageFactory::class )
 		];
 
 		yield 'current_args_without_namespace_info' => [
@@ -63,15 +63,15 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		yield 'backward_compatible_args_with_link_renderer' => [
 			array_merge( $oldArgs, [
 				$mockConfig,
-				$this->createMock( 'MediaWiki\Linker\LinkRendererFactory' )
+				$this->createMock( MediaWiki\Linker\LinkRendererFactory::class )
 			] ),
 		];
 
 		yield 'backward_compatible_args_with_ns_info' => [
 			array_merge( $oldArgs, [
 				$mockConfig,
-				$this->createMock( 'MediaWiki\Linker\LinkRendererFactory' ),
-				$this->createMock( 'NamespaceInfo' )
+				$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
+				$this->createMock( NamespaceInfo::class )
 			] ),
 		];
 	}

@@ -628,7 +628,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		// Override WatchedItemStore to think the page is watched, if applicable.
 		if ( $isWatched ) {
 			$this->overrideMwServices();
-			$mock = $this->createMock( 'WatchedItemStore' );
+			$mock = $this->createMock( WatchedItemStore::class );
 			$mock->method( 'getWatchedItem' )->willReturn( new WatchedItem(
 				$user,
 				$this->watchAction->getTitle(),
