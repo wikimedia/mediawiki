@@ -146,7 +146,9 @@ return [
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getBlockManager(),
+			$services->getBlockErrorFormatter()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;

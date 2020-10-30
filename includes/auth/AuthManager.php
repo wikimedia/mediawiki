@@ -24,6 +24,8 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
@@ -171,6 +173,12 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var BlockManager */
+	private $blockManager;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
@@ -188,6 +196,8 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserNameUtils $userNameUtils
+	 * @param BlockManager $blockManager
+	 * @param BlockErrorFormatter $blockErrorFormatter
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -196,7 +206,9 @@ class AuthManager implements LoggerAwareInterface {
 		PermissionManager $permManager,
 		HookContainer $hookContainer,
 		ReadOnlyMode $readOnlyMode,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		BlockManager $blockManager,
+		BlockErrorFormatter $blockErrorFormatter
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -207,6 +219,8 @@ class AuthManager implements LoggerAwareInterface {
 		$this->setLogger( new NullLogger() );
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userNameUtils = $userNameUtils;
+		$this->blockManager = $blockManager;
+		$this->blockErrorFormatter = $blockErrorFormatter;
 	}
 
 	/**
@@ -1046,16 +1060,12 @@ class AuthManager implements LoggerAwareInterface {
 		$block = $creator->isBlockedFromCreateAccount();
 		if ( $block ) {
 			$language = \RequestContext::getMain()->getLanguage();
-			$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
 			return Status::newFatal(
-				$formatter->getMessage( $block, $creator, $language, $ip )
+				$this->blockErrorFormatter->getMessage( $block, $creator, $language, $ip )
 			);
 		}
 
-		if (
-			MediaWikiServices::getInstance()->getBlockManager()
-				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
-		) {
+		if ( $this->blockManager->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 

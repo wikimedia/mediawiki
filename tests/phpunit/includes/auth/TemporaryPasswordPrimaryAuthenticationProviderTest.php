@@ -30,6 +30,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $params = [] ) {
+		$mwServices = MediaWikiServices::getInstance();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig( [
 				'EmailEnabled' => true,
@@ -37,7 +38,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		}
 		$config = new \MultiConfig( [
 			$this->config,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$mwServices->getMainConfig()
 		] );
 		$hookContainer = $this->createHookContainer();
 
@@ -53,8 +54,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$objectFactory,
 				$permManager,
 				$hookContainer,
-				MediaWikiServices::getInstance()->getReadOnlyMode(),
-				$userNameUtils
+				$mwServices->getReadOnlyMode(),
+				$userNameUtils,
+				$mwServices->getBlockManager(),
+				$mwServices->getBlockErrorFormatter()
 			);
 		}
 		$this->validity = \Status::newGood();
