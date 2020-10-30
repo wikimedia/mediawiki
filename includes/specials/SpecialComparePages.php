@@ -35,12 +35,6 @@ use MediaWiki\Revision\SlotRecord;
  */
 class SpecialComparePages extends SpecialPage {
 
-	// Stored objects
-	protected $opts, $skin;
-
-	// Some internal settings
-	protected $showNavigation = false;
-
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
