@@ -11,7 +11,7 @@ $wgEnableUploads = true;
 //Default MediaWiki settings needed for BlueSpice
 $GLOBALS['wgNamespacesWithSubpages'][NS_MAIN] = true;
 $GLOBALS['wgApiFrameOptions'] = 'SAMEORIGIN';
-$GLOBALS['wgRSSUrlWhitelist'] = array(
+$GLOBALS['bsgRSSUrlWhitelist'] = array(
 	"http://blog.bluespice.com/feed/",
 	"http://blog.hallowelt.com/feed/",
 	"https://blog.bluespice.com/feed/",
