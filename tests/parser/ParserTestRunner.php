@@ -1118,7 +1118,7 @@ class ParserTestRunner {
 	/**
 	 * List of temporary tables to create, without prefix.
 	 * Some of these probably aren't necessary.
-	 * @return array
+	 * @return string[]
 	 */
 	private function listTables() {
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
