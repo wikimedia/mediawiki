@@ -42,8 +42,6 @@ class ExifBitmapHandler extends BitmapHandler {
 			return $metadata;
 		}
 
-		$avoidHtml = true;
-
 		if ( !is_array( $metadata ) ) {
 			$metadata = unserialize( $metadata );
 		}
@@ -74,7 +72,7 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
-				$val = $formatter->flattenArrayReal( $val, 'ul', $avoidHtml );
+				$val = $formatter->flattenArrayReal( $val, 'ul', true );
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
