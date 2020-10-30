@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @author Addshore
  */
@@ -291,12 +293,10 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::cleanParams
 	 */
 	public function testCleanParams( $cleanCallback, $params, $expected ) {
-		$method = new ReflectionMethod( Status::class, 'cleanParams' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$status->cleanCallback = $cleanCallback;
 
-		$this->assertEquals( $expected, $method->invoke( $status, $params ) );
+		$this->assertEquals( $expected, $status->cleanParams( $params ) );
 	}
 
 	public static function provideCleanParams() {
@@ -540,14 +540,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessage() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar' ];
 
 		/** @var Message $message */
-		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$message = $status->getErrorMessage( array_merge( [ $key ], $params ) );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -557,14 +555,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessageComplexParam() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar', Message::numParam( 5 ) ];
 
 		/** @var Message $message */
-		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$message = $status->getErrorMessage( array_merge( [ $key ], $params ) );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -574,15 +570,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessageArray
 	 */
 	public function testGetErrorMessageArray() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessageArray' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar' ];
 
 		/** @var Message[] $messageArray */
-		$messageArray = $method->invoke(
-			$status,
+		$messageArray = $status->getErrorMessageArray(
 			[
 				array_merge( [ $key ], $params ),
 				array_merge( [ $key ], $params )
