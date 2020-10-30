@@ -107,6 +107,12 @@ class FormatMetadata extends ContextSource {
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
 		unset( $tags['ResolutionUnit'] );
 
+		// Ignore these complex values
+		unset( $tags['HasExtendedXMP'] );
+		unset( $tags['AuthorsPosition'] );
+		unset( $tags['LocationCreated'] );
+		unset( $tags['LocationShown'] );
+
 		foreach ( $tags as $tag => &$vals ) {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
@@ -173,7 +179,7 @@ class FormatMetadata extends ContextSource {
 			// The contact info is a multi-valued field
 			// instead of the other props which are single
 			// valued (mostly) so handle as a special case.
-			if ( $tag === 'Contact' ) {
+			if ( $tag === 'Contact' || $tag === 'CreatorContactInfo' ) {
 				$vals = $this->collapseContactInfo( $vals );
 				continue;
 			}
@@ -295,6 +301,9 @@ class FormatMetadata extends ContextSource {
 					// both use FlashpixVersion. However, since at least 2002, PHP has used FlashPixVersion at
 					// https://github.com/php/php-src/blame/master/ext/exif/exif.c#L725
 					case 'FlashPixVersion':
+					// But we can still get the correct casing from
+					// Wikimedia\XMPReader on PDFs
+					case 'FlashpixVersion':
 						$val = $this->literal( (int)$val / 100 );
 						break;
 
@@ -1006,8 +1015,12 @@ class FormatMetadata extends ContextSource {
 					case 'SceneCode':
 					case 'IntellectualGenre':
 					case 'Event':
-					case 'OrginisationInImage':
+					case 'OrganisationInImage':
 					case 'PersonInImage':
+					case 'CaptureSoftware':
+					case 'GPSAreaInformation':
+					case 'GPSProcessingMethod':
+					case 'StitchingSoftware':
 						$val = $this->literal( $val );
 						break;
 
