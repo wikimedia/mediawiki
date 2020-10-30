@@ -1578,7 +1578,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			'The action you have requested is limited to users in the group: '
+			// Two error messages are possible depending on the number of groups in the wiki with edit rights:
+			// - The action you have requested is limited to users in the group:
+			// - The action you have requested is limited to users in one of the groups:
+			'The action you have requested is limited to users in'
 		);
 
 		$this->setMwGlobals( 'wgRevokePermissions', [ '*' => [ 'edit' => true ] ] );
