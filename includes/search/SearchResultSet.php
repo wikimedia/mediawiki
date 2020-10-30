@@ -44,7 +44,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	protected $results;
 
 	/**
-	 * @var boolean True when there are more pages of search results available.
+	 * @var bool True when there are more pages of search results available.
 	 */
 	private $hasMoreResults;
 

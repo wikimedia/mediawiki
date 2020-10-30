@@ -58,7 +58,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private $redirTitles = [];
 	private $continueStr = null;
 
-	// output element name, database column field prefix, database table
+	/** @var string[][] output element name, database column field prefix, database table */
 	private $backlinksSettings = [
 		'backlinks' => [
 			'code' => 'bl',

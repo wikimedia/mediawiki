@@ -53,31 +53,34 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.17
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
-	// Origin defaults to users with sitewide authority
+	/** @var string Origin defaults to users with sitewide authority */
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-process cache for title info, structured as an array
-	// [
-	//  <batchKey> // Pipe-separated list of sorted keys from getPages
-	//   => [
-	//     <titleKey> => [ // Normalised title key
-	//       'page_len' => ..,
-	//       'page_latest' => ..,
-	//       'page_touched' => ..,
-	//     ]
-	//   ]
-	// ]
-	// @see self::fetchTitleInfo()
-	// @see self::makeTitleKey()
+	/**
+	 * In-process cache for title info, structured as an array
+	 * [
+	 *  <batchKey> // Pipe-separated list of sorted keys from getPages
+	 *   => [
+	 *     <titleKey> => [ // Normalised title key
+	 *       'page_len' => ..,
+	 *       'page_latest' => ..,
+	 *       'page_touched' => ..,
+	 *     ]
+	 *   ]
+	 * ]
+	 * @see self::fetchTitleInfo()
+	 * @see self::makeTitleKey()
+	 * @var array
+	 */
 	protected $titleInfo = [];
 
-	// List of page names that contain CSS
+	/** @var array List of page names that contain CSS */
 	protected $styles = [];
 
-	// List of page names that contain JavaScript
+	/** @var array List of page names that contain JavaScript */
 	protected $scripts = [];
 
-	// Group of module
+	/** @var string|null Group of module */
 	protected $group;
 
 	/**
@@ -141,7 +144,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get group name
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getGroup() {
 		return $this->group;

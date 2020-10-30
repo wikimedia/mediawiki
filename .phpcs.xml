@@ -11,11 +11,8 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingVar" />
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.NotShortBoolVar" />
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.NotShortIntVar" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
-		<exclude name="MediaWiki.Commenting.RedundantVarName.Found" /><!-- autofix -->
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />

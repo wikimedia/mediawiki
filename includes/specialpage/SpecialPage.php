@@ -39,24 +39,28 @@ use MediaWiki\Navigation\PrevNextNavigationRenderer;
  * @ingroup SpecialPage
  */
 class SpecialPage implements MessageLocalizer {
-	// The canonical name of this special page
-	// Also used for the default <h1> heading, @see getDescription()
+	/**
+	 * @var string The canonical name of this special page
+	 * Also used for the default <h1> heading, @see getDescription()
+	 */
 	protected $mName;
 
-	// The local name of this special page
+	/** @var string The local name of this special page */
 	private $mLocalName;
 
-	// Minimum user level required to access this page, or "" for anyone.
-	// Also used to categorise the pages in Special:Specialpages
+	/**
+	 * @var string Minimum user level required to access this page, or "" for anyone.
+	 * Also used to categorise the pages in Special:Specialpages
+	 */
 	protected $mRestriction;
 
-	// Listed in Special:Specialpages?
+	/** @var bool Listed in Special:Specialpages? */
 	private $mListed;
 
-	// Whether or not this special page is being included from an article
+	/** @var bool Whether or not this special page is being included from an article */
 	protected $mIncluding;
 
-	// Whether the special page can be included in an article
+	/** @var bool Whether the special page can be included in an article */
 	protected $mIncludable;
 
 	/**

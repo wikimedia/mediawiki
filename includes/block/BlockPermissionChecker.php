@@ -43,7 +43,7 @@ class BlockPermissionChecker {
 	private $target;
 
 	/**
-	 * @var int|null $targetType One of AbstractBlock::TYPE_* constants, or null when unknown
+	 * @var int|null One of AbstractBlock::TYPE_* constants, or null when unknown
 	 */
 	private $targetType = null;
 

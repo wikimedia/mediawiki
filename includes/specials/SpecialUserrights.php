@@ -38,7 +38,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	protected $mTarget;
 	/**
-	 * @var null|User $mFetchedUser The user object of the target username or null.
+	 * @var null|User The user object of the target username or null.
 	 */
 	protected $mFetchedUser = null;
 	protected $isself = false;
