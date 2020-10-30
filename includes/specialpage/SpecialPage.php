@@ -70,9 +70,9 @@ class SpecialPage implements MessageLocalizer {
 	protected $mContext;
 
 	/**
-	 * @var \MediaWiki\Linker\LinkRenderer|null
+	 * @var LinkRenderer|null
 	 */
-	private $linkRenderer;
+	private $linkRenderer = null;
 
 	/** @var HookContainer|null */
 	private $hookContainer;
@@ -943,19 +943,20 @@ class SpecialPage implements MessageLocalizer {
 
 	/**
 	 * @since 1.28
-	 * @return \MediaWiki\Linker\LinkRenderer
+	 * @return LinkRenderer
 	 */
-	public function getLinkRenderer() {
-		if ( $this->linkRenderer ) {
-			return $this->linkRenderer;
-		} else {
-			return MediaWikiServices::getInstance()->getLinkRenderer();
+	public function getLinkRenderer(): LinkRenderer {
+		if ( $this->linkRenderer === null ) {
+			// TODO Inject the service
+			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRendererFactory()
+				->createForUser( $this->getUser() );
 		}
+		return $this->linkRenderer;
 	}
 
 	/**
 	 * @since 1.28
-	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @param LinkRenderer $linkRenderer
 	 */
 	public function setLinkRenderer( LinkRenderer $linkRenderer ) {
 		$this->linkRenderer = $linkRenderer;
