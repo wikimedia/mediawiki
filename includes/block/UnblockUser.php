@@ -36,16 +36,16 @@ use User;
  * @since 1.36
  */
 class UnblockUser {
-	/* @var BlockPermissionChecker */
+	/** @var BlockPermissionChecker */
 	private $blockPermissionChecker;
 
-	/* @var DatabaseBlockStore */
+	/** @var DatabaseBlockStore */
 	private $blockStore;
 
-	/* @var HookRunner */
+	/** @var HookRunner */
 	private $hookRunner;
 
-	/* @var User|string */
+	/** @var User|string */
 	private $target;
 
 	/** @var int */

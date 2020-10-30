@@ -34,7 +34,7 @@
  * @ingroup Upload
  */
 class SpecialUploadStash extends UnlistedSpecialPage {
-	// UploadStash
+	/** @var UploadStash|null */
 	private $stash;
 
 	/** @var LocalRepo */

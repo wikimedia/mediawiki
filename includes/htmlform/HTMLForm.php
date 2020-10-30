@@ -135,7 +135,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 class HTMLForm extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
+	/** @var string[] A mapping of 'type' inputs onto standard HTMLFormField subclasses */
 	public static $typeMappings = [
 		'api' => HTMLApiField::class,
 		'text' => HTMLTextField::class,
@@ -273,6 +273,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * Subclasses may set this to false to render subsections after fields
 	 * instead.
+	 * @var bool
 	 */
 	protected $mSubSectionBeforeFields = true;
 

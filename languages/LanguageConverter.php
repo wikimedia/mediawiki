@@ -69,7 +69,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected $mTables;
 
-	// 'bidirectional' 'unidirectional' 'disable' for each variant
+	/** @var string[] One of 'bidirectional' 'unidirectional' 'disable' for each variant */
 	public $mManualLevel;
 
 	/**

@@ -64,6 +64,10 @@ For notes on 1.35.x and older releases, see HISTORY.
   Use the BlockUserFactory and UnblockUserFactory services to create them.
 * The hook UsersPagerDoBatchLookupsHook takes now a \Wikimedia\Rdbms\IDatabase
   instead of \Wikimedia\Rdbms\DBConnRef as first parameter
+* MediaHandlers can now customize the formatting of the metadata they emit
+  by overriding MediaHandler::formatTag( $key, $value ).  The default for
+  unknown tags is numeric formatting; non-EXIF tags which are non-numeric
+  should always use this method to specify the desired formatting.
 * …
 
 === External library changes in 1.36 ===

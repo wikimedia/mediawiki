@@ -29,10 +29,10 @@
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialPage extends UnlistedSpecialPage {
-	// Query parameters that can be passed through redirects
+	/** @var array Query parameters that can be passed through redirects */
 	protected $mAllowedRedirectParams = [];
 
-	// Query parameters added by redirects
+	/** @var array Query parameters added by redirects */
 	protected $mAddedRedirectParams = [];
 
 	/**

@@ -47,7 +47,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.16
  */
 class Html {
-	// List of void elements from HTML5, section 8.1.2 as of 2016-09-19
+	/** @var string[] List of void elements from HTML5, section 8.1.2 as of 2016-09-19 */
 	private static $voidElements = [
 		'area',
 		'base',
@@ -66,8 +66,11 @@ class Html {
 		'wbr',
 	];
 
-	// Boolean attributes, which may have the value omitted entirely.  Manually
-	// collected from the HTML5 spec as of 2011-08-12.
+	/**
+	 * Boolean attributes, which may have the value omitted entirely.  Manually
+	 * collected from the HTML5 spec as of 2011-08-12.
+	 * @var string[]
+	 */
 	private static $boolAttribs = [
 		'async',
 		'autofocus',

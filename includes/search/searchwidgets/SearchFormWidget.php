@@ -18,7 +18,7 @@ class SearchFormWidget {
 	protected $searchConfig;
 	/** @var array */
 	protected $profiles;
-	/** @var HookContainer $hookContainer */
+	/** @var HookContainer */
 	private $hookContainer;
 	/** @var HookRunner */
 	private $hookRunner;

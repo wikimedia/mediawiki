@@ -41,7 +41,7 @@ class BatchRowWriter {
 	protected $clusterName;
 
 	/**
-	 * For debugging which method is using this class.
+	 * @var string|null For debugging which method is using this class.
 	 */
 	protected $caller;
 

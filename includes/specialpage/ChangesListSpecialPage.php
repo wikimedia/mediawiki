@@ -90,14 +90,16 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	private $filterGroupDefinitions;
 
-	// Same format as filterGroupDefinitions, but for a single group (reviewStatus)
-	// that is registered conditionally.
+	/**
+	 * @var array Same format as filterGroupDefinitions, but for a single group (reviewStatus)
+	 * that is registered conditionally.
+	 */
 	private $legacyReviewStatusFilterGroupDefinition;
 
-	// Single filter group registered conditionally
+	/** @var array Single filter group registered conditionally */
 	private $reviewStatusFilterGroupDefinition;
 
-	// Single filter group registered conditionally
+	/** @var array Single filter group registered conditionally */
 	private $hideCategorizationFilterDefinition;
 
 	/**

@@ -35,10 +35,10 @@ class UploadFromStash extends UploadBase {
 	protected $mFileProps;
 	protected $mSourceType;
 
-	// an instance of UploadStash
+	/** @var UploadStash */
 	private $stash;
 
-	// LocalFile repo
+	/** @var FileRepo */
 	private $repo;
 
 	/**

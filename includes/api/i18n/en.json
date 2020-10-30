@@ -383,6 +383,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Gives the sections in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-revid": "Adds the revision ID of the parsed page.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Adds the title of the parsed wikitext.",
+	"apihelp-parse-paramvalue-prop-subtitle": "Adds the page subtitle for the parsed page.",
 	"apihelp-parse-paramvalue-prop-headitems": "Gives items to put in the <code>&lt;head&gt;</code> of the page.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Gives parsed doctype, opening <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> element and opening <code>&lt;body&gt;</code> of the page.",
 	"apihelp-parse-paramvalue-prop-modules": "Gives the ResourceLoader modules used on the page. To load, use <code>mw.loader.using()</code>. Either <kbd>jsconfigvars</kbd> or <kbd>encodedjsconfigvars</kbd> must be requested jointly with <kbd>modules</kbd>.",

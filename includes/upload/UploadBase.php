@@ -173,7 +173,7 @@ abstract class UploadBase {
 		return $user->pingLimiter( 'upload' );
 	}
 
-	// Upload handlers. Should probably just be a global.
+	/** @var string[] Upload handlers. Should probably just be a global. */
 	private static $uploadHandlers = [ 'Stash', 'File', 'Url' ];
 
 	/**

@@ -63,13 +63,13 @@ class UploadStash {
 	 */
 	public $repo;
 
-	// array of initialized repo objects
+	/** @var array array of initialized repo objects */
 	protected $files = [];
 
-	// cache of the file metadata that's stored in the database
+	/** @var array cache of the file metadata that's stored in the database */
 	protected $fileMetadata = [];
 
-	// fileprops cache
+	/** @var array fileprops cache */
 	protected $fileProps = [];
 
 	// current user

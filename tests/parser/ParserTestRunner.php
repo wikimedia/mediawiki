@@ -54,12 +54,12 @@ class ParserTestRunner {
 	];
 
 	/**
-	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
+	 * @var bool Use temporary tables for the temporary database
 	 */
 	private $useTemporaryTables = true;
 
 	/**
-	 * @var array $setupDone The status of each setup function
+	 * @var array The status of each setup function
 	 */
 	private $setupDone = [
 		'staticSetup' => false,
@@ -1118,7 +1118,7 @@ class ParserTestRunner {
 	/**
 	 * List of temporary tables to create, without prefix.
 	 * Some of these probably aren't necessary.
-	 * @return array
+	 * @return string[]
 	 */
 	private function listTables() {
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
