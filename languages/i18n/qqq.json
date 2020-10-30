@@ -4057,8 +4057,6 @@
 	"compare-rev1": "Label for the field of the 1st revision in the comparison for [[Special:ComparePages]]\n{{Identical|Revision}}",
 	"compare-rev2": "Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]\n{{Identical|Revision}}",
 	"compare-submit": "Submit button on [[Special:ComparePages]]",
-	"compare-invalid-title": "Used as error message in [[Special:ComparePages]].",
-	"compare-title-not-exists": "Used as error message in [[Special:ComparePages]].",
 	"compare-revision-not-exists": "Used as error message in [[Special:ComparePages]].",
 	"diff-form": "The title of [[Special:Diff]]\n{{Identical|Difference}}",
 	"diff-form-oldid": "Label for the field of the old revision in the comparison for [[Special:Diff]]",
