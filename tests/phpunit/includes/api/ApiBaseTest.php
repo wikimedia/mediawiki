@@ -12,6 +12,22 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ApiBase
  */
 class ApiBaseTest extends ApiTestCase {
+
+	protected function setUp() : void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions',
+			[
+				'*' => [
+					'read' => true,
+					'edit' => true,
+					'writeapi' => true,
+					'apihighlimits' => false,
+				],
+			]
+		);
+	}
+
 	/**
 	 * This covers a variety of stub methods that return a fixed value.
 	 *
