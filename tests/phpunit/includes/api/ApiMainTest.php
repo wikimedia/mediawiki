@@ -13,6 +13,21 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class ApiMainTest extends ApiTestCase {
 
+	protected function setUp() : void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions',
+			[
+				'*' => [
+					'read' => true,
+					'edit' => true,
+					'writeapi' => true,
+					'apihighlimits' => false,
+				],
+			]
+		);
+	}
+
 	/**
 	 * Test that the API will accept a FauxRequest and execute.
 	 */
