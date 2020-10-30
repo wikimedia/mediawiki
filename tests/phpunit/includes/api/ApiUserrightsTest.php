@@ -18,6 +18,10 @@ class ApiUserrightsTest extends ApiTestCase {
 			$this->tablesUsed,
 			[ 'change_tag', 'change_tag_def', 'logging' ]
 		);
+		$this->setMwGlobals( [
+			'wgAddGroups' => [],
+			'wgRemoveGroups' => [],
+		] );
 	}
 
 	/**
