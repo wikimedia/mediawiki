@@ -169,21 +169,16 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public static function provideMediaStylesheets() {
 		$data = self::getAllModules();
+		$context = $data['context'];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
 				continue;
 			}
 
-			$reflectedModule = new ReflectionObject( $module );
+			$moduleProxy = TestingAccessWrapper::newFromObject( $module );
 
-			$getStyleFiles = $reflectedModule->getMethod( 'getStyleFiles' );
-			$getStyleFiles->setAccessible( true );
-
-			$readStyleFile = $reflectedModule->getMethod( 'readStyleFile' );
-			$readStyleFile->setAccessible( true );
-
-			$styleFiles = $getStyleFiles->invoke( $module, $data['context'] );
+			$styleFiles = $moduleProxy->getStyleFiles( $context );
 
 			foreach ( $styleFiles as $media => $files ) {
 				if ( $media && $media !== 'all' ) {
@@ -194,11 +189,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 							$file,
 							// XXX: Wrapped in an object to keep it out of PHPUnit output
 							(object)[
-								'cssText' => $readStyleFile->invoke(
-									$module,
-									$file,
-									$data['context']
-								)
+								'cssText' => $moduleProxy->readStyleFile( $file, $context )
 							],
 						];
 					}
