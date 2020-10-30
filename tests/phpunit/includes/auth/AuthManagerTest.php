@@ -7,6 +7,8 @@ use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
+use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
@@ -62,6 +64,12 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	protected $manager;
 	/** @var TestingAccessWrapper */
 	protected $managerPriv;
+
+	/** @var BlockManager */
+	private $blockManager;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
 
 	/**
 	 * Sets a mock on a hook
@@ -178,6 +186,12 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->readOnlyMode ) {
 			$this->readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
 		}
+		if ( $regen || !$this->blockManager ) {
+			$this->blockManager = MediaWikiServices::getInstance()->getBlockManager();
+		}
+		if ( $regen || !$this->blockErrorFormatter ) {
+			$this->blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		}
 		if ( $regen || !$this->hookContainer ) {
 			// Set up a HookContainer similar to the normal one except that it
 			// gets global hooks from $this->authHooks instead of $wgHooks
@@ -214,7 +228,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->permManager,
 			$this->hookContainer,
 			$this->readOnlyMode,
-			$this->userNameUtils
+			$this->userNameUtils,
+			$this->blockManager,
+			$this->blockErrorFormatter
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );

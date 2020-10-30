@@ -63,6 +63,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 	}
 
 	public function testBeginSecondaryAccountCreation() {
+		$mwServices = MediaWikiServices::getInstance();
 		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
@@ -74,8 +75,10 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 			$objectFactory,
 			$permManager,
 			$hookContainer,
-			MediaWikiServices::getInstance()->getReadOnlyMode(),
-			$userNameUtils
+			$mwServices->getReadOnlyMode(),
+			$userNameUtils,
+			$mwServices->getBlockManager(),
+			$mwServices->getBlockErrorFormatter()
 		);
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();

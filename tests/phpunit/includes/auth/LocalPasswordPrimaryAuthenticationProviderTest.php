@@ -29,6 +29,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	 * @return LocalPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $loginOnly = false ) {
+		$mwServices = MediaWikiServices::getInstance();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -39,7 +40,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// We need a real HookContainer since testProviderChangeAuthenticationData()
 		// modifies $wgHooks
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer = $mwServices->getHookContainer();
 
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
@@ -53,8 +54,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$objectFactory,
 				$permManager,
 				$hookContainer,
-				MediaWikiServices::getInstance()->getReadOnlyMode(),
-				$userNameUtils
+				$mwServices->getReadOnlyMode(),
+				$userNameUtils,
+				$mwServices->getBlockManager(),
+				$mwServices->getBlockErrorFormatter()
 			);
 		}
 		$this->validity = \Status::newGood();

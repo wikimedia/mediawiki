@@ -89,6 +89,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 				],
 			],
 		] );
+		$mwServices = MediaWikiServices::getInstance();
 		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
@@ -100,8 +101,10 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$objectFactory,
 			$permManager,
 			$hookContainer,
-			MediaWikiServices::getInstance()->getReadOnlyMode(),
-			$userNameUtils
+			$mwServices->getReadOnlyMode(),
+			$userNameUtils,
+			$mwServices->getBlockManager(),
+			$mwServices->getBlockErrorFormatter()
 		);
 		$provider->setManager( $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
