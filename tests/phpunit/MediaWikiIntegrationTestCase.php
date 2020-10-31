@@ -606,15 +606,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			ob_end_flush();
 		}
 
-		// Cleaning up temporary files
-		foreach ( $this->tmpFiles as $fileName ) {
-			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
-				unlink( $fileName );
-			} elseif ( is_dir( $fileName ) ) {
-				wfRecursiveRemoveDir( $fileName );
-			}
-		}
-
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
@@ -644,6 +635,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->mwGlobals = [];
 		$this->mwGlobalsToUnset = [];
 		$this->restoreLoggers();
+
+		// Cleaning up temporary files - after logger, if temp files used there
+		foreach ( $this->tmpFiles as $fileName ) {
+			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
+				unlink( $fileName );
+			} elseif ( is_dir( $fileName ) ) {
+				wfRecursiveRemoveDir( $fileName );
+			}
+		}
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
