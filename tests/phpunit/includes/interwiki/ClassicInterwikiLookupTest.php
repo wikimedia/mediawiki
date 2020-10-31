@@ -120,7 +120,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function populateCDB( $thisSite, $local, $global ) {
-		$cdbFile = tempnam( wfTempDir(), 'MW-ClassicInterwikiLookupTest-' ) . '.cdb';
+		$cdbFile = $this->getNewTempFile();
 		$cdb = \Cdb\Writer::open( $cdbFile );
 
 		$hash = $this->populateHash( $thisSite, $local, $global );
