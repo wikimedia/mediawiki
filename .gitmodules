@@ -1402,3 +1402,7 @@
 	url = https://github.com/wikimedia/mediawiki-skins-Nimbus
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/DiscussionTools"]
+	path = extensions/DiscussionTools
+	url = https://github.com/wikimedia/mediawiki-extensions-DiscussionTools
+	branch = REL1_35
