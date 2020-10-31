@@ -71,6 +71,10 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		return str_replace( '\\\\', '\\', $str );
 	}
 
+	private static function fixSlashes( $str ) {
+		return str_replace( '\\', '/', $str );
+	}
+
 	protected static function checkAutoLoadConf() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
 
@@ -80,16 +84,16 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 
 		$psr4Namespaces = [];
 		foreach ( AutoLoader::getAutoloadNamespaces() as $ns => $path ) {
-			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = rtrim( $path, '/' );
+			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = self::fixSlashes( rtrim( $path, '/' ) );
 		}
 
 		foreach ( $expected as $class => $file ) {
 			// Only prefix $IP if it doesn't have it already.
 			// Generally local classes don't have it, and those from extensions and test suites do.
 			if ( substr( $file, 0, 1 ) != '/' && substr( $file, 1, 1 ) != ':' ) {
-				$filePath = "$IP/$file";
+				$filePath = self::fixSlashes( "$IP/$file" );
 			} else {
-				$filePath = $file;
+				$filePath = self::fixSlashes( $file );
 			}
 
 			if ( !file_exists( $filePath ) ) {
