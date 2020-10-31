@@ -1387,3 +1387,7 @@
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Video
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/CleanChanges"]
+	path = extensions/CleanChanges
+	url = https://github.com/wikimedia/mediawiki-extensions-CleanChanges
+	branch = REL1_35
