@@ -1401,3 +1401,4 @@
 	path = skins/Nimbus
 	url = https://github.com/wikimedia/mediawiki-skins-Nimbus
 	branch = REL1_35
+	ignore = dirty
