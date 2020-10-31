@@ -1391,3 +1391,8 @@
 	path = extensions/CleanChanges
 	url = https://github.com/wikimedia/mediawiki-extensions-CleanChanges
 	branch = REL1_35
+	ignore = dirty
+[submodule "extensions/TimeMachine"]
+	path = extensions/TimeMachine
+	url = https://github.com/wikimedia/mediawiki-extensions-TimeMachine
+	branch = REL1_35
