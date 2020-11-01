@@ -34,8 +34,16 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup API
  */
 class ApiQueryAllImages extends ApiQueryGeneratorBase {
+
+	/**
+	 * @var LocalRepo
+	 */
 	protected $mRepo;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
 		$this->mRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();

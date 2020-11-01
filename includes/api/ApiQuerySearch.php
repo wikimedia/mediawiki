@@ -31,6 +31,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/** @var array list of api allowed params */
 	private $allowedParams;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'sr' );
 	}
