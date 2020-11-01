@@ -40,6 +40,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 */
 	private $specialPageFactory;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		$this->queryPages = array_values( array_diff(

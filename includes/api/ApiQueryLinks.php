@@ -34,6 +34,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private $table, $prefix, $titlesParam, $helpUrl;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		switch ( $moduleName ) {
 			case self::LINKS:

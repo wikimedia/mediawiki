@@ -35,6 +35,10 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'adr' );
 	}
