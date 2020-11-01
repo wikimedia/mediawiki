@@ -1406,3 +1406,9 @@
 	path = extensions/DiscussionTools
 	url = https://github.com/wikimedia/mediawiki-extensions-DiscussionTools
 	branch = REL1_35
+	ignore = dirty
+[submodule "extensions/GoogleNewsSitemap"]
+	path = extensions/GoogleNewsSitemap
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleNewsSitemap
+	branch = REL1_35
+	ignore = dirty
