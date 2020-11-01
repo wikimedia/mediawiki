@@ -424,7 +424,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
 		$titleInfo = [];
-		$batch = new LinkBatch;
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		foreach ( $pages as $titleText ) {
 			$title = Title::newFromText( $titleText );
 			if ( $title ) {

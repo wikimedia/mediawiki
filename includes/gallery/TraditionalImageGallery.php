@@ -70,7 +70,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		if ( $this->mShowFilename ) {
 			// Preload LinkCache info for when generating links
 			// of the filename below
-			$lb = new LinkBatch();
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch();
 			foreach ( $this->mImages as $img ) {
 				$lb->addObj( $img[0] );
 			}

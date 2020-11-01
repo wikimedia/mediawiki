@@ -661,7 +661,8 @@ abstract class SearchEngine {
 
 		$search = trim( $search );
 		// preload the titles with LinkBatch
-		$lb = new LinkBatch( $suggestions->map( function ( SearchSuggestion $sugg ) {
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch( $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
 		} ) );
 		$lb->setCaller( __METHOD__ );
