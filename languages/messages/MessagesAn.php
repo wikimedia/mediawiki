@@ -52,11 +52,13 @@ $magicWords = [
 	'special'                   => [ '0', 'especial', 'espezial', 'special' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Totz_os_mensaches', 'Toz_os_mensaches' ],
 	'Allpages'                  => [ 'Todas_as_pachinas' ],
 	'Ancientpages'              => [ 'Pachinas_mas_viellas', 'Pachinas_mas_antigas', 'Pachinas_más_biellas', 'Pachinas_biellas', 'Pachinas_antigas' ],
 	'Block'                     => [ 'Bloqueyar' ],
+	'BlockList'                 => [ 'Lista_d\'IPs_bloqueyatas', 'Lista_d\'IPs_bloquiatas', 'Lista_d\'adrezas_IP_bloqueyatas', 'Lista_d\'adrezas_IP_bloquiatas' ],
 	'Booksources'               => [ 'Fuents_de_libros' ],
 	'BrokenRedirects'           => [ 'Endreceras_trencatas', 'Endreceras_trencadas', 'Reendrezeras_trencatas', 'Endrezeras_trencatas', 'Reendrezeras_crebatas', 'Endrezeras_crebatas', 'Endrezeras_trencadas', 'Endrezeras_crebadas' ],
 	'Categories'                => [ 'Categorías' ],
@@ -70,7 +72,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Exportar' ],
 	'Fewestrevisions'           => [ 'Pachinas_con_menos_edicions', 'Pachinas_con_menos_edizions', 'Pachinas_menos_editatas', 'Pachinas_con_menos_bersions' ],
 	'Import'                    => [ 'Importar' ],
-	'BlockList'                 => [ 'Lista_d\'IPs_bloqueyatas', 'Lista_d\'IPs_bloquiatas', 'Lista_d\'adrezas_IP_bloqueyatas', 'Lista_d\'adrezas_IP_bloquiatas' ],
 	'Listadmins'                => [ 'Lista_d\'almenistradors' ],
 	'Listbots'                  => [ 'Lista_de_botz', 'Lista_de_bots' ],
 	'Listfiles'                 => [ 'Lista_de_fichers', 'Lista_d\'imáchens', 'Lista_d\'imachens' ],

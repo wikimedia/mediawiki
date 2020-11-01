@@ -50,6 +50,7 @@ $namespaceAliases = [
 // Remove French aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usanciérs_actifs', 'UsanciérsActifs' ],
 	'Allmessages'               => [ 'Mèssâjos_sistèmo', 'MèssâjosSistèmo' ],
@@ -57,6 +58,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Pâges_les_muens_dèrriérement_changiês', 'PâgesLesMuensDèrriérementChangiês' ],
 	'Blankpage'                 => [ 'Pâge_voueda', 'PâgeVoueda' ],
 	'Block'                     => [ 'Blocar', 'Blocâjo' ],
+	'BlockList'                 => [ 'Lista_des_blocâjos', 'ListaDesBlocâjos', 'Blocâjos', 'Usanciérs_blocâs', 'UsanciérsBlocâs', 'Adrèces_IP_blocâs', 'AdrècesIPBlocâs' ],
 	'Booksources'               => [ 'Ôvres_de_refèrence', 'ÔvresDeRefèrence' ],
 	'BrokenRedirects'           => [ 'Redirèccions_câsses', 'RedirèccionsCâsses' ],
 	'Categories'                => [ 'Catègories' ],
@@ -75,7 +77,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Chemin_d\'accès_du_fichiér', 'CheminDAccèsDuFichiér' ],
 	'Import'                    => [ 'Importar', 'Importacion' ],
 	'Invalidateemail'           => [ 'Envalidar_l\'adrèce_èlèctronica', 'EnvalidarLAdrèceÈlèctronica' ],
-	'BlockList'                 => [ 'Lista_des_blocâjos', 'ListaDesBlocâjos', 'Blocâjos', 'Usanciérs_blocâs', 'UsanciérsBlocâs', 'Adrèces_IP_blocâs', 'AdrècesIPBlocâs' ],
 	'LinkSearch'                => [ 'Rechèrche_de_lims', 'RechèrcheDeLims' ],
 	'Listadmins'                => [ 'Lista_ux_administrators', 'ListaUxAdministrators' ],
 	'Listbots'                  => [ 'Lista_ux_bots', 'ListaUxBots' ],
@@ -106,8 +107,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Endèxe_des_prèfixos', 'EndèxeDesPrèfixos' ],
 	'Protectedpages'            => [ 'Pâges_protègiês', 'PâgesProtègiês' ],
 	'Protectedtitles'           => [ 'Titros_protègiês', 'TitrosProtègiês' ],
-	'Randompage'                => [ 'Pâge_a_l\'hasârd', 'PâgeALHasârd' ],
 	'RandomInCategory'          => [ 'Pâge_a_l\'hasârd_dens_una_catègorie', 'PâgeALHasârdDensUnaCatègorie' ],
+	'Randompage'                => [ 'Pâge_a_l\'hasârd', 'PâgeALHasârd' ],
 	'Randomredirect'            => [ 'Redirèccion_a_l\'hasârd', 'RedirèccionALHasârd' ],
 	'Recentchanges'             => [ 'Dèrriérs_changements', 'DèrriérsChangements' ],
 	'Recentchangeslinked'       => [ 'Survelyence_des_lims', 'SurvelyenceDesLims' ],

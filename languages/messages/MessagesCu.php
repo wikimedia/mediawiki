@@ -8,6 +8,7 @@
  *
  */
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'Вьсѩ_страницѧ' ],
 	'Categories'                => [ 'Катигорїѩ' ],

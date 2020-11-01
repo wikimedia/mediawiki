@@ -91,6 +91,7 @@ $dateFormats = [
 	'km both' => 'ម៉ោងH:i l ទីd F ឆ្នាំY',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'អ្នកប្រើប្រាស់សកម្ម' ],
 	'Allmessages'               => [ 'គ្រប់សារ' ],
@@ -98,6 +99,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'ទំព័រចាស់ៗ' ],
 	'Blankpage'                 => [ 'ទំព័រទទេ' ],
 	'Block'                     => [ 'រាំងខ្ទប់IP' ],
+	'BlockList'                 => [ 'បញ្ជីហាមឃាត់IP' ],
 	'Booksources'               => [ 'ប្រភពសៀវភៅ' ],
 	'BrokenRedirects'           => [ 'ការបញ្ជូនបន្តដែលខូច' ],
 	'Categories'                => [ 'ចំណាត់ថ្នាក់ក្រុម' ],
@@ -116,7 +118,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'ផ្លូវនៃឯកសារ' ],
 	'Import'                    => [ 'នាំចូល' ],
 	'Invalidateemail'           => [ 'អ៊ីមែលមិនត្រឹមត្រូវ' ],
-	'BlockList'                 => [ 'បញ្ជីហាមឃាត់IP' ],
 	'LinkSearch'                => [ 'ស្វែងរកតំណភ្ជាប់' ],
 	'Listadmins'                => [ 'បញ្ជីអ្នកអភិបាល' ],
 	'Listbots'                  => [ 'បញ្ជីរូបយន្ត' ],

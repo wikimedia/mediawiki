@@ -47,6 +47,7 @@ $namespaceAliases = [
 	'Diskuti_kategorija' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UtentiAttivi' ],
 	'Allmessages'               => [ 'MessaġġiKollha' ],
@@ -55,6 +56,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'TitluĦażin' ],
 	'Blankpage'                 => [ 'PaġnaVojta' ],
 	'Block'                     => [ 'BlokkaIP' ],
+	'BlockList'                 => [ 'ListaIPImblukkati' ],
 	'Booksources'               => [ 'SorsiKotba' ],
 	'BrokenRedirects'           => [ 'RindirizziMiksura' ],
 	'Categories'                => [ 'Kategoriji' ],
@@ -74,7 +76,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'PostFajl' ],
 	'Import'                    => [ 'Importa' ],
 	'Invalidateemail'           => [ 'PostaElettronikaInvalida' ],
-	'BlockList'                 => [ 'ListaIPImblukkati' ],
 	'LinkSearch'                => [ 'FittexĦolqa' ],
 	'Listadmins'                => [ 'ListaAmmin' ],
 	'Listbots'                  => [ 'ListaBots' ],

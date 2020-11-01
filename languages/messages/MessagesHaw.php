@@ -32,6 +32,7 @@ $namespaceAliases = [
 	'Kūkākūkā_o_kiʻi' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'MeaHoʻohanaNei', 'MeaHoohanaNei' ],
 	'Allmessages'               => [ 'PūlonoApau', 'PulonoApau' ],

@@ -53,6 +53,7 @@ $namespaceAliases = [
 	'শ্রেণী_বার্তা' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'সক্ৰিয়_সদস্যসকল' ],
 	'Allmessages'               => [ 'সকলোবোৰ_বাৰ্তা' ],
@@ -61,6 +62,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ভুল_শিৰোনাম' ],
 	'Blankpage'                 => [ 'উকা_পৃষ্ঠা' ],
 	'Block'                     => [ 'অৱৰোধ', 'আই_পি_অৱৰোধ', 'সদস্য_অৱৰোধ' ],
+	'BlockList'                 => [ 'অৱৰোধৰ_তালিকা' ],
 	'Booksources'               => [ 'গ্ৰন্থৰ_উত্স' ],
 	'BrokenRedirects'           => [ 'ভঙা_পূণঃনিৰ্দেশনাসমূহ' ],
 	'Categories'                => [ 'শ্ৰেণীসমূহ' ],
@@ -82,7 +84,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'আমদানি' ],
 	'Invalidateemail'           => [ 'অবৈধ_ই-মেইল' ],
 	'JavaScriptTest'            => [ 'জাভাস্ক্ৰীপ্ত_পৰীক্ষা' ],
-	'BlockList'                 => [ 'অৱৰোধৰ_তালিকা' ],
 	'LinkSearch'                => [ 'সংযোগ_সন্ধান' ],
 	'Listadmins'                => [ 'প্ৰশাসকৰ_তালিকা' ],
 	'Listbots'                  => [ 'বটৰ_তালিকা' ],

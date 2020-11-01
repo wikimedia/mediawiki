@@ -51,6 +51,7 @@ $dateFormats = [
 	'dmy both' => 'j \d\e F \d\e Y "ás" H:i',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usuarios_activos' ],
 	'Allmessages'               => [ 'Todas_as_mensaxes' ],
@@ -60,6 +61,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Título_incorrecto' ],
 	'Blankpage'                 => [ 'Baleirar_a_páxina' ],
 	'Block'                     => [ 'Bloquear', 'Bloquear_o_enderezo_IP', 'Bloquear_o_usuario' ],
+	'BlockList'                 => [ 'Lista_de_bloqueos', 'Lista_dos_bloqueos_a_enderezos_IP' ],
 	'Booksources'               => [ 'Fontes_bibliográficas' ],
 	'BrokenRedirects'           => [ 'Redireccións_rotas' ],
 	'Categories'                => [ 'Categorías' ],
@@ -82,7 +84,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Importar' ],
 	'Invalidateemail'           => [ 'Invalidar_o_enderezo_de_correo_electrónico', 'Invalidar_correo_electrónico', 'Invalidar_enderezo_de_correo_electrónico', 'Invalidar_enderezo_correo_electrónico' ],
 	'JavaScriptTest'            => [ 'Proba_do_JavaScript' ],
-	'BlockList'                 => [ 'Lista_de_bloqueos', 'Lista_dos_bloqueos_a_enderezos_IP' ],
 	'LinkSearch'                => [ 'Buscar_ligazóns_web' ],
 	'Listadmins'                => [ 'Lista_de_administradores' ],
 	'Listbots'                  => [ 'Lista_de_bots' ],
@@ -117,8 +118,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Índice_de_prefixos' ],
 	'Protectedpages'            => [ 'Páxinas_protexidas' ],
 	'Protectedtitles'           => [ 'Títulos_protexidos' ],
-	'Randompage'                => [ 'Ao_chou', 'Páxina_aleatoria', 'Aleatoria', 'Aleatorio' ],
 	'RandomInCategory'          => [ 'Aleatoria_na_categoría', 'Aleatorio_na_categoría' ],
+	'Randompage'                => [ 'Ao_chou', 'Páxina_aleatoria', 'Aleatoria', 'Aleatorio' ],
 	'Randomredirect'            => [ 'Redirección_aleatoria' ],
 	'Recentchanges'             => [ 'Cambios_recentes' ],
 	'Recentchangeslinked'       => [ 'Cambios_relacionados' ],

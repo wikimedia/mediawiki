@@ -42,6 +42,7 @@ $namespaceAliases = [
 	'لێدوانی_پۆل'       => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'بەکارھێنەرە_چالاکەکان' ],
 	'Allmessages'               => [ 'ھەموو_پەیامەکان' ],

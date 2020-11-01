@@ -29,6 +29,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Categoria_Discute',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Newimages'                 => [ 'FixesNova' ],
 	'Newpages'                  => [ 'PajesNova' ],

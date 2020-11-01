@@ -27,6 +27,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'શ્રેણીની_ચર્ચા',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'બધાંસંદેશા' ],
 	'Allpages'                  => [ 'બધાંપાનાં' ],

@@ -65,6 +65,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Cumbersa_outelizador', 'female' => 'Cumbersa_outelizadora' ],
 ]; // T180052
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'CreateAccount'             => [ 'Criar_Cuonta' ],
 	'Lonelypages'               => [ 'Páiginas_Uorfanas' ],

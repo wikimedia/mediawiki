@@ -69,6 +69,7 @@ $namespaceAliases = [
 	'Ciciarada_Categoria'   => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messagg' ],
 	'BrokenRedirects'           => [ 'RedirezionS-cepada' ],

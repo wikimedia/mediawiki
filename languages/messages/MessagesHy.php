@@ -186,11 +186,13 @@ $magicWords = [
 	'defaultsort'               => [ '1', 'ԼՌՈՒԹՅԱՄԲ_ԴԱՍԱՎՈՐՈՒՄ՝', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Բոլորուղերձները' ],
 	'Allpages'                  => [ 'Բոլորէջերը' ],
 	'Ancientpages'              => [ 'Ամենահինէջերը' ],
 	'Block'                     => [ 'Արգելափակել այփին' ],
+	'BlockList'                 => [ 'Արգելափակված այփի ները' ],
 	'Booksources'               => [ 'Գրքայինաղբյուրները' ],
 	'BrokenRedirects'           => [ 'Կոտրվածվերահղումները' ],
 	'Categories'                => [ 'Կատեգորիաները' ],
@@ -202,7 +204,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Արտահանելէջերը' ],
 	'FileDuplicateSearch'       => [ 'Կրկնօրինակֆայլերիորոնում' ],
 	'Import'                    => [ 'Ներմուծել' ],
-	'BlockList'                 => [ 'Արգելափակված այփի ները' ],
 	'Listadmins'                => [ 'Ադմիններիցանկը' ],
 	'Listfiles'                 => [ 'Պատկերներիցանկը' ],
 	'Listredirects'             => [ 'Ցույցտալվերահղումները' ],

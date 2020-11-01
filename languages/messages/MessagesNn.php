@@ -215,6 +215,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Kategoridiskusjon',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Verksame_brukarar', 'Aktive_brukarar' ],
 	'Allmessages'               => [ 'Alle_systemmeldingar' ],
@@ -224,6 +225,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Dårleg_tittel' ],
 	'Blankpage'                 => [ 'Tom_side' ],
 	'Block'                     => [ 'Blokker' ],
+	'BlockList'                 => [ 'Blokkeringsliste' ],
 	'Booksources'               => [ 'Bokkjelder' ],
 	'BrokenRedirects'           => [ 'Blindvegsomdirigeringar' ],
 	'Categories'                => [ 'Kategoriar' ],
@@ -245,7 +247,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Importer' ],
 	'Invalidateemail'           => [ 'Gjer_e-post_ugyldig' ],
 	'JavaScriptTest'            => [ 'Utrøyning_av_JavaScript', 'JavaScript-test' ],
-	'BlockList'                 => [ 'Blokkeringsliste' ],
 	'LinkSearch'                => [ 'Lenkjesøk', 'Lenkesøk' ],
 	'Listadmins'                => [ 'Administratorliste', 'Administratorar' ],
 	'Listbots'                  => [ 'Bottliste', 'Bottar', 'Robotliste', 'Robotar' ],
@@ -279,8 +280,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Prefiksindeks' ],
 	'Protectedpages'            => [ 'Verna_sider' ],
 	'Protectedtitles'           => [ 'Verna_sidenamn' ],
-	'Randompage'                => [ 'Tilfeldig_side' ],
 	'RandomInCategory'          => [ 'Tilfeldig_frå_kategori' ],
+	'Randompage'                => [ 'Tilfeldig_side' ],
 	'Randomredirect'            => [ 'Tilfeldig_omdirigering' ],
 	'Recentchanges'             => [ 'Siste_endringar', 'Siste_endringane' ],
 	'Recentchangeslinked'       => [ 'Relaterte_endringar' ],

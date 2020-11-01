@@ -73,6 +73,7 @@ $namespaceAliases = [
 // Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UsadoresAktivos' ],
 	'Allmessages'               => [ 'TodosLosMessajes' ],
@@ -80,6 +81,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'HojasViejas' ],
 	'Blankpage'                 => [ 'VaziarHoja' ],
 	'Block'                     => [ 'Bloquear' ],
+	'BlockList'                 => [ 'UsadoresBloqueados' ],
 	'Booksources'               => [ 'FuentesDeLivros' ],
 	'BrokenRedirects'           => [ 'DireksionesBozeadas' ],
 	'Categories'                => [ 'Katēggorías' ],
@@ -100,7 +102,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Pozisyón_de_dosya' ],
 	'Import'                    => [ 'AktarearAriento' ],
 	'Invalidateemail'           => [ 'DesverdadearLetral' ],
-	'BlockList'                 => [ 'UsadoresBloqueados' ],
 	'LinkSearch'                => [ 'Busqueda_de_atamientos' ],
 	'Listadmins'                => [ 'ListaDeAdministradores' ],
 	'Listbots'                  => [ 'ListaDeBotes' ],

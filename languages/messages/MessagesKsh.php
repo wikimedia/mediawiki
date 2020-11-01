@@ -102,6 +102,7 @@ $linkTrail = '/^([äöüėëĳßəğåůæœça-z]+)(.*)$/sDu';
 // Remove German aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktive', 'AktiveMetmaacher', 'Aktive_Metmaacher', 'AktiveMedmaacher', 'Aktive_Medmaacher' ],
 	'Allmessages'               => [ 'MediaWiki-Appachtemang' ],
@@ -109,6 +110,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Ahl_Atikelle' ],
 	'Blankpage'                 => [ 'Leddijje_Sigge' ],
 	'Block'                     => [ 'IP-Sperre' ],
+	'BlockList'                 => [ 'Jesperrt', 'Jeshpächt' ],
 	'Booksources'               => [ 'ISBN', 'Böcher', 'Böösher' ],
 	'BrokenRedirects'           => [ 'Ömleitunge_en_et_Leere' ],
 	'Categories'                => [ 'Saachjruppe' ],
@@ -127,7 +129,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Dateipaad' ],
 	'Import'                    => [ 'Emport', 'Empocht' ],
 	'Invalidateemail'           => [ 'Onjöltije_e-mail_Addräß', 'Onjöltije_E-Mail_Adress' ],
-	'BlockList'                 => [ 'Jesperrt', 'Jeshpächt' ],
 	'LinkSearch'                => [ 'Websigge_Söke' ],
 	'Listadmins'                => [ 'Köbese', 'Köbeße', 'Wiki-Köbesse' ],
 	'Listbots'                  => [ 'Bots' ],

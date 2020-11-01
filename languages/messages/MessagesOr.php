@@ -74,6 +74,7 @@ $namespaceAliases = [
 	'ସାହାଯ୍ୟ_ଆଲୋଚନା'      => NS_HELP_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ସଚଳସଭ୍ୟ' ],
 	'Allmessages'               => [ 'ସବୁସନ୍ଦେଶ' ],
@@ -82,6 +83,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ଖରାପନାମ' ],
 	'Blankpage'                 => [ 'ଖାଲିପୃଷ୍ଠା' ],
 	'Block'                     => [ 'ଅଟକାଇବେ', 'ଆଇପିଅଟକାଇବେ', 'ସଭ୍ୟଅଟକାଇବେ' ],
+	'BlockList'                 => [ 'ତାଲିକାଅଟକାଇବେ' ],
 	'Booksources'               => [ 'ବହିସ୍ରୋତ' ],
 	'BrokenRedirects'           => [ 'ଭଙ୍ଗାଲେଉଟାଣି' ],
 	'Categories'                => [ 'ଶ୍ରେଣୀ' ],
@@ -103,7 +105,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'ଆମଦାନି' ],
 	'Invalidateemail'           => [ 'କାମକରୁନଥିବାଇମେଲ' ],
 	'JavaScriptTest'            => [ 'ଜାଭାସ୍କ୍ରିପ୍ଟଟେଷ୍ଟ' ],
-	'BlockList'                 => [ 'ତାଲିକାଅଟକାଇବେ' ],
 	'LinkSearch'                => [ 'ଲିଙ୍କଖୋଜା' ],
 	'Listadmins'                => [ 'ପରିଛାତାଲିକା' ],
 	'Listbots'                  => [ 'ବଟତାଲିକା' ],

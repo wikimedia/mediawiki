@@ -53,6 +53,7 @@ $namespaceAliases = [
 // Remove German aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Listadmins'                => [ 'Verwalter', 'Administratoren' ],
 	'Listbots'                  => [ 'Waddefresser', 'Bots' ],

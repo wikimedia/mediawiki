@@ -41,6 +41,7 @@ $namespaceAliases = [
 	'Okwu_ébéonọr'         => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'IhüNílé' ],
 	'Blankpage'                 => [ 'HịcháIhü' ],

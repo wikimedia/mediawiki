@@ -27,6 +27,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Olay_sa_kategorya',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Search'                    => [ 'Hanapon' ],
 	'Upload'                    => [ 'Ikarga' ],

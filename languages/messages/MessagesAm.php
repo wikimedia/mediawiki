@@ -32,6 +32,7 @@ $namespaceAliases = [
 	'መልጠፊያ_ውይይት' => NS_TEMPLATE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Longpages'                 => [ 'ረጃጅም_ገጾች' ],
 	'Newpages'                  => [ 'አዳዲስ_ገጾች' ],

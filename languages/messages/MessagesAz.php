@@ -32,6 +32,7 @@ $namespaceAliases = [
 	'MediyaViki_müzakirəsi'  => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivİstifadəçilər' ],
 	'Allpages'                  => [ 'BütünSəhifələr' ],

@@ -132,12 +132,14 @@ $dateFormats = [
 // Remove German aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Systemnarichten' ],
 	'Allpages'                  => [ 'Alle Sieden' ],
 	'Ancientpages'              => [ 'Ole Sieden' ],
 	'Blankpage'                 => [ 'Leddige Sied' ],
 	'Block'                     => [ 'Blocken' ],
+	'BlockList'                 => [ 'List vun blockte IPs' ],
 	'Booksources'               => [ 'ISBN-Söök' ],
 	'BrokenRedirects'           => [ 'Kaputte Redirects' ],
 	'Categories'                => [ 'Kategorien' ],
@@ -153,7 +155,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Dubbelte-Datein-Söök' ],
 	'Filepath'                  => [ 'Dateipadd' ],
 	'Import'                    => [ 'Importeren' ],
-	'BlockList'                 => [ 'List vun blockte IPs' ],
 	'Listadmins'                => [ 'Administraters' ],
 	'Listbots'                  => [ 'Bots' ],
 	'Listfiles'                 => [ 'Dateilist' ],

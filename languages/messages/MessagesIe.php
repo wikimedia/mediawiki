@@ -27,6 +27,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Categorie_Discussion',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usatores_activ' ],
 	'Allmessages'               => [ 'Omni_li_missages' ],
@@ -34,6 +35,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Págines_antiqui' ],
 	'Blankpage'                 => [ 'Págine_in_blanc' ],
 	'Block'                     => [ 'Blocar', 'Blocar_IP', 'Blocar_usator' ],
+	'BlockList'                 => [ 'Liste_de_bloc', 'Liste_de_bloces', 'Liste_de_bloc_de_IP' ],
 	'Booksources'               => [ 'Fontes_de_libres' ],
 	'BrokenRedirects'           => [ 'Redirectionmentes_ínperfect' ],
 	'ChangePassword'            => [ 'Change_parol-clave' ],
@@ -52,7 +54,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Viette_de_file' ],
 	'Import'                    => [ 'Importar' ],
 	'Invalidateemail'           => [ 'Email_ínvalid' ],
-	'BlockList'                 => [ 'Liste_de_bloc', 'Liste_de_bloces', 'Liste_de_bloc_de_IP' ],
 	'LinkSearch'                => [ 'Sercha_de_catenun' ],
 	'Listadmins'                => [ 'Liste_de_administratores' ],
 	'Listbots'                  => [ 'Liste_de_machines' ],

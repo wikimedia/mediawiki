@@ -39,11 +39,13 @@ $namespaceAliases = [
 	'Bólkur_kjak' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Øll kervisboð' ],
 	'Allpages'                  => [ 'Allar síður' ],
 	'Ancientpages'              => [ 'Elstu síður' ],
 	'Block'                     => [ 'Banna brúkara' ],
+	'BlockList'                 => [ 'Bannað brúkaranøvn og IP-adressur' ],
 	'Booksources'               => [ 'Bóka keldur' ],
 	'BrokenRedirects'           => [ 'Brotnar ávísingar' ],
 	'Categories'                => [ 'Bólkar' ],
@@ -53,7 +55,6 @@ $specialPageAliases = [
 	'Emailuser'                 => [ 'Send t-post til brúkara' ],
 	'Export'                    => [ 'Útflutningssíður' ],
 	'Fewestrevisions'           => [ 'Greinir við minst útgávum' ],
-	'BlockList'                 => [ 'Bannað brúkaranøvn og IP-adressur' ],
 	'Listfiles'                 => [ 'Myndalisti' ],
 	'Listusers'                 => [ 'Brúkaralisti' ],
 	'Lonelypages'               => [ 'Foreldraleysar síður' ],

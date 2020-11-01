@@ -50,6 +50,7 @@ $namespaceAliases = [
 	'Overleg_categorie' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Boskopu' ],
 	'Allpages'                  => [ 'AlaPeprewoysi' ],

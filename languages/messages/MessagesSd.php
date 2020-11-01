@@ -40,11 +40,13 @@ $namespaceAliases = [
 	'سنچو_بحث' => NS_TEMPLATE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'سڀ نياپا' ],
 	'Allpages'                  => [ 'سڀ صفحا' ],
 	'Ancientpages'              => [ 'قديم صفحا' ],
 	'Block'                     => [ 'آءِ پي بندش' ],
+	'BlockList'                 => [ 'آءِ پي بندش فهرست' ],
 	'BrokenRedirects'           => [ 'ٽٽل چورڻا' ],
 	'Categories'                => [ 'زمرا' ],
 	'Confirmemail'              => [ 'برقٽپال تصديقيو' ],
@@ -57,7 +59,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'فائيل ڏس' ],
 	'Import'                    => [ 'درآمد' ],
 	'Invalidateemail'           => [ 'ناقابلڪار برقٽپال' ],
-	'BlockList'                 => [ 'آءِ پي بندش فهرست' ],
 	'Listadmins'                => [ 'منتظمين فهرست' ],
 	'Listbots'                  => [ 'بوٽس فهرست' ],
 	'Listfiles'                 => [ 'عڪس فهرست' ],

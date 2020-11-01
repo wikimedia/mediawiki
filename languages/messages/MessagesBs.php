@@ -39,6 +39,7 @@ $namespaceAliases = [
 	'Razgovor_s_{{grammar:instrumental|$1}}' => NS_PROJECT_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktivniKorisnici' ],
 	'Allmessages'               => [ 'SvePoruke' ],
@@ -47,6 +48,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Losnaslov' ],
 	'Blankpage'                 => [ 'PraznaStranica' ],
 	'Block'                     => [ 'BlokirajIP' ],
+	'BlockList'                 => [ 'ListaBlokiranjaPrekoIP' ],
 	'Booksources'               => [ 'KnjizniIzvori' ],
 	'BrokenRedirects'           => [ 'NedovršenaPreusmjerenja' ],
 	'Categories'                => [ 'Kategorije' ],
@@ -68,7 +70,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'PutDoDatoteke' ],
 	'Import'                    => [ 'Uvoz' ],
 	'Invalidateemail'           => [ 'PogresanEmail' ],
-	'BlockList'                 => [ 'ListaBlokiranjaPrekoIP' ],
 	'LinkSearch'                => [ 'PotragaLinkova' ],
 	'Listadmins'                => [ 'ListaAdministratora' ],
 	'Listbots'                  => [ 'ListaBotova' ],
@@ -98,8 +99,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'IndeksPrefiksa' ],
 	'Protectedpages'            => [ 'ZasticeneStranice' ],
 	'Protectedtitles'           => [ 'ZasticeniNazivi' ],
-	'Randompage'                => [ 'Slučajna_stranica' ],
 	'RandomInCategory'          => [ 'SlucajnoUKategoriji' ],
+	'Randompage'                => [ 'Slučajna_stranica' ],
 	'Randomredirect'            => [ 'SlucajnoPreusmjerenje' ],
 	'Recentchanges'             => [ 'NedavneIzmjene' ],
 	'Recentchangeslinked'       => [ 'PovezaneNedavneIzmjene' ],

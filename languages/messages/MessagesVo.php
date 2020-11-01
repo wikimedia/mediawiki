@@ -58,6 +58,7 @@ $dateFormats = [
 	'vo plain both' => 'H:i, Y F j',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Nünsvalik' ],
 	'Allpages'                  => [ 'Padsvalik' ],

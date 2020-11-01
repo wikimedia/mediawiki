@@ -66,6 +66,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Blankpage'                 => [ 'Пуста_лаштык' ],
 	'BrokenRedirects'           => [ 'Кӱрылтшӧ_вес_вере_колтымаш-влак' ],
