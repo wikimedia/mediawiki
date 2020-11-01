@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Performs prefix search, returning Title objects
  * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
@@ -33,7 +35,8 @@ class TitlePrefixSearch extends PrefixSearch {
 
 	protected function strings( array $strings ) {
 		$titles = array_map( 'Title::newFromText', $strings );
-		$lb = new LinkBatch( $titles );
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch( $titles );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 		return $titles;

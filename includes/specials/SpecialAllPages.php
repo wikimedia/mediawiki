@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Implements Special:Allpages
  *
@@ -43,11 +46,18 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
 	/**
-	 * @param string $name Name of the special page, as seen in links and URLs (default: 'Allpages')
+	 * @param ILoadBalancer|null $loadBalancer
 	 */
-	public function __construct( $name = 'Allpages' ) {
-		parent::__construct( $name );
+	public function __construct(
+		ILoadBalancer $loadBalancer = null
+	) {
+		parent::__construct( 'Allpages' );
+		// This class is extended and therefor fallback to global state - T265309
+		$this->loadBalancer = $loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
 	}
 
 	/**
@@ -196,7 +206,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			list( $namespace, $fromKey, $from ) = $fromList;
 			list( , $toKey, $to ) = $toList;
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$filterConds = [ 'page_namespace' => $namespace ];
 			if ( $hideredirects ) {
 				$filterConds['page_is_redirect'] = 0;

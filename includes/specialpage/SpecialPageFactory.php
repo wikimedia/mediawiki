@@ -194,8 +194,20 @@ class SpecialPageFactory {
 		'Wantedtemplates' => \SpecialWantedTemplates::class,
 
 		// List of pages
-		'Allpages' => \SpecialAllPages::class,
-		'Prefixindex' => \SpecialPrefixindex::class,
+		'Allpages' => [
+			'class' => \SpecialAllPages::class,
+			'services' => [
+				'DBLoadBalancer',
+			]
+		],
+		'Prefixindex' => [
+			'class' => \SpecialPrefixindex::class,
+			'services' => [
+				'DBLoadBalancer',
+				'LinkCache',
+				'ContentLanguage',
+			]
+		],
 		'Categories' => [
 			'class' => \SpecialCategories::class,
 			'services' => [
