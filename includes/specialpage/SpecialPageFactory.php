@@ -471,6 +471,7 @@ class SpecialPageFactory {
 			'services' => [
 				'RepoGroup',
 				'PermissionManager',
+				'UserOptionsLookup',
 			]
 		],
 		'UploadStash' => [
