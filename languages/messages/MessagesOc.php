@@ -61,12 +61,14 @@ $namespaceAliases = [
 
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messatge_sistèma', 'Messatge_del_sistèma' ],
 	'Allpages'                  => [ 'Totas_las_paginas' ],
 	'Ancientpages'              => [ 'Paginas_ancianas' ],
 	'Blankpage'                 => [ 'Pagina_blanca', 'PaginaBlanca' ],
 	'Block'                     => [ 'Blocar', 'Blocatge' ],
+	'BlockList'                 => [ 'Utilizaires_blocats' ],
 	'Booksources'               => [ 'Obratge_de_referéncia', 'Obratges_de_referéncia' ],
 	'BrokenRedirects'           => [ 'Redireccions_copadas', 'RedireccionsCopadas' ],
 	'Categories'                => [ 'Categorias' ],
@@ -84,7 +86,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Camin_del_Fichièr', 'CamindelFichièr', 'CaminFichièr' ],
 	'Import'                    => [ 'Impòrt', 'Importacion' ],
 	'Invalidateemail'           => [ 'Invalidar_Corrièr_electronic', 'InvalidarCorrièrElectronic' ],
-	'BlockList'                 => [ 'Utilizaires_blocats' ],
 	'LinkSearch'                => [ 'Recèrca_de_ligams', 'RecèrcaDeLigams' ],
 	'Listadmins'                => [ 'Lista_dels_administrators', 'Listadelsadministrators', 'Lista_dels_admins', 'Listadelsadmins', 'Lista_admins', 'Listaadmins' ],
 	'Listbots'                  => [ 'Lista_dels_Bòts', 'ListadelsBòts', 'Lista_dels_Bots', 'ListadelsBots' ],

@@ -39,6 +39,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Usuari_Discussió', 'female' => 'Usuària_Discussió' ],
 ]; // T113616
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usuaris_actius' ],
 	'Allmessages'               => [ 'Missatges', 'MediaWiki' ],
@@ -47,6 +48,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Títol_incorrecte' ],
 	'Blankpage'                 => [ 'Pàgina_en_blanc', 'Blanc' ],
 	'Block'                     => [ 'Bloca' ],
+	'BlockList'                 => [ 'Usuaris_blocats' ],
 	'Booksources'               => [ 'Fonts_bibliogràfiques' ],
 	'BrokenRedirects'           => [ 'Redireccions_rompudes' ],
 	'ChangeEmail'               => [ 'Canvia_adreça_electrònica' ],
@@ -63,7 +65,6 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'Pàgines_menys_editades' ],
 	'FileDuplicateSearch'       => [ 'Cerca_fitxers_duplicats' ],
 	'Import'                    => [ 'Importa' ],
-	'BlockList'                 => [ 'Usuaris_blocats' ],
 	'LinkSearch'                => [ 'Enllaços_web', 'Busca_enllaços', 'Recerca_d\'enllaços_web' ],
 	'Listadmins'                => [ 'Administradors' ],
 	'Listbots'                  => [ 'Bots' ],

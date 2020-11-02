@@ -40,6 +40,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Pogovor_o_kategoriji',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktivniUporabniki' ],
 	'Allmessages'               => [ 'VsaSporočila' ],

@@ -290,11 +290,13 @@ $magicWords = [
 	'pagesize'                  => [ '1', 'بەتمولشەرى', 'БЕТМӨЛШЕРІ', 'PAGESIZE' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'بارلىق_حابارلار' ],
 	'Allpages'                  => [ 'بارلىق_بەتتەر' ],
 	'Ancientpages'              => [ 'ەسكى_بەتتەر' ],
 	'Block'                     => [ 'جايدى_بۇعاتتاۋ', 'IP_بۇعاتتاۋ' ],
+	'BlockList'                 => [ 'بۇعاتتالعاندار' ],
 	'Booksources'               => [ 'كىتاپ_قاينارلارى' ],
 	'BrokenRedirects'           => [ 'جارامسىز_ايداعىشتار', 'جارامسىز_ايداتۋلار' ],
 	'Categories'                => [ 'ساناتتار' ],
@@ -309,7 +311,6 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'ەڭ_از_تۇزەتىلگەن' ],
 	'Import'                    => [ 'سىرتتان_الۋ' ],
 	'Invalidateemail'           => [ 'قۇپتاماۋ_حاتى' ],
-	'BlockList'                 => [ 'بۇعاتتالعاندار' ],
 	'Listadmins'                => [ 'اكىمشىلەر', 'اكىمشى_تىزىمى' ],
 	'Listbots'                  => [ 'بوتتار', 'ٴبوتتار_ٴتىزىمى' ],
 	'Listfiles'                 => [ 'سۋرەت_تىزىمى' ],

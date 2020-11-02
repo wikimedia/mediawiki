@@ -92,6 +92,7 @@ $magicWords = [
 	'url_path'                  => [ '0', 'PAD', 'PATH' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktieweGebruikers' ],
 	'Allmessages'               => [ 'Stelselboodskappe', 'Alle_stelselboodskappe', 'Allestelselboodskappe', 'Boodskappe' ],
@@ -101,6 +102,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Slegtetitel' ],
 	'Blankpage'                 => [ 'SkoonBladsy' ],
 	'Block'                     => [ 'BlokIP' ],
+	'BlockList'                 => [ 'IPBlokLys' ],
 	'Booksources'               => [ 'Boekbronne' ],
 	'BrokenRedirects'           => [ 'Stukkende_aansture', 'Stukkendeaansture' ],
 	'Categories'                => [ 'Kategorieë' ],
@@ -121,7 +123,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Importeer' ],
 	'Invalidateemail'           => [ 'OngeldigeEpos' ],
 	'JavaScriptTest'            => [ 'JavaScriptToets' ],
-	'BlockList'                 => [ 'IPBlokLys' ],
 	'LinkSearch'                => [ 'SkakelSoektog' ],
 	'Listadmins'                => [ 'LysAdministrateurs' ],
 	'Listbots'                  => [ 'LysRobotte' ],

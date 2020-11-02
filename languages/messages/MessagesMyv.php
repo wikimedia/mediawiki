@@ -42,6 +42,7 @@ $namespaceNames = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'ВесеПачтямнэть' ],
 	'Allpages'                  => [ 'ВесеЛопат' ],

@@ -42,6 +42,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Discussion_utilisateur', 'female' => 'Discussion_utilisatrice' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Utilisateurs_actifs', 'UtilisateursActifs' ],
 	'Allmessages'               => [ 'Messages_système', 'Messages_systeme', 'Messagessystème', 'Messagessysteme' ],
@@ -50,6 +51,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Mauvais_titre', 'MauvaisTitre' ],
 	'Blankpage'                 => [ 'Page_blanche', 'PageBlanche' ],
 	'Block'                     => [ 'Bloquer', 'Blocage' ],
+	'BlockList'                 => [ 'Liste_des_blocages', 'ListeDesBlocages', 'Blocages', 'Utilisateurs_bloqués', 'UtilisateursBloqués', 'Utilisateurs_bloques', 'UtilisateursBloques', 'IP_bloquées', 'IPBloquees', 'IPBloquées' ],
 	'Booksources'               => [ 'Ouvrages_de_référence', 'Ouvrages_de_reference', 'Ouvragesderéférence', 'Ouvragesdereference', 'Recherche_ISBN', 'Recherche_isbn', 'RechercheISBN', 'Rechercheisbn' ],
 	'BrokenRedirects'           => [ 'Redirections_cassées', 'RedirectionCassées', 'Redirections_cassees', 'RedirectionsCassees' ],
 	'Categories'                => [ 'Catégories' ],
@@ -70,7 +72,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Chemin_du_fichier', 'CheminDuFichier', 'CheminFichier' ],
 	'Import'                    => [ 'Importer', 'Importation' ],
 	'Invalidateemail'           => [ 'Invalider_le_courriel', 'Invalider_courriel', 'InvaliderCourriel' ],
-	'BlockList'                 => [ 'Liste_des_blocages', 'ListeDesBlocages', 'Blocages', 'Utilisateurs_bloqués', 'UtilisateursBloqués', 'Utilisateurs_bloques', 'UtilisateursBloques', 'IP_bloquées', 'IPBloquees', 'IPBloquées' ],
 	'LinkSearch'                => [ 'Recherche_de_lien', 'Recherche_de_liens' ],
 	'Listadmins'                => [ 'Liste_des_administrateurs', 'Listedesadministrateurs', 'Liste_des_admins', 'Listedesadmins', 'Liste_admins', 'Listeadmins' ],
 	'Listbots'                  => [ 'Liste_des_bots', 'ListedesBots' ],
@@ -104,8 +105,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Index', 'Préfixes', 'Prefixes' ],
 	'Protectedpages'            => [ 'Pages_protégées', 'PagesProtégées', 'Pages_protegees', 'PagesProtegees' ],
 	'Protectedtitles'           => [ 'Titres_protégés', 'TitresProtégés', 'Titres_proteges', 'TitresProteges' ],
-	'Randompage'                => [ 'Page_au_hasard', 'PageAuHasard', 'Au_hasard', 'AuHasard', 'Aléatoire', 'Aleatoire' ],
 	'RandomInCategory'          => [ 'Page_au_hasard_dans_une_catégorie' ],
+	'Randompage'                => [ 'Page_au_hasard', 'PageAuHasard', 'Au_hasard', 'AuHasard', 'Aléatoire', 'Aleatoire' ],
 	'Randomredirect'            => [ 'Redirection_au_hasard', 'Redirect_au_hasard', 'Redirectionauhasard', 'Redirectauhasard', 'Redirection_aléatoire', 'Redirect_aléatoire', 'Redirectionaléatoire', 'Redirectaléatoire', 'Redirection_aleatoire', 'Redirect_aleatoire', 'Redirectionaleatoire', 'Redirectaleatoire' ],
 	'Recentchanges'             => [ 'Modifications_récentes', 'Modifications_recentes', 'ModificationsRécentes', 'ModificationsRecentes' ],
 	'Recentchangeslinked'       => [ 'Suivi_des_liens', 'SuiviDesLiens' ],

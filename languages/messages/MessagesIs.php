@@ -115,6 +115,7 @@ $magicWords = [
 	'special'                   => [ '0', 'kerfissíða', 'special' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Virkir_notendur' ],
 	'Allmessages'               => [ 'Meldingar' ],
@@ -122,6 +123,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Elstu_síður' ],
 	'Blankpage'                 => [ 'Auð_síða' ],
 	'Block'                     => [ 'Banna_vistföng' ],
+	'BlockList'                 => [ 'Bönnuð_vistföng' ],
 	'Booksources'               => [ 'Bókaheimildir' ],
 	'BrokenRedirects'           => [ 'Brotnar_tilvísanir' ],
 	'Categories'                => [ 'Flokkar' ],
@@ -142,7 +144,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Skráarslóð' ],
 	'Import'                    => [ 'Flytja_inn' ],
 	'Invalidateemail'           => [ 'Rangt_netfang' ],
-	'BlockList'                 => [ 'Bönnuð_vistföng' ],
 	'Listadmins'                => [ 'Stjórnendalisti' ],
 	'Listbots'                  => [ 'Vélmennalisti' ],
 	'Listfiles'                 => [ 'Myndalisti' ],

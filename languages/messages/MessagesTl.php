@@ -45,6 +45,7 @@ $namespaceAliases = [
 	'Usapang_kaurian'  => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Masisiglang_mga_Tagagamit' ],
 	'Allmessages'               => [ 'Lahat_ng_mga_mensahe' ],
@@ -53,6 +54,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Masamang_pamagat' ],
 	'Blankpage'                 => [ 'Tanggalin_ang_nilalaman_ng_pahina' ],
 	'Block'                     => [ 'Hadlangan', 'Hadlangan_ang_IP', 'Hadlangan_ang_tagagamit' ],
+	'BlockList'                 => [ 'Talaan_ng_hinahadlangan', 'Talaan_ng_mga_hinahadlangan', 'Talaan_ng_hinahadlangang_IP' ],
 	'Booksources'               => [ 'Mga_pinagmulang_aklat' ],
 	'BrokenRedirects'           => [ 'Naputol_na_mga_panturo_papunta_sa_ibang_pahina', 'NaputulangPanturo' ],
 	'Categories'                => [ 'Mga_kategorya' ],
@@ -75,7 +77,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Pag-aangkat' ],
 	'Invalidateemail'           => [ 'Hindi_tanggap_na_e-liham' ],
 	'JavaScriptTest'            => [ 'Pagsubok_sa_JavaScript' ],
-	'BlockList'                 => [ 'Talaan_ng_hinahadlangan', 'Talaan_ng_mga_hinahadlangan', 'Talaan_ng_hinahadlangang_IP' ],
 	'LinkSearch'                => [ 'Paghahanap_ng_kawing' ],
 	'Listadmins'                => [ 'Talaan_ng_mga_tagapangasiwa' ],
 	'Listbots'                  => [ 'Talaan_ng_mga_bot' ],
@@ -108,8 +109,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Talatuntunan_ng_unlapi' ],
 	'Protectedpages'            => [ 'Mga_pahinang_nakasanggalang' ],
 	'Protectedtitles'           => [ 'Mga_pamagat_na_nakasanggalang' ],
-	'Randompage'                => [ 'Alin_man', 'Alin_mang_pahina' ],
 	'RandomInCategory'          => [ 'Alinmang_kaurian' ],
+	'Randompage'                => [ 'Alin_man', 'Alin_mang_pahina' ],
 	'Randomredirect'            => [ 'Pagtuturo_papunta_sa_alin_mang_pahina' ],
 	'Recentchanges'             => [ 'Mga_huling_binago', 'HulingBinago' ],
 	'Recentchangeslinked'       => [ 'Nakakawing_ng_kamakailang_pagbabago', 'Kaugnay_na_mga_pagbabago' ],

@@ -40,6 +40,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Гутаркі_ўдзельніка', 'female' => 'Гутаркі_ўдзельніцы' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Сыстэмныя_паведамленьні' ],
 	'Allpages'                  => [ 'Усе_старонкі' ],

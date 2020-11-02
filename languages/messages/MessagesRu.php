@@ -131,6 +131,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Обсуждение_участника', 'female' => 'Обсуждение_участницы' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Активные_участники' ],
 	'Allmessages'               => [ 'Системные_сообщения' ],
@@ -139,6 +140,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Недопустимое_название' ],
 	'Blankpage'                 => [ 'Пустая_страница' ],
 	'Block'                     => [ 'Заблокировать' ],
+	'BlockList'                 => [ 'Список_блокировок', 'Блокировки' ],
 	'Booksources'               => [ 'Источники_книг' ],
 	'BrokenRedirects'           => [ 'Разорванные_перенаправления' ],
 	'Categories'                => [ 'Категории' ],
@@ -162,14 +164,13 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'Отменить_подтверждение_адреса' ],
 	'JavaScriptTest'            => [ 'Тестирование_JavaScript' ],
-	'BlockList'                 => [ 'Список_блокировок', 'Блокировки' ],
 	'LinkSearch'                => [ 'Поиск_ссылок' ],
 	'Listadmins'                => [ 'Список_администраторов' ],
 	'Listbots'                  => [ 'Список_ботов' ],
+	'ListDuplicatedFiles'       => [ 'Список_файлов-дубликатов' ],
 	'Listfiles'                 => [ 'Список_файлов', 'Список_изображений' ],
 	'Listgrouprights'           => [ 'Права_групп_участников', 'Список_прав_групп' ],
 	'Listredirects'             => [ 'Список_перенаправлений' ],
-	'ListDuplicatedFiles'       => [ 'Список_файлов-дубликатов' ],
 	'Listusers'                 => [ 'Список_участников' ],
 	'Lockdb'                    => [ 'Заблокировать_БД', 'Заблокировать_базу_данных' ],
 	'Log'                       => [ 'Журналы', 'Журнал' ],

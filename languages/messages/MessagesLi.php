@@ -49,6 +49,7 @@ $namespaceAliases = [
 	'Euverlèk_afbeelding' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktieve_gebroekers' ],
 	'Allmessages'               => [ 'Alle_berichte' ],
@@ -56,6 +57,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Audste_pagina\'s' ],
 	'Blankpage'                 => [ 'Laeg_pagina\'s' ],
 	'Block'                     => [ 'Blokkere' ],
+	'BlockList'                 => [ 'Geblokkeerde_IP\'s' ],
 	'Booksources'               => [ 'Bookwinkele' ],
 	'BrokenRedirects'           => [ 'Gebraoke_doorverwiezinge' ],
 	'Categories'                => [ 'Categorieë' ],
@@ -73,7 +75,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Besjtandspaad' ],
 	'Import'                    => [ 'Importere' ],
 	'Invalidateemail'           => [ 'E-mail_annulere' ],
-	'BlockList'                 => [ 'Geblokkeerde_IP\'s' ],
 	'LinkSearch'                => [ 'Verwiezinge_zeuke' ],
 	'Listadmins'                => [ 'Systeemwèrkers' ],
 	'Listbots'                  => [ 'Botlies' ],

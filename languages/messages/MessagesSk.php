@@ -37,6 +37,7 @@
 
 $fallback = 'cs';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'AktívniPoužívatelia' ],
 	'Allmessages'               => [ 'VšetkySprávy' ],
@@ -46,6 +47,7 @@ $specialPageAliases = [
 	'AutoblockList'             => [ 'AutomatickéBlokovania' ],
 	'Blankpage'                 => [ 'PrázdnaStránka' ],
 	'Block'                     => [ 'Blokovanie' ],
+	'BlockList'                 => [ 'ZoznamBlokovaní' ],
 	'Booksources'               => [ 'KnižnéZdroje' ],
 	'BotPasswords'              => [ 'HesláPreBotov' ],
 	'BrokenRedirects'           => [ 'PokazenéPresmerovania' ],
@@ -68,7 +70,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'HľadanieDuplicitnýchSúborov' ],
 	'Filepath'                  => [ 'CestaKSúboru' ],
 	'Invalidateemail'           => [ 'ZneplatniťEmail' ],
-	'BlockList'                 => [ 'ZoznamBlokovaní' ],
 	'LinkSearch'                => [ 'HľadanieOdkazov' ],
 	'Listadmins'                => [ 'ZoznamSprávcov' ],
 	'Listbots'                  => [ 'ZoznamBotov' ],

@@ -36,6 +36,7 @@ $namespaceAliases = [
 
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ImplijerienOberiant' ],
 	'Allmessages'               => [ 'HollGemennadennoù' ],

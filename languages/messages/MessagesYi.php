@@ -63,6 +63,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'באַניצער_רעדן', 'female' => 'באַניצערין_רעדן' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'טעטיגע_באניצער' ],
 	'Allmessages'               => [ 'סיסטעם_מעלדונגען' ],
@@ -70,6 +71,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'אוראלטע_בלעטער' ],
 	'Blankpage'                 => [ 'ליידיגער_בלאט' ],
 	'Block'                     => [ 'בלאקירן' ],
+	'BlockList'                 => [ 'בלאקירן_ליסטע' ],
 	'BrokenRedirects'           => [ 'צעבראכענע_ווייטערפירונגען' ],
 	'Categories'                => [ 'קאטעגאריעס' ],
 	'ChangePassword'            => [ 'ענדערן_פאסווארט' ],
@@ -84,7 +86,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'עקספארט' ],
 	'Fewestrevisions'           => [ 'ווייניגסטע_רעוויזיעס' ],
 	'Import'                    => [ 'אימפארט' ],
-	'BlockList'                 => [ 'בלאקירן_ליסטע' ],
 	'Listadmins'                => [ 'ליסטע_פון_סיסאפן' ],
 	'Listbots'                  => [ 'ליסטע_פון_באטס' ],
 	'Listfiles'                 => [ 'בילדער' ],

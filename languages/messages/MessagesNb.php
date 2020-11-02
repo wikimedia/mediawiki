@@ -107,6 +107,7 @@ $dateFormats = [
 	'ymd both' => 'Y M j. "kl." H:i',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktive_brukere' ],
 	'Allmessages'               => [ 'Alle_systembeskjeder' ],
@@ -116,6 +117,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Ugyldig_tittel' ],
 	'Blankpage'                 => [ 'Blank_side' ],
 	'Block'                     => [ 'Blokker', 'Blokker_IP', 'Blokker_bruker' ],
+	'BlockList'                 => [ 'Blokkeringsliste', 'IP-blokkeringsliste' ],
 	'Booksources'               => [ 'Bokkilder' ],
 	'BrokenRedirects'           => [ 'Ødelagte_omdirigeringer' ],
 	'Categories'                => [ 'Kategorier' ],
@@ -138,7 +140,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Importer' ],
 	'Invalidateemail'           => [ 'Ugyldiggjøre_e-post' ],
 	'JavaScriptTest'            => [ 'Javascript-test' ],
-	'BlockList'                 => [ 'Blokkeringsliste', 'IP-blokkeringsliste' ],
 	'LinkSearch'                => [ 'Lenkesøk' ],
 	'Listadmins'                => [ 'Administratorliste', 'Administratorer' ],
 	'Listbots'                  => [ 'Robotliste', 'Liste_over_roboter' ],
@@ -174,8 +175,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Prefiksindeks' ],
 	'Protectedpages'            => [ 'Beskyttede_sider' ],
 	'Protectedtitles'           => [ 'Beskyttede_titler' ],
-	'Randompage'                => [ 'Tilfeldig', 'Tilfeldig_side' ],
 	'RandomInCategory'          => [ 'Tilfeldig_fra_kategori' ],
+	'Randompage'                => [ 'Tilfeldig', 'Tilfeldig_side' ],
 	'Randomredirect'            => [ 'Tilfeldig_omdirigering' ],
 	'Recentchanges'             => [ 'Siste_endringer' ],
 	'Recentchangeslinked'       => [ 'Relaterte_endringer' ],

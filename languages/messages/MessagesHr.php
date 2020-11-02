@@ -37,6 +37,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Razgovor_sa_suradnikom', 'female' => 'Razgovor_sa_suradnicom' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivni_suradnici' ],
 	'Allmessages'               => [ 'Sve_poruke' ],
@@ -44,6 +45,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Stare_stranice' ],
 	'Blankpage'                 => [ 'Prazna_stranica' ],
 	'Block'                     => [ 'Blokiraj' ],
+	'BlockList'                 => [ 'Blokirane_adrese' ],
 	'Booksources'               => [ 'Traži_ISBN' ],
 	'BrokenRedirects'           => [ 'Kriva_preusmjeravanja' ],
 	'Categories'                => [ 'Kategorije' ],
@@ -61,7 +63,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Putanja_datoteke' ],
 	'Import'                    => [ 'Uvezi' ],
 	'Invalidateemail'           => [ 'Nevaljana_elektronička_pošta' ],
-	'BlockList'                 => [ 'Blokirane_adrese' ],
 	'LinkSearch'                => [ 'Traži_poveznice', 'Traži_linkove' ],
 	'Listadmins'                => [ 'Administratori', 'Admini' ],
 	'Listbots'                  => [ 'Botovi' ],

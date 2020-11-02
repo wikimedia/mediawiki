@@ -42,6 +42,7 @@ $namespaceAliases = [
 $fallback8bitEncoding = "iso8859-2";
 $separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktív_felhasználók', 'Aktív_szerkesztők' ],
 	'Allmessages'               => [ 'Rendszerüzenetek' ],
@@ -50,6 +51,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Hibás_címek' ],
 	'Blankpage'                 => [ 'Üres_lap' ],
 	'Block'                     => [ 'Blokkolás' ],
+	'BlockList'                 => [ 'Blokkolt_IP-címek_listája' ],
 	'Booksources'               => [ 'Könyvforrások' ],
 	'BrokenRedirects'           => [ 'Nem_létező_lapra_mutató_átirányítások', 'Hibás_átirányítások' ],
 	'Categories'                => [ 'Kategóriák' ],
@@ -70,7 +72,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Fájl_elérési_útja', 'Fájl_elérési_út' ],
 	'Import'                    => [ 'Lapok_importálása' ],
 	'Invalidateemail'           => [ 'E-mail_cím_érvénytelenítése' ],
-	'BlockList'                 => [ 'Blokkolt_IP-címek_listája' ],
 	'LinkSearch'                => [ 'Hivatkozás_keresés' ],
 	'Listadmins'                => [ 'Adminisztrátorok', 'Adminisztrátorok_listája', 'Sysopok' ],
 	'Listbots'                  => [ 'Botok', 'Botok_listája' ],

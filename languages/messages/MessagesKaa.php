@@ -39,6 +39,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Kategoriya_sa\'wbeti',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Ha\'mme xabarlar' ],
 	'Allpages'                  => [ 'Ha\'mme betler' ],

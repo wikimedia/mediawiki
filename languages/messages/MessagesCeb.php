@@ -33,6 +33,7 @@ $namespaceAliases = [
 	'Hisgot_sa_Imahen' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'TanangPanid' ],
 	'BrokenRedirects'           => [ 'BuakngaRedirekta' ],

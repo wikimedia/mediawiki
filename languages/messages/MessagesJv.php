@@ -56,15 +56,16 @@ $namespaceAliases = [ // Kept former namespaces for backwards compatibility - T1
 	'Parembugan_MedhiaWiki' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Naraguna_giyat' ],
 	'Allmessages'               => [ 'Layang_sistem' ],
 	// FIXME: Conflicts with Listfiles
 	// 'AllMyUploads'              => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
 	'Allpages'                  => [ 'Pratélan_kaca', 'Pratelan_kaca' ],
+	'Ancientpages'              => [ 'Kaca_lawas' ],
 	'ApiHelp'                   => [ 'Pitulung_API' ],
 	'ApiSandbox'                => [ 'Bak_wedhi_API' ],
-	'Ancientpages'              => [ 'Kaca_lawas' ],
 	'AutoblockList'             => [ 'Pratélan_swapenggak', 'Pratelan_swapenggak' ],
 	'Badtitle'                  => [ 'Sesirah_ala' ],
 	'Blankpage'                 => [ 'Kaca_kosong' ],
@@ -103,10 +104,10 @@ $specialPageAliases = [
 	'Listbots'                  => [ 'Pratélan_bot', 'Pratelan_bot' ],
 	// FIXME: Conflicts with AllMyUploads
 	// 'Listfiles'                 => [ 'Pratélan_barkas', 'Pratelan_barkas' ],
-	'Listgrouprights'           => [ 'Pratélan_hak_golongan', 'Pratelan_hak_golongan' ],
-	'Listgrants'                => [ 'Pratélan_idin', 'Pratelan_idin' ],
-	'Listredirects'             => [ 'Pratélan_alihan', 'Pratelan_alihan' ],
 	'ListDuplicatedFiles'       => [ 'Pratélan_barkas_dhobel', 'Pratelan_barkas_dhobel' ],
+	'Listgrants'                => [ 'Pratélan_idin', 'Pratelan_idin' ],
+	'Listgrouprights'           => [ 'Pratélan_hak_golongan', 'Pratelan_hak_golongan' ],
+	'Listredirects'             => [ 'Pratélan_alihan', 'Pratelan_alihan' ],
 	'Listusers'                 => [ 'Pratélan_naraguna', 'Pratelan_naraguna' ],
 	'Lockdb'                    => [ 'Gembok_basis_dhata' ],
 	'Log'                       => [ 'Cathetan' ],
@@ -130,8 +131,8 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'Parembuganku' ],
 	'Myuploads'                 => [ 'Unggahanku' ],
 	'Newimages'                 => [ 'Gambar_anyar' ],
-	'NewSection'                => [ 'Pérangan_anyar', 'Perangan_anyar' ],
 	'Newpages'                  => [ 'Kaca_anyar' ],
+	'NewSection'                => [ 'Pérangan_anyar', 'Perangan_anyar' ],
 	'PageData'                  => [ 'Dhata_kaca' ],
 	'PageHistory'               => [ 'Sajarahing_kaca', 'Sajarah' ],
 	'PageInfo'                  => [ 'Katerangan_kaca', 'Katerangan' ],
@@ -144,8 +145,8 @@ $specialPageAliases = [
 	'Protectedpages'            => [ 'Kaca_direksa' ],
 	'Protectedtitles'           => [ 'Sesirah_direksa' ],
 	'Purge'                     => [ 'Resiki' ],
-	'Randompage'                => [ 'Kaca_sembarang' ],
 	'RandomInCategory'          => [ 'Sembarang_ing_kategori' ],
+	'Randompage'                => [ 'Kaca_sembarang' ],
 	'Randomredirect'            => [ 'Alihan_sembarang' ],
 	'Randomrootpage'            => [ 'Kaca_oyod_sembarang' ],
 	'Recentchanges'             => [ 'Owahan_anyar' ],

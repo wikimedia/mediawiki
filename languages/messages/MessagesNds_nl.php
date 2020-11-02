@@ -217,6 +217,7 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'bestaanden', 'bestanden', 'files' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktieve_gebrukers' ],
 	'Allmessages'               => [ 'Alle_systeemteksten' ],
@@ -225,6 +226,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Verkeerde_ziednaam' ],
 	'Blankpage'                 => [ 'Lege_zied' ],
 	'Block'                     => [ 'Blokkeren' ],
+	'BlockList'                 => [ 'IP-blokkeerlieste' ],
 	'Booksources'               => [ 'Boekinformasie' ],
 	'BrokenRedirects'           => [ 'Ebreuken_deurverwiezingen' ],
 	'Categories'                => [ 'Kategorieën' ],
@@ -246,7 +248,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Bestaandslokasie' ],
 	'Import'                    => [ 'Invoeren' ],
 	'Invalidateemail'           => [ 'Netpost_ongeldig' ],
-	'BlockList'                 => [ 'IP-blokkeerlieste' ],
 	'LinkSearch'                => [ 'Verwiezingen_zeuken' ],
 	'Listadmins'                => [ 'Beheerderslieste' ],
 	'Listbots'                  => [ 'Botlieste' ],

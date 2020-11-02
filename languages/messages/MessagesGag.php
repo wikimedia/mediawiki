@@ -49,6 +49,7 @@ $namespaceAliases = [
 	'Kategori_tartışma'  => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'HepsiYazılar', 'HepsiSayfalar', 'HepsiYapraklar' ],
 	'Ancientpages'              => [ 'EskiYazılar', 'EskiSayfalar', 'EskiYapraklar' ],

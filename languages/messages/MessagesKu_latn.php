@@ -53,6 +53,7 @@ $namespaceAliases = [
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $minimumGroupingDigits = 2;
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Hemû_Peyam' ],
 	'Allpages'                  => [ 'Hemû_Rûpel' ],

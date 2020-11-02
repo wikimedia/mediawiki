@@ -39,6 +39,7 @@ $namespaceNames = [
 // Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'KuchiRuraqkuna' ],
 	'Allmessages'               => [ 'TukuyWillaykuna' ],
@@ -48,6 +49,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ManaAllinSuti' ],
 	'Blankpage'                 => [ 'PanqataChusaqchay' ],
 	'Block'                     => [ 'Harkay', 'RuraqtaHarkay', 'IPHarkay' ],
+	'BlockList'                 => [ 'HarkasqaRuraq', 'HarkasqaIP', 'HarkasqaRuraqkuna' ],
 	'Booksources'               => [ 'PukyuLiwru' ],
 	'BrokenRedirects'           => [ 'PantaPusapuna', 'PitisqaPusapuna' ],
 	'Categories'                => [ 'Katiguriyakuna' ],
@@ -70,7 +72,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'WillaniqiNan' ],
 	'Import'                    => [ 'HawamantaChaskiy' ],
 	'Invalidateemail'           => [ 'EChaskitaManaallinchay' ],
-	'BlockList'                 => [ 'HarkasqaRuraq', 'HarkasqaIP', 'HarkasqaRuraqkuna' ],
 	'LinkSearch'                => [ 'TinkitaMaskay', 'TinkikunataMaskay' ],
 	'Listadmins'                => [ 'Kamachiqkuna' ],
 	'Listbots'                  => [ 'RuranaAntachakuna' ],
@@ -104,8 +105,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'QallarinaKaskaSutisuyu' ],
 	'Protectedpages'            => [ 'AmachasqaPanqa' ],
 	'Protectedtitles'           => [ 'AmachasqaSuti' ],
-	'Randompage'                => [ 'MayninpiPanqa' ],
 	'RandomInCategory'          => [ 'KatiguriyapiKikinmanta' ],
+	'Randompage'                => [ 'MayninpiPanqa' ],
 	'Randomredirect'            => [ 'KikinmantaPusapuna' ],
 	'Recentchanges'             => [ 'NaqhaHukchasqa' ],
 	'Recentchangeslinked'       => [ 'HukchasqaTinkimuq' ],

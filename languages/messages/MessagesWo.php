@@ -53,6 +53,7 @@ $namespaceAliases = [
 // Remove French aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'CreateAccount'             => [ 'Sos am sàq' ],
 	'Listfiles'                 => [ 'Limu nataal yi' ],

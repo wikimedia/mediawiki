@@ -58,12 +58,14 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Naudotojo_aptarimas', 'female' => 'Naudotojos_aptarimas' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Visi_pranešimai' ],
 	'Allpages'                  => [ 'Visi_puslapiai' ],
 	'Ancientpages'              => [ 'Seniausi_puslapiai' ],
 	'Blankpage'                 => [ 'Tuščias_puslapis' ],
 	'Block'                     => [ 'Blokuoti_IP' ],
+	'BlockList'                 => [ 'IP_blokavimų_sąrašas' ],
 	'Booksources'               => [ 'Knygų_šaltiniai' ],
 	'BrokenRedirects'           => [ 'Peradresavimai_į_niekur' ],
 	'Categories'                => [ 'Kategorijos' ],
@@ -81,7 +83,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Kelias_iki_failo' ],
 	'Import'                    => [ 'Importas' ],
 	'Invalidateemail'           => [ 'Nutraukti_elektroninio_pašto_galiojimą' ],
-	'BlockList'                 => [ 'IP_blokavimų_sąrašas' ],
 	'LinkSearch'                => [ 'Nuorodų_paieška' ],
 	'Listadmins'                => [ 'Administratorių_sąrašas' ],
 	'Listbots'                  => [ 'Botų_sąrašas' ],

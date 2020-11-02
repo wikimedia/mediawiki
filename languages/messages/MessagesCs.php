@@ -46,6 +46,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Diskuse_s_uživatelem', 'female' => 'Diskuse_s_uživatelkou' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivní_uživatelé', 'Aktivni_uzivatele' ],
 	'Allmessages'               => [ 'Všechna_hlášení', 'Všechny_zprávy', 'Vsechna_hlaseni', 'Vsechny_zpravy' ],
@@ -58,6 +59,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Neplatný_název' ],
 	'Blankpage'                 => [ 'Prázdná_stránka' ],
 	'Block'                     => [ 'Blokování', 'Blokovani', 'Blokovat_uživatele', 'Blokovat_IP', 'Blokovat_uzivatele' ],
+	'BlockList'                 => [ 'Blokovaní_uživatelé', 'Blokovani_uzivatele', 'Zablokovaní_uživatelé' ],
 	'Booksources'               => [ 'Zdroje_knih' ],
 	'BotPasswords'              => [ 'Hesla_pro_boty' ],
 	'BrokenRedirects'           => [ 'Přerušená_přesměrování', 'Prerusena_presmerovani' ],
@@ -84,7 +86,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Cesta_k_souboru' ],
 	'Import'                    => [ 'Importovat_stránky' ],
 	'Invalidateemail'           => [ 'Zneplatnit_e-mail', 'Zrušit_potvrzení_e-mailu' ],
-	'BlockList'                 => [ 'Blokovaní_uživatelé', 'Blokovani_uzivatele', 'Zablokovaní_uživatelé' ],
 	'LinkSearch'                => [ 'Hledání_odkazů', 'Hledani_odkazu' ],
 	'Listadmins'                => [ 'Seznam_správců', 'Seznam_spravcu' ],
 	'Listbots'                  => [ 'Seznam_botů', 'Seznam_botu' ],
@@ -124,9 +125,9 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Stránky_podle_začátku' ],
 	'Protectedpages'            => [ 'Zamčené_stránky', 'Zamcene_stranky' ],
 	'Protectedtitles'           => [ 'Zamčené_názvy', 'Zamcene_nazvy', 'Stránky_které_nelze_vytvořit' ],
+	'RandomInCategory'          => [ 'Náhodná_stránka_v_kategorii' ],
 	'Randompage'                => [ 'Náhodná_stránka', 'Nahodna_stranka' ],
 	'Randomredirect'            => [ 'Náhodné_přesměrování', 'Nahodne_presmerovani' ],
-	'RandomInCategory'          => [ 'Náhodná_stránka_v_kategorii' ],
 	'Randomrootpage'            => [ 'Náhodná_kořenová_stránka' ],
 	'Recentchanges'             => [ 'Poslední_změny', 'Posledni_zmeny' ],
 	'Recentchangeslinked'       => [ 'Související_změny', 'Souvisejici_zmeny' ],

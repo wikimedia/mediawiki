@@ -58,6 +58,7 @@ $namespaceAliases = [
 	'Συζήτηση_εικόνας' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ΕνεργοίΧρήστες' ],
 	'Allmessages'               => [ 'ΌλαΤαΜηνύματα' ],
@@ -67,6 +68,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ΚακόςΤίτλος' ],
 	'Blankpage'                 => [ 'ΚενήΣελίδα' ],
 	'Block'                     => [ 'Φραγή', 'ΦραγήIP', 'ΦραγήΧρήστη' ],
+	'BlockList'                 => [ 'ΚατάλογοςΦραγών', 'ΦραγώνΚατάλογος', 'ΚατάλογοςΦραγώνIP' ],
 	'Booksources'               => [ 'ΠηγέςΒιβλίων' ],
 	'BrokenRedirects'           => [ 'ΚατεστραμμένεςΑνακατευθύνσεις' ],
 	'Categories'                => [ 'Κατηγορίες' ],
@@ -89,7 +91,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'ΔιαδρομήΑρχείου' ],
 	'Import'                    => [ 'Εισαγωγή' ],
 	'Invalidateemail'           => [ 'ΑκύρωσηEmail' ],
-	'BlockList'                 => [ 'ΚατάλογοςΦραγών', 'ΦραγώνΚατάλογος', 'ΚατάλογοςΦραγώνIP' ],
 	'LinkSearch'                => [ 'ΣυνδέσμουΑναζήτηση' ],
 	'Listadmins'                => [ 'ΚατάλογοςΔιαχειριστών' ],
 	'Listbots'                  => [ 'ΚατάλογοςBot' ],
@@ -121,8 +122,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'ΕυρετήριοΠροθεμάτων' ],
 	'Protectedpages'            => [ 'ΠροστατευμένεςΣελίδες' ],
 	'Protectedtitles'           => [ 'ΠροστατευμένοιΤίτλοι' ],
-	'Randompage'                => [ 'Τυχαία', 'ΤυχαίαΣελίδα', 'Τυχαίο' ],
 	'RandomInCategory'          => [ 'ΤυχαίαΣτηνΚατηγορία', 'ΤυχαίοΣτηνΚατηγορία' ],
+	'Randompage'                => [ 'Τυχαία', 'ΤυχαίαΣελίδα', 'Τυχαίο' ],
 	'Randomredirect'            => [ 'ΤυχαίαΑνακατεύθυνση' ],
 	'Recentchanges'             => [ 'ΠρόσφατεςΑλλαγές' ],
 	'Recentchangeslinked'       => [ 'ΣυνδεδεμένεςΠρόσφατεςΑλλαγές', 'ΣχετικέςΑλλαγές' ],

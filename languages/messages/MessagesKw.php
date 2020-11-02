@@ -58,6 +58,7 @@ $namespaceAliases = [
 	'Kescows_Class'      => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'DevnydhyoryonVyw' ],
 	'Allmessages'               => [ 'OllMessajys' ],
@@ -66,6 +67,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'TitelDrog' ],
 	'Blankpage'                 => [ 'FolenWag' ],
 	'Block'                     => [ 'Difenna' ],
+	'BlockList'                 => [ 'RolDhifen' ],
 	'Booksources'               => [ 'PennfentynyowLyver' ],
 	'BrokenRedirects'           => [ 'DaskedyansowTerrys' ],
 	'Categories'                => [ 'Klassys' ],
@@ -87,7 +89,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Ymperthi' ],
 	'Invalidateemail'           => [ 'DigomposaEbost' ],
 	'JavaScriptTest'            => [ 'PrevyansJavaScript' ],
-	'BlockList'                 => [ 'RolDhifen' ],
 	'LinkSearch'                => [ 'HwilasKevrennow' ],
 	'Listadmins'                => [ 'RolyaMenystroryon' ],
 	'Listbots'                  => [ 'RolyaBottys' ],

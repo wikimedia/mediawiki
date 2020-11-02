@@ -60,6 +60,7 @@ $namespaceAliases = [
 	'సహాయము_చర్చ' => NS_HELP_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'చురుగ్గావున్నవాడుకరులు' ],
 	'Allmessages'               => [ 'అన్నిసందేశాలు' ],

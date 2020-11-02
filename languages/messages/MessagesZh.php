@@ -94,12 +94,14 @@ $namespaceAliases = [
 	'分類討論' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ '所有消息', '所有訊息', '所有讯息' ],
 	'Allpages'                  => [ '所有页面', '所有頁面' ],
 	'Ancientpages'              => [ '最早页面', '最早頁面' ],
 	'Badtitle'                  => [ '错误标题', '无效标题', '錯誤標題' ],
 	'Blankpage'                 => [ '空白页面', '空白頁面' ],
+	'BlockList'                 => [ '封禁列表' ],
 	'Booksources'               => [ '网络书源', '網絡書源', '網路書源' ],
 	'BrokenRedirects'           => [ '受损重定向' ],
 	'Categories'                => [ '页面分类', '頁面分類' ],
@@ -117,7 +119,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ '文件路径', '文件路徑', '檔案路徑', '档案路径' ],
 	'Import'                    => [ '导入页面', '導入頁面', '匯入頁面', '汇入页面' ],
 	'Invalidateemail'           => [ '不可识别的电邮地址', '不可識別的電郵位址' ],
-	'BlockList'                 => [ '封禁列表' ],
 	'LinkSearch'                => [ '链接搜索', '鏈接搜索', '連結搜尋', '连结搜寻' ],
 	'Listadmins'                => [ '管理员列表', '管理員列表' ],
 	'Listbots'                  => [ '机器人列表', '機器人清單', '機械人清單' ],

@@ -35,6 +35,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Lodu_kategorijas',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'KaikTedotused' ],
 	'Allpages'                  => [ 'KaikLehtesed' ],

@@ -50,6 +50,7 @@ $namespaceAliases = [
 	'Категорийы_тыххæй_дискусси'  => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'АктивонАрхайджытæ' ],
 	'Allmessages'               => [ 'ФыстæджытæИууылдæр' ],
@@ -58,6 +59,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Æвзæрном' ],
 	'Blankpage'                 => [ 'АфтидФарс' ],
 	'Block'                     => [ 'Блок' ],
+	'BlockList'                 => [ 'Блокты_Номхыгъд' ],
 	'Booksources'               => [ 'ЧингуытыРавзæрæнтæ' ],
 	'BrokenRedirects'           => [ 'ЦъæлРарвыстытæ' ],
 	'Categories'                => [ 'Категоритæ' ],
@@ -79,7 +81,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'EmailРабæлвырдКæнын' ],
 	'JavaScriptTest'            => [ 'JavaScriptТест' ],
-	'BlockList'                 => [ 'Блокты_Номхыгъд' ],
 	'LinkSearch'                => [ 'ÆрвитæнАгурын' ],
 	'Listadmins'                => [ 'РадгæстыНомхыгъд' ],
 	'Listbots'                  => [ 'БоттыНомхыгъд' ],

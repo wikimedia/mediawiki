@@ -71,12 +71,14 @@ $dateFormats = [
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Nuntia_systematis' ],
 	'Allpages'                  => [ 'Paginae_omnes', 'Omnes_paginae' ],
 	'Ancientpages'              => [ 'Paginae_veterrimae' ],
 	'Blankpage'                 => [ 'Pagina_vacua' ],
 	'Block'                     => [ 'Usorem_obstruere' ],
+	'BlockList'                 => [ 'Usores_obstructi' ],
 	'Booksources'               => [ 'Librorum_fontes' ],
 	'BrokenRedirects'           => [ 'Redirectiones_fractae' ],
 	'Categories'                => [ 'Categoriae' ],
@@ -94,7 +96,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Quaerere_fasciculos_duplices', 'Quaerere_imagines_duplices' ],
 	'Import'                    => [ 'Importare', 'Paginas_importare' ],
 	'Invalidateemail'           => [ 'Adfimationem_inscriptionis_electronicae_abrogare' ],
-	'BlockList'                 => [ 'Usores_obstructi' ],
 	'LinkSearch'                => [ 'Quaerere_nexus_externos' ],
 	'Listadmins'                => [ 'Magistratus' ],
 	'Listbots'                  => [ 'Automata' ],

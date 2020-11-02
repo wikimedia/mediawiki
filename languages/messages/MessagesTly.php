@@ -40,6 +40,7 @@ $namespaceAliases = [
 	'Tispiron_nopegət' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'Һәммәј_сәһифон' ],
 	'Blankpage'                 => [ 'Тәјлијә_сәһифә' ],

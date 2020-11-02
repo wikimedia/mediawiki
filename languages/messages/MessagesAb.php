@@ -54,6 +54,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Categories'                => [ 'Акатегориақәа' ],
 	'Mycontributions'           => [ 'Архиарақәа' ],

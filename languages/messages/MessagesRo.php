@@ -192,6 +192,7 @@ $namespaceAliases = [
 	'Discuţie_Categorie'  => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Utilizatori_activi' ],
 	'Allmessages'               => [ 'Toate_mesajele' ],
@@ -199,6 +200,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Pagini_vechi' ],
 	'Blankpage'                 => [ 'Pagină_goală' ],
 	'Block'                     => [ 'Blochează_IP' ],
+	'BlockList'                 => [ 'Listă_IP_blocat' ],
 	'Booksources'               => [ 'Referințe_în_cărți' ],
 	'BrokenRedirects'           => [ 'Redirectări_invalide' ],
 	'Categories'                => [ 'Categorii' ],
@@ -216,7 +218,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Cale_fișier' ],
 	'Import'                    => [ 'Importă' ],
 	'Invalidateemail'           => [ 'Invalidează_email' ],
-	'BlockList'                 => [ 'Listă_IP_blocat' ],
 	'LinkSearch'                => [ 'Căutare_legături' ],
 	'Listadmins'                => [ 'Listă_administratori' ],
 	'Listbots'                  => [ 'Listă_roboți' ],

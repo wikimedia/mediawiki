@@ -128,6 +128,7 @@ $minimumGroupingDigits = 2;
 
 $linkTrail = '/^([a-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]+)(.*)$/sDu';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktywni_użytkownicy' ],
 	'Allmessages'               => [ 'Wszystkie_komunikaty' ],
@@ -136,6 +137,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Zły_tytuł' ],
 	'Blankpage'                 => [ 'Pusta_strona' ],
 	'Block'                     => [ 'Blokuj' ],
+	'BlockList'                 => [ 'Zablokowani' ],
 	'Booksources'               => [ 'Książki' ],
 	'BrokenRedirects'           => [ 'Zerwane_przekierowania' ],
 	'Categories'                => [ 'Kategorie' ],
@@ -157,7 +159,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Ścieżka_do_pliku' ],
 	'Invalidateemail'           => [ 'Anuluj_e-mail' ],
 	'JavaScriptTest'            => [ 'Test_JavaScriptu' ],
-	'BlockList'                 => [ 'Zablokowani' ],
 	'LinkSearch'                => [ 'Wyszukiwarka_linków' ],
 	'Listadmins'                => [ 'Administratorzy' ],
 	'Listbots'                  => [ 'Boty' ],
@@ -193,8 +194,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Strony_według_prefiksu' ],
 	'Protectedpages'            => [ 'Zabezpieczone_strony' ],
 	'Protectedtitles'           => [ 'Zabezpieczone_nazwy_stron' ],
-	'Randompage'                => [ 'Losowa_strona', 'Losowa' ],
 	'RandomInCategory'          => [ 'Losowa_w_kategorii', 'Losowa_strona_w_kategorii' ],
+	'Randompage'                => [ 'Losowa_strona', 'Losowa' ],
 	'Randomredirect'            => [ 'Losowe_przekierowanie' ],
 	'Recentchanges'             => [ 'Ostatnie_zmiany', 'OZ' ],
 	'Recentchangeslinked'       => [ 'Zmiany_w_linkowanych', 'Zmiany_w_linkujących' ],

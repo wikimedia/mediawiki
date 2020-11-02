@@ -50,6 +50,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Көхтөөх_кыттааччылар' ],
 	'Allmessages'               => [ 'Тиһик_биллэриилэрэ' ],
@@ -58,6 +59,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Сатаммат_аат' ],
 	'Blankpage'                 => [ 'Кураанах_сирэй' ],
 	'Block'                     => [ 'Хааччахтаа' ],
+	'BlockList'                 => [ 'Хааччах_испииһэгэ' ],
 	'Booksources'               => [ 'Төрүт_кинигэлэр' ],
 	'BrokenRedirects'           => [ 'Быстыбыт_утаарыылар' ],
 	'Categories'                => [ 'Категориялар' ],
@@ -81,14 +83,13 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'Аадырыһы_бигэргэтиини_суох_гын' ],
 	'JavaScriptTest'            => [ 'JavaScript_тургутуу' ],
-	'BlockList'                 => [ 'Хааччах_испииһэгэ' ],
 	'LinkSearch'                => [ 'Сигэни_көрдөөһүн' ],
 	'Listadmins'                => [ 'Дьаһабыллар_испииһэктэрэ' ],
 	'Listbots'                  => [ 'Буоттар_испииһиэктэрэ' ],
+	'ListDuplicatedFiles'       => [ 'Хос_билэ_испииһэгэ' ],
 	'Listfiles'                 => [ 'Билэ_испииһэгэ' ],
 	'Listgrouprights'           => [ 'Кыттааччылар_бөлөхтөрүн_бырааба' ],
 	'Listredirects'             => [ 'Утаарыы_испииһэгэ' ],
-	'ListDuplicatedFiles'       => [ 'Хос_билэ_испииһэгэ' ],
 	'Listusers'                 => [ 'Кыттааччы_испииһэгэ' ],
 	'Lockdb'                    => [ 'БО_хааччахтааһын' ],
 	'Log'                       => [ 'Сурунааллар' ],

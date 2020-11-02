@@ -192,6 +192,7 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'berkas', 'files' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Pengguna_aktif', 'PenggunaAktif' ],
 	'Allmessages'               => [ 'Pesan_sistem', 'PesanSistem' ],
@@ -200,6 +201,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Judul_yang_buruk' ],
 	'Blankpage'                 => [ 'Halaman_kosong', 'HalamanKosong' ],
 	'Block'                     => [ 'Blokir_pengguna', 'BlokirPengguna' ],
+	'BlockList'                 => [ 'Daftar_pemblokiran', 'DaftarPemblokiran' ],
 	'Booksources'               => [ 'Sumber_buku', 'SumberBuku' ],
 	'BrokenRedirects'           => [ 'Pengalihan_rusak', 'PengalihanRusak' ],
 	'Categories'                => [ 'Daftar_kategori', 'DaftarKategori', 'Kategori' ],
@@ -221,7 +223,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Lokasi_berkas', 'Lokasi_arsip', 'LokasiArsip' ],
 	'Import'                    => [ 'Impor_halaman', 'Impor' ],
 	'Invalidateemail'           => [ 'Batalkan_validasi_surel', 'BatalkanValidasiSurel' ],
-	'BlockList'                 => [ 'Daftar_pemblokiran', 'DaftarPemblokiran' ],
 	'LinkSearch'                => [ 'Pranala_luar', 'PranalaLuar', 'Pencarian_pranala', 'PencarianPranala' ],
 	'Listadmins'                => [ 'Daftar_pengurus', 'DaftarPengurus' ],
 	'Listbots'                  => [ 'Daftar_bot', 'DaftarBot' ],
@@ -256,8 +257,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Indeks_awalan', 'IndeksAwalan' ],
 	'Protectedpages'            => [ 'Halaman_yang_dilindungi', 'HalamanDilindungi' ],
 	'Protectedtitles'           => [ 'Judul_yang_dilindungi', 'JudulDilindungi' ],
-	'Randompage'                => [ 'Halaman_sembarang', 'HalamanSembarang' ],
 	'RandomInCategory'          => [ 'Sembarang_di_kategori', 'SembarangDiKategori' ],
+	'Randompage'                => [ 'Halaman_sembarang', 'HalamanSembarang' ],
 	'Randomredirect'            => [ 'Pengalihan_sembarang', 'PengalihanSembarang' ],
 	'Recentchanges'             => [ 'Perubahan_terbaru', 'PerubahanTerbaru', 'RC', 'PT' ],
 	'Recentchangeslinked'       => [ 'Perubahan_terkait', 'PerubahanTerkait' ],

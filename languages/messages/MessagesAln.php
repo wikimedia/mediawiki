@@ -43,6 +43,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Përdoruesi_diskutim', 'female' => 'Përdoruesja_diskutim' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Search'                    => [ 'Kërko' ],
 ];

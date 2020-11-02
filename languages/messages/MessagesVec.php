@@ -72,6 +72,7 @@ $namespaceAliases = [
 	'Utente'               => NS_USER,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UtentiAtivi' ],
 	'Allmessages'               => [ 'Messagi' ],
@@ -81,6 +82,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'TitoloSbalià' ],
 	'Blankpage'                 => [ 'PaginaVoda' ],
 	'Block'                     => [ 'Bloca' ],
+	'BlockList'                 => [ 'IPBlocài' ],
 	'Booksources'               => [ 'SercaISBN' ],
 	'BrokenRedirects'           => [ 'RimandiSbalià' ],
 	'Categories'                => [ 'Categorie' ],
@@ -102,7 +104,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'PercorsoFile' ],
 	'Import'                    => [ 'Inporta' ],
 	'Invalidateemail'           => [ 'InvalidaEMail' ],
-	'BlockList'                 => [ 'IPBlocài' ],
 	'LinkSearch'                => [ 'SercaLigamenti' ],
 	'Listadmins'                => [ 'Aministradori' ],
 	'Listbots'                  => [ 'ListaDeiBot' ],
