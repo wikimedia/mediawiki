@@ -1033,7 +1033,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$contents = file_get_contents( $dest );
-		$this->assertNotEquals( false, $contents, "File at $dest exists ($backendName)." );
+		$this->assertIsString( $contents, "File at $dest exists ($backendName)." );
 
 		if ( $okStatus ) {
 			$this->assertEquals( $expContent, $contents,
@@ -1296,7 +1296,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( is_array( $source ) ) {
 			$contents = $this->backend->getFileContentsMulti( [ 'srcs' => $source ] );
 			foreach ( $contents as $path => $data ) {
-				$this->assertNotEquals( false, $data, "Contents of $path exists ($backendName)." );
+				$this->assertIsString( $data, "Contents of $path exists ($backendName)." );
 				$this->assertEquals(
 					current( $content ),
 					$data,
@@ -1316,7 +1316,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			);
 		} else {
 			$data = $this->backend->getFileContents( [ 'src' => $source ] );
-			$this->assertNotEquals( false, $data, "Contents of $source exists ($backendName)." );
+			$this->assertIsString( $data, "Contents of $source exists ($backendName)." );
 			$this->assertEquals( $content[0], $data, "Contents of $source is correct ($backendName)." );
 		}
 	}
@@ -1370,7 +1370,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				$this->assertNotNull( $tmpFile,
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
-				$this->assertNotEquals( false, $contents, "Local copy of $path exists ($backendName)." );
+				$this->assertIsString( $contents, "Local copy of $path exists ($backendName)." );
 				$this->assertEquals(
 					current( $content ),
 					$contents,
@@ -1393,7 +1393,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->assertNotNull( $tmpFile,
 				"Creation of local copy of $source succeeded ($backendName)." );
 			$contents = file_get_contents( $tmpFile->getPath() );
-			$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
+			$this->assertIsString( $contents, "Local copy of $source exists ($backendName)." );
 			$this->assertEquals(
 				$content[0],
 				$contents,
@@ -1455,7 +1455,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				$this->assertNotNull( $tmpFile,
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
-				$this->assertNotEquals( false, $contents, "Local ref of $path exists ($backendName)." );
+				$this->assertIsString( $contents, "Local ref of $path exists ($backendName)." );
 				$this->assertEquals(
 					current( $content ),
 					$contents,
@@ -1478,7 +1478,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->assertNotNull( $tmpFile,
 				"Creation of local copy of $source succeeded ($backendName)." );
 			$contents = file_get_contents( $tmpFile->getPath() );
-			$this->assertNotEquals( false, $contents, "Local ref of $source exists ($backendName)." );
+			$this->assertIsString( $contents, "Local ref of $source exists ($backendName)." );
 			$this->assertEquals( $content[0], $contents, "Local ref of $source is correct ($backendName)." );
 		}
 	}

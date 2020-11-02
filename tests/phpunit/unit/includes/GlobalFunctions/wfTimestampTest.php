@@ -180,15 +180,15 @@ class WfTimestampTest extends MediaWikiUnitTestCase {
 		// for the cases where the test is run in a second boundary.
 
 		$zero = wfTimestamp( TS_UNIX, 0 );
-		$this->assertNotEquals( false, $zero );
+		$this->assertIsString( $zero );
 		$this->assertLessThan( 5, $zero - $now );
 
 		$empty = wfTimestamp( TS_UNIX, '' );
-		$this->assertNotEquals( false, $empty );
+		$this->assertIsString( $empty );
 		$this->assertLessThan( 5, $empty - $now );
 
 		$null = wfTimestamp( TS_UNIX, null );
-		$this->assertNotEquals( false, $null );
+		$this->assertIsString( $null );
 		$this->assertLessThan( 5, $null - $now );
 	}
 }
