@@ -923,6 +923,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\HistoryRevisionToolsHook' => __DIR__ . '/includes/actions/Hook/HistoryRevisionToolsHook.php',
 	'MediaWiki\\Hook\\HistoryToolsHook' => __DIR__ . '/includes/actions/Hook/HistoryToolsHook.php',
 	'MediaWiki\\Hook\\IRCLineURLHook' => __DIR__ . '/includes/rcfeed/Hook/IRCLineURLHook.php',
+	'MediaWiki\\Hook\\ImportHandleContentXMLTagHook' => __DIR__ . '/includes/import/Hook/ImportHandleContentXMLTagHook.php',
 	'MediaWiki\\Hook\\ImportHandleLogItemXMLTagHook' => __DIR__ . '/includes/import/Hook/ImportHandleLogItemXMLTagHook.php',
 	'MediaWiki\\Hook\\ImportHandlePageXMLTagHook' => __DIR__ . '/includes/import/Hook/ImportHandlePageXMLTagHook.php',
 	'MediaWiki\\Hook\\ImportHandleRevisionXMLTagHook' => __DIR__ . '/includes/import/Hook/ImportHandleRevisionXMLTagHook.php',
