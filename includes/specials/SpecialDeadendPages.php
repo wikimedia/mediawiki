@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that list pages that contain no link to other pages
  *
@@ -33,10 +35,12 @@ class SpecialDeadendPages extends PageQueryPage {
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Deadendpages' );
 		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	protected function getPageHeader() {

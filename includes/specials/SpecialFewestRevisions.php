@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -35,9 +36,14 @@ class SpecialFewestRevisions extends QueryPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Fewestrevisions' );
 		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {

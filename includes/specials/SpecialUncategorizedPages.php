@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page looking for page without any category.
  *
@@ -36,11 +38,13 @@ class SpecialUncategorizedPages extends PageQueryPage {
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo ) {
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Uncategorizedpages' );
 		$this->addHelpLink( 'Help:Categories' );
 		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	protected function sortDescending() {

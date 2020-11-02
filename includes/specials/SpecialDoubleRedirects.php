@@ -63,6 +63,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->setDBLoadBalancer( $loadBalancer );
 		$this->dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 	}
 

@@ -32,15 +32,12 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialMIMESearch extends QueryPage {
 	protected $major, $minor, $mime;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct( ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'MIMEsearch' );
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {
@@ -144,7 +141,7 @@ class SpecialMIMESearch extends QueryPage {
 	}
 
 	protected function getSuggestionsForTypes() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$lastMajor = null;
 		$suggestions = [];
 		$result = $dbr->select(

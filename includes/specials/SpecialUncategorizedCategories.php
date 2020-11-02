@@ -36,21 +36,14 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
-	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct(
-		ILoadBalancer $loadBalancer,
-		NamespaceInfo $namespaceInfo
-	) {
-		parent::__construct( $namespaceInfo );
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
+		parent::__construct( $namespaceInfo, $loadBalancer );
 		$this->mName = 'Uncategorizedcategories';
 		$this->requestedNamespace = NS_CATEGORY;
-		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -86,7 +79,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {
-			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $exceptionList ) . ' )';
 		}
 

@@ -41,9 +41,6 @@ class SpecialBrokenRedirects extends QueryPage {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -57,7 +54,7 @@ class SpecialBrokenRedirects extends QueryPage {
 		parent::__construct( 'BrokenRedirects' );
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {
@@ -77,7 +74,7 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		return [
 			'tables' => [

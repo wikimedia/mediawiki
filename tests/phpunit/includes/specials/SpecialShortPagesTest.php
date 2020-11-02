@@ -24,7 +24,11 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 			// empty hook handler
 		} );
 
-		$page = new SpecialShortPages( MediaWikiServices::getInstance()->getNamespaceInfo() );
+		$services = MediaWikiServices::getInstance();
+		$page = new SpecialShortPages(
+			$services->getNamespaceInfo(),
+			$services->getDBLoadBalancer()
+		);
 		$queryInfo = $page->getQueryInfo();
 
 		$this->assertArrayHasKey( 'conds', $queryInfo );

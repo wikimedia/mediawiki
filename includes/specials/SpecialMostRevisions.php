@@ -24,9 +24,16 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 class SpecialMostRevisions extends SpecialFewestRevisions {
-	public function __construct( NamespaceInfo $namespaceInfo ) {
-		parent::__construct( $namespaceInfo );
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
+		parent::__construct( $namespaceInfo, $loadBalancer );
 		$this->mName = 'Mostrevisions';
 	}
 
