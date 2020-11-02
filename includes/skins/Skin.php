@@ -882,7 +882,7 @@ abstract class Skin extends ContextSource {
 		if ( $config->get( 'RightsPage' ) ) {
 			$title = Title::newFromText( $config->get( 'RightsPage' ) );
 			$link = $linkRenderer->makeKnownLink(
-				$title, new HtmlArmor( $config->get( 'RightsText' ) )
+				$title, new HtmlArmor( $config->get( 'RightsText' ) ?: $title->getText() )
 			);
 		} elseif ( $config->get( 'RightsUrl' ) ) {
 			$link = Linker::makeExternalLink( $config->get( 'RightsUrl' ), $config->get( 'RightsText' ) );
