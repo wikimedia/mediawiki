@@ -174,7 +174,7 @@ class CacheHelper implements ICacheHelper {
 	 */
 	protected function initCaching() {
 		if ( $this->cacheEnabled && $this->hasCached === null ) {
-			$cachedChunks = wfGetCache( CACHE_ANYTHING )->get( $this->getCacheKeyString() );
+			$cachedChunks = ObjectCache::getInstance( CACHE_ANYTHING )->get( $this->getCacheKeyString() );
 
 			$this->hasCached = is_array( $cachedChunks );
 			$this->cachedChunks = $this->hasCached ? $cachedChunks : [];
@@ -250,7 +250,7 @@ class CacheHelper implements ICacheHelper {
 	 */
 	public function saveCache() {
 		if ( $this->cacheEnabled && $this->hasCached === false && !empty( $this->cachedChunks ) ) {
-			wfGetCache( CACHE_ANYTHING )->set(
+			ObjectCache::getInstance( CACHE_ANYTHING )->set(
 				$this->getCacheKeyString(),
 				$this->cachedChunks,
 				$this->cacheExpiry
