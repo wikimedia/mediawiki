@@ -3552,8 +3552,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Vergleichen",
-	"compare-invalid-title": "Der angegebene Seitenname ist ungültig.",
-	"compare-title-not-exists": "Der angegebene Seitenname ist nicht vorhanden.",
 	"compare-revision-not-exists": "Die angegebene Version ist nicht vorhanden.",
 	"diff-form": "Unterschiede",
 	"diff-form-oldid": "Alte Versionskennung (optional)",

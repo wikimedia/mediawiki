@@ -3642,8 +3642,6 @@
 	"compare-rev1": "版本1",
 	"compare-rev2": "版本2",
 	"compare-submit": "对比",
-	"compare-invalid-title": "您指定的标题无效。",
-	"compare-title-not-exists": "您指定的标题不存在。",
 	"compare-revision-not-exists": "指定的版本不存在。",
 	"diff-form": "差异",
 	"diff-form-oldid": "旧修订版本ID（可选）",

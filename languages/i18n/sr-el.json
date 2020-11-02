@@ -3551,8 +3551,6 @@
 	"compare-rev1": "Revizija 1",
 	"compare-rev2": "Izmena 2",
 	"compare-submit": "Uporedi",
-	"compare-invalid-title": "Naslov koji ste naveli je nevažeći.",
-	"compare-title-not-exists": "Navedeni naslov ne postoji.",
 	"compare-revision-not-exists": "Revizija koju ste naveli ne postoji.",
 	"diff-form": "Razlike",
 	"diff-form-oldid": "ID stare izmene (opcionalno)",

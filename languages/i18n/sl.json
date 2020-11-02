@@ -3431,8 +3431,6 @@
 	"compare-rev1": "Redakcija 1",
 	"compare-rev2": "Redakcija 2",
 	"compare-submit": "Primerjaj",
-	"compare-invalid-title": "Navedeni naslov ni veljaven.",
-	"compare-title-not-exists": "Navedeni naslov ne obstaja.",
 	"compare-revision-not-exists": "Navedena redakcija ne obstaja.",
 	"diff-form": "Razlike",
 	"diff-form-oldid": "ID stare redakcije (izbirno)",

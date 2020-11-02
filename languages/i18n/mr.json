@@ -3039,8 +3039,6 @@
 	"compare-rev1": "आवर्तन १",
 	"compare-rev2": "आवर्तन २",
 	"compare-submit": "तुलना करा",
-	"compare-invalid-title": "तुम्ही नमूद केलेले शीर्षक अग्राह्य आहे.",
-	"compare-title-not-exists": "या नावाने काहीही अस्तित्वात नाही.",
 	"compare-revision-not-exists": "आपण नमूद करत असलेली आवृत्ती अस्तित्वात नाही.",
 	"diff-form": "फरक",
 	"diff-form-oldid": "जुन्या आवृत्तीची ओळखण (ऐच्छिक)",

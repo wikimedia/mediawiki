@@ -2771,8 +2771,6 @@
 	"compare-rev1": "Нұсқа 1",
 	"compare-rev2": "Нұсқа 2",
 	"compare-submit": "Салыстыру",
-	"compare-invalid-title": "Cіз көрсеткен атау жарамды емес.",
-	"compare-title-not-exists": "Cіз көрсеткен атау жоқ.",
 	"compare-revision-not-exists": "Cіз көрсеткен нұсқа жоқ.",
 	"dberr-problems": "Кешіріңіз! Бұл сайтта техникалық қиыншылықтар кездесті.",
 	"dberr-again": "Біраз күте тұрыңыз, сосын бетті қайта жүктеңіз.",

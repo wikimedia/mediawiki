@@ -3542,8 +3542,6 @@
 	"compare-rev1": "Versie 1",
 	"compare-rev2": "Versie 2",
 	"compare-submit": "Vergelijken",
-	"compare-invalid-title": "De opgegeven pagina is ongeldig.",
-	"compare-title-not-exists": "De titel die u hebt opgegeven bestaat niet.",
 	"compare-revision-not-exists": "De versie die u hebt opgegeven bestaat niet.",
 	"diff-form": "Wijzigingen",
 	"diff-form-oldid": "Oude versienummer (optioneel)",

@@ -3552,8 +3552,6 @@
 	"compare-rev1": "Phiên bản 1",
 	"compare-rev2": "Phiên bản 2",
 	"compare-submit": "So sánh",
-	"compare-invalid-title": "Tên trang chỉ định không hợp lệ.",
-	"compare-title-not-exists": "Tên trang chỉ định không tồn tại.",
 	"compare-revision-not-exists": "Phiên bản chỉ định không tồn tại.",
 	"diff-form": "Khác biệt",
 	"diff-form-oldid": "Số phiên bản cũ (tùy chọn)",

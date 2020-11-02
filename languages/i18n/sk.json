@@ -3394,8 +3394,6 @@
 	"compare-rev1": "Revízia 1",
 	"compare-rev2": "Revízia 2",
 	"compare-submit": "Porovnať",
-	"compare-invalid-title": "Názov, ktorý ste zadali nie je platný.",
-	"compare-title-not-exists": "Názov, ktorý ste zadali neexistuje.",
 	"compare-revision-not-exists": "Revízia, ktorú ste zadali, neexistuje.",
 	"diff-form": "Rozdiely",
 	"diff-form-oldid": "ID starej revízie (nepovinné)",

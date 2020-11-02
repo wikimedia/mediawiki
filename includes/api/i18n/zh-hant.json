@@ -365,6 +365,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "在已解析的 wiki 文字提供段落。",
 	"apihelp-parse-paramvalue-prop-revid": "添加已解析頁面的修訂 ID。",
 	"apihelp-parse-paramvalue-prop-displaytitle": "添加已解析 wiki 文字的標題。",
+	"apihelp-parse-paramvalue-prop-subtitle": "為解析頁面添加頁面副標題。",
 	"apihelp-parse-paramvalue-prop-headitems": "提供放置頁面裡的 <code>&lt;head&gt;</code> 之項目。",
 	"apihelp-parse-paramvalue-prop-headhtml": "給予頁面已解析的 doctype、開啟的 <code>&lt;html&gt;</code>、<code>&lt;head&gt;</code> 元素、以及開啟的 <code>&lt;body&gt;</code>。",
 	"apihelp-parse-paramvalue-prop-modules": "在頁面提供使用的 ResourceLoader 模組。要載入請使用 <code>mw.loader.using()</code>。<kbd>jsconfigvars</kbd> 或 <kbd>encodedjsconfigvars</kbd> 其一必須與 <kbd>modules</kbd> 一同被請求。",

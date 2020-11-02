@@ -2674,8 +2674,6 @@
 	"compare-rev1": "Revision 1",
 	"compare-rev2": "Revision 2",
 	"compare-submit": "Confronté",
-	"compare-invalid-title": "Ël tìtol ch'a l'ha spessificà a va pa bin.",
-	"compare-title-not-exists": "Ël tìtol ch'a l'ha spessificà a esist pa.",
 	"compare-revision-not-exists": "La revision che a l'ha spessificà a esist pa.",
 	"diff-form": "na '''forma'''",
 	"purge": "polida",

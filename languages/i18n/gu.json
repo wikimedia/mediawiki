@@ -2485,8 +2485,6 @@
 	"compare-rev1": "પુનરાવર્તન ૧",
 	"compare-rev2": "પુનરાવર્તન ૨",
 	"compare-submit": "સરખાવો",
-	"compare-invalid-title": "આ શીર્ષક અમાન્ય છે.",
-	"compare-title-not-exists": "આ શીર્ષક અસ્તિત્વમાં નથી.",
 	"compare-revision-not-exists": "આ આવૃત્તિ અસ્તિત્વમાં નથી.",
 	"purge": "વિરેચન",
 	"dberr-problems": "માફ કરશો! આ સાઇટ તકનિકી અડચણો અનુભવી રહી છે.",

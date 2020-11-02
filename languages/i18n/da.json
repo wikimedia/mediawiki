@@ -3230,8 +3230,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Sammenlign",
-	"compare-invalid-title": "Den titel, du har angivet, er ugyldig.",
-	"compare-title-not-exists": "Den titel, du har angivet, findes ikke.",
 	"compare-revision-not-exists": "Den version, du har angivet, findes ikke.",
 	"diff-form": "Forskelle",
 	"diff-form-submit": "Vis forskelle",

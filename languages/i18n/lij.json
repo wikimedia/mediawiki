@@ -3354,8 +3354,6 @@
 	"compare-rev1": "Verscion 1",
 	"compare-rev2": "Verscion 2",
 	"compare-submit": "Confronta",
-	"compare-invalid-title": "O tittolo che t'hæ specificou o no l'è vallido.",
-	"compare-title-not-exists": "O tittolo specificou o no l'existe.",
 	"compare-revision-not-exists": "A verscion che t'hæ specificou a no l'existe.",
 	"diff-form": "Differense",
 	"diff-form-oldid": "Vegio ID verscion (opsionâ)",

@@ -3450,8 +3450,6 @@
 	"compare-rev1": "Versiunea 1",
 	"compare-rev2": "Versiunea 2",
 	"compare-submit": "Comparație",
-	"compare-invalid-title": "Titlul specificat nu este corect.",
-	"compare-title-not-exists": "Titlul specificat nu există.",
 	"compare-revision-not-exists": "Versiunea specificată nu există.",
 	"diff-form": "Diferențe",
 	"diff-form-oldid": "ID revizuire vechi (opțional)",

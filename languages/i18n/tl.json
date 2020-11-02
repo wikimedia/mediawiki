@@ -2595,8 +2595,6 @@
 	"compare-rev1": "Rebisyon 1",
 	"compare-rev2": "Rebisyon 2",
 	"compare-submit": "Paghambingin",
-	"compare-invalid-title": "Hindi katanggap-tanggap ang tinukoy mong pamagat.",
-	"compare-title-not-exists": "Hindi umiiral ang tinukoy mong pamagat.",
 	"compare-revision-not-exists": "Hindi umiiral ang tinukoy mong rebisyon.",
 	"diff-form": "isang '''pormularyo'''",
 	"purge": "purgahin/linisin",

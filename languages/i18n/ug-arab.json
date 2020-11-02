@@ -2545,8 +2545,6 @@
 	"compare-rev1": "تۈزىتىلگەن نەشرى 1",
 	"compare-rev2": "تۈزىتىلگەن نەشرى 2",
 	"compare-submit": "سېلىشتۇر",
-	"compare-invalid-title": "سىز بەلگىلىگەن تېما ئىناۋەتسىز.",
-	"compare-title-not-exists": "سىز بەلگىلىگەن تېما مەۋجۇت ئەمەس.",
 	"compare-revision-not-exists": "سىز بەلگىلىگەن تۈزىتىلگەن نەشرى مەۋجۇت ئەمەس.",
 	"diff-form": "پەرقلەر",
 	"permanentlink": "مەڭگۈلۈك ئۇلانما",

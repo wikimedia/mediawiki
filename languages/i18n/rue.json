@@ -2618,8 +2618,6 @@
 	"compare-rev1": "Ревізія 1",
 	"compare-rev2": "Ревізія 2",
 	"compare-submit": "Порівнати",
-	"compare-invalid-title": "Вами задана назва є неправилна.",
-	"compare-title-not-exists": "Зазначена назва не екзістує.",
 	"compare-revision-not-exists": "Зазначена ревізія не екзістує.",
 	"dberr-problems": "Перебачте! Тот сервер має теперь технічны проблемы.",
 	"dberr-again": "Спробуйте обновити сторінку за пару мінут.",

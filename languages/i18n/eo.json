@@ -3459,8 +3459,6 @@
 	"compare-rev1": "Revizio 1",
 	"compare-rev2": "Revizio 2",
 	"compare-submit": "Komparu",
-	"compare-invalid-title": "La titolo kiun vi enmetis estas nevalida.",
-	"compare-title-not-exists": "La titolo kiun vi specifis ne ekzistas.",
 	"compare-revision-not-exists": "La revizio kiun vi specifis ne ekzistas.",
 	"diff-form": "Malsamoj",
 	"diff-form-oldid": "Identigilo de malnova versio (ne deviga)",

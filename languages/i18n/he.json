@@ -3550,8 +3550,6 @@
 	"compare-rev1": "גרסה 1",
 	"compare-rev2": "גרסה 2",
 	"compare-submit": "השוואה",
-	"compare-invalid-title": "שם הדף שציינת אינו תקין.",
-	"compare-title-not-exists": "הדף שציינת אינו קיים.",
 	"compare-revision-not-exists": "הגרסה שציינת אינה קיימת.",
 	"diff-form": "הבדלים",
 	"diff-form-oldid": "מספר הגרסה הישנה (אופציונלי)",

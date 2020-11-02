@@ -3203,8 +3203,6 @@
 	"compare-rev1": "Pirma versija",
 	"compare-rev2": "Antra versija",
 	"compare-submit": "Palyginti",
-	"compare-invalid-title": "Jūsų nurodytas pavadinimas neleistinas.",
-	"compare-title-not-exists": "Pavadinimas, kurį nurodėte, neegzistuoja.",
 	"compare-revision-not-exists": "Keitimas, kurį nurodėte, neegzistuoja.",
 	"diff-form": "Skirtumai",
 	"diff-form-oldid": "Senos versijos ID (neprivaloma)",

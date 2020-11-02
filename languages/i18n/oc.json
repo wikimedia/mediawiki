@@ -2998,8 +2998,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Comparar",
-	"compare-invalid-title": "Lo títol qu'avètz especificat es incorrècte.",
-	"compare-title-not-exists": "Lo títol qu'avètz especificat existís pas",
 	"compare-revision-not-exists": "La revision qu'avètz especificada existís pas.",
 	"diff-form": "Diferéncias",
 	"purge": "purgar",

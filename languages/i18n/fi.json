@@ -3486,8 +3486,6 @@
 	"compare-rev1": "Versio 1",
 	"compare-rev2": "Versio 2",
 	"compare-submit": "Vertaa",
-	"compare-invalid-title": "Antamasi sivun nimi on virheellinen.",
-	"compare-title-not-exists": "Määrittämääsi sivua ei ole.",
 	"compare-revision-not-exists": "Määrittämääsi versiota ei ole.",
 	"diff-form": "Eroavaisuudet",
 	"diff-form-oldid": "Vanhan sivuversion tunnistenumero (vapaaehtoinen tieto)",

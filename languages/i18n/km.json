@@ -2616,8 +2616,6 @@
 	"compare-rev1": "កំណែ ១",
 	"compare-rev2": "កំណែ ២",
 	"compare-submit": "ប្រៀបធៀប",
-	"compare-invalid-title": "ចំណងជើងដែលអ្នកបានផ្ដល់អោយមិនត្រឹមត្រូវទេ",
-	"compare-title-not-exists": "ចំណងជើងដែលអ្នកផ្ដល់អោយមិនមានទេ។",
 	"diff-form": "ចំណុចខុសគ្នា",
 	"diff-form-submit": "បង្ហាញភាពខុសគ្នា",
 	"purge": "លុបបំបាត់",

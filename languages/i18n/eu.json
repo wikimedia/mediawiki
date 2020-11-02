@@ -3360,8 +3360,6 @@
 	"compare-rev1": "1. berrikuspena",
 	"compare-rev2": "2. berrikuspena",
 	"compare-submit": "Alderatu",
-	"compare-invalid-title": "Zehaztutako izenburua ez dago zuzen.",
-	"compare-title-not-exists": "Adierazi duzun izenburua ez da existitzen.",
 	"compare-revision-not-exists": "Zehazturiko berrikuspena ez da existitzen.",
 	"diff-form": "Ezberdintasunak",
 	"diff-form-oldid": "Berrikusketa ID zaharra (aukerazkoa)",

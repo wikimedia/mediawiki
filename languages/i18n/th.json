@@ -3368,8 +3368,6 @@
 	"compare-rev1": "รุ่น 1",
 	"compare-rev2": "รุ่น 2",
 	"compare-submit": "เปรียบเทียบ",
-	"compare-invalid-title": "ชื่อเรื่องที่คุณระบุไม่ถูกต้อง",
-	"compare-title-not-exists": "ชื่อเรื่องที่คุณระบุไม่มีอยู่",
 	"compare-revision-not-exists": "รุ่นที่คุณระบุไม่มีอยู่",
 	"diff-form": "ความแตกต่าง",
 	"diff-form-oldid": "เลขรุ่นปรับปรุงเก่า (เลือกได้)",

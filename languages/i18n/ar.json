@@ -3580,8 +3580,6 @@
 	"compare-rev1": "نسخة 1",
 	"compare-rev2": "نسخة 2",
 	"compare-submit": "قارن",
-	"compare-invalid-title": "العنوان الذي حددته غير متاح.",
-	"compare-title-not-exists": "العنوان الذي حددته غير موجود.",
 	"compare-revision-not-exists": "المراجعة التي حددتها غير موجودة.",
 	"diff-form": "فروق",
 	"diff-form-oldid": "معرف مراجعة قديمة (اختياري)",

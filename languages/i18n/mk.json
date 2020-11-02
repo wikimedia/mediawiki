@@ -3575,8 +3575,6 @@
 	"compare-rev1": "Преработка 1",
 	"compare-rev2": "Преработка 2",
 	"compare-submit": "Спореди",
-	"compare-invalid-title": "Наведениот наслов е неважечки.",
-	"compare-title-not-exists": "Наведениот наслов не постои.",
 	"compare-revision-not-exists": "Наведената преработка не постои.",
 	"diff-form": "Разлики",
 	"diff-form-oldid": "Назнака на старата преработка (незадолж.)",

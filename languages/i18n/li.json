@@ -3167,8 +3167,6 @@
 	"compare-rev1": "Versie 1",
 	"compare-rev2": "Versie 2",
 	"compare-submit": "Vergeliek",
-	"compare-invalid-title": "De opgegaeve pazjenanaam is óngeljig.",
-	"compare-title-not-exists": "Aangegaeve titel besteit neet.",
 	"compare-revision-not-exists": "Aangegaeve versie besteit neet.",
 	"diff-form": "Verangeringe",
 	"diff-form-oldid": "Aad versienómmer (keusvrie)",

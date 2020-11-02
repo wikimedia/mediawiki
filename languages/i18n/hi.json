@@ -3398,8 +3398,6 @@
 	"compare-rev1": "पुनरीक्षण १",
 	"compare-rev2": "पुनरीक्षण २",
 	"compare-submit": "तुलना करें",
-	"compare-invalid-title": "आपके द्वारा निर्दिष्ट शीर्षक अमान्य है।",
-	"compare-title-not-exists": "आपके द्वारा निर्दिष्ट शीर्षक मौजूद नहीं है।",
 	"compare-revision-not-exists": "आपके द्वारा निर्दिष्ट संशोधन मौजूद नहीं है।",
 	"diff-form": "अंतर",
 	"diff-form-oldid": "पुराना संशोधन (वैकल्पिक)",
