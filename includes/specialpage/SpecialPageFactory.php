@@ -258,6 +258,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancer',
+				'WikiPageFactory',
 			]
 		],
 		'PagesWithProp' => [
