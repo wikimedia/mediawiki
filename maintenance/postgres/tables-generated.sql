@@ -418,3 +418,17 @@ CREATE TABLE interwiki (
   iw_trans SMALLINT DEFAULT 0 NOT NULL,
   PRIMARY KEY(iw_prefix)
 );
+
+
+CREATE TABLE protected_titles (
+  pt_namespace INT NOT NULL,
+  pt_title TEXT NOT NULL,
+  pt_user INT NOT NULL,
+  pt_reason_id BIGINT NOT NULL,
+  pt_timestamp TIMESTAMPTZ NOT NULL,
+  pt_expiry TIMESTAMPTZ NOT NULL,
+  pt_create_perm TEXT NOT NULL,
+  PRIMARY KEY(pt_namespace, pt_title)
+);
+
+CREATE INDEX pt_timestamp ON protected_titles (pt_timestamp);

@@ -24,6 +24,7 @@
  * @author Soxred93 <soxred93@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -40,8 +41,13 @@ class WantedFilesPage extends WantedQueryPage {
 	/**
 	 * @param RepoGroup|string $repoGroup
 	 * @param ILoadBalancer|null $loadBalancer
+	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $repoGroup, ILoadBalancer $loadBalancer = null ) {
+	public function __construct(
+		$repoGroup,
+		ILoadBalancer $loadBalancer = null,
+		LinkBatchFactory $linkBatchFactory = null
+	) {
 		parent::__construct( is_string( $repoGroup ) ? $repoGroup : 'Wantedfiles' );
 		// This class is extended and therefor fallback to global state - T265301
 		$services = MediaWikiServices::getInstance();
@@ -49,6 +55,7 @@ class WantedFilesPage extends WantedQueryPage {
 			? $repoGroup
 			: $services->getRepoGroup();
 		$this->setDBLoadBalancer( $loadBalancer ?? $services->getDBLoadBalancer() );
+		$this->setLinkBatchFactory( $linkBatchFactory ?? $services->getLinkBatchFactory() );
 	}
 
 	protected function getPageHeader() {

@@ -22,6 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -35,9 +36,18 @@ class SpecialUncategorizedTemplates extends SpecialUncategorizedPages {
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
-		parent::__construct( $namespaceInfo, $loadBalancer );
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
+		parent::__construct(
+			$namespaceInfo,
+			$loadBalancer,
+			$linkBatchFactory
+		);
 		$this->mName = 'Uncategorizedtemplates';
 		$this->requestedNamespace = NS_TEMPLATE;
 	}

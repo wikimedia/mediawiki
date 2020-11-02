@@ -70,6 +70,7 @@ class SpecialPageFactory {
 				'PermissionManager',
 				'ContentHandlerFactory',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Deadendpages' => [
@@ -77,6 +78,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'DoubleRedirects' => [
@@ -94,6 +96,7 @@ class SpecialPageFactory {
 				// Same as for Shortpages
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Ancientpages' => [
@@ -101,6 +104,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Lonelypages' => [
@@ -108,6 +112,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Fewestrevisions' => [
@@ -116,6 +121,7 @@ class SpecialPageFactory {
 				// Same as for Mostrevisions
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Withoutinterwiki' => [
@@ -123,6 +129,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Protectedpages' => [
@@ -149,6 +156,7 @@ class SpecialPageFactory {
 				// Same as for Longpages
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Uncategorizedcategories' => [
@@ -157,6 +165,7 @@ class SpecialPageFactory {
 				// Same as for SpecialUncategorizedPages and SpecialUncategorizedTemplates
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Uncategorizedimages' => [
@@ -171,6 +180,7 @@ class SpecialPageFactory {
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedTemplates
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Uncategorizedtemplates' => [
@@ -179,12 +189,14 @@ class SpecialPageFactory {
 				// Same as for SpecialUncategorizedCategories and SpecialUncategorizedPages
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Unusedcategories' => [
 			'class' => \SpecialUnusedCategories::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Unusedimages' => [
@@ -210,6 +222,7 @@ class SpecialPageFactory {
 			'class' => \SpecialWantedCategories::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Wantedfiles' => [
@@ -217,18 +230,21 @@ class SpecialPageFactory {
 			'services' => [
 				'RepoGroup',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Wantedpages' => [
 			'class' => \WantedPagesPage::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Wantedtemplates' => [
 			'class' => \SpecialWantedTemplates::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 
@@ -449,12 +465,14 @@ class SpecialPageFactory {
 			'services' => [
 				'MimeAnalyzer',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'MIMEsearch' => [
 			'class' => \SpecialMIMESearch::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'FileDuplicateSearch' => [
@@ -477,12 +495,14 @@ class SpecialPageFactory {
 			'class' => \SpecialUploadStash::class,
 			'services' => [
 				'RepoGroup',
+				'HttpRequestFactory',
 			]
 		],
 		'ListDuplicatedFiles' => [
 			'class' => \SpecialListDuplicatedFiles::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 
@@ -518,6 +538,7 @@ class SpecialPageFactory {
 			'class' => \SpecialLinkSearch::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Randompage' => \RandomPage::class,
@@ -531,6 +552,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMostLinkedCategories::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Mostimages' => [
@@ -544,18 +566,21 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Mostlinked' => [
 			'class' => \SpecialMostLinked::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Mostlinkedtemplates' => [
 			'class' => \SpecialMostLinkedTemplates::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Mostcategories' => [
@@ -563,6 +588,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 		'Mostrevisions' => [
@@ -571,6 +597,7 @@ class SpecialPageFactory {
 				// Same as for Fewestrevisions
 				'NamespaceInfo',
 				'DBLoadBalancer',
+				'LinkBatchFactory',
 			]
 		],
 
@@ -599,7 +626,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUndelete::class,
 			'services' => [
 				'PermissionManager',
-				'RevisionFactory',
+				'RevisionStore',
 				'RevisionRenderer',
 				'ContentHandlerFactory',
 				'ChangeTagDefStore',

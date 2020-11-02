@@ -462,16 +462,3 @@ CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
 
 CREATE INDEX ts2_page_title ON page USING gin(titlevector);
 CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
-
-
-CREATE TABLE protected_titles (
-  pt_namespace   SMALLINT    NOT NULL,
-  pt_title       TEXT        NOT NULL,
-  pt_user        INTEGER         NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  pt_reason_id   INTEGER     NOT NULL,
-  pt_timestamp   TIMESTAMPTZ NOT NULL,
-  pt_expiry      TIMESTAMPTZ     NULL,
-  pt_create_perm TEXT        NOT NULL DEFAULT '',
-
-  PRIMARY KEY (pt_namespace, pt_title)
-);

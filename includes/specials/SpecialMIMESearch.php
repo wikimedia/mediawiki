@@ -22,6 +22,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -34,10 +35,15 @@ class SpecialMIMESearch extends QueryPage {
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
 		parent::__construct( 'MIMEsearch' );
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function isExpensive() {

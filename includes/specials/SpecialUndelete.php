@@ -25,9 +25,9 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -75,8 +75,8 @@ class SpecialUndelete extends SpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var RevisionFactory */
-	private $revisionFactory;
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
@@ -104,7 +104,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * @param PermissionManager $permissionManager
-	 * @param RevisionFactory $revisionFactory
+	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param NameTableStore $changeTagDefStore
@@ -116,7 +116,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
-		RevisionFactory $revisionFactory,
+		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
 		IContentHandlerFactory $contentHandlerFactory,
 		NameTableStore $changeTagDefStore,
@@ -128,7 +128,7 @@ class SpecialUndelete extends SpecialPage {
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
-		$this->revisionFactory = $revisionFactory;
+		$this->revisionStore = $revisionStore;
 		$this->revisionRenderer = $revisionRenderer;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->changeTagDefStore = $changeTagDefStore;
@@ -1013,7 +1013,8 @@ class SpecialUndelete extends SpecialPage {
 
 			$history .= '<ul class="mw-undelete-revlist">';
 			$remaining = $revisions->numRows();
-			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
+			$firstRev = $this->revisionStore->getFirstRevision( $this->mTargetObj );
+			$earliestLiveTime = $firstRev ? $firstRev->getTimestamp() : null;
 
 			foreach ( $revisions as $row ) {
 				$remaining--;
@@ -1051,9 +1052,9 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
-		$revRecord = $this->revisionFactory->newRevisionFromArchiveRow(
+		$revRecord = $this->revisionStore->newRevisionFromArchiveRow(
 				$row,
-				RevisionFactory::READ_NORMAL,
+				RevisionStore::READ_NORMAL,
 				$this->mTargetObj
 			);
 

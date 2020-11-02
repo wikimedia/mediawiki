@@ -1230,5 +1230,53 @@
 		],
 		"indexes": [],
 		"pk": [ "iw_prefix" ]
+	},
+	{
+		"name": "protected_titles",
+		"comment": "Used for storing nonexistent pages that have been protected",
+		"columns": [
+			{
+				"name": "pt_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pt_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "pt_user",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "pt_reason_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "pt_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pt_expiry",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			},
+			{
+				"name": "pt_create_perm",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			}
+		],
+		"indexes": [ { "name": "pt_timestamp", "columns": [ "pt_timestamp" ], "unique": false } ],
+		"pk": [ "pt_namespace", "pt_title" ]
 	}
 ]
