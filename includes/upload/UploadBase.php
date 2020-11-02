@@ -1300,7 +1300,7 @@ abstract class UploadBase {
 		$match = $magic->isMatchingExtension( $extension, $mime );
 
 		if ( $match === null ) {
-			if ( $magic->getTypesForExtension( $extension ) !== null ) {
+			if ( $magic->getMimeTypesFromExtension( $extension ) !== [] ) {
 				wfDebug( __METHOD__ . ": No extension known for $mime, but we know a mime for $extension" );
 
 				return false;

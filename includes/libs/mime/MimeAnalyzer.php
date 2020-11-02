@@ -1080,12 +1080,10 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	public function findMediaType( $extMime ) {
 		if ( strpos( $extMime, '.' ) === 0 ) {
 			// If it's an extension, look up the MIME types
-			$m = $this->getTypesForExtension( substr( $extMime, 1 ) );
+			$m = $this->getMimeTypesFromExtension( substr( $extMime, 1 ) );
 			if ( !$m ) {
 				return MEDIATYPE_UNKNOWN;
 			}
-
-			$m = explode( ' ', $m );
 		} else {
 			// Normalize MIME type
 			if ( isset( $this->mimeTypeAliases[$extMime] ) ) {
