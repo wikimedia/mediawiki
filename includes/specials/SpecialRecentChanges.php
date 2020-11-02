@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -39,8 +40,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	private $watchlistFilterGroupDefinition;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
+		// TODO Inject service
+		$this->userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 
 		$this->watchlistFilterGroupDefinition = [
 			'name' => 'watchlist',
@@ -217,7 +223,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		/** @var ChangesListBooleanFilter $hideMinor */
 		$hideMinor = $significance->getFilter( 'hideminor' );
 		'@phan-var ChangesListBooleanFilter $hideMinor';
-		$hideMinor->setDefault( $user->getBoolOption( 'hideminor' ) );
+		$hideMinor->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hideminor' ) );
 
 		$automated = $this->getFilterGroup( 'automated' );
 		/** @var ChangesListBooleanFilter $hideBots */
@@ -230,7 +236,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		'@phan-var ChangesListStringOptionsFilterGroup|null $reviewStatus';
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
-			if ( $user->getBoolOption( 'hidepatrolled' ) ) {
+			if ( $this->userOptionsLookup->getBoolOption( $user, 'hidepatrolled' ) ) {
 				$reviewStatus->setDefault( 'unpatrolled' );
 				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
 				/** @var ChangesListBooleanFilter $legacyHidePatrolled */
@@ -246,7 +252,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		'@phan-var ChangesListBooleanFilter $hideCategorization';
 		if ( $hideCategorization !== null ) {
 			// Conditional on feature being available
-			$hideCategorization->setDefault( $user->getBoolOption( 'hidecategorization' ) );
+			$hideCategorization->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hidecategorization' ) );
 		}
 	}
 
@@ -424,14 +430,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$limit = $opts['limit'];
 
 		$showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' )
-			&& $this->getUser()->getOption( 'shownumberswatching' );
+			&& $this->userOptionsLookup->getBoolOption( $this->getUser(), 'shownumberswatching' );
 		$watcherCache = [];
 
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->initChangesListRows( $rows );
 
-		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
+		$userShowHiddenCats = $this->userOptionsLookup->getBoolOption( $this->getUser(), 'showhiddencats' );
 		$rclistOutput = $list->beginRecentChangesList();
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$rclistOutput .= $this->makeLegend();
@@ -924,10 +930,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	public function getDefaultLimit() {
-		$systemPrefValue = $this->getUser()->getIntOption( 'rclimit' );
+		$systemPrefValue = $this->userOptionsLookup->getIntOption( $this->getUser(), 'rclimit' );
 		// Prefer the RCFilters-specific preference if RCFilters is enabled
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			return $this->getUser()->getIntOption( static::$limitPreferenceName, $systemPrefValue );
+			return $this->userOptionsLookup->getIntOption(
+				$this->getUser(), static::$limitPreferenceName, $systemPrefValue
+			);
 		}
 
 		// Otherwise, use the system rclimit preference value
