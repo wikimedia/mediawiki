@@ -369,3 +369,16 @@ CREATE TABLE /*_*/interwiki (
   iw_trans TINYINT DEFAULT 0 NOT NULL,
   PRIMARY KEY(iw_prefix)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/protected_titles (
+  pt_namespace INT NOT NULL,
+  pt_title VARBINARY(255) NOT NULL,
+  pt_user INT UNSIGNED NOT NULL,
+  pt_reason_id BIGINT UNSIGNED NOT NULL,
+  pt_timestamp BINARY(14) NOT NULL,
+  pt_expiry VARBINARY(14) NOT NULL,
+  pt_create_perm VARBINARY(60) NOT NULL,
+  INDEX pt_timestamp (pt_timestamp),
+  PRIMARY KEY(pt_namespace, pt_title)
+) /*$wgDBTableOptions*/;

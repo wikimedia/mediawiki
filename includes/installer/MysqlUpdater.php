@@ -456,6 +456,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'user_newtalk', 'user_last_timestamp',
 				'patch-user_newtalk-user_last_timestamp-binary.sql'
 			],
+			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
+			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
 		];
 	}
 

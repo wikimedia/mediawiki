@@ -797,6 +797,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'user_newtalk', 'user_newtalk_ip', 'un_user_ip' ],
 			[ 'changeField', 'interwiki', 'iw_prefix', 'VARCHAR(32)', '' ],
 			[ 'changeField', 'interwiki', 'iw_wikiid', 'VARCHAR(64)', '' ],
+			[ 'dropFkey', 'protected_titles', 'pt_user' ],
+			[ 'changeNullableField', 'protected_titles', 'pt_user', 'NOT NULL', true ],
+			[ 'changeNullableField', 'protected_titles', 'pt_expiry', 'NOT NULL', true ],
+			[ 'changeField', 'protected_titles', 'pt_reason_id', 'BIGINT', '' ],
+			[ 'dropDefault', 'protected_titles', 'pt_create_perm' ],
 		];
 	}
 

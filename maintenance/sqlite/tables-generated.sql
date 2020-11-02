@@ -401,3 +401,17 @@ CREATE TABLE /*_*/interwiki (
   iw_trans SMALLINT DEFAULT 0 NOT NULL,
   PRIMARY KEY(iw_prefix)
 );
+
+
+CREATE TABLE /*_*/protected_titles (
+  pt_namespace INTEGER NOT NULL,
+  pt_title BLOB NOT NULL,
+  pt_user INTEGER UNSIGNED NOT NULL,
+  pt_reason_id BIGINT UNSIGNED NOT NULL,
+  pt_timestamp BLOB NOT NULL,
+  pt_expiry BLOB NOT NULL,
+  pt_create_perm BLOB NOT NULL,
+  PRIMARY KEY(pt_namespace, pt_title)
+);
+
+CREATE INDEX pt_timestamp ON /*_*/protected_titles (pt_timestamp);
