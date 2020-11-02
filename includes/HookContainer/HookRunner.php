@@ -196,6 +196,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ImageBeforeProduceHTMLHook,
 	\MediaWiki\Hook\ImgAuthBeforeStreamHook,
 	\MediaWiki\Hook\ImgAuthModifyHeadersHook,
+	\MediaWiki\Hook\ImportHandleContentXMLTagHook,
 	\MediaWiki\Hook\ImportHandleLogItemXMLTagHook,
 	\MediaWiki\Hook\ImportHandlePageXMLTagHook,
 	\MediaWiki\Hook\ImportHandleRevisionXMLTagHook,
