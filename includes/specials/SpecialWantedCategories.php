@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A querypage to list the most wanted categories - implements Special:Wantedcategories
  *
@@ -31,8 +33,12 @@
 class SpecialWantedCategories extends WantedQueryPage {
 	private $currentCategoryCounts;
 
-	public function __construct( $name = 'Wantedcategories' ) {
-		parent::__construct( $name );
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Wantedcategories' );
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function getQueryInfo() {

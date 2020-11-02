@@ -22,6 +22,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special page lists images which haven't been categorised
  *
@@ -29,9 +31,14 @@
  * @todo FIXME: Use an instance of UncategorizedPagesPage or something
  */
 class SpecialUncategorizedImages extends ImageQueryPage {
-	public function __construct( $name = 'Uncategorizedimages' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Uncategorizedimages' );
 		$this->addHelpLink( 'Help:Categories' );
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	protected function sortDescending() {
