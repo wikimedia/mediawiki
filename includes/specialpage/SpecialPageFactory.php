@@ -258,6 +258,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancer',
+				'WikiPageFactory',
 			]
 		],
 		'PagesWithProp' => [
@@ -606,6 +607,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'DBLoadBalancer',
 				'UserOptionsLookup',
+				'WikiPageFactory',
 			],
 		],
 		'Whatlinkshere' => [
@@ -641,6 +643,7 @@ class SpecialPageFactory {
 				'ContentModelChangeFactory',
 				'SpamChecker',
 				'RevisionLookup',
+				'WikiPageFactory',
 			],
 		],
 

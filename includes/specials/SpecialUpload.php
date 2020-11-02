@@ -333,7 +333,7 @@ class SpecialUpload extends SpecialPage {
 		$user = $this->getUser();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
-			$count = $title->isDeleted();
+			$count = $title->getDeletedEditsCount();
 			if ( $count > 0 && $this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),

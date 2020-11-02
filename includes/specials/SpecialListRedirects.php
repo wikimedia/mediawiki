@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\WikiPageFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -38,14 +39,23 @@ class SpecialListRedirects extends QueryPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
-	public function __construct( LinkBatchFactory $linkBatchFactory, ILoadBalancer $loadBalancer ) {
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		WikiPageFactory $wikiPageFactory
+	) {
 		parent::__construct( 'Listredirects' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function isExpensive() {
@@ -120,9 +130,9 @@ class SpecialListRedirects extends QueryPage {
 			);
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );
-			$article = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 
-			return $article->getRedirectTarget();
+			return $page->getRedirectTarget();
 		}
 	}
 

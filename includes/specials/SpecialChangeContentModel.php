@@ -3,6 +3,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Page\ContentModelChangeFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -21,17 +22,22 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ContentModelChangeFactory $contentModelChangeFactory
 	 * @param SpamChecker $spamChecker
 	 * @param RevisionLookup $revisionLookup
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentModelChangeFactory $contentModelChangeFactory,
 		SpamChecker $spamChecker,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
 
@@ -39,6 +45,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$this->contentModelChangeFactory = $contentModelChangeFactory;
 		$this->spamChecker = $spamChecker;
 		$this->revisionLookup = $revisionLookup;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function doesWrites() {
@@ -206,7 +213,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	public function onSubmit( array $data ) {
 		$user = $this->getUser();
 		$this->title = Title::newFromText( $data['pagetitle'] );
-		$page = WikiPage::factory( $this->title );
+		$page = $this->wikiPageFactory->newFromTitle( $this->title );
 
 		$changer = $this->contentModelChangeFactory->newContentModelChange(
 				$user,
