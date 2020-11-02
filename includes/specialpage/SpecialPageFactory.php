@@ -537,6 +537,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'DBLoadBalancer',
 				'UserOptionsLookup',
+				'WikiPageFactory',
 			],
 		],
 		'Whatlinkshere' => [
