@@ -599,7 +599,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUndelete::class,
 			'services' => [
 				'PermissionManager',
-				'RevisionFactory',
+				'RevisionStore',
 				'RevisionRenderer',
 				'ContentHandlerFactory',
 				'ChangeTagDefStore',
