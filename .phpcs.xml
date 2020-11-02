@@ -37,7 +37,6 @@
 		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgPoolCounterConf" />
 		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgSessionCacheType" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment" />
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
