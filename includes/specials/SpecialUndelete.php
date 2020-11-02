@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
@@ -98,6 +99,9 @@ class SpecialUndelete extends SpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionFactory $revisionFactory
@@ -108,6 +112,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param RepoGroup $repoGroup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -118,7 +123,8 @@ class SpecialUndelete extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,
 		ILoadBalancer $loadBalancer,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -130,6 +136,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->loadBalancer = $loadBalancer;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function doesWrites() {
@@ -688,7 +695,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$diffContext = clone $this->getContext();
 		$diffContext->setTitle( $currentTitle );
-		$diffContext->setWikiPage( WikiPage::factory( $currentTitle ) );
+		$diffContext->setWikiPage( $this->wikiPageFactory->newFromTitle( $currentTitle ) );
 
 		$contentModel = $currentRevRecord->getSlot(
 			SlotRecord::MAIN,
