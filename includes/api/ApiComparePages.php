@@ -671,11 +671,11 @@ class ApiComparePages extends ApiBase {
 			],
 			'contentformat-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'contentmodel-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 			'pst' => false,
 
@@ -684,11 +684,11 @@ class ApiComparePages extends ApiBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'section' => [
@@ -749,9 +749,5 @@ class ApiComparePages extends ApiBase {
 			'action=compare&fromrev=1&torev=2'
 				=> 'apihelp-compare-example-1',
 		];
-	}
-
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return $this->contentHandlerFactory;
 	}
 }
