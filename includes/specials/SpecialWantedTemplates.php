@@ -26,14 +26,21 @@
  * @author Danny B.
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A querypage to list the most wanted templates
  *
  * @ingroup SpecialPage
  */
 class SpecialWantedTemplates extends WantedQueryPage {
-	public function __construct( $name = 'Wantedtemplates' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Wantedtemplates' );
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function getQueryInfo() {

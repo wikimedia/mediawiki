@@ -30,15 +30,12 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class WantedPagesPage extends WantedQueryPage {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct( ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'Wantedpages' );
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isIncludable() {
@@ -58,7 +55,7 @@ class WantedPagesPage extends WantedQueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$count = $this->getConfig()->get( 'WantedPagesThreshold' ) - 1;
 		$query = [
 			'tables' => [

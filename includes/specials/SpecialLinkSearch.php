@@ -40,9 +40,6 @@ class SpecialLinkSearch extends QueryPage {
 	/** @var string|null */
 	private $mProt;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	private function setParams( $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
@@ -54,7 +51,7 @@ class SpecialLinkSearch extends QueryPage {
 	 */
 	public function __construct( ILoadBalancer $loadBalancer ) {
 		parent::__construct( 'LinkSearch' );
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isCacheable() {
@@ -167,7 +164,7 @@ class SpecialLinkSearch extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		$orderBy = [];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {

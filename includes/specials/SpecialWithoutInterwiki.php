@@ -35,9 +35,6 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
@@ -48,7 +45,7 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 	) {
 		parent::__construct( 'Withoutinterwiki' );
 		$this->namespaceInfo = $namespaceInfo;
-		$this->loadBalancer = $loadBalancer;
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function execute( $par ) {
@@ -114,7 +111,7 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 			'join_conds' => [ 'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ] ]
 		];
 		if ( $this->prefix ) {
-			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
 		}
 

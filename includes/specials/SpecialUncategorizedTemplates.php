@@ -22,6 +22,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special page lists all uncategorised pages in the
  * template namespace
@@ -29,8 +31,13 @@
  * @ingroup SpecialPage
  */
 class SpecialUncategorizedTemplates extends SpecialUncategorizedPages {
-	public function __construct( NamespaceInfo $namespaceInfo ) {
-		parent::__construct( $namespaceInfo );
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
+		parent::__construct( $namespaceInfo, $loadBalancer );
 		$this->mName = 'Uncategorizedtemplates';
 		$this->requestedNamespace = NS_TEMPLATE;
 	}
