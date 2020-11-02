@@ -295,7 +295,7 @@ class ApiLoginTest extends ApiTestCase {
 
 		$cj = $req->getCookieJar();
 		$serverName = parse_url( $wgServer, PHP_URL_HOST );
-		$this->assertNotEquals( false, $serverName );
+		$this->assertIsString( $serverName );
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertRegExp(
 			'/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $userName . '; .*Token=/',

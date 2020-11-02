@@ -40,9 +40,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var Language */
-	private $contentLanguage;
-
 	/** @var UserCache */
 	private $userCache;
 
@@ -51,7 +48,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	 * @param PermissionManager $permissionManager
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
-	 * @param Language $contentLanguage
 	 * @param UserCache $userCache
 	 */
 	public function __construct(
@@ -59,13 +55,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		PermissionManager $permissionManager,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
-		Language $contentLanguage,
 		UserCache $userCache
 	) {
 		parent::__construct( 'Newimages' );
 		$this->permissionManager = $permissionManager;
 		$this->actorMigration = $actorMigration;
-		$this->contentLanguage = $contentLanguage;
 		$this->loadBalancer = $loadBalancer;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 		$this->userCache = $userCache;
@@ -253,11 +247,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	public function setTopText() {
 		$message = $this->msg( 'newimagestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
+			$contLang = $this->getContentLanguage();
 			$this->getOutput()->addWikiTextAsContent(
 				Html::rawElement( 'div',
 					[
-						'lang' => $this->contentLanguage->getHtmlCode(),
-						'dir' => $this->contentLanguage->getDir()
+						'lang' => $contLang->getHtmlCode(),
+						'dir' => $contLang->getDir()
 					],
 					"\n" . $message->plain() . "\n"
 				)

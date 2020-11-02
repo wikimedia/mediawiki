@@ -644,7 +644,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// (also persists if forced)
@@ -670,7 +670,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// (also persists if metadata dirty)
@@ -695,7 +695,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// Not marked dirty, but dirty data
@@ -720,7 +720,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// Bad hook

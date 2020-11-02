@@ -779,7 +779,7 @@ abstract class QueryPage extends SpecialPage {
 			}
 
 			$html = $this->listoutput
-				? MediaWikiServices::getInstance()->getContentLanguage()->listToText( $html )
+				? $this->getContentLanguage()->listToText( $html )
 				: implode( '', $html );
 
 			$out->addHTML( $html );

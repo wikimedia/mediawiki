@@ -29,16 +29,8 @@
  */
 class SpecialAllMessages extends SpecialPage {
 
-	/** @var Language */
-	private $contentLang;
-
-	/**
-	 * @param Language $contentLang
-	 */
-	public function __construct( Language $contentLang ) {
+	public function __construct() {
 		parent::__construct( 'Allmessages' );
-
-		$this->contentLang = $contentLang;
 	}
 
 	/**
@@ -58,7 +50,7 @@ class SpecialAllMessages extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:System message' );
 
-		$contLangCode = $this->contentLang->getCode();
+		$contLangCode = $this->getContentLanguage()->getCode();
 		$lang = $this->getLanguage();
 
 		$opts = new FormOptions();
