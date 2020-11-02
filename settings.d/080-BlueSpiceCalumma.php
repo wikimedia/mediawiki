@@ -40,3 +40,20 @@ $GLOBALS['wgFooterIcons']['poweredby'] += [
 		'width' => '149'
 	]
 ];
+/*
+ * We want to display an extension's icon only if the
+ * corresponding extension is enabled. Here we have mapping
+ * between an extension name and the corresponding icon's
+ * key in $GLOBALS['wgFooterIcons']['poweredby']
+ * */
+$extensionsToIconKeys = [
+	//Extension name => Key of the corresponding icon:
+	'SemanticMediaWiki' => 'semanticmediawiki',
+];
+foreach ( $extensionsToIconKeys as $extensionNameFE => $iconKeyFE ) {
+	if ( !class_exists( $extensionNameFE )
+		&& array_key_exists( $iconKeyFE, $GLOBALS['wgFooterIcons']['poweredby'] )
+	){
+		unset( $GLOBALS['wgFooterIcons']['poweredby'][$iconKeyFE] );
+	}
+}
