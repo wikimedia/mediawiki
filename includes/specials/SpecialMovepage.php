@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A special page that allows users to change page titles
@@ -64,9 +65,15 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	public function __construct() {
 		parent::__construct( 'Movepage' );
-		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		// TODO Inject services
+		$services = MediaWikiServices::getInstance();
+		$this->permManager = $services->getPermissionManager();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 	}
 
 	public function doesWrites() {
@@ -457,7 +464,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Don't allow watching if user is not logged in
 		if ( $user->isLoggedIn() ) {
-			$watchChecked = $user->isLoggedIn() && ( $this->watch || $user->getBoolOption( 'watchmoves' )
+			$watchChecked = ( $this->watch || $this->userOptionsLookup->getBoolOption( $user, 'watchmoves' )
 				|| $user->isWatched( $this->oldTitle ) );
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
