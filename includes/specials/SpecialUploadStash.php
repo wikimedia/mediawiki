@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Http\HttpRequestFactory;
+
 /**
  * Web access for files temporarily stored by UploadStash.
  *
@@ -40,6 +42,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/** @var LocalRepo */
 	private $localRepo;
 
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
+
 	/**
 	 * Since we are directly writing the file to STDOUT,
 	 * we should not be reading in really big files and serving them out.
@@ -54,10 +59,15 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	/**
 	 * @param RepoGroup $repoGroup
+	 * @param HttpRequestFactory $httpRequestFactory
 	 */
-	public function __construct( RepoGroup $repoGroup ) {
+	public function __construct(
+		RepoGroup $repoGroup,
+		HttpRequestFactory $httpRequestFactory
+	) {
 		parent::__construct( 'UploadStash', 'upload' );
 		$this->localRepo = $repoGroup->getLocalRepo();
+		$this->httpRequestFactory = $httpRequestFactory;
 	}
 
 	public function doesWrites() {
@@ -276,7 +286,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			'method' => 'GET',
 			'timeout' => 5 // T90599 attempt to time out cleanly
 		];
-		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions, __METHOD__ );
+		$req = $this->httpRequestFactory->create( $scalerThumbUrl, $httpOptions, __METHOD__ );
 
 		$secret = $file->getRepo()->getThumbProxySecret();
 

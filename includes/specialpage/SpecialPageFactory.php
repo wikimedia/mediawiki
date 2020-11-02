@@ -435,6 +435,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUploadStash::class,
 			'services' => [
 				'RepoGroup',
+				'HttpRequestFactory',
 			]
 		],
 		'ListDuplicatedFiles' => \SpecialListDuplicatedFiles::class,
