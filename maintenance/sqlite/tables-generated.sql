@@ -390,3 +390,14 @@ CREATE TABLE /*_*/user_newtalk (
 CREATE INDEX un_user_id ON /*_*/user_newtalk (user_id);
 
 CREATE INDEX un_user_ip ON /*_*/user_newtalk (user_id);
+
+
+CREATE TABLE /*_*/interwiki (
+  iw_prefix VARCHAR(32) NOT NULL,
+  iw_url BLOB NOT NULL,
+  iw_api BLOB NOT NULL,
+  iw_wikiid VARCHAR(64) NOT NULL,
+  iw_local SMALLINT NOT NULL,
+  iw_trans SMALLINT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(iw_prefix)
+);

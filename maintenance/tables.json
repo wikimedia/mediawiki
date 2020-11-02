@@ -1186,6 +1186,49 @@
 			{ "name": "un_user_ip", "columns": [ "user_id" ], "unique": false }
 		],
 		"pk": []
+	},
+	{
+		"name": "interwiki",
+		"comment": "Recognized interwiki link prefixes",
+		"columns": [
+			{
+				"name": "iw_prefix",
+				"type": "string",
+				"comment": "The interwiki prefix, (e.g. \"Meatball\", or the language prefix \"de\")",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "iw_url",
+				"type": "blob",
+				"comment": "The URL of the wiki, with \"$1\" as a placeholder for an article name. Any spaces in the name will be transformed to underscores before insertion.",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "iw_api",
+				"type": "blob",
+				"comment": "The URL of the file api.php",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "iw_wikiid",
+				"type": "string",
+				"comment": "The name of the database (for a connection to be established with LBFactory::getMainLB( 'wikiid' ))",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "iw_local",
+				"type": "mwtinyint",
+				"comment": "A boolean value indicating whether the wiki is in this project (used, for example, to detect redirect loops)",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "iw_trans",
+				"type": "mwtinyint",
+				"comment": "Boolean value indicating whether interwiki transclusions are allowed.",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "iw_prefix" ]
 	}
-
 ]
