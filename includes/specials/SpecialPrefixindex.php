@@ -46,24 +46,18 @@ class SpecialPrefixindex extends SpecialAllPages {
 	/** @var LinkCache */
 	private $linkCache;
 
-	/** @var Language */
-	private $contentLanguage;
-
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkCache $linkCache
-	 * @param Language $contentLanguage
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkCache $linkCache,
-		Language $contentLanguage
+		LinkCache $linkCache
 	) {
 		parent::__construct( $loadBalancer );
 		$this->mName = 'Prefixindex';
 		$this->loadBalancer = $loadBalancer;
 		$this->linkCache = $linkCache;
-		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -86,7 +80,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
-		$namespaces = $this->contentLanguage->getNamespaces();
+		$namespaces = $this->getContentLanguage()->getNamespaces();
 		$out->setPageTitle(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
@@ -169,7 +163,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
-		$namespaces = $this->contentLanguage->getNamespaces();
+		$namespaces = $this->getContentLanguage()->getNamespaces();
 		$res = null;
 		$n = 0;
 		$nextRow = null;

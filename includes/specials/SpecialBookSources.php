@@ -36,20 +36,14 @@ class SpecialBookSources extends SpecialPage {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
-	/** @var Language */
-	private $contentLanguage;
-
 	/**
 	 * @param RevisionLookup $revisionLookup
-	 * @param Language $contentLanguage
 	 */
 	public function __construct(
-		RevisionLookup $revisionLookup,
-		Language $contentLanguage
+		RevisionLookup $revisionLookup
 	) {
 		parent::__construct( 'Booksources' );
 		$this->revisionLookup = $revisionLookup;
-		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -198,7 +192,7 @@ class SpecialBookSources extends SpecialPage {
 		# Fall back to the defaults given in the language file
 		$out->addWikiMsg( 'booksources-text' );
 		$out->addHTML( '<ul>' );
-		$items = $this->contentLanguage->getBookstoreList();
+		$items = $this->getContentLanguage()->getBookstoreList();
 		foreach ( $items as $label => $url ) {
 			$out->addHTML( $this->makeListItem( $isbn, $label, $url ) );
 		}
