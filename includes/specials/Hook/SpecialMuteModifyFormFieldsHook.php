@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use SpecialMute;
+use User;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -17,9 +17,10 @@ interface SpecialMuteModifyFormFieldsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialMute $sp SpecialPage object, for context
+	 * @param User|null $target Target user
+	 * @param User $user Context user
 	 * @param array &$fields Current HTMLForm fields descriptors
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onSpecialMuteModifyFormFields( $sp, &$fields );
+	public function onSpecialMuteModifyFormFields( $target, $user, &$fields );
 }

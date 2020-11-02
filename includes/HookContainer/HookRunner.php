@@ -3689,10 +3689,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onSpecialMuteModifyFormFields( $sp, &$fields ) {
+	public function onSpecialMuteModifyFormFields( $target, $user, &$fields ) {
 		return $this->container->run(
 			'SpecialMuteModifyFormFields',
-			[ $sp, &$fields ]
+			[ $target, $user, &$fields ]
 		);
 	}
 
