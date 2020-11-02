@@ -2293,22 +2293,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * Wait for a replica DB to reach a specified master position
-	 *
-	 * This will connect to the master to get an accurate position if $pos is not given
-	 *
-	 * @param IDatabase $conn Replica DB
-	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param int $timeout Timeout in seconds [optional]
-	 * @return bool Success
-	 * @since 1.28
-	 * @deprecated Since 1.34 Use waitForMasterPos() instead
-	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
-		return $this->waitForMasterPos( $conn, $pos, $timeout );
-	}
-
 	public function setTransactionListener( $name, callable $callback = null ) {
 		if ( $callback ) {
 			$this->trxRecurringCallbacks[$name] = $callback;
