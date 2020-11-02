@@ -3253,8 +3253,6 @@
 	"compare-rev1": "Útgáfa 1",
 	"compare-rev2": "Útgáfa 2",
 	"compare-submit": "Bera saman",
-	"compare-invalid-title": "Titillinn sem þú gafst upp er ógildur.",
-	"compare-title-not-exists": "Umbeðinn titill er ekki til.",
 	"compare-revision-not-exists": "Umbeðin útgáfa er ekki til.",
 	"diff-form": "Mismunur",
 	"diff-form-submit": "Sýna mun",

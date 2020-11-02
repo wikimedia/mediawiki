@@ -3283,8 +3283,6 @@
 	"compare-rev1": "Ispravljanje 1",
 	"compare-rev2": "Ispravljanje 2",
 	"compare-submit": "Uporedi",
-	"compare-invalid-title": "Naslov koji ste unijeli je nevaljan.",
-	"compare-title-not-exists": "Naslov koji ste naveli ne postoji.",
 	"compare-revision-not-exists": "Izmjena koji ste naveli ne postoji.",
 	"diff-form": "Razlike",
 	"diff-form-oldid": "ID stare izmjene (neobavezno)",

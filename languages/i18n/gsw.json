@@ -2728,8 +2728,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Verglyyche",
-	"compare-invalid-title": "Dr Sytename, wu Du aagee hesch, isch nit giltig",
-	"compare-title-not-exists": "Dr Sytename, wu Du aagee hesch, git s nit.",
 	"compare-revision-not-exists": "Die Version, wu Du aagee hesch, git s nit.",
 	"diff-form": "e '''Formular'''",
 	"purge": "Cache lääre",

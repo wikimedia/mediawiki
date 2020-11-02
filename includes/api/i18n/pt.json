@@ -358,6 +358,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Fornece as secções do texto wiki analisado.",
 	"apihelp-parse-paramvalue-prop-revid": "Adiciona o identificador de revisão da página analisada.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Adiciona o título do texto wiki analisado.",
+	"apihelp-parse-paramvalue-prop-subtitle": "Adiciona o subtítulo de página da página a que foi feita a análise sintática.",
 	"apihelp-parse-paramvalue-prop-headitems": "Fornece os elementos a colocar no <code>&lt;head&gt;</code> da página.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Fornece o tipo analisado do documento, abrindo <code>&lt;html&gt;</code>, o elemento <code>&lt;head&gt;</code> e o <code>&lt;body&gt;</code> da página.",
 	"apihelp-parse-paramvalue-prop-modules": "Fornece os módulos ResourceLoader usados na página. Para carregá-los, usar <code>mw.loader.using()</code>. Uma das variáveis <kbd>jsconfigvars</kbd> ou <kbd>encodedjsconfigvars</kbd> tem de ser pedida em conjunto com <kbd>modules</kbd>.",

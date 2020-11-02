@@ -3464,8 +3464,6 @@
 	"compare-rev1": "Redaktsioon&nbsp;1",
 	"compare-rev2": "Redaktsioon&nbsp;2",
 	"compare-submit": "Kõrvuta",
-	"compare-invalid-title": "Valitud pealkiri on vigane.",
-	"compare-title-not-exists": "Valitud pealkirja ei ole.",
 	"compare-revision-not-exists": "Valitud redaktsiooni ei ole.",
 	"diff-form": "Erinevused",
 	"diff-form-oldid": "Vana redaktsiooni identifikaator (valikuline)",

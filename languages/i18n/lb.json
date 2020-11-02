@@ -3106,8 +3106,6 @@
 	"compare-rev1": "Versioun 1",
 	"compare-rev2": "Versioun 2",
 	"compare-submit": "Vergläichen",
-	"compare-invalid-title": "Den Titel deen Dir uginn hutt ass net valabel.",
-	"compare-title-not-exists": "Den Titel deen Dir uginn hutt gëtt et net.",
 	"compare-revision-not-exists": "D'Versioun déi Dir uginn hutt gëtt et net.",
 	"diff-form": "Ënnerscheeder",
 	"diff-form-oldid": "Al Versiounsnummer (fakultativ)",

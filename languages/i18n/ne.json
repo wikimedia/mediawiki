@@ -2983,8 +2983,6 @@
 	"compare-rev1": "संशोधन 1",
 	"compare-rev2": "संशोधन 2",
 	"compare-submit": "दँजाउनुहोस्",
-	"compare-invalid-title": "तपाईंले खुलाउनु भएको शिर्षक अमान्य छ।",
-	"compare-title-not-exists": "तपाईंले खुलाउनु भएको शिर्षक उपलब्ध छैन ।",
 	"compare-revision-not-exists": "तपाईंले खुलाउनु भएको संस्करण उपलब्ध छैन ।",
 	"diff-form": "भिन्नताहरू",
 	"diff-form-submit": "भिन्नता देखाउनुहाेस्",

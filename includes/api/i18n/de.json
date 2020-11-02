@@ -343,6 +343,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Gibt die Abschnitte im geparsten Wikitext zurück.",
 	"apihelp-parse-paramvalue-prop-revid": "Ergänzt die Versionskennung der geparsten Seite.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Ergänzt den Titel des geparsten Wikitextes.",
+	"apihelp-parse-paramvalue-prop-subtitle": "Fügt den Seiten-Untertitel für die geparste Seite hinzu.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Gibt geparsten doctype, offenes <code>&lt;html&gt;</code>, das Element <code>&lt;head&gt;</code> und offenes <code>&lt;body&gt;</code> der Seite aus.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "Gibt die JavaScript-Konfigurationsvariablen speziell für die Seite aus. Zur Anwendung verwende <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Gibt die JavaScript-Konfigurationsvariablen speziell für die Seite als JSON-Zeichenfolge aus.",

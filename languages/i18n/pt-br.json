@@ -3628,8 +3628,6 @@
 	"compare-rev1": "Edição 1",
 	"compare-rev2": "Edição 2",
 	"compare-submit": "Comparar",
-	"compare-invalid-title": "O título que você especificou é inválido.",
-	"compare-title-not-exists": "O título que você especificou não existe.",
 	"compare-revision-not-exists": "A revisão que você especificou não existe.",
 	"diff-form": "Diferenças",
 	"diff-form-oldid": "ID de revisão antiga (opcional)",

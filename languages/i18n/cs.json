@@ -3528,8 +3528,6 @@
 	"compare-rev1": "Revize 1",
 	"compare-rev2": "Revize 2",
 	"compare-submit": "Porovnat",
-	"compare-invalid-title": "Zadaný název je neplatný.",
-	"compare-title-not-exists": "Zadaný název neexistuje.",
 	"compare-revision-not-exists": "Zadaná revize neexistuje.",
 	"diff-form": "Rozdíl",
 	"diff-form-oldid": "ID staré revize (nepovinné)",

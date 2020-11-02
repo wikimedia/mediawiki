@@ -2623,8 +2623,6 @@
 	"compare-rev1": "۱ بڼه",
 	"compare-rev2": "۲ بڼه",
 	"compare-submit": "پرتلل",
-	"compare-invalid-title": "کوم سرليک مو چې ځانگړی کړی ناسم دی.",
-	"compare-title-not-exists": "کوم سرليک مو چې ځانگړی کړی نشته.",
 	"compare-revision-not-exists": "کومه مخکتنه مو چې ځانگړې کړې نشته.",
 	"diff-form": "توپيرونه",
 	"diff-form-oldid": "د زړي بیاکتنې پيژندګلوي (اختیاري)",

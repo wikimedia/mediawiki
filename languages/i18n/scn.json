@@ -2667,8 +2667,6 @@
 	"compare-rev1": "Virsioni 1",
 	"compare-rev2": "Virsioni 2",
 	"compare-submit": "Cunfrunta",
-	"compare-invalid-title": "Lu tìtulu ca spicificasti nun è vàlidu.",
-	"compare-title-not-exists": "Lu tìtulu ca spicificasti nun esisti.",
 	"compare-revision-not-exists": "La virsioni ca spicificasti nun esisti.",
 	"diff-form": "nu '''mòdulu'''",
 	"dberr-problems": "Spiacenti! Stu situ sta havennu prublema tecnici.",

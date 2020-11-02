@@ -2958,8 +2958,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Krahasimi",
-	"compare-invalid-title": "Titulli që keni specifikuar është i pavlefshëm",
-	"compare-title-not-exists": "Titulli që keni specifikuar nuk ekziston.",
 	"compare-revision-not-exists": "Rishikimi që ju specifikuat nuk ekziston",
 	"diff-form": "Ndryshimet",
 	"dberr-problems": "Na vjen keq! Kjo faqe po has vështirësi teknike.",

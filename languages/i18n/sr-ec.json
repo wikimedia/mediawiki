@@ -3583,8 +3583,6 @@
 	"compare-rev1": "ID измене бр. 1",
 	"compare-rev2": "ID измене бр. 2",
 	"compare-submit": "Упореди",
-	"compare-invalid-title": "Наслов који сте навели је неважећи.",
-	"compare-title-not-exists": "Наведени наслов не постоји.",
 	"compare-revision-not-exists": "Ревизија коју сте навели не постоји.",
 	"diff-form": "Разлике",
 	"diff-form-oldid": "ID старе измене (опционално)",

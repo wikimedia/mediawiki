@@ -1736,6 +1736,7 @@
 	"deletereason-dropdown": "*Ordinara motivi por efaco\n** \"Spam\" (nedezirata mesaji)\n** Vandalismo\n** Kopiyuro violaco\n** Demandata dal autoro\n** Nefuncionanta ligilo",
 	"delete-edit-reasonlist": "Informar motivi por efaco",
 	"deleting-backlinks-warning": "<strong>Atencez:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Altra pagini]] ligesas ad or inkluzas la pagino quon vu deziras efacar.",
+	"deleting-subpages-warning": "<strong>Atencez:</strong> La pagino quon vu efacos havas [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|subpagino|$1 subpagini|51=plu kam 50 subpagini}}]].",
 	"rollback": "Retrorulez redakti",
 	"rollbacklink": "retrorulez",
 	"rollbacklinkcount": "nuligar $1 {{PLURAL:$1|modifiko|modifiki}}",

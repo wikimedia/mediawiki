@@ -3516,8 +3516,6 @@
 	"compare-rev1": "Version 1",
 	"compare-rev2": "Version 2",
 	"compare-submit": "Jämför",
-	"compare-invalid-title": "Titeln du angav är ogiltig.",
-	"compare-title-not-exists": "Titeln du angav finns inte.",
 	"compare-revision-not-exists": "Versionen du angav finns inte.",
 	"diff-form": "Skillnader",
 	"diff-form-oldid": "Gammalt versions-ID (valfritt)",

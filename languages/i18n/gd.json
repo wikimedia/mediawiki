@@ -2711,8 +2711,6 @@
 	"compare-rev1": "Mùthadh 1",
 	"compare-rev2": "Mùthadh 2",
 	"compare-submit": "Coimeas",
-	"compare-invalid-title": "Tha an tiotal a shònraich thu mì-dhligheach.",
-	"compare-title-not-exists": "Chan eil an tiotal a shònraich thu ann.",
 	"compare-revision-not-exists": "Chan eil am mùthadh a shònraich thu ann.",
 	"dberr-problems": "Duilich! Tha trioblaid teicnigeach aig an làrach seo.",
 	"dberr-again": "Feitheamh mionaid no dhà 's ath-luchdaich i.",

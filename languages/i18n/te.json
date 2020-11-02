@@ -3230,8 +3230,6 @@
 	"compare-rev1": "కూర్పు 1",
 	"compare-rev2": "కూర్పు 2",
 	"compare-submit": "పోల్చిచూడు",
-	"compare-invalid-title": "మీరు ఇచ్చిన శీర్షిక చెల్లనిది.",
-	"compare-title-not-exists": "మీరు పేర్కొన్న శీర్షిక లేనే లేదు.",
 	"compare-revision-not-exists": "మీరు పేర్కొన్న కూర్పు లేనే లేదు.",
 	"diff-form": "తేడాలు",
 	"diff-form-oldid": "పాత కూర్పు ID (ఐచ్ఛికం)",

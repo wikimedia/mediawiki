@@ -2905,8 +2905,6 @@
 	"compare-rev1": "Reveesion 1",
 	"compare-rev2": "Reveesion 2",
 	"compare-submit": "Compare",
-	"compare-invalid-title": "The title that ye speceefied is onvalit.",
-	"compare-title-not-exists": "The title that ye speceefied disna exeest.",
 	"compare-revision-not-exists": "The reveesion that ye speceefied disna exeest.",
 	"diff-form": "Differances",
 	"diff-form-submit": "Shaw differances",

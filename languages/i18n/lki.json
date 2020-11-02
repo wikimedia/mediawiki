@@ -2788,8 +2788,6 @@
 	"compare-rev1": "نسخهٔ ۱",
 	"compare-rev2": "نسخهٔ ۲",
 	"compare-submit": "مقایسه",
-	"compare-invalid-title": "عنوان تعیین‌شده نامعتبر است.",
-	"compare-title-not-exists": "عنوان مشخص شده وجود ندارد.",
 	"compare-revision-not-exists": "پالایهٔ مشخص شده وجود ندارد.",
 	"dberr-problems": "پوزش! این تارنما از مشکلات فنی رنج می‌برد.",
 	"dberr-again": "چند دقیقه صبر کنید و دوباره وةڵگة را بارگیری کنید.",

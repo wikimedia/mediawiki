@@ -2869,8 +2869,6 @@
 	"compare-rev1": "Versjon 1",
 	"compare-rev2": "Versjon 2",
 	"compare-submit": "Samanlikna",
-	"compare-invalid-title": "Tittelen du oppgav er ugild.",
-	"compare-title-not-exists": "Tittelen du oppgav finst ikkje.",
 	"compare-revision-not-exists": "Versjonen du oppgav finst ikkje.",
 	"diff-form": "Skilnader",
 	"permanentlink": "Fast lenkje",

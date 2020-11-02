@@ -3581,8 +3581,6 @@
 	"compare-rev1": "Revisi 1",
 	"compare-rev2": "Revisi 2",
 	"compare-submit": "Bandingkan",
-	"compare-invalid-title": "Judul yang Anda berikan tidak sah.",
-	"compare-title-not-exists": "Judul yang Anda minta tidak ada.",
 	"compare-revision-not-exists": "Revisi yang Anda minta tidak ada.",
 	"diff-form": "Perbedaan",
 	"diff-form-oldid": "ID revisi lama (opsional)",

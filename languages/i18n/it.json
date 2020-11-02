@@ -3549,8 +3549,6 @@
 	"compare-rev1": "Versione 1",
 	"compare-rev2": "Versione 2",
 	"compare-submit": "Confronta",
-	"compare-invalid-title": "Il titolo che hai specificato non è valido.",
-	"compare-title-not-exists": "Il titolo che hai specificato non esiste.",
 	"compare-revision-not-exists": "La versione che hai specificato non esiste.",
 	"diff-form": "Differenze",
 	"diff-form-oldid": "Vecchio ID versione (opzionale)",

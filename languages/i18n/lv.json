@@ -2798,8 +2798,6 @@
 	"compare-rev1": "1. versija",
 	"compare-rev2": "2. versija",
 	"compare-submit": "Salīdzināt",
-	"compare-invalid-title": "Norādītais nosaukums nav derīgs.",
-	"compare-title-not-exists": "Norādītais nosaukums neeksistē.",
 	"compare-revision-not-exists": "Norādītā versija neeksistē.",
 	"diff-form": "Atšķirības",
 	"diff-form-submit": "Parādīt atšķirības",

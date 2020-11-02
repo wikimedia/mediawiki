@@ -3261,8 +3261,6 @@
 	"compare-rev1": "პირველი ვერსია",
 	"compare-rev2": "მეორე ვერსია",
 	"compare-submit": "შედარება",
-	"compare-invalid-title": "თქვენ მიერ მითითებულია დაუშვებელი სახელი.",
-	"compare-title-not-exists": "თქვენ მიერ მითითებული სახელი არ არსებობს.",
 	"compare-revision-not-exists": "თქვენ მიერ მითითებული ვერსია არ არსებობს.",
 	"diff-form": "განსხვავებები",
 	"diff-form-oldid": "ძველი ცვლილების ID (არასავალდებულო)",

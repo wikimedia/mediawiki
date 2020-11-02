@@ -3393,8 +3393,6 @@
 	"compare-rev1": "Revisión 1",
 	"compare-rev2": "Revisión 2",
 	"compare-submit": "Comparar",
-	"compare-invalid-title": "El títulu que conseñasti nun ye válidu.",
-	"compare-title-not-exists": "El títulu que conseñasti nun esiste.",
 	"compare-revision-not-exists": "La revisión que conseñasti nun esiste.",
 	"diff-form": "Diferencies",
 	"diff-form-oldid": "Antiguu identificador de revisión (opcional)",

@@ -3457,8 +3457,6 @@
 	"compare-rev1": "1. változat",
 	"compare-rev2": "2. változat",
 	"compare-submit": "Összehasonlítás",
-	"compare-invalid-title": "A megadott cím érvénytelen.",
-	"compare-title-not-exists": "A megadott cím nem létezik.",
 	"compare-revision-not-exists": "A megadott lapváltozat nem létezik.",
 	"diff-form": "Eltérések",
 	"diff-form-oldid": "Régi lapváltozat-azonosító (opcionális)",

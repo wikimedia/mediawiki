@@ -360,6 +360,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Ayrıştırılmış vikimetin içindeki bölümleri verir.",
 	"apihelp-parse-paramvalue-prop-revid": "Ayrıştırılan sayfanın revizyon kimliğini ekler.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Ayrıştırılan vikimetin başlığını ekler.",
+	"apihelp-parse-paramvalue-prop-subtitle": "Ayrıştırılan sayfa için sayfa alt başlığını ekler.",
 	"apihelp-parse-paramvalue-prop-headitems": "Sayfanın <code>&lt;head&gt;</code> içine yerleştirilecek öğeler verir.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Ayrıştırılmış belgesi, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> öğesini ve sayfanın <code>&lt;body&gt;</code> öğelerini açar.",
 	"apihelp-parse-paramvalue-prop-modules": "Sayfada kullanılan ResourceLoader modüllerini verir. Yüklemek için <code>mw.loader.using()</code> kullanın. <kbd>modules</kbd> ile birlikte <kbd>jsconfigvars</kbd> veya <kbd>encodedjsconfigvars</kbd> istenmelidir.",

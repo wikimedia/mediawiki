@@ -3311,8 +3311,6 @@
 	"compare-rev1": "നാൾപ്പതിപ്പ് 1",
 	"compare-rev2": "നാൾപ്പതിപ്പ് 2",
 	"compare-submit": "താരതമ്യം ചെയ്യുക",
-	"compare-invalid-title": "താങ്കൾ നൽകിയ തലക്കെട്ട് അസാധുവാണ്.",
-	"compare-title-not-exists": "താങ്കൾ നൽകിയ തലക്കെട്ട് നിലവിലില്ല.",
 	"compare-revision-not-exists": "താങ്കൾ വ്യക്തമാക്കിയ നാൾപ്പതിപ്പ് നിലവിലില്ല.",
 	"diff-form": "വ്യത്യാസങ്ങൾ",
 	"diff-form-oldid": "പഴയ നാൾപ്പതിപ്പ് ഐ.ഡി.(ഐച്ഛികം)",

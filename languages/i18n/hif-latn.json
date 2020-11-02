@@ -3065,8 +3065,6 @@
 	"compare-rev1": "Badlao 1",
 	"compare-rev2": "Badlao 2",
 	"compare-submit": "Antar dekho",
-	"compare-invalid-title": "Jon title ke aap specify karaa hae, valid nai hae",
-	"compare-title-not-exists": "Chuna gais title abhi nai banawa gais hai.",
 	"compare-revision-not-exists": "Chuna gais revision abhi nai banawa gais hai.",
 	"diff-form": "ek '''form'''",
 	"dberr-problems": "Maaf karna! Ii site technical difficulties experience kare hae.",

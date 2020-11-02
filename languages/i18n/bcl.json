@@ -2874,8 +2874,6 @@
 	"compare-rev1": "Rebisyon 1",
 	"compare-rev2": "Rebisyon 2",
 	"compare-submit": "Ikumpara",
-	"compare-invalid-title": "An titulo na saimong pinagsambit sarong imbalido.",
-	"compare-title-not-exists": "An titulo na saimong pinagsambit bakong eksistido.",
 	"compare-revision-not-exists": "An rebisyon na saimong pinagsambit bakong eksistido.",
 	"diff-form": "Mga kaibahán",
 	"diff-form-oldid": "Lumang rebisyon kan ID (opsyonal)",

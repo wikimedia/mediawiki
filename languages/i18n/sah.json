@@ -3246,8 +3246,6 @@
 	"compare-rev1": "Бастакы барыл",
 	"compare-rev2": "Иккис барыл",
 	"compare-submit": "Тэҥнииргэ",
-	"compare-invalid-title": "Суруллубут аат туттуллара сатаммат.",
-	"compare-title-not-exists": "Ыйбыт аатыҥ суох эбит.",
 	"compare-revision-not-exists": "Ыйбыт барылыҥ суох эбит.",
 	"diff-form": "Уратылар",
 	"diff-form-oldid": "Торум урукку нүөмэрэ (булгуччута суох)",

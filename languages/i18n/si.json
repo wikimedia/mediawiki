@@ -2671,8 +2671,6 @@
 	"compare-rev1": "1වන සංශෝධනය",
 	"compare-rev2": "2වන සංශෝධනය",
 	"compare-submit": "සසඳන්න",
-	"compare-invalid-title": "ඔබ සඳහන් කළ මාතෘකාව වලංගු නොවේ.",
-	"compare-title-not-exists": "ඔබ විසින් විශේෂණය කෙරූ මාතෘකාව නොපවතියි.",
 	"compare-revision-not-exists": "ඔබ විසින් විශේෂණය කෙරූ සංශෝධනය නොපවතියි.",
 	"diff-form": "එක් '''ආකෘති-පත්‍රය'''ක්",
 	"dberr-problems": "සමාවන්න! මෙම අඩවිය තාක්ෂණික ගැටළු අත්දකියි.",

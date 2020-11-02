@@ -2951,8 +2951,6 @@
 	"compare-rev1": "Diwygiad 1",
 	"compare-rev2": "Diwygiad 2",
 	"compare-submit": "Cymharer",
-	"compare-invalid-title": "Ysgrifennwyd teitl annilys.",
-	"compare-title-not-exists": "Nid yw'r teitl a enwyd ar gael.",
 	"compare-revision-not-exists": "Nid yw'r diwygiad a enwyd ar gael.",
 	"diff-form": "Gwahaniaethau",
 	"dberr-problems": "Mae'n ddrwg gennym! Mae'r wefan hon yn dioddef anawsterau technegol.",

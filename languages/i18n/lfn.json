@@ -3156,8 +3156,6 @@
 	"compare-rev1": "Revisa 1",
 	"compare-rev2": "Revisa 2",
 	"compare-submit": "Compara",
-	"compare-invalid-title": "La titulo spesifada no es valida.",
-	"compare-title-not-exists": "La titulo spesifada no esiste.",
 	"compare-revision-not-exists": "La revisa spesifada no esiste.",
 	"diff-form": "Diferes",
 	"diff-form-oldid": "Numero de revisa vea (si desirada)",
