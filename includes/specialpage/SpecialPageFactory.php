@@ -642,6 +642,7 @@ class SpecialPageFactory {
 				'ContentModelChangeFactory',
 				'SpamChecker',
 				'RevisionLookup',
+				'WikiPageFactory',
 			],
 		],
 
