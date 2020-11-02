@@ -24,6 +24,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialMostRevisions extends SpecialFewestRevisions {
@@ -31,9 +32,18 @@ class SpecialMostRevisions extends SpecialFewestRevisions {
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
-		parent::__construct( $namespaceInfo, $loadBalancer );
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
+		parent::__construct(
+			$namespaceInfo,
+			$loadBalancer,
+			$linkBatchFactory
+		);
 		$this->mName = 'Mostrevisions';
 	}
 

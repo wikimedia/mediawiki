@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -39,9 +40,18 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
-	public function __construct( NamespaceInfo $namespaceInfo, ILoadBalancer $loadBalancer ) {
-		parent::__construct( $namespaceInfo, $loadBalancer );
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
+		parent::__construct(
+			$namespaceInfo,
+			$loadBalancer,
+			$linkBatchFactory
+		);
 		$this->mName = 'Uncategorizedcategories';
 		$this->requestedNamespace = NS_CATEGORY;
 	}

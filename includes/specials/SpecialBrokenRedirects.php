@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -45,16 +46,19 @@ class SpecialBrokenRedirects extends QueryPage {
 	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'BrokenRedirects' );
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function isExpensive() {
