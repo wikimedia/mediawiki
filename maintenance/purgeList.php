@@ -84,6 +84,7 @@ class PurgeList extends Maintenance {
 	private function doPurge() {
 		$stdin = $this->getStdin();
 		$urls = [];
+		$htmlCacheUpdater = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 
 		while ( !feof( $stdin ) ) {
 			$page = trim( fgets( $stdin ) );
@@ -92,7 +93,7 @@ class PurgeList extends Maintenance {
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
 				if ( $title ) {
-					$newUrls = $title->getCdnUrls();
+					$newUrls = $htmlCacheUpdater->getUrls( $title );
 
 					foreach ( $newUrls as $url ) {
 						$this->output( "$url\n" );
@@ -119,6 +120,7 @@ class PurgeList extends Maintenance {
 	 */
 	private function purgeNamespace( $namespace = false ) {
 		$dbr = $this->getDB( DB_REPLICA );
+		$htmlCacheUpdater = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$startId = 0;
 		if ( $namespace === false ) {
 			$conds = [];
@@ -142,7 +144,7 @@ class PurgeList extends Maintenance {
 			$urls = [];
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$urls = array_merge( $urls, $title->getCdnUrls() );
+				$urls = array_merge( $urls, $htmlCacheUpdater->getUrls( $title ) );
 				$startId = $row->page_id;
 			}
 			$this->sendPurgeRequest( $urls );
