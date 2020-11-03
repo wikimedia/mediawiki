@@ -1321,6 +1321,7 @@ class PermissionManager {
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
 			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
+				// TODO Inject UserGroupManager, but needs cirular dependency fixed - T254537
 				$user->getEffectiveGroups()
 			);
 			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );

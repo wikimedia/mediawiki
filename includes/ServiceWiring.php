@@ -1380,6 +1380,7 @@ return [
 			$services->getUserEditTracker(),
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			[ function ( UserIdentity $user ) use ( $services ) {
+				// TODO Needs cirular dependency fixed - T254537
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
 				User::newFromIdentity( $user )->invalidateCache();
 			} ]
