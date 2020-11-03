@@ -59,6 +59,7 @@ phpunit.xml
 /tests/selenium/log
 .eslintcache
 .api-testing.config.json
+.phan/local-config.php
 
 # Composer
 /vendor
