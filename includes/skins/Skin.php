@@ -741,7 +741,7 @@ abstract class Skin extends ContextSource {
 		if ( ( !$title->exists() || $action == 'history' ) &&
 			$permissionManager->quickUserCan( 'deletedhistory', $user, $title )
 		) {
-			$n = $title->isDeleted();
+			$n = $title->getDeletedEditsCount();
 
 			if ( $n ) {
 				if ( $permissionManager->quickUserCan( 'undelete', $user, $title ) ) {
