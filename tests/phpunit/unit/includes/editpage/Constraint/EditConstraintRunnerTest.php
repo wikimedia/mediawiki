@@ -20,7 +20,9 @@
 
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Tests the EditConstraintRunner
@@ -81,6 +83,19 @@ class EditConstraintRunnerTest extends MediaWikiUnitTestCase {
 
 		$runner = new EditConstraintRunner();
 		$runner->getFailedConstraint();
+	}
+
+	public function testGetConstraintName() {
+		$runner = TestingAccessWrapper::newFromObject( new EditConstraintRunner() );
+		$pageSizeConstraint = new PageSizeConstraint(
+			1,
+			512,
+			PageSizeConstraint::BEFORE_MERGE
+		);
+		$this->assertSame(
+			'PageSizeConstraint ' . PageSizeConstraint::BEFORE_MERGE,
+			$runner->getConstraintName( $pageSizeConstraint )
+		);
 	}
 
 }

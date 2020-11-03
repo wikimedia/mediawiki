@@ -54,6 +54,7 @@ class UserRateLimitConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint() : string {
+		// TODO inject and use a ThrottleStore once available, see T261744
 		// Checking if the user is rate limited increments the counts, so we cannot perform
 		// the check again when getting the status; thus, store the result
 		if ( $this->user->pingLimiter()
