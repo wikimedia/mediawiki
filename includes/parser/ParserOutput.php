@@ -1141,12 +1141,12 @@ class ParserOutput extends CacheTime {
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
 	 *
-	 * @note Only scalar values, e.g. numbers, strings, arrays are supported
-	 * as a value. Attempt to set a class instance as a page property will
-	 * break ParserCache for the page.
+	 * @note Only scalar values like numbers and strings are supported
+	 * as a value. Attempt to use an object or array will
+	 * not work properly with LinksUpdate.
 	 *
 	 * @param string $name
-	 * @param mixed $value
+	 * @param int|float|string|bool|null $value
 	 */
 	public function setProperty( $name, $value ) {
 		$this->mProperties[$name] = $value;
@@ -1715,7 +1715,7 @@ class ParserOutput extends CacheTime {
 			'OutputHooks' => $this->mOutputHooks,
 			'Warnings' => $this->mWarnings,
 			'Sections' => $this->mSections,
-			'Properties' => $this->mProperties, // may contain arbitrary structures!
+			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
 			'TOCHTML' => $this->mTOCHTML,
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
@@ -1809,7 +1809,7 @@ class ParserOutput extends CacheTime {
 		$this->mOutputHooks = $jsonData['OutputHooks'];
 		$this->mWarnings = $jsonData['Warnings'];
 		$this->mSections = $jsonData['Sections'];
-		$this->mProperties = $jsonData['Properties'];
+		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
 		$this->mTOCHTML = $jsonData['TOCHTML'];
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
@@ -1830,5 +1830,50 @@ class ParserOutput extends CacheTime {
 		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
 		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
 		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
+	}
+
+	/**
+	 * Finds any non-utf8 strings in the given array and replaces them with
+	 * an associative array that wraps a base64 encoded version of the data.
+	 * Inverse of detectAndDecodeBinary().
+	 *
+	 * @param array $properties
+	 *
+	 * @return array
+	 */
+	private static function detectAndEncodeBinary( array $properties ) {
+		foreach ( $properties as $key => $value ) {
+			if ( is_string( $value ) ) {
+				if ( !mb_detect_encoding( $value, 'UTF-8', true ) ) {
+					$properties[$key] = [
+						'_type_' => 'string',
+						'_encoding_' => 'base64',
+						'_data_' => base64_encode( $value ),
+					];
+				}
+			}
+		}
+
+		return $properties;
+	}
+
+	/**
+	 * Finds any associative arrays that represent encoded binary strings, and
+	 * replaces them with the decoded binary data.
+	 *
+	 * @param array $properties
+	 *
+	 * @return array
+	 */
+	private static function detectAndDecodeBinary( array $properties ) {
+		foreach ( $properties as $key => $value ) {
+			if ( is_array( $value ) && isset( $value['_encoding_'] ) ) {
+				if ( $value['_encoding_'] === 'base64' ) {
+					$properties[$key] = base64_decode( $value['_data_'] );
+				}
+			}
+		}
+
+		return $properties;
 	}
 }

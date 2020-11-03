@@ -46,6 +46,13 @@ abstract class ParserCacheSerializationTestCases {
 		'map' => [ 'key' => 'value' ]
 	];
 
+	private const MOCK_BINARY_PROPERTIES = [
+		'empty' => '',
+		'\x00' => "\x00",
+		'gzip' => "\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03\xcb\x48\xcd\xc9\xc9\x57\x28\xcf\x2f'
+			. '\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00",
+	];
+
 	/**
 	 * Get acceptance test cases for CacheTime class.
 	 * @see SerializationTestTrait::getTestInstancesAndAssertions()
@@ -138,6 +145,11 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithProperties = new ParserOutput();
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
 			$parserOutputWithProperties->setProperty( $key, $value );
+		}
+
+		$parserOutputWithBinaryProperties = new ParserOutput();
+		foreach ( self::MOCK_BINARY_PROPERTIES as $key => $value ) {
+			$parserOutputWithBinaryProperties->setProperty( $key, $value );
 		}
 
 		$parserOutputWithMetadata = new ParserOutput();
@@ -287,6 +299,15 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getProperty( 'array' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['map'], $object->getProperty( 'map' ) );
 					$testCase->assertArrayEquals( self::MOCK_EXT_DATA, $object->getProperties() );
+				}
+			],
+			'binaryPageProperties' => [
+				'instance' => $parserOutputWithBinaryProperties,
+				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['empty'], $object->getProperty( 'empty' ) );
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['\x00'], $object->getProperty( '\x00' ) );
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['gzip'], $object->getProperty( 'gzip' ) );
+					$testCase->assertArrayEquals( self::MOCK_BINARY_PROPERTIES, $object->getProperties() );
 				}
 			],
 			'withMetadata' => [

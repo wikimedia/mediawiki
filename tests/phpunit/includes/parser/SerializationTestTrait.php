@@ -69,6 +69,13 @@ trait SerializationTestTrait {
 			foreach ( $serializationUtils->getSerializedInstances()
 					  as $testCaseName => $currentSerialized ) {
 				$expected = $serializationUtils->getStoredSerializedInstance( $className, $testCaseName );
+
+				if ( $expected->data === null ) {
+					// The fixture file is missing. This will be detected and reported elsewhere.
+					// No need to cause an error here.
+					continue;
+				}
+
 				yield "{$className}:{$testCaseName}, " .
 					"serialized with {$serializationFormat['ext']}" => [ $expected->data, $currentSerialized ];
 			}
@@ -152,7 +159,7 @@ trait SerializationTestTrait {
 			$prop->setAccessible( true );
 			$expectedValue = $prop->getValue( $expected );
 			$actualValue = $prop->getValue( $actual );
-			$this->assertSame( $expectedValue, $actualValue );
+			$this->assertSame( $expectedValue, $actualValue, $prop->getName() );
 		}
 
 		$parent = $class->getParentClass();
