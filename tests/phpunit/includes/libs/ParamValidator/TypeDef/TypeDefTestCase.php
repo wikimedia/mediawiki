@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef;
@@ -227,6 +228,21 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 		return [
 			'Basic test' => [ [], [], [] ],
 		];
+	}
+
+	/**
+	 * Create a ValidationException that's identical to what the typedef object would throw.
+	 * @param string $code Error code, same as what was passed to TypeDef::failure().
+	 * @param mixed $value Parameter value (ie. second argument to TypeDef::validate()).
+	 * @param array $settings Settings object (ie. third argument to TypeDef::validate()).
+	 * @return ValidationException
+	 */
+	protected function getValidationException(
+		string $code, $value, array $settings = []
+	): ValidationException {
+		return new ValidationException(
+			DataMessageValue::new( "paramvalidator-$code", [], $code ),
+			'test', $value, $settings );
 	}
 
 }

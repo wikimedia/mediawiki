@@ -68,6 +68,7 @@ For notes on 1.35.x and older releases, see HISTORY.
   by overriding MediaHandler::formatTag( $key, $value ).  The default for
   unknown tags is numeric formatting; non-EXIF tags which are non-numeric
   should always use this method to specify the desired formatting.
+* The new 'title' type can be used to validate action API and REST API inputs.
 * …
 
 === External library changes in 1.36 ===

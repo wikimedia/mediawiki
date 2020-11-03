@@ -4370,5 +4370,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP range",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki name (e.g. \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "user ID (e.g. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "user ID (e.g. \"#12345\")",
+	"paramvalidator-badtitle": "Invalid value \"$2\" for title parameter <var>$1</var>: not a valid title string.",
+	"paramvalidator-missingtitle": "Invalid value \"$2\" for title parameter <var>$1</var>: the page does not exist.",
+	"paramvalidator-help-type-title": "Type: page title",
+	"paramvalidator-help-type-title-must-exist": "Only accepts pages that exist.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepts non-existent pages."
 }

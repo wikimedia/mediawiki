@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Validator;
 
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
@@ -49,6 +50,10 @@ class Validator {
 		'timestamp' => [ 'class' => TimestampDef::class ],
 		'upload' => [ 'class' => UploadDef::class ],
 		'expiry' => [ 'class' => ExpiryDef::class ],
+		'title' => [
+			'class' => TitleDef::class,
+			'services' => [ 'TitleFactory' ],
+		],
 		'user' => [
 			'class' => UserDef::class,
 			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
