@@ -4089,7 +4089,7 @@ ERROR;
 
 		$this->deletedSinceEdit = false;
 
-		if ( !$this->mTitle->exists() && $this->mTitle->isDeletedQuick() ) {
+		if ( !$this->mTitle->exists() && $this->mTitle->hasDeletedEdits() ) {
 			$this->lastDelete = $this->getLastDelete();
 			if ( $this->lastDelete ) {
 				$deleteTime = wfTimestamp( TS_MW, $this->lastDelete->log_timestamp );

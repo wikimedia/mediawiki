@@ -77,6 +77,6 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $results['caught'] );
 		$this->assertNull( $results['error'] );
 
-		$this->assertTrue( $this->page->isDeletedQuick() );
+		$this->assertTrue( $this->page->hasDeletedEdits() );
 	}
 }
