@@ -205,7 +205,7 @@ class ImageBuilder extends Maintenance {
 		$this->getRepo()->enumFiles( [ $this, 'checkMissingImage' ] );
 	}
 
-	private function checkMissingImage( $fullpath ) {
+	public function checkMissingImage( $fullpath ) {
 		$filename = wfBaseName( $fullpath );
 		$row = $this->dbw->selectRow( 'image',
 			[ 'img_name' ],
