@@ -27,8 +27,7 @@ use StatusValue;
  * Verify the page isn't larger than the maximum
  *
  * This is used for both checking the size //before// merging the edit, and checking the size
- * //after// applying the edit, and the result codes they return are different, hence the need
- * to pass the error code in the constructor to avoid duplication
+ * //after// applying the edit, and the result codes they return are different.
  *
  * @since 1.36
  * @internal
@@ -52,6 +51,9 @@ class PageSizeConstraint implements IEditConstraint {
 	/** @var int */
 	private $errorCode;
 
+	/** @var string */
+	private $type;
+
 	/**
 	 * @param int $maxSize In kilobytes, from $wgMaxArticleSize
 	 * @param int $contentSize
@@ -72,6 +74,8 @@ class PageSizeConstraint implements IEditConstraint {
 		} else {
 			throw new InvalidArgumentException( "Invalid type: $type" );
 		}
+
+		$this->type = $type;
 	}
 
 	public function checkConstraint() : string {
@@ -88,6 +92,17 @@ class PageSizeConstraint implements IEditConstraint {
 			$statusValue->setResult( false, $this->errorCode );
 		}
 		return $statusValue;
+	}
+
+	/**
+	 * Get the type, so that the two different uses of this constraint can be told
+	 * apart in debug logs.
+	 * @internal
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
+	public function getType() : string {
+		return $this->type;
 	}
 
 }

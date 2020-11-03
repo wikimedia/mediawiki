@@ -104,7 +104,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [
 			[
 				LogLevel::DEBUG,
-				"Request-IP spam regex hit [[$prefixedDBKey]]: \"$matchingText\""
+				'{ip} spam regex hit [[{title}]]: "{match}"'
 			],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();

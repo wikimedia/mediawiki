@@ -104,12 +104,14 @@ class SpamRegexConstraint implements IEditConstraint {
 		}
 
 		$this->match = $match;
-		$ip = $this->reqIP;
-		$prefixedDBkey = $this->title->getPrefixedDBkey();
-
-		// TODO use context instead of concatenation for easier grepping
-		$match = str_replace( "\n", '', $match );
-		$this->logger->debug( "$ip spam regex hit [[$prefixedDBkey]]: \"$match\"" );
+		$this->logger->debug(
+			'{ip} spam regex hit [[{title}]]: "{match}"',
+			[
+				'ip' => $this->reqIP,
+				'title' => $this->title->getPrefixedDBkey(),
+				'match' => str_replace( "\n", '', $match )
+			]
+		);
 		return self::CONSTRAINT_FAILED;
 	}
 

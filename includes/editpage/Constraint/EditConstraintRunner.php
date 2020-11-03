@@ -86,21 +86,48 @@ class EditConstraintRunner {
 	public function checkConstraints() : bool {
 		foreach ( $this->constraints as $constraint ) {
 			$result = $constraint->checkConstraint();
-			$fullClassName = explode( '\\', get_class( $constraint ) );
-			$this->logger->debug(
-				'Checked {class}, got result: {result}',
-				[
-					'class' => end( $fullClassName ),
-					'result' => $result
-				]
-			);
-
 			if ( $result !== IEditConstraint::CONSTRAINT_PASSED ) {
+				// Use `info` instead of `debug` for the one constraint that failed
+				$this->logger->info(
+					'Checked {name}, got result: {result}',
+					[
+						'name' => $this->getConstraintName( $constraint ),
+						'result' => $result
+					]
+				);
+
 				$this->failedConstraint = $constraint;
 				return false;
 			}
+
+			// Pass, log at `debug` level
+			$this->logger->debug(
+				'Checked {name}, got result: {result}',
+				[
+					'name' => $this->getConstraintName( $constraint ),
+					'result' => $result
+				]
+			);
 		}
 		return true;
+	}
+
+	/**
+	 * @param IEditConstraint $constraint
+	 * @return string
+	 */
+	private function getConstraintName( IEditConstraint $constraint ) : string {
+		// Used for debug logging
+		$fullClassName = explode( '\\', get_class( $constraint ) );
+		$constraintName = end( $fullClassName );
+		if ( $constraint instanceof PageSizeConstraint ) {
+			// TODO "When you need to do this instanceof, it's a code smell"
+			// Convert IEditConstraint to abstract class with a getName method
+			// once the initial migration to edit constraints is complete
+			// PageSizeConstraint is used twice, make sure they can be told apart
+			$constraintName .= ' ' . $constraint->getType();
+		}
+		return $constraintName;
 	}
 
 	/**
