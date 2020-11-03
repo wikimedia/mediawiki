@@ -260,7 +260,7 @@
 	"talk": "Keskustelu",
 	"views": "Näkymät",
 	"toolbox": "Työkalut",
-	"cactions": "Lisää",
+	"cactions": "Muut",
 	"tool-link-userrights": "Muokkaa {{GENDER:$1|käyttäjän}} ryhmiä",
 	"tool-link-userrights-readonly": "Katso {{GENDER:$1|käyttäjän}} ryhmiä",
 	"tool-link-emailuser": "Lähetä sähköpostia tälle {{GENDER:$1|käyttäjälle}}",

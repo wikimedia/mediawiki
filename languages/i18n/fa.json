@@ -2245,6 +2245,8 @@
 	"trackingcategories-desc": "معیارهای گنجایش رده",
 	"restricted-displaytitle-ignored": "صفحه‌ها باعنوان نمایشی نادیده‌گرفته‌شده",
 	"restricted-displaytitle-ignored-desc": "دراين صفحه <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> بی‌اهميت تلقی گرديده‌است، چراکه با عنوان اصلی صفحه یکي نيست.",
+	"nonnumeric-formatnum": "صفحه‌های دارای تابع تجزیه‌گر آرایش‌عدد با آرگومان غیرعددی",
+	"nonnumeric-formatnum-desc": "این صفحه حاوی آرگومانی غیرعددی برای تابع تجزیه‌گر آرایش‌عدد است.",
 	"noindex-category-desc": "این صفحه توسط ربات‌ها فهرست‌نشده‌است به این دلیل که واژه جادویی <code><nowiki>__NOINDEX__</nowiki></code> در آن یا در فضای که پرچم مجاز است دارد.",
 	"index-category-desc": "این صفحه <code><nowiki>__INDEX__</nowiki></code> درونش دارد (و در فضای نامی است که پرچم مجاز است)، و به این دلیل توسط ربات مجاز است که به‌صورت عادی نباید می‌شد.",
 	"post-expand-template-inclusion-category-desc": "پس از گسترش همهٔ الگوها، حجم صفحه بزرگتر از <code>$wgMaxArticleSize</code> است بنابراین بعضی از الگو گسترش نیافته‌اند.",

@@ -2281,6 +2281,7 @@
 	"trackingcategories-desc": "معايير إدراج تصنيف",
 	"restricted-displaytitle-ignored": "الصفحات بعناوين عرض تم تجاهلها",
 	"restricted-displaytitle-ignored-desc": "هذه الصفحة تحتوي على <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> تم تجاهله لأنه لا يساوي عنوان الصفحة الفعلي.",
+	"nonnumeric-formatnum": "صفحات تحتوي على معاملات formatnum غير عددية",
 	"noindex-category-desc": "هذه الصفحة لا تفهرسها الروبوتات لأن فيها الكلمة السحرية <code><nowiki>__NOINDEX__</nowiki></code> ولأنها في نطاق يسمح بهذا العلم.",
 	"index-category-desc": "الصفحة فيها <code><nowiki>__INDEX__</nowiki></code> (وهي في نطاق يسمح بهذا العلم) ولذا فالروبوتات تفهرسها بينما الأصل ألا تفعل.",
 	"post-expand-template-inclusion-category-desc": "بعد توسيع جميع القوالب حجم الصفحة أكبر من <code><nowiki>__INDEX__</nowiki></code> ولذا فبعض القوالب لا تُوسّع.",
