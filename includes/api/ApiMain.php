@@ -88,7 +88,12 @@ class ApiMain extends ApiBase {
 		],
 		'opensearch' => ApiOpenSearch::class,
 		'feedcontributions' => ApiFeedContributions::class,
-		'feedrecentchanges' => ApiFeedRecentChanges::class,
+		'feedrecentchanges' => [
+			'class' => ApiFeedRecentChanges::class,
+			'services' => [
+				'SpecialPageFactory',
+			]
+		],
 		'feedwatchlist' => ApiFeedWatchlist::class,
 		'help' => ApiHelp::class,
 		'paraminfo' => ApiParamInfo::class,

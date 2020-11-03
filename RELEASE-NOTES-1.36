@@ -284,6 +284,8 @@ because of Phabricator reports.
 * ProcessCacheLRU class, deprecated in 1.32, has been removed.
 * wfForeignMemcKey(), deprecated in 1.35, has been removed.
 * LoadBalancer::safeWaitForMasterPos(), deprecated in 1.35, has been removed.
+* ApiFeedRecentChanges::getFeedObject has been changed to private, and appears
+  unused outside of MediaWiki core.
 * …
 
 === Deprecations in 1.36 ===
