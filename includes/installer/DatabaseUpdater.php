@@ -20,6 +20,10 @@
  * @file
  * @ingroup Installer
  */
+
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -70,6 +74,9 @@ abstract class DatabaseUpdater {
 	protected $maintenance;
 
 	protected $shared = false;
+
+	/** @var HookContainer|null */
+	protected $autoExtensionHookContainer;
 
 	/**
 	 * @var string[] Scripts to run after database update
@@ -133,8 +140,8 @@ abstract class DatabaseUpdater {
 	 */
 	private function loadExtensionSchemaUpdates() {
 		$this->initOldGlobals();
-		$this->loadExtensions();
-		Hooks::runner()->onLoadExtensionSchemaUpdates( $this );
+		$hookContainer = $this->loadExtensions();
+		( new HookRunner( $hookContainer ) )->onLoadExtensionSchemaUpdates( $this );
 	}
 
 	/**
@@ -158,10 +165,21 @@ abstract class DatabaseUpdater {
 	/**
 	 * Loads LocalSettings.php, if needed, and initialises everything needed for
 	 * LoadExtensionSchemaUpdates hook.
+	 *
+	 * @return HookContainer
 	 */
 	private function loadExtensions() {
-		if ( !defined( 'MEDIAWIKI_INSTALL' ) || defined( 'MW_EXTENSIONS_LOADED' ) ) {
-			return; // already loaded
+		if ( $this->autoExtensionHookContainer ) {
+			// Already injected by installer
+			return $this->autoExtensionHookContainer;
+		}
+		if ( defined( 'MW_EXTENSIONS_LOADED' ) ) {
+			throw new Exception( __METHOD__ .
+				' apparently called from installer but no hook container was injected' );
+		}
+		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+			// Running under update.php: just use global locator
+			return MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$vars = Installer::getExistingLocalSettings();
 
@@ -170,17 +188,30 @@ abstract class DatabaseUpdater {
 		// Don't accidentally load extensions in the future
 		$registry->clearQueue();
 
-		// This will automatically add "AutoloadClasses" to $wgAutoloadClasses
+		// Read extension.json files
 		$data = $registry->readFromQueue( $queue );
-		$hooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ?? [];
+
+		// Merge extension attribute hooks with hooks defined by a .php
+		// registration file included from LocalSettings.php
+		$legacySchemaHooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ?? [];
 		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			$hooks = array_merge_recursive( $hooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
+			$legacySchemaHooks = array_merge( $legacySchemaHooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
 		}
-		global $wgHooks, $wgAutoloadClasses;
-		$wgHooks['LoadExtensionSchemaUpdates'] = $hooks;
+
+		// Merge classes from extension.json
+		global $wgAutoloadClasses;
 		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
 			$wgAutoloadClasses += $vars['wgAutoloadClasses'];
 		}
+
+		return new HookContainer(
+			new StaticHookRegistry(
+				[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
+				$data['attributes']['Hooks'] ?? [],
+				$data['attributes']['DeprecatedHooks'] ?? []
+			),
+			MediaWikiServices::getInstance()->getObjectFactory()
+		);
 	}
 
 	/**
@@ -204,6 +235,17 @@ abstract class DatabaseUpdater {
 		} else {
 			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
+	}
+
+	/**
+	 * Set the HookContainer to use for loading extension schema updates.
+	 *
+	 * @internal For use by DatabaseInstaller
+	 * @since 1.36
+	 * @param HookContainer $hookContainer
+	 */
+	public function setAutoExtensionHookContainer( HookContainer $hookContainer ) {
+		$this->autoExtensionHookContainer = $hookContainer;
 	}
 
 	/**
