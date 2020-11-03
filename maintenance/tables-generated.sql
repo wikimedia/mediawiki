@@ -382,3 +382,26 @@ CREATE TABLE /*_*/protected_titles (
   INDEX pt_timestamp (pt_timestamp),
   PRIMARY KEY(pt_namespace, pt_title)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/externallinks (
+  el_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  el_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  el_to BLOB NOT NULL,
+  el_index BLOB NOT NULL,
+  el_index_60 VARBINARY(60) NOT NULL,
+  INDEX el_from (
+    el_from,
+    el_to(40)
+  ),
+  INDEX el_to (
+    el_to(60),
+    el_from
+  ),
+  INDEX el_index (
+    el_index(60)
+  ),
+  INDEX el_index_60 (el_index_60, el_id),
+  INDEX el_from_index_60 (el_from, el_index_60, el_id),
+  PRIMARY KEY(el_id)
+) /*$wgDBTableOptions*/;
