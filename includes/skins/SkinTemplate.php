@@ -985,7 +985,7 @@ class SkinTemplate extends Skin {
 				} else {
 					// article doesn't exist or is deleted
 					if ( $permissionManager->quickUserCan( 'deletedhistory', $user, $title ) ) {
-						$n = $title->isDeleted();
+						$n = $title->getDeletedEditsCount();
 						if ( $n ) {
 							$undelTitle = SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() );
 							// If the user can't undelete but can view deleted
