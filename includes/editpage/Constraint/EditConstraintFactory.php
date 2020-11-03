@@ -120,6 +120,22 @@ class EditConstraintFactory {
 
 	/**
 	 * @param User $user
+	 * @param Title $title
+	 * @return CreationPermissionConstraint
+	 */
+	public function newCreationPermissionConstraint(
+		User $user,
+		Title $title
+	) : CreationPermissionConstraint {
+		return new CreationPermissionConstraint(
+			$this->permissionManager,
+			$user,
+			$title
+		);
+	}
+
+	/**
+	 * @param User $user
 	 * @return EditRightConstraint
 	 */
 	public function newEditRightConstraint( User $user ) : EditRightConstraint {

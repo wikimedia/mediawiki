@@ -23,7 +23,10 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
+use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
+use MediaWiki\EditPage\Constraint\MissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
@@ -2198,30 +2201,36 @@ ERROR;
 		$new = !$this->page->exists();
 
 		if ( $new ) {
+			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+			// Create a new runner to avoid rechecking the prior constraints, use the same factory
+			$constraintRunner = new EditConstraintRunner();
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->permManager->userCan( 'create', $user, $this->mTitle ) ) {
-				$status->fatal( 'nocreatetext' );
-				$status->value = self::AS_NO_CREATE_PERMISSION;
-				wfDebug( __METHOD__ . ": no create permission" );
-				return $status;
-			}
+			$constraintRunner->addConstraint(
+				$constraintFactory->newCreationPermissionConstraint( $user, $this->mTitle )
+			);
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
 			// message with content equivalent to default (allow empty pages
 			// in this case to disable messages, see T52124)
-			$defaultMessageText = $this->mTitle->getDefaultMessageText();
-			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
-				$defaultText = $defaultMessageText;
-			} else {
-				$defaultText = '';
-			}
+			$constraintRunner->addConstraint(
+				new DefaultTextConstraint(
+					$this->mTitle,
+					$this->allowBlankArticle,
+					$this->textbox1
+				)
+			);
 
-			if ( !$this->allowBlankArticle && $this->textbox1 === $defaultText ) {
-				$this->blankArticle = true;
-				$status->fatal( 'blankarticle' );
-				$status->setResult( false, self::AS_BLANK_ARTICLE );
+			// Check the constraints
+			if ( $constraintRunner->checkConstraints() === false ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				if ( $failed instanceof DefaultTextConstraint ) {
+					$this->blankArticle = true;
+				}
+				$statusValue = $failed->getLegacyStatus();
+				$status = Status::wrap( $statusValue );
 				return $status;
 			}
+			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			if ( !$this->runPostMergeFilters( $textbox_content, $status, $user ) ) {
 				return $status;
@@ -2370,21 +2379,31 @@ ERROR;
 			}
 
 			if ( $this->section == 'new' ) {
-				// Handle the user preference to force summaries here
-				if ( !$this->allowBlankSummary && trim( $this->summary ) == '' ) {
-					$this->missingSummary = true;
-					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
-					$status->value = self::AS_SUMMARY_NEEDED;
+				// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+				// Create a new runner to avoid rechecking the prior constraints, use the same factory
+				$constraintRunner = new EditConstraintRunner();
+				$constraintRunner->addConstraint(
+					new MissingSummaryConstraint(
+						$this->summary,
+						$this->allowBlankSummary
+					)
+				);
+				$constraintRunner->addConstraint(
+					new MissingCommentConstraint( $this->textbox1 )
+				);
+				// Check the constraints
+				if ( $constraintRunner->checkConstraints() === false ) {
+					$failed = $constraintRunner->getFailedConstraint();
+					if ( $failed instanceof MissingSummaryConstraint ) {
+						$this->missingSummary = true;
+					} elseif ( $failed instanceof MissingCommentConstraint ) {
+						$this->missingComment = true;
+					}
+					$statusValue = $failed->getLegacyStatus();
+					$status = Status::wrap( $statusValue );
 					return $status;
 				}
-
-				// Do not allow the user to post an empty comment
-				if ( $this->textbox1 == '' ) {
-					$this->missingComment = true;
-					$status->fatal( 'missingcommenttext' );
-					$status->value = self::AS_TEXTBOX_EMPTY;
-					return $status;
-				}
+				// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 			} elseif ( !$this->allowBlankSummary
 				&& !$content->equals( $this->getOriginalContent( $user ) )
 				&& !$content->isRedirect()

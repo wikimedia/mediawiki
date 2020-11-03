@@ -211,6 +211,62 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/** CreationPermissionConstraint integration */
+	public function testCreationPermissionConstraint() {
+		$page = $this->getNonexistingTestPage( 'CreationPermissionConstraint page does not exist' );
+		$title = $page->getTitle();
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( false );
+		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
+		$user->method( 'getId' )->willReturn( 12345 );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach CreationPermissionConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		$edit = [
+			'wpTextbox1' => 'Page content',
+			'wpSummary' => 'Summary'
+		];
+		$this->assertEdit(
+			$title,
+			null,
+			$user,
+			$edit,
+			EditPage::AS_NO_CREATE_PERMISSION,
+			'expected AS_NO_CREATE_PERMISSION creation'
+		);
+	}
+
+	/** DefaultTextConstraint integration */
+	public function testDefaultTextConstraint() {
+		$page = $this->getNonexistingTestPage( 'DefaultTextConstraint page does not exist' );
+		$title = $page->getTitle();
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( false );
+		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
+		$user->method( 'getId' )->willReturn( 12345 );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
+
+		$edit = [
+			'wpTextbox1' => '',
+			'wpSummary' => 'Summary'
+		];
+		$this->assertEdit(
+			$title,
+			null,
+			$user,
+			$edit,
+			EditPage::AS_BLANK_ARTICLE,
+			'expected AS_BLANK_ARTICLE creation'
+		);
+	}
+
 	/**
 	 * EditRightConstraint integration
 	 * @dataProvider provideTestEditRightConstraint
@@ -280,6 +336,67 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	public function provideTestImageRedirectConstraint() {
 		yield 'Anonymous user' => [ true, EditPage::AS_IMAGE_REDIRECT_ANON ];
 		yield 'Registered user' => [ false, EditPage::AS_IMAGE_REDIRECT_LOGGED ];
+	}
+
+	/** MissingCommentConstraint integration */
+	public function testMissingCommentConstraint() {
+		$page = $this->getExistingTestPage( 'MissingCommentConstraint page does exist' );
+		$title = $page->getTitle();
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( false );
+		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
+		$user->method( 'getId' )->willReturn( 12345 );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach MissingCommentConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		$edit = [
+			'wpTextbox1' => '',
+			'wpSection' => 'new',
+			'wpSummary' => 'Summary'
+		];
+		$this->assertEdit(
+			$title,
+			null,
+			$user,
+			$edit,
+			EditPage::AS_TEXTBOX_EMPTY,
+			'expected AS_TEXTBOX_EMPTY update'
+		);
+	}
+
+	/** MissingSummaryConstraint integration */
+	public function testMissingSummaryConstraint() {
+		// Require the summary
+		$this->mergeMwGlobalArrayValue(
+			'wgDefaultUserOptions',
+			[ 'forceeditsummary' => 1 ]
+		);
+
+		$page = $this->getExistingTestPage( 'MissingSummaryConstraint page does exist' );
+		$title = $page->getTitle();
+
+		$user = $this->getTestUser()->getUser();
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach MissingSummaryConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		$edit = [
+			'wpTextbox1' => 'Comment',
+			'wpSection' => 'new',
+			'wpSummary' => ''
+		];
+		$this->assertEdit(
+			$title,
+			null,
+			$user,
+			$edit,
+			EditPage::AS_SUMMARY_NEEDED,
+			'expected AS_SUMMARY_NEEDED update'
+		);
 	}
 
 	/** PageSizeConstraint integration */
