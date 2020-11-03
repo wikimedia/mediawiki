@@ -1988,7 +1988,7 @@ abstract class File implements IDBAccessObject {
 	public function wasDeleted() {
 		$title = $this->getTitle();
 
-		return $title && $title->isDeletedQuick();
+		return $title && $title->hasDeletedEdits();
 	}
 
 	/**
