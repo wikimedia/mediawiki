@@ -546,6 +546,8 @@
 	"botpasswords-updated-body": "$2 атту {{GENDER:$2|туружаачыныҥ}} $1 атту боттыҥ јажыт сӧзи јаҥыртылды",
 	"botpasswords-deleted-title": "Боттыҥ јажыт сӧзи јаҥыртылды",
 	"botpasswords-deleted-body": "$2 атту {{GENDER:$2|туружачыныҥ}} $1 атту боттыҥ јажыт сӧзи кырылды",
+	"botpasswords-newpassword": "Кирерге јаҥы јажы сӧс <strong>$1</strong> - <strong>$2</strong>. <em>Мынаҥ ары эдинерге бичип салар.</em> <br> (Эски ботторго аккаунтыныҥ ады андый ла болор керек деп некеледет болотон туружаачыныҥ адыла <strong>$3</strong> ады этире ле <strong>$4</strong> јажыт сӧс этире.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider јок.",
 	"resetpass_forbidden": "Јажыт сӧс солыыр арга јок",
 	"resetpass_forbidden-reason": "Јажыт сӧстӧр солыыр арга јок: $1",
 	"resetpass-no-info": "Бу бӱкке кӧндӱре баштанарга слерге системага кирип алар керек.",

@@ -1449,7 +1449,7 @@
 	"api-help-param-multi-all": "Para especificar todos los valores, utiliza <kbd>$1</kbd>.",
 	"api-help-param-default-empty": "Predeterminado: <span class=\"apihelp-empty\">(vacío)</span>",
 	"api-help-param-disabled-in-miser-mode": "Deshabilitado debido al [[mw:Special:MyLanguage/Manual:$wgMiserMode|modo avaro]].",
-	"api-help-param-limited-in-miser-mode": "strong>Nota:</strong> Debido al [[mw:Special:MyLanguage/Manual:$wgMiserMode|modo avaro]], usar esto puede dar lugar a que se devuelvan menos de <var>$1limit</var> antes de continuar. En casos extremos, podrían devolverse cero resultados.",
+	"api-help-param-limited-in-miser-mode": "<strong>Nota:</strong> Debido al [[mw:Special:MyLanguage/Manual:$wgMiserMode|modo pobre]], usar esto puede dar lugar a que se devuelvan menos de <var>$1limit</var> antes de continuar. En casos extremos, podrían devolverse cero resultados.",
 	"api-help-param-direction": "En qué sentido hacer la enumeración:\n;newer: De más antiguos a más recientes. Nota: $1start debe ser anterior a $1end.\n;older: De más recientes a más antiguos (orden predefinido). Nota: $1start debe ser posterior a $1end.",
 	"api-help-param-continue": "Cuando haya más resultados disponibles, utiliza esto para continuar.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(sin descripción)</span>",

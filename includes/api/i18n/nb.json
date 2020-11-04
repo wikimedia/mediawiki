@@ -354,6 +354,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Gir seksjonene i den tolkede wikiteksten.",
 	"apihelp-parse-paramvalue-prop-revid": "Gir revisjons-ID-en til den tolkede wikiteksten.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Gir tittelen til den tolkede wikiteksten.",
+	"apihelp-parse-paramvalue-prop-subtitle": "Legger til undertittelen for den tolkede siden.",
 	"apihelp-parse-paramvalue-prop-headitems": "Gir elementer som skal puttes i <code>&lt;head&gt;</code>-taggen til siden.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Gir den tolkede doctypen og de åpnende <code>&lty;html&gt;</code>-, <code>&lt;head&gt;</code>- og <code>&lt;body&gt;</code>-elementene til siden.",
 	"apihelp-parse-paramvalue-prop-modules": "Gir ResourceLoader-moduler som brukes på siden. For å laste dem, bruk <code>mw.loader.using()</code>. Enten <kbd>jsonconfigvars</kbd> eller <kbd>encodedjsonfigvars</kbd> må bes om sammen med <kbd>modules</kbd>.",
