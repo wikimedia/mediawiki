@@ -4,8 +4,9 @@
  * @covers Sanitizer::validateEmail
  * @todo all test methods in this class should be refactored and...
  *    use a single test method and a single data provider...
+ *    Also, it should be made a pure unit test once ::validateEmail is migrated to proper DI
  */
-class SanitizerValidateEmailTest extends MediaWikiUnitTestCase {
+class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {
 
 	private function checkEmail( $addr, $expected = true, $msg = '' ) {
 		if ( $msg == '' ) {

@@ -9,6 +9,7 @@ const SUPPORTED = LanguageNameUtils::SUPPORTED;
 
 /**
  * For code shared between LanguageNameUtilsTest and LanguageTest.
+ * @internal For use by LanguageNameUtilsTest and LanguageTest only.
  */
 trait LanguageNameUtilsTestTrait {
 	abstract protected function isSupportedLanguage( $code );
@@ -187,6 +188,13 @@ trait LanguageNameUtilsTestTrait {
 	}
 
 	/**
+	 * Set a temporary hook, allows using DI.
+	 * @param string $hookName
+	 * @param mixed $handler Value suitable for a hook handler
+	 */
+	abstract protected function setLanguageTemporaryHook( string $hookName, $handler ) : void;
+
+	/**
 	 * @dataProvider provideGetLanguageNames_withHook
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNames
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNamesUncached
@@ -199,7 +207,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_withHook( $expected, $code, ...$otherArgs ) {
-		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
+		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
 					case 'de':
@@ -263,7 +271,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_ExtraLanguageNames( $expected, $code, ...$otherArgs ) {
-		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
+		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names ) {
 				$names['de'] = 'die deutsche Sprache';
 			}
@@ -297,7 +305,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers Language::fetchLanguageName
 	 */
 	public function testGetLanguageNames_parameterDefault() {
-		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
+		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names ) {
 				$names = [ 'sqsqsqsq' => '!!?!' ];
 			}
@@ -345,7 +353,7 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames_hookNotCalledForAutonyms() {
 		$count = 0;
-		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
+		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function () use ( &$count ) {
 				$count++;
 			}
@@ -372,7 +380,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_pigLatin( $expected, ...$otherArgs ) {
-		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
+		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
 					case 'fr':
@@ -477,7 +485,7 @@ trait LanguageNameUtilsTestTrait {
 	public function testGetMessagesFileName_withHook() {
 		$called = 0;
 
-		$this->setTemporaryHook( 'Language::getMessagesFileName',
+		$this->setLanguageTemporaryHook( 'Language::getMessagesFileName',
 			function ( $code, &$file ) use ( &$called ) {
 				global $IP;
 

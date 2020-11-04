@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -1992,6 +1993,10 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		return Language::isKnownLanguageTag( $code );
 	}
 
+	protected function setLanguageTemporaryHook( string $hookName, $handler ): void {
+		$this->setTemporaryHook( $hookName, $handler );
+	}
+
 	/**
 	 * Call getLanguageName() and getLanguageNames() using the Language static methods.
 	 *
@@ -2069,7 +2074,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createHookContainer()
+			$this->createMock( HookContainer::class )
 		);
 		$config += [
 			'wgMetaNamespace' => 'Project',
