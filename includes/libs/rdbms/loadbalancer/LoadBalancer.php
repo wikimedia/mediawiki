@@ -317,7 +317,10 @@ class LoadBalancer implements ILoadBalancer {
 		} elseif ( is_string( $groups ) && isset( $this->groupLoads[$groups] ) ) {
 			$resolvedGroups = [ $groups, $this->defaultGroup ];
 		} elseif ( is_array( $groups ) ) {
-			$resolvedGroups = array_keys( array_flip( $groups ) + [ self::GROUP_GENERIC => 1 ] );
+			$resolvedGroups = $groups;
+			if ( array_search( $this->defaultGroup, $resolvedGroups ) === false ) {
+				$resolvedGroups[] = $this->defaultGroup;
+			}
 		} else {
 			$resolvedGroups = [ $this->defaultGroup ];
 		}
