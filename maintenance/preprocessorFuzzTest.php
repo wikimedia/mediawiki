@@ -28,8 +28,6 @@ use Wikimedia\TestingAccessWrapper;
 $optionsWithoutArgs = [ 'verbose' ];
 require_once __DIR__ . '/CommandLineInc.php';
 
-$wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
-
 class PPFuzzTester {
 	public $hairs = [
 		'[[', ']]', '{{', '{{', '}}', '}}', '{{{', '}}}',
