@@ -1177,7 +1177,18 @@ return [
 					return [
 						'previewnote' => $messageLocalizer->msg( 'previewnote' )->parse(),
 					];
-				}
+				},
+				// Use versionCallback to avoid calling the parser from version invalidation code.
+				'versionCallback' => function ( MessageLocalizer $messageLocalizer ) {
+					return [
+						'previewnote' => [
+							// Include the text of the message, in case the canonical translation changes
+							$messageLocalizer->msg( 'previewnote' )->plain(),
+							// Include the page touched time, in case the on-wiki override is invalidated
+							Title::makeTitle( NS_MEDIAWIKI, 'Previewnote' )->getTouched(),
+						],
+					];
+				},
 			]
 		],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.css',
