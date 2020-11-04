@@ -83,7 +83,7 @@
 		"pimple/pimple": "3.3.0",
 		"psy/psysh": "0.10.4",
 		"seld/jsonlint": "1.7.1",
-		"symfony/yaml": "~3.4|~4.3|~5.0.5",
+		"symfony/yaml": "~3.4|~5.1",
 		"wikimedia/avro": "1.9.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
