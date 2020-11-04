@@ -341,10 +341,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				}
 			}
 		} elseif ( $option == 'nocopyright' ) {
-			unset( $footericons['copyright']['copyright'] );
-			if ( $footericons['copyright'] === [] ) {
-				unset( $footericons['copyright'] );
-			}
+			unset( $footericons['copyright'] );
 		}
 
 		return $footericons;
