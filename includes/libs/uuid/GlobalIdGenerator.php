@@ -443,11 +443,11 @@ class GlobalIdGenerator {
 	 */
 	protected function getTimeAndDelay( $lockFile, $clockSeqSize, $counterSize, $offsetSize ) {
 		// Get the UID lock file handle
-		if ( isset( $this->fileHandles[$lockFile] ) ) {
-			$handle = $this->fileHandles[$lockFile];
+		if ( isset( $this->fileHandles[$this->$lockFile] ) ) {
+			$handle = $this->fileHandles[$this->$lockFile];
 		} else {
 			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$lockFile] = $handle ?: null; // cache
+			$this->fileHandles[$this->$lockFile] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
