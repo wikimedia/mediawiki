@@ -51,7 +51,7 @@ $namespaceAliases = [
 	'Disputatio_Imaginis' => NS_FILE_TALK,
 ];
 
-$separatorTransformTable = [ ',' => "\u{00A0}" ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => '.' ];
 
 $dateFormats = [
 	'mdy time' => 'H:i',
