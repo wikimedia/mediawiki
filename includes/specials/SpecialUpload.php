@@ -24,6 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Form for handling uploads and special page.
@@ -39,18 +40,26 @@ class SpecialUpload extends SpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param RepoGroup|null $repoGroup
 	 * @param PermissionManager|null $permissionManager
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		RepoGroup $repoGroup = null,
-		PermissionManager $permissionManager = null
+		PermissionManager $permissionManager = null,
+		UserOptionsLookup $userOptionsLookup = null
 	) {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300
-		$this->localRepo = ( $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup() )->getLocalRepo();
-		$this->permissionManager = $permissionManager ?? MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$this->localRepo = $repoGroup->getLocalRepo();
+		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
+		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 	}
 
 	public function doesWrites() {
@@ -677,16 +686,17 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * Note that the page target can be changed *on the form*, so our check
 	 * state can get out of sync.
-	 * @return bool|string
+	 * @return bool
 	 */
 	protected function getWatchCheck() {
-		if ( $this->getUser()->getOption( 'watchdefault' ) ) {
+		$user = $this->getUser();
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchdefault' ) ) {
 			// Watch all edits!
 			return true;
 		}
 
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
-		if ( $desiredTitleObj instanceof Title && $this->getUser()->isWatched( $desiredTitleObj ) ) {
+		if ( $desiredTitleObj instanceof Title && $user->isWatched( $desiredTitleObj ) ) {
 			// Already watched, don't change that
 			return true;
 		}
@@ -698,8 +708,8 @@ class SpecialUpload extends SpecialPage {
 			return false;
 		} else {
 			// New page should get watched if that's our option.
-			return $this->getUser()->getOption( 'watchcreations' ) ||
-				$this->getUser()->getOption( 'watchuploads' );
+			return $this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) ||
+				$this->userOptionsLookup->getBoolOption( $user, 'watchuploads' );
 		}
 	}
 
