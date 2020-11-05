@@ -194,11 +194,6 @@ class ParserOutput extends CacheTime {
 	private $mIndexPolicy = '';
 
 	/**
-	 * @var true[] List of ParserOptions (stored in the keys).
-	 */
-	private $mAccessedOptions = [];
-
-	/**
 	 * @var array extra data used by extensions.
 	 */
 	private $mExtensionData = [];
@@ -1183,35 +1178,6 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Returns the options from its ParserOptions which have been taken
-	 * into account to produce this output.
-	 * @return string[]
-	 */
-	public function getUsedOptions() : array {
-		// TODO: Merge mAccessedOptions with CacheTime::mUsedOptions
-		if ( !isset( $this->mAccessedOptions ) ) {
-			return [];
-		}
-		return array_keys( $this->mAccessedOptions );
-	}
-
-	/**
-	 * Tags a parser option for use in the cache key for this parser output.
-	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
-	 * The information gathered here is available via getUsedOptions(),
-	 * and is used by ParserCache::save().
-	 *
-	 * @see ParserCache::getMetadata
-	 * @see ParserCache::save
-	 * @see ParserOptions::addExtraKey
-	 * @see ParserOptions::optionsHash
-	 * @param string $option
-	 */
-	public function recordOption( $option ) {
-		$this->mAccessedOptions[$option] = true;
-	}
-
-	/**
 	 * Attaches arbitrary data to this ParserObject. This can be used to store some information in
 	 * the ParserOutput object for later use during page output. The data will be cached along with
 	 * the ParserOutput object, but unlike data set using setProperty(), it is not recorded in the
@@ -1500,7 +1466,7 @@ class ParserOutput extends CacheTime {
 		);
 
 		$this->mFlags = self::mergeMap( $this->mFlags, $source->mFlags );
-		$this->mAccessedOptions = self::mergeMap( $this->mAccessedOptions, $source->mAccessedOptions );
+		$this->mParseUsedOptions = self::mergeMap( $this->mParseUsedOptions, $source->mParseUsedOptions );
 
 		// TODO: maintain per-slot limit reports!
 		if ( empty( $this->mLimitReportData ) ) {
@@ -1723,7 +1689,6 @@ class ParserOutput extends CacheTime {
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
 			'IndexPolicy' => $this->mIndexPolicy,
-			'AccessedOptions' => $this->mAccessedOptions,
 			// may contain arbitrary structures!
 			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
@@ -1767,7 +1732,6 @@ class ParserOutput extends CacheTime {
 	 */
 	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
 		parent::initFromJson( $unserializer, $jsonData );
-		$this->mUsedOptions = null;
 
 		$this->mText = $jsonData['Text'];
 		$this->mLanguageLinks = $jsonData['LanguageLinks'];
@@ -1797,13 +1761,8 @@ class ParserOutput extends CacheTime {
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->mIndexPolicy = $jsonData['IndexPolicy'];
-		if ( array_key_exists( 'ParseUsedOptions', $jsonData ) ) {
-			// Forward compatibility
-			$this->mAccessedOptions = $jsonData['ParseUsedOptions'];
-		} else {
-			$this->mAccessedOptions = $jsonData['AccessedOptions'];
-		}
 		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
+		$this->mExtensionData = $jsonData['ExtensionData'];
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mParseStartTime = $jsonData['ParseStartTime'];
@@ -1866,10 +1825,10 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function __wakeup() {
-		$forwardOptions = $this->getGhostFieldValue( 'mParseUsedOptions' );
-		if ( $forwardOptions ) {
-			$this->mAccessedOptions = $forwardOptions;
-			$this->mUsedOptions = null;
+		// Backwards compatibility, pre 1.36
+		$priorAccessedOptions = $this->getGhostFieldValue( 'mAccessedOptions' );
+		if ( $priorAccessedOptions ) {
+			$this->mParseUsedOptions = $priorAccessedOptions;
 		}
 	}
 }

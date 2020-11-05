@@ -37,9 +37,10 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	use JsonUnserializableTrait;
 
 	/**
-	 * @var string[] ParserOptions which have been taken into account to produce output.
+	 * @var true[] ParserOptions which have been taken into account
+	 * to produce output, option names stored in array keys.
 	 */
-	public $mUsedOptions;
+	protected $mParseUsedOptions = [];
 
 	/**
 	 * @var string|null Compatibility check
@@ -214,7 +215,36 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	 * @return string[]
 	 */
 	public function getUsedOptions(): array {
-		return $this->mUsedOptions;
+		return array_keys( $this->mParseUsedOptions );
+	}
+
+	/**
+	 * Tags a parser option for use in the cache key for this parser output.
+	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 * The information gathered here is available via getUsedOptions(),
+	 * and is used by ParserCache::save().
+	 *
+	 * @see ParserCache::getMetadata
+	 * @see ParserCache::save
+	 * @see ParserOptions::addExtraKey
+	 * @see ParserOptions::optionsHash
+	 * @param string $option
+	 */
+	public function recordOption( string $option ) {
+		$this->mParseUsedOptions[$option] = true;
+	}
+
+	/**
+	 * Tags a list of parser option names for use in the cache key for this parser output.
+	 *
+	 * @see recordOption()
+	 * @param string[] $options
+	 */
+	public function recordOptions( array $options ) {
+		$this->mParseUsedOptions = array_merge(
+			$this->mParseUsedOptions,
+			array_fill_keys( $options, true )
+		);
 	}
 
 	/**
@@ -225,7 +255,7 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	 */
 	protected function toJsonArray(): array {
 		return [
-			'UsedOptions' => $this->mUsedOptions,
+			'ParseUsedOptions' => $this->mParseUsedOptions,
 			'CacheExpiry' => $this->mCacheExpiry,
 			'CacheTime' => $this->mCacheTime,
 			'CacheRevisionId' => $this->mCacheRevisionId,
@@ -245,11 +275,14 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	 * @param array $jsonData
 	 */
 	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
-		if ( array_key_exists( 'ParseUsedOptions', $jsonData ) ) {
-			// Forward compatibility
-			$this->mUsedOptions = array_keys( $jsonData['ParseUsedOptions'] ?: [] );
+		if ( array_key_exists( 'AccessedOptions', $jsonData ) ) {
+			// Backwards compatibility for ParserOutput
+			$this->mParseUsedOptions = $jsonData['AccessedOptions'] ?: [];
+		} elseif ( array_key_exists( 'UsedOptions', $jsonData ) ) {
+			// Backwards compatibility
+			$this->recordOptions( $jsonData['UsedOptions'] ?: [] );
 		} else {
-			$this->mUsedOptions = $jsonData['UsedOptions'];
+			$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?: [];
 		}
 		$this->mCacheExpiry = $jsonData['CacheExpiry'];
 		$this->mCacheTime = $jsonData['CacheTime'];
@@ -258,9 +291,10 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	}
 
 	public function __wakeup() {
-		$forwardCompatOptions = $this->getGhostFieldValue( 'mParseUsedOptions' );
-		if ( $forwardCompatOptions ) {
-			$this->mUsedOptions = array_keys( $forwardCompatOptions );
+		// Backwards compatibility, pre 1.36
+		$priorOptions = $this->getGhostFieldValue( 'mUsedOptions' );
+		if ( $priorOptions ) {
+			$this->recordOptions( $priorOptions );
 		}
 	}
 }
