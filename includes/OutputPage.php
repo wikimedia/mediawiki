@@ -2439,16 +2439,25 @@ class OutputPage extends ContextSource {
 		$response->header( $this->getVaryHeader() );
 
 		if ( $this->mEnableClientCache ) {
-			if (
-				$config->get( 'UseCdn' ) &&
-				!$response->hasCookies() &&
-				// The client might use methods other than cookies to appear logged-in.
-				// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
-				!SessionManager::getGlobalSession()->isPersistent() &&
-				!$this->isPrintable() &&
-				$this->mCdnMaxage != 0 &&
-				!$this->haveCacheVaryCookies()
-			) {
+			if ( !$config->get( 'UseCdn' ) ) {
+				$privateReason = 'config';
+			} elseif ( $response->hasCookies() ) {
+				$privateReason = 'set-cookies';
+			// The client might use methods other than cookies to appear logged-in.
+			// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
+			} elseif ( SessionManager::getGlobalSession()->isPersistent() ) {
+				$privateReason = 'session';
+			} elseif ( $this->isPrintable() ) {
+				$privateReason = 'printable';
+			} elseif ( $this->mCdnMaxage == 0 ) {
+				$privateReason = 'no-maxage';
+			} elseif ( $this->haveCacheVaryCookies() ) {
+				$privateReason = 'cache-vary-cookies';
+			} else {
+				$privateReason = false;
+			}
+
+			if ( $privateReason === false ) {
 				# We'll purge the proxy cache for anons explicitly, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# IMPORTANT! The CDN needs to replace the Cache-Control header with
@@ -2462,7 +2471,7 @@ class OutputPage extends ContextSource {
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page, after the max-age period.
-				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **", 'private' );
+				wfDebug( __METHOD__ . ": private caching ($privateReason); {$this->mLastModified} **", 'private' );
 
 				if ( $response->hasCookies() || SessionManager::getGlobalSession()->isPersistent() ) {
 					$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
