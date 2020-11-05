@@ -3334,11 +3334,23 @@ class Language {
 				// supports. Example: arq. Also, languages like pl has
 				// customisation.  So manually set it.
 				if ( $noTranslate ) {
-					$fmt->setSymbol( NumberFormatter::DECIMAL_SEPARATOR_SYMBOL, '.' );
-					$fmt->setSymbol( NumberFormatter::GROUPING_SEPARATOR_SYMBOL, ',' );
+					$fmt->setSymbol(
+						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
+						'.'
+					);
+					$fmt->setSymbol(
+						NumberFormatter::GROUPING_SEPARATOR_SYMBOL,
+						','
+					);
 				} elseif ( $separatorTransformTable ) {
-					$fmt->setSymbol( NumberFormatter::DECIMAL_SEPARATOR_SYMBOL, $separatorTransformTable[ '.' ] );
-					$fmt->setSymbol( NumberFormatter::GROUPING_SEPARATOR_SYMBOL, $separatorTransformTable[ ',' ] );
+					$fmt->setSymbol(
+						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
+						$separatorTransformTable[ '.' ] ?? '.'
+					);
+					$fmt->setSymbol(
+						NumberFormatter::GROUPING_SEPARATOR_SYMBOL,
+						$separatorTransformTable[ ',' ] ?? ','
+					);
 				}
 
 				// Maintain # of digits before and after the decimal point
