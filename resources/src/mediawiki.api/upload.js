@@ -425,10 +425,10 @@
 					// failure handlers have a complete result object (including
 					// possibly more warnings, e.g. duplicate)
 					// This matches .upload, which also completes the upload.
-					if ( result.upload && result.upload.warnings && code in result.upload.warnings ) {
+					if ( result.upload && result.upload.warnings ) {
 						if ( end === file.size ) {
 							// uploaded last chunk = reject with result data
-							return $.Deferred().reject( code, result );
+							return $.Deferred().reject( result.upload.warnings.code || 'unknown', result );
 						} else {
 							// still uploading chunks = resolve to keep going
 							return $.Deferred().resolve( result );
