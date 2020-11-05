@@ -24,6 +24,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
@@ -331,6 +333,11 @@ abstract class Installer {
 		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
 		'sl', 'sr', 'sv', 'tr', 'uk'
 	];
+
+	/**
+	 * @var HookContainer|null
+	 */
+	protected $autoExtensionHookContainer;
 
 	/**
 	 * UI interface for displaying a short message
@@ -1525,13 +1532,64 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function includeExtensions() {
-		global $IP;
-		$exts = $this->getVar( '_Extensions' );
-		$IP = $this->getVar( 'IP' );
-
 		// Marker for DatabaseUpdater::loadExtensions so we don't
 		// double load extensions
 		define( 'MW_EXTENSIONS_LOADED', true );
+
+		$legacySchemaHooks = $this->getAutoExtensionLegacyHooks();
+		$data = $this->getAutoExtensionData();
+		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			$legacySchemaHooks = array_merge( $legacySchemaHooks,
+				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] );
+		}
+		$extDeprecatedHooks = $data['attributes']['DeprecatedHooks'] ?? [];
+
+		$this->autoExtensionHookContainer = new HookContainer(
+			new StaticHookRegistry(
+				[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
+				$data['attributes']['Hooks'] ?? [],
+				$extDeprecatedHooks
+			),
+			MediaWikiServices::getInstance()->getObjectFactory()
+		);
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Auto-detect extensions with an old style .php registration file, load
+	 * the extensions, and return the merged $wgHooks array.
+	 *
+	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
+	 * @return array
+	 */
+	protected function getAutoExtensionLegacyHooks() {
+		$exts = $this->getVar( '_Extensions' );
+		$installPath = $this->getVar( 'IP' );
+		$files = [];
+		foreach ( $exts as $e ) {
+			if ( file_exists( "$installPath/extensions/$e/$e.php" ) ) {
+				$files[] = "$installPath/extensions/$e/$e.php";
+			}
+		}
+
+		if ( $files ) {
+			return $this->includeExtensionFiles( $files );
+		} else {
+			return [];
+		}
+	}
+
+	/**
+	 * Include the specified extension PHP files. Populate $wgAutoloadClasses
+	 * and return the LoadExtensionSchemaUpdates hooks.
+	 *
+	 * @param string[] $files
+	 * @return array LoadExtensionSchemaUpdates legacy hooks
+	 */
+	protected function includeExtensionFiles( $files ) {
+		global $IP;
+		$IP = $this->getVar( 'IP' );
 
 		/**
 		 * We need to include DefaultSettings before including extensions to avoid
@@ -1541,40 +1599,60 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		global $wgAutoloadClasses;
-		$wgAutoloadClasses = [];
-		$queue = [];
-
 		require "$IP/includes/DefaultSettings.php";
 
-		foreach ( $exts as $e ) {
-			if ( file_exists( "$IP/extensions/$e/extension.json" ) ) {
-				$queue["$IP/extensions/$e/extension.json"] = 1;
-			} else {
-				require_once "$IP/extensions/$e/$e.php";
-			}
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
+		global $wgAutoloadClasses;
+		foreach ( $files as $file ) {
+			require_once $file;
 		}
-
-		$registry = new ExtensionRegistry();
-		$data = $registry->readFromQueue( $queue );
-		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
 
 		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is set by DefaultSettings
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 
-		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			$hooksWeWant = array_merge_recursive(
-				$hooksWeWant,
-				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
-			);
-		}
-		// Unset everyone else's hooks. Lord knows what someone might be doing
+		// Ignore everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see T29171)
-		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
+		return [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
+	}
 
-		return Status::newGood();
+	/**
+	 * Auto-detect extensions with an extension.json file. Load the extensions,
+	 * populate $wgAutoloadClasses and return the merged registry data.
+	 *
+	 * @return array
+	 */
+	protected function getAutoExtensionData() {
+		$exts = $this->getVar( '_Extensions' );
+		$installPath = $this->getVar( 'IP' );
+		$queue = [];
+		foreach ( $exts as $e ) {
+			if ( file_exists( "$installPath/extensions/$e/extension.json" ) ) {
+				$queue["$installPath/extensions/$e/extension.json"] = 1;
+			}
+		}
+
+		$registry = new ExtensionRegistry();
+		$data = $registry->readFromQueue( $queue );
+		global $wgAutoloadClasses;
+		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
+		return $data;
+	}
+
+	/**
+	 * Get the hook container previously populated by includeExtensions().
+	 *
+	 * @internal For use by DatabaseInstaller
+	 * @since 1.36
+	 * @return HookContainer
+	 */
+	public function getAutoExtensionHookContainer() {
+		if ( !$this->autoExtensionHookContainer ) {
+			throw new \Exception( __METHOD__ .
+				': includeExtensions() has not been called' );
+		}
+		return $this->autoExtensionHookContainer;
 	}
 
 	/**
