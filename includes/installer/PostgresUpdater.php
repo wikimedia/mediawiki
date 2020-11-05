@@ -802,6 +802,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'protected_titles', 'pt_expiry', 'NOT NULL', true ],
 			[ 'changeField', 'protected_titles', 'pt_reason_id', 'BIGINT', '' ],
 			[ 'dropDefault', 'protected_titles', 'pt_create_perm' ],
+			[ 'dropFkey', 'externallinks', 'el_from' ],
+			[ 'setDefault', 'externallinks', 'el_from', 0 ],
+			[ 'changeField', 'externallinks', 'el_index_60', 'TEXT', '' ],
+			[ 'renameIndex', 'externallinks', 'externallinks_from_to', 'el_from' ],
+			[ 'renameIndex', 'externallinks', 'externallinks_index', 'el_index' ],
+			[ 'addPgIndex', 'externallinks', 'el_to', '(el_to, el_from)' ],
 		];
 	}
 
