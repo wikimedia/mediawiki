@@ -547,9 +547,12 @@
 					return finishUpload;
 				},
 				function ( errorCode, result ) {
-					if ( result && result.upload && result.upload.result === 'Warning' && result.upload.filekey ) {
-						// Catch handler is also called in case of warnings (e.g. 'duplicate')
+					if ( result && result.upload && result.upload.result === 'Success' && result.upload.filekey ) {
+						// When a file is uploaded with `ignorewarnings` and there are warnings,
+						// the promise will be rejected (because of those warnings, e.g. 'duplicate')
+						// but the result is actually a success
 						// We don't really care about those warnings, as long as the upload got stashed...
+						// Turn this back into a successful promise and allow the upload to complete
 						filekey = result.upload.filekey;
 						return $.Deferred().resolve( finishUpload );
 					}
@@ -589,7 +592,7 @@
 				throw new Error( 'Filename not included in file data.' );
 			}
 
-			promise = this.upload( file, { stash: true, filename: data.filename } );
+			promise = this.upload( file, { stash: true, filename: data.filename, ignorewarnings: data.ignorewarnings } );
 
 			return this.finishUploadToStash( promise, data );
 		},
@@ -620,7 +623,7 @@
 
 			promise = this.chunkedUpload(
 				file,
-				{ stash: true, filename: data.filename },
+				{ stash: true, filename: data.filename, ignorewarnings: data.ignorewarnings },
 				chunkSize,
 				chunkRetries
 			);
