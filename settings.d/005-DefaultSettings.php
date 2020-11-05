@@ -12,8 +12,6 @@ $wgEnableUploads = true;
 $GLOBALS['wgNamespacesWithSubpages'][NS_MAIN] = true;
 $GLOBALS['wgApiFrameOptions'] = 'SAMEORIGIN';
 $GLOBALS['bsgRSSUrlWhitelist'] = array(
-	"http://blog.bluespice.com/feed/",
-	"http://blog.hallowelt.com/feed/",
 	"https://blog.bluespice.com/feed/",
 	"https://blog.hallowelt.com/feed/",
 );
