@@ -881,10 +881,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onArticleViewHeader( $article, &$pcache, &$outputDone ) {
+	public function onArticleViewHeader( $article, &$outputDone, &$pcache ) {
 		return $this->container->run(
 			'ArticleViewHeader',
-			[ $article, &$pcache, &$outputDone ]
+			[ $article, &$outputDone, &$pcache ]
 		);
 	}
 

@@ -20,11 +20,11 @@ interface ArticleViewHeaderHook {
 	 * @since 1.35
 	 *
 	 * @param Article $article
-	 * @param bool &$pcache Whether to try the parser cache or not
 	 * @param bool|ParserOutput &$outputDone Whether the output for this page finished or not. Set to
 	 *   a ParserOutput object to both indicate that the output is done and what
 	 *   parser output was used.
+	 * @param bool &$pcache Whether to try the parser cache or not
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onArticleViewHeader( $article, &$pcache, &$outputDone );
+	public function onArticleViewHeader( $article, &$outputDone, &$pcache );
 }
