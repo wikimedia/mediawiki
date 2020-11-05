@@ -126,4 +126,9 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgExtraNamespaces' => 'string[]',
 ] );
 
+// Include a local config file if it exists
+if ( file_exists( __DIR__ . '/local-config.php' ) ) {
+	require __DIR__ . '/local-config.php';
+}
+
 return $cfg;
