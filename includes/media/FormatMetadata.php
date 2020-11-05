@@ -707,6 +707,29 @@ class FormatMetadata extends ContextSource {
 						}
 						break;
 
+					case 'GPSAltitudeRef':
+						// This appears to be either a bug in PHP's
+						// EXIF parser or some camera which generates
+						// bogus EXIF (seen so far from the Nikon
+						// Coolpix AW100, Coolpix P6000, and Pentax
+						// K-5), because legal values are supposed to
+						// be 0 and 1
+						if ( $val === "\357\277\275" ) {
+							$val = 999; // "unknown"?
+						}
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 999:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								$val = $this->literal( $val );
+								break;
+						}
+						break;
+
 					case 'GPSStatus':
 						switch ( $val ) {
 							case 'A':
