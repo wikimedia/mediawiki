@@ -1886,6 +1886,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\TimestampType' => __DIR__ . '/includes/libs/rdbms/database/TimestampType.php',
 	'Wikimedia\\Rdbms\\TinyIntType' => __DIR__ . '/includes/libs/rdbms/database/TinyIntType.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
+	'Wikimedia\\Reflection\\GhostFieldAccessTrait' => __DIR__ . '/includes/libs/GhostFieldAccessTrait.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
 	'WikitextLogFormatter' => __DIR__ . '/includes/logging/WikitextLogFormatter.php',
