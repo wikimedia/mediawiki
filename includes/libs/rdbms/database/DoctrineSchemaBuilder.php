@@ -49,7 +49,7 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 			if ( $index['unique'] === true ) {
 				$table->addUniqueIndex( $index['columns'], $index['name'], $index['options'] ?? [] );
 			} else {
-				$table->addIndex( $index['columns'], $index['name'], [], $index['options'] ?? [] );
+				$table->addIndex( $index['columns'], $index['name'], $index['flags'] ?? [], $index['options'] ?? [] );
 			}
 		}
 		$table->setPrimaryKey( $schema['pk'] );
