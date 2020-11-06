@@ -452,3 +452,15 @@ CREATE INDEX el_index ON externallinks (el_index);
 CREATE INDEX el_index_60 ON externallinks (el_index_60, el_id);
 
 CREATE INDEX el_from_index_60 ON externallinks (el_from, el_index_60, el_id);
+
+
+CREATE TABLE ip_changes (
+  ipc_rev_id INT DEFAULT 0 NOT NULL,
+  ipc_rev_timestamp TIMESTAMPTZ NOT NULL,
+  ipc_hex TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(ipc_rev_id)
+);
+
+CREATE INDEX ipc_rev_timestamp ON ip_changes (ipc_rev_timestamp);
+
+CREATE INDEX ipc_hex_time ON ip_changes (ipc_hex, ipc_rev_timestamp);

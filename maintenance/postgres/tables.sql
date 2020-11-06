@@ -110,16 +110,6 @@ CREATE UNIQUE INDEX revactor_rev ON revision_actor_temp (revactor_rev);
 CREATE INDEX revactor_actor_timestamp ON revision_actor_temp (revactor_actor,revactor_timestamp);
 CREATE INDEX revactor_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
 
-CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
-CREATE TABLE ip_changes (
-  ipc_rev_id        INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('ip_changes_ipc_rev_id_seq'),
-  ipc_rev_timestamp TIMESTAMPTZ NOT NULL,
-  ipc_hex           BYTEA NOT NULL DEFAULT ''
-);
-ALTER SEQUENCE ip_changes_ipc_rev_id_seq OWNED BY ip_changes.ipc_rev_id;
-CREATE INDEX ipc_rev_timestamp ON ip_changes (ipc_rev_timestamp);
-CREATE INDEX ipc_hex_time ON ip_changes (ipc_hex,ipc_rev_timestamp);
-
 CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_seq'),
