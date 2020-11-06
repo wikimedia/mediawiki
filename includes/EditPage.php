@@ -1920,14 +1920,6 @@ class EditPage implements IEditObject {
 	 * @return bool
 	 */
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
-		// Run old style post-section-merge edit filter
-		if ( $this->hookError != '' ) {
-			# ...or the hook could be expecting us to produce an error
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return false;
-		}
-
 		// Run new style post-section-merge edit filter
 		if ( !$this->getHookRunner()->onEditFilterMergedContent( $this->context, $content,
 			$status, $this->summary, $user, $this->minoredit )
