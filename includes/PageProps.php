@@ -169,7 +169,7 @@ class PageProps {
 				$pageID = $row->pp_page;
 				$propertyName = $row->pp_propname;
 				$propertyValue = $row->pp_value;
-				$this->cacheProperty( $pageID, $propertyName, $propertyValue );
+				$this->cache->setField( $pageID, $propertyName, $propertyValue );
 				if ( $gotArray ) {
 					$values[$pageID][$propertyName] = $propertyValue;
 				} else {
@@ -301,17 +301,6 @@ class PageProps {
 			return $this->cache->getField( 0, $pageID );
 		}
 		return false;
-	}
-
-	/**
-	 * Save a property to the cache.
-	 *
-	 * @param int $pageID page ID of page being cached
-	 * @param string $propertyName name of property being cached
-	 * @param mixed $propertyValue value of property
-	 */
-	private function cacheProperty( $pageID, $propertyName, $propertyValue ) {
-		$this->cache->setField( $pageID, $propertyName, $propertyValue );
 	}
 
 	/**
