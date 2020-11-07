@@ -32,6 +32,7 @@ class OldChangesList extends ChangesList {
 	 * @param int|null $linenumber (default null)
 	 *
 	 * @return string|bool
+	 * @return-taint none
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		$classes = $this->getHTMLClasses( $rc, $watched );
