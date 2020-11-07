@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
 
 /**
@@ -33,8 +34,13 @@ use Wikimedia\IPUtils;
 class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	public function __construct() {
 		parent::__construct( 'Contributions' );
+		// TODO Inject service
+		$this->userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 	}
 
 	public function execute( $par ) {
@@ -72,7 +78,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$user = $this->getUser();
 
-		$this->opts['limit'] = $request->getInt( 'limit', $user->getOption( 'rclimit' ) );
+		$this->opts['limit'] = $request->getInt( 'limit', $this->userOptionsLookup->getIntOption( $user, 'rclimit' ) );
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
