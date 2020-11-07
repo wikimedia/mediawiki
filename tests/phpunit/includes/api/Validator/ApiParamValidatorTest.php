@@ -38,7 +38,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$this->assertSame(
 			[
 				'boolean', 'enum', 'expiry', 'integer', 'limit', 'namespace', 'NULL', 'password',
-				'string', 'submodule', 'tags', 'text', 'timestamp', 'user', 'upload',
+				'string', 'submodule', 'tags', 'text', 'timestamp', 'title', 'user', 'upload',
 			],
 			$validator->knownTypes()
 		);

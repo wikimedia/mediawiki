@@ -9,6 +9,7 @@ use ApiUsageException;
 use MediaWiki\Message\Converter as MessageConverter;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\TagsDef;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Message;
 use Wikimedia\Message\DataMessageValue;
@@ -69,6 +70,10 @@ class ApiParamValidator {
 			'args' => [ [
 				'defaultFormat' => TS_MW,
 			] ],
+		],
+		'title' => [
+			'class' => TitleDef::class,
+			'services' => [ 'TitleFactory' ],
 		],
 		'user' => [
 			'class' => UserDef::class,
