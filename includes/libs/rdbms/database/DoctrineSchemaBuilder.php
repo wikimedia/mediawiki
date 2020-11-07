@@ -53,7 +53,14 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 			}
 		}
 		$table->setPrimaryKey( $schema['pk'] );
-		$table->addOption( 'table_options', '/*$wgDBTableOptions*/' );
+
+		if ( isset( $schema['options'] )
+			&& isset( $schema['options'][0]['table_options'] )
+		) {
+			$table->addOption( 'table_options', $schema['options'][0]['table_options'] );
+		} else {
+			$table->addOption( 'table_options', '/*$wgDBTableOptions*/' );
+		}
 	}
 
 	/**
