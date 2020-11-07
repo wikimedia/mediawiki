@@ -1839,6 +1839,7 @@ return [
 			'oojs-ui.styles.icons-moderation',
 			'mediawiki.widgets',
 			'mediawiki.widgets.datetime',
+			'mediawiki.widgets.TitlesMultiselectWidget',
 			'jquery.makeCollapsible',
 		],
 		'messages' => [

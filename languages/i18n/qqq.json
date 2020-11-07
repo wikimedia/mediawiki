@@ -4589,5 +4589,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "Used with {{msg-mw|paramvalidator-help-type-user}} to indicate that IP (anonymous) users may be specified by IP.",
 	"paramvalidator-help-type-user-subtype-cidr": "Used with {{msg-mw|paramvalidator-help-type-user}} to indicate that IP (anonymous) users may be specified by a CIDR range.",
 	"paramvalidator-help-type-user-subtype-interwiki": "Used with {{msg-mw|paramvalidator-help-type-user}} to indicate that \"interwiki\" user names may be specified. Interwiki usernames in MediaWiki generally appear due to imports.",
-	"paramvalidator-help-type-user-subtype-id": "Used with {{msg-mw|paramvalidator-help-type-user}} to indicate that users may be specified by user ID number, prefixed with a \"#\" character."
+	"paramvalidator-help-type-user-subtype-id": "Used with {{msg-mw|paramvalidator-help-type-user}} to indicate that users may be specified by user ID number, prefixed with a \"#\" character.",
+	"paramvalidator-badtitle": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
+	"paramvalidator-missingtitle": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
+	"paramvalidator-help-type-title": "Used to indicate that a parameter is a page title or list of page titles.",
+	"paramvalidator-help-type-title-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that only titles referring to existing pages are valid.",
+	"paramvalidator-help-type-title-no-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that titles referring to non-existent pages are also valid."
 }

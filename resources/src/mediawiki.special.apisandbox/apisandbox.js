@@ -561,6 +561,32 @@
 					}
 					break;
 
+				case 'title':
+					if ( Util.apiBool( pi.multi ) ) {
+						widget = new mw.widgets.TitlesMultiselectWidget( {
+							required: Util.apiBool( pi.required ),
+							validateTitle: true,
+							suggestions: true,
+							showMissing: !Util.apiBool( pi.mustExist ),
+							addQueryInput: !Util.apiBool( pi.mustExist ),
+							tagLimit: pi.limit || undefined
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.tagWidget );
+					} else {
+						widget = new mw.widgets.TitleInputWidget( {
+							required: Util.apiBool( pi.required ),
+							validateTitle: true,
+							suggestions: true,
+							autocomplete: true,
+							showMissing: !Util.apiBool( pi.mustExist ),
+							addQueryInput: !Util.apiBool( pi.mustExist )
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.textInputWidget );
+					}
+					break;
+
 				default:
 					if ( !Array.isArray( pi.type ) ) {
 						throw new Error( 'Unknown parameter type ' + pi.type );
