@@ -4,7 +4,6 @@ namespace MediaWiki\ParamValidator\TypeDef;
 
 use MediaWiki\Linker\LinkTarget;
 use TitleFactory;
-use TitleValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -30,7 +29,7 @@ class TitleDef extends TypeDef {
 	public const PARAM_MUST_EXIST = 'param-must-exist';
 
 	/**
-	 * (bool) Whether to return a TitleValue object.
+	 * (bool) Whether to return a LinkTarget.
 	 *
 	 * If false, the validated title is returned as a string (in getPrefixedText() format).
 	 * Default is false.
@@ -55,7 +54,7 @@ class TitleDef extends TypeDef {
 
 	/**
 	 * @inheritDoc
-	 * @return string|TitleValue Depending on the PARAM_RETURN_OBJECT setting.
+	 * @return string|LinkTarget Depending on the PARAM_RETURN_OBJECT setting.
 	 */
 	public function validate( $name, $value, array $settings, array $options ) {
 		$mustExist = !empty( $settings[self::PARAM_MUST_EXIST] );
