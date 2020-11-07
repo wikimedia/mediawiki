@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -43,6 +44,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var WatchedItemStore */
 	private $watchStore;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** @var bool Watchlist Expiry flag */
 	private $isWatchlistExpiryEnabled;
 
@@ -50,7 +54,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		parent::__construct( $page, $restriction );
 
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
-		$this->watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		// TODO Inject services
+		$services = MediaWikiServices::getInstance();
+		$this->watchStore = $services->getWatchedItemStore();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
@@ -168,7 +175,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'name' => 'extended',
 					'isReplacedInStructuredUi' => true,
 					'activeValue' => false,
-					'default' => $this->getUser()->getBoolOption( 'extendwatchlist' ),
+					'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
 					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
 							&$fields, &$conds, &$query_options, &$join_conds ) {
 						$nonRevisionTypes = [ RC_LOG ];
@@ -192,7 +199,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$this->getFilterGroup( 'lastRevision' )
 				->getFilter( 'hidepreviousrevisions' )
-				->setDefault( !$this->getUser()->getBoolOption( 'extendwatchlist' ) );
+				->setDefault( !$this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ) );
 		}
 
 		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
@@ -251,29 +258,29 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$significance = $this->getFilterGroup( 'significance' );
 		$hideMinor = $significance->getFilter( 'hideminor' );
-		$hideMinor->setDefault( $user->getBoolOption( 'watchlisthideminor' ) );
+		$hideMinor->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideminor' ) );
 
 		$automated = $this->getFilterGroup( 'automated' );
 		$hideBots = $automated->getFilter( 'hidebots' );
-		$hideBots->setDefault( $user->getBoolOption( 'watchlisthidebots' ) );
+		$hideBots->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidebots' ) );
 
 		$registration = $this->getFilterGroup( 'registration' );
 		$hideAnons = $registration->getFilter( 'hideanons' );
-		$hideAnons->setDefault( $user->getBoolOption( 'watchlisthideanons' ) );
+		$hideAnons->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) );
 		$hideLiu = $registration->getFilter( 'hideliu' );
-		$hideLiu->setDefault( $user->getBoolOption( 'watchlisthideliu' ) );
+		$hideLiu->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) );
 
 		// Selecting both hideanons and hideliu on watchlist preferances
 		// gives mutually exclusive filters, so those are ignored
-		if ( $user->getBoolOption( 'watchlisthideanons' ) &&
-			!$user->getBoolOption( 'watchlisthideliu' )
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) &&
+			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' )
 		) {
 			$this->getFilterGroup( 'userExpLevel' )
 				->setDefault( 'registered' );
 		}
 
-		if ( $user->getBoolOption( 'watchlisthideliu' ) &&
-			!$user->getBoolOption( 'watchlisthideanons' )
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) &&
+			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' )
 		) {
 			$this->getFilterGroup( 'userExpLevel' )
 				->setDefault( 'unregistered' );
@@ -282,7 +289,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
-			if ( $user->getBoolOption( 'watchlisthidepatrolled' ) ) {
+			if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidepatrolled' ) ) {
 				$reviewStatus->setDefault( 'unpatrolled' );
 				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
 				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
@@ -292,13 +299,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$authorship = $this->getFilterGroup( 'authorship' );
 		$hideMyself = $authorship->getFilter( 'hidemyself' );
-		$hideMyself->setDefault( $user->getBoolOption( 'watchlisthideown' ) );
+		$hideMyself->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideown' ) );
 
 		$changeType = $this->getFilterGroup( 'changeType' );
 		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
 		if ( $hideCategorization !== null ) {
 			// Conditional on feature being available
-			$hideCategorization->setDefault( $user->getBoolOption( 'watchlisthidecategorization' ) );
+			$hideCategorization->setDefault(
+				$this->userOptionsLookup->getBoolOption( $user, 'watchlisthidecategorization' )
+			);
 		}
 	}
 
@@ -507,7 +516,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
 
-		if ( $user->getOption( 'watchlistunwatchlinks' ) ) {
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlistunwatchlinks' ) ) {
 			$list->setChangeLinePrefixer( function ( RecentChange $rc, ChangesList $cl, $grouped ) {
 				$unwatch = $this->msg( 'watchlist-unwatch' )->text();
 				// Don't show unwatch link if the line is a grouped log entry using EnhancedChangesList,
@@ -549,7 +558,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$s .= $this->makeLegend();
 		}
 
-		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
+		$userShowHiddenCats = $this->userOptionsLookup->getBoolOption( $user, 'showhiddencats' );
 		$counter = 1;
 		foreach ( $rows as $obj ) {
 			// Make RC entry
@@ -573,7 +582,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 
 			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
-				&& $user->getOption( 'shownumberswatching' )
+				&& $this->userOptionsLookup->getBoolOption( $user, 'shownumberswatching' )
 			) {
 				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
 				$rc->numberofWatchingusers = $this->watchStore->countWatchers( $rcTitleValue );
@@ -786,7 +795,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			24,
 			72,
 			168,
-			24 * (float)$this->getUser()->getOption( 'watchlistdays', 0 ),
+			24 * (float)$this->userOptionsLookup->getOption( $this->getUser(), 'watchlistdays', 0 ),
 			24 * $this->maxDays,
 			$selectedHours
 		] ) );
@@ -821,7 +830,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		} else {
 			$watchlistHeader .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
 			if ( $this->getConfig()->get( 'EnotifWatchlist' )
-				&& $user->getOption( 'enotifwatchlistpages' )
+				&& $this->userOptionsLookup->getBoolOption( $user, 'enotifwatchlistpages' )
 			) {
 				$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 			}
