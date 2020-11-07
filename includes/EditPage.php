@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -1876,70 +1877,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Run hooks that can filter edits just before they get saved.
-	 *
-	 * @param Content $content The Content to filter.
-	 * @param Status $status For reporting the outcome to the caller
-	 * @param User $user The user performing the edit
-	 *
-	 * @return bool
-	 */
-	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
-		// Run new style post-section-merge edit filter
-		if ( !$this->getHookRunner()->onEditFilterMergedContent( $this->context, $content,
-			$status, $this->summary, $user, $this->minoredit )
-		) {
-			# Error messages etc. could be handled within the hook...
-			if ( $status->isGood() ) {
-				$status->fatal( 'hookaborted' );
-				// Not setting $this->hookError here is a hack to allow the hook
-				// to cause a return to the edit page without $this->hookError
-				// being set. This is used by ConfirmEdit to display a captcha
-				// without any error message cruft.
-			} else {
-				$this->hookError = $this->formatStatusErrors( $status );
-			}
-			// Use the existing $status->value if the hook set it
-			if ( !$status->value ) {
-				$status->value = self::AS_HOOK_ERROR;
-			}
-			return false;
-		} elseif ( !$status->isOK() ) {
-			# ...or the hook could be expecting us to produce an error
-			// FIXME this sucks, we should just use the Status object throughout
-			if ( !$status->getErrors() ) {
-				// Provide a fallback error message if none was set
-				$status->fatal( 'hookaborted' );
-			}
-			$this->hookError = $this->formatStatusErrors( $status );
-			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Wrap status errors in an errorbox for increased visibility
-	 *
-	 * @param Status $status
-	 * @return string Wikitext
-	 */
-	private function formatStatusErrors( Status $status ) {
-		$errmsg = $status->getWikiText(
-			'edit-error-short',
-			'edit-error-long',
-			$this->context->getLanguage()
-		);
-		return <<<ERROR
-<div class="errorbox">
-{$errmsg}
-</div>
-<br clear="all" />
-ERROR;
-	}
-
-	/**
 	 * Return the summary to be used for a new section.
 	 *
 	 * @param string|null &$sectionanchor Set to the section anchor text
@@ -2177,21 +2114,28 @@ ERROR;
 				)
 			);
 
+			$constraintRunner->addConstraint(
+				$constraintFactory->newEditFilterMergedContentHookConstraint(
+					$textbox_content,
+					$this->context,
+					$this->summary,
+					$this->minoredit
+				)
+			);
+
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
 				if ( $failed instanceof DefaultTextConstraint ) {
 					$this->blankArticle = true;
+				} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+					$this->hookError = $failed->getHookError();
 				}
 				$statusValue = $failed->getLegacyStatus();
 				$status = Status::wrap( $statusValue );
 				return $status;
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $user ) ) {
-				return $status;
-			}
 
 			$content = $textbox_content;
 
@@ -2331,9 +2275,28 @@ ERROR;
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $content, $status, $user ) ) {
+			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+			// Create a new runner to avoid rechecking the prior constraints, use the same factory
+			$constraintRunner = new EditConstraintRunner();
+			$constraintRunner->addConstraint(
+				$constraintFactory->newEditFilterMergedContentHookConstraint(
+					$content,
+					$this->context,
+					$this->summary,
+					$this->minoredit
+				)
+			);
+			// Check the constraints
+			if ( $constraintRunner->checkConstraints() === false ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+					$this->hookError = $failed->getHookError();
+				}
+				$statusValue = $failed->getLegacyStatus();
+				$status = Status::wrap( $statusValue );
 				return $status;
 			}
+			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			if ( $this->section == 'new' ) {
 				// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)

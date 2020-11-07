@@ -268,6 +268,75 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * EditFilterMergedContentHookConstraint integration
+	 * @dataProvider provideTestEditFilterMergedContentHookConstraint
+	 * @param bool $hookReturn
+	 * @param ?int $statusValue
+	 * @param bool $statusFatal
+	 * @param int $expectedFailure
+	 * @param string $expectedFailureStr
+	 */
+	public function testEditFilterMergedContentHookConstraint(
+		bool $hookReturn,
+		$statusValue,
+		bool $statusFatal,
+		int $expectedFailure,
+		string $expectedFailureStr
+	) {
+		$this->setTemporaryHook(
+			'EditFilterMergedContent',
+			function ( $context, $content, $status, $summary, $user, $minorEdit )
+				use ( $hookReturn, $statusValue, $statusFatal )
+			{
+				if ( $statusValue !== null ) {
+					$status->value = $statusValue;
+				}
+				if ( $statusFatal ) {
+					$status->fatal( 'SomeErrorInTheHook' );
+				}
+				return $hookReturn;
+			}
+		);
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( false );
+		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
+		$user->method( 'getId' )->willReturn( 12345 );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
+
+		$edit = [
+			'wpTextbox1' => 'Text',
+			'wpSummary' => 'Summary'
+		];
+		$this->assertEdit(
+			'EditPageTest_testEditFilterMergedContentHookConstraint',
+			null,
+			$user,
+			$edit,
+			$expectedFailure,
+			"expected $expectedFailureStr creation"
+		);
+	}
+
+	public function provideTestEditFilterMergedContentHookConstraint() {
+		yield 'Hook returns false, status is good, no value set' => [
+			false, null, false, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+		];
+		yield 'Hook returns false, status is good, value set' => [
+			false, 1234567, false, 1234567, 'custom value 1234567'
+		];
+		yield 'Hook returns false, status is not good' => [
+			false, null, true, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+		];
+		yield 'Hook returns true, status is not ok' => [
+			true, null, true, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
+		];
+	}
+
+	/**
 	 * EditRightConstraint integration
 	 * @dataProvider provideTestEditRightConstraint
 	 * @param bool $anon

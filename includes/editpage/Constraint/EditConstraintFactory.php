@@ -20,8 +20,11 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use Content;
+use IContextSource;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\Permissions\PermissionManager;
@@ -54,6 +57,9 @@ class EditConstraintFactory {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
@@ -75,6 +81,7 @@ class EditConstraintFactory {
 	 * @param ServiceOptions $options
 	 * @param Spi $loggerFactory
 	 * @param PermissionManager $permissionManager
+	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param SpamChecker $spamRegexChecker
 	 */
@@ -82,6 +89,7 @@ class EditConstraintFactory {
 		ServiceOptions $options,
 		Spi $loggerFactory,
 		PermissionManager $permissionManager,
+		HookContainer $hookContainer,
 		ReadOnlyMode $readOnlyMode,
 		SpamChecker $spamRegexChecker
 	) {
@@ -91,6 +99,9 @@ class EditConstraintFactory {
 		$this->options = $options;
 		$this->loggerFactory = $loggerFactory;
 		$this->permissionManager = $permissionManager;
+
+		// EditFilterMergedContentHookConstraint
+		$this->hookContainer = $hookContainer;
 
 		// ReadOnlyConstraint
 		$this->readOnlyMode = $readOnlyMode;
@@ -131,6 +142,28 @@ class EditConstraintFactory {
 			$this->permissionManager,
 			$user,
 			$title
+		);
+	}
+
+	/**
+	 * @param Content $content
+	 * @param IContextSource $context
+	 * @param string $summary
+	 * @param bool $minorEdit
+	 * @return EditFilterMergedContentHookConstraint
+	 */
+	public function newEditFilterMergedContentHookConstraint(
+		Content $content,
+		IContextSource $context,
+		string $summary,
+		bool $minorEdit
+	) : EditFilterMergedContentHookConstraint {
+		return new EditFilterMergedContentHookConstraint(
+			$this->hookContainer,
+			$content,
+			$context,
+			$summary,
+			$minorEdit
 		);
 	}
 

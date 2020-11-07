@@ -1551,6 +1551,9 @@ return [
 			LoggerFactory::getProvider(),
 			$services->getPermissionManager(),
 
+			// EditFilterMergedContentHookConstraint
+			$services->getHookContainer(),
+
 			// ReadOnlyConstraint
 			$services->getReadOnlyMode(),
 
