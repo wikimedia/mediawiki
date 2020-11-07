@@ -490,6 +490,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'PermissionManager',
 				'UserOptionsLookup',
+				'NamespaceInfo',
 			]
 		],
 		'UploadStash' => [
@@ -702,7 +703,20 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 			]
 		],
-		'Movepage' => \MovePageForm::class,
+		'Movepage' => [
+			'class' => \MovePageForm::class,
+			'services' => [
+				'MovePageFactory',
+				'PermissionManager',
+				'UserOptionsLookup',
+				'DBLoadBalancer',
+				'ContentHandlerFactory',
+				'NamespaceInfo',
+				'LinkBatchFactory',
+				'RepoGroup',
+				'WikiPageFactory',
+			]
+		],
 		'Mycontributions' => \SpecialMycontributions::class,
 		'MyLanguage' => [
 			'class' => \SpecialMyLanguage::class,
