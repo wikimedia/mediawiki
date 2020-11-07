@@ -490,6 +490,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'PermissionManager',
 				'UserOptionsLookup',
+				'NamespaceInfo',
 			]
 		],
 		'UploadStash' => [
