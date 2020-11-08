@@ -259,7 +259,8 @@ class HistoryAction extends FormlessAction {
 				'value' => $tagFilter,
 			]
 		];
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 		if ( $permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$fields[] = [
 				'type' => 'check',
@@ -306,7 +307,8 @@ class HistoryAction extends FormlessAction {
 			$tagFilter,
 			$conds,
 			$d,
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getWatchlistNotificationManager()
 		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
@@ -324,7 +326,8 @@ class HistoryAction extends FormlessAction {
 	private function hasUnseenRevisionMarkers() {
 		return (
 			$this->getContext()->getConfig()->get( 'ShowUpdatedMarker' ) &&
-			$this->getTitle()->getNotificationTimestamp( $this->getUser() )
+			MediaWikiServices::getInstance()->getWatchlistNotificationManager()
+				->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 		);
 	}
 

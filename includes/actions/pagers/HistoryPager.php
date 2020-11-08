@@ -25,6 +25,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\WatchlistNotificationManager;
 
 /**
  * @ingroup Pager
@@ -55,6 +56,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var WatchlistNotificationManager */
+	private $watchlistNotificationManager;
+
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
@@ -66,6 +70,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param array $conds
 	 * @param string $day
 	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param WatchlistNotificationManager|null $watchlistNotificationManager
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
@@ -74,7 +79,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$tagFilter = '',
 		array $conds = [],
 		$day = '',
-		LinkBatchFactory $linkBatchFactory = null
+		LinkBatchFactory $linkBatchFactory = null,
+		WatchlistNotificationManager $watchlistNotificationManager = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
@@ -82,8 +88,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->linkBatchFactory = $linkBatchFactory ?? MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$services = MediaWikiServices::getInstance();
+		$this->revisionStore = $services->getRevisionStore();
+		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
+		$this->watchlistNotificationManager = $watchlistNotificationManager
+			?? $services->getWatchlistNotificationManager();
 	}
 
 	// For hook compatibility...
@@ -138,7 +147,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->counter++;
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				? $this->watchlistNotificationManager
+					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp, false, $firstInList );
@@ -280,7 +290,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->counter++;
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				? $this->watchlistNotificationManager
+					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp, false, $firstInList );
