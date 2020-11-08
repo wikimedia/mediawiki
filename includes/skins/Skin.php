@@ -269,16 +269,18 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['content'][] = 'mediawiki.toc.styles';
 		}
 
-		$prefMgr = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permManager = $services->getPermissionManager();
 		if ( $user->isLoggedIn()
-			&& $prefMgr->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+			&& $permManager->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
 
-		if ( $user->getBoolOption( 'editsectiononrightclick' )
-			|| ( $out->isArticle() && $user->getOption( 'editondblclick' ) )
+		$userOptionsLookup = $services->getUserOptionsLookup();
+		if ( $userOptionsLookup->getBoolOption( $user, 'editsectiononrightclick' )
+			|| ( $out->isArticle() && $userOptionsLookup->getOption( $user, 'editondblclick' ) )
 		) {
 			$modules['user'][] = 'mediawiki.misc-authed-pref';
 		}
@@ -526,7 +528,8 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
 		$title = $this->getTitle();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 
 		if ( $allCats === [] ) {
 			return '';
@@ -555,7 +558,9 @@ abstract class Skin extends ContextSource {
 
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
-			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
+			$userOptionsLookup = $services->getUserOptionsLookup();
+
+			if ( $userOptionsLookup->getBoolOption( $this->getUser(), 'showhiddencats' ) ) {
 				$class = ' mw-hidden-cats-user-shown';
 			} elseif ( $title->inNamespace( NS_CATEGORY ) ) {
 				$class = ' mw-hidden-cats-ns-shown';
@@ -619,11 +624,13 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getCategories() {
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$showHiddenCats = $userOptionsLookup->getBoolOption( $this->getUser(), 'showhiddencats' );
+
 		$catlinks = $this->getCategoryLinks();
 		// Check what we're showing
 		$allCats = $this->getOutput()->getCategoryLinks();
-		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
-						$this->getTitle()->inNamespace( NS_CATEGORY );
+		$showHidden = $showHiddenCats || $this->getTitle()->inNamespace( NS_CATEGORY );
 
 		$classes = [ 'catlinks' ];
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
