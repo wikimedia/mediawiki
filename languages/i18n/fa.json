@@ -3,6 +3,7 @@
 		"authors": [
 			"4nn1l2",
 			"Ahmad252",
+			"Ajam",
 			"Alifakoor",
 			"Alireza Ivaz",
 			"Alirezaaa",
@@ -2107,7 +2108,7 @@
 	"apisandbox": "گودال ماسه‌بازی رابط برنامه‌نویسی",
 	"apisandbox-jsonly": "برای استفاده از صفحهٔ تمرین رابط برنامه‌نویسی به جاوااسکریپت نیاز دارید.",
 	"apisandbox-intro": "از این صفحه برای آزمایش <strong>خدمات وب رابط برنامه‌نویسی مدیاویکی</strong> استفاده کنید.\nبرای جزئیات بیشتر دربارهٔ نحوهٔ استفاده از رابط برنامه‌نویسی به [[mw:API:Main page|مستندات رابط برنامه‌نویسی]] رجوع کنید. مثال: [https://www.mediawiki.org/wiki/API#A_simple_example دریافت محتوای صفحهٔ اصلی]. برای دیدن مثال‌های بیشتر عملکردی را انتخاب کنید.",
-	"apisandbox-submit": "ایجاد درخواست",
+	"apisandbox-submit": "درخواست کردن",
 	"apisandbox-reset": "پاک‌کردن",
 	"apisandbox-retry": "تلاش مجدد",
 	"apisandbox-loading": "بارگیری اطلاعات برای پودمان رابط برنامه‌نویسی «$1» ...",
@@ -3970,5 +3971,6 @@
 	"paramvalidator-baduser": "مقدار نامعتبر «$2» برای پارامتر کاربری <var>$1</var>.",
 	"paramvalidator-help-type-user-subtype-name": "نام کاربری",
 	"paramvalidator-help-type-user-subtype-ip": "آی‌پی",
-	"paramvalidator-help-type-user-subtype-id": "شناسهٔ کاربر (مثلاً «#12345»)"
+	"paramvalidator-help-type-user-subtype-id": "شناسهٔ کاربر (مثلاً «#12345»)",
+	"paramvalidator-help-type-title": "نوع: عنوان صفحه"
 }

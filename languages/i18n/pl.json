@@ -4063,5 +4063,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "zakres IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nazwa interwiki (np. „prefiks>PrzykładowaNazwa”)",
-	"paramvalidator-help-type-user-subtype-id": "ID użytkownika (np. „#12345”)"
+	"paramvalidator-help-type-user-subtype-id": "ID użytkownika (np. „#12345”)",
+	"paramvalidator-badtitle": "Nieprawidłowa wartość „$2” parametru <var>$1</var>: nieprawidłowy ciąg znaków dla nazwy strony.",
+	"paramvalidator-missingtitle": "Nieprawidłowa wartość „$2” parametru <var>$1</var>: strona o podanym tytule nie istnieje.",
+	"paramvalidator-help-type-title": "Typ: nazwa strony",
+	"paramvalidator-help-type-title-must-exist": "Akceptowane są tylko istniejące strony.",
+	"paramvalidator-help-type-title-no-must-exist": "Akceptuje nieistniejące strony."
 }

@@ -4075,5 +4075,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP-адреса",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-опсег",
 	"paramvalidator-help-type-user-subtype-interwiki": "меѓувики-назив (на пр. „prefix>ПримеренНазив“)",
-	"paramvalidator-help-type-user-subtype-id": "корисничка назнака (на пр. „#12345“)"
+	"paramvalidator-help-type-user-subtype-id": "корисничка назнака (на пр. „#12345“)",
+	"paramvalidator-badtitle": "Неважечка вредност „$2“ за насловниот параметар <var>$1</var>: не претставува важечка насловна низа.",
+	"paramvalidator-missingtitle": "Неважечка вредност „$2“ за насловниот параметар <var>$1</var>: страницата не постои.",
+	"paramvalidator-help-type-title": "Тип: наслов на страница",
+	"paramvalidator-help-type-title-must-exist": "Прифаќа само постоечки страници.",
+	"paramvalidator-help-type-title-no-must-exist": "Прифаќа непостоечки страници."
 }

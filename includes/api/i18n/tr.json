@@ -1560,7 +1560,7 @@
 	"api-help-param-direction": "Hangi yönde numaralandırılacağı:\n;newer:Önce en eskisini listele. Not: $1start, $1end önce olmalıdır.\n;older:Önce en yenisini listele (varsayılan). Not: $1start, $1end geç olmalıdır.",
 	"api-help-param-continue": "Daha fazla sonuç mevcut olduğunda, devam etmek için bunu kullanın.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(açıklama yok)</span>",
-	"api-help-examples": "{{PLURAL:$1|Örnek|Örnek}}:",
+	"api-help-examples": "{{PLURAL:$1|Örnek|Örnekler}}:",
 	"api-help-permissions": "{{PLURAL:$1|İzin|İzin}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Kabul edildi}}: $2",
 	"api-help-right-apihighlimits": "API sorgularında daha yüksek sınırlar kullanın (yavaş sorgular: $1; hızlı sorgular: $2). Yavaş sorgulama sınırları çok değerli parametreler için de geçerlidir.",

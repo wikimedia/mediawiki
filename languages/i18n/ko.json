@@ -2810,7 +2810,7 @@
 	"movenosubpage": "이 문서에는 하위 문서가 존재하지 않습니다.",
 	"movereason": "이유:",
 	"revertmove": "되돌리기",
-	"delete_and_move_text": "== 삭제 필요 ==\n이동하려는 제목으로 된 \"[[:$1]]\" 문서가 이미 존재합니다.\n삭제하고 이동할까요?",
+	"delete_and_move_text": "이동하려는 제목으로 된 \"[[:$1]]\" 문서가 이미 존재합니다.\n삭제하고 이동할까요?",
 	"delete_redirect_and_move_text": "이동하려는 제목으로 된 \"[[:$1]]\" 넘겨주기 문서가 존재합니다.\n삭제하고 이동할까요?",
 	"delete_and_move_confirm": "네. 문서를 삭제합니다",
 	"delete_and_move_reason": "\"[[$1]]\"에서 문서를 이동하기 위해 삭제함",

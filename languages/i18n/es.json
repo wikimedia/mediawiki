@@ -3543,6 +3543,7 @@
 	"tag-mw-undo-description": "Ediciones que deshacen modificaciones anteriores mediante el enlace «Deshacer»",
 	"tag-mw-manual-revert": "Reversión manual",
 	"tag-mw-reverted": "Revertido",
+	"tag-mw-reverted-description": "Ediciones que posteriormente han sido deshechas o revertidas por una edición diferente",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta página enumera las etiquetas con las que el software puede marcar una edición, así como su significado.",
 	"tags-tag": "Nombre de etiqueta",
