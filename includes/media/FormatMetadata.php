@@ -346,6 +346,8 @@ class FormatMetadata extends ContextSource {
 					case 'GPSDateStamp':
 					case 'dc-date':
 					case 'DateTimeMetadata':
+					case 'FirstPhotoDate':
+					case 'LastPhotoDate':
 						if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
 							$val = $this->msg( 'exif-unknowndate' )->text();
 							break;
@@ -1050,6 +1052,16 @@ class FormatMetadata extends ContextSource {
 						$val = $this->literal( $val );
 						break;
 
+					case 'ProjectionType':
+						switch ( $val ) {
+							case 'equirectangular':
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								$val = $this->literal( $val );
+								break;
+						}
+						break;
 					case 'ObjectCycle':
 						switch ( $val ) {
 							case 'a':
@@ -1063,6 +1075,8 @@ class FormatMetadata extends ContextSource {
 						}
 						break;
 					case 'Copyrighted':
+					case 'UsePanoramaViewer':
+					case 'ExposureLockUsed':
 						switch ( $val ) {
 							case 'True':
 							case 'False':
