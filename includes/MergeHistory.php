@@ -354,13 +354,13 @@ class MergeHistory {
 			__METHOD__
 		);
 
-		// Make the source page a redirect if no revisions are left
 		$haveRevisions = $this->dbw->lockForUpdate(
 			'revision',
 			[ 'rev_page' => $this->source->getArticleID() ],
 			__METHOD__
 		);
 
+		// Update source page, histories and invalidate caches
 		if ( !$haveRevisions ) {
 			if ( $reason ) {
 				$reason = wfMessage(
@@ -377,56 +377,14 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$redirectContent = $this->contentHandlerFactory
-				->getContentHandler( $this->source->getContentModel() )
-				->makeRedirectContent(
-					$this->dest,
-					wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain()
-				);
+			$this->updateSourcePage( $status, $user, $reason );
 
-			if ( $redirectContent ) {
-				$redirectComment = CommentStoreComment::newUnsavedComment( $reason );
-
-				$redirectRevRecord = new MutableRevisionRecord( $this->source );
-				$redirectRevRecord->setContent( SlotRecord::MAIN, $redirectContent );
-				$redirectRevRecord->setPageId( $this->source->getArticleID() );
-				$redirectRevRecord->setComment( $redirectComment );
-				$redirectRevRecord->setUser( $user );
-				$redirectRevRecord->setTimestamp( wfTimestampNow() );
-
-				$insertedRevRecord = $this->revisionStore->insertRevisionOn(
-					$redirectRevRecord,
-					$this->dbw
-				);
-
-				$redirectPage = WikiPage::factory( $this->source );
-				$redirectPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
-
-				// Now, we record the link from the redirect to the new title.
-				// It should have no other outgoing links...
-				$this->dbw->delete(
-					'pagelinks',
-					[ 'pl_from' => $this->dest->getArticleID() ],
-					__METHOD__
-				);
-				$this->dbw->insert( 'pagelinks',
-					[
-						'pl_from' => $this->dest->getArticleID(),
-						'pl_from_namespace' => $this->dest->getNamespace(),
-						'pl_namespace' => $this->dest->getNamespace(),
-						'pl_title' => $this->dest->getDBkey() ],
-					__METHOD__
-				);
-			} else {
-				// Warning if we couldn't create the redirect
-				$status->warning( 'mergehistory-warning-redirect-not-created' );
-			}
 		} else {
-			$this->source->invalidateCache(); // update histories
+			$this->source->invalidateCache();
 		}
-		$this->dest->invalidateCache(); // update histories
+		$this->dest->invalidateCache();
 
-		// Duplicate watchers of the old article to the new article on history merge
+		// Duplicate watchers of the old article to the new article
 		$this->watchedItemStore->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs
@@ -444,6 +402,108 @@ class MergeHistory {
 		$this->hookRunner->onArticleMergeComplete( $this->source, $this->dest );
 
 		$this->dbw->endAtomic( __METHOD__ );
+
+		return $status;
+	}
+
+	/**
+	 * Do various cleanup work and updates to the source page. This method
+	 * will only be called if no revision is remaining on the page.
+	 *
+	 * At the end, there would be either a redirect page or a deleted page,
+	 * depending on whether the content model of the page supports redirects or not.
+	 *
+	 * @param Status $status
+	 * @param User $user
+	 * @param string $reason
+	 *
+	 * @return Status
+	 */
+	private function updateSourcePage( $status, $user, $reason ) {
+		$deleteSource = false;
+		$sourceModel = $this->source->getContentModel();
+		$contentHandler = $this->contentHandlerFactory->getContentHandler( $sourceModel );
+
+		if ( !$contentHandler->supportsRedirects() ) {
+			$deleteSource = true;
+			$newContent = $contentHandler->makeEmptyContent();
+		} else {
+			$msg = wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain();
+			$newContent = $contentHandler->makeRedirectContent( $this->dest, $msg );
+		}
+
+		if ( !$newContent instanceof Content ) {
+			// Handler supports redirect but cannot create new redirect content?
+			// Not possible to proceed without Content.
+
+			// @todo. Remove this once there's no evidence it's happening or if it's
+			// determined all violating handlers have been fixed.
+			// This is mostly kept because previous code was also blindly checking
+			// existing of the Content for both content models that supports redirects
+			// and those that that don't, so it's hard to know what it was masking.
+			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'ContentHandler' );
+			$logger->warning(
+				'ContentHandler for {model} says it supports redirects but failed '
+				. 'to return Content object from ContentHandler::makeRedirectContent().'
+				. ' {value} returned instead.',
+				[
+					'value' => gettype( $newContent ),
+					'model' => $sourceModel
+				]
+			);
+
+			throw new InvalidArgumentException(
+				"ContentHandler for '$sourceModel' supports redirects" .
+				' but cannot create redirect content during History merge.'
+			);
+		}
+
+		// T263340/T93469: Create revision record to also serve as the page revision.
+		// This revision will be used to create page content. If the source page's
+		// content model supports redirects, then it will be the redirect content.
+		// If the content model does not supports redirect, this content will aid
+		// proper deletion of the page below.
+		$comment = CommentStoreComment::newUnsavedComment( $reason );
+		$newRevRecord = new MutableRevisionRecord( $this->source );
+		$newRevRecord->setContent( SlotRecord::MAIN, $newContent );
+		$newRevRecord->setPageId( $this->source->getArticleID() );
+		$newRevRecord->setComment( $comment );
+		$newRevRecord->setUser( $user );
+		$newRevRecord->setTimestamp( wfTimestampNow() );
+
+		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $newRevRecord, $this->dbw );
+
+		$newPage = WikiPage::factory( $this->source );
+		$newPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
+
+		if ( !$deleteSource ) {
+			// We have created a redirect page so let's
+			// record the link from the page to the new title.
+			// It should have no other outgoing links...
+			$this->dbw->delete(
+				'pagelinks',
+				[ 'pl_from' => $this->dest->getArticleID() ],
+				__METHOD__
+			);
+			$this->dbw->insert( 'pagelinks',
+				[
+					'pl_from' => $this->dest->getArticleID(),
+					'pl_from_namespace' => $this->dest->getNamespace(),
+					'pl_namespace' => $this->dest->getNamespace(),
+					'pl_title' => $this->dest->getDBkey() ],
+				__METHOD__
+			);
+
+		} else {
+			// T263340/T93469: Delete the source page to prevent errors because its
+			// revisions are now tied to a different title and its content model
+			// does not support redirects, so we cannot leave a new revision on it.
+			// This deletion does not depend on userright but may still fails. If it
+			// fails, it will be communicated in the status reponse.
+			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
+			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
+			$status->merge( $deletionStatus );
+		}
 
 		return $status;
 	}

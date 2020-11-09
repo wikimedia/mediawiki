@@ -18,6 +18,10 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Pages that will be merged
 		$this->insertPage( 'Merge1' );
 		$this->insertPage( 'Merge2' );
+
+		// Exclusive for testSourceUpdateForNoRedirectSupport()
+		$this->insertPage( 'Merge3' );
+		$this->insertPage( 'Merge4' );
 	}
 
 	/**
@@ -130,6 +134,65 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$sysop = static::getTestSysop()->getUser();
 		$mh->merge( $sysop );
 		$this->assertEquals( $mh->getMergedRevisionCount(), 1 );
+	}
+
+	/**
+	 * Test update to source page for pages with
+	 * content model that supports redirects
+	 *
+	 * @covers MergeHistory::merge
+	 */
+	public function testSourceUpdateWithRedirectSupport() {
+		$title = Title::newFromText( 'Merge1' );
+		$title2 = Title::newFromText( 'Merge2' );
+
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $title, $title2 );
+
+		$this->assertTrue( $title->exists() );
+
+		$status = $mh->merge( static::getTestSysop()->getUser() );
+
+		$this->assertTrue( $title->exists() );
+	}
+
+	/**
+	 * Test update to source page for pages with
+	 * content model that does not support redirects
+	 *
+	 * @covers MergeHistory::merge
+	 */
+	public function testSourceUpdateForNoRedirectSupport() {
+		$this->setMwGlobals( [
+			'wgExtraNamespaces' => [
+				2030 => 'NoRedirect',
+				2030 => 'NoRedirect_talk'
+			],
+
+			'wgNamespaceContentModels' => [
+				2030 => 'testing'
+			],
+			'wgContentHandlers' => [
+				// Relies on the DummyContentHandlerForTesting not
+				// supporting redirects by default. If this ever gets
+				// changed this test has to be fixed.
+				'testing' => DummyContentHandlerForTesting::class
+			]
+		] );
+
+		$title = Title::newFromText( 'Merge3' );
+		$title->setContentModel( 'testing' );
+		$title2 = Title::newFromText( 'Merge4' );
+		$title2->setContentModel( 'testing' );
+
+		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $title, $title2 );
+
+		$this->assertTrue( $title->exists() );
+
+		$status = $mh->merge( static::getTestSysop()->getUser() );
+
+		$this->assertFalse( $title->exists() );
 	}
 
 	/**

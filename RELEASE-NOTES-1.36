@@ -107,6 +107,9 @@ For notes on 1.35.x and older releases, see HISTORY.
   indicates a later revision). The assumption is not always true and is
   hindering proper edit undoing in some cases, hence the logic has been removed.
   Reversing the paramaters will now lead to edit conflict or undefined behavior.
+* (T263340) In history merging, pages with a content model that does not support
+  redirects will now be recorded as deleted if no revision is being left in the
+  source page (that's if all revisions of the page have been merged to another).
 * …
 
 === Action API changes in 1.36 ===

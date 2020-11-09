@@ -413,9 +413,14 @@ class SpecialMergeHistory extends SpecialPage {
 			[ 'redirect' => 'no' ]
 		);
 
+		// In some cases the target page will be deleted
+		$append = $targetTitle->exists( Title::READ_LATEST )
+			? ''
+			: $this->msg( 'mergehistory-source-deleted', $targetLink );
+
 		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
 			->rawParams( $targetLink )
-			->params( $destTitle->getPrefixedText() )
+			->params( $destTitle->getPrefixedText(), $append )
 			->numParams( $mh->getMergedRevisionCount() )
 		);
 
