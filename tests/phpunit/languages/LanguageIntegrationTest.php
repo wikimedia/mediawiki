@@ -1720,6 +1720,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ true, 'en', 1.23e-1, false, '0.123' ],
 			[ true, 'en', 0.0, false, '0' ],
 			[ true, 'en', -0.0, false, '−0' ],
+			[ true, 'en', INF, false, '∞' ],
+			[ true, 'en', -INF, false, '−∞' ],
+			[ true, 'en', NAN, false, 'Not a Number' ],
 			[ true, 'kn', '1050', false, '೧,೦೫೦' ],
 			[ true, 'kn', '1060', true, '೧೦೬೦' ],
 			[ false, 'kn', '1070', false, '1,070' ],
@@ -1769,6 +1772,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'en', 1234.567 ],
 			[ 'en', 0.0 ],
 			[ 'en', -0.0 ],
+			[ 'en', INF ],
+			[ 'en', -INF ],
+			[ 'en', NAN ],
 		];
 	}
 

@@ -3699,6 +3699,7 @@
 	"brackets-start": "{{optional}}\n{{Format|plain}}",
 	"brackets-end": "{{optional}}\n{{Format|plain}}",
 	"quotation-marks": "Quotation marks, for quoting, sometimes titles etc., depending on the language.\n\nSee: [[w:Quotation mark#Summary table|Non-English usage of quotation marks on Wikipedia]].\n\nParameters:\n* $1 - text to be wrapped in quotation marks",
+	"formatnum-nan": "This is phrase output when formatting numbers in the user's language if the input number is the special [[w:en:NaN|Not a Number value]].",
 	"imgmultipageprev": "{{Identical|Previous page}}",
 	"imgmultipagenext": "{{Identical|Next page}}",
 	"imgmultigo": "Used as label for submit button.\n\nSee also:\n* {{msg-mw|Imgmultigoto}}\n{{Identical|Go}}",
