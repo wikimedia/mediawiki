@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -264,10 +265,6 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$this->assertFileContains( $outFile, $update );
 	}
 
-	/**
-	 * FIXME see T266850
-	 * @group Broken
-	 */
 	public function testCategorization() {
 		$this->setMwGlobals( [ 'wgRCWatchCategoryMembership' => true ] );
 		$start = new MWTimestamp( "2020-07-31T10:00:00" );
@@ -282,9 +279,9 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$output = fopen( "php://memory", "w+b" );
 
-		$runJobs = new RunJobs();
-		$runJobs->loadParamsAndArgs( null, [ 'quiet' => true, 'maxjobs' => 50 ] );
-		$runJobs->execute();
+		MediaWikiServices::getInstance()->getJobRunner()->run( [
+			'type' => 'categoryMembershipChange'
+		] );
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$categoryChangesAsRdf = new CategoryChangesAsRdf();
