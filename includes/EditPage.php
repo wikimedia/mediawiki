@@ -26,7 +26,7 @@ use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
-use MediaWiki\EditPage\Constraint\MissingSummaryConstraint;
+use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
@@ -2340,7 +2340,7 @@ ERROR;
 				// Create a new runner to avoid rechecking the prior constraints, use the same factory
 				$constraintRunner = new EditConstraintRunner();
 				$constraintRunner->addConstraint(
-					new MissingSummaryConstraint(
+					new NewSectionMissingSummaryConstraint(
 						$this->summary,
 						$this->allowBlankSummary
 					)
@@ -2351,7 +2351,7 @@ ERROR;
 				// Check the constraints
 				if ( $constraintRunner->checkConstraints() === false ) {
 					$failed = $constraintRunner->getFailedConstraint();
-					if ( $failed instanceof MissingSummaryConstraint ) {
+					if ( $failed instanceof NewSectionMissingSummaryConstraint ) {
 						$this->missingSummary = true;
 					} elseif ( $failed instanceof MissingCommentConstraint ) {
 						$this->missingComment = true;

@@ -19,25 +19,25 @@
  */
 
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\EditPage\Constraint\MissingSummaryConstraint;
+use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 
 /**
- * Tests the MissingSummaryConstraint
+ * Tests the NewSectionMissingSummaryConstraint
  *
  * @author DannyS712
  *
- * @covers \MediaWiki\EditPage\Constraint\MissingSummaryConstraint
+ * @covers \MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint
  */
-class MissingSummaryConstraintTest extends MediaWikiUnitTestCase {
+class NewSectionMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	public function testPass() {
-		$constraint = new MissingSummaryConstraint( 'Summary', false );
+		$constraint = new NewSectionMissingSummaryConstraint( 'Summary', false );
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$constraint = new MissingSummaryConstraint( '', false );
+		$constraint = new NewSectionMissingSummaryConstraint( '', false );
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SUMMARY_NEEDED );
 	}
 
