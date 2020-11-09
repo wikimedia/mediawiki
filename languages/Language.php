@@ -29,6 +29,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
@@ -3283,7 +3284,13 @@ class Language {
 			return $number;
 		}
 		if ( !is_numeric( $number ) ) {
-			wfDeprecated( 'Language::formatNum with a non-numeric string', '1.36' );
+			# T267587: downgrade this to level:warn while we chase down the long
+			# trail of callers.
+			# wfDeprecated( 'Language::formatNum with a non-numeric string', '1.36' );
+			LoggerFactory::getInstance( 'formatnum' )->warning(
+				'Language::formatNum with non-numeric string',
+				[ 'number' => $number ]
+			);
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
 			// For backwards-compat, apply formatNum piecewise on the valid
 			// numbers in the string.
