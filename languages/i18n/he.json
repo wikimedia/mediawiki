@@ -1848,7 +1848,7 @@
 	"uploadstash-wrong-owner": "הקובץ ($1) אינו שייך למשתמש הנוכחי.",
 	"uploadstash-no-such-key": "אין מפתח כזה ($1), לא ניתן להסירו.",
 	"uploadstash-zero-length": "הקובץ באורך אפס.",
-	"invalid-chunk-offset": "היסט גוש לא תקין",
+	"invalid-chunk-offset": "היסט פלח לא תקין",
 	"img-auth-accessdenied": "הגישה נדחתה",
 	"img-auth-notindir": "הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.",
 	"img-auth-badtitle": "לא ניתן ליצור כותרת תקינה מתוך \"$1\".",
@@ -4046,5 +4046,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "כתובת IP",
 	"paramvalidator-help-type-user-subtype-cidr": "טווח כתובות IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "שם משתמש שהגיע מאתר ויקי אחר (כגון \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "מספר מזהה של משתמש (כגון \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "מספר מזהה של משתמש (כגון \"#12345\")",
+	"paramvalidator-badtitle": "ערך בלתי־תקין \"$2\" לפרמטר <var>$1</var>: לא מחרוזת כותבת תקינה.",
+	"paramvalidator-missingtitle": "ערך בלתי־תקין \"$2\" לפרמטר <var>$1</var>: הדף אינו קיים.",
+	"paramvalidator-help-type-title": "סוג: כותרת דף",
+	"paramvalidator-help-type-title-must-exist": "מקבל רק דפים שקיימים.",
+	"paramvalidator-help-type-title-no-must-exist": "מקבל דפים שאינם קיימים."
 }

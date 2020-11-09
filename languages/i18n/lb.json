@@ -3471,5 +3471,6 @@
 	"paramvalidator-help-type-user-subtype-name": "Benotzernumm",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP Adressberäich",
-	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")"
+	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")",
+	"paramvalidator-help-type-title": "Typ: Säitentitel"
 }

@@ -1142,7 +1142,7 @@
 	"restoreprefs": "すべて初期設定に戻す (すべての節について)",
 	"prefs-editing": "編集",
 	"searchresultshead": "検索",
-	"stub-threshold": "スタブリンク形式 ($1)として表示する閾値 :",
+	"stub-threshold": "スタブリンク形式 ($1) として表示する閾値:",
 	"stub-threshold-sample-link": "サンプル",
 	"stub-threshold-disabled": "無効",
 	"recentchangesdays": "最近の更新に表示する日数:",

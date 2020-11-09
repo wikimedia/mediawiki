@@ -4097,5 +4097,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP aralığı",
 	"paramvalidator-help-type-user-subtype-interwiki": "vikiarası adı (ör. \"önek>ÖrnekAdı\")",
-	"paramvalidator-help-type-user-subtype-id": "kullanıcı kimliği (ör. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "kullanıcı kimliği (ör. \"#12345\")",
+	"paramvalidator-badtitle": "<var>$1</var> başlık parametresi için geçersiz değer \"$2\": geçerli bir başlık dizesi değil.",
+	"paramvalidator-missingtitle": "<var>$1</var> başlık parametresi için geçersiz değer \"$2\": sayfa mevcut değil.",
+	"paramvalidator-help-type-title": "Tür: sayfa başlığı",
+	"paramvalidator-help-type-title-must-exist": "Yalnızca var olan sayfaları kabul eder.",
+	"paramvalidator-help-type-title-no-must-exist": "Var olmayan sayfaları kabul eder."
 }

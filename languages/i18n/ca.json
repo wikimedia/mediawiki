@@ -2953,6 +2953,7 @@
 	"tooltip-ca-watch": "Afegiu aquesta pàgina a la vostra llista de seguiment",
 	"tooltip-ca-unwatch": "Suprimiu aquesta pàgina de la vostra llista de seguiment",
 	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|1 dia restant|$1 dies restants}}. Feu clic per eliminar.",
+	"tooltip-ca-unwatch-expiring-hours": "Queden unes poques hores en la llista de seguiment. Feu clic per a suprimir-lo.",
 	"tooltip-search": "Cerca a {{SITENAME}}",
 	"tooltip-search-go": "Vés a una pàgina amb aquest nom exacte si existeix",
 	"tooltip-search-fulltext": "Cerca aquest text a les pàgines",
@@ -3654,6 +3655,7 @@
 	"feedback-dialog-title": "Envia el comentari",
 	"feedback-dialog-intro": "Podeu utilitzar el senzill formulari de sota per a trametre la vostra opinió. El comentari s'afegirà a la pàgina «$1» juntament amb el vostre nom d'usuari.",
 	"feedback-error1": "Error: Resultat de l'API no reconegut",
+	"feedback-error4": "Error: no s'ha pogut publicar amb el títol d'avís proporcionat",
 	"feedback-message": "Missatge:",
 	"feedback-subject": "Assumpte:",
 	"feedback-submit": "Envia",
@@ -3877,8 +3879,10 @@
 	"authmanager-change-not-supported": "No es poden canviar les credencials proporcionades, atès que no hi ha res que les fes servir.",
 	"authmanager-create-disabled": "S'ha inhabilitat la creació de comptes.",
 	"authmanager-create-from-login": "Per crear un compte, ompliu els camps.",
+	"authmanager-create-not-in-progress": "La creació de comptes no és en curs o bé s'han perdut les dades de sessió. Torneu a provar-ho des del començament.",
 	"authmanager-create-no-primary": "Les credencials proporcionades no poden utilitzar-se per a la creació de comptes.",
 	"authmanager-link-no-primary": "Les credencials proporcionades no poden utilitzar-se per a l'enllaç de comptes.",
+	"authmanager-link-not-in-progress": "La vinculació de comptes no és en curs o bé s'han perdut les dades de sessió. Torneu a provar-ho des del començament.",
 	"authmanager-autocreate-noperm": "No es permet la creació automàtica de comptes.",
 	"authmanager-autocreate-exception": "La creació automàtica de comptes s'ha inhabilitat temporalment per errors previs.",
 	"authmanager-userdoesnotexist": "El compte d'usuari «$1» no està registrat.",
@@ -3992,5 +3996,8 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Interval d'adreces IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nom interwiki (p. ex., «prefix>NomExemple»)",
-	"paramvalidator-help-type-user-subtype-id": "ID d'usuari (p. ex., «#12345»)"
+	"paramvalidator-help-type-user-subtype-id": "ID d'usuari (p. ex., «#12345»)",
+	"paramvalidator-help-type-title": "Tipus: títol de pàgina",
+	"paramvalidator-help-type-title-must-exist": "Només s'accepten pàgines que existeixen.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepta pàgines que no existeixen."
 }

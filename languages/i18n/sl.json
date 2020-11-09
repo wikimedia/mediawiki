@@ -2127,7 +2127,7 @@
 	"magiclink-tracking-isbn": "Strani, ki uporabljajo čarobne povezave ISBN",
 	"magiclink-tracking-isbn-desc": "Stran uporablja čarobne povezave ISBN. Oglejte si [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] za navodila glede selitve.",
 	"specialloguserlabel": "Izvajalec:",
-	"speciallogtitlelabel": "Cilj (naslov ali {{ns:user}}:uporabniškoime za uporabnika):",
+	"speciallogtitlelabel": "Cilj (naslov ali {{ns:user}}:uporabniško ime):",
 	"log": "Dnevniki",
 	"logeventslist-submit": "Prikaži",
 	"logeventslist-more-filters": "Prikaži dodatne dnevnike:",
@@ -3928,5 +3928,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-območje",
 	"paramvalidator-help-type-user-subtype-interwiki": "ime interwikija (npr. »predpona>ImePrimera«)",
-	"paramvalidator-help-type-user-subtype-id": "ID uporabnika (npr. »#12345«)"
+	"paramvalidator-help-type-user-subtype-id": "ID uporabnika (npr. »#12345«)",
+	"paramvalidator-badtitle": "Neveljavna vrednost »$2« za naslovni parameter <var>$1</var>: ni veljaven niz naslova.",
+	"paramvalidator-missingtitle": "Neveljavna vrednost »$2« za naslovni parameter <var>$1</var>: stran ne obstaja.",
+	"paramvalidator-help-type-title": "Vrsta: naslov strani",
+	"paramvalidator-help-type-title-must-exist": "Sprejme samo strani, ki obstajajo.",
+	"paramvalidator-help-type-title-no-must-exist": "Sprejme neobstoječe strani."
 }

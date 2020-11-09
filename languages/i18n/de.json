@@ -4055,5 +4055,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP-Adresse",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-Adress-Bereich",
 	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Name (z.B. \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "Benutzer-ID (z.B. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "Benutzer-ID (z.B. \"#12345\")",
+	"paramvalidator-badtitle": "Ungültiger Wert „$2“ für Titel-Parameter <var>$1<var>: kein gültiger Titelstring.",
+	"paramvalidator-missingtitle": "Ungültiger Wert „$2“ für den Titelparameter <var>$1</var>: die Seite existiert nicht.",
+	"paramvalidator-help-type-title": "Typ: Seitenname",
+	"paramvalidator-help-type-title-must-exist": "Es werden nur Seiten akzeptiert, die existieren.",
+	"paramvalidator-help-type-title-no-must-exist": "Akzeptiert nicht existierende Seiten."
 }
