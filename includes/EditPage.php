@@ -1559,43 +1559,8 @@ class EditPage implements IEditObject {
 			return $this->contentHandlerFactory
 				->getContentHandler( $this->contentModel )
 				->makeEmptyContent();
-		} elseif ( !$this->undidRev ) {
-			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-
-			// Content models should always be the same since we error
-			// out if they are different before this point (in ->edit()).
-			// The exception being, during an undo, the current revision might
-			// differ from the prior revision.
-			$logger = LoggerFactory::getInstance( 'editpage' );
-			if ( $this->contentModel !== $mainSlot->getModel() ) {
-				$logger->warning( "Overriding content model from current edit {prev} to {new}", [
-					'prev' => $this->contentModel,
-					'new' => $mainSlot->getModel(),
-					'title' => $this->getTitle()->getPrefixedDBkey(),
-					'method' => __METHOD__
-				] );
-				$this->contentModel = $mainSlot->getModel();
-			}
-
-			// Given that the content models should match, the current selected
-			// format should be supported.
-			if ( !$content->isSupportedFormat( $this->contentFormat ) ) {
-				$revFormat = $mainSlot->getFormat();
-				if ( $revFormat === null ) {
-					$revFormat = $this->contentHandlerFactory
-						->getContentHandler( $mainSlot->getModel() )
-						->getDefaultFormat();
-				}
-
-				$logger->warning( "Current revision content format unsupported. Overriding {prev} to {new}", [
-					'prev' => $this->contentFormat,
-					'new' => $revFormat,
-					'title' => $this->getTitle()->getPrefixedDBkey(),
-					'method' => __METHOD__
-				] );
-				$this->contentFormat = $revFormat;
-			}
 		}
+
 		return $content;
 	}
 
