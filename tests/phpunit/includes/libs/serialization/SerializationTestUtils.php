@@ -19,9 +19,8 @@
  * @ingroup Cache Parser
  */
 
-namespace MediaWiki\Tests\Parser;
+namespace Wikimedia\Tests;
 
-use CacheTime;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -167,7 +166,7 @@ class SerializationTestUtils {
 	 */
 	public function getSerializedInstances(): array {
 		$instances = $this->getTestInstances();
-		return array_map( function ( CacheTime $object )  {
+		return array_map( function ( $object )  {
 			return call_user_func( $this->serializer, $object );
 		}, $instances );
 	}

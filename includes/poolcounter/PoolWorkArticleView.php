@@ -196,6 +196,12 @@ class PoolWorkArticleView extends PoolCounterWork {
 			return false;
 		}
 
+		if ( !$rev->getId() ) {
+			// The revision isn't from the database, don't treat it as current!
+			// The revision could be a fake for a preview or contain an error message.
+			$isCurrent = false;
+		}
+
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$rev,
 			$this->parserOptions,

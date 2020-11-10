@@ -140,10 +140,10 @@ $wgAutoloadClasses += [
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\Tests\Parser\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/parser/ParserCacheSerializationTestCases.php",
-	'MediaWiki\Tests\Parser\SerializationTestTrait' =>
-		"$testDir/phpunit/includes/parser/SerializationTestTrait.php",
-	'MediaWiki\Tests\Parser\SerializationTestUtils' =>
-		"$testDir/phpunit/includes/parser/SerializationTestUtils.php",
+	'Wikimedia\Tests\SerializationTestTrait' =>
+		"$testDir/phpunit/includes/libs/serialization/SerializationTestTrait.php",
+	'Wikimedia\Tests\SerializationTestUtils' =>
+		"$testDir/phpunit/includes/libs/serialization/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/resourceloader
 	'ResourceLoaderImageModuleTest' =>
@@ -223,6 +223,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes
 	'BadFileLookupTest' => "$testDir/phpunit/unit/includes/BadFileLookupTest.php",
+	'Wikimedia\\Reflection\\GhostFieldTestClass' => "$testDir/phpunit/mocks/GhostFieldTestClass.php",
 
 	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
 	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",

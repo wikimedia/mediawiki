@@ -28,6 +28,7 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -610,8 +611,13 @@ class WikiPage implements Page, IDBAccessObject {
 						);
 						return $slot->getModel();
 					} else {
-						$title = $this->mTitle->getPrefixedDBkey();
-						wfWarn( "Page $title exists but has no (visible) revisions!" );
+						LoggerFactory::getInstance( 'wikipage' )->warning(
+							'Page exists but has no (visible) revisions!',
+							[
+								'page-title' => $this->mTitle->getPrefixedDBkey(),
+								'page-id' => $this->getId(),
+							]
+						);
 						return $this->mTitle->getContentModel();
 					}
 				}
@@ -1165,6 +1171,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		// NOTE: Keep in sync with ParserOutputAccess::shouldUseCache().
+		// TODO: Once ParserOutputAccess is stable, deprecated this method.
 		return $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
 			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
@@ -1183,44 +1191,28 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
 	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
 	 *   get the current revision (default value)
-	 * @param bool $forceParse Force reindexing, regardless of cache settings
-	 * @return bool|ParserOutput ParserOutput or false if the revision was not found
+	 * @param bool $noCache Do not read from or write to caches.
+	 * @return bool|ParserOutput ParserOutput or false if the revision was not found or is not public
 	 */
 	public function getParserOutput(
-		ParserOptions $parserOptions, $oldid = null, $forceParse = false
+		ParserOptions $parserOptions, $oldid = null, $noCache = false
 	) {
-		$useParserCache =
-			( !$forceParse ) && $this->shouldCheckParserCache( $parserOptions, $oldid );
+		if ( $oldid ) {
+			$revision = $this->getRevisionStore()->getRevisionByTitle( $this->getTitle(), $oldid );
 
-		if ( $useParserCache && !$parserOptions->isSafeToCache() ) {
-			throw new InvalidArgumentException(
-				'The supplied ParserOptions are not safe to cache. Fix the options or set $forceParse = true.'
-			);
-		}
-
-		wfDebug( __METHOD__ .
-			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) );
-		if ( $parserOptions->getStubThreshold() ) {
-			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-			$stats->updateCount( 'pcache.miss.stub', 1 );
-		}
-
-		if ( $useParserCache ) {
-			$parserOutput = $this->getParserCache()
-				->get( $this, $parserOptions );
-			if ( $parserOutput !== false ) {
-				return $parserOutput;
+			if ( !$revision ) {
+				return false;
 			}
+		} else {
+			$revision = $this->getRevisionRecord();
 		}
 
-		if ( $oldid === null || $oldid === 0 ) {
-			$oldid = $this->getLatest();
-		}
+		$options = $noCache ? ParserOutputAccess::OPT_NO_CACHE : 0;
 
-		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
-		$pool->execute();
-
-		return $pool->getParserOutput();
+		$status = MediaWikiServices::getInstance()->getParserOutputAccess()->getParserOutput(
+			$this, $parserOptions, $revision, $options
+		);
+		return $status->isOK() ? $status->getValue() : false; // convert null to false
 	}
 
 	/**

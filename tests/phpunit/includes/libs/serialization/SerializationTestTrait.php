@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Parser;
+namespace Wikimedia\Tests;
 
 use Generator;
 use ReflectionClass;
