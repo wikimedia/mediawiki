@@ -74,6 +74,19 @@ class ParserOptions {
 	];
 
 	/**
+	 * Specify pseudo-options that are actually callbacks.
+	 * These must be ignored when checking for cacheability.
+	 * @var array
+	 */
+	private static $callbacks = [
+		'currentRevisionCallback' => true,
+		'currentRevisionRecordCallback' => true,
+		'templateCallback' => true,
+		'speculativeRevIdCallback' => true,
+		'speculativePageIdCallback' => true,
+	];
+
+	/**
 	 * Current values for all options that are relevant for caching.
 	 * @var array
 	 */
@@ -1283,6 +1296,7 @@ class ParserOptions {
 			'defaults', // static
 			'lazyOptions', // static
 			'inCacheKey', // static
+			'callbacks', // static
 			'options', // Already checked above
 			'onAccessCallback', // only used for ParserOutput option tracking
 		] );
@@ -1449,7 +1463,7 @@ class ParserOptions {
 	public function isSafeToCache() {
 		$defaults = self::getCanonicalOverrides() + self::getDefaults();
 		foreach ( $this->options as $option => $value ) {
-			if ( empty( self::$inCacheKey[$option] ) ) {
+			if ( empty( self::$inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
 				$v = $this->optionToString( $value );
 				$d = $this->optionToString( $defaults[$option] );
 				if ( $v !== $d ) {

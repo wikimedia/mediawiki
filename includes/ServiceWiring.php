@@ -87,6 +87,7 @@ use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -933,6 +934,13 @@ return [
 			$services->getBadFileLookup(),
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer()
+		);
+	},
+
+	'ParserOutputAccess' => function ( MediaWikiServices $services ) : ParserOutputAccess {
+		return new ParserOutputAccess(
+			$services->getParserCache(),
+			$services->getStatsdDataFactory()
 		);
 	},
 

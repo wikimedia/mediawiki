@@ -21,6 +21,8 @@
  * @file
  */
 
+use Wikimedia\ObjectFactory;
+
 /**
  * When you have many workers (threads/servers) giving service, and a
  * cached item expensive to produce expires, you may get several workers
@@ -120,9 +122,17 @@ abstract class PoolCounter {
 			return new PoolCounterNull;
 		}
 		$conf = $wgPoolCounterConf[$type];
-		$class = $conf['class'];
 
-		return new $class( $conf, $type, $key );
+		/** @var PoolCounter $poolCounter */
+		$poolCounter = ObjectFactory::getObjectFromSpec(
+			$conf,
+			[
+				'extraArgs' => [ $conf, $type, $key ],
+				'assertClass' => self::class
+			]
+		);
+
+		return $poolCounter;
 	}
 
 	/**
