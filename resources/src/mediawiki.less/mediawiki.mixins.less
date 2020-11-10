@@ -28,17 +28,6 @@
 	background-image: linear-gradient( to bottom, @startColor @startPos, @endColor @endPos );
 }
 
-// Deprecated in MW 1.35, see T248062. To be removed in MW 1.36.
-// Use `background-image` property only with SVG without fallback instead.
-//
-// SVG support using a transparent gradient to guarantee cross-browser
-// compatibility (browsers able to understand gradient syntax support also SVG).
-// http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
-.background-image-svg( @svg, @fallback ) {
-	background-image: url( @fallback );
-	background-image: linear-gradient( transparent, transparent ), url( @svg );
-}
-
 .list-style-image( @url ) {
 	list-style-image: url( @url );
 }
