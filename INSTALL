@@ -12,6 +12,7 @@ Required software as of MediaWiki 1.35.0:
 ** dom
 ** fileinfo
 ** iconv
+** intl
 ** json
 ** mbstring
 ** xml

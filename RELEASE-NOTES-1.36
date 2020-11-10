@@ -310,6 +310,7 @@ because of Phabricator reports.
 * Skin::subPageSubtitle() has been changed to private method. Callers should
   use Skin::prepareSubtitle().
 * wfForeignMemcKey() and wfMemcKey(), deprecated in 1.35, have been removed.
+* MediaWiki now also requires the php-intl extension.
 * …
 
 === Deprecations in 1.36 ===
@@ -438,6 +439,7 @@ MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
 * dom
 * fileinfo
 * iconv
+* intl
 * json
 * mbstring
 * xml
