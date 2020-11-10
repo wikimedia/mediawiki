@@ -201,8 +201,8 @@ class WANObjectCache implements
 	/** @var string Default process cache name and max key count */
 	private const PC_PRIMARY = 'primary:1000';
 
-	/** @var int Idiom for get()/getMulti() to return extra information by reference */
-	public const PASS_BY_REF = -1;
+	/** Idiom for get()/getMulti() to return extra information by reference */
+	public const PASS_BY_REF = [];
 
 	/** @var int Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */
 	private const SCHEME_HASH_TAG = 1;
@@ -241,6 +241,11 @@ class WANObjectCache implements
 
 	/** @var int Cache format version number */
 	private static $VERSION = 1;
+
+	/** The key value component of a fetchMulti() result */
+	private const RES_VALUE = 0;
+	/** The key metadata component of a fetchMulti() result */
+	private const RES_METADATA = 1;
 
 	/** @var string Version number attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_VERSION = 'version';
@@ -400,11 +405,15 @@ class WANObjectCache implements
 	 * However, pre-snapshot values might still be seen if an update was made
 	 * in a remote datacenter but the purge from delete() didn't relay yet.
 	 *
-	 * Consider using getWithSetCallback() instead of get() and set() cycles.
-	 * That method has cache slam avoiding features for hot/expensive keys.
+	 * Consider using getWithSetCallback(), which has cache slam avoidance and key
+	 * versioning features, instead of bare get()/set() calls.
 	 *
-	 * Pass $info as WANObjectCache::PASS_BY_REF to transform it into a metadata map for the key.
-	 * This map includes the following metadata about the key:
+	 * Do not use this method on versioned keys accessed via getWithSetCallback().
+	 *
+	 * When using the $info parameter, it should be passed in as WANObjectCache::PASS_BY_REF.
+	 * In that case, it becomes a key metadata map. Otherwise, for backwards compatibility,
+	 * $info becomes the value generation timestamp (null if the key is nonexistant/tombstoned).
+	 * Key metadata map fields include:
 	 *   - WANObjectCache::KEY_VERSION: value version number; null if key is nonexistant
 	 *   - WANObjectCache::KEY_AS_OF: value generation timestamp (UNIX); null if key is nonexistant
 	 *   - WANObjectCache::KEY_TTL: assigned TTL (seconds); null if key is nonexistant/tombstoned
@@ -412,65 +421,101 @@ class WANObjectCache implements
 	 *   - WANObjectCache::KEY_TOMB_AS_OF: tombstone timestamp (UNIX); null if key is not tombstoned
 	 *   - WANObjectCache::KEY_CHECK_AS_OF: highest "check" key timestamp (UNIX); null if none
 	 *
-	 * Otherwise, $info will transform into the cached value timestamp.
-	 *
 	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
-	 * @param mixed|null &$curTTL Approximate TTL left on the key [returned]
+	 * @param float|null &$curTTL Seconds of TTL left [returned]
 	 * @param string[] $checkKeys The "check" keys used to validate the value
-	 * @param mixed|null &$info Key info if WANObjectCache::PASS_BY_REF [returned]
-	 * @return mixed Value of cache key or false on failure
+	 * @param array &$info Metadata map [returned]
+	 * @return mixed Value of cache key; false on failure
 	 */
-	final public function get(
-		$key, &$curTTL = null, array $checkKeys = [], &$info = null
-	) {
-		$curTTLs = self::PASS_BY_REF;
-		$infoByKey = self::PASS_BY_REF;
-		$values = $this->getMulti( [ $key ], $curTTLs, $checkKeys, $infoByKey );
-		/** @var array[] $infoByKey */
-		'@phan-var array[] $infoByKey';
+	final public function get( $key, &$curTTL = null, array $checkKeys = [], &$info = [] ) {
+		// Note that an undeclared variable passed as $info starts as null (not the default).
+		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
+		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
-		$curTTL = $curTTLs[$key] ?? null;
+		$res = $this->fetchKeys( [ $key ], $checkKeys )[$key];
+		$value = $res[self::RES_VALUE];
+		$metadata = $res[self::RES_METADATA];
 
-		$info = ( $info === self::PASS_BY_REF )
-			// Key metadata array
-			? $infoByKey[$key]
-			// Only the "as of" timestamp metadata (b/c)
-			: $infoByKey[$key][self::KEY_AS_OF];
+		$curTTL = $metadata[self::KEY_CUR_TTL];
+		$info = $legacyInfo ? $metadata[self::KEY_AS_OF] : $metadata;
 
-		return array_key_exists( $key, $values ) ? $values[$key] : false;
+		return $value;
 	}
 
 	/**
 	 * Fetch the value of several keys from cache
 	 *
-	 * Pass $info as WANObjectCache::PASS_BY_REF to transform it into a map of cache keys to
-	 * their metadata maps, each map having the same style as those of WANObjectCache::get().
-	 * All the cache keys listed in $keys will have an entry.
+	 * $curTTLs becomes a map of only present/tombstoned $keys to their current time-to-live.
 	 *
-	 * Othwerwise, $info will transform into a map of (cache key => cached value timestamp).
-	 * Only the cache keys listed in $keys that exists or are tombstoned will have an entry.
+	 * $checkKeys holds the "check" keys used to validate values of applicable keys. The
+	 * integer indexes hold "check" keys that apply to all of $keys while the string indexes
+	 * hold "check" keys that only apply to the cache key with that name. The logic of "check"
+	 * keys otherwise works the same as in WANObjectCache::get().
 	 *
-	 * $checkKeys holds the "check" keys used to validate values of applicable keys. The integer
-	 * indexes hold "check" keys that apply to all of $keys while the string indexes hold "check"
-	 * keys that only apply to the cache key with that name.
+	 * When using the $info parameter, it should be passed in as WANObjectCache::PASS_BY_REF.
+	 * In that case, it becomes a mapping of all the $keys to their metadata maps, each in the
+	 * style of WANObjectCache::get(). Otherwise, for backwards compatibility, $info becomes a
+	 * map of only present/tombstoned $keys to their value generation timestamps.
 	 *
 	 * @see WANObjectCache::get()
 	 *
-	 * @param string[] $keys List/map with cache keys made from makeKey()/makeGlobalKey() as values
-	 * @param mixed|null &$curTTLs Map of (key => TTL left) for existing/tombstoned keys [returned]
+	 * @param string[] $keys List/map with makeKey()/makeGlobalKey() cache keys as values
+	 * @param array<string,float> &$curTTLs Map of (key => seconds of TTL left) [returned]
 	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s))
-	 * @param mixed|null &$info Map of (key => info) if WANObjectCache::PASS_BY_REF [returned]
-	 * @return mixed[] Map of (key => value) for existing values; order of $keys is preserved
+	 * @param array<string,array> &$info Map of (key => metadata map) [returned]
+	 * @return array<string,mixed> Map of (key => value) for existing values in order of $keys
 	 */
 	final public function getMulti(
 		array $keys,
 		&$curTTLs = [],
 		array $checkKeys = [],
-		&$info = null
+		&$info = []
 	) {
-		$result = [];
+		// Note that an undeclared variable passed as $info starts as null (not the default).
+		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
+		$legacyInfo = ( $info !== self::PASS_BY_REF );
+
 		$curTTLs = [];
-		$infoByKey = [];
+		$info = [];
+		$valuesByKey = [];
+
+		$resByKey = $this->fetchKeys( $keys, $checkKeys );
+		foreach ( $resByKey as $key => $res ) {
+			$value = $res[self::RES_VALUE];
+			$metadata = $res[self::RES_METADATA];
+
+			if ( $value !== false ) {
+				$valuesByKey[$key] = $value;
+			}
+
+			if ( $metadata[self::KEY_CUR_TTL] !== null ) {
+				$curTTLs[$key] = $metadata[self::KEY_CUR_TTL];
+			}
+
+			$info[$key] = $legacyInfo ? $metadata[self::KEY_AS_OF] : $metadata;
+		}
+
+		return $valuesByKey;
+	}
+
+	/**
+	 * Fetch the value and key metadata of several keys from cache
+	 *
+	 * $checkKeys holds the "check" keys used to validate values of applicable keys.
+	 * The integer indexes hold "check" keys that apply to all of $keys while the string
+	 * indexes hold "check" keys that only apply to the cache key with that name.
+	 *
+	 * This returns a map of (key => result map), with entries for each key in $key.
+	 * Result maps include the following fields:
+	 *  - WANObjectCache::RESULT_VALUE: the value; false if tombstoned/nonexistent
+	 *  - WANObjectCache::RESULT_ATTRIBUTES: the WANObjectCache::KEY_* metadata map
+	 *
+	 * @param string[] $keys List/map with makeKey()/makeGlobalKey() cache keys as values
+	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s))
+	 * @return array<string,array{0:mixed,1:array}> Map of (key => result map) in order of $keys
+	 */
+	protected function fetchKeys( array $keys, array $checkKeys ) {
+		$resByKey = [];
 
 		// Order-corresponding list of value keys for the provided base keys
 		$valueKeys = $this->makeSisterKeys( $keys, self::TYPE_VALUE );
@@ -525,7 +570,7 @@ class WANObjectCache implements
 			$key = current( $keys );
 			next( $keys );
 
-			list( $value, $keyInfo ) = $this->unwrap(
+			list( $value, $metadata ) = $this->unwrap(
 				array_key_exists( $vKey, $wrappedValues ) ? $wrappedValues[$vKey] : false,
 				$now
 			);
@@ -540,30 +585,22 @@ class WANObjectCache implements
 			foreach ( $purgeValues as $purge ) {
 				$lastCKPurge = max( $purge[self::$PURGE_TIME], $lastCKPurge );
 				$safeTimestamp = $purge[self::$PURGE_TIME] + $purge[self::$PURGE_HOLDOFF];
-				if ( $value !== false && $safeTimestamp >= $keyInfo[self::KEY_AS_OF] ) {
+				if ( $value !== false && $safeTimestamp >= $metadata[self::KEY_AS_OF] ) {
 					// How long ago this value was invalidated by *this* check key
 					$ago = min( $purge[self::$PURGE_TIME] - $now, self::$TINY_NEGATIVE );
 					// How long ago this value was invalidated by *any* known check key
-					$keyInfo[self::KEY_CUR_TTL] = min( $keyInfo[self::KEY_CUR_TTL], $ago );
+					$metadata[self::KEY_CUR_TTL] = min( $metadata[self::KEY_CUR_TTL], $ago );
 				}
 			}
-			$keyInfo[self::KEY_CHECK_AS_OF] = $lastCKPurge;
+			$metadata[self::KEY_CHECK_AS_OF] = $lastCKPurge;
 
-			if ( $value !== false ) {
-				$result[$key] = $value;
-			}
-			if ( $keyInfo[self::KEY_CUR_TTL] !== null ) {
-				$curTTLs[$key] = $keyInfo[self::KEY_CUR_TTL];
-			}
-
-			$infoByKey[$key] = ( $info === self::PASS_BY_REF )
-				? $keyInfo
-				: $keyInfo[self::KEY_AS_OF]; // b/c
+			$resByKey[$key] = [
+				self::RES_VALUE => $value,
+				self::RES_METADATA => $metadata
+			];
 		}
 
-		$info = $infoByKey;
-
-		return $result;
+		return $resByKey;
 	}
 
 	/**
@@ -611,6 +648,9 @@ class WANObjectCache implements
 	 * Be aware that this does not update the process cache for getWithSetCallback()
 	 * callers. Keys accessed via that method are not generally meant to also be set
 	 * using this primitive method.
+	 *
+	 * Consider using getWithSetCallback(), which has cache slam avoidance and key
+	 * versioning features, instead of bare get()/set() calls.
 	 *
 	 * Do not use this method on versioned keys accessed via getWithSetCallback().
 	 *
@@ -1442,11 +1482,10 @@ class WANObjectCache implements
 		$kClass = $this->determineKeyClassForStats( $key );
 
 		// Get the current key value and its metadata
-		$curTTL = self::PASS_BY_REF;
-		$curInfo = self::PASS_BY_REF;
-		$curValue = $this->get( $key, $curTTL, $checkKeys, $curInfo );
-		/** @var array $curInfo */
-		'@phan-var array $curInfo';
+		$res = $this->fetchKeys( [ $key ], $checkKeys )[$key];
+		$curValue = $res[self::RES_VALUE];
+		$curInfo = $res[self::RES_METADATA];
+		$curTTL = $curInfo[self::KEY_CUR_TTL];
 		// Apply any $touchedCb invalidation timestamp to get the "last purge timestamp"
 		list( $curTTL, $LPT ) = $this->resolveCTL( $curValue, $curTTL, $curInfo, $touchedCb );
 		// Use the cached value if it exists and is not due for synchronous regeneration
@@ -2062,11 +2101,12 @@ class WANObjectCache implements
 		$idsRegen = [];
 
 		// Find out which keys are missing/deleted/stale
-		$curTTLs = [];
-		$asOfs = [];
-		$curByKey = $this->getMulti( $keysByIdGet, $curTTLs, $checkKeys, $asOfs );
+		$resByKey = $this->fetchKeys( $keysByIdGet, $checkKeys );
 		foreach ( $keysByIdGet as $id => $key ) {
-			if ( !array_key_exists( $key, $curByKey ) || $curTTLs[$key] < 0 ) {
+			$res = $resByKey[$key];
+			$value = $res[self::RES_VALUE];
+			$metadata = $res[self::RES_METADATA];
+			if ( $value === false || $metadata[self::KEY_CUR_TTL] < 0 ) {
 				$idsRegen[] = $id;
 			}
 		}
