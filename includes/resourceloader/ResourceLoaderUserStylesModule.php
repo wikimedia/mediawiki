@@ -65,9 +65,7 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 		// OutputPage to implement previewing of user CSS and JS.
 		// @todo: Remove it once we're sure nothing else is using the parameter
 		$excludepage = $context->getRequest()->getVal( 'excludepage' );
-		if ( isset( $pages[$excludepage] ) ) {
-			unset( $pages[$excludepage] );
-		}
+		unset( $pages[$excludepage] );
 
 		return $pages;
 	}
