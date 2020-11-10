@@ -456,3 +456,22 @@ CREATE TABLE /*_*/revision_comment_temp (
 );
 
 CREATE UNIQUE INDEX revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
+
+
+CREATE TABLE /*_*/revision_actor_temp (
+  revactor_rev INTEGER UNSIGNED NOT NULL,
+  revactor_actor BIGINT UNSIGNED NOT NULL,
+  revactor_timestamp BLOB NOT NULL,
+  revactor_page INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(revactor_rev, revactor_actor)
+);
+
+CREATE UNIQUE INDEX revactor_rev ON /*_*/revision_actor_temp (revactor_rev);
+
+CREATE INDEX actor_timestamp ON /*_*/revision_actor_temp (
+  revactor_actor, revactor_timestamp
+);
+
+CREATE INDEX page_actor_timestamp ON /*_*/revision_actor_temp (
+  revactor_page, revactor_actor, revactor_timestamp
+);

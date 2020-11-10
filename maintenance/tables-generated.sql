@@ -425,3 +425,19 @@ CREATE TABLE /*_*/revision_comment_temp (
     revcomment_rev, revcomment_comment_id
   )
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/revision_actor_temp (
+  revactor_rev INT UNSIGNED NOT NULL,
+  revactor_actor BIGINT UNSIGNED NOT NULL,
+  revactor_timestamp BINARY(14) NOT NULL,
+  revactor_page INT UNSIGNED NOT NULL,
+  UNIQUE INDEX revactor_rev (revactor_rev),
+  INDEX actor_timestamp (
+    revactor_actor, revactor_timestamp
+  ),
+  INDEX page_actor_timestamp (
+    revactor_page, revactor_actor, revactor_timestamp
+  ),
+  PRIMARY KEY(revactor_rev, revactor_actor)
+) /*$wgDBTableOptions*/;

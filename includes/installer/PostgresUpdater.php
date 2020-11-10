@@ -812,6 +812,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
 			[ 'changeField', 'revision_comment_temp', 'revcomment_comment_id', 'BIGINT', '' ],
+			[ 'dropFkey', 'revision_actor_temp', 'revactor_page' ],
+			[ 'changeField', 'revision_actor_temp', 'revactor_actor', 'BIGINT', '' ],
+			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
 		];
 	}
 
