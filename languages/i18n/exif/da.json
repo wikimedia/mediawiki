@@ -298,7 +298,6 @@
 	"exif-gpslatitude-s": "sydl. bredde",
 	"exif-gpslongitude-e": "østl. længde",
 	"exif-gpslongitude-w": "vestl. længde",
-	"exif-gpsaltituderef-999": "Ukendt",
 	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|meter|meter}} over havets overflade",
 	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|meter|meter}} under havets overflade",
 	"exif-gpsstatus-a": "Måling kører",
