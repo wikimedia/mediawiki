@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Editing
@@ -37,8 +38,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage::extractSectionTitle
 	 */
 	public function testExtractSectionTitle( $section, $title ) {
-		$extracted = EditPage::extractSectionTitle( $section );
-		$this->assertEquals( $title, $extracted );
+		$this->assertEquals(
+			$title,
+			 TestingAccessWrapper::newFromClass( EditPage::class )->extractSectionTitle( $section )
+		);
 	}
 
 	public static function provideExtractSectionTitle() {

@@ -1176,7 +1176,7 @@ class EditPage implements IEditObject {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 * @return bool If the requested section is valid
 	 */
-	public function initialiseForm() {
+	private function initialiseForm() {
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
@@ -1562,17 +1562,6 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * Use this method before edit() to preload some content into the edit box
-	 *
-	 * @param Content $content
-	 *
-	 * @since 1.21
-	 */
-	public function setPreloadedContent( Content $content ) {
-		$this->mPreloadContent = $content;
 	}
 
 	/**
@@ -3300,7 +3289,7 @@ ERROR;
 	 * @param string $text
 	 * @return string|bool String or false
 	 */
-	public static function extractSectionTitle( $text ) {
+	private static function extractSectionTitle( $text ) {
 		if ( preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches ) ) {
 			return MediaWikiServices::getInstance()->getParser()
 				->stripSectionName( trim( $matches[2] ) );
@@ -3517,7 +3506,7 @@ ERROR;
 	 *
 	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
 	 */
-	public function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
+	private function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
 		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);
@@ -4630,7 +4619,7 @@ ERROR;
 	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistent section.
 	 */
-	public function noSuchSectionPage() {
+	private function noSuchSectionPage() {
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
 
