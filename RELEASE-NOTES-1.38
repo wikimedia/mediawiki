@@ -210,6 +210,8 @@ because of Phabricator reports.
 * Return values in the parameter $pageLang of the hook PageContentLanguage
   with other types than a Language object, deprecated since 1.33, now emmits
   deprecation warnings.
+* All external access to ParserOutput and CacheTime classes properties
+  was hard-deprecated. Use getters and setters instead.
 * …
 
 === Other changes in 1.38 ===
