@@ -9,7 +9,7 @@ use ParserOutput;
 
 require_once __DIR__ . '/../../../../maintenance/Maintenance.php';
 require __DIR__ . '/ParserCacheSerializationTestCases.php';
-require __DIR__ . '/SerializationTestUtils.php';
+require __DIR__ . '/../libs/serialization/SerializationTestUtils.php';
 
 class ValidateParserCacheSerializationTestData extends Maintenance {
 
@@ -55,7 +55,7 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	public function validateSerialization( string $className, array $testInstances ) {
 		$supportedFormats = ParserCacheSerializationTestCases::getSupportedSerializationFormats( $className );
 		foreach ( $supportedFormats as $serializationFormat ) {
-			$serializationUtils = new SerializationTestUtils(
+			$serializationUtils = new \Wikimedia\Tests\SerializationTestUtils(
 				$this->getArg( 1 ) ?: __DIR__ . '/../../data/ParserCache',
 				$testInstances,
 				$serializationFormat['ext'],

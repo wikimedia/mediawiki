@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Parser\ParserCacheMetadata;
+use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
  * Parser cache specific expiry check.
@@ -29,6 +30,7 @@ use MediaWiki\Parser\ParserCacheMetadata;
  * @ingroup Parser
  */
 class CacheTime implements ParserCacheMetadata, JsonSerializable {
+	use GhostFieldAccessTrait;
 
 	/**
 	 * @var string[] ParserOptions which have been taken into account to produce output.
@@ -264,10 +266,22 @@ class CacheTime implements ParserCacheMetadata, JsonSerializable {
 	 * @param array $jsonData
 	 */
 	protected function initFromJson( array $jsonData ) {
-		$this->mUsedOptions = $jsonData['UsedOptions'];
+		if ( array_key_exists( 'ParseUsedOptions', $jsonData ) ) {
+			// Forward compatibility
+			$this->mUsedOptions = array_keys( $jsonData['ParseUsedOptions'] ?: [] );
+		} else {
+			$this->mUsedOptions = $jsonData['UsedOptions'];
+		}
 		$this->mCacheExpiry = $jsonData['CacheExpiry'];
 		$this->mCacheTime = $jsonData['CacheTime'];
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
 		$this->mVersion = $jsonData['Version']; // XXX: we can probably remove this
+	}
+
+	public function __wakeup() {
+		$forwardCompatOptions = $this->getGhostFieldValue( 'mParseUsedOptions' );
+		if ( $forwardCompatOptions ) {
+			$this->mUsedOptions = array_keys( $forwardCompatOptions );
+		}
 	}
 }

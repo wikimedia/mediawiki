@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
-use MediaWiki\Tests\Parser\SerializationTestTrait;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Tests\SerializationTestTrait;
 
 /**
  * @covers ParserOutput

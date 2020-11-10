@@ -8,6 +8,7 @@ use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use ParserOutput;
 use Title;
+use Wikimedia\Tests\SerializationTestUtils;
 
 /**
  * A collection of serialization test cases for parser cache.

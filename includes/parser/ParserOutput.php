@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
  * Output of the PHP parser.
@@ -25,6 +26,8 @@ use MediaWiki\Logger\LoggerFactory;
  */
 
 class ParserOutput extends CacheTime {
+	use GhostFieldAccessTrait;
+
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
@@ -1785,6 +1788,7 @@ class ParserOutput extends CacheTime {
 	 */
 	protected function initFromJson( array $jsonData ) {
 		parent::initFromJson( $jsonData );
+		$this->mUsedOptions = null;
 
 		$this->mText = $jsonData['Text'];
 		$this->mLanguageLinks = $jsonData['LanguageLinks'];
@@ -1814,7 +1818,12 @@ class ParserOutput extends CacheTime {
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->mIndexPolicy = $jsonData['IndexPolicy'];
-		$this->mAccessedOptions = $jsonData['AccessedOptions'];
+		if ( array_key_exists( 'ParseUsedOptions', $jsonData ) ) {
+			// Forward compatibility
+			$this->mAccessedOptions = $jsonData['ParseUsedOptions'];
+		} else {
+			$this->mAccessedOptions = $jsonData['AccessedOptions'];
+		}
 		$this->mExtensionData = $jsonData['ExtensionData'];
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
@@ -1875,5 +1884,13 @@ class ParserOutput extends CacheTime {
 		}
 
 		return $properties;
+	}
+
+	public function __wakeup() {
+		$forwardOptions = $this->getGhostFieldValue( 'mParseUsedOptions' );
+		if ( $forwardOptions ) {
+			$this->mAccessedOptions = $forwardOptions;
+			$this->mUsedOptions = null;
+		}
 	}
 }
