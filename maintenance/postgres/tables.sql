@@ -92,13 +92,6 @@ CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
 CREATE INDEX rev_actor_timestamp    ON revision (rev_actor,rev_timestamp,rev_id);
 CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
 
-CREATE TABLE revision_comment_temp (
-	revcomment_rev        INTEGER NOT NULL,
-	revcomment_comment_id INTEGER NOT NULL,
-	PRIMARY KEY (revcomment_rev, revcomment_comment_id)
-);
-CREATE UNIQUE INDEX revcomment_rev ON revision_comment_temp (revcomment_rev);
-
 CREATE TABLE revision_actor_temp (
   revactor_rev       INTEGER NOT NULL,
   revactor_actor     INTEGER NOT NULL,

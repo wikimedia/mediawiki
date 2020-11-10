@@ -1350,5 +1350,27 @@
 			{ "name": "ipc_hex_time", "columns": [ "ipc_hex", "ipc_rev_timestamp" ], "unique": false }
 		],
 		"pk": [ "ipc_rev_id" ]
+	},
+	{
+		"name": "revision_comment_temp",
+		"comment": "Temporary table to avoid blocking on an alter of revision. On large wikis like the English Wikipedia, altering the revision table is a months-long process. This table is being created to avoid such an alter, and will be merged back into revision in the future",
+		"columns": [
+			{
+				"name": "revcomment_rev",
+				"comment": "Key to rev_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revcomment_comment_id",
+				"comment": "Key to comment_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "revcomment_rev", "columns": [ "revcomment_rev" ], "unique": true }
+		],
+		"pk": [ "revcomment_rev", "revcomment_comment_id" ]
 	}
 ]

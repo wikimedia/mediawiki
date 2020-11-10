@@ -281,23 +281,6 @@ CREATE INDEX /*i*/rev_page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,
 -- months-long process. This table is being created to avoid such an alter, and
 -- will be merged back into revision in the future.
 --
-CREATE TABLE /*_*/revision_comment_temp (
-  -- Key to rev_id
-  revcomment_rev int unsigned NOT NULL,
-  -- Key to comment_id
-  revcomment_comment_id bigint unsigned NOT NULL,
-  PRIMARY KEY (revcomment_rev, revcomment_comment_id)
-) /*$wgDBTableOptions*/;
--- Ensure uniqueness
-CREATE UNIQUE INDEX /*i*/revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
-
---
--- Temporary table to avoid blocking on an alter of revision.
---
--- On large wikis like the English Wikipedia, altering the revision table is a
--- months-long process. This table is being created to avoid such an alter, and
--- will be merged back into revision in the future.
---
 CREATE TABLE /*_*/revision_actor_temp (
   -- Key to rev_id
   revactor_rev int unsigned NOT NULL,

@@ -811,6 +811,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropSequence', 'ip_changes', 'ip_changes_ipc_rev_id_seq' ],
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
+			[ 'changeField', 'revision_comment_temp', 'revcomment_comment_id', 'BIGINT', '' ],
 		];
 	}
 

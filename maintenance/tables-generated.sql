@@ -415,3 +415,13 @@ CREATE TABLE /*_*/ip_changes (
   INDEX ipc_hex_time (ipc_hex, ipc_rev_timestamp),
   PRIMARY KEY(ipc_rev_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/revision_comment_temp (
+  revcomment_rev INT UNSIGNED NOT NULL,
+  revcomment_comment_id BIGINT UNSIGNED NOT NULL,
+  UNIQUE INDEX revcomment_rev (revcomment_rev),
+  PRIMARY KEY(
+    revcomment_rev, revcomment_comment_id
+  )
+) /*$wgDBTableOptions*/;
