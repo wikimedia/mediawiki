@@ -597,6 +597,51 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers WatchAction::getExpiryOptions()
+	 */
+	public function testGetExpiryOptionsWithInvalidTranslations() {
+		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );
+		$mockLanguage = $this->createMock( Language::class );
+		$mockLanguage->method( 'getCode' )->willReturn( 'not-english' );
+		$mockMessage = $this->getMockMessage( 'invalid:invalid, foo:bar, thing' );
+		$mockMessage->method( 'getLanguage' )->willReturn( $mockLanguage );
+
+		$mockMessageLocalizer->expects( $this->exactly( 2 ) )
+			->method( 'msg' )
+			->will(
+				$this->onConsecutiveCalls(
+					$mockMessage,
+					new Message( 'watchlist-expiry-options' )
+				)
+			);
+
+		$expected = WatchAction::getExpiryOptions( new MockMessageLocalizer( 'en' ), false );
+		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
+		$this->assertSame( $expected, $expiryOptions );
+	}
+
+	/**
+	 * @covers WatchAction::getExpiryOptions()
+	 */
+	public function testGetExpiryOptionsWithPartialInvalidTranslations() {
+		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );
+		$mockMessageLocalizer->expects( $this->once() )
+			->method( 'msg' )
+			->with( 'watchlist-expiry-options' )
+			->willReturn( $this->getMockMessage( 'invalid:invalid, thing, 1 week: 1 week,3 days:3 days' ) );
+
+		$expected = [
+			'options' => [
+				'1 week' => '1 week',
+				'3 days' => '3 days',
+			],
+			'default' => '1 week'
+		];
+		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
+		$this->assertSame( $expected, $expiryOptions );
+	}
+
+	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
 	 */
 	public function testDoWatchOrUnwatchWithExpiry() {

@@ -126,10 +126,10 @@ class WatchAction extends FormAction {
 	 * @return mixed[] With keys `options` (string[]) and `default` (string).
 	 */
 	public static function getExpiryOptions( MessageLocalizer $msgLocalizer, $watchedItem ) {
-		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
-		$expiryOptionsMsgText = $expiryOptionsMsg->text();
-		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsgText );
-		$default = 'infinite';
+		$expiryOptions = self::getExpiryOptionsFromMessage( $msgLocalizer );
+		$default = in_array( 'infinite', $expiryOptions )
+			? 'infinite'
+			: current( $expiryOptions );
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() ) {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
@@ -141,6 +141,39 @@ class WatchAction extends FormAction {
 			'options' => $expiryOptions,
 			'default' => $default,
 		];
+	}
+
+	/**
+	 * Parse expiry options message. Fallback to english options
+	 * if translated options are invalid or broken
+	 *
+	 * @param MessageLocalizer $msgLocalizer
+	 * @param string|null $lang
+	 * @return string[]
+	 */
+	private static function getExpiryOptionsFromMessage(
+		MessageLocalizer $msgLocalizer, ?string $lang = null
+	) : array {
+		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
+		$optionsText = !$lang ? $expiryOptionsMsg->text() : $expiryOptionsMsg->inLanguage( $lang )->text();
+		$options = XmlSelect::parseOptionsMessage(
+			$optionsText
+		);
+
+		$expiryOptions = [];
+		foreach ( $options as $label => $value ) {
+			if ( strtotime( $value ) || wfIsInfinity( $value ) ) {
+				$expiryOptions[$label] = $value;
+			}
+		}
+
+		// If message options is invalid try to recover by returning
+		// english options (T267611)
+		if ( !$expiryOptions && $expiryOptionsMsg->getLanguage()->getCode() !== 'en' ) {
+			return self::getExpiryOptionsFromMessage( $msgLocalizer, 'en' );
+		}
+
+		return $expiryOptions;
 	}
 
 	protected function alterForm( HTMLForm $form ) {
