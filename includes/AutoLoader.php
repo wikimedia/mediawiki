@@ -142,6 +142,7 @@ class AutoLoader {
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\FileBackend\\LockManager\\' => __DIR__ . '/filebackend/lockmanager/',
+			'MediaWiki\\Json\\' => __DIR__ . '/json/',
 			'MediaWiki\\Http\\' => __DIR__ . '/http/',
 			'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 			'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',

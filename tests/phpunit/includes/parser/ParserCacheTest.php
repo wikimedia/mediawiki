@@ -7,6 +7,8 @@ use EmptyBagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
@@ -80,6 +82,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$storage ?: new HashBagOStuff(),
 			'19900220000000',
 			$hookContainer ?: $this->createHookContainer( [] ),
+			new JsonUnserializer(),
 			new NullStatsdDataFactory(),
 			$logger ?: new NullLogger()
 		);
@@ -517,8 +520,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	public function provideCorruptData() {
 		yield 'PHP serialization, bad data' => [ false, 'bla bla' ];
 		yield 'JSON serialization, bad data' => [ true, 'bla bla' ];
-		yield 'JSON serialization, no _type_' => [ true, '{"test":"test"}' ];
-		yield 'JSON serialization, wrong _type_' => [ true, '{"_type_":"bla bla"}' ];
+		yield 'JSON serialization, no _class_' => [ true, '{"test":"test"}' ];
+		yield 'JSON serialization, non-existing _class_' => [ true, '{"_class_":"NonExistentBogusClass"}' ];
+		$wrongInstance = new JsonUnserializableSuperClass( 'test' );
+		yield 'JSON serialization, wrong class' => [ true, json_encode( $wrongInstance->jsonSerialize() ) ];
 	}
 
 	/**

@@ -21,6 +21,9 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Json\JsonUnserializable;
+use MediaWiki\Json\JsonUnserializableTrait;
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Parser\ParserCacheMetadata;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
@@ -29,8 +32,9 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  *
  * @ingroup Parser
  */
-class CacheTime implements ParserCacheMetadata, JsonSerializable {
+class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	use GhostFieldAccessTrait;
+	use JsonUnserializableTrait;
 
 	/**
 	 * @var string[] ParserOptions which have been taken into account to produce output.
@@ -216,14 +220,11 @@ class CacheTime implements ParserCacheMetadata, JsonSerializable {
 	/**
 	 * Returns a JSON serializable structure representing this CacheTime instance.
 	 * @see newFromJson()
-	 * @since 1.36
 	 *
 	 * @return array
 	 */
-	public function jsonSerialize() {
+	protected function toJsonArray(): array {
 		return [
-			'_type_' => 'CacheTime',
-
 			'UsedOptions' => $this->mUsedOptions,
 			'CacheExpiry' => $this->mCacheExpiry,
 			'CacheTime' => $this->mCacheTime,
@@ -232,40 +233,18 @@ class CacheTime implements ParserCacheMetadata, JsonSerializable {
 		];
 	}
 
-	/**
-	 * Construct a CacheTime instance from a structure returned by jsonSerialize()
-	 *
-	 * @see jsonSerialize()
-	 * @since 1.36
-	 *
-	 * @param string|array|object $jsonData
-	 * @return CacheTime
-	 * @throws InvalidArgumentException
-	 */
-	public static function newFromJson( $jsonData ) {
-		if ( is_string( $jsonData ) ) {
-			$jsonData = FormatJson::decode( $jsonData, true );
-			if ( !$jsonData ) {
-				// TODO: in PHP 7.3, we can use JsonException
-				throw new InvalidArgumentException( 'Bad JSON' );
-			}
-		}
-
-		if ( is_object( $jsonData ) ) {
-			$jsonData = (array)$jsonData;
-		}
-
+	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json ) {
 		$cacheTime = new CacheTime();
-		$cacheTime->initFromJson( $jsonData );
-
+		$cacheTime->initFromJson( $unserializer, $json );
 		return $cacheTime;
 	}
 
 	/**
 	 * Initialize member fields from an array returned by jsonSerialize().
+	 * @param JsonUnserializer $unserializer
 	 * @param array $jsonData
 	 */
-	protected function initFromJson( array $jsonData ) {
+	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
 		if ( array_key_exists( 'ParseUsedOptions', $jsonData ) ) {
 			// Forward compatibility
 			$this->mUsedOptions = array_keys( $jsonData['ParseUsedOptions'] ?: [] );

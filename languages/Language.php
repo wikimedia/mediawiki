@@ -3295,14 +3295,15 @@ class Language {
 		if ( !$noSeparators ) {
 			$separatorTransformTable = $this->separatorTransformTable();
 			$digitGroupingPattern = $this->digitGroupingPattern();
+			$code = $wgTranslateNumerals ? $this->getCode() : 'C';
 
 			if ( $digitGroupingPattern ) {
 				$fmt = new NumberFormatter(
-					$this->getCode(), NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+					$code, NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
 				);
 			} else {
 				/** @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong */
-				$fmt = new NumberFormatter( $this->getCode(), NumberFormatter::DECIMAL );
+				$fmt = new NumberFormatter( $code, NumberFormatter::DECIMAL );
 			}
 
 			// minimumGroupingDigits can be used to suppress groupings below a certain value.
@@ -3367,6 +3368,8 @@ class Language {
 		}
 
 		if ( $wgTranslateNumerals && !$noTranslate ) {
+			// This is often unnecessary: PHP's NumberFormatter will often
+			// do the digit transform itself (T267614)
 			$s = $this->digitTransformTable();
 			if ( $s ) {
 				$number = strtr( $number, $s );

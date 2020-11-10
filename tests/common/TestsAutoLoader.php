@@ -231,6 +231,10 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/filebackend
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
 
+	# tests/phpunit/unit/includes/json
+	'MediaWiki\\Tests\\Json\\JsonUnserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSuperClass.php",
+	'MediaWiki\\Tests\\Json\\JsonUnserializableSubClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSubClass.php",
+
 	# tests/phpunit/unit/includes/language
 	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageFallbackTestTrait.php",
 	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",

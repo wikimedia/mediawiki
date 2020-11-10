@@ -44,6 +44,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -810,6 +811,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getJobRunner() : JobRunner {
 		return $this->getService( 'JobRunner' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return JsonUnserializer
+	 */
+	public function getJsonUnserializer() : JsonUnserializer {
+		return $this->getService( 'JsonUnserializer' );
 	}
 
 	/**

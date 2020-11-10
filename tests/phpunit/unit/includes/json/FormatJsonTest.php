@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
+
 /**
  * @covers FormatJson
  */
@@ -82,21 +84,38 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	public function provideValidateSerializable() {
 		$classInstance = new class() {
 		};
+		$serializableClass = new class() implements JsonSerializable {
+			public function jsonSerialize() {
+				return [];
+			}
+		};
 
-		yield 'Number' => [ 1, null ];
-		yield 'Null' => [ null, null ];
-		yield 'Class' => [ $classInstance, '$' ];
-		yield 'Empty array' => [ [], null ];
-		yield 'Empty stdClass' => [ new stdClass(), null ];
-		yield 'Non-empty array' => [ [ 1, 2, 3 ], null ];
-		yield 'Non-empty map' => [ [ 'a' => 'b' ], null ];
-		yield 'Nested, serializable' => [ [ 'a' => [ 'b' => [ 'c' => 'd' ] ] ], null ];
-		yield 'Nested, serializable, with null' => [ [ 'a' => [ 'b' => null ] ], null ];
-		yield 'Nested, serializable, with stdClass' => [ [ 'a' => (object)[ 'b' => [ 'c' => 'd' ] ] ], null ];
-		yield 'Nested, serializable, with stdClass, with null' => [ [ 'a' => (object)[ 'b' => null ] ], null ];
-		yield 'Nested, non-serializable' => [ [ 'a' => [ 'b' => $classInstance ] ], '$.a.b' ];
-		yield 'Nested, non-serializable, in array' => [ [ 'a' => [ 1, 2, $classInstance ] ], '$.a.2' ];
-		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], '$.a.2' ];
+		yield 'Number' => [ 1, true, null ];
+		yield 'Null' => [ null, true, null ];
+		yield 'Class' => [ $classInstance, false, '$' ];
+		yield 'Empty array' => [ [], true, null ];
+		yield 'Empty stdClass' => [ new stdClass(), true, null ];
+		yield 'Non-empty array' => [ [ 1, 2, 3 ], true, null ];
+		yield 'Non-empty map' => [ [ 'a' => 'b' ], true, null ];
+		yield 'Nested, serializable' => [ [ 'a' => [ 'b' => [ 'c' => 'd' ] ] ], true, null ];
+		yield 'Nested, serializable, with null' => [ [ 'a' => [ 'b' => null ] ], true, null ];
+		yield 'Nested, serializable, with stdClass' => [ [ 'a' => (object)[ 'b' => [ 'c' => 'd' ] ] ], true, null ];
+		yield 'Nested, serializable, with stdClass, with null' => [ [ 'a' => (object)[ 'b' => null ] ], true, null ];
+		yield 'Nested, non-serializable' => [ [ 'a' => [ 'b' => $classInstance ] ], true, '$.a.b' ];
+		yield 'Nested, non-serializable, in array' => [ [ 'a' => [ 1, 2, $classInstance ] ], true, '$.a.2' ];
+		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], true, '$.a.2' ];
+		yield 'JsonUnserializable instance' => [ new JsonUnserializableSuperClass( 'Test' ), true, null ];
+		yield 'JsonUnserializable instance, in array' =>
+			[ [ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
+		yield 'JsonUnserializable instance, in stdClass' =>
+			[ (object)[ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
+		yield 'JsonSerializable instance' => [ $serializableClass, false, null ];
+		yield 'JsonSerializable instance, in array' => [ [ $serializableClass ], false, null ];
+		yield 'JsonSerializable instance, in stdClass' => [ (object)[ $serializableClass ], false, null ];
+		yield 'JsonSerializable instance, expect unserialize' => [ $serializableClass, true, '$' ];
+		yield 'JsonSerializable instance, in array, expect unserialize' => [ [ $serializableClass ], true, '$.0' ];
+		yield 'JsonSerializable instance, in stdClass, expect unserialize' =>
+			[ (object)[ $serializableClass ], true, '$.0' ];
 	}
 
 	/**
@@ -104,10 +123,11 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	 * @covers FormatJson::detectNonSerializableData
 	 * @covers FormatJson::detectNonSerializableDataInternal
 	 * @param $value
+	 * @param bool $expectUnserialize
 	 * @param string|null $result
 	 */
-	public function testValidateSerializable( $value, ?string $result ) {
-		$this->assertSame( $result, FormatJson::detectNonSerializableData( $value ) );
+	public function testValidateSerializable( $value, bool $expectUnserialize, ?string $result ) {
+		$this->assertSame( $result, FormatJson::detectNonSerializableData( $value, $expectUnserialize ) );
 	}
 
 }

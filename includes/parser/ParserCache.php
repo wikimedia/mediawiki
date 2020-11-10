@@ -23,9 +23,9 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Parser\ParserCacheMetadata;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Assert\Assert;
 
 /**
  * Cache for ParserOutput objects corresponding to the latest page revisions.
@@ -96,6 +96,9 @@ class ParserCache {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var JsonUnserializer */
+	private $jsonUnserializer;
+
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
 
@@ -124,6 +127,7 @@ class ParserCache {
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param HookContainer $hookContainer
+	 * @param JsonUnserializer $jsonUnserializer
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
@@ -133,6 +137,7 @@ class ParserCache {
 		BagOStuff $cache,
 		string $cacheEpoch,
 		HookContainer $hookContainer,
+		JsonUnserializer $jsonUnserializer,
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
 		$useJson = false
@@ -141,6 +146,7 @@ class ParserCache {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->jsonUnserializer = $jsonUnserializer;
 		$this->stats = $stats;
 		$this->logger = $logger;
 		$this->readJson = $useJson;
@@ -276,7 +282,7 @@ class ParserCache {
 		//       deployed a while before starting to write JSON to the cache,
 		//       in case we have to revert either change.
 		if ( is_string( $metadata ) && $this->readJson ) {
-			$metadata = $this->restoreFromJson( $metadata, $pageKey );
+			$metadata = $this->restoreFromJson( $metadata, $pageKey, CacheTime::class );
 		}
 
 		if ( $metadata instanceof CacheTime ) {
@@ -417,7 +423,7 @@ class ParserCache {
 		//       deployed a while before starting to write JSON to the cache,
 		//       in case we have to revert either change.
 		if ( is_string( $value ) && $this->readJson ) {
-			$value = $this->restoreFromJson( $value, $parserOutputKey );
+			$value = $this->restoreFromJson( $value, $parserOutputKey, ParserOutput::class );
 		}
 
 		if ( !$value instanceof ParserOutput ) {
@@ -585,50 +591,21 @@ class ParserCache {
 	/**
 	 * @param string $jsonData
 	 * @param string $key
-	 *
-	 * @return CacheTime|null
+	 * @param string $expectedClass
+	 * @return CacheTime|ParserOutput|null
 	 */
-	private function restoreFromJson( string $jsonData, string $key ) {
-		$jsonData = FormatJson::decode( $jsonData, true );
-		if ( !$jsonData ) {
-			$this->logger->error(
-				"Invalid JSON",
-				[ 'cache_key' => $key, 'json_error' => json_last_error(), ] );
+	private function restoreFromJson( string $jsonData, string $key, string $expectedClass ) {
+		try {
+			/** @var CacheTime $obj */
+			$obj = $this->jsonUnserializer->unserialize( $jsonData, $expectedClass );
+			return $obj;
+		} catch ( InvalidArgumentException $e ) {
+			$this->logger->error( "Unable to unserialize JSON", [
+				'cache_key' => $key,
+				'message' => $e->getMessage()
+			] );
 			return null;
 		}
-
-		if ( !isset( $jsonData['_type_'] ) ) {
-			$this->logger->error( "No _type_ field in JSON data",
-				[ 'cache_key' => $key ]
-			);
-			return null;
-		}
-
-		// NOTE: Allowing the factory method to be specified directly in the data is tempting,
-		//       but would be insecure. Information in $jsonData must be considered unsafe,
-		//       since an attacker gaining access to the network could write to e.g. memcache.
-		$type = $jsonData['_type_'];
-		$factoryMapping = [
-			'CacheTime' => [ CacheTime::class, 'newFromJson' ],
-			'ParserOutput' => [ ParserOutput::class, 'newFromJson' ],
-		];
-
-		if ( !isset( $factoryMapping[$type] ) ) {
-			$this->logger->error( "Unknown value in _type_ field in JSON data",
-				[ 'cache_key' => $key, 'json_type' => $type ]
-			);
-			return null;
-		}
-
-		$factory = $factoryMapping[$type];
-		$obj = $factory( $jsonData );
-
-		Assert::postcondition(
-			$obj instanceof CacheTime,
-			'Factory method must return a CacheTime instance'
-		);
-
-		return $obj;
 	}
 
 	/**
@@ -639,7 +616,6 @@ class ParserCache {
 	 */
 	private function encodeAsJson( CacheTime $obj, string $key ) {
 		$data = $obj->jsonSerialize();
-
 		$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
 		if ( !$json ) {
 			$this->logger->error( "JSON encoding failed", [
@@ -654,7 +630,7 @@ class ParserCache {
 		// to json. We will not be able to deserialize the value correctly
 		// anyway, so return null. This is done after calling FormatJson::encode
 		// to avoid walking over circular structures.
-		$unserializablePath = FormatJson::detectNonSerializableData( $data );
+		$unserializablePath = FormatJson::detectNonSerializableData( $data, true );
 		if ( $unserializablePath ) {
 			$this->logger->error( 'Non-serializable {class} property set', [
 				'class' => get_class( $obj ),

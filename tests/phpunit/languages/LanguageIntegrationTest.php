@@ -1730,6 +1730,12 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ false, 'kn', "೭\u{FFFD}0", false, "೭\u{FFFD}0" ],
 			[ false, 'kn', "-೭\u{FFFD}0", false, "-೭\u{FFFD}0" ],
 			[ false, 'kn', "-1೭\u{FFFD}0", false, "-1೭\u{FFFD}0" ],
+
+			/** @see https://phabricator.wikimedia.org/T267614 */
+			[ false, 'ar', "1", false, "1" ],
+			[ false, 'ar', "1234.5", false, "1٬234٫5" ],
+			[ true, 'ar', "1", false, "١" ],
+			[ true, 'ar', "1234.5", false, "١٬٢٣٤٫٥" ],
 		];
 	}
 
