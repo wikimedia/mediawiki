@@ -988,7 +988,7 @@
 	"mergehistory-go": "Mostrar edições que podem ser fundidas",
 	"mergehistory-submit": "Fundir edições",
 	"mergehistory-empty": "Não existem revisões fundíveis.",
-	"mergehistory-done": "Foram fundidas $3 {{PLURAL:$3|edição|edições}} de $1 {{PLURAL:$3|em}} [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|revisão|revisões}} de $1 {{PLURAL:$4|foi fundida|foram fundidas}} em [[:$2]].\n$3.",
 	"mergehistory-fail": "Não foi possível fundir os históricos; verifique a página e os parâmetros de tempo, por favor.",
 	"mergehistory-fail-bad-timestamp": "Registo data/hora inválido",
 	"mergehistory-fail-invalid-source": "Página de origem inválida.",

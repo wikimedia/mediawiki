@@ -310,7 +310,6 @@
 	"exif-gpslatitude-s": "عرض جغرافیایی جنوبی",
 	"exif-gpslongitude-e": "طول جغرافیایی شرقی",
 	"exif-gpslongitude-w": "طول جغرافیایی غربی",
-	"exif-gpsaltituderef-999": "ناشناخته",
 	"exif-gpsaltitude-above-sealevel": "$1 {{PLURAL:$1|متر|متر}} بالاتر از سطح دریا",
 	"exif-gpsaltitude-below-sealevel": "$1 {{PLURAL:$1|متر|متر}} پایین‌تر از سطح دریا",
 	"exif-gpsstatus-a": "در حال اندازه‌گیری",

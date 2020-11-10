@@ -36,6 +36,7 @@
 			"Hosseinblue",
 			"Huji",
 			"Iriman",
+			"Jeeputer",
 			"Ladsgroup",
 			"Leyth",
 			"MRG90",
@@ -3972,5 +3973,7 @@
 	"paramvalidator-help-type-user-subtype-name": "نام کاربری",
 	"paramvalidator-help-type-user-subtype-ip": "آی‌پی",
 	"paramvalidator-help-type-user-subtype-id": "شناسهٔ کاربر (مثلاً «#12345»)",
-	"paramvalidator-help-type-title": "نوع: عنوان صفحه"
+	"paramvalidator-help-type-title": "نوع: عنوان صفحه",
+	"paramvalidator-help-type-title-must-exist": "تنها صفحه‌های موجود را می‌پذیرد",
+	"paramvalidator-help-type-title-no-must-exist": "صفحه‌های ناموجود را می‌پذیرد"
 }
