@@ -1376,9 +1376,7 @@ class PermissionManager {
 	public function invalidateUsersRightsCache( $user = null ) {
 		if ( $user !== null ) {
 			$rightsCacheKey = $this->getRightsCacheKey( $user );
-			if ( isset( $this->usersRights[ $rightsCacheKey ] ) ) {
-				unset( $this->usersRights[ $rightsCacheKey ] );
-			}
+			unset( $this->usersRights[ $rightsCacheKey ] );
 		} else {
 			$this->usersRights = null;
 		}

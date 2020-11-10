@@ -319,13 +319,8 @@ abstract class ImageHandler extends MediaHandler {
 
 		// We unset the height parameters in order to let normaliseParams recalculate them
 		// Otherwise there might be a height discrepancy
-		if ( isset( $params['height'] ) ) {
-			unset( $params['height'] );
-		}
-
-		if ( isset( $params['physicalHeight'] ) ) {
-			unset( $params['physicalHeight'] );
-		}
+		unset( $params['height'] );
+		unset( $params['physicalHeight'] );
 
 		return $params;
 	}

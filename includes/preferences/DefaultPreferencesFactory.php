@@ -231,9 +231,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	private function loadPreferenceValues( User $user, IContextSource $context, &$defaultPreferences ) {
 		// Remove preferences that wikis don't want to use
 		foreach ( $this->options->get( 'HiddenPrefs' ) as $pref ) {
-			if ( isset( $defaultPreferences[$pref] ) ) {
-				unset( $defaultPreferences[$pref] );
-			}
+			unset( $defaultPreferences[$pref] );
 		}
 
 		// Make sure that form fields have their parent set. See T43337.
