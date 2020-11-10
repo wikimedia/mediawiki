@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -1080,7 +1081,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					default:
-						$val = $this->formatNum( $val );
+						$val = $this->formatNum( $val, false, $tag );
 						break;
 				}
 			}
@@ -1366,14 +1367,15 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * @param mixed $num The value to format
 	 * @param float|int|bool $round Digits to round to or false.
+	 * @param string|null $tagName (optional) The name of the tag (for debugging)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
-	private function formatNum( $num, $round = false ) {
+	private function formatNum( $num, $round = false, $tagName = null ) {
 		$m = [];
 		if ( is_array( $num ) ) {
 			$out = [];
 			foreach ( $num as $number ) {
-				$out[] = $this->formatNum( $number );
+				$out[] = $this->formatNum( $number, $round, $tagName );
 			}
 
 			return $this->getLanguage()->commaList( $out );
@@ -1396,7 +1398,14 @@ class FormatMetadata extends ContextSource {
 
 			return $this->getLanguage()->formatNum( $newNum );
 		}
-		wfDeprecated( __METHOD__ . ' with non-numeric value', '1.36' );
+		# T267370: there are a lot of strange EXIF tags floating around.
+		LoggerFactory::getInstance( 'formatnum' )->warning(
+			'FormatMetadata::formatNum with non-numeric value',
+			[
+				'tag' => $tagName,
+				'value' => $num,
+			]
+		);
 		return $this->literal( $num );
 	}
 
