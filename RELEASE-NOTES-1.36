@@ -210,8 +210,11 @@ because of Phabricator reports.
 * All methods of MWTidy except for MW::tidy() have been removed.  These
   were either @internal or deprecated in 1.35.
 * The support for IE8 has been dropped.
-* Less mixin `.background-image-svg-quick()` from mediawiki.mixins.less,
-  deprecated since 1.35, has been removed.
+* (T248062) Mixins `.background-image-svg()` and `.background-image-svg-quick()`
+  (provided by mediawiki.mixins.less), which have been deprecated since 1.35,
+  have now been removed. MediaWiki no longer supports any browser which would
+  require this SVG-fallback PNG support, so you can simply use the regular CSS
+  `background-image:` declaration instead.
 * The ResourceLoader module `mediawiki.legacy.oldshared` and its file
   'oldshared.css', deprecated since 1.35 has been removed (T248357).
 * The LinkBegin and LinkEnd hooks, deprecated in 1.28, have been removed. You
