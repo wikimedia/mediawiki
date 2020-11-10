@@ -1021,6 +1021,9 @@ class FormatMetadata extends ContextSource {
 					case 'GPSAreaInformation':
 					case 'GPSProcessingMethod':
 					case 'StitchingSoftware':
+					case 'SubSecTime':
+					case 'SubSecTimeOriginal':
+					case 'SubSecTimeDigitized':
 						$val = $this->literal( $val );
 						break;
 
