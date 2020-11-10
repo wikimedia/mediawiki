@@ -459,6 +459,7 @@ abstract class TablePager extends IndexPager {
 	 * otherwise
 	 *
 	 * @param string $field
+	 * @return bool
 	 */
 	abstract protected function isFieldSortable( $field );
 
@@ -490,7 +491,7 @@ abstract class TablePager extends IndexPager {
 	 * field name, for use in the table header. The description should be plain
 	 * text, it will be HTML-escaped later.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	abstract protected function getFieldNames();
 }
