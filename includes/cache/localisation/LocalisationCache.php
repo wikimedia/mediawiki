@@ -764,9 +764,7 @@ class LocalisationCache {
 						$value = array_merge( $fallbackValue, $value );
 					}
 
-					if ( isset( $value['inherit'] ) ) {
-						unset( $value['inherit'] );
-					}
+					unset( $value['inherit'] );
 				} elseif ( in_array( $key, self::$magicWordKeys ) ) {
 					$this->mergeMagicWords( $value, $fallbackValue );
 				}
