@@ -6,7 +6,9 @@ var config = require( './config.json' ),
 		domain: config.domain,
 		path: config.path,
 		expires: config.expires,
-		secure: false
+		secure: false,
+		sameSite: '',
+		sameSiteLegacy: config.sameSiteLegacy
 	};
 
 /**
@@ -51,9 +53,16 @@ mw.cookie = {
 	 * @param {string} [options.path=wgCookiePath] The path attribute of the cookie
 	 * @param {boolean} [options.secure=false] Whether or not to include the secure attribute.
 	 *   (Does **not** use the wgCookieSecure configuration variable)
+	 * @param {string} [options.sameSite=''] The SameSite flag of the cookie ('None' / 'Lax'
+	 *   / 'Strict', case-insensitive; default is to omit the flag, which results in Lax on
+	 *   modern browsers). Set to None AND set secure=true if the cookie needs to be visible on
+	 *   cross-domain requests.
+	 * @param {boolean} [options.sameSiteLegacy=$wgUseSameSiteLegacyCookies] If true, sameSite=None
+	 *   cookies will also be sent as a non-SameSite cookie with an 'ss0-' prefix, to work around
+	 *   old browsers interpreting the standard differently.
 	 */
 	set: function ( key, value, options ) {
-		var date;
+		var prefix, date, sameSiteLegacy;
 
 		// The 'options' parameter may be a shortcut for the expiry.
 		if ( arguments.length > 2 && ( !options || options instanceof Date || typeof options === 'number' ) ) {
@@ -62,9 +71,8 @@ mw.cookie = {
 		// Apply defaults
 		options = $.extend( {}, defaults, options );
 
-		// Handle prefix
-		key = options.prefix + key;
 		// Don't pass invalid option to $.cookie
+		prefix = options.prefix;
 		delete options.prefix;
 
 		if ( !options.expires ) {
@@ -78,11 +86,20 @@ mw.cookie = {
 			options.expires = date;
 		}
 
+		sameSiteLegacy = options.sameSiteLegacy;
+		delete options.sameSiteLegacy;
+
 		if ( value !== null ) {
 			value = String( value );
 		}
 
-		$.cookie( key, value, options );
+		$.cookie( prefix + key, value, options );
+		if ( sameSiteLegacy && options.sameSite && options.sameSite.toLowerCase() === 'none' ) {
+			// Make testing easy by not changing the object passed to the first $.cookie call
+			options = $.extend( {}, options );
+			delete options.sameSite;
+			$.cookie( prefix + 'ss0-' + key, value, options );
+		}
 	},
 
 	/**
@@ -110,6 +127,29 @@ mw.cookie = {
 		result = $.cookie( prefix + key );
 
 		return result !== null ? result : defaultValue;
+	},
+
+	/**
+	 * Get the value of a SameSite=None cookie, using the legacy ss0- cookie if needed.
+	 *
+	 * @param {string} key
+	 * @param {string} [prefix=wgCookiePrefix] The prefix of the key. If `prefix` is
+	 *   `undefined` or `null`, then `wgCookiePrefix` is used
+	 * @param {Mixed} [defaultValue=null]
+	 * @return {string|null|Mixed} If the cookie exists, then the value of the
+	 *   cookie, otherwise `defaultValue`
+	 */
+	getCrossSite: function ( key, prefix, defaultValue ) {
+		var value;
+
+		value = this.get( key, prefix, null );
+		if ( value === null ) {
+			value = this.get( 'ss0-' + key, prefix, null );
+		}
+		if ( value === null ) {
+			value = defaultValue;
+		}
+		return value;
 	}
 };
 
