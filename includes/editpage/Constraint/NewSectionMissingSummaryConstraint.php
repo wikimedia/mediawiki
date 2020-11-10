@@ -23,13 +23,13 @@ namespace MediaWiki\EditPage\Constraint;
 use StatusValue;
 
 /**
- * Do not allow the user to post with an empty summary unless they choose to (only used for new section)
+ * For a new section, do not allow the user to post with an empty summary unless they choose to
  *
  * @since 1.36
  * @internal
  * @author DannyS712
  */
-class MissingSummaryConstraint implements IEditConstraint {
+class NewSectionMissingSummaryConstraint implements IEditConstraint {
 
 	/** @var string */
 	private $userSummary;
