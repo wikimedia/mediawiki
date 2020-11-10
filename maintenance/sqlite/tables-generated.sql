@@ -445,3 +445,14 @@ CREATE TABLE /*_*/ip_changes (
 CREATE INDEX ipc_rev_timestamp ON /*_*/ip_changes (ipc_rev_timestamp);
 
 CREATE INDEX ipc_hex_time ON /*_*/ip_changes (ipc_hex, ipc_rev_timestamp);
+
+
+CREATE TABLE /*_*/revision_comment_temp (
+  revcomment_rev INTEGER UNSIGNED NOT NULL,
+  revcomment_comment_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY(
+    revcomment_rev, revcomment_comment_id
+  )
+);
+
+CREATE UNIQUE INDEX revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
