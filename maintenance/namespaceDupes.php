@@ -665,7 +665,7 @@ class NamespaceDupes extends Maintenance {
 		// we are deliberately constructing an invalid title.
 		$sourceTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$sourceTitle->resetArticleID( $id );
-		$wikiPage = new WikiPage( $sourceTitle );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $sourceTitle );
 		$wikiPage->loadPageData( WikiPage::READ_LATEST );
 
 		$destId = $newTitle->getArticleID();
