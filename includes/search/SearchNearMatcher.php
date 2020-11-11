@@ -3,6 +3,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 
 /**
  * Implementation of near match title search.
@@ -32,6 +33,11 @@ class SearchNearMatcher {
 	private $hookRunner;
 
 	/**
+	 * @var WikiPageFactory
+	 */
+	private $wikiPageFactory;
+
+	/**
 	 * SearchNearMatcher constructor.
 	 * @param Config $config
 	 * @param Language $lang
@@ -40,8 +46,10 @@ class SearchNearMatcher {
 	public function __construct( Config $config, Language $lang, HookContainer $hookContainer ) {
 		$this->config = $config;
 		$this->language = $lang;
-		$this->languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+		$services = MediaWikiServices::getInstance();
+		$this->languageConverter = $services->getLanguageConverterFactory()
 			->getLanguageConverter( $lang );
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -114,7 +122,7 @@ class SearchNearMatcher {
 			}
 
 			# See if it still otherwise has content is some sane sense
-			$page = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 			if ( $page->hasViewableContent() ) {
 				return $title;
 			}
