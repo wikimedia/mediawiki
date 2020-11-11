@@ -10,6 +10,7 @@
 			"Lokal Profil",
 			"M.M.S.",
 			"Najami",
+			"Sabelöga",
 			"Sannab",
 			"Tobulos1",
 			"WikiPhoenix"
@@ -367,5 +368,9 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Låg ($1)",
 	"exif-urgency-high": "Hög ($1)",
-	"exif-urgency-other": "Användardefinierad prioritet ($1)"
+	"exif-urgency-other": "Användardefinierad prioritet ($1)",
+	"exif-usepanoramaviewer-true": "Ja",
+	"exif-usepanoramaviewer-false": "Nej",
+	"exif-exposurelockused-true": "Ja",
+	"exif-exposurelockused-false": "Nej"
 }
