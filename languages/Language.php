@@ -3291,7 +3291,7 @@ class Language {
 				'Language::formatNum with non-numeric string',
 				[ 'number' => $number ]
 			);
-			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
 			// For backwards-compat, apply formatNum piecewise on the valid
 			// numbers in the string.
 			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noTranslate, $noSeparators ) {
