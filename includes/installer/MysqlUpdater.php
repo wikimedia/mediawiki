@@ -1384,6 +1384,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== false ) {
 			$this->output( "Removing '$table.$field' default value\n" );
+			$table = $this->db->tableName( $table );
 			$this->db->query( "ALTER TABLE $table ALTER COLUMN $field DROP DEFAULT", __METHOD__ );
 		}
 	}
@@ -1400,6 +1401,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
+			$table = $this->db->tableName( $table );
 			$this->db->query(
 				"ALTER TABLE $table ALTER COLUMN $field SET DEFAULT "
 				. $this->db->addQuotes( $default ), __METHOD__
