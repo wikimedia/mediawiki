@@ -186,7 +186,8 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	private function getLatestPage() {
 		if ( !isset( $this->page ) ) {
-			$this->page = WikiPage::newFromID( $this->id, WikiPage::READ_LATEST );
+			$this->page = MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromID( $this->id, WikiPage::READ_LATEST );
 		}
 
 		return $this->page;
