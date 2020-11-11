@@ -315,12 +315,13 @@ abstract class AbstractContent implements Content {
 		if ( $title === null ) {
 			return null;
 		}
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		// recursive check to follow double redirects
 		$recurse = $wgMaxRedirects;
 		$titles = [ $title ];
 		while ( --$recurse > 0 ) {
 			if ( $title->isRedirect() ) {
-				$page = WikiPage::factory( $title );
+				$page = $wikiPageFactory->newFromTitle( $title );
 				$newtitle = $page->getRedirectTarget();
 			} else {
 				break;
