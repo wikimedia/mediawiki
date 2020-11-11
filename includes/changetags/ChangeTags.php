@@ -29,16 +29,76 @@ use Wikimedia\Rdbms\IDatabase;
 
 class ChangeTags {
 	/**
-	 * Can't delete tags with more than this many uses. Similar in intent to
-	 * the bigdelete user right
-	 * @todo Use the job queue for tag deletion to avoid this restriction
+	 * The tagged edit changes the content model of the page.
 	 */
-	private const MAX_DELETE_USES = 5000;
+	public const TAG_CONTENT_MODEL_CHANGE = 'mw-contentmodelchange';
+	/**
+	 * The tagged edit creates a new redirect (either by creating a new page or turning an
+	 * existing page into a redirect).
+	 */
+	public const TAG_NEW_REDIRECT = 'mw-new-redirect';
+	/**
+	 * The tagged edit turns a redirect page into a non-redirect.
+	 */
+	public const TAG_REMOVED_REDIRECT = 'mw-removed-redirect';
+	/**
+	 * The tagged edit changes the target of a redirect page.
+	 */
+	public const TAG_CHANGED_REDIRECT_TARGET = 'mw-changed-redirect-target';
+	/**
+	 * The tagged edit blanks the page (replaces it with the empty string).
+	 */
+	public const TAG_BLANK = 'mw-blank';
+	/**
+	 * The tagged edit removes more than 90% of the content of the page.
+	 */
+	public const TAG_REPLACE = 'mw-replace';
+	/**
+	 * The tagged edit is a rollback (undoes the previous edit and all immediately preceding edits
+	 * by the same user, and was performed via the "rollback" link available to advanced users
+	 * or via the rollback API).
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_ROLLBACK = 'mw-rollback';
+	/**
+	 * The tagged edit is was performed via the "undo" link. (Usually this means that it undoes
+	 * some previous edit, but the undo workflow includes an edit step so it could be anything.)
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_UNDO = 'mw-undo';
+	/**
+	 * The tagged edit restores the page to an earlier revision.
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_MANUAL_REVERT = 'mw-manual-revert';
+	/**
+	 * The tagged edit is reverted by a subsequent edit (which is tagged by one of TAG_ROLLBACK,
+	 * TAG_UNDO, TAG_MANUAL_REVERT). Multiple edits might be reverted by the same edit.
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize())
+	 * with an extra 'revertId' field containing the revision ID of the reverting edit.
+	 */
+	public const TAG_REVERTED = 'mw-reverted';
+
+	/**
+	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)
+	 */
+	public const REVERT_TAGS = [ self::TAG_ROLLBACK, self::TAG_UNDO, self::TAG_MANUAL_REVERT ];
 
 	/**
 	 * Flag for canDeleteTag().
 	 */
 	public const BYPASS_MAX_USAGE_CHECK = 1;
+
+	/**
+	 * Can't delete tags with more than this many uses. Similar in intent to
+	 * the bigdelete user right
+	 * @todo Use the job queue for tag deletion to avoid this restriction
+	 */
+	private const MAX_DELETE_USES = 5000;
 
 	/**
 	 * A list of tags defined and used by MediaWiki itself.

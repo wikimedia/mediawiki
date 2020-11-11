@@ -45,8 +45,6 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [ 'RevertedTagMaxDepth' ];
 
-	private const REVERTED_TAG = 'mw-reverted';
-
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -177,7 +175,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 */
 	private function shouldExecute() : bool {
 		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
-		if ( !in_array( self::REVERTED_TAG, $this->softwareTags ) || $maxDepth <= 0 ) {
+		if ( !in_array( ChangeTags::TAG_REVERTED, $this->softwareTags ) || $maxDepth <= 0 ) {
 			return false;
 		}
 
@@ -230,7 +228,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 		}
 
 		$changeTagsOnRevert = $this->getChangeTags( $this->revertId );
-		if ( in_array( self::REVERTED_TAG, $changeTagsOnRevert ) ) {
+		if ( in_array( ChangeTags::TAG_REVERTED, $changeTagsOnRevert ) ) {
 			// This is already marked as reverted, which means the update was delayed
 			// until the edit is approved. Apparently, the edit was not approved, as
 			// it was reverted, so the update should not be performed.
@@ -300,7 +298,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 */
 	protected function markAsReverted( int $revisionId, array $extraParams ) {
 		ChangeTags::addTags(
-			[ self::REVERTED_TAG ],
+			[ ChangeTags::TAG_REVERTED ],
 			null,
 			$revisionId,
 			null,
