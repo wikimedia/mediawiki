@@ -1556,7 +1556,7 @@ class EditPage implements IEditObject {
 			RevisionRecord::RAW
 		) : null;
 
-		if ( $content === false || $content === null ) {
+		if ( $content === null ) {
 			return $this->contentHandlerFactory
 				->getContentHandler( $this->contentModel )
 				->makeEmptyContent();
