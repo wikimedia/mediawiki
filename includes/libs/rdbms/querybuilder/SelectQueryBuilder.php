@@ -70,6 +70,8 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *   - conds: The conditions
 	 *   - options: The query options
 	 *   - join_conds: The join conditions
+	 *   - joins: Alias for join_conds. If both joins and join_conds are
+	 *     specified, the values will be merged.
 	 *
 	 * @return $this
 	 */
@@ -88,6 +90,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 		}
 		if ( isset( $info['join_conds'] ) ) {
 			$this->joinConds( (array)$info['join_conds'] );
+		}
+		if ( isset( $info['joins'] ) ) {
+			$this->joinConds( (array)$info['joins'] );
 		}
 		return $this;
 	}
@@ -735,20 +740,23 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Get an associative array describing the query in terms of its raw parameters to
 	 * Database::select(). This can be used to interface with legacy code.
 	 *
+	 * @param string $joinsName The name of the join_conds key
 	 * @return array The query info array, with keys:
 	 *   - tables: The table array
 	 *   - fields: The fields
 	 *   - conds: The conditions
 	 *   - options: The query options
-	 *   - join_conds: The join conditions
+	 *   - join_conds: The join conditions. This can also be given a different
+	 *     name by passing a $joinsName parameter, since some legacy code uses
+	 *     the name "joins".
 	 */
-	public function getQueryInfo() {
+	public function getQueryInfo( $joinsName = 'join_conds' ) {
 		return [
 			'tables' => $this->tables,
 			'fields' => $this->fields,
 			'conds' => $this->conds,
 			'options' => $this->options,
-			'join_conds' => $this->joinConds
+			$joinsName => $this->joinConds,
 		];
 	}
 }
