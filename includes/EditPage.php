@@ -1992,21 +1992,14 @@ class EditPage implements IEditObject {
 		);
 
 		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
-		if ( $this->section == 'new' ) {
-			// $wgSpamRegex is enforced on this new heading/summary because, unlike
-			// regular summaries, it is added to the actual wikitext.
-			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
-			// the summary is used which comes from the API `summary` parameter or the
-			// "Add Topic" user interface
-			$sectionHeadingToCheck = ( $this->sectiontitle !== '' ? $this->sectiontitle : $this->summary );
-		} else {
-			// No section heading to check
-			$sectionHeadingToCheck = '';
-		}
+		// FIXME $this->section is documented to always be a string, but it can be null
+		// since importFormData does not provide a default when getting the section from
+		// WebRequest, and the default default is null.
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
-				$sectionHeadingToCheck,
+				$this->section === null ? '' : $this->section,
+				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
 				$this->mTitle
@@ -2141,7 +2134,6 @@ class EditPage implements IEditObject {
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
-				// @phan-suppress-next-line PhanSuspiciousValueComparison
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
@@ -2204,7 +2196,6 @@ class EditPage implements IEditObject {
 			}
 
 			// If sectiontitle is set, use it, otherwise use the summary as the section title.
-			// @phan-suppress-next-line PhanSuspiciousValueComparison
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
