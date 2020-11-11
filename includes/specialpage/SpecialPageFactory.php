@@ -722,6 +722,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
+				'WikiPageFactory',
 			]
 		],
 		'Mypage' => \SpecialMypage::class,

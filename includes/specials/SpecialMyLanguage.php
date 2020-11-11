@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Page\WikiPageFactory;
 
 /**
  * Unlisted special page just to redirect the user to the translated version of
@@ -39,14 +40,20 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param LanguageNameUtils $languageNameUtils
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
-		LanguageNameUtils $languageNameUtils
+		LanguageNameUtils $languageNameUtils,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( 'MyLanguage' );
 		$this->languageNameUtils = $languageNameUtils;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -98,7 +105,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		if ( $base->isRedirect() ) {
-			$page = new WikiPage( $base );
+			$page = $this->wikiPageFactory->newFromTitle( $base );
 			$base = $page->getRedirectTarget();
 		}
 
