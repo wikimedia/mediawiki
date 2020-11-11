@@ -1892,7 +1892,7 @@ abstract class Installer {
 			return $status;
 		}
 		try {
-			$page = WikiPage::factory( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
