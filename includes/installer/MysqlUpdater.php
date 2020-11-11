@@ -560,7 +560,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doFixAncientImagelinks() {
 		$info = $this->db->fieldInfo( 'imagelinks', 'il_from' );
 		if ( !$info || $info->type() !== 'string' ) {
-			$this->output( "...il_from OK\n" );
+			$this->output( "...il_from is already not a string\n" );
 
 			return;
 		}
