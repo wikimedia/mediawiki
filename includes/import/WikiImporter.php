@@ -346,7 +346,7 @@ class WikiImporter {
 	 */
 	public function beforeImportPage( $titleAndForeignTitle ) {
 		$title = $titleAndForeignTitle[0];
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		$this->countableCache['title_' . $title->getPrefixedText()] = $page->isCountable();
 		return true;
 	}
@@ -417,7 +417,7 @@ class WikiImporter {
 		// and revision count, and we implement our own custom logic for the
 		// article (content page) count.
 		if ( !$this->disableStatisticsUpdate ) {
-			$page = WikiPage::factory( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$page->loadPageData( 'fromdbmaster' );
 			$content = $page->getContent();
 			if ( $content === null ) {

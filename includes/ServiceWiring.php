@@ -865,7 +865,8 @@ return [
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer(),
 			$services->getRevisionStore(),
-			$services->getSlotRoleRegistry()
+			$services->getSlotRoleRegistry(),
+			$services->getWikiPageFactory()
 		);
 	},
 
@@ -1526,7 +1527,8 @@ return [
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer(),
 			$services->getRevisionStore(),
-			$services->getSlotRoleRegistry()
+			$services->getSlotRoleRegistry(),
+			$services->getWikiPageFactory()
 		);
 	},
 
