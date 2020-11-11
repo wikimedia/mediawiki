@@ -1068,12 +1068,14 @@ class WikiImporter {
 	 */
 	private function processUpload( $pageInfo, $uploadInfo ) {
 		$revision = new WikiRevision( $this->config );
-		$text = $uploadInfo['text'] ?? '';
+		$revId = $pageInfo['id'];
+		$title = $pageInfo['_title'];
+		$content = $this->makeContent( $title, $revId, $uploadInfo );
 
-		$revision->setTitle( $pageInfo['_title'] );
-		$revision->setID( $pageInfo['id'] );
+		$revision->setTitle( $title );
+		$revision->setID( $revId );
 		$revision->setTimestamp( $uploadInfo['timestamp'] );
-		$revision->setText( $text );
+		$revision->setContent( SlotRecord::MAIN, $content );
 		$revision->setFilename( $uploadInfo['filename'] );
 		if ( isset( $uploadInfo['archivename'] ) ) {
 			$revision->setArchiveName( $uploadInfo['archivename'] );
