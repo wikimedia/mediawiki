@@ -1583,7 +1583,8 @@ return [
 			$services->getContentHandlerFactory(),
 			$services->getRevisionStore(),
 			$services->getSpamChecker(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getWikiPageFactory()
 		);
 	},
 

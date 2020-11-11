@@ -25,6 +25,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -107,6 +108,11 @@ class MovePage {
 	private $hookRunner;
 
 	/**
+	 * @var WikiPageFactory
+	 */
+	private $wikiPageFactory;
+
+	/**
 	 * @internal For use by MovePageTest
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -128,6 +134,7 @@ class MovePage {
 	 * @param RevisionStore|null $revisionStore
 	 * @param SpamChecker|null $spamChecker
 	 * @param HookContainer|null $hookContainer
+	 * @param WikiPageFactory|null $wikiPageFactory
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -141,7 +148,8 @@ class MovePage {
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
 		SpamChecker $spamChecker = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		WikiPageFactory $wikiPageFactory = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -164,6 +172,7 @@ class MovePage {
 		$this->spamChecker = $spamChecker ?? $services->getSpamChecker();
 		$this->hookContainer = $hookContainer ?? $services->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 	}
 
 	/**
@@ -822,7 +831,7 @@ class MovePage {
 					'delete_and_move_reason',
 					$this->oldTitle->getPrefixedText()
 				)->inContentLanguage()->text();
-			$newpage = WikiPage::factory( $nt );
+			$newpage = $this->wikiPageFactory->newFromTitle( $nt );
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
 				$overwriteMessage,
@@ -885,10 +894,10 @@ class MovePage {
 
 		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
-		$oldpage = WikiPage::factory( $this->oldTitle );
+		$oldpage = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();
 
-		$newpage = WikiPage::factory( $nt );
+		$newpage = $this->wikiPageFactory->newFromTitle( $nt );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -965,7 +974,7 @@ class MovePage {
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
-			$redirectArticle = WikiPage::factory( $this->oldTitle );
+			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity

@@ -26,6 +26,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -84,6 +85,9 @@ class MergeHistory {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
 	 * MergeHistoryFactory service
@@ -98,6 +102,7 @@ class MergeHistory {
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param SpamChecker|null $spamChecker
 	 * @param HookContainer|null $hookContainer
+	 * @param WikiPageFactory|null $wikiPageFactory
 	 */
 	public function __construct(
 		Title $source,
@@ -109,7 +114,8 @@ class MergeHistory {
 		RevisionStore $revisionStore = null,
 		WatchedItemStoreInterface $watchedItemStore = null,
 		SpamChecker $spamChecker = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		WikiPageFactory $wikiPageFactory = null
 	) {
 		if ( $loadBalancer === null ) {
 			wfDeprecatedMsg( 'Direct construction of ' . __CLASS__ .
@@ -123,6 +129,7 @@ class MergeHistory {
 			$watchedItemStore = $services->getWatchedItemStore();
 			$spamChecker = $services->getSpamChecker();
 			$hookContainer = $services->getHookContainer();
+			$wikiPageFactory = $services->getWikiPageFactory();
 		}
 
 		// Save the parameters
@@ -138,6 +145,7 @@ class MergeHistory {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->wikiPageFactory = $wikiPageFactory;
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -473,7 +481,7 @@ class MergeHistory {
 
 		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $newRevRecord, $this->dbw );
 
-		$newPage = WikiPage::factory( $this->source );
+		$newPage = $this->wikiPageFactory->newFromTitle( $this->source );
 		$newPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
 
 		if ( !$deleteSource ) {

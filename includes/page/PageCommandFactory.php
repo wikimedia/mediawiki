@@ -75,6 +75,9 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -92,7 +95,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
 		SpamChecker $spamChecker,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		WikiPageFactory $wikiPageFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -106,6 +110,7 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		$this->revisionStore = $revisionStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookContainer = $hookContainer;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -155,7 +160,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$this->revisionStore,
 			$this->watchedItemStore,
 			$this->spamChecker,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->wikiPageFactory
 		);
 	}
 
@@ -177,7 +183,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->spamChecker,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->wikiPageFactory
 		);
 	}
 }
