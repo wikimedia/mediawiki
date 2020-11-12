@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ananth subray",
+			"Mahadevaiah Siddaiah",
 			"Nayvik",
 			"Omshivaprakash",
 			"Shushruth",
@@ -85,5 +86,16 @@
 	"exif-gpsspeed-m": "ಪ್ರತಿ ಗಂಟೆಗೆ ಮೈಲಿಗಳು",
 	"exif-gpsspeed-n": "ಕ್ನಾಟ್‍ಗಳು",
 	"exif-gpsdirection-t": "ನಿಜ ದಿಕ್ಕು",
-	"exif-gpsdirection-m": "ಆಯಸ್ಕಾಂತೀಯ ದಿಕ್ಕು"
+	"exif-gpsdirection-m": "ಆಯಸ್ಕಾಂತೀಯ ದಿಕ್ಕು",
+	"exif-firstphotodate": "ಮೊದಲ ಫೋಟೋ ದಿನಾಂಕ",
+	"exif-usepanoramaviewer-false": "ಇಲ್ಲ",
+	"exif-exposurelockused-true": "ಹೌದು",
+	"exif-exposurelockused-false": "ಇಲ್ಲ",
+	"exif-initialviewheadingdegrees": "ಆರಂಭಿಕ ವೀಕ್ಷಣಾ ಶಿರೋನಾಮೆ (ಡಿಗ್ರಿಗಳಲ್ಲಿ)",
+	"exif-initialviewrolldegrees": "ಆರಂಭಿಕ ವೀಕ್ಷಣಾ ಸುರುಳಿ",
+	"exif-initialhorizontalfovdegrees": "ಆರಂಭಿಕ ವೀಕ್ಷಣಾ ಕೋನ",
+	"exif-initialverticalfovdegrees": "ಆರಂಭಿಕ ವೀಕ್ಷಣೆ (ಲಂಬ ಡಿಗ್ರಿಗಳಲ್ಲಿ)",
+	"exif-croppedareaimageheightpixels": "ನಿರಂತರ ದೃಶ್ಯದಲ್ಲಿ ಕತ್ತರಿಸಿದ ಎತ್ತರ",
+	"exif-fullpanowidthpixels": "ನಿರಂತರ ದೃಶ್ಯದ ಸಂಪೂರ್ಣ ಅಗಲ",
+	"exif-croppedareatoppixels": "ನಿರಂತರ ದೃಶ್ಯದಿಂದ  ಕತ್ತರಿಸಲಾದ ಮೇಲ್ಭಾಗ"
 }

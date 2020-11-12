@@ -369,5 +369,9 @@
 	"exif-urgency-normal": "Normale ($1)",
 	"exif-urgency-low": "Bassa ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Priorità definite dal'utente ($1)"
+	"exif-urgency-other": "Priorità definite dal'utente ($1)",
+	"exif-usepanoramaviewer-true": "Sì",
+	"exif-usepanoramaviewer-false": "No",
+	"exif-exposurelockused-true": "Sì",
+	"exif-exposurelockused-false": "No"
 }

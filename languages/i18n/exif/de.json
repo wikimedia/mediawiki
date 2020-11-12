@@ -370,10 +370,12 @@
 	"exif-firstphotodate": "Datum des ersten Fotos",
 	"exif-lastphotodate": "Datum des letzten Fotos",
 	"exif-projectiontype": "Projektionstyp",
+	"exif-projectiontype-equirectangular": "Äquirektangulär",
 	"exif-usepanoramaviewer": "Panorama-Betrachter verwenden",
 	"exif-usepanoramaviewer-true": "Ja",
 	"exif-usepanoramaviewer-false": "Nein",
 	"exif-exposurelockused": "Belichtungssperre verwendet",
 	"exif-exposurelockused-true": "Ja",
-	"exif-exposurelockused-false": "Nein"
+	"exif-exposurelockused-false": "Nein",
+	"exif-sourcephotoscount": "Anzahl der Quellfotos"
 }

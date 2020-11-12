@@ -2662,7 +2662,7 @@
 	"ipb-pages-label": "Strony",
 	"ipb-namespaces-label": "Przestrzenie nazw",
 	"badipaddress": "Niepoprawny adres IP",
-	"blockipsuccesssub": "Zablokowanie powiodło się",
+	"blockipsuccesssub": "Zablokowano pomyślnie",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />\nPrzejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.",
 	"ipb-empty-block": "Zatwierdzona blokada nie ma ustawionych żadnych ograniczeń.",
 	"ipb-block-not-found": "Nie udało się nałożyć blokady, jednakże nie znaleziono także istniejących blokad {{GENDER:$1|użytkownika|użytkowniczki}} „$1”. Jeśli problem nadal występuje, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users zgłoś go].",
