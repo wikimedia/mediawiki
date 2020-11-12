@@ -74,7 +74,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @deprecated since 1.24
 	 * @internal
 	 * @param User $user
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public static function getRollbackToken( User $user ) {
 		if ( !MediaWikiServices::getInstance()->getPermissionManager()

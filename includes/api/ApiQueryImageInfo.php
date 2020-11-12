@@ -364,7 +364,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param array $prop Array of properties to get (in the keys)
 	 * @param ApiResult $result
 	 * @param array|null $thumbParams Containing 'width' and 'height' items, or null
-	 * @param array|bool|string $opts Options for data fetching.
+	 * @param array|false|string $opts Options for data fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option
 	 *    'language': The language for extmetadata property
@@ -658,7 +658,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * @param File $img
-	 * @param null|string $start
+	 * @param string|null $start
 	 * @return string
 	 */
 	protected function getContinueStr( $img, $start = null ) {

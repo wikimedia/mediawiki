@@ -146,7 +146,7 @@ class ApiResult implements ApiSerializable {
 	private $errorFormatter;
 
 	/**
-	 * @param int|bool $maxSize Maximum result "size", or false for no limit
+	 * @param int|false $maxSize Maximum result "size", or false for no limit
 	 */
 	public function __construct( $maxSize ) {
 		$this->maxSize = $maxSize;
@@ -788,7 +788,7 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.25
 	 * @param array $dataIn
 	 * @param array $transforms
-	 * @return array|object
+	 * @return array|stdClass
 	 */
 	protected static function applyTransformations( array $dataIn, array $transforms ) {
 		$strip = $transforms['Strip'] ?? 'none';
@@ -1003,8 +1003,8 @@ class ApiResult implements ApiSerializable {
 	 * ones.
 	 *
 	 * @since 1.25
-	 * @param array|object $data
-	 * @return array|object
+	 * @param array|stdClass $data
+	 * @return array|stdClass
 	 */
 	public static function stripMetadata( $data ) {
 		if ( is_array( $data ) || is_object( $data ) ) {
@@ -1036,9 +1036,9 @@ class ApiResult implements ApiSerializable {
 	 * ones.
 	 *
 	 * @since 1.25
-	 * @param array|object $data
+	 * @param array|stdClass $data
 	 * @param array|null &$metadata Store metadata here, if provided
-	 * @return array|object
+	 * @return array|stdClass
 	 */
 	public static function stripMetadataNonRecursive( $data, &$metadata = null ) {
 		if ( !is_array( $metadata ) ) {
