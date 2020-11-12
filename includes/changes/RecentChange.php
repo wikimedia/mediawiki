@@ -944,8 +944,10 @@ class RecentChange implements Taggable {
 		$added = null
 	) {
 		// Done in a backwards compatible way.
+		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $categoryTitle );
+		'@phan-var WikiCategoryPage $categoryWikiPage';
 		$params = [
-			'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
+			'hidden-cat' => $categoryWikiPage->isHidden()
 		];
 		if ( $added !== null ) {
 			$params['added'] = $added;
