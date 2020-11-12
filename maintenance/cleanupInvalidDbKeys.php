@@ -194,7 +194,8 @@ TEXT
 			return;
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		// Fix the bad data, using different logic for the various tables
 		$dbw = $this->getDB( DB_MASTER );
@@ -273,8 +274,9 @@ TEXT
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
 				$this->outputStatus( "Queueing link update jobs for the pages in $idField...\n" );
+				$wikiPageFactory = $services->getWikiPageFactory();
 				foreach ( $res as $row ) {
-					$wp = WikiPage::newFromID( $row->id );
+					$wp = $wikiPageFactory->newFromID( $row->id );
 					if ( $wp ) {
 						RefreshLinks::fixLinksFromArticle( $row->id );
 					} else {

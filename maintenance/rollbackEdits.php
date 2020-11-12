@@ -22,6 +22,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -78,8 +80,9 @@ class RollbackEdits extends Maintenance {
 
 		$doer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		foreach ( $titles as $t ) {
-			$page = WikiPage::factory( $t );
+			$page = $wikiPageFactory->newFromTitle( $t );
 			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );
 			if ( !$page->commitRollback( $user, $summary, $bot, $results, $doer ) ) {
 				$this->output( "Done!\n" );

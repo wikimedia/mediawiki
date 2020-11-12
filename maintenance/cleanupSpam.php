@@ -145,7 +145,8 @@ class CleanupSpam extends Maintenance {
 
 		$this->output( $title->getPrefixedDBkey() . " ..." );
 
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$services = MediaWikiServices::getInstance();
+		$revLookup = $services->getRevisionLookup();
 		$rev = $revLookup->getRevisionByTitle( $title );
 		$currentRevId = $rev->getId();
 
@@ -166,7 +167,7 @@ class CleanupSpam extends Maintenance {
 		} else {
 			$dbw = $this->getDB( DB_MASTER );
 			$this->beginTransaction( $dbw, __METHOD__ );
-			$page = WikiPage::factory( $title );
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			if ( $rev ) {
 				// Revert to this revision
 				$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
@@ -187,8 +188,7 @@ class CleanupSpam extends Maintenance {
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
-				$handler = MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
+				$handler = $services->getContentHandlerFactory()
 					->getContentHandler( $title->getContentModel() );
 				$content = $handler->makeEmptyContent();
 
