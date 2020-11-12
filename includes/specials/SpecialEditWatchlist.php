@@ -546,8 +546,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function runWatchUnwatchCompleteHook( $action, $targets ) {
 		foreach ( $targets as $target ) {
-			$title = $target instanceof TitleValue ?
-				Title::newFromTitleValue( $target ) :
+			$title = $target instanceof LinkTarget ?
+				Title::newFromLinkTarget( $target ) :
 				Title::newFromText( $target );
 			$page = WikiPage::factory( $title );
 			$user = $this->getUser();
