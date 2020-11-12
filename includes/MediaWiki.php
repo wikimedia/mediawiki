@@ -409,6 +409,7 @@ class MediaWiki {
 	 */
 	private function initializeArticle() {
 		$title = $this->context->getTitle();
+		$services = MediaWikiServices::getInstance();
 		if ( $this->context->canUseWikiPage() ) {
 			// Try to use request context wiki page, as there
 			// is already data from db saved in per process
@@ -417,7 +418,7 @@ class MediaWiki {
 		} else {
 			// This case should not happen, but just in case.
 			// @TODO: remove this or use an exception
-			$page = WikiPage::factory( $title );
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			$this->context->setWikiPage( $page );
 			wfWarn( "RequestContext::canUseWikiPage() returned false" );
 		}
@@ -426,8 +427,7 @@ class MediaWiki {
 		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
-		if ( !MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
+		if ( !$services->getContentHandlerFactory()
 				->getContentHandler( $title->getContentModel() )
 				->supportsRedirects()
 		) {
@@ -465,7 +465,7 @@ class MediaWiki {
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article
-					$rpage = WikiPage::factory( $target );
+					$rpage = $services->getWikiPageFactory()->newFromTitle( $target );
 					$rpage->loadPageData();
 					if ( $rpage->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle = Article::newFromWikiPage( $rpage, $this->context );
