@@ -41,6 +41,7 @@ use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -464,6 +465,11 @@ class EditPage implements IEditObject {
 	private $revisionStore;
 
 	/**
+	 * @var WikiPageFactory
+	 */
+	private $wikiPageFactory;
+
+	/**
 	 * @stable to call
 	 * @param Article $article
 	 */
@@ -494,6 +500,7 @@ class EditPage implements IEditObject {
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
 			&& $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchedItemStore = $services->getWatchedItemStore();
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 	}
@@ -1609,7 +1616,7 @@ class EditPage implements IEditObject {
 			return $handler->makeEmptyContent();
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
@@ -1617,7 +1624,7 @@ class EditPage implements IEditObject {
 				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
-			$page = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $user );
