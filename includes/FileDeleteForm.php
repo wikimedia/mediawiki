@@ -201,7 +201,8 @@ class FileDeleteForm {
 			$status = Status::newFatal( 'cannotdelete',
 				wfEscapeWikiText( $title->getPrefixedText() )
 			);
-			$page = WikiPage::factory( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			'@phan-var WikiFilePage $page';
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first
