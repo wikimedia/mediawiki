@@ -66,7 +66,7 @@ class FeedUtils {
 	/**
 	 * Format a diff for the newsfeed
 	 *
-	 * @param object $row Row from the recentchanges table, including fields as
+	 * @param stdClass $row Row from the recentchanges table, including fields as
 	 *  appropriate for CommentStore
 	 * @return string
 	 */

@@ -180,7 +180,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Constructor from a database row
 	 *
 	 * @since 1.20
-	 * @param object $row Database row containing at least fields returned by getQueryInfo().
+	 * @param stdClass $row Database row containing at least fields returned by getQueryInfo().
 	 * @param string|int $from Source of $data:
 	 *        - "fromdb" or WikiPage::READ_NORMAL: from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB

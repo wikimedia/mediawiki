@@ -219,7 +219,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row The database result row
+	 * @param stdClass $row The database result row
 	 * @return string
 	 */
 	protected function getRowClass( $row ) {
@@ -231,7 +231,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row The database result row
+	 * @param stdClass $row The database result row
 	 * @return array Array of attribute => value
 	 */
 	protected function getRowAttrs( $row ) {

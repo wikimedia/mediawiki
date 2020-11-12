@@ -150,7 +150,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	 * @param Title $title
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param bool $wikiId
 	 */
@@ -285,7 +285,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	 * @param Title $title
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param bool $wikiId
 	 */

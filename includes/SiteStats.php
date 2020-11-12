@@ -252,7 +252,7 @@ class SiteStats {
 	 *
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
 	 *
-	 * @param bool|object $row
+	 * @param bool|stdClass $row
 	 * @return bool
 	 */
 	private static function isRowSane( $row ) {

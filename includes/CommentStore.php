@@ -244,7 +244,7 @@ class CommentStore {
 	 * @param IDatabase|null $db Database handle for getCommentLegacy(), or null for getComment()
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param object|array $row
+	 * @param stdClass|array $row
 	 * @param bool $fallback
 	 * @return CommentStoreComment
 	 */
@@ -373,7 +373,7 @@ class CommentStore {
 	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param object|array|null $row Result row.
+	 * @param stdClass|array|null $row Result row.
 	 * @param bool $fallback If true, fall back as well as possible instead of throwing an exception.
 	 * @return CommentStoreComment
 	 */
@@ -401,7 +401,7 @@ class CommentStore {
 	 * @param IDatabase $db Database handle to use for lookup
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @param object|array|null $row Result row.
+	 * @param stdClass|array|null $row Result row.
 	 * @param bool $fallback If true, fall back as well as possible instead of throwing an exception.
 	 * @return CommentStoreComment
 	 */

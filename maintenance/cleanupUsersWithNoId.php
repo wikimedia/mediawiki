@@ -95,7 +95,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 	 * Calculate a "next" condition and progress display string
 	 * @param IDatabase $dbw
 	 * @param string[] $indexFields Fields in the index being ordered by
-	 * @param object $row Database row
+	 * @param stdClass $row Database row
 	 * @return string[] [ string $next, string $display ]
 	 */
 	private function makeNextCond( $dbw, $indexFields, $row ) {
