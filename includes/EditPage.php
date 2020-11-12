@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
@@ -2062,6 +2063,15 @@ class EditPage implements IEditObject {
 			);
 		}
 
+		// If the article has been deleted while editing, don't save it without
+		// confirmation
+		$constraintRunner->addConstraint(
+			new AccidentalRecreationConstraint(
+				$this->wasDeletedSinceLastEdit(),
+				$this->recreate
+			)
+		);
+
 		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
@@ -2083,13 +2093,6 @@ class EditPage implements IEditObject {
 			return $status;
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-		# If the article has been deleted while editing, don't save it without
-		# confirmation
-		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
-			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
-			return $status;
-		}
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
