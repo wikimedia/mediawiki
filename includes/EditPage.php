@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
@@ -29,6 +30,7 @@ use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
+use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
@@ -2277,22 +2279,8 @@ class EditPage implements IEditObject {
 					$this->minoredit
 				)
 			);
-			// Check the constraints
-			if ( $constraintRunner->checkConstraints() === false ) {
-				$failed = $constraintRunner->getFailedConstraint();
-				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-					$this->hookError = $failed->getHookError();
-				}
-				$statusValue = $failed->getLegacyStatus();
-				$status = Status::wrap( $statusValue );
-				return $status;
-			}
-			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			if ( $this->section == 'new' ) {
-				// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
-				// Create a new runner to avoid rechecking the prior constraints, use the same factory
-				$constraintRunner = new EditConstraintRunner();
 				$constraintRunner->addConstraint(
 					new NewSectionMissingSummaryConstraint(
 						$this->summary,
@@ -2302,29 +2290,35 @@ class EditPage implements IEditObject {
 				$constraintRunner->addConstraint(
 					new MissingCommentConstraint( $this->textbox1 )
 				);
-				// Check the constraints
-				if ( $constraintRunner->checkConstraints() === false ) {
-					$failed = $constraintRunner->getFailedConstraint();
-					if ( $failed instanceof NewSectionMissingSummaryConstraint ) {
-						$this->missingSummary = true;
-					} elseif ( $failed instanceof MissingCommentConstraint ) {
-						$this->missingComment = true;
-					}
-					$statusValue = $failed->getLegacyStatus();
-					$status = Status::wrap( $statusValue );
-					return $status;
+			} else {
+				$constraintRunner->addConstraint(
+					new AutoSummaryMissingSummaryConstraint(
+						$this->summary,
+						$this->autoSumm,
+						$this->allowBlankSummary,
+						$content,
+						$this->getOriginalContent( $user )
+					)
+				);
+			}
+			// Check the constraints
+			if ( $constraintRunner->checkConstraints() === false ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+					$this->hookError = $failed->getHookError();
+				} elseif (
+					$failed instanceof AutoSummaryMissingSummaryConstraint ||
+					$failed instanceof NewSectionMissingSummaryConstraint
+				) {
+					$this->missingSummary = true;
+				} elseif ( $failed instanceof MissingCommentConstraint ) {
+					$this->missingComment = true;
 				}
-				// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent( $user ) )
-				&& !$content->isRedirect()
-				&& md5( $this->summary ) == $this->autoSumm
-			) {
-				$this->missingSummary = true;
-				$status->fatal( 'missingsummary' );
-				$status->value = self::AS_SUMMARY_NEEDED;
+				$statusValue = $failed->getLegacyStatus();
+				$status = Status::wrap( $statusValue );
 				return $status;
 			}
+			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			# All's well
 			$sectionanchor = '';
@@ -2354,26 +2348,20 @@ class EditPage implements IEditObject {
 			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
-		if ( !$this->allowSelfRedirect
-			&& $content->isRedirect()
-			&& $content->getRedirectTarget()->equals( $this->getTitle() )
-		) {
-			// If the page already redirects to itself, don't warn.
-			$currentTarget = $this->getCurrentContent()->getRedirectTarget();
-			if ( !$currentTarget || !$currentTarget->equals( $this->getTitle() ) ) {
-				$this->selfRedirect = true;
-				$status->fatal( 'selfredirect' );
-				$status->value = self::AS_SELF_REDIRECT;
-				return $status;
-			}
-		}
-
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner->addConstraint(
+			new SelfRedirectConstraint(
+				$this->allowSelfRedirect,
+				$content,
+				$this->getCurrentContent(),
+				$this->getTitle()
+			)
+		);
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
@@ -2389,6 +2377,8 @@ class EditPage implements IEditObject {
 			if ( $failed instanceof PageSizeConstraint ) {
 				// Error will be displayed by showEditForm()
 				$this->tooBig = true;
+			} elseif ( $failed instanceof SelfRedirectConstraint ) {
+				$this->selfRedirect = true;
 			}
 
 			$statusValue = $failed->getLegacyStatus();

@@ -155,6 +155,38 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		return WikiPage::factory( $title );
 	}
 
+	/** AutoSummaryMissingSummaryConstraint integration */
+	public function testAutoSummaryMissingSummaryConstraint() {
+		// Require the summary
+		$this->mergeMwGlobalArrayValue(
+			'wgDefaultUserOptions',
+			[ 'forceeditsummary' => 1 ]
+		);
+
+		$page = $this->getExistingTestPage( 'AutoSummaryMissingSummaryConstraint page does exist' );
+		$title = $page->getTitle();
+
+		$user = $this->getTestUser()->getUser();
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSummaryConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		$edit = [
+			'wpTextbox1' => 'New content, different from base content',
+			'wpSummary' => 'SameAsAutoSummary',
+			'wpAutoSummary' => md5( 'SameAsAutoSummary' )
+		];
+		$this->assertEdit(
+			$title,
+			'Base content, different from new content',
+			$user,
+			$edit,
+			EditPage::AS_SUMMARY_NEEDED,
+			'expected AS_SUMMARY_NEEDED update'
+		);
+	}
+
 	/** ChangeTagsConstraint integration */
 	public function testChangeTagsConstraint() {
 		// Remove rights
@@ -525,6 +557,26 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$edit,
 			EditPage::AS_READ_ONLY_PAGE,
 			'expected AS_READ_ONLY_PAGE update'
+		);
+	}
+
+	/** SelfRedirectConstraint integration */
+	public function testSelfRedirectConstraint() {
+		// Use a page that does not exist to be sure that it is not already a self redirect
+		$page = $this->getNonexistingTestPage( 'SelfRedirectConstraint page does not exist' );
+		$title = $page->getTitle();
+
+		$edit = [
+			'wpTextbox1' => '#REDIRECT [[SelfRedirectConstraint page does not exist]]',
+			'wpSummary' => 'Redirect to self'
+		];
+		$this->assertEdit(
+			$title,
+			'zero',
+			null,
+			$edit,
+			EditPage::AS_SELF_REDIRECT,
+			'expected AS_SELF_REDIRECT update'
 		);
 	}
 
