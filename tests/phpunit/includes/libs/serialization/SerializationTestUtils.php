@@ -62,6 +62,9 @@ class SerializationTestUtils {
 		callable $serializer,
 		callable $deserializer
 	) {
+		if ( !is_dir( $serializedDataPath ) ) {
+			throw new InvalidArgumentException( "{$serializedDataPath} does not exist" );
+		}
 		$this->serializedDataPath = $serializedDataPath;
 		$this->ext = $ext;
 		$this->serializer = $serializer;
