@@ -460,9 +460,9 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_newtalk-user_last_timestamp-binary.sql'
 			],
 			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
-			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
-			[ 'modifyField', 'ip_changes', 'ipc_rev_timestamp', 'patch-ip_changes-pc_rev_timestamp-drop-default.sql' ],
-			[ 'modifyField', 'revision_actor_temp', 'revactor_timestamp', 'patch-revactor_timestamp-drop-default.sql' ],
+			[ 'dropDefault', 'protected_titles', 'pt_expiry' ],
+			[ 'dropDefault', 'ip_changes', 'ipc_rev_timestamp' ],
+			[ 'dropDefault', 'revision_actor_temp', 'revactor_timestamp' ],
 		];
 	}
 
