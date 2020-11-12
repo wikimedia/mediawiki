@@ -406,8 +406,9 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		$domainId = $this->getDB()->getDomainID();
-		$wp = WikiPage::factory( $this->mTitle );
-		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$wp = $services->getWikiPageFactory()->newFromTitle( $this->mTitle );
+		$lbf = $services->getDBLoadBalancerFactory();
 		// T163801: try to release any row locks to reduce contention
 		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
