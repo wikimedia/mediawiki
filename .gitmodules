@@ -1385,7 +1385,7 @@
 [submodule "extensions/Video"]
 	path = extensions/Video
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Video
-	branch = REL1_35
+	branch = master
 	ignore = dirty
 [submodule "extensions/CleanChanges"]
 	path = extensions/CleanChanges
