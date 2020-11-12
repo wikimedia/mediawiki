@@ -100,15 +100,6 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 );
 ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
 
-CREATE TABLE page_props (
-  pp_page      INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  pp_propname  TEXT     NOT NULL,
-  pp_value     TEXT     NOT NULL,
-  pp_sortkey   FLOAT
-);
-ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
-CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
-CREATE INDEX pp_propname_sortkey_page ON page_props (pp_propname, pp_sortkey, pp_page) WHERE (pp_sortkey IS NOT NULL);
 
 CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE archive (

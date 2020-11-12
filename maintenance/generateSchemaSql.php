@@ -60,13 +60,13 @@ class GenerateSchemaSql extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		$platform = $this->getOption( 'type', 'mysql' );
 		$jsonPath = $this->getOption( 'json', __DIR__ . '/tables.json' );
 		$relativeJsonPath = str_replace( "$IP/", '', $jsonPath );
 		$sqlPath = $this->getOption( 'sql', __DIR__ . '/tables-generated.sql' );
 		$abstractSchema = json_decode( file_get_contents( $jsonPath ), true );
-		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder(
-			$this->getOption( 'type', 'mysql' )
-		);
+		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder( $platform );
+
 		foreach ( $abstractSchema as $table ) {
 			$schemaBuilder->addTable( $table );
 		}
@@ -83,7 +83,7 @@ class GenerateSchemaSql extends Maintenance {
 		}
 
 		// Postgres hacks
-		if ( $this->getOption( 'type', 'mysql' ) === 'postgres' ) {
+		if ( $platform === 'postgres' ) {
 			// Remove table prefixes from Postgres schema, people should not set it
 			// but better safe than sorry.
 			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
@@ -93,6 +93,13 @@ class GenerateSchemaSql extends Maintenance {
 			// FIXME: This should be fixed at some point (T257755)
 			$sql = str_replace( "BYTEA", 'TEXT', $sql );
 		}
+
+		if ( $platform === 'mysql' ) {
+			// Temporary
+			// Convert DOUBLE PRECISION (which is default float format in DBAL) to FLOAT
+			$sql = str_replace( "DOUBLE PRECISION", 'FLOAT', $sql );
+		}
+
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
