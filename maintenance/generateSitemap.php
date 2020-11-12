@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -118,7 +119,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * A database replica DB object
 	 *
-	 * @var object
+	 * @var IDatabase
 	 */
 	public $dbr;
 
