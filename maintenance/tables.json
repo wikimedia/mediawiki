@@ -1372,5 +1372,41 @@
 			{ "name": "revcomment_rev", "columns": [ "revcomment_rev" ], "unique": true }
 		],
 		"pk": [ "revcomment_rev", "revcomment_comment_id" ]
+	},
+	{
+		"name": "revision_actor_temp",
+		"comment": "Temporary table to avoid blocking on an alter of revision. On large wikis like the English Wikipedia, altering the revision table is a months-long process. This table is being created to avoid such an alter, and will be merged back into revision in the future",
+		"columns": [
+			{
+				"name": "revactor_rev",
+				"comment": "Key to rev_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revactor_actor",
+				"comment": "Key to actor_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revactor_timestamp",
+				"comment": "Copy field from revision for indexes",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "revactor_page",
+				"comment": "Copy field from revision for indexes",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "revactor_rev", "columns": [ "revactor_rev" ], "unique": true },
+			{ "name": "actor_timestamp", "columns": [ "revactor_actor", "revactor_timestamp" ], "unique": false },
+			{ "name": "page_actor_timestamp", "columns": [ "revactor_page", "revactor_actor", "revactor_timestamp" ], "unique": false }
+		],
+		"pk": [ "revactor_rev", "revactor_actor" ]
 	}
 ]

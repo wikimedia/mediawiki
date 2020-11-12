@@ -475,3 +475,22 @@ CREATE TABLE revision_comment_temp (
 );
 
 CREATE UNIQUE INDEX revcomment_rev ON revision_comment_temp (revcomment_rev);
+
+
+CREATE TABLE revision_actor_temp (
+  revactor_rev INT NOT NULL,
+  revactor_actor BIGINT NOT NULL,
+  revactor_timestamp TIMESTAMPTZ NOT NULL,
+  revactor_page INT NOT NULL,
+  PRIMARY KEY(revactor_rev, revactor_actor)
+);
+
+CREATE UNIQUE INDEX revactor_rev ON revision_actor_temp (revactor_rev);
+
+CREATE INDEX actor_timestamp ON revision_actor_temp (
+  revactor_actor, revactor_timestamp
+);
+
+CREATE INDEX page_actor_timestamp ON revision_actor_temp (
+  revactor_page, revactor_actor, revactor_timestamp
+);
