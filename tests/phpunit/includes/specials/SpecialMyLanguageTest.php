@@ -79,6 +79,8 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ 'Page/Another/ar', 'Page/Another/de', 'en', 'arz' ],
 			[ 'Page/Another/ru', 'Page/Another/ru', 'en', 'arz' ],
 			[ 'Page/Another/ar', 'Page/Another/ru', 'en', 'ar' ],
+			[ null, 'Special:Blankpage', 'en', 'ar' ],
+			[ null, 'Media:Fail', 'en', 'ar' ],
 		];
 	}
 }
