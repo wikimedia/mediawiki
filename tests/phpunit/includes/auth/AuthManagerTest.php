@@ -18,6 +18,8 @@ use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserNameUtils;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
+use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -74,8 +76,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * Sets a mock on a hook
 	 * @param string $hook
-	 * @param object $expect From $this->once(), $this->never(), etc.
-	 * @return object $mock->expects( $expect )->method( ... ).
+	 * @param InvocationOrder $expect From $this->once(), $this->never(), etc.
+	 * @return InvocationMocker $mock->expects( $expect )->method( ... ).
 	 */
 	protected function hook( $hook, $hookInterface, $expect ) {
 		$mock = $this->getMockBuilder( $hookInterface )
