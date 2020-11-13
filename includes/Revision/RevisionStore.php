@@ -1259,7 +1259,7 @@ class RevisionStore
 	 * Factory method for SlotRecords based on known slot rows.
 	 *
 	 * @param int $revId The revision to load slots for.
-	 * @param object[]|IResultWrapper $slotRows
+	 * @param \stdClass[]|IResultWrapper $slotRows
 	 * @param int $queryFlags
 	 * @param Title $title
 	 * @param array|null $slotContents a map from blobAddress to slot
@@ -1337,8 +1337,8 @@ class RevisionStore
 	 * public, since RevisionSlots instances should not be constructed directly.
 	 *
 	 * @param int $revId
-	 * @param object $revisionRow
-	 * @param object[]|null $slotRows
+	 * @param \stdClass $revisionRow
+	 * @param \stdClass[]|null $slotRows
 	 * @param int $queryFlags
 	 * @param Title $title
 	 *
@@ -1374,7 +1374,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newFromArchiveRow
 	 *
-	 * @param object $row
+	 * @param \stdClass $row
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 * @param array $overrides associative array with fields of $row to override. This may be
@@ -1399,7 +1399,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @param object $row A database row generated from a query based on getQueryInfo()
+	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
 	 * @param Title|null $title Preloaded title object based on Title::newFromRow from database row
 	 *   when query was build with option 'page' on getQueryInfo
@@ -1420,8 +1420,8 @@ class RevisionStore
 	 * @see newRevisionFromArchiveRow()
 	 * @since 1.35
 	 *
-	 * @param object $row
-	 * @param null|object[]|RevisionSlots $slots
+	 * @param \stdClass $row
+	 * @param null|\stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1442,7 +1442,7 @@ class RevisionStore
 		Title $title = null,
 		array $overrides = []
 	) {
-		Assert::parameterType( 'object', $row, '$row' );
+		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		// check second argument, since Revision::newFromArchiveRow had $overrides in that spot.
 		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
@@ -1502,8 +1502,8 @@ class RevisionStore
 	/**
 	 * @see newFromRevisionRow()
 	 *
-	 * @param object $row A database row generated from a query based on getQueryInfo()
-	 * @param null|object[]|RevisionSlots $slots
+	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
+	 * @param null|\stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1523,7 +1523,7 @@ class RevisionStore
 		Title $title = null,
 		$fromCache = false
 	) {
-		Assert::parameterType( 'object', $row, '$row' );
+		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		if ( !$title ) {
 			$pageId = (int)( $row->rev_page ?? 0 ); // XXX: fall back to page_id?
@@ -1601,7 +1601,7 @@ class RevisionStore
 	 * When a mismatch is detected, this tries to re-load the title from master,
 	 * to avoid spurious errors during page moves.
 	 *
-	 * @param object $row
+	 * @param \stdClass $row
 	 * @param Title $title
 	 * @param array $context
 	 */
@@ -1641,7 +1641,7 @@ class RevisionStore
 	 * Use getQueryInfo() or getArchiveQueryInfo() to construct the
 	 * query that produces the rows.
 	 *
-	 * @param Traversable|array $rows the rows to construct revision records from
+	 * @param IResultWrapper|\stdClass[] $rows the rows to construct revision records from
 	 * @param array $options Supports the following options:
 	 *               'slots' - whether metadata about revision slots should be
 	 *               loaded immediately. Supports falsy or truthy value as well
@@ -2393,7 +2393,7 @@ class RevisionStore
 	 * @param int $flags (optional)
 	 * @param array $options (optional) additional query options
 	 *
-	 * @return object|false data row as a raw object
+	 * @return \stdClass|false data row as a raw object
 	 */
 	private function fetchRevisionRowFromConds(
 		IDatabase $db,
