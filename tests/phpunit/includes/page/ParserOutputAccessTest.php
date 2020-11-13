@@ -84,8 +84,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$parserCache = $this->getParserCache( new HashBagOStuff() );
 		}
 
+		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
 		$stats = new NullStatsdDataFactory();
-		return new ParserOutputAccess( $parserCache, $stats );
+		return new ParserOutputAccess( $parserCache, $revRenderer, $stats );
 	}
 
 	/**
