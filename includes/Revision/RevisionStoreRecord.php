@@ -49,7 +49,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
+	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
@@ -63,7 +63,7 @@ class RevisionStoreRecord extends RevisionRecord {
 		$dbDomain = false
 	) {
 		parent::__construct( $title, $slots, $dbDomain );
-		Assert::parameterType( 'object', $row, '$row' );
+		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		$this->mId = intval( $row->rev_id );
 		$this->mPageId = intval( $row->rev_page );

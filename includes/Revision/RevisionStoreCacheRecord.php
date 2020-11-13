@@ -46,11 +46,11 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param callable $callback Callback for loading data.  Signature: function ( $id ): object
+	 * @param callable $callback Callback for loading data.  Signature: function ( $id ): \stdClass
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
+	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.

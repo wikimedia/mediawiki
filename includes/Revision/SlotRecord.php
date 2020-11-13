@@ -41,7 +41,7 @@ class SlotRecord {
 	public const MAIN = 'main';
 
 	/**
-	 * @var object database result row, as a raw object. Callbacks are supported for field values,
+	 * @var \stdClass database result row, as a raw object. Callbacks are supported for field values,
 	 *      to enable on-demand emulation of these values. This is primarily intended for use
 	 *      during schema migration.
 	 */
@@ -224,7 +224,7 @@ class SlotRecord {
 	 *   $row->blob_data
 	 *   $row->blob_address
 	 *
-	 * @param object $row A database row composed of fields of the slot and content tables,
+	 * @param \stdClass $row A database row composed of fields of the slot and content tables,
 	 *        as a raw object. Any field value can be a callback that produces the field value
 	 *        given this SlotRecord as a parameter. However, plain strings cannot be used as
 	 *        callbacks here, for security reasons.
@@ -232,7 +232,7 @@ class SlotRecord {
 	 *        callback that will return that Content object, given this SlotRecord as a parameter.
 	 */
 	public function __construct( $row, $content ) {
-		Assert::parameterType( 'object', $row, '$row' );
+		Assert::parameterType( \stdClass::class, $row, '$row' );
 		Assert::parameterType( 'Content|callable', $content, '$content' );
 
 		Assert::parameter(
