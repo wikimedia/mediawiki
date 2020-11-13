@@ -65,27 +65,8 @@ class Article implements Page {
 	public $mParserOptions;
 
 	/**
-	 * @var Content|null Content of the main slot of $this->mRevisionRecord.
-	 * @note This variable is read only, setting it has no effect.
-	 *       Extensions that wish to override the output of Article::view should use a hook.
-	 * @todo MCR: Remove in 1.33
-	 * @deprecated since 1.32
-	 * @since 1.21
-	 */
-	public $mContentObject;
-
-	/**
-	 * @var bool Is the target revision loaded? Set by fetchRevisionRecord().
-	 *
-	 * @deprecated since 1.32. Whether content has been loaded should not be relevant to
-	 * code outside this class.
-	 */
-	public $mContentLoaded = false;
-
-	/**
 	 * @var int|null The oldid of the article that was requested to be shown,
 	 * 0 for the current revision.
-	 * @see $mRevIdFetched
 	 */
 	public $mOldId;
 
@@ -96,18 +77,8 @@ class Article implements Page {
 	public $mRedirectUrl = false;
 
 	/**
-	 * @var int Revision ID of revision that was loaded.
-	 * @see $mOldId
-	 * @deprecated since 1.32, use getRevIdFetched() instead.
-	 */
-	public $mRevIdFetched = 0;
-
-	/**
 	 * @var Status|null represents the outcome of fetchRevisionRecord().
 	 * $fetchResult->value is the RevisionRecord object, if the operation was successful.
-	 *
-	 * The information in $fetchResult is duplicated by the following deprecated public fields:
-	 * $mRevIdFetched, $mContentLoaded (and $mContentObject).
 	 */
 	private $fetchResult = null;
 
@@ -266,13 +237,9 @@ class Article implements Page {
 	}
 
 	public function clear() {
-		$this->mContentLoaded = false;
-
 		$this->mRedirectedFrom = null; # Title object if set
-		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
 		$this->mRevisionRecord = null;
-		$this->mContentObject = null;
 		$this->fetchResult = null;
 
 		// TODO hard-deprecate direct access to public fields
@@ -291,20 +258,27 @@ class Article implements Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated since 1.32, use fetchRevisionRecord() instead.
+	 * @deprecated since 1.32, use fetchRevisionRecord() instead. Hard since 1.36.
 	 *
-	 * @return Content
+	 * @return Content|null
 	 *
 	 * @since 1.21
 	 */
 	protected function getContentObject() {
+		wfDeprecated( __METHOD__, '1.32' );
+		$content = null;
 		if ( $this->mPage->getId() === 0 ) {
 			$content = $this->getSubstituteContent();
 		} else {
-			$this->fetchContentObject();
-			$content = $this->mContentObject;
+			$revision = $this->fetchRevisionRecord();
+			if ( $revision ) {
+				$content = $revision->getContent(
+					SlotRecord::MAIN,
+					RevisionRecord::FOR_THIS_USER,
+					$this->getContext()->getUser()
+				);
+			}
 		}
-
 		return $content;
 	}
 
@@ -423,30 +397,7 @@ class Article implements Page {
 			}
 		}
 
-		$this->mRevIdFetched = $this->mRevisionRecord ? $this->mRevisionRecord->getId() : 0;
-
 		return $oldid;
-	}
-
-	/**
-	 * Get text content object
-	 * Does *NOT* follow redirects.
-	 * @todo When is this null?
-	 * @deprecated since 1.32, use fetchRevisionRecord() instead.
-	 *
-	 * @note Code that wants to retrieve page content from the database should
-	 * use WikiPage::getContent().
-	 *
-	 * @return Content|null|bool
-	 *
-	 * @since 1.21
-	 */
-	protected function fetchContentObject() {
-		if ( !$this->mContentLoaded ) {
-			$this->fetchRevisionRecord();
-		}
-
-		return $this->mContentObject;
 	}
 
 	/**
@@ -462,9 +413,6 @@ class Article implements Page {
 		if ( $this->fetchResult ) {
 			return $this->mRevisionRecord;
 		}
-
-		$this->mContentLoaded = true;
-		$this->mContentObject = null;
 
 		$oldid = $this->getOldID();
 
@@ -493,8 +441,6 @@ class Article implements Page {
 			}
 		}
 
-		$this->mRevIdFetched = $this->mRevisionRecord->getId();
-
 		if ( !RevisionRecord::userCanBitfield(
 			$this->mRevisionRecord->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
@@ -509,13 +455,6 @@ class Article implements Page {
 				'rev-deleted-text-permission', $this->getTitle()->getPrefixedDBkey() );
 			return null;
 		}
-
-		// For B/C only
-		$this->mContentObject = $this->mRevisionRecord->getContent(
-			SlotRecord::MAIN,
-			RevisionRecord::FOR_THIS_USER,
-			$this->getContext()->getUser()
-		);
 
 		$this->fetchResult = Status::newGood( $this->mRevisionRecord );
 		return $this->mRevisionRecord;
@@ -964,9 +903,6 @@ class Article implements Page {
 		$de->setSlotDiffOptions( [
 			'diff-type' => $request->getVal( 'diff-type' )
 		] );
-
-		// DifferenceEngine directly fetched the revision:
-		$this->mRevIdFetched = $de->getNewid();
 		$de->showDiffPage( $diffOnly );
 
 		// Run view updates for the newer revision being diffed (and shown
