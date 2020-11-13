@@ -813,8 +813,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns an array of all groups that may be edited
-	 * @return array Array of groups that may be edited.
+	 * @return string[] Array of groups that may be edited
 	 */
 	protected static function getAllGroups() {
 		// TODO don't hard code false here (refers to local domain). See T14518

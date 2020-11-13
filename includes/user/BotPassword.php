@@ -429,7 +429,7 @@ class BotPassword implements IDBAccessObject {
 	 * If this cannot be a bot password login just return false.
 	 * @param string $username
 	 * @param string $password
-	 * @return array|false
+	 * @return string[]|false
 	 */
 	public static function canonicalizeLoginData( $username, $password ) {
 		$sep = self::getSeparator();

@@ -146,7 +146,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 
 	/**
 	 * @param string[] $urls
-	 * @return array[] Map of (protocol => list of URLs)
+	 * @return string[][] Map of (protocol => list of URLs)
 	 * @throws ExternalStoreException
 	 * @since 1.34
 	 */

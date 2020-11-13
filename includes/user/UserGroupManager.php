@@ -169,7 +169,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @return string[] Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public function listAllGroups() : array {
 		return array_values( array_diff(
@@ -279,7 +279,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
 	 * @param bool $recache Whether to avoid the cache
-	 * @return string[] Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getUserEffectiveGroups(
 		UserIdentity $user,
@@ -321,7 +321,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
-	 * @return array Names of the groups the user has belonged to.
+	 * @return string[] Names of the groups the user has belonged to.
 	 */
 	public function getUserFormerGroups(
 		UserIdentity $user,
@@ -360,7 +360,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
 	 * @param UserIdentity $user The user to get the groups for
-	 * @return array Array of groups to promote to.
+	 * @return string[] Array of groups to promote to.
 	 *
 	 * @see $wgAutopromote
 	 */
@@ -386,7 +386,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user The user to get the groups for
 	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
 	 *
-	 * @return array Groups the user should be promoted to.
+	 * @return string[] Groups the user should be promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 */
@@ -565,7 +565,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user User to add to the groups
 	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
 	 *
-	 * @return array Array of groups the user has been promoted to.
+	 * @return string[] Array of groups the user has been promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 */
@@ -875,7 +875,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Return the tables and fields to be selected to construct new UserGroupMembership object
 	 * using newGroupMembershipFromRow method.
 	 *
-	 * @return array With three keys:
+	 * @return array[] With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *  - joins: (string[]) to include in the `$joins` to `IDatabase->select()`

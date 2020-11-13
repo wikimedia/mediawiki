@@ -38,7 +38,7 @@ abstract class PrefixSearch {
 	 * @param int $limit
 	 * @param array $namespaces Used if query is not explicitly prefixed
 	 * @param int $offset How many results to offset from the beginning
-	 * @return array Array of strings or Title objects
+	 * @return (Title|string)[]
 	 */
 	public function search( $search, $limit, $namespaces = [], $offset = 0 ) {
 		$search = trim( $search );
@@ -61,7 +61,7 @@ abstract class PrefixSearch {
 	 * @param array $namespaces
 	 * @param int $offset How many results to offset from the beginning
 	 *
-	 * @return array
+	 * @return (Title|string)[]
 	 */
 	public function searchWithVariants( $search, $limit, array $namespaces, $offset = 0 ) {
 		$searches = $this->search( $search, $limit, $namespaces, $offset );
@@ -90,8 +90,8 @@ abstract class PrefixSearch {
 	 * When implemented in a descendant class, receives an array of Title objects and returns
 	 * either an unmodified array or an array of strings corresponding to titles passed to it.
 	 *
-	 * @param array $titles
-	 * @return array
+	 * @param Title[] $titles
+	 * @return (Title|string)[]
 	 */
 	abstract protected function titles( array $titles );
 
@@ -100,18 +100,17 @@ abstract class PrefixSearch {
 	 * either an unmodified array or an array of Title objects corresponding to strings received.
 	 *
 	 * @param string[] $strings
-	 *
-	 * @return array
+	 * @return (Title|string)[]
 	 */
 	abstract protected function strings( array $strings );
 
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @param array $namespaces
+	 * @param int[] $namespaces
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
-	 * @return array Array of strings
+	 * @return (Title|string)[]
 	 */
 	protected function searchBackend( $namespaces, $search, $limit, $offset ) {
 		if ( count( $namespaces ) == 1 ) {

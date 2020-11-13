@@ -415,7 +415,7 @@ class LocalRepo extends FileRepo {
 	 * Overrides generic implementation in FileRepo for performance reason
 	 *
 	 * @param string[] $hashes An array of hashes
-	 * @return array[] An Array of arrays or iterators of file objects and the hash as key
+	 * @return File[][] An Array of arrays or iterators of file objects and the hash as key
 	 */
 	public function findBySha1s( array $hashes ) {
 		if ( $hashes === [] ) {

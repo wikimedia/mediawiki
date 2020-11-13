@@ -980,7 +980,7 @@ class Article implements Page {
 	 * Get the robot policy to be used for the current view
 	 * @param string $action The action= GET parameter
 	 * @param ParserOutput|null $pOutput
-	 * @return array The policy that should be set
+	 * @return string[] The policy that should be set
 	 * @todo actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {

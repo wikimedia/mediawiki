@@ -33,7 +33,7 @@ class Autopromote {
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
 	 * @param User $user The user to get the groups for
-	 * @return array Array of groups to promote to.
+	 * @return string[] Array of groups to promote to.
 	 *
 	 * @deprecated since 1.35 (hard deprecated since 1.36). Use UserGroupManager::getUserAutopromoteGroups.
 	 */
@@ -54,7 +54,7 @@ class Autopromote {
 	 * @param User $user The user to get the groups for
 	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
-	 * @return array Groups the user should be promoted to.
+	 * @return string[] Groups the user should be promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 *

@@ -890,7 +890,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *     X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
 	 * @param bool $fromMaster Whether to query the master or replica DB
-	 * @return array Array of Blocks
+	 * @return self[]
 	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromMaster = false ) {

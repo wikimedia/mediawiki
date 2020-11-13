@@ -31,7 +31,7 @@ class EnhancedChangesList extends ChangesList {
 	protected $cacheEntryFactory;
 
 	/**
-	 * @var array Array of array of RCCacheEntry
+	 * @var RCCacheEntry[][]
 	 */
 	protected $rc_cache;
 

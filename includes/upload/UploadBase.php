@@ -2152,7 +2152,7 @@ abstract class UploadBase {
 	/**
 	 * Get a list of blacklisted filename prefixes from [[MediaWiki:Filename-prefix-blacklist]]
 	 *
-	 * @return array List of prefixes
+	 * @return string[] List of prefixes
 	 */
 	public static function getFilenamePrefixBlacklist() {
 		$blacklist = [];

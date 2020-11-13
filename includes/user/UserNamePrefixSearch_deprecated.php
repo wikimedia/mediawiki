@@ -45,7 +45,7 @@ class UserNamePrefixSearch {
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public static function search( $audience, $search, $limit, $offset = 0 ) {
 		return MediaWikiServices::getInstance()
