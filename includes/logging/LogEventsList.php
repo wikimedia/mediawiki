@@ -380,8 +380,17 @@ class LogEventsList extends ContextSource {
 		$formatter->setLinkRenderer( $this->getLinkRenderer() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
-		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
-			$entry->getTimestamp(), $this->getUser() ) );
+		$time = $this->getLanguage()->userTimeAndDate(
+			$entry->getTimestamp(),
+			$this->getUser()
+		);
+		// Link the time text to the specific log entry, see T207562
+		$timeLink = $this->getLinkRenderer()->makeKnownLink(
+			SpecialPage::getTitleValueFor( 'Log' ),
+			$time,
+			[],
+			[ 'logid' => $entry->getId() ]
+		);
 
 		$action = $formatter->getActionText();
 
@@ -413,7 +422,7 @@ class LogEventsList extends ContextSource {
 			'data-mw-logid' => $entry->getId(),
 			'data-mw-logaction' => $entry->getFullType(),
 		];
-		$ret = "$del $time $action $comment $revert $tagDisplay";
+		$ret = "$del $timeLink $action $comment $revert $tagDisplay";
 
 		// Let extensions add data
 		$this->hookRunner->onLogEventsListLineEnding( $this, $ret, $entry, $classes, $attribs );
