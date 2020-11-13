@@ -390,6 +390,7 @@
 	"exif-poserolldegrees": "Накосеност (степени)",
 	"exif-initialviewheadingdegrees": "Насоченост на првичниот поглед (степени)",
 	"exif-initialviewpitchdegrees": "Наваленост на првичниот поглед (степени)",
+	"exif-initialviewrolldegrees": "Накосеност на првичниот поглед (степени)",
 	"exif-initialhorizontalfovdegrees": "Првично видно поле (хоризонтални степени)",
 	"exif-initialverticalfovdegrees": "Првично видно поле (вертикални степени)",
 	"exif-sourcephotoscount": "Број на изворни слики",

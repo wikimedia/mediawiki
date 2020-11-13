@@ -223,6 +223,7 @@
 	"talk": "განხილვა",
 	"views": "გადახედვა",
 	"toolbox": "ხელსაწყოები",
+	"cactions": "მეტი",
 	"tool-link-userrights": "{{GENDER:$1|მომხმარებლის}} ჯგუფების შეცვლა",
 	"tool-link-userrights-readonly": "{{GENDER:$1|მომხმარებლის}} ჯგუფების ხილვა",
 	"tool-link-emailuser": "{{GENDER:$1|მომხმარებლისთვის}} ელ.ფოსტის მიწერა",
