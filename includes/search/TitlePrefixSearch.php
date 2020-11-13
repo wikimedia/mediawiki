@@ -29,10 +29,18 @@ use MediaWiki\MediaWikiServices;
  */
 class TitlePrefixSearch extends PrefixSearch {
 
+	/**
+	 * @param Title[] $titles
+	 * @return Title[]
+	 */
 	protected function titles( array $titles ) {
 		return $titles;
 	}
 
+	/**
+	 * @param string[] $strings
+	 * @return Title[]
+	 */
 	protected function strings( array $strings ) {
 		$titles = array_map( 'Title::newFromText', $strings );
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();

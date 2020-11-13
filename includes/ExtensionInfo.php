@@ -42,7 +42,7 @@ class ExtensionInfo {
 	 *
 	 * @since 1.35
 	 *
-	 * @return array Returns an array of zero or more paths.
+	 * @return string[] Returns an array of zero or more paths.
 	 */
 	public static function getLicenseFileNames( $extDir ) {
 		if ( !$extDir ) {

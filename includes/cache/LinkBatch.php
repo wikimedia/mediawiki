@@ -169,7 +169,7 @@ class LinkBatch {
 	/**
 	 * Do the query and add the results to the LinkCache object
 	 *
-	 * @return array Mapping PDBK to ID
+	 * @return int[] Mapping PDBK to ID
 	 */
 	public function execute() {
 		return $this->executeInto( $this->linkCache );
@@ -180,7 +180,7 @@ class LinkBatch {
 	 * Return an array mapping PDBK to ID
 	 *
 	 * @param LinkCache $cache
-	 * @return array Remaining IDs
+	 * @return int[] Remaining IDs
 	 */
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
@@ -198,7 +198,7 @@ class LinkBatch {
 	 *
 	 * @param LinkCache $cache
 	 * @param IResultWrapper $res
-	 * @return array Array of remaining titles
+	 * @return int[] Array of remaining titles
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {

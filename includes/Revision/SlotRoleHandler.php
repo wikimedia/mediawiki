@@ -41,7 +41,7 @@ class SlotRoleHandler {
 	private $role;
 
 	/**
-	 * @var array
+	 * @var string[]
 	 * @see getOutputLayoutHints
 	 */
 	private $layout = [
@@ -63,7 +63,7 @@ class SlotRoleHandler {
 	 * @param string $contentModel The default content model for this slot. As per the default
 	 *        implementation of isAllowedModel(), also the only content model allowed for the
 	 *        slot. Subclasses may however handle default and allowed models differently.
-	 * @param array $layout Layout hints, for use by RevisionRenderer. See getOutputLayoutHints.
+	 * @param string[] $layout Layout hints, for use by RevisionRenderer. See getOutputLayoutHints.
 	 */
 	public function __construct( $role, $contentModel, $layout = [] ) {
 		$this->role = $role;
@@ -97,7 +97,7 @@ class SlotRoleHandler {
 	 *   may be introduced for more fine grained control.
 	 *
 	 * @stable to override
-	 * @return array an associative array of hints
+	 * @return string[] an associative array of hints
 	 */
 	public function getOutputLayoutHints() {
 		return $this->layout;

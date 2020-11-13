@@ -175,7 +175,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * Get styles defined in the module definition, plus any enabled feature styles.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getStyleFiles( ResourceLoaderContext $context ) {
 		$styles = parent::getStyleFiles( $context );

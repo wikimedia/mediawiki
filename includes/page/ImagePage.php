@@ -1189,7 +1189,7 @@ EOT
 
 	/**
 	 * @see WikiFilePage::getDuplicates
-	 * @return array|null
+	 * @return File[]|null
 	 */
 	public function getDuplicates() {
 		return $this->getPage()->getDuplicates();

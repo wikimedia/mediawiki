@@ -37,7 +37,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
 	 *
-	 * @return array Array of String options
+	 * @return array
 	 */
 	abstract public function getDefaultOptions(): array;
 
@@ -45,7 +45,7 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	 * Get a given default option value.
 	 *
 	 * @param string $opt Name of option to retrieve
-	 * @return string|null Default option value
+	 * @return mixed|null Default option value
 	 */
 	abstract public function getDefaultOption( string $opt );
 

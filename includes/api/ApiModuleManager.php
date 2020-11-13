@@ -188,7 +188,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Get an array of modules in a specific group or all if no group is set.
 	 * @param string|null $group Optional group filter
-	 * @return array List of module names
+	 * @return string[] List of module names
 	 */
 	public function getNames( $group = null ) {
 		if ( $group === null ) {

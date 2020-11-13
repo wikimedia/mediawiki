@@ -232,7 +232,7 @@ class ChangesList extends ContextSource {
 	 * in the front-end.
 	 *
 	 * @param RecentChange $rc
-	 * @return array Array of CSS classes
+	 * @return string[] Array of CSS classes
 	 */
 	protected function getHTMLClassesForFilters( $rc ) {
 		$classes = [];

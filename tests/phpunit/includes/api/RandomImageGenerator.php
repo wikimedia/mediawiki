@@ -135,7 +135,7 @@ class RandomImageGenerator {
 	 * @param int $number Number of filenames to generate
 	 * @param string $extension Optional, defaults to 'jpg'
 	 * @param string|null $dir Optional, defaults to current working directory
-	 * @return array Array of filenames
+	 * @return string[]
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
 		if ( $dir === null ) {
