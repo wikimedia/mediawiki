@@ -511,11 +511,11 @@ class LocalRepo extends FileRepo {
 	}
 
 	public function getSharedCacheKey( $kClassSuffix, ...$components ) {
+		// T267668: do not include the repo name in the key
 		return $this->hasAcessibleSharedCache()
 			? $this->wanCache->makeGlobalKey(
 				'filerepo-' . $kClassSuffix,
 				$this->dbDomain,
-				$this->getName(),
 				...$components
 			)
 			: false;
