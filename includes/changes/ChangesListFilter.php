@@ -126,7 +126,7 @@ abstract class ChangesListFilter {
 	 * * $filterDefinition['cssClassSuffix'] string CSS class suffix, used to mark
 	 *     that a particular row belongs to this filter (when a row is included by the
 	 *     filter) (optional)
-	 * * $filterDefinition['isRowApplicableCallable'] Callable taking two parameters, the
+	 * * $filterDefinition['isRowApplicableCallable'] callable Callable taking two parameters, the
 	 *     IContextSource, and the RecentChange object for the row, and returning true if
 	 *     the row is attributed to this filter.  The above CSS class will then be
 	 *     automatically added (optional, required if cssClassSuffix is used).

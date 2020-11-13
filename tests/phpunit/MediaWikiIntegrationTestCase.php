@@ -690,7 +690,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @note This calls resetServices() in case any other services depend on the set service(s).
 	 *
 	 * @param string $name
-	 * @param object $service The service instance, or a callable that returns the service instance.
+	 * @param object|callable $service The service instance, or a callable that returns the service instance.
 	 *
 	 * @since 1.27
 	 *
