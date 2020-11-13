@@ -947,7 +947,7 @@
 	"mergehistory-go": "Zobrazit slučitelné editace",
 	"mergehistory-submit": "Sloučit verze",
 	"mergehistory-empty": "Nelze sloučit žádnou verzi.",
-	"mergehistory-done": "$3 {{PLURAL:$3|verze|verze|verzí}} stránky $1 {{PLURAL:$3|byla úspěšně sloučena|byly úspěšně sloučeny|bylo úspěšně sloučeno}} do stránky [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|verze|verze|verzí}} stránky $1 {{PLURAL:$4|byla úspěšně sloučena|byly úspěšně sloučeny|bylo úspěšně sloučeno}} do stránky [[:$2]].\n$3.",
 	"mergehistory-fail": "Sloučení historií nelze provést. Překontrolujte zadané stránky a jejich historii.",
 	"mergehistory-fail-bad-timestamp": "Časové razítko je neplatné.",
 	"mergehistory-fail-invalid-source": "Zdrojová stránka je neplatná.",
