@@ -712,11 +712,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CreateRedirect
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/WhoIsWatching"]
-	path = extensions/WhoIsWatching
-	url = https://github.com/wikimedia/mediawiki-extensions-WhoIsWatching
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/EditSubpages"]
 	path = extensions/EditSubpages
 	url = https://github.com/wikimedia/mediawiki-extensions-EditSubpages
