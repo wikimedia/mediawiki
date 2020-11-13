@@ -16,7 +16,7 @@ interface RecentChangesPurgeRowsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array $rows Deleted rows as an array of recentchanges row objects (with up to
+	 * @param \stdClass[] $rows Deleted rows as an array of recentchanges row objects (with up to
 	 *   $wgUpdateRowsPerQuery items)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

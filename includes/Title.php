@@ -2798,7 +2798,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * and page_restrictions table for this existing page.
 	 * Public for usage by LiquidThreads.
 	 *
-	 * @param array $rows Array of db result objects
+	 * @param stdClass[] $rows Array of db result objects
 	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon

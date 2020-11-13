@@ -332,7 +332,7 @@ class XmlDumpWriter {
 	 * data filled in from the given database row.
 	 *
 	 * @param stdClass $row
-	 * @param null|object[] $slotRows
+	 * @param null|stdClass[] $slotRows
 	 *
 	 * @return string
 	 * @throws FatalError
