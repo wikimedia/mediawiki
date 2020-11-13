@@ -243,18 +243,11 @@ class NamespaceDupes extends Maintenance {
 	}
 
 	/**
-	 * Get the interwiki list
-	 *
-	 * @return array
+	 * @return string[]
 	 */
 	private function getInterwikiList() {
 		$result = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
-		$prefixes = [];
-		foreach ( $result as $row ) {
-			$prefixes[] = $row['iw_prefix'];
-		}
-
-		return $prefixes;
+		return array_column( $result, 'iw_prefix' );
 	}
 
 	/**
@@ -597,8 +590,7 @@ class NamespaceDupes extends Maintenance {
 			[ 'templatelinks', 'tl' ],
 			[ 'imagelinks', 'il' ]
 		];
-		foreach ( $fromNamespaceTables as $tableInfo ) {
-			list( $table, $fieldPrefix ) = $tableInfo;
+		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix ] ) {
 			$dbw->update( $table,
 				// SET
 				[ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ],

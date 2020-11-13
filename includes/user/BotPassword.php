@@ -60,7 +60,7 @@ class BotPassword implements IDBAccessObject {
 	private $flags = self::READ_NORMAL;
 
 	/**
-	 * @param object $row bot_passwords database row
+	 * @param stdClass $row bot_passwords database row
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */

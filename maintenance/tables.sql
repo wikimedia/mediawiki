@@ -274,29 +274,6 @@ CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp,
 -- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified.
 CREATE INDEX /*i*/rev_page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
 
---
--- Temporary table to avoid blocking on an alter of revision.
---
--- On large wikis like the English Wikipedia, altering the revision table is a
--- months-long process. This table is being created to avoid such an alter, and
--- will be merged back into revision in the future.
---
-CREATE TABLE /*_*/revision_actor_temp (
-  -- Key to rev_id
-  revactor_rev int unsigned NOT NULL,
-  -- Key to actor_id
-  revactor_actor bigint unsigned NOT NULL,
-  -- Copy fields from revision for indexes
-  revactor_timestamp binary(14) NOT NULL default '',
-  revactor_page int unsigned NOT NULL,
-  PRIMARY KEY (revactor_rev, revactor_actor)
-) /*$wgDBTableOptions*/;
--- Ensure uniqueness
-CREATE UNIQUE INDEX /*i*/revactor_rev ON /*_*/revision_actor_temp (revactor_rev);
--- Match future indexes on revision
-CREATE INDEX /*i*/actor_timestamp ON /*_*/revision_actor_temp (revactor_actor,revactor_timestamp);
-CREATE INDEX /*i*/page_actor_timestamp ON /*_*/revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
-
 -- Holds text of individual page revisions.
 --
 -- Field names are a holdover from the 'old' revisions table in

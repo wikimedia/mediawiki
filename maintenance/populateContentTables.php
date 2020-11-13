@@ -356,7 +356,7 @@ class PopulateContentTables extends Maintenance {
 	 * Compute any missing fields in $row.
 	 * The way the missing values are computed must correspond to the way this is done in SlotRecord.
 	 *
-	 * @param object $row to be modified
+	 * @param stdClass $row to be modified
 	 * @param string $model
 	 * @param string $address
 	 */

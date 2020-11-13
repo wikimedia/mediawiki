@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class DeletePageJob
  */
@@ -13,7 +15,7 @@ class DeletePageJob extends Job implements GenericParameterJob {
 	public function run() {
 		// Failure to load the page is not job failure.
 		// A parallel deletion operation may have already completed the page deletion.
-		$wikiPage = WikiPage::newFromID( $this->params['wikiPageId'] );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $this->params['wikiPageId'] );
 		if ( $wikiPage ) {
 			$wikiPage->doDeleteArticleBatched(
 				$this->params['reason'],

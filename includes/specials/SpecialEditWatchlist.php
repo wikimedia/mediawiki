@@ -486,8 +486,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$badItems = $this->badItems;
 		DeferredUpdates::addCallableUpdate( function () use ( $user, $badItems ) {
-			foreach ( $badItems as $row ) {
-				list( $title, $namespace, $dbKey ) = $row;
+			foreach ( $badItems as [ $title, $namespace, $dbKey ] ) {
 				$action = $title ? 'cleaning up' : 'deleting';
 				wfDebug( "User {$user->getName()} has broken watchlist item " .
 					"ns($namespace):$dbKey, $action." );
@@ -546,8 +545,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function runWatchUnwatchCompleteHook( $action, $targets ) {
 		foreach ( $targets as $target ) {
-			$title = $target instanceof TitleValue ?
-				Title::newFromTitleValue( $target ) :
+			$title = $target instanceof LinkTarget ?
+				Title::newFromLinkTarget( $target ) :
 				Title::newFromText( $target );
 			$page = WikiPage::factory( $title );
 			$user = $this->getUser();

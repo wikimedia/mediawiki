@@ -174,7 +174,7 @@ class Category {
 	/**
 	 * Factory function, for constructing a Category object from a result set
 	 *
-	 * @param object $row Result set row, must contain the cat_xxx fields. If the
+	 * @param stdClass $row Result set row, must contain the cat_xxx fields. If the
 	 *   fields are null, the resulting Category object will represent an empty
 	 *   category if a title object was given. If the fields are null and no
 	 *   title was given, this method fails and returns false.

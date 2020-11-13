@@ -244,7 +244,7 @@ class RequestContext implements IContextSource, MutableContext {
 			if ( $title === null ) {
 				throw new MWException( __METHOD__ . ' called without Title object set' );
 			}
-			$this->wikipage = WikiPage::factory( $title );
+			$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		}
 
 		return $this->wikipage;

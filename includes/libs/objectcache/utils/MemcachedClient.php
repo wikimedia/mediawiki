@@ -995,9 +995,7 @@ class MemcachedClient {
 				 * All data has been read, time to process the data and build
 				 * meaningful return values.
 				 */
-				foreach ( $results as $vars ) {
-					list( $rkey, $flags, /* length */, $casToken, $data ) = $vars;
-
+				foreach ( $results as [ $rkey, $flags, /* length */, $casToken, $data ] ) {
 					if ( $data === false || substr( $data, -2 ) !== "\r\n" ) {
 						$this->_handle_error( $sock,
 							'line ending missing from data block from $1' );

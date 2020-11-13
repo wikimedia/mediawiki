@@ -62,6 +62,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	 * @param LoggerInterface $logger for logging hits
 	 * @param SpamChecker $spamChecker
 	 * @param string $summary
+	 * @param string $section
 	 * @param string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP for logging hits
@@ -71,15 +72,28 @@ class SpamRegexConstraint implements IEditConstraint {
 		LoggerInterface $logger,
 		SpamChecker $spamChecker,
 		string $summary,
+		string $section,
 		string $sectionHeading,
 		string $text,
 		string $reqIP,
 		Title $title
 	) {
+		if ( $section == 'new' ) {
+			// $wgSpamRegex is enforced on this new heading/summary because, unlike
+			// regular summaries, it is added to the actual wikitext.
+			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
+			// the summary is used which comes from the API `summary` parameter or the
+			// "Add Topic" user interface
+			$sectionHeadingToCheck = ( $sectionHeading !== '' ? $sectionHeading : $summary );
+		} else {
+			// No section heading to check
+			$sectionHeadingToCheck = '';
+		}
+
 		$this->logger = $logger;
 		$this->spamChecker = $spamChecker;
 		$this->summary = $summary;
-		$this->sectionHeading = $sectionHeading;
+		$this->sectionHeading = $sectionHeadingToCheck;
 		$this->text = $text;
 		$this->reqIP = $reqIP;
 		$this->title = $title;

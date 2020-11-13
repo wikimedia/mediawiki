@@ -406,8 +406,9 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		$domainId = $this->getDB()->getDomainID();
-		$wp = WikiPage::factory( $this->mTitle );
-		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$wp = $services->getWikiPageFactory()->newFromTitle( $this->mTitle );
+		$lbf = $services->getDBLoadBalancerFactory();
 		// T163801: try to release any row locks to reduce contention
 		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
@@ -1168,11 +1169,7 @@ class LinksUpdate extends DataUpdate {
 		if ( $this->externalLinkInsertions === null ) {
 			return null;
 		}
-		$result = [];
-		foreach ( $this->externalLinkInsertions as $key => $value ) {
-			$result[] = $value['el_to'];
-		}
-		return $result;
+		return array_column( $this->externalLinkInsertions, 'el_to' );
 	}
 
 	/**

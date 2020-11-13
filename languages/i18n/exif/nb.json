@@ -363,5 +363,16 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Lav ($1)",
 	"exif-urgency-high": "Høy ($1)",
-	"exif-urgency-other": "Brukerdefinert prioritet ($1)"
+	"exif-urgency-other": "Brukerdefinert prioritet ($1)",
+	"exif-firstphotodate": "Første fotodato",
+	"exif-lastphotodate": "Siste fotodato",
+	"exif-projectiontype": "Projeksjonstype",
+	"exif-projectiontype-equirectangular": "Ekvirektangulær",
+	"exif-usepanoramaviewer": "Bruk panoramaviser",
+	"exif-usepanoramaviewer-true": "Ja",
+	"exif-usepanoramaviewer-false": "Nei",
+	"exif-exposurelockused": "Eksponeringslås brukt",
+	"exif-exposurelockused-true": "Ja",
+	"exif-exposurelockused-false": "Nei",
+	"exif-sourcephotoscount": "Antall kildefotografier"
 }

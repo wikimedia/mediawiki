@@ -177,7 +177,7 @@ abstract class Action implements MessageLocalizer {
 		}
 
 		// Trying to get a WikiPage for NS_SPECIAL etc. will result
-		// in WikiPage::factory throwing "Invalid or virtual namespace -1 given."
+		// in WikiPageFactory::newFromTitle throwing "Invalid or virtual namespace -1 given."
 		// For SpecialPages et al, default to action=view.
 		if ( !$context->canUseWikiPage() ) {
 			return 'view';

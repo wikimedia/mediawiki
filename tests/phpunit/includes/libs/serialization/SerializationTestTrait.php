@@ -12,7 +12,7 @@ trait SerializationTestTrait {
 	 * - For each supported serialization format defined by ::getSupportedSerializationFormats
 	 *  - For each acceptance test instance defined by ::getTestInstancesAndAssertions
 	 *   - For each object deserialized from stored file for a particular MW version
-	 * @return Generator for [ $expectedObject, $deserializedObject ]
+	 * @return Generator for [ callable $deserializer, object $expectedObject, string $dataToDeserialize ]
 	 */
 	public function provideTestDeserialization(): Generator {
 		$className = $this->getClassToTest();
@@ -25,14 +25,15 @@ trait SerializationTestTrait {
 				$serializationFormat['deserializer']
 			);
 			foreach ( $serializationUtils->getTestInstances() as $testCaseName => $expectedObject ) {
-				$deserializedObjects = $serializationUtils->getDeserializedInstancesForTestCase(
+				$deserializationFixtures = $serializationUtils->getFixturesForTestCase(
 					$className,
 					$testCaseName
 				);
-				foreach ( $deserializedObjects as $deserializedObjectInfo ) {
+				foreach ( $deserializationFixtures as $deserializedObjectInfo ) {
 					yield "{$className}:{$testCaseName}, " .
 						"deserialized from {$deserializedObjectInfo->ext}, " .
-						"{$deserializedObjectInfo->version}" => [ $expectedObject, $deserializedObjectInfo->object ];
+						"{$deserializedObjectInfo->version}" =>
+							[ $serializationFormat['deserializer'], $expectedObject, $deserializedObjectInfo->data ];
 				}
 			}
 		}
@@ -42,10 +43,12 @@ trait SerializationTestTrait {
 	 * Tests that $deserialized objects retrieved from stored files for various MW versions
 	 * equal to the $expected
 	 * @dataProvider provideTestDeserialization
+	 * @param callable $deserializer
 	 * @param object $expected
-	 * @param object $deserialized
+	 * @param string $data
 	 */
-	public function testDeserialization( object $expected, object $deserialized ) {
+	public function testDeserialization( callable $deserializer, object $expected, string $data ) {
+		$deserialized = $deserializer( $data );
 		$this->assertInstanceOf( $this->getClassToTest(), $deserialized );
 		$this->validateObjectEquality( $expected, $deserialized );
 	}
@@ -54,7 +57,7 @@ trait SerializationTestTrait {
 	 * Data provider for serialization test.
 	 * - For each supported serialization format defined by ::getSupportedSerializationFormats
 	 *  - For each acceptance test instance defined by ::getTestInstancesAndAssertions
-	 * @return Generator for [ $expected serialized instance, $current master version serialized instance ]
+	 * @return Generator for [ callable $serializer, string $expectedSerialization, object $testInstanceToSerialize ]
 	 */
 	public function provideSerialization(): Generator {
 		$className = $this->getClassToTest();
@@ -66,8 +69,8 @@ trait SerializationTestTrait {
 				$serializationFormat['serializer'],
 				$serializationFormat['deserializer']
 			);
-			foreach ( $serializationUtils->getSerializedInstances()
-					  as $testCaseName => $currentSerialized ) {
+			foreach ( $serializationUtils->getTestInstances()
+					  as $testCaseName => $testInstance ) {
 				$expected = $serializationUtils->getStoredSerializedInstance( $className, $testCaseName );
 
 				if ( $expected->data === null ) {
@@ -77,7 +80,8 @@ trait SerializationTestTrait {
 				}
 
 				yield "{$className}:{$testCaseName}, " .
-					"serialized with {$serializationFormat['ext']}" => [ $expected->data, $currentSerialized ];
+					"serialized with {$serializationFormat['ext']}" =>
+						[ $serializationFormat['serializer'], $expected->data, $testInstance ];
 			}
 		}
 	}
@@ -85,11 +89,12 @@ trait SerializationTestTrait {
 	/**
 	 * Test that the current master $serialized instances are equal to stored $expected instances.
 	 * @dataProvider provideSerialization
+	 * @param callable $serializer
 	 * @param string $expected
-	 * @param string $serialized
+	 * @param object $testInstance
 	 */
-	public function testSerialization( string $expected, string $serialized ) {
-		$this->assertSame( $expected, $serialized );
+	public function testSerialization( callable $serializer, string $expected, object $testInstance ) {
+		$this->assertSame( $expected, $serializer( $testInstance ) );
 	}
 
 	/**

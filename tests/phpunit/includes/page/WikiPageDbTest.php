@@ -1858,7 +1858,7 @@ more stuff
 	 * @covers WikiPage::loadFromRow
 	 * @dataProvider provideNewFromRowSuccess
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param callable $assertions
 	 */
 	public function testNewFromRow( $row, $assertions ) {

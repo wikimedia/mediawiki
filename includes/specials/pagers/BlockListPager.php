@@ -145,7 +145,7 @@ class BlockListPager extends TablePager {
 		}
 		'@phan-var string[] $msg';
 
-		/** @var object $row */
+		/** @var stdClass $row */
 		$row = $this->mCurrentRow;
 
 		$language = $this->getLanguage();

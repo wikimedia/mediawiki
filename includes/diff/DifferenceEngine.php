@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -227,6 +228,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/** #@- */
 
 	/**
@@ -267,6 +271,7 @@ class DifferenceEngine extends ContextSource {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->hookContainer = $services->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
 	/**
@@ -1045,7 +1050,7 @@ class DifferenceEngine extends ContextSource {
 					$wikiPage = $this->getWikiPage();
 				} else {
 					// Otherwise we need to create our own WikiPage object
-					$wikiPage = WikiPage::factory( $this->mNewPage );
+					$wikiPage = $this->wikiPageFactory->newFromTitle( $this->mNewPage );
 				}
 
 				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRevisionRecord );

@@ -22,12 +22,15 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
+use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
+use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
@@ -38,6 +41,7 @@ use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -461,6 +465,11 @@ class EditPage implements IEditObject {
 	private $revisionStore;
 
 	/**
+	 * @var WikiPageFactory
+	 */
+	private $wikiPageFactory;
+
+	/**
 	 * @stable to call
 	 * @param Article $article
 	 */
@@ -491,6 +500,7 @@ class EditPage implements IEditObject {
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
 			&& $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchedItemStore = $services->getWatchedItemStore();
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 	}
@@ -1555,7 +1565,7 @@ class EditPage implements IEditObject {
 			RevisionRecord::RAW
 		) : null;
 
-		if ( $content === false || $content === null ) {
+		if ( $content === null ) {
 			return $this->contentHandlerFactory
 				->getContentHandler( $this->contentModel )
 				->makeEmptyContent();
@@ -1606,7 +1616,7 @@ class EditPage implements IEditObject {
 			return $handler->makeEmptyContent();
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
@@ -1614,7 +1624,7 @@ class EditPage implements IEditObject {
 				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
-			$page = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $user );
@@ -1876,70 +1886,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Run hooks that can filter edits just before they get saved.
-	 *
-	 * @param Content $content The Content to filter.
-	 * @param Status $status For reporting the outcome to the caller
-	 * @param User $user The user performing the edit
-	 *
-	 * @return bool
-	 */
-	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
-		// Run new style post-section-merge edit filter
-		if ( !$this->getHookRunner()->onEditFilterMergedContent( $this->context, $content,
-			$status, $this->summary, $user, $this->minoredit )
-		) {
-			# Error messages etc. could be handled within the hook...
-			if ( $status->isGood() ) {
-				$status->fatal( 'hookaborted' );
-				// Not setting $this->hookError here is a hack to allow the hook
-				// to cause a return to the edit page without $this->hookError
-				// being set. This is used by ConfirmEdit to display a captcha
-				// without any error message cruft.
-			} else {
-				$this->hookError = $this->formatStatusErrors( $status );
-			}
-			// Use the existing $status->value if the hook set it
-			if ( !$status->value ) {
-				$status->value = self::AS_HOOK_ERROR;
-			}
-			return false;
-		} elseif ( !$status->isOK() ) {
-			# ...or the hook could be expecting us to produce an error
-			// FIXME this sucks, we should just use the Status object throughout
-			if ( !$status->getErrors() ) {
-				// Provide a fallback error message if none was set
-				$status->fatal( 'hookaborted' );
-			}
-			$this->hookError = $this->formatStatusErrors( $status );
-			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Wrap status errors in an errorbox for increased visibility
-	 *
-	 * @param Status $status
-	 * @return string Wikitext
-	 */
-	private function formatStatusErrors( Status $status ) {
-		$errmsg = $status->getWikiText(
-			'edit-error-short',
-			'edit-error-long',
-			$this->context->getLanguage()
-		);
-		return <<<ERROR
-<div class="errorbox">
-{$errmsg}
-</div>
-<br clear="all" />
-ERROR;
-	}
-
-	/**
 	 * Return the summary to be used for a new section.
 	 *
 	 * @param string|null &$sectionanchor Set to the section anchor text
@@ -2055,21 +2001,14 @@ ERROR;
 		);
 
 		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
-		if ( $this->section == 'new' ) {
-			// $wgSpamRegex is enforced on this new heading/summary because, unlike
-			// regular summaries, it is added to the actual wikitext.
-			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
-			// the summary is used which comes from the API `summary` parameter or the
-			// "Add Topic" user interface
-			$sectionHeadingToCheck = ( $this->sectiontitle !== '' ? $this->sectiontitle : $this->summary );
-		} else {
-			// No section heading to check
-			$sectionHeadingToCheck = '';
-		}
+		// FIXME $this->section is documented to always be a string, but it can be null
+		// since importFormData does not provide a default when getting the section from
+		// WebRequest, and the default default is null.
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
-				$sectionHeadingToCheck,
+				$this->section === null ? '' : $this->section,
+				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
 				$this->mTitle
@@ -2177,11 +2116,22 @@ ERROR;
 				)
 			);
 
+			$constraintRunner->addConstraint(
+				$constraintFactory->newEditFilterMergedContentHookConstraint(
+					$textbox_content,
+					$this->context,
+					$this->summary,
+					$this->minoredit
+				)
+			);
+
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
 				if ( $failed instanceof DefaultTextConstraint ) {
 					$this->blankArticle = true;
+				} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+					$this->hookError = $failed->getHookError();
 				}
 				$statusValue = $failed->getLegacyStatus();
 				$status = Status::wrap( $statusValue );
@@ -2189,15 +2139,10 @@ ERROR;
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $user ) ) {
-				return $status;
-			}
-
 			$content = $textbox_content;
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
-				// @phan-suppress-next-line PhanSuspiciousValueComparison
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
@@ -2260,7 +2205,6 @@ ERROR;
 			}
 
 			// If sectiontitle is set, use it, otherwise use the summary as the section title.
-			// @phan-suppress-next-line PhanSuspiciousValueComparison
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
@@ -2331,14 +2275,19 @@ ERROR;
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $content, $status, $user ) ) {
-				return $status;
-			}
+			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+			// Create a new runner to avoid rechecking the prior constraints, use the same factory
+			$constraintRunner = new EditConstraintRunner();
+			$constraintRunner->addConstraint(
+				$constraintFactory->newEditFilterMergedContentHookConstraint(
+					$content,
+					$this->context,
+					$this->summary,
+					$this->minoredit
+				)
+			);
 
 			if ( $this->section == 'new' ) {
-				// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
-				// Create a new runner to avoid rechecking the prior constraints, use the same factory
-				$constraintRunner = new EditConstraintRunner();
 				$constraintRunner->addConstraint(
 					new NewSectionMissingSummaryConstraint(
 						$this->summary,
@@ -2348,29 +2297,35 @@ ERROR;
 				$constraintRunner->addConstraint(
 					new MissingCommentConstraint( $this->textbox1 )
 				);
-				// Check the constraints
-				if ( $constraintRunner->checkConstraints() === false ) {
-					$failed = $constraintRunner->getFailedConstraint();
-					if ( $failed instanceof NewSectionMissingSummaryConstraint ) {
-						$this->missingSummary = true;
-					} elseif ( $failed instanceof MissingCommentConstraint ) {
-						$this->missingComment = true;
-					}
-					$statusValue = $failed->getLegacyStatus();
-					$status = Status::wrap( $statusValue );
-					return $status;
+			} else {
+				$constraintRunner->addConstraint(
+					new AutoSummaryMissingSummaryConstraint(
+						$this->summary,
+						$this->autoSumm,
+						$this->allowBlankSummary,
+						$content,
+						$this->getOriginalContent( $user )
+					)
+				);
+			}
+			// Check the constraints
+			if ( $constraintRunner->checkConstraints() === false ) {
+				$failed = $constraintRunner->getFailedConstraint();
+				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+					$this->hookError = $failed->getHookError();
+				} elseif (
+					$failed instanceof AutoSummaryMissingSummaryConstraint ||
+					$failed instanceof NewSectionMissingSummaryConstraint
+				) {
+					$this->missingSummary = true;
+				} elseif ( $failed instanceof MissingCommentConstraint ) {
+					$this->missingComment = true;
 				}
-				// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent( $user ) )
-				&& !$content->isRedirect()
-				&& md5( $this->summary ) == $this->autoSumm
-			) {
-				$this->missingSummary = true;
-				$status->fatal( 'missingsummary' );
-				$status->value = self::AS_SUMMARY_NEEDED;
+				$statusValue = $failed->getLegacyStatus();
+				$status = Status::wrap( $statusValue );
 				return $status;
 			}
+			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			# All's well
 			$sectionanchor = '';
@@ -2400,26 +2355,20 @@ ERROR;
 			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
-		if ( !$this->allowSelfRedirect
-			&& $content->isRedirect()
-			&& $content->getRedirectTarget()->equals( $this->getTitle() )
-		) {
-			// If the page already redirects to itself, don't warn.
-			$currentTarget = $this->getCurrentContent()->getRedirectTarget();
-			if ( !$currentTarget || !$currentTarget->equals( $this->getTitle() ) ) {
-				$this->selfRedirect = true;
-				$status->fatal( 'selfredirect' );
-				$status->value = self::AS_SELF_REDIRECT;
-				return $status;
-			}
-		}
-
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner->addConstraint(
+			new SelfRedirectConstraint(
+				$this->allowSelfRedirect,
+				$content,
+				$this->getCurrentContent(),
+				$this->getTitle()
+			)
+		);
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
@@ -2435,6 +2384,8 @@ ERROR;
 			if ( $failed instanceof PageSizeConstraint ) {
 				// Error will be displayed by showEditForm()
 				$this->tooBig = true;
+			} elseif ( $failed instanceof SelfRedirectConstraint ) {
+				$this->selfRedirect = true;
 			}
 
 			$statusValue = $failed->getLegacyStatus();

@@ -155,6 +155,38 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		return WikiPage::factory( $title );
 	}
 
+	/** AutoSummaryMissingSummaryConstraint integration */
+	public function testAutoSummaryMissingSummaryConstraint() {
+		// Require the summary
+		$this->mergeMwGlobalArrayValue(
+			'wgDefaultUserOptions',
+			[ 'forceeditsummary' => 1 ]
+		);
+
+		$page = $this->getExistingTestPage( 'AutoSummaryMissingSummaryConstraint page does exist' );
+		$title = $page->getTitle();
+
+		$user = $this->getTestUser()->getUser();
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSummaryConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		$edit = [
+			'wpTextbox1' => 'New content, different from base content',
+			'wpSummary' => 'SameAsAutoSummary',
+			'wpAutoSummary' => md5( 'SameAsAutoSummary' )
+		];
+		$this->assertEdit(
+			$title,
+			'Base content, different from new content',
+			$user,
+			$edit,
+			EditPage::AS_SUMMARY_NEEDED,
+			'expected AS_SUMMARY_NEEDED update'
+		);
+	}
+
 	/** ChangeTagsConstraint integration */
 	public function testChangeTagsConstraint() {
 		// Remove rights
@@ -265,6 +297,75 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			EditPage::AS_BLANK_ARTICLE,
 			'expected AS_BLANK_ARTICLE creation'
 		);
+	}
+
+	/**
+	 * EditFilterMergedContentHookConstraint integration
+	 * @dataProvider provideTestEditFilterMergedContentHookConstraint
+	 * @param bool $hookReturn
+	 * @param ?int $statusValue
+	 * @param bool $statusFatal
+	 * @param int $expectedFailure
+	 * @param string $expectedFailureStr
+	 */
+	public function testEditFilterMergedContentHookConstraint(
+		bool $hookReturn,
+		$statusValue,
+		bool $statusFatal,
+		int $expectedFailure,
+		string $expectedFailureStr
+	) {
+		$this->setTemporaryHook(
+			'EditFilterMergedContent',
+			function ( $context, $content, $status, $summary, $user, $minorEdit )
+				use ( $hookReturn, $statusValue, $statusFatal )
+			{
+				if ( $statusValue !== null ) {
+					$status->value = $statusValue;
+				}
+				if ( $statusFatal ) {
+					$status->fatal( 'SomeErrorInTheHook' );
+				}
+				return $hookReturn;
+			}
+		);
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( false );
+		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
+		$user->method( 'getId' )->willReturn( 12345 );
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
+
+		$edit = [
+			'wpTextbox1' => 'Text',
+			'wpSummary' => 'Summary'
+		];
+		$this->assertEdit(
+			'EditPageTest_testEditFilterMergedContentHookConstraint',
+			null,
+			$user,
+			$edit,
+			$expectedFailure,
+			"expected $expectedFailureStr creation"
+		);
+	}
+
+	public function provideTestEditFilterMergedContentHookConstraint() {
+		yield 'Hook returns false, status is good, no value set' => [
+			false, null, false, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+		];
+		yield 'Hook returns false, status is good, value set' => [
+			false, 1234567, false, 1234567, 'custom value 1234567'
+		];
+		yield 'Hook returns false, status is not good' => [
+			false, null, true, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+		];
+		yield 'Hook returns true, status is not ok' => [
+			true, null, true, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
+		];
 	}
 
 	/**
@@ -456,6 +557,26 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$edit,
 			EditPage::AS_READ_ONLY_PAGE,
 			'expected AS_READ_ONLY_PAGE update'
+		);
+	}
+
+	/** SelfRedirectConstraint integration */
+	public function testSelfRedirectConstraint() {
+		// Use a page that does not exist to be sure that it is not already a self redirect
+		$page = $this->getNonexistingTestPage( 'SelfRedirectConstraint page does not exist' );
+		$title = $page->getTitle();
+
+		$edit = [
+			'wpTextbox1' => '#REDIRECT [[SelfRedirectConstraint page does not exist]]',
+			'wpSummary' => 'Redirect to self'
+		];
+		$this->assertEdit(
+			$title,
+			'zero',
+			null,
+			$edit,
+			EditPage::AS_SELF_REDIRECT,
+			'expected AS_SELF_REDIRECT update'
 		);
 	}
 

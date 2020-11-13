@@ -41,8 +41,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		foreach ( QueryPage::getPages() as $page ) {
-			list( $class, $name ) = $page;
+		foreach ( QueryPage::getPages() as [ $class, $name ] ) {
 			if ( !in_array( $class, $this->manualTest ) ) {
 				$this->queryPages[$class] =
 					MediaWikiServices::getInstance()->getSpecialPageFactory()->getPage( $name );

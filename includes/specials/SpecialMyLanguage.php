@@ -92,7 +92,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			}
 		}
 
-		if ( !$base ) {
+		if ( !$base || !$base->canExist() ) {
 			// No subpage provided or base page does not exist
 			return null;
 		}

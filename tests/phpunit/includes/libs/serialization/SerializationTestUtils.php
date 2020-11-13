@@ -147,8 +147,23 @@ class SerializationTestUtils {
 	}
 
 	/**
+	 * Get an array of serialization fixtures for $class stored in files
+	 * for different MW versions, for test case name $testCaseName.
+	 * @param string $class
+	 * @param string $testCaseName
+	 * @return array
+	 */
+	public function getFixturesForTestCase( string $class, string $testCaseName ): array {
+		return array_filter(
+			$this->getMatchingFiles( $class, $this->ext ),
+			function ( $fileInfo ) use ( $testCaseName ) {
+				return $fileInfo->testCaseName === $testCaseName;
+			} );
+	}
+
+	/**
 	 * Get an array of instances of $class deserialized from stored files
-	 * for different MW version, for test case named $testCaseName.
+	 * for different MW versions, for test case named $testCaseName.
 	 * @param string $class
 	 * @param string $testCaseName
 	 * @return array

@@ -41,7 +41,7 @@ class LocalFileDeleteBatch {
 	/** @var array */
 	private $archiveUrls = [];
 
-	/** @var array Items to be processed in the deletion batch */
+	/** @var array[] Items to be processed in the deletion batch */
 	private $deletionBatch;
 
 	/** @var bool Whether to suppress all suppressable fields when deleting */
@@ -376,8 +376,7 @@ class LocalFileDeleteBatch {
 	protected function removeNonexistentFiles( $batch ) {
 		$files = $newBatch = [];
 
-		foreach ( $batch as $batchItem ) {
-			list( $src, ) = $batchItem;
+		foreach ( $batch as [ $src, /* dest */ ] ) {
 			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
 		}
 

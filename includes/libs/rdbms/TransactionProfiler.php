@@ -344,8 +344,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 		if ( $slow ) {
 			$trace = '';
-			foreach ( $this->dbTrxMethodTimes[$name] as $i => $info ) {
-				list( $query, $sTime, $end ) = $info;
+			foreach ( $this->dbTrxMethodTimes[$name] as $i => [ $query, $sTime, $end ] ) {
 				$trace .= sprintf(
 					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), self::queryString( $query ) );
 			}

@@ -364,5 +364,20 @@
 	"exif-urgency-normal": "Normalny ($1)",
 	"exif-urgency-low": "Niski ($1)",
 	"exif-urgency-high": "Wysoki ($1)",
-	"exif-urgency-other": "Priorytet zdefiniowany przez użytkownika ($1)"
+	"exif-urgency-other": "Priorytet zdefiniowany przez użytkownika ($1)",
+	"exif-firstphotodate": "Data pierwszej fotografii",
+	"exif-lastphotodate": "Data ostatniej fotografii",
+	"exif-projectiontype": "Rodzaj wyświetlania",
+	"exif-usepanoramaviewer": "Użyj podglądu panoramicznego",
+	"exif-usepanoramaviewer-true": "Tak",
+	"exif-usepanoramaviewer-false": "Nie",
+	"exif-exposurelockused-true": "Tak",
+	"exif-exposurelockused-false": "Nie",
+	"exif-initialhorizontalfovdegrees": "Początkowe pole widzenia (stopnie poziome)",
+	"exif-initialverticalfovdegrees": "Początkowe pole widzenia (stopnie pionowe)",
+	"exif-sourcephotoscount": "Liczba fotografii źródłowych",
+	"exif-croppedareaimagewidthpixels": "Przycięta szerokość panoramy",
+	"exif-croppedareaimageheightpixels": "Przycięta wysokość panoramy",
+	"exif-fullpanowidthpixels": "Pełna szerokość panoramy",
+	"exif-fullpanoheightpixels": "Pełna wysokość panoramy"
 }

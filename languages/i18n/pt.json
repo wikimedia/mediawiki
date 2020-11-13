@@ -1006,6 +1006,8 @@
 	"mergehistory-comment": "[[:$1]] fundida com [[:$2]]: $3",
 	"mergehistory-same-destination": "As páginas de origem e de destino não podem ser a mesma",
 	"mergehistory-reason": "Motivo:",
+	"mergehistory-source-deleted-reason": "A página de origem foi eliminada automaticamente após a fusão do historial porque o modelo de conteúdo da página não suporta redirecionamentos e não há nenhuma revisão restante",
+	"mergehistory-source-deleted": "Adicionalmente, [[:$1]] foi eliminada porque deixou de ter revisões visíveis e o seu modelo de conteúdo não suporta deixar redirecionamentos.",
 	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Registo de fusão de históricos",
 	"revertmerge": "Desfazer fusão",

@@ -871,7 +871,7 @@ class FileRepo {
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
 			// Must match canonical query parameter order for optimum caching
-			// See Title::getCdnUrls
+			// See HtmlCacheUpdater::getUrls
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&action=raw&ctype=text/css' );
 		}
 
@@ -1496,8 +1496,7 @@ class FileRepo {
 		$backend = $this->backend; // convenience
 		$operations = [];
 		// Validate filenames and create archive directories
-		foreach ( $sourceDestPairs as $pair ) {
-			list( $srcRel, $archiveRel ) = $pair;
+		foreach ( $sourceDestPairs as [ $srcRel, $archiveRel ] ) {
 			if ( !$this->validateFilename( $srcRel ) ) {
 				throw new MWException( __METHOD__ . ':Validation error in $srcRel' );
 			} elseif ( !$this->validateFilename( $archiveRel ) ) {

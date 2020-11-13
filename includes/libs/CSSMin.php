@@ -230,7 +230,7 @@ class CSSMin {
 	 *
 	 * @param string $source CSS data to remap
 	 * @param string $local File path where the source was read from
-	 * @param string $remote URL path to the file
+	 * @param string $remote Full URL to the file's directory (may be protocol-relative, trailing slash is optional)
 	 * @param bool $embedData If false, never do any data URI embedding,
 	 *   even if / * @embed * / is found.
 	 * @return string Remapped CSS data
@@ -382,7 +382,11 @@ class CSSMin {
 	 * @return bool
 	 */
 	protected static function isLocalUrl( $maybeUrl ) {
-		return isset( $maybeUrl[1] ) && $maybeUrl[0] === '/' && $maybeUrl[1] !== '/';
+		// Accept "/" (known local)
+		// Accept "/anything" (known local)
+		// Reject "//anything" (known remote)
+		// Reject "" (invalid/uncertain)
+		return $maybeUrl === '/' || ( isset( $maybeUrl[1] ) && $maybeUrl[0] === '/' && $maybeUrl[1] !== '/' );
 	}
 
 	/**
@@ -405,12 +409,45 @@ class CSSMin {
 	}
 
 	/**
+	 * Resolve a possibly-relative URL against a base URL.
+	 *
+	 * @param string $base
+	 * @param string $url
+	 * @return string
+	 */
+	private static function resolveUrl( string $base, string $url ) : string {
+		// Net_URL2::resolve() doesn't allow for resolving against server-less URLs.
+		// We need this as for MediaWiki/ResourceLoader, the remote base path may either
+		// be separate (e.g. a separate domain), or simply local (like "/w"). In the
+		// local case, we don't want to needlessly include the server in the output.
+		$isServerless = self::isLocalUrl( $base );
+		if ( $isServerless ) {
+			$base = "https://placeholder.invalid$base";
+		}
+		// Net_URL2::resolve() doesn't allow for protocol-relative URLs, but we want to.
+		$isProtoRelative = substr( $base, 0, 2 ) === '//';
+		if ( $isProtoRelative ) {
+			$base = "https:$base";
+		}
+
+		$baseUrl = new Net_URL2( $base );
+		$ret = $baseUrl->resolve( $url );
+		if ( $isProtoRelative ) {
+			$ret->setScheme( false );
+		}
+		if ( $isServerless ) {
+			$ret->setHost( false );
+		}
+		return $ret->getURL();
+	}
+
+	/**
 	 * Remap or embed a CSS URL path.
 	 *
 	 * @param string $file URL to remap/embed
 	 * @param string $query
 	 * @param string $local File path where the source was read from
-	 * @param string $remote URL path to the file
+	 * @param string $remote Full URL to the file's directory (may be protocol-relative, trailing slash is optional)
 	 * @param bool $embed Whether to do any data URI embedding
 	 * @return string Remapped/embedded URL data
 	 */
@@ -418,10 +455,9 @@ class CSSMin {
 		// The full URL possibly with query, as passed to the 'url()' value in CSS
 		$url = $file . $query;
 
-		// Expand local URLs with absolute paths like /w/index.php to possibly protocol-relative URL, if
-		// wfExpandUrl() is available. (This will not be the case if we're running outside of MW.)
-		if ( self::isLocalUrl( $url ) && function_exists( 'wfExpandUrl' ) ) {
-			return wfExpandUrl( $url, PROTO_RELATIVE );
+		// Expand local URLs with absolute paths to a full URL (possibly protocol-relative).
+		if ( self::isLocalUrl( $url ) ) {
+			return self::resolveUrl( $remote, $url );
 		}
 
 		// Pass thru fully-qualified and protocol-relative URLs and data URIs, as well as local URLs if
@@ -429,18 +465,24 @@ class CSSMin {
 		// Also skips anchors or the rare `behavior` property specifying application's default behavior
 		if (
 			self::isRemoteUrl( $url ) ||
-			self::isLocalUrl( $url ) ||
 			substr( $url, 0, 1 ) === '#'
 		) {
 			return $url;
 		}
 
+		// The $remote must have a trailing slash beyond this point for correct path resolution.
+		if ( substr( $remote, -1 ) !== '/' ) {
+			$remote .= '/';
+		}
+
 		if ( $local === false ) {
-			// Assume that all paths are relative to $remote, and make them absolute
-			$url = $remote . '/' . $url;
+			// CSS specifies a path that is neither a local file path, nor a local URL.
+			// It is probably already a fully-qualitied URL or data URI, but try to expand
+			// it just in case.
+			$url = self::resolveUrl( $remote, $url );
 		} else {
 			// We drop the query part here and instead make the path relative to $remote
-			$url = "{$remote}/{$file}";
+			$url = self::resolveUrl( $remote, $file );
 			// Path to the actual file on the filesystem
 			$localFile = "{$local}/{$file}";
 			if ( file_exists( $localFile ) ) {
@@ -450,19 +492,12 @@ class CSSMin {
 						return $data;
 					}
 				}
-				if ( class_exists( OutputPage::class ) ) {
-					$url = OutputPage::transformFilePath( $remote, $local, $file );
-				} else {
-					// Add version parameter as the first five hex digits
-					// of the MD5 hash of the file's contents.
-					$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
-				}
+				// Add version parameter as the first five hex digits
+				// of the MD5 hash of the file's contents.
+				$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
 			}
 			// If any of these conditions failed (file missing, we don't want to embed it
 			// or it's not embeddable), return the URL (possibly with ?timestamp part)
-		}
-		if ( function_exists( 'wfRemoveDotSegments' ) ) {
-			$url = wfRemoveDotSegments( $url );
 		}
 		return $url;
 	}

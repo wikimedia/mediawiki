@@ -951,7 +951,7 @@
 	"mergehistory-go": "Vis flettbare redigeringer",
 	"mergehistory-submit": "Flett revisjoner",
 	"mergehistory-empty": "Ingen revisjoner kan flettes.",
-	"mergehistory-done": "{{PLURAL:$3|Én revisjon|$3 revisjoner}} av $1 ble flettet til [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$4|Én revisjon|$4 revisjoner}} av $1 ble flettet til [[:$2]].\n$3.",
 	"mergehistory-fail": "Klarte ikke å utføre historikkfletting; sjekk siden og tidsparameterne igjen.",
 	"mergehistory-fail-bad-timestamp": "Tidsangivelsen er ugyldig.",
 	"mergehistory-fail-invalid-source": "Kildesiden er ugyldig.",
@@ -969,6 +969,8 @@
 	"mergehistory-comment": "Flettet [[:$1]] inn i [[:$2]]: $3",
 	"mergehistory-same-destination": "Kilde- og målside kan ikke være den samme.",
 	"mergehistory-reason": "Årsak:",
+	"mergehistory-source-deleted-reason": "Kildesiden slettes automatisk etter historikkfletting fordi innholdsmodellen dens ikke støtter omdirigeringer, og fordi det ikke er noen revisjoner igjen",
+	"mergehistory-source-deleted": "I tillegg har [[:$1]] blitt slettet fordi den ikke lenger har noen synlige revisjoner, og fordi innholdsmodellen dens ikke støtter omdirigering.",
 	"mergelog": "Flettingslogg",
 	"revertmerge": "Omgjør fletting",
 	"mergelogpagetext": "Nedenfor er en liste over de nyligste flettingene av sidehistorikker.",
@@ -4007,5 +4009,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-intervall",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikinavn (f.eks. \"prefiks>Eksempelnavn\")",
-	"paramvalidator-help-type-user-subtype-id": "bruker-ID (f.eks. «#12345»)"
+	"paramvalidator-help-type-user-subtype-id": "bruker-ID (f.eks. «#12345»)",
+	"paramvalidator-badtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: ikke en gyldig tittelstreng.",
+	"paramvalidator-missingtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: siden finnes ikke.",
+	"paramvalidator-help-type-title": "Type: sidetittel",
+	"paramvalidator-help-type-title-must-exist": "Godtar kun sider som finnes.",
+	"paramvalidator-help-type-title-no-must-exist": "Godtar ikke-eksisterende sider."
 }

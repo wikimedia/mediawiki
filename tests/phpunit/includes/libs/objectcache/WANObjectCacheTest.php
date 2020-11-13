@@ -2494,7 +2494,7 @@ class McrouterHashBagOStuff extends HashBagOStuff {
 class NearExpiringWANObjectCache extends WANObjectCache {
 	private const CLOCK_SKEW = 1;
 
-	protected function worthRefreshExpiring( $curTTL, $lowTTL ) {
+	protected function worthRefreshExpiring( $curTTL, $logicalTTL, $lowTTL ) {
 		return ( $curTTL > 0 && ( $curTTL + self::CLOCK_SKEW ) < $lowTTL );
 	}
 }

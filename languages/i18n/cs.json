@@ -947,7 +947,7 @@
 	"mergehistory-go": "Zobrazit slučitelné editace",
 	"mergehistory-submit": "Sloučit verze",
 	"mergehistory-empty": "Nelze sloučit žádnou verzi.",
-	"mergehistory-done": "$3 {{PLURAL:$3|verze|verze|verzí}} stránky $1 {{PLURAL:$3|byla úspěšně sloučena|byly úspěšně sloučeny|bylo úspěšně sloučeno}} do stránky [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|verze|verze|verzí}} stránky $1 {{PLURAL:$4|byla úspěšně sloučena|byly úspěšně sloučeny|bylo úspěšně sloučeno}} do stránky [[:$2]].\n$3.",
 	"mergehistory-fail": "Sloučení historií nelze provést. Překontrolujte zadané stránky a jejich historii.",
 	"mergehistory-fail-bad-timestamp": "Časové razítko je neplatné.",
 	"mergehistory-fail-invalid-source": "Zdrojová stránka je neplatná.",
@@ -1265,6 +1265,7 @@
 	"right-apihighlimits": "Používání vyšších limitů v API dotazech",
 	"right-writeapi": "Používání zapisovacího API",
 	"right-delete": "Mazání stránek",
+	"right-delete-redirect": "Smazat přesměrování s jedinou revizí",
 	"right-bigdelete": "Mazání stránek s dlouhou historií",
 	"right-deletelogentry": "Mazání a obnovování jednotlivých protokolovacích záznamů",
 	"right-deleterevision": "Mazání a obnovování konkrétních revizí stránky",
@@ -1341,6 +1342,7 @@
 	"grant-editpage": "Editovat existující stránky",
 	"grant-editprotected": "Editovat zamčené stránky",
 	"grant-highvolume": "Hromadné editace",
+	"grant-import": "Importovat revize",
 	"grant-mergehistory": "Sloučit historie stránek",
 	"grant-oversight": "Skrývat uživatele a utajovat revize",
 	"grant-patrol": "Patrolovat změny stránek",
@@ -1377,6 +1379,7 @@
 	"action-upload_by_url": "nahrát tento soubor z URL adresy",
 	"action-writeapi": "používat API pro zápis",
 	"action-delete": "smazat tuto stránku",
+	"action-delete-redirect": "přepsat přesměrování s jedinou revizí",
 	"action-deleterevision": "mazat revize",
 	"action-deletelogentry": "mazat protokolovací záznamy",
 	"action-deletedhistory": "prohlížet si smazanou historii stránky",
@@ -4023,5 +4026,8 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Rozsah IP adres",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki jméno (např. „prefix>Příklad“)",
-	"paramvalidator-help-type-user-subtype-id": "ID uživatele (např. „#12345“)"
+	"paramvalidator-help-type-user-subtype-id": "ID uživatele (např. „#12345“)",
+	"paramvalidator-help-type-title": "Typ: název stránky",
+	"paramvalidator-help-type-title-must-exist": "Přijímá jen existující stránky",
+	"paramvalidator-help-type-title-no-must-exist": "Přijímá neexistující stránky"
 }

@@ -121,9 +121,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
 				. '<ul>'
 			);
-			foreach ( $sortedPages as $desc => $specialpage ) {
-				list( $title, $restricted, $cached ) = $specialpage;
-
+			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
 				$pageClasses = [];
 				if ( $cached ) {
 					$includesCachedPages = true;

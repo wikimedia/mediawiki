@@ -546,7 +546,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 *
 	 * @deprecated since 1.35
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param Title|null $title
 	 * @return Revision|null
 	 */
@@ -562,7 +562,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 *
 	 * @since 1.35
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param Title|null $title
 	 * @return RevisionRecord|null
 	 */
@@ -595,7 +595,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( $row ) {

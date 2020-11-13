@@ -259,12 +259,13 @@ class WatchAction extends FormAction {
 		$checkRights = User::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 		if ( $checkRights && !$permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
 		if ( Hooks::runner()->onWatchArticle( $user, $page, $status, $expiry ) ) {
@@ -284,13 +285,13 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 */
 	public static function doUnwatch( Title $title, User $user ) {
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getPermissionManager()
 			->userHasRight( $user, 'editmywatchlist' ) ) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
 		if ( Hooks::runner()->onUnwatchArticle( $user, $page, $status ) ) {

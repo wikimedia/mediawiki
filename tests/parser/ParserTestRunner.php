@@ -1462,22 +1462,22 @@ class ParserTestRunner {
 		$base = $repo->getZonePath( 'public' );
 		$backend = $repo->getBackend();
 		$backend->prepare( [ 'dir' => "$base/3/3a" ] );
-		$backend->store( [
+		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
 			'dst' => "$base/3/3a/Foobar.jpg"
 		] );
 		$backend->prepare( [ 'dir' => "$base/e/ea" ] );
-		$backend->store( [
+		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/wiki.png",
 			'dst' => "$base/e/ea/Thumb.png"
 		] );
 		$backend->prepare( [ 'dir' => "$base/0/09" ] );
-		$backend->store( [
+		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
 			'dst' => "$base/0/09/Bad.jpg"
 		] );
 		$backend->prepare( [ 'dir' => "$base/5/5f" ] );
-		$backend->store( [
+		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/LoremIpsum.djvu",
 			'dst' => "$base/5/5f/LoremIpsum.djvu"
 		] );
@@ -1533,7 +1533,7 @@ class ParserTestRunner {
 		// Delete the files
 		$backend = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->getBackend();
 		foreach ( $files as $file ) {
-			$backend->delete( [ 'src' => $file ], [ 'force' => 1 ] );
+			$backend->quickDelete( [ 'src' => $file ], [ 'force' => 1 ] );
 		}
 
 		// Delete the parent directories

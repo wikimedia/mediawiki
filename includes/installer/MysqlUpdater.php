@@ -343,7 +343,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'oldimage', 'oi_description_id', 'patch-oldimage-oi_description_id.sql' ],
 			[ 'addField', 'protected_titles', 'pt_reason_id', 'patch-protected_titles-pt_reason_id.sql' ],
 			[ 'addField', 'recentchanges', 'rc_comment_id', 'patch-recentchanges-rc_comment_id.sql' ],
-			[ 'modifyField', 'revision', 'rev_comment', 'patch-revision-rev_comment-default.sql' ],
+			[ 'setDefault', 'revision', 'rev_comment', '' ],
 
 			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
@@ -370,7 +370,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'recentchanges', 'rc_actor', 'patch-recentchanges-rc_actor.sql' ],
 			[ 'addField', 'logging', 'log_actor', 'patch-logging-log_actor.sql' ],
 			[ 'migrateActors' ],
-			[ 'modifyField', 'revision', 'rev_text_id', 'patch-rev_text_id-default.sql' ],
+
+			// Adds a default value to the rev_text_id field to allow Multi Content
+			// Revisions migration to happen where rows will have to be added to the
+			// revision table with no rev_text_id.
+			[ 'setDefault', 'revision', 'rev_text_id', 0 ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 			[ 'populateArchiveRevId' ],
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
@@ -379,8 +383,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.32
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
 			[ 'populateExternallinksIndex60' ],
-			[ 'modifyfield', 'externallinks', 'el_index_60',
-				'patch-externallinks-el_index_60-drop-default.sql' ],
+			[ 'dropDefault', 'externallinks', 'el_index_60' ],
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 			[ 'addField', 'change_tag', 'ct_tag_id', 'patch-change_tag-tag_id.sql' ],
 			[ 'addIndex', 'archive', 'ar_revid_uniq', 'patch-archive-ar_rev_id-unique.sql' ],
@@ -457,8 +460,9 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_newtalk-user_last_timestamp-binary.sql'
 			],
 			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
-			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
-			[ 'modifyField', 'ip_changes', 'ipc_rev_timestamp', 'patch-ip_changes-pc_rev_timestamp-drop-default.sql' ],
+			[ 'dropDefault', 'protected_titles', 'pt_expiry' ],
+			[ 'dropDefault', 'ip_changes', 'ipc_rev_timestamp' ],
+			[ 'dropDefault', 'revision_actor_temp', 'revactor_timestamp' ],
 		];
 	}
 
@@ -557,7 +561,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doFixAncientImagelinks() {
 		$info = $this->db->fieldInfo( 'imagelinks', 'il_from' );
 		if ( !$info || $info->type() !== 'string' ) {
-			$this->output( "...il_from OK\n" );
+			$this->output( "...il_from is already not a string\n" );
 
 			return;
 		}
@@ -1369,4 +1373,41 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		return $vars;
 	}
+
+	/**
+	 * Drop a default value from a field
+	 *
+	 * @since 1.36
+	 * @param string $table
+	 * @param string $field
+	 */
+	protected function dropDefault( $table, $field ) {
+		$info = $this->db->fieldInfo( $table, $field );
+		if ( $info && $info->defaultValue() !== false ) {
+			$this->output( "Removing '$table.$field' default value\n" );
+			$table = $this->db->tableName( $table );
+			$this->db->query( "ALTER TABLE $table ALTER COLUMN $field DROP DEFAULT", __METHOD__ );
+		}
+	}
+
+	/**
+	 * Set a default value for a field
+	 *
+	 * @since 1.36
+	 * @param string $table
+	 * @param string $field
+	 * @param mixed $default
+	 */
+	protected function setDefault( $table, $field, $default ) {
+		$info = $this->db->fieldInfo( $table, $field );
+		if ( $info && $info->defaultValue() !== $default ) {
+			$this->output( "Changing '$table.$field' default value\n" );
+			$table = $this->db->tableName( $table );
+			$this->db->query(
+				"ALTER TABLE $table ALTER COLUMN $field SET DEFAULT "
+				. $this->db->addQuotes( $default ), __METHOD__
+			);
+		}
+	}
+
 }

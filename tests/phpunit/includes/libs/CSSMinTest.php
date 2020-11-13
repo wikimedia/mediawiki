@@ -8,17 +8,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CSSMinTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-
-		// For wfExpandUrl
-		$server = 'https://expand.example';
-		$this->setMwGlobals( [
-			'wgServer' => $server,
-			'wgCanonicalServer' => $server,
-		] );
-	}
-
 	/**
 	 * @dataProvider providesReferencedFiles
 	 * @covers CSSMin::getLocalFileReferences
@@ -218,11 +207,13 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsRemoteUrl() {
 		return [
+			// Remote
 			[ true, 'http://localhost/w/red.gif?123' ],
 			[ true, 'https://example.org/x.png' ],
 			[ true, '//example.org/x.y.z/image.png' ],
 			[ true, '//localhost/styles.css?query=yes' ],
 			[ true, 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=' ],
+			// Not remote (e.g. relative, garbage, or local)
 			[ false, '' ],
 			[ false, '/' ],
 			[ true, '//' ],
@@ -244,13 +235,17 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsLocalUrls() {
 		return [
+			// Local
+			[ true, '/' ],
+			[ true, '/x.gif' ],
+			// Not local (e.g. relative, garbage, or remote)
 			[ false, '' ],
-			[ false, '/' ],
 			[ false, '//' ],
 			[ false, 'x.gif' ],
-			[ true, '/x.gif' ],
 			[ false, './x.gif' ],
 			[ false, '../x.gif' ],
+			[ false, 'https://example.org/x.png' ],
+			[ false, 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=' ],
 		];
 	}
 
@@ -287,19 +282,19 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 		// CSSMin::remap( $code, $local, $remote, $embedData = true )
 		return [
 			[
-				'Simple case',
+				'Document root without trailing slash',
 				[ 'foo { prop: url(bar.png); }', false, 'http://example.org', false ],
 				'foo { prop: url(http://example.org/bar.png); }',
 			],
 			[
 				'Without trailing slash',
-				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux', false ],
-				'foo { prop: url(http://example.org/bar.png); }',
+				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/mid', false ],
+				'foo { prop: url(http://example.org/quux/bar.png); }',
 			],
 			[
 				'With trailing slash on remote (T29052)',
-				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/', false ],
-				'foo { prop: url(http://example.org/bar.png); }',
+				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/mid/', false ],
+				'foo { prop: url(http://example.org/quux/bar.png); }',
 			],
 			[
 				'Guard against stripping double slashes from query',
@@ -309,22 +304,22 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 			[
 				'Expand absolute paths',
 				[ 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ],
-				'foo { prop: url(https://expand.example/w/skin/images/bar.png); }',
+				'foo { prop: url(http://example.org/w/skin/images/bar.png); }',
 			],
 			[
 				"Don't barf at behavior: url(#default#behaviorName) - T162973",
-				[ 'foo { behavior: url(#default#bar); }', false, '/w/', false ],
+				[ 'foo { behavior: url(#default#bar); }', false, 'http://localhost/w/', false ],
 				'foo { behavior: url("#default#bar"); }',
 			],
 			[
 				'Keeps anchors',
-				[ 'url(#other)', false, '/', false ],
+				[ 'url(#other)', false, 'http://localhost/', false ],
 				'url("#other")'
 			],
 			[
 				'Keeps anchors after a path',
-				[ 'url(images/file.svg#id)', false, '/', false ],
-				'url("/images/file.svg#id")'
+				[ 'url(images/file.svg#id)', false, 'http://localhost/', false ],
+				'url("http://localhost/images/file.svg#id")'
 			],
 		];
 	}
@@ -427,12 +422,12 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 			[
 				'Domain-relative URL',
 				'foo { background: url(/static/foo.png); }',
-				'foo { background: url(https://expand.example/static/foo.png); }',
+				'foo { background: url(http://localhost/static/foo.png); }',
 			],
 			[
 				'Domain-relative URL with query',
 				'foo { background: url(/static/foo.png?query=yes); }',
-				'foo { background: url(https://expand.example/static/foo.png?query=yes); }',
+				'foo { background: url(http://localhost/static/foo.png?query=yes); }',
 			],
 			[
 				'Path-relative URL with query',
@@ -533,12 +528,12 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 			[
 				'@import rule to local file (should we remap this?)',
 				'@import url(/styles.css)',
-				'@import url(https://expand.example/styles.css)',
+				'@import url(http://localhost/styles.css)',
 			],
 			[
 				'@import rule to local file (should we remap this?)',
 				'@import url(/styles.css)',
-				'@import url(https://expand.example/styles.css)',
+				'@import url(http://localhost/styles.css)',
 			],
 			[
 				'@import rule to URL',
@@ -578,7 +573,7 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 			[
 				'Background URL (single quoted, containing spaces, with outer spacing)',
 				"foo { background: url( ' red.gif ' ); }",
-				'foo { background: url("http://localhost/w/ red.gif "); }',
+				'foo { background: url(http://localhost/w/%20red.gif%20); }',
 			],
 			[
 				'Simple case with comments before url',

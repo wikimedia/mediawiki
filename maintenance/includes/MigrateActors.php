@@ -123,7 +123,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * Calculate a "next" condition and a display string
 	 * @param IDatabase $dbw
 	 * @param string[] $primaryKey Primary key of the table.
-	 * @param object $row Database row
+	 * @param stdClass $row Database row
 	 * @return array [ string $next, string $display ]
 	 */
 	private function makeNextCond( $dbw, $primaryKey, $row ) {
@@ -172,7 +172,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * @suppress SecurityCheck-SQLInjection The array_keys/array_map is too much for static analysis
 	 * @param IDatabase $dbw
 	 * @param string $nameField
-	 * @param object[] &$rows
+	 * @param stdClass[] &$rows
 	 * @param array &$complainedAboutUsers
 	 * @param int &$countErrors
 	 * @return int Count of actors inserted

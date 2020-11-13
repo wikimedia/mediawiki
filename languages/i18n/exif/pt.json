@@ -368,5 +368,15 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Baixa ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Prioridade definida pelo utilizador ($1)"
+	"exif-urgency-other": "Prioridade definida pelo utilizador ($1)",
+	"exif-firstphotodate": "Data da primeira fotografia",
+	"exif-lastphotodate": "Data da última fotografia",
+	"exif-projectiontype": "Tipo de projeção",
+	"exif-projectiontype-equirectangular": "Equiretangular",
+	"exif-usepanoramaviewer": "Usar visor panorâmico",
+	"exif-usepanoramaviewer-true": "Sim",
+	"exif-usepanoramaviewer-false": "Não",
+	"exif-exposurelockused": "Foi usado o bloqueador de exposição",
+	"exif-exposurelockused-true": "Sim",
+	"exif-exposurelockused-false": "Não"
 }

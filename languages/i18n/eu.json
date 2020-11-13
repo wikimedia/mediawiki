@@ -1433,7 +1433,7 @@
 	"rcfilters-savedqueries-already-saved": "Iragazki hauek dagoeneko gorde dira. Aldatu ezarpenak Gordetako Iragazki berri bat sortzeko.",
 	"rcfilters-restore-default-filters": "Leheneratu iragazki lehenetsiak",
 	"rcfilters-clear-all-filters": "Iragazki guztiak garbitu",
-	"rcfilters-show-new-changes": "Ikusi $1 ondorengo aldaketak",
+	"rcfilters-show-new-changes": "Ikusi $1 ezkero egindako aldaketak",
 	"rcfilters-search-placeholder": "Aldaketak iragazi (menua erabili edo bilatu iragazkiaren izena)",
 	"rcfilters-search-placeholder-mobile": "Iragazkiak",
 	"rcfilters-invalid-filter": "Balio ez duen iragazkia",
