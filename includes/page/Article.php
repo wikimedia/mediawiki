@@ -27,7 +27,6 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -108,8 +107,7 @@ class Article implements Page {
 	 * $fetchResult->value is the RevisionRecord object, if the operation was successful.
 	 *
 	 * The information in $fetchResult is duplicated by the following deprecated public fields:
-	 * $mRevIdFetched, $mContentLoaded (and $mContentObject) also typically duplicate
-	 * information of the loaded revision, but may be overwritten by extensions or due to errors.
+	 * $mRevIdFetched, $mContentLoaded (and $mContentObject).
 	 */
 	private $fetchResult = null;
 
@@ -145,10 +143,8 @@ class Article implements Page {
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
-	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). Normally loaded from the
-	 * database, but may be replaced by an extension, or be a fake representing an error message
-	 * or some such. While the output of Article::view is typically based on this revision,
-	 * it may be overwritten by error messages or replaced by extensions.
+	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). While the output of
+	 * Article::view is typically based on this revision, it may be replaced by extensions.
 	 *
 	 * Replaced $mRevision, which was public and is provided in a deprecated manner via
 	 * __get and __set
@@ -455,10 +451,8 @@ class Article implements Page {
 
 	/**
 	 * Fetches the revision to work on.
-	 * The revision is typically loaded from the database, but may also be a fake representing
-	 * an error message or content supplied by an extension. Refer to $this->fetchResult for
-	 * the revision actually loaded from the database, and any errors encountered while doing
-	 * that.
+	 * The revision is loaded from the database. Refer to $this->fetchResult for the revision
+	 * or any errors encountered while loading it.
 	 *
 	 * Public since 1.35
 	 *
@@ -485,7 +479,6 @@ class Article implements Page {
 
 					// Just for sanity, output for this case is done by showMissingArticle().
 					$this->fetchResult = Status::newFatal( 'noarticletext' );
-					$this->applyContentOverride( $this->makeFetchErrorContent() );
 					return null;
 				}
 			} else {
@@ -495,14 +488,12 @@ class Article implements Page {
 					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid" );
 
 					$this->fetchResult = Status::newFatal( 'missing-revision', $oldid );
-					$this->applyContentOverride( $this->makeFetchErrorContent() );
 					return null;
 				}
 			}
 		}
 
 		$this->mRevIdFetched = $this->mRevisionRecord->getId();
-		$this->fetchResult = Status::newGood( $this->mRevisionRecord );
 
 		if ( !RevisionRecord::userCanBitfield(
 			$this->mRevisionRecord->getVisibility(),
@@ -516,7 +507,6 @@ class Article implements Page {
 			// title used in wikilinks, should not contain whitespaces
 			$this->fetchResult = Status::newFatal(
 				'rev-deleted-text-permission', $this->getTitle()->getPrefixedDBkey() );
-			$this->applyContentOverride( $this->makeFetchErrorContent() );
 			return null;
 		}
 
@@ -527,45 +517,8 @@ class Article implements Page {
 			$this->getContext()->getUser()
 		);
 
+		$this->fetchResult = Status::newGood( $this->mRevisionRecord );
 		return $this->mRevisionRecord;
-	}
-
-	/**
-	 * Returns a Content object representing any error in $this->fetchContent, or null
-	 * if there is no such error.
-	 *
-	 * @return Content|null
-	 */
-	private function makeFetchErrorContent() {
-		if ( !$this->fetchResult || $this->fetchResult->isOK() ) {
-			return null;
-		}
-
-		return new MessageContent( $this->fetchResult->getMessage() );
-	}
-
-	/**
-	 * Applies a content override by constructing a fake Revision object and assigning
-	 * it to mRevisionRecord. The fake revision will not have a user, timestamp or summary set.
-	 *
-	 * @todo This mechanism was created mainly to accommodate extensions that use the
-	 * ArticleAfterFetchContentObject. fetchRevisionRecord() presently also uses this mechanism
-	 * to report errors, but that could be changed to use $this->fetchResult instead.
-	 *
-	 * @todo the ArticleAfterFetchContentObject hook was removed; check if this is still needed
-	 *
-	 * @param Content $override Content to be used instead of the actual page content,
-	 *        coming from an extension or representing an error message.
-	 */
-	private function applyContentOverride( Content $override ) {
-		// Construct a fake revision
-		$rev = new MutableRevisionRecord( $this->getTitle() );
-		$rev->setContent( SlotRecord::MAIN, $override );
-
-		$this->mRevisionRecord = $rev;
-
-		// For B/C only
-		$this->mContentObject = $override;
 	}
 
 	/**
@@ -585,10 +538,8 @@ class Article implements Page {
 	}
 
 	/**
-	 * Get the fetched Revision object depending on request parameters or null
-	 * on failure. The revision returned may be a fake representing an error message or
-	 * wrapping content supplied by an extension. Refer to $this->fetchResult for the
-	 * revision actually loaded from the database.
+	 * Get the fetched Revision object depending on request parameters or null on failure.
+	 * Refer to $this->fetchResult for the revision actually loaded from the database.
 	 *
 	 * @deprecated since 1.35
 	 *
@@ -760,7 +711,16 @@ class Article implements Page {
 				case 3:
 					# Are we looking at an old revision
 					$rev = $this->fetchRevisionRecord();
-					if ( $oldid && $this->fetchResult->isOK() ) {
+
+					if ( !$this->fetchResult->isOK() ) {
+						$this->showViewError( $this->fetchResult->getWikiText(
+							false, false, $this->getContext()->getLanguage()
+						) );
+						$outputDone = true;
+						break;
+					}
+
+					if ( $oldid ) {
 						$this->setOldSubtitle( $oldid );
 
 						if ( !$this->showDeletedRevisionHeader() ) {
@@ -799,7 +759,17 @@ class Article implements Page {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse" );
 
+					# unclear if this is a no-op, since it is called in case 3
 					$rev = $this->fetchRevisionRecord();
+
+					if ( !$this->fetchResult->isOK() ) {
+						$this->showViewError( $this->fetchResult->getWikiText(
+							false, false, $this->getContext()->getLanguage()
+						) );
+						$outputDone = true;
+						break;
+					}
+
 					$renderStatus = null;
 
 					if ( $rev ) {
@@ -843,14 +813,9 @@ class Article implements Page {
 					}
 
 					if ( !$renderStatus->isOK() ) {
-						$outputPage->clearHTML(); // for release() errors
-						$outputPage->enableClientCache( false );
-						$outputPage->setRobotPolicy( 'noindex,nofollow' );
-
-						$errortext = $renderStatus->getWikiText(
+						$this->showViewError( $renderStatus->getWikiText(
 							false, 'view-pool-error', $this->getContext()->getLanguage()
-						);
-						$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
+						) );
 						return;
 					}
 
@@ -1561,6 +1526,19 @@ class Article implements Page {
 				'lang' => $lang,
 			] ) . "\n$text\n</div>" );
 		}
+	}
+
+	/**
+	 * Show error text for errors generated in Article::view().
+	 * @param string $errortext localized wikitext error message
+	 */
+	private function showViewError( string $errortext ) {
+		$outputPage = $this->getContext()->getOutput();
+		$outputPage->setPageTitle( $this->getContext()->msg( 'errorpagetitle' ) );
+		$outputPage->enableClientCache( false );
+		$outputPage->setRobotPolicy( 'noindex,nofollow' );
+		$outputPage->clearHTML();
+		$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
 	}
 
 	/**

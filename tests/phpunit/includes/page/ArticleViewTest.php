@@ -5,6 +5,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Article::view()
@@ -492,4 +493,61 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
+	/**
+	 * @covers \Article::showViewError()
+	 */
+	public function testViewLatestError() {
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
+
+		$article = new Article( $page->getTitle(), 0 );
+		$output = $article->getContext()->getOutput();
+		$output->setTitle( $page->getTitle() );
+
+		// use ArticleViewHeader hook to bypass the parser cache
+		$this->setTemporaryHook(
+			'ArticleViewHeader',
+			function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+				$useParserCache = false;
+			}
+		);
+
+		$article = TestingAccessWrapper::newFromObject( $article );
+		$article->fetchResult = Status::newFatal(
+			'rev-deleted-text-permission',
+			$page->getTitle()->getPrefixedDBkey()
+		);
+
+		$article->view();
+
+		$this->assertStringContainsString(
+			'rev-deleted-text-permission: ArticleViewTest::testViewLatestError',
+			$this->getHtml( $output )
+		);
+	}
+
+	/**
+	 * @covers \Article::showViewError()
+	 */
+	public function testViewOldError() {
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		$article = new Article( $page->getTitle(), $idA );
+		$output = $article->getContext()->getOutput();
+		$output->setTitle( $page->getTitle() );
+
+		$article = TestingAccessWrapper::newFromObject( $article );
+		$article->fetchResult = Status::newFatal(
+			'rev-deleted-text-permission',
+			$page->getTitle()->getPrefixedDBkey()
+		);
+
+		$article->view();
+
+		$this->assertStringContainsString(
+			'rev-deleted-text-permission: ArticleViewTest::testViewOldError',
+			$this->getHtml( $output )
+		);
+	}
 }
