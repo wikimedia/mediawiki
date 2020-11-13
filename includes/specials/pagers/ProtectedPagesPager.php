@@ -156,7 +156,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
-		/** @var object $row */
+		/** @var stdClass $row */
 		$row = $this->mCurrentRow;
 		$linkRenderer = $this->getLinkRenderer();
 

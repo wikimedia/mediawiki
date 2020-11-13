@@ -235,7 +235,7 @@ class XmlDumpWriter {
 	 * Opens a "<page>" section on the output stream, with data
 	 * from the given database row.
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function openPage( $row ) {
@@ -331,7 +331,7 @@ class XmlDumpWriter {
 	 * Dumps a "<revision>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param null|object[] $slotRows
 	 *
 	 * @return string
@@ -577,7 +577,7 @@ class XmlDumpWriter {
 	 * Dumps a "<logitem>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function writeLogItem( $row ) {
@@ -649,7 +649,7 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param bool $dumpContents
 	 * @return string
 	 */

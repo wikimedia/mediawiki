@@ -548,7 +548,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param array|object $row
+	 * @param array|stdClass $row
 	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
@@ -573,7 +573,7 @@ class LocalFile extends File {
 	/**
 	 * Decode a row from the database (either object or array) to an array
 	 * with timestamps and MIME types decoded, and the field prefix removed.
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
@@ -622,7 +622,7 @@ class LocalFile extends File {
 	 * Load file metadata from a DB result row
 	 * @stable to override
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param string $prefix
 	 */
 	public function loadFromRow( $row, $prefix = 'img_' ) {
