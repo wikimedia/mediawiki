@@ -58,6 +58,12 @@ class JsonUnserializer {
 			$json = (array)$json;
 		}
 
+		if ( !is_array( $json ) ) {
+			throw new InvalidArgumentException(
+				'Expected array, got ' . gettype( $json )
+			);
+		}
+
 		if ( !$this->canMakeNewFromValue( $json ) ) {
 			throw new InvalidArgumentException( 'JSON did not have ' . self::TYPE_ANNOTATION );
 		}

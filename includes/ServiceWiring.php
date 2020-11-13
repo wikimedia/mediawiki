@@ -946,9 +946,12 @@ return [
 	'ParserOutputAccess' => function ( MediaWikiServices $services ) : ParserOutputAccess {
 		return new ParserOutputAccess(
 			$services->getParserCache(),
+			ObjectCache::getLocalClusterInstance(),
+			$services->getMainConfig()->get( 'OldRevisionParserCacheExpireTime' ),
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
-			$services->getDBLoadBalancerFactory()
+			$services->getDBLoadBalancerFactory(),
+			$services->getJsonUnserializer()
 		);
 	},
 
