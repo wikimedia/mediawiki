@@ -773,7 +773,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 $wgUser = RequestContext::getMain()->getUser(); // BackCompat
 
 /**
- * @var Language $wgLang
+ * @var Language|StubUserLang $wgLang
  */
 $wgLang = new StubUserLang;
 
@@ -791,7 +791,7 @@ $wgParser = new DeprecatedGlobal( 'wgParser', function () {
 }, '1.32' );
 
 /**
- * @var Title $wgTitle
+ * @var Title|null $wgTitle
  */
 $wgTitle = null;
 
