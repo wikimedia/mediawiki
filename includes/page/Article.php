@@ -931,8 +931,7 @@ class Article implements Page {
 		if ( !$rev ) {
 			// T213621: $rev maybe null due to either lack of permission to view the
 			// revision or actually not existing. So let's try loading it from the id
-			$services = MediaWikiServices::getInstance();
-			$rev = $services->getRevisionLookup()->getRevisionById( $oldid );
+			$rev = $this->revisionStore->getRevisionById( $oldid );
 			if ( $rev ) {
 				// Revision exists but $user lacks permission to diff it.
 				// Do nothing here.

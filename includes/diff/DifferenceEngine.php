@@ -1953,14 +1953,13 @@ class DifferenceEngine extends ContextSource {
 	 * @phan-return (int|false)[]
 	 */
 	public function mapDiffPrevNext( $old, $new ) {
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
 		if ( $new === 'prev' ) {
 			// Show diff between revision $old and the previous one. Get previous one from DB.
 			$newid = intval( $old );
 			$oldid = false;
-			$newRev = $rl->getRevisionById( $newid );
+			$newRev = $this->revisionStore->getRevisionById( $newid );
 			if ( $newRev ) {
-				$oldRev = $rl->getPreviousRevision( $newRev );
+				$oldRev = $this->revisionStore->getPreviousRevision( $newRev );
 				if ( $oldRev ) {
 					$oldid = $oldRev->getId();
 				}
@@ -1969,9 +1968,9 @@ class DifferenceEngine extends ContextSource {
 			// Show diff between revision $old and the next one. Get next one from DB.
 			$oldid = intval( $old );
 			$newid = false;
-			$oldRev = $rl->getRevisionById( $oldid );
+			$oldRev = $this->revisionStore->getRevisionById( $oldid );
 			if ( $oldRev ) {
-				$newRev = $rl->getNextRevision( $oldRev );
+				$newRev = $this->revisionStore->getNextRevision( $oldRev );
 				if ( $newRev ) {
 					$newid = $newRev->getId();
 				}
