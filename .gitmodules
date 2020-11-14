@@ -1247,11 +1247,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/Bootstrap"]
-	path = extensions/Bootstrap
-	url = https://github.com/ProfessionalWiki/Bootstrap
-	branch = master
-	ignore = dirty
 [submodule "extensions/Calendar"]
 	path = extensions/Calendar
 	url = https://github.com/wikimedia/mediawiki-extensions-Calendar
