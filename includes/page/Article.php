@@ -59,12 +59,6 @@ class Article implements Page {
 	protected $mPage;
 
 	/**
-	 * @var ParserOptions|null ParserOptions object for output of articles.
-	 * Initialized by getParserOptions by calling $this->mPage->makeParserOptions().
-	 */
-	public $mParserOptions;
-
-	/**
 	 * @var int|null The oldid of the article that was requested to be shown,
 	 * 0 for the current revision.
 	 */
@@ -2235,8 +2229,6 @@ class Article implements Page {
 	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
-		// XXX: bypasses mParserOptions and thus setParserOptions()
-
 		if ( $user === null ) {
 			$parserOptions = $this->getParserOptions();
 		} else {
@@ -2247,30 +2239,11 @@ class Article implements Page {
 	}
 
 	/**
-	 * Override the ParserOptions used to render the primary article wikitext.
-	 *
-	 * @param ParserOptions $options
-	 * @throws MWException If the parser options where already initialized.
-	 */
-	public function setParserOptions( ParserOptions $options ) {
-		if ( $this->mParserOptions ) {
-			throw new MWException( "can't change parser options after they have already been set" );
-		}
-
-		// clone, so if $options is modified later, it doesn't confuse the parser cache.
-		$this->mParserOptions = clone $options;
-	}
-
-	/**
 	 * Get parser options suitable for rendering the primary article wikitext
 	 * @return ParserOptions
 	 */
 	public function getParserOptions() {
-		if ( !$this->mParserOptions ) {
-			$this->mParserOptions = $this->mPage->makeParserOptions( $this->getContext() );
-		}
-		// Clone to allow modifications of the return value without affecting cache
-		return clone $this->mParserOptions;
+		return $this->mPage->makeParserOptions( $this->getContext() );
 	}
 
 	/**

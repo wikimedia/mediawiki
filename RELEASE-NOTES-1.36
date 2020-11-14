@@ -406,6 +406,7 @@ because of Phabricator reports.
   rely on it if they do not override getParserOutputForIndexing().)
 * Article::fetchContentObject, ::mContentObject, ::mContentLoaded,
   ::mRevIdFetched, deprecated since 1.32, were removed.
+* Article::mParserOptions and ::setParserOptions were removed.
 * …
 
 == Compatibility ==
