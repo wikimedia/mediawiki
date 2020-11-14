@@ -60,6 +60,8 @@ addons:
 
 before_script:
   - echo 'opcache.enable_cli = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  # Force composer 1.x because MediaWiki/composer-merge-plugin don't support composer 2.x yet
+  - composer self-update --1
   - composer install --prefer-source --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
