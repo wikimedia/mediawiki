@@ -1044,10 +1044,10 @@ abstract class ContentHandler {
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
 		$dbr = wfGetDB( DB_REPLICA );
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Get the last revision
-		$revRecord = $revLookup->getRevisionByTitle( $title );
+		$revRecord = $revStore->getRevisionByTitle( $title );
 
 		if ( $revRecord === null ) {
 			return false;
@@ -1061,7 +1061,7 @@ abstract class ContentHandler {
 		// which can only be blank if there's a move/import/protect dummy
 		// revision involved
 		if ( !$content || $content->isEmpty() ) {
-			$prev = $revLookup->getPreviousRevision( $revRecord );
+			$prev = $revStore->getPreviousRevision( $revRecord );
 
 			if ( $prev ) {
 				$revRecord = $prev;
@@ -1074,7 +1074,7 @@ abstract class ContentHandler {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
+		$revQuery = $revStore->getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
