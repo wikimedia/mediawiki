@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -47,7 +48,7 @@ class ViewCLI extends Maintenance {
 			$this->fatalError( "Page does not exist" );
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
 		$content = $page->getContent( RevisionRecord::RAW );
 		if ( !$content ) {

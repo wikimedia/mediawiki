@@ -1019,7 +1019,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get the database result for this special page instance. Used by ApiFeedRecentChanges.
 	 *
-	 * @return bool|IResultWrapper Result or false
+	 * @return IResultWrapper|false
 	 */
 	public function getRows() {
 		$opts = $this->getOptions();

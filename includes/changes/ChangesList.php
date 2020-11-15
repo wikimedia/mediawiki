@@ -314,7 +314,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param IResultWrapper|array $rows
+	 * @param IResultWrapper|stdClass[] $rows
 	 */
 	public function initChangesListRows( $rows ) {
 		$this->getHookRunner()->onChangesListInitRows( $this, $rows );
@@ -861,7 +861,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param object|RecentChange $rc Database row from recentchanges or a RecentChange object
+	 * @param stdClass|RecentChange $rc Database row from recentchanges or a RecentChange object
 	 * @param User $user
 	 * @return bool
 	 */
