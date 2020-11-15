@@ -231,6 +231,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @param Skin $skin
 	 * @param File $result
 	 * @return string HTML
+	 * @suppress PhanParamSignatureMismatch Called here, not from parent
 	 */
 	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
