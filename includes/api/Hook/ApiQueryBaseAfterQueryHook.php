@@ -22,7 +22,7 @@ interface ApiQueryBaseAfterQueryHook {
 	 * @since 1.35
 	 *
 	 * @param ApiQueryBase $module Module in question
-	 * @param IResultWrapper|bool $result ResultWrapper or bool returned from the IDatabase::select()
+	 * @param IResultWrapper $result ResultWrapper
 	 * @param array &$hookData Array that was passed to the ApiQueryBaseBeforeQuery hook and
 	 *   will be passed to the ApiQueryBaseProcessRow hook, intended for inter-hook
 	 *   communication

@@ -81,7 +81,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @internal
 	 * @param User $user
 	 * @param RecentChange|null $rc
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public static function getPatrolToken( User $user, $rc = null ) {
 		$validTokenUser = false;

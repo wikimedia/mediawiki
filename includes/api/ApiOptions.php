@@ -158,7 +158,7 @@ class ApiOptions extends ApiBase {
 	/**
 	 * Load the user from the master to reduce CAS errors on double post (T95839)
 	 *
-	 * @return null|User
+	 * @return User|null
 	 */
 	protected function getUserForUpdates() {
 		if ( !$this->userForUpdates ) {

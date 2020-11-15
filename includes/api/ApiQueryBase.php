@@ -444,7 +444,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * here in the same way it treats a false return from addValue().
 	 *
 	 * @since 1.28
-	 * @param object $row Database row
+	 * @param stdClass $row Database row
 	 * @param array &$data Data to be added to the result
 	 * @param array &$hookData Hook data from ApiQueryBase::select()
 	 * @return bool Return false if row processing should end with continuation
