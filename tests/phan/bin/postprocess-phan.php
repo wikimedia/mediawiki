@@ -66,7 +66,10 @@ class CheckStyleSuppressor extends Suppressor {
 	 */
 	public function suppress( $input ) {
 		$dom = new DOMDocument();
+
+		$oldDisable = libxml_disable_entity_loader( true );
 		$dom->loadXML( $input );
+
 		$hasErrors = false;
 		// DOMNodeList's are "live", convert to an array so it works as expected
 		$files = [];
@@ -95,6 +98,7 @@ class CheckStyleSuppressor extends Suppressor {
 			}
 		}
 		echo $dom->saveXML();
+		libxml_disable_entity_loader( $oldDisable );
 
 		return $hasErrors;
 	}
