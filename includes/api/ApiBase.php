@@ -182,7 +182,7 @@ abstract class ApiBase extends ContextSource {
 	/** @var stdClass[][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
 
-	/** $var array Map of web UI block messages to corresponding API messages and codes */
+	/** @var array Map of web UI block messages to corresponding API messages and codes */
 	private static $blockMsgMap = [
 		'blockedtext' => [ 'apierror-blocked', 'blocked' ],
 		'blockedtext-partial' => [ 'apierror-blocked-partial', 'blocked' ],
@@ -200,7 +200,7 @@ abstract class ApiBase extends ContextSource {
 	 * @var array
 	 */
 	private $mParamCache = [];
-	/** @var array|null|bool */
+	/** @var array|null|false */
 	private $mModuleSource = false;
 
 	/**
@@ -961,7 +961,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
-	 * @param object $x Parameter to check is not null/false
+	 * @param mixed $x Parameter to check is not null/false
 	 * @return bool
 	 */
 	private function parameterNotEmpty( $x ) {
@@ -973,7 +973,7 @@ abstract class ApiBase extends ContextSource {
 	 * Can die, if no param is set or if the title or page id is not valid.
 	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
-	 * @param bool|string $load Whether load the object's state from the database:
+	 * @param string|false $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
 	 *        - 'fromdb': load from a replica DB
 	 *        - 'fromdbmaster': load from the master database
@@ -1694,7 +1694,7 @@ abstract class ApiBase extends ContextSource {
 	 * tweak it as needed.
 	 *
 	 * @param int $flags Zero or more flags like GET_VALUES_FOR_HELP
-	 * @return array|bool False on no parameters
+	 * @return array
 	 * @since 1.21 $flags param added
 	 */
 	public function getFinalParams( $flags = 0 ) {
