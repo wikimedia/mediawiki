@@ -432,10 +432,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 */
 	protected function getCurlMulti( array $opts ) {
 		if ( !$this->cmh ) {
-			if ( !function_exists( 'curl_multi_init' ) ) {
-				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
-			}
 			$cmh = curl_multi_init();
 			// Limit the size of the idle connection cache such that consecutive parallel
 			// request batches to the same host can avoid having to keep making connections
