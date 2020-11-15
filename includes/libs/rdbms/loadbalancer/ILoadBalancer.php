@@ -550,7 +550,7 @@ interface ILoadBalancer {
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBTransactionError
 	 */
-	public function approveMasterChanges( array $options, $fname, $owner = null );
+	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
