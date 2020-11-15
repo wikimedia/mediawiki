@@ -30,6 +30,7 @@ use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * implements Special:Search - Run text & title search and display the output
@@ -92,6 +93,9 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $searchConfig;
 
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
+
 	/**
 	 * @var Status Holds any parameter validation errors that should
 	 *  be displayed back to the user.
@@ -102,7 +106,10 @@ class SpecialSearch extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Search' );
-		$this->searchConfig = MediaWikiServices::getInstance()->getSearchEngineConfig();
+		// TODO Inject services
+		$services = MediaWikiServices::getInstance();
+		$this->searchConfig = $services->getSearchEngineConfig();
+		$this->userOptionsManager = $services->getUserOptionsManager();
 	}
 
 	/**
@@ -317,11 +324,11 @@ class SpecialSearch extends SpecialPage {
 		global $wgSearchMatchRedirectPreference;
 		if ( !$wgSearchMatchRedirectPreference ) {
 			// If the preference for whether to redirect is disabled, use the default setting
-			$defaultOptions = $this->getUser()->getDefaultOptions();
+			$defaultOptions = $this->userOptionsManager->getDefaultOptions();
 			return $defaultOptions['search-match-redirect'];
 		} else {
 			// Otherwise use the user's preference
-			return $this->getUser()->getOption( 'search-match-redirect' );
+			return $this->userOptionsManager->getOption( $this->getUser(), 'search-match-redirect' );
 		}
 	}
 
@@ -702,12 +709,12 @@ class SpecialSearch extends SpecialPage {
 			foreach ( MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces()
 				as $n
 			) {
-				$user->setOption( 'searchNs' . $n, false );
+				$this->userOptionsManager->setOption( $user, 'searchNs' . $n, false );
 			}
 			// The request parameters include all the namespaces to be searched.
 			// Even if they're the same as an existing profile, they're not eaten.
 			foreach ( $this->namespaces as $n ) {
-				$user->setOption( 'searchNs' . $n, true );
+				$this->userOptionsManager->setOption( $user, 'searchNs' . $n, true );
 			}
 
 			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
