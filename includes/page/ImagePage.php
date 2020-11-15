@@ -280,27 +280,6 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Overloading Article's getEmptyPageParserOutput method.
-	 *
-	 * Omit noarticletext if sharedupload; text will be fetched from the
-	 * shared upload server if possible.
-	 *
-	 * @param ParserOptions $options
-	 * @return ParserOutput
-	 */
-	public function getEmptyPageParserOutput( ParserOptions $options ) {
-		$this->loadFile();
-		if (
-			$this->getFile()
-			&& !$this->getFile()->isLocal()
-			&& !$this->getPage()->getId()
-		) {
-			return new ParserOutput();
-		}
-		return parent::getEmptyPageParserOutput( $options );
-	}
-
-	/**
 	 * Returns language code to be used for dispaying the image, based on request context and
 	 * languages available in the file.
 	 *

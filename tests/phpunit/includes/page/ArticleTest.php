@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class ArticleTest extends \MediaWikiIntegrationTestCase {
 
 	/**
@@ -73,5 +76,23 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	public function testSerialization_fails() {
 		$this->expectException( LogicException::class );
 		serialize( $this->article );
+	}
+
+	/**
+	 * Tests that missing article page shows parser contents
+	 * of the well-known system message for NS_MEDIAWIKI pages
+	 * @covers Article::showMissingArticle
+	 */
+	public function testMissingArticleMessage() {
+		// Use a well-known system message
+		$title = Title::makeTitle( NS_MEDIAWIKI, 'uploadedimage' );
+		$article = new Article( $title, 0 );
+		$article->getContext()->getOutput()->setTitle( $title );
+		$article->showMissingArticle();
+		$output = $article->getContext()->getOutput();
+		$this->assertStringContainsString(
+			Message::newFromKey( 'uploadedimage' )->parse(),
+			$output->getHTML()
+		);
 	}
 }
