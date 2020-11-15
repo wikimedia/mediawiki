@@ -2248,6 +2248,9 @@ abstract class Skin extends ContextSource {
 	 * will render as element properties:
 	 *     data-foo='1' data-bar='baz'
 	 *
+	 * The "class" key currently accepts both a string and an array of classes, but this will be
+	 * changed to only accept an array in the future.
+	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
@@ -2327,7 +2330,12 @@ abstract class Skin extends ContextSource {
 			}
 			if ( isset( $options['link-class'] ) ) {
 				if ( isset( $attrs['class'] ) ) {
-					$attrs['class'] .= " {$options['link-class']}";
+					// In the future, this should accept an array of classes, not a string
+					if ( is_array( $attrs['class'] ) ) {
+						$attrs['class'][] = $options['link-class'];
+					} else {
+						$attrs['class'] .= " {$options['link-class']}";
+					}
 				} else {
 					$attrs['class'] = $options['link-class'];
 				}
@@ -2348,7 +2356,9 @@ abstract class Skin extends ContextSource {
 	 * @param array $item Array of list item data containing some of a specific set of keys.
 	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
-	 * @phan-param array{id?:string,class?:string,itemtitle?:string,active?:bool} $item
+	 * The "class" key currently accepts both a string and an array of classes, but this will be
+	 * changed to only accept an array in the future.
+	 * @phan-param array{id?:string,class?:string|string[],itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
 	 * @phan-param array{tag?:string} $options
@@ -2414,8 +2424,14 @@ abstract class Skin extends ContextSource {
 			if ( !isset( $attrs['class'] ) ) {
 				$attrs['class'] = '';
 			}
-			$attrs['class'] .= ' active';
-			$attrs['class'] = trim( $attrs['class'] );
+
+			// In the future, this should accept an array of classes, not a string
+			if ( is_array( $attrs['class'] ) ) {
+				$attrs['class'][] = 'active';
+			} else {
+				$attrs['class'] .= ' active';
+				$attrs['class'] = trim( $attrs['class'] );
+			}
 		}
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
