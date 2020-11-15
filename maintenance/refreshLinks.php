@@ -216,7 +216,7 @@ class RefreshLinks extends Maintenance {
 	 * @param int $id The page ID to check
 	 */
 	private function fixRedirect( $id ) {
-		$page = WikiPage::newFromID( $id );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id );
 		$dbw = $this->getDB( DB_MASTER );
 
 		if ( $page === null ) {
@@ -259,9 +259,10 @@ class RefreshLinks extends Maintenance {
 	 * @param int|bool $ns Only fix links if it is in this namespace
 	 */
 	public static function fixLinksFromArticle( $id, $ns = false ) {
-		$page = WikiPage::newFromID( $id );
+		$services = MediaWikiServices::getInstance();
+		$page = $services->getWikiPageFactory()->newFromID( $id );
 
-		MediaWikiServices::getInstance()->getLinkCache()->clear();
+		$services->getLinkCache()->clear();
 
 		if ( $page === null ) {
 			return;

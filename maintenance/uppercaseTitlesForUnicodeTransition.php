@@ -386,7 +386,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		$mpFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+		$services = MediaWikiServices::getInstance();
+		$mpFactory = $services->getMovePageFactory();
 		$movePage = $mpFactory->newMovePage( $oldTitle, $newTitle );
 		$status = $movePage->isValidMove();
 		if ( !$status->isOK() ) {
@@ -433,7 +434,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		);
 
 		if ( $deletionReason !== null ) {
-			$page = WikiPage::factory( $newTitle );
+			$page = $services->getWikiPageFactory()->newFromTitle( $newTitle );
 			$error = '';
 			$status = $page->doDeleteArticleReal(
 				$deletionReason,

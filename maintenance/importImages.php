@@ -127,7 +127,8 @@ class ImportImages extends Maintenance {
 	public function execute() {
 		global $wgFileExtensions, $wgUser, $wgRestrictionLevels;
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 
 		$processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
@@ -189,7 +190,7 @@ class ImportImages extends Maintenance {
 		# Batch "upload" operation
 		$count = count( $files );
 		if ( $count > 0 ) {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory = $services->getDBLoadBalancerFactory();
 			foreach ( $files as $file ) {
 				if ( $sleep && ( $processed > 0 ) ) {
 					sleep( $sleep );
@@ -227,7 +228,7 @@ class ImportImages extends Maintenance {
 				}
 
 				# Check existence
-				$image = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				$image = $services->getRepoGroup()->getLocalRepo()
 					->newFile( $title );
 				if ( $image->exists() ) {
 					if ( $this->hasOption( 'overwrite' ) ) {
@@ -314,7 +315,7 @@ class ImportImages extends Maintenance {
 						" publishing {$file} by '{$user->getName()}', comment '$commentText'... "
 					);
 				} else {
-					$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+					$mwProps = new MWFileProps( $services->getMimeAnalyzer() );
 					$props = $mwProps->getPropsFromPath( $file, true );
 					$flags = 0;
 					$publishOptions = [];
@@ -380,7 +381,7 @@ class ImportImages extends Maintenance {
 							$restrictions[$type] = $protectLevel;
 						}
 
-						$page = WikiPage::factory( $title );
+						$page = $services->getWikiPageFactory()->newFromTitle( $title );
 						$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, '', $user );
 						$this->output( ( $status->isOK() ? 'done' : 'failed' ) . "\n" );
 					}
