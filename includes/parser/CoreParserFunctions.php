@@ -316,13 +316,14 @@ class CoreParserFunctions {
 		// which then trigger deprecation warnings in Language::formatNum*.
 		// Instead emit a tracking category instead to allow linting.
 		return function ( $number ) use ( $parser, $callback ) {
-			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
-			if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
+			if ( !is_numeric( $number ) ) {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
+				return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $callback ) {
+					return call_user_func( $callback, $m[0] );
+				}, $number );
 			}
-			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $callback ) {
-				return call_user_func( $callback, $m[0] );
-			}, $number );
+			return call_user_func( $callback, $number );
 		};
 	}
 
