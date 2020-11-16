@@ -378,6 +378,7 @@ because of Phabricator reports.
   instead.
 * Title::isDeleted() and Title::isDeletedQuick() have been deprecated. Please
   use Title::getDeletedEditsCount() and Title::hasDeletedEdits() instead.
+* Article::getContentObject, soft-deprecated since 1.32, was hard-deprecated.
 * …
 
 === Other changes in 1.36 ===
@@ -403,6 +404,8 @@ because of Phabricator reports.
   which may improve indexing performance. (The default implementation
   still generates HTML, and getDataForSearchIndex() implementations can still
   rely on it if they do not override getParserOutputForIndexing().)
+* Article::fetchContentObject, ::mContentObject, ::mContentLoaded,
+  ::mRevIdFetched, deprecated since 1.32, were removed.
 * …
 
 == Compatibility ==
