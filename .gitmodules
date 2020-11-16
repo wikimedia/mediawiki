@@ -740,7 +740,7 @@
 [submodule "extensions/PageForms"]
 	path = extensions/PageForms
 	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
-	branch = REL1_35
+	branch = master
 	ignore = dirty
 [submodule "skins/Timeless"]
 	path = skins/Timeless
