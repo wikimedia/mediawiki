@@ -13,17 +13,15 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param WikiPage $page
-	 * @param RevisionRecord $rev
-	 * @param null $options
-	 * @param bool $useParserCache
+	 * @param RevisionRecord|null $rev
+	 * @param ParserOptions|null $options
 	 *
 	 * @return PoolWorkArticleView
 	 */
-	private function newPoolWorkArticleView(
+	protected function newPoolWorkArticleView(
 		WikiPage $page,
 		RevisionRecord $rev = null,
-		$options = null,
-		$useParserCache = true
+		$options = null
 	) {
 		if ( !$options ) {
 			$options = ParserOptions::newCanonical( 'canonical' );
@@ -33,16 +31,13 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 			$rev = $page->getRevisionRecord();
 		}
 
-		$parserCache = $this->getServiceContainer()->getParserCache();
 		$revisionRenderer = $this->getServiceContainer()->getRevisionRenderer();
 
 		return new PoolWorkArticleView(
-			$page,
+			'test:' . $rev->getId(),
 			$rev,
 			$options,
-			$useParserCache,
-			$revisionRenderer,
-			$parserCache
+			$revisionRenderer
 		);
 	}
 
@@ -60,11 +55,11 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$rev1 = $this->makeRevision( $page, 'First!' );
 		$rev2 = $this->makeRevision( $page, 'Second!' );
 
-		$work = $this->newPoolWorkArticleView( $page, $rev1, $options, false );
+		$work = $this->newPoolWorkArticleView( $page, $rev1, $options );
 		$work->execute();
 		$this->assertStringContainsString( 'First', $work->getParserOutput()->getText() );
 
-		$work = $this->newPoolWorkArticleView( $page, $rev2, $options, false );
+		$work = $this->newPoolWorkArticleView( $page, $rev2, $options );
 		$work->execute();
 		$this->assertStringContainsString( 'Second', $work->getParserOutput()->getText() );
 	}
@@ -74,7 +69,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$rev1 = $this->makeRevision( $page, 'First!' );
 
-		$work = $this->newPoolWorkArticleView( $page, $rev1, $options, true );
+		$work = $this->newPoolWorkArticleView( $page, $rev1, $options );
 		$work->execute();
 
 		$cache = MediaWikiServices::getInstance()->getParserCache();
@@ -95,7 +90,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$fakeRev = new MutableRevisionRecord( $page->getTitle() );
 		$fakeRev->setContent( SlotRecord::MAIN, new WikitextContent( 'YES!' ) );
 
-		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options, false );
+		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options );
 		$work->execute();
 
 		$text = $work->getParserOutput()->getText();
@@ -174,7 +169,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$fakeRev->setVisibility( RevisionRecord::DELETED_TEXT );
 
 		// rendering of a deleted revision should work, audience checks are bypassed
-		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options, false );
+		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options );
 		$this->assertTrue( $work->execute() );
 	}
 
