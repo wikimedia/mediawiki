@@ -24,6 +24,7 @@ namespace MediaWiki\Page;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
@@ -59,6 +60,7 @@ class ParserOutputAccess {
 	/**
 	 * @var int Bypass audience check for deleted/suppressed revisions.
 	 *      The caller is responsible for ensuring that unauthorized access is prevented.
+	 *      If not set, output generation will fail if the revision is not public.
 	 */
 	public const OPT_NO_AUDIENCE_CHECK = 4;
 
@@ -71,18 +73,24 @@ class ParserOutputAccess {
 	/** @var ParserCache */
 	private $primaryCache;
 
+	/** @var RevisionRenderer */
+	private $revisionRenderer;
+
 	/** @var IBufferingStatsdDataFactory */
 	private $statsDataFactory;
 
 	/**
 	 * @param ParserCache $primaryCache
+	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
+		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory
 	) {
 		$this->primaryCache = $primaryCache;
+		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
 	}
 
@@ -106,6 +114,8 @@ class ParserOutputAccess {
 		}
 
 		// NOTE: Keep in sync with ParserWikiPage::shouldCheckParserCache().
+		// NOTE: when we allow caching of old revisions in the future,
+		//       we must not allow caching of deleted revisions.
 		$oldId = $rev ? $rev->getId() : 0;
 		return $parserOptions->getStubThreshold() == 0
 			&& $page->exists()
@@ -171,34 +181,26 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): Status {
-		if ( !$page->exists() ) {
-			return Status::newFatal( 'nopagetext' );
-		}
-
-		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) ) {
-			if ( !$parserOptions->isSafeToCache() ) {
-				throw new InvalidArgumentException(
-					'The supplied ParserOptions are not safe to cache. Use NO_CACHE.'
-				);
-			}
-
-			if ( $revision && !$revision->getId() ) {
-				throw new InvalidArgumentException(
-					'The revision does not have a known ID. Use NO_CACHE.'
-				);
-			}
-		}
-
-		if ( $revision && $revision->getPageId() !== $page->getId() ) {
-			throw new InvalidArgumentException(
-				'The revision does not belong to the given page.'
-			);
+		$error = $this->checkPreconditions( $page, $parserOptions, $revision, $options );
+		if ( $error ) {
+			return $error;
 		}
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
 			$output = $this->getCachedParserOutput( $page, $parserOptions, $revision );
 			if ( $output ) {
 				return Status::newGood( $output );
+			}
+		}
+
+		if ( !$revision ) {
+			$revision = $page->getRevisionRecord();
+
+			if ( !$revision ) {
+				return Status::newFatal(
+					'missing-revision',
+					$page->getLatest()
+				);
 			}
 		}
 
@@ -237,12 +239,66 @@ class ParserOutputAccess {
 	 * @param RevisionRecord|null $revision
 	 * @param int $options
 	 *
+	 * @return Status|null
+	 */
+	private function checkPreconditions(
+		WikiPage $page,
+		ParserOptions $parserOptions,
+		?RevisionRecord $revision = null,
+		int $options = 0
+	): ?Status {
+		if ( !$page->exists() ) {
+			return Status::newFatal( 'nopagetext' );
+		}
+
+		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) ) {
+			if ( !$parserOptions->isSafeToCache() ) {
+				throw new InvalidArgumentException(
+					'The supplied ParserOptions are not safe to cache. Use NO_CACHE.'
+				);
+			}
+
+			if ( $revision && !$revision->getId() ) {
+				throw new InvalidArgumentException(
+					'The revision does not have a known ID. Use NO_CACHE.'
+				);
+			}
+		}
+
+		if ( $revision && $revision->getPageId() !== $page->getId() ) {
+			throw new InvalidArgumentException(
+				'The revision does not belong to the given page.'
+			);
+		}
+
+		if ( $revision && !( $options & self::OPT_NO_AUDIENCE_CHECK ) ) {
+			// NOTE: If per-user checks are desired, the caller should perform them and
+			//       then set OPT_NO_AUDIENCE_CHECK if they passed.
+			if ( !$revision->audienceCan( RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_PUBLIC ) ) {
+				return Status::newFatal(
+					'missing-revision-permission',
+					$revision->getId(),
+					$revision->getTimestamp(),
+					$page->getTitle()->getPrefixedDBkey()
+				);
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @param ParserOptions $parserOptions
+	 * @param RevisionRecord|null $revision
+	 * @param int $options
+	 *
 	 * @return PoolWorkArticleView
 	 */
 	private function newPoolWorkArticleView(
 		WikiPage $page,
 		ParserOptions $parserOptions,
-		?RevisionRecord $revision,
+		RevisionRecord $revision,
 		int $options
 	): PoolWorkArticleView {
 		if ( $options & self::OPT_NO_UPDATE_CACHE ) {
@@ -251,19 +307,13 @@ class ParserOutputAccess {
 			$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
 		}
 
-		// We only support RAW and FOR_PUBLIC. If per-user permission checks are desired,
-		// the caller should perform them and then set NO_AUDIENCE_CHECK.
-		$audience = ( $options & self::OPT_NO_AUDIENCE_CHECK )
-			? RevisionRecord::RAW
-			: RevisionRecord::FOR_PUBLIC;
-
 		$work = new PoolWorkArticleView(
 			$page,
-			$parserOptions,
-			$revision ? $revision->getId() : $page->getLatest(),
-			$useCache,
 			$revision,
-			$audience
+			$parserOptions,
+			$useCache,
+			$this->revisionRenderer,
+			$this->primaryCache
 		);
 
 		return $work;

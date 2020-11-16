@@ -946,6 +946,7 @@ return [
 	'ParserOutputAccess' => function ( MediaWikiServices $services ) : ParserOutputAccess {
 		return new ParserOutputAccess(
 			$services->getParserCache(),
+			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory()
 		);
 	},
