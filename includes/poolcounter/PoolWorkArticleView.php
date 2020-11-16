@@ -19,21 +19,21 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRecord;
 
+/**
+ * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
+ * @note No audience checks are applied.
+ *
+ * @internal
+ */
 class PoolWorkArticleView extends PoolCounterWork {
 	/** @var WikiPage */
 	private $page;
 
 	/** @var string */
 	private $cacheKey;
-
-	/** @var int */
-	private $revid;
 
 	/** @var ParserCache */
 	private $parserCache;
@@ -43,12 +43,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/** @var RevisionRecord|null */
 	private $revision = null;
-
-	/** @var int */
-	private $audience;
-
-	/** @var RevisionStore */
-	private $revisionStore = null;
 
 	/** @var RevisionRenderer */
 	private $renderer = null;
@@ -67,70 +61,38 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
 	 * @param WikiPage $page
+	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
-	 * @param int $revid ID of the revision being parsed.
 	 * @param bool $useParserCache Whether to use the parser cache.
-	 *   operation.
-	 * @param RevisionRecord|Content|string|null $revision Revision to render, or null to load it;
-	 *        may also be given as a wikitext string, or a Content object, for BC.
-	 * @param int $audience One of the RevisionRecord audience constants
+	 * @param RevisionRenderer $revisionRenderer
+	 * @param ParserCache $parserCache
 	 */
-	public function __construct( WikiPage $page, ParserOptions $parserOptions,
-		$revid, $useParserCache, $revision = null, $audience = RevisionRecord::FOR_PUBLIC
+	public function __construct(
+		WikiPage $page,
+		RevisionRecord $revision,
+		ParserOptions $parserOptions,
+		bool $useParserCache,
+		RevisionRenderer $revisionRenderer,
+		ParserCache $parserCache
 	) {
-		if ( is_string( $revision ) ) { // BC: very old style call
-			$revRecord = $page->getRevisionRecord();
-			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-			$modelId = $mainSlot->getModel();
-			$format = $mainSlot->getFormat();
-
-			if ( $format === null ) {
-				$format = MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
-					->getContentHandler( $modelId )
-					->getDefaultFormat();
-			}
-
-			$revision = ContentHandler::makeContent( $revision, $page->getTitle(), $modelId, $format );
+		// TODO: Remove support for partially initialized RevisionRecord instances once
+		//       Article no longer uses fake revisions.
+		if ( $revision->getPageId() && $revision->getPageId() !== $page->getTitle()->getArticleID() ) {
+			throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
 		}
-
-		if ( $revision instanceof Content ) { // BC: old style call
-			$content = $revision;
-			$revision = new MutableRevisionRecord( $page->getTitle() );
-			$revision->setId( $revid );
-			$revision->setPageId( $page->getId() );
-			$revision->setContent( SlotRecord::MAIN, $content );
-		}
-
-		if ( $revision ) {
-			// Check that the RevisionRecord matches $revid and $page, but still allow
-			// fake RevisionRecords coming from errors or hooks in Article to be rendered.
-			if ( $revision->getId() && $revision->getId() !== $revid ) {
-				throw new InvalidArgumentException( '$revid parameter mismatches $revision parameter' );
-			}
-			if ( $revision->getPageId()
-				&& $revision->getPageId() !== $page->getTitle()->getArticleID()
-			) {
-				throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
-			}
-		}
-
-		// TODO: DI: inject services
-		$this->renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->parserCache = MediaWikiServices::getInstance()->getParserCache();
 
 		$this->page = $page;
-		$this->revid = $revid;
-		$this->cacheable = $useParserCache;
-		$this->parserOptions = $parserOptions;
 		$this->revision = $revision;
-		$this->audience = $audience;
+		$this->parserOptions = $parserOptions;
+		$this->cacheable = $useParserCache;
+		$this->renderer = $revisionRenderer;
+		$this->parserCache = $parserCache;
+
 		$parserCacheMetadata = $this->parserCache->getMetadata( $page );
 		$this->cacheKey = $this->parserCache->makeParserOutputKey( $page, $parserOptions,
 			$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
 		);
-		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
+		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revision->getId() );
 	}
 
 	/**
@@ -173,40 +135,13 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function doWork() {
-		global $wgUseFileCache;
-
-		// @todo several of the methods called on $this->page are not declared in Page, but present
-		//        in WikiPage and delegated by Article.
-
-		$isCurrent = $this->revid === $this->page->getLatest();
-
-		// The current revision cannot be hidden so we can skip some checks.
-		$audience = $isCurrent ? RevisionRecord::RAW : $this->audience;
-
-		if ( $this->revision !== null ) {
-			$rev = $this->revision;
-		} elseif ( $isCurrent ) {
-			$rev = $this->page->getRevisionRecord();
-		} else {
-			$rev = $this->revisionStore->getRevisionByTitle( $this->page->getTitle(), $this->revid );
-		}
-
-		if ( !$rev ) {
-			// couldn't load
-			return false;
-		}
-
-		if ( !$rev->getId() ) {
-			// The revision isn't from the database, don't treat it as current!
-			// The revision could be a fake for a preview or contain an error message.
-			$isCurrent = false;
-		}
+		$isCurrent = $this->revision->getId() === $this->page->getLatest();
 
 		$renderedRevision = $this->renderer->getRenderedRevision(
-			$rev,
+			$this->revision,
 			$this->parserOptions,
 			null,
-			[ 'audience' => $audience ]
+			[ 'audience' => RevisionRecord::RAW ]
 		);
 
 		if ( !$renderedRevision ) {
@@ -235,14 +170,12 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
 			$this->parserCache->save(
-				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime, $this->revid );
-		}
-
-		// Make sure file cache is not used on uncacheable content.
-		// Output that has magic words in it can still use the parser cache
-		// (if enabled), though it will generally expire sooner.
-		if ( !$this->parserOutput->isCacheable() ) {
-			$wgUseFileCache = false;
+				$this->parserOutput,
+				$this->page,
+				$this->parserOptions,
+				$cacheTime,
+				$this->revision->getId()
+			);
 		}
 
 		if ( $isCurrent ) {
