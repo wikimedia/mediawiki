@@ -1003,7 +1003,7 @@
 	"mergehistory-go": "Samenvoegbare bewerkingen bekijken",
 	"mergehistory-submit": "Versies samenvoegen",
 	"mergehistory-empty": "Er zijn geen versies die samengevoegd kunnen worden.",
-	"mergehistory-done": "$3 {{PLURAL:$3|versie|versies}} van $1 {{PLURAL:$3|is|zijn}} samengevoegd naar [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|versie|versies}} van $1 {{PLURAL:$4|is|zijn}} samengevoegd naar [[:$2]].\n$3.",
 	"mergehistory-fail": "Kan geen geschiedenis samenvoegen, controleer opnieuw de pagina- en tijdinstellingen.",
 	"mergehistory-fail-bad-timestamp": "Het tijdstempel is ongeldig.",
 	"mergehistory-fail-invalid-source": "De bronpagina is ongeldig.",
@@ -1021,6 +1021,8 @@
 	"mergehistory-comment": "[[:$1]] samengevoegd naar [[:$2]]: $3",
 	"mergehistory-same-destination": "De bronpagina en doelpagina kunnen niet hetzelfde zijn",
 	"mergehistory-reason": "Reden:",
+	"mergehistory-source-deleted-reason": "Bronpagina automatisch verwijderd na het samenvoegen van de geschiedenis omdat het inhoudsmodel geen doorverwijzingen ondersteund en er geen versies over zijn gebleven",
+	"mergehistory-source-deleted": "Daarnaast is [[:$1]] verwijderd omdat het niet langer zichtbare versies heeft en het inhoudsmodel geen doorverwijzingen ondersteund.",
 	"mergelog": "Samenvoegingslogboek",
 	"revertmerge": "Samenvoeging ongedaan maken",
 	"mergelogpagetext": "Hieronder ziet u een lijst van recente samenvoegingen van een paginageschiedenis naar een andere.",
@@ -4039,5 +4041,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP-adres",
 	"paramvalidator-help-type-user-subtype-cidr": "IP bereik",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikinaam (bijv. \"voorvoegsel>VoorbeeldNaam\")",
-	"paramvalidator-help-type-user-subtype-id": "gebruikers-ID (bijv. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "gebruikers-ID (bijv. \"#12345\")",
+	"paramvalidator-badtitle": "Ongeldige waarde \"$2\" voor titel parameter <var>$1</var>: de opgegeven waarde is niet een geldige titel.",
+	"paramvalidator-missingtitle": "Ongeldige waarde \"$2\" voor titel parameter <var>$1</var>: de pagina bestaat niet.",
+	"paramvalidator-help-type-title": "Soort: paginatitel",
+	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's."
 }

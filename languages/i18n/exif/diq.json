@@ -392,5 +392,14 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "($1) Kemiyo",
 	"exif-urgency-high": "( $1 ) Vêşiyo",
-	"exif-urgency-other": "Sıftê  şınasiya karberi ($1)"
+	"exif-urgency-other": "Sıftê  şınasiya karberi ($1)",
+	"exif-firstphotodate": "Demê resımê sıfteyıni",
+	"exif-lastphotodate": "Demê resımê bahdoyêni",
+	"exif-projectiontype": "Tewrê projeksiyoni",
+	"exif-projectiontype-equirectangular": "Equirectangular",
+	"exif-usepanoramaviewer-true": "Eya",
+	"exif-usepanoramaviewer-false": "Nê",
+	"exif-exposurelockused": "Kılitê poznayışi gureyniya",
+	"exif-exposurelockused-true": "Eya",
+	"exif-exposurelockused-false": "Nê"
 }

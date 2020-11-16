@@ -593,6 +593,7 @@
 	"content-model-text": "سادو متن",
 	"content-model-javascript": "جاوا-اسڪرپٽ",
 	"content-model-css": "سي.ايس.ايس",
+	"content-model-json": "جي سن",
 	"content-json-empty-object": "خالي آبجيڪٽ",
 	"content-json-empty-array": "خالي اري",
 	"duplicate-args-warning": "<strong>چِتاءُ:</strong> [[:$1]]، [[:$2]] کي \"$3\" نيم‌پيما لاءِ ھڪ کان وڌيڪ قدرن سان سڏي رھيو آھي. فقط آخري ڄاڻايل قدر استعمال ڪيو ويندو.",

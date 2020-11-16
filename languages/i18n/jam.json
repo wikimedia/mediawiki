@@ -110,7 +110,7 @@
 	"subcategories": "Sobkiatigari",
 	"category-media-header": "Midia ina kiatigari \"$1\"",
 	"category-empty": "''Dis kiatigari korantli no kantien no piej nar midia.''",
-	"hidden-categories": "{{PLURAL:$1|Idn kiatigari|Idn kiatigaridem}}",
+	"hidden-categories": "{{PLURAL:$1|Category weh nuh show|Category dem weh nuh show}}",
 	"hidden-category-category": "Aidwe kiatigari",
 	"category-subcat-count": "{{PLURAL:$2|Dis kiatigari ab onggl di falarin sobkiatigari.|Dis kiatigari ab di falarin {{PLURAL:$1|sobkiatigari|$1 sobkiatigaridem}}, out a $2 tuotal.}}",
 	"category-subcat-count-limited": "Dis kiatigari ab di falarin {{PLURAL:$1|sobkiatigari|$1 sobkiatigari}}.",

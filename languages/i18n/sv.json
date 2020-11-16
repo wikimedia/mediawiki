@@ -984,7 +984,7 @@
 	"mergehistory-go": "Visa redigeringar som kan slås samman",
 	"mergehistory-submit": "Sammanfoga sidversioner",
 	"mergehistory-empty": "Inga versioner av sidorna kan sammanfogas.",
-	"mergehistory-done": "$3 {{PLURAL:$3|version|versioner}} av $1 {{PLURAL:$3|har}} infogats i [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|version|versioner}} av $1 {{PLURAL:$4|har}} sammanfogats till [[:$2]].\n$3.",
 	"mergehistory-fail": "Historikerna kunde inte sammanfogas, kontrollera de sidor och den sidversion som du valt.",
 	"mergehistory-fail-bad-timestamp": "Tidsstämpeln är ogiltig.",
 	"mergehistory-fail-invalid-source": "Källsidan är ogiltig.",
@@ -1002,6 +1002,8 @@
 	"mergehistory-comment": "Infogade [[:$1]] i [[:$2]]: $3",
 	"mergehistory-same-destination": "Käll- och målsidor kan inte vara samma",
 	"mergehistory-reason": "Anledning:",
+	"mergehistory-source-deleted-reason": "Källsidan raderades automatiskt efter sammanslagningen av historiken eftersom dess innehållsmodell saknar stöd för omdirigeringar och det finns inga versioner kvar.",
+	"mergehistory-source-deleted": "Dessutom har [[:$1]] raderats eftersom den inte längre har några synliga versioner och dess innehållsmodell saknar stöd för att lämna omdirigeringar.",
 	"mergehistory-revisionrow": "$1($2) $3 . .$4 $5 $6",
 	"mergelog": "Sammanfogningslogg",
 	"revertmerge": "Återställ infogning",
@@ -3833,7 +3835,7 @@
 	"sessionmanager-tie": "Kan inte kombinera flera begäransautentiseringstyper: $1.",
 	"sessionprovider-generic": "$1-sessioner",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookiebaserade sessioner",
-	"sessionprovider-nocookies": "Cookies kan vara inaktiverade. Se till att du har cookies aktiverat och försök igen.",
+	"sessionprovider-nocookies": "Kakor kan vara inaktiverade. Se till att du har aktiverat kakor och försök igen.",
 	"randomrootpage": "Slumprotsida",
 	"log-action-filter-block": "Typ av blockering:",
 	"log-action-filter-contentmodel": "Typ av innehållsmodellsändring:",
@@ -4013,5 +4015,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP-adress",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-intervall",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikinamn (t.ex. \"prefix>Exempelnamn\")",
-	"paramvalidator-help-type-user-subtype-id": "användar-ID (t.ex. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "användar-ID (t.ex. \"#12345\")",
+	"paramvalidator-badtitle": "\"$2\" är ett ogiltigt värde för titelparametern <var>$1</var>: Inte en giltig sträng.",
+	"paramvalidator-missingtitle": "\"$2\" är ett ogiltigt värde för parametern titelparametern <var>$1</var>: Sidan finns inte.",
+	"paramvalidator-help-type-title": "Typ: Sidans titel",
+	"paramvalidator-help-type-title-must-exist": "Accepterar endast sidor som finns.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepterar sidor som inte finns."
 }

@@ -1998,6 +1998,7 @@
 	"listgrants-grant-display": "$1 <code>($2)</code>",
 	"trackingcategories-name": "Heiti skilaboða",
 	"restricted-displaytitle-ignored": "Síður með hunsaða sýnda titla",
+	"nonnumeric-formatnum": "Síður með ótöluleg formatnum gildi",
 	"trackingcategories-nodesc": "Enginn lýsing tiltæk.",
 	"trackingcategories-disabled": "Flokkurinn er óvirkur",
 	"mailnologin": "Ekkert netfang til að senda á",

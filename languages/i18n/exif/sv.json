@@ -369,6 +369,8 @@
 	"exif-urgency-low": "Låg ($1)",
 	"exif-urgency-high": "Hög ($1)",
 	"exif-urgency-other": "Användardefinierad prioritet ($1)",
+	"exif-firstphotodate": "Första fotodatumet",
+	"exif-lastphotodate": "Sista fotodatumet",
 	"exif-usepanoramaviewer-true": "Ja",
 	"exif-usepanoramaviewer-false": "Nej",
 	"exif-exposurelockused-true": "Ja",
