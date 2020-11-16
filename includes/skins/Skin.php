@@ -266,7 +266,6 @@ abstract class Skin extends ContextSource {
 
 		if ( $out->isTOCEnabled() ) {
 			$modules['content'][] = 'mediawiki.toc';
-			$modules['styles']['content'][] = 'mediawiki.toc.styles';
 		}
 
 		$prefMgr = MediaWikiServices::getInstance()->getPermissionManager();
