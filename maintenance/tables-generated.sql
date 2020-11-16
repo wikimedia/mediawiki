@@ -319,7 +319,7 @@ CREATE TABLE /*_*/watchlist (
   wl_title VARBINARY(255) DEFAULT '' NOT NULL,
   wl_notificationtimestamp BINARY(14) DEFAULT NULL,
   UNIQUE INDEX wl_user (wl_user, wl_namespace, wl_title),
-  INDEX namespace_title (wl_namespace, wl_title),
+  INDEX wl_namespace_title (wl_namespace, wl_title),
   INDEX wl_user_notificationtimestamp (
     wl_user, wl_notificationtimestamp
   ),

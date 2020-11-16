@@ -344,7 +344,7 @@ CREATE TABLE /*_*/watchlist (
 
 CREATE UNIQUE INDEX wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 
-CREATE INDEX namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
+CREATE INDEX wl_namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 
 CREATE INDEX wl_user_notificationtimestamp ON /*_*/watchlist (
   wl_user, wl_notificationtimestamp

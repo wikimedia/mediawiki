@@ -464,6 +464,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'ip_changes', 'ipc_rev_timestamp' ],
 			[ 'dropDefault', 'revision_actor_temp', 'revactor_timestamp' ],
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_type', 'patch-ipblocks_restrictions-ir_type.sql' ],
+			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
+				'patch-watchlist-namespace_title-rename-index.sql' ],
 		];
 	}
 

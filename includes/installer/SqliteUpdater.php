@@ -313,6 +313,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
 			[ 'modifyField', 'ip_changes', 'ipc_rev_timestamp',  'patch-ip_changes-pc_rev_timestamp-drop-default.sql' ],
 			[ 'modifyField', 'revision_actor_temp', 'revactor_timestamp', 'patch-revactor_timestamp-drop-default.sql' ],
+			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
+				'patch-watchlist-namespace_title-rename-index.sql' ],
 		];
 	}
 
