@@ -815,7 +815,7 @@
 				"name": "ir_type",
 				"comment": "The restriction type id.",
 				"type": "mwtinyint",
-				"options": { "notnull": true, "length": 1 }
+				"options": { "notnull": true, "length": 4 }
 			},
 			{
 				"name": "ir_value",

@@ -463,6 +463,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'protected_titles', 'pt_expiry' ],
 			[ 'dropDefault', 'ip_changes', 'ipc_rev_timestamp' ],
 			[ 'dropDefault', 'revision_actor_temp', 'revactor_timestamp' ],
+			[ 'modifyField', 'ipblocks_restrictions', 'ir_type', 'patch-ipblocks_restrictions-ir_type.sql' ],
 		];
 	}
 
