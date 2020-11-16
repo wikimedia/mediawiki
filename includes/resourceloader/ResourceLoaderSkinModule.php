@@ -24,7 +24,7 @@
  * @ingroup ResourceLoader
  * @internal
  */
-class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
+class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * All skins are assumed to be compatible with mobile
 	 */
@@ -80,6 +80,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *     For backwards compatibility a legacy feature is provided.
 	 *     New skins should not use this if they can avoid doing so.
 	 *     This feature also contains all `i18n-` prefixed features.
+	 *
+	 * "toc"
+	 *     Styling rules for the table of contents.
 	 */
 	private const FEATURE_FILES = [
 		'logo' => [
@@ -114,6 +117,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		'i18n-headings' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
+		'toc' => [
+			'all' => [ 'resources/src/mediawiki.skinning/toc/common.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/toc/screen.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/toc/print.css' ],
+		],
 	];
 
 	/** @var string[] */
@@ -129,6 +137,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		'i18n-ordered-lists' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
+		'toc' => true,
+	];
+
+	private const LESS_MESSAGES = [
+		// `toc` feature
+		'hidetoc',
+		'showtoc',
 	];
 
 	public function __construct(
@@ -136,6 +151,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
+		$options['lessMessages'] = self::LESS_MESSAGES;
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 		$features = $options['features'] ??
 			// For historic reasons if nothing is declared logo and legacy features are enabled.

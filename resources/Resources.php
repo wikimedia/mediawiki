@@ -1000,20 +1000,12 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.cookie',
-			'mediawiki.toc.styles',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.toc.styles' => [
-		'class' => ResourceLoaderLessVarFileModule::class,
-		'lessMessages' => [ 'hidetoc', 'showtoc' ],
-		'styles' => [
-			'resources/src/mediawiki.toc.styles/common.css',
-			'resources/src/mediawiki.toc.styles/screen.less'
-				=> [ 'media' => 'screen' ],
-			'resources/src/mediawiki.toc.styles/print.css'
-				=> [ 'media' => 'print' ],
-		],
+		'class' => ResourceLoaderSkinModule::class,
+		'features' => [ 'toc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Uri' => [
