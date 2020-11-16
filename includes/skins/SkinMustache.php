@@ -179,6 +179,9 @@ class SkinMustache extends SkinTemplate {
 			'html-after-content' => $this->afterContentHook(),
 			'html-undelete-link' => $this->prepareUndeleteLink(),
 			'html-user-language-attributes' => $this->prepareUserLanguageAttributes(),
+
+			// links
+			'link-mainpage' => Title::newMainPage()->getLocalUrl(),
 		];
 
 		foreach ( $this->options['messages'] ?? [] as $message ) {
