@@ -4,7 +4,6 @@ namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Types\Type;
 
 /**
  * @experimental
@@ -24,17 +23,6 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 	public function __construct( AbstractPlatform $platform ) {
 		$this->schema = new Schema();
 		$this->platform = $platform;
-
-		// TODO: Find a better place to register custom types
-		if ( !Type::hasType( TimestampType::TIMESTAMP ) ) {
-			Type::addType( TimestampType::TIMESTAMP, TimestampType::class );
-		}
-		$this->platform->registerDoctrineTypeMapping( 'Timestamp', TimestampType::TIMESTAMP );
-
-		if ( !Type::hasType( TinyIntType::TINYINT ) ) {
-			Type::addType( TinyIntType::TINYINT, TinyIntType::class );
-		}
-		$this->platform->registerDoctrineTypeMapping( 'Tinyint', TinyIntType::TINYINT );
 	}
 
 	/**
@@ -69,4 +57,5 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 	public function getSql() {
 		return $this->schema->toSql( $this->platform );
 	}
+
 }
