@@ -797,6 +797,8 @@
 	"post-expand-template-argument-warning": "Tembe: No per de tewr tay yew şablono herayi esto.Nê vurnayeni ser çebyay",
 	"post-expand-template-argument-category": "Pelê ke şablonê eyi qebul niye",
 	"template-equals-category": "Hetê Şabloni = pelê gureyniyenê",
+	"template-equals-category-desc": "Pela de <code><nowiki>{{=}}</nowiki></code> esto, lakin na wiki de <code>=</code> hera nêbeno. Na karnayış, karyayış ra dariyayo; Zemano amayen de yew versiyonê MediaWiki <code><nowiki>{{=}}</nowiki></code> ya pêra abırnayê zey fonksiyoni do bıkarno.",
+	"template-equals-warning": "<strong>Teme :</strong> Ena pela de <code><nowiki>{{=}}</nowiki></code> esto, lakin na wiki de <code>=</code> hera nêbeno. Na karnayış, karyayış ra dariyayo; Zemano amayen de yew versiyonê MediaWiki <code><nowiki>{{=}}</nowiki></code> ya pêra abırnayê zey fonksiyoni do bıkarno.",
 	"parser-template-loop-warning": "Gıreyê şabloni ca biyo: [[$1]]",
 	"template-loop-category": "dordorekê şabloniya peri",
 	"template-loop-category-desc": "Pela de çerğa şabloni esta. Mesela şablono tım veyndano ho",
@@ -933,7 +935,7 @@
 	"mergehistory-go": "Pêser bıyaye vurriyayışa bımotné",
 	"mergehistory-submit": "Revizyona pêtewr kerê",
 	"mergehistory-empty": "Revizyonî yew nibenê.",
-	"mergehistory-done": "$1 ra $3 {{PLURAL:$3|revizyon|revizyoni}} [[:$2]] de {{PLURAL:$3|biyo|biyê}} têmiyan.",
+	"mergehistory-done": "$1 ra $4 {{PLURAL:$4|revizyon|revizyoni}} [[:$2]] de {{PLURAL:$4|biyo|biyê}} têmiyan. $3.",
 	"mergehistory-fail": "Tarixê pele yew nibeno, ma rica kenê ke pel u wext control bike.",
 	"mergehistory-fail-bad-timestamp": "Mora zemani ravêrdi niya",
 	"mergehistory-fail-invalid-source": "Çime per ravêrdi niya",
@@ -2243,6 +2245,7 @@
 	"trackingcategories-desc": "Kriterê definayışê kategoriye",
 	"restricted-displaytitle-ignored": "Peli be asayışê sernameyanê redbiyayeyan",
 	"restricted-displaytitle-ignored-desc": "Raştıkên serekê pela ya eyni niyo, peygoş pela  <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> çıniyo .",
+	"nonnumeric-formatnum": "Argumanê formatnumê bênumreya peli",
 	"nonnumeric-formatnum-desc": "Pela abırnoğê gureyê formatnumi vurnayoğo xoser  ihtiwa keno.",
 	"noindex-category-desc": "Na pela terefê botan ra rêz bena. Çıkı cı sero kodo efsunın <code><nowiki>__NOINDEX__</nowiki></code> esto u nê işareti rê mısade deyaye tewrê namey cayiyo",
 	"index-category-desc": "Na pela de kodê <code><nowiki>__INDEX__</nowiki></code> esto (yazi nê işareti rê mısade dayen yew cay nameyi de), coki ra normal de nêkenê lakin terefê botan ra rêzênê. .",
@@ -4074,5 +4077,9 @@
 	"paramvalidator-help-type-user-subtype-ip": "Kamiye",
 	"paramvalidator-help-type-user-subtype-cidr": "Mabeynê kamiye",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki name (mesele zey \"prefix>Nameyo misal\")",
-	"paramvalidator-help-type-user-subtype-id": "ID'a karberi (mesela zey \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "ID'a karberi (mesela zey \"#12345\")",
+	"paramvalidator-missingtitle": "Seriye parametrey <var>$1</var> rê xırab ercê için  \"$2\": pela çıniya .",
+	"paramvalidator-help-type-title": "Tewr:Seriya",
+	"paramvalidator-help-type-title-must-exist": "Teyna est bıyaye pelan qebul keno.",
+	"paramvalidator-help-type-title-no-must-exist": "Teyna est nêbiyaye pelan qebul keno"
 }

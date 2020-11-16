@@ -904,7 +904,7 @@
 	"powersearch-remember": "Inget pilihan pikeun pamaluruhan satuluyna",
 	"search-external": "Panéangan luar",
 	"searchdisabled": "Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu. Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.",
-	"search-error": "Aya kesalahan nalika maluruh: $1",
+	"search-error": "Aya kasalahan nalika maluruh: $1",
 	"search-warning": "Aya panginget nalika maluruh: $1",
 	"preferences": "Préferénsi",
 	"mypreferences": "Préferénsi",
