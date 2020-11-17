@@ -29,3 +29,5 @@ $namespaceNames = [
 ];
 
 $linkTrail = '/^([a-zâčđŋšžäá]+)(.*)$/sDu';
+
+$fallback = 'fi';
