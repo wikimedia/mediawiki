@@ -2726,7 +2726,7 @@ class Article implements Page {
 	/**
 	 * @deprecated since 1.35, use WikiPage::loadFromRow instead
 	 * @see WikiPage::loadFromRow
-	 * @param object|bool $data
+	 * @param stdClass|bool $data
 	 * @param string|int $from
 	 */
 	public function loadFromRow( $data, $from ) {
@@ -2737,7 +2737,7 @@ class Article implements Page {
 	/**
 	 * @deprecated since 1.35, use WikiPage::loadPageData instead
 	 * @see WikiPage::loadPageData
-	 * @param object|string|int $from
+	 * @param stdClass|string|int $from
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
 		wfDeprecated( __METHOD__, '1.35' );
@@ -2771,7 +2771,7 @@ class Article implements Page {
 	 * @param IDatabase $dbr
 	 * @param int $id
 	 * @param array $options
-	 * @return object|bool
+	 * @return stdClass|false
 	 */
 	public function pageDataFromId( $dbr, $id, $options = [] ) {
 		wfDeprecated( __METHOD__, '1.35' );
@@ -2784,7 +2784,7 @@ class Article implements Page {
 	 * @param IDatabase $dbr
 	 * @param Title $title
 	 * @param array $options
-	 * @return object|bool
+	 * @return stdClass|false
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
 		wfDeprecated( __METHOD__, '1.35' );
