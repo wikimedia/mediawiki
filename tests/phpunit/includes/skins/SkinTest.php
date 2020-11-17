@@ -49,4 +49,32 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			true
 		];
 	}
+
+	/**
+	 * @covers Skin::makeLink
+	 */
+	public function testMakeLinkLinkClass() {
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+
+		$link = $skin->makeLink(
+			'test',
+			[
+				'text' => 'Test',
+				'href' => '',
+				'class' => [
+					'class1',
+					'class2'
+				]
+			],
+			[ 'link-class' => 'link-class' ]
+		);
+
+		$this->assertHTMLEquals(
+			'<a href="" class="class1 class2 link-class">Test</a>',
+			$link
+		);
+	}
 }
