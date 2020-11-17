@@ -74,7 +74,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 * @stable to override
 	 *
 	 * @param Skin $skin
-	 * @param object $result
+	 * @param stdClass $result
 	 *
 	 * @return bool|string
 	 */

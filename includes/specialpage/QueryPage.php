@@ -314,7 +314,7 @@ abstract class QueryPage extends SpecialPage {
 	 * result data. You should be able to grab SQL results from it.
 	 * If the function returns false, the line output will be skipped.
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string|bool String or false to skip
 	 */
 	abstract protected function formatResult( $skin, $result );

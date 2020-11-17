@@ -68,7 +68,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @stable to override
 	 *
 	 * @param Skin $skin Skin to use for UI elements
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {

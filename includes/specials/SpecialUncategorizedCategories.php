@@ -99,7 +99,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	/**
 	 * Formats the result
 	 * @param Skin $skin The current skin
-	 * @param object $result The query result
+	 * @param stdClass $result The query result
 	 * @return string The category link
 	 */
 	public function formatResult( $skin, $result ) {

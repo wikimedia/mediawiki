@@ -51,7 +51,7 @@ abstract class PageQueryPage extends QueryPage {
 	 * @stable to override
 	 *
 	 * @param Skin $skin
-	 * @param object $row Result row
+	 * @param stdClass $row Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $row ) {
