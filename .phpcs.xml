@@ -138,7 +138,6 @@
 		<exclude-pattern>*/languages/*\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
 		<exclude-pattern>*/tests/parser/*\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phan/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/bootstrap\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/phpunit\.php</exclude-pattern>
