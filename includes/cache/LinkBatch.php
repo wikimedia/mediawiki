@@ -85,13 +85,16 @@ class LinkBatch {
 		?GenderCache $genderCache = null,
 		?ILoadBalancer $loadBalancer = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$getServices = function () {
+			// BC hack. Use a closure so this can be unit-tested.
+			return MediaWikiServices::getInstance();
+		};
 
-		$this->linkCache = $linkCache ?? $services->getLinkCache();
-		$this->titleFormatter = $titleFormatter ?? $services->getTitleFormatter();
-		$this->contentLanguage = $contentLanguage ?? $services->getContentLanguage();
-		$this->genderCache = $genderCache ?? $services->getGenderCache();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->linkCache = $linkCache ?? $getServices()->getLinkCache();
+		$this->titleFormatter = $titleFormatter ?? $getServices()->getTitleFormatter();
+		$this->contentLanguage = $contentLanguage ?? $getServices()->getContentLanguage();
+		$this->genderCache = $genderCache ?? $getServices()->getGenderCache();
+		$this->loadBalancer = $loadBalancer ?? $getServices()->getDBLoadBalancer();
 
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );

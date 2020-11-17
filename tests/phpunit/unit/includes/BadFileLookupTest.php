@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\BadFileLookup;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
 
 /**
  * @coversDefaultClass MediaWiki\BadFileLookup
@@ -21,6 +21,9 @@ Comment line, no effect [[File:Good.jpg]]
 * [[Malformed title<>]] doesn't break anything, the line is ignored [[File:Good.jpg]]
 * [[File:Bad5.jpg]] before [[malformed title<>]] doesn't ignore the line
 WIKITEXT;
+
+	/** @var HookContainer */
+	private $hookContainer;
 
 	/** Shared with GlobalWithDBTest */
 	public static function badImageHook( $name, &$bad ) {
@@ -104,18 +107,11 @@ WIKITEXT;
 		return $mock;
 	}
 
-	private function getHookContainer() {
-		// FIXME: unit tests should not depend on the global HookContainer.
-		// Once the facilities are available, this should create a new
-		// HookContainer and register the hook directly into it, instead of using
-		// setTemporaryHook()
-		return MediaWikiServices::getInstance()->getHookContainer();
-	}
-
 	protected function setUp() : void {
 		parent::setUp();
-
-		$this->setTemporaryHook( 'BadImage', __CLASS__ . '::badImageHook' );
+		$this->hookContainer = $this->createHookContainer( [
+			'BadImage' => __CLASS__ . '::badImageHook'
+		] );
 	}
 
 	/**
@@ -131,7 +127,7 @@ WIKITEXT;
 			new EmptyBagOStuff,
 			$this->getMockRepoGroup(),
 			$this->getMockTitleParser(),
-			$this->getHookContainer()
+			$this->hookContainer
 		);
 
 		$this->assertSame( $expected, $bfl->isBadFile( $name, $title ) );
@@ -150,7 +146,7 @@ WIKITEXT;
 			new EmptyBagOStuff,
 			$this->getMockRepoGroupNull(),
 			$this->getMockTitleParser(),
-			$this->getHookContainer()
+			$this->hookContainer
 		);
 
 		// Hack -- these expectations are reversed if the repo group returns null. In that case 1)

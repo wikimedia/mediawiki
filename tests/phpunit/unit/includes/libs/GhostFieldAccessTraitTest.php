@@ -12,23 +12,14 @@ use Wikimedia\Tests\SerializationTestUtils;
  */
 class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 
-	private $serializationTestUtils;
-
 	protected function setUp() : void {
 		parent::setUp();
-		// Not using the trait since we only need deserialization tests.
-		$this->serializationTestUtils = new SerializationTestUtils(
-			__DIR__ . '/../../data/GhostFieldAccess',
-			[],
-			'serialized',
-			'serialize',
-			'unserialize'
-		);
 	}
 
 	private function provideUnserializedInstances( string $testCaseName ) {
+		// Not using the trait since we only need deserialization tests.
 		$serializationTestUtils = new SerializationTestUtils(
-			__DIR__ . '/../../data/GhostFieldAccess',
+			__DIR__ . '/../../../data/GhostFieldAccess',
 			[],
 			'serialized',
 			'serialize',
