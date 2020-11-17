@@ -126,6 +126,17 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpasswordagain-ph',
 				],
+				// T263927 - the Chromium password form guide recommends always having a username field
+				'username' => [
+					'type' => 'text',
+					'baseField' => 'password',
+					'autocomplete' => 'username',
+					'nodata' => true,
+					'readonly' => true,
+					'cssclass' => 'mw-htmlform-hidden-field',
+					'label-message' => 'userlogin-yourname',
+					'placeholder-message' => 'userlogin-yourname-ph',
+				],
 			] );
 		}
 	}

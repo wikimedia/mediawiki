@@ -95,7 +95,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
 		],
 		'interface' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/interface.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
 		],
 		'normalize' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
