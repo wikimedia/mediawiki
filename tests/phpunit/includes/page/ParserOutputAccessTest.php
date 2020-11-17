@@ -85,8 +85,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$stats = new NullStatsdDataFactory();
-		return new ParserOutputAccess( $parserCache, $revRenderer, $stats );
+		return new ParserOutputAccess( $parserCache, $revRenderer, $stats, $lbFactory );
 	}
 
 	/**

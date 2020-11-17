@@ -947,7 +947,8 @@ return [
 		return new ParserOutputAccess(
 			$services->getParserCache(),
 			$services->getRevisionRenderer(),
-			$services->getStatsdDataFactory()
+			$services->getStatsdDataFactory(),
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 

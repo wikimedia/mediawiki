@@ -18,81 +18,56 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
+ * Caching behavior may be defined by subclasses.
+ *
  * @note No audience checks are applied.
  *
  * @internal
  */
 class PoolWorkArticleView extends PoolCounterWork {
-	/** @var WikiPage */
-	private $page;
-
-	/** @var string */
-	private $cacheKey;
-
-	/** @var ParserCache */
-	private $parserCache;
 
 	/** @var ParserOptions */
-	private $parserOptions;
+	protected $parserOptions;
 
 	/** @var RevisionRecord|null */
-	private $revision = null;
+	protected $revision = null;
 
 	/** @var RevisionRenderer */
-	private $renderer = null;
+	protected $renderer = null;
 
 	/** @var ParserOutput|bool */
-	private $parserOutput = false;
+	protected $parserOutput = false;
 
 	/** @var bool */
-	private $isDirty = false;
+	protected $isDirty = false;
 
 	/** @var bool */
-	private $isFast = false;
+	protected $isFast = false;
 
 	/** @var Status|bool */
-	private $error = false;
+	protected $error = false;
 
 	/**
-	 * @param WikiPage $page
+	 * @param string $workKey
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
-	 * @param bool $useParserCache Whether to use the parser cache.
 	 * @param RevisionRenderer $revisionRenderer
-	 * @param ParserCache $parserCache
 	 */
 	public function __construct(
-		WikiPage $page,
+		string $workKey,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
-		bool $useParserCache,
-		RevisionRenderer $revisionRenderer,
-		ParserCache $parserCache
+		RevisionRenderer $revisionRenderer
 	) {
-		// TODO: Remove support for partially initialized RevisionRecord instances once
-		//       Article no longer uses fake revisions.
-		if ( $revision->getPageId() && $revision->getPageId() !== $page->getTitle()->getArticleID() ) {
-			throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
-		}
-
-		$this->page = $page;
+		parent::__construct( 'ArticleView', $workKey );
 		$this->revision = $revision;
 		$this->parserOptions = $parserOptions;
-		$this->cacheable = $useParserCache;
 		$this->renderer = $revisionRenderer;
-		$this->parserCache = $parserCache;
-
-		$parserCacheMetadata = $this->parserCache->getMetadata( $page );
-		$this->cacheKey = $this->parserCache->makeParserOutputKey( $page, $parserOptions,
-			$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
-		);
-		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revision->getId() );
 	}
 
 	/**
@@ -135,8 +110,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function doWork() {
-		$isCurrent = $this->revision->getId() === $this->page->getLatest();
-
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,
@@ -162,86 +135,40 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
 			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
-				'title' => $this->page->getTitle()->getPrefixedDBkey(),
-				'ns' => $this->page->getTitle()->getNamespace(),
+				'title' => $this->revision->getPageAsLinkTarget()->getDBkey(),
+				'ns' => $this->revision->getPageAsLinkTarget()->getNamespace(),
 				'trigger' => 'view',
 			] );
 		}
 
-		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
-			$this->parserCache->save(
-				$this->parserOutput,
-				$this->page,
-				$this->parserOptions,
-				$cacheTime,
-				$this->revision->getId()
-			);
+		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
+			$this->saveInCache( $this->parserOutput, $cacheTime );
 		}
 
-		if ( $isCurrent ) {
-			$this->page->triggerOpportunisticLinksUpdate( $this->parserOutput );
-		}
+		$this->afterWork( $this->parserOutput );
 
 		return true;
 	}
 
 	/**
-	 * @return bool
+	 * Place the output in the cache from which getCachedWork() will retrieve it.
+	 * Will be called before saveInCache().
+	 *
+	 * @param ParserOutput $output
+	 * @param string $cacheTime
 	 */
-	public function getCachedWork() {
-		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
-
-		if ( $this->parserOutput === false ) {
-			wfDebug( __METHOD__ . ": parser cache miss" );
-			return false;
-		} else {
-			wfDebug( __METHOD__ . ": parser cache hit" );
-			return true;
-		}
+	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
+		// noop
 	}
 
 	/**
-	 * @param bool $fast Fast stale request
-	 * @return bool
+	 * Subclasses may implement this to perform some action after the work of rendering is done.
+	 * Will be called after saveInCache().
+	 *
+	 * @param ParserOutput $output
 	 */
-	public function fallback( $fast ) {
-		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
-
-		$fastMsg = '';
-		if ( $this->parserOutput && $fast ) {
-			/* Check if the stale response is from before the last write to the
-			 * DB by this user. Declining to return a stale response in this
-			 * case ensures that the user will see their own edit after page
-			 * save.
-			 *
-			 * Note that the CP touch time is the timestamp of the shutdown of
-			 * the save request, so there is a bias towards avoiding fast stale
-			 * responses of potentially several seconds.
-			 */
-			$lastWriteTime = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
-				->getChronologyProtectorTouched();
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
-			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
-				wfDebugLog( 'dirty', "declining to send dirty output since cache time " .
-					$cacheTime . " is before last write time $lastWriteTime" );
-				// Forget this ParserOutput -- we will request it again if
-				// necessary in slow mode. There might be a newer entry
-				// available by that time.
-				$this->parserOutput = false;
-				return false;
-			}
-			$this->isFast = true;
-			$fastMsg = 'fast ';
-		}
-
-		if ( $this->parserOutput === false ) {
-			wfDebugLog( 'dirty', 'dirty missing' );
-			return false;
-		} else {
-			wfDebugLog( 'dirty', "{$fastMsg}dirty output {$this->cacheKey}" );
-			$this->isDirty = true;
-			return true;
-		}
+	protected function afterWork( ParserOutput $output ) {
+		// noop
 	}
 
 	/**
