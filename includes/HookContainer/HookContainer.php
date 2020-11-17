@@ -452,7 +452,12 @@ class HookContainer implements SalvageableService {
 					continue;
 				}
 				$handlerName = $handlerSpec['name'];
-				if ( !empty( $options['noServices'] ) && isset( $handlerSpec['services'] ) ) {
+				if (
+					!empty( $options['noServices'] ) && (
+						isset( $handlerSpec['services'] ) ||
+						isset( $handlerSpec['optional_services'] )
+					)
+				) {
 					throw new UnexpectedValueException(
 						"The handler for the hook $hook registered in " .
 						"{$hookReference['extensionPath']} has a service dependency, " .
