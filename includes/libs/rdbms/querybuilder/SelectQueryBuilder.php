@@ -751,12 +751,13 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 *     the name "joins".
 	 */
 	public function getQueryInfo( $joinsName = 'join_conds' ) {
-		return [
+		$info = [
 			'tables' => $this->tables,
 			'fields' => $this->fields,
 			'conds' => $this->conds,
 			'options' => $this->options,
-			$joinsName => $this->joinConds,
 		];
+		$info[ $joinsName ] = $this->joinConds;
+		return $info;
 	}
 }
