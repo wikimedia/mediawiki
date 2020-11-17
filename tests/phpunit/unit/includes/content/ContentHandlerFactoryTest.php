@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Content\ContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
 use Psr\Log\LogLevel;
 use Wikimedia\ObjectFactory;
 
@@ -54,7 +54,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	): void {
 		$contentHandlerExpected = new $contentHandlerClass( 'dummy' );
 		$objectFactory = $this->createMockObjectFactory();
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->createMock( HookContainer::class );
 
 		$factory = new ContentHandlerFactory(
 			$handlerSpecs,
@@ -100,17 +100,18 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		string $contentHandlerClass
 	): void {
 		$contentHandlerExpected = new $contentHandlerClass( 'dummy' );
+		$hookContainer = $this->createHookContainer();
 		$factory = new ContentHandlerFactory(
 			[],
 			$this->createMockObjectFactory(),
-			$this->getHookContainer(),
+			$hookContainer,
 			$this->logger
 		);
 
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			$this->assertFalse( $factory->isDefinedModel( $modelID ) );
 			$contentHandler = null;
-			$this->setTemporaryHook( 'ContentHandlerForModelID',
+			$hookContainer->register( 'ContentHandlerForModelID',
 				function ( $handlerSpec, &$contentHandler ) use (
 					$contentHandlerExpected
 				) {
@@ -182,7 +183,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new ContentHandlerFactory(
 			$handlerSpecs,
 			$objectFactory,
-			$this->getHookContainer(),
+			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 
@@ -207,7 +208,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new ContentHandlerFactory(
 			[],
 			$this->createMockObjectFactory(),
-			$this->getHookContainer(),
+			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 		$factory->getContentHandler( 'ModelNameNotExist' );
@@ -229,7 +230,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new ContentHandlerFactory(
 			[],
 			$objectFactory,
-			$this->getHookContainer(),
+			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 		$this->assertFalse( $factory->isDefinedModel( 'define test' ) );
@@ -257,13 +258,14 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	public function testGetContentModels_flow_same(
 		string $name1, string $name2, string $name3, string $name4
 	): void {
+		$hookContainer = $this->createHookContainer();
 		$factory = new ContentHandlerFactory(
 			[
 				$name1 => DummyContentHandlerForTesting::class,
 				$name2 => DummyContentHandlerForTesting::class,
 			],
 			$this->createMockObjectFactory(),
-			$this->getHookContainer(),
+			$hookContainer,
 			$this->logger
 		);
 		$this->assertArrayEquals(
@@ -281,7 +283,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			$factory->getContentModels()
 		);
 
-		$this->setTemporaryHook( 'GetContentModels',
+		$hookContainer->register( 'GetContentModels',
 			function ( &$models ) use ( $name4 ) {
 				$models[] = $name4;
 			} );
@@ -305,13 +307,14 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	public function testIsDefinedModel_flow_same(
 		string $name1, string $name2, string $name3, string $name4
 	): void {
+		$hookContainer = $this->createHookContainer();
 		$factory = new ContentHandlerFactory(
 			[
 				$name1 => DummyContentHandlerForTesting::class,
 				$name2 => DummyContentHandlerForTesting::class,
 			],
 			$this->createMockObjectFactory(),
-			$this->getHookContainer(),
+			$hookContainer,
 			$this->logger
 		);
 
@@ -333,7 +336,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $factory->isDefinedModel( $name4 ) );
 		$this->assertFalse( $factory->isDefinedModel( 'not exist name' ) );
 
-		$this->setTemporaryHook(
+		$hookContainer->register(
 			'GetContentModels',
 			function ( &$models ) use ( $name4 ) {
 				$models[] = $name4;
@@ -364,7 +367,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new ContentHandlerFactory(
 			[],
 			$this->createMockObjectFactory(),
-			$this->getHookContainer(),
+			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 
@@ -406,7 +409,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 				},
 			],
 			$objectFactory,
-			$this->getHookContainer(),
+			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
 
@@ -434,16 +437,5 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	private function createMockObjectFactory(): ObjectFactory {
 		return $this->createMock( ObjectFactory::class );
-	}
-
-	/**
-	 * Get a HookContainer
-	 *
-	 * @fixme This gets an actual integrated HookContainer to support setTemporaryHook().
-	 * In the future it should create an empty HookContainer and register temporary hooks
-	 * directly in that object rather than globally.
-	 */
-	private function getHookContainer() {
-		return MediaWikiServices::getInstance()->getHookContainer();
 	}
 }

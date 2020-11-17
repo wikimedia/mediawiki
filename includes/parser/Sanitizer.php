@@ -1710,6 +1710,7 @@ class Sanitizer {
 	 */
 	public static function validateEmail( $addr ) {
 		$result = null;
+		// TODO This method should be non-static, and have a HookRunner injected
 		if ( !Hooks::runner()->onIsValidEmailAddr( $addr, $result ) ) {
 			return $result;
 		}
