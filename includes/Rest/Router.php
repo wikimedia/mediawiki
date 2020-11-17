@@ -346,8 +346,16 @@ class Router {
 	 * @return Handler
 	 */
 	private function createHandler( RequestInterface $request, array $spec ): Handler {
-		$objectFactorySpec = array_intersect_key( $spec,
-			[ 'factory' => true, 'class' => true, 'args' => true, 'services' => true ] );
+		$objectFactorySpec = array_intersect_key(
+			$spec,
+			[
+				'factory' => true,
+				'class' => true,
+				'args' => true,
+				'services' => true,
+				'optional_services' => true
+			]
+		);
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
 		$handler->init( $this, $request, $spec, $this->responseFactory, $this->hookContainer );
