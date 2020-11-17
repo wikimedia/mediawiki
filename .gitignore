@@ -85,7 +85,6 @@ Thumbs.db
 /tags
 /.htaccess
 /.htpasswd
-/tests/phan/issues
 *.rej
 
 # Docker

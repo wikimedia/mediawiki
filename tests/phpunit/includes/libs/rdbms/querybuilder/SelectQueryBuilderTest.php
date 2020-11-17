@@ -560,4 +560,35 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		);
 		$this->assertSQL( "SELECT f FROM t JOIN u ON ((tt=uu)) WHERE a = 'b' LIMIT 1" );
 	}
+
+	public function testGetQueryInfoJoins() {
+		$this->sqb
+			->select( 'f' )
+			->from( 't' )
+			->conds( [ 'a' => 'b' ] )
+			->join( 'u', 'u', 'tt=uu' )
+			->limit( 1 );
+		$this->assertEquals(
+			[
+				'tables' => [ 't', 'u' => 'u' ],
+				'fields' => [ 'f' ],
+				'conds' => [ 'a' => 'b' ],
+				'options' => [ 'LIMIT' => 1 ],
+				'joins' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+			],
+			$this->sqb->getQueryInfo( 'joins' ) );
+	}
+
+	public function testQueryInfoJoins() {
+		$this->sqb->queryInfo(
+			[
+				'tables' => [ 't', 'u' => 'u' ],
+				'fields' => [ 'f' ],
+				'conds' => [ 'a' => 'b' ],
+				'options' => [ 'LIMIT' => 1 ],
+				'joins' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+			]
+		);
+		$this->assertSQL( "SELECT f FROM t JOIN u ON ((tt=uu)) WHERE a = 'b' LIMIT 1" );
+	}
 }
