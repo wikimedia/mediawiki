@@ -815,6 +815,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropFkey', 'revision_actor_temp', 'revactor_page' ],
 			[ 'changeField', 'revision_actor_temp', 'revactor_actor', 'BIGINT', '' ],
 			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
+			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
 		];
 	}
 

@@ -360,7 +360,7 @@ CREATE TABLE watchlist (
 
 CREATE UNIQUE INDEX wl_user ON watchlist (wl_user, wl_namespace, wl_title);
 
-CREATE INDEX namespace_title ON watchlist (wl_namespace, wl_title);
+CREATE INDEX wl_namespace_title ON watchlist (wl_namespace, wl_title);
 
 CREATE INDEX wl_user_notificationtimestamp ON watchlist (
   wl_user, wl_notificationtimestamp
