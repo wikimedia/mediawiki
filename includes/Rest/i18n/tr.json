@@ -18,6 +18,7 @@
 	"rest-permission-denied-anon": "Anonim kullanıcı tarafından erişilemiyor",
 	"rest-permission-denied-title": "Kullanıcının başlık okuma hakkı yok ($1)",
 	"rest-permission-denied-revision": "Kullanıcının istenen revizyona erişimi yok ($1).",
+	"rest-resource-limit-exceeded": "Kaynak sınırları, isteği işlerken aşıldı.",
 	"rest-pagehistory-incompatible-params": "\"older_than\" ve \"newer_than\" parametrelerinin her ikisi de belirtilemez",
 	"rest-pagehistory-param-range-error": "Revizyon kimliği 0'dan büyük olmalıdır",
 	"rest-pagehistory-timestamp-error": "Belirtilen revizyon için zaman damgası alınamadı ($1)",

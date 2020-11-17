@@ -4017,7 +4017,7 @@
 	"paramvalidator-help-type-user-subtype-interwiki": "interwikinamn (t.ex. \"prefix>Exempelnamn\")",
 	"paramvalidator-help-type-user-subtype-id": "användar-ID (t.ex. \"#12345\")",
 	"paramvalidator-badtitle": "\"$2\" är ett ogiltigt värde för titelparametern <var>$1</var>: Inte en giltig sträng.",
-	"paramvalidator-missingtitle": "\"$2\" är ett ogiltigt värde för parametern titelparametern <var>$1</var>: Sidan finns inte.",
+	"paramvalidator-missingtitle": "\"$2\" är ett ogiltigt värde för titelparametern <var>$1</var>: Sidan finns inte.",
 	"paramvalidator-help-type-title": "Typ: Sidans titel",
 	"paramvalidator-help-type-title-must-exist": "Accepterar endast sidor som finns.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepterar sidor som inte finns."
