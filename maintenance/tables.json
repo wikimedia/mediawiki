@@ -1062,7 +1062,7 @@
 				"unique": true
 			},
 			{
-				"name": "namespace_title",
+				"name": "wl_namespace_title",
 				"columns": [ "wl_namespace", "wl_title" ],
 				"comment": "Special:Movepage (WatchedItemStore::duplicateEntry)",
 				"unique": false
