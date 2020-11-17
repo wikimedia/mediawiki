@@ -18,8 +18,10 @@
  * @file
  */
 
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use Psr\Log\LoggerInterface;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
@@ -52,22 +54,28 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var Status|bool */
 	protected $error = false;
 
+	/** @var LoggerSpi */
+	private $loggerSpi;
+
 	/**
 	 * @param string $workKey
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
+	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
 		string $workKey,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
-		RevisionRenderer $revisionRenderer
+		RevisionRenderer $revisionRenderer,
+		LoggerSpi $loggerSpi
 	) {
 		parent::__construct( 'ArticleView', $workKey );
 		$this->revision = $revision;
 		$this->parserOptions = $parserOptions;
 		$this->renderer = $revisionRenderer;
+		$this->loggerSpi = $loggerSpi;
 	}
 
 	/**
@@ -132,7 +140,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Timing hack
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
-			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
+			$logger = $this->getLogger( 'slow-parse' );
 			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
 				'title' => $this->revision->getPageAsLinkTarget()->getDBkey(),
@@ -178,5 +186,14 @@ class PoolWorkArticleView extends PoolCounterWork {
 	public function error( $status ) {
 		$this->error = $status;
 		return false;
+	}
+
+	/**
+	 * @param string $name
+	 *
+	 * @return LoggerInterface
+	 */
+	protected function getLogger( $name = 'PoolWorkArticleView' ): LoggerInterface {
+		return $this->loggerSpi->getLogger( $name );
 	}
 }

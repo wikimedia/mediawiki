@@ -1,6 +1,6 @@
 <?php
-
 use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -8,6 +8,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionStore;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
@@ -78,6 +79,18 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param LoggerInterface|null $logger
+	 *
+	 * @return LoggerSpi
+	 */
+	protected function getLoggerSpi( $logger = null ) {
+		$logger = $logger ?: new NullLogger();
+		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
+		$spi->method( 'getLogger' )->willReturn( $logger );
+		return $spi;
+	}
+
+	/**
 	 * @param ParserCache|null $parserCache
 	 * @param BagOStuff|null $secondaryCache
 	 * @param int $secondaryExpiry
@@ -123,7 +136,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$revRenderer,
 			$stats,
 			$lbFactory,
-			$jsonUnserializer
+			$jsonUnserializer,
+			$this->getLoggerSpi()
 		);
 	}
 
