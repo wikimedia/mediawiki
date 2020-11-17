@@ -517,36 +517,7 @@ table.floatleft {
 	z-index: 99;
 }
 
-.mw-editsection {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Display editsection links smaller and next to headings */
-.mw-editsection,
-.mw-editsection-like {
-	font-size: small;
-	font-weight: normal;
-	margin-left: 1em;
-	vertical-align: baseline;
-	/* Reset line-height; headings tend to have it set to larger values */
-	line-height: 1em;
-}
-
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */
-.mw-content-ltr .mw-editsection,
-.mw-content-rtl .mw-content-ltr .mw-editsection {
-	margin-left: 1em;
-}
-
-/* @noflip */
-.mw-content-rtl .mw-editsection,
-.mw-content-ltr .mw-content-rtl .mw-editsection {
-	margin-right: 1em;
-}
+@import 'interface-edit-section-links.less';
 
 /* Prevent citations and subscripts from interfering with the line-height */
 sup, /* FIXME: Remove after adding 'normalize.less' added to all 'legacy.less' calling skins. */
