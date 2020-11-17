@@ -890,11 +890,20 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				PasswordAuthenticationRequest::class );
 			$changePassword = $passwordRequest && $passwordRequest->action == AuthManager::ACTION_CHANGE;
 			$fieldDefinitions = [
-				'username' => [
-					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
-					'id' => 'wpName1',
-					'placeholder-message' => 'userlogin-yourname-ph',
-				],
+				'username' => (
+					[
+						'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
+						'id' => 'wpName1',
+						'placeholder-message' => 'userlogin-yourname-ph',
+					] + ( $changePassword ? [
+						// There is no username field on the AuthManager level when changing
+						// passwords. Fake one because password
+						'baseField' => 'password',
+						'nodata' => true,
+						'readonly' => true,
+						'cssclass' => 'mw-htmlform-hidden-field',
+					] : [] )
+				),
 				'password' => (
 					$changePassword ? [
 						'autocomplete' => 'new-password',
