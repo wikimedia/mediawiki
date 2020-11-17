@@ -842,6 +842,10 @@
 					"services": {
 						"type": "array",
 						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+					},
+					"optional_services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
 					}
 				}
 			}
