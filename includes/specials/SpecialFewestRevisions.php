@@ -86,7 +86,7 @@ class SpecialFewestRevisions extends QueryPage {
 
 	/**
 	 * @param Skin $skin
-	 * @param object $result Database row
+	 * @param stdClass $result Database row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {

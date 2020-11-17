@@ -115,7 +115,7 @@ class SpecialMostLinked extends QueryPage {
 	 * and the "what links here" page for it
 	 *
 	 * @param Skin $skin Skin to be used
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
