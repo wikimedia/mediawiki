@@ -213,6 +213,9 @@ class ParserOutputAccess {
 			$output = null;
 		}
 
+		$hitOrMiss = $output ? 'hit' : 'miss';
+		$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.$hitOrMiss" );
+
 		return $output ?: null; // convert false to null
 	}
 
@@ -246,8 +249,12 @@ class ParserOutputAccess {
 	): Status {
 		$error = $this->checkPreconditions( $page, $parserOptions, $revision, $options );
 		if ( $error ) {
+			$this->statsDataFactory->increment( "ParserOutputAccess.Case.error" );
 			return $error;
 		}
+
+		$currentOrOld = ( $revision && $revision !== $page->getLatest() ) ? 'old' : 'current';
+		$this->statsDataFactory->increment( "ParserOutputAccess.Case.$currentOrOld" );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
 			$output = $this->getCachedParserOutput( $page, $parserOptions, $revision );
@@ -260,6 +267,7 @@ class ParserOutputAccess {
 			$revision = $page->getRevisionRecord();
 
 			if ( !$revision ) {
+				$this->statsDataFactory->increment( "ParserOutputAccess.Status.norev" );
 				return Status::newFatal(
 					'missing-revision',
 					$page->getLatest()
@@ -293,6 +301,15 @@ class ParserOutputAccess {
 			$status->warning( $staleReason );
 		}
 
+		if ( $status->isGood() ) {
+			$statusMsg = 'good';
+		} elseif ( $status->isOK() ) {
+			$statusMsg = 'ok';
+		} else {
+			$statusMsg = 'error';
+		}
+
+		$this->statsDataFactory->increment( "ParserOutputAccess.Status.$statusMsg" );
 		return $status;
 	}
 
@@ -384,6 +401,7 @@ class ParserOutputAccess {
 
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
+				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Current' );
 				$parserCacheMetadata = $this->primaryCache->getMetadata( $page );
 				$cacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions,
 					$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
@@ -402,6 +420,7 @@ class ParserOutputAccess {
 				);
 
 			case $useCache == self::CACHE_SECONDARY:
+				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Old' );
 				$cacheKey = $this->getSecondaryCacheKey( $parserOptions, $revision );
 				return new PoolWorkArticleViewOld(
 					$cacheKey,
@@ -414,6 +433,7 @@ class ParserOutputAccess {
 				);
 
 			default:
+				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Uncached' );
 				$workKey = $this->getSecondaryCacheKey( $parserOptions, $revision ) . ':uncached';
 				return new PoolWorkArticleView(
 					$workKey,
