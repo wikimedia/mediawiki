@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
@@ -702,46 +703,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		return $form;
 	}
 
+	/** @inheritDoc */
 	public function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
-		$coreFieldDescriptors = $this->getFieldDefinitions();
-
-		// keep the ordering from getCoreFieldDescriptors() where there is no explicit weight
-		foreach ( $coreFieldDescriptors as $fieldName => $coreField ) {
-			$requestField = $formDescriptor[$fieldName] ?? [];
-
-			// remove everything that is not in the fieldinfo, is not marked as a supplemental field
-			// to something in the fieldinfo, and is not an info field or a submit button
-			if (
-				!isset( $fieldInfo[$fieldName] )
-				&& (
-					!isset( $coreField['baseField'] )
-					|| !isset( $fieldInfo[$coreField['baseField']] )
-				)
-				&& (
-					!isset( $coreField['type'] )
-					|| !in_array( $coreField['type'], [ 'submit', 'info' ], true )
-				)
-			) {
-				$coreFieldDescriptors[$fieldName] = null;
-				continue;
-			}
-
-			// core message labels should always take priority
-			if (
-				isset( $coreField['label'] )
-				|| isset( $coreField['label-message'] )
-				|| isset( $coreField['label-raw'] )
-			) {
-				unset( $requestField['label'], $requestField['label-message'], $coreField['label-raw'] );
-			}
-
-			$coreFieldDescriptors[$fieldName] += $requestField;
-		}
-
-		$formDescriptor = array_filter( $coreFieldDescriptors + $formDescriptor );
-		return true;
+		$formDescriptor = self::mergeDefaultFormDescriptor( $fieldInfo, $formDescriptor,
+			$this->getFieldDefinitions() );
 	}
 
 	/**
@@ -807,6 +774,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'password' => [
 					'id' => 'wpPassword2',
+					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpassword-ph',
 					'help-message' => 'createacct-useuniquepass',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
@@ -820,12 +788,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'domain' => [],
 				'retype' => [
-					'baseField' => 'password',
 					'type' => 'password',
 					'label-message' => 'createacct-yourpasswordagain',
 					'id' => 'wpRetype',
 					'cssclass' => 'loginPassword',
 					'size' => 20,
+					'autocomplete' => 'new-password',
 					'validation-callback' => function ( $value, $alldata ) {
 						if ( empty( $alldata['mailpassword'] ) && !empty( $alldata['password'] ) ) {
 							if ( !$value ) {
@@ -846,6 +814,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',
+					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
 					'required' => $wgEmailConfirmToEdit,
 					'validation-callback' => function ( $value, $alldata ) {
@@ -875,6 +844,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'cssclass' => 'loginText',
 					'size' => 20,
 					'id' => 'wpRealName',
+					'autocomplete' => 'name',
 				],
 				'reason' => [
 					// comment for the user creation log
@@ -913,15 +883,33 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 			];
 		} else {
+			// When the user's password is too weak, they might be asked to provide a stronger one
+			// as a followup step. That is a form with only two fields, 'password' and 'retype',
+			// and they should behave more like account creation.
+			$passwordRequest = AuthenticationRequest::getRequestByClass( $this->authRequests,
+				PasswordAuthenticationRequest::class );
+			$changePassword = $passwordRequest && $passwordRequest->action == AuthManager::ACTION_CHANGE;
 			$fieldDefinitions = [
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
 					'id' => 'wpName1',
 					'placeholder-message' => 'userlogin-yourname-ph',
 				],
-				'password' => [
-					'id' => 'wpPassword1',
-					'placeholder-message' => 'userlogin-yourpassword-ph',
+				'password' => (
+					$changePassword ? [
+						'autocomplete' => 'new-password',
+						'placeholder-message' => 'createacct-yourpassword-ph',
+						'help-message' => 'createacct-useuniquepass',
+					] : [
+						'id' => 'wpPassword1',
+						'autocomplete' => 'current-password',
+						'placeholder-message' => 'userlogin-yourpassword-ph',
+					]
+				),
+				'retype' => [
+					'type' => 'password',
+					'autocomplete' => 'new-password',
+					'placeholder-message' => 'createacct-yourpasswordagain-ph',
 				],
 				'domain' => [],
 				'rememberMe' => [
@@ -966,6 +954,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpName',
 			'cssclass' => 'loginText',
 			'size' => 20,
+			'autocomplete' => 'username',
 			// 'required' => true,
 		];
 		$fieldDefinitions['password'] += [
