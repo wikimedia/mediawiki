@@ -29,7 +29,9 @@ use ParserCache;
 use ParserOptions;
 use ParserOutput;
 use PoolWorkArticleView;
+use PoolWorkArticleViewCurrent;
 use Status;
+use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
 
 /**
@@ -79,19 +81,25 @@ class ParserOutputAccess {
 	/** @var IBufferingStatsdDataFactory */
 	private $statsDataFactory;
 
+	/** @var ILBFactory */
+	private $lbFactory;
+
 	/**
 	 * @param ParserCache $primaryCache
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
+	 * @param ILBFactory $lbFactory
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
 		RevisionRenderer $revisionRenderer,
-		IBufferingStatsdDataFactory $statsDataFactory
+		IBufferingStatsdDataFactory $statsDataFactory,
+		ILBFactory $lbFactory
 	) {
 		$this->primaryCache = $primaryCache;
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
+		$this->lbFactory = $lbFactory;
 	}
 
 	/**
@@ -307,14 +315,33 @@ class ParserOutputAccess {
 			$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
 		}
 
-		$work = new PoolWorkArticleView(
-			$page,
-			$revision,
-			$parserOptions,
-			$useCache,
-			$this->revisionRenderer,
-			$this->primaryCache
+		$parserCacheMetadata = $this->primaryCache->getMetadata( $page );
+		$cacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions,
+			$parserCacheMetadata ? $parserCacheMetadata->getUsedOptions() : null
 		);
+
+		$workKey = $cacheKey . ':revid:' . $revision->getId();
+
+		if ( $useCache ) {
+			$workKey .= ':current';
+			$work = new PoolWorkArticleViewCurrent(
+				$workKey,
+				$page,
+				$revision,
+				$parserOptions,
+				$this->revisionRenderer,
+				$this->primaryCache,
+				$this->lbFactory
+			);
+		} else {
+			$workKey .= ':uncached';
+			$work = new PoolWorkArticleView(
+				$workKey,
+				$revision,
+				$parserOptions,
+				$this->revisionRenderer
+			);
+		}
 
 		return $work;
 	}
