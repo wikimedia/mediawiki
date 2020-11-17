@@ -40,17 +40,19 @@ class DoctrineSchemaBuilderFactory {
 			throw new InvalidArgumentException( 'Unknown platform: ' . $platform );
 		}
 
-		if ( !Type::hasType( TimestampType::TIMESTAMP ) ) {
-			Type::addType( TimestampType::TIMESTAMP, TimestampType::class );
-		}
-		$platformObject->registerDoctrineTypeMapping( 'Timestamp', TimestampType::TIMESTAMP );
+		$customTypes = [
+			'Enum' => [ EnumType::class, EnumType::ENUM ],
+			'Tinyint' => [ TinyIntType::class, TinyIntType::TINYINT ],
+			'Timestamp' => [ TimestampType::class, TimestampType::TIMESTAMP ],
+		];
 
-		if ( !Type::hasType( TinyIntType::TINYINT ) ) {
-			Type::addType( TinyIntType::TINYINT, TinyIntType::class );
+		foreach ( $customTypes as $type => [ $class, $name ] ) {
+			if ( !Type::hasType( $name ) ) {
+				Type::addType( $name, $class );
+			}
+			$platformObject->registerDoctrineTypeMapping( $type, $name );
 		}
-		$platformObject->registerDoctrineTypeMapping( 'Tinyint', TinyIntType::TINYINT );
 
 		return $platformObject;
 	}
-
 }

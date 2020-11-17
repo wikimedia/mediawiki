@@ -1850,6 +1850,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilder' => __DIR__ . '/includes/libs/rdbms/database/DoctrineSchemaBuilder.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilderFactory' => __DIR__ . '/includes/libs/rdbms/database/DoctrineSchemaBuilderFactory.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaChangeBuilder' => __DIR__ . '/includes/libs/rdbms/database/DoctrineSchemaChangeBuilder.php',
+	'Wikimedia\\Rdbms\\EnumType' => __DIR__ . '/includes/libs/rdbms/database/EnumType.php',
 	'Wikimedia\\Rdbms\\FakeResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/FakeResultWrapper.php',
 	'Wikimedia\\Rdbms\\Field' => __DIR__ . '/includes/libs/rdbms/field/Field.php',
 	'Wikimedia\\Rdbms\\GeneralizedSql' => __DIR__ . '/includes/libs/rdbms/database/utils/GeneralizedSql.php',
