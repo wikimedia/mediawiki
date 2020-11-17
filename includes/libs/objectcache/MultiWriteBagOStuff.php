@@ -86,6 +86,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 					// (likely harmless) params (factory/class/calls) ending up in "args".
 					$cacheInfo['args'] = [ $cacheInfo ];
 				}
+
+				// ObjectFactory::getObjectFromSpec accepts an array, not just a callable (phan bug)
+				// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
 			}
 		}
