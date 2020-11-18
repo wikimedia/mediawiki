@@ -246,7 +246,7 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
-			$page = WikiPage::factory( $this->currentTitle );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->currentTitle );
 			$redirect = $this->invokeLenient(
 				function () use ( $page ) {
 					return $page->getRedirectTarget();
