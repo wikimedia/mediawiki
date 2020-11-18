@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use Wikimedia\Rdbms\ILBFactory;
@@ -49,6 +50,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParserCache $parserCache
 	 * @param ILBFactory $lbFactory
+	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
 		string $workKey,
@@ -57,7 +59,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
 		ParserCache $parserCache,
-		ILBFactory $lbFactory
+		ILBFactory $lbFactory,
+		LoggerSpi $loggerSpi
 	) {
 		// TODO: Remove support for partially initialized RevisionRecord instances once
 		//       Article no longer uses fake revisions.
@@ -65,7 +68,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
 		}
 
-		parent::__construct( $workKey, $revision, $parserOptions, $revisionRenderer );
+		parent::__construct( $workKey, $revision, $parserOptions, $revisionRenderer, $loggerSpi );
 
 		$this->workKey = $workKey;
 		$this->page = $page;
@@ -101,11 +104,12 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	public function getCachedWork() {
 		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
+		$logger = $this->getLogger();
 		if ( $this->parserOutput === false ) {
-			wfDebug( __METHOD__ . ": parser cache miss" );
+			$logger->debug( 'parser cache miss' );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": parser cache hit" );
+			$logger->debug( 'parser cache hit' );
 			return true;
 		}
 	}
@@ -116,6 +120,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 */
 	public function fallback( $fast ) {
 		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
+
+		$logger = $this->getLogger( 'dirty' );
 
 		$fastMsg = '';
 		if ( $this->parserOutput && $fast ) {
@@ -131,8 +137,15 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			$lastWriteTime = $this->lbFactory->getChronologyProtectorTouched();
 			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
 			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
-				wfDebugLog( 'dirty', "declining to send dirty output since cache time " .
-					$cacheTime . " is before last write time $lastWriteTime" );
+				$logger->info(
+					'declining to send dirty output since cache time ' .
+						'{cacheTime} is before last write time {lastWriteTime}',
+					[
+						'workKey' => $this->workKey,
+						'cacheTime' => $cacheTime,
+						'lastWriteTime' => $lastWriteTime,
+					]
+				);
 				// Forget this ParserOutput -- we will request it again if
 				// necessary in slow mode. There might be a newer entry
 				// available by that time.
@@ -144,10 +157,10 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		}
 
 		if ( $this->parserOutput === false ) {
-			wfDebugLog( 'dirty', 'dirty missing' );
+			$logger->info( 'dirty missing' );
 			return false;
 		} else {
-			wfDebugLog( 'dirty', "{$fastMsg}dirty output {$this->workKey}" );
+			$logger->info( "{$fastMsg}dirty output", [ 'workKey' => $this->workKey ] );
 			$this->isDirty = true;
 			return true;
 		}

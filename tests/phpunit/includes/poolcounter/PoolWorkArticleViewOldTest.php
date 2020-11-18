@@ -46,7 +46,8 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 			$rev,
 			$options,
 			$renderer,
-			$unserializer
+			$unserializer,
+			$this->getLoggerSpi()
 		);
 	}
 

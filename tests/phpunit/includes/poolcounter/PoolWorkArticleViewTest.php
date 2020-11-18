@@ -1,15 +1,30 @@
 <?php
 
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * @covers PoolWorkArticleView
  * @group Database
  */
 class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
+
+	/**
+	 * @param LoggerInterface|null $logger
+	 *
+	 * @return LoggerSpi
+	 */
+	protected function getLoggerSpi( $logger = null ) {
+		$logger = $logger ?: new NullLogger();
+		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
+		$spi->method( 'getLogger' )->willReturn( $logger );
+		return $spi;
+	}
 
 	/**
 	 * @param WikiPage $page
@@ -37,7 +52,8 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 			'test:' . $rev->getId(),
 			$rev,
 			$options,
-			$revisionRenderer
+			$revisionRenderer,
+			$this->getLoggerSpi()
 		);
 	}
 
