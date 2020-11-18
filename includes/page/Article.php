@@ -300,21 +300,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Returns ParserOutput to use when a page does not exist. In some cases, we still want to show
-	 * "virtual" content, e.g. in the MediaWiki namespace, or in the File namespace for non-local
-	 * files.
-	 *
-	 * @param ParserOptions $options
-	 *
-	 * @return ParserOutput
-	 */
-	protected function getEmptyPageParserOutput( ParserOptions $options ) {
-		$content = $this->getSubstituteContent();
-
-		return $content->getParserOutput( $this->getTitle(), 0, $options );
-	}
-
-	/**
 	 * @see getOldIDFromRequest()
 	 * @see getRevIdFetched()
 	 *
@@ -1415,9 +1400,8 @@ class Article implements Page {
 		$oldid = $this->getOldID();
 		$pm = $this->permManager;
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
-			// use fake Content object for system message
-			$parserOptions = ParserOptions::newCanonical( 'canonical' );
-			$outputPage->addParserOutput( $this->getEmptyPageParserOutput( $parserOptions ) );
+			$text = $this->getTitle()->getDefaultMessageText() ?? '';
+			$outputPage->addWikiTextAsContent( $text );
 		} else {
 			if ( $oldid ) {
 				// T251066: Try loading the revision from the archive table.
