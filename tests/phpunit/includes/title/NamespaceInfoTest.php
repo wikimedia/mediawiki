@@ -1261,6 +1261,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @throws MWException
 	 */
 	public function testGetRestrictionLevels( array $expected, $ns, array $groups = null ) {
+		$this->hideDeprecated( 'NamespaceInfo::getRestrictionLevels' );
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [
 				'*' => [ 'edit' => true ],

@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
@@ -1186,7 +1187,7 @@ class EditPage implements IEditObject {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 * @return bool If the requested section is valid
 	 */
-	public function initialiseForm() {
+	private function initialiseForm() {
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
@@ -1572,17 +1573,6 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * Use this method before edit() to preload some content into the edit box
-	 *
-	 * @param Content $content
-	 *
-	 * @since 1.21
-	 */
-	public function setPreloadedContent( Content $content ) {
-		$this->mPreloadContent = $content;
 	}
 
 	/**
@@ -2062,6 +2052,15 @@ class EditPage implements IEditObject {
 			);
 		}
 
+		// If the article has been deleted while editing, don't save it without
+		// confirmation
+		$constraintRunner->addConstraint(
+			new AccidentalRecreationConstraint(
+				$this->wasDeletedSinceLastEdit(),
+				$this->recreate
+			)
+		);
+
 		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
@@ -2083,13 +2082,6 @@ class EditPage implements IEditObject {
 			return $status;
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-		# If the article has been deleted while editing, don't save it without
-		# confirmation
-		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
-			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
-			return $status;
-		}
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
@@ -3251,7 +3243,7 @@ class EditPage implements IEditObject {
 	 * @param string $text
 	 * @return string|bool String or false
 	 */
-	public static function extractSectionTitle( $text ) {
+	private static function extractSectionTitle( $text ) {
 		if ( preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches ) ) {
 			return MediaWikiServices::getInstance()->getParser()
 				->stripSectionName( trim( $matches[2] ) );
@@ -3468,7 +3460,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
 	 */
-	public function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
+	private function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
 		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);
@@ -4581,7 +4573,7 @@ class EditPage implements IEditObject {
 	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistent section.
 	 */
-	public function noSuchSectionPage() {
+	private function noSuchSectionPage() {
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
 
