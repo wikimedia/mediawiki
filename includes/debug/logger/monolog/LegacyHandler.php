@@ -175,7 +175,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		return $this->host !== null;
 	}
 
-	protected function write( array $record ) {
+	protected function write( array $record ): void {
 		if ( $this->useLegacyFilter &&
 			!LegacyLogger::shouldEmit(
 				$record['channel'], $record['message'],
@@ -222,7 +222,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		}
 	}
 
-	public function close() {
+	public function close(): void {
 		if ( is_resource( $this->sink ) ) {
 			if ( $this->useUdp() ) {
 				socket_close( $this->sink );
