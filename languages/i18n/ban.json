@@ -501,6 +501,7 @@
 	"botpasswords": "Kruna sandi bot",
 	"botpasswords-createnew": "Kardi kruna sandi bot anyar",
 	"botpasswords-label-needsreset": "(perlu nyumu ngardi kruna sandi)",
+	"botpasswords-label-appid": "Aran bot:",
 	"botpasswords-label-create": "Ngae",
 	"botpasswords-label-cancel": "Wangdé",
 	"botpasswords-label-delete": "Usap",
