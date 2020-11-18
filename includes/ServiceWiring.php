@@ -952,7 +952,8 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getJsonUnserializer()
+			$services->getJsonUnserializer(),
+			LoggerFactory::getProvider()
 		);
 	},
 

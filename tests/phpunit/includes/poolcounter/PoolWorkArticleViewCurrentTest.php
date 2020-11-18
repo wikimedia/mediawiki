@@ -44,7 +44,8 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			$options,
 			$revisionRenderer,
 			$parserCache,
-			$lbFactory
+			$lbFactory,
+			$this->getLoggerSpi()
 		);
 	}
 

@@ -25,6 +25,7 @@ use BagOStuff;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use ParserCache;
@@ -107,6 +108,9 @@ class ParserOutputAccess {
 	/** @var JsonUnserializer */
 	private $jsonUnserializer;
 
+	/** @var LoggerSpi */
+	private $loggerSpi;
+
 	/**
 	 * @param ParserCache $primaryCache
 	 * @param BagOStuff $secondaryCache
@@ -115,6 +119,7 @@ class ParserOutputAccess {
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ILBFactory $lbFactory
 	 * @param JsonUnserializer $jsonUnserializer
+	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
@@ -123,7 +128,8 @@ class ParserOutputAccess {
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ILBFactory $lbFactory,
-		JsonUnserializer $jsonUnserializer
+		JsonUnserializer $jsonUnserializer,
+		LoggerSpi $loggerSpi
 	) {
 		$this->primaryCache = $primaryCache;
 		$this->secondaryCache = $secondaryCache;
@@ -132,6 +138,7 @@ class ParserOutputAccess {
 		$this->statsDataFactory = $statsDataFactory;
 		$this->lbFactory = $lbFactory;
 		$this->jsonUnserializer = $jsonUnserializer;
+		$this->loggerSpi = $loggerSpi;
 	}
 
 	/**
@@ -416,7 +423,8 @@ class ParserOutputAccess {
 					$parserOptions,
 					$this->revisionRenderer,
 					$this->primaryCache,
-					$this->lbFactory
+					$this->lbFactory,
+					$this->loggerSpi
 				);
 
 			case $useCache == self::CACHE_SECONDARY:
@@ -429,7 +437,8 @@ class ParserOutputAccess {
 					$revision,
 					$parserOptions,
 					$this->revisionRenderer,
-					$this->jsonUnserializer
+					$this->jsonUnserializer,
+					$this->loggerSpi
 				);
 
 			default:
@@ -439,7 +448,8 @@ class ParserOutputAccess {
 					$workKey,
 					$revision,
 					$parserOptions,
-					$this->revisionRenderer
+					$this->revisionRenderer,
+					$this->loggerSpi
 				);
 		}
 
