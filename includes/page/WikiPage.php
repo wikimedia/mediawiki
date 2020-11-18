@@ -195,7 +195,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to READ_* constants.
 	 *
-	 * @param object|string|int $type
+	 * @param stdClass|string|int $type
 	 * @return mixed
 	 */
 	public static function convertSelectType( $type ) {
@@ -368,7 +368,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param IDatabase $dbr
 	 * @param array $conditions
 	 * @param array $options
-	 * @return object|bool Database result resource, or false on failure
+	 * @return stdClass|false Database result resource, or false on failure
 	 */
 	protected function pageData( $dbr, $conditions, $options = [] ) {
 		$pageQuery = self::getQueryInfo();
@@ -397,7 +397,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param IDatabase $dbr
 	 * @param Title $title
 	 * @param array $options
-	 * @return object|bool Database result resource, or false on failure
+	 * @return stdClass|false Database result resource, or false on failure
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
 		return $this->pageData( $dbr, [
@@ -411,7 +411,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param IDatabase $dbr
 	 * @param int $id
 	 * @param array $options
-	 * @return object|bool Database result resource, or false on failure
+	 * @return stdClass|false Database result resource, or false on failure
 	 */
 	public function pageDataFromId( $dbr, $id, $options = [] ) {
 		return $this->pageData( $dbr, [ 'page_id' => $id ], $options );
@@ -420,7 +420,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Load the object from a given source by title
 	 *
-	 * @param object|string|int $from One of the following:
+	 * @param stdClass|string|int $from One of the following:
 	 *   - A DB query result object.
 	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
 	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
@@ -493,7 +493,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Load the object from a database row
 	 *
 	 * @since 1.20
-	 * @param object|bool $data DB row containing fields returned by getQueryInfo() or false
+	 * @param stdClass|bool $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
 	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
