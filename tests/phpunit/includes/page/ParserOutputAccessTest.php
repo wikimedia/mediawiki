@@ -4,6 +4,7 @@ use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionStore;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -24,7 +25,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$value = $value->getText();
 		}
 
-		$html = trim( preg_replace( '/<!--.*?-->/s', '', $value ) );
+		$html = preg_replace( '/<!--.*?-->/s', '', $value );
+		$html = trim( preg_replace( '/[\r\n]{2,}/s', "\n", $html ) );
+		$html = trim( preg_replace( '/\s{2,}/s', ' ', $html ) );
 		return $html;
 	}
 
@@ -76,18 +79,52 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param ParserCache|null $parserCache
+	 * @param BagOStuff|null $secondaryCache
+	 * @param int $secondaryExpiry
+	 *
+	 * @param int|bool $maxRenderCalls
 	 *
 	 * @return ParserOutputAccess
+	 * @throws Exception
 	 */
-	private function getParserOutputAccessWithCache( $parserCache = null ) {
+	private function getParserOutputAccessWithCache(
+		$parserCache = null,
+		$secondaryCache = null,
+		$secondaryExpiry = 3600,
+		$maxRenderCalls = false
+	) {
 		if ( !$parserCache ) {
 			$parserCache = $this->getParserCache( new HashBagOStuff() );
+		}
+
+		if ( !$secondaryCache ) {
+			$secondaryCache = new HashBagOStuff();
 		}
 
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$stats = new NullStatsdDataFactory();
-		return new ParserOutputAccess( $parserCache, $revRenderer, $stats, $lbFactory );
+		$jsonUnserializer = new JsonUnserializer();
+
+		if ( $maxRenderCalls ) {
+			$realRevRenderer = $revRenderer;
+			$revRenderer =
+				$this->createNoOpMock( RevisionRenderer::class, [ 'getRenderedRevision' ] );
+
+			$revRenderer->expects( $this->atMost( $maxRenderCalls ) )
+				->method( 'getRenderedRevision' )
+				->willReturnCallback( [ $realRevRenderer, 'getRenderedRevision' ] );
+		}
+
+		return new ParserOutputAccess(
+			$parserCache,
+			$secondaryCache,
+			$secondaryExpiry,
+			$revRenderer,
+			$stats,
+			$lbFactory,
+			$jsonUnserializer
+		);
 	}
 
 	/**
@@ -95,7 +132,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getParserOutputAccessNoCache() {
 		$cache = $this->getParserCache( new EmptyBagOStuff() );
-		return $this->getParserOutputAccessWithCache( $cache );
+		return $this->getParserOutputAccessWithCache( $cache, new EmptyBagOStuff() );
 	}
 
 	/**
@@ -139,18 +176,18 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * Tests that cached output in the ParserCache will be used for the latest revision.
 	 */
 	public function testLatestRevisionUseCached() {
-		$parserCache = $this->getParserCache( new HashBagOStuff() );
-		$access = $this->getParserOutputAccessWithCache( $parserCache );
+		// Allow only one render call, use default caches
+		$access = $this->getParserOutputAccessWithCache( null, null, 3600, 1 );
 
 		$parserOptions = $this->getParserOptions();
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, 'Hello \'\'World\'\'!' );
 
-		$expectedOutput = new ParserOutput( 'Cached Text' );
-		$parserCache->save( $expectedOutput, $page, $parserOptions );
+		$access->getParserOutput( $page, $parserOptions );
 
+		// The second call should use cached output
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertSameHtml( $expectedOutput, $status );
+		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
 	}
 
 	/**
@@ -400,14 +437,87 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * Tests that output for an old revision is fetched from the secondary parser cache if possible.
 	 */
 	public function testOldRevisionUseCached() {
-		$this->markTestSkipped( 'Caching not yet implemented for old revisions' );
+		// Allow only one render call, use default caches
+		$access = $this->getParserOutputAccessWithCache( null, null, 3600, 1 );
+
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'First' );
+		$oldRev = $page->getRevisionRecord();
+
+		$this->editPage( $page, 'Second' );
+
+		$firstStatus = $access->getParserOutput( $page, $parserOptions, $oldRev );
+
+		// The second call should use cached output
+		$secondStatus = $access->getParserOutput( $page, $parserOptions, $oldRev );
+		$this->assertSameHtml( $firstStatus, $secondStatus );
+	}
+
+	/**
+	 * Tests that output for an old revision is fetched from the secondary parser cache if possible.
+	 */
+	public function testOldRevisionDisableCached() {
+		// Use default caches, but expiry 0 for the secondary cache
+		$access = $this->getParserOutputAccessWithCache( null, null, 0 );
+
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'First' );
+		$oldRev = $page->getRevisionRecord();
+
+		$this->editPage( $page, 'Second' );
+		$access->getParserOutput( $page, $parserOptions, $oldRev );
+
+		// Should not be cached!
+		$cachedOutput = $access->getCachedParserOutput( $page, $parserOptions, $oldRev );
+		$this->assertNull( $cachedOutput );
 	}
 
 	/**
 	 * Tests that the secondary cache for output for old revisions is split on parser options.
 	 */
 	public function testOldRevisionCacheSplit() {
-		$this->markTestSkipped( 'Caching not yet implemented for old revisions' );
+		$access = $this->getParserOutputAccessWithCache();
+
+		$frenchOptions = ParserOptions::newCanonical( 'canonical' );
+		$frenchOptions->setUserLang( 'fr' );
+
+		$tongaOptions = ParserOptions::newCanonical( 'canonical' );
+		$tongaOptions->setUserLang( 'to' );
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'Test {{int:ok}}!' );
+		$oldRev = $page->getRevisionRecord();
+
+		$this->editPage( $page, 'Latest Test' );
+
+		$frenchResult = $access->getParserOutput( $page, $frenchOptions, $oldRev );
+		$this->assertContainsHtml( 'Test', $frenchResult );
+
+		// sanity check that French output was cached
+		$cachedFrenchOutput =
+			$access->getCachedParserOutput( $page, $frenchOptions, $oldRev );
+		$this->assertNotNull( $cachedFrenchOutput, 'French output should be in the cache' );
+
+		// check that we don't get the French output when asking for Tonga
+		$cachedTongaOutput =
+			$access->getCachedParserOutput( $page, $tongaOptions, $oldRev );
+		$this->assertNull( $cachedTongaOutput, 'Tonga output should not be in the cache yet' );
+
+		// check that we can generate the Tonga output, and it's different from French
+		$tongaResult = $access->getParserOutput( $page, $tongaOptions, $oldRev );
+		$this->assertContainsHtml( 'Test', $tongaResult );
+		$this->assertNotSameHtml(
+			$frenchResult,
+			$tongaResult,
+			'Tonga output should be different from French'
+		);
+
+		// check that the Tonga output is cached
+		$cachedTongaOutput =
+			$access->getCachedParserOutput( $page, $tongaOptions, $oldRev );
+		$this->assertNotNull( $cachedTongaOutput, 'Tonga output should be in the cache' );
 	}
 
 	/**

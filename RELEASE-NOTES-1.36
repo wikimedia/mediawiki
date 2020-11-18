@@ -20,7 +20,6 @@ Some specific notes for MediaWiki 1.36 upgrades are below:
 For notes on 1.35.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.36 ===
-
 …
 
 ==== New configuration ====
@@ -29,6 +28,8 @@ For notes on 1.35.x and older releases, see HISTORY.
   configuration variable sets the maximum number of revisions of a page that
   will be checked against every new edit. Set this to 0 to disable the feature
   entirely.
+* $wgOldRevisionParserCacheExpireTime was added, to control caching of
+  ParserOutput for old revisions (T244058).
 * …
 
 ==== Changed configuration ====
