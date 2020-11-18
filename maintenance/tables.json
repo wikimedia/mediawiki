@@ -1439,6 +1439,88 @@
                 { "name": "pp_propname_sortkey_page", "columns": [ "pp_propname", "pp_sortkey", "pp_page" ], "unique": true, "options": { "where": "(pp_sortkey IS NOT NULL)" } }
         ],
         "pk": [ "pp_page", "pp_propname" ]
+	},
+	{
+		"name": "job",
+		"comment": "Jobs performed by parallel apache threads or a command-line daemon",
+		"columns": [
+			{
+				"name": "job_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "job_cmd",
+				"comment": "Command name. Limited to 60 to prevent key length overflow",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 60 }
+			},
+			{
+				"name": "job_namespace",
+				"comment": "Namespace to act on. Should be 0 if the command does not operate on a title",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "job_title",
+				"comment": "Title to act on. Should be '' if the command does not operate on a title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "job_timestamp",
+				"comment": "Timestamp of when the job was inserted. NULL for jobs added before addition of the timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "job_params",
+				"comment": "Any other parameters to the command. Stored as a PHP serialized array, or an empty string if there are no parameters",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			},
+			{
+				"name": "job_random",
+				"comment": "Random, non-unique, number used for job acquisition (for lock concurrency)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "job_attempts",
+				"comment": "The number of times this job has been locked",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "job_token",
+				"comment": "Field that conveys process locks on rows via process UUIDs",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32 }
+			},
+			{
+				"name": "job_token_timestamp",
+				"comment": "Timestamp when the job was locked",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "job_sha1",
+				"comment": "Base 36 SHA1 of the job parameters relevant to detecting duplicates",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "job_sha1", "columns": [ "job_sha1" ], "unique": false },
+			{ "name": "job_cmd_token", "columns": [ "job_cmd", "job_token", "job_random" ], "unique": false },
+			{ "name": "job_cmd_token_id", "columns": [ "job_cmd", "job_token", "job_id" ], "unique": false },
+			{ "name": "job_cmd", "columns": [ "job_cmd", "job_namespace", "job_title", "job_params" ],
+				"unique": false,
+				"options": { "lengths": [ null, null, null, 128 ] }
+			},
+			{ "name": "job_timestamp", "columns": [ "job_timestamp" ], "unique": false }
+		],
+		"pk": [ "job_id" ]
 	}
 
 ]

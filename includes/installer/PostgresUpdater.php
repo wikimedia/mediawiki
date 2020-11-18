@@ -819,6 +819,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropFkey', 'page_props', 'pp_page' ],
 			// Moved from the Schema SQL file to here in 1.36
 			[ 'changePrimaryKey', 'page_props', [ 'pp_page', 'pp_propname' ], 'page_props_pk' ],
+			[ 'setDefault','job', 'job_cmd', '' ],
+			[ 'changeField', 'job', 'job_namespace', 'INTEGER', '' ],
+			[ 'dropPgIndex', 'job', 'job_cmd_namespace_title' ],
+			[ 'addPgIndex', 'job', 'job_cmd', '(job_cmd, job_namespace, job_title, job_params)' ],
+			[ 'renameIndex', 'job', 'job_timestamp_idx', 'job_timestamp' ],
 		];
 	}
 

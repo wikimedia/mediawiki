@@ -466,6 +466,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_type', 'patch-ipblocks_restrictions-ir_type.sql' ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
 				'patch-watchlist-namespace_title-rename-index.sql' ],
+			[ 'modifyField', 'job', 'job_title', 'patch-job-job_title-varbinary.sql' ],
+			[ 'modifyField', 'job', 'job_timestamp', 'patch-job_job_timestamp.sql' ],
+			[ 'modifyField', 'job', 'job_token_timestamp', 'patch-job_job_token_timestamp.sql' ],
 		];
 	}
 

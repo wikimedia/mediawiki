@@ -509,3 +509,32 @@ CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname, pp_page);
 CREATE UNIQUE INDEX pp_propname_sortkey_page ON page_props (pp_propname, pp_sortkey, pp_page)
 WHERE
   (pp_sortkey IS NOT NULL);
+
+
+CREATE TABLE job (
+    job_id SERIAL NOT NULL,
+    job_cmd TEXT DEFAULT '' NOT NULL,
+    job_namespace INT NOT NULL,
+    job_title TEXT NOT NULL,
+    job_timestamp TIMESTAMPTZ DEFAULT NULL,
+    job_params TEXT NOT NULL,
+    job_random INT DEFAULT 0 NOT NULL,
+    job_attempts INT DEFAULT 0 NOT NULL,
+    job_token TEXT DEFAULT '' NOT NULL,
+    job_token_timestamp TIMESTAMPTZ DEFAULT NULL,
+    job_sha1 TEXT DEFAULT '' NOT NULL,
+    PRIMARY KEY(job_id)
+  );
+
+CREATE INDEX job_sha1 ON job (job_sha1);
+
+CREATE INDEX job_cmd_token ON job (job_cmd, job_token, job_random);
+
+CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
+
+CREATE INDEX job_cmd ON job (
+    job_cmd, job_namespace, job_title,
+    job_params
+  );
+
+CREATE INDEX job_timestamp ON job (job_timestamp);

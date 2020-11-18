@@ -488,3 +488,28 @@ CREATE TABLE /*_*/page_props (
 CREATE UNIQUE INDEX pp_propname_page ON /*_*/page_props (pp_propname, pp_page);
 
 CREATE UNIQUE INDEX pp_propname_sortkey_page ON /*_*/page_props (pp_propname, pp_sortkey, pp_page);
+
+
+CREATE TABLE /*_*/job (
+  job_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  job_cmd BLOB DEFAULT '' NOT NULL, job_namespace INTEGER NOT NULL,
+  job_title BLOB NOT NULL, job_timestamp BLOB DEFAULT NULL,
+  job_params BLOB NOT NULL, job_random INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  job_attempts INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  job_token BLOB DEFAULT '' NOT NULL,
+  job_token_timestamp BLOB DEFAULT NULL,
+  job_sha1 BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX job_sha1 ON /*_*/job (job_sha1);
+
+CREATE INDEX job_cmd_token ON /*_*/job (job_cmd, job_token, job_random);
+
+CREATE INDEX job_cmd_token_id ON /*_*/job (job_cmd, job_token, job_id);
+
+CREATE INDEX job_cmd ON /*_*/job (
+  job_cmd, job_namespace, job_title,
+  job_params
+);
+
+CREATE INDEX job_timestamp ON /*_*/job (job_timestamp);
