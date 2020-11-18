@@ -1402,3 +1402,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-GoogleNewsSitemap
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/SnapProjectEmbed"]
+	path = extensions/SnapProjectEmbed
+	url = https://github.com/snapwiki/SnapProjectEmbed.git
+	branch = master
+	ignore = dirty
