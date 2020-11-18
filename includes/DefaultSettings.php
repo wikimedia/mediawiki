@@ -2653,6 +2653,12 @@ $wgMainStash = 'db-replicated';
 $wgParserCacheExpireTime = 86400;
 
 /**
+ * The expiry time for the parser cache for old revisions, in seconds.
+ * The default is 3600 (cache disabled).
+ */
+$wgOldRevisionParserCacheExpireTime = 60 * 60;
+
+/**
  * The expiry time to use for session storage, in seconds.
  */
 $wgObjectCacheSessionExpiry = 3600;
