@@ -48,7 +48,7 @@ class AvroFormatterTest extends \MediaWikiUnitTestCase {
 		AtEase::suppressWarnings();
 		$res = $formatter->format( [ 'channel' => 'marty' ] );
 		AtEase::restoreWarnings();
-		$this->assertNull( $res );
+		$this->assertSame( '', $res );
 	}
 
 	public function testDoesSomethingWhenSchemaAvailable() {
@@ -62,7 +62,7 @@ class AvroFormatterTest extends \MediaWikiUnitTestCase {
 			'channel' => 'string',
 			'context' => 'better to be',
 		] );
-		$this->assertNotNull( $res );
+		$this->assertNotEquals( '', $res );
 		// basically just tell us if avro changes its string encoding, or if
 		// we completely fail to generate a log message.
 		$this->assertEquals( 'AAAAAAAAD2m1GGJldHRlciB0byBiZQ==', base64_encode( $res ) );

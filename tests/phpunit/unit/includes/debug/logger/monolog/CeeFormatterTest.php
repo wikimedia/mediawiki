@@ -10,8 +10,8 @@ namespace MediaWiki\Logger\Monolog;
  */
 class CeeFormatterTest extends \MediaWikiUnitTestCase {
 	public function testV1() {
-		$ls_formatter = new LogstashFormatter( 'app', 'system', null, 'ctx_', LogstashFormatter::V1 );
-		$cee_formatter = new CeeFormatter( 'app', 'system', null, 'ctx_', LogstashFormatter::V1 );
+		$ls_formatter = new LogstashFormatter( 'app', 'system', '', 'ctx_' );
+		$cee_formatter = new CeeFormatter( 'app', 'system', '', 'ctx_' );
 		$record = [ 'extra' => [ 'url' => 1 ], 'context' => [ 'url' => 2 ] ];
 		$this->assertSame(
 			$cee_formatter->format( $record ),

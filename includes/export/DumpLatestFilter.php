@@ -36,7 +36,7 @@ class DumpLatestFilter extends DumpFilter {
 	public $revString;
 
 	/**
-	 * @param object $page
+	 * @param stdClass $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -60,7 +60,7 @@ class DumpLatestFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param object $rev
+	 * @param stdClass $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {

@@ -1044,8 +1044,8 @@ EOT
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
 	 *
-	 * @param object $a Object page to compare with
-	 * @param object $b Object page to compare with
+	 * @param stdClass $a Object page to compare with
+	 * @param stdClass $b Object page to compare with
 	 * @return int Result of string comparison, or namespace comparison
 	 */
 	protected function compare( $a, $b ) {

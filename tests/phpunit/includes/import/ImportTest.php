@@ -20,17 +20,21 @@ class ImportTest extends MediaWikiLangTestCase {
 	 */
 	public function testUnknownXMLTags( $xml, $text, $title ) {
 		$source = new ImportStringSource( $xml );
+		$services = MediaWikiServices::getInstance();
 
 		$importer = new WikiImporter(
 			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$services->getMainConfig()
 		);
 
 		$importer->doImport();
 		$title = Title::newFromText( $title );
 		$this->assertTrue( $title->exists() );
 
-		$this->assertEquals( WikiPage::factory( $title )->getContent()->getText(), $text );
+		$this->assertEquals(
+			$services->getWikiPageFactory()->newFromTitle( $title )->getContent()->getText(),
+			$text
+		);
 	}
 
 	public function getUnknownTagsXML() {
