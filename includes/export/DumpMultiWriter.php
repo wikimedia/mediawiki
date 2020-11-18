@@ -59,7 +59,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param object $page
+	 * @param stdClass $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -78,7 +78,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param object $rev
+	 * @param stdClass $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {
