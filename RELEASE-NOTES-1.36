@@ -199,6 +199,13 @@ because of Phabricator reports.
   signature was hard deprecated in 1.35. Support for the old signature has
   now been removed.
 * User::addNewUserLogEntry, deprecated since 1.27, was removed.
+* As part of refactoring the EditPage class, EditPage::setPreloadedContent,
+  which had no known callers was removed entirely. Additionally, the
+  following public methods were made private:
+  - ::extractSectionTitle
+  - ::getSummaryInputWidget
+  - ::noSuchSectionPage
+  - ::initialiseForm
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * The global variable $wgMemc, deprecated since 1.35, has been removed.
