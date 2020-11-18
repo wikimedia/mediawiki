@@ -2007,12 +2007,10 @@ class FormatMetadata extends ContextSource {
 		// drop characters which are invalid at the first position
 		$key = preg_replace( '/^[\d\-.]+/', '', $key );
 
-		if ( $key == '' ) {
+		if ( $key === '' ) {
 			$key = '_';
-		}
-
 		// special case for an internal keyword
-		if ( $key == '_element' ) {
+		} elseif ( $key === '_element' ) {
 			$key = 'element';
 		}
 
