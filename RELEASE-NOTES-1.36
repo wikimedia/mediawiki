@@ -418,7 +418,8 @@ because of Phabricator reports.
   rely on it if they do not override getParserOutputForIndexing().)
 * Article::fetchContentObject, ::mContentObject, ::mContentLoaded,
   ::mRevIdFetched, deprecated since 1.32, were removed.
-* …
+* Article::mParserOptions and ::setParserOptions were removed.
+* Article and ImagePage::getEmptyPageParserOutput, unused, were removed.
 
 == Compatibility ==
 MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
