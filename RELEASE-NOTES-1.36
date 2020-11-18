@@ -304,6 +304,8 @@ because of Phabricator reports.
 * LoadBalancer::safeWaitForMasterPos(), deprecated in 1.34, has been removed.
 * ApiFeedRecentChanges::getFeedObject has been changed to private, and appears
   unused outside of MediaWiki core.
+* Skin::subPageSubtitle() has been changed to private method. Callers should
+  use Skin::prepareSubtitle().
 * …
 
 === Deprecations in 1.36 ===
