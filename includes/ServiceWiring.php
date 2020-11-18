@@ -72,7 +72,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -529,8 +529,8 @@ return [
 		);
 	},
 
-	'JsonUnserializer' => function ( MediaWikiServices $services ) : JsonUnserializer {
-		return new JsonUnserializer();
+	'JsonCodec' => function ( MediaWikiServices $services ) : JsonCodec {
+		return new JsonCodec();
 	},
 
 	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
@@ -908,7 +908,7 @@ return [
 			$cache,
 			$config->get( 'CacheEpoch' ),
 			$services->getHookContainer(),
-			$services->getJsonUnserializer(),
+			$services->getJsonCodec(),
 			$services->getStatsdDataFactory(),
 			LoggerFactory::getInstance( 'ParserCache' ),
 			$config->get( 'ParserCacheUseJson' )
@@ -952,7 +952,7 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getJsonUnserializer(),
+			$services->getJsonCodec(),
 			LoggerFactory::getProvider()
 		);
 	},

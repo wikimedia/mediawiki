@@ -20,8 +20,6 @@
  * @file
  */
 
-use MediaWiki\Json\JsonUnserializable;
-
 /**
  * JSON formatter wrapper class
  */
@@ -320,60 +318,5 @@ class FormatJson {
 		}
 		// Add final chunk to buffer before returning
 		return $buffer . substr( $str, $mark, $maxLen - $mark );
-	}
-
-	/**
-	 * Recursive check for ability to serialize $value to JSON via FormatJson::encode().
-	 *
-	 * @note instances of JsonSerializable interface are not considered serializable
-	 * in this method. The $value passed here is a result of JsonSerializable::jsonSerialize().
-	 *
-	 *
-	 * @param mixed $value
-	 * @param bool $expectUnserialize
-	 * @param string $accumulatedPath
-	 * @return string|null JSON path to first encountered non-serializable property or null.
-	 */
-	private static function detectNonSerializableDataInternal(
-		$value,
-		bool $expectUnserialize,
-		string $accumulatedPath
-	): ?string {
-		if ( is_array( $value ) ||
-			( is_object( $value ) && get_class( $value ) === 'stdClass' ) ) {
-			foreach ( $value as $key => $propValue ) {
-				$propValueNonSerializablePath = self::detectNonSerializableDataInternal(
-					$propValue,
-					$expectUnserialize,
-					$accumulatedPath . '.' . $key
-				);
-				if ( $propValueNonSerializablePath ) {
-					return $propValueNonSerializablePath;
-				}
-			}
-		} elseif ( ( $expectUnserialize && $value instanceof JsonUnserializable )
-			// Trust that JsonSerializable will correctly serialize.
-			|| ( !$expectUnserialize && $value instanceof JsonSerializable )
-		) {
-			return null;
-		// Instances of classes other the \stdClass or JsonSerializable can not be serialized to JSON.
-		} elseif ( !is_scalar( $value ) && $value !== null ) {
-			return $accumulatedPath;
-		}
-		return null;
-	}
-
-	/**
-	 * Checks if the $value is JSON-serializable (contains only scalar values)
-	 * and returns a JSON-path to the first non-serializable property encountered.
-	 *
-	 * @param mixed $value
-	 * @param bool $expectUnserialize whether to expect the $value to be unserializable with JsonUnserializer.
-	 * @return string|null JSON path to first encountered non-serializable property or null.
-	 * @see \MediaWiki\Json\JsonUnserializer
-	 * @since 1.36
-	 */
-	public static function detectNonSerializableData( $value, bool $expectUnserialize = false ): ?string {
-		return self::detectNonSerializableDataInternal( $value, $expectUnserialize, '$' );
 	}
 }

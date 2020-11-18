@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -39,8 +39,8 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	/** @var string */
 	private $cacheKey;
 
-	/** @var JsonUnserializer */
-	private $jsonUnserializer;
+	/** @var JsonCodec */
+	private $jsonCodec;
 
 	/**
 	 * @param string $cacheKey Key for the ParserOutput to use in $cache.
@@ -50,7 +50,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
-	 * @param JsonUnserializer $jsonUnserializer
+	 * @param JsonCodec $jsonCodec
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
@@ -60,7 +60,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
-		JsonUnserializer $jsonUnserializer,
+		JsonCodec $jsonCodec,
 		LoggerSpi $loggerSpi
 	) {
 		Assert::parameter( $cacheExpiry > 0, '$cacheExpiry', 'must be greater than zero' );
@@ -70,7 +70,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 		$this->cacheKey = $cacheKey;
 		$this->cacheExpiry = $cacheExpiry;
 		$this->cache = $cache;
-		$this->jsonUnserializer = $jsonUnserializer;
+		$this->jsonCodec = $jsonCodec;
 
 		$this->cacheable = true;
 	}
@@ -121,11 +121,10 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	private function restoreFromJson( string $json ) {
 		try {
 			/** @var ParserOutput $obj */
-			$obj = $this->jsonUnserializer->unserialize( $json, ParserOutput::class );
+			$obj = $this->jsonCodec->unserialize( $json, ParserOutput::class );
 			return $obj;
 		} catch ( InvalidArgumentException $e ) {
-			$logger = $this->getLogger();
-			$logger->error( "Unable to unserialize JSON", [
+			$this->getLogger()->error( "Unable to unserialize JSON", [
 				'cache_key' => $this->cacheKey,
 				'message' => $e->getMessage()
 			] );
@@ -139,33 +138,15 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	 * @return string|null
 	 */
 	private function encodeAsJson( ParserOutput $output ) {
-		$data = $output->jsonSerialize();
-		$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
-		if ( !$json ) {
-			$logger = $this->getLogger();
-			$logger->error( "JSON encoding failed", [
+		try {
+			return $this->jsonCodec->serialize( $output );
+		} catch ( InvalidArgumentException $e ) {
+			$this->getLogger()->error( "JSON encoding failed", [
 				'cache_key' => $this->cacheKey,
-				'json_error' => json_last_error(),
+				'message' => $e->getMessage(),
 			] );
 			return null;
 		}
-
-		// Detect if the array contained any properties non-serializable
-		// to json. We will not be able to deserialize the value correctly
-		// anyway, so return null. This is done after calling FormatJson::encode
-		// to avoid walking over circular structures.
-		$unserializablePath = FormatJson::detectNonSerializableData( $data, true );
-		if ( $unserializablePath ) {
-			$logger = $this->getLogger();
-			$logger->error( 'Non-serializable {class} property set', [
-				'class' => get_class( $output ),
-				'cache_key' => $this->cacheKey,
-				'path' => $unserializablePath,
-			] );
-			return null;
-		}
-
-		return $json;
 	}
 
 }

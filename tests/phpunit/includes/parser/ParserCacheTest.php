@@ -7,7 +7,7 @@ use EmptyBagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
@@ -82,7 +82,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$storage ?: new HashBagOStuff(),
 			'19900220000000',
 			$hookContainer ?: $this->createHookContainer( [] ),
-			new JsonUnserializer(),
+			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			$logger ?: new NullLogger()
 		);
@@ -669,7 +669,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$parserOutput->setExtensionData( 'test', new User() );
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
 		$this->assertArrayEquals(
-			[ [ LogLevel::ERROR, 'Non-serializable {class} property set' ] ],
+			[ [ LogLevel::ERROR, 'Unable to serialize JSON' ] ],
 			$testLogger->getBuffer()
 		);
 	}
@@ -688,7 +688,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$parserOutput->setExtensionData( 'test', $cyclicArray );
 		$cache->save( $parserOutput, $this->page, ParserOptions::newFromAnon() );
 		$this->assertArrayEquals(
-			[ [ LogLevel::ERROR, 'JSON encoding failed' ] ],
+			[ [ LogLevel::ERROR, 'Unable to serialize JSON' ] ],
 			$testLogger->getBuffer()
 		);
 	}
