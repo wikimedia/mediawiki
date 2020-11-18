@@ -1406,3 +1406,4 @@
 	path = extensions/SnapProjectEmbed
 	url = https://github.com/snapwiki/SnapProjectEmbed.git
 	branch = master
+	ignore = dirty
