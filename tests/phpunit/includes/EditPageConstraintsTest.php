@@ -155,6 +155,52 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		return WikiPage::factory( $title );
 	}
 
+	/** AccidentalRecreationConstraint integration */
+	public function testAccidentalRecreationConstraint() {
+		// Make sure it exists
+		$this->getExistingTestPage( 'AccidentalRecreationConstraintPage' );
+
+		// And now delete it, so that there is a deletion log
+		$page = $this->getNonExistingTestPage( 'AccidentalRecreationConstraintPage' );
+		$title = $page->getTitle();
+
+		// Set the time of the deletion to be a specific time, so we can be sure to start the
+		// edit before it. Since the constraint will query for the most recent timestamp,
+		// update *all* deletion logs for the page to the same timestamp (1 January 2020)
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'logging',
+			[ 'log_timestamp' => $dbw->timestamp( '20200101000000' ) ],
+			[
+				'log_namespace' => $title->getNamespace(),
+				'log_title' => $title->getDBKey(),
+				'log_type' => 'delete',
+				'log_action' => 'delete'
+			],
+			__METHOD__
+		);
+
+		$user = $this->getTestUser()->getUser();
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		// Needs edit rights to pass EditRightConstraint and reach AccidentalRecreationConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+
+		// Started the edit on 1 January 2019, page was deleted on 1 January 2020
+		$edit = [
+			'wpTextbox1' => 'New content',
+			'wpStarttime' => '20190101000000'
+		];
+		$this->assertEdit(
+			$title,
+			null,
+			$user,
+			$edit,
+			EditPage::AS_ARTICLE_WAS_DELETED,
+			'expected AS_ARTICLE_WAS_DELETED update'
+		);
+	}
+
 	/** AutoSummaryMissingSummaryConstraint integration */
 	public function testAutoSummaryMissingSummaryConstraint() {
 		// Require the summary
