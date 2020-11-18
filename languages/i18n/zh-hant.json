@@ -1011,7 +1011,7 @@
 	"mergehistory-go": "顯示可以合併的編輯",
 	"mergehistory-submit": "合併修訂",
 	"mergehistory-empty": "沒有可以合併的修訂",
-	"mergehistory-done": "$1 中 $3 次修訂已合併至 [[:$2]]。",
+	"mergehistory-done": "$1 的 $4 個{{PLURAL:$4|修訂}}{{PLURAL:$4|被}}合併到[[:$2]]。\n$3。",
 	"mergehistory-fail": "無法進行歷史合併，請重新檢查該頁面及時間參數。",
 	"mergehistory-fail-bad-timestamp": "時間值無效。",
 	"mergehistory-fail-invalid-source": "來源頁面無效。",
@@ -1029,6 +1029,8 @@
 	"mergehistory-comment": "已合併[[:$1]]至[[:$2]]：$3",
 	"mergehistory-same-destination": "來源頁面與目標頁面不可相同",
 	"mergehistory-reason": "原因：",
+	"mergehistory-source-deleted-reason": "來源頁面在歷史合併後被自動刪除掉，因為其內容模組不支援重新導向，並且沒有殘留的修訂。",
+	"mergehistory-source-deleted": "另外，[[:$1]]已被刪除，因為不再具有任何可見的修訂，並且其內容模組不支援留下的重新導向。",
 	"mergelog": "合併日誌",
 	"revertmerge": "取消合併",
 	"mergelogpagetext": "以下是最近合併頁面歷史的清單。",
@@ -4052,5 +4054,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP 範圍",
 	"paramvalidator-help-type-user-subtype-interwiki": "跨 wiki 名稱（例如：\"prefix>ExampleName\"）",
-	"paramvalidator-help-type-user-subtype-id": "使用者 ID（例如：\"#12345\"）"
+	"paramvalidator-help-type-user-subtype-id": "使用者 ID（例如：\"#12345\"）",
+	"paramvalidator-badtitle": "標題參數 <var>$1</var> 的值「$2」無效：不是有效的標題字元。",
+	"paramvalidator-missingtitle": "標題參數 <var>$1</var> 的值「$2」無效：頁面不存在。",
+	"paramvalidator-help-type-title": "類型：首頁標題",
+	"paramvalidator-help-type-title-must-exist": "僅接受存在的頁面。",
+	"paramvalidator-help-type-title-no-must-exist": "接受不存在的頁面。"
 }

@@ -17,7 +17,6 @@
 	"rest-permission-denied-anon": "לא נגיש למשתמש אלמוני",
 	"rest-permission-denied-title": "למשתמש אין הרשאה לקרוא כותרת ($1)",
 	"rest-permission-denied-revision": "למשתמש אין גישה לגרסה המבוקשת ($1).",
-	"rest-resource-limit-exceeded": "מגבלות המשאבים נחצו בזמן עיבוד הבקשה.",
 	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",
 	"rest-pagehistory-param-range-error": "מזהה הגרסה חייב להיות גדול מ־0",
 	"rest-pagehistory-timestamp-error": "לא ניתן למצוא את התאריך והשעה של הגרסה שצוינה ($1)",

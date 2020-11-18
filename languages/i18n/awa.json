@@ -10,6 +10,7 @@
 			"Fitoschido",
 			"Macofe",
 			"Matma Rex",
+			"MusikAnimal",
 			"Nawabji",
 			"Sfic",
 			"राम प्रसाद जोशी"
@@ -3108,7 +3109,7 @@
 	"confirm-watch-button": "ठीक है",
 	"confirm-watch-top": "इ पन्ना कय अपने ध्यान सुचि मा डारा जाय",
 	"confirm-watch-label": "घड़ी कय समय अवधि:",
-	"watchlist-expiry-options": "स्थायी रूप से: अनंत, 1 हफ्ता: 1 हफ्ता, 1 महीना: 1 महीना, 3 महीना: 3 महीना, 6 महीना: 6 महीना",
+	"watchlist-expiry-options": "स्थायी रूप से:infinite,1 हफ्ता:1 week,1 महीना:1 month,3 महीना:3 months,6 महीना:6 months",
 	"confirm-watch-button-expiry": "ध्यान रक्खा जाय",
 	"confirm-unwatch-button": "ठीक है",
 	"confirm-unwatch-top": "इ पन्ना कय अपने ध्यानसूची से हटावा जाय ?",
