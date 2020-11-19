@@ -89,7 +89,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->addHelpLink( 'Help:Managing_files' );
 
 		if ( $this->including() ) {
-			$userName = $par;
+			$userName = (string)$par;
 			$search = '';
 			$showAll = false;
 		} else {
