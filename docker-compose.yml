@@ -7,7 +7,7 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.6.1
+    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.6.1-s1
     working_dir: '/var/www/html/w'
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
