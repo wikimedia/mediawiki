@@ -421,6 +421,9 @@ because of Phabricator reports.
   ::mRevIdFetched, deprecated since 1.32, were removed.
 * Article::mParserOptions and ::setParserOptions were removed.
 * Article and ImagePage::getEmptyPageParserOutput, unused, were removed.
+* All public properties of CacheTime and ParserOutput classes, as well as
+  declaring properties dynamically on these classes were deprecated. Use
+  appropriate getters/setters instead.
 
 == Compatibility ==
 MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
