@@ -23,6 +23,8 @@ class HeaderCallback {
 		// it will have to be loaded at some point anyway.
 		// This can be removed once we require PHP 8.0+.
 		class_exists( \WebRequest::class );
+		// Likewise, cache the request ID.
+		\WebRequest::getRequestId();
 
 		header_register_callback( [ __CLASS__, 'callback' ] );
 	}
