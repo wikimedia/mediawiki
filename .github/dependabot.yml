@@ -1,0 +1,9 @@
+version: 2
+updates:
+- package-ecosystem: gitsubmodule
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "00:00"
+  open-pull-requests-limit: 99
+  target-branch: REL1_35
