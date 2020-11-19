@@ -45,28 +45,23 @@ class ApiUnblock extends ApiBase {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserCache */
+	private $userCache;
+
 	public function __construct(
 		ApiMain $main,
 		$action,
 		BlockPermissionCheckerFactory $permissionCheckerFactory,
 		UnblockUserFactory $unblockUserFactory,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		UserCache $userCache
 	) {
 		parent::__construct( $main, $action );
 
 		$this->permissionCheckerFactory = $permissionCheckerFactory;
 		$this->unblockUserFactory = $unblockUserFactory;
 		$this->permissionManager = $permissionManager;
-	}
-
-	/**
-	 * Exists so that the static call to UserCache::singleton can be overriden in tests
-	 *
-	 * @internal
-	 * @return UserCache
-	 */
-	protected function getUserCache() {
-		return UserCache::singleton();
+		$this->userCache = $userCache;
 	}
 
 	/**
@@ -83,7 +78,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		if ( $params['userid'] !== null ) {
-			$username = $this->getUserCache()->getProp( $params['userid'], 'name' );
+			$username = $this->userCache->getProp( $params['userid'], 'name' );
 
 			if ( $username === false ) {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
