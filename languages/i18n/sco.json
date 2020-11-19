@@ -369,7 +369,7 @@
 	"protectedpagetext": "This page haes been protected fer tae hider eeditin or ither actions.",
 	"viewsourcetext": "Ye can view an copy the soorce o this page.",
 	"viewyourtext": "Ye can view an copy the soorce o <strong>yer eedits</strong> tae this page.",
-	"protectedinterface": "This page provides interface tex fer the saffware oan this wiki, n is protected fer tae hinder abuise.\nTae eik or chynge owersets fer aw wikis, please uise [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation waurk.",
+	"protectedinterface": "This page gies interface text fur the saftware on this wiki, an is fendit fur tae hinder abuise. \nTae eik or change owersettins fur aw wikis, please uise [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation projeck.",
 	"editinginterface": "<strong>Warnishment:</strong> Ye'r eeditin ae page that is uised tae provide interface tex fer the saffware.\nChynges til this page will affect the kithin o the uiser interface fer ither uisers oan this wiki.",
 	"translateinterface": "Tae eik or chynge owersets fer aw wikis, please uise [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation wairk.",
 	"cascadeprotected": "This page has been pertectit frae eeditin acause it is transcludit in the follaein {{PLURAL:$1|page, which is|pages, which are}} pertectit wi the \"cascadin\" option turned on:\n$2",
