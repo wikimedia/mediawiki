@@ -134,7 +134,9 @@ class LanguageNameUtils {
 			$this->validCodeCache[$code] =
 				// Protect against path traversal
 				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code ) &&
-				!preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
+				!preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code ) &&
+				// libicu sets ULOC_FULLNAME_CAPACITY to 157; stay comfortably lower
+				strlen( $code ) <= 128;
 		}
 		return $this->validCodeCache[$code];
 	}
