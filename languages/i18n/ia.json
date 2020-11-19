@@ -912,7 +912,7 @@
 	"mergehistory-go": "Revelar modificationes fusionabile",
 	"mergehistory-submit": "Fusionar versiones",
 	"mergehistory-empty": "Nulle versiones pote esser fusionate.",
-	"mergehistory-done": "$3 {{PLURAL:$3|version|versiones}} de $1 ha essite fusionate in [[:$2]].",
+	"mergehistory-done": "$4 {{PLURAL:$4|version|versiones}} de $1 ha essite fusionate in [[:$2]].\n$3.",
 	"mergehistory-fail": "Impossibile executar le fusion del historia. Per favor reverifica le parametros del pagina e del tempore.",
 	"mergehistory-fail-bad-timestamp": "Data e hora non valide.",
 	"mergehistory-fail-invalid-source": "Pagina de origine non valide.",
@@ -930,6 +930,8 @@
 	"mergehistory-comment": "Fusionava [[:$1]] in [[:$2]]: $3",
 	"mergehistory-same-destination": "Le paginas de origine e de destination non pote esser le mesme",
 	"mergehistory-reason": "Motivo:",
+	"mergehistory-source-deleted-reason": "Le pagina fonte ha essite automaticamente delite post le fusion del historia, perque su modello de contento non supporta redirectiones e il non resta versiones.",
+	"mergehistory-source-deleted": "In addition, [[:$1]] ha essite delite perque illo non plus ha versiones visibile e su modello de contento non supporta redirectiones.",
 	"mergelog": "Registro de fusiones",
 	"revertmerge": "Disfusionar",
 	"mergelogpagetext": "Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.",
@@ -3921,5 +3923,10 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Intervallo IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nomine interwiki (p.ex. \"prefixo>NomineDeExemplo\")",
-	"paramvalidator-help-type-user-subtype-id": "ID de usator (p.ex. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "ID de usator (p.ex. \"#12345\")",
+	"paramvalidator-badtitle": "Valor invalide \"$2\" pro le parametro de titulo <var>$1</var>: non es un texto de titulo valide.",
+	"paramvalidator-missingtitle": "Valor invalide \"$2\" pro le parametro de titulo <var>$1</var>: le pagina non existe.",
+	"paramvalidator-help-type-title": "Typo: titulo de pagina",
+	"paramvalidator-help-type-title-must-exist": "Accepta solmente paginas que existe.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepta paginas non existente."
 }
