@@ -11,9 +11,9 @@ use Doctrine\DBAL\Schema\Schema;
  * @unstable
  */
 class DoctrineSchemaChangeBuilder implements SchemaChangeBuilder {
-	private $platform;
+	use DoctrineAbstractSchemaTrait;
 
-	public const TABLE_PREFIX = '/*_*/';
+	private $platform;
 
 	/**
 	 * A builder object that take abstract schema definition and produces sql to create the tables.
@@ -28,22 +28,7 @@ class DoctrineSchemaChangeBuilder implements SchemaChangeBuilder {
 	 * @inheritDoc
 	 */
 	private function getTableSchema( array $tableSpec ): Schema {
-		$schema = new Schema();
-		$table = $schema->createTable( self::TABLE_PREFIX . $tableSpec['name'] );
-		foreach ( $tableSpec['columns'] as $column ) {
-			$table->addColumn( $column['name'], $column['type'], $column['options'] );
-		}
-		foreach ( $tableSpec['indexes'] as $index ) {
-			if ( $index['unique'] === true ) {
-				$table->addUniqueIndex( $index['columns'], $index['name'] );
-			} else {
-				$table->addIndex( $index['columns'], $index['name'] );
-			}
-		}
-		$table->setPrimaryKey( $tableSpec['pk'] );
-		$table->addOption( 'table_options', '/*$wgDBTableOptions*/' );
-
-		return $schema;
+		return $this->addTableToSchema( new Schema(), $tableSpec );
 	}
 
 	public function getSchemaChangeSql( array $schemaChangeSpec ): array {
