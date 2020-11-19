@@ -60,6 +60,16 @@ class ApiUnblock extends ApiBase {
 	}
 
 	/**
+	 * Exists so that the static call to UserCache::singleton can be overriden in tests
+	 *
+	 * @internal
+	 * @return UserCache
+	 */
+	protected function getUserCache() {
+		return UserCache::singleton();
+	}
+
+	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */
 	public function execute() {
@@ -73,7 +83,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		if ( $params['userid'] !== null ) {
-			$username = User::whoIs( $params['userid'] );
+			$username = $this->getUserCache()->getProp( $params['userid'], 'name' );
 
 			if ( $username === false ) {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
