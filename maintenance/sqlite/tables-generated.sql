@@ -475,3 +475,16 @@ CREATE INDEX actor_timestamp ON /*_*/revision_actor_temp (
 CREATE INDEX page_actor_timestamp ON /*_*/revision_actor_temp (
   revactor_page, revactor_actor, revactor_timestamp
 );
+
+
+CREATE TABLE /*_*/page_props (
+  pp_page INTEGER NOT NULL,
+  pp_propname BLOB NOT NULL,
+  pp_value BLOB NOT NULL,
+  pp_sortkey DOUBLE PRECISION DEFAULT NULL,
+  PRIMARY KEY(pp_page, pp_propname)
+);
+
+CREATE UNIQUE INDEX pp_propname_page ON /*_*/page_props (pp_propname, pp_page);
+
+CREATE UNIQUE INDEX pp_propname_sortkey_page ON /*_*/page_props (pp_propname, pp_sortkey, pp_page);

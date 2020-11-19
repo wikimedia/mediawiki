@@ -1002,18 +1002,4 @@ CREATE INDEX /*i*/job_cmd_token_id ON /*_*/job (job_cmd,job_token,job_id);
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
 CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 
-
--- Name/value pairs indexed by page_id
-CREATE TABLE /*_*/page_props (
-  pp_page int NOT NULL,
-  pp_propname varbinary(60) NOT NULL,
-  pp_value blob NOT NULL,
-  pp_sortkey float DEFAULT NULL,
-
-  PRIMARY KEY (pp_page,pp_propname)
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
-CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
-
 -- vim: sw=2 sts=2 et

@@ -816,6 +816,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'revision_actor_temp', 'revactor_actor', 'BIGINT', '' ],
 			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
+			[ 'dropFkey', 'page_props', 'pp_page' ],
+			// Moved from the Schema SQL file to here in 1.36
+			[ 'changePrimaryKey', 'page_props', [ 'pp_page', 'pp_propname' ], 'page_props_pk' ],
 		];
 	}
 
