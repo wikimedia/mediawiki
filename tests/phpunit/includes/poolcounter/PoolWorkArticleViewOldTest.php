@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -37,7 +37,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		}
 
 		$renderer = $this->getServiceContainer()->getRevisionRenderer();
-		$unserializer = new JsonUnserializer();
+		$jsonCodec = new JsonCodec();
 
 		return new PoolWorkArticleViewOld(
 			'test:' . $rev->getId(),
@@ -46,7 +46,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 			$rev,
 			$options,
 			$renderer,
-			$unserializer,
+			$jsonCodec,
 			$this->getLoggerSpi()
 		);
 	}
@@ -74,8 +74,8 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$cachedJson = $cache->get( $cacheKey );
 		$this->assertIsString( $cachedJson );
 
-		$jsonUnserialiezr = new JsonUnserializer();
-		$cachedOutput = $jsonUnserialiezr->unserialize( $cachedJson );
+		$jsonCodec = new JsonCodec();
+		$cachedOutput = $jsonCodec->unserialize( $cachedJson );
 		$this->assertNotEmpty( $cachedOutput );
 
 		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );

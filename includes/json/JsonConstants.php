@@ -21,30 +21,15 @@
 
 namespace MediaWiki\Json;
 
-trait JsonUnserializableTrait {
-
-	public function jsonSerialize() {
-		return $this->annotateJsonForDeserialization(
-			$this->toJsonArray()
-		);
-	}
-
-	/**
-	 * Annotate the $json array with class metadata.
-	 *
-	 * @param array $json
-	 * @return array
-	 */
-	private function annotateJsonForDeserialization( array $json ) : array {
-		$json[JsonConstants::TYPE_ANNOTATION] = get_class( $this );
-		return $json;
-	}
+/**
+ * Defines JSON-related constants.
+ * @internal
+ * @package MediaWiki\Json
+ */
+interface JsonConstants {
 
 	/**
-	 * Prepare this object for JSON serialization.
-	 * The returned array will be passed to self::newFromJsonArray
-	 * upon JSON deserialization.
-	 * @return array
+	 * Name of the property where the class information is stored.
 	 */
-	abstract protected function toJsonArray(): array;
+	public const TYPE_ANNOTATION = '_type_';
 }

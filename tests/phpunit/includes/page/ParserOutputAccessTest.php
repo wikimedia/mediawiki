@@ -1,5 +1,5 @@
 <?php
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -68,7 +68,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$bag ?: new HashBagOStuff(),
 			'',
 			$this->getServiceContainer()->getHookContainer(),
-			new JsonUnserializer(),
+			new JsonCodec(),
 			$this->getServiceContainer()->getStatsdDataFactory(),
 			new NullLogger()
 		);
@@ -117,7 +117,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$stats = new NullStatsdDataFactory();
-		$jsonUnserializer = new JsonUnserializer();
+		$jsonCodec = new JsonCodec();
 
 		if ( $maxRenderCalls ) {
 			$realRevRenderer = $revRenderer;
@@ -136,7 +136,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$revRenderer,
 			$stats,
 			$lbFactory,
-			$jsonUnserializer,
+			$jsonCodec,
 			$this->getLoggerSpi()
 		);
 	}

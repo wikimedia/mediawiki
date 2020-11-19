@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Log\NullLogger;
 
@@ -55,7 +55,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 			$bag ?: new HashBagOStuff(),
 			'',
 			$this->getServiceContainer()->getHookContainer(),
-			new JsonUnserializer(),
+			new JsonCodec(),
 			$this->getServiceContainer()->getStatsdDataFactory(),
 			new NullLogger()
 		);
