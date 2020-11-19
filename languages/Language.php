@@ -3302,7 +3302,10 @@ class Language {
 		if ( !$noSeparators ) {
 			$separatorTransformTable = $this->separatorTransformTable();
 			$digitGroupingPattern = $this->digitGroupingPattern();
-			$code = $wgTranslateNumerals ? $this->getCode() : 'C';
+			$code = $this->getCode();
+			if ( !( $wgTranslateNumerals && $this->langNameUtils->isValidCode( $code ) ) ) {
+				$code = 'C'; // POSIX system default locale
+			}
 
 			if ( $digitGroupingPattern ) {
 				$fmt = new NumberFormatter(
