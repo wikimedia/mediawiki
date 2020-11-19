@@ -8,6 +8,8 @@
 //
 // See <http://lesscss.org/#-mixins> for more information about how to write mixins.
 
+/* stylelint-disable selector-class-pattern */
+
 .background-image( @url ) {
 	background-image: url( @url );
 }
@@ -191,7 +193,7 @@
 	}
 }
 
-/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-disable selector-no-vendor-prefix */
 .mixin-placeholder( @rules ) {
 	// WebKit, Blink, Edge
 	&::-webkit-input-placeholder {
@@ -214,7 +216,7 @@
 		@rules();
 	}
 }
-/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix */
 
 // Screen Reader Helper Mixin
 .mixin-screen-reader-text() {

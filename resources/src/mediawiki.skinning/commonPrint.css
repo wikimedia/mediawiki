@@ -60,8 +60,8 @@ a,
 a.external,
 a.new,
 a.stub {
-	color: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
-	text-decoration: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
+	color: inherit !important; /* stylelint-disable-line declaration-no-important */
+	text-decoration: inherit !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /* Expand URLs for printing */
