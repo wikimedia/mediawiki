@@ -154,25 +154,28 @@ class MovePage {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 
-		$services = MediaWikiServices::getInstance();
+		$services = function () {
+			// BC hack. Use a closure so this can be unit-tested.
+			return MediaWikiServices::getInstance();
+		};
 		$this->options = $options ??
 			new ServiceOptions(
 				self::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
+				$services()->getMainConfig()
 			);
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
-		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
-		$this->watchedItems = $watchedItems ?? $services->getWatchedItemStore();
-		$this->permMgr = $permMgr ?? $services->getPermissionManager();
-		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$this->loadBalancer = $loadBalancer ?? $services()->getDBLoadBalancer();
+		$this->nsInfo = $nsInfo ?? $services()->getNamespaceInfo();
+		$this->watchedItems = $watchedItems ?? $services()->getWatchedItemStore();
+		$this->permMgr = $permMgr ?? $services()->getPermissionManager();
+		$this->repoGroup = $repoGroup ?? $services()->getRepoGroup();
 		$this->contentHandlerFactory =
-			$contentHandlerFactory ?? $services->getContentHandlerFactory();
+			$contentHandlerFactory ?? $services()->getContentHandlerFactory();
 
-		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
-		$this->spamChecker = $spamChecker ?? $services->getSpamChecker();
-		$this->hookContainer = $hookContainer ?? $services->getHookContainer();
+		$this->revisionStore = $revisionStore ?? $services()->getRevisionStore();
+		$this->spamChecker = $spamChecker ?? $services()->getSpamChecker();
+		$this->hookContainer = $hookContainer ?? $services()->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
-		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
+		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
 	}
 
 	/**
