@@ -62,7 +62,7 @@ abstract class ParserCacheSerializationTestCases {
 	 */
 	public static function getCacheTimeTestCases(): array {
 		$cacheTimeWithUsedOptions = new CacheTime();
-		$cacheTimeWithUsedOptions->mUsedOptions = [ 'optA', 'optX' ];
+		$cacheTimeWithUsedOptions->recordOptions( [ 'optA', 'optX' ] );
 
 		$cacheTimestamp = MWTimestamp::convert( TS_MW, 987654321 );
 		$cacheTimeWithTime = new CacheTime();
@@ -99,7 +99,7 @@ abstract class ParserCacheSerializationTestCases {
 			'usedOptions' => [
 				'instance' => $cacheTimeWithUsedOptions,
 				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, CacheTime $object ) {
-					$testCase->assertArrayEquals( [ 'optA', 'optX' ], $object->mUsedOptions );
+					$testCase->assertArrayEquals( [ 'optA', 'optX' ], $object->getUsedOptions() );
 				}
 			],
 			'cacheTime' => [

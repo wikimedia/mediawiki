@@ -42,6 +42,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		$blockPermissionCheckerFactory = $this->createMock( BlockPermissionCheckerFactory::class );
 		$unblockUserFactory = $this->createMock( UnblockUserFactory::class );
 		$permissionManager = $this->createMock( PermissionManager::class );
+		$userCache = $this->createMock( UserCache::class );
 
 		// Expose requestContext and user so that they can be further modified in the test
 		$returnVals = [
@@ -50,6 +51,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			'blockPermissionCheckerFactory' => $blockPermissionCheckerFactory,
 			'unblockUserFactory' => $unblockUserFactory,
 			'permissionManager' => $permissionManager,
+			'userCache' => $userCache,
 			'requestContext' => $requestContext,
 			'performer' => $performer,
 		];
@@ -67,7 +69,8 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 				$args['action'],
 				$args['blockPermissionCheckerFactory'],
 				$args['unblockUserFactory'],
-				$args['permissionManager']
+				$args['permissionManager'],
+				$args['userCache']
 			] )
 			->getMock();
 
@@ -125,7 +128,8 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			$args['action'],
 			$args['blockPermissionCheckerFactory'],
 			$args['unblockUserFactory'],
-			$args['permissionManager']
+			$args['permissionManager'],
+			$args['userCache']
 		);
 		// Ensure everything was created right
 		$this->assertInstanceOf(
@@ -203,25 +207,22 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$args['permissionManager']->method( 'userHasRight' )->willReturn( true );
 
-		$requestParams = [ 'userid' => 'userIdGoesHere' ];
-		$apiUnblock = $this->getMockApiUnblock(
-			$args,
-			[ 'extractRequestParams', 'requireOnlyOneParameter', 'getUserCache', 'dieWithError' ],
-			$requestParams
-		);
-
-		// No need to do anything with requireOnlyOneParameter
-
-		$userCache = $this->createMock( UserCache::class );
-		$userCache->expects( $this->once() )
+		$args['userCache']->expects( $this->once() )
 			->method( 'getProp' )
 			->with(
 				$this->equalTo( 'userIdGoesHere' ),
 				$this->equalTo( 'name' )
 			)
 			->willReturn( false );
-		$apiUnblock->method( 'getUserCache' )
-			->willReturn( $userCache );
+
+		$requestParams = [ 'userid' => 'userIdGoesHere' ];
+		$apiUnblock = $this->getMockApiUnblock(
+			$args,
+			[ 'extractRequestParams', 'requireOnlyOneParameter', 'dieWithError' ],
+			$requestParams
+		);
+
+		// No need to do anything with requireOnlyOneParameter
 
 		$testException = new Exception( 'Error should be thrown in dieWithError' );
 		$apiUnblock->method( 'dieWithError' )
@@ -254,6 +255,15 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			true
 		);
 
+		// Also includes the test of the codepath where UserCache is used and works
+		$args['userCache']->expects( $this->once() )
+			->method( 'getProp' )
+			->with(
+				$this->equalTo( 'userIdGoesHere' ),
+				$this->equalTo( 'name' )
+			)
+			->willReturn( 'userNameOfTargetFromCache' );
+
 		$badStatus = Status::newFatal( 'bad status' );
 		$args['unblockUserFactory'] = $this->getUnblockUserFactory(
 			'userNameOfTargetFromCache',
@@ -271,23 +281,11 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		];
 		$apiUnblock = $this->getMockApiUnblock(
 			$args,
-			[ 'extractRequestParams', 'requireOnlyOneParameter', 'getUserCache', 'dieStatus' ],
+			[ 'extractRequestParams', 'requireOnlyOneParameter', 'dieStatus' ],
 			$requestParams
 		);
 
 		// No need to do anything with requireOnlyOneParameter
-
-		// Also includes the test of the codepath where UserCache is used and works
-		$userCache = $this->createMock( UserCache::class );
-		$userCache->expects( $this->once() )
-			->method( 'getProp' )
-			->with(
-				$this->equalTo( 'userIdGoesHere' ),
-				$this->equalTo( 'name' )
-			)
-			->willReturn( 'userNameOfTargetFromCache' );
-		$apiUnblock->method( 'getUserCache' )
-			->willReturn( $userCache );
 
 		$testException = new Exception( 'Error should be thrown in dieStatus' );
 		$apiUnblock->method( 'dieStatus' )

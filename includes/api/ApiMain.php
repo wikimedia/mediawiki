@@ -139,7 +139,8 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'BlockPermissionCheckerFactory',
 				'UnblockUserFactory',
-				'PermissionManager'
+				'PermissionManager',
+				'UserCache',
 			]
 		],
 		'move' => ApiMove::class,

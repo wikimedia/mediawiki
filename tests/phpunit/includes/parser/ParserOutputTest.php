@@ -6,6 +6,7 @@ use Wikimedia\Tests\SerializationTestTrait;
 
 /**
  * @covers ParserOutput
+ * @covers CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
