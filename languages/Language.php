@@ -3377,13 +3377,18 @@ class Language {
 			}
 		}
 
-		if ( $wgTranslateNumerals && !$noTranslate ) {
-			// This is often unnecessary: PHP's NumberFormatter will often
-			// do the digit transform itself (T267614)
-			$s = $this->digitTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+		if ( !$noTranslate ) {
+			if ( $wgTranslateNumerals ) {
+				// This is often unnecessary: PHP's NumberFormatter will often
+				// do the digit transform itself (T267614)
+				$s = $this->digitTransformTable();
+				if ( $s ) {
+					$number = strtr( $number, $s );
+				}
 			}
+			# T10327: Make our formatted numbers prettier by using a
+			# proper Unicode 'minus' character.
+			$number = strtr( $number, [ '-' => "\u{2212}" ] );
 		}
 
 		// Remove any LRM or RLM characters generated from NumberFormatter,
@@ -3417,6 +3422,7 @@ class Language {
 	 * @return string
 	 */
 	public function parseFormattedNumber( $number ) {
+		$number = strtr( $number, [ "\u{2212}" => '-' ] );
 		$s = $this->digitTransformTable();
 		if ( $s ) {
 			// eliminate empty array values such as ''. (T66347)

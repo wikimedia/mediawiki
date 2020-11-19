@@ -96,11 +96,11 @@ class LanguagePlTest extends LanguageClassesTestCase {
 			[ 1000.0001, '1000,0001' ,
 				'No change since this is below minimumGroupingDigits, just separator transform' ],
 			[ 10000.123456, '10 000,123456', 'separator transform' ],
-			[ -1000, '-1000', 'No change.' ],
-			[ -10000, '-10 000', 'Only seperator transform' ],
-			[ -1000.0001, '-1000,0001',
+			[ -1000, '−1000', 'No change, other than minus replacement' ],
+			[ -10000, '−10 000', 'Only seperator transform' ],
+			[ -1000.0001, '−1000,0001',
 				'No change since this is below minimumGroupingDigits, just separator transform' ],
-			[ -10000.789, '-10 000,789', '' ],
+			[ -10000.789, '−10 000,789', '' ],
 		];
 	}
 }
