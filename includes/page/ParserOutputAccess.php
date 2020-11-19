@@ -24,7 +24,7 @@ namespace MediaWiki\Page;
 use BagOStuff;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -105,8 +105,8 @@ class ParserOutputAccess {
 	/** @var ILBFactory */
 	private $lbFactory;
 
-	/** @var JsonUnserializer */
-	private $jsonUnserializer;
+	/** @var JsonCodec */
+	private $jsonCodec;
 
 	/** @var LoggerSpi */
 	private $loggerSpi;
@@ -118,7 +118,7 @@ class ParserOutputAccess {
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ILBFactory $lbFactory
-	 * @param JsonUnserializer $jsonUnserializer
+	 * @param JsonCodec $jsonCodec
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
@@ -128,7 +128,7 @@ class ParserOutputAccess {
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ILBFactory $lbFactory,
-		JsonUnserializer $jsonUnserializer,
+		JsonCodec $jsonCodec,
 		LoggerSpi $loggerSpi
 	) {
 		$this->primaryCache = $primaryCache;
@@ -137,7 +137,7 @@ class ParserOutputAccess {
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
 		$this->lbFactory = $lbFactory;
-		$this->jsonUnserializer = $jsonUnserializer;
+		$this->jsonCodec = $jsonCodec;
 		$this->loggerSpi = $loggerSpi;
 	}
 
@@ -215,7 +215,7 @@ class ParserOutputAccess {
 		} elseif ( $useCache === self::CACHE_SECONDARY ) {
 			$cacheKey = $this->getSecondaryCacheKey( $parserOptions, $revision );
 			$json = $this->secondaryCache->get( $cacheKey );
-			$output = $json ? $this->jsonUnserializer->unserialize( $json ) : null;
+			$output = $json ? $this->jsonCodec->unserialize( $json ) : null;
 		} else {
 			$output = null;
 		}
@@ -437,7 +437,7 @@ class ParserOutputAccess {
 					$revision,
 					$parserOptions,
 					$this->revisionRenderer,
-					$this->jsonUnserializer,
+					$this->jsonCodec,
 					$this->loggerSpi
 				);
 

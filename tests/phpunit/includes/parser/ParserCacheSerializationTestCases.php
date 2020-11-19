@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Parser;
 
 use CacheTime;
 use JsonSerializable;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use ParserOutput;
@@ -408,14 +408,14 @@ abstract class ParserCacheSerializationTestCases {
 			'deserializer' => 'unserialize'
 		] ];
 		if ( is_subclass_of( $class, JsonSerializable::class ) ) {
-			$jsonUnserializer = new JsonUnserializer();
+			$jsonCodec = new JsonCodec();
 			$serializationFormats[] = [
 				'ext' => 'json',
-				'serializer' => function ( JsonSerializable $obj ) {
-					return json_encode( $obj->jsonSerialize() );
+				'serializer' => function ( JsonSerializable $obj ) use ( $jsonCodec ) {
+					return $jsonCodec->serialize( $obj );
 				},
-				'deserializer' => function ( $data ) use ( $jsonUnserializer ) {
-					return $jsonUnserializer->unserialize( $data );
+				'deserializer' => function ( $data ) use ( $jsonCodec ) {
+					return $jsonCodec->unserialize( $data );
 				}
 			];
 		}

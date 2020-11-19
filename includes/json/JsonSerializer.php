@@ -21,30 +21,27 @@
 
 namespace MediaWiki\Json;
 
-trait JsonUnserializableTrait {
+use InvalidArgumentException;
 
-	public function jsonSerialize() {
-		return $this->annotateJsonForDeserialization(
-			$this->toJsonArray()
-		);
-	}
+/**
+ * Serializes things to JSON.
+ *
+ * @stable to type
+ * @since 1.36
+ * @package MediaWiki\Json
+ */
+interface JsonSerializer {
 
 	/**
-	 * Annotate the $json array with class metadata.
+	 * Encode $value as JSON with an intent to use JsonUnserializer::unserialize
+	 * to decode it back.
 	 *
-	 * @param array $json
-	 * @return array
+	 * @param mixed|JsonUnserializable $value A value to encode. Can be any scalar,
+	 * array, stdClass, JsonUnserializable or any combination of them.
+	 * @throws InvalidArgumentException if the value can not be serialized.
+	 * @return string
 	 */
-	private function annotateJsonForDeserialization( array $json ) : array {
-		$json[JsonConstants::TYPE_ANNOTATION] = get_class( $this );
-		return $json;
-	}
+	public function serialize( $value );
 
-	/**
-	 * Prepare this object for JSON serialization.
-	 * The returned array will be passed to self::newFromJsonArray
-	 * upon JSON deserialization.
-	 * @return array
-	 */
-	abstract protected function toJsonArray(): array;
+	// TODO: move more methods from FormatJson to here.
 }

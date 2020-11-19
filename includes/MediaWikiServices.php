@@ -44,7 +44,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -815,10 +815,10 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.36
-	 * @return JsonUnserializer
+	 * @return JsonCodec
 	 */
-	public function getJsonUnserializer() : JsonUnserializer {
-		return $this->getService( 'JsonUnserializer' );
+	public function getJsonCodec() : JsonCodec {
+		return $this->getService( 'JsonCodec' );
 	}
 
 	/**

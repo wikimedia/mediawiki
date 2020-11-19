@@ -24,7 +24,7 @@ namespace MediaWiki\Parser;
 use BagOStuff;
 use IBufferingStatsdDataFactory;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonCodec;
 use ParserCache;
 use Psr\Log\LoggerInterface;
 
@@ -47,8 +47,8 @@ class ParserCacheFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var JsonUnserializer */
-	private $jsonUnserializer;
+	/** @var JsonCodec */
+	private $jsonCodec;
 
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
@@ -69,7 +69,7 @@ class ParserCacheFactory {
 	 * @param BagOStuff $cacheBackend
 	 * @param string $cacheEpoch
 	 * @param HookContainer $hookContainer
-	 * @param JsonUnserializer $jsonUnserializer
+	 * @param JsonCodec $jsonCodec
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
@@ -78,7 +78,7 @@ class ParserCacheFactory {
 		BagOStuff $cacheBackend,
 		string $cacheEpoch,
 		HookContainer $hookContainer,
-		JsonUnserializer $jsonUnserializer,
+		JsonCodec $jsonCodec,
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
 		$useJson = false
@@ -86,7 +86,7 @@ class ParserCacheFactory {
 		$this->cacheBackend = $cacheBackend;
 		$this->cacheEpoch = $cacheEpoch;
 		$this->hookContainer = $hookContainer;
-		$this->jsonUnserializer = $jsonUnserializer;
+		$this->jsonCodec = $jsonCodec;
 		$this->stats = $stats;
 		$this->logger = $logger;
 		$this->useJson = $useJson;
@@ -105,7 +105,7 @@ class ParserCacheFactory {
 				$this->cacheBackend,
 				$this->cacheEpoch,
 				$this->hookContainer,
-				$this->jsonUnserializer,
+				$this->jsonCodec,
 				$this->stats,
 				$this->logger,
 				$this->useJson
