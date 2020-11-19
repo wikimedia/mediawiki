@@ -441,3 +441,14 @@ CREATE TABLE /*_*/revision_actor_temp (
   ),
   PRIMARY KEY(revactor_rev, revactor_actor)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/page_props (
+  pp_page INT NOT NULL,
+  pp_propname VARBINARY(60) NOT NULL,
+  pp_value BLOB NOT NULL,
+  pp_sortkey FLOAT DEFAULT NULL,
+  UNIQUE INDEX pp_propname_page (pp_propname, pp_page),
+  UNIQUE INDEX pp_propname_sortkey_page (pp_propname, pp_sortkey, pp_page),
+  PRIMARY KEY(pp_page, pp_propname)
+) /*$wgDBTableOptions*/;
