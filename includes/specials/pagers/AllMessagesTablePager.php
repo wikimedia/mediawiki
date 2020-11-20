@@ -20,8 +20,9 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -62,25 +63,38 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public $custom;
 
+	/** @var LocalisationCache */
+	private $localisationCache;
+
 	/**
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
+	 * @param Language $contentLanguage
+	 * @param LocalisationCache $localisationCache
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( ?IContextSource $context, FormOptions $opts,
-		LinkRenderer $linkRenderer
+	public function __construct(
+		?IContextSource $context,
+		FormOptions $opts,
+		LinkRenderer $linkRenderer,
+		Language $contentLanguage,
+		LocalisationCache $localisationCache,
+		ILoadBalancer $loadBalancer
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $context, $linkRenderer );
+		$this->localisationCache = $localisationCache;
 
 		$this->mIndexField = 'am_title';
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->lang = wfGetLangObj( $opts->getValue( 'lang' ) );
 
 		$this->langcode = $this->lang->getCode();
-		$this->foreign = !$this->lang->equals( $contLang );
+		$this->foreign = !$this->lang->equals( $contentLanguage );
 
 		$filter = $opts->getValue( 'filter' );
 		if ( $filter === 'all' ) {
@@ -111,9 +125,7 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	private function getAllMessages( $descending ) {
-		$messageNames = MediaWikiServices::getInstance()
-			->getLocalisationCache()
-			->getSubitemList( 'en', 'messages' );
+		$messageNames = $this->localisationCache->getSubitemList( 'en', 'messages' );
 
 		// Normalise message names so they look like page titles and sort correctly - T86139
 		$messageNames = array_map( [ $this->lang, 'ucfirst' ], $messageNames );
@@ -133,15 +145,24 @@ class AllMessagesTablePager extends TablePager {
 	 * an entry for each existing page, with the key being the message name and
 	 * value arbitrary.
 	 *
+	 * @since 1.36 Added $dbr parameter
+	 *
 	 * @param array $messageNames
 	 * @param string $langcode What language code
 	 * @param bool $foreign Whether the $langcode is not the content language
+	 * @param IDatabase|null $dbr
 	 * @return array A 'pages' and 'talks' array with the keys of existing pages
 	 */
-	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
+	public static function getCustomisedStatuses(
+		$messageNames,
+		$langcode = 'en',
+		$foreign = false,
+		IDatabase $dbr = null
+	) {
 		// FIXME: This function should be moved to Language:: or something.
+		// Fallback to global state, if not provided
+		$dbr = $dbr ?? wfGetDB( DB_REPLICA );
 
-		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'page',
 			[ 'page_namespace', 'page_title' ],
 			[ 'page_namespace' => [ NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ] ],
@@ -190,7 +211,12 @@ class AllMessagesTablePager extends TablePager {
 		$asc = ( $order === self::QUERY_ASCENDING );
 
 		$messageNames = $this->getAllMessages( $order );
-		$statuses = self::getCustomisedStatuses( $messageNames, $this->langcode, $this->foreign );
+		$statuses = self::getCustomisedStatuses(
+			$messageNames,
+			$this->langcode,
+			$this->foreign,
+			$this->getDatabase()
+		);
 
 		$rows = [];
 		$count = 0;

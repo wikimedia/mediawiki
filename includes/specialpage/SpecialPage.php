@@ -82,6 +82,9 @@ class SpecialPage implements MessageLocalizer {
 	/** @var HookRunner|null */
 	private $hookRunner;
 
+	/** @var AuthManager|null */
+	private $authManager = null;
+
 	/**
 	 * Get a localised Title object for a specified special page name
 	 * If you don't need a full Title object, consider using TitleValue through
@@ -408,6 +411,8 @@ class SpecialPage implements MessageLocalizer {
 	 * getLoginSecurityLevel() or checkLoginSecurityLevel(), it should probably
 	 * implement this to do something with the data.
 	 *
+	 * @note Call self::setAuthManager from special page constructor when overriding
+	 *
 	 * @stable to override
 	 * @since 1.32
 	 * @param array $data
@@ -445,8 +450,7 @@ class SpecialPage implements MessageLocalizer {
 		$key = 'SpecialPage:reauth:' . $this->getName();
 		$request = $this->getRequest();
 
-		$securityStatus = MediaWikiServices::getInstance()->getAuthManager()
-			->securitySensitiveOperationStatus( $level );
+		$securityStatus = $this->getAuthManager()->securitySensitiveOperationStatus( $level );
 		if ( $securityStatus === AuthManager::SEC_OK ) {
 			$uniqueId = $request->getVal( 'postUniqueId' );
 			if ( $uniqueId ) {
@@ -490,6 +494,31 @@ class SpecialPage implements MessageLocalizer {
 		$titleMessage = wfMessage( 'specialpage-securitylevel-not-allowed-title' );
 		$errorMessage = wfMessage( 'specialpage-securitylevel-not-allowed' );
 		throw new ErrorPageError( $titleMessage, $errorMessage );
+	}
+
+	/**
+	 * Set the injected AuthManager from the special page constructor
+	 *
+	 * @since 1.36
+	 * @param AuthManager $authManager
+	 */
+	final protected function setAuthManager( AuthManager $authManager ) {
+		$this->authManager = $authManager;
+	}
+
+	/**
+	 * @note Call self::setAuthManager from special page constructor when using
+	 *
+	 * @since 1.36
+	 * @return AuthManager
+	 */
+	final protected function getAuthManager(): AuthManager {
+		if ( $this->authManager === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->authManager = MediaWikiServices::getInstance()->getAuthManager();
+		}
+		return $this->authManager;
 	}
 
 	/**

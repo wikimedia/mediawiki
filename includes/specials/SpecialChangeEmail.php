@@ -39,9 +39,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
-	/** @var AuthManager */
-	private $authManager;
-
 	/**
 	 * @param PermissionManager $permManager
 	 * @param AuthManager $authManager
@@ -50,7 +47,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 
 		$this->permManager = $permManager;
-		$this->authManager = $authManager;
+		$this->setAuthManager( $authManager );
 	}
 
 	public function doesWrites() {
@@ -61,7 +58,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		return $this->authManager->allowsPropertyChange( 'emailaddress' );
+		return $this->getAuthManager()->allowsPropertyChange( 'emailaddress' );
 	}
 
 	/**
@@ -80,7 +77,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function checkExecutePermissions( User $user ) {
-		if ( !$this->authManager->allowsPropertyChange( 'emailaddress' ) ) {
+		if ( !$this->getAuthManager()->allowsPropertyChange( 'emailaddress' ) ) {
 			throw new ErrorPageError( 'changeemail', 'cannotchangeemail' );
 		}
 

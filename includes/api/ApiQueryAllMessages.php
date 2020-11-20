@@ -120,7 +120,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					$messages_target
 				),
 				$langObj->getCode(),
-				!$langObj->equals( MediaWikiServices::getInstance()->getContentLanguage() )
+				!$langObj->equals( MediaWikiServices::getInstance()->getContentLanguage() ),
+				$this->getDB()
 			);
 
 			$customised = $params['customised'] === 'modified';
