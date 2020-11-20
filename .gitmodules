@@ -1407,3 +1407,7 @@
 	url = https://github.com/snapwiki/SnapProjectEmbed.git
 	branch = master
 	ignore = dirty
+[submodule "extensions/MediaModeration"]
+	path = extensions/MediaModeration
+	url = https://github.com/wikimedia/mediawiki-extensions-MediaModeration
+	branch = REL1_35
