@@ -14,6 +14,10 @@ class SpecialPageExecutor {
 	 * @param Language|string|null $language The language which should be used in the context;
 	 * if not specified, the pseudo-code 'qqx' is used
 	 * @param User|null $user The user which should be used in the context of this special page
+	 * @param bool $fullHtml if true, the entirety of the generated HTML will be returned, this
+	 * includes the opening <!DOCTYPE> declaration and closing </html> tag. If false, only value
+	 * of OutputPage::getHTML() will be returned except if the page is redirect or where OutputPage
+	 * is completely disabled.
 	 *
 	 * @throws Exception
 	 * @return array [ string, WebResponse ] A two-elements array containing the HTML output
@@ -24,7 +28,8 @@ class SpecialPageExecutor {
 		$subPage = '',
 		WebRequest $request = null,
 		$language = null,
-		User $user = null
+		User $user = null,
+		$fullHtml = false
 	) {
 		$context = $this->newContext( $request, $language, $user );
 
@@ -34,7 +39,7 @@ class SpecialPageExecutor {
 		$page->setContext( $context );
 		$output->setTitle( $page->getPageTitle() );
 
-		$html = $this->getHTMLFromSpecialPage( $page, $subPage );
+		$html = $this->getHTMLFromSpecialPage( $page, $subPage, $fullHtml );
 		$response = $context->getRequest()->response();
 
 		if ( $response instanceof FauxResponse ) {
@@ -96,11 +101,12 @@ class SpecialPageExecutor {
 	/**
 	 * @param SpecialPage $page
 	 * @param string $subPage
+	 * @param bool $fullHtml
 	 *
 	 * @throws Exception
 	 * @return string HTML
 	 */
-	private function getHTMLFromSpecialPage( SpecialPage $page, $subPage ) {
+	private function getHTMLFromSpecialPage( SpecialPage $page, $subPage, $fullHtml ) {
 		ob_start();
 
 		try {
@@ -113,6 +119,8 @@ class SpecialPageExecutor {
 				$html = ob_get_contents();
 			} elseif ( $output->isDisabled() ) {
 				$html = ob_get_contents();
+			} elseif ( $fullHtml ) {
+				$html = $output->output( true );
 			} else {
 				$html = $output->getHTML();
 			}
