@@ -90,11 +90,14 @@ class MutableRevisionRecord extends RevisionRecord {
 
 	/**
 	 * @param int $parentId
+	 * @return self
 	 */
 	public function setParentId( $parentId ) {
 		Assert::parameterType( 'integer', $parentId, '$parentId' );
 
 		$this->mParentId = $parentId;
+
+		return $this;
 	}
 
 	/**
@@ -111,6 +114,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *       the next call to getSize() and getSha1(), respectively.
 	 *
 	 * @param SlotRecord $slot
+	 * @return self
 	 */
 	public function setSlot( SlotRecord $slot ) {
 		if ( $slot->hasRevision() && $slot->getRevision() !== $this->getId() ) {
@@ -122,6 +126,8 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mSlots->setSlot( $slot );
+
+		return $this;
 	}
 
 	/**
@@ -132,9 +138,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
 	 * @param SlotRecord $parentSlot
+	 * @return self
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
 		$this->mSlots->inheritSlot( $parentSlot );
+
+		return $this;
 	}
 
 	/**
@@ -150,9 +159,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @param string $role
 	 * @param Content $content
+	 * @return self
 	 */
 	public function setContent( $role, Content $content ) {
 		$this->mSlots->setContent( $role, $content );
+
+		return $this;
 	}
 
 	/**
@@ -166,25 +178,34 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *       the next call to getSize() and getSha1(), respectively.
 	 *
 	 * @param string $role
+	 * @return self
 	 */
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
+
+		return $this;
 	}
 
 	/**
 	 * Applies the given update to the slots of this revision.
 	 *
 	 * @param RevisionSlotsUpdate $update
+	 * @return self
 	 */
 	public function applyUpdate( RevisionSlotsUpdate $update ) {
 		$update->apply( $this->mSlots );
+
+		return $this;
 	}
 
 	/**
 	 * @param CommentStoreComment $comment
+	 * @return self
 	 */
 	public function setComment( CommentStoreComment $comment ) {
 		$this->mComment = $comment;
+
+		return $this;
 	}
 
 	/**
@@ -195,11 +216,14 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * later. When in doubt, this method should not be called.
 	 *
 	 * @param string $sha1 SHA1 hash as a base36 string.
+	 * @return self
 	 */
 	public function setSha1( $sha1 ) {
 		Assert::parameterType( 'string', $sha1, '$sha1' );
 
 		$this->mSha1 = $sha1;
+
+		return $this;
 	}
 
 	/**
@@ -210,38 +234,50 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * later. When in doubt, this method should not be called.
 	 *
 	 * @param int $size nominal size in bogo-bytes
+	 * @return self
 	 */
 	public function setSize( $size ) {
 		Assert::parameterType( 'integer', $size, '$size' );
 
 		$this->mSize = $size;
+
+		return $this;
 	}
 
 	/**
 	 * @param int $visibility
+	 * @return self
 	 */
 	public function setVisibility( $visibility ) {
 		Assert::parameterType( 'integer', $visibility, '$visibility' );
 
 		$this->mDeleted = $visibility;
+
+		return $this;
 	}
 
 	/**
 	 * @param string $timestamp A timestamp understood by MWTimestamp
+	 * @return self
 	 */
 	public function setTimestamp( $timestamp ) {
 		Assert::parameterType( 'string', $timestamp, '$timestamp' );
 
 		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
+
+		return $this;
 	}
 
 	/**
 	 * @param bool $minorEdit
+	 * @return self
 	 */
 	public function setMinorEdit( $minorEdit ) {
 		Assert::parameterType( 'boolean', $minorEdit, '$minorEdit' );
 
 		$this->mMinorEdit = $minorEdit;
+
+		return $this;
 	}
 
 	/**
@@ -254,24 +290,31 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *          like preserving the original ID when restoring a revision.
 	 *
 	 * @param int $id
+	 * @return self
 	 */
 	public function setId( $id ) {
 		Assert::parameterType( 'integer', $id, '$id' );
 
 		$this->mId = $id;
+
+		return $this;
 	}
 
 	/**
 	 * Sets the user identity associated with the revision
 	 *
 	 * @param UserIdentity $user
+	 * @return self
 	 */
 	public function setUser( UserIdentity $user ) {
 		$this->mUser = $user;
+
+		return $this;
 	}
 
 	/**
 	 * @param int $pageId
+	 * @return self
 	 */
 	public function setPageId( $pageId ) {
 		Assert::parameterType( 'integer', $pageId, '$pageId' );
@@ -283,6 +326,8 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mPageId = $pageId;
+
+		return $this;
 	}
 
 	/**
