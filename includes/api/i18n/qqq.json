@@ -1324,6 +1324,7 @@
 	"apihelp-query+watchlist-param-token": "{{doc-apihelp-param|query+watchlist|token}}",
 	"apihelp-query+watchlist-example-simple": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-props": "{{doc-apihelp-example|query+watchlist}}",
+	"apihelp-query+watchlist-example-expiry": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-allrev": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-generator": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-generator-rev": "{{doc-apihelp-example|query+watchlist}}",
