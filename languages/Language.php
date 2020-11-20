@@ -3872,7 +3872,6 @@ class Language {
 			if ( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
 			} elseif ( $tagType == 1 ) {
-				// @phan-suppress-next-line PhanRedundantCondition
 				if ( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}

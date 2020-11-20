@@ -2091,7 +2091,7 @@ abstract class Skin extends ContextSource {
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
 			$toolbox['recentchangeslinked']['rel'] = 'nofollow';
 		}
-		if ( $feedUrls ?? null ) {
+		if ( $feedUrls ) {
 			$toolbox['feeds']['id'] = 'feedlinks';
 			$toolbox['feeds']['links'] = [];
 			foreach ( $feedUrls as $key => $feed ) {

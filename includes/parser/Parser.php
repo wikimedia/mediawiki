@@ -2962,7 +2962,7 @@ class Parser {
 		$sawDeprecatedTemplateEquals = false; // T91154
 
 		# SUBST
-		// @phan-suppress-next-line PhanRedundantCondition
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$found ) {
 			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
 
