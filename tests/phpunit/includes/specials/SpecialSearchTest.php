@@ -11,6 +11,20 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
+	private function newSpecialPage() {
+		$services = MediaWikiServices::getInstance();
+		return new SpecialSearch(
+			$services->getSearchEngineConfig(),
+			$services->getSearchEngineFactory(),
+			$services->getPermissionManager(),
+			$services->getNamespaceInfo(),
+			$services->getContentHandlerFactory(),
+			$services->getInterwikiLookup(),
+			$services->getReadOnlyMode(),
+			$services->getUserOptionsManager()
+		);
+	}
+
 	/**
 	 * @covers SpecialSearch::load
 	 * @covers SpecialSearch::showResults
@@ -57,7 +71,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		] ));
 		 */
 		$context->setRequest( new FauxRequest( $requested ) );
-		$search = new SpecialSearch();
+		$search = $this->newSpecialPage();
 		$search->setContext( $context );
 		$search->load();
 
@@ -148,7 +162,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$term = '{{SITENAME}}';
 		$ctx->setRequest( new FauxRequest( [ 'search' => $term, 'fulltext' => 1 ] ) );
 		$ctx->setTitle( Title::newFromText( 'Special:Search' ) );
-		$search = new SpecialSearch();
+		$search = $this->newSpecialPage();
 		$search->setContext( $ctx );
 
 		# Simulate a user searching for a given term
@@ -218,7 +232,18 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
+		$services = MediaWikiServices::getInstance();
 		$search = $this->getMockBuilder( SpecialSearch::class )
+			->setConstructorArgs( [
+				$services->getSearchEngineConfig(),
+				$services->getSearchEngineFactory(),
+				$services->getPermissionManager(),
+				$services->getNamespaceInfo(),
+				$services->getContentHandlerFactory(),
+				$services->getInterwikiLookup(),
+				$services->getReadOnlyMode(),
+				$services->getUserOptionsManager(),
+			] )
 			->setMethods( [ 'getSearchEngine' ] )
 			->getMock();
 		$search->expects( $this->any() )
@@ -297,7 +322,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest(
 			new FauxRequest( [ 'search' => 'TEST_SEARCH_PARAM', 'fulltext' => 1 ] )
 		);
-		$search = new SpecialSearch();
+		$search = $this->newSpecialPage();
 		$search->setContext( $context );
 		$search->load();
 
@@ -318,7 +343,18 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			[ SearchResult::newFromTitle( Title::newMainPage() ) ]
 		);
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
+		$services = MediaWikiServices::getInstance();
 		$search = $this->getMockBuilder( SpecialSearch::class )
+			->setConstructorArgs( [
+				$services->getSearchEngineConfig(),
+				$services->getSearchEngineFactory(),
+				$services->getPermissionManager(),
+				$services->getNamespaceInfo(),
+				$services->getContentHandlerFactory(),
+				$services->getInterwikiLookup(),
+				$services->getReadOnlyMode(),
+				$services->getUserOptionsManager(),
+			] )
 			->setMethods( [ 'getSearchEngine' ] )
 			->getMock();
 		$search->expects( $this->any() )
