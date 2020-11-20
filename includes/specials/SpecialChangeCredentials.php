@@ -19,8 +19,12 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	/** Change action needs user data; remove action does not */
 	protected static $loadUserData = true;
 
-	public function __construct( $name = 'ChangeCredentials' ) {
-		parent::__construct( $name, 'editmyprivateinfo' );
+	/**
+	 * @param AuthManager $authManager
+	 */
+	public function __construct( AuthManager $authManager ) {
+		parent::__construct( 'ChangeCredentials', 'editmyprivateinfo' );
+		$this->setAuthManager( $authManager );
 	}
 
 	protected function getGroupName() {

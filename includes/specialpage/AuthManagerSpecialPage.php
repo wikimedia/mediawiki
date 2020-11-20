@@ -4,13 +4,14 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Token;
 
 /**
  * A special page subclass for authentication-related special pages. It generates a form from
  * a set of AuthenticationRequest objects, submits the result to AuthManager and
  * partially handles the response.
+ *
+ * @note Call self::setAuthManager from special page constructor when extending
  *
  * @stable to extend
  */
@@ -121,7 +122,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @return bool False if execution should be stopped.
 	 */
 	protected function handleReturnBeforeExecute( $subPage ) {
-		$authManager = MediaWikiServices::getInstance()->getAuthManager();
+		$authManager = $this->getAuthManager();
 		$key = 'AuthManagerSpecialPage:return:' . $this->getName();
 
 		if ( $subPage === 'return' ) {
@@ -159,7 +160,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @throws ErrorPageError When the user is not allowed to use this page.
 	 */
 	protected function handleReauthBeforeExecute( $subPage ) {
-		$authManager = MediaWikiServices::getInstance()->getAuthManager();
+		$authManager = $this->getAuthManager();
 		$request = $this->getRequest();
 		$key = 'AuthManagerSpecialPage:reauth:' . $this->getName();
 
@@ -270,7 +271,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			}
 		}
 
-		$allReqs = MediaWikiServices::getInstance()->getAuthManager()->getAuthenticationRequests(
+		$allReqs = $this->getAuthManager()->getAuthenticationRequests(
 			$this->authAction, $this->getUser() );
 		$this->authRequests = array_filter( $allReqs, function ( $req ) {
 			return !in_array( get_class( $req ), $this->getRequestBlacklist(), true );
@@ -318,7 +319,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @throws LogicException if $action is invalid
 	 */
 	protected function isActionAllowed( $action ) {
-		$authManager = MediaWikiServices::getInstance()->getAuthManager();
+		$authManager = $this->getAuthManager();
 		if ( !in_array( $action, static::$allowedActions, true ) ) {
 			throw new InvalidArgumentException( 'invalid action: ' . $action );
 		}
@@ -362,7 +363,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			throw new InvalidArgumentException( 'invalid action: ' . $action );
 		}
 
-		$authManager = MediaWikiServices::getInstance()->getAuthManager();
+		$authManager = $this->getAuthManager();
 		$returnToUrl = $this->getPageTitle( 'return' )
 			->getFullURL( $this->getPreservedParams( true ), false, PROTO_HTTPS );
 

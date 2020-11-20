@@ -23,7 +23,6 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -48,11 +47,13 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 
 	/**
 	 * @param PermissionManager $permManager
+	 * @param AuthManager $authManager
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct( PermissionManager $permManager, AuthManager $authManager ) {
 		parent::__construct( 'CreateAccount' );
 
 		$this->permManager = $permManager;
+		$this->setAuthManager( $authManager );
 	}
 
 	public function doesWrites() {
@@ -71,8 +72,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		parent::checkPermissions();
 
 		$user = $this->getUser();
-		$status = MediaWikiServices::getInstance()->getAuthManager()
-			->checkAccountCreatePermissions( $user );
+		$status = $this->getAuthManager()->checkAccountCreatePermissions( $user );
 		if ( !$status->isGood() ) {
 			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
 		}
