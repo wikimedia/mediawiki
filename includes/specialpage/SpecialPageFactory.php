@@ -837,7 +837,19 @@ class SpecialPageFactory {
 			$this->list = self::CORE_LIST;
 
 			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
-				$this->list['Search'] = \SpecialSearch::class;
+				$this->list['Search'] = [
+					'class' => \SpecialSearch::class,
+					'services' => [
+						'SearchEngineConfig',
+						'SearchEngineFactory',
+						'PermissionManager',
+						'NamespaceInfo',
+						'ContentHandlerFactory',
+						'InterwikiLookup',
+						'ReadOnlyMode',
+						'UserOptionsManager',
+					]
+				];
 			}
 
 			if ( $this->options->get( 'EmailAuthentication' ) ) {

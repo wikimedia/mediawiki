@@ -23,7 +23,9 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
@@ -50,8 +52,8 @@ class SpecialSearch extends SpecialPage {
 	/** @var SearchEngine Search engine */
 	protected $searchEngine;
 
-	/** @var string Search engine type, if not default */
-	protected $searchEngineType;
+	/** @var string|null Search engine type, if not default */
+	protected $searchEngineType = null;
 
 	/** @var array For links */
 	protected $extraParams = [];
@@ -93,6 +95,24 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $searchConfig;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var InterwikiLookup */
+	private $interwikiLookup;
+
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
@@ -104,12 +124,35 @@ class SpecialSearch extends SpecialPage {
 
 	private const NAMESPACES_CURRENT = 'sense';
 
-	public function __construct() {
+	/**
+	 * @param SearchEngineConfig $searchConfig
+	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param PermissionManager $permissionManager
+	 * @param NamespaceInfo $nsInfo
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param InterwikiLookup $interwikiLookup
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UserOptionsManager $userOptionsManager
+	 */
+	public function __construct(
+		SearchEngineConfig $searchConfig,
+		SearchEngineFactory $searchEngineFactory,
+		PermissionManager $permissionManager,
+		NamespaceInfo $nsInfo,
+		IContentHandlerFactory $contentHandlerFactory,
+		InterwikiLookup $interwikiLookup,
+		ReadOnlyMode $readOnlyMode,
+		UserOptionsManager $userOptionsManager
+	) {
 		parent::__construct( 'Search' );
-		// TODO Inject services
-		$services = MediaWikiServices::getInstance();
-		$this->searchConfig = $services->getSearchEngineConfig();
-		$this->userOptionsManager = $services->getUserOptionsManager();
+		$this->searchConfig = $searchConfig;
+		$this->searchEngineFactory = $searchEngineFactory;
+		$this->permissionManager = $permissionManager;
+		$this->nsInfo = $nsInfo;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->interwikiLookup = $interwikiLookup;
+		$this->readOnlyMode = $readOnlyMode;
+		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**
@@ -482,7 +525,7 @@ class SpecialSearch extends SpecialPage {
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
-				MediaWikiServices::getInstance()->getInterwikiLookup(),
+				$this->interwikiLookup,
 				$engine->getFeatureData( 'show-multimedia-search-results' )
 			);
 		} else {
@@ -491,7 +534,7 @@ class SpecialSearch extends SpecialPage {
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
-				MediaWikiServices::getInstance()->getInterwikiLookup()
+				$this->interwikiLookup
 			);
 		}
 
@@ -557,14 +600,10 @@ class SpecialSearch extends SpecialPage {
 				$messageName = 'searchmenu-exists';
 				$linkClass = 'mw-search-exists';
 			} elseif (
-				MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
-					->getContentHandler( $title->getContentModel() )
+				$this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 					->supportsDirectEditing()
-				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'create',
-					$this->getUser(), $title )
-				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'edit',
-					$this->getUser(), $title )
+				&& $this->permissionManager->quickUserCan( 'create', $this->getUser(), $title )
+				&& $this->permissionManager->quickUserCan( 'edit', $this->getUser(), $title )
 			) {
 				$messageName = 'searchmenu-new';
 			}
@@ -702,13 +741,11 @@ class SpecialSearch extends SpecialPage {
 				$request->getVal( 'nsRemember' ),
 				'searchnamespace',
 				$request
-			) && !wfReadOnly()
+			) && !$this->readOnlyMode->isReadOnly()
 		) {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.
-			foreach ( MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces()
-				as $n
-			) {
+			foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
 				$this->userOptionsManager->setOption( $user, 'searchNs' . $n, false );
 			}
 			// The request parameters include all the namespaces to be searched.
@@ -780,10 +817,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function getSearchEngine() {
 		if ( $this->searchEngine === null ) {
-			$services = MediaWikiServices::getInstance();
-			$this->searchEngine = $this->searchEngineType ?
-				$services->getSearchEngineFactory()->create( $this->searchEngineType ) :
-				$services->newSearchEngine();
+			$this->searchEngine = $this->searchEngineFactory->create( $this->searchEngineType );
 		}
 
 		return $this->searchEngine;
