@@ -420,7 +420,15 @@ class SpecialPageFactory {
 				'UserCache',
 			]
 		],
-		'Log' => \SpecialLog::class,
+		'Log' => [
+			'class' => \SpecialLog::class,
+			'services' => [
+				'PermissionManager',
+				'LinkBatchFactory',
+				'DBLoadBalancer',
+				'ActorMigration',
+			]
+		],
 		'Watchlist' => \SpecialWatchlist::class,
 		'Newpages' => [
 			'class' => \SpecialNewpages::class,
