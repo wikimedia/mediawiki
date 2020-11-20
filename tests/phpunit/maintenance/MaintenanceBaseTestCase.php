@@ -57,7 +57,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	/**
 	 * Called by setUp to initialize $this->maintenance.
 	 *
-	 * @return object The Maintenance instance to test.
+	 * @return Maintenance The Maintenance instance to test.
 	 */
 	protected function createMaintenance() {
 		$className = $this->getMaintenanceClass();

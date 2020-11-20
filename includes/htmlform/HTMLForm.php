@@ -1342,10 +1342,12 @@ class HTMLForm extends ContextSource {
 					->setInterfaceMessageFlag( true )
 					->parse();
 			}
-		} elseif ( is_array( $elements ) && $elementsType === 'error' ) {
-			$elementstr = $this->formatErrors( $elements );
 		} elseif ( $elementsType === 'error' ) {
-			$elementstr = $elements;
+			if ( is_array( $elements ) ) {
+				$elementstr = $this->formatErrors( $elements );
+			} elseif ( $elements && $elements !== true ) {
+				$elementstr = (string)$elements;
+			}
 		}
 
 		return $elementstr

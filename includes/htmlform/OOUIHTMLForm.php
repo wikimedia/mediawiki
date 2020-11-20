@@ -220,21 +220,23 @@ class OOUIHTMLForm extends HTMLForm {
 			if ( !$elements->isGood() ) {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
-					// Input:  [ 'message' => 'foo', 'errors' => [ 'a', 'b', 'c' ] ]
+					// Input:  [ 'message' => 'foo', 'params' => [ 'a', 'b', 'c' ] ]
 					// Output: [ 'foo', 'a', 'b', 'c' ]
-					$error = array_merge( [ $error['message'] ], $error['params'] );
+					$error = $this->getMessage(
+						array_merge( [ $error['message'] ], $error['params'] ) )->parse();
 				}
 			}
 		} elseif ( $elementsType === 'error' ) {
 			if ( is_array( $elements ) ) {
-				$errors = $elements;
-			} elseif ( is_string( $elements ) ) {
-				$errors = [ $elements ];
+				foreach ( $elements as $error ) {
+					$errors[] = $this->getMessage( $error )->parse();
+				}
+			} elseif ( $elements && $elements !== true ) {
+				$errors[] = (string)$elements;
 			}
 		}
 
 		foreach ( $errors as &$error ) {
-			$error = $this->getMessage( $error )->parse();
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 

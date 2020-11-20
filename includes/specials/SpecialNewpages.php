@@ -420,7 +420,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * Format a row, providing the timestamp, links to the page/history,
 	 * size, user links, and a comment
 	 *
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatRow( $result ) {
@@ -541,7 +541,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Should a specific result row provide "patrollable" links?
 	 *
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return bool
 	 */
 	protected function patrollable( $result ) {

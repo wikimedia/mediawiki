@@ -73,7 +73,7 @@
 class PathRouter {
 
 	/**
-	 * @var array
+	 * @var stdClass[]
 	 */
 	private $patterns = [];
 
@@ -209,7 +209,7 @@ class PathRouter {
 	}
 
 	/**
-	 * @param object $pattern
+	 * @param stdClass $pattern
 	 * @return float|int
 	 */
 	protected static function makeWeight( $pattern ) {
@@ -292,7 +292,7 @@ class PathRouter {
 
 	/**
 	 * @param string $path
-	 * @param object $pattern
+	 * @param stdClass $pattern
 	 * @return array|null
 	 */
 	protected static function extractTitle( $path, $pattern ) {
