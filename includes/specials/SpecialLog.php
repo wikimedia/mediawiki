@@ -21,7 +21,10 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -30,8 +33,36 @@ use Wikimedia\Timestamp\TimestampException;
  * @ingroup SpecialPage
  */
 class SpecialLog extends SpecialPage {
-	public function __construct() {
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ActorMigration $actorMigration
+	 */
+	public function __construct(
+		PermissionManager $permissionManager,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		ActorMigration $actorMigration
+	) {
 		parent::__construct( 'Log' );
+		$this->permissionManager = $permissionManager;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorMigration = $actorMigration;
 	}
 
 	public function execute( $par ) {
@@ -94,9 +125,7 @@ class SpecialLog extends SpecialPage {
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
 		} elseif ( isset( $logRestrictions[$type] )
-			&& !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), $logRestrictions[$type] )
+			&& !$this->permissionManager->userHasRight( $this->getUser(), $logRestrictions[$type] )
 		) {
 			throw new PermissionsError( $logRestrictions[$type] );
 		}
@@ -118,7 +147,7 @@ class SpecialLog extends SpecialPage {
 		# Some log types are only for a 'User:' title but we might have been given
 		# only the username instead of the full title 'User:username'. This part try
 		# to lookup for a user by that name and eventually fix user input. See T3697.
-		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser() ) ) {
+		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser( $this->getHookRunner() ) ) ) {
 			# ok we have a type of log which expect a user title.
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
@@ -138,9 +167,12 @@ class SpecialLog extends SpecialPage {
 	 * Title user instead.
 	 *
 	 * @since 1.25
+	 * @since 1.36 Added $runner parameter
+	 *
+	 * @param HookRunner|null $runner
 	 * @return array
 	 */
-	public static function getLogTypesOnUser() {
+	public static function getLogTypesOnUser( HookRunner $runner = null ) {
 		static $types = null;
 		if ( $types !== null ) {
 			return $types;
@@ -151,7 +183,7 @@ class SpecialLog extends SpecialPage {
 			'rights',
 		];
 
-		Hooks::runner()->onGetLogTypesOnUser( $types );
+		( $runner ?? Hooks::runner() )->onGetLogTypesOnUser( $types );
 		return $types;
 	}
 
@@ -214,7 +246,10 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'tagfilter' ),
 			$opts->getValue( 'subtype' ),
 			$opts->getValue( 'logid' ),
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$this->linkBatchFactory,
+			$this->loadBalancer,
+			$this->permissionManager,
+			$this->actorMigration
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -258,9 +293,7 @@ class SpecialLog extends SpecialPage {
 
 	private function getActionButtons( $formcontents ) {
 		$user = $this->getUser();
-		$canRevDelete = MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAllRights( $user, 'deletedhistory', 'deletelogentry' );
+		$canRevDelete = $this->permissionManager->userHasAllRights( $user, 'deletedhistory', 'deletelogentry' );
 		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).

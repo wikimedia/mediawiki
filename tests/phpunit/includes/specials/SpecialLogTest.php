@@ -4,6 +4,8 @@
  * @author Legoktm
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers SpecialLog
  */
@@ -15,7 +17,13 @@ class SpecialLogTest extends SpecialPageTestBase {
 	 * @return SpecialPage
 	 */
 	protected function newSpecialPage() {
-		return new SpecialLog();
+		$services = MediaWikiServices::getInstance();
+		return new SpecialLog(
+			$services->getPermissionManager(),
+			$services->getLinkBatchFactory(),
+			$services->getDBLoadBalancer(),
+			$services->getActorMigration()
+		);
 	}
 
 	/**
