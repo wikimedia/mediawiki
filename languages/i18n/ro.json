@@ -239,7 +239,7 @@
 	"cactions": "Mai mult",
 	"tool-link-userrights": "Schimbă grupurile {{GENDER:$1|utilizatorului|utilizatoarei}}",
 	"tool-link-userrights-readonly": "Vezi grupurile {{GENDER:$1|utilizatorului|utilizatoarei}}",
-	"tool-link-emailuser": "Trimiteți un mesaj {{GENDER:$1|acestui utilizator|acestei utilizatoare}}",
+	"tool-link-emailuser": "Trimiteți un e-mail {{GENDER:$1|acestui utilizator|acestei utilizatoare}}",
 	"imagepage": "Vizualizați pagina fișierului",
 	"mediawikipage": "Vizualizați pagina mesajului",
 	"templatepage": "Vizualizați pagina formatului",
