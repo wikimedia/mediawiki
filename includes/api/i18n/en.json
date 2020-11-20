@@ -1409,6 +1409,7 @@
 	"apihelp-query+watchlist-param-token": "A security token (available in the user's [[Special:Preferences#mw-prefsection-watchlist|preferences]]) to allow access to another user's watchlist.",
 	"apihelp-query+watchlist-example-simple": "List the top revision for recently changed pages on the current user's watchlist.",
 	"apihelp-query+watchlist-example-props": "Fetch additional information about the top revision for recently changed pages on the current user's watchlist.",
+	"apihelp-query+watchlist-example-expiry": "Fetch additional information about the top revision for recently changed pages on the current user's watchlist, including when temporarily watched items will expire.",
 	"apihelp-query+watchlist-example-allrev": "Fetch information about all recent changes to pages on the current user's watchlist.",
 	"apihelp-query+watchlist-example-generator": "Fetch page info for recently changed pages on the current user's watchlist.",
 	"apihelp-query+watchlist-example-generator-rev": "Fetch revision info for recent changes to pages on the current user's watchlist.",
