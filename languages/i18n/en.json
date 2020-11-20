@@ -4381,5 +4381,6 @@
 	"paramvalidator-missingtitle": "Invalid value \"$2\" for title parameter <var>$1</var>: the page does not exist.",
 	"paramvalidator-help-type-title": "Type: page title",
 	"paramvalidator-help-type-title-must-exist": "Only accepts pages that exist.",
-	"paramvalidator-help-type-title-no-must-exist": "Accepts non-existent pages."
+	"paramvalidator-help-type-title-no-must-exist": "Accepts non-existent pages.",
+	"nonmain-slot-differences-therefore-readonly": "You cannot edit the wikitext on this revision of the page, as there have been changes to the data on the page since this revision that are not wikitext-based. [$1 To restore this revision click here.]"
 }
