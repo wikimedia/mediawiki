@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Use this special page to get a list of the MediaWiki system messages.
  *
@@ -29,8 +31,23 @@
  */
 class SpecialAllMessages extends SpecialPage {
 
-	public function __construct() {
+	/** @var LocalisationCache */
+	private $localisationCache;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param LocalisationCache $localisationCache
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		LocalisationCache $localisationCache,
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'Allmessages' );
+		$this->localisationCache = $localisationCache;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -63,7 +80,14 @@ class SpecialAllMessages extends SpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
-		$pager = new AllMessagesTablePager( $this->getContext(), $opts, $this->getLinkRenderer() );
+		$pager = new AllMessagesTablePager(
+			$this->getContext(),
+			$opts,
+			$this->getLinkRenderer(),
+			$this->getContentLanguage(),
+			$this->localisationCache,
+			$this->loadBalancer
+		);
 
 		$formDescriptor = [
 			'prefix' => [

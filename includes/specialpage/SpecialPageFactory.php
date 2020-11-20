@@ -558,6 +558,10 @@ class SpecialPageFactory {
 		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
+			'services' => [
+				'LocalisationCache',
+				'DBLoadBalancer',
+			]
 		],
 		'Version' => [
 			'class' => \SpecialVersion::class,
