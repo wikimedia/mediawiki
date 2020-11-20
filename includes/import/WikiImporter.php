@@ -395,7 +395,9 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
-		return $revision->importUpload();
+		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
+		$status = $importer->import( $revision );
+		return $status->isGood();
 	}
 
 	/**

@@ -392,6 +392,7 @@ because of Phabricator reports.
 * Title::isDeleted() and Title::isDeletedQuick() have been deprecated. Please
   use Title::getDeletedEditsCount() and Title::hasDeletedEdits() instead.
 * Article::getContentObject, soft-deprecated since 1.32, was hard-deprecated.
+* WikiRevision::importUpload, soft-deprecated since 1.31, was hard-deprecated.
 * …
 
 === Other changes in 1.36 ===
