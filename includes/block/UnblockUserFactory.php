@@ -31,7 +31,7 @@ interface UnblockUserFactory {
 	 * @param User|string $target
 	 * @param User $performer
 	 * @param string $reason
-	 * @param array $tags
+	 * @param string[] $tags
 	 *
 	 * @return UnblockUser
 	 */

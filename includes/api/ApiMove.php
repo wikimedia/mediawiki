@@ -180,7 +180,7 @@ class ApiMove extends ApiBase {
 	 * @param Title $to
 	 * @param string $reason
 	 * @param bool $createRedirect
-	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
+	 * @param string[] $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return Status
 	 */
 	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
@@ -209,7 +209,7 @@ class ApiMove extends ApiBase {
 	 * @param Title $toTitle
 	 * @param string $reason
 	 * @param bool $noredirect
-	 * @param array $changeTags Applied to the entry in the move log and redirect page revisions
+	 * @param string[] $changeTags Applied to the entry in the move log and redirect page revisions
 	 * @return array
 	 */
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect, $changeTags = [] ) {

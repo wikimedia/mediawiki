@@ -477,7 +477,7 @@ class MovePage {
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
-	 * @param array $changeTags
+	 * @param string[] $changeTags
 	 * @return Status
 	 */
 	private function moveSubpagesInternal(
