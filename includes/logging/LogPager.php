@@ -407,8 +407,8 @@ class LogPager extends ReverseChronologicalPager {
 			$lb = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $this->mResult as $row ) {
 				$lb->add( $row->log_namespace, $row->log_title );
-				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-				$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+				$lb->add( NS_USER, $row->log_user_text );
+				$lb->add( NS_USER_TALK, $row->log_user_text );
 				$formatter = LogFormatter::newFromRow( $row );
 				foreach ( $formatter->getPreloadTitles() as $title ) {
 					$lb->addObj( $title );
