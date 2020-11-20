@@ -218,7 +218,7 @@ util = {
 	 *
 	 * @param {string} param The parameter name.
 	 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
-	 * @return {Mixed} Parameter value or null.
+	 * @return {string|null} Parameter value or null when the parameter cannot be decoded or is absent.
 	 */
 	getParamValue: function ( param, url ) {
 		// Get last match, stop at hash
@@ -228,7 +228,13 @@ util = {
 		if ( m ) {
 			// Beware that decodeURIComponent is not required to understand '+'
 			// by spec, as encodeURIComponent does not produce it.
-			return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
+			try {
+				return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
+			} catch ( e ) {
+				// catch URIError if parameter is invalid UTF-8
+				// due to malformed or double-decoded values (T106244),
+				// e.g. "Autom%F3vil" instead of "Autom%C3%B3vil".
+			}
 		}
 		return null;
 	},
