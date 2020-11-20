@@ -626,16 +626,9 @@ class WikiImporter {
 					$keepReading = $this->reader->read();
 				}
 			}
-		} catch ( Exception $ex ) {
-			$rethrow = $ex;
-		}
-
-		// finally
-		libxml_disable_entity_loader( $oldDisable );
-		$this->reader->close();
-
-		if ( $rethrow ) {
-			throw $rethrow;
+		} finally {
+			libxml_disable_entity_loader( $oldDisable );
+			$this->reader->close();
 		}
 
 		return true;
