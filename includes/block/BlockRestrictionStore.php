@@ -36,7 +36,7 @@ class BlockRestrictionStore {
 	/**
 	 * Map of all of the restriction types.
 	 */
-	private $types = [
+	private const TYPES_MAP = [
 		PageRestriction::TYPE_ID => PageRestriction::class,
 		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
 	];
@@ -440,8 +440,8 @@ class BlockRestrictionStore {
 	 * @return Restriction|null
 	 */
 	private function rowToRestriction( stdClass $row ) {
-		if ( array_key_exists( (int)$row->ir_type, $this->types ) ) {
-			$class = $this->types[ (int)$row->ir_type ];
+		if ( array_key_exists( (int)$row->ir_type, self::TYPES_MAP ) ) {
+			$class = self::TYPES_MAP[ (int)$row->ir_type ];
 			return call_user_func( [ $class, 'newFromRow' ], $row );
 		}
 
