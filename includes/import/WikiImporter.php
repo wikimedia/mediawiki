@@ -395,7 +395,9 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
-		return $revision->importUpload();
+		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
+		$status = $importer->import( $revision );
+		return $status->isGood();
 	}
 
 	/**
@@ -626,16 +628,9 @@ class WikiImporter {
 					$keepReading = $this->reader->read();
 				}
 			}
-		} catch ( Exception $ex ) {
-			$rethrow = $ex;
-		}
-
-		// finally
-		libxml_disable_entity_loader( $oldDisable );
-		$this->reader->close();
-
-		if ( $rethrow ) {
-			throw $rethrow;
+		} finally {
+			libxml_disable_entity_loader( $oldDisable );
+			$this->reader->close();
 		}
 
 		return true;
