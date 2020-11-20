@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 namespace Wikimedia\Tests;
 
 use Generator;

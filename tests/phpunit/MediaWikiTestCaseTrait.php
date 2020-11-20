@@ -34,7 +34,7 @@ trait MediaWikiTestCaseTrait {
 	 * @param string $type
 	 * @param string[] $allow methods to allow
 	 *
-	 * @return object|MockObject
+	 * @return MockObject
 	 */
 	protected function createNoOpMock( $type, $allow = [] ) {
 		$mock = $this->createMock( $type );
@@ -46,7 +46,7 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @param string $type
-	 * @return object
+	 * @return MockObject
 	 */
 	protected function createNoOpAbstractMock( $type ) {
 		$mock = $this->getMockBuilder( $type )

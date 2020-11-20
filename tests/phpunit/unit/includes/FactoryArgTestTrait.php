@@ -1,5 +1,8 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 /**
  * Test that a factory class correctly forwards all arguments to the class it constructs. This is
  * useful because sometimes a class' constructor will have more arguments added, and it's easy to

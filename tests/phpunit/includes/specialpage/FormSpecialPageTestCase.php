@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 use MediaWiki\Block\DatabaseBlock;
 
 /**
@@ -78,7 +80,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 	 * @param string $name
 	 * @return callable
 	 */
-	protected function getMethod( $obj, $name ) {
+	protected function getMethod( object $obj, $name ) {
 		$method = new ReflectionMethod( $obj, $name );
 		$method->setAccessible( true );
 		return $method->getClosure( $obj );

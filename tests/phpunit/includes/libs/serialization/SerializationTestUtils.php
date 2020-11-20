@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -195,7 +198,7 @@ class SerializationTestUtils {
 	 * @param string $class
 	 * @param string $testCaseName
 	 * @param string|null $version
-	 * @return object
+	 * @return \stdClass
 	 */
 	public function getStoredSerializedInstance(
 		string $class,

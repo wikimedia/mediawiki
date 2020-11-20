@@ -87,7 +87,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row Result row
+	 * @param stdClass $row Result row
 	 * @return string
 	 */
 	protected function getCellHtml( $row ) {
