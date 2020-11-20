@@ -49,7 +49,7 @@
 }
 
 .oo-ui-transition( @value1, @value2: X, ... ) {
-	@value: ~`"@{arguments}".replace( /[\[\]]|\,\sX/g, '' )`; // stylelint-disable-line function-comma-space-after, function-whitespace-after, string-quotes, value-keyword-case
+	@value: ~`'@{arguments}'.replace( /[\[\]]|\,\sX/g, '' )`;
 	-webkit-transition: @value;
 	-moz-transition: @value;
 	transition: @value;
