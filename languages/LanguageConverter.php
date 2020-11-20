@@ -749,7 +749,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
 		// phpcs:ignore Generic.Files.LineLength
 		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
-		// @phan-suppress-next-line PhanRedundantConditionInLoop
 		while ( $startPos < $length && $continue ) {
 			$continue = preg_match(
 				// Only match -{ outside of html.
