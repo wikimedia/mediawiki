@@ -660,7 +660,7 @@ class WebInstaller extends Installer {
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
-		return Html::infoBox( $html, $icon, $alt, $class );
+		return self::infoBox( $html, $icon, $alt, $class );
 	}
 
 	/**
@@ -1223,6 +1223,40 @@ class WebInstaller extends Installer {
 	 */
 	public function getPhpErrors() {
 		return $this->phpErrors;
+	}
+
+	/**
+	 * Get HTML for an information message box with an icon.
+	 *
+	 * @since 1.36
+	 * @param string $rawHtml HTML
+	 * @param string $icon Path to icon file (used as 'src' attribute)
+	 * @param string $alt Alternate text for the icon
+	 * @param string $class Additional class name to add to the wrapper div
+	 * @return string HTML
+	 */
+	protected static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
+		$s = Html::openElement( 'div', [ 'class' => "mw-infobox $class" ] );
+
+		$s .= Html::openElement( 'div', [ 'class' => 'mw-infobox-left' ] ) .
+				Html::element( 'img',
+					[
+						'src' => $icon,
+						'alt' => $alt,
+					]
+				) .
+				Html::closeElement( 'div' );
+
+		$s .= Html::openElement( 'div', [ 'class' => 'mw-infobox-right' ] ) .
+				$rawHtml .
+				Html::closeElement( 'div' );
+		$s .= Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
+
+		$s .= Html::closeElement( 'div' );
+
+		$s .= Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
+
+		return $s;
 	}
 
 }
