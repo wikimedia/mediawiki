@@ -356,7 +356,7 @@ CREATE TABLE /*_*/user_newtalk (
   user_ip VARBINARY(40) DEFAULT '' NOT NULL,
   user_last_timestamp BINARY(14) DEFAULT NULL,
   INDEX un_user_id (user_id),
-  INDEX un_user_ip (user_id)
+  INDEX un_user_ip (user_ip)
 ) /*$wgDBTableOptions*/;
 
 
