@@ -452,3 +452,29 @@ CREATE TABLE /*_*/page_props (
   UNIQUE INDEX pp_propname_sortkey_page (pp_propname, pp_sortkey, pp_page),
   PRIMARY KEY(pp_page, pp_propname)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/job (
+  job_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  job_cmd VARBINARY(60) DEFAULT '' NOT NULL,
+  job_namespace INT NOT NULL,
+  job_title VARBINARY(255) NOT NULL,
+  job_timestamp BINARY(14) DEFAULT NULL,
+  job_params MEDIUMBLOB NOT NULL,
+  job_random INT UNSIGNED DEFAULT 0 NOT NULL,
+  job_attempts INT UNSIGNED DEFAULT 0 NOT NULL,
+  job_token VARBINARY(32) DEFAULT '' NOT NULL,
+  job_token_timestamp BINARY(14) DEFAULT NULL,
+  job_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
+  INDEX job_sha1 (job_sha1),
+  INDEX job_cmd_token (job_cmd, job_token, job_random),
+  INDEX job_cmd_token_id (job_cmd, job_token, job_id),
+  INDEX job_cmd (
+    job_cmd,
+    job_namespace,
+    job_title,
+    job_params(128)
+  ),
+  INDEX job_timestamp (job_timestamp),
+  PRIMARY KEY(job_id)
+) /*$wgDBTableOptions*/;
