@@ -1183,7 +1183,7 @@
 		],
 		"indexes": [
 			{ "name": "un_user_id", "columns": [ "user_id" ], "unique": false },
-			{ "name": "un_user_ip", "columns": [ "user_id" ], "unique": false }
+			{ "name": "un_user_ip", "columns": [ "user_ip" ], "unique": false }
 		],
 		"pk": []
 	},

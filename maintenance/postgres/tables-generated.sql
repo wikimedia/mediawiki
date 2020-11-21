@@ -406,7 +406,7 @@ CREATE TABLE user_newtalk (
 
 CREATE INDEX un_user_id ON user_newtalk (user_id);
 
-CREATE INDEX un_user_ip ON user_newtalk (user_id);
+CREATE INDEX un_user_ip ON user_newtalk (user_ip);
 
 
 CREATE TABLE interwiki (

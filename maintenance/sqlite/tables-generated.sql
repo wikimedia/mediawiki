@@ -389,7 +389,7 @@ CREATE TABLE /*_*/user_newtalk (
 
 CREATE INDEX un_user_id ON /*_*/user_newtalk (user_id);
 
-CREATE INDEX un_user_ip ON /*_*/user_newtalk (user_id);
+CREATE INDEX un_user_ip ON /*_*/user_newtalk (user_ip);
 
 
 CREATE TABLE /*_*/interwiki (
