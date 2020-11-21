@@ -1015,6 +1015,8 @@ class Html {
 	 * Get HTML for an information message box with an icon.
 	 *
 	 * @internal For use by the WebInstaller class only.
+	 * @deprecated since 1.36
+	 *
 	 * @param string $rawHtml HTML
 	 * @param string $icon Path to icon file (used as 'src' attribute)
 	 * @param string $alt Alternate text for the icon
@@ -1022,6 +1024,8 @@ class Html {
 	 * @return string HTML
 	 */
 	public static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$s = self::openElement( 'div', [ 'class' => "mw-infobox $class" ] );
 
 		$s .= self::openElement( 'div', [ 'class' => 'mw-infobox-left' ] ) .
