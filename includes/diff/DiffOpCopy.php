@@ -33,8 +33,13 @@
  * @ingroup DifferenceEngine
  */
 class DiffOpCopy extends DiffOp {
+	/** @inheritDoc */
 	public $type = 'copy';
 
+	/**
+	 * @param string[]|false $orig
+	 * @param string[]|false $closing
+	 */
 	public function __construct( $orig, $closing = false ) {
 		if ( !is_array( $closing ) ) {
 			$closing = $orig;

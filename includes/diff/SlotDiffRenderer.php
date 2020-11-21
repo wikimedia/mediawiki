@@ -60,7 +60,7 @@ abstract class SlotDiffRenderer {
 	/**
 	 * Return any extra keys to split the diff cache by.
 	 * @stable to override
-	 * @return array
+	 * @return string[]
 	 */
 	public function getExtraCacheKeys() {
 		return [];
