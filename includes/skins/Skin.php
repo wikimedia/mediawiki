@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
+use Wikimedia\IPUtils;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -1595,8 +1596,11 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
+		// If there's a relevant user and is not IP range, set sidebar
+		// 'Tools' links.  IP ranges excluded because some of the links
+		// don't make sense to them.
 		$user = $this->getRelevantUser();
-		if ( $user ) {
+		if ( $user && !IPUtils::isValidRange( $user ) ) {
 			$rootUser = $user->getName();
 
 			$nav_urls['contributions'] = [
