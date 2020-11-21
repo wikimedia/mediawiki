@@ -352,28 +352,6 @@ CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
 CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
 CREATE INDEX logging_type_action ON logging (log_type, log_action, log_timestamp);
 
-
-CREATE SEQUENCE job_job_id_seq;
-CREATE TABLE job (
-  job_id              INTEGER   NOT NULL  PRIMARY KEY DEFAULT nextval('job_job_id_seq'),
-  job_cmd             TEXT      NOT NULL,
-  job_namespace       SMALLINT  NOT NULL,
-  job_title           TEXT      NOT NULL,
-  job_timestamp       TIMESTAMPTZ,
-  job_params          TEXT      NOT NULL,
-  job_random          INTEGER   NOT NULL DEFAULT 0,
-  job_attempts        INTEGER   NOT NULL DEFAULT 0,
-  job_token           TEXT      NOT NULL DEFAULT '',
-  job_token_timestamp TIMESTAMPTZ,
-  job_sha1            TEXT NOT NULL DEFAULT ''
-);
-ALTER SEQUENCE job_job_id_seq OWNED BY job.job_id;
-CREATE INDEX job_sha1 ON job (job_sha1);
-CREATE INDEX job_cmd_token ON job (job_cmd, job_token, job_random);
-CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
-CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
-CREATE INDEX job_timestamp_idx ON job (job_timestamp);
-
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 

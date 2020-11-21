@@ -86,6 +86,7 @@ class GenerateSchemaSql extends Maintenance {
 		if ( $platform === 'postgres' ) {
 			// Remove table prefixes from Postgres schema, people should not set it
 			// but better safe than sorry.
+			$sql = str_replace( "\n  /*_*/\n  ", ' ', $sql );
 			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
 
 			// MySQL goes with varbinary for collation reasons, but postgres can't

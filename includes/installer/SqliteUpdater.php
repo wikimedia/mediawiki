@@ -315,6 +315,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'revision_actor_temp', 'revactor_timestamp', 'patch-revactor_timestamp-drop-default.sql' ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
 				'patch-watchlist-namespace_title-rename-index.sql' ],
+			[ 'modifyField', 'job', 'job_title', 'patch-job-job_title-varbinary.sql' ],
 		];
 	}
 
