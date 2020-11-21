@@ -43,7 +43,7 @@ class ChangeTags {
 	/**
 	 * A list of tags defined and used by MediaWiki itself.
 	 */
-	private static $definedSoftwareTags = [
+	private const DEFINED_SOFTWARE_TAGS = [
 		'mw-contentmodelchange',
 		'mw-new-redirect',
 		'mw-removed-redirect',
@@ -91,7 +91,7 @@ class ChangeTags {
 
 		$softwareTags = array_intersect(
 			$availableSoftwareTags,
-			self::$definedSoftwareTags
+			self::DEFINED_SOFTWARE_TAGS
 		);
 
 		return $softwareTags;
