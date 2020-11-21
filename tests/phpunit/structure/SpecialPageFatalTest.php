@@ -24,12 +24,10 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideSpecialPages() {
-		$specialPages = [];
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		foreach ( $spf->getNames() as $name ) {
-			$specialPages[$name] = [ $spf->getPage( $name ) ];
+			yield $name => [ $spf->getPage( $name ) ];
 		}
-		return $specialPages;
 	}
 
 	/**
