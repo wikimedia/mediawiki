@@ -169,6 +169,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
+	 * @var string|null
 	 */
 	protected $filename;
 

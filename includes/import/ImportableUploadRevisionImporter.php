@@ -54,6 +54,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 		return $statusValue;
 	}
 
+	/** @inheritDoc */
 	public function import( ImportableUploadRevision $importableRevision ) {
 		# Construct a file
 		$archiveName = $importableRevision->getArchiveName();
@@ -145,7 +146,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	 *
 	 * @param ImportableUploadRevision $wikiRevision
 	 *
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function downloadSource( ImportableUploadRevision $wikiRevision ) {
 		if ( !$this->enableUploads ) {

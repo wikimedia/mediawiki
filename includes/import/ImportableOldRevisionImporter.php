@@ -68,6 +68,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$this->wikiPageFactory = $wikiPageFactory ?? MediaWikiServices::getInstance()->getWikiPageFactory();
 	}
 
+	/** @inheritDoc */
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 

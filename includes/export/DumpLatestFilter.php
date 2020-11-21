@@ -27,12 +27,16 @@
  * @ingroup Dump
  */
 class DumpLatestFilter extends DumpFilter {
+	/** @var stdClass|null */
 	public $page;
 
+	/** @var string|null */
 	public $pageString;
 
+	/** @var stdClass|null */
 	public $rev;
 
+	/** @var string|null */
 	public $revString;
 
 	/**
