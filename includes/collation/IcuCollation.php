@@ -53,7 +53,7 @@ class IcuCollation extends Collation {
 	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
-	private static $cjkBlocks = [
+	private const CJK_BLOCKS = [
 		[ 0x2E80, 0x2EFF ], // CJK Radicals Supplement
 		[ 0x2F00, 0x2FDF ], // Kangxi Radicals
 		[ 0x2FF0, 0x2FFF ], // Ideographic Description Characters
@@ -92,7 +92,7 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	private static $tailoringFirstLetters = [
+	private const TAILORING_FIRST_LETTERS = [
 		'af' => [],
 		'am' => [],
 		'ar' => [],
@@ -349,13 +349,13 @@ class IcuCollation extends Collation {
 	private function fetchFirstLetterData() {
 		global $IP;
 		// Generate data from serialized data file
-		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
+		if ( isset( self::TAILORING_FIRST_LETTERS[$this->locale] ) ) {
 			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 			// Append additional characters
-			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
+			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->locale] );
 			// Remove unnecessary ones, if any
-			if ( isset( self::$tailoringFirstLetters['-' . $this->locale] ) ) {
-				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
+			if ( isset( self::TAILORING_FIRST_LETTERS['-' . $this->locale] ) ) {
+				$letters = array_diff( $letters, self::TAILORING_FIRST_LETTERS['-' . $this->locale] );
 			}
 			// Apply digit transforms
 			$digits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
@@ -516,7 +516,7 @@ class IcuCollation extends Collation {
 	 * @since 1.16.3
 	 */
 	public static function isCjk( $codepoint ) {
-		foreach ( self::$cjkBlocks as $block ) {
+		foreach ( self::CJK_BLOCKS as $block ) {
 			if ( $codepoint >= $block[0] && $codepoint <= $block[1] ) {
 				return true;
 			}
