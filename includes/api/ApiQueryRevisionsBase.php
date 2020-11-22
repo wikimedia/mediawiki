@@ -296,7 +296,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				try {
 					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} catch ( RevisionAccessException $e ) {
-					// Back compat: If there's no sha1, return emtpy string.
+					// Back compat: If there's no sha1, return empty string.
 					// @todo: Gergő says to mention T198099 as a "todo" here.
 					$vals['sha1'] = '';
 				}
