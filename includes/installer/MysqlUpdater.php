@@ -470,6 +470,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'job', 'job_timestamp', 'patch-job_job_timestamp.sql' ],
 			[ 'modifyField', 'job', 'job_token_timestamp', 'patch-job_job_token_timestamp.sql' ],
 			[ 'modifyField', 'watchlist', 'wl_notificationtimestamp', 'patch-watchlist-wl_notificationtimestamp.sql' ],
+			[ 'modifyField', 'slot_roles', 'role_id', 'patch-slot_roles-role_id.sql' ],
+			[ 'modifyField', 'content_models', 'model_id', 'patch-content_models-model_id.sql' ],
 		];
 	}
 

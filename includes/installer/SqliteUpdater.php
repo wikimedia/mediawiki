@@ -316,6 +316,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
 				'patch-watchlist-namespace_title-rename-index.sql' ],
 			[ 'modifyField', 'job', 'job_title', 'patch-job-job_title-varbinary.sql' ],
+			[ 'modifyField', 'slot_roles', 'role_id', 'patch-slot_roles-role_id-fix_not_null.sql' ],
+			[ 'modifyField', 'content_models', 'model_id', 'patch-content_models-model_id-fix_not_null.sql' ],
 		];
 	}
 

@@ -538,3 +538,21 @@ CREATE INDEX job_cmd ON job (
   );
 
 CREATE INDEX job_timestamp ON job (job_timestamp);
+
+
+CREATE TABLE slot_roles (
+    role_id SERIAL NOT NULL,
+    role_name TEXT NOT NULL,
+    PRIMARY KEY(role_id)
+  );
+
+CREATE UNIQUE INDEX role_name ON slot_roles (role_name);
+
+
+CREATE TABLE content_models (
+    model_id SERIAL NOT NULL,
+    model_name TEXT NOT NULL,
+    PRIMARY KEY(model_id)
+  );
+
+CREATE UNIQUE INDEX model_name ON content_models (model_name);
