@@ -478,3 +478,19 @@ CREATE TABLE /*_*/job (
   INDEX job_timestamp (job_timestamp),
   PRIMARY KEY(job_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/slot_roles (
+  role_id INT AUTO_INCREMENT NOT NULL,
+  role_name VARBINARY(64) NOT NULL,
+  UNIQUE INDEX role_name (role_name),
+  PRIMARY KEY(role_id)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/content_models (
+  model_id INT AUTO_INCREMENT NOT NULL,
+  model_name VARBINARY(64) NOT NULL,
+  UNIQUE INDEX model_name (model_name),
+  PRIMARY KEY(model_id)
+) /*$wgDBTableOptions*/;

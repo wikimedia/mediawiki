@@ -122,25 +122,6 @@ CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_t
 CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
-CREATE SEQUENCE slot_roles_role_id_seq;
-CREATE TABLE slot_roles (
-  role_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('slot_roles_role_id_seq'),
-  role_name  TEXT      NOT NULL
-);
-ALTER SEQUENCE slot_roles_role_id_seq OWNED BY slot_roles.role_id;
-
-CREATE UNIQUE INDEX role_name ON slot_roles (role_name);
-
-
-CREATE SEQUENCE content_models_model_id_seq;
-CREATE TABLE content_models (
-  model_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('content_models_model_id_seq'),
-  model_name  TEXT      NOT NULL
-);
-ALTER SEQUENCE content_models_model_id_seq OWNED BY content_models.model_id;
-
-CREATE UNIQUE INDEX model_name ON content_models (model_name);
-
 
 CREATE TABLE categorylinks (
   cl_from           INTEGER      NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,

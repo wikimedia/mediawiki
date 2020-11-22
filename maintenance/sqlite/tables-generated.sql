@@ -513,3 +513,19 @@ CREATE INDEX job_cmd ON /*_*/job (
 );
 
 CREATE INDEX job_timestamp ON /*_*/job (job_timestamp);
+
+
+CREATE TABLE /*_*/slot_roles (
+  role_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  role_name BLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX role_name ON /*_*/slot_roles (role_name);
+
+
+CREATE TABLE /*_*/content_models (
+  model_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  model_name BLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX model_name ON /*_*/content_models (model_name);
