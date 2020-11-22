@@ -245,10 +245,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_flags ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_FLAGS;
 		}
-		if ( $this->fld_user || $this->fld_userid ) {
+		if ( $this->fld_user || $this->fld_userid || $this->fld_loginfo ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_USER_ID;
 		}
-		if ( $this->fld_user ) {
+		if ( $this->fld_user || $this->fld_loginfo ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_USER;
 		}
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -414,7 +414,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$vals['logid'] = (int)$recentChangeInfo['rc_logid'];
 				$vals['logtype'] = $recentChangeInfo['rc_log_type'];
 				$vals['logaction'] = $recentChangeInfo['rc_log_action'];
-				$vals['logparams'] = LogFormatter::newFromRow( $recentChangeInfo )->formatParametersForApi();
+
+				$logFormatter = LogFormatter::newFromRow( $recentChangeInfo );
+				$vals['logparams'] = $logFormatter->formatParametersForApi();
+				$vals['logdisplay'] = $logFormatter->getActionText();
 			}
 		}
 
