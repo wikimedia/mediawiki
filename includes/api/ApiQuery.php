@@ -38,9 +38,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query prop modules
-	 * @var array
 	 */
-	private static $QueryPropModules = [
+	private const QUERY_PROP_MODULES = [
 		'categories' => ApiQueryCategories::class,
 		'categoryinfo' => ApiQueryCategoryInfo::class,
 		'contributors' => ApiQueryContributors::class,
@@ -65,9 +64,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query list modules
-	 * @var array
 	 */
-	private static $QueryListModules = [
+	private const QUERY_LIST_MODULES = [
 		'allcategories' => ApiQueryAllCategories::class,
 		'alldeletedrevisions' => ApiQueryAllDeletedRevisions::class,
 		'allfileusages' => ApiQueryAllLinks::class,
@@ -107,9 +105,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query meta modules
-	 * @var array
 	 */
-	private static $QueryMetaModules = [
+	private const QUERY_META_MODULES = [
 		'allmessages' => ApiQueryAllMessages::class,
 		'authmanagerinfo' => ApiQueryAuthManagerInfo::class,
 		'siteinfo' => ApiQuerySiteinfo::class,
@@ -150,11 +147,11 @@ class ApiQuery extends ApiBase {
 
 		// Allow custom modules to be added in LocalSettings.php
 		$config = $this->getConfig();
-		$this->mModuleMgr->addModules( self::$QueryPropModules, 'prop' );
+		$this->mModuleMgr->addModules( self::QUERY_PROP_MODULES, 'prop' );
 		$this->mModuleMgr->addModules( $config->get( 'APIPropModules' ), 'prop' );
-		$this->mModuleMgr->addModules( self::$QueryListModules, 'list' );
+		$this->mModuleMgr->addModules( self::QUERY_LIST_MODULES, 'list' );
 		$this->mModuleMgr->addModules( $config->get( 'APIListModules' ), 'list' );
-		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
+		$this->mModuleMgr->addModules( self::QUERY_META_MODULES, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
 		$this->getHookRunner()->onApiQuery__moduleManager( $this->mModuleMgr );

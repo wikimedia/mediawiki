@@ -59,7 +59,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * List of available modules: action name => module class
 	 */
-	private static $Modules = [
+	private const MODULES = [
 		'login' => ApiLogin::class,
 		'clientlogin' => ApiClientLogin::class,
 		'logout' => ApiLogout::class,
@@ -177,7 +177,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * List of available formats: format name => format class
 	 */
-	private static $Formats = [
+	private const FORMATS = [
 		'json' => ApiFormatJson::class,
 		'jsonfm' => ApiFormatJson::class,
 		'php' => ApiFormatPhp::class,
@@ -194,7 +194,7 @@ class ApiMain extends ApiBase {
 	 *                'params' => [ $someVarToSubst ] ],
 	 * ];
 	 */
-	private static $mRights = [
+	private const RIGHTS_MAP = [
 		'writeapi' => [
 			'msg' => 'right-writeapi',
 			'params' => []
@@ -328,9 +328,9 @@ class ApiMain extends ApiBase {
 			$this,
 			MediaWikiServices::getInstance()->getObjectFactory()
 		);
-		$this->mModuleMgr->addModules( self::$Modules, 'action' );
+		$this->mModuleMgr->addModules( self::MODULES, 'action' );
 		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
-		$this->mModuleMgr->addModules( self::$Formats, 'format' );
+		$this->mModuleMgr->addModules( self::FORMATS, 'format' );
 		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
 		$this->getHookRunner()->onApiMain__moduleManager( $this->mModuleMgr );
@@ -1952,11 +1952,11 @@ class ApiMain extends ApiBase {
 		$m = $this->msg( 'api-help-permissions' );
 		if ( !$m->isDisabled() ) {
 			$help['permissions'] .= Html::rawElement( 'div', [ 'class' => 'apihelp-block-head' ],
-				$m->numParams( count( self::$mRights ) )->parse()
+				$m->numParams( count( self::RIGHTS_MAP ) )->parse()
 			);
 		}
 		$help['permissions'] .= Html::openElement( 'dl' );
-		foreach ( self::$mRights as $right => $rightMsg ) {
+		foreach ( self::RIGHTS_MAP as $right => $rightMsg ) {
 			$help['permissions'] .= Html::element( 'dt', null, $right );
 
 			$rightMsg = $this->msg( $rightMsg['msg'], $rightMsg['params'] )->parse();
