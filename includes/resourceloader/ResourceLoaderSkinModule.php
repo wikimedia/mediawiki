@@ -141,7 +141,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	];
 
 	private const LESS_MESSAGES = [
-		// `toc` feature
+		// `toc` feature, used in screen.less
 		'hidetoc',
 		'showtoc',
 	];
@@ -238,6 +238,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
 				'; }';
+
 			if ( is_array( $logo ) ) {
 				if ( isset( $logo['svg'] ) ) {
 					$styles['all'][] = '.mw-wiki-logo { ' .
@@ -251,11 +252,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 						$styles[
 							'(-webkit-min-device-pixel-ratio: 1.5), ' .
 							'(min--moz-device-pixel-ratio: 1.5), ' .
-						'(min-resolution: 1.5dppx), ' .
+							'(min-resolution: 1.5dppx), ' .
 							'(min-resolution: 144dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
-						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-						'background-size: 135px auto; }';
+							CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+							'background-size: 135px auto; }';
 					}
 					if ( isset( $logo['2x'] ) ) {
 						$styles[
@@ -264,8 +265,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 							'(min-resolution: 2dppx), ' .
 							'(min-resolution: 192dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
-						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-						'background-size: 135px auto; }';
+							CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+							'background-size: 135px auto; }';
 					}
 				}
 			}
@@ -293,24 +294,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$logo = $this->getLogoData( $this->getConfig() );
 
-		$logosPerDppx = [];
-		$logos = [];
-
-		$preloadLinks = [];
-
 		if ( !is_array( $logo ) ) {
 			// No media queries required if we only have one variant
-			$preloadLinks[$logo] = [ 'as' => 'image' ];
-			return $preloadLinks;
+			return [ $logo => [ 'as' => 'image' ] ];
 		}
 
 		if ( isset( $logo['svg'] ) ) {
 			// No media queries required if we only have a 1x and svg variant
 			// because all preload-capable browsers support SVGs
-			$preloadLinks[$logo['svg']] = [ 'as' => 'image' ];
-			return $preloadLinks;
+			return [ $logo['svg'] => [ 'as' => 'image' ] ];
 		}
 
+		$logosPerDppx = [];
 		foreach ( $logo as $dppx => $src ) {
 			// Keys are in this format: "1.5x"
 			$dppx = substr( $dppx, 0, -1 );
@@ -325,6 +320,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			return $a <=> $b;
 		} );
 
+		$logos = [];
 		foreach ( $logosPerDppx as $dppx => $src ) {
 			$logos[] = [
 				'dppx' => $dppx,
@@ -333,6 +329,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		}
 
 		$logosCount = count( $logos );
+		$preloadLinks = [];
 		// Logic must match ResourceLoaderSkinModule:
 		// - 1x applies to resolution < 1.5dppx
 		// - 1.5x applies to resolution >= 1.5dppx && < 2dppx
@@ -422,7 +419,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		// check the configuration is valid
 		if ( !isset( $logos['1x'] ) ) {
-			throw new \RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
+			throw new RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
 		}
 		// return the modified logos!
 		return $logos;
