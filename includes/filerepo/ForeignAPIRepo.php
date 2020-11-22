@@ -46,9 +46,8 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * List of iiprop values for the thumbnail fetch queries.
-	 * @since 1.23
 	 */
-	protected static $imageInfoProps = [
+	private const IMAGE_INFO_PROPS = [
 		'url',
 		'timestamp',
 	];
@@ -554,7 +553,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @since 1.23
 	 */
 	protected static function getIIProps() {
-		return implode( '|', self::$imageInfoProps );
+		return implode( '|', self::IMAGE_INFO_PROPS );
 	}
 
 	/**
