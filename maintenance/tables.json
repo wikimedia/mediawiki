@@ -1534,14 +1534,14 @@
 			{
 				"name": "role_name",
 				"type": "binary",
-				"options": { "notnull": true, "length": 64}
+				"options": { "notnull": true, "length": 64 }
 			}
 		],
 		"indexes": [
 			{
 				"name": "role_name",
 				"columns": [ "role_name" ],
-				"comment": "Index for looking of the internal ID of for a name",
+				"comment": "Index for looking up the internal ID of a role",
 				"unique": true
 			}
 		],
@@ -1554,32 +1554,22 @@
 			{
 				"name": "model_id",
 				"type": "integer",
-				"options": {
-					"notnull": true,
-					"autoincrement": true
-				}
+				"options": { "notnull": true, "autoincrement": true }
 			},
 			{
 				"name": "model_name",
 				"type": "binary",
-				"options": {
-					"notnull": true,
-					"length": 64
-				}
+				"options": { "notnull": true, "length": 64 }
 			}
 		],
 		"indexes": [
 			{
 				"name": "model_name",
-				"columns": [
-					"model_name"
-				],
-				"comment": "Index for looking of the internal ID of for a name",
+				"columns": [ "model_name" ],
+				"comment": "Index for looking up the internal ID of a model",
 				"unique": true
 			}
 		],
-		"pk": [
-			"model_id"
-		]
+		"pk": [ "model_id" ]
 	}
 ]
