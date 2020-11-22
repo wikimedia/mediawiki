@@ -8584,7 +8584,7 @@ $wgDebugAPI = false;
  * @endcode
  *
  * Extension modules may override the core modules.
- * See ApiMain::$Modules for a list of the core modules.
+ * See ApiMain::MODULES for a list of the core modules.
  */
 $wgAPIModules = [];
 
@@ -8593,7 +8593,7 @@ $wgAPIModules = [];
  * Associative array mapping format module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
- * See ApiMain::$Formats for a list of the core format modules.
+ * See ApiMain::FORMATS for a list of the core format modules.
  */
 $wgAPIFormatModules = [];
 
@@ -8602,7 +8602,7 @@ $wgAPIFormatModules = [];
  * Associative array mapping meta module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
- * See ApiQuery::$QueryMetaModules for a list of the core meta modules.
+ * See ApiQuery::QUERY_META_MODULES for a list of the core meta modules.
  */
 $wgAPIMetaModules = [];
 
@@ -8611,7 +8611,7 @@ $wgAPIMetaModules = [];
  * Associative array mapping prop module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
- * See ApiQuery::$QueryPropModules for a list of the core prop modules.
+ * See ApiQuery::QUERY_PROP_MODULES for a list of the core prop modules.
  */
 $wgAPIPropModules = [];
 
@@ -8620,7 +8620,7 @@ $wgAPIPropModules = [];
  * Associative array mapping list module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
- * See ApiQuery::$QueryListModules for a list of the core list modules.
+ * See ApiQuery::QUERY_LIST_MODULES for a list of the core list modules.
  */
 $wgAPIListModules = [];
 

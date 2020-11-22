@@ -40,7 +40,7 @@ class TableDiffFormatter extends DiffFormatter {
 	/**
 	 * @param string $msg
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public static function escapeWhiteSpace( $msg ) {
 		$msg = preg_replace( '/^ /m', "\u{00A0} ", $msg );
@@ -73,15 +73,12 @@ class TableDiffFormatter extends DiffFormatter {
 		return $r;
 	}
 
-	/**
-	 * Writes the header to the output buffer.
-	 *
-	 * @param string $header
-	 */
+	/** @inheritDoc */
 	protected function startBlock( $header ) {
 		$this->writeOutput( $header );
 	}
 
+	/** @inheritDoc */
 	protected function endBlock() {
 	}
 

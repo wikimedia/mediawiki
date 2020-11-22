@@ -32,12 +32,18 @@ namespace MediaWiki\Diff;
  * @ingroup DifferenceEngine
  */
 class WordAccumulator {
+	/** @var string */
 	public $insClass = ' class="diffchange diffchange-inline"';
+	/** @var string */
 	public $delClass = ' class="diffchange diffchange-inline"';
 
+	/** @var array */
 	private $lines = [];
+	/** @var string */
 	private $line = '';
+	/** @var string */
 	private $group = '';
+	/** @var string */
 	private $tag = '';
 
 	/**

@@ -61,10 +61,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var string Path to an executable to be used as the diff engine. */
 	private $externalEngine;
 
-	/**
-	 * @inheritDoc
-	 * @return array
-	 */
+	/** @inheritDoc */
 	public function getExtraCacheKeys() {
 		// Tell DifferenceEngine this is a different variant from the standard wikidiff2 variant
 		return $this->engine === self::ENGINE_WIKIDIFF2_INLINE ? [
@@ -88,10 +85,16 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
 	}
 
+	/**
+	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 */
 	public function setStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ) {
 		$this->statsdDataFactory = $statsdDataFactory;
 	}
 
+	/**
+	 * @param Language $language
+	 */
 	public function setLanguage( Language $language ) {
 		$this->language = $language;
 	}

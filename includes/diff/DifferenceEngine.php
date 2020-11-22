@@ -173,6 +173,7 @@ class DifferenceEngine extends ContextSource {
 	 * Set this to true to add debug info to the HTML output.
 	 * Warning: this may cause RSS readers to spuriously mark articles as "new"
 	 * (T22601)
+	 * @var bool
 	 */
 	public $enableDebugComment = false;
 
@@ -356,6 +357,7 @@ class DifferenceEngine extends ContextSource {
 		return $slots;
 	}
 
+	/** @inheritDoc */
 	public function getTitle() {
 		// T202454 avoid errors when there is no title
 		return parent::getTitle() ?: Title::makeTitle( NS_SPECIAL, 'BadTitle/DifferenceEngine' );
@@ -606,6 +608,9 @@ class DifferenceEngine extends ContextSource {
 			!$this->isUserAllowedToSeeRevisions( $user ) );
 	}
 
+	/**
+	 * @param bool $diffOnly
+	 */
 	public function showDiffPage( $diffOnly = false ) {
 		# Allow frames except in certain special cases
 		$out = $this->getOutput();
@@ -1085,7 +1090,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param WikiPage $page
 	 * @param RevisionRecord $revRecord
 	 *
-	 * @return ParserOutput|bool False if the revision was not found
+	 * @return ParserOutput|false False if the revision was not found
 	 */
 	protected function getParserOutput( WikiPage $page, RevisionRecord $revRecord ) {
 		if ( !$revRecord->getId() ) {
@@ -1105,8 +1110,8 @@ class DifferenceEngine extends ContextSource {
 	 * Get the diff text, send it to the OutputPage object
 	 * Returns false if the diff could not be generated, otherwise returns true
 	 *
-	 * @param string|bool $otitle Header for old text or false
-	 * @param string|bool $ntitle Header for new text or false
+	 * @param string|false $otitle Header for old text or false
+	 * @param string|false $ntitle Header for new text or false
 	 * @param string $notice HTML between diff header and body
 	 *
 	 * @return bool
@@ -1146,8 +1151,8 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get complete diff table, including header
 	 *
-	 * @param string|bool $otitle Header for old text or false
-	 * @param string|bool $ntitle Header for new text or false
+	 * @param string|false $otitle Header for old text or false
+	 * @param string|false $ntitle Header for new text or false
 	 * @param string $notice HTML between diff header and body
 	 *
 	 * @return mixed
@@ -1172,7 +1177,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get the diff table body, without header
 	 *
-	 * @return mixed (string/false)
+	 * @return string|false
 	 */
 	public function getDiffBody() {
 		$this->mCacheHit = true;
@@ -1338,7 +1343,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @since 1.31
 	 *
-	 * @return array
+	 * @return string[]
 	 * @throws MWException
 	 */
 	protected function getDiffBodyCacheKeyParams() {
@@ -1371,7 +1376,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Implements DifferenceEngineSlotDiffRenderer::getExtraCacheKeys(). Only used when
 	 * DifferenceEngine is wrapped in DifferenceEngineSlotDiffRenderer.
-	 * @return array
+	 * @return string[]
 	 * @internal for use by DifferenceEngineSlotDiffRenderer only
 	 * @deprecated
 	 */
@@ -1570,6 +1575,9 @@ class DifferenceEngine extends ContextSource {
 			" -->\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getDebugString() {
 		$engine = self::getEngine();
 		if ( $engine === 'wikidiff2' ) {
@@ -1602,7 +1610,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param string $text
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function localiseLineNumbers( $text ) {
 		return preg_replace_callback(
@@ -1612,6 +1620,10 @@ class DifferenceEngine extends ContextSource {
 		);
 	}
 
+	/**
+	 * @param array $matches
+	 * @return string
+	 */
 	public function localiseLineNumbersCb( $matches ) {
 		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
 			return '';

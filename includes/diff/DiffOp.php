@@ -79,6 +79,9 @@ abstract class DiffOp {
 		return null;
 	}
 
+	/**
+	 * @return self
+	 */
 	abstract public function reverse();
 
 	/**
