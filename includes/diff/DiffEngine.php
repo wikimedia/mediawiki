@@ -51,24 +51,39 @@ class DiffEngine {
 	private $from;
 	/** @var string[] */
 	private $to;
+	/** @var int */
 	private $m;
+	/** @var int */
 	private $n;
 
+	/** @var int */
 	private $tooLong;
+	/** @var float */
 	private $powLimit;
 
+	/** @var int */
 	protected $bailoutComplexity = 0;
 
 	// State variables
+	/** @var float */
 	private $maxDifferences;
+	/** @var bool */
 	private $lcsLengthCorrectedForHeuristic = false;
 
 	// Output variables
+	/** @var int */
 	public $length;
+	/** @var array */
 	public $removed;
+	/** @var array */
 	public $added;
+	/** @var bool */
 	public $heuristicUsed;
 
+	/**
+	 * @param int $tooLong
+	 * @param float $powLimit
+	 */
 	public function __construct( $tooLong = 2000000, $powLimit = 1.45 ) {
 		$this->tooLong = $tooLong;
 		$this->powLimit = $powLimit;
@@ -412,6 +427,15 @@ class DiffEngine {
 		$this->added = $added;
 	}
 
+	/**
+	 * @param int $bottoml1
+	 * @param int $topl1
+	 * @param int $bottoml2
+	 * @param int $topl2
+	 * @param array &$V
+	 * @param array &$snake
+	 * @return int
+	 */
 	private function lcs_rec( $bottoml1, $topl1, $bottoml2, $topl2, &$V, &$snake ) {
 		// check that both sequences are non-empty
 		if ( $bottoml1 > $topl1 || $bottoml2 > $topl2 ) {
@@ -454,6 +478,15 @@ class DiffEngine {
 		return $len;
 	}
 
+	/**
+	 * @param int $bottoml1
+	 * @param int $topl1
+	 * @param int $bottoml2
+	 * @param int $topl2
+	 * @param array &$V
+	 * @param array &$snake
+	 * @return int
+	 */
 	private function find_middle_snake( $bottoml1, $topl1, $bottoml2, $topl2, &$V, &$snake ) {
 		$from = &$this->from;
 		$to = &$this->to;
@@ -678,6 +711,13 @@ class DiffEngine {
 		*/
 	}
 
+	/**
+	 * @param int $M
+	 * @param int $N
+	 * @param int $limit
+	 * @param array $V
+	 * @return array
+	 */
 	private static function findMostProgress( $M, $N, $limit, $V ) {
 		$delta = $N - $M;
 
@@ -758,7 +798,7 @@ class DiffEngine {
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
 	public function getLcsLength() {
 		if ( $this->heuristicUsed && !$this->lcsLengthCorrectedForHeuristic ) {
