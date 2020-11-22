@@ -425,7 +425,7 @@
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
 	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
-	branch = REL1_35
+	branch = master
 	ignore = dirty
 [submodule "extensions/WebChat"]
 	path = extensions/WebChat
