@@ -380,6 +380,27 @@ because of Phabricator reports.
   - ::waitForMasterPos() since 1.37
 * LoadBalancer::safeGetLag() which has been soft-deprecated since 1.34 has been
   removed.
+* The following properties of the EditPage class, deprecated since 1.35, were
+  made private:
+  - ::$deletedSinceEdit
+  - ::$lastDelete
+  - ::$mTokenOk
+  - ::$mTriedSave
+  - ::$incompleteForm
+  - ::$tooBig
+  - ::$missingComment
+  - ::$missingSummary
+  - ::$allowBlankSummary
+  - ::$autoSumm
+  - ::$mParserOutput
+  - ::$hasPresetSummary
+  - ::$minoredit
+  - ::$watchthis
+  - ::$recreate
+  - ::$nosummaryparentRevId
+  - ::$editintro
+  - ::$scrolltop
+  - ::$markAsBot
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
   of file names (option was not available for $wgMiserMode = true)
 * DBAccessBase, deprecated since 1.37, has been removed.
