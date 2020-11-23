@@ -587,11 +587,6 @@
 	url = https://github.com/labster/HideSection.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/DynamicPageList3"]
-	path = extensions/DynamicPageList3
-	url = https://gitlab.com/hydrawiki/extensions/DynamicPageList.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/WikiTextLoggedInOut"]
 	path = extensions/WikiTextLoggedInOut
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiTextLoggedInOut
@@ -1410,4 +1405,8 @@
 [submodule "extensions/MediaModeration"]
 	path = extensions/MediaModeration
 	url = https://github.com/wikimedia/mediawiki-extensions-MediaModeration
+	branch = REL1_35
+[submodule "extensions/DynamicPageList3"]
+	path = extensions/DynamicPageList3
+	url = https://github.com/Universal-Omega/DynamicPageList3.git
 	branch = REL1_35
