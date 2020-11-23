@@ -1319,6 +1319,7 @@
 	"apihelp-query+watchlist-param-token": "Başka bir kullanıcının izleme listesine erişime izin veren bir güvenlik anahtarı (kullanıcının [[Special:Preferences#mw-prefsection-watchlist|tercihler]] sayfasında bulunur).",
 	"apihelp-query+watchlist-example-simple": "Geçerli kullanıcının izleme listesinde yakın zamanda değiştirilen sayfalar için üst revizyonu listeleyin.",
 	"apihelp-query+watchlist-example-props": "Geçerli kullanıcının izleme listesindeki son değiştirilen sayfalar için üst düzeltme hakkında ek bilgi alın.",
+	"apihelp-query+watchlist-example-expiry": "Geçici olarak izlenen öğelerin süresinin ne zaman dolacağı da dahil olmak üzere, mevcut kullanıcının izleme listesindeki son değiştirilen sayfalar için en önemli revizyon hakkında ek bilgiler alın.",
 	"apihelp-query+watchlist-example-allrev": "Geçerli kullanıcının izleme listesindeki sayfalarda yapılan son değişikliklerle ilgili bilgi alır.",
 	"apihelp-query+watchlist-example-generator": "Geçerli kullanıcının izleme listesindeki son değiştirilen sayfalar için sayfa bilgilerini getir.",
 	"apihelp-query+watchlist-example-generator-rev": "Geçerli kullanıcının izleme listesindeki sayfalarda yapılan son değişiklikler için düzeltme bilgilerini alın.",

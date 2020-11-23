@@ -1342,6 +1342,7 @@
 	"apihelp-query+watchlist-param-token": "Un jeton de sécurité (disponible dans les [[Special:Preferences#mw-prefsection-watchlist|préférences]] de l’utilsateur) pour autoriser l’accès à la liste de suivi d'un autre utilisateur.",
 	"apihelp-query+watchlist-example-simple": "Lister la révision de tête des pages récemment modifiées dans la liste de suivi de l’utilisateur actuel.",
 	"apihelp-query+watchlist-example-props": "Chercher des informations supplémentaires sur la révision de tête des pages récemment modifiées de la liste de suivi de l’utilisateur actuel.",
+	"apihelp-query+watchlist-example-expiry": "Récupérer des informations supplémentaires sur la révision maître pour les pages récemment modifiées de la liste de suivi de l’utilisateur actuel, avec la date d'expiration pour les éléments temporairement suivis.",
 	"apihelp-query+watchlist-example-allrev": "Chercher les informations sur toutes les modifications récentes des pages de la liste de suivi de l’utilisateur actuel",
 	"apihelp-query+watchlist-example-generator": "Chercher l’information de la page sur les pages récemment modifiées de la liste de suivi de l’utilisateur actuel",
 	"apihelp-query+watchlist-example-generator-rev": "Chercher l’information de la révision pour les modifications récentes des pages de la liste de suivi de l’utilisateur actuel.",

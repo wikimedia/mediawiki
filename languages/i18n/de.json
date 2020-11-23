@@ -822,7 +822,7 @@
 	"permissionserrorstext-withaction": "Du bist aus {{PLURAL:$1|dem folgenden Grund|den folgenden Gründen}} nicht berechtigt, $2:",
 	"contentmodelediterror": "Du kannst diese Version nicht bearbeiten, da das Inhaltsmodell <code>$1</code> vom aktuellen Inhaltsmodell der Seite <code>$2</code> abweicht.",
 	"recreate-moveddeleted-warn": "<strong>Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.</strong>\n\nBitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.\nZu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
-	"moveddeleted-notice": "Diese Seite wurde gelöscht.\nZur Information folgt das Lösch-, Seitenschutz- und Verschiebungs-Logbuch dieser Seite.",
+	"moveddeleted-notice": "Diese Seite ist nicht vorhanden.\nZur Information folgt das Lösch-, Seitenschutz- und Verschiebungs-Logbuch dieser Seite.",
 	"moveddeleted-notice-recent": "Diese Seite wurde kürzlich gelöscht (innerhalb der letzten 24 Stunden).\nZur Information folgt das Lösch-, Seitenschutz- und Verschiebungs-Logbuch dieser Seite.",
 	"log-fulllog": "Alle Logbucheinträge ansehen",
 	"edit-hook-aborted": "Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.",

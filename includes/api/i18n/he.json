@@ -1323,6 +1323,7 @@
 	"apihelp-query+watchlist-param-token": "אסימון אבטחה (זמין ב־[[Special:Preferences#mw-prefsection-watchlist|העדפות]]) שמאפשר לגשת לרשימת מעקב של משתמש אחר.",
 	"apihelp-query+watchlist-example-simple": "לרשום את הגרסה האחרונה עבור דפים שהשתנו לאחרונה ברשימת המעקב של המשתמש הנוכחי.",
 	"apihelp-query+watchlist-example-props": "אחזור מידע נוסף על הגרסה האחרונה עבור דפים שהשתנו לאחרונה ברשימת המעקב של המשתמש הנוכחי.",
+	"apihelp-query+watchlist-example-expiry": "אחזור מידע נוסף על הגרסה החדשה ביותר של הדפים שהשתנו לאחרונה שברשימת המעקב של המשתמש, כולל מתי פריטים בתצוגה זמנית יפוגו.",
 	"apihelp-query+watchlist-example-allrev": "אחזור מידע על כל השינויים האחרונים לדפים ברשימת המעקב של המשתמש הנוכחי.",
 	"apihelp-query+watchlist-example-generator": "אחזור מידע על הדף עבור דפים שהשתנו לאחרונה ברשימת המעקב של המשתמש הנוכחי.",
 	"apihelp-query+watchlist-example-generator-rev": "אחזור מידע על הגרסה עבור דפים שהשתנו לאחרונה ברשימת המעקב של המשתמש הנוכחי.",
