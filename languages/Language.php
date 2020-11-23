@@ -3270,7 +3270,7 @@ class Language {
 	 * Internal implementation function, shared between commafy, formatNum,
 	 * and formatNumNoSeparators.
 	 *
-	 * @param string $number
+	 * @param string $number The stringification of a valid PHP number
 	 * @param bool $noTranslate Whether to translate digits and separators
 	 * @param bool $noSeparators Whether to add separators
 	 * @return string
@@ -3283,6 +3283,15 @@ class Language {
 		if ( $number === '' ) {
 			return $number;
 		}
+		if ( $number === (string)NAN ) {
+			return $this->msg( 'formatnum-nan' )->text();
+		}
+		if ( $number === (string)INF ) {
+			return "∞";
+		}
+		if ( $number === (string)-INF ) {
+			return "\u{2212}∞";
+		}
 		if ( !is_numeric( $number ) ) {
 			# T267587: downgrade this to level:warn while we chase down the long
 			# trail of callers.
@@ -3293,7 +3302,9 @@ class Language {
 			);
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
 			// For backwards-compat, apply formatNum piecewise on the valid
-			// numbers in the string.
+			// numbers in the string. Don't split on NAN/INF in this legacy
+			// case as they are likely to be found embedded inside non-numeric
+			// text.
 			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noTranslate, $noSeparators ) {
 				return $this->formatNumInternal( $m[0], $noTranslate, $noSeparators );
 			}, $number );
@@ -3422,7 +3433,18 @@ class Language {
 	 * @return string
 	 */
 	public function parseFormattedNumber( $number ) {
+		if ( $number === $this->msg( 'formatnum-nan' )->text() ) {
+			return (string)NAN;
+		}
+		if ( $number === "∞" ) {
+			return (string)INF;
+		}
+		// Accept either ASCII hyphen-minus or the unicode minus emitted by
+		// ::formatNum()
 		$number = strtr( $number, [ "\u{2212}" => '-' ] );
+		if ( $number === "-∞" ) {
+			return (string)-INF;
+		}
 		$s = $this->digitTransformTable();
 		if ( $s ) {
 			// eliminate empty array values such as ''. (T66347)

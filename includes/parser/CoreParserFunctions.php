@@ -317,8 +317,15 @@ class CoreParserFunctions {
 		// Instead emit a tracking category instead to allow linting.
 		return function ( $number ) use ( $parser, $callback ) {
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
-			if ( !is_numeric( $number ) ) {
+			if (
+				!is_numeric( $number ) &&
+				$number !== (string)NAN &&
+				$number !== (string)INF &&
+				$number !== (string)-INF
+			) {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
+				// Don't split on NAN/INF in the legacy case since they are
+				// likely to be found embedded inside non-numeric text.
 				return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $callback ) {
 					return call_user_func( $callback, $m[0] );
 				}, $number );
