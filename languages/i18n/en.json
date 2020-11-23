@@ -764,7 +764,7 @@
 	"permissionserrorstext-withaction": "You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:",
 	"contentmodelediterror": "You cannot edit this revision because its content model is <code>$1</code>, which differs from the current content model of the page <code>$2</code>.",
 	"recreate-moveddeleted-warn": "<strong>Warning: You are recreating a page that was previously deleted.</strong>\n\nYou should consider whether it is appropriate to continue editing this page.\nThe deletion and move log for this page are provided here for convenience:",
-	"moveddeleted-notice": "This page has been deleted.\nThe deletion, protection, and move log for the page are provided below for reference.",
+	"moveddeleted-notice": "This page does not exist.\nThe deletion, protection, and move log for the page are provided below for reference.",
 	"moveddeleted-notice-recent": "Sorry, this page was recently deleted (within the last 24 hours).\nThe deletion, protection, and move log for the page are provided below for reference.",
 	"log-fulllog": "View full log",
 	"edit-hook-aborted": "Edit aborted by hook.\nIt gave no explanation.",
