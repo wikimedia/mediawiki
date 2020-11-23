@@ -826,6 +826,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'job', 'job_timestamp_idx', 'job_timestamp' ],
 			[ 'changeField', 'slot_roles', 'role_id', 'INTEGER', '' ],
 			[ 'changeField', 'content_models', 'model_id', 'INTEGER', '' ],
+			[ 'renameIndex', 'page', 'page_len_idx', 'page_len' ],
+			[ 'renameIndex', 'page', 'page_random_idx', 'page_random' ],
+			[ 'renameIndex', 'page', 'page_unique_name', 'name_title' ],
+			[ 'addPGIndex', 'page', 'page_redirect_namespace_len', '(page_is_redirect, page_namespace, page_len)' ],
 		];
 	}
 
