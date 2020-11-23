@@ -22,6 +22,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * A special page that allows users to change their preferences
@@ -29,8 +32,32 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	public function __construct() {
+
+	/** @var PreferencesFactory */
+	private $preferencesFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
+
+	/**
+	 * @param PreferencesFactory|null $preferencesFactory
+	 * @param PermissionManager|null $permissionManager
+	 * @param UserOptionsManager|null $userOptionsManager
+	 */
+	public function __construct(
+		PreferencesFactory $preferencesFactory = null,
+		PermissionManager $permissionManager = null,
+		UserOptionsManager $userOptionsManager = null
+	) {
 		parent::__construct( 'Preferences' );
+		// This class is extended and therefore fallback to global state - T265924
+		$services = MediaWikiServices::getInstance();
+		$this->preferencesFactory = $preferencesFactory ?? $services->getPreferencesFactory();
+		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
+		$this->userOptionsManager = $userOptionsManager ?? $services->getUserOptionsManager();
 	}
 
 	public function doesWrites() {
@@ -109,16 +136,12 @@ class SpecialPreferences extends SpecialPage {
 	 * @return PreferencesFormOOUI|HTMLForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$form = $preferencesFactory->getForm( $user, $context, PreferencesFormOOUI::class );
+		$form = $this->preferencesFactory->getForm( $user, $context, PreferencesFormOOUI::class );
 		return $form;
 	}
 
 	protected function showResetForm() {
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'editmyoptions' )
-		) {
+		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
@@ -135,15 +158,12 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	public function submitReset( $formData ) {
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'editmyoptions' )
-		) {
+		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
 		$user = $this->getUser()->getInstanceForUpdate();
-		$user->resetOptions( 'all', $this->getContext() );
+		$this->userOptionsManager->resetOptions( $user, $this->getContext(), 'all' );
 		$user->saveSettings();
 
 		// Set session data for the success message
