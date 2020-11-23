@@ -3481,6 +3481,7 @@
 	"brackets-start": "[",
 	"brackets-end": "]",
 	"quotation-marks": "\"$1\"",
+	"formatnum-nan": "Not a Number",
 	"imgmultipageprev": "← previous page",
 	"imgmultipagenext": "next page →",
 	"imgmultigo": "Go!",
