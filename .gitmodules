@@ -1406,7 +1406,10 @@
 	path = extensions/MediaModeration
 	url = https://github.com/wikimedia/mediawiki-extensions-MediaModeration
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
 	url = https://github.com/Universal-Omega/DynamicPageList3.git
 	branch = REL1_35
+	ignore = dirty
+
