@@ -3196,6 +3196,7 @@
 	"tag-mw-rollback-description": "Breytingar sem taka til baka fyrri breytingar með taka til baka tenglinum.",
 	"tag-mw-undo": "Afturkalla",
 	"tag-mw-undo-description": "Breytingar sem taka til baka fyrri breytingar með {{int:editundo}} tenglinum",
+	"tag-mw-manual-revert": "Síðasta breyting handvirkt tekin til baka",
 	"tag-mw-reverted": "Breyting tekin til baka",
 	"tags-title": "Merki",
 	"tags-intro": "Þessi síða sýnir merkin sem hugbúnaðurinn gæti merkt breytingar með, og hvað þau þýða.",

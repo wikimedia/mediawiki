@@ -5,6 +5,7 @@
 			"Eleferen",
 			"Facenapalm",
 			"Kaganer",
+			"Kareyac",
 			"Lemondoge",
 			"MaxBioHazard",
 			"MaxSem",
@@ -370,5 +371,9 @@
 	"exif-urgency-normal": "Обычная ($1)",
 	"exif-urgency-low": "Низкая ($1)",
 	"exif-urgency-high": "Высокая ($1)",
-	"exif-urgency-other": "Определённый пользователем приоритет ($1)"
+	"exif-urgency-other": "Определённый пользователем приоритет ($1)",
+	"exif-usepanoramaviewer-true": "Да",
+	"exif-usepanoramaviewer-false": "Нет",
+	"exif-exposurelockused-true": "Да",
+	"exif-exposurelockused-false": "Нет"
 }

@@ -969,7 +969,7 @@
 	"mergehistory-go": "Mostra les edicions que es poden fusionar",
 	"mergehistory-submit": "Fusiona les revisions",
 	"mergehistory-empty": "No pot fusionar-se cap revisió.",
-	"mergehistory-done": "{{PLURAL:$3|S’ha|S’han}} fusionat correctament $3 {{PLURAL:$3|revisió|revisions}} de $1 a [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$4|S’ha|S’han}} fusionat $4 {{PLURAL:$3|revisió|revisions}} de $1 a [[:$2]].\n$3.",
 	"mergehistory-fail": "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
 	"mergehistory-fail-bad-timestamp": "La marca horària no és vàlida.",
 	"mergehistory-fail-invalid-source": "La pàgina font no és vàlida.",
@@ -3997,6 +3997,8 @@
 	"paramvalidator-help-type-user-subtype-cidr": "Interval d'adreces IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nom interwiki (p. ex., «prefix>NomExemple»)",
 	"paramvalidator-help-type-user-subtype-id": "ID d'usuari (p. ex., «#12345»)",
+	"paramvalidator-badtitle": "El valor «$2» no és vàlid per al paràmetre de títol <var>$1</var>: cadena de títol no vàlida.",
+	"paramvalidator-missingtitle": "El valor «$2» no és vàlid per al paràmetre de títol <var>$1</var>: la pàgina no existeix.",
 	"paramvalidator-help-type-title": "Tipus: títol de pàgina",
 	"paramvalidator-help-type-title-must-exist": "Només s'accepten pàgines que existeixen.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepta pàgines que no existeixen."

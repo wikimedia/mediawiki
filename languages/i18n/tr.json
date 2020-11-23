@@ -1968,7 +1968,7 @@
 	"listfiles-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
 	"imgfile": "dosya",
 	"listfiles": "Dosya listesi",
-	"listfiles_subpage": "$1 tarafından yüklendi",
+	"listfiles_subpage": "$1 tarafından yüklenenler",
 	"listfiles_thumb": "Küçük resim",
 	"listfiles_date": "Tarih",
 	"listfiles_name": "Ad",
