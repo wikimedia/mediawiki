@@ -52,15 +52,16 @@ CREATE TABLE page (
   page_lang          TEXT                     DEFAULT NULL
 );
 ALTER SEQUENCE page_page_id_seq OWNED BY page.page_id;
-CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
+CREATE UNIQUE INDEX name_title       ON page (page_namespace, page_title);
 CREATE INDEX page_main_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 0;
 CREATE INDEX page_talk_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 1;
 CREATE INDEX page_user_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 2;
 CREATE INDEX page_utalk_title        ON page (page_title text_pattern_ops) WHERE page_namespace = 3;
 CREATE INDEX page_project_title      ON page (page_title text_pattern_ops) WHERE page_namespace = 4;
 CREATE INDEX page_mediawiki_title    ON page (page_title text_pattern_ops) WHERE page_namespace = 8;
-CREATE INDEX page_random_idx         ON page (page_random);
-CREATE INDEX page_len_idx            ON page (page_len);
+CREATE INDEX page_random             ON page (page_random);
+CREATE INDEX page_len                ON page (page_len);
+CREATE INDEX page_redirect_namespace_len ON page (page_is_redirect, page_namespace, page_len);
 
 CREATE FUNCTION page_deleted() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
