@@ -25,7 +25,6 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 
@@ -52,29 +51,23 @@ class SpecialUnblock extends SpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
 	/**
 	 * @param UnblockUserFactory $unblockUserFactory
 	 * @param BlockUtils $blockUtils
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param SpecialPageFactory $specialPageFactory
 	 */
 	public function __construct(
 		UnblockUserFactory $unblockUserFactory,
 		BlockUtils $blockUtils,
 		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		SpecialPageFactory $specialPageFactory
+		UserNamePrefixSearch $userNamePrefixSearch
 	) {
 		parent::__construct( 'Unblock', 'block' );
 		$this->unblockUserFactory = $unblockUserFactory;
 		$this->blockUtils = $blockUtils;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	public function doesWrites() {
@@ -197,7 +190,7 @@ class SpecialUnblock extends SpecialPage {
 				switch ( $type ) {
 					case DatabaseBlock::TYPE_IP:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( 'Contributions/' . $target->getName() ),
+							$this->getSpecialPageFactory()->getTitleForAlias( 'Contributions/' . $target->getName() ),
 							$target->getName()
 						);
 						$fields['Name']['raw'] = true;

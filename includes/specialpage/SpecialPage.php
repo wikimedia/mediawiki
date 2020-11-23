@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
  * Parent class for all special pages.
@@ -84,6 +85,9 @@ class SpecialPage implements MessageLocalizer {
 
 	/** @var AuthManager|null */
 	private $authManager = null;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
 
 	/**
 	 * Get a localised Title object for a specified special page name
@@ -269,8 +273,7 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	public function getLocalName() {
 		if ( !isset( $this->mLocalName ) ) {
-			$this->mLocalName = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				getLocalNameFor( $this->mName );
+			$this->mLocalName = $this->getSpecialPageFactory()->getLocalNameFor( $this->mName );
 		}
 
 		return $this->mLocalName;
@@ -1074,5 +1077,27 @@ class SpecialPage implements MessageLocalizer {
 			$this->hookRunner = new HookRunner( $this->getHookContainer() );
 		}
 		return $this->hookRunner;
+	}
+
+	/**
+	 * @internal For factory only
+	 * @since 1.36
+	 * @param SpecialPageFactory $specialPageFactory
+	 */
+	final public function setSpecialPageFactory( SpecialPageFactory $specialPageFactory ) {
+		$this->specialPageFactory = $specialPageFactory;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return SpecialPageFactory
+	 */
+	final protected function getSpecialPageFactory(): SpecialPageFactory {
+		if ( !$this->specialPageFactory ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		}
+		return $this->specialPageFactory;
 	}
 }
