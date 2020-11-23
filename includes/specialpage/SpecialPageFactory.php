@@ -397,7 +397,14 @@ class SpecialPageFactory {
 			]
 		],
 		'DeletedContributions' => \SpecialDeletedContributions::class,
-		'Preferences' => \SpecialPreferences::class,
+		'Preferences' => [
+			'class' => \SpecialPreferences::class,
+			'services' => [
+				'PreferencesFactory',
+				'PermissionManager',
+				'UserOptionsManager',
+			]
+		],
 		'ResetTokens' => \SpecialResetTokens::class,
 		'Contributions' => \SpecialContributions::class,
 		'Listgrouprights' => [
@@ -419,7 +426,15 @@ class SpecialPageFactory {
 		],
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
-		'Userrights' => \UserrightsPage::class,
+		'Userrights' => [
+			'class' => \UserrightsPage::class,
+			'services' => [
+				'PermissionManager',
+				'UserGroupManagerFactory',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'EditWatchlist' => [
 			'class' => \SpecialEditWatchlist::class,
 			'services' => [
