@@ -870,3 +870,32 @@ CREATE INDEX ar_name_title_timestamp ON archive (
 CREATE INDEX ar_actor_timestamp ON archive (ar_actor, ar_timestamp);
 
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
+
+
+CREATE TABLE page (
+  page_id SERIAL NOT NULL,
+  page_namespace INT NOT NULL,
+  page_title TEXT NOT NULL,
+  page_restrictions TEXT DEFAULT NULL,
+  page_is_redirect SMALLINT DEFAULT 0 NOT NULL,
+  page_is_new SMALLINT DEFAULT 0 NOT NULL,
+  page_random FLOAT NOT NULL,
+  page_touched TIMESTAMPTZ NOT NULL,
+  page_links_updated TIMESTAMPTZ DEFAULT NULL,
+  page_latest INT NOT NULL,
+  page_len INT NOT NULL,
+  page_content_model TEXT DEFAULT NULL,
+  page_lang TEXT DEFAULT NULL,
+  PRIMARY KEY(page_id)
+);
+
+CREATE UNIQUE INDEX name_title ON page (page_namespace, page_title);
+
+CREATE INDEX page_random ON page (page_random);
+
+CREATE INDEX page_len ON page (page_len);
+
+CREATE INDEX page_redirect_namespace_len ON page (
+  page_is_redirect, page_namespace,
+  page_len
+);
