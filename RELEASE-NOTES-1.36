@@ -394,6 +394,7 @@ because of Phabricator reports.
 * Article::getContentObject, soft-deprecated since 1.32, was hard-deprecated.
 * WikiRevision::importUpload, soft-deprecated since 1.31, was hard-deprecated.
 * Html::infoBox() has been deprecated. There's no replacement.
+* BagOStuff::makeKeyInternal() usage outside of BagOStuff has been deprecated.
 * …
 
 === Other changes in 1.36 ===

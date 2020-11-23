@@ -448,12 +448,13 @@ abstract class BagOStuff implements
 	/**
 	 * Construct a cache key.
 	 *
+	 * @internal This method should not be used outside of BagOStuff (since 1.36)
 	 * @since 1.27
 	 * @param string $keyspace
-	 * @param array $args
+	 * @param array $components
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 */
-	abstract public function makeKeyInternal( $keyspace, $args );
+	abstract public function makeKeyInternal( $keyspace, $components );
 
 	/**
 	 * Make a global cache key.

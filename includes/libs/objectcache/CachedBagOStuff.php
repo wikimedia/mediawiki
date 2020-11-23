@@ -148,8 +148,8 @@ class CachedBagOStuff extends BagOStuff {
 		return $this->backend->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
 	}
 
-	public function makeKeyInternal( $keyspace, $args ) {
-		return $this->backend->makeKeyInternal( $keyspace, $args );
+	public function makeKeyInternal( $keyspace, $components ) {
+		return $this->backend->makeKeyInternal( $keyspace, $components );
 	}
 
 	public function makeKey( $class, ...$components ) {

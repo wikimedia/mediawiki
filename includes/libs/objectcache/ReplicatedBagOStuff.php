@@ -195,7 +195,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->readStore->clearLastError();
 	}
 
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		return $this->writeStore->makeKeyInternal( ...func_get_args() );
 	}
 

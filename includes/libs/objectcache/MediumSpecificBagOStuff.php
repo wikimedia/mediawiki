@@ -890,10 +890,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return ( $value === (string)$integer );
 	}
 
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		$key = $keyspace;
-		foreach ( $args as $arg ) {
-			$key .= ':' . str_replace( ':', '%3A', $arg );
+		foreach ( $components as $component ) {
+			$key .= ':' . str_replace( ':', '%3A', $component );
 		}
 		return strtr( $key, ' ', '_' );
 	}

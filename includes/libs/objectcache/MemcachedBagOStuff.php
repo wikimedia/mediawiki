@@ -52,41 +52,41 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @since 1.27
 	 * @param string $keyspace
-	 * @param array $args
+	 * @param array $components
 	 * @return string
 	 */
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		// Memcached keys have a maximum length of 255 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
 		// custom prefixes used by thing like WANObjectCache, limit to 205.
-		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
+		$charsLeft = 205 - strlen( $keyspace ) - count( $components );
 
-		foreach ( $args as &$arg ) {
-			$arg = strtr( $arg, ' ', '_' );
+		foreach ( $components as &$component ) {
+			$component = strtr( $component, ' ', '_' );
 
 			// Make sure %, #, and non-ASCII chars are escaped
-			$arg = preg_replace_callback(
+			$component = preg_replace_callback(
 				'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
 				function ( $m ) {
 					return rawurlencode( $m[0] );
 				},
-				$arg
+				$component
 			);
 
 			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-				$arg = '#' . md5( $arg );
+			if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
+				$component = '#' . md5( $component );
 			}
 
-			$charsLeft -= strlen( $arg );
+			$charsLeft -= strlen( $component );
 		}
 
 		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
 		}
 
-		return $keyspace . ':' . implode( ':', $args );
+		return $keyspace . ':' . implode( ':', $components );
 	}
 
 	/**

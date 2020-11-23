@@ -101,32 +101,32 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		// WinCache keys have a maximum length of 150 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
 		// custom prefixes used by thing like WANObjectCache, limit to 125.
 		// NOTE: Same as in memcached, except the max key length there is 255.
-		$charsLeft = 125 - strlen( $keyspace ) - count( $args );
+		$charsLeft = 125 - strlen( $keyspace ) - count( $components );
 
-		$args = array_map(
-			function ( $arg ) use ( &$charsLeft ) {
+		$components = array_map(
+			function ( $component ) use ( &$charsLeft ) {
 				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-					$arg = '#' . md5( $arg );
+				if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
+					$component = '#' . md5( $component );
 				}
 
-				$charsLeft -= strlen( $arg );
-				return $arg;
+				$charsLeft -= strlen( $component );
+				return $component;
 			},
-			$args
+			$components
 		);
 
 		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
 		}
 
-		return $keyspace . ':' . implode( ':', $args );
+		return $keyspace . ':' . implode( ':', $components );
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
