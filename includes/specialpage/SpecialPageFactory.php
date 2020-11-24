@@ -463,7 +463,12 @@ class SpecialPageFactory {
 		'EditWatchlist' => [
 			'class' => \SpecialEditWatchlist::class,
 			'services' => [
-				'WatchedItemStore'
+				'WatchedItemStore',
+				'TitleParser',
+				'GenderCache',
+				'LinkBatchFactory',
+				'NamespaceInfo',
+				'WikiPageFactory',
 			]
 		],
 		'PasswordPolicies' => [
@@ -493,7 +498,16 @@ class SpecialPageFactory {
 				'ActorMigration',
 			]
 		],
-		'Watchlist' => \SpecialWatchlist::class,
+		'Watchlist' => [
+			'class' => \SpecialWatchlist::class,
+			'services' => [
+				'WatchedItemStore',
+				'WatchlistNotificationManager',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'UserOptionsLookup',
+			]
+		],
 		'Newpages' => [
 			'class' => \SpecialNewpages::class,
 			'services' => [

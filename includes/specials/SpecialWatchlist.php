@@ -21,9 +21,11 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\WatchlistNotificationManager;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -41,8 +43,17 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var float|int */
 	private $maxDays;
 
-	/** @var WatchedItemStore */
-	private $watchStore;
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
+	/** @var WatchlistNotificationManager */
+	private $watchlistNotificationManager;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
@@ -50,14 +61,28 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var bool Watchlist Expiry flag */
 	private $isWatchlistExpiryEnabled;
 
-	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
-		parent::__construct( $page, $restriction );
+	/**
+	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param WatchlistNotificationManager $watchlistNotificationManager
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
+	public function __construct(
+		WatchedItemStoreInterface $watchedItemStore,
+		WatchlistNotificationManager $watchlistNotificationManager,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		UserOptionsLookup $userOptionsLookup
+	) {
+		parent::__construct( 'Watchlist', 'viewmywatchlist' );
 
+		$this->watchedItemStore = $watchedItemStore;
+		$this->watchlistNotificationManager = $watchlistNotificationManager;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
-		// TODO Inject services
-		$services = MediaWikiServices::getInstance();
-		$this->watchStore = $services->getWatchedItemStore();
-		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
@@ -109,9 +134,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			&& $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
-			MediaWikiServices::getInstance()
-				->getWatchlistNotificationManager()
-				->clearAllUserNotifications( $user );
+			$this->watchlistNotificationManager->clearAllUserNotifications( $user );
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;
@@ -405,10 +428,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
@@ -469,7 +491,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA, 'watchlist' );
+		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'watchlist' );
 	}
 
 	public function outputFeedLinks() {
@@ -529,7 +551,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					$diffInDays = null;
 					// Check if the watchlist expiry flag is enabled to show new tooltip message
 					if ( $this->isWatchlistExpiryEnabled ) {
-						$watchedItem = $this->watchStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
+						$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
 						if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 							$diffInDays = $watchedItem->getExpiryInDays();
 
@@ -585,7 +607,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				&& $this->userOptionsLookup->getBoolOption( $user, 'shownumberswatching' )
 			) {
 				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
-				$rc->numberofWatchingusers = $this->watchStore->countWatchers( $rcTitleValue );
+				$rc->numberofWatchingusers = $this->watchedItemStore->countWatchers( $rcTitleValue );
 			} else {
 				$rc->numberofWatchingusers = 0;
 			}
@@ -894,7 +916,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return int
 	 */
 	protected function countItems() {
-		$count = $this->watchStore->countWatchedItems( $this->getUser() );
+		$count = $this->watchedItemStore->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
 	}
 
@@ -913,7 +935,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
 	private function getLatestNotificationTimestamp( RecentChange $rc ) {
-		return $this->watchStore->getLatestNotificationTimestamp(
+		return $this->watchedItemStore->getLatestNotificationTimestamp(
 			$rc->getAttribute( 'wl_notificationtimestamp' ),
 			$this->getUser(),
 			$rc->getTitle()
