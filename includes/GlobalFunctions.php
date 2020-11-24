@@ -2398,17 +2398,6 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
- * Make a cache key for the local wiki.
- *
- * @deprecated since 1.30 Call makeKey on a BagOStuff instance
- * @param string|int ...$args
- * @return string
- */
-function wfMemcKey( ...$args ) {
-	return ObjectCache::getLocalClusterInstance()->makeKey( ...$args );
-}
-
-/**
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
