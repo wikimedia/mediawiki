@@ -22,11 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
-use MediaWiki\User\UserGroupManagerFactory;
-use MediaWiki\User\UserNamePrefixSearch;
-use MediaWiki\User\UserNameUtils;
 
 /**
  * Special page to allow managing user group membership
@@ -47,39 +43,16 @@ class UserrightsPage extends SpecialPage {
 	protected $mFetchedUser = null;
 	protected $isself = false;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
-	/** @var UserNamePrefixSearch */
-	private $userNamePrefixSearch;
-
-	/**
-	 * @param PermissionManager|null $permissionManager
-	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
-	 * @param UserNameUtils|null $userNameUtils
-	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
-	 */
-	public function __construct(
-		PermissionManager $permissionManager = null,
-		UserGroupManagerFactory $userGroupManagerFactory = null,
-		UserNameUtils $userNameUtils = null,
-		UserNamePrefixSearch $userNamePrefixSearch = null
-	) {
+	public function __construct() {
 		parent::__construct( 'Userrights' );
-		$services = MediaWikiServices::getInstance();
-		// This class is extended and therefore fallback to global state - T263207
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
-		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
-		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 
+		// TODO inject this, but this class is extended (even though it shouldn't be, T263207)
 		// TODO don't hard code false, use interwiki domains. See T14518
-		$this->userGroupManager = ( $userGroupManagerFactory ?? $services->getUserGroupManagerFactory() )
+		$this->userGroupManager = MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
 			->getUserGroupManager( false );
 	}
 
@@ -140,7 +113,7 @@ class UserrightsPage extends SpecialPage {
 			$this->mTarget = trim( $this->mTarget );
 		}
 
-		if ( $this->mTarget !== null && $this->userNameUtils->getCanonical( $this->mTarget ) === $user->getName() ) {
+		if ( $this->mTarget !== null && User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
 			$this->isself = true;
 		}
 
@@ -199,7 +172,10 @@ class UserrightsPage extends SpecialPage {
 			 * (e.g. they don't have the userrights permission), then don't
 			 * allow them to change any user rights.
 			 */
-			if ( !$this->permissionManager->userHasRight( $user, 'userrights' ) ) {
+			if ( !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'userrights' )
+			) {
 				$block = $user->getBlock();
 				if ( $block && $block->isSitewide() ) {
 					throw new UserBlockedError(
@@ -563,8 +539,9 @@ class UserrightsPage extends SpecialPage {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				$dbDomain = '';
 			} else {
-				if ( $writing &&
-					!$this->permissionManager->userHasRight( $this->getUser(), 'userrights-interwiki' )
+				if ( $writing && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $this->getUser(), 'userrights-interwiki' )
 				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
@@ -593,7 +570,7 @@ class UserrightsPage extends SpecialPage {
 				return Status::newFatal( 'noname' );
 			}
 		} else {
-			$name = $this->userNameUtils->getCanonical( $name );
+			$name = User::getCanonicalName( $name );
 			if ( $name === false ) {
 				// invalid name
 				return Status::newFatal( 'nosuchusershort', $username );
@@ -612,7 +589,9 @@ class UserrightsPage extends SpecialPage {
 
 		if ( $user instanceof User &&
 			$user->isHidden() &&
-			!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+			!MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'hideuser' )
 		) {
 			// Cannot see hidden users, pretend they don't exist
 			return Status::newFatal( 'nosuchusershort', $username );
@@ -1100,14 +1079,13 @@ class UserrightsPage extends SpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$search = $this->userNameUtils->getCanonical( $search );
-		if ( !$search ) {
+		$user = User::newFromName( $search );
+		if ( !$user ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return $this->userNamePrefixSearch
-			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
+		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {
