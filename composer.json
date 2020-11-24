@@ -25,6 +25,7 @@
 		"ext-dom": "*",
 		"ext-fileinfo": "*",
 		"ext-iconv": "*",
+		"ext-intl": "*",
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-xml": "*",
@@ -97,7 +98,6 @@
 	"suggest": {
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
-		"ext-intl": "ICU integration",
 		"ext-openssl": "Cryptographical functions",
 		"ext-wikidiff2": "Diff accelerator",
 		"monolog/monolog": "Flexible debug logging system",
