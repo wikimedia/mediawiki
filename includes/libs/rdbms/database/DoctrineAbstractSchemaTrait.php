@@ -32,6 +32,7 @@ trait DoctrineAbstractSchemaTrait {
 		foreach ( $schemaSpec['columns'] as $column ) {
 			$table->addColumn( $column['name'], $column['type'], $column['options'] );
 		}
+
 		foreach ( $schemaSpec['indexes'] as $index ) {
 			if ( $index['unique'] === true ) {
 				$table->addUniqueIndex( $index['columns'], $index['name'], $index['options'] ?? [] );
@@ -39,7 +40,10 @@ trait DoctrineAbstractSchemaTrait {
 				$table->addIndex( $index['columns'], $index['name'], $index['flags'] ?? [], $index['options'] ?? [] );
 			}
 		}
-		$table->setPrimaryKey( $schemaSpec['pk'] );
+
+		if ( isset( $schemaSpec['pk'] ) ) {
+			$table->setPrimaryKey( $schemaSpec['pk'] );
+		}
 
 		if ( isset( $schemaSpec['options'] )
 			&& isset( $schemaSpec['options'][0]['table_options'] )
