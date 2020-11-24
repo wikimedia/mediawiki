@@ -1,9 +1,6 @@
 /*!
  * JavaScript to update page URL when a redirect is viewed, ensuring that the
  * page is scrolled to the id when it's a redirect with fragment.
- *
- * This is loaded in the top queue, so avoid unnecessary dependencies
- * like mediawiki.Title or mediawiki.Uri.
  */
 ( function () {
 	var profile = $.client.profile(),
