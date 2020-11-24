@@ -1410,35 +1410,35 @@
 		"pk": [ "revactor_rev", "revactor_actor" ]
 	},
 	{
-        "name": "page_props",
-        "comment": "Name/value pairs indexed by page_id",
-        "columns": [
-                {
-                        "name": "pp_page",
-                        "type": "integer",
-                        "options": { "unsigned": false, "notnull": true }
-                },
-                {
-                        "name": "pp_propname",
-                        "type": "binary",
-                        "options": { "length": 60, "notnull": true }
-                },
-                {
-                        "name": "pp_value",
-                        "type": "blob",
-                        "options": { "length": 65530, "notnull": true }
-                },
-                {
-                        "name": "pp_sortkey",
-                        "type": "float",
-                        "options": { "notnull": false }
-                }
-        ],
-        "indexes": [
-                { "name": "pp_propname_page", "columns": [ "pp_propname", "pp_page" ], "unique": true },
-                { "name": "pp_propname_sortkey_page", "columns": [ "pp_propname", "pp_sortkey", "pp_page" ], "unique": true, "options": { "where": "(pp_sortkey IS NOT NULL)" } }
-        ],
-        "pk": [ "pp_page", "pp_propname" ]
+		"name": "page_props",
+		"comment": "Name/value pairs indexed by page_id",
+		"columns": [
+			{
+				"name": "pp_page",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			},
+			{
+				"name": "pp_propname",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			},
+			{
+				"name": "pp_value",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "pp_sortkey",
+				"type": "float",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "pp_propname_page", "columns": [ "pp_propname", "pp_page" ], "unique": true },
+			{ "name": "pp_propname_sortkey_page", "columns": [ "pp_propname", "pp_sortkey", "pp_page" ], "unique": true, "options": { "where": "(pp_sortkey IS NOT NULL)" } }
+		],
+		"pk": [ "pp_page", "pp_propname" ]
 	},
 	{
 		"name": "job",
