@@ -2,31 +2,79 @@
 
 namespace MediaWiki\Revision;
 
+use ActorMigration;
 use ChangeTags;
 use ContribsPager;
 use FauxRequest;
+use IContextSource;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use Message;
+use NamespaceInfo;
 use RequestContext;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @since 1.35
  */
 class ContributionsLookup {
 
-	/**
-	 * @var RevisionStore
-	 */
+	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/**
-	 * ContributionsLookup constructor.
-	 *
 	 * @param RevisionStore $revisionStore
+	 * @param LinkRenderer $linkRenderer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param HookContainer $hookContainer
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ActorMigration $actorMigration
+	 * @param NamespaceInfo $namespaceInfo
 	 */
-	public function __construct( RevisionStore $revisionStore ) {
+	public function __construct(
+		RevisionStore $revisionStore,
+		LinkRenderer $linkRenderer,
+		LinkBatchFactory $linkBatchFactory,
+		HookContainer $hookContainer,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		ActorMigration $actorMigration,
+		NamespaceInfo $namespaceInfo
+	) {
 		$this->revisionStore = $revisionStore;
+		$this->linkRenderer = $linkRenderer;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->hookContainer = $hookContainer;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorMigration = $actorMigration;
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	/**
@@ -88,7 +136,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = new ContribsPager( $context, [
+		$pager = $this->getContribsPager( $context, [
 			'target' => $target->getName(),
 			'tagfilter' => $tag,
 			'revisionsOnly' => true
@@ -200,7 +248,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( [] ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = new ContribsPager( $context, [
+		$pager = $this->getContribsPager( $context, [
 			'target' => $user->getName(),
 			'tagfilter' => $tag,
 		] );
@@ -218,4 +266,20 @@ class ContributionsLookup {
 
 		return (int)$count;
 	}
+
+	private function getContribsPager( IContextSource $context, array $options ) {
+		return new ContribsPager(
+			$context,
+			$options,
+			$this->linkRenderer,
+			$this->linkBatchFactory,
+			$this->hookContainer,
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->actorMigration,
+			$this->revisionStore,
+			$this->namespaceInfo
+		);
+	}
+
 }

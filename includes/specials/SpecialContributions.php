@@ -22,9 +22,16 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Special:Contributions, show user contributions in a paged list
@@ -34,13 +41,65 @@ use Wikimedia\IPUtils;
 class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
+
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
-	public function __construct() {
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ActorMigration $actorMigration
+	 * @param RevisionStore $revisionStore
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		ActorMigration $actorMigration,
+		RevisionStore $revisionStore,
+		NamespaceInfo $namespaceInfo,
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( 'Contributions' );
-		// TODO Inject service
-		$this->userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorMigration = $actorMigration;
+		$this->revisionStore = $revisionStore;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute( $par ) {
@@ -146,10 +205,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
-		if ( MediaWikiServices::getInstance()
-				 ->getPermissionManager()
-				 ->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' )
-		) {
+		if ( $this->permissionManager->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' ) ) {
 			$this->opts['bot'] = '1';
 		}
 
@@ -238,7 +294,13 @@ class SpecialContributions extends IncludableSpecialPage {
 					'associated' => $this->opts['associated'],
 				],
 				$this->getLinkRenderer(),
-				MediaWikiServices::getInstance()->getLinkBatchFactory()
+				$this->linkBatchFactory,
+				$this->getHookContainer(),
+				$this->permissionManager,
+				$this->loadBalancer,
+				$this->actorMigration,
+				$this->revisionStore,
+				$this->namespaceInfo
 			);
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
@@ -254,7 +316,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			} else {
 				// @todo We just want a wiki ID here, not a "DB domain", but
 				// current status of MediaWiki conflates the two. See T235955.
-				$poolKey = WikiMap::getCurrentWikiDbDomain() . ':SpecialContributions:';
+				$poolKey = $this->loadBalancer->getLocalDomainID() . ':SpecialContributions:';
 				if ( $this->getUser()->isAnon() ) {
 					$poolKey .= 'a:' . $this->getUser()->getName();
 				} else {
@@ -341,7 +403,12 @@ class SpecialContributions extends IncludableSpecialPage {
 		$talk = $userObj->getTalkPage();
 		$links = '';
 		if ( $talk ) {
-			$tools = self::getUserLinks( $this, $userObj );
+			$tools = self::getUserLinks(
+				$this,
+				$userObj,
+				$this->permissionManager,
+				$this->getHookRunner()
+			);
 			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
 			foreach ( $tools as $tool ) {
 				$links .= Html::rawElement( 'span', [], $tool ) . ' ';
@@ -362,8 +429,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
-						$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
-							getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+						$nt = $this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 					}
 
 					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
@@ -416,9 +482,20 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @note This function is also called in DeletedContributionsPage
 	 * @param SpecialPage $sp SpecialPage instance, for context
 	 * @param User $target Target user object
+	 * @param PermissionManager|null $permissionManager (Since 1.36)
+	 * @param HookRunner|null $hookRunner (Since 1.36)
 	 * @return array
 	 */
-	public static function getUserLinks( SpecialPage $sp, User $target ) {
+	public static function getUserLinks(
+		SpecialPage $sp,
+		User $target,
+		PermissionManager $permissionManager = null,
+		HookRunner $hookRunner = null
+	) {
+		// Fallback to global state, if not provided
+		$permissionManager = $permissionManager ?? MediaWikiServices::getInstance()->getPermissionManager();
+		$hookRunner = $hookRunner ?? Hooks::runner();
+
 		$id = $target->getId();
 		$username = $target->getName();
 		$userpage = $target->getUserPage();
@@ -438,7 +515,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		# Block / Change block / Unblock links
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
 			if ( $target->getBlock() && $target->getBlock()->getType() != DatabaseBlock::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
@@ -512,7 +588,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
-		Hooks::runner()->onContributionsToolLinks( $id, $userpage, $tools, $sp );
+		$hookRunner->onContributionsToolLinks( $id, $userpage, $tools, $sp );
 
 		return $tools;
 	}
@@ -616,10 +692,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'section' => 'contribs-top',
 		];
 
-		if ( MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'deletedhistory' )
-		) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$fields['deletedOnly'] = [
 				'type' => 'check',
 				'id' => 'mw-show-deleted-only',
@@ -727,13 +800,14 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {
