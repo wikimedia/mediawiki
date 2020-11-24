@@ -67,6 +67,10 @@ class GenerateSchemaSql extends Maintenance {
 		$abstractSchema = json_decode( file_get_contents( $jsonPath ), true );
 		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder( $platform );
 
+		if ( $abstractSchema === null ) {
+			$this->fatalError( "'$jsonPath' seems to be invalid json. Check the syntax and try again!" );
+		}
+
 		foreach ( $abstractSchema as $table ) {
 			$schemaBuilder->addTable( $table );
 		}
