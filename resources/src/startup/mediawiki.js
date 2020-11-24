@@ -491,7 +491,7 @@
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': string, integer, (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
-			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
+			 *             'skip': 'return !!window.Example;', (or) null, (or) boolean result of skip
 			 *             'module': export Object
 			 *
 			 *             // Set from execute() or mw.loader.state()
