@@ -3278,6 +3278,7 @@
 	"ellipsis": "…",
 	"percent": "$1&#160;%",
 	"quotation-marks": "„$1“",
+	"formatnum-nan": "Keine Zahl",
 	"imgmultipageprev": "← vorherige Seite",
 	"imgmultipagenext": "nächste Seite →",
 	"imgmultigo": "OK",
