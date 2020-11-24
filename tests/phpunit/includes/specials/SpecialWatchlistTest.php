@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -43,7 +44,14 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	 * @return SpecialPage
 	 */
 	protected function newSpecialPage() {
-		return new SpecialWatchlist();
+		$services = MediaWikiServices::getInstance();
+		return new SpecialWatchlist(
+			$services->getWatchedItemStore(),
+			$services->getWatchlistNotificationManager(),
+			$services->getPermissionManager(),
+			$services->getDBLoadBalancer(),
+			$services->getUserOptionsLookup()
+		);
 	}
 
 	public function testNotLoggedIn_throwsException() {
