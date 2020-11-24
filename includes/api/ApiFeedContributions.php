@@ -48,8 +48,9 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function execute() {
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		$services = MediaWikiServices::getInstance();
+		$this->revisionStore = $services->getRevisionStore();
+		$this->titleParser = $services->getTitleParser();
 
 		$params = $this->extractRequestParams();
 
@@ -103,8 +104,14 @@ class ApiFeedContributions extends ApiBase {
 				'hideMinor' => $params['hideminor'],
 				'showSizeDiff' => $params['showsizediff'],
 			],
-			MediaWikiServices::getInstance()->getLinkRenderer(),
-			MediaWikiServices::getInstance()->getLinkBatchFactory()
+			$services->getLinkRenderer(),
+			$services->getLinkBatchFactory(),
+			$services->getHookContainer(),
+			$services->getPermissionManager(),
+			$services->getDBLoadBalancer(),
+			$services->getActorMigration(),
+			$this->revisionStore,
+			$services->getNamespaceInfo()
 		);
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );

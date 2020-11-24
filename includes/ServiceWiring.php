@@ -290,7 +290,16 @@ return [
 	},
 
 	'ContributionsLookup' => function ( MediaWikiServices $services ) : ContributionsLookup {
-		return new ContributionsLookup( $services->getRevisionStore() );
+		return new ContributionsLookup(
+			$services->getRevisionStore(),
+			$services->getLinkRenderer(),
+			$services->getLinkBatchFactory(),
+			$services->getHookContainer(),
+			$services->getPermissionManager(),
+			$services->getDBLoadBalancer(),
+			$services->getActorMigration(),
+			$services->getNamespaceInfo()
+		);
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {

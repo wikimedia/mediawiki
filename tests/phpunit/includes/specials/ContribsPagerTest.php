@@ -13,15 +13,58 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var LinkRenderer */
 	private $linkRenderer;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	protected function setUp() : void {
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$context = new RequestContext();
-		$this->pager = new ContribsPager( $context, [
+		parent::setUp();
+
+		$services = MediaWikiServices::getInstance();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->revisionStore = $services->getRevisionStore();
+		$this->linkBatchFactory = $services->getLinkBatchFactory();
+		$this->hookContainer = $services->getHookContainer();
+		$this->permissionManager = $services->getPermissionManager();
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->actorMigration = $services->getActorMigration();
+		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->pager = $this->getContribsPager( [
 			'start' => '2017-01-01',
 			'end' => '2017-02-02',
-		], $this->linkRenderer );
+		] );
+	}
 
-		parent::setUp();
+	private function getContribsPager( array $options ) {
+		return new ContribsPager(
+			new RequestContext(),
+			$options,
+			$this->linkRenderer,
+			$this->linkBatchFactory,
+			$this->hookContainer,
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->actorMigration,
+			$this->revisionStore,
+			$this->namespaceInfo
+		);
 	}
 
 	/**
@@ -36,11 +79,11 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$data[] = $fakeRowWrapper;
 		} );
 
-		$allContribsPager = new ContribsPager( new RequestContext(), [] );
+		$allContribsPager = $this->getContribsPager( [] );
 		$allContribsResults = $allContribsPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
 		$this->assertEquals( $allContribsResults->numRows(), 1 );
 
-		$revOnlyPager = new ContribsPager( new RequestContext(), [ 'revisionsOnly' => true ] );
+		$revOnlyPager = $this->getContribsPager( [ 'revisionsOnly' => true ] );
 		$revOnlyResults = $revOnlyPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
 		$this->assertEquals( $revOnlyResults->numRows(), 0 );
 	}
@@ -154,10 +197,10 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContribsPager::getQueryInfo
 	 */
 	public function testUniqueSortOrderWithoutIpChanges() {
-		$pager = new ContribsPager( new RequestContext(), [
+		$pager = $this->getContribsPager( [
 			'start' => '',
 			'end' => '',
-		], $this->linkRenderer );
+		] );
 
 		/** @var ContribsPager $pager */
 		$pager = TestingAccessWrapper::newFromObject( $pager );
@@ -176,11 +219,11 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContribsPager::getQueryInfo
 	 */
 	public function testUniqueSortOrderOnIpChanges() {
-		$pager = new ContribsPager( new RequestContext(), [
+		$pager = $this->getContribsPager( [
 			'target' => '116.17.184.5/32',
 			'start' => '',
 			'end' => '',
-		], $this->linkRenderer );
+		] );
 
 		/** @var ContribsPager $pager */
 		$pager = TestingAccessWrapper::newFromObject( $pager );
@@ -200,11 +243,11 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::__construct' );
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
-		$pager = new ContribsPager( new RequestContext(), [
+		$pager = $this->getContribsPager( [
 			'target' => '116.17.184.5/32',
 			'start' => '',
 			'end' => '',
-		], $this->linkRenderer );
+		] );
 
 		$invalidRow = (object)[
 			'foo' => 'bar'

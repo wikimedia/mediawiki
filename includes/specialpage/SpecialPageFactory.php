@@ -396,7 +396,19 @@ class SpecialPageFactory {
 				'PasswordReset'
 			]
 		],
-		'DeletedContributions' => \SpecialDeletedContributions::class,
+		'DeletedContributions' => [
+			'class' => \SpecialDeletedContributions::class,
+			'services' => [
+				'PermissionManager',
+				'DBLoadBalancer',
+				'CommentStore',
+				'ActorMigration',
+				'RevisionFactory',
+				'NamespaceInfo',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'Preferences' => [
 			'class' => \SpecialPreferences::class,
 			'services' => [
@@ -406,7 +418,20 @@ class SpecialPageFactory {
 			]
 		],
 		'ResetTokens' => \SpecialResetTokens::class,
-		'Contributions' => \SpecialContributions::class,
+		'Contributions' => [
+			'class' => \SpecialContributions::class,
+			'services' => [
+				'LinkBatchFactory',
+				'PermissionManager',
+				'DBLoadBalancer',
+				'ActorMigration',
+				'RevisionStore',
+				'NamespaceInfo',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+				'UserOptionsLookup',
+			]
+		],
 		'Listgrouprights' => [
 			'class' => \SpecialListGroupRights::class,
 			'services' => [
@@ -426,7 +451,15 @@ class SpecialPageFactory {
 		],
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
-		'Userrights' => \UserrightsPage::class,
+		'Userrights' => [
+			'class' => \UserrightsPage::class,
+			'services' => [
+				'PermissionManager',
+				'UserGroupManagerFactory',
+				'UserNameUtils',
+				'UserNamePrefixSearch',
+			]
+		],
 		'EditWatchlist' => [
 			'class' => \SpecialEditWatchlist::class,
 			'services' => [
