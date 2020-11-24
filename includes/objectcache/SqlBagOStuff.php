@@ -854,33 +854,33 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @since 1.35
 	 * @param string $keyspace
-	 * @param array $args
+	 * @param array $components
 	 * @return string
 	 */
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		// SQL schema for 'objectcache' specifies keys as varchar(255). From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
 		// custom prefixes used by thing like WANObjectCache, limit to 205.
 		$keyspace = strtr( $keyspace, ' ', '_' );
-		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
-		foreach ( $args as &$arg ) {
-			$arg = strtr( $arg, [
+		$charsLeft = 205 - strlen( $keyspace ) - count( $components );
+		foreach ( $components as &$component ) {
+			$component = strtr( $component, [
 				' ' => '_', // Avoid unnecessary misses from pre-1.35 code
 				':' => '%3A',
 			] );
 
 			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-				$arg = '#' . md5( $arg );
+			if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
+				$component = '#' . md5( $component );
 			}
-			$charsLeft -= strlen( $arg );
+			$charsLeft -= strlen( $component );
 		}
 
 		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
 		}
-		return $keyspace . ':' . implode( ':', $args );
+		return $keyspace . ':' . implode( ':', $components );
 	}
 
 	/**
