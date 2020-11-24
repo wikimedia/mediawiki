@@ -1,4 +1,4 @@
-( function () {
+module.exports = ( function () {
 
 	/**
 	 * Create an object like mw.Api, but automatically handling everything required to communicate
@@ -121,7 +121,5 @@
 		return CoreForeignApi.parent.prototype.ajax.call( this, parameters, newAjaxOptions );
 	};
 
-	// Expose
-	mw.ForeignApi = CoreForeignApi;
-
+	return CoreForeignApi;
 }() );

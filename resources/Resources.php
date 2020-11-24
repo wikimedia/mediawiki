@@ -616,6 +616,7 @@ return [
 	'mediawiki.api' => [
 		'scripts' => [
 			'resources/src/mediawiki.api/index.js',
+			'resources/src/mediawiki.api/rest.js',
 			'resources/src/mediawiki.api/category.js',
 			'resources/src/mediawiki.api/edit.js',
 			'resources/src/mediawiki.api/login.js',
@@ -728,7 +729,11 @@ return [
 		'dependencies' => 'mediawiki.ForeignApi.core',
 	],
 	'mediawiki.ForeignApi.core' => [
-		'scripts' => 'resources/src/mediawiki.ForeignApi.core.js',
+		'packageFiles' => [
+			'resources/src/mediawiki.ForeignApi/index.js',
+			'resources/src/mediawiki.ForeignApi/mediawiki.ForeignApi.core.js',
+			'resources/src/mediawiki.ForeignApi/mediawiki.ForeignRest.core.js'
+		],
 		'dependencies' => [
 			'mediawiki.api',
 			'oojs',
