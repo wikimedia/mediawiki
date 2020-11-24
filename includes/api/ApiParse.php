@@ -388,6 +388,8 @@ class ApiParse extends ApiBase {
 			$context->setOutput( $outputPage );
 
 			if ( $skin ) {
+				// Based on OutputPage::headElement()
+				$skin->setupSkinUserCss( $outputPage );
 				// Based on OutputPage::output()
 				$outputPage->loadSkinModules( $skin );
 			}

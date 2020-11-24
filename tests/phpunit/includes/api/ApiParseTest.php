@@ -159,17 +159,18 @@ class ApiParseTest extends ApiTestCase {
 		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ), [] );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
-				->setMethods( [ 'getDefaultModules' ] )
+				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )
 				->getMock();
 			$skin->expects( $this->once() )->method( 'getDefaultModules' )
 				->willReturn( [
-					'styles' => [
-						'user' => [ 'foo.styles' ],
-						'core' => [ 'quux.styles' ]
-					],
+					'styles' => [ 'core' => [ 'quux.styles' ] ],
 					'core' => [ 'foo', 'bar' ],
 					'content' => [ 'baz' ]
 				] );
+			$skin->expects( $this->once() )->method( 'setupSkinUserCss' )
+				->will( $this->returnCallback( function ( OutputPage $out ) {
+					$out->addModuleStyles( 'foo.styles' );
+				} ) );
 			return $skin;
 		} );
 		$this->setService( 'SkinFactory', $factory );

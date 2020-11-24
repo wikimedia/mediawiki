@@ -454,7 +454,7 @@ abstract class Skin extends ContextSource {
 	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		wfDeprecated( __METHOD__, '1.32' );
+		// Stub.
 	}
 
 	/**
