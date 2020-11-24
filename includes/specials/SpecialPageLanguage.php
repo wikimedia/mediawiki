@@ -210,7 +210,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @param Title $title
 	 * @param string $newLanguage Language code
 	 * @param string $reason Reason for the change
-	 * @param array $tags Change tags to apply to the log entry
+	 * @param string[] $tags Change tags to apply to the log entry
 	 * @param IDatabase|null $dbw
 	 * @return Status
 	 */

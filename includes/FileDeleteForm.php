@@ -167,7 +167,7 @@ class FileDeleteForm {
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param User $user
-	 * @param array $tags Tags to apply to the deletion action
+	 * @param string[] $tags Tags to apply to the deletion action
 	 * @throws MWException
 	 * @return Status
 	 */

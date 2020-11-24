@@ -646,7 +646,7 @@ class RecentChange implements Taggable {
 	 * @param int $newSize
 	 * @param int $newId
 	 * @param int $patrol
-	 * @param array $tags
+	 * @param string[] $tags
 	 * @param EditResult|null $editResult EditResult associated with this edit. Can be safely
 	 *  skipped if the edit is not a revert. Used only for marking revert tags.
 	 *
@@ -724,7 +724,7 @@ class RecentChange implements Taggable {
 	 * @param int $size
 	 * @param int $newId
 	 * @param int $patrol
-	 * @param array $tags
+	 * @param string[] $tags
 	 * @return RecentChange
 	 */
 	public static function notifyNew(

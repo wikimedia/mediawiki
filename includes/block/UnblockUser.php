@@ -70,7 +70,7 @@ class UnblockUser {
 	 * @param User|string $target
 	 * @param User $performer
 	 * @param string $reason
-	 * @param array $tags
+	 * @param string[] $tags
 	 */
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,

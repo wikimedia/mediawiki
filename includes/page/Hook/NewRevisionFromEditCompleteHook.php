@@ -26,7 +26,7 @@ interface NewRevisionFromEditCompleteHook {
 	 *   rollback or a null revision), the ID of that earlier revision. False otherwise.
 	 *   (Used to be called $baseID.)
 	 * @param User $user Editing user
-	 * @param array &$tags Tags to apply to the edit and recent change. This is empty, and
+	 * @param string[] &$tags Tags to apply to the edit and recent change. This is empty, and
 	 *   replacement is ignored, in the case of import or page move.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

@@ -58,7 +58,7 @@ class ImportReporter extends ContextSource {
 	/**
 	 * Sets change tags to apply to the import log entry and null revision.
 	 *
-	 * @param array $tags
+	 * @param string[] $tags
 	 * @since 1.29
 	 */
 	public function setChangeTags( array $tags ) {

@@ -353,7 +353,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
-	 * @param array $tags Array of change tags to add to the log entry
+	 * @param string[] $tags Array of change tags to add to the log entry
 	 * @param array $groupExpiries Associative array of (group name => expiry),
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
@@ -455,7 +455,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
-	 * @param array $tags Change tags for the log entry
+	 * @param string[] $tags Change tags for the log entry
 	 * @param array $oldUGMs Associative array of (group name => UserGroupMembership)
 	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
 	 */

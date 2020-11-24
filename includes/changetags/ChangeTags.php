@@ -489,7 +489,7 @@ class ChangeTags {
 	 *
 	 * @param string $msgOne Message key to use in the case of one tag
 	 * @param string $msgMulti Message key to use in the case of more than one tag
-	 * @param array $tags Restricted tags (passed as $1 into the message, count of
+	 * @param string[] $tags Restricted tags (passed as $1 into the message, count of
 	 * $tags passed as $2)
 	 * @return Status
 	 * @since 1.25
@@ -511,7 +511,7 @@ class ChangeTags {
 	 * Extensions should not use this function, unless directly handling a user
 	 * request to add a tag to a revision or log entry that the user is making.
 	 *
-	 * @param array $tags Tags that you are interested in applying
+	 * @param string[] $tags Tags that you are interested in applying
 	 * @param User|null $user User whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status
@@ -550,7 +550,7 @@ class ChangeTags {
 	 * request to add a particular tag. Normally, extensions should call
 	 * ChangeTags::updateTags() instead.
 	 *
-	 * @param array $tags Tags to apply
+	 * @param string[] $tags Tags to apply
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
@@ -583,8 +583,8 @@ class ChangeTags {
 	 * Extensions should not use this function, unless directly handling a user
 	 * request to add or remove tags from an existing revision or log entry.
 	 *
-	 * @param array $tagsToAdd Tags that you are interested in adding
-	 * @param array $tagsToRemove Tags that you are interested in removing
+	 * @param string[] $tagsToAdd Tags that you are interested in adding
+	 * @param string[] $tagsToRemove Tags that you are interested in removing
 	 * @param User|null $user User whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status

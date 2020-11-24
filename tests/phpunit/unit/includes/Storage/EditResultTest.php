@@ -133,7 +133,7 @@ class EditResultTest extends MediaWikiUnitTestCase {
 	 *
 	 * @param EditResult $er
 	 * @param int|null $revertMethod
-	 * @param array $tags
+	 * @param string[] $tags
 	 */
 	public function testGetRevertMethodAndTags( EditResult $er, ?int $revertMethod, array $tags ) {
 		$this->assertSame( $revertMethod, $er->getRevertMethod(), 'getRevertMethod()' );
