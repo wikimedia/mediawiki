@@ -256,6 +256,7 @@ util = {
 
 	/**
 	 * Hide a portlet.
+	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
 	hidePortlet: function ( portletId ) {
@@ -264,17 +265,21 @@ util = {
 			portlet.classList.add( 'emptyPortlet' );
 		}
 	},
+
 	/**
 	 * Is a portlet visible?
+	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	isPortletVisible: function ( portletId ) {
 		var portlet = document.getElementById( portletId );
 		return portlet && !portlet.classList.contains( 'emptyPortlet' );
 	},
+
 	/**
 	 * Reveal a portlet if it is hidden.
+	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
 	showPortlet: function ( portletId ) {
@@ -283,6 +288,7 @@ util = {
 			portlet.classList.remove( 'emptyPortlet' );
 		}
 	},
+
 	/**
 	 * Add a link to a portlet menu on the page, such as:
 	 *
