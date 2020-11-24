@@ -419,15 +419,7 @@ class SpecialPageFactory {
 		],
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
-		'Userrights' => [
-			'class' => \UserrightsPage::class,
-			'services' => [
-				'PermissionManager',
-				'UserGroupManagerFactory',
-				'UserNameUtils',
-				'UserNamePrefixSearch',
-			]
-		],
+		'Userrights' => \UserrightsPage::class,
 		'EditWatchlist' => [
 			'class' => \SpecialEditWatchlist::class,
 			'services' => [
