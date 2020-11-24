@@ -683,17 +683,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::wfMemcKey
-	 */
-	public function testWfMemcKey() {
-		$cache = ObjectCache::getLocalClusterInstance();
-		$this->assertEquals(
-			$cache->makeKey( 'foo', 123, 'bar' ),
-			wfMemcKey( 'foo', 123, 'bar' )
-		);
-	}
-
 	public static function provideWfShellWikiCmdList() {
 		global $wgPhpCli;
 
