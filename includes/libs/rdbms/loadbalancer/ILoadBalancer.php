@@ -717,7 +717,7 @@ interface ILoadBalancer {
 	 * no lag, the maximum lag will be reported as -1.
 	 *
 	 * @param bool|string $domain Domain ID or false for the default database
-	 * @return array ( host, max lag, index of max lagged host )
+	 * @return array{0:string,1:float|int|false,2:int} (host, max lag, index of max lagged host)
 	 */
 	public function getMaxLag( $domain = false );
 
@@ -729,7 +729,7 @@ interface ILoadBalancer {
 	 * Values may be "false" if replication is too broken to estimate
 	 *
 	 * @param string|bool $domain
-	 * @return int[] Map of (server index => float|int|bool)
+	 * @return float[]|int[]|false[] Map of (server index => lag) in order of server index
 	 */
 	public function getLagTimes( $domain = false );
 
