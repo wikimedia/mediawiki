@@ -22,7 +22,6 @@
 	 */
 
 	var inspect = mw.inspect,
-		// eslint-disable-next-line mediawiki/valid-package-file-require
 		byteLength = require( 'mediawiki.String' ).byteLength,
 		hasOwn = Object.prototype.hasOwnProperty;
 
