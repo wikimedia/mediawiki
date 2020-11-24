@@ -448,13 +448,32 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Call the subclass's setupSkinUserCss and throw a deprecation warning
+	 * if required.
+	 *
+	 * @param OutputPage $out
+	 */
+	final public function doSetupSkinUserCss( OutputPage $out ) {
+		$stylesBefore = $out->getModuleStyles();
+		$this->setupSkinUserCss( $out );
+		$stylesAfter = $out->getModuleStyles();
+		if ( count( $stylesAfter ) !== count( $stylesBefore ) ) {
+			// Styles were added by the setupSkinUserCss method. This is no longer allowed.
+			wfDeprecatedMsg( get_class( $this ) . '::setupSkinUserCss must not modify ' .
+				'the style module list, this is deprecated since 1.32', '1.32' );
+		}
+	}
+
+	/**
 	 * Hook point for adding style modules to OutputPage.
 	 *
-	 * @deprecated since 1.32 Use getDefaultModules() instead.
+	 * @deprecated since 1.32 Use getDefaultModules() instead. If using for backwards
+	 *  compatability, the caller is required to throw deprecation warnings if this
+	 *  changes the number of style modules on OutputPage.
 	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		wfDeprecated( __METHOD__, '1.32' );
+		// Stub.
 	}
 
 	/**
