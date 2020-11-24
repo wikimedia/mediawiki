@@ -1194,10 +1194,6 @@
 	url = https://gitlab.com/troyengel/Preloader
 	branch = master
 	ignore = dirty
-[submodule "extensions/DonationInterface"]
-	path = extensions/DonationInterface
-	url = https://github.com/wikimedia/mediawiki-extensions-DonationInterface
-	ignore = dirty
 [submodule "extensions/ContributionTracking"]
 	path = extensions/ContributionTracking
 	url = https://github.com/wikimedia/mediawiki-extensions-ContributionTracking
