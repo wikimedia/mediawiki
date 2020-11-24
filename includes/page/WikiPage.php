@@ -2660,7 +2660,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param bool|null $u1 Unused
 	 * @param array|string &$error Array of errors to append to
 	 * @param User|null $u2 Unused
-	 * @param array $tags Tags to apply to the deletion action
+	 * @param string[] $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return Status Status object; if successful, $status->value is the log_id of the
@@ -2701,7 +2701,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param User $deleter
-	 * @param array $tags
+	 * @param string[] $tags
 	 * @param string $logsubtype
 	 * @param bool $immediate
 	 * @param string|null $webRequestId

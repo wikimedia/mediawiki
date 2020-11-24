@@ -44,7 +44,7 @@ class ChangeTagsConstraint implements IEditConstraint {
 
 	/**
 	 * @param User $user
-	 * @param array $tags
+	 * @param string[] $tags
 	 */
 	public function __construct(
 		User $user,
