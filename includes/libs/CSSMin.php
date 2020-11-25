@@ -436,6 +436,7 @@ class CSSMin {
 			$ret->setScheme( false );
 		}
 		if ( $isServerless ) {
+			$ret->setScheme( false );
 			$ret->setHost( false );
 		}
 		return $ret->getURL();
