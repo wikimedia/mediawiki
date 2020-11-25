@@ -9,13 +9,14 @@
 	 * selected state of the watchthis checkbox.
 	 */
 	$( function () {
-		var watchThisWidget, watchlistExpiryWidget;
+		var watchThisWidget, watchlistExpiryWidget,
+			$watchThis = $( '#wpWatchthisWidget' ),
+			$expiry = $( '#wpWatchlistExpiryWidget' );
 
-		if ( document.getElementById( 'wpWatchthisWidget' ) &&
-				document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
+		if ( $watchThis.length && $expiry.length ) {
 
-			watchThisWidget = OO.ui.infuse( '#wpWatchthisWidget' );
-			watchlistExpiryWidget = OO.ui.infuse( '#wpWatchlistExpiryWidget' );
+			watchThisWidget = OO.ui.infuse( $watchThis );
+			watchlistExpiryWidget = OO.ui.infuse( $expiry );
 			// Set initial state to match the watchthis checkbox.
 			watchlistExpiryWidget.setDisabled( !watchThisWidget.isSelected() );
 
