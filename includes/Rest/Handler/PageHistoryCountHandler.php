@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ChangeTags;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -42,8 +43,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	];
 
 	private const MAX_AGE_200 = 60;
-
-	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback', 'mw-manual-revert' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -531,7 +530,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getRevertedCount( $pageId, RevisionRecord $fromRev = null ) {
 		$tagIds = [];
 
-		foreach ( self::REVERTED_TAG_NAMES as $tagName ) {
+		foreach ( ChangeTags::REVERT_TAGS as $tagName ) {
 			try {
 				$tagIds[] = $this->changeTagDefStore->getId( $tagName );
 			} catch ( NameTableAccessException $e ) {

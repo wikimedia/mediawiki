@@ -7474,21 +7474,20 @@ $wgDisableAnonTalk = false;
 $wgUseTagFilter = true;
 
 /**
- * List of core tags to enable. Available tags are:
- * - 'mw-contentmodelchange': Edit changes content model of a page
- * - 'mw-new-redirect': Edit makes new redirect page (new page or by changing content page)
- * - 'mw-removed-redirect': Edit changes an existing redirect into a non-redirect
- * - 'mw-changed-redirect-target': Edit changes redirect target
- * - 'mw-blank': Edit completely blanks the page
- * - 'mw-replace': Edit removes more than 90% of the content
- * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
- * - 'mw-undo': Edit made through an undo link
- * - 'mw-manual-revert': Edit that restored the page to an exact previous state
- * - 'mw-reverted': Edit that was later reverted by another edit
- *
+ * List of core tags to enable.
  * @var array
  * @since 1.31
  * @since 1.36 Added 'mw-manual-revert' and 'mw-reverted'
+ * @see ChangeTags::TAG_CONTENT_MODEL_CHANGE
+ * @see ChangeTags::TAG_NEW_REDIRECT
+ * @see ChangeTags::TAG_REMOVED_REDIRECT
+ * @see ChangeTags::TAG_CHANGED_REDIRECT_TARGET
+ * @see ChangeTags::TAG_BLANK
+ * @see ChangeTags::TAG_REPLACE
+ * @see ChangeTags::TAG_ROLLBACK
+ * @see ChangeTags::TAG_UNDO
+ * @see ChangeTags::TAG_MANUAL_REVERT
+ * @see ChangeTags::TAG_REVERTED
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,

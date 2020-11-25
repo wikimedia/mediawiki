@@ -29,16 +29,76 @@ use Wikimedia\Rdbms\IDatabase;
 
 class ChangeTags {
 	/**
-	 * Can't delete tags with more than this many uses. Similar in intent to
-	 * the bigdelete user right
-	 * @todo Use the job queue for tag deletion to avoid this restriction
+	 * The tagged edit changes the content model of the page.
 	 */
-	private const MAX_DELETE_USES = 5000;
+	public const TAG_CONTENT_MODEL_CHANGE = 'mw-contentmodelchange';
+	/**
+	 * The tagged edit creates a new redirect (either by creating a new page or turning an
+	 * existing page into a redirect).
+	 */
+	public const TAG_NEW_REDIRECT = 'mw-new-redirect';
+	/**
+	 * The tagged edit turns a redirect page into a non-redirect.
+	 */
+	public const TAG_REMOVED_REDIRECT = 'mw-removed-redirect';
+	/**
+	 * The tagged edit changes the target of a redirect page.
+	 */
+	public const TAG_CHANGED_REDIRECT_TARGET = 'mw-changed-redirect-target';
+	/**
+	 * The tagged edit blanks the page (replaces it with the empty string).
+	 */
+	public const TAG_BLANK = 'mw-blank';
+	/**
+	 * The tagged edit removes more than 90% of the content of the page.
+	 */
+	public const TAG_REPLACE = 'mw-replace';
+	/**
+	 * The tagged edit is a rollback (undoes the previous edit and all immediately preceding edits
+	 * by the same user, and was performed via the "rollback" link available to advanced users
+	 * or via the rollback API).
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_ROLLBACK = 'mw-rollback';
+	/**
+	 * The tagged edit is was performed via the "undo" link. (Usually this means that it undoes
+	 * some previous edit, but the undo workflow includes an edit step so it could be anything.)
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_UNDO = 'mw-undo';
+	/**
+	 * The tagged edit restores the page to an earlier revision.
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize()).
+	 */
+	public const TAG_MANUAL_REVERT = 'mw-manual-revert';
+	/**
+	 * The tagged edit is reverted by a subsequent edit (which is tagged by one of TAG_ROLLBACK,
+	 * TAG_UNDO, TAG_MANUAL_REVERT). Multiple edits might be reverted by the same edit.
+	 *
+	 * The associated tag data is a JSON containing the edit result (see EditResult::jsonSerialize())
+	 * with an extra 'revertId' field containing the revision ID of the reverting edit.
+	 */
+	public const TAG_REVERTED = 'mw-reverted';
+
+	/**
+	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)
+	 */
+	public const REVERT_TAGS = [ self::TAG_ROLLBACK, self::TAG_UNDO, self::TAG_MANUAL_REVERT ];
 
 	/**
 	 * Flag for canDeleteTag().
 	 */
 	public const BYPASS_MAX_USAGE_CHECK = 1;
+
+	/**
+	 * Can't delete tags with more than this many uses. Similar in intent to
+	 * the bigdelete user right
+	 * @todo Use the job queue for tag deletion to avoid this restriction
+	 */
+	private const MAX_DELETE_USES = 5000;
 
 	/**
 	 * A list of tags defined and used by MediaWiki itself.
@@ -451,6 +511,45 @@ class ChangeTags {
 
 	/**
 	 * Return all the tags associated with the given recent change ID,
+	 * revision ID, and/or log entry ID, along with any data stored with the tag.
+	 *
+	 * @param IDatabase $db the database to query
+	 * @param int|null $rc_id
+	 * @param int|null $rev_id
+	 * @param int|null $log_id
+	 * @return string[] Tag name => data. Data format is tag-specific.
+	 * @since 1.36
+	 */
+	public static function getTagsWithData(
+		IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
+	) {
+		$conds = array_filter(
+			[
+				'ct_rc_id' => $rc_id,
+				'ct_rev_id' => $rev_id,
+				'ct_log_id' => $log_id,
+			]
+		);
+
+		$result = $db->select(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_params' ],
+			$conds,
+			__METHOD__
+		);
+
+		$tags = [];
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+		foreach ( $result as $row ) {
+			$tagName = $changeTagDefStore->getName( (int)$row->ct_tag_id );
+			$tags[$tagName] = $row->ct_params;
+		}
+
+		return $tags;
+	}
+
+	/**
+	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
 	 * @param IDatabase $db the database to query
@@ -460,28 +559,7 @@ class ChangeTags {
 	 * @return string[]
 	 */
 	public static function getTags( IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
-		$conds = array_filter(
-			[
-				'ct_rc_id' => $rc_id,
-				'ct_rev_id' => $rev_id,
-				'ct_log_id' => $log_id,
-			]
-		);
-
-		$tagIds = $db->selectFieldValues(
-			'change_tag',
-			'ct_tag_id',
-			$conds,
-			__METHOD__
-		);
-
-		$tags = [];
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-		foreach ( $tagIds as $tagId ) {
-			$tags[] = $changeTagDefStore->getName( (int)$tagId );
-		}
-
-		return $tags;
+		return array_keys( self::getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
 	}
 
 	/**
