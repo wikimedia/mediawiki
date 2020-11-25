@@ -452,6 +452,8 @@ abstract class Skin extends ContextSource {
 	 * if required.
 	 *
 	 * @param OutputPage $out
+	 * @internal only for use in Skin or inside OutputPage and ApiParse where support for
+	 *  setupSkinUserCss is required.
 	 */
 	final public function doSetupSkinUserCss( OutputPage $out ) {
 		$stylesBefore = $out->getModuleStyles();
