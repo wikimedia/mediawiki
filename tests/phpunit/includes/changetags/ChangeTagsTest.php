@@ -662,6 +662,24 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $tags1, ChangeTags::getTags( $this->db, $rcId ) );
 	}
 
+	public function testGetTagsWithData() {
+		$rcId1 = 123;
+		$rcId2 = 456;
+		$rcId3 = 789;
+		ChangeTags::addTags( [ 'tag 1' ], $rcId1, null, null, 'data1' );
+		ChangeTags::addTags( [ 'tag 3_1' ], $rcId3, null, null );
+		ChangeTags::addTags( [ 'tag 3_2' ], $rcId3, null, null, 'data3_2' );
+
+		$data = ChangeTags::getTagsWithData( $this->db, $rcId1 );
+		$this->assertSame( [ 'tag 1' => 'data1' ], $data );
+
+		$data = ChangeTags::getTagsWithData( $this->db, $rcId2 );
+		$this->assertSame( [], $data );
+
+		$data = ChangeTags::getTagsWithData( $this->db, $rcId3 );
+		$this->assertArrayEquals( [ 'tag 3_1' => null, 'tag 3_2' => 'data3_2' ], $data, false, true );
+	}
+
 	public function testTagUsageStatistics() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );

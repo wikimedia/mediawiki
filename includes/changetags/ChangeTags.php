@@ -511,6 +511,45 @@ class ChangeTags {
 
 	/**
 	 * Return all the tags associated with the given recent change ID,
+	 * revision ID, and/or log entry ID, along with any data stored with the tag.
+	 *
+	 * @param IDatabase $db the database to query
+	 * @param int|null $rc_id
+	 * @param int|null $rev_id
+	 * @param int|null $log_id
+	 * @return string[] Tag name => data. Data format is tag-specific.
+	 * @since 1.36
+	 */
+	public static function getTagsWithData(
+		IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
+	) {
+		$conds = array_filter(
+			[
+				'ct_rc_id' => $rc_id,
+				'ct_rev_id' => $rev_id,
+				'ct_log_id' => $log_id,
+			]
+		);
+
+		$result = $db->select(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_params' ],
+			$conds,
+			__METHOD__
+		);
+
+		$tags = [];
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+		foreach ( $result as $row ) {
+			$tagName = $changeTagDefStore->getName( (int)$row->ct_tag_id );
+			$tags[$tagName] = $row->ct_params;
+		}
+
+		return $tags;
+	}
+
+	/**
+	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
 	 * @param IDatabase $db the database to query
@@ -520,28 +559,7 @@ class ChangeTags {
 	 * @return string[]
 	 */
 	public static function getTags( IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
-		$conds = array_filter(
-			[
-				'ct_rc_id' => $rc_id,
-				'ct_rev_id' => $rev_id,
-				'ct_log_id' => $log_id,
-			]
-		);
-
-		$tagIds = $db->selectFieldValues(
-			'change_tag',
-			'ct_tag_id',
-			$conds,
-			__METHOD__
-		);
-
-		$tags = [];
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-		foreach ( $tagIds as $tagId ) {
-			$tags[] = $changeTagDefStore->getName( (int)$tagId );
-		}
-
-		return $tags;
+		return array_keys( self::getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
 	}
 
 	/**
