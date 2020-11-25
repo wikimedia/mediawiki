@@ -922,7 +922,7 @@
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|guhartin}}, $2",
 	"rcfilters-date-popup-title": "Heyama zemanê ji bo lêgerînê",
 	"rcfilters-days-title": "Rojên berê",
-	"rcfilters-hours-title": "saetên dawî",
+	"rcfilters-hours-title": "Saetên dawî",
 	"rcfilters-days-show-days": "{{PLURAL:$1|rojek|$1 roj}}",
 	"rcfilters-days-show-hours": "{{PLURAL:$1|saetek|$1 saet}}",
 	"rcfilters-quickfilters": "Parzûnên tomarkirî",

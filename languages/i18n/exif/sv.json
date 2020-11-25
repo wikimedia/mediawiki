@@ -371,8 +371,20 @@
 	"exif-urgency-other": "Användardefinierad prioritet ($1)",
 	"exif-firstphotodate": "Första fotodatumet",
 	"exif-lastphotodate": "Sista fotodatumet",
+	"exif-projectiontype": "Projektionstyp",
+	"exif-projectiontype-equirectangular": "Ekvirektangulär",
+	"exif-usepanoramaviewer": "Använd panoramavisning",
 	"exif-usepanoramaviewer-true": "Ja",
 	"exif-usepanoramaviewer-false": "Nej",
 	"exif-exposurelockused-true": "Ja",
-	"exif-exposurelockused-false": "Nej"
+	"exif-exposurelockused-false": "Nej",
+	"exif-posepitchdegrees": "Pitch (grader)",
+	"exif-sourcephotoscount": "Antal källfotografier",
+	"exif-croppedareaimagewidthpixels": "Panorama med beskuren bredd",
+	"exif-croppedareaimageheightpixels": "Panorama med beskuren höjd",
+	"exif-fullpanowidthpixels": "Ṕanorama med full bredd",
+	"exif-fullpanoheightpixels": "Panorama med full höjd",
+	"exif-croppedarealeftpixels": "Panorama med vänsterbeskärning",
+	"exif-croppedareatoppixels": "Panorama med beskuren topp",
+	"exif-initialcameradolly": "Ursprunglig kameraposition"
 }
