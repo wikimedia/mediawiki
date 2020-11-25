@@ -56,6 +56,8 @@ class RebuildLocalisationCache extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'no-clear-message-blob-store', "Don't clear the MessageBlobStore global cache" );
 	}
 
 	public function finalSetup() {
@@ -106,9 +108,10 @@ class RebuildLocalisationCache extends Maintenance {
 			),
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
-			[ function () use ( $services ) {
-				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
-			} ],
+			$this->hasOption( 'no-clear-message-blob-store' ) ? [] :
+				[ function () use ( $services ) {
+					MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
+				} ],
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer()
 		);
