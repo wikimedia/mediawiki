@@ -26,6 +26,9 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 		return [
 			[ 'url("//example.org")', [] ],
 			[ 'url("https://example.org")', [] ],
+			[ 'url("//example.org/x")', [] ],
+			[ 'url("http://example.org/x")', [] ],
+			[ 'url("https://example.org/x")', [] ],
 			[ 'url("#default#")', [] ],
 			[ 'url("WikiFont-Glyphs.svg#wikiglyph")', [ '/WikiFont-Glyphs.svg' ] ],
 			[ 'url("#some-anchor")', [] ],
@@ -295,6 +298,16 @@ class CSSMinTest extends MediaWikiIntegrationTestCase {
 				'With trailing slash on remote (T29052)',
 				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/mid/', false ],
 				'foo { prop: url(http://example.org/quux/bar.png); }',
+			],
+			[
+				'Server-less path (T268308)',
+				[ 'foo { prop: url(../bar.png); }', false, '/quux/mid/', false ],
+				'foo { prop: url(/quux/bar.png); }',
+			],
+			[
+				'Protocol-relative URL',
+				[ 'foo { prop: url(../bar.png); }', false, '//example.org/quux/mid/', false ],
+				'foo { prop: url(//example.org/quux/bar.png); }',
 			],
 			[
 				'Guard against stripping double slashes from query',
