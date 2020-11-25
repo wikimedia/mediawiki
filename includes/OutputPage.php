@@ -3605,7 +3605,10 @@ class OutputPage extends ContextSource {
 		] );
 
 		# Language variants
-		if ( !$config->get( 'DisableLangConversion' ) ) {
+		$services = MediaWikiServices::getInstance();
+		$disableLangConversion =
+			$services->getLanguageConverterFactory()->isConversionDisabled();
+		if ( !$disableLangConversion ) {
 			$lang = $this->getTitle()->getPageLanguage();
 			if ( $lang->hasVariants() ) {
 				$variants = $lang->getVariants();

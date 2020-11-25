@@ -160,11 +160,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 
-		$data['langconversion'] = !$config->get( 'DisableLangConversion' );
-		$data['titleconversion'] = !$config->get( 'DisableTitleConversion' );
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		$data['langconversion'] = !$languageConverterFactory->isConversionDisabled();
+		// FIXME: This should use ::isLinkConversionDisabled() instead
+		$data['titleconversion'] = !$languageConverterFactory->isTitleConversionDisabled();
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+		$contLangConverter = $languageConverterFactory
 			->getLanguageConverter( $contLang );
 		if ( $contLang->linkPrefixExtension() ) {
 			$linkPrefixCharset = $contLang->linkPrefixCharset();
@@ -745,7 +747,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	// language conversion. (T153341)
 	public function appendLanguageVariants( $property ) {
 		$langNames = LanguageConverter::$languagesWithVariants;
-		if ( $this->getConfig()->get( 'DisableLangConversion' ) ) {
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		if ( $languageConverterFactory->isConversionDisabled() ) {
 			// Ensure result is empty if language conversion is disabled.
 			$langNames = [];
 		}
@@ -755,10 +758,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $langNames as $langCode ) {
 			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $langCode );
-			$langConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			$langConverter = $languageConverterFactory
 				->getLanguageConverter( $lang );
 			if ( !$langConverter->hasVariants() ) {
-				// Only languages which has conversions can be processed
+				// Only languages which have variants should be listed
 				continue;
 			}
 			$data[$langCode] = [];

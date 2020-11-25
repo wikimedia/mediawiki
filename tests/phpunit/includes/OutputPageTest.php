@@ -3137,7 +3137,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$context->setConfig( new MultiConfig( [
 			new HashConfig( $config + [
 				'AppleTouchIcon' => false,
-				'DisableLangConversion' => true,
 				'EnableCanonicalServerLink' => false,
 				'Favicon' => false,
 				'Feed' => false,

@@ -1168,8 +1168,8 @@ class ParserOptions {
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgDisableLangConversion, $wgDisableTitleConversion,
 			$wgEnableMagicLinks;
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
 
 		if ( self::$defaults === null ) {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
@@ -1217,8 +1217,8 @@ class ParserOptions {
 			'expensiveParserFunctionLimit' => $wgExpensiveParserFunctionLimit,
 			'externalLinkTarget' => $wgExternalLinkTarget,
 			'cleanSignatures' => $wgCleanSignatures,
-			'disableContentConversion' => $wgDisableLangConversion,
-			'disableTitleConversion' => $wgDisableLangConversion || $wgDisableTitleConversion,
+			'disableContentConversion' => $languageConverterFactory->isConversionDisabled(),
+			'disableTitleConversion' => $languageConverterFactory->isLinkConversionDisabled(),
 			'magicISBNLinks' => $wgEnableMagicLinks['ISBN'],
 			'magicPMIDLinks' => $wgEnableMagicLinks['PMID'],
 			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
