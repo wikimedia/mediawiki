@@ -288,6 +288,10 @@ class ParserTestRunner {
 		$setup['wgLocaltimezone'] = 'UTC';
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
+		$reset = function () {
+			// Reset to follow changes to $wgDisable*Conversion
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
+		};
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390

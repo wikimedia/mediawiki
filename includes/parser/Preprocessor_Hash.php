@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children
@@ -113,7 +115,8 @@ class Preprocessor_Hash extends Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		global $wgDisableLangConversion;
+		$isConversionDisabled = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->isConversionDisabled();
 
 		$tree = $this->cacheGetTree( $text, $flags );
 		if ( $tree !== false ) {
@@ -150,7 +153,7 @@ class Preprocessor_Hash extends Preprocessor {
 		$stack = new PPDStack_Hash;
 
 		$searchBase = "[{<\n";
-		if ( !$wgDisableLangConversion ) {
+		if ( !$isConversionDisabled ) {
 			$searchBase .= '-';
 		}
 

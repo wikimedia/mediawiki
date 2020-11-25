@@ -1043,10 +1043,11 @@ class SkinTemplate extends Skin {
 
 			$this->getHookRunner()->onSkinTemplateNavigation( $this, $content_navigation );
 
-			if ( $userCanRead && !$this->getConfig()->get( 'DisableLangConversion' ) ) {
+			$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+
+			if ( $userCanRead && !$languageConverterFactory->isConversionDisabled() ) {
 				$pageLang = $title->getPageLanguage();
-				$converter = MediaWikiServices::getInstance()
-					->getLanguageConverterFactory()
+				$converter = $languageConverterFactory
 					->getLanguageConverter( $pageLang );
 				// Checks that language conversion is enabled and variants exist
 				// And if it is not in the special namespace
