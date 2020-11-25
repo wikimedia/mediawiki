@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ChangeTags;
 use IDBAccessObject;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -27,7 +28,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class PageHistoryHandler extends SimpleHandler {
 	private const REVISIONS_RETURN_LIMIT = 20;
-	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback', 'mw-manual-revert' ];
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */
@@ -108,7 +108,7 @@ class PageHistoryHandler extends SimpleHandler {
 
 		$tagIds = [];
 		if ( $params['filter'] === 'reverted' ) {
-			foreach ( self::REVERTED_TAG_NAMES as $tagName ) {
+			foreach ( ChangeTags::REVERT_TAGS as $tagName ) {
 				try {
 					$tagIds[] = $this->changeTagDefStore->getId( $tagName );
 				} catch ( NameTableAccessException $exception ) {
