@@ -849,7 +849,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @since 1.34
 	 * @return LanguageNameUtils
 	 */
-	public function getLanguageNameUtils() {
+	public function getLanguageNameUtils() : LanguageNameUtils {
 		return $this->getService( 'LanguageNameUtils' );
 	}
 
@@ -1095,7 +1095,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return ParserOutputAccess
 	 * @since 1.36
 	 */
-	public function getParserOutputAccess() {
+	public function getParserOutputAccess() : ParserOutputAccess {
 		return $this->getService( 'ParserOutputAccess' );
 	}
 
