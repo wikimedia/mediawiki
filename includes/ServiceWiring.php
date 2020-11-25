@@ -544,9 +544,16 @@ return [
 
 	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
 		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
-		return new LanguageConverterFactory( $usePigLatinVariant, function () use ( $services ) {
-			return $services->getContentLanguage();
-		} );
+		$isConversionDisabled = $services->getMainConfig()->get( 'DisableLangConversion' );
+		$isTitleConversionDisabled = $services->getMainConfig()->get( 'DisableTitleConversion' );
+		return new LanguageConverterFactory(
+			$usePigLatinVariant,
+			$isConversionDisabled,
+			$isTitleConversionDisabled,
+			function () use ( $services ) {
+				return $services->getContentLanguage();
+			}
+		);
 	},
 
 	'LanguageFactory' => function ( MediaWikiServices $services ) : LanguageFactory {

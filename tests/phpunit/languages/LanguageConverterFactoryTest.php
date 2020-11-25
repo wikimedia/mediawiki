@@ -26,9 +26,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$manualLevel
 	) {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
-		$factory = new LanguageConverterFactory( false, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory( false, false, false, function () use ( $lang ) {
 			return $lang;
 		} );
+		$this->assertFalse( $factory->isConversionDisabled() );
+		$this->assertFalse( $factory->isTitleConversionDisabled() );
+		$this->assertFalse( $factory->isLinkConversionDisabled() );
 		$converter = $factory->getLanguageConverter( $lang );
 		$this->verifyConverter(
 			$converter,
@@ -50,9 +53,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testCreateFromCodeEnPigLatin() {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-		$factory = new LanguageConverterFactory( true, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory( true, false, false, function () use ( $lang ) {
 			return $lang;
 		} );
+		$this->assertFalse( $factory->isConversionDisabled() );
+		$this->assertFalse( $factory->isTitleConversionDisabled() );
+		$this->assertFalse( $factory->isLinkConversionDisabled() );
 
 		$converter = $factory->getLanguageConverter( $lang );
 
@@ -73,12 +79,61 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 * @covers ::__construct
 	 * @covers ::classFromCode
 	 * @covers ::getLanguageConverter
+	 * @dataProvider booleanProvider
 	 */
-	public function testDefaultConentLanguageFallback() {
+	public function testDisabledBooleans( $pigLatinDisabled, $conversionDisabled, $titleDisabled ) {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-		$factory = new LanguageConverterFactory( false, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory(
+			!$pigLatinDisabled,
+			$conversionDisabled,
+			$titleDisabled,
+			function () use ( $lang ) {
+				return $lang;
+			}
+		);
+		$converter = $factory->getLanguageConverter( $lang );
+
+		$this->assertSame( $conversionDisabled, $factory->isConversionDisabled() );
+		$this->assertSame( $titleDisabled, $factory->isTitleConversionDisabled() );
+		$this->assertSame( $conversionDisabled || $titleDisabled, $factory->isLinkConversionDisabled() );
+
+		if ( $pigLatinDisabled ) {
+			$this->assertNotContains(
+				'en-x-piglatin', $converter->getVariants()
+			);
+		} else {
+			$this->assertContains(
+				'en-x-piglatin', $converter->getVariants()
+			);
+		}
+	}
+
+	public function booleanProvider() {
+		return [
+			[ false, false, false ],
+			[ false, false, true ],
+			[ false,true,false ],
+			[ false,true,true ],
+			[ true, false, false ],
+			[ true, false, true ],
+			[ true,true,false ],
+			[ true,true,true ],
+		];
+	}
+
+	/**
+	 * @covers ::__construct
+	 * @covers ::classFromCode
+	 * @covers ::getLanguageConverter
+	 */
+	public function testDefaultContentLanguageFallback() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$factory = new LanguageConverterFactory( false, false, false, function () use ( $lang ) {
 			return $lang;
 		} );
+		$this->assertFalse( $factory->isConversionDisabled() );
+		$this->assertFalse( $factory->isTitleConversionDisabled() );
+		$this->assertFalse( $factory->isLinkConversionDisabled() );
 
 		$converter = $factory->getLanguageConverter();
 

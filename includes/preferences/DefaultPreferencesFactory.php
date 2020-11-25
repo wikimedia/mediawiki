@@ -100,7 +100,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'AllowUserCssPrefs',
 		'AllowUserJs',
 		'DefaultSkin',
-		'DisableLangConversion',
 		'EmailAuthentication',
 		'EmailConfirmToEdit',
 		'EnableEmail',
@@ -508,7 +507,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// see if there are multiple language variants to choose from
-		if ( !$this->options->get( 'DisableLangConversion' ) ) {
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		if ( !$languageConverterFactory->isConversionDisabled() ) {
 
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {

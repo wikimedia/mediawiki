@@ -720,8 +720,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return-taint escaped
 	 */
 	public function convertTo( $text, $variant ) {
-		global $wgDisableLangConversion;
-		if ( $wgDisableLangConversion ) {
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		if ( $languageConverterFactory->isConversionDisabled() ) {
 			return $text;
 		}
 		// Reset converter state for a new converter run.
@@ -878,15 +878,16 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return;
 		}
 
-		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest;
+		global $wgRequest;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		if ( $action == 'edit' && $wgRequest->getBool( 'redlink' ) ) {
 			$action = 'view';
 		}
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
-		$disableLinkConversion = $wgDisableLangConversion
-			|| $wgDisableTitleConversion;
+		$disableLinkConversion =
+			MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->isLinkConversionDisabled();
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 		$linkBatch = $linkBatchFactory->newLinkBatch();
 

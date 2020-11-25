@@ -63,21 +63,38 @@ class LanguageConverterFactory {
 	private $defaultConverterClass = TrivialLanguageConverter::class;
 
 	/**
+	 * @var bool Whether to disable language variant conversion.
+	 */
+	private $isConversionDisabled;
+
+	/**
+	 * @var bool Whether to disable language variant conversion for links.
+	 */
+	private $isTitleConversionDisabled;
+
+	/**
 	 * @var callable callback of () : Language
 	 */
 	private $defaultLanguage;
 
 	/**
 	 * @param bool $usePigLatinVariant should pig variant of English be used
+	 * @param bool $isConversionDisabled Whether to disable language variant conversion
+	 * @param bool $isTitleConversionDisabled Whether to disable language variant conversion for links
 	 * @param callable $defaultLanguage - callback of () : Language, should return
 	 * default language. Used in getLanguageConverter when $language is null.
 	 *
 	 * @internal Should be called from MediaWikiServices only.
 	 */
-	public function __construct( $usePigLatinVariant, callable $defaultLanguage ) {
+	public function __construct(
+		$usePigLatinVariant, $isConversionDisabled, $isTitleConversionDisabled,
+		callable $defaultLanguage
+	) {
 		if ( $usePigLatinVariant ) {
 			$this->converterClasses['en'] = EnConverter::class;
 		}
+		$this->isConversionDisabled = $isConversionDisabled;
+		$this->isTitleConversionDisabled = $isTitleConversionDisabled;
 		$this->defaultLanguage = $defaultLanguage;
 	}
 
@@ -111,5 +128,30 @@ class LanguageConverterFactory {
 		$converter = new $class( $lang );
 		$this->cache[$lang->getCode()] = $converter;
 		return $converter;
+	}
+
+	/**
+	 * Whether to disable language variant conversion.
+	 * @return bool
+	 */
+	public function isConversionDisabled() {
+		return $this->isConversionDisabled;
+	}
+
+	/**
+	 * Whether to disable language variant conversion for titles.
+	 * @return bool
+	 * @deprecated 1.36 Should use ::isLinkConversionDisabled() instead
+	 */
+	public function isTitleConversionDisabled() {
+		return $this->isTitleConversionDisabled;
+	}
+
+	/**
+	 * Whether to disable language variant conversion for links.
+	 * @return bool
+	 */
+	public function isLinkConversionDisabled() {
+		return $this->isConversionDisabled || $this->isTitleConversionDisabled;
 	}
 }
