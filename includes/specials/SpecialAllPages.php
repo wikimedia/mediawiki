@@ -56,7 +56,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		ILoadBalancer $loadBalancer = null
 	) {
 		parent::__construct( 'Allpages' );
-		// This class is extended and therefor fallback to global state - T265309
+		// This class is extended and therefore falls back to global state - T265309
 		$this->loadBalancer = $loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
 	}
 

@@ -297,7 +297,9 @@ class SpecialPageFactory {
 				'AuthManager',
 			]
 		],
-		'Userlogout' => \SpecialUserLogout::class,
+		'Userlogout' => [
+			'class' => \SpecialUserLogout::class,
+		],
 		'CreateAccount' => [
 			'class' => \SpecialCreateAccount::class,
 			'services' => [
@@ -382,7 +384,9 @@ class SpecialPageFactory {
 				'CommentStore',
 			],
 		],
-		'ChangePassword' => \SpecialChangePassword::class,
+		'ChangePassword' => [
+			'class' => \SpecialChangePassword::class,
+		],
 		'BotPasswords' => [
 			'class' => \SpecialBotPasswords::class,
 			'services' => [
@@ -417,7 +421,9 @@ class SpecialPageFactory {
 				'UserOptionsManager',
 			]
 		],
-		'ResetTokens' => \SpecialResetTokens::class,
+		'ResetTokens' => [
+			'class' => \SpecialResetTokens::class,
+		],
 		'Contributions' => [
 			'class' => \SpecialContributions::class,
 			'services' => [
@@ -439,7 +445,9 @@ class SpecialPageFactory {
 				'UserGroupManager',
 			]
 		],
-		'Listgrants' => \SpecialListGrants::class,
+		'Listgrants' => [
+			'class' => \SpecialListGrants::class,
+		],
 		'Listusers' => [
 			'class' => \SpecialListUsers::class,
 			'services' => [
@@ -449,8 +457,12 @@ class SpecialPageFactory {
 				'UserGroupManager',
 			]
 		],
-		'Listadmins' => \SpecialListAdmins::class,
-		'Listbots' => \SpecialListBots::class,
+		'Listadmins' => [
+			'class' => \SpecialListAdmins::class,
+		],
+		'Listbots' => [
+			'class' => \SpecialListBots::class,
+		],
 		'Userrights' => [
 			'class' => \UserrightsPage::class,
 			'services' => [
@@ -522,8 +534,26 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 			]
 		],
-		'Recentchanges' => \SpecialRecentChanges::class,
-		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
+		'Recentchanges' => [
+			'class' => \SpecialRecentChanges::class,
+			'services' => [
+				'PermissionManager',
+				'WatchedItemStore',
+				'MessageCache',
+				'DBLoadBalancer',
+				'UserOptionsLookup',
+			]
+		],
+		'Recentchangeslinked' => [
+			'class' => \SpecialRecentChangesLinked::class,
+			'services' => [
+				'PermissionManager',
+				'WatchedItemStore',
+				'MessageCache',
+				'DBLoadBalancer',
+				'UserOptionsLookup',
+			]
+		],
 		'Tags' => [
 			'class' => \SpecialTags::class,
 			'services' => [
@@ -545,7 +575,9 @@ class SpecialPageFactory {
 				'UserCache',
 			]
 		],
-		'Filepath' => \SpecialFilepath::class,
+		'Filepath' => [
+			'class' => \SpecialFilepath::class,
+		],
 		'MediaStatistics' => [
 			'class' => \SpecialMediaStatistics::class,
 			'services' => [
@@ -623,7 +655,9 @@ class SpecialPageFactory {
 		'Lockdb' => [
 			'class' => \SpecialLockdb::class,
 		],
-		'Unlockdb' => \SpecialUnlockdb::class,
+		'Unlockdb' => [
+			'class' => \SpecialUnlockdb::class,
+		],
 
 		// Redirecting special pages
 		'LinkSearch' => [
@@ -660,7 +694,9 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 			]
 		],
-		'GoToInterwiki' => \SpecialGoToInterwiki::class,
+		'GoToInterwiki' => [
+			'class' => \SpecialGoToInterwiki::class,
+		],
 
 		// High use pages
 		'Mostlinkedcategories' => [
@@ -798,10 +834,18 @@ class SpecialPageFactory {
 		],
 
 		// Unlisted / redirects
-		'ApiHelp' => \SpecialApiHelp::class,
-		'Blankpage' => \SpecialBlankpage::class,
-		'Diff' => \SpecialDiff::class,
-		'EditPage' => \SpecialEditPage::class,
+		'ApiHelp' => [
+			'class' => \SpecialApiHelp::class,
+		],
+		'Blankpage' => [
+			'class' => \SpecialBlankpage::class,
+		],
+		'Diff' => [
+			'class' => \SpecialDiff::class,
+		],
+		'EditPage' => [
+			'class' => \SpecialEditPage::class,
+		],
 		'EditTags' => [
 			'class' => \SpecialEditTags::class,
 			'services' => [
@@ -830,22 +874,42 @@ class SpecialPageFactory {
 				'WikiPageFactory',
 			]
 		],
-		'Mycontributions' => \SpecialMycontributions::class,
+		'Mycontributions' => [
+			'class' => \SpecialMycontributions::class,
+		],
 		'MyLanguage' => [
 			'class' => \SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
 			]
 		],
-		'Mypage' => \SpecialMypage::class,
-		'Mytalk' => \SpecialMytalk::class,
-		'PageHistory' => \SpecialPageHistory::class,
-		'PageInfo' => \SpecialPageInfo::class,
-		'Purge' => \SpecialPurge::class,
-		'Myuploads' => \SpecialMyuploads::class,
-		'AllMyUploads' => \SpecialAllMyUploads::class,
-		'NewSection' => \SpecialNewSection::class,
-		'PermanentLink' => \SpecialPermanentLink::class,
+		'Mypage' => [
+			'class' => \SpecialMypage::class,
+		],
+		'Mytalk' => [
+			'class' => \SpecialMytalk::class,
+		],
+		'PageHistory' => [
+			'class' => \SpecialPageHistory::class,
+		],
+		'PageInfo' => [
+			'class' => \SpecialPageInfo::class,
+		],
+		'Purge' => [
+			'class' => \SpecialPurge::class,
+		],
+		'Myuploads' => [
+			'class' => \SpecialMyuploads::class,
+		],
+		'AllMyUploads' => [
+			'class' => \SpecialAllMyUploads::class,
+		],
+		'NewSection' => [
+			'class' => \SpecialNewSection::class,
+		],
+		'PermanentLink' => [
+			'class' => \SpecialPermanentLink::class,
+		],
 		'Redirect' => [
 			'class' => \SpecialRedirect::class,
 			'services' => [
@@ -870,7 +934,9 @@ class SpecialPageFactory {
 		'Specialpages' => [
 			'class' => \SpecialSpecialpages::class,
 		],
-		'PageData' => \SpecialPageData::class,
+		'PageData' => [
+			'class' => \SpecialPageData::class,
+		],
 	];
 
 	/** @var array Special page name => class name */
@@ -989,7 +1055,9 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'EnableJavaScriptTest' ) ) {
-				$this->list['JavaScriptTest'] = \SpecialJavaScriptTest::class;
+				$this->list['JavaScriptTest'] = [
+					'class' => \SpecialJavaScriptTest::class
+				];
 			}
 
 			if ( $this->options->get( 'EnableSpecialMute' ) ) {
