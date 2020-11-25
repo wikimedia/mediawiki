@@ -114,6 +114,27 @@ figure[ typeof~='mw:Audio/Frame' ] {
 
 	> figcaption {
 		display: block;
+
+		/**
+		 * The "break-word" value is deprecated, however, it's well supported
+		 * at 94.73%
+		 * https://caniuse.com/mdn-css_properties_word-break_break-word
+		 *
+		 * The spec suggests it has the same effect as,
+		 *
+		 *   word-break: normal;
+		 *   overflow-wrap: anywhere;
+		 *
+		 * https://drafts.csswg.org/css-text-3/#word-break-property
+		 *
+		 * So, we should use that.  However, support for "anywhere" is lagging
+		 * at just 72.39%, with Safari being a notable miss.
+		 * https://caniuse.com/mdn-css_properties_overflow-wrap_anywhere
+		 *
+		 * "Soft wrap opportunities introduced by the word break are considered
+		 * when calculating min-content intrinsic sizes."
+		 * From https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
+		 */
 		word-break: break-word;
 
 		/* In mw-core the font-size is duplicated, 94% in thumbiner
