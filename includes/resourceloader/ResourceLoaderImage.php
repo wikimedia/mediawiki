@@ -33,7 +33,7 @@ class ResourceLoaderImage {
 	 * Map of allowed file extensions to their MIME types.
 	 * @var array
 	 */
-	protected static $fileTypes = [
+	private const FILE_TYPES = [
 		'svg' => 'image/svg+xml',
 		'png' => 'image/png',
 		'gif' => 'image/gif',
@@ -107,7 +107,7 @@ class ResourceLoaderImage {
 			);
 		}
 		$ext = $extensions[0];
-		if ( !isset( self::$fileTypes[$ext] ) ) {
+		if ( !isset( self::FILE_TYPES[$ext] ) ) {
 			throw new InvalidArgumentException(
 				"Invalid file type for image files of '$name' (valid: svg, png, gif, jpg) in module '$module'"
 			);
@@ -220,7 +220,7 @@ class ResourceLoaderImage {
 	 */
 	public function getMimeType( $format = 'original' ) {
 		$ext = $this->getExtension( $format );
-		return self::$fileTypes[$ext];
+		return self::FILE_TYPES[$ext];
 	}
 
 	/**
