@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\User\UserGroupManager;
 
 /**
@@ -38,17 +39,23 @@ class SpecialListGroupRights extends SpecialPage {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param NamespaceInfo $nsInfo
 	 * @param UserGroupManager $userGroupManager
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		NamespaceInfo $nsInfo,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Listgrouprights' );
 		$this->nsInfo = $nsInfo;
 		$this->userGroupManager = $userGroupManager;
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	/**
@@ -188,7 +195,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if ( $namespace == NS_MAIN ) {
 				$namespaceText = $this->msg( 'blanknamespace' )->text();
 			} else {
-				$namespaceText = $this->getLanguageConverter()->convertNamespace( $namespace );
+				$namespaceText = $this->languageConverter->convertNamespace( $namespace );
 			}
 
 			$out->addHTML(

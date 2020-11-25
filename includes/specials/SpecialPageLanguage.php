@@ -52,23 +52,29 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param ILoadBalancer $loadBalancer
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageNameUtils $languageNameUtils,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'PageLanguage', 'pagelang' );
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->loadBalancer = $loadBalancer;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function doesWrites() {
@@ -328,7 +334,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

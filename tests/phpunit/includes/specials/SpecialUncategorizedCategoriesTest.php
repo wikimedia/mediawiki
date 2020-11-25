@@ -18,7 +18,8 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 		$special = new SpecialUncategorizedCategories(
 			$services->getNamespaceInfo(),
 			$services->getDBLoadBalancer(),
-			$services->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getLanguageConverterFactory()
 		);
 		$special->setContext( $mockContext );
 		$this->assertEquals( [

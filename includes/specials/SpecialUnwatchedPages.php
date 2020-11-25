@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -39,17 +40,23 @@ class SpecialUnwatchedPages extends QueryPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Unwatchedpages', 'unwatchedpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isExpensive() {
@@ -130,7 +137,7 @@ class SpecialUnwatchedPages extends QueryPage {
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
-		$text = $this->getLanguageConverter()->convertHtml( $nt->getPrefixedText() );
+		$text = $this->languageConverter->convertHtml( $nt->getPrefixedText() );
 
 		$linkRenderer = $this->getLinkRenderer();
 

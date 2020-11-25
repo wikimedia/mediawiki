@@ -94,6 +94,9 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param MovePageFactory|null $movePageFactory
 	 * @param PermissionManager|null $permManager
@@ -104,6 +107,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param RepoGroup|null $repoGroup
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param SearchEngineFactory|null $searchEngineFactory
 	 */
 	public function __construct(
 		MovePageFactory $movePageFactory = null,
@@ -114,7 +118,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		NamespaceInfo $nsInfo = null,
 		LinkBatchFactory $linkBatchFactory = null,
 		RepoGroup $repoGroup = null,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		SearchEngineFactory $searchEngineFactory = null
 	) {
 		parent::__construct( 'Movepage' );
 		// This class is extended and therefor fallback to global state - T265945
@@ -128,6 +133,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
+		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
 	}
 
 	public function doesWrites() {
@@ -965,7 +971,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

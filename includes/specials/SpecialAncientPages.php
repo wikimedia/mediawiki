@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -34,20 +35,26 @@ class SpecialAncientPages extends QueryPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Ancientpages' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isExpensive() {
@@ -111,7 +118,7 @@ class SpecialAncientPages extends QueryPage {
 
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			new HtmlArmor( $this->getLanguageConverter()->convertHtml( $title->getPrefixedText() ) )
+			new HtmlArmor( $this->languageConverter->convertHtml( $title->getPrefixedText() ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );
