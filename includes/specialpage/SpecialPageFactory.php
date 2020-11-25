@@ -263,6 +263,7 @@ class SpecialPageFactory {
 			'class' => \SpecialAllPages::class,
 			'services' => [
 				'DBLoadBalancer',
+				'SearchEngineFactory',
 			]
 		],
 		'Prefixindex' => [
@@ -563,6 +564,7 @@ class SpecialPageFactory {
 				'MessageCache',
 				'DBLoadBalancer',
 				'UserOptionsLookup',
+				'SearchEngineFactory',
 			]
 		],
 		'Tags' => [
@@ -802,6 +804,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'UserOptionsLookup',
 				'WikiPageFactory',
+				'SearchEngineFactory',
 			],
 		],
 		'Whatlinkshere' => [
@@ -811,6 +814,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'PermissionManager',
 				'ContentHandlerFactory',
+				'SearchEngineFactory',
 			]
 		],
 		'MergeHistory' => [
@@ -838,6 +842,7 @@ class SpecialPageFactory {
 				'SpamChecker',
 				'RevisionLookup',
 				'WikiPageFactory',
+				'SearchEngineFactory',
 			],
 		],
 
@@ -888,6 +893,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'RepoGroup',
 				'WikiPageFactory',
+				'SearchEngineFactory',
 			]
 		],
 		'Mycontributions' => [
@@ -1093,6 +1099,7 @@ class SpecialPageFactory {
 						'ContentHandlerFactory',
 						'LanguageNameUtils',
 						'DBLoadBalancer',
+						'SearchEngineFactory',
 					]
 				];
 			}

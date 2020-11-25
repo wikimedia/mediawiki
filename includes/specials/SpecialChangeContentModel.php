@@ -25,19 +25,24 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ContentModelChangeFactory $contentModelChangeFactory
 	 * @param SpamChecker $spamChecker
 	 * @param RevisionLookup $revisionLookup
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentModelChangeFactory $contentModelChangeFactory,
 		SpamChecker $spamChecker,
 		RevisionLookup $revisionLookup,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
 
@@ -46,6 +51,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$this->spamChecker = $spamChecker;
 		$this->revisionLookup = $revisionLookup;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function doesWrites() {
@@ -254,7 +260,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

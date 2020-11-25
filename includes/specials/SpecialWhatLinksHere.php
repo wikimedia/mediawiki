@@ -53,6 +53,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
@@ -60,18 +63,21 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
 		PermissionManager $permissionManager,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function execute( $par ) {
@@ -650,7 +656,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {
