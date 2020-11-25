@@ -53,7 +53,7 @@ class SpecialPreferences extends SpecialPage {
 		UserOptionsManager $userOptionsManager = null
 	) {
 		parent::__construct( 'Preferences' );
-		// This class is extended and therefore fallback to global state - T265924
+		// This class is extended and therefore falls back to global state - T265924
 		$services = MediaWikiServices::getInstance();
 		$this->preferencesFactory = $preferencesFactory ?? $services->getPreferencesFactory();
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();

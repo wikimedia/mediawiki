@@ -522,8 +522,26 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 			]
 		],
-		'Recentchanges' => \SpecialRecentChanges::class,
-		'Recentchangeslinked' => \SpecialRecentChangesLinked::class,
+		'Recentchanges' => [
+			'class' => \SpecialRecentChanges::class,
+			'services' => [
+				'PermissionManager',
+				'WatchedItemStore',
+				'MessageCache',
+				'DBLoadBalancer',
+				'UserOptionsLookup',
+			]
+		],
+		'Recentchangeslinked' => [
+			'class' => \SpecialRecentChangesLinked::class,
+			'services' => [
+				'PermissionManager',
+				'WatchedItemStore',
+				'MessageCache',
+				'DBLoadBalancer',
+				'UserOptionsLookup',
+			]
+		],
 		'Tags' => [
 			'class' => \SpecialTags::class,
 			'services' => [

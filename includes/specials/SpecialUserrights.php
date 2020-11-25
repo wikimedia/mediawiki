@@ -73,7 +73,7 @@ class UserrightsPage extends SpecialPage {
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
-		// This class is extended and therefore fallback to global state - T263207
+		// This class is extended and therefore falls back to global state - T263207
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
