@@ -503,7 +503,7 @@ if ( $wgPageLanguageUseDB ) {
 }
 
 if ( $wgCookieSecure === 'detect' ) {
-	$wgCookieSecure = $wgForceHTTPS || ( WebRequest::detectProtocol() === 'https' );
+	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
 // Backwards compatibility with old password limits

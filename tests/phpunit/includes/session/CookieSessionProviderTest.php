@@ -27,7 +27,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'SessionName' => false,
 			'CookieExpiration' => 100,
 			'ExtendedLoginCookieExpiration' => 200,
-			'ForceHTTPS' => false,
 		] );
 	}
 
@@ -37,16 +36,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	private function getHookContainer() {
 		// Need a real HookContainer for testPersistSession() which modifies $wgHooks
 		return MediaWikiServices::getInstance()->getHookContainer();
-	}
-
-	/**
-	 * Provider for testing both values of $wgForceHTTPS
-	 */
-	public static function provideForceHTTPS() {
-		return [
-			[ false ],
-			[ true ]
-		];
 	}
 
 	public function testConstructor() {
@@ -416,8 +405,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'Example', $provider->suggestLoginUsername( $request ) );
 	}
 
-	/** @dataProvider provideForceHTTPS */
-	public function testPersistSession( $forceHTTPS ) {
+	public function testPersistSession() {
 		$provider = new CookieSessionProvider( [
 			'priority' => 1,
 			'sessionName' => 'MySessionName',
@@ -425,7 +413,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
 		$config = $this->getConfig();
-		$config->set( 'ForceHTTPS', $forceHTTPS );
 		$hookContainer = $this->getHookContainer();
 		$provider->setLogger( new \TestLogger() );
 		$provider->setConfig( $config );
@@ -434,10 +421,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();
-
-		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => $forceHTTPS ] );
-
 		$user = static::getTestSysop()->getUser();
 		$anon = new User;
 
@@ -472,11 +455,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( null, $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		if ( $forceHTTPS ) {
-			$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
-		} else {
-			$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
-		}
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( [], $backend->getData() );
 
 		// Logged-in user, no remember
@@ -489,11 +468,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( $user->getName(), $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		if ( $forceHTTPS ) {
-			$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
-		} else {
-			$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
-		}
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( [], $backend->getData() );
 
 		// Logged-in user, remember
@@ -507,11 +482,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( $user->getName(), $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( $user->getToken(), $request->response()->getCookie( 'xToken' ) );
-		if ( $forceHTTPS ) {
-			$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
-		} else {
-			$this->assertSame( 'true', $request->response()->getCookie( 'forceHTTPS' ) );
-		}
+		$this->assertSame( 'true', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( [], $backend->getData() );
 	}
 
@@ -519,12 +490,10 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCookieData
 	 * @param bool $secure
 	 * @param bool $remember
-	 * @param bool $forceHTTPS
 	 */
-	public function testCookieData( $secure, $remember, $forceHTTPS ) {
+	public function testCookieData( $secure, $remember ) {
 		$this->setMwGlobals( [
 			'wgSecureLogin' => false,
-			'wgForceHTTPS' => $forceHTTPS,
 		] );
 
 		$provider = new CookieSessionProvider( [
@@ -535,7 +504,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		] );
 		$config = $this->getConfig();
 		$config->set( 'CookieSecure', $secure );
-		$config->set( 'ForceHTTPS', $forceHTTPS );
 		$hookContainer = $this->getHookContainer();
 		$provider->setLogger( new \TestLogger() );
 		$provider->setConfig( $config );
@@ -544,7 +512,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$user = static::getTestSysop()->getUser();
-		$this->assertSame( $user->requiresHTTPS(), $forceHTTPS, 'sanity check' );
+		$this->assertFalse( $user->requiresHTTPS(), 'sanity check' );
 
 		$backend = new SessionBackend(
 			new SessionId( $sessionId ),
@@ -571,7 +539,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'expire' => (int)100,
 			'path' => $config->get( 'CookiePath' ),
 			'domain' => $config->get( 'CookieDomain' ),
-			'secure' => $secure || $forceHTTPS,
+			'secure' => $secure,
 			'httpOnly' => $config->get( 'CookieHttpOnly' ),
 			'raw' => false,
 		];
@@ -595,15 +563,13 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'xToken' => [
 				'value' => $remember ? $user->getToken() : '',
 				'expire' => $remember ? $extendedExpiry : -31536000,
-			] + $defaults
-		];
-		if ( !$forceHTTPS ) {
-			$expect['forceHTTPS'] = [
+			] + $defaults,
+			'forceHTTPS' => [
 				'value' => $secure ? 'true' : '',
 				'secure' => false,
 				'expire' => $secure ? ( $remember ? $defaults['expire'] : 0 ) : -31536000,
-			] + $defaults;
-		}
+			] + $defaults,
+		];
 		foreach ( $expect as $key => $value ) {
 			$actual = $request->response()->getCookieData( $key );
 			if ( $actual && $actual['expire'] > 0 ) {
@@ -615,11 +581,12 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideCookieData() {
-		return \ArrayUtils::cartesianProduct(
-			[ false, true ], // $secure
-			[ false, true ], // $remember
-			[ false, true ] // $forceHTTPS
-		);
+		return [
+			[ false, false ],
+			[ false, true ],
+			[ true, false ],
+			[ true, true ],
+		];
 	}
 
 	protected function getSentRequest() {
@@ -649,9 +616,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider->setConfig( $this->getConfig() );
 		$provider->setManager( SessionManager::singleton() );
 		$provider->setHookContainer( $hookContainer );
-
-		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => false ] );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();

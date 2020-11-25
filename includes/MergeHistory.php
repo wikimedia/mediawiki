@@ -41,7 +41,7 @@ use Wikimedia\Timestamp\TimestampException;
 class MergeHistory {
 
 	/** Maximum number of revisions that can be merged at once */
-	public const REVISION_LIMIT = 5000;
+	const REVISION_LIMIT = 5000;
 
 	/** @var Title Page from which history will be merged */
 	protected $source;

@@ -5,15 +5,12 @@ namespace MediaWiki\User\Hook;
 use User;
 
 /**
- * @deprecated since 1.35
+ * @stable for implementation
  * @ingroup Hooks
  */
 interface UserRequiresHTTPSHook {
 	/**
 	 * This hook is called to determine whether a user needs to be switched to HTTPS.
-	 *
-	 * Deprecated since 1.35 as part of a drive towards deprecation of
-	 * mixed-protocol wikis.
 	 *
 	 * @since 1.35
 	 *

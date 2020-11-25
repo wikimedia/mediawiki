@@ -33,7 +33,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $this->page->exists(), 'Sanity: The created page exists' );
 
-		$this->jobRunner = MediaWikiServices::getInstance()->getJobRunner();
+		$this->jobRunner = new JobRunner();
 		$jobParams = [
 			'namespace' => $this->page->getNamespace(),
 			'title' => $this->page->getDBkey(),
@@ -70,7 +70,10 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteJob() {
-		$results = $this->jobRunner->executeJob( $this->deletePageJob );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$stats = new NullStatsdDataFactory();
+
+		$results = $this->jobRunner->executeJob( $this->deletePageJob, $lbFactory, $stats );
 
 		$this->assertIsInt( $results['timeMs'] );
 		$this->assertTrue( $results['status'] );

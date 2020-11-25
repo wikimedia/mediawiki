@@ -236,12 +236,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   administrators to limit the timeouts used by the HTTP client libraries.
   This only affects callers using HttpRequestFactory and the deprecated
   wrappers in the Http class.
-* $wgCdnMaxageStale — This controls the Cache-Control s-maxage header for page
-  views when PoolCounter lock contention indicates that a stale cache entry
-  should be sent.
-* $wgForceHTTPS — This makes the HTTP to HTTPS redirect be unconditional and
-  suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
-  recommend this be set to true on pure HTTPS wikis.
+* Added $wgCdnMaxageStale, which controls the Cache-Control s-maxage header
+  for page views when PoolCounter lock contention indicates that a stale cache
+  entry should be sent.
 * $wgCookieSameSite — This setting allows login cookies to be sent with
   SameSite=None. This is required for cross-site CentralAuth auto-login after
   Chrome 84.
@@ -784,7 +781,6 @@ because of Phabricator reports.
 * The wfIsHHVM global function, deprecated in 1.34, was removed.
 * GenderCache::doTitlesArray no longer accepts string values in its $titles
   array parameter. Use Title objects (or other LinkTarget) instead.
-* Unused CommentStore::MAX_COMMENT_LENGTH has been removed.
 * User::checkTemporaryPassword() and User::checkPassword(), deprecated in 1.27,
   were removed. Use AuthManager instead.
 * All constants and class functions now have explicit visibility modifiers. This
@@ -1266,11 +1262,6 @@ because of Phabricator reports.
   - ::listRevisionSizes
 * WikiPage::$mLastRevision was changed from protected to private.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
-* The JobRunner class has been converted to a service class.
-  Direct construction is deprecated, use MediaWikiServices::getJobRunner.
-* JobRunner::setLogger has been deprecated, thus using JobRunner as a
-  LoggerAwareInterface is deprecated as well. Rely on the logger passed in the
-  constructor instead.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
@@ -1514,9 +1505,6 @@ because of Phabricator reports.
   deprecated. Use OutputPageBodyAttributes hook instead.
 * Installer::getDBTypes has been hard deprecated in favor of
   InstallerDBSupport::getDatabases
-* The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS were
-  deprecated, as part of a long-term plan to remove support for mixed
-  HTTP/HTTPS wikis.
 * Skin::generateDebugHTML() has been hard deprecated. Call
   MWDebug::getHTMLDebugLog() directly.
 * ExternalStoreDB::getSlave(), soft deprecated in 1.34, was hard deprecated.

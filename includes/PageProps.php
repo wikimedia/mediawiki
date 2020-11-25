@@ -71,8 +71,8 @@ class PageProps {
 	}
 
 	/** Cache parameters */
-	private const CACHE_TTL = 10; // integer; TTL in seconds
-	private const CACHE_SIZE = 100; // integer; max cached pages
+	const CACHE_TTL = 10; // integer; TTL in seconds
+	const CACHE_SIZE = 100; // integer; max cached pages
 
 	/** Property cache */
 	private $cache = null;

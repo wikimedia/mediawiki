@@ -42,7 +42,7 @@ class ActorMigration {
 	 * Constant for extensions to feature-test whether $wgActorTableSchemaMigrationStage
 	 * (in MW <1.34) expects MIGRATION_* or SCHEMA_COMPAT_*
 	 */
-	public const MIGRATION_STAGE_SCHEMA_COMPAT = 1;
+	const MIGRATION_STAGE_SCHEMA_COMPAT = 1;
 
 	/**
 	 * Define fields that use temporary tables for transitional purposes

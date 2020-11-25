@@ -40,15 +40,6 @@ class MWExceptionRenderer {
 	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
 		global $wgMimeType, $wgShowExceptionDetails;
 
-		if ( function_exists( 'apache_setenv' ) ) {
-			// The client should not be blocked on "post-send" updates. If apache decides that
-			// a response should be gzipped, it will wait for PHP to finish since it cannot gzip
-			// anything until it has the full response (even with "Transfer-Encoding: chunked").
-			AtEase\AtEase::suppressWarnings();
-			apache_setenv( 'no-gzip', '1' );
-			AtEase\AtEase::restoreWarnings();
-		}
-
 		if ( defined( 'MW_API' ) ) {
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $e ) );
 		}
@@ -57,19 +48,15 @@ class MWExceptionRenderer {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
-			ob_start();
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 			if ( $e instanceof DBConnectionError ) {
 				self::reportOutageHTML( $e );
 			} else {
 				self::reportHTML( $e );
 			}
-			self::header( "Content-Length: " . ob_get_length() );
-			ob_end_flush();
 		} else {
-			ob_start();
 			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 			if ( $eNew ) {
 				$message = "MediaWiki internal error.\n\n";
 				if ( $wgShowExceptionDetails ) {
@@ -93,9 +80,7 @@ class MWExceptionRenderer {
 			} else {
 				$message = MWExceptionHandler::getPublicLogMessage( $e );
 			}
-			print nl2br( htmlspecialchars( $message ) ) . "\n";
-			self::header( "Content-Length: " . ob_get_length() );
-			ob_end_flush();
+			echo nl2br( htmlspecialchars( $message ) ) . "\n";
 		}
 	}
 

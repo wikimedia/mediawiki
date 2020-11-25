@@ -46,7 +46,7 @@ require __DIR__ . '/includes/WebStart.php';
 wfImageAuthMain();
 
 $mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown();
+$mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap, $wgScriptPath, $wgImgAuthPath;

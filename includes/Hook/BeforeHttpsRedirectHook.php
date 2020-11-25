@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use IContextSource;
 
 /**
- * @deprecated since 1.35
+ * @stable for implementation
  * @ingroup Hooks
  */
 interface BeforeHttpsRedirectHook {

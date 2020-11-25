@@ -28,6 +28,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
+use Liuggio\StatsdClient\Sender\SocketSender;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -36,32 +37,31 @@ use Wikimedia\Rdbms\ILBFactory;
 class MediaWiki {
 	use ProtectedHookAccessorTrait;
 
-	/** @var IContextSource */
+	/**
+	 * @var IContextSource
+	 */
 	private $context;
-	/** @var Config */
+
+	/**
+	 * @var Config
+	 */
 	private $config;
 
-	/** @var string Cache what action this request is */
+	/**
+	 * @var string Cache what action this request is
+	 */
 	private $action;
-	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
-	private $postSendStrategy;
-
-	/** @var int Use fastcgi_finish_request() */
-	private const DEFER_FASTCGI_FINISH_REQUEST = 1;
-	/** @var int Use ob_end_flush() after explicitly setting the Content-Length */
-	private const DEFER_SET_LENGTH_AND_FLUSH = 2;
 
 	/**
 	 * @param IContextSource|null $context
 	 */
 	public function __construct( IContextSource $context = null ) {
-		$this->context = $context ?: RequestContext::getMain();
-		$this->config = $this->context->getConfig();
-		if ( function_exists( 'fastcgi_finish_request' ) ) {
-			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
-		} else {
-			$this->postSendStrategy = self::DEFER_SET_LENGTH_AND_FLUSH;
+		if ( !$context ) {
+			$context = RequestContext::getMain();
 		}
+
+		$this->context = $context;
+		$this->config = $context->getConfig();
 	}
 
 	/**
@@ -561,7 +561,7 @@ class MediaWiki {
 				$context->hasTitle() &&
 				$context->getTitle()->canExist() &&
 				in_array( $action, [ 'view', 'history' ], true ) &&
-				HTMLFileCache::useFileCache( $context, HTMLFileCache::MODE_OUTAGE )
+				HTMLFileCache::useFileCache( $this->context, HTMLFileCache::MODE_OUTAGE )
 			) {
 				// Try to use any (even stale) file during outages...
 				$cache = new HTMLFileCache( $context->getTitle(), $action );
@@ -571,72 +571,23 @@ class MediaWiki {
 					exit;
 				}
 			}
-			// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
-			// ChronologyProtector synchronizes DB positions or replicas across all datacenters.
+
 			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		} catch ( Throwable $e ) {
 			// Type errors and such: at least handle it now and clean up the LBFactory state
 			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 
-		$this->doPostOutputShutdown();
+		$this->doPostOutputShutdown( 'normal' );
 	}
 
-	/**
-	 * Add a comment to future SQL queries for easy SHOW PROCESSLIST interpretation
-	 */
 	private function setDBProfilingAgent() {
 		$services = MediaWikiServices::getInstance();
+		// Add a comment for easy SHOW PROCESSLIST interpretation
 		$name = $this->context->getUser()->getName();
 		$services->getDBLoadBalancerFactory()->setAgentName(
 			mb_strlen( $name ) > 15 ? mb_substr( $name, 0, 15 ) . '...' : $name
 		);
-	}
-
-	/**
-	 * If enabled, after everything specific to this request is done, occasionally run jobs
-	 */
-	private function schedulePostSendJobs() {
-		$jobRunRate = $this->config->get( 'JobRunRate' );
-		if (
-			// Recursion guard
-			$this->getTitle()->isSpecial( 'RunJobs' ) ||
-			// Short circuit if there is nothing to do
-			( $jobRunRate <= 0 || wfReadOnly() ) ||
-			// Avoid blocking the client on stock apache; see doPostOutputShutdown()
-			(
-				$this->context->getRequest()->getMethod() === 'HEAD' ||
-				$this->context->getRequest()->getHeader( 'If-Modified-Since' )
-			)
-		) {
-			return;
-		}
-
-		if ( $jobRunRate < 1 ) {
-			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) > $max * $jobRunRate ) {
-				return; // the higher the job run rate, the less likely we return here
-			}
-			$n = 1;
-		} else {
-			$n = intval( $jobRunRate );
-		}
-
-		// Note that DeferredUpdates will catch and log an errors (T88312)
-		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate( function () use ( $n ) {
-			$logger = LoggerFactory::getInstance( 'runJobs' );
-			if ( $this->config->get( 'RunJobsAsync' ) ) {
-				// Send an HTTP request to the job RPC entry point if possible
-				$invokedWithSuccess = $this->triggerAsyncJobs( $n, $logger );
-				if ( !$invokedWithSuccess ) {
-					// Fall back to blocking on running the job(s)
-					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n );
-				}
-			} else {
-				$this->triggerSyncJobs( $n );
-			}
-		}, __METHOD__ ) );
 	}
 
 	/**
@@ -824,9 +775,10 @@ class MediaWiki {
 	 * This manages deferred updates, job insertion,
 	 * final commit, and the logging of profiling data
 	 *
+	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
-	public function doPostOutputShutdown() {
+	public function doPostOutputShutdown( $mode = 'normal' ) {
 		// Record backend request timing
 		$timing = $this->context->getTiming();
 		$timing->mark( 'requestShutdown' );
@@ -843,10 +795,11 @@ class MediaWiki {
 		// Disable WebResponse setters for post-send processing (T191537).
 		WebResponse::disableForPostSend();
 
+		$blocksHttpClient = true;
 		// Defer everything else if possible...
-		$callback = function () {
+		$callback = function () use ( $mode, &$blocksHttpClient ) {
 			try {
-				$this->restInPeace();
+				$this->restInPeace( $mode, $blocksHttpClient );
 			} catch ( Throwable $e ) {
 				// If this is post-send, then displaying errors can cause broken HTML
 				MWExceptionHandler::rollbackMasterChangesAndLog(
@@ -856,26 +809,26 @@ class MediaWiki {
 			}
 		};
 
-		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
-			fastcgi_finish_request();
-			$callback();
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			register_postsend_function( $callback );
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$blocksHttpClient = false;
 		} else {
-			// Flush PHP and web server output buffers
-			if ( !$this->config->get( 'CommandLineMode' ) ) {
-				AtEase\AtEase::suppressWarnings();
-				if ( ob_get_status() ) {
-					ob_end_flush();
-				}
-				flush();
-				AtEase\AtEase::restoreWarnings();
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+				/** @noinspection PhpUnusedLocalVariableInspection */
+				$blocksHttpClient = false;
+			} else {
+				// Either all DB and deferred updates should happen or none.
+				// The latter should not be cancelled due to client disconnect.
+				ignore_user_abort( true );
 			}
+
 			$callback();
 		}
 	}
 
-	/**
-	 * Determine and send the response headers and body for this web request
-	 */
 	private function main() {
 		global $wgTitle;
 
@@ -913,8 +866,54 @@ class MediaWiki {
 			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		}
 
-		if ( $this->maybeDoHttpsRedirect() ) {
-			return;
+		// If the user has forceHTTPS set to true, or if the user
+		// is in a group requiring HTTPS, or if they have the HTTPS
+		// preference set, redirect them to HTTPS.
+		// Note: Do this after $wgTitle is setup, otherwise the hooks run from
+		// isLoggedIn() will do all sorts of weird stuff.
+		if (
+			$request->getProtocol() == 'http' &&
+			// switch to HTTPS only when supported by the server
+			preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) &&
+			(
+				$request->getSession()->shouldForceHTTPS() ||
+				// Check the cookie manually, for paranoia
+				$request->getCookie( 'forceHTTPS', '' ) ||
+				// check for prefixed version that was used for a time in older MW versions
+				$request->getCookie( 'forceHTTPS' ) ||
+				// Avoid checking the user and groups unless it's enabled.
+				(
+					$this->context->getUser()->isLoggedIn()
+					&& $this->context->getUser()->requiresHTTPS()
+				)
+			)
+		) {
+			$oldUrl = $request->getFullRequestURL();
+			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
+
+			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+			if ( $this->getHookRunner()->onBeforeHttpsRedirect( $this->context, $redirUrl ) ) {
+				if ( $request->wasPosted() ) {
+					// This is weird and we'd hope it almost never happens. This
+					// means that a POST came in via HTTP and policy requires us
+					// redirecting to HTTPS. It's likely such a request is going
+					// to fail due to post data being lost, but let's try anyway
+					// and just log the instance.
+
+					// @todo FIXME: See if we could issue a 307 or 308 here, need
+					// to see how clients (automated & browser) behave when we do
+					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
+				}
+				// Setup dummy Title, otherwise OutputPage::redirect will fail
+				$title = Title::newFromText( 'REDIR', NS_MAIN );
+				$this->context->setTitle( $title );
+				// Since we only do this redir to change proto, always send a vary header
+				$output->addVaryHeader( 'X-Forwarded-Proto' );
+				$output->redirect( $redirUrl );
+				$output->output();
+
+				return;
+			}
 		}
 
 		if ( $title->canExist() && HTMLFileCache::useFileCache( $this->context ) ) {
@@ -950,152 +949,21 @@ class MediaWiki {
 			return $buffer;
 		};
 
-		// Commit any changes in the current transaction round so that:
-		// a) the transaction is not rolled back after success output was already sent
-		// b) error output is not jumbled together with success output in the response
+		// Now commit any transactions, so that unreported errors after
+		// output() don't roll back the whole DB transaction and so that
+		// we avoid having both success and error text in the response
 		$this->doPreOutputCommit( $outputWork );
-		// If needed, push a deferred update to run jobs after the output is send
-		$this->schedulePostSendJobs();
-		// If no exceptions occurred then send the output since it is safe now
-		$this->outputResponsePayload( $outputWork() );
-	}
 
-	/**
-	 * Check if an HTTP->HTTPS redirect should be done. It may still be aborted
-	 * by a hook, so this is not the final word.
-	 *
-	 * @return bool
-	 */
-	private function shouldDoHttpRedirect() {
-		$request = $this->context->getRequest();
-
-		// Don't redirect if we're already on HTTPS
-		if ( $request->getProtocol() !== 'http' ) {
-			return false;
-		}
-
-		$force = $this->config->get( 'ForceHTTPS' );
-
-		// Don't redirect if $wgServer is explicitly HTTP. We test for this here
-		// by checking whether wfExpandUrl() is able to force HTTPS.
-		if ( !preg_match( '#^https://#', wfExpandUrl( $request->getRequestURL(), PROTO_HTTPS ) ) ) {
-			if ( $force ) {
-				throw new RuntimeException( '$wgForceHTTPS is true but the server is not HTTPS' );
-			}
-			return false;
-		}
-
-		// Configured $wgForceHTTPS overrides the remaining conditions
-		if ( $force ) {
-			return true;
-		}
-
-		// Check if HTTPS is required by the session or user preferences
-		return $request->getSession()->shouldForceHTTPS() ||
-			// Check the cookie manually, for paranoia
-			$request->getCookie( 'forceHTTPS', '' ) ||
-			// Avoid checking the user and groups unless it's enabled.
-			(
-				$this->context->getUser()->isLoggedIn()
-				&& $this->context->getUser()->requiresHTTPS()
-			);
-	}
-
-	/**
-	 * If the stars are suitably aligned, do an HTTP->HTTPS redirect
-	 *
-	 * Note: Do this after $wgTitle is setup, otherwise the hooks run from
-	 * isLoggedIn() will do all sorts of weird stuff.
-	 *
-	 * @return bool True if the redirect was done. Handling of the request
-	 *   should be aborted. False if no redirect was done.
-	 */
-	private function maybeDoHttpsRedirect() {
-		if ( !$this->shouldDoHttpRedirect() ) {
-			return false;
-		}
-
-		$request = $this->context->getRequest();
-		$oldUrl = $request->getFullRequestURL();
-		$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
-
-		// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-		if ( !$this->getHookRunner()->onBeforeHttpsRedirect( $this->context, $redirUrl ) ) {
-			return false;
-		}
-
-		if ( $request->wasPosted() ) {
-			// This is weird and we'd hope it almost never happens. This
-			// means that a POST came in via HTTP and policy requires us
-			// redirecting to HTTPS. It's likely such a request is going
-			// to fail due to post data being lost, but let's try anyway
-			// and just log the instance.
-
-			// @todo FIXME: See if we could issue a 307 or 308 here, need
-			// to see how clients (automated & browser) behave when we do
-			wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
-		}
-		// Setup dummy Title, otherwise OutputPage::redirect will fail
-		$title = Title::newFromText( 'REDIR', NS_MAIN );
-		$this->context->setTitle( $title );
-		// Since we only do this redir to change proto, always send a vary header
-		$output = $this->context->getOutput();
-		$output->addVaryHeader( 'X-Forwarded-Proto' );
-		$output->redirect( $redirUrl );
-		$output->output();
-
-		return true;
-	}
-
-	/**
-	 * Set the actual output and attempt to flush it to the client if necessary
-	 *
-	 * No PHP buffers should be active at this point
-	 *
-	 * @param string $content
-	 */
-	private function outputResponsePayload( $content ) {
-		if (
-			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
-			DeferredUpdates::pendingUpdatesCount() &&
-			!headers_sent()
-		) {
-			$response = $this->context->getRequest()->response();
-			// Make the browser indicate the page as "loaded" as soon as it gets all the content
-			$response->header( 'Connection: close' );
-			// The client should not be blocked on "post-send" updates. If apache or ob_* decide
-			// that a response should be gzipped, the entire script will have to finish before
-			// any data can be sent. Disable compression if there are any post-send updates.
-			$response->header( 'Content-Encoding: identity' );
-			AtEase\AtEase::suppressWarnings();
-			ini_set( 'zlib.output_compression', 0 );
-			if ( function_exists( 'apache_setenv' ) ) {
-				apache_setenv( 'no-gzip', '1' );
-			}
-			AtEase\AtEase::restoreWarnings();
-			// Also set the Content-Length so that apache does not block waiting on PHP to finish.
-			// If OutputPage is disabled, then either there is no body (e.g. HTTP 304) and thus no
-			// Content-Length, or it was taken care of already.
-			if ( !$this->context->getOutput()->isDisabled() ) {
-				ob_start();
-				print $content;
-				$response->header( 'Content-Length: ' . ob_get_length() );
-				ob_end_flush();
-			}
-			// @TODO: this still blocks on HEAD responses and 304 responses to GETs
-		} else {
-			print $content;
-		}
+		// Now send the actual output
+		print $outputWork();
 	}
 
 	/**
 	 * Ends this task peacefully
+	 * @param string $mode Use 'fast' to always skip job running
+	 * @param bool $blocksHttpClient Whether this blocks an HTTP response to a client
 	 */
-	public function restInPeace() {
-		// Either all DB and deferred updates should happen or none.
-		// The latter should not be cancelled due to client disconnect.
-		ignore_user_abort( true );
-
+	public function restInPeace( $mode = 'fast', $blocksHttpClient = true ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
 		$lbFactory->commitMasterChanges( __METHOD__ );
@@ -1110,7 +978,13 @@ class MediaWiki {
 		);
 
 		// Do any deferred jobs; preferring to run them now if a client will not wait on them
-		DeferredUpdates::doUpdates( 'run' );
+		DeferredUpdates::doUpdates( $blocksHttpClient ? 'enqueue' : 'run' );
+
+		// Now that everything specific to this request is done,
+		// try to occasionally run jobs (if enabled) from the queues
+		if ( $mode === 'normal' ) {
+			$this->triggerJobs();
+		}
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
@@ -1154,7 +1028,6 @@ class MediaWiki {
 	 * Potentially open a socket and sent an HTTP request back to the server
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
-	 * @deprecated Since 1.34
 	 */
 	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
@@ -1183,10 +1056,10 @@ class MediaWiki {
 				if ( !$invokedWithSuccess ) {
 					// Fall back to blocking on running the job(s)
 					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n );
+					$this->triggerSyncJobs( $n, $logger );
 				}
 			} else {
-				$this->triggerSyncJobs( $n );
+				$this->triggerSyncJobs( $n, $logger );
 			}
 		} catch ( JobQueueError $e ) {
 			// Do not make the site unavailable (T88312)
@@ -1196,12 +1069,13 @@ class MediaWiki {
 
 	/**
 	 * @param int $n Number of jobs to try to run
+	 * @param LoggerInterface $runJobsLogger
 	 */
-	private function triggerSyncJobs( $n ) {
+	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$old = $trxProfiler->setSilenced( true );
 		try {
-			$runner = MediaWikiServices::getInstance()->getJobRunner();
+			$runner = new JobRunner( $runJobsLogger );
 			$runner->run( [ 'maxJobs' => $n ] );
 		} finally {
 			$trxProfiler->setSilenced( $old );

@@ -682,10 +682,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->domainAliases = $aliases;
 	}
 
-	public function getTransactionProfiler(): TransactionProfiler {
-		return $this->trxProfiler;
-	}
-
 	public function setLocalDomainPrefix( $prefix ) {
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),

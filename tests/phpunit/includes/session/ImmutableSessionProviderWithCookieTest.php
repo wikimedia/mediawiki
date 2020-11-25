@@ -13,10 +13,9 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
 
-	private function getProvider( $name, $prefix = null, $forceHTTPS = false ) {
+	private function getProvider( $name, $prefix = null ) {
 		$config = new \HashConfig();
 		$config->set( 'CookiePrefix', 'wgCookiePrefix' );
-		$config->set( 'ForceHTTPS', $forceHTTPS );
 
 		$params = [
 			'sessionCookieName' => $name,
@@ -179,16 +178,14 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	 * @dataProvider providePersistSession
 	 * @param bool $secure
 	 * @param bool $remember
-	 * @param bool $forceHTTPS
 	 */
-	public function testPersistSession( $secure, $remember, $forceHTTPS ) {
+	public function testPersistSession( $secure, $remember ) {
 		$this->setMwGlobals( [
 			'wgCookieExpiration' => 100,
 			'wgSecureLogin' => false,
-			'wgForceHTTPS' => $forceHTTPS,
 		] );
 
-		$provider = $this->getProvider( 'session', null, $forceHTTPS );
+		$provider = $this->getProvider( 'session' );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$priv->sessionCookieOptions = [
@@ -201,7 +198,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$user = User::newFromName( 'UTSysop' );
-		$this->assertSame( $forceHTTPS, $user->requiresHTTPS(), 'sanity check' );
+		$this->assertFalse( $user->requiresHTTPS(), 'sanity check' );
 
 		$backend = new SessionBackend(
 			new SessionId( $sessionId ),
@@ -244,13 +241,13 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			'expire' => null,
 			'path' => 'CookiePath',
 			'domain' => 'CookieDomain',
-			'secure' => $secure || $forceHTTPS,
+			'secure' => $secure,
 			'httpOnly' => true,
 			'raw' => false,
 		], $cookie );
 
 		$cookie = $request->response()->getCookieData( 'forceHTTPS' );
-		if ( $secure && !$forceHTTPS ) {
+		if ( $secure ) {
 			$this->assertIsArray( $cookie );
 			if ( isset( $cookie['expire'] ) && $cookie['expire'] > 0 ) {
 				// Round expiry so we don't randomly fail if the seconds ticked during the test.
@@ -276,11 +273,12 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	}
 
 	public static function providePersistSession() {
-		return \ArrayUtils::cartesianProduct(
-			[ false, true ], // $secure
-			[ false, true ], // $remember
-			[ false, true ] // $forceHTTPS
-		);
+		return [
+			[ false, false ],
+			[ false, true ],
+			[ true, false ],
+			[ true, true ],
+		];
 	}
 
 	public function testUnpersistSession() {

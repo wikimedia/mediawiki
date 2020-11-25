@@ -48,14 +48,14 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * commonly used titles. On a batch operation this can become a memory leak
 	 * if not bounded. After hitting this many titles reset the cache.
 	 */
-	private const CACHE_MAX = 1000;
+	const CACHE_MAX = 1000;
 
 	/**
 	 * Used to be GAID_FOR_UPDATE define(). Used with getArticleID() and friends
 	 * to use the master DB and inject it into link cache.
 	 * @deprecated since 1.34, use Title::READ_LATEST instead.
 	 */
-	public const GAID_FOR_UPDATE = 512;
+	const GAID_FOR_UPDATE = 512;
 
 	/**
 	 * Flag for use with factory methods like newFromLinkTarget() that have
@@ -64,7 +64,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @since 1.33
 	 */
-	public const NEW_CLONE = 'clone';
+	const NEW_CLONE = 'clone';
 
 	/**
 	 * @name Private member variables

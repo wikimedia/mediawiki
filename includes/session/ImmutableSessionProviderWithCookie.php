@@ -126,11 +126,8 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 		$options = $this->sessionCookieOptions;
 		if ( $session->shouldForceHTTPS() || $session->getUser()->requiresHTTPS() ) {
-			// Send a cookie unless $wgForceHTTPS is set (T256095)
-			if ( !$this->config->get( 'ForceHTTPS' ) ) {
-				$response->setCookie( 'forceHTTPS', 'true', null,
-					[ 'prefix' => '', 'secure' => false ] + $options );
-			}
+			$response->setCookie( 'forceHTTPS', 'true', null,
+				[ 'prefix' => '', 'secure' => false ] + $options );
 			$options['secure'] = true;
 		}
 

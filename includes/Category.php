@@ -41,10 +41,10 @@ class Category {
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */
 	private $mPages = null, $mSubcats = null, $mFiles = null;
 
-	protected const LOAD_ONLY = 0;
-	protected const LAZY_INIT_ROW = 1;
+	const LOAD_ONLY = 0;
+	const LAZY_INIT_ROW = 1;
 
-	public const ROW_COUNT_SMALL = 100;
+	const ROW_COUNT_SMALL = 100;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;

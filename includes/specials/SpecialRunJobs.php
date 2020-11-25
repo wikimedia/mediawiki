@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Special page designed for running background tasks (internal use only)
@@ -108,7 +108,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	}
 
 	protected function doRun( array $params ) {
-		$runner = MediaWikiServices::getInstance()->getJobRunner();
+		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
 		return $runner->run( [
 			'type'     => $params['type'],
 			'maxJobs'  => $params['maxjobs'] ?: 1,

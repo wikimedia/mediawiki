@@ -2878,13 +2878,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		global $wgForceHTTPS, $wgSecureLogin;
-		if ( $wgForceHTTPS ) {
-			return true;
-		}
+		global $wgSecureLogin;
 		if ( !$wgSecureLogin ) {
 			return false;
 		}
+
 		$https = $this->getBoolOption( 'prefershttps' );
 		$this->getHookRunner()->onUserRequiresHTTPS( $this, $https );
 		if ( $https ) {

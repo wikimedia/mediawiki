@@ -39,8 +39,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 	</rule>
 	<!-- TODO Still to be done -->
-	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
-		<exclude-pattern>includes/</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">

@@ -168,6 +168,6 @@ class EntryPoint {
 		}
 
 		$mw = new MediaWiki;
-		$mw->doPostOutputShutdown();
+		$mw->doPostOutputShutdown( 'fast' );
 	}
 }

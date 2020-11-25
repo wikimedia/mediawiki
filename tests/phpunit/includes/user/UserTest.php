@@ -2569,19 +2569,16 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testRequiresHTTPS( $preference, $hook1, $hook2, bool $expected ) {
 		$this->setMwGlobals( [
 			'wgSecureLogin' => true,
-			'wgForceHTTPS' => false,
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
 		$user->setOption( 'prefershttps', $preference );
 		$user->saveSettings();
 
-		$this->filterDeprecated( '/UserRequiresHTTPS hook/' );
 		$this->setTemporaryHook( 'UserRequiresHTTPS', function ( $user, &$https ) use ( $hook1 ) {
 			$https = $hook1;
 			return false;
 		} );
-		$this->filterDeprecated( '/CanIPUseHTTPS hook/' );
 		$this->setTemporaryHook( 'CanIPUseHTTPS', function ( $ip, &$canDo ) use ( $hook2 ) {
 			if ( $hook2 === 'notcalled' ) {
 				$this->fail( 'CanIPUseHTTPS hook should not have been called' );
@@ -2611,7 +2608,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testRequiresHTTPS_disabled() {
 		$this->setMwGlobals( [
 			'wgSecureLogin' => false,
-			'wgForceHTTPS' => false,
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
@@ -2622,26 +2618,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse(
 			$user->requiresHTTPS(),
 			'User preference ignored if wgSecureLogin  is false'
-		);
-	}
-
-	/**
-	 * @covers User::requiresHTTPS
-	 */
-	public function testRequiresHTTPS_forced() {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => true,
-			'wgForceHTTPS' => true,
-		] );
-
-		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
-		$user->setOption( 'prefershttps', false );
-		$user->saveSettings();
-
-		$user = User::newFromName( $user->getName() );
-		$this->assertTrue(
-			$user->requiresHTTPS(),
-			'User preference ignored if wgForceHTTPS is true'
 		);
 	}
 

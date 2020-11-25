@@ -37,8 +37,8 @@ class Linker {
 	/**
 	 * Flags for userToolLinks()
 	 */
-	public const TOOL_LINKS_NOBLOCK = 1;
-	public const TOOL_LINKS_EMAIL = 2;
+	const TOOL_LINKS_NOBLOCK = 1;
+	const TOOL_LINKS_EMAIL = 2;
 
 	/**
 	 * This function returns an HTML link to the given target.  It serves a few

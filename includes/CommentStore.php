@@ -32,16 +32,23 @@ class CommentStore {
 
 	/**
 	 * Maximum length of a comment in UTF-8 characters. Longer comments will be truncated.
-	 * @note This must be at least 255 and not greater than floor( MAX_DATA_LENGTH / 4 ).
+	 * @note This must be at least 255 and not greater than floor( MAX_COMMENT_LENGTH / 4 ).
 	 */
-	public const COMMENT_CHARACTER_LIMIT = 500;
+	const COMMENT_CHARACTER_LIMIT = 500;
+
+	/**
+	 * Maximum length of a comment in bytes. Longer comments will be truncated.
+	 * @note This value is determined by the size of the underlying database field,
+	 *  currently BLOB in MySQL/MariaDB.
+	 */
+	const MAX_COMMENT_LENGTH = 65535;
 
 	/**
 	 * Maximum length of serialized data in bytes. Longer data will result in an exception.
 	 * @note This value is determined by the size of the underlying database field,
 	 *  currently BLOB in MySQL/MariaDB.
 	 */
-	public const MAX_DATA_LENGTH = 65535;
+	const MAX_DATA_LENGTH = 65535;
 
 	/**
 	 * Define fields that use temporary tables for transitional purposes

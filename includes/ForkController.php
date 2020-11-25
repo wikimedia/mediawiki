@@ -51,7 +51,7 @@ class ForkController {
 	 * Pass this flag to __construct() to cause the class to automatically restart
 	 * workers that exit with non-zero exit status or a signal such as SIGSEGV.
 	 */
-	private const RESTART_ON_ERROR = 1;
+	const RESTART_ON_ERROR = 1;
 
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( !wfIsCLI() ) {

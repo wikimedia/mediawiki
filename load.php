@@ -35,23 +35,17 @@ define( 'MW_ENTRY_POINT', 'load' );
 
 require __DIR__ . '/includes/WebStart.php';
 
-wfLoadMain();
+// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
+// writes when getting database connections for ResourceLoader. (T192611)
+MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->disableChronologyProtection();
 
-function wfLoadMain() {
-	global $wgRequest;
+$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
+$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
 
-	// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
-	// writes when getting database connections for ResourceLoader. (T192611)
-	MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->disableChronologyProtection();
+// Respond to ResourceLoader request
+$resourceLoader->respond( $context );
 
-	$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
-	$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+Profiler::instance()->setAllowOutput();
 
-	// Respond to ResourceLoader request
-	$resourceLoader->respond( $context );
-
-	Profiler::instance()->setAllowOutput();
-
-	$mediawiki = new MediaWiki();
-	$mediawiki->doPostOutputShutdown();
-}
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );
