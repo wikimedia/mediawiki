@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -33,17 +34,23 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialMIMESearch extends QueryPage {
 	protected $major, $minor, $mime;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'MIMEsearch' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isExpensive() {
@@ -200,7 +207,7 @@ class SpecialMIMESearch extends QueryPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 
-		$text = $this->getLanguageConverter()->convertHtml( $nt->getText() );
+		$text = $this->languageConverter->convertHtml( $nt->getText() );
 		$plink = $linkRenderer->makeLink(
 			Title::newFromText( $nt->getPrefixedText() ),
 			new HtmlArmor( $text )

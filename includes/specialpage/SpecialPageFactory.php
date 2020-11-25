@@ -79,6 +79,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'DoubleRedirects' => [
@@ -105,6 +106,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Lonelypages' => [
@@ -113,6 +115,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Fewestrevisions' => [
@@ -122,6 +125,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Withoutinterwiki' => [
@@ -130,6 +134,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Protectedpages' => [
@@ -166,6 +171,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Uncategorizedimages' => [
@@ -181,6 +187,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Uncategorizedtemplates' => [
@@ -190,6 +197,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Unusedcategories' => [
@@ -216,6 +224,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancer',
+				'LanguageConverterFactory',
 			]
 		],
 		'Wantedcategories' => [
@@ -223,6 +232,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Wantedfiles' => [
@@ -443,6 +453,7 @@ class SpecialPageFactory {
 			'services' => [
 				'NamespaceInfo',
 				'UserGroupManager',
+				'LanguageConverterFactory',
 			]
 		],
 		'Listgrants' => [
@@ -591,6 +602,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'FileDuplicateSearch' => [
@@ -600,6 +612,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'SearchEngineFactory',
 				'DBLoadBalancer',
+				'LanguageConverterFactory',
 			]
 		],
 		'Upload' => [
@@ -704,12 +717,14 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 		'Mostimages' => [
 			'class' => \MostimagesPage::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LanguageConverterFactory',
 			]
 		],
 		'Mostinterwikis' => [
@@ -749,6 +764,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LanguageConverterFactory',
 			]
 		],
 

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -37,20 +38,26 @@ class SpecialFewestRevisions extends QueryPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Fewestrevisions' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isExpensive() {
@@ -104,7 +111,7 @@ class SpecialFewestRevisions extends QueryPage {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 
-		$text = $this->getLanguageConverter()->convertHtml( $nt->getPrefixedText() );
+		$text = $this->languageConverter->convertHtml( $nt->getPrefixedText() );
 		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();

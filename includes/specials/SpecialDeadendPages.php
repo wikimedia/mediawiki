@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -38,16 +39,19 @@ class SpecialDeadendPages extends PageQueryPage {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Deadendpages' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
 	}
 
 	protected function getPageHeader() {
