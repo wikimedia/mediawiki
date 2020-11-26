@@ -33,7 +33,7 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 	 * Overrides SerializationTestTrait::getClassToTest
 	 * @return string
 	 */
-	protected function getClassToTest() {
+	protected function getClassToTest(): string {
 		return CacheTime::class;
 	}
 
