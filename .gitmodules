@@ -1033,7 +1033,7 @@
 [submodule "extensions/LinkTitles"]
 	path = extensions/LinkTitles
 	url = https://github.com/bovender/LinkTitles
-	branch = master
+	branch = develop
 	ignore = dirty
 [submodule "extensions/TemplateWizard"]
 	path = extensions/TemplateWizard
