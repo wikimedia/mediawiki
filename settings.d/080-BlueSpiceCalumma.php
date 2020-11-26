@@ -3,9 +3,9 @@ wfLoadSkin( 'BlueSpiceCalumma' );
 $GLOBALS['wgSkipSkins'] = [ 'chameleon' ];
 $GLOBALS['wgDefaultSkin'] = "bluespicecalumma";
 
-global $wgLogo, $wgResourceBasePath, $wgScriptPath;
-if ( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
-	$wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+if ( $GLOBALS['wgLogos']['1x'] == $GLOBALS['wgResourceBasePath'] . '/resources/assets/wiki.png' ){
+	$GLOBALS['wgLogos'] = [ '1x' => $GLOBALS['wgResourceBasePath']
+		. '/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png' ];
 }
 
 if ( $wgFavicon == '/favicon.ico' ){
@@ -27,13 +27,14 @@ $GLOBALS['wgFooterIcons']['poweredby']['mediawiki'] += [
  */
 $GLOBALS['wgFooterIcons']['poweredby'] += [
 	'bluespice' => [
-		"src" => $wgScriptPath . "/skins/BlueSpiceCalumma/resources/images/common/footer/BlueSpice.png",
-		"url" => "http://bluespice.com",
+		'src' => $wgScriptPath . '/skins/BlueSpiceCalumma/resources/images/common/footer/BlueSpice.png',
+		'url' => 'http://bluespice.com',
+		'alt' => 'Powered by BlueSpice',
 		'height' => '27',
 		'width' => '149'
 	],
 	'semanticmediawiki' => [
-		'src' => $wgScriptPath . "/skins/BlueSpiceCalumma/resources/images/common/footer/SemanticMediaWiki.png",
+		'src' => $wgScriptPath . '/skins/BlueSpiceCalumma/resources/images/common/footer/SemanticMediaWiki.png',
 		'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
 		'alt' => 'Powered by Semantic MediaWiki',
 		'height' => '27',
