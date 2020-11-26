@@ -90,8 +90,16 @@ class GenerateSchemaSql extends Maintenance {
 		if ( $platform === 'postgres' ) {
 			// Remove table prefixes from Postgres schema, people should not set it
 			// but better safe than sorry.
-			$sql = str_replace( "\n  /*_*/\n  ", ' ', $sql );
 			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
+
+			// FIXME: Also fix a lot of weird formatting issues caused by
+			// presence of partial index's WHERE clause, this should probably
+			// be done in some better way, but for now this can work temporaily
+			$sql = str_replace(
+				[ "WHERE\n ", "\n  /*_*/\n  ", "    ", "  );", "KEY(\n  " ],
+				[ "WHERE", ' ', "  ", ');', "KEY(\n    " ],
+				$sql
+			);
 
 			// MySQL goes with varbinary for collation reasons, but postgres can't
 			// properly understand BYTEA type and works just fine with TEXT type
