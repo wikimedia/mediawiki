@@ -204,6 +204,26 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $data );
 	}
 
+	public function testConsecutiveRequests() {
+		$responses = [
+			$this->makeFakeHttpRequest( 'a' ),
+			$this->makeFakeHttpRequest( 'b' ),
+		];
+		$this->installMockHttp( $responses );
+		$clientFactory = $this->getServiceContainer()->getHttpRequestFactory();
+		$this->assertSame( 'a', $clientFactory->get( 'http://example.com' ) );
+		$this->assertSame( 'b', $clientFactory->get( 'http://example.com' ) );
+		try {
+			$clientFactory->get( 'http://example.com' );
+			$pass = false;
+		} catch ( Error $ex ) {
+			$pass = true;
+			$this->assertSame( 'Call to a member function execute() on null', $ex->getMessage() );
+		}
+
+		$this->assertTrue( $pass, 'Can not consume more requests as defined.' );
+	}
+
 	/**
 	 * @dataProvider provideMultiRequestData
 	 */
