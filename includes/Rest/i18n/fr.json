@@ -18,6 +18,7 @@
 	"rest-permission-denied-anon": "Non accessible par un utilisateur anonyme",
 	"rest-permission-denied-title": "L’utilisateur n’a pas le droit de lire le titre ($1)",
 	"rest-permission-denied-revision": "L’utilisateur n’a pas accès à la version demandée ($1).",
+	"rest-resource-limit-exceeded": "Limites de ressources dépassées lors du traitement de la requête.",
 	"rest-pagehistory-incompatible-params": "Les paramètres « older_than » et « newer_than » ne peuvent pas être spécifiés simultanément",
 	"rest-pagehistory-param-range-error": "L’ID de version doit être supérieur à 0",
 	"rest-pagehistory-timestamp-error": "Impossible de récupérer l’horodatage de la version spécifiée ($1)",

@@ -1014,7 +1014,7 @@
 	"mergehistory-go": "統合できる版を表示",
 	"mergehistory-submit": "版を統合",
 	"mergehistory-empty": "統合できる版がありません。",
-	"mergehistory-done": "$1の $4 {{PLURAL:$4|版}}は[[:$2]]に統合されました。",
+	"mergehistory-done": "$1の $4 {{PLURAL:$4|版}}は[[:$2]]に統合{{PLURAL:$4|されました}}。\n$3。",
 	"mergehistory-fail": "履歴の統合を実行できません。ページと時刻の引数を再確認してください。",
 	"mergehistory-fail-bad-timestamp": "タイムスタンプが無効です。",
 	"mergehistory-fail-invalid-source": "統合元のページが無効です。",

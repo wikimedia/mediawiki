@@ -801,7 +801,7 @@
 	"permissionserrorstext-withaction": "Du har inte behörighet att $2, av följande {{PLURAL:$1|anledning|anledningar}}:",
 	"contentmodelediterror": "Du kan inte redigera den här sidversionen eftersom dess innehållsmodell är <code>$1</code> som skiljer sig från sidans aktuella innehållsmodell <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Varning: Du återskapar en sida som tidigare raderats.'''\n\nDu bör överväga om det är lämpligt att fortsätta redigera den här sidan.\nRaderings- och sidflyttningsloggen för den här sidan visas här som hjälp:",
-	"moveddeleted-notice": "Den här sidan har raderats.\nRaderings-, skydd- och sidflyttningsloggen för sidan visas nedan som referens.",
+	"moveddeleted-notice": "Den här sidan finns inte.\nRaderings-, skydd- och sidflyttningsloggen för sidan visas nedan som referens.",
 	"moveddeleted-notice-recent": "Tyvärr, denna sida raderades nyligen (inom de senaste 24 timmarna).\nLoggen för radering, skydd och flyttning av sidan visas nedan som referens.",
 	"log-fulllog": "Visa fullständig logg",
 	"edit-hook-aborted": "Redigering avbruten av hook.\nDen gav ingen förklaring.",

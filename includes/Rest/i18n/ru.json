@@ -18,6 +18,7 @@
 	"rest-permission-denied-anon": "Не доступно анонимному участнику",
 	"rest-permission-denied-title": "Участник не обладает правами чтения заголовка ($1)",
 	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1).",
+	"rest-resource-limit-exceeded": "Превышены лимиты ресурсов при обработке запроса.",
 	"rest-pagehistory-incompatible-params": "Параметры «older_than» и «newer_than» нельзя указывать одновременно",
 	"rest-pagehistory-param-range-error": "Идентификатор версии должен быть больше 0",
 	"rest-pagehistory-timestamp-error": "Не удалось получить временную отметку для указанной версии ($1)",

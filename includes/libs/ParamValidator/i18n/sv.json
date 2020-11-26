@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga",
+			"WikiPhoenix"
+		]
+	},
+	"paramvalidator-badbool": "\"$2\" är ett ogiltigt värde för booleska parametern \"$1\". Ange $3 för true eller $5 för false.",
+	"paramvalidator-badexpiry": "Ogiltigt värde \"$2\" för utgångsparametern \"$1\".",
+	"paramvalidator-badexpiry-duration": "Det givna värdet \"$2\" för parametern <var>$1</var> överskrider gränsen för \"$3\".",
+	"paramvalidator-badexpiry-duration-max": "Det givna värdet \"$2\" för parametern <var>$1</var> överskrider gränsen för \"$3\". Använd det hösta tillåtna istället.",
+	"paramvalidator-badexpiry-past": "Värdet \"$2\" för utgångsparametern \"$1\" är i dåtiden",
+	"paramvalidator-badfloat": "Ogiltigt värde \"$2\" för float-parametern \"$1\".",
+	"paramvalidator-badfloat-notfinite": "Värdet \"$2\" för float-parametern \"$1\" är för stor eller är inte ett nummer.",
+	"paramvalidator-badinteger": "Ogiltigt färde \"$2\" för heltalsparametern \"$1\".",
+	"paramvalidator-badtimestamp": "Ogiltigt värde \"$2\" för tidstämpelsparametern \"$1\".",
+	"paramvalidator-badupload-cantwrite": "Filen för \"$1\" kunde inte lagras för bearbetning på grund av en felkonfigurering i servern (skrivning misslyckades).",
+	"paramvalidator-badupload-formsize": "Den uppladdade filen för \"$1\" överskriver det av klienten angivna högsta tillåtna.",
+	"paramvalidator-badupload-inisize": "Den uppladdade filen för \"$1\" överskrider serverns hösta tillåtna för $3.",
+	"paramvalidator-badupload-nofile": "Ingen fil angavs för uppladdningsparametern \"$1\".",
+	"paramvalidator-help-required": "Den här parametern är obligatorisk.",
+	"paramvalidator-help-type-expiry": "Typ: {{PLURAL:$1|1=utgångstid|2=lista över utgångstider}}.\n\nKan relatera till (t.ex. <kbd>5 månader</kbd> eller <kbd>2 veckor</kbd>) eller absolut (t.ex. <kbd>2014-09-18T12:34:56Z</kbd>). För ingen utgångstid, använd $2.",
+	"paramvalidator-help-type-presenceboolean": "Typ: boolesk",
+	"paramvalidator-help-type-string-maxbytes": "Kan inte vara längre än $1 {{PLURAL:$1|byte}}.",
+	"paramvalidator-help-type-string-maxchars": "Kan inte vara längre än $1 {{PLURAL:$1|tecken}}.",
+	"paramvalidator-help-type-timestamp": "Typ: {{PLURAL:$1|1=tidsstämpel|2=lista över tidsstämplar}}"
+}

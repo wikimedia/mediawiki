@@ -15,6 +15,7 @@
 	"rest-permission-denied-anon": "Недостапно за анонимен корисник",
 	"rest-permission-denied-title": "Корисникот нема право да го чита насловот ($1)",
 	"rest-permission-denied-revision": "Корисникот нема пристап до побараната преработка ($1).",
+	"rest-resource-limit-exceeded": "Ресурсните граници беа надминати при обработката на барањето.",
 	"rest-pagehistory-incompatible-params": "Не може да бидат укажани параметрите „older_than“ и „newer_than“ истовремено",
 	"rest-pagehistory-param-range-error": "Назнаката на преработката мора да биде поголема од 0",
 	"rest-pagehistory-timestamp-error": "Не можев да ги добијам времето и датумот за дадената преработка ($1)",

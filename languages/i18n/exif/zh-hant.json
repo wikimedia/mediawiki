@@ -367,5 +367,18 @@
 	"exif-urgency-normal": "正常 ($1)",
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
-	"exif-urgency-other": "使用者自訂優先權 ($1)"
+	"exif-urgency-other": "使用者自訂優先權 ($1)",
+	"exif-firstphotodate": "首次攝影日期",
+	"exif-lastphotodate": "最後攝影日期",
+	"exif-projectiontype": "投影類型",
+	"exif-projectiontype-equirectangular": "等距長方",
+	"exif-usepanoramaviewer": "使用環景檢視",
+	"exif-usepanoramaviewer-true": "是",
+	"exif-usepanoramaviewer-false": "否",
+	"exif-exposurelockused": "使用曝光鎖定",
+	"exif-exposurelockused-true": "是",
+	"exif-exposurelockused-false": "否",
+	"exif-fullpanowidthpixels": "環景全寬",
+	"exif-fullpanoheightpixels": "環景全高",
+	"exif-initialcameradolly": "初始攝影台車"
 }

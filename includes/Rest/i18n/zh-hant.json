@@ -16,6 +16,7 @@
 	"rest-permission-denied-anon": "不可被匿名使用者存取",
 	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
 	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂（$1）",
+	"rest-resource-limit-exceeded": "資源限制超出處理請求的範圍。",
 	"rest-pagehistory-incompatible-params": "參數「older_than」與「newer_than」不可同時指定",
 	"rest-pagehistory-param-range-error": "修訂 ID 需大於 0",
 	"rest-pagehistory-timestamp-error": "指定的修訂（$1）無法取得時間戳記",
