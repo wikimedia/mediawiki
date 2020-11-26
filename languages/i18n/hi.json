@@ -3108,6 +3108,7 @@
 	"mcrundo-parse-failed": "नये अवतरण की व्याख्या असफल रही: $1",
 	"semicolon-separator": ";",
 	"quotation-marks": "\"$1\"",
+	"formatnum-nan": "ये एक संख्या नहीं है।",
 	"imgmultipageprev": "← पिछला पृष्ठ",
 	"imgmultipagenext": "अगला पृष्ठ →",
 	"imgmultigo": "जायें!",
