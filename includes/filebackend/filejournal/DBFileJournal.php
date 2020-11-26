@@ -31,8 +31,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.20
  */
 class DBFileJournal extends FileJournal {
-	/** @var IDatabase */
-	protected $dbw;
 	/** @var string */
 	protected $domain;
 
@@ -185,13 +183,8 @@ class DBFileJournal extends FileJournal {
 	 * @throws DBError
 	 */
 	protected function getMasterDB() {
-		if ( !$this->dbw ) {
-			// Get a separate connection in autocommit mode
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
-			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->domain );
-			$this->dbw->clearFlag( DBO_TRX );
-		}
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
-		return $this->dbw;
+		return $lb->getConnectionRef( DB_MASTER, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT );
 	}
 }
