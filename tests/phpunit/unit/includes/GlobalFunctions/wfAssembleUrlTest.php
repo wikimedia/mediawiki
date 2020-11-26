@@ -107,6 +107,22 @@ class WfAssembleUrlTest extends MediaWikiUnitTestCase {
 			$complexURL,
 		];
 
+		// Account for parse_url() on PHP >= 8 returning an empty query field
+		// for URLs ending with '?' such as "http://url.with.empty.query/foo?"
+		// (T268852)
+		$urlWithEmptyQuery = [
+			'scheme' => 'http',
+			'delimiter' => '://',
+			'host' => 'url.with.empty.query',
+			'path' => '/foo',
+			'query' => '',
+		];
+
+		$cases[] = [
+			$urlWithEmptyQuery,
+			'http://url.with.empty.query/foo'
+		];
+
 		return $cases;
 	}
 }
