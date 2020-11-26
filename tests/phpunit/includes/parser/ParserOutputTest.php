@@ -31,7 +31,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * Overrides SerializationTestTrait::getClassToTest
 	 * @return string
 	 */
-	protected function getClassToTest() {
+	protected function getClassToTest(): string {
 		return ParserOutput::class;
 	}
 
