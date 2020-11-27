@@ -166,11 +166,11 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		], __METHOD__ );
 
 		$rev = new MutableRevisionRecord( $page->getTitle() );
-		$rev->setTimestamp( '20180101000000' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( 'test' ) );
-		$rev->setUser( $this->getTestUser()->getUser() );
-		$rev->setContent( 'main', new WikitextContent( 'Text' ) );
-		$rev->setPageId( $page->getId() );
+		$rev->setTimestamp( '20180101000000' )
+			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
+			->setUser( $this->getTestUser()->getUser() )
+			->setContent( 'main', new WikitextContent( 'Text' ) )
+			->setPageId( $page->getId() );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, $this->db );
