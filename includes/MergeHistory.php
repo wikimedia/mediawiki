@@ -472,14 +472,14 @@ class MergeHistory {
 		// If the content model does not supports redirect, this content will aid
 		// proper deletion of the page below.
 		$comment = CommentStoreComment::newUnsavedComment( $reason );
-		$newRevRecord = new MutableRevisionRecord( $this->source );
-		$newRevRecord->setContent( SlotRecord::MAIN, $newContent );
-		$newRevRecord->setPageId( $this->source->getArticleID() );
-		$newRevRecord->setComment( $comment );
-		$newRevRecord->setUser( $user );
-		$newRevRecord->setTimestamp( wfTimestampNow() );
+		$revRecord = new MutableRevisionRecord( $this->source );
+		$revRecord->setContent( SlotRecord::MAIN, $newContent )
+			->setPageId( $this->source->getArticleID() )
+			->setComment( $comment )
+			->setUser( $user )
+			->setTimestamp( wfTimestampNow() );
 
-		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $newRevRecord, $this->dbw );
+		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $revRecord, $this->dbw );
 
 		$newPage = $this->wikiPageFactory->newFromTitle( $this->source );
 		$newPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
