@@ -3189,7 +3189,7 @@
 	"scarytranscludetoolong": "[כתובת ה־URL ארוכה מדי]",
 	"deletedwhileediting": "<strong>אזהרה:</strong> דף זה נמחק לאחר שהתחלת לערוך!",
 	"confirmrecreate": "ה{{GENDER:$1|משתמש|משתמשת}} [[User:$1|$1]] ([[User talk:$1|שיחה]]) {{GENDER:$1|מחק|מחקה}} את הדף הזה לאחר שהתחלת לערוך אותו, מהסיבה הבאה:\n: <em>$2</em>\nיש לאשר שאכן ברצונך ליצור מחדש את הדף.",
-	"confirmrecreate-noreason": "ה{{GENDER:$1|משתמש|משתמשת}} [[User:$1|$1]] ([[User talk:$1|שיחה]]) {{GENDER:$1|מחק|מחקה}} את הדף הזה לאחר שהתחלת לערוך אותו. יש לאשר שאכן ברצונך ליצור מחדש את הדף.",
+	"confirmrecreate-noreason": "{{GENDER:$1|המשתמש|המשתמשת}} [[User:$1|$1]] ([[User talk:$1|שיחה]]) {{GENDER:$1|מחק|מחקה}} את הדף הזה לאחר שהתחלת לערוך אותו. נא לאשר שברצונך באמת ליצור את הדף מחדש.",
 	"recreate": "יצירה מחדש",
 	"confirm-purge-title": "ניקוי המטמון של דף זה",
 	"confirm_purge_button": "אישור",

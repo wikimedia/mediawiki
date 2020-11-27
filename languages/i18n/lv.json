@@ -1228,6 +1228,7 @@
 	"recentchanges-legend": "Pēdējo izmaiņu iespējas",
 	"recentchanges-summary": "Šajā lapā ir uzskaitītas pēdējās izdarītās izmaiņas.",
 	"recentchanges-noresult": "Norādītajā periodā šiem kritērijiem neatbilst neviena izmaiņa.",
+	"recentchanges-network": "Tehniskas kļūdas dēļ nevarēja ielādēt rezultātus. Lūdzu, mēģini pārlādēt lapu.",
 	"recentchanges-feed-description": "Sekojiet līdzi jaunākajām izmaiņām vikijā izmantojot šo barotni.",
 	"recentchanges-label-newpage": "Šī ir jaunizveidota lapa",
 	"recentchanges-label-minor": "Šis ir maznozīmīgs labojums",

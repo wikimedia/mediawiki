@@ -3251,6 +3251,7 @@
 	"mcrundo-changed": "Sidan har ändrats sedan du visade skillnaden. Granska den nya ändringen.",
 	"mcrundo-parse-failed": "Misslyckades att tolka den nya sidversionen: $1",
 	"quotation-marks": "\"$1\"",
+	"formatnum-nan": "Inte en siffra",
 	"imgmultipageprev": "← föregående sida",
 	"imgmultipagenext": "nästa sida →",
 	"imgmultigo": "Gå",
