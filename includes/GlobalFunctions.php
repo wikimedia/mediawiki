@@ -614,7 +614,7 @@ function wfAssembleUrl( $urlParts ) {
 		$result .= $urlParts['path'];
 	}
 
-	if ( isset( $urlParts['query'] ) && $urlParts['query'] ) {
+	if ( isset( $urlParts['query'] ) && $urlParts['query'] !== '' ) {
 		$result .= '?' . $urlParts['query'];
 	}
 
