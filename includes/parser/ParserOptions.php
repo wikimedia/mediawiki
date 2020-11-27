@@ -1491,11 +1491,11 @@ class ParserOptions {
 			) {
 				if ( $titleToCheck->equals( $title ) ) {
 					$revRecord = new MutableRevisionRecord( $title );
-					$revRecord->setContent( SlotRecord::MAIN, $content );
-					$revRecord->setUser( $user );
-					$revRecord->setTimestamp( MWTimestamp::now( TS_MW ) );
-					$revRecord->setPageId( $title->getArticleID() );
-					$revRecord->setParentId( $title->getLatestRevID() );
+					$revRecord->setContent( SlotRecord::MAIN, $content )
+						->setUser( $user )
+						->setTimestamp( MWTimestamp::now( TS_MW ) )
+						->setPageId( $title->getArticleID() )
+						->setParentId( $title->getLatestRevID() );
 					return $revRecord;
 				} else {
 					return call_user_func( $oldCallback, $titleToCheck, $parser );
