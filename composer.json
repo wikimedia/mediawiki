@@ -86,7 +86,7 @@
 		"seld/jsonlint": "1.7.1",
 		"symfony/yaml": "~3.4|~4.3|~5.0.5",
 		"wikimedia/avro": "1.9.0",
-		"wikimedia/testing-access-wrapper": "~1.0",
+		"wikimedia/testing-access-wrapper": "~2.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
 	},
 	"replace": {
