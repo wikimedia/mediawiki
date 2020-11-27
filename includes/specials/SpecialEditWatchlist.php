@@ -111,7 +111,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param int $mode
+	 * @param string|null $mode
 	 */
 	public function execute( $mode ) {
 		$this->setHeaders();
@@ -802,11 +802,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * kind of editing operation
 	 *
 	 * @param WebRequest $request
-	 * @param string $par
-	 * @return int
+	 * @param string|null $par
+	 * @return int|false
 	 */
 	public static function getMode( $request, $par ) {
-		$mode = strtolower( $request->getVal( 'action', $par ) );
+		$mode = strtolower( $request->getRawVal( 'action', $par ) );
 
 		switch ( $mode ) {
 			case 'clear':
