@@ -207,8 +207,8 @@ class ConvertLinks extends Maintenance {
 				foreach ( $res as $row ) {
 					$fromTitle = $row->l_from;
 					if ( array_key_exists( $fromTitle, $ids ) ) { # valid title
-						$from = $ids[$fromTitle];
-						$to = $row->l_to;
+						$from = (int)$ids[$fromTitle];
+						$to = (int)$row->l_to;
 						if ( $tuplesAdded != 0 ) {
 							$sqlWrite[] = ",";
 						}
