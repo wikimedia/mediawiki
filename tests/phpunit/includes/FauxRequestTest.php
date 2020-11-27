@@ -265,6 +265,19 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers FauxRequest::getPostValues
+	 */
+	public function testGetPostValues() {
+		$values = [ 'x' => 'Value', 'y' => '' ];
+
+		$req = new FauxRequest( $values, true );
+		$this->assertSame( $values, $req->getPostValues() );
+
+		$req = new FauxRequest( $values );
+		$this->assertSame( [], $req->getPostValues() );
+	}
+
+	/**
 	 * @covers FauxRequest::getRawQueryString
 	 * @covers FauxRequest::getRawPostString
 	 * @covers FauxRequest::getRawInput
