@@ -898,7 +898,7 @@
 	"permissionserrorstext-withaction": "Vous ne pouvez pas $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :",
 	"contentmodelediterror": "Vous ne pouvez pas modifier cette révision car son modèle de contenu est <code>$1</code>, ce qui diffère du modèle de contenu actuel de la page <code>$2</code>.",
 	"recreate-moveddeleted-warn": "<strong>Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.</strong>\n\nAssurez-vous qu’il est pertinent de poursuivre les modifications sur cette page.\nLes journaux des suppressions et déplacements pour cette page sont fournis ici pour information :",
-	"moveddeleted-notice": "Cette page n’existe pas.\nLes journaux des suppressions, protections et déplacements pour la page sont fournis ci-dessous pour référence.",
+	"moveddeleted-notice": "Cette page n’existe pas.\nLes journaux des suppressions, protections et renommages de la page sont fournis ci-dessous pour référence.",
 	"moveddeleted-notice-recent": "Désolé, cette page a été récemment supprimée (dans les dernières 24 heures).\nLes journaux des suppressions, protections et déplacements pour la page sont fournis ci-dessous pour référence.",
 	"log-fulllog": "Voir le journal complet",
 	"edit-hook-aborted": "Échec de la modification par une extension.\nAucune explication n’a été retournée.",

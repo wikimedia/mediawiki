@@ -3022,7 +3022,7 @@
 	"logentry-block-unblock": "$1 {{GENDER:$2|zhbllokoi}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|changed}} bllokoi cilësimet për {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|bllokoi}} {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
-	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} bllokoi cilësimet për {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|ndryshoi}} cilësimet e bllokimit për {{GENDER:$4|përdoruesin $3|përdoruesen $3}} me një kohë skadimi prej $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|u importua}} $3 përmes ngarkimit të skedës",
 	"logentry-move-move": "$1 {{GENDER:$2|zhvendosi}} faqen $3 tek $4",
 	"logentry-move-move-noredirect": "$1 zhvendosi faqen $3 te $4 pa lënë një përcjellim",
