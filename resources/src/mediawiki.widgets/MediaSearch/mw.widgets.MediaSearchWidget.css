@@ -22,3 +22,8 @@
 	margin: 0.5em 0 1em 0;
 	font-weight: bold;
 }
+
+.oo-ui-labelWidget.mw-widget-mediaSearchWidget-noResults,
+.oo-ui-labelWidget.mw-widget-mediaSearchWidget-recentUploads {
+	display: block;
+}
