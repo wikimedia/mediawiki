@@ -96,7 +96,7 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doGetCurrentPosition()
-	 * @return bool|mixed The value from the field, or false on failure.
+	 * @return int|false The value from the field, or false on failure.
 	 */
 	protected function doGetCurrentPosition() {
 		$dbw = $this->getMasterDB();
@@ -110,7 +110,7 @@ class DBFileJournal extends FileJournal {
 	/**
 	 * @see FileJournal::doGetPositionAtTime()
 	 * @param int|string $time Timestamp
-	 * @return bool|mixed The value from the field, or false on failure.
+	 * @return int|false The value from the field, or false on failure.
 	 */
 	protected function doGetPositionAtTime( $time ) {
 		$dbw = $this->getMasterDB();
