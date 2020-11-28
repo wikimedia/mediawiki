@@ -75,6 +75,7 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		readline_write_history( $__historyFile );
 	}
 	try {
+		// @phan-suppress-next-line SecurityCheck-OTHER
 		$__val = eval( $__line . ";" );
 	} catch ( Exception $__e ) {
 		fwrite( STDERR, "Caught exception " . get_class( $__e ) .

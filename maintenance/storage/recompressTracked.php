@@ -540,6 +540,7 @@ class RecompressTracked {
 				// Load the text
 				$text = $this->blobStore->expandBlob( $row->old_text, $row->old_flags );
 				if ( $text === false ) {
+					// @phan-suppress-next-line SecurityCheck-XSS
 					$this->critical( "Error loading {$row->bt_rev_id}/{$row->bt_text_id}" );
 					continue;
 				}
@@ -694,6 +695,7 @@ class RecompressTracked {
 		foreach ( $res as $row ) {
 			$text = $this->blobStore->expandBlob( $row->old_text, $row->old_flags );
 			if ( $text === false ) {
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$this->critical( "Error: cannot load revision text for old_id={$row->old_id}" );
 				continue;
 			}

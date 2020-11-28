@@ -243,11 +243,13 @@ class CliInstaller extends Installer {
 	}
 
 	public function showMessage( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
 	public function showError( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo "***{$this->getMessageText( $msg, $params )}***\n";
 		flush();
 	}
