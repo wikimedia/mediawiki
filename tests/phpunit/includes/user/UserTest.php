@@ -1981,10 +1981,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWatchlist() {
 		$user = $this->user;
-		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
 		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
 
-		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
 
 		$user->addWatch( $articleTitle );
@@ -2005,24 +2003,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$user->isTempWatched( $articleTitle, 'The article has been tempoarily watched' )
 		);
-	}
 
-	/**
-	 * @covers User::addWatch
-	 */
-	public function testAddSpecialPageToWatchlist() {
-		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
-		$this->expectException( MWException::class );
-		$this->user->addWatch( $title );
-	}
-
-	/**
-	 * @covers User::removeWatch
-	 */
-	public function testRemoveSpecialPageFromWatchlist() {
-		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
-		$this->expectException( MWException::class );
-		$this->user->removeWatch( $title );
+		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
+		// Assume no exceptions
+		$user->addWatch( $specialTitle );
+		$user->removeWatch( $specialTitle );
 	}
 
 	/**
