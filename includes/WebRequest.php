@@ -49,18 +49,19 @@ class WebRequest {
 	/**
 	 * The parameters from $_GET. The parameters from the path router are
 	 * added by interpolateTitle() during Setup.php.
-	 * @var array
+	 * @var string[]
 	 */
 	protected $queryAndPathParams;
 
 	/**
 	 * The parameters from $_GET only.
+	 * @var string[]
 	 */
 	protected $queryParams;
 
 	/**
 	 * Lazy-initialized request headers indexed by upper-case header name
-	 * @var array
+	 * @var string[]
 	 */
 	protected $headers = [];
 
@@ -142,7 +143,7 @@ class WebRequest {
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
 	 *
-	 * @return array Any query arguments found in path matches.
+	 * @return string[] Any query arguments found in path matches.
 	 * @throws FatalError If invalid routes are configured (T48998)
 	 */
 	public static function getPathInfo( $want = 'all' ) {
@@ -388,7 +389,7 @@ class WebRequest {
 	 *
 	 * @param string $path The URL path given from the client
 	 * @param array $bases One or more URLs, optionally with $1 at the end
-	 * @param string|bool $key If provided, the matching key in $bases will be
+	 * @param string|false $key If provided, the matching key in $bases will be
 	 *    passed on as the value of this URL parameter
 	 * @return array Array of URL variables to interpolate; empty if no match
 	 */
@@ -713,7 +714,7 @@ class WebRequest {
 	 * No transformation is performed on the values.
 	 *
 	 * @codeCoverageIgnore
-	 * @return array
+	 * @return string[]
 	 */
 	public function getQueryValues() {
 		return $this->queryAndPathParams;
@@ -726,7 +727,7 @@ class WebRequest {
 	 * values.
 	 *
 	 * @since 1.34
-	 * @return array
+	 * @return string[]
 	 */
 	public function getQueryValuesOnly() {
 		return $this->queryParams;
@@ -738,7 +739,7 @@ class WebRequest {
 	 *
 	 * @since 1.32
 	 * @codeCoverageIgnore
-	 * @return array
+	 * @return string[]
 	 */
 	public function getPostValues() {
 		return $_POST;
@@ -1108,7 +1109,7 @@ class WebRequest {
 	/**
 	 * Get an array containing all request headers
 	 *
-	 * @return array Mapping header name to its value
+	 * @return string[] Mapping header name to its value
 	 */
 	public function getAllHeaders() {
 		$this->initHeaders();
@@ -1123,7 +1124,7 @@ class WebRequest {
 	 *   WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
 	 *                               of values, as described in RFC 2616 § 4.2.
 	 *                               (since 1.26).
-	 * @return string|array|bool False if header is unset; otherwise the
+	 * @return string|string[]|false False if header is unset; otherwise the
 	 *  header value(s) as either a string (the default) or an array, if
 	 *  WebRequest::GETHEADER_LIST flag was set.
 	 */
