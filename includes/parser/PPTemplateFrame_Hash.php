@@ -26,15 +26,23 @@
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_Hash extends PPFrame_Hash {
 
-	public $numberedArgs, $namedArgs, $parent;
-	public $numberedExpansionCache, $namedExpansionCache;
+	/** @var array */
+	public $numberedArgs;
+	/** @var array */
+	public $namedArgs;
+	/** @var PPFrame_Hash */
+	public $parent;
+	/** @var array */
+	public $numberedExpansionCache;
+	/** @var array */
+	public $namedExpansionCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
-	 * @param bool|PPFrame $parent
+	 * @param false|PPFrame $parent
 	 * @param array $numberedArgs
 	 * @param array $namedArgs
-	 * @param bool|Title $title
+	 * @param false|Title $title
 	 */
 	public function __construct( $preprocessor, $parent = false, $numberedArgs = [],
 		$namedArgs = [], $title = false
@@ -62,7 +70,6 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$s = 'tplframe{';
 		$first = true;
 		$args = $this->numberedArgs + $this->namedArgs;
-		// @phan-suppress-next-line PhanTypeMismatchForeach FIXME args need better documentation
 		foreach ( $args as $name => $value ) {
 			if ( $first ) {
 				$first = false;
@@ -140,7 +147,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param int $index
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
@@ -158,7 +165,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param string $name
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getNamedArgument( $name ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
@@ -175,7 +182,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param int|string $name
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getArgument( $name ) {
 		$text = $this->getNumberedArgument( $name );
