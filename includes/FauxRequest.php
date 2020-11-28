@@ -200,6 +200,10 @@ class FauxRequest extends WebRequest {
 		return null;
 	}
 
+	public function getPostValues() {
+		return $this->wasPosted ? $this->data : [];
+	}
+
 	/**
 	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
 	 * @return string

@@ -71,11 +71,10 @@ class ApiTokens extends ApiBase {
 
 		// For forwards-compat, copy any token types from ApiQueryTokens that
 		// we don't already have something for.
-		$user = $this->getUser();
 		$request = $this->getRequest();
 		foreach ( ApiQueryTokens::getTokenTypeSalts() as $name => $salt ) {
 			if ( !isset( $types[$name] ) ) {
-				$types[$name] = function () use ( $salt, $user, $request ) {
+				$types[$name] = function ( User $user ) use ( $salt, $request ) {
 					return ApiQueryTokens::getToken( $user, $request->getSession(), $salt )->toString();
 				};
 			}
