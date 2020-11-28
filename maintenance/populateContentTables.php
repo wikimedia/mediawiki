@@ -212,8 +212,8 @@ class PopulateContentTables extends Maintenance {
 
 		$batchSize = $this->getBatchSize();
 
-		for ( $startId = $minmax->min; $startId <= $minmax->max; $startId += $batchSize ) {
-			$endId = min( $startId + $batchSize - 1, $minmax->max );
+		for ( $startId = (int)$minmax->min; $startId <= $minmax->max; $startId += $batchSize ) {
+			$endId = (int)min( $startId + $batchSize - 1, $minmax->max );
 			$rows = $this->dbw->select(
 				$tables,
 				$fields,

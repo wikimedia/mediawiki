@@ -126,7 +126,7 @@ TEXT
 		$idsToUpdate = $dbr->selectFieldValues( 'category',
 			'cat_id',
 			[
-				'cat_id > ' . $this->minimumId,
+				'cat_id > ' . (int)$this->minimumId,
 				"cat_{$this->mode} != ($countingSubquery)"
 			],
 			__METHOD__,
