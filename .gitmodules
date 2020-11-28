@@ -865,11 +865,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Capiunto
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/DonateBoxInSidebar"]
-	path = extensions/DonateBoxInSidebar
-	url = https://github.com/iSCInc/mediawiki-extensions-DonateBoxInSidebar
-	branch = master
-	ignore = dirty
 [submodule "extensions/TemplateStyles"]
 	path = extensions/TemplateStyles
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateStyles
@@ -1084,16 +1079,6 @@
 	path = extensions/NumberedHeadings
 	url = https://github.com/staspika/mediawiki-numberedheadings
 	branch = master
-	ignore = dirty
-[submodule "extensions/CirrusSearch"]
-	path = extensions/CirrusSearch
-	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
-	branch = REL1_35
-	ignore = dirty
-[submodule "extensions/Elastica"]
-	path = extensions/Elastica
-	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
-	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/DataDump"]
 	path = extensions/DataDump
