@@ -472,6 +472,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'watchlist', 'wl_notificationtimestamp', 'patch-watchlist-wl_notificationtimestamp.sql' ],
 			[ 'modifyField', 'slot_roles', 'role_id', 'patch-slot_roles-role_id.sql' ],
 			[ 'modifyField', 'content_models', 'model_id', 'patch-content_models-model_id.sql' ],
+			[ 'modifyField', 'categorylinks', 'cl_to', 'patch-categorylinks-cl_to-varbinary.sql' ],
 		];
 	}
 
