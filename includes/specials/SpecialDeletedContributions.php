@@ -104,9 +104,6 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->checkPermissions();
 		$this->addHelpLink( 'Help:User contributions' );
 
-		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
-
 		$opts = new FormOptions();
 
 		$opts->add( 'target', '' );
@@ -145,7 +142,13 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->getSkin()->setRelevantUser( $userObj );
 
 		$target = $userObj->getName();
+
+		$out = $this->getOutput();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
+		$out->setHTMLTitle( $this->msg(
+			'pagetitle',
+			$this->msg( 'deletedcontributions-title', $target )->plain()
+		)->inContentLanguage() );
 
 		$this->getForm();
 

@@ -3153,18 +3153,22 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
-	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
-	 *  namespace
 	 */
 	public function addWatch(
 		$title,
 		$checkRights = self::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
+		if ( !$title->isWatchable() ) {
+			return;
+		}
+
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->addWatch( $this, $title->getSubjectPage(), $expiry );
-			$store->addWatch( $this, $title->getTalkPage(), $expiry );
+			if ( $title->canHaveTalkPage() ) {
+				$store->addWatch( $this, $title->getTalkPage(), $expiry );
+			}
 		}
 		$this->invalidateCache();
 	}
@@ -3175,14 +3179,18 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title of the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @throws MWException if the title is in a namespace that doesn't have an associated talk
-	 *  namespace
 	 */
 	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		if ( !$title->isWatchable() ) {
+			return;
+		}
+
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->removeWatch( $this, $title->getSubjectPage() );
-			$store->removeWatch( $this, $title->getTalkPage() );
+			if ( $title->canHaveTalkPage() ) {
+				$store->removeWatch( $this, $title->getTalkPage() );
+			}
 		}
 		$this->invalidateCache();
 	}
