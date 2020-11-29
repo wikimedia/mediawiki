@@ -242,11 +242,6 @@ class IcuCollation extends Collation {
 	];
 
 	public function __construct( $locale ) {
-		if ( !extension_loaded( 'intl' ) ) {
-			throw new MWException( 'An ICU collation was requested, ' .
-				'but the intl extension is not available.' );
-		}
-
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
 		$localeParts = explode( '@', $locale );
