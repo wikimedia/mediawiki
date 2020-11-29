@@ -3,6 +3,12 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.10 ===
+* Fix undefined $wgRedirectOnLogin.
+* (T251661, T265313) CentralIdLookup::factoryNonLocal can return null.
+* (T263592) media: Fix case of FlashPixVersion in
+  FormatMetadata::makeFormattedData().
+* (T265223) BaseTemplate: Guard against passing zero arg to array_merge().
+* (T266418) composer.json: add requirement for composer-plugin-api ^1.1.
 
 == MediaWiki 1.31.10 ==
 
