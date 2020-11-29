@@ -8,10 +8,6 @@
  * @covers UppercaseCollation
  */
 class CollationTest extends MediaWikiLangTestCase {
-	protected function setUp() : void {
-		parent::setUp();
-		$this->checkPHPExtension( 'intl' );
-	}
 
 	/**
 	 * Test to make sure, that if you
