@@ -26,12 +26,6 @@ if ( PHP_SAPI != 'cli' ) {
 	die( "This script can only be run from the command line.\n" );
 }
 
-// class Collator is provided by the intl extension.
-// It is only suggested in composer.json, so remind here when not loaded.
-if ( !extension_loaded( 'intl' ) ) {
-	die( "This script needs the 'intl' extension to be loaded." );
-}
-
 $CREDITS = 'CREDITS';
 $START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
 $END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
@@ -82,5 +76,7 @@ array_walk( $contributors, function ( &$v, $k ) {
 	$v = "* {$v}";
 } );
 
-file_put_contents( $CREDITS,
-	implode( "\n", array_merge( $header, $contributors, $footer ) ) );
+file_put_contents(
+	$CREDITS,
+	implode( "\n", array_merge( $header, $contributors, $footer ) )
+);
