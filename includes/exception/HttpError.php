@@ -129,7 +129,6 @@ class HttpError extends MWException {
 		if ( $this->content instanceof Message ) {
 			$contentHtml = $this->content->escaped();
 		} else {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$contentHtml = nl2br( htmlspecialchars( $this->content ) );
 		}
 

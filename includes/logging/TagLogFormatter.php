@@ -61,8 +61,10 @@ class TagLogFormatter extends LogFormatter {
 		}
 
 		if ( $isRevLink ) {
+			// @phan-suppress-next-line SecurityCheck-XSS one if branch is for plain text
 			$params[3] = Message::rawParam( $link );
 		} else {
+			// @phan-suppress-next-line SecurityCheck-XSS one if branch is for plain text
 			$params[4] = Message::rawParam( $link );
 		}
 

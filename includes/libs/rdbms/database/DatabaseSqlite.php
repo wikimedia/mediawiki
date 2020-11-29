@@ -1063,6 +1063,7 @@ class DatabaseSqlite extends Database {
 
 			$sqlIndex .= '(' . implode( ',', $fields ) . ')';
 
+			// @phan-suppress-next-line SecurityCheck-SQLInjection implode does not ignore taint from keys T270942
 			$this->query( $sqlIndex, __METHOD__ );
 		}
 

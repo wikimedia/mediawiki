@@ -61,5 +61,5 @@ if ( !$scriptFile ) {
 	exit( 1 );
 }
 
-// @phan-suppress-next-line SecurityCheck-OTHER
+// @phan-suppress-next-line SecurityCheck-PathTraversal User input is wanted in this script
 require_once $scriptFile;

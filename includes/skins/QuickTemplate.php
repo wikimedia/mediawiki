@@ -93,7 +93,6 @@ abstract class QuickTemplate {
 
 	/**
 	 * @param string $str
-	 * @suppress SecurityCheck-DoubleEscaped $this->data can be either
 	 */
 	protected function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );

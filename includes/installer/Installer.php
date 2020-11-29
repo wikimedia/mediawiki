@@ -1332,6 +1332,7 @@ abstract class Installer {
 			return Status::newGood( [] );
 		}
 
+		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
 		$dh = opendir( $extDir );
 		$exts = [];
 		$status = new Status;
@@ -1514,7 +1515,6 @@ abstract class Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
-	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
 	 * @return Status
 	 */
 	protected function includeExtensions() {
@@ -1546,7 +1546,7 @@ abstract class Installer {
 	 * Auto-detect extensions with an old style .php registration file, load
 	 * the extensions, and return the merged $wgHooks array.
 	 *
-	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
+	 * @suppress SecurityCheck-PathTraversal It thinks $exts/$IP is user controlled but they are not.
 	 * @return array
 	 */
 	protected function getAutoExtensionLegacyHooks() {

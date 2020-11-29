@@ -2151,6 +2151,7 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
+			// @phan-suppress-next-line SecurityCheck-XSS using false for escape is valid here
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
 				$this->getExternalLinkAttribs( $url ), $this->getTitle() ) . $dtrail . $trail;
 
@@ -2345,6 +2346,7 @@ class Parser {
 				if ( strpos( $entry, '#' ) === 0 || $entry === '' ) {
 					continue;
 				}
+				// @phan-suppress-next-line SecurityCheck-ReDoS preg_quote is not wanted here
 				if ( preg_match( '/' . str_replace( '/', '\\/', $entry ) . '/i', $url ) ) {
 					# Image matches a whitelist entry
 					$text = Linker::makeExternalImage( $url );
@@ -3243,6 +3245,7 @@ class Parser {
 
 		# Replace raw HTML by a placeholder
 		if ( $isHTML ) {
+			// @phan-suppress-next-line SecurityCheck-XSS Mixed mode, here html and safe
 			$text = $this->insertStripItem( $text );
 		} elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			# Escape nowiki-style return values

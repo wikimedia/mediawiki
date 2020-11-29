@@ -2136,7 +2136,8 @@ abstract class File implements IDBAccessObject {
 	 * @stable to override
 	 *
 	 * @param Language|null $lang Optional language to fetch description in
-	 * @return string|false
+	 * @return string|false HTML
+	 * @return-taint escaped
 	 */
 	public function getDescriptionText( Language $lang = null ) {
 		global $wgLang;
