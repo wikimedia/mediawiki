@@ -4,6 +4,13 @@
 
 THIS IS NOT A RELEASE YET
 
+While normally running update.php isn't required for point releases,
+it is recommended to run it for 1.35.1 so that sites.site_language is
+updated to take 35 characters.
+
+Watchlist Expiry is no longer considered experimental, but is off by default.
+To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
+
 === Changes since MediaWiki 1.35.0 ===
 * (T263929) purgeList.php Fix all-namespaces option to match one used in code.
 * (T248719) ParserCache::get - fix wfDeprecated call.
@@ -17,9 +24,11 @@ THIS IS NOT A RELEASE YET
 * (T264683) Remove ipb_anon_only from ipb_address_unique index addition.
 * (T261415) Add days left messages to changes-lists' clock icons.
 * Fix order of wfDeprecated parameters in ExternalStoreDB::getSlave.
+* (T261260) Preload class used in HeaderCallback.
 * (T260868, T260009) Normalize WatchedItem expiry field.
 * (T264683) Remove doTable check from (Mysql|Sqlite)Updater::indexHasFields.
 * (T264534) ApiPageSet: Avoid infinite loop when merging redirects.
+* (T196906) Empty Monolog loggers are now real blackholes.
 * (T258649) WatchAction: avoid UPDATE when old and new watch period is
   indefinite.
 * Parser: Adjust typehint to show that getTitle can return null.
@@ -32,6 +41,20 @@ THIS IS NOT A RELEASE YET
 * Flip Yoda conditionals.
 * (T263213) Move SkinTemplate::getFooterLinks() to Skin.
 * build: Updating mediawiki/mediawiki-codesniffer to 33.0.0.
+* (T267105) Make ImageBuilder::checkMissingImage public.
+* Updating guzzlehttp/guzzle (6.5.4 => 6.5.5).
+* (T266681) Support new style hook registration on install and update.
+* (T266980) Fix unsetting of copyright icon in FooterIcons.
+* upload.js: Don't assume that warnings array will include 'code' key.
+* upload.js:  Fix typo in upload API.
+* (T264333, T190988, T266903) Pass along ignorewarnings param to all
+  individual chunks being uploaded.
+* (T267558) importTextFiles.php: Replace deprecated WikiRevision:setText().
+* (T266418) composer.json: add requirement for composer-plugin-api ^1.1.
+* (T261431) Add ARIA attributes to watchlink and its notification.
+* (T258877) Change invalid 'Content-Encoding: none' header.
+* Fix trailing ; in patch-sites-site_language-35.sql.
+* (T248852) wfAssembleUrl: Handle empty query field in URL bits.
 * (T268846) Updating wikimedia/testing-access-wrapper (1.0.0 => 2.0.0).
 
 == MediaWiki 1.35.0 ==
