@@ -383,6 +383,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->text(),
+			// @phan-suppress-next-line SecurityCheck-XSS UserGroupMembership::getLink is ambigous T183174
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 				->escaped(),
@@ -803,6 +804,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$skinOptions = $this->generateSkinOptions( $user, $context );
 		if ( $skinOptions ) {
 			$defaultPreferences['skin'] = [
+				// @phan-suppress-next-line SecurityCheck-XSS False positive, key is escaped
 				'type' => 'radio',
 				'options' => $skinOptions,
 				'section' => 'rendering/skin',
