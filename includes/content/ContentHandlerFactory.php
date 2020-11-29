@@ -230,23 +230,27 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 			/**
 			 * @var ContentHandler $contentHandler
 			 */
-			$contentHandler = $this->objectFactory->createObject( $handlerSpec,
+			$contentHandler = $this->objectFactory->createObject(
+				$handlerSpec,
 				[
 					'assertClass' => ContentHandler::class,
 					'allowCallable' => true,
 					'allowClassName' => true,
 					'extraArgs' => [ $modelID ],
-				] );
-		}
-		catch ( InvalidArgumentException $e ) {
+				]
+			);
+		} catch ( InvalidArgumentException $e ) {
 			// legacy support
-			throw new MWException( "Wrong Argument HandlerSpec for ModelID: {$modelID}. " .
-				"Error: {$e->getMessage()}" );
-		}
-		catch ( UnexpectedValueException $e ) {
+			throw new MWException(
+				"Wrong Argument HandlerSpec for ModelID: {$modelID}. " .
+				"Error: {$e->getMessage()}"
+			);
+		} catch ( UnexpectedValueException $e ) {
 			// legacy support
-			throw new MWException( "Wrong HandlerSpec class for ModelID: {$modelID}. " .
-				"Error: {$e->getMessage()}" );
+			throw new MWException(
+				"Wrong HandlerSpec class for ModelID: {$modelID}. " .
+				"Error: {$e->getMessage()}"
+			);
 		}
 		$this->validateContentHandler( $modelID, $contentHandler );
 
