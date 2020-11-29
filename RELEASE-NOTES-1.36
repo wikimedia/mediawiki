@@ -14,7 +14,8 @@ See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.36 upgrades are below:
-
+* MediaWiki 1.36 now requires that the internationalization extension
+  (commonly referred to as Intl, ext-intl and php-intl).
 * …
 
 For notes on 1.35.x and older releases, see HISTORY.
