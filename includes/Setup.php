@@ -808,7 +808,9 @@ unset( $func ); // no global pollution; destroy reference
 // autocreate it.
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
-	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
+	if ( $sessionUser->getId() === 0 &&
+		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
+	) {
 		$res = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
 			$sessionUser,
 			MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
