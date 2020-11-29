@@ -1166,25 +1166,11 @@ abstract class Installer {
 		$not_normal_c = "\u{FA6C}";
 		$normal_c = "\u{242EE}";
 
-		$useNormalizer = 'php';
-		$needsUpdate = false;
+		$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 
-		if ( function_exists( 'normalizer_normalize' ) ) {
-			$useNormalizer = 'intl';
-			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
-			if ( $intl !== $normal_c ) {
-				$needsUpdate = true;
-			}
-		}
-
-		// Uses messages 'config-unicode-using-php' and 'config-unicode-using-intl'
-		if ( $useNormalizer === 'php' ) {
-			$this->showMessage( 'config-unicode-pure-php-warning' );
-		} else {
-			$this->showMessage( 'config-unicode-using-' . $useNormalizer );
-			if ( $needsUpdate ) {
-				$this->showMessage( 'config-unicode-update-warning' );
-			}
+		$this->showMessage( 'config-unicode-using-intl' );
+		if ( $intl !== $normal_c ) {
+			$this->showMessage( 'config-unicode-update-warning' );
 		}
 	}
 
