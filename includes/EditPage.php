@@ -715,6 +715,42 @@ class EditPage implements IEditObject {
 
 		}
 
+		// If we're displaying an old revision, and there are differences between it and the
+		// current revision outside the main slot, then we can't allow the old revision to be
+		// editable, as what would happen to the non-main-slot data if someone saves the old
+		// revision is undefined.
+		// When this is the case, display a read-only version of the page instead, with a link
+		// to a diff page from which the old revision can be restored
+		$curRevisionRecord = $this->page->getRevisionRecord();
+		if ( $curRevisionRecord
+			&& $revRecord
+			&& $curRevisionRecord->getId() !== $revRecord->getId()
+			&& ( WikiPage::hasDifferencesOutsideMainSlot(
+					$revRecord,
+					$curRevisionRecord
+				) || !$this->isSupportedContentModel(
+					$revRecord->getSlot(
+						SlotRecord::MAIN,
+						RevisionRecord::RAW
+					)->getModel()
+				) )
+		) {
+			$restoreLink = $this->mTitle->getFullURL(
+				[
+					'action' => 'mcrrestore',
+					'restore' => $revRecord->getId(),
+				]
+			);
+			$this->displayViewSourcePage(
+				$this->getContentObject(),
+				$this->context->msg(
+					'nonmain-slot-differences-therefore-readonly',
+					$restoreLink
+				)->plain()
+			);
+			return;
+		}
+
 		$this->showEditForm();
 	}
 
@@ -1431,38 +1467,6 @@ class EditPage implements IEditObject {
 						$this->context->msg( 'undo-' . $undoMsg )->plain()
 					)
 				);
-			}
-
-			if ( $content === false ) {
-				// Hack for restoring old revisions while EditPage
-				// can't handle multi-slot editing.
-				$curRevisionRecord = $this->page->getRevisionRecord();
-				$oldRevisionRecord = $this->mArticle->fetchRevisionRecord();
-
-				if ( $curRevisionRecord
-					&& $oldRevisionRecord
-					&& $curRevisionRecord->getId() !== $oldRevisionRecord->getId()
-					&& ( WikiPage::hasDifferencesOutsideMainSlot(
-						$oldRevisionRecord,
-						$curRevisionRecord
-					) || !$this->isSupportedContentModel(
-						$oldRevisionRecord->getSlot(
-							SlotRecord::MAIN,
-							RevisionRecord::RAW
-						)->getModel()
-					) )
-				) {
-					$this->context->getOutput()->redirect(
-						$this->mTitle->getFullURL(
-							[
-								'action' => 'mcrrestore',
-								'restore' => $oldRevisionRecord->getId(),
-							]
-						)
-					);
-
-					return false;
-				}
 			}
 
 			if ( $content === false ) {
