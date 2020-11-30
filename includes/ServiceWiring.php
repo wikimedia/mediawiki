@@ -963,7 +963,7 @@ return [
 	'ParserOutputAccess' => function ( MediaWikiServices $services ) : ParserOutputAccess {
 		return new ParserOutputAccess(
 			$services->getParserCache(),
-			ObjectCache::getLocalClusterInstance(),
+			$services->getMainWANObjectCache(),
 			$services->getMainConfig()->get( 'OldRevisionParserCacheExpireTime' ),
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),

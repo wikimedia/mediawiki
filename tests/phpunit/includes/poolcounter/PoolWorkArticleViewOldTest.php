@@ -9,7 +9,7 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 
-	/** @var BagOStuff */
+	/** @var WANObjectCache */
 	private $cache = null;
 
 	/**
@@ -54,10 +54,13 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	/**
 	 * @param BagOStuff $bag
 	 *
-	 * @return BagOStuff
+	 * @return WANObjectCache
 	 */
 	private function installCache( $bag = null ) {
-		$this->cache = $bag ?: new HashBagOStuff();
+		$params = [
+			'cache' => $bag ?: new HashBagOStuff(),
+		];
+		$this->cache = new WANObjectCache( $params );
 		return $this->cache;
 	}
 

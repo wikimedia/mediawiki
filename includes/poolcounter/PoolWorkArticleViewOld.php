@@ -33,7 +33,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	/** @var int */
 	private $cacheExpiry;
 
-	/** @var BagOStuff */
+	/** @var WANObjectCache */
 	private $cache;
 
 	/** @var string */
@@ -46,7 +46,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	 * @param string $cacheKey Key for the ParserOutput to use in $cache.
 	 *        Also used as the PoolCounter key.
 	 * @param int $cacheExpiry Expiry for ParserOutput in $cache.
-	 * @param BagOStuff $cache The cache to store ParserOutput in.
+	 * @param WANObjectCache $cache The cache to store ParserOutput in.
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
@@ -56,7 +56,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	public function __construct(
 		string $cacheKey,
 		int $cacheExpiry,
-		BagOStuff $cache,
+		WANObjectCache $cache,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
