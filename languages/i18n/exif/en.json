@@ -413,5 +413,6 @@
 	"exif-fullpanoheightpixels": "Panorama full height",
 	"exif-croppedarealeftpixels": "Panorama left crop",
 	"exif-croppedareatoppixels": "Panorama top crop",
-	"exif-initialcameradolly": "Initial camera dolly"
+	"exif-initialcameradolly": "Initial camera dolly",
+	"exif-stitchingsoftware": "Stitching software"
 }
