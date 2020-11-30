@@ -48,7 +48,10 @@ class LoadBalancer implements ILoadBalancer {
 	private $srvCache;
 	/** @var WANObjectCache */
 	private $wanCache;
-	/** @var mixed Class name or object With profileIn/profileOut methods */
+	/**
+	 * @var callable|null An optional callback that returns a ScopedCallback instance,
+	 * meant to profile the actual query execution in {@see Database::doQuery}
+	 */
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
