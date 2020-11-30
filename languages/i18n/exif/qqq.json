@@ -617,5 +617,6 @@
 	"exif-fullpanoheightpixels": "Original full height from which the image was cropped. See [https://developers.google.com/streetview/spherical-metadata].",
 	"exif-croppedarealeftpixels": "Column where the left edge of the image was cropped from the full sized photo sphere. See [https://developers.google.com/streetview/spherical-metadata].",
 	"exif-croppedareatoppixels": "Row where the top edge of the image was cropped from the full sized photo sphere. See [https://developers.google.com/streetview/spherical-metadata].",
-	"exif-initialcameradolly": "Moves the virtual camera position along the line of sight. (Initial virtual camera location within a photosphere.) See [https://developers.google.com/streetview/spherical-metadata]."
+	"exif-initialcameradolly": "Moves the virtual camera position along the line of sight. (Initial virtual camera location within a photosphere.) See [https://developers.google.com/streetview/spherical-metadata].",
+	"exif-stitchingsoftware": "Name of the used stitching software."
 }
