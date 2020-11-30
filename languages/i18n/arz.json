@@ -1233,7 +1233,7 @@
 	"categoriespagetext": "{{PLURAL:$1|التصنيف دا بيحتوى على|التصنيفات دى بتحتوى على}} صفحات او ميديا.\nشوف كمان [[Special:WantedCategories|التصنيفات المتعازه]].",
 	"categoriesfrom": "اعرض التصانيف من أول:",
 	"deletedcontributions": "تعديلات اليوزر الممسوحة",
-	"deletedcontributions-title": "تعديلات اليوزر الممسوحة",
+	"deletedcontributions-title": "تعديلات اليوزر الممسوحه ل$1",
 	"sp-deletedcontributions-contribs": "المساهمات",
 	"linksearch": "لينكات خارجيه",
 	"linksearch-pat": "نظام التدوير:",

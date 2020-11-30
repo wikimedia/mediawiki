@@ -2252,7 +2252,7 @@
 	"categoriespagetext": "Strona przedstawia {{PLURAL:$1|istniejącą kategorię zawierającą|istniejące kategorie}} na wiki. Wymienione są także puste kategorie.\nZobacz również [[Special:WantedCategories|brakujące kategorie]].",
 	"categoriesfrom": "Wyświetl kategorie, zaczynając od:",
 	"deletedcontributions": "Usunięty wkład użytkownika",
-	"deletedcontributions-title": "Usunięty wkład użytkownika",
+	"deletedcontributions-title": "Usunięty wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1",
 	"sp-deletedcontributions-contribs": "wkład",
 	"linksearch": "Wyszukiwarka linków zewnętrznych",
 	"linksearch-pat": "Wzorzec wyszukiwania:",

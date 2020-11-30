@@ -207,6 +207,7 @@
 	"talk": "Oerlis",
 	"views": "Werjeften",
 	"toolbox": "Ark",
+	"cactions": "Mear",
 	"tool-link-userrights": "{{GENDER:$1|Meidochgroepen}} feroarje",
 	"tool-link-userrights-readonly": "{{GENDER:$1|Meidochgroepen}} besjen",
 	"tool-link-emailuser": "Dizze {{GENDER:$1|meidogger|meidochster}} e-maile",

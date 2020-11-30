@@ -2282,7 +2282,7 @@
 	"categoriespagetext": "Vikide bulunan aşağıdaki {{PLURAL:$1|kategori|kategoriler}} kullanılmıyor olabilir.\nAyrıca [[Special:WantedCategories|istenen kategoriler]]e bakınız.",
 	"categoriesfrom": "Şununla başlayan kategorileri görüntüle:",
 	"deletedcontributions": "Silinen kullanıcı katkıları",
-	"deletedcontributions-title": "Silinen kullanıcı katkıları",
+	"deletedcontributions-title": "$1 için silinen kullanıcı katkıları",
 	"sp-deletedcontributions-contribs": "katkılar",
 	"linksearch": "Dış bağlantı arama",
 	"linksearch-pat": "Motif ara:",

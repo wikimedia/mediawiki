@@ -2346,7 +2346,7 @@
 	"categoriespagetext": "{{PLURAL:$1|La catégorie suivante existe|Les catégories suivantes existent}} sur le wiki et {{PLURAL:$1|peut être inutilisée|peuvent être inutilisées}} ou non.\nVoir aussi [[Special:WantedCategories|les catégories les plus demandées]].",
 	"categoriesfrom": "Afficher les catégories à partir de :",
 	"deletedcontributions": "Contributions supprimées",
-	"deletedcontributions-title": "Contributions supprimées",
+	"deletedcontributions-title": "Contributions utilisateur supprimées pour $1",
 	"sp-deletedcontributions-contribs": "contributions",
 	"linksearch": "Recherche de liens externes",
 	"linksearch-pat": "Expression recherchée :",
