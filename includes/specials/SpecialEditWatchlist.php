@@ -128,14 +128,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->outputSubtitle();
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		# B/C: $mode used to be waaay down the parameter list, and the first parameter
-		# was a User
-		if ( $mode instanceof User ) {
-			$args = func_get_args();
-			if ( count( $args ) >= 4 ) {
-				$mode = $args[3];
-			}
-		}
 		$mode = self::getMode( $this->getRequest(), $mode );
 
 		switch ( $mode ) {
