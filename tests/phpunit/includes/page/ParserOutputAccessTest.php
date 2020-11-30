@@ -129,9 +129,13 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				->willReturnCallback( [ $realRevRenderer, 'getRenderedRevision' ] );
 		}
 
+		$secondaryWANCache = new WANObjectCache( [
+			'cache' => $secondaryCache
+		] );
+
 		return new ParserOutputAccess(
 			$parserCache,
-			$secondaryCache,
+			$secondaryWANCache,
 			$secondaryExpiry,
 			$revRenderer,
 			$stats,
