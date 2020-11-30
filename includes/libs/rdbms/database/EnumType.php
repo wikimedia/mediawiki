@@ -31,10 +31,59 @@ class EnumType extends Type {
 			return 'TEXT';
 		}
 
-		$values = implode( "','", $column['enum_values'] );
+		// PostgreSQL does support but needs custom handling.
+		// This just returns a string name that references the
+		// actual ENUM which will be created by CREATE TYPE command
+		// If 'fixed' option is not passed, this field will use TEXT
+		if ( $platform->getName() == 'postgresql' ) {
+			if ( !$column['fixed'] ) {
+				return 'TEXT';
+			}
+
+			return strtoupper( $column['name'] . '_enum' );
+		}
+
+		if ( $platform->getName() == 'mysql' ) {
+			$enumValues = $this->formatValues( $column['enum_values'] );
+			return "ENUM( $enumValues )";
+		}
+	}
+
+	/**
+	 * Gets the sql portion to create ENUM for Postgres table column
+	 *
+	 * @param mixed[] $column Column
+	 * @param AbstractPlatform $platform
+	 *
+	 * @see MWPostgreSqlPlatform::_getCreateTableSQL()
+	 * @throws \InvalidArgumentException
+	 * @return string
+	 */
+	public function makeEnumTypeSql( $column, $platform ) {
+		if ( $platform->getName() !== 'postgresql' ) {
+			throw new \InvalidArgumentException(
+				__METHOD__ . 'can only be called on Postgres platform'
+			);
+		}
+
+		$enumName = strtoupper( $column['name'] . '_enum' );
+		$enumValues = $this->formatValues( $column['enum_values'] );
+		$typeSql = "\n\nCREATE TYPE $enumName AS ENUM( $enumValues )";
+
+		return $typeSql;
+	}
+
+	/**
+	 * Get the imploded values suitable for pushing directly into ENUM();
+	 *
+	 * @param string[] $values
+	 * @return string
+	 */
+	public function formatValues( $values ) {
+		$values = implode( "','", $values );
 		$enumValues = "'" . $values . "'";
 
-		return "ENUM( $enumValues )";
+		return $enumValues;
 	}
 
 	public function getName() {
