@@ -60,6 +60,17 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Create an ObjectFactory with no dependencies
+	 *
+	 * @return ObjectFactory
+	 */
+	protected function createSimpleObjectFactory() {
+		return new ObjectFactory(
+			new ServiceLocator( new \Pimple\Container(), [] )
+		);
+	}
+
+	/**
 	 * Create an initially empty HookContainer with an empty service container
 	 * attached. Register only the hooks specified in the parameter.
 	 *
@@ -69,9 +80,7 @@ trait MediaWikiTestCaseTrait {
 	protected function createHookContainer( $hooks = [] ) {
 		$hookContainer = new HookContainer(
 			new \MediaWiki\HookContainer\StaticHookRegistry(),
-			new ObjectFactory(
-				new ServiceLocator( new \Pimple\Container(), [] )
-			)
+			$this->createSimpleObjectFactory()
 		);
 		foreach ( $hooks as $name => $callback ) {
 			$hookContainer->register( $name, $callback );
