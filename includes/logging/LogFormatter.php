@@ -243,6 +243,7 @@ class LogFormatter {
 	 * (T36508).
 	 * @see getActionText()
 	 * @return string Text
+	 * @suppress SecurityCheck-XSS Working with plaintext
 	 */
 	public function getIRCActionText() {
 		$this->plaintext = true;
