@@ -360,7 +360,7 @@
 	"rcshowhidemine-show": "Mustrà",
 	"rcshowhidemine-hide": "piattà",
 	"rclinks": "Mustrà l'ùltime $1 mudifiche in i $2 ghjorni scorsi",
-	"diff": "Differenza",
+	"diff": "diff",
 	"hist": "cron",
 	"hide": "piattà",
 	"show": "mustrà",

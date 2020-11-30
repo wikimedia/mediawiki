@@ -942,7 +942,7 @@
 	"mergehistory-go": "একত্রীকরণযোগ্য সম্পাদনাগুলি দেখানো হোক",
 	"mergehistory-submit": "সংশোধনগুলি একত্রীত করুন",
 	"mergehistory-empty": "কোন সংশোধন একত্র করা যাবে না।",
-	"mergehistory-done": "$1-এর $3{{PLURAL:$3|টি সংশোধন}} [[:$2]]-এর সাথে একত্রিত করা হয়েছে।",
+	"mergehistory-done": "$1-এর $4টি {{PLURAL:$4|সংশোধন}} [[:$2]]-এর সাথে একত্রিত করা হয়েছে।\n$3।",
 	"mergehistory-fail": "ইতিহাস একত্র করা গেল না। অনুগ্রহ করে পাতাটি ও সময়ের প্যারামিটারগুলি আবার পরীক্ষা করে দেখুন।",
 	"mergehistory-fail-bad-timestamp": "সময়তারিখ অবৈধ।",
 	"mergehistory-fail-invalid-source": "উৎস পাতা অবৈধ।",

@@ -2166,7 +2166,7 @@
 	"categoriespagetext": "{{PLURAL:$1|Naslednja $1 kategorija obstaja|Naslednji $1 kategoriji obstajata|Naslednje $1 kategorije obstajajo|Naslednjih $1 kategorij obstaja}} na tem wikiju in {{PLURAL:$1|je ali pa ni neuporabljena|sta ali pa nista neuporabljeni|so ali pa niso neuporabljene}}.\nGlej tudi [[Special:WantedCategories|želene kategorije]].",
 	"categoriesfrom": "Prikaži kategorije, ki se začnejo na:",
 	"deletedcontributions": "Izbrisani uporabnikovi prispevki",
-	"deletedcontributions-title": "Izbrisani uporabnikovi prispevki",
+	"deletedcontributions-title": "Izbrisani prispevki uporabnika $1",
 	"sp-deletedcontributions-contribs": "prispevki",
 	"linksearch": "Iskanje zunanjih povezav",
 	"linksearch-pat": "Iskalni vzorec:",
