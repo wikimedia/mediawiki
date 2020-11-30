@@ -9674,12 +9674,20 @@ $wgRevertedTagMaxDepth = 15;
 $wgRestAllowCrossOriginCookieAuth = false;
 
 /**
- * Temporary feature flag for selectively enabling JSON serialization in th e parser cache.
- * @see T263579
- * @internal
- * @todo remove before 1.36 is released. JSON should have become the default by then.
+ * Enable JSON serialization for ParserCache.
+ *
+ * In 1.36 the default serialization format for ParserCache has been changed from PHP serialization
+ * to JSON serialization. The cache is still compatible with old PHP-serialized entries, so for the
+ * most part the change should be unnoticed. However in case some extensions are installed which write
+ * non-JSON-serializable data to ParserOutput::setExtensionData, the cache will break for some pages.
+ * Setting this to 'false' makes ParserCache use PHP serialization format for writing new cache entries,
+ * and all the cache entries already written in JSON are discarded.
+ *
+ * @since 1.36
+ * @deprecated since 1.36
+ * @see https://phabricator.wikimedia.org/T263579
  */
-$wgParserCacheUseJson = false;
+$wgParserCacheUseJson = true;
 
 /**
  * For really cool vim folding this needs to be at the end:
