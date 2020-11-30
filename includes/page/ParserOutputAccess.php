@@ -21,7 +21,6 @@
  */
 namespace MediaWiki\Page;
 
-use BagOStuff;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
@@ -35,6 +34,7 @@ use PoolWorkArticleView;
 use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
 use Status;
+use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
 
@@ -89,7 +89,7 @@ class ParserOutputAccess {
 	private $primaryCache;
 
 	/**
-	 * @var BagOStuff
+	 * @var WANObjectCache
 	 */
 	private $secondaryCache;
 
@@ -113,7 +113,7 @@ class ParserOutputAccess {
 
 	/**
 	 * @param ParserCache $primaryCache
-	 * @param BagOStuff $secondaryCache
+	 * @param WANObjectCache $secondaryCache
 	 * @param int $secondaryCacheExpiry
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
@@ -123,7 +123,7 @@ class ParserOutputAccess {
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
-		BagOStuff $secondaryCache,
+		WANObjectCache $secondaryCache,
 		int $secondaryCacheExpiry,
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
