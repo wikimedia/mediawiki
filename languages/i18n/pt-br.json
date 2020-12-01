@@ -2293,7 +2293,7 @@
 	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria existe na wiki e pode, ou não, ser usada|As seguintes categorias existem na wiki e podem, ou não, ser usadas}}.\nVeja também as [[Special:WantedCategories|categorias desejadas]].",
 	"categoriesfrom": "Listar categorias começando por:",
 	"deletedcontributions": "Contribuições eliminadas",
-	"deletedcontributions-title": "Contribuições eliminadas",
+	"deletedcontributions-title": "Contribuições eliminadas para $1",
 	"sp-deletedcontributions-contribs": "contribuições",
 	"linksearch": "Pesquisa de links externos",
 	"linksearch-pat": "Procurar padrão:",

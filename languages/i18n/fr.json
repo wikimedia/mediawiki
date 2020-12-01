@@ -4247,5 +4247,6 @@
 	"paramvalidator-missingtitle": "Valeur « $2 » non valide pour le paramètre de titre <var>$1</var> : la page n’existe pas.",
 	"paramvalidator-help-type-title": "Type : titre de page",
 	"paramvalidator-help-type-title-must-exist": "Accepte uniquement les pages qui existent.",
-	"paramvalidator-help-type-title-no-must-exist": "Accepte les pages inexistantes."
+	"paramvalidator-help-type-title-no-must-exist": "Accepte les pages inexistantes.",
+	"nonmain-slot-differences-therefore-readonly": "Vous ne pouvez pas modifier le wikitexte de cette révision de la page, car il y a eu des modifications des données sur la page depuis cette révision, qui ne sont pas basées sur le wikitexte. [$1 Pour rétablir cette version, cliquer ici.]"
 }
