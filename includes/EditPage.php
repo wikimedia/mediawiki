@@ -1882,31 +1882,36 @@ class EditPage implements IEditObject {
 	/**
 	 * Return the summary to be used for a new section.
 	 *
-	 * @param string|null &$sectionanchor Set to the section anchor text
-	 * @return string
+	 * @return string[] array with two values, the summary and the anchor text
 	 */
-	private function newSectionSummary( &$sectionanchor = null ) {
+	private function newSectionSummary() : array {
+		$newSectionSummary = $this->summary;
+		$newSectionAnchor = '';
+		$parser = MediaWikiServices::getInstance()->getParser();
+
 		if ( $this->sectiontitle !== '' ) {
-			$sectionanchor = $this->guessSectionName( $this->sectiontitle );
+			$newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
 			// If no edit summary was specified, create one automatically from the section
 			// title and have it link to the new section. Otherwise, respect the summary as
 			// passed.
 			if ( $this->summary === '' ) {
-				$cleanSectionTitle = MediaWikiServices::getInstance()->getParser()
-					->stripSectionName( $this->sectiontitle );
-				return $this->context->msg( 'newsectionsummary' )
-					->plaintextParams( $cleanSectionTitle )->inContentLanguage()->text();
+				$newSectionSummary = $this->context
+					->msg( 'newsectionsummary' )
+					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) )
+					->inContentLanguage()
+					->text();
 			}
 		} elseif ( $this->summary !== '' ) {
-			$sectionanchor = $this->guessSectionName( $this->summary );
-			# This is a new section, so create a link to the new section
-			# in the revision summary.
-			$cleanSummary = MediaWikiServices::getInstance()->getParser()
-				->stripSectionName( $this->summary );
-			return $this->context->msg( 'newsectionsummary' )
-				->plaintextParams( $cleanSummary )->inContentLanguage()->text();
+			$newSectionAnchor = $this->guessSectionName( $this->summary );
+			// This is a new section, so create a link to the new section
+			// in the revision summary.
+			$newSectionSummary = $this->context
+				->msg( 'newsectionsummary' )
+				->plaintextParams( $parser->stripSectionName( $this->summary ) )
+				->inContentLanguage()
+				->text();
 		}
-		return $this->summary;
+		return [ $newSectionSummary, $newSectionAnchor ];
 	}
 
 	/**
@@ -1935,12 +1940,9 @@ class EditPage implements IEditObject {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $markAsBot = false ) {
-		$status = Status::newGood();
-		$user = $this->context->getUser();
-
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
-			$status->fatal( 'hookaborted' );
+			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			return $status;
 		}
@@ -1949,7 +1951,7 @@ class EditPage implements IEditObject {
 			# Construct Content object
 			$textbox_content = $this->toEditContent( $this->textbox1 );
 		} catch ( MWContentSerializationException $ex ) {
-			$status->fatal(
+			$status = Status::newFatal(
 				'content-failed-to-parse',
 				$this->contentModel,
 				$this->contentFormat,
@@ -1963,17 +1965,24 @@ class EditPage implements IEditObject {
 			$this->hookError, $this->summary )
 		) {
 			# Error messages etc. could be handled within the hook...
-			$status->fatal( 'hookaborted' );
+			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			return $status;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
-			$status->fatal( 'hookaborted' );
+			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			return $status;
 		}
 
 		$this->contentLength = strlen( $this->textbox1 );
+		$user = $this->context->getUser();
+
+		$changingContentModel = false;
+		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
+			$changingContentModel = true;
+			$oldContentModel = $this->mTitle->getContentModel();
+		}
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
@@ -2021,9 +2030,11 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			$constraintFactory->newUserBlockConstraint( $this->mTitle, $user )
 		);
-
-		$changingContentModel = false;
-		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
+		if ( $changingContentModel ) {
+			// TODO move the logic of checking if this constraint
+			// should be run to within the constraint, since it is the result of
+			// `$this->contentModel !== $this->mTitle->getContentModel()`
+			// and both the content model and title are injected
 			$constraintRunner->addConstraint(
 				$constraintFactory->newContentModelChangeConstraint(
 					$user,
@@ -2031,9 +2042,6 @@ class EditPage implements IEditObject {
 					$this->contentModel
 				)
 			);
-
-			$changingContentModel = true;
-			$oldContentModel = $this->mTitle->getContentModel();
 		}
 
 		$constraintRunner->addConstraint(
@@ -2051,6 +2059,8 @@ class EditPage implements IEditObject {
 			)
 		);
 		if ( $this->changeTags ) {
+			// TODO move the logic of whether this constraint should be run
+			// at all into the constraint, since $this->changeTags is injected
 			$constraintRunner->addConstraint(
 				new ChangeTagsConstraint( $user, $this->changeTags )
 			);
@@ -2146,11 +2156,11 @@ class EditPage implements IEditObject {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->summary );
 				}
-				$this->summary = $this->newSectionSummary( $result['sectionanchor'] );
+
+				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
+				$this->summary = $newSectionSummary;
+				$result['sectionanchor'] = $anchor;
 			}
-
-			$status->value = self::AS_SUCCESS_NEW_ARTICLE;
-
 		} else { # not $new
 
 			# Article exists. Check for edit conflict.
@@ -2170,9 +2180,10 @@ class EditPage implements IEditObject {
 				|| ( $this->editRevId !== null && $this->editRevId != $latest )
 			) {
 				$this->isConflict = true;
+				list( $newSectionSummary, $newSectionAnchor ) = $this->newSectionSummary();
 				if ( $this->section == 'new' ) {
 					if ( $this->page->getUserText() == $user->getName() &&
-						$this->page->getComment() == $this->newSectionSummary()
+						$this->page->getComment() == $newSectionSummary
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -2267,7 +2278,8 @@ class EditPage implements IEditObject {
 			}
 
 			if ( $this->isConflict ) {
-				$status->setResult( false, self::AS_CONFLICT_DETECTED );
+				$status = Status::newGood( self::AS_CONFLICT_DETECTED );
+				$status->setOK( false );
 				return $status;
 			}
 
@@ -2324,9 +2336,11 @@ class EditPage implements IEditObject {
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
 			# All's well
-			$sectionanchor = '';
+			$sectionAnchor = '';
 			if ( $this->section == 'new' ) {
-				$this->summary = $this->newSectionSummary( $sectionanchor );
+				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
+				$this->summary = $newSectionSummary;
+				$sectionAnchor = $anchor;
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
@@ -2336,10 +2350,10 @@ class EditPage implements IEditObject {
 				# We can't deal with anchors, includes, html etc in the header for now,
 				# headline would need to be parsed to improve this.
 				if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
-					$sectionanchor = $this->guessSectionName( $matches[2] );
+					$sectionAnchor = $this->guessSectionName( $matches[2] );
 				}
 			}
-			$result['sectionanchor'] = $sectionanchor;
+			$result['sectionanchor'] = $sectionAnchor;
 
 			// Save errors may fall down to the edit form, but we've now
 			// merged the section into full text. Clear the section field
@@ -2347,8 +2361,6 @@ class EditPage implements IEditObject {
 			// replace that into a duplicated mess.
 			$this->textbox1 = $this->toEditText( $content );
 			$this->section = '';
-
-			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
 		// Check for length errors again now that the section is merged in
@@ -2448,6 +2460,11 @@ class EditPage implements IEditObject {
 			);
 		}
 
+		// Instead of carrying the same status object throughout, it is created right
+		// when it is returned, either at an earlier point due to an error or here
+		// due to a successful edit.
+		$statusCode = ( $new ? self::AS_SUCCESS_NEW_ARTICLE : self::AS_SUCCESS_UPDATE );
+		$status = Status::newGood( $statusCode );
 		return $status;
 	}
 
@@ -2489,9 +2506,9 @@ class EditPage implements IEditObject {
 		}
 
 		// Do a pre-save transform on the retrieved undo content
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		$user = $this->context->getUser();
-		$parserOptions = ParserOptions::newFromUserAndLang(
-			$user, MediaWikiServices::getInstance()->getContentLanguage() );
+		$parserOptions = ParserOptions::newFromUserAndLang( $user, $contentLanguage );
 		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
 
 		if ( $undoContent->equals( $content ) ) {
