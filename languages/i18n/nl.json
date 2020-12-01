@@ -2256,7 +2256,7 @@
 	"categoriespagetext": "De volgende {{PLURAL:$1|categorie bestaat|categorieën bestaan}} op de wiki en kunnen mogelijk ongebruikt zijn.\nZie ook [[Special:WantedCategories|niet-bestaande categorieën met de meeste koppelingen]].",
 	"categoriesfrom": "Categorieën weergeven vanaf:",
 	"deletedcontributions": "Verwijderde bijdragen",
-	"deletedcontributions-title": "Verwijderde gebruikersbijdragen",
+	"deletedcontributions-title": "Verwijderde gebruikersbijdragen van $1",
 	"sp-deletedcontributions-contribs": "bijdragen",
 	"linksearch": "Externe koppelingen zoeken",
 	"linksearch-pat": "Zoekpatroon:",
@@ -3448,7 +3448,7 @@
 	"tag-mw-rollback-description": "Bewerkingen die eerdere bewerkingen terugdraaien door middel van de koppeling \"terugdraaien\"",
 	"tag-mw-undo": "Ongedaan maken",
 	"tag-mw-undo-description": "Bewerkingen die vorige bewerkingen door middel van de ongedaan maken koppeling ongedaan maken",
-	"tag-mw-manual-revert": "Handmatig ongedaan gemaakt",
+	"tag-mw-manual-revert": "Handmatige ongedaanmaking",
 	"tag-mw-manual-revert-description": "Bewerkingen die de pagina handmatig naar een vorige staat herstellen",
 	"tag-mw-reverted": "Ongedaan gemaakt",
 	"tag-mw-reverted-description": "Bewerkingen die later ongedaan gemaakt zijn door een andere bewerking",
@@ -4047,5 +4047,6 @@
 	"paramvalidator-missingtitle": "Ongeldige waarde \"$2\" voor titel parameter <var>$1</var>: de pagina bestaat niet.",
 	"paramvalidator-help-type-title": "Soort: paginatitel",
 	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
-	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's."
+	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's.",
+	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]"
 }

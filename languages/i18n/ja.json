@@ -3334,7 +3334,7 @@
 	"confirm-unwatch-top": "このページをウォッチリストから除去しますか?",
 	"confirm-rollback-button": "OK",
 	"confirm-rollback-top": "このページの編集を差し戻しますか？",
-	"confirm-rollback-bottom": "この操作はこのページに対する指定した変更即座に巻き戻します。",
+	"confirm-rollback-bottom": "この操作は選択された変更を即座に巻き戻します。",
 	"confirm-mcrrestore-title": "版を復帰",
 	"confirm-mcrundo-title": "直前の変更を取り消す",
 	"mcrundofailed": "取り消しに失敗しました",

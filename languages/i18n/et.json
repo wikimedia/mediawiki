@@ -651,7 +651,7 @@
 	"anoneditwarning": "<strong>Hoiatus:</strong> Sa pole sisse logitud. Sinu IP-aadress on kõigile nähtav, kui muudatusi teed. Kui <strong>[$1 logid sisse]</strong> või <strong>[$2 lood konto]</strong>, siis teiste eeliste seas omistatakse sinu muudatused sulle kasutajanime järgi.",
 	"anonpreviewwarning": "''Sa pole sisse logitud. Selle lehe redigeerimislogisse salvestatakse su IP-aadress.''",
 	"missingsummary": "'''Meeldetuletus:''' Sa ei ole lisanud muudatuse resümeed.\nKui vajutad uuesti salvestamise nupule, salvestatakse muudatus ilma resümeeta.",
-	"selfredirect": "<strong>Hoiatus:</strong> Suunad selle lehekülje iseeneda juurde.\nVõimalik, et oled määranud ümbersuunamise jaoks vale sihtleheküljeks või redigeerid vale lehekülge.\nÜmbersuunamine luuakse sellest hoolimata, kui klõpsad uuesti \"$1\".",
+	"selfredirect": "<strong>Hoiatus:</strong> Suunad selle lehekülje iseenda juurde.\nVõimalik, et oled määranud ümbersuunamise jaoks vale sihtlehekülje või redigeerid vale lehekülge.\nÜmbersuunamine luuakse sellest hoolimata, kui klõpsad uuesti \"$1\".",
 	"missingcommenttext": "Palun sisesta kommentaar.",
 	"missingcommentheader": "<strong>Meeldetuletus:</strong> Sa pole kirjutanud kommentaarile teemat.\nKui klõpsad uuesti \"$1\", salvestatakse su kommentaar ilma teemata.",
 	"summary-preview": "Resümee eelvaade:",

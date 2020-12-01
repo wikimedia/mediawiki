@@ -377,5 +377,6 @@
 	"exif-exposurelockused": "Belichtungssperre verwendet",
 	"exif-exposurelockused-true": "Ja",
 	"exif-exposurelockused-false": "Nein",
-	"exif-sourcephotoscount": "Anzahl der Quellfotos"
+	"exif-sourcephotoscount": "Anzahl der Quellfotos",
+	"exif-stitchingsoftware": "Stitching-Software"
 }

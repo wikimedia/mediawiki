@@ -698,7 +698,7 @@
 	"permissionserrorstext": "Tev nav atļauts veikt šo darbību {{PLURAL:$1|šādu iemeslu|šāda iemesla|šādu iemeslu}} dēļ:",
 	"permissionserrorstext-withaction": "Tev nav atļauts $2 {{PLURAL:$1|šādu iemeslu|šāda iemesla|šādu iemeslu}} dēļ:",
 	"recreate-moveddeleted-warn": "'''Brīdinājums: Tu atjauno lapu, kas ir tikusi izdzēsta'''\n\nTev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu.\nTe var apskatīt dzēšanas un pārvietošanas reģistrus, kuros jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
-	"moveddeleted-notice": "Šī lapa ir tikusi izdzēsta.\nDzēšanas, aizsargāšanas un pārvietošanas reģistru ieraksti ir pieejami zemāk.",
+	"moveddeleted-notice": "Šī lapa nepastāv.\nDzēšanas, aizsargāšanas un pārvietošanas reģistru ieraksti ir pieejami zemāk.",
 	"log-fulllog": "Skatīt pilnu reģistru",
 	"edit-hook-aborted": "Aizķere pārtrauca labojumu.\nNetika sniegts paskaidrojums.",
 	"edit-gone-missing": "Nevar atjaunināt lapu.\nIzskatās, ka lapa ir dzēsta.",

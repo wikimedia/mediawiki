@@ -2280,7 +2280,7 @@
 	"categoriespagetext": "{{PLURAL:$1|La categoria indicata di seguito esiste|Le categorie indicate di seguito esistono}} nel wiki, e potrebbero o no essere inutilizzate.\nVedi anche le [[Special:WantedCategories|categorie richieste]].",
 	"categoriesfrom": "Mostra le categorie a partire da:",
 	"deletedcontributions": "Contributi utente cancellati",
-	"deletedcontributions-title": "Contributi utente cancellati",
+	"deletedcontributions-title": "Contributi utente cancellati per $1",
 	"sp-deletedcontributions-contribs": "contributi",
 	"linksearch": "Ricerca collegamenti esterni",
 	"linksearch-pat": "Pattern di ricerca:",
