@@ -386,6 +386,10 @@ class ParserCache {
 			$this->incrementStats( $wikiPage, 'miss.absent' );
 			return false;
 		}
+		if ( !$popts->isSafeToCache() ) {
+			$this->incrementStats( $wikiPage, 'miss.unsafe' );
+			return false;
+		}
 
 		$parserOutputKey = $this->makeParserOutputKey(
 			$wikiPage,
@@ -477,7 +481,19 @@ class ParserCache {
 		}
 
 		$expire = $parserOutput->getCacheExpiry();
-		if ( $expire > 0 && !$this->cache instanceof EmptyBagOStuff ) {
+		if ( !$popts->isSafeToCache() ) {
+			$this->logger->debug(
+				'Parser options are not safe to cache and has not been saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $wikiPage, 'save.unsafe' );
+		} elseif ( $expire <= 0 ) {
+			$this->logger->debug(
+				'Parser output was marked as uncacheable and has not been saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $wikiPage, 'save.uncacheable' );
+		} elseif ( !$this->cache instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $wikiPage->getRevisionRecord();
@@ -544,12 +560,14 @@ class ParserCache {
 					'cache_time' => $cacheTime,
 					'rev_id' => $revId
 				] );
+				$this->incrementStats( $wikiPage, 'save.success' );
+			} else {
+				$this->logger->warning(
+					'Parser output failed to serialize and was not saved',
+					[ 'name' => $this->name ]
+				);
+				$this->incrementStats( $wikiPage, 'save.nonserializable' );
 			}
-		} elseif ( $expire <= 0 ) {
-			$this->logger->debug(
-				'Parser output was marked as uncacheable and has not been saved',
-				[ 'name' => $this->name ]
-			);
 		}
 	}
 

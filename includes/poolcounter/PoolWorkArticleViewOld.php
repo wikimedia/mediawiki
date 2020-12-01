@@ -85,7 +85,18 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 			return;
 		}
 
-		$this->cache->set( $this->cacheKey, $json, $this->cacheExpiry );
+		// TODO: Once we create OldRevisionParserCache abstraction,
+		// checking for cache safety moves in there
+		if ( !$this->parserOptions->isSafeToCache() ) {
+			return;
+		}
+
+		// The ParserOutput might be dynamic and have been marked uncacheable by the parser.
+		$output->updateCacheExpiry( $this->cacheExpiry );
+		$expiry = $output->getCacheExpiry();
+		if ( $expiry > 0 ) {
+			$this->cache->set( $this->cacheKey, $json, $expiry );
+		}
 	}
 
 	/**

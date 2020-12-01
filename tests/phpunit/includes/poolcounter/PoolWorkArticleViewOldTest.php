@@ -84,4 +84,18 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
 	}
 
+	public function testDoesNotCacheNotSafe() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$cache = $this->installCache();
+
+		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOptions->setWrapOutputClass( 'wrapwrap' ); // Not safe to cache!
+
+		$work = $this->newPoolWorkArticleView( $page, null, $parserOptions );
+		$this->assertTrue( $work->execute() );
+
+		$cacheKey = 'test:' . $page->getLatest();
+		$this->assertFalse( $cache->get( $cacheKey ) );
+	}
 }

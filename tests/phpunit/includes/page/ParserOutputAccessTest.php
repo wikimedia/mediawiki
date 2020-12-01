@@ -608,21 +608,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Tests that unsafe parser options will cause an exception.
-	 */
-	public function testUnsafeToCacheError() {
-		$access = $this->getParserOutputAccessNoCache();
-
-		$options = ParserOptions::newCanonical( 'canonical' );
-		$options->setIsPreview( true ); // not safe to cache
-
-		$page = $this->getExistingTestPage( __METHOD__ );
-
-		$this->expectException( InvalidArgumentException::class );
-		$access->getParserOutput( $page, $options );
-	}
-
-	/**
 	 * @param Status $status
 	 * @param bool $fastStale
 	 *
