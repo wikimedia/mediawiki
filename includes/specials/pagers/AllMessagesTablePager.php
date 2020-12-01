@@ -288,7 +288,7 @@ class AllMessagesTablePager extends TablePager {
 					] ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
-				$talkLink = $this->msg( 'talkpagelinktext' )->escaped();
+				$talkLink = $this->msg( 'talkpagelinktext' )->text();
 
 				if ( $this->mCurrentRow->am_customised ) {
 					$title = $linkRenderer->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
