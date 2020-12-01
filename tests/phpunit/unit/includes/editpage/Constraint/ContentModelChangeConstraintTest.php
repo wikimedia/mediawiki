@@ -37,8 +37,11 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ '__clone', 'setContentModel' ] )
+			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
 			->getMock();
+		$title->expects( $this->once() )
+			->method( 'getContentModel' )
+			->willReturn( 'differentStartingContentModel' );
 		$title->expects( $this->once() )
 			->method( '__clone' )
 			->will( $this->returnSelf() );
@@ -89,13 +92,30 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertConstraintPassed( $constraint );
 	}
 
+	public function testNoChange() {
+		$unchangingContentModel = 'FooBarBaz';
+		$title = $this->createMock( Title::class );
+		$title->method( 'getContentModel' )->willReturn( $unchangingContentModel );
+
+		$constraint = new ContentModelChangeConstraint(
+			$this->createMock( PermissionManager::class ),
+			$this->createMock( User::class ),
+			$title,
+			$unchangingContentModel
+		);
+		$this->assertConstraintPassed( $constraint );
+	}
+
 	public function testFailure() {
 		$newContentModel = 'FooBarBaz';
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ '__clone', 'setContentModel' ] )
+			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
 			->getMock();
+		$title->expects( $this->once() )
+			->method( 'getContentModel' )
+			->willReturn( 'differentStartingContentModel' );
 		$title->expects( $this->once() )
 			->method( '__clone' )
 			->will( $this->returnSelf() );
@@ -150,9 +170,12 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFailure_quick() {
-		$title = $this->createMock( Title::class );
 		$user = $this->createMock( User::class );
 
+		$title = $this->createMock( Title::class );
+		$title->expects( $this->once() )
+			->method( 'getContentModel' )
+			->willReturn( 'differentStartingContentModel' );
 		$permManager = $this->getMockBuilder( PermissionManager::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'userHasRight' ] )

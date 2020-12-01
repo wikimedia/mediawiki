@@ -57,6 +57,15 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 		$this->assertConstraintPassed( $constraint );
 	}
 
+	public function testNoTags() {
+		// Early return for no tags being added
+		$constraint = new ChangeTagsConstraint(
+			$this->getTestSysop()->getUser(),
+			[]
+		);
+		$this->assertConstraintPassed( $constraint );
+	}
+
 	public function testFailure() {
 		$tagName = 'tag-for-constraint-test-fail';
 		ChangeTags::defineTag( $tagName );

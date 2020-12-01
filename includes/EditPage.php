@@ -2030,19 +2030,13 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			$constraintFactory->newUserBlockConstraint( $this->mTitle, $user )
 		);
-		if ( $changingContentModel ) {
-			// TODO move the logic of checking if this constraint
-			// should be run to within the constraint, since it is the result of
-			// `$this->contentModel !== $this->mTitle->getContentModel()`
-			// and both the content model and title are injected
-			$constraintRunner->addConstraint(
-				$constraintFactory->newContentModelChangeConstraint(
-					$user,
-					$this->mTitle,
-					$this->contentModel
-				)
-			);
-		}
+		$constraintRunner->addConstraint(
+			$constraintFactory->newContentModelChangeConstraint(
+				$user,
+				$this->mTitle,
+				$this->contentModel
+			)
+		);
 
 		$constraintRunner->addConstraint(
 			$constraintFactory->newReadOnlyConstraint()
@@ -2058,13 +2052,9 @@ class EditPage implements IEditObject {
 				PageSizeConstraint::BEFORE_MERGE
 			)
 		);
-		if ( $this->changeTags ) {
-			// TODO move the logic of whether this constraint should be run
-			// at all into the constraint, since $this->changeTags is injected
-			$constraintRunner->addConstraint(
-				new ChangeTagsConstraint( $user, $this->changeTags )
-			);
-		}
+		$constraintRunner->addConstraint(
+			new ChangeTagsConstraint( $user, $this->changeTags )
+		);
 
 		// If the article has been deleted while editing, don't save it without
 		// confirmation
