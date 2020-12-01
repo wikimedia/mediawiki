@@ -121,7 +121,7 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 					// Update the "Watch this page" checkbox on action=edit when the
 					// page is watched or unwatched via the tab.
 					if ( document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( '#wpWatchlistExpiryWidget' ).setValue( value );
+						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( value );
 					}
 				} )
 				.fail( function ( code, data ) {
