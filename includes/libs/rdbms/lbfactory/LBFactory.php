@@ -32,6 +32,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use WANObjectCache;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -41,6 +42,8 @@ use Wikimedia\ScopedCallback;
 abstract class LBFactory implements ILBFactory {
 	/** @var ChronologyProtector */
 	private $chronProt;
+	/** @var CriticalSectionProvider|null */
+	private $csProvider;
 	/**
 	 * @var callable|null An optional callback that returns a ScopedCallback instance,
 	 * meant to profile the actual query execution in {@see Database::doQuery}
@@ -150,6 +153,8 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->profiler = $conf['profiler'] ?? null;
 		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
+
+		$this->csProvider = $conf['criticalSectionProvider'] ?? null;
 
 		$this->requestInfo = [
 			'IPAddress' => $_SERVER[ 'REMOTE_ADDR' ] ?? '',
@@ -653,7 +658,8 @@ abstract class LBFactory implements ILBFactory {
 				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
 			},
 			'roundStage' => $initStage,
-			'ownerId' => $owner
+			'ownerId' => $owner,
+			'criticalSectionProvider' => $this->csProvider
 		];
 	}
 

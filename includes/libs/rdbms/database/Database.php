@@ -26,7 +26,6 @@
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
-use Exception;
 use HashBagOStuff;
 use InvalidArgumentException;
 use LogicException;
@@ -37,6 +36,8 @@ use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -50,6 +51,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
+	/** @var CriticalSectionProvider|null */
+	protected $csProvider;
 	/** @var LoggerInterface */
 	protected $connLogger;
 	/** @var LoggerInterface */
@@ -125,7 +128,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxShortId = '';
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
-	/** @var Exception|null The last error that caused the status to become STATUS_TRX_ERROR */
+	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
 	private $trxStatusCause;
 	/** @var array|null Error details of the last statement-only rollback */
 	private $trxStatusIgnoredCause;
@@ -186,6 +189,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastPhpError = false;
 	/** @var float Query round trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
+
+	/** @var int|null Current critical section numeric ID */
+	private $csmId;
+	/** @var string|null Last critical section caller name */
+	private $csmFname;
+	/** @var DBUnexpectedError|null Last unresolved critical section error */
+	private $csmError;
 
 	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
 	private $ownerId;
@@ -293,6 +303,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
 
+		$this->csProvider = $params['criticalSectionProvider'] ?? null;
+
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = new DatabaseDomain(
 			$params['dbname'] != '' ? $params['dbname'] : null,
@@ -397,6 +409,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
 	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT.
 	 *   - ownerId: Optional integer ID of a LoadBalancer instance that manages this instance.
+	 *   - criticalSectionProvider: Optional CriticalSectionProvider instance.
 	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
@@ -686,11 +699,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return string|null
+	 * @return string|null ID of the active explicit transaction round being participating in
 	 */
 	final protected function getTransactionRoundId() {
-		// If transaction round participation is enabled, see if one is active
 		if ( $this->getFlag( self::DBO_TRX ) ) {
+			// LoadBalancer transaction round participation is enabled for this DB handle;
+			// get the ID of the active explicit transaction round (if any)
 			$id = $this->getLBInfo( self::LB_TRX_ROUND_ID );
 
 			return is_string( $id ) ? $id : null;
@@ -742,7 +756,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * List the methods that have write queries or callbacks for the current transaction
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
+	 * @internal This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @return string[]
 	 * @since 1.32
@@ -886,7 +900,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Error handler for logging errors during database connection
-	 * This method should not be used outside of Database classes
+	 *
+	 * @internal This method should not be used outside of Database classes
 	 *
 	 * @param int $errno
 	 * @param string $errstr
@@ -943,6 +958,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 				// Rollback the changes and run any callbacks as needed
 				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+				$this->runTransactionPostRollbackCallbacks();
 			}
 
 			// Close the actual connection in the binding handle
@@ -985,8 +1001,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Make sure there is an open connection handle (alive or not) as a sanity check
 	 *
-	 * This guards against fatal errors to the binding handle not being defined
-	 * in cases where open() was never called or close() was already called
+	 * This guards against fatal errors to the binding handle not being defined in cases
+	 * where open() was never called or close() was already called.
 	 *
 	 * @throws DBUnexpectedError
 	 */
@@ -1305,6 +1321,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$encAgent = str_replace( '/', '-', $this->agent );
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $encAgent */ ", $sql, 1 );
 
+		$corruptedTrx = false;
+
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+
 		// Send the query to the server and fetch any corresponding errors.
 		// This also doubles as a "ping" to see if the connection was dropped.
 		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
@@ -1321,27 +1341,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Register creation and dropping of temporary tables
 		$this->registerTempWrites( $ret, $tempTableChanges );
 
-		$corruptedTrx = false;
-
-		if ( $ret === false ) {
-			if ( $priorTransaction ) {
-				if ( $recoverableSR ) {
-					# We're ignoring an error that caused just the current query to be aborted.
-					# But log the cause so we can log a deprecation notice if a caller actually
-					# does ignore it.
-					$this->trxStatusIgnoredCause = [ $err, $errno, $fname ];
-				} elseif ( !$recoverableCL ) {
-					# Either the query was aborted or all queries after BEGIN where aborted.
-					# In the first case, the only options going forward are (a) ROLLBACK, or
-					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
-					# option is ROLLBACK, since the snapshots would have been released.
-					$corruptedTrx = true; // cannot recover
-					$this->trxStatus = self::STATUS_TRX_ERROR;
-					$this->trxStatusCause = $this->getQueryException( $err, $errno, $sql, $fname );
-					$this->trxStatusIgnoredCause = null;
-				}
+		if ( $ret === false && $priorTransaction ) {
+			if ( $recoverableSR ) {
+				# We're ignoring an error that caused just the current query to be aborted.
+				# But log the cause so we can log a deprecation notice if a caller actually
+				# does ignore it.
+				$this->trxStatusIgnoredCause = [ $err, $errno, $fname ];
+			} elseif ( !$recoverableCL ) {
+				# Either the query was aborted or all queries after BEGIN where aborted.
+				# In the first case, the only options going forward are (a) ROLLBACK, or
+				# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
+				# option is ROLLBACK, since the snapshots would have been released.
+				$corruptedTrx = true; // cannot recover
+				$trxError = $this->getQueryException( $err, $errno, $sql, $fname );
+				$this->setTransactionError( $trxError );
 			}
 		}
+
+		$this->completeCriticalSection( __METHOD__, $cs );
 
 		return [ $ret, $err, $errno, $corruptedTrx ];
 	}
@@ -1505,6 +1522,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql
 	 * @param string $fname
+	 * @throws DBUnexpectedError
 	 * @throws DBTransactionStateError
 	 */
 	private function assertQueryIsCurrentlyAllowed( $sql, $fname ) {
@@ -1515,6 +1533,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $verb === 'ROLLBACK' ) { // transaction/savepoint
 			return;
+		}
+
+		if ( $this->csmError ) {
+			throw new DBTransactionStateError(
+				$this,
+				"Cannot execute query from $fname while session state is out of sync.\n\n" .
+					$this->csmError->getMessage() . "\n" .
+					$this->csmError->getTraceAsString()
+			);
 		}
 
 		if ( $this->trxStatus < self::STATUS_TRX_OK ) {
@@ -1618,19 +1645,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Clean things up after session (and thus transaction) loss after reconnect
 	 */
 	private function handleSessionLossPostconnect() {
-		try {
-			// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
-			// If callback suppression is set then the array will remain unhandled.
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Throwable $ex ) {
-			// Already logged; move on...
-		}
-		try {
-			// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
-			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Throwable $ex ) {
-			// Already logged; move on...
-		}
+		// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
+		// If callback suppression is set then the array will remain unhandled.
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
+		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
 	/**
@@ -2800,7 +2819,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function selectDomain( $domain ) {
-		$this->doSelectDomain( DatabaseDomain::newFromId( $domain ) );
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+
+		try {
+			$this->doSelectDomain( DatabaseDomain::newFromId( $domain ) );
+		} catch ( DBError $e ) {
+			$this->completeCriticalSection( __METHOD__, $cs );
+			throw $e;
+		}
+
+		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
 	/**
@@ -3302,7 +3330,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$affectedRowCount += $this->affectedRows();
 			}
 			$this->endAtomic( $fname );
-		} catch ( Throwable $e ) {
+		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3417,7 +3445,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				}
 			}
 			$this->endAtomic( $fname );
-		} catch ( Throwable $e ) {
+		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3601,7 +3629,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->insert( $destTable, $rows, $fname, $insertOptions );
 				$affectedRowCount += $this->affectedRows();
 			}
-		} catch ( Throwable $e ) {
+		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3938,9 +3966,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
-			// Start an implicit transaction similar to how query() does
+			// This DB handle is set to participate in LoadBalancer transaction rounds and
+			// an explicit transaction round is active. Start an implicit transaction on this
+			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
-			$this->trxAutomatic = true;
 		}
 
 		$this->trxPostCommitOrIdleCallbacks[] = [
@@ -3950,7 +3979,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		if ( !$this->trxLevel() ) {
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
+			$dbErrors = [];
+			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE, $dbErrors );
+			if ( $dbErrors ) {
+				throw $dbErrors[0];
+			}
 		}
 	}
 
@@ -3960,9 +3993,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
-			// Start an implicit transaction similar to how query() does
+			// This DB handle is set to participate in LoadBalancer transaction rounds and
+			// an explicit transaction round is active. Start an implicit transaction on this
+			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
-			$this->trxAutomatic = true;
 		}
 
 		if ( $this->trxLevel() ) {
@@ -3976,11 +4010,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
 			try {
 				$callback( $this );
-				$this->endAtomic( __METHOD__ );
 			} catch ( Throwable $e ) {
-				$this->cancelAtomic( __METHOD__ );
+				// Avoid confusing error reporting during critical section errors
+				if ( !$this->csmError ) {
+					$this->cancelAtomic( __METHOD__ );
+				}
 				throw $e;
 			}
+			$this->endAtomic( __METHOD__ );
 		}
 	}
 
@@ -4102,62 +4139,62 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Whether to disable running of post-COMMIT/ROLLBACK callbacks
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
+	 * @internal This method should not be used outside of Database/LoadBalancer
 	 *
-	 * @param bool $suppress
 	 * @since 1.28
+	 * @param bool $suppress
 	 */
 	final public function setTrxEndCallbackSuppression( $suppress ) {
 		$this->trxEndCallbacksSuppressed = $suppress;
 	}
 
 	/**
-	 * Actually consume and run any "on transaction idle/resolution" callbacks.
+	 * Consume and run any "on transaction idle/resolution" callbacks
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
+	 * @internal This method should not be used outside of Database/LoadBalancer
 	 *
-	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @return int Number of callbacks attempted
 	 * @since 1.20
-	 * @throws Exception
+	 * @param int $trigger IDatabase::TRIGGER_* constant
+	 * @param DBError[] &$errors DB exceptions caught [returned]
+	 * @return int Number of callbacks attempted
+	 * @throws DBUnexpectedError
+	 * @throws Throwable Any non-DBError exception thrown by a callback
 	 */
-	public function runOnTransactionIdleCallbacks( $trigger ) {
+	public function runOnTransactionIdleCallbacks( $trigger, array &$errors = [] ) {
 		if ( $this->trxLevel() ) { // sanity
 			throw new DBUnexpectedError( $this, __METHOD__ . ': a transaction is still open' );
 		}
 
 		if ( $this->trxEndCallbacksSuppressed ) {
+			// Execution deferred by LoadBalancer for explicit execution later
 			return 0;
 		}
 
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+
 		$count = 0;
 		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
-		/** @var Throwable $e */
-		$e = null; // first exception
-		do { // callbacks may add callbacks :)
-			$callbacks = array_merge(
+		// Drain the queues of transaction "idle" and "end" callbacks until they are empty
+		do {
+			$callbackEntries = array_merge(
 				$this->trxPostCommitOrIdleCallbacks,
-				$this->trxEndCallbacks // include "transaction resolution" callbacks
+				$this->trxEndCallbacks,
+				( $trigger === self::TRIGGER_ROLLBACK )
+					? $this->trxSectionCancelCallbacks
+					: [] // just consume them
 			);
 			$this->trxPostCommitOrIdleCallbacks = []; // consumed (and recursion guard)
 			$this->trxEndCallbacks = []; // consumed (recursion guard)
-
-			// Only run trxSectionCancelCallbacks on rollback, not commit.
-			// But always consume them.
-			if ( $trigger === self::TRIGGER_ROLLBACK ) {
-				$callbacks = array_merge( $callbacks, $this->trxSectionCancelCallbacks );
-			}
 			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
 
-			foreach ( $callbacks as $callback ) {
-				++$count;
-				list( $phpCallback ) = $callback;
+			$count += count( $callbackEntries );
+			foreach ( $callbackEntries as $entry ) {
 				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
-					call_user_func( $phpCallback, $trigger, $this );
-				} catch ( Throwable $ex ) {
+					$entry[0]( $trigger, $this );
+				} catch ( DBError $ex ) {
 					call_user_func( $this->errorLogger, $ex );
-					$e = $e ?: $ex;
+					$errors[] = $ex;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
@@ -4174,118 +4211,129 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 		} while ( count( $this->trxPostCommitOrIdleCallbacks ) );
 
-		if ( $e instanceof Throwable ) {
-			throw $e; // re-throw any first exception
-		}
+		$this->completeCriticalSection( __METHOD__, $cs );
 
 		return $count;
 	}
 
 	/**
-	 * Actually consume and run any "on transaction pre-commit" callbacks.
+	 * Consume and run any "on transaction pre-commit" callbacks
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
+	 * @internal This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @since 1.22
 	 * @return int Number of callbacks attempted
-	 * @throws Exception
+	 * @throws Throwable Any exception thrown by a callback
 	 */
 	public function runOnTransactionPreCommitCallbacks() {
 		$count = 0;
 
-		$e = null; // first exception
-		do { // callbacks may add callbacks :)
-			$callbacks = $this->trxPreCommitOrIdleCallbacks;
+		// Drain the queues of transaction "precommit" callbacks until it is empty
+		do {
+			$callbackEntries = $this->trxPreCommitOrIdleCallbacks;
 			$this->trxPreCommitOrIdleCallbacks = []; // consumed (and recursion guard)
-			foreach ( $callbacks as $callback ) {
+			$count += count( $callbackEntries );
+			foreach ( $callbackEntries as $entry ) {
 				try {
-					++$count;
-					list( $phpCallback ) = $callback;
 					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
-					$phpCallback( $this );
-				} catch ( Throwable $ex ) {
-					( $this->errorLogger )( $ex );
-					$e = $e ?: $ex;
+					$entry[0]( $this );
+				} catch ( Throwable $trxError ) {
+					$this->setTransactionError( $trxError );
+					throw $trxError;
 				}
 			}
 			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( count( $this->trxPreCommitOrIdleCallbacks ) );
-
-		if ( $e instanceof Throwable ) {
-			throw $e; // re-throw any first exception
-		}
+		} while ( $this->trxPreCommitOrIdleCallbacks );
 
 		return $count;
 	}
 
 	/**
-	 * Actually run any "atomic section cancel" callbacks.
+	 * Consume and run any relevant "on atomic section cancel" callbacks for the active transaction
 	 *
 	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @param AtomicSectionIdentifier[]|null $sectionIds Section IDs to cancel,
-	 *  null on transaction rollback
+	 * @param AtomicSectionIdentifier[] $sectionIds IDs of the sections that where just cancelled
+	 * @throws Throwable Any exception thrown by a callback
 	 */
-	private function runOnAtomicSectionCancelCallbacks(
-		$trigger, array $sectionIds = null
-	) {
-		/** @var Throwable $e */
-		$e = null; // first exception
-
-		$notCancelled = [];
+	private function runOnAtomicSectionCancelCallbacks( $trigger, array $sectionIds ) {
+		// Drain the queue of matching "atomic section cancel" callbacks until there are none
+		$unrelatedCallbackEntries = [];
 		do {
-			$callbacks = $this->trxSectionCancelCallbacks;
+			$callbackEntries = $this->trxSectionCancelCallbacks;
 			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
-			foreach ( $callbacks as $entry ) {
-				if ( $sectionIds === null || in_array( $entry[2], $sectionIds, true ) ) {
+			foreach ( $callbackEntries as $entry ) {
+				if ( in_array( $entry[2], $sectionIds, true ) ) {
 					try {
 						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 						$entry[0]( $trigger, $this );
-					} catch ( Throwable $ex ) {
-						( $this->errorLogger )( $ex );
-						$e = $e ?: $ex;
+					} catch ( Throwable $trxError ) {
+						$this->setTransactionError( $trxError );
+						throw $trxError;
 					}
 				} else {
-					$notCancelled[] = $entry;
+					$unrelatedCallbackEntries[] = $entry;
 				}
 			}
 			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( count( $this->trxSectionCancelCallbacks ) );
-		$this->trxSectionCancelCallbacks = $notCancelled;
+		} while ( $this->trxSectionCancelCallbacks );
 
-		if ( $e !== null ) {
-			throw $e; // re-throw any first Throwable
+		$this->trxSectionCancelCallbacks = $unrelatedCallbackEntries;
+	}
+
+	/**
+	 * Actually run any "transaction listener" callbacks
+	 *
+	 * @internal This method should not be used outside of Database/LoadBalancer
+	 *
+	 * @since 1.20
+	 * @param int $trigger IDatabase::TRIGGER_* constant
+	 * @param DBError[] &$errors DB exceptions caught [returned]
+	 * @throws Throwable Any non-DBError exception thrown by a callback
+	 */
+	public function runTransactionListenerCallbacks( $trigger, array &$errors = [] ) {
+		if ( $this->trxEndCallbacksSuppressed ) {
+			// Execution deferred by LoadBalancer for explicit execution later
+			return;
+		}
+
+		// These callbacks should only be registered in setup, thus no iteration is needed
+		foreach ( $this->trxRecurringCallbacks as $callback ) {
+			try {
+				$callback( $trigger, $this );
+			} catch ( DBError $ex ) {
+				( $this->errorLogger )( $ex );
+				$errors[] = $ex;
+			}
 		}
 	}
 
 	/**
-	 * Actually run any "transaction listener" callbacks.
+	 * Handle "on transaction idle/resolution" and "transaction listener" callbacks post-COMMIT
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @throws Exception
-	 * @since 1.20
+	 * @throws DBError The first DBError exception thrown by a callback
+	 * @throws Throwable Any non-DBError exception thrown by a callback
 	 */
-	public function runTransactionListenerCallbacks( $trigger ) {
-		if ( $this->trxEndCallbacksSuppressed ) {
-			return;
+	private function runTransactionPostCommitCallbacks() {
+		$dbErrors = [];
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT, $dbErrors );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT, $dbErrors );
+		$this->affectedRowCount = 0; // for the sake of consistency
+		if ( $dbErrors ) {
+			throw $dbErrors[0];
 		}
+	}
 
-		/** @var Throwable $e */
-		$e = null; // first exception
-
-		foreach ( $this->trxRecurringCallbacks as $phpCallback ) {
-			try {
-				$phpCallback( $trigger, $this );
-			} catch ( Throwable $ex ) {
-				( $this->errorLogger )( $ex );
-				$e = $e ?: $ex;
-			}
-		}
-
-		if ( $e instanceof Throwable ) {
-			throw $e; // re-throw any first exception
-		}
+	/**
+	 * Handle "on transaction idle/resolution" and "transaction listener" callbacks post-ROLLBACK
+	 *
+	 * This will suppress and log any DBError exceptions
+	 *
+	 * @throws Throwable Any non-DBError exception thrown by a callback
+	 */
+	private function runTransactionPostRollbackCallbacks() {
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+		$this->affectedRowCount = 0; // for the sake of consistency
 	}
 
 	/**
@@ -4359,29 +4407,60 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		$cancelable = self::ATOMIC_NOT_CANCELABLE
 	) {
-		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::$NOT_APPLICABLE : null;
+		$cs = $this->commenceCriticalSection( __METHOD__ );
 
-		if ( !$this->trxLevel() ) {
-			$this->begin( $fname, self::TRANSACTION_INTERNAL ); // sets trxAutomatic
-			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
-			// in all changes being in one transaction to keep requests transactional.
-			if ( $this->getFlag( self::DBO_TRX ) ) {
-				// Since writes could happen in between the topmost atomic sections as part
-				// of the transaction, those sections will need savepoints.
-				$savepointId = $this->nextSavepointId( $fname );
-				$this->doSavepoint( $savepointId, $fname );
-			} else {
-				$this->trxAutomaticAtomic = true;
+		if ( $this->trxLevel() ) {
+			// This atomic section is only one part of a larger transaction
+			$sectionOwnsTrx = false;
+		} else {
+			// Start an implicit transaction (sets trxAutomatic)
+			try {
+				$this->begin( $fname, self::TRANSACTION_INTERNAL );
+			} catch ( DBError $e ) {
+				$this->completeCriticalSection( __METHOD__, $cs );
+				throw $e;
 			}
-		} elseif ( $cancelable === self::ATOMIC_CANCELABLE ) {
-			$savepointId = $this->nextSavepointId( $fname );
-			$this->doSavepoint( $savepointId, $fname );
+			if ( $this->getFlag( self::DBO_TRX ) ) {
+				// This DB handle participates in LoadBalancer transaction rounds; all atomic
+				// sections should be buffered into one transaction (e.g. to keep web requests
+				// transactional). Note that an implicit transaction round is considered to be
+				// active when no there is no explicit transaction round.
+				$sectionOwnsTrx = false;
+			} else {
+				// This DB handle does not participate in LoadBalancer transaction rounds;
+				// each topmost atomic section will use its own transaction.
+				$sectionOwnsTrx = true;
+			}
+			$this->trxAutomaticAtomic = $sectionOwnsTrx;
+		}
+
+		if ( $cancelable === self::ATOMIC_CANCELABLE ) {
+			if ( $sectionOwnsTrx ) {
+				// This atomic section is synonymous with the whole transaction; just
+				// use full COMMIT/ROLLBACK in endAtomic()/cancelAtomic(), respectively
+				$savepointId = self::$NOT_APPLICABLE;
+			} else {
+				// This atomic section is only part of the whole transaction; use a SAVEPOINT
+				// query so that its changes can be cancelled without losing the rest of the
+				// transaction (e.g. changes from other sections or from outside of sections)
+				try {
+					$savepointId = $this->nextSavepointId( $fname );
+					$this->doSavepoint( $savepointId, $fname );
+				} catch ( DBError $e ) {
+					$this->completeCriticalSection( __METHOD__, $cs, $e );
+					throw $e;
+				}
+			}
+		} else {
+			$savepointId = null;
 		}
 
 		$sectionId = new AtomicSectionIdentifier;
 		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
 		$this->queryLogger->debug( 'startAtomic: entering level ' .
 			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)" );
+
+		$this->completeCriticalSection( __METHOD__, $cs );
 
 		return $sectionId;
 	}
@@ -4403,13 +4482,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
+		$runPostCommitCallbacks = false;
+
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+
 		// Remove the last section (no need to re-index the array)
 		array_pop( $this->trxAtomicLevels );
 
-		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
-			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId !== null && $savepointId !== self::$NOT_APPLICABLE ) {
-			$this->doReleaseSavepoint( $savepointId, $fname );
+		try {
+			if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
+				$this->commit( $fname, self::FLUSHING_INTERNAL );
+				$runPostCommitCallbacks = true;
+			} elseif ( $savepointId !== null && $savepointId !== self::$NOT_APPLICABLE ) {
+				$this->doReleaseSavepoint( $savepointId, $fname );
+			}
+		} catch ( DBError $e ) {
+			$this->completeCriticalSection( __METHOD__, $cs, $e );
+			throw $e;
 		}
 
 		// Hoist callback ownership for callbacks in the section that just ended;
@@ -4417,6 +4506,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$currentSectionId = $this->currentAtomicSectionId();
 		if ( $currentSectionId ) {
 			$this->reassignCallbacksForSection( $sectionId, $currentSectionId );
+		}
+
+		$this->completeCriticalSection( __METHOD__, $cs );
+
+		if ( $runPostCommitCallbacks ) {
+			$this->runTransactionPostCommitCallbacks();
 		}
 	}
 
@@ -4428,31 +4523,39 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)" );
 		}
 
-		$excisedIds = [];
-		$newTopSection = $this->currentAtomicSectionId();
-		try {
-			$excisedFnames = [];
-			if ( $sectionId !== null ) {
-				// Find the (last) section with the given $sectionId
-				$pos = -1;
-				foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
-					if ( $asId === $sectionId ) {
-						$pos = $i;
-					}
+		if ( $sectionId !== null ) {
+			// Find the (last) section with the given $sectionId
+			$pos = -1;
+			foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
+				if ( $asId === $sectionId ) {
+					$pos = $i;
 				}
-				if ( $pos < 0 ) {
-					throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
-				}
-				// Remove all descendant sections and re-index the array
-				$len = count( $this->trxAtomicLevels );
-				for ( $i = $pos + 1; $i < $len; ++$i ) {
-					$excisedFnames[] = $this->trxAtomicLevels[$i][0];
-					$excisedIds[] = $this->trxAtomicLevels[$i][1];
-				}
-				$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
-				$newTopSection = $this->currentAtomicSectionId();
 			}
+			if ( $pos < 0 ) {
+				throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
+			}
+		} else {
+			$pos = null;
+		}
 
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+
+		$excisedIds = [];
+		$excisedFnames = [];
+		$newTopSection = $this->currentAtomicSectionId();
+		if ( $pos !== null ) {
+			// Remove all descendant sections and re-index the array
+			$len = count( $this->trxAtomicLevels );
+			for ( $i = $pos + 1; $i < $len; ++$i ) {
+				$excisedFnames[] = $this->trxAtomicLevels[$i][0];
+				$excisedIds[] = $this->trxAtomicLevels[$i][1];
+			}
+			$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
+			$newTopSection = $this->currentAtomicSectionId();
+		}
+
+		$runPostRollbackCallbacks = false;
+		try {
 			// Check if the current section matches $fname
 			$pos = count( $this->trxAtomicLevels ) - 1;
 			list( $savedFname, $savedSectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
@@ -4465,10 +4568,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 
 			if ( $savedFname !== $fname ) {
-				throw new DBUnexpectedError(
+				$e = new DBUnexpectedError(
 					$this,
 					"Invalid atomic section ended (got $fname but expected $savedFname)"
 				);
+				$this->completeCriticalSection( __METHOD__, $cs, $e );
+				throw $e;
 			}
 
 			// Remove the last section (no need to re-index the array)
@@ -4477,25 +4582,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$newTopSection = $this->currentAtomicSectionId();
 
 			if ( $savepointId !== null ) {
-				// Rollback the transaction to the state just before this atomic section
+				// Rollback the transaction changes proposed within this atomic section
 				if ( $savepointId === self::$NOT_APPLICABLE ) {
+					// Atomic section started the transaction; rollback the whole transaction
+					// and trigger cancellation callbacks for all active atomic sections
 					$this->rollback( $fname, self::FLUSHING_INTERNAL );
-					// Note: rollback() will run trxSectionCancelCallbacks
+					$runPostRollbackCallbacks = true;
 				} else {
+					// Atomic section nested within the transaction; rollback the transaction
+					// to the state prior to this section and trigger its cancellation callbacks
 					$this->doRollbackToSavepoint( $savepointId, $fname );
 					$this->trxStatus = self::STATUS_TRX_OK; // no exception; recovered
 					$this->trxStatusIgnoredCause = null;
-
-					// Run trxSectionCancelCallbacks now.
 					$this->runOnAtomicSectionCancelCallbacks( self::TRIGGER_CANCEL, $excisedIds );
 				}
 			} elseif ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
 				// Put the transaction into an error state if it's not already in one
-				$this->trxStatus = self::STATUS_TRX_ERROR;
-				$this->trxStatusCause = new DBUnexpectedError(
+				$trxError = new DBUnexpectedError(
 					$this,
 					"Uncancelable atomic section canceled (got $fname)"
 				);
+				$this->setTransactionError( $trxError );
 			}
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
@@ -4504,6 +4611,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->affectedRowCount = 0; // for the sake of consistency
+
+		$this->completeCriticalSection( __METHOD__, $cs );
+
+		if ( $runPostRollbackCallbacks ) {
+			$this->runTransactionPostRollbackCallbacks();
+		}
 	}
 
 	final public function doAtomicSection(
@@ -4515,7 +4628,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			$res = $callback( $this, $fname );
 		} catch ( Throwable $e ) {
-			$this->cancelAtomic( $fname, $sectionId );
+			// Avoid confusing error reporting during critical section errors
+			if ( !$this->csmError ) {
+				$this->cancelAtomic( $fname, $sectionId );
+			}
 
 			throw $e;
 		}
@@ -4550,7 +4666,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->assertHasConnectionHandle();
 
-		$this->doBegin( $fname );
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+		try {
+			$this->doBegin( $fname );
+		} catch ( DBError $e ) {
+			$this->completeCriticalSection( __METHOD__, $cs );
+			throw $e;
+		}
 		$this->trxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusIgnoredCause = null;
@@ -4566,14 +4688,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxWriteAdjDuration = 0.0;
 		$this->trxWriteAdjQueryCount = 0;
 		$this->trxWriteCallers = [];
-		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
-		// Get an estimate of the replication lag before any such queries.
+		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
+		// so get the replication lag estimate before any transaction SELECT queries come in.
+		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
+		// tables are used, this avoids counting snapshot lag as part of replication lag.
 		$this->trxReplicaLag = null; // clear cached value first
 		$this->trxReplicaLag = $this->getApproximateLagStatus()['lag'];
-		// T147697: make explicitTrxActive() return true until begin() finishes. This way, no
-		// caller will think its OK to muck around with the transaction just because startAtomic()
-		// has not yet completed (e.g. setting trxAtomicLevels).
+		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
+		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
+		// with the transaction just because startAtomic() has not yet finished updating the
+		// tracking fields (e.g. trxAtomicLevels).
 		$this->trxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
+		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
 	/**
@@ -4629,12 +4755,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$this->runOnTransactionPreCommitCallbacks();
-
 		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
-		$this->doCommit( $fname );
+
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+		try {
+			$this->doCommit( $fname );
+		} catch ( DBError $e ) {
+			$this->completeCriticalSection( __METHOD__, $cs );
+			throw $e;
+		}
 		$oldTrxShortId = $this->consumeTrxShortId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
-
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
@@ -4645,12 +4776,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxWriteAffectedRows
 			);
 		}
-
-		// With FLUSHING_ALL_PEERS, callbacks will be explicitly run later
-		if ( $flush !== self::FLUSHING_ALL_PEERS ) {
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
-			$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT );
+		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
+		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
+		// the Database caller during a safe point. This avoids isolation and recursion issues.
+		if ( $flush === self::FLUSHING_ONE ) {
+			$this->runTransactionPostCommitCallbacks();
 		}
+		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
 	/**
@@ -4668,11 +4800,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		$trxActive = $this->trxLevel();
-
-		if ( $flush !== self::FLUSHING_INTERNAL
-			&& $flush !== self::FLUSHING_ALL_PEERS
-			&& $this->getFlag( self::DBO_TRX )
+		if (
+			$flush !== self::FLUSHING_INTERNAL &&
+			$flush !== self::FLUSHING_ALL_PEERS &&
+			$this->getFlag( self::DBO_TRX )
 		) {
 			throw new DBUnexpectedError(
 				$this,
@@ -4680,47 +4811,42 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		if ( $trxActive ) {
-			$this->assertHasConnectionHandle();
+		if ( !$this->trxLevel() ) {
+			// Clear any commit-dependant callbacks left over from transaction rounds
+			$this->trxPostCommitOrIdleCallbacks = [];
+			$this->trxPreCommitOrIdleCallbacks = [];
 
-			$this->doRollback( $fname );
-			$oldTrxShortId = $this->consumeTrxShortId();
-			$this->trxStatus = self::STATUS_TRX_NONE;
-			$this->trxAtomicLevels = [];
-			// Estimate the RTT via a query now that trxStatus is OK
-			$writeTime = $this->pingAndCalculateLastTrxApplyTime();
-
-			if ( $this->trxDoneWrites ) {
-				$this->trxProfiler->transactionWritingOut(
-					$this->getServer(),
-					$this->getDomainID(),
-					$oldTrxShortId,
-					$writeTime,
-					$this->trxWriteAffectedRows
-				);
-			}
+			return;
 		}
 
-		// Clear any commit-dependent callbacks. They might even be present
-		// only due to transaction rounds, with no SQL transaction being active
+		$this->assertHasConnectionHandle();
+
+		$cs = $this->commenceCriticalSection( __METHOD__ );
+		$this->doRollback( $fname );
+		$oldTrxShortId = $this->consumeTrxShortId();
+		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->trxAtomicLevels = [];
+		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
-
-		// With FLUSHING_ALL_PEERS, callbacks will be explicitly run later
-		if ( $trxActive && $flush !== self::FLUSHING_ALL_PEERS ) {
-			try {
-				$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-			} catch ( Throwable $e ) {
-				// already logged; finish and let LoadBalancer move on during mass-rollback
-			}
-			try {
-				$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-			} catch ( Throwable $e ) {
-				// already logged; let LoadBalancer move on during mass-rollback
-			}
-
-			$this->affectedRowCount = 0; // for the sake of consistency
+		// Estimate the RTT via a query now that trxStatus is OK
+		$writeTime = $this->pingAndCalculateLastTrxApplyTime();
+		if ( $this->trxDoneWrites ) {
+			$this->trxProfiler->transactionWritingOut(
+				$this->getServer(),
+				$this->getDomainID(),
+				$oldTrxShortId,
+				$writeTime,
+				$this->trxWriteAffectedRows
+			);
 		}
+		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
+		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
+		// the Database caller during a safe point. This avoids isolation and recursion issues.
+		if ( $flush === self::FLUSHING_ONE ) {
+			$this->runTransactionPostRollbackCallbacks();
+		}
+		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
 	/**
@@ -4953,10 +5079,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.27
 	 */
 	protected function getApproximateLagStatus() {
-		return [
-			'lag' => ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) ? $this->getLag() : 0,
-			'since' => microtime( true )
-		];
+		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {
+			// Avoid exceptions as this is used internally in critical sections
+			try {
+				$lag = $this->getLag();
+			} catch ( DBError $e ) {
+				$lag = false;
+			}
+		} else {
+			$lag = 0;
+		}
+
+		return [ 'lag' => $lag, 'since' => microtime( true ) ];
 	}
 
 	/**
@@ -5012,8 +5146,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @inheritDoc
+	 * Get the amount of replication lag for this database server
+	 *
+	 * Callers should avoid using this method while a transaction is active
+	 *
 	 * @stable to override
+	 * @return float|int|false Database replication lag in seconds or false on error
+	 * @throws DBError
 	 */
 	protected function doGetLag() {
 		return 0;
@@ -5074,13 +5213,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		try {
 			$error = $this->sourceStream(
-				$fp, $lineCallback, $resultCallback, $fname, $inputCallback );
-		} catch ( Throwable $e ) {
+				$fp,
+				$lineCallback,
+				$resultCallback,
+				$fname,
+				$inputCallback
+			);
+		} finally {
 			fclose( $fp );
-			throw $e;
 		}
-
-		fclose( $fp );
 
 		return $error;
 	}
@@ -5537,6 +5678,124 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $this->conn;
+	}
+
+	/**
+	 * Mark the transaction as requiring rollback (STATUS_TRX_ERROR) due to an error
+	 *
+	 * @param Throwable $trxError
+	 */
+	private function setTransactionError( Throwable $trxError ) {
+		if ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
+			$this->trxStatus = self::STATUS_TRX_ERROR;
+			$this->trxStatusCause = $trxError;
+		}
+	}
+
+	/**
+	 * Demark the start of a critical section of session/transaction state changes
+	 *
+	 * Use this to disable potentially DB handles due to corruption from highly unexpected
+	 * exceptions (e.g. from zend timers or coding errors) preempting execution of methods.
+	 *
+	 * Callers must demark completion of the critical section with completeCriticalSection().
+	 * Callers should handle DBError exceptions that do not cause object state corruption by
+	 * catching them, calling completeCriticalSection(), and then rethrowing them.
+	 *
+	 * @code
+	 *     $cs = $this->commenceCriticalSection( __METHOD__ );
+	 *     try {
+	 *         //...send a query that changes the session/transaction state...
+	 *     } catch ( DBError $e ) {
+	 *         // Rely on assertQueryIsCurrentlyAllowed()/canRecoverFromDisconnect() to ensure
+	 *         // the rollback of incomplete transactions and the prohibition of reconnections
+	 *         // that mask a loss of session state (e.g. named locks and temp tables)
+	 *         $this->completeCriticalSection( __METHOD__, $cs );
+	 *         throw $expectedException;
+	 *     }
+	 *     try {
+	 *         //...send another query that changes the session/transaction state...
+	 *     } catch ( DBError $trxError ) {
+	 *         // Inform assertQueryIsCurrentlyAllowed() that the transaction must be rolled
+	 *         // back (e.g. even if the error was a pre-query check or normally recoverable)
+	 *         $this->completeCriticalSection( __METHOD__, $cs, $trxError );
+	 *         throw $expectedException;
+	 *     }
+	 *     // ...update session state fields of $this...
+	 *     $this->completeCriticalSection( __METHOD__, $cs );
+	 * @endcode
+	 *
+	 * @see Database::completeCriticalSection()
+	 *
+	 * @since 1.36
+	 * @param string $fname Caller name
+	 * @return CriticalSectionScope|null RAII-style monitor (topmost sections only)
+	 * @throws DBUnexpectedError If an unresolved critical section error already exists
+	 */
+	protected function commenceCriticalSection( string $fname ) {
+		if ( $this->csmError ) {
+			throw new DBUnexpectedError(
+				$this,
+				"Cannot execute $fname critical section while session state is out of sync.\n\n" .
+				$this->csmError->getMessage() . "\n" .
+				$this->csmError->getTraceAsString()
+			);
+		}
+
+		if ( $this->csmId ) {
+			$csm = null; // fold into the outer critical section
+		} elseif ( $this->csProvider ) {
+			$csm = $this->csProvider->scopedEnter(
+				$fname,
+				null, // emergency limit (default)
+				null, // emergency callback (default)
+				function () use ( $fname ) {
+					// Mark a critical section as having been aborted by an error
+					$e = new RuntimeException( "A critical section from {$fname} has failed" );
+					$this->csmError = $e;
+					$this->csmId = null;
+				}
+			);
+			$this->csmId = $csm->getId();
+			$this->csmFname = $fname;
+		} else {
+			$csm = null; // not supported
+		}
+
+		return $csm;
+	}
+
+	/**
+	 * Demark the completion of a critical section of session/transaction state changes
+	 *
+	 * @see Database::commenceCriticalSection()
+	 *
+	 * @since 1.36
+	 * @param string $fname Caller name
+	 * @param CriticalSectionScope|null $csm RAII-style monitor (topmost sections only)
+	 * @param Throwable|null $trxError Error that requires setting STATUS_TRX_ERROR (if any)
+	 */
+	protected function completeCriticalSection(
+		string $fname,
+		?CriticalSectionScope $csm,
+		Throwable $trxError = null
+	) {
+		if ( $csm !== null ) {
+			if ( $this->csmId === null ) {
+				throw new LogicException( "$fname critical section is not active" );
+			} elseif ( $csm->getId() !== $this->csmId ) {
+				throw new LogicException(
+					"$fname critical section is not the active ({$this->csmFname}) one"
+				);
+			}
+
+			$csm->exit();
+			$this->csmId = null;
+		}
+
+		if ( $trxError ) {
+			$this->setTransactionError( $trxError );
+		}
 	}
 
 	public function __toString() {

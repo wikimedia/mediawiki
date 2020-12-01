@@ -419,7 +419,8 @@ return [
 			$services->getConfiguredReadOnlyMode(),
 			$cpStash,
 			$srvCache,
-			$wanCache
+			$wanCache,
+			$services->getCriticalSectionProvider()
 		);
 
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
