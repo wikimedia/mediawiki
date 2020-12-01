@@ -2043,7 +2043,7 @@ class EditPage implements IEditObject {
 			$constraintFactory->newReadOnlyConstraint()
 		);
 		$constraintRunner->addConstraint(
-			new UserRateLimitConstraint( $user, $changingContentModel )
+			new UserRateLimitConstraint( $user, $this->mTitle, $this->contentModel )
 		);
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
