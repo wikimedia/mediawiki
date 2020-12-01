@@ -41,7 +41,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 		$special = new SpecialMyLanguage(
 			$services->getLanguageNameUtils(),
-			$services->getContentLanguage()
+			$services->getWikiPageFactory()
 		);
 		$special->getContext()->setLanguage( $userLang );
 		// Test with subpages both enabled and disabled
