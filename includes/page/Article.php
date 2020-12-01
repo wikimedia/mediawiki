@@ -538,6 +538,8 @@ class Article implements Page {
 
 		$parserOptions = $this->getParserOptions();
 		$poOptions = [];
+		# Allow extensions to vary parser options used for article rendering
+		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );

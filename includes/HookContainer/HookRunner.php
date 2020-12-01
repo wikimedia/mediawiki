@@ -2,9 +2,11 @@
 
 namespace MediaWiki\HookContainer;
 
+use Article;
 use Config;
 use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
+use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
 use SpecialPage;
@@ -434,6 +436,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ArticleFromTitleHook,
 	\MediaWiki\Page\Hook\ArticlePageDataAfterHook,
 	\MediaWiki\Page\Hook\ArticlePageDataBeforeHook,
+	\MediaWiki\Page\Hook\ArticleParserOptionsHook,
 	\MediaWiki\Page\Hook\ArticleProtectCompleteHook,
 	\MediaWiki\Page\Hook\ArticleProtectHook,
 	\MediaWiki\Page\Hook\ArticlePurgeHook,
@@ -778,6 +781,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ArticlePageDataBefore',
 			[ $wikiPage, &$fields, &$tables, &$joinConds ]
+		);
+	}
+
+	public function onArticleParserOptions( Article $article, ParserOptions $popts ) {
+		return $this->container->run(
+			'ArticleParserOptions',
+			[ $article, $popts ]
 		);
 	}
 

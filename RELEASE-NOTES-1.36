@@ -71,6 +71,9 @@ For notes on 1.35.x and older releases, see HISTORY.
   unknown tags is numeric formatting; non-EXIF tags which are non-numeric
   should always use this method to specify the desired formatting.
 * The new 'title' type can be used to validate action API and REST API inputs.
+* The new ArticleParserOptions hook allows customizing the parser options
+  used to parse wikitext for an article, based on user preferences, title,
+  etc.
 * The new 'raw' type can be used to validate action API inputs. It bypasses
   the Unicode NFC normalization done on inputs of type 'string', so it more
   suitable when the input is binary or may contain deprecated Unicode
