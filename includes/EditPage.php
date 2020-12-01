@@ -51,6 +51,7 @@ use MediaWiki\Revision\SlotRecord;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ScopedCallback;
 
@@ -1887,7 +1888,11 @@ class EditPage implements IEditObject {
 	private function newSectionSummary() : array {
 		$newSectionSummary = $this->summary;
 		$newSectionAnchor = '';
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$services = MediaWikiServices::getInstance();
+		$parser = $services->getParser();
+		$textFormatter = $services->getMessageFormatterFactory()->getTextFormatter(
+			$services->getContentLanguage()->getCode()
+		);
 
 		if ( $this->sectiontitle !== '' ) {
 			$newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
@@ -1895,21 +1900,17 @@ class EditPage implements IEditObject {
 			// title and have it link to the new section. Otherwise, respect the summary as
 			// passed.
 			if ( $this->summary === '' ) {
-				$newSectionSummary = $this->context
-					->msg( 'newsectionsummary' )
-					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) )
-					->inContentLanguage()
-					->text();
+				$messageValue = MessageValue::new( 'newsectionsummary' )
+					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
+				$newSectionSummary = $textFormatter->format( $messageValue );
 			}
 		} elseif ( $this->summary !== '' ) {
 			$newSectionAnchor = $this->guessSectionName( $this->summary );
 			// This is a new section, so create a link to the new section
 			// in the revision summary.
-			$newSectionSummary = $this->context
-				->msg( 'newsectionsummary' )
-				->plaintextParams( $parser->stripSectionName( $this->summary ) )
-				->inContentLanguage()
-				->text();
+			$messageValue = MessageValue::new( 'newsectionsummary' )
+				->plaintextParams( $parser->stripSectionName( $this->summary ) );
+			$newSectionSummary = $textFormatter->format( $messageValue );
 		}
 		return [ $newSectionSummary, $newSectionAnchor ];
 	}
