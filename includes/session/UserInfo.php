@@ -23,6 +23,8 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
 use User;
 
 /**
@@ -83,7 +85,7 @@ final class UserInfo {
 	 * @return UserInfo
 	 */
 	public static function newFromId( $id, $verified = false ) {
-		$user = User::newFromId( $id );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromId( (int)$id );
 
 		// Ensure the ID actually exists
 		$user->load();
@@ -101,7 +103,10 @@ final class UserInfo {
 	 * @return UserInfo
 	 */
 	public static function newFromName( $name, $verified = false ) {
-		$user = User::newFromName( $name, 'usable' );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName(
+			(string)$name,
+			UserFactory::RIGOR_USABLE
+		);
 		if ( !$user ) {
 			throw new \InvalidArgumentException( 'Invalid user name' );
 		}
