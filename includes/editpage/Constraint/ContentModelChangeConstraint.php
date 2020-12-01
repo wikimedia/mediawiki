@@ -70,6 +70,12 @@ class ContentModelChangeConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint() : string {
+		if ( $this->newContentModel === $this->title->getContentModel() ) {
+			// No change
+			$this->result = self::CONSTRAINT_PASSED;
+			return self::CONSTRAINT_PASSED;
+		}
+
 		if ( !$this->permissionManager->userHasRight( $this->user, 'editcontentmodel' ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;
