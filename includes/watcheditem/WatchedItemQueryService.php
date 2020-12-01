@@ -268,7 +268,8 @@ class WatchedItemQueryService {
 					$target,
 					$this->watchedItemStore->getLatestNotificationTimestamp(
 						$row->wl_notificationtimestamp, $user, $target
-					)
+					),
+					$row->we_expiry ?? null
 				),
 				$this->getRecentChangeFieldsFromRow( $row )
 			];
@@ -362,7 +363,8 @@ class WatchedItemQueryService {
 				$target,
 				$this->watchedItemStore->getLatestNotificationTimestamp(
 					$row->wl_notificationtimestamp, $user, $target
-				)
+				),
+				$row->we_expiry ?? null
 			);
 		}
 
