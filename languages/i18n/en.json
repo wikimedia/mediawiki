@@ -296,7 +296,7 @@
 	"sort-ascending": "Sort ascending",
 	"sort-initial": "Sort initial",
 	"nstab-main": "Page",
-	"nstab-user": "User page",
+	"nstab-user": "{{GENDER:$1|User page}}",
 	"nstab-media": "Media page",
 	"nstab-special": "Special page",
 	"nstab-project": "Project page",

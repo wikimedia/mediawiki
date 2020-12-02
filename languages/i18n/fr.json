@@ -460,7 +460,7 @@
 	"sort-ascending": "Tri croissant",
 	"sort-initial": "Tri initial",
 	"nstab-main": "Page",
-	"nstab-user": "Page d’{{GENDER:{{ROOTPAGENAME}}|utilisateur|utilisatrice}}",
+	"nstab-user": "Page d’{{GENDER:$1|utilisateur|utilisatrice}}",
 	"nstab-media": "Média",
 	"nstab-special": "Page spéciale",
 	"nstab-project": "Page de projet",

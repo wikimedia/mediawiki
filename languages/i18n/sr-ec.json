@@ -327,7 +327,7 @@
 	"sort-ascending": "Поређај растуће",
 	"sort-initial": "Поређај предефинисано",
 	"nstab-main": "Страница",
-	"nstab-user": "{{GENDER:{{BASEPAGENAME}}|Корисник|Корисница}}",
+	"nstab-user": "{{GENDER:$1|Корисник|Корисница}}",
 	"nstab-media": "Медији",
 	"nstab-special": "Посебно",
 	"nstab-project": "Пројекат",

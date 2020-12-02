@@ -435,7 +435,7 @@
 	"sort-ascending": "Упорядочить по возрастанию",
 	"sort-initial": "Начальная сортировка",
 	"nstab-main": "Статья",
-	"nstab-user": "{{GENDER:{{ROOTPAGENAME}}|Участник|Участница}}",
+	"nstab-user": "{{GENDER:$1|Участник|Участница}}",
 	"nstab-media": "Мультимедиа",
 	"nstab-special": "Служебная страница",
 	"nstab-project": "О проекте",
