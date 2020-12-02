@@ -63,7 +63,7 @@
 				var $unwatchLink = $( this ), // EnhancedChangesList uses <table> for each row, while OldChangesList uses <li> for each row
 					$watchlistLine = $unwatchLink.closest( 'li, table' )
 						.find( '[data-target-page]' ),
-					pageTitle = $watchlistLine.data( 'targetPage' ),
+					pageTitle = String( $watchlistLine.data( 'targetPage' ) ),
 					isTalk = mw.Title.newFromText( pageTitle ).isTalkPage();
 
 				// Utility function for looping through each watchlist line that matches
@@ -77,7 +77,7 @@
 						var $line = $( this ), $row, $link;
 
 						$line.find( '[data-target-page]' ).each( function () {
-							var $this = $( this ), rowTitle = $this.data( 'targetPage' );
+							var $this = $( this ), rowTitle = String( $this.data( 'targetPage' ) );
 							if ( rowTitle === title || rowTitle === associatedTitle ) {
 
 								// EnhancedChangesList groups log entries by performer rather than target page. Therefore...
