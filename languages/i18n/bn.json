@@ -2279,15 +2279,15 @@
 	"watchnologin": "আপনি প্রবেশ করেননি",
 	"addwatch": "নজরতালিকায় যোগ করো",
 	"updatewatchlist": "নজরতালিকা হালনাগাদ করুন",
-	"addedwatchtext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] যোগ করা হয়েছে।",
-	"addedwatchtext-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতা আপনার [[Special:Watchlist|নজরতালিকাতে]] যোগ করা হয়েছে।",
+	"addedwatchtext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকায়]] যোগ করা হয়েছে।",
+	"addedwatchtext-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতা আপনার [[Special:Watchlist|নজরতালিকায়]] যোগ করা হয়েছে।",
 	"addedwatchtext-short": "\"$1\" পাতাটি আপনার নজরতালিকায় যোগ করা হয়েছে।",
 	"addedwatchexpiry-options-label": "নজরতালিকার সময়কাল:",
-	"addedwatchexpiryhours": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] কয়েক ঘণ্টার জন্য যোগ করা হয়েছে।",
+	"addedwatchexpiryhours": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকায়]] কয়েক ঘণ্টার জন্য যোগ করা হয়েছে।",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] কয়েক ঘণ্টার জন্য যোগ করা হয়েছে।",
-	"addedwatchexpirytext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] $2-এর জন্য যোগ করা হয়েছে।",
+	"addedwatchexpirytext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকায়]] $2-এর জন্য যোগ করা হয়েছে।",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] $2-এর জন্য যোগ করা হয়েছে।",
-	"addedwatchindefinitelytext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] স্থায়ীভাবে যোগ করা হয়েছে।",
+	"addedwatchindefinitelytext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকায়]] স্থায়ীভাবে যোগ করা হয়েছে।",
 	"addedwatchindefinitelytext-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতাটি আপনার [[Special:Watchlist|নজরতালিকাতে]] স্থায়ীভাবে যোগ করা হয়েছে।",
 	"removewatch": "নজরতালিকা থেকে অপসারণ",
 	"removedwatchtext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকা]] থেকে সরানো হয়েছে।",
@@ -4001,5 +4001,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "আইপি",
 	"paramvalidator-help-type-user-subtype-cidr": "আইপি পরিসীমা",
 	"paramvalidator-help-type-user-subtype-interwiki": "আন্তঃউইকি নাম (উদা: \"উপসর্গ>উদাহরণ নাম\")",
-	"paramvalidator-help-type-user-subtype-id": "ব্যবহারকারী আইডি (উদাঃ \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "ব্যবহারকারী আইডি (উদাঃ \"#12345\")",
+	"paramvalidator-help-type-title": "ধরন: পাতার শিরোনাম"
 }

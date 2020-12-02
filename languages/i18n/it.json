@@ -2386,6 +2386,7 @@
 	"addedwatchexpiryhours": "\"[[:$1]]\" e la sua pagina di discussione sono state aggiunte alla propria [[Special:Watchlist|lista degli osservati speciali]] per poche ore.",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" e la pagina ad essa collegata sono state aggiunte alla tua lista di [[Special:Watchlist|osservati speciali]] per qualche ora.",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" e la pagina ad essa collegata sono state aggiunte alla tua lista di [[Special:Watchlist|osservati speciali]] per $2.",
+	"addedwatchindefinitelytext": "\"[[:$1]]\" e la rispettiva pagina di discussione sono state aggiunte alla tua lista di [[Special:Watchlist|osservati speciali]] a tempo indefinito.",
 	"addedwatchindefinitelytext-talk": "\"[[:$1]]\" e la pagina ad essa collegata sono state aggiunte alla tua lista di [[Special:Watchlist|osservati speciali]] a tempo indefinito.",
 	"removewatch": "Rimuovi dagli osservati speciali",
 	"removedwatchtext": "\"[[:$1]]\" e la sua pagina di discussione sono state rimosse dalla propria [[Special:Watchlist|lista degli osservati speciali]].",

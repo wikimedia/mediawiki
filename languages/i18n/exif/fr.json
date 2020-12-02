@@ -411,5 +411,6 @@
 	"exif-fullpanoheightpixels": "Hauteur totale du panorama",
 	"exif-croppedarealeftpixels": "Coupure à gauche du panorama",
 	"exif-croppedareatoppixels": "Coupure en haut du panorama",
-	"exif-initialcameradolly": "Traveling initial de l’appareil photo"
+	"exif-initialcameradolly": "Traveling initial de l’appareil photo",
+	"exif-stitchingsoftware": "Logiciel de couture"
 }

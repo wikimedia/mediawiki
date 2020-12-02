@@ -41,7 +41,10 @@ use Wikimedia\ScopedCallback;
 abstract class LBFactory implements ILBFactory {
 	/** @var ChronologyProtector */
 	private $chronProt;
-	/** @var object|string Class name or object With profileIn/profileOut methods */
+	/**
+	 * @var callable|null An optional callback that returns a ScopedCallback instance,
+	 * meant to profile the actual query execution in {@see Database::doQuery}
+	 */
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
