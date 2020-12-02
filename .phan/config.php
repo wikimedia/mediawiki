@@ -53,7 +53,6 @@ $cfg['autoload_internal_extension_signatures'] = [
 	'dom' => '.phan/internal_stubs/dom.phan_php',
 	'excimer' => '.phan/internal_stubs/excimer.php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
-	'intl' => '.phan/internal_stubs/intl.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
 	'oci8' => '.phan/internal_stubs/oci8.phan_php',
 	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
