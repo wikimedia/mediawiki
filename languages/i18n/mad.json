@@ -221,7 +221,7 @@
 	"currentrevisionlink": "Rèvisi jângkènè",
 	"cur": "satèya",
 	"last": "sabelluna",
-	"histlegend": "Pèlè ḍuwâ' cè'-pècè'na radio terros pècè' \"bhḍhingaghi\" ghâbây abhânḍhingaghi vèrsi. Klik sèttong tangghâl mon nèngguwâ vèrsi kaca è tangghâl kasebbhut.<br />Panegghes: <strong>({{int:cur}})</strong> = bhidhâ jângkènè, <strong>({{int:last}})</strong> = bhidhâ bi' vèrsi sabelluna, <strong>{{int:minoreditletter}}</strong> = beccè'an kènè'.",
+	"histlegend": "Pèlè ḍuwâ' tora (bârna bhiru tasè' è bâbâ) terros pècè' \"bhânḍhingaghi\" mon abhânḍhingaghina vèrsi sè èkaterrowè. Klik sèttong tangghâl mon nèngguwâ vèrsi kaca è tangghâl kasebbhut.<br />Panegghes: <strong>({{int:cur}})</strong> = bhidhâ jângkènè, <strong>({{int:last}})</strong> = bhidhâ bi' vèrsi sabelluna, <strong>{{int:minoreditletter}}</strong> = beccè'an kènè'.",
 	"history-fieldset-title": "Sarèng rèvisi",
 	"histfirst": "palèng laju",
 	"histlast": "palèng anyar",

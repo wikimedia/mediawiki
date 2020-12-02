@@ -1491,7 +1491,7 @@
 	"recentchanges-legend-heading": "<strong>شرح:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (طالع كذلك [[Special:NewPages|قائمة الصفحات الجديدة]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
-	"recentchanges-legend-watchlistexpiry": "الصفحة التي تم عرضها مؤقتًا",
+	"recentchanges-legend-watchlistexpiry": "صفحة مراقبة بشكل مؤقت",
 	"recentchanges-submit": "أظهر",
 	"rcfilters-tag-remove": "أزل '$1'",
 	"rcfilters-legend-heading": "<strong>قائمة الاختصارات:</strong>",

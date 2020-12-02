@@ -422,5 +422,6 @@
 	"exif-fullpanoheightpixels": "Panorama tam yüksekliği",
 	"exif-croppedarealeftpixels": "Panorama sol kesim",
 	"exif-croppedareatoppixels": "Panorama üst kesim",
-	"exif-initialcameradolly": "İlk kamera bebek arabası"
+	"exif-initialcameradolly": "İlk kamera bebek arabası",
+	"exif-stitchingsoftware": "Dikiş yazılımı"
 }

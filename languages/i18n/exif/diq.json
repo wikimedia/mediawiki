@@ -418,5 +418,6 @@
 	"exif-fullpanoheightpixels": "Panoramay berziya pêroyi",
 	"exif-croppedarealeftpixels": "Panoramay kışta çepi",
 	"exif-croppedareatoppixels": "Panoramay kışta cori",
-	"exif-initialcameradolly": "Sıfteyên kameray erebay domani"
+	"exif-initialcameradolly": "Sıfteyên kameray erebay domani",
+	"exif-stitchingsoftware": "Stitching software"
 }
