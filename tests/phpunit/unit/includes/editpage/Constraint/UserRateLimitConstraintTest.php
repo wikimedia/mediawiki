@@ -62,8 +62,12 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 				)
 			);
 
-		// true = also check for rate limit of editing content model
-		$constraint = new UserRateLimitConstraint( $user, true );
+		$title = $this->createMock( Title::class );
+		$title->expects( $this->once() )
+			->method( 'getContentModel' )
+			->willReturn( 'OldContentModel' );
+
+		$constraint = new UserRateLimitConstraint( $user, $title, 'NewContentModel' );
 		$this->assertConstraintPassed( $constraint );
 	}
 
@@ -98,8 +102,12 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 				)
 			);
 
-		// true = also check for rate limit of editing content model
-		$constraint = new UserRateLimitConstraint( $user, true );
+		$title = $this->createMock( Title::class );
+		$title->expects( $this->once() )
+			->method( 'getContentModel' )
+			->willReturn( 'OldContentModel' );
+
+		$constraint = new UserRateLimitConstraint( $user, $title, 'NewContentModel' );
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_RATE_LIMITED );
 	}
 
