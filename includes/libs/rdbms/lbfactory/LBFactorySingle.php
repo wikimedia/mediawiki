@@ -96,4 +96,8 @@ class LBFactorySingle extends LBFactory {
 			$callback( $this->lb, ...$params );
 		}
 	}
+
+	public function __destruct() {
+		// do nothing since the connection was injected
+	}
 }
