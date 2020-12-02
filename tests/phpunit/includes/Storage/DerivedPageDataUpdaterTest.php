@@ -1041,7 +1041,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// parser cache update
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		// site stats
 		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
@@ -1235,7 +1235,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertSame( $rev->getTimestamp(), $cached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
@@ -1254,7 +1254,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertGreaterThan( $rev->getTimestamp(), $cached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
