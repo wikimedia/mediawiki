@@ -1270,7 +1270,7 @@
 	"right-reupload-own": "Overwrite existing files uploaded by oneself",
 	"right-reupload-shared": "Override files on the shared media repository locally",
 	"right-upload_by_url": "Upload files from a URL",
-	"right-purge": "Purge the site cache for a page",
+	"right-purge": "Purge the cache for a page",
 	"right-autoconfirmed": "Not be affected by IP-based rate limits",
 	"right-bot": "Be treated as an automated process",
 	"right-nominornewtalk": "Not have minor edits to discussion pages trigger the new messages prompt",
