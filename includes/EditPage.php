@@ -2256,9 +2256,12 @@ class EditPage implements IEditObject {
 				$this->isConflict = true;
 				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
-				# Attempt merge
-				if ( $this->mergeChangesIntoContent( $content ) ) {
+				// Attempt merge
+				$mergedChange = $this->mergeChangesIntoContent( $content );
+				if ( $mergedChange !== false ) {
 					// Successful merge! Maybe we should tell the user the good news?
+					$content = $mergedChange[0];
+					$this->parentRevId = $mergedChange[1];
 					$this->isConflict = false;
 					$editConflictLogger->debug( 'Suppressing edit conflict, successful merge.' );
 				} else {
@@ -2561,11 +2564,12 @@ class EditPage implements IEditObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content &$editContent
+	 * @param Content $editContent
 	 *
-	 * @return bool
+	 * @return bool|array either `false` or an array of the new Content and the
+	 *   updated parent revision id
 	 */
-	private function mergeChangesIntoContent( &$editContent ) {
+	private function mergeChangesIntoContent( $editContent ) {
 		// This is the revision that was current at the time editing was initiated on the client,
 		// even if the edit was based on an old revision.
 		$baseRevRecord = $this->getExpectedParentRevision();
@@ -2591,15 +2595,13 @@ class EditPage implements IEditObject {
 			return false;
 		}
 
-		$result = $this->contentHandlerFactory
+		$mergedContent = $this->contentHandlerFactory
 			->getContentHandler( $baseContent->getModel() )
 			->merge3( $baseContent, $editContent, $currentContent );
 
-		if ( $result ) {
-			$editContent = $result;
-			// Update parentRevId to what we just merged.
-			$this->parentRevId = $currentRevisionRecord->getId();
-			return true;
+		if ( $mergedContent ) {
+			// Also need to update parentRevId to what we just merged.
+			return [ $mergedContent, $currentRevisionRecord->getId() ];
 		}
 
 		return false;
