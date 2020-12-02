@@ -541,11 +541,13 @@ class MemcachedClient {
 				continue;
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
-			if ( !isset( $sock_keys[$sock] ) ) {
-				$sock_keys[intval( $sock )] = array();
+			$sockValue = intval( $sock );
+
+			if ( !isset( $sock_keys[$sockValue] ) ) {
+				$sock_keys[$sockValue] = array();
 				$socks[] = $sock;
 			}
-			$sock_keys[intval( $sock )][] = $key;
+			$sock_keys[$sockValue][] = $key;
 		}
 
 		$gather = array();
