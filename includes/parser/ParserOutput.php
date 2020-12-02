@@ -1839,7 +1839,8 @@ class ParserOutput extends CacheTime {
 			return $this->$name;
 		} elseif ( property_exists( $this, $name ) ) {
 			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.36' );
+			// TODO: re-enable back once there's no complaints about setting it in production.
+			// wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.36' );
 			return $this->$name;
 		} else {
 			trigger_error( "Inaccessible property via __set(): {$name}", E_USER_NOTICE );
