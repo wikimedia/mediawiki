@@ -166,6 +166,7 @@ abstract class Handler {
 		$validatedBody = $restValidator->validateBody( $this->request, $this );
 		$this->validatedParams = $validatedParams;
 		$this->validatedBody = $validatedBody;
+		$this->postValidationSetup();
 	}
 
 	/**
@@ -378,6 +379,17 @@ abstract class Handler {
 	 * @stable to override
 	 */
 	protected function postInitSetup() {
+	}
+
+	/**
+	 * The handler can override this to do any necessary setup after validate()
+	 * has been called. This gives the handler an opportunity to do initialization
+	 * based on parameters before pre-execution calls like getLastModified() or getETag().
+	 *
+	 * @stable to override
+	 * @since 1.36
+	 */
+	protected function postValidationSetup() {
 	}
 
 	/**
