@@ -619,9 +619,6 @@ class ApiParse extends ApiBase {
 		$this->getHookRunner()->onApiMakeParserOptions( $popts, $pageObj->getTitle(),
 			$params, $this, $reset, $suppressCache );
 
-		// Force cache suppression when $popts aren't cacheable.
-		$suppressCache = $suppressCache || !$popts->isSafeToCache();
-
 		return [ $popts, $reset, $suppressCache ];
 	}
 
