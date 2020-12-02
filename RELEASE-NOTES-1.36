@@ -318,6 +318,8 @@ because of Phabricator reports.
   unused outside of MediaWiki core.
 * Skin::subPageSubtitle() has been changed to private method. Callers should
   use Skin::prepareSubtitle().
+* RevisionDeleter::checkRevisionExistence was removed without deprecation.
+  It had no known callers.
 * wfForeignMemcKey() and wfMemcKey(), deprecated in 1.35, have been removed.
 * MediaWiki now also requires the php-intl extension.
 * …

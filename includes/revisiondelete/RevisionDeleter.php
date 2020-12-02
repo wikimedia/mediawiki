@@ -206,32 +206,6 @@ class RevisionDeleter {
 	}
 
 	/**
-	 * Checks if a revision still exists in the revision table.
-	 * If it doesn't, returns the corresponding ar_timestamp field
-	 * so that this key can be used instead.
-	 *
-	 * @param Title $title
-	 * @param int $revid
-	 * @return bool|mixed
-	 */
-	public static function checkRevisionExistence( $title, $revid ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$exists = $dbr->selectField( 'revision', '1',
-				[ 'rev_id' => $revid ], __METHOD__ );
-
-		if ( $exists ) {
-			return true;
-		}
-
-		$timestamp = $dbr->selectField( 'archive', 'ar_timestamp',
-				[ 'ar_namespace' => $title->getNamespace(),
-					'ar_title' => $title->getDBkey(),
-					'ar_rev_id' => $revid ], __METHOD__ );
-
-		return $timestamp;
-	}
-
-	/**
 	 * Put together a rev_deleted bitfield
 	 * @since 1.22
 	 * @param array $bitPars ExtractBitParams() params
