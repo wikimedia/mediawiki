@@ -338,18 +338,10 @@ class ParserOutputAccess {
 			return Status::newFatal( 'nopagetext' );
 		}
 
-		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) ) {
-			if ( !$parserOptions->isSafeToCache() ) {
-				throw new InvalidArgumentException(
-					'The supplied ParserOptions are not safe to cache. Use NO_CACHE.'
-				);
-			}
-
-			if ( $revision && !$revision->getId() ) {
-				throw new InvalidArgumentException(
-					'The revision does not have a known ID. Use NO_CACHE.'
-				);
-			}
+		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $revision && !$revision->getId() ) {
+			throw new InvalidArgumentException(
+				'The revision does not have a known ID. Use NO_CACHE.'
+			);
 		}
 
 		if ( $revision && $revision->getPageId() !== $page->getId() ) {
