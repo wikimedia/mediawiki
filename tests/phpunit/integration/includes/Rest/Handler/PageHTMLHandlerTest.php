@@ -88,9 +88,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		if ( $parsoid !== null ) {
-			$handlerWrapper = TestingAccessWrapper::newFromObject( $handler );
-			$helperWrapper = TestingAccessWrapper::newFromObject( $handlerWrapper->htmlHelper );
-			$helperWrapper->parsoid = $parsoid;
+			$wrapper = TestingAccessWrapper::newFromObject( $handler );
+			$wrapper->parsoid = $parsoid;
 		}
 
 		return $handler;
