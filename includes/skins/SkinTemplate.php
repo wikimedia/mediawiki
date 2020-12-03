@@ -640,7 +640,8 @@ class SkinTemplate extends Skin {
 	 * Builds an array with tab definition
 	 *
 	 * @param Title $title Page Where the tab links to
-	 * @param string|array $message Message key or an array of message keys (will fall back)
+	 * @param string|string[]|MessageSpecifier $message Message or an array of message keys
+	 *   (will fall back)
 	 * @param bool $selected Display the tab as selected
 	 * @param string $query Query string attached to tab URL
 	 * @param bool $checkEdit Check if $title exists and mark with .new if one doesn't
@@ -666,13 +667,19 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$linkClass = $services->getLinkRenderer()->getLinkClasses( $title );
 
-		// wfMessageFallback will nicely accept $message as an array of fallbacks
-		// or just a single key
-		$msg = wfMessageFallback( $message )->setContext( $this->getContext() );
-		if ( is_array( $message ) ) {
-			// for hook compatibility just keep the last message name
-			$message = end( $message );
+		if ( $message instanceof MessageSpecifier ) {
+			$msg = new Message( $message );
+			$message = $message->getKey();
+		} else {
+			// wfMessageFallback will nicely accept $message as an array of fallbacks
+			// or just a single key
+			$msg = wfMessageFallback( $message );
+			if ( is_array( $message ) ) {
+				// for hook compatibility just keep the last message name
+				$message = end( $message );
+			}
 		}
+		$msg->setContext( $this->getContext() );
 		if ( $msg->exists() ) {
 			$text = $msg->text();
 		} else {
@@ -855,10 +862,15 @@ class SkinTemplate extends Skin {
 			$skname = $this->skinname;
 
 			// Adds namespace links
-			$subjectMsg = [ "nstab-$subjectId" ];
+			if ( $subjectId === 'user' ) {
+				$subjectMsg = wfMessage( 'nstab-user', $subjectPage->getRootText() );
+			} else {
+				$subjectMsg = [ "nstab-$subjectId" ];
+			}
 			if ( $subjectPage->isMainPage() ) {
 				array_unshift( $subjectMsg, 'mainpage-nstab' );
 			}
+
 			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
 				$subjectPage, $subjectMsg, !$isTalk && !$preventActiveTabs, '', $userCanRead
 			);

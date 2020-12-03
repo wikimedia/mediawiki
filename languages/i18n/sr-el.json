@@ -317,7 +317,7 @@
 	"sort-ascending": "Poređaj rastuće",
 	"sort-initial": "Poređaj predefinisano",
 	"nstab-main": "Stranica",
-	"nstab-user": "{{GENDER:{{BASEPAGENAME}}|Korisnik|Korisnica}}",
+	"nstab-user": "{{GENDER:$1|Korisnik|Korisnica}}",
 	"nstab-media": "Mediji",
 	"nstab-special": "Posebno",
 	"nstab-project": "Projekat",
