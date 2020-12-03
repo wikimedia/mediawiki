@@ -381,7 +381,7 @@
 	"sort-ascending": "Sortuj rosnąco",
 	"sort-initial": "Sortuj domyślnie",
 	"nstab-main": "Strona",
-	"nstab-user": "{{GENDER:{{BASEPAGENAME}}|Strona użytkownika|Strona użytkowniczki}}",
+	"nstab-user": "{{GENDER:$1|Strona użytkownika|Strona użytkowniczki}}",
 	"nstab-media": "Plik",
 	"nstab-special": "Strona specjalna",
 	"nstab-project": "Strona projektu",
