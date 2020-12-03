@@ -529,3 +529,25 @@ CREATE TABLE /*_*/content_models (
 );
 
 CREATE UNIQUE INDEX model_name ON /*_*/content_models (model_name);
+
+
+CREATE TABLE /*_*/categorylinks (
+  cl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  cl_to BLOB DEFAULT '' NOT NULL,
+  cl_sortkey BLOB DEFAULT '' NOT NULL,
+  cl_sortkey_prefix BLOB DEFAULT '' NOT NULL,
+  cl_timestamp BLOB NOT NULL,
+  cl_collation BLOB DEFAULT '' NOT NULL,
+  cl_type TEXT DEFAULT 'page' NOT NULL,
+  PRIMARY KEY(cl_from, cl_to)
+);
+
+CREATE INDEX cl_sortkey ON /*_*/categorylinks (
+  cl_to, cl_type, cl_sortkey, cl_from
+);
+
+CREATE INDEX cl_timestamp ON /*_*/categorylinks (cl_to, cl_timestamp);
+
+CREATE INDEX cl_collation_ext ON /*_*/categorylinks (
+  cl_collation, cl_to, cl_type, cl_from
+);

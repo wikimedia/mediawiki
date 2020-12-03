@@ -494,3 +494,22 @@ CREATE TABLE /*_*/content_models (
   UNIQUE INDEX model_name (model_name),
   PRIMARY KEY(model_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/categorylinks (
+  cl_from INT UNSIGNED DEFAULT 0 NOT NULL,
+  cl_to VARBINARY(255) DEFAULT '' NOT NULL,
+  cl_sortkey VARBINARY(230) DEFAULT '' NOT NULL,
+  cl_sortkey_prefix VARBINARY(255) DEFAULT '' NOT NULL,
+  cl_timestamp BINARY(14) NOT NULL,
+  cl_collation VARBINARY(32) DEFAULT '' NOT NULL,
+  cl_type ENUM('page', 'subcat', 'file') DEFAULT 'page' NOT NULL,
+  INDEX cl_sortkey (
+    cl_to, cl_type, cl_sortkey, cl_from
+  ),
+  INDEX cl_timestamp (cl_to, cl_timestamp),
+  INDEX cl_collation_ext (
+    cl_collation, cl_to, cl_type, cl_from
+  ),
+  PRIMARY KEY(cl_from, cl_to)
+) /*$wgDBTableOptions*/;

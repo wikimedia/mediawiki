@@ -830,6 +830,22 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'page', 'page_random_idx', 'page_random' ],
 			[ 'renameIndex', 'page', 'page_unique_name', 'name_title' ],
 			[ 'addPGIndex', 'page', 'page_redirect_namespace_len', '(page_is_redirect, page_namespace, page_len)' ],
+			[ 'dropFkey', 'categorylinks', 'cl_from' ],
+			[ 'setDefault','categorylinks', 'cl_from', 0 ],
+			[ 'setDefault','categorylinks', 'cl_to', '' ],
+			[ 'setDefault','categorylinks', 'cl_sortkey', '' ],
+			[ 'setDefault','categorylinks', 'cl_collation', '' ],
+			[ 'changeNullableField', 'categorylinks', 'cl_sortkey', 'NOT NULL', true ],
+			[ 'addIndex', 'categorylinks', 'categorylinks_pkey', 'patch-categorylinks-pk.sql' ],
+			[ 'addPgIndex', 'categorylinks', 'cl_timestamp', '(cl_to, cl_timestamp)' ],
+			[ 'addPgIndex', 'categorylinks', 'cl_collation_ext', '(cl_collation, cl_to, cl_type, cl_from)' ],
+			[ 'checkIndex', 'cl_sortkey', [
+				[ 'cl_to', 'text_ops', 'btree', 1 ],
+				[ 'cl_type', 'text_ops', 'btree', 1 ],
+				[ 'cl_sortkey', 'text_ops', 'btree', 1 ],
+				[ 'cl_from', 'text_ops', 'btree', 1 ],
+			],
+				'CREATE INDEX cl_sortkey ON categorylinks (cl_to, cl_type, cl_sortkey, cl_from)' ],
 		];
 	}
 

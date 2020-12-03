@@ -124,19 +124,6 @@ CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
 
-CREATE TABLE categorylinks (
-  cl_from           INTEGER      NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  cl_to             TEXT         NOT NULL,
-  cl_sortkey        TEXT             NULL,
-  cl_timestamp      TIMESTAMPTZ  NOT NULL,
-  cl_sortkey_prefix TEXT         NOT NULL  DEFAULT '',
-  cl_collation      TEXT         NOT NULL  DEFAULT 0,
-  cl_type           TEXT         NOT NULL  DEFAULT 'page'
-);
-CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
-CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
-
-
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
