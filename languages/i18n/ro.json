@@ -3179,7 +3179,7 @@
 	"confirm-purge-bottom": "Actualizarea unei pagini șterge cache-ul și forțează cea mai recentă variantă să apară.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Adăugați această pagină la lista de pagini urmărite?",
-	"confirm-watch-label": "Perioada de timp a listei de pagini urmărite:",
+	"confirm-watch-label": "Perioada de timp pentru pagini urmărite:",
 	"watchlist-expiry-options": "infinit:infinite,1 săptămână:1 week,1 lună:1 month,3 luni:3 months,6 luni:6 months",
 	"watchlist-expires-in-aria-label": "Pagină urmărită temporar",
 	"confirm-watch-button-expiry": "Urmărește",

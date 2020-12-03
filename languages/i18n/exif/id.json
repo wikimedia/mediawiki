@@ -405,11 +405,13 @@
 	"exif-exposurelockused": "Gunakan kunci pajanan",
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
+	"exif-sourcephotoscount": "Banyak foto sumber",
 	"exif-croppedareaimagewidthpixels": "Lebar terpotong panorama",
 	"exif-croppedareaimageheightpixels": "Tinggi terpotong panorama",
 	"exif-fullpanowidthpixels": "Lebar penuh panorama",
 	"exif-fullpanoheightpixels": "Tinggi penuh panorama",
 	"exif-croppedarealeftpixels": "Pemotong kiri panorama",
 	"exif-croppedareatoppixels": "Pemotong atas panorama",
-	"exif-initialcameradolly": "Doli kamera awal"
+	"exif-initialcameradolly": "Doli kamera awal",
+	"exif-stitchingsoftware": "Perangkat lunak penjahit"
 }

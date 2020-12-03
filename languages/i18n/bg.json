@@ -1447,6 +1447,7 @@
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (вижте също [[Special:NewPages|списъка с нови страници]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
+	"recentchanges-legend-watchlistexpiry": "Временно наблюдавана страница",
 	"recentchanges-submit": "Показване",
 	"rcfilters-tag-remove": "Премахване на '$1'",
 	"rcfilters-legend-heading": "<strong>Списък на съкращенията:</strong>",

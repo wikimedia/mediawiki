@@ -400,5 +400,6 @@
 	"exif-fullpanoheightpixels": "Полна висина на панорамата",
 	"exif-croppedarealeftpixels": "Лева скастреност на панорамата",
 	"exif-croppedareatoppixels": "Горна скастреност на панорамата",
-	"exif-initialcameradolly": "Првична количка на апаратот"
+	"exif-initialcameradolly": "Првична количка на апаратот",
+	"exif-stitchingsoftware": "Програма за пришивање"
 }

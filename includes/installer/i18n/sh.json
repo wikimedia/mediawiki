@@ -52,7 +52,6 @@
 	"config-env-bad": "Okruženje je provjereno.\nNe možete uspostaviti MediaWiki.",
 	"config-env-php": "PHP $1 je uspostavljen.",
 	"config-unicode-using-intl": "Uz dodatak [https://pecl.php.net/intl intL PECL] za Unicode normalizaciju.",
-	"config-unicode-pure-php-warning": "'''Upozorenje''': Dodatak [https://pecl.php.net/intl intl PECL] nije dostupan za normalizaciju Unicode, vraćajući se na sporu primjenu čistog PHP-a.\n\nAko imate web-lokaciju s visokim prometom, morat ćete pročitati više o [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalizacije].",
 	"config-unicode-update-warning": "'''Upozorenje:''' Uspostavljena verzija omotnice Unicode normalizacije koristi stariju verziju biblioteke [http://site.icu-project.org/ projekta ICU].\nDa biste koristili Unicode, trebate napraviti [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations nadogradnju].",
 	"config-no-db": "Nisam mogao pronaći odgovarajući upravljački program za bazu podataka! Morat ćete uspostaviti upravljački program za PHP-bazu.\n{{PLURAL:$2|Podržana je sljedeća vrsta|Podržane su sljedeće vrste}} baze: $1.\n\nAko ste sami kompilirali PHP, omogućite bazni klijent u postavkama - npr. s <code>./configure --with-mysqli</code>.\nAko ovaj PHP uspostavite iz Debian ili Ubuntu paketa, tada ćete ga morati uspostaviti, npr., paket <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Upozorenje</strong>: imate SQLite $2. Najstarija dopuštena verzija je $1. Stoga, SQLite će biti nedostupan.",

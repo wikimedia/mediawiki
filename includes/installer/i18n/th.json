@@ -56,7 +56,6 @@
 	"config-env-bad": "ตรวจสอบสภาพแวดล้อมแล้ว\nคุณไม่สามารถติดตั้ง MediaWiki",
 	"config-env-php": "มี PHP $1 ติดตั้งอยู่",
 	"config-unicode-using-intl": "ใช้[https://pecl.php.net/intl ส่วนขยาย intl PECL] สำหรับการปรับ Unicode เข้าสู่รูปปกติ (Unicode normalization)",
-	"config-unicode-pure-php-warning": "<strong>คำเตือน:</strong> [https://pecl.php.net/intl intl ส่วนขยาย PECL] ไม่พร้อมใช้งานสำหรับการจัดมาตรฐาน Unicode กำลังกลับไปใช้ PHP ที่แท้จริงแบบช้า\nถ้าคุณเปิดดำเนินการไซต์ที่มีปริมาณการใช้งานสูง คุณควรอ่านดูเกี่ยวกับ[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations การจัดมาตรฐาน Unicode] สักเล็กน้อย",
 	"config-unicode-update-warning": "<strong>คำเตือน:</strong> ตัวห่อหุ้มการปรับ Unicode เข้าสู่รูปปกติรุ่นนี้ใช้ไลบรารีของ [http://site.icu-project.org/ the โครงการ ICU] รุ่นเก่า\nคุณควร[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations อัปเกรด]หากคุณมีความกังวลเกี่ยวกับการใช้ Unicode",
 	"config-no-db": "ไม่พบไดรเวอร์ฐานข้อมูลที่เหมาะสม! คุณจำเป็นต้องติดตั้งไดรเวอร์ฐานข้อมูลสำหรับ PHP\n{{PLURAL:$2|ชนิด}}ฐานข้อมูลต่อไปนี้ได้รับการสนับสนุน: $1\n\nถ้าคุณคอมไพล์ PHP ด้วยตนเอง ให้กำหนดค่าใหม่อีกครั้งโดยเปิดใช้งานไคลเอนต์ฐานข้อมูล ตัวอย่างเช่น ใช้ <code>./configure --with-mysqli</code>\nถ้าคุณติดตั้ง PHP จากแพกเกจ Debian หรือ Ubuntu คุณก็จำเป็นต้องติดตั้งแพกเกจต่อไปนี้ ตัวอย่างเช่น แพกเกจ <code>php-mysql</code>",
 	"config-outdated-sqlite": "<strong>คำเตือน:</strong> คุณมี SQLite $2 ซึ่งต่ำกว่ารุ่นขั้นต่ำที่ต้องการ $1 ดังนั้น SQLite จะไม่พร้อมให้ใช้งาน",

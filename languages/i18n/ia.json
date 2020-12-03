@@ -729,7 +729,7 @@
 	"permissionserrorstext-withaction": "Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:",
 	"contentmodelediterror": "Non es possibile modificar iste version perque su modello de contento es <code>$1</code>, un altere que le modello de contento actual del pagina, <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Attention: Tu es sur le puncto de recrear un pagina que ha essite delite anteriormente.'''\n\nTu deberea considerar si il es appropriate continuar a modificar iste pagina.\nEcce le registro de deletiones e de renominationes pro iste pagina:",
-	"moveddeleted-notice": "Iste pagina ha essite delite.\nLe registro de deletion, protection e renomination del pagina es monstrate in basso pro referentia.",
+	"moveddeleted-notice": "Iste pagina non existe.\nLe registros de deletion, protection e renomination del pagina es monstrate in basso pro referentia.",
 	"moveddeleted-notice-recent": "Regrettabilemente iste pagina ha essite delite (in le ultime 24 horas).\nLe registro de deletion, protection e renomination del pagina es monstrate in basso pro referentia.",
 	"log-fulllog": "Vider le registro complete",
 	"edit-hook-aborted": "Modification abortate per un extension.\nNulle explication disponibile.",
@@ -2164,7 +2164,7 @@
 	"categoriespagetext": "Le sequente {{PLURAL:$1|categoria|categorias}} existe sur iste wiki, e pote esser o non esser usate.\nVide etiam le [[Special:WantedCategories|categorias desirate]].",
 	"categoriesfrom": "Monstrar categorias a partir de:",
 	"deletedcontributions": "Contributiones delite de usatores",
-	"deletedcontributions-title": "Contributiones delite de usatores",
+	"deletedcontributions-title": "Contributiones delite del usator $1",
 	"sp-deletedcontributions-contribs": "contributiones",
 	"linksearch": "Recerca de ligamines externe",
 	"linksearch-pat": "Patrono a cercar:",
@@ -3164,6 +3164,7 @@
 	"mcrundo-changed": "Le pagina ha essite modificate post que tu examinava le differentias. Per favor revide le nove modification.",
 	"mcrundo-parse-failed": "Ha fallite le analyse syntactic del nove version: $1",
 	"quotation-marks": "“$1”",
+	"formatnum-nan": "Non es un numero",
 	"imgmultipageprev": "← precedente pagina",
 	"imgmultipagenext": "sequente pagina →",
 	"imgmultigo": "Ir!",
@@ -3928,5 +3929,6 @@
 	"paramvalidator-missingtitle": "Valor invalide \"$2\" pro le parametro de titulo <var>$1</var>: le pagina non existe.",
 	"paramvalidator-help-type-title": "Typo: titulo de pagina",
 	"paramvalidator-help-type-title-must-exist": "Accepta solmente paginas que existe.",
-	"paramvalidator-help-type-title-no-must-exist": "Accepta paginas non existente."
+	"paramvalidator-help-type-title-no-must-exist": "Accepta paginas non existente.",
+	"nonmain-slot-differences-therefore-readonly": "Non es possibile modificar le wikitexto de iste version del pagina perque le datos sur le pagina ha essite modificate post iste version de un maniera non basate sur wikitexto. [$1 Pro restaurar iste version, clicca hic.]"
 }
