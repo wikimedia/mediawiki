@@ -266,12 +266,13 @@ class PageHTMLHandler extends LatestPageContentHandler {
 	 */
 	private function getHtmlFromCache( LinkTarget $title ): ParserOutput {
 		$wikiPage = $this->wikiPageFactory->newFromLinkTarget( $title );
-		$parserOutput = $this->parserCache->get( $wikiPage, ParserOptions::newFromAnon() );
+		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOutput = $this->parserCache->get( $wikiPage, $parserOptions );
 		if ( $parserOutput ) {
 			return $parserOutput;
 		}
 		$fakeParserOutput = $this->parse( $title );
-		$this->parserCache->save( $fakeParserOutput, $wikiPage, ParserOptions::newFromAnon() );
+		$this->parserCache->save( $fakeParserOutput, $wikiPage, $parserOptions );
 		return $fakeParserOutput;
 	}
 
