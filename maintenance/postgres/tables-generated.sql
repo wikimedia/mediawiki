@@ -555,3 +555,25 @@ CREATE TABLE content_models (
 );
 
 CREATE UNIQUE INDEX model_name ON content_models (model_name);
+
+
+CREATE TABLE categorylinks (
+  cl_from INT DEFAULT 0 NOT NULL,
+  cl_to TEXT DEFAULT '' NOT NULL,
+  cl_sortkey TEXT DEFAULT '' NOT NULL,
+  cl_sortkey_prefix TEXT DEFAULT '' NOT NULL,
+  cl_timestamp TIMESTAMPTZ NOT NULL,
+  cl_collation TEXT DEFAULT '' NOT NULL,
+  cl_type TEXT DEFAULT 'page' NOT NULL,
+  PRIMARY KEY(cl_from, cl_to)
+);
+
+CREATE INDEX cl_sortkey ON categorylinks (
+  cl_to, cl_type, cl_sortkey, cl_from
+);
+
+CREATE INDEX cl_timestamp ON categorylinks (cl_to, cl_timestamp);
+
+CREATE INDEX cl_collation_ext ON categorylinks (
+  cl_collation, cl_to, cl_type, cl_from
+);
