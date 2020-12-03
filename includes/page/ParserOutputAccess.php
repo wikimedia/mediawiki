@@ -260,7 +260,7 @@ class ParserOutputAccess {
 			return $error;
 		}
 
-		$currentOrOld = ( $revision && $revision !== $page->getLatest() ) ? 'old' : 'current';
+		$currentOrOld = ( $revision && $revision->getId() !== $page->getLatest() ) ? 'old' : 'current';
 		$this->statsDataFactory->increment( "ParserOutputAccess.Case.$currentOrOld" );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
