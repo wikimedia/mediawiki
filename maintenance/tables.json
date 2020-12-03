@@ -1643,7 +1643,6 @@
 				"unique": false
 			}
 		],
-		"options": { "create_options": "FFFFFFcreate_options" },
 		"pk": [ "cl_from", "cl_to" ]
 	}
 
