@@ -77,7 +77,6 @@
 	"config-env-bad": "环境检查已经完成。您不能安装MediaWiki。",
 	"config-env-php": "PHP $1已安装。",
 	"config-unicode-using-intl": "使用[https://php.net/manual/en/book.intl.php PHP intl 扩展程序]标准化Unicode。",
-	"config-unicode-pure-php-warning": "<strong>警告：</strong>因为尚未安装 [https://php.net/manual/en/book.intl.php PHP intl 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。如果您运行着一个高流量的网站，请参阅 [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode标准化]一文。",
 	"config-unicode-update-warning": "<strong>警告：</strong>Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升级]。",
 	"config-no-db": "无法找到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库{{PLURAL:$2|类型}}：$1。\n\n如果您自己编译了PHP，请通过启用数据库客户端重新配置它，例如使用<code>./configure --with-mysqli</code>。如果您从Debian或Ubuntu安装包安装了PHP，那么您也需要安装一些组件包，例如<code>php-mysql</code>。",
 	"config-outdated-sqlite": "<strong>警告：</strong>您已安装SQLite $2，但是它的版本低于最低要求版本$1。因此您无法选择SQLite。",

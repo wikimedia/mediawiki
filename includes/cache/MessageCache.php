@@ -235,7 +235,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Try to load the cache from APC.
 	 *
 	 * @param string $code Optional language code, see documentation of load().
-	 * @return array|bool The cache array, or false if not in cache.
+	 * @return array|false The cache array, or false if not in cache.
 	 */
 	protected function getLocalCache( $code ) {
 		$cacheKey = $this->srvCache->makeKey( __CLASS__, $code );
@@ -419,7 +419,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code
 	 * @param string[] &$where List of debug comments
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
-	 * @return bool|string True on success or one of ("cantacquire", "disabled")
+	 * @return true|string True on success or one of ("cantacquire", "disabled")
 	 */
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
 		# If cache updates on all levels fail, give up on message overrides.
@@ -652,7 +652,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Updates cache as necessary when message page is changed
 	 *
 	 * @param string $title Message cache key with initial uppercase letter
-	 * @param string|bool $text New contents of the page (false if deleted)
+	 * @param string|false $text New contents of the page (false if deleted)
 	 */
 	public function replace( $title, $text ) {
 		global $wgLanguageCode;
@@ -797,7 +797,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param array $cache Cached messages with a version.
 	 * @param string $dest Either "local-only" to save to local caches only
 	 *   or "all" to save to all caches.
-	 * @param string|bool $code Language code (default: false)
+	 * @param string|false $code Language code (default: false)
 	 * @return bool
 	 */
 	protected function saveToCaches( array $cache, $dest, $code = false ) {
@@ -900,7 +900,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $key The message key
 	 * @param bool $useDB If true, look for the message in the DB, false
 	 *   to use only the compiled l10n cache.
-	 * @param bool|string|object $langcode Code of the language to get the message for.
+	 * @param bool|string|Language $langcode Code of the language to get the message for.
 	 *   - If string and a valid code, will create a standard language object
 	 *   - If string but not a valid code, will create a basic language object
 	 *   - If boolean and false, create object from the current users language
@@ -908,7 +908,7 @@ class MessageCache implements LoggerAwareInterface {
 	 *   - If language object, use it as given
 	 *
 	 * @throws MWException When given an invalid key
-	 * @return string|bool False if the message doesn't exist, otherwise the
+	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
 	public function get( $key, $useDB = true, $langcode = true ) {
@@ -984,7 +984,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Language|StubObject $lang Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
-	 * @return string|bool The message, or false if not found
+	 * @return string|false The message, or false if not found
 	 */
 	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
 		$alreadyTried = [];
@@ -1008,7 +1008,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @param bool[] &$alreadyTried Contains true for each language that has been tried already
-	 * @return string|bool The message, or false if not found
+	 * @return string|false The message, or false if not found
 	 */
 	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {
 		$langcode = $lang->getCode();
@@ -1087,7 +1087,7 @@ class MessageCache implements LoggerAwareInterface {
 	 *
 	 * @param string $title Message cache key with initial uppercase letter
 	 * @param string $code Code denoting the language to try
-	 * @return string|bool The message, or false if it does not exist or on error
+	 * @return string|false The message, or false if it does not exist or on error
 	 */
 	public function getMsgFromNamespace( $title, $code ) {
 		// Load all MediaWiki page definitions into cache. Note that individual keys
@@ -1424,7 +1424,7 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * @param Content|null $content Content or null if the message page does not exist
-	 * @return string|bool|null Returns false if $content is null and null on error
+	 * @return string|false|null Returns false if $content is null and null on error
 	 */
 	private function getMessageTextFromContent( Content $content = null ) {
 		// @TODO: could skip pseudo-messages like js/css here, based on content model

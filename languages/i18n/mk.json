@@ -2184,7 +2184,7 @@
 	"categoriespagetext": "На викито {{PLURAL:$1|постои следнава категорија, и истата може да е неискористена|постојат следниве категории, и истите можат да се неискористени}} или не.\nПогледајте ги и [[Special:WantedCategories|потребните категории]].",
 	"categoriesfrom": "Приказ на категории почнувајќи од:",
 	"deletedcontributions": "Избришани кориснички придонеси",
-	"deletedcontributions-title": "Избришани кориснички придонеси",
+	"deletedcontributions-title": "Избришани корисничките придонеси на $1",
 	"sp-deletedcontributions-contribs": "придонеси",
 	"linksearch": "Пребарување на надворешни врски",
 	"linksearch-pat": "Услов за пребарување:",
@@ -4083,5 +4083,6 @@
 	"paramvalidator-missingtitle": "Неважечка вредност „$2“ за насловниот параметар <var>$1</var>: страницата не постои.",
 	"paramvalidator-help-type-title": "Тип: наслов на страница",
 	"paramvalidator-help-type-title-must-exist": "Прифаќа само постоечки страници.",
-	"paramvalidator-help-type-title-no-must-exist": "Прифаќа непостоечки страници."
+	"paramvalidator-help-type-title-no-must-exist": "Прифаќа непостоечки страници.",
+	"nonmain-slot-differences-therefore-readonly": "Не можете да го уредувате викитекстот на оваа преработка на страницата, бидејќи оттогаш има понови промени кои не се засновани на викитекст. [$1 За да ја повратите преработката, стиснете тука.]"
 }

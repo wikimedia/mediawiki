@@ -57,7 +57,6 @@
 	"config-env-bad": "Đã kiểm tra môi trường.\nBạn không thể cài đặt MediaWiki.",
 	"config-env-php": "PHP $1 đã được cài đặt.",
 	"config-unicode-using-intl": "Sẽ sử dụng [https://php.net/manual/en/book.intl.php phần mở rộng intl PHP] để chuẩn hóa Unicode.",
-	"config-unicode-pure-php-warning": "<strong>Cảnh báo:</strong>  [https://pecl.php.net/intl PECL intl extension] không được phép xử lý Unicode chuẩn hóa, trả lại thực thi PHP-gốc chậm.\nNếu bạn chạy một site lưu lượng lớn, bạn nên đọc qua  [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations chuẩn hóa Unicode].",
 	"config-unicode-update-warning": "<strong>Cảnh báo:</strong> Phiên bản cài đặt của gói Unicode chuẩn hóa sử dụng một phiên bản cũ của thư viện [http://site.icu-project.org/ the ICU project].\nBạn phải [https://www.mediawiki.org/wiki/Special:MyLanguage/nâng cấp Unicode_normalization_considerations] nếu bạn quan tâm đến việc sử dụng Unicode.",
 	"config-no-db": "Không tìm thấy một trình điều khiển cơ sở dữ liệu phù hợp! Bạn cần phải cài một trình điều khiển cơ sở dữ liệu cho PHP.\n{{PLURAL:$2|Loại|Các loại}} cơ sở dữ liệu sau đây được hỗ trợ: $1.\n\nNếu bạn đã biên dịch PHP lấy, cấu hình lại nó mà kích hoạt một trình khách cơ sở dữ liệu, ví dụ bằng lệnh <code>./configure --with-mysqli</code>.\nNếu bạn đã cài PHP từ một gói Debian hoặc Ubuntu, thì bạn cũng cần phải cài ví dụ gói <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Chú ý:</strong> Bạn có SQLite $2, phiên bản này thấp hơn phiên bản yêu câu tối thiểu $1. SQLite sẽ không có tác dụng.",

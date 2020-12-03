@@ -391,5 +391,6 @@
 	"exif-fullpanoheightpixels": "גובה מלא של הפנורמה",
 	"exif-croppedarealeftpixels": "קטיעה שמאלית של פנורמה",
 	"exif-croppedareatoppixels": "קטיעה עליונה של פנורמה",
-	"exif-initialcameradolly": "מיקום צלמנוע התחלתי"
+	"exif-initialcameradolly": "מיקום צלמנוע התחלתי",
+	"exif-stitchingsoftware": "תוכנת תפירה"
 }

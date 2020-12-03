@@ -61,7 +61,6 @@
 	"config-env-bad": "הסביבה שלכם נבדקה.\nאי־אפשר להתקין מדיה־ויקי.",
 	"config-env-php": "מותקנת <span dir=\"ltr\">PHP $1</span>.",
 	"config-unicode-using-intl": "משתמש ב[https://php.net/manual/en/book.intl.php הרחבת PHP intl] לנרמול יוניקוד.",
-	"config-unicode-pure-php-warning": "<strong>אזהרה:</strong> [https://php.net/manual/en/book.intl.php הרחבת intl של PHP] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואיטי יותר.\nאם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
 	"config-unicode-update-warning": "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].\nכדאי [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations לעדכן] אם הטיפול ביוניקוד חשוב לך.",
 	"config-no-db": "לא נמצא דרייבר מסד נתונים מתאים. יש להתקין דרייבר מסד נתונים ל־PHP.\n{{PLURAL:$2|נתמך הסוג הבא של מסד נתונים|נתמכים הסוגים הבאים של מסדי נתונים}}: $1.\n\nאם קִמפלת את PHP בעצמך, יש להגדיר אותו מחדש ולהפעיל את לקוח מסד נתונים, למשל באמצעות <code dir=\"ltr\">./configure --with-mysqli</code>.\nאם התקנת את PHP מחבילה של דביאן או של אובונטו, יש להתקין, למשל, גם את המודול <code dir=\"ltr\">php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>אזהרה</strong>: במערכת מתוקן SQLite $2. גרסה זו לא נתמכת ולשימוש ב־SQLite נדרשת גרסה $1 לפחות. SQLlite לא יהיה זמין.",
