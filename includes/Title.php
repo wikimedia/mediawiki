@@ -26,8 +26,12 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -39,7 +43,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget, IDBAccessObject {
+class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/** @var MapCacheLRU|null */
 	private static $titleCache = null;
 
@@ -60,7 +64,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Flag for use with factory methods like newFromLinkTarget() that have
 	 * a $forceClone parameter. If set, the method must return a new instance.
-	 * Without this flag, some factory methods may return existing instances.
+	 * Without this flag, some factory methods may return existing instances.as
 	 *
 	 * @since 1.33
 	 */
@@ -308,6 +312,30 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public static function castFromLinkTarget( $linkTarget ) {
 		return $linkTarget ? self::newFromLinkTarget( $linkTarget ) : null;
+	}
+
+	/**
+	 * Return a Title for a given PageIdentity. If $pageIdentity is a Title,
+	 * that Title is returned unchanged. If $pageIdentity is null, null
+	 * is returned.
+	 * @since 1.36
+	 *
+	 * @param PageIdentity|null $pageIdentity
+	 * @return Title|null
+	 */
+	public static function castFromPageIdentity( ?PageIdentity $pageIdentity ) : ?Title {
+		if ( !$pageIdentity ) {
+			return null;
+		}
+
+		if ( $pageIdentity instanceof Title ) {
+			return $pageIdentity;
+		}
+
+		$pageIdentity->assertWiki( PageIdentity::LOCAL );
+		$title = self::makeTitle( $pageIdentity->getNamespace(), $pageIdentity->getDBkey() );
+		$title->resetArticleID( $pageIdentity->getId() );
+		return $title;
 	}
 
 	/**
@@ -4559,6 +4587,106 @@ class Title implements LinkTarget, IDBAccessObject {
 		$this->mArticleID = ( $this->mNamespace >= 0 ) ? -1 : 0;
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
+	}
+
+	/**
+	 * Returns false to indicate that this Title belongs to the local wiki.
+	 *
+	 * @note The behavior of this method if considered undefined for interwiki links.
+	 * At the moment, this method always returns false. But this may change in the future.
+	 *
+	 * @since 1.36
+	 * @return bool false
+	 */
+	public function getWikiId() {
+		return PageIdentity::LOCAL;
+	}
+
+	/**
+	 * Throws if $wikiId is not the
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *
+	 * @throws PreconditionException
+	 */
+	public function assertWiki( $wikiId ) {
+		if ( $wikiId !== PageIdentity::LOCAL ) {
+			throw new PreconditionException(
+				"Expected this PageIdentity to belong to $wikiId, "
+				. 'but it belongs to the local wiki'
+			);
+		}
+	}
+
+	/**
+	 * Returns the page ID.
+	 *
+	 * If this ID is 0, this means the page does not exist.
+	 *
+	 * @see getArticleID()
+	 * @since 1.35
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *
+	 * @throws PreconditionException if this Title instance does not represent a proper page,
+	 *         that is, if it is a section link, interwiki link, link to a special page, or such.
+	 * @throws PreconditionException if $wikiId is not false.
+	 *
+	 * @return int
+	 */
+	public function getId( $wikiId = PageIdentity::LOCAL ) {
+		$this->assertWiki( $wikiId );
+		$this->assertProperPage();
+		return $this->getArticleID();
+	}
+
+	/**
+	 * Code that requires this Title to be a "proper page" in the sense
+	 * defined by PageIdentity should call this method.
+	 *
+	 * For the purpose of the Title class, a proper page is one that can
+	 * exist in the page table. That is, a Title represents a proper page
+	 * if canExist() returns true and getFragment() returns an empty string.
+	 *
+	 * @see canExist()
+	 *
+	 * @throws PreconditionException
+	 */
+	private function assertProperPage() {
+		Assert::precondition(
+			$this->canExist(),
+			'This Title instance does not represent a proper page, but merely a link target.'
+		);
+
+		Assert::precondition(
+			$this->getFragment() === '',
+			'This Title instance represents a fragment link.'
+		);
+	}
+
+	/**
+	 * Returns the page represented by this Title as a ProperPageIdentity.
+	 * The ProperPageIdentity returned by this method is guaranteed to be immutable.
+	 * If this Title does not represent a proper page, an exception is thrown.
+	 *
+	 * It is preferred to use this method rather than using the Title as a PageIdentity directly.
+	 *
+	 * @return ProperPageIdentity
+	 * @throws PreconditionException if the page is not a proper page, that is, if it is a section
+	 *         link, interwiki link, link to a special page, or such.
+	 * @since 1.36
+	 */
+	public function toPageIdentity() : ProperPageIdentity {
+		// TODO: replace individual member fields with a PageIdentityValue that is always present
+
+		$this->assertProperPage();
+
+		return new PageIdentityValue(
+			$this->getId(),
+			$this->getNamespace(),
+			$this->getDBkey(),
+			PageIdentity::LOCAL
+		);
 	}
 
 }
