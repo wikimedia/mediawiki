@@ -27,9 +27,11 @@
 	"ooui-dialog-process-continue": "Fortsett",
 	"ooui-combobox-button-label": "Vis/skjul valg",
 	"ooui-selectfile-button-select": "Velg en fil",
+	"ooui-selectfile-button-select-multiple": "Velg filer",
 	"ooui-selectfile-not-supported": "Filvalg er ikke støttet",
 	"ooui-selectfile-placeholder": "Ingen fil er valgt",
 	"ooui-selectfile-dragdrop-placeholder": "Slipp fil her",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Slipp filer her",
 	"ooui-popup-widget-close-button-aria-label": "Lukk",
 	"ooui-field-help": "Hjelp"
 }

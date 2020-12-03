@@ -27,9 +27,11 @@
 	"ooui-dialog-process-continue": "Dewam ke",
 	"ooui-combobox-button-label": "Weçinıtışê Toogle",
 	"ooui-selectfile-button-select": "Yu dosya weçinê",
+	"ooui-selectfile-button-select-multiple": "Dosyey Bıweçinê",
 	"ooui-selectfile-not-supported": "Dosya weçinayış desteg nêvine na",
 	"ooui-selectfile-placeholder": "Dosya nêwçineya",
 	"ooui-selectfile-dragdrop-placeholder": "Dosya tiyara ake",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Dosyaya tiyara ake",
 	"ooui-popup-widget-close-button-aria-label": "Racın",
 	"ooui-field-help": "Peşti"
 }

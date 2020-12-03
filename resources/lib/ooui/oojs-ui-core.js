@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.40.4
+ * OOUI v0.41.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-10-07T21:25:50Z
+ * Date: 2020-12-03T18:16:24Z
  */
 ( function ( OO ) {
 
@@ -322,14 +322,21 @@ OO.ui.throttle = function ( func, wait ) {
  *
  * This is an alias for `OO.ui.Element.static.infuse()`.
  *
- * @param {string|HTMLElement|jQuery} idOrNode
- *   A DOM id (if a string) or node for the widget to infuse.
+ * @param {string|HTMLElement|jQuery} node Node for the widget to infuse.
+ *   String must be a selector (deprecated).
  * @param {Object} [config] Configuration options
  * @return {OO.ui.Element}
  *   The `OO.ui.Element` corresponding to this (infusable) document node.
  */
-OO.ui.infuse = function ( idOrNode, config ) {
-	return OO.ui.Element.static.infuse( idOrNode, config );
+OO.ui.infuse = function ( node, config ) {
+	if ( typeof node === 'string' ) {
+		// Deprecate passing a selector, which was accidentally introduced in Ibf95b0dee.
+		// @since 0.41.0
+		OO.ui.warnDeprecation(
+			'Passing a selector to infuse is deprecated. Use an HTMLElement or jQuery collection instead.'
+		);
+	}
+	return OO.ui.Element.static.infuse( node, config );
 };
 
 /**
@@ -3262,7 +3269,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorElement = function ( $indicat
 };
 
 /**
- * Set the indicator by its symbolic name: ‘clear’, ‘down’, ‘required’, ‘search’, ‘up’. Use `null`
+ * Set the indicator by its symbolic name: ‘clear’, ‘down’, ‘required’, ‘up’. Use `null`
  * to remove the indicator.
  *
  * @param {string|null} indicator Symbolic name of indicator, or `null` for no indicator
@@ -4452,6 +4459,12 @@ OO.ui.MessageWidget = function OoUiMessageWidget( config ) {
 	// Set type
 	this.setType( config.type );
 	this.setInline( config.inline );
+
+	// If an icon is passed in, set it again as setType will
+	// have overridden the setIcon call in the IconElement constructor
+	if ( config.icon ) {
+		this.setIcon( config.icon );
+	}
 
 	// Build the widget
 	this.$element
@@ -9318,6 +9331,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.simulateLabelClick = function () {
  *
  * @class
  * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.PendingElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -9332,6 +9346,9 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 
 	// Parent constructor
 	OO.ui.ProgressBarWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.mixin.PendingElement.call( this, config );
 
 	// Properties
 	this.$bar = $( '<div>' );
@@ -9353,6 +9370,7 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ProgressBarWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.ProgressBarWidget, OO.ui.mixin.PendingElement );
 
 /* Static Properties */
 
@@ -10791,7 +10809,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.onCheckboxesSelect = function () 
 OO.ui.CheckboxMultiselectInputWidget.prototype.getValue = function () {
 	var value = this.$element.find( '.oo-ui-checkboxInputWidget .oo-ui-inputWidget-input:checked' )
 		.toArray().map( function ( el ) { return el.value; } );
-	if ( this.value !== value ) {
+	if ( !OO.compare( this.value, value ) ) {
 		this.setValue( value );
 	}
 	return this.value;
@@ -11244,9 +11262,6 @@ OO.ui.TextInputWidget.prototype.setRequired = function ( state ) {
 /**
  * Support function for making #onElementAttach work across browsers.
  *
- * This whole function could be replaced with one line of code using the DOMNodeInsertedIntoDocument
- * event, but it's not supported by Firefox and allegedly deprecated, so we only use it as fallback.
- *
  * Due to MutationObserver performance woes, #onElementAttach is only somewhat reliably called the
  * first time that the element gets attached to the documented.
  */
@@ -11304,10 +11319,6 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 		// Create a fake parent and observe it
 		fakeParentNode = $( '<div>' ).append( topmostNode )[ 0 ];
 		mutationObserver.observe( fakeParentNode, { childList: true } );
-	} else {
-		// Using the DOMNodeInsertedIntoDocument event is much nicer and less magical, and works for
-		// detachment and reattachment, but it's not supported by Firefox and allegedly deprecated.
-		this.$element.on( 'DOMNodeInsertedIntoDocument', this.onElementAttach.bind( this ) );
 	}
 };
 
@@ -12180,11 +12191,19 @@ OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
 /**
  * @inheritdoc
  */
-OO.ui.ComboBoxInputWidget.prototype.onEdit = function () {
+OO.ui.ComboBoxInputWidget.prototype.onEdit = function ( event ) {
 	// Parent method
 	OO.ui.ComboBoxInputWidget.super.prototype.onEdit.apply( this, arguments );
 
-	if ( !this.menu.isVisible() && !this.isDisabled() && this.isVisible() ) {
+	if ( this.menu.isVisible() || this.isDisabled() || !this.isVisible() ) {
+		return;
+	}
+
+	if ( event.type === 'input' || event.type === 'mouseup' || ( event.type === 'keydown' && (
+		event.keyCode === OO.ui.Keys.ENTER ||
+		event.keyCode === OO.ui.Keys.UP ||
+		event.keyCode === OO.ui.Keys.DOWN
+	) ) ) {
 		this.menu.toggle( true );
 	}
 };

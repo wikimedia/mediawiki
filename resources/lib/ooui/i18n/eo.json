@@ -6,6 +6,7 @@
 			"KuboF",
 			"Kvardek du",
 			"Mirin",
+			"NMaia",
 			"Psychoslave",
 			"Shirayuki",
 			"Yekrats",
@@ -25,10 +26,12 @@
 	"ooui-dialog-process-dismiss": "Fermi",
 	"ooui-dialog-process-retry": "Reprovi",
 	"ooui-dialog-process-continue": "Daŭrigi",
-	"ooui-combobox-button-label": "Redaktebla falmenuo",
+	"ooui-combobox-button-label": "Baskuligi opciojn",
 	"ooui-selectfile-button-select": "Elekti dosieron",
+	"ooui-selectfile-button-select-multiple": "Elekti dosierojn",
 	"ooui-selectfile-not-supported": "Dosierelekto ne estas subtenata.",
 	"ooui-selectfile-placeholder": "Neniu dosiero elektita",
 	"ooui-selectfile-dragdrop-placeholder": "Demetu la dosieron ĉi tie",
+	"ooui-popup-widget-close-button-aria-label": "Fermi",
 	"ooui-field-help": "Helpo"
 }

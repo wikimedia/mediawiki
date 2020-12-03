@@ -1,14 +1,18 @@
 /*!
- * OOUI v0.40.4
+ * OOUI v0.41.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-10-07T21:26:15Z
+ * Date: 2020-12-03T18:16:55Z
  */
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-window {
   background: transparent;
 }
@@ -48,6 +52,8 @@
   left: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
 .oo-ui-dialog-content > .oo-ui-window-foot {
@@ -75,6 +81,8 @@
   bottom: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   position: relative;
   text-align: center;
@@ -105,6 +113,8 @@
   text-overflow: ellipsis;
 }
 .oo-ui-messageDialog-content > .oo-ui-window-foot {
+  /* For some reason `outline` in this file is throwing warnings, but not elsewhere */
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: 1px solid #a2a9b1;
 }
 .oo-ui-messageDialog-title,
@@ -175,6 +185,8 @@
   border-radius: 0 0 2px 2px;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-processDialog-location {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -214,6 +226,7 @@
 }
 .oo-ui-processDialog-content .oo-ui-window-head,
 .oo-ui-processDialog-content .oo-ui-window-foot {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: 1px solid #c8ccd1;
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
@@ -264,7 +277,7 @@
   margin-left: 0;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding: 0.71428571em 12px;
+  padding: 10px 12px;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-left: 2.42857143em;
@@ -346,12 +359,14 @@
   padding-left: 3.14285714em;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding: 0.78571429em 12px;
+  padding: 11px 12px;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-left: 2.42857143em;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   position: fixed;
   width: 0;
@@ -422,6 +437,7 @@
   top: 1em;
   bottom: 1em;
   max-height: 100%;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   max-height: calc( 100% - 2em );
   border: 1px solid #a2a9b1;
   border-radius: 2px;
