@@ -46,16 +46,17 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @param string $type
+	 * @param string[] $allow methods to allow
 	 * @return MockObject
 	 */
-	protected function createNoOpAbstractMock( $type ) {
+	protected function createNoOpAbstractMock( $type, $allow = [] ) {
 		$mock = $this->getMockBuilder( $type )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
 			->disableArgumentCloning()
 			->disallowMockingUnknownTypes()
 			->getMockForAbstractClass();
-		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct', ...$allow ) );
 		return $mock;
 	}
 
