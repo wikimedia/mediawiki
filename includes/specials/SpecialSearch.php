@@ -508,7 +508,8 @@ class SpecialSearch extends SpecialPage {
 		if ( $num === 0 && !$hasSearchErrors ) {
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
 				$hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
-				wfEscapeWikiText( $term )
+				wfEscapeWikiText( $term ),
+				$term,
 			] );
 		}
 
