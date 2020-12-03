@@ -138,9 +138,7 @@ class ParserOptions {
 		}
 
 		$this->lazyLoadOption( $name );
-		if ( !empty( self::$inCacheKey[$name] ) ) {
-			$this->optionUsed( $name );
-		}
+		$this->optionUsed( $name );
 		return $this->options[$name];
 	}
 
