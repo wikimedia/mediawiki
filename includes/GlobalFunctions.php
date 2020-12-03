@@ -143,6 +143,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
 /**
  * Appends to second array if $value differs from that in $default
  *
+ * @deprecated since 1.36
  * @param string|int $key
  * @param mixed $value
  * @param mixed $default
@@ -150,6 +151,8 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
+
 	if ( $changed === null ) {
 		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
 	}

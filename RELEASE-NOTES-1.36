@@ -412,6 +412,7 @@ because of Phabricator reports.
 * WikiRevision::importUpload, soft-deprecated since 1.31, was hard-deprecated.
 * Html::infoBox() has been deprecated. There's no replacement.
 * BagOStuff::makeKeyInternal() usage outside of BagOStuff has been deprecated.
+* The global function wfAppendToArrayIfNotDefault() has been deprecated.
 * …
 
 === Other changes in 1.36 ===
