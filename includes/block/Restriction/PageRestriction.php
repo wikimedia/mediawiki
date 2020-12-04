@@ -99,4 +99,21 @@ class PageRestriction extends AbstractRestriction {
 
 		return $restriction;
 	}
+
+	/**
+	 * @internal
+	 * @since 1.36
+	 * @param string|\Title $title
+	 * @return self
+	 */
+	public static function newFromTitle( $title ) {
+		if ( is_string( $title ) ) {
+			$title = \Title::newFromText( $title );
+		}
+
+		$restriction = new self( 0, $title->getArticleID() );
+		$restriction->setTitle( $title );
+
+		return $restriction;
+	}
 }

@@ -60,6 +60,17 @@ class PageRestrictionTest extends RestrictionTestCase {
 		$this->assertSame( 'Saturn', $restriction->getTitle()->getText() );
 	}
 
+	public function testNewFromTitle() {
+		$class = $this->getClass();
+		$title = \Title::newFromText( 'Pluto' );
+		$restriction = $class::newFromTitle( 'Mars' );
+		$restriction2 = $class::newFromTitle( $title );
+
+		$this->assertSame( 0, $restriction->getBlockId() );
+		$this->assertSame( 'Mars', $restriction->getTitle()->getText() );
+		$this->assertSame( $title->getArticleID(), $restriction2->getValue() );
+	}
+
 	/**
 	 * @inheritDoc
 	 */
