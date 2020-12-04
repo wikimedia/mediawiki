@@ -1,5 +1,5 @@
 /**
- * WikimediaUI Base v0.17.0
+ * WikimediaUI Base v0.18.0
  * Wikimedia Foundation user interface base variables
  * https://gerrit.wikimedia.org/g/wikimedia-ui-base/
  *
@@ -82,6 +82,11 @@
 // Binary Input elements (Checkboxes, Radios, Toggle Switches)
 @background-color-input-binary--active: @color-primary--active;
 @background-color-input-binary--checked: @color-primary;
+// Quiet Buttons
+@background-color-quiet:          @background-color-base;
+// Use `rgba()` values here as the quiet buttons need to blend in with background.
+@background-color-quiet--hover:   rgba( 0, 24, 73, 7/255 ); // = `@wmui-color-base90` on white.
+@background-color-quiet--active:  rgba( 0, 36, 73, 21/255 ); // = `@wmui-color-base80` on white.
 // Toolbar and Tools
 @background-color-toolbar:        @background-color-base;
 @background-color-tool--hover:    @background-color-base--hover;
@@ -142,6 +147,7 @@
 @opacity-icon-base:               0.87; // = `#222` on `background-color: #fff`, closest to `#202122`
 @opacity-icon-base--hover:        0.74; // = `#424242` on `background-color: #fff`, closest to `#404244`
 @opacity-icon-base--selected:     1;
+@opacity-icon-accessory:          0.67; // = `#555`, closest to `#54595d` on background-color `#fff`.
 
 
 // == Positioning ==
@@ -174,9 +180,9 @@
 @border-menu:                     @border-base;
 @border-input-binary:             @border-width-base @border-style-base @border-color-input-binary;
 // User system messages (errors, warnings, successes, notices)
-@border-error:                    @border-width-base @border-style-base @color-error;
-@border-warning:                  @border-width-base @border-style-base @wmui-color-yellow50;
-@border-success:                  @border-width-base @border-style-base @color-success;
+@border-error:                    @border-width-base @border-style-base @border-color-error;
+@border-warning:                  @border-width-base @border-style-base @border-color-warning;
+@border-success:                  @border-width-base @border-style-base @border-color-success;
 @border-notice:                   @border-base;
 // Border Colors
 @border-color-base:               @wmui-color-base50;
@@ -185,15 +191,28 @@
 @border-color-base--focus:        @color-primary--focus;
 @border-color-base--disabled:     @wmui-color-base70;
 @border-color-filled--disabled:   @color-filled--disabled;
+// Border Colors primary buttons
+@border-color-primary:            @color-primary;
+@border-color-primary--hover:     @color-primary--hover;
 @border-color-primary--active:    @color-primary--active;
+@border-color-primary--focus:     @border-color-primary;
+@border-color-destructive:        @color-destructive;
+@border-color-destructive--hover: @color-destructive--hover;
 @border-color-destructive--active: @color-destructive--active;
+@border-color-destructive--focus: @border-color-destructive;
 @border-color-inset--focus:       @color-base--inverted;
+@border-color-input--hover:       @border-color-base--active;
 @border-color-input-binary:       @border-color-base--active;
 @border-color-input-binary--active: @color-primary--active;
 @border-color-input-binary--checked: @color-primary;
 @border-color-heading:            @wmui-color-base70;
 @border-color-divider:            @wmui-color-base50;
 @border-color-wikitable:          rgba( 84, 89, 93, 0.3 ); // See T168029
+// Border Colors user system messages
+@border-color-error:              @color-error;
+@border-color-warning:            @wmui-color-yellow50;
+@border-color-success:            @color-success;
+@border-color-notice:             @border-color-base;
 // Border Styles
 @border-style-base:               solid;
 // Border Widths
@@ -215,6 +234,7 @@
 @box-shadow-base:                 inset 0 0 0 1px transparent;
 @box-shadow-base--focus:          inset 0 0 0 1px @wmui-color-accent50;
 @box-shadow-primary--focus:       inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-destructive--focus:   inset 0 0 0 1px @color-destructive, inset 0 0 0 2px @color-base--inverted;
 @box-shadow-inset--inverted:      inset 0 0 0 1px @color-base--inverted;
 @box-shadow-filled--disabled:     inset 0 0 0 1px @color-filled--disabled;
 @box-shadow-card:                 0 1px 1px rgba( 0, 0, 0, 0.15 );
@@ -246,12 +266,13 @@
 @font-weight-base:                @font-weight-normal;
 // See https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
 @font-weight-hairline:            100;
+@font-weight-light:               300;
 @font-weight-normal:              400;
 @font-weight-semi-bold:           600;
 @font-weight-bold:                700;
 // Line Heights
 @line-height-base:                1.6;
-@line-height-heading:             1.25;
+@line-height-heading:             1.3;
 @text-decoration-link--hover:     none;
 // Text Shadows
 @text-shadow-base:                0 1px 1px @color-base--inverted; // 'coined' effect

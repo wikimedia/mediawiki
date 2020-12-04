@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.41.0 / 2020-12-03
+### Deprecating changes
+* Deprecate passing a string to OO.ui.infuse (Thalia Chan)
+
+### Styles
+* PopupWidget: Fix margins (Ed Sanders)
+* WikimediaUI theme: Remove variables already covered in WikimediaUI Base (Volker E.)
+* WikimediaUI theme: Replace `em`s with `px` on remaining vertical paddings (Volker E.)
+* WikimediaUI theme: Update 'wikimedia-ui-base' to v0.18.0 (Volker E.)
+* WikimediaUI theme: Use correct `min-size` WikimediaUI Base value (Volker E.)
+* icons: Add 'network' and 'networkOff' icons (Volker E.)
+
+### Code
+* MessageWidget: Support passing 'icon' in config (Ed Sanders)
+* OO.ui.mixin.IndicatorElement: Fix docs for available indicators (Thalia Chan)
+* PHP: MessageWidget: Add `isset()` to determine if icon variable is declared (Volker E.)
+* ProgressBar: Mixin PendingElement (Ed Sanders)
+* TextInputWidget: Remove deprecated `DOMNodeInsertedIntoDocument` fallback (Volker E.)
+* Use `calc` in `font-size` to harmonize IE 9-11 (Volker E.)
+* themes: Replace var with WikimediaUI Base variable (Volker E.)
+* build: Remove needless stylelint disables (Ed Sanders)
+* build: Updating mediawiki/mediawiki-codesniffer to 32.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 33.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.4 (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* build: Upgrade stylelint-config-wikimedia and use Grade A profile (James D. Forrester)
+* icons: Optimize 'search' path (Volker E.)
+
+
 ## v0.40.4 / 2020-10-07
 ### Styles
 * FieldLayout: Upstream clearfix from demo (Ed Sanders)

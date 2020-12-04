@@ -28,5 +28,6 @@
 	"ooui-selectfile-placeholder": "ไม่ได้เลือกไฟล์ใด",
 	"ooui-selectfile-dragdrop-placeholder": "หย่อนไฟล์ลงที่นี่",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "หย่อนไฟล์ที่นี่",
+	"ooui-popup-widget-close-button-aria-label": "ปิด",
 	"ooui-field-help": "วิธีใช้"
 }
