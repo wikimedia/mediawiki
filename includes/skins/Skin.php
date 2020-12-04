@@ -1600,7 +1600,7 @@ abstract class Skin extends ContextSource {
 			$rootUser = $user->getName();
 
 			$nav_urls['contributions'] = [
-				'text' => $this->msg( 'contributions', $rootUser )->text(),
+				'text' => $this->msg( 'tool-link-contributions', $rootUser )->text(),
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
 				'tooltip-params' => [ $rootUser ],
 			];
