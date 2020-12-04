@@ -63,7 +63,7 @@ class PageRestriction extends AbstractRestriction {
 
 	/**
 	 * @since 1.33
-	 * @return \Title|null
+	 * @return \Title|false|null
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
