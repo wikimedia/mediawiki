@@ -1,14 +1,18 @@
 /*!
- * OOUI v0.40.4
+ * OOUI v0.41.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-10-07T21:26:15Z
+ * Date: 2020-12-03T18:16:55Z
  */
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-window {
   background-color: transparent;
   background-image: none;
@@ -49,6 +53,8 @@
   left: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
 .oo-ui-dialog-content > .oo-ui-window-foot {
@@ -79,6 +85,8 @@
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   position: relative;
   text-align: center;
@@ -125,6 +133,9 @@
   font-size: 1.1em;
   color: #666;
   text-align: left;
+}
+.oo-ui-messageDialog-actions {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   min-height: 2.5em;
@@ -174,6 +185,7 @@
 }
 @supports ( width: calc( 100% + 2px ) ) {
   .oo-ui-messageDialog-actions-horizontal {
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     width: calc(100% + 2px);
     margin-left: -1px;
     margin-right: -1px;
@@ -196,6 +208,8 @@
   border-radius: 0 0 3px 3px;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-processDialog-location {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -345,6 +359,8 @@
   text-align: left;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   position: fixed;
   width: 0;
@@ -415,6 +431,7 @@
   top: 1em;
   bottom: 1em;
   max-height: 100%;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   max-height: calc( 100% - 2em );
   border: 1px solid #ccc;
   border-radius: 3px;
