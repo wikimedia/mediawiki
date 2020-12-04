@@ -61,6 +61,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     as it is normally styled, while leaving the rest of the skin up to the skin
 	 *     implementation.
 	 *
+	 * "content-links":
+	 *     The skin will apply optional styling rules to links to provide icons for different file types.
+	 *
 	 * "interface":
 	 *     The highest level, this stylesheet contains extra common styles for classes like
 	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
@@ -93,6 +96,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'content' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
+		],
+		'content-links' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
 		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
@@ -131,6 +137,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	private const DEFAULT_FEATURES = [
 		'logo' => false,
 		'content' => false,
+		'content-links' => false,
 		'interface' => false,
 		'elements' => false,
 		'legacy' => false,
