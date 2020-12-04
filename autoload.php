@@ -592,6 +592,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLEditTools' => __DIR__ . '/includes/htmlform/fields/HTMLEditTools.php',
 	'HTMLExpiryField' => __DIR__ . '/includes/htmlform/fields/HTMLExpiryField.php',
 	'HTMLFileCache' => __DIR__ . '/includes/cache/HTMLFileCache.php',
+	'HTMLFileField' => __DIR__ . '/includes/htmlform/fields/HTMLFileField.php',
 	'HTMLFloatField' => __DIR__ . '/includes/htmlform/fields/HTMLFloatField.php',
 	'HTMLForm' => __DIR__ . '/includes/htmlform/HTMLForm.php',
 	'HTMLFormActionFieldLayout' => __DIR__ . '/includes/htmlform/HTMLFormActionFieldLayout.php',
