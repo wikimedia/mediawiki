@@ -112,7 +112,7 @@ class ApiParseTest extends ApiTestCase {
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
-				'(\n<!-- Saved in parser cache (?>.*?\n -->)\n)?</div>$#s';
+				'(\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n)?</div>$#s';
 			$this->assertRegExp( $expectedEnd, $html );
 
 			$html = preg_replace( $expectedEnd, '', $html );

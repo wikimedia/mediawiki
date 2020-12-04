@@ -1,7 +1,9 @@
 <?php
 
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
+use Psr\Log\NullLogger;
 
 /**
  * @covers PoolWorkArticleViewOld
@@ -9,7 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 
-	/** @var WANObjectCache */
+	/** @var RevisionOutputCache */
 	private $cache = null;
 
 	/**
@@ -33,20 +35,17 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		}
 
 		if ( !$this->cache ) {
-			$this->installCache();
+			$this->installRevisionOutputCache();
 		}
 
 		$renderer = $this->getServiceContainer()->getRevisionRenderer();
-		$jsonCodec = new JsonCodec();
 
 		return new PoolWorkArticleViewOld(
 			'test:' . $rev->getId(),
-			60 * 60,
 			$this->cache,
 			$rev,
 			$options,
 			$renderer,
-			$jsonCodec,
 			$this->getLoggerSpi()
 		);
 	}
@@ -54,40 +53,40 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	/**
 	 * @param BagOStuff $bag
 	 *
-	 * @return WANObjectCache
+	 * @return RevisionOutputCache
 	 */
-	private function installCache( $bag = null ) {
-		$params = [
-			'cache' => $bag ?: new HashBagOStuff(),
-		];
-		$this->cache = new WANObjectCache( $params );
+	private function installRevisionOutputCache( $bag = null ) {
+		$this->cache = new RevisionOutputCache(
+			'test',
+			new WANObjectCache( [ 'cache' => $bag ?: new HashBagOStuff() ] ),
+			60 * 60,
+			'20200101223344',
+			new JsonCodec(),
+			new NullStatsdDataFactory(),
+			new NullLogger()
+		);
+
 		return $this->cache;
 	}
 
 	public function testUpdateCachedOutput() {
+		$options = ParserOptions::newCanonical( 'canonical' );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$cache = $this->installCache();
+		$cache = $this->installRevisionOutputCache();
 
-		$work = $this->newPoolWorkArticleView( $page );
+		$work = $this->newPoolWorkArticleView( $page, null, $options );
 		$this->assertTrue( $work->execute() );
 
-		$cacheKey = 'test:' . $page->getLatest();
-
-		$cachedJson = $cache->get( $cacheKey );
-		$this->assertIsString( $cachedJson );
-
-		$jsonCodec = new JsonCodec();
-		$cachedOutput = $jsonCodec->unserialize( $cachedJson );
+		$cachedOutput = $cache->get( $page->getRevisionRecord(), $options );
 		$this->assertNotEmpty( $cachedOutput );
-
 		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
 	}
 
 	public function testDoesNotCacheNotSafe() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$cache = $this->installCache();
+		$cache = $this->installRevisionOutputCache();
 
 		$parserOptions = ParserOptions::newCanonical( 'canonical' );
 		$parserOptions->setWrapOutputClass( 'wrapwrap' ); // Not safe to cache!
@@ -95,7 +94,6 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$work = $this->newPoolWorkArticleView( $page, null, $parserOptions );
 		$this->assertTrue( $work->execute() );
 
-		$cacheKey = 'test:' . $page->getLatest();
-		$this->assertFalse( $cache->get( $cacheKey ) );
+		$this->assertFalse( $cache->get( $page->getRevisionRecord(), $parserOptions ) );
 	}
 }

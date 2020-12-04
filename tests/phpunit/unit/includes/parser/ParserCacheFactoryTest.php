@@ -1,31 +1,61 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\RevisionOutputCache;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\Parser\ParserCacheFactory
  */
 class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
-	use FactoryArgTestTrait;
 
-	protected static function getFactoryClass() {
-		return ParserCacheFactory::class;
+	/**
+	 * @return ParserCacheFactory
+	 */
+	private function newParserCacheFactory() {
+		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
+			'ParserCacheUseJson' => true,
+			'CacheEpoch' => '20200202112233',
+			'OldRevisionParserCacheExpireTime' => 60,
+		] );
+
+		return new ParserCacheFactory(
+			new HashBagOStuff(),
+			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			$this->createHookContainer(),
+			new JsonCodec(),
+			new NullStatsdDataFactory(),
+			new NullLogger(),
+			$options
+		);
 	}
 
-	protected static function getInstanceClass() {
-		return ParserCache::class;
+	public function testGetParserCache() {
+		$factory = $this->newParserCacheFactory();
+
+		$a = $factory->getParserCache( 'test' );
+		$this->assertInstanceOf( ParserCache::class, $a );
+
+		$b = $factory->getParserCache( 'test' );
+		$this->assertSame( $a, $b );
+
+		$c = $factory->getParserCache( 'xyzzy' );
+		$this->assertNotSame( $a, $c );
 	}
 
-	protected static function getFactoryMethodName() {
-		return 'getInstance';
+	public function testGetRevisionOutputCache() {
+		$factory = $this->newParserCacheFactory();
+
+		$a = $factory->getRevisionOutputCache( 'test' );
+		$this->assertInstanceOf( RevisionOutputCache::class, $a );
+
+		$b = $factory->getRevisionOutputCache( 'test' );
+		$this->assertSame( $a, $b );
+
+		$c = $factory->getRevisionOutputCache( 'xyzzy' );
+		$this->assertNotSame( $a, $c );
 	}
 
-	protected static function getExtraClassArgCount() {
-		// $name
-		return 1;
-	}
-
-	protected function getIgnoredParamNames() {
-		return [ 'cacheBackend', 'hookContainer' ];
-	}
 }

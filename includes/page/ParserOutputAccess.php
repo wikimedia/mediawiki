@@ -23,8 +23,8 @@ namespace MediaWiki\Page;
 
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use ParserCache;
@@ -34,7 +34,6 @@ use PoolWorkArticleView;
 use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
 use Status;
-use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
 
@@ -89,12 +88,9 @@ class ParserOutputAccess {
 	private $primaryCache;
 
 	/**
-	 * @var WANObjectCache
+	 * @var RevisionOutputCache
 	 */
 	private $secondaryCache;
-
-	/** @var int */
-	private $secondaryCacheExpiry;
 
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
@@ -105,39 +101,30 @@ class ParserOutputAccess {
 	/** @var ILBFactory */
 	private $lbFactory;
 
-	/** @var JsonCodec */
-	private $jsonCodec;
-
 	/** @var LoggerSpi */
 	private $loggerSpi;
 
 	/**
 	 * @param ParserCache $primaryCache
-	 * @param WANObjectCache $secondaryCache
-	 * @param int $secondaryCacheExpiry
+	 * @param RevisionOutputCache $secondaryCache
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ILBFactory $lbFactory
-	 * @param JsonCodec $jsonCodec
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
-		WANObjectCache $secondaryCache,
-		int $secondaryCacheExpiry,
+		RevisionOutputCache $secondaryCache,
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ILBFactory $lbFactory,
-		JsonCodec $jsonCodec,
 		LoggerSpi $loggerSpi
 	) {
 		$this->primaryCache = $primaryCache;
 		$this->secondaryCache = $secondaryCache;
-		$this->secondaryCacheExpiry = $secondaryCacheExpiry;
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
 		$this->lbFactory = $lbFactory;
-		$this->jsonCodec = $jsonCodec;
 		$this->loggerSpi = $loggerSpi;
 	}
 
@@ -181,10 +168,7 @@ class ParserOutputAccess {
 			return self::CACHE_NONE;
 		}
 
-		if ( $this->secondaryCacheExpiry > 0 ) {
-			return self::CACHE_SECONDARY;
-		}
-		return self::CACHE_NONE;
+		return self::CACHE_SECONDARY;
 	}
 
 	/**
@@ -212,10 +196,8 @@ class ParserOutputAccess {
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
 			$output = $this->primaryCache->get( $page, $parserOptions );
-		} elseif ( $useCache === self::CACHE_SECONDARY ) {
-			$cacheKey = $this->getSecondaryCacheKey( $parserOptions, $revision );
-			$json = $this->secondaryCache->get( $cacheKey );
-			$output = $json ? $this->jsonCodec->unserialize( $json ) : null;
+		} elseif ( $useCache === self::CACHE_SECONDARY && $revision ) {
+			$output = $this->secondaryCache->get( $revision, $parserOptions );
 		} else {
 			$output = null;
 		}
@@ -364,18 +346,6 @@ class ParserOutputAccess {
 		return null;
 	}
 
-	private function getSecondaryCacheKey(
-		ParserOptions $parserOptions,
-		?RevisionRecord $revision
-	) {
-		// NOTE: For now, split the cache on all options. Eventually, we may implement a
-		//       two-tiered system like in ParserCache, or generalize ParserCache itself
-		//       to cover old revisions.
-		$revId = $revision ? $revision->getId() : 0;
-		$hash = $parserOptions->optionsHash( ParserOptions::allCacheVaryingOptions() );
-		return $this->secondaryCache->makeKey( __CLASS__, $hash, self::CACHE_SECONDARY, $revId );
-	}
-
 	/**
 	 * @param WikiPage $page
 	 * @param ParserOptions $parserOptions
@@ -419,21 +389,19 @@ class ParserOutputAccess {
 
 			case $useCache == self::CACHE_SECONDARY:
 				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Old' );
-				$cacheKey = $this->getSecondaryCacheKey( $parserOptions, $revision );
+				$workKey = $this->secondaryCache->makeParserOutputKey( $revision, $parserOptions );
 				return new PoolWorkArticleViewOld(
-					$cacheKey,
-					$this->secondaryCacheExpiry,
+					$workKey,
 					$this->secondaryCache,
 					$revision,
 					$parserOptions,
 					$this->revisionRenderer,
-					$this->jsonCodec,
 					$this->loggerSpi
 				);
 
 			default:
 				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Uncached' );
-				$workKey = $this->getSecondaryCacheKey( $parserOptions, $revision ) . ':uncached';
+				$workKey = $this->secondaryCache->makeParserOutputKey( $revision, $parserOptions );
 				return new PoolWorkArticleView(
 					$workKey,
 					$revision,

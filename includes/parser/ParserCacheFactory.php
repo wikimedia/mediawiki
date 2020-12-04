@@ -23,10 +23,12 @@ namespace MediaWiki\Parser;
 
 use BagOStuff;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
 use ParserCache;
 use Psr\Log\LoggerInterface;
+use WANObjectCache;
 
 /**
  * Returns an instance of the ParserCache by its name.
@@ -39,10 +41,10 @@ class ParserCacheFactory {
 	public const DEFAULT_NAME = 'pcache';
 
 	/** @var BagOStuff */
-	private $cacheBackend;
+	private $parserCacheBackend;
 
-	/** @var string */
-	private $cacheEpoch;
+	/** @var WANObjectCache */
+	private $revisionOutputCacheBackend;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -56,40 +58,64 @@ class ParserCacheFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var array */
-	private $instanceCache = [];
+	/** @var ParserCache[] */
+	private $parserCaches = [];
+
+	/** @var RevisionOutputCache[] */
+	private $revisionOutputCaches = [];
+
+	/** @var ServiceOptions */
+	private $options;
 
 	/**
-	 * @note Temporary feature flag, remove before 1.36 is released.
-	 * @var bool
+	 * @internal
 	 */
-	private $useJson = false;
+	public const CONSTRUCTOR_OPTIONS = [
+		'ParserCacheUseJson', // Temporary feature flag, remove before 1.36 is released.
+		'CacheEpoch',
+		'OldRevisionParserCacheExpireTime',
+	];
 
 	/**
-	 * @param BagOStuff $cacheBackend
-	 * @param string $cacheEpoch
+	 * @param BagOStuff $parserCacheBackend
+	 * @param WANObjectCache $revisionOutputCacheBackend
 	 * @param HookContainer $hookContainer
 	 * @param JsonCodec $jsonCodec
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
-	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
+	 * @param ServiceOptions $options
 	 */
 	public function __construct(
-		BagOStuff $cacheBackend,
-		string $cacheEpoch,
+		BagOStuff $parserCacheBackend,
+		WANObjectCache $revisionOutputCacheBackend,
 		HookContainer $hookContainer,
 		JsonCodec $jsonCodec,
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
-		$useJson = false
+		ServiceOptions $options
 	) {
-		$this->cacheBackend = $cacheBackend;
-		$this->cacheEpoch = $cacheEpoch;
+		$this->parserCacheBackend = $parserCacheBackend;
+		$this->revisionOutputCacheBackend = $revisionOutputCacheBackend;
 		$this->hookContainer = $hookContainer;
 		$this->jsonCodec = $jsonCodec;
 		$this->stats = $stats;
 		$this->logger = $logger;
-		$this->useJson = $useJson;
+
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+	}
+
+	/**
+	 * Get a ParserCache instance by $name.
+	 *
+	 * @deprecated since 1.36 use getParserCache
+	 * @todo remove before the 1.36 release, so we don't need to go through hard deprecation.
+	 *
+	 * @param string $name
+	 * @return ParserCache
+	 */
+	public function getInstance( string $name ) : ParserCache {
+		return $this->getParserCache( $name );
 	}
 
 	/**
@@ -97,22 +123,45 @@ class ParserCacheFactory {
 	 * @param string $name
 	 * @return ParserCache
 	 */
-	public function getInstance( string $name ) : ParserCache {
-		if ( !isset( $this->instanceCache[$name] ) ) {
+	public function getParserCache( string $name ) : ParserCache {
+		if ( !isset( $this->parserCaches[$name] ) ) {
 			$this->logger->debug( "Creating ParserCache instance for {$name}" );
 			$cache = new ParserCache(
 				$name,
-				$this->cacheBackend,
-				$this->cacheEpoch,
+				$this->parserCacheBackend,
+				$this->options->get( 'CacheEpoch' ),
 				$this->hookContainer,
 				$this->jsonCodec,
 				$this->stats,
 				$this->logger,
-				$this->useJson
+				$this->options->get( 'ParserCacheUseJson' )
 			);
 
-			$this->instanceCache[$name] = $cache;
+			$this->parserCaches[$name] = $cache;
 		}
-		return $this->instanceCache[$name];
+		return $this->parserCaches[$name];
+	}
+
+	/**
+	 * Get a RevisionOutputCache instance by $name.
+	 * @param string $name
+	 * @return RevisionOutputCache
+	 */
+	public function getRevisionOutputCache( string $name ) : RevisionOutputCache {
+		if ( !isset( $this->revisionOutputCaches[$name] ) ) {
+			$this->logger->debug( "Creating RevisionOutputCache instance for {$name}" );
+			$cache = new RevisionOutputCache(
+				$name,
+				$this->revisionOutputCacheBackend,
+				$this->options->get( 'OldRevisionParserCacheExpireTime' ),
+				$this->options->get( 'CacheEpoch' ),
+				$this->jsonCodec,
+				$this->stats,
+				$this->logger
+			);
+
+			$this->revisionOutputCaches[$name] = $cache;
+		}
+		return $this->revisionOutputCaches[$name];
 	}
 }

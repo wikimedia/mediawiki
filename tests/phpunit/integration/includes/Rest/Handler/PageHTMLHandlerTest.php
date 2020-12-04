@@ -9,6 +9,7 @@ use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
 use HashConfig;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
@@ -19,6 +20,7 @@ use MWTimestamp;
 use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
+use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -67,6 +69,22 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	private function newHandler( BagOStuff $cache = null, Parsoid $parsoid = null ): PageHTMLHandler {
+		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
+			'ParserCacheUseJson' => true,
+			'CacheEpoch' => '20200202112233',
+			'OldRevisionParserCacheExpireTime' => 60,
+		] );
+
+		$parserCacheFactory = new ParserCacheFactory(
+			$cache ?: new EmptyBagOStuff(),
+			new WANObjectCache( [ 'cache' => $cache ?: new EmptyBagOStuff() ] ),
+			$this->createHookContainer(),
+			new JsonCodec(),
+			new NullStatsdDataFactory(),
+			new NullLogger(),
+			$parserCacheFactoryOptions
+		);
+
 		$handler = new PageHTMLHandler(
 			new HashConfig( [
 				'RightsUrl' => 'https://example.com/rights',
@@ -76,14 +94,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$this->getServiceContainer()->getTitleFactory(),
-			new ParserCacheFactory(
-				$cache ?: new EmptyBagOStuff(),
-				"1234567",
-				$this->createHookContainer(),
-				new JsonCodec(),
-				new NullStatsdDataFactory(),
-				new NullLogger()
-			),
+
+			$parserCacheFactory,
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
