@@ -1411,6 +1411,7 @@
 	"recentchanges-legend-heading": "<strong>Forklaring:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se også [[Special:NewPages|listen over nye sider]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
+	"recentchanges-legend-watchlistexpiry": "Midlertidigt overvåget side",
 	"recentchanges-submit": "Vis",
 	"rcfilters-tag-remove": "Fjern »$1«",
 	"rcfilters-legend-heading": "<strong>Liste over forkortelser:</strong>",

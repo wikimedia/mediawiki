@@ -2277,7 +2277,7 @@
 	"categoriespagetext": "以下の{{PLURAL:$1|カテゴリ}}はウィキ上にあり、未使用である場合もあります。\n[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。",
 	"categoriesfrom": "最初に表示するカテゴリ:",
 	"deletedcontributions": "利用者の削除された投稿",
-	"deletedcontributions-title": "利用者の削除された投稿",
+	"deletedcontributions-title": "$1の削除された投稿",
 	"sp-deletedcontributions-contribs": "投稿記録",
 	"linksearch": "外部リンクの検索",
 	"linksearch-pat": "検索パターン:",

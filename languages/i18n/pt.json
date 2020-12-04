@@ -804,7 +804,7 @@
 	"permissionserrorstext-withaction": "Não tem permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:",
 	"contentmodelediterror": "Não pode editar esta revisão porque o modelo de conteúdo é <code>$1</code>, que é diferente do modelo atual da página <code>$2</code>.",
 	"recreate-moveddeleted-warn": "<strong>Aviso: Está a recriar uma página anteriormente eliminada.</strong>\n\nVerifique se é apropriado continuar a editar esta página.\nPara sua conveniência, é apresentado abaixo o registo de eliminação e movimentação da página:",
-	"moveddeleted-notice": "Esta página foi eliminada.\nPara sua referência, é apresentado abaixo o registo de eliminação, proteção e movimentação da página.",
+	"moveddeleted-notice": "Esta página não existe.\nPara sua referência, são apresentados abaixo os registos de eliminação, proteção e movimentação da página.",
 	"moveddeleted-notice-recent": "Desculpe, esta página foi eliminada recentemente (nas últimas 24 horas).\nPara sua referência é apresentado abaixo o registo de eliminação, proteção e movimentação da página.",
 	"log-fulllog": "Ver registo detalhado",
 	"edit-hook-aborted": "A edição foi abortada por um hook.\nNão foi dada nenhuma explicação.",
@@ -2246,7 +2246,7 @@
 	"categoriespagetext": "{{PLURAL:$1|A seguinte categoria existe na wiki e pode, ou não, ser usada|As seguintes categorias existem na wiki e podem, ou não, ser usadas}}.\nVeja também as [[Special:WantedCategories|categorias desejadas]].",
 	"categoriesfrom": "Mostrar categorias que comecem por:",
 	"deletedcontributions": "Contribuições eliminadas",
-	"deletedcontributions-title": "Edições eliminadas",
+	"deletedcontributions-title": "Edições eliminadas do utilizador $1",
 	"sp-deletedcontributions-contribs": "contribuições",
 	"linksearch": "Pesquisa de hiperligações externas",
 	"linksearch-pat": "Padrão de pesquisa:",
@@ -3261,6 +3261,7 @@
 	"mcrundo-changed": "Esta página foi alterada desde que começou a ver as diferenças. Reveja a nova mudança, por favor.",
 	"mcrundo-parse-failed": "Falha na análise sintática da nova revisão: $1",
 	"quotation-marks": "\"$1\"",
+	"formatnum-nan": "Não é um número",
 	"imgmultipageprev": "← página anterior",
 	"imgmultipagenext": "página seguinte →",
 	"imgmultigo": "Ir!",
@@ -4027,5 +4028,6 @@
 	"paramvalidator-missingtitle": "Valor inválido \"$2\" para o parâmetro de título <var>$1</var>: a página não existe.",
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Só aceita páginas que existem.",
-	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem."
+	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem.",
+	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]"
 }

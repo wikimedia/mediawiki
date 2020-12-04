@@ -16,6 +16,7 @@
 	"rest-permission-denied-anon": "Não acessível por um utilizador anónimo",
 	"rest-permission-denied-title": "O utilizador não tem os direitos para ler o título ($1)",
 	"rest-permission-denied-revision": "O utilizador não tem acesso à revisão pedida ($1).",
+	"rest-resource-limit-exceeded": "Limites de recursos ultrapassados ao processar o pedido.",
 	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
 	"rest-pagehistory-param-range-error": "O identificador da revisão tem de ser maior do que 0",
 	"rest-pagehistory-timestamp-error": "Não foi possível obter a data e hora da revisão especificada ($1)",

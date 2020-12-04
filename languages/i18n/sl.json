@@ -727,7 +727,7 @@
 	"modeleditnotsupported-text": "Urejanje ni podprto za model vsebine $1.",
 	"permissionserrors": "Napaka dovoljenja",
 	"permissionserrorstext": "Za izvedbo dejanja nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}}:",
-	"permissionserrorstext-withaction": "Za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}} nimate dovoljenja:",
+	"permissionserrorstext-withaction": "Za $2 nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov}}:",
 	"contentmodelediterror": "Redakcije ne morete urejati, ker je njen vsebinski model <code>$1</code>, kar se razlikuje od trenutnega vsebinskega modela strani <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''\n\nPremislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.\nSpodaj je prikazan dnevnik brisanja in prestavljanja:",
 	"moveddeleted-notice": "Stran ne obstaja.\nSpodaj sta za sklicevanje na razpolago dnevnik brisanja, zaščite in prestavljanja strani.",
