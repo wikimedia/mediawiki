@@ -4,4 +4,3 @@ node_js:
 
 script:  
   - npm ci
-  
