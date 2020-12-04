@@ -1,0 +1,10 @@
+@import 'mediawiki.mixins.less';
+
+// OOUIHTMLForm styles, oriented on 'mediawiki.htmlform.ooui.styles.less'.
+// Fixme: Revisit and change to `rem` as soon as available in T262928.
+@ooui-spacing-extra-small: 4px;
+
+.mw-htmlform-field-HTMLRadioField.oo-ui-fieldLayout + .mw-htmlform-field-HTMLSelectNamespace.oo-ui-fieldLayout,
+.mw-htmlform-field-HTMLRadioField.oo-ui-fieldLayout + .mw-htmlform-field-HTMLTextField.oo-ui-fieldLayout {
+	margin-top: @ooui-spacing-extra-small;
+}
