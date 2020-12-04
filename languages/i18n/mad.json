@@ -583,7 +583,7 @@
 	"revdelete-content-hid": "kontèn èpangètek",
 	"logentry-move-move": "$1 {{GENDER:$2|ngallèyaghi}} kaca $3 ka $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|ngallèyaghi}} kaca $3 ka $4 tanpa aghâbây pangallèyan",
-	"logentry-move-move_redir": "$1 {{GENDER:$2|ngallèyaghi}} kaca $3 ka $4 nèmpa pangallèyan laju",
+	"logentry-move-move_redir": "$1 {{GENDER:$2|ngallèyaghi}} kaca $3 ka $4 nèmpa pangallèyan sè laju",
 	"logentry-patrol-patrol-auto": "$1 otomatis {{GENDER:$2|nanḍhâi}} rèvisi $4 ḍâri kaca $3 sè tapatrol",
 	"logentry-newusers-create": "$1 {{GENDER:$2|aghâbây}} akun pangangghuy",
 	"logentry-newusers-autocreate": "Akun $1 {{GENDER:$2|èkaghâbây}} otomatis",

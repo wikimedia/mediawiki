@@ -2232,7 +2232,7 @@
 	"categoriespagetext": "{{PLURAL:$1|التصنيف التالي|التصنيفات التالية}} موجودة في الويكي، وقد تكون مستخدمة أو غير مستخدمة،\nانظر أيضا [[Special:WantedCategories|التصنيفات المطلوبة]].",
 	"categoriesfrom": "اعرض التصنيفات ابتداء من:",
 	"deletedcontributions": "مساهمات المستخدم المحذوفة",
-	"deletedcontributions-title": "مساهمات المستخدم المحذوفة",
+	"deletedcontributions-title": "مساهمات المستخدم المحذوفة ل$1",
 	"sp-deletedcontributions-contribs": "مساهمات",
 	"linksearch": "بحث في الوصلات الخارجية",
 	"linksearch-pat": "نمط البحث:",

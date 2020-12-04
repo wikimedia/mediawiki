@@ -1746,7 +1746,7 @@
 	"filename-bad-prefix": "nameo ke şıma bar kenê, zey namey kameraya dicitalo, pê '''\"$1\"''' sıfte keno.\nKerem kerên, nameyê do eşkera'o bin weçinên.",
 	"filename-prefix-blacklist": " #<!-- leave this line exactly as it is --> <pre>\n# Syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment\n#   * Every non-blank line is a prefix for typical file names assigned automatically by digital cameras\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # some mobile phones\nIMG # generic\nJD # Jenoptik\nMGP # Pentax\nPICT # misc.\n #</pre> <!-- leave this line exactly as it is -->",
 	"upload-proto-error": "Porotokol raşt ni yo.",
-	"upload-proto-error-text": "Bar kerdişê durî gani  URLî estbiye ke pe <code>http://</code> ya zi <code>ftp://</code> başli beno.",
+	"upload-proto-error-text": "Bar kerdışê duri gani  URLyi est biye ke pe <code>http://</code> ya zi <code>ftp://</code> serniyeno.",
 	"upload-file-error": "Xeta daxılkiye",
 	"upload-file-error-text": "Peşkeşwan de wexta yew dosya vıraziyayene xeta bı.\nkerem kerê [[Special:ListUsers/sysop|serkari]]de irtibat kewe.",
 	"upload-misc-error": "Nızaniyen xetay barkerdışi",

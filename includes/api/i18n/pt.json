@@ -1317,6 +1317,7 @@
 	"apihelp-query+watchlist-param-token": "Uma chave de segurança (disponível nas [[Special:Preferences#mw-prefsection-watchlist|preferências]] do utilizador) para permitir acesso à lista de páginas vigiadas de outro utilizador.",
 	"apihelp-query+watchlist-example-simple": "Listar a revisão mais recente das páginas com mudanças recentes na lista de páginas vigiadas do utilizador atual.",
 	"apihelp-query+watchlist-example-props": "Obter informação adicional sobre a revisão mais recente das páginas vigiadas do utilizador atual que tenham sido alteradas.",
+	"apihelp-query+watchlist-example-expiry": "Obter informações adicionais acerca da última revisão das páginas com mudanças recentes que estejam na lista de páginas vigiadas do utilizador atual, incluindo a data de expiração dos elementos vigiados temporariamente.",
 	"apihelp-query+watchlist-example-allrev": "Obter informações sobre todas as mudanças recentes às páginas vigiadas do utilizador atual.",
 	"apihelp-query+watchlist-example-generator": "Obter informações das páginas na lista de páginas vigiadas do utilizador atual que tenham sido recentemente alteradas.",
 	"apihelp-query+watchlist-example-generator-rev": "Obter informações de revisão para as mudanças recentes às páginas vigiadas do utilizador atual.",
