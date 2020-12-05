@@ -1188,14 +1188,14 @@ class LocalFile extends File {
 		);
 		wfDebug( __METHOD__ . ": $fileListDebug" );
 
+		if ( $this->repo->supportsSha1URLs() ) {
+			$reference = $this->getSha1();
+		} else {
+			$reference = $this->getName();
+		}
+
 		$purgeList = [];
 		foreach ( $files as $file ) {
-			if ( $this->repo->supportsSha1URLs() ) {
-				$reference = $this->getSha1();
-			} else {
-				$reference = $this->getName();
-			}
-
 			# Check that the reference (filename or sha1) is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $reference ) !== false
