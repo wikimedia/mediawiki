@@ -124,12 +124,11 @@ class EntryPoint {
 	 * @return ITextFormatter[]
 	 */
 	public static function getTextFormatters( MediaWikiServices $services ) {
-		$langs = array_unique( [
-			$services->getMainConfig()->get( 'ContLang' )->getCode(),
-			'en'
-		] );
+		$code = $services->getContentLanguage()->getCode();
+		$langs = array_unique( [ $code, 'en' ] );
 		$textFormatters = [];
 		$factory = $services->getMessageFormatterFactory();
+
 		foreach ( $langs as $lang ) {
 			$textFormatters[] = $factory->getTextFormatter( $lang );
 		}
