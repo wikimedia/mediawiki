@@ -31,8 +31,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 /**
- * Class for handling database updates. Roughly based off of updaters.inc, with
- * a few improvements :)
+ * Class for handling database updates.
  *
  * @stable to extend
  * @ingroup Installer
@@ -626,8 +625,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get an array of updates to perform on the database. Should return a
 	 * multi-dimensional array. The main key is the MediaWiki version (1.12,
-	 * 1.13...) with the values being arrays of updates, identical to how
-	 * updaters.inc did it (for now)
+	 * 1.13...) with the values being arrays of updates.
 	 *
 	 * @return array[]
 	 */
@@ -708,8 +706,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Get the full path of a patch file. Originally based on archive()
-	 * from updaters.inc. Keep in mind this always returns a patch, as
+	 * Get the full path of a patch file. Keep in mind this always returns a patch, as
 	 * it fails back to MySQL if no DB-specific patch can be found
 	 *
 	 * @param IDatabase $db
