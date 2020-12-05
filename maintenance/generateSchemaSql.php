@@ -62,7 +62,11 @@ class GenerateSchemaSql extends Maintenance {
 		global $IP;
 		$platform = $this->getOption( 'type', 'mysql' );
 		$jsonPath = $this->getOption( 'json', __DIR__ . '/tables.json' );
-		$relativeJsonPath = str_replace( "$IP/", '', $jsonPath );
+		$relativeJsonPath = str_replace(
+			[ "$IP/extensions/", "$IP/" ],
+			'',
+			$jsonPath
+		);
 		$sqlPath = $this->getOption( 'sql', __DIR__ . '/tables-generated.sql' );
 		$abstractSchema = json_decode( file_get_contents( $jsonPath ), true );
 		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder( $platform );
