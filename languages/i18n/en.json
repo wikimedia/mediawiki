@@ -3449,7 +3449,7 @@
 	"unit-pixel": "px",
 	"confirm-purge-title": "Purge this page",
 	"confirm_purge_button": "OK",
-	"confirm-purge-top": "Clear the cache of this page?",
+	"confirm-purge-top": "Purge the cache of this page?",
 	"confirm-purge-bottom": "Purging a page clears the cache and forces the most current revision to appear.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Add this page to your watchlist?",
