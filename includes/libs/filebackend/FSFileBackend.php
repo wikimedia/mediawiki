@@ -255,7 +255,7 @@ class FSFileBackend extends FileBackendStore {
 			// inode are unaffected since it writes to a new inode, and (c) new threads reading
 			// the file will either totally see the old version or totally see the new version
 			$fsStagePath = $this->makeStagingPath( $fsDstPath );
-			$this->trapWarnings( '/: No such file or directory$/' );
+			$this->trapWarningsIgnoringNotFound();
 			$stageHandle = fopen( $fsStagePath, 'xb' );
 			if ( $stageHandle ) {
 				$bytes = fwrite( $stageHandle, $params['content'] );
@@ -307,7 +307,7 @@ class FSFileBackend extends FileBackendStore {
 			// inode are unaffected since it writes to a new inode, and (c) new threads reading
 			// the file will either totally see the old version or totally see the new version
 			$fsStagePath = $this->makeStagingPath( $fsDstPath );
-			$this->trapWarnings( '/: No such file or directory$/' );
+			$this->trapWarningsIgnoringNotFound();
 			$srcHandle = fopen( $fsSrcPath, 'rb' );
 			if ( $srcHandle ) {
 				$stageHandle = fopen( $fsStagePath, 'xb' );
@@ -369,7 +369,7 @@ class FSFileBackend extends FileBackendStore {
 			// inode are unaffected since it writes to a new inode, and (c) new threads reading
 			// the file will either totally see the old version or totally see the new version
 			$fsStagePath = $this->makeStagingPath( $fsDstPath );
-			$this->trapWarnings( '/: No such file or directory$/' );
+			$this->trapWarningsIgnoringNotFound();
 			$srcHandle = fopen( $fsSrcPath, 'rb' );
 			if ( $srcHandle ) {
 				$stageHandle = fopen( $fsStagePath, 'xb' );
@@ -431,7 +431,7 @@ class FSFileBackend extends FileBackendStore {
 			// Use rename() here since (a) this clears xattrs, (b) any threads still reading the
 			// old inode are unaffected since it writes to a new inode, and (c) this is fast and
 			// atomic within a file system volume (as is normally the case)
-			$this->trapWarnings( '/: No such file or directory$/' );
+			$this->trapWarningsIgnoringNotFound();
 			$moved = rename( $fsSrcPath, $fsDstPath );
 			$hadError = $this->untrapWarnings();
 			if ( $hadError || ( !$moved && !$ignoreMissing ) ) {
@@ -466,7 +466,7 @@ class FSFileBackend extends FileBackendStore {
 			};
 			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
-			$this->trapWarnings( '/: No such file or directory$/' );
+			$this->trapWarningsIgnoringNotFound();
 			$deleted = unlink( $fsSrcPath );
 			$hadError = $this->untrapWarnings();
 			if ( $hadError || ( !$deleted && !$ignoreMissing ) ) {
@@ -648,7 +648,7 @@ class FSFileBackend extends FileBackendStore {
 		$list = new FSFileBackendDirList( $fsDirectory, $params );
 		$error = $list->getLastError();
 		if ( $error !== null ) {
-			if ( preg_match( '/: No such file or directory$/', $error ) ) {
+			if ( $this->isFileNotFoundError( $error ) ) {
 				$this->logger->info( __METHOD__ . ": non-existant directory: '$fsDirectory'" );
 
 				return []; // nothing under this dir
@@ -681,16 +681,18 @@ class FSFileBackend extends FileBackendStore {
 		$list = new FSFileBackendFileList( $fsDirectory, $params );
 		$error = $list->getLastError();
 		if ( $error !== null ) {
-			if ( preg_match( '/: No such file or directory$/', $error ) ) {
-				$this->logger->info( __METHOD__ . ": non-existant directory: '$fsDirectory'" );
+			if ( $this->isFileNotFoundError( $error ) ) {
+				$this->logger->info( __METHOD__ . ": non-existent directory: '$fsDirectory'" );
 
 				return []; // nothing under this dir
 			} elseif ( is_dir( $fsDirectory ) ) {
-				$this->logger->warning( __METHOD__ . ": unreadable directory: '$fsDirectory'" );
+				$this->logger->warning( __METHOD__ .
+					": unreadable directory: '$fsDirectory': $error" );
 
 				return self::$RES_ERROR; // bad permissions?
 			} else {
-				$this->logger->warning( __METHOD__ . ": unreachable directory: '$fsDirectory'" );
+				$this->logger->warning( __METHOD__ .
+					": unreachable directory: '$fsDirectory': $error" );
 
 				return self::$RES_ERROR;
 			}
@@ -996,6 +998,13 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * Track E_WARNING errors but ignore any that correspond to ENOENT "No such file or directory"
+	 */
+	protected function trapWarningsIgnoringNotFound() {
+		$this->trapWarnings( $this->getFileNotFoundRegex() );
+	}
+
+	/**
 	 * Stop listening for E_WARNING errors and get whether any happened
 	 *
 	 * @return bool Whether any warnings happened
@@ -1004,5 +1013,40 @@ class FSFileBackend extends FileBackendStore {
 		restore_error_handler();
 
 		return array_pop( $this->warningTrapStack );
+	}
+
+	/**
+	 * Get a regex matching file not found errors
+	 *
+	 * @return string
+	 */
+	protected function getFileNotFoundRegex() {
+		static $regex;
+		if ( $regex === null ) {
+			// "No such file or directory": string literal in spl_directory.c etc.
+			$alternatives = [ ': No such file or directory' ];
+			if ( $this->os === 'Windows' ) {
+				// 2 = The system cannot find the file specified.
+				// 3 = The system cannot find the path specified.
+				$alternatives[] = ' \(code: [23]\)';
+			}
+			if ( function_exists( 'pcntl_strerror' ) ) {
+				$alternatives[] = preg_quote( ': ' . pcntl_strerror( 2 ), '/' );
+			} elseif ( function_exists( 'socket_strerror' ) ) {
+				$alternatives[] = preg_quote( ': ' . socket_strerror( SOCKET_ENOENT ), '/' );
+			}
+			$regex = '/(' . implode( '|', $alternatives ) . ')$/';
+		}
+		return $regex;
+	}
+
+	/**
+	 * Determine whether a given error message is a file not found error.
+	 *
+	 * @param string $error
+	 * @return bool
+	 */
+	protected function isFileNotFoundError( $error ) {
+		return (bool)preg_match( $this->getFileNotFoundRegex(), $error );
 	}
 }
