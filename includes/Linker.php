@@ -1882,6 +1882,13 @@ class Linker {
 
 		$inner = self::buildRollbackLink( $revRecord, $context, $editCount );
 
+		// Allow extensions to modify the rollback link.
+		// Abort further execution if the extension wants full control over the link.
+		if ( !Hooks::runner()->onLinkerGenerateRollbackLink(
+			$revRecord, $context, $options, $inner ) ) {
+			return $inner;
+		}
+
 		if ( !in_array( 'noBrackets', $options, true ) ) {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
