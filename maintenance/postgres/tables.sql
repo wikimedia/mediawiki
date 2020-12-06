@@ -296,35 +296,8 @@ CREATE TABLE objectcache (
 );
 CREATE INDEX objectcacache_exptime ON objectcache (exptime);
 
-
-CREATE SEQUENCE logging_log_id_seq;
-CREATE TABLE logging (
-  log_id          INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('logging_log_id_seq'),
-  log_type        TEXT         NOT NULL,
-  log_action      TEXT         NOT NULL,
-  log_timestamp   TIMESTAMPTZ  NOT NULL,
-  log_actor       INTEGER      NOT NULL,
-  log_namespace   SMALLINT     NOT NULL,
-  log_title       TEXT         NOT NULL,
-  log_comment_id  INTEGER      NOT NULL,
-  log_params      TEXT,
-  log_deleted     SMALLINT     NOT NULL DEFAULT 0,
-  log_page        INTEGER
-);
-ALTER SEQUENCE logging_log_id_seq OWNED BY logging.log_id;
-CREATE INDEX type_time ON logging (log_type, log_timestamp);
-CREATE INDEX actor_time ON logging (log_actor, log_timestamp);
-CREATE INDEX page_time ON logging (log_namespace, log_title, log_timestamp);
-CREATE INDEX times ON logging (log_timestamp);
-CREATE INDEX log_actor_type_time ON logging (log_actor, log_type, log_timestamp);
-CREATE INDEX log_page_id_time ON logging (log_page, log_timestamp);
-CREATE INDEX log_type_action ON logging (log_type, log_action, log_timestamp);
-
-CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
-
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
-
 ALTER TABLE page ADD titlevector tsvector;
 CREATE FUNCTION ts2_page_title() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$

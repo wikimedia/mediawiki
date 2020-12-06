@@ -513,3 +513,32 @@ CREATE TABLE /*_*/categorylinks (
   ),
   PRIMARY KEY(cl_from, cl_to)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/logging (
+  log_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  log_type VARBINARY(32) DEFAULT '' NOT NULL,
+  log_action VARBINARY(32) DEFAULT '' NOT NULL,
+  log_timestamp BINARY(14) DEFAULT '19700101000000' NOT NULL,
+  log_actor BIGINT UNSIGNED NOT NULL,
+  log_namespace INT DEFAULT 0 NOT NULL,
+  log_title VARBINARY(255) DEFAULT '' NOT NULL,
+  log_page INT UNSIGNED DEFAULT NULL,
+  log_comment_id BIGINT UNSIGNED NOT NULL,
+  log_params BLOB NOT NULL,
+  log_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  INDEX type_time (log_type, log_timestamp),
+  INDEX actor_time (log_actor, log_timestamp),
+  INDEX page_time (
+    log_namespace, log_title, log_timestamp
+  ),
+  INDEX times (log_timestamp),
+  INDEX log_actor_type_time (
+    log_actor, log_type, log_timestamp
+  ),
+  INDEX log_page_id_time (log_page, log_timestamp),
+  INDEX log_type_action (
+    log_type, log_action, log_timestamp
+  ),
+  PRIMARY KEY(log_id)
+) /*$wgDBTableOptions*/;

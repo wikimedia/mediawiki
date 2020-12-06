@@ -853,6 +853,15 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'logging', 'logging_actor_type_time', 'log_actor_type_time' ],
 			[ 'renameIndex', 'logging', 'logging_page_id_time', 'log_page_id_time' ],
 			[ 'renameIndex', 'logging', 'logging_type_action', 'log_type_action' ],
+			[ 'changeNullableField', 'logging', 'log_params', 'NOT NULL', true ],
+			[ 'setDefault', 'logging', 'log_action', '' ],
+			[ 'setDefault', 'logging', 'log_type', '' ],
+			[ 'setDefault', 'logging', 'log_title', '' ],
+			[ 'setDefault', 'logging', 'log_timestamp', '1970-01-01 00:00:00+00' ],
+			[ 'changeField', 'logging', 'log_actor', 'BIGINT', '' ],
+			[ 'changeField', 'logging', 'log_comment_id', 'BIGINT', '' ],
+			[ 'changeField', 'logging', 'log_namespace', 'INT', 'log_namespace::INT DEFAULT 0' ],
+			[ 'dropPgIndex', 'logging', 'logging_actor_time' ],
 		];
 	}
 
