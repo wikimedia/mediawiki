@@ -444,9 +444,6 @@ because of Phabricator reports.
   ::mRevIdFetched, deprecated since 1.32, were removed.
 * Article::mParserOptions and ::setParserOptions were removed.
 * Article and ImagePage::getEmptyPageParserOutput, unused, were removed.
-* All public properties of CacheTime and ParserOutput classes, as well as
-  declaring properties dynamically on these classes were deprecated. Use
-  appropriate getters/setters instead.
 * ParserCache default serialization format was changed from PHP serialization
   to JSON serialization. In case some installed extension do not support JSON
   yet, $wgParserCacheUseJson can be used to revert back to PHP serialization.

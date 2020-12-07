@@ -45,24 +45,24 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	/**
 	 * @var string|null Compatibility check
 	 */
-	private $mVersion = Parser::VERSION;
+	public $mVersion = Parser::VERSION;
 
 	/**
 	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
-	private $mCacheTime = '';
+	public $mCacheTime = '';
 
 	/**
 	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
 	 * ParserCache.
 	 */
-	private $mCacheExpiry = null;
+	public $mCacheExpiry = null;
 
 	/**
 	 * @var int|null Revision ID that was parsed
 	 */
-	private $mCacheRevisionId = null;
+	public $mCacheRevisionId = null;
 
 	/**
 	 * @return string|int TS_MW timestamp
@@ -295,33 +295,6 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 		$priorOptions = $this->getGhostFieldValue( 'mUsedOptions' );
 		if ( $priorOptions ) {
 			$this->recordOptions( $priorOptions );
-		}
-	}
-
-	public function __get( $name ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} public read access deprecated", '1.36' );
-			return $this->$name;
-		} elseif ( property_exists( $this, $name ) ) {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} dynamic property read access deprecated", '1.36' );
-			return $this->$name;
-		} else {
-			trigger_error( "Inaccessible property via __set(): {$name}", E_USER_NOTICE );
-			return null;
-		}
-	}
-
-	public function __set( $name, $value ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} public write access deprecated", '1.36' );
-			$this->$name = $value;
-		} else {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} dynamic property write access deprecated", '1.36' );
-			$this->$name = $value;
 		}
 	}
 }
