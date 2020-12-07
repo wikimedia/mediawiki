@@ -435,7 +435,7 @@
 	"sort-ascending": "Упорядочить по возрастанию",
 	"sort-initial": "Начальная сортировка",
 	"nstab-main": "Статья",
-	"nstab-user": "{{GENDER:$1|Участник|Участница}}",
+	"nstab-user": "{{GENDER:$1|Страница участника|Страница участницы}}",
 	"nstab-media": "Мультимедиа",
 	"nstab-special": "Служебная страница",
 	"nstab-project": "О проекте",
@@ -2313,7 +2313,7 @@
 	"categoriespagetext": "{{PLURAL:$1|1=Следующая категория существуют|Следующие категории существуют}} на этой вики, и они могут быть неиспользованы.\nСм. также [[Special:WantedCategories|список требуемых категорий]].",
 	"categoriesfrom": "Показать категории, начинающиеся с:",
 	"deletedcontributions": "Удалённый вклад участника",
-	"deletedcontributions-title": "Удалённый вклад",
+	"deletedcontributions-title": "Удалённый вклад участника $1",
 	"sp-deletedcontributions-contribs": "вклад",
 	"linksearch": "Поиск внешних ссылок",
 	"linksearch-pat": "Шаблон для поиска:",
@@ -4188,5 +4188,6 @@
 	"paramvalidator-missingtitle": "Недопустимое значение «$2» для параметра заголовка <var>$1</var>: страница не существует.",
 	"paramvalidator-help-type-title": "Тип: название страницы",
 	"paramvalidator-help-type-title-must-exist": "Принимает только существующие страницы.",
-	"paramvalidator-help-type-title-no-must-exist": "Принимает несуществующие страницы."
+	"paramvalidator-help-type-title-no-must-exist": "Принимает несуществующие страницы.",
+	"nonmain-slot-differences-therefore-readonly": "Вы не можете редактировать викитекст в этой версии страницы, так как после этой редакции в данные на странице были внесены изменения, не основанные на викитексте. [$1 Чтобы восстановить эту версию, нажмите здесь.]"
 }

@@ -590,6 +590,7 @@
 	"botpasswords-help-grants": "Rajtigiloj permesas aliron al rajtoj jam provizita al via uzantkonto. Ebligi rajtigilojn ĉi tie ne provizas aliron al ajnaj rajtoj ke via uzantkonto ne alie havus. Vidu la [[Special:ListGrants|tablo de rajtigiloj]] por pli da informo.",
 	"botpasswords-label-grants-column": "Permeso donita",
 	"botpasswords-bad-appid": "La robota nomo \"$1\" estas nevalida.",
+	"botpasswords-toolong-restrictions": "Estas tro multaj IP-adresoj aŭ gamoj enigitaj.",
 	"botpasswords-insert-failed": "Aldono de la robota nomo \"$1\" ne sukcesis. Ĉu ĝi jam estis aldonita?",
 	"botpasswords-update-failed": "Ĝisdatigo de la robota nomo \"$1\" ne sukcesis. Ĉu ĝi estis forigita?",
 	"botpasswords-created-title": "Robota pasvorto kreita",

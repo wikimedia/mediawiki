@@ -406,7 +406,7 @@
 	"sort-ascending": "Ordenar por ordem ascendente",
 	"sort-initial": "Classificar inicial",
 	"nstab-main": "Página",
-	"nstab-user": "Página {{GENDER:{{ROOTPAGENAME}}|do usuário|da usuária|do(a) usuário(a)}}",
+	"nstab-user": "{{GENDER:$1|Página do usuário|Página da usuária}}",
 	"nstab-media": "Página de mídia",
 	"nstab-special": "Página especial",
 	"nstab-project": "Página do projeto",
@@ -661,6 +661,8 @@
 	"botpasswords-help-grants": "As concessões de permissões permitem acesso a permissões já detidas pela sua conta de usuário. Fazer uma concessão aqui não fornece acesso a quaisquer permissões que a usa conta de usuário não possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
 	"botpasswords-label-grants-column": "Concedido",
 	"botpasswords-bad-appid": "O nome de robô \"$1\" não é válido.",
+	"botpasswords-toolong-restrictions": "Existem muitos endereços IP ou intervalos inseridos.",
+	"botpasswords-toolong-grants": "Existem muitas concessões selecionadas.",
 	"botpasswords-insert-failed": "Falha ao adicionar o nome de robô \"$1\". Ele já foi adicionado?",
 	"botpasswords-update-failed": "Falha ao atualizar o nome do robô \"$1\". Elo já foi apagado?",
 	"botpasswords-created-title": "Senha de robô criada",
@@ -1346,7 +1348,7 @@
 	"right-reupload-own": "Sobrescrever um arquivo existente enviado pelo mesmo usuário",
 	"right-reupload-shared": "Sobrescrever localmente arquivos no repositório partilhado de mídias",
 	"right-upload_by_url": "Enviar um arquivo por um URL",
-	"right-purge": "Limpar o cache do site para uma página",
+	"right-purge": "Limpar o cache para uma página",
 	"right-autoconfirmed": "Não ser afetado pelos limites de frequência baseados no número de IP",
 	"right-bot": "Ser tratado como um processo automatizado",
 	"right-nominornewtalk": "Não ter o aviso de novas mensagens despoletado quando são feitas edições menores a páginas de discussão",
@@ -4133,5 +4135,6 @@
 	"paramvalidator-missingtitle": "Valor inválido \"$2\" para o parâmetro de título <var>$1</var>: a página não existe.",
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Só aceita páginas que existem.",
-	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem."
+	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem.",
+	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]"
 }

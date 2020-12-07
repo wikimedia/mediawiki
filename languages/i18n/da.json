@@ -1108,7 +1108,7 @@
 	"timezoneregion-pacific": "Stillehavet",
 	"allowemail": "Tillad at andre brugere sender mig beskeder",
 	"email-allow-new-users-label": "Tillad e-post fra helt nye brugere",
-	"email-blacklist-label": "Forbyd disse brugere i at sende mig beskeder:",
+	"email-blacklist-label": "Forbyd disse brugere at sende mig beskeder:",
 	"prefs-searchoptions": "Søg",
 	"prefs-namespaces": "Navnerum",
 	"default": "standard",

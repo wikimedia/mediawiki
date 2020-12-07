@@ -1193,6 +1193,7 @@
 	"recentchanges-label-plusminus": "Variasion de ła pajina in numaro de byte",
 	"recentchanges-legend-heading": "<strong>Lejenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (varda anca [[Special:NewPages|ła lista de łe pàjine nove]])",
+	"recentchanges-legend-watchlistexpiry": "Voxe tegnua d'òcio tenporalmente",
 	"rcfilters-legend-heading": "<strong>Łista dei scursamenti:</strong>",
 	"rcfilters-other-review-tools": "Altri instrumenti de revixion",
 	"rcfilters-group-results-by-page": "Ingrupare rixultai par pàjina",
