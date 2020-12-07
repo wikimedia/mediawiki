@@ -254,7 +254,7 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): Status {
-		$error = $this->checkPreconditions( $page, $parserOptions, $revision, $options );
+		$error = $this->checkPreconditions( $page, $revision, $options );
 		if ( $error ) {
 			$this->statsDataFactory->increment( "ParserOutputAccess.Case.error" );
 			return $error;
@@ -322,7 +322,6 @@ class ParserOutputAccess {
 
 	/**
 	 * @param WikiPage $page
-	 * @param ParserOptions $parserOptions
 	 * @param RevisionRecord|null $revision
 	 * @param int $options
 	 *
@@ -330,7 +329,6 @@ class ParserOutputAccess {
 	 */
 	private function checkPreconditions(
 		WikiPage $page,
-		ParserOptions $parserOptions,
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?Status {
