@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 use Wikimedia\Assert\PostconditionException;
 
 /**
