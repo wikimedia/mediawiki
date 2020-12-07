@@ -16,6 +16,7 @@ use RequestContext;
 use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -42,7 +43,8 @@ class PageHTMLHandler extends SimpleHandler {
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory,
 		ParserCacheFactory $parserCacheFactory,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -53,7 +55,8 @@ class PageHTMLHandler extends SimpleHandler {
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getInstance( 'parsoid' ),
-			$wikiPageFactory
+			$wikiPageFactory,
+			$globalIdGenerator
 		);
 	}
 
