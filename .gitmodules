@@ -1159,11 +1159,6 @@
 	url = https://github.com/poke/mediawiki-RecentChangesLogFilter
 	branch = master
 	ignore = dirty
-[submodule "extensions/ParsoidBatchAPI"]
-	path = extensions/ParsoidBatchAPI
-	url = https://github.com/wikimedia/mediawiki-extensions-ParsoidBatchAPI
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/DarkMode"]
 	path = extensions/DarkMode
 	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
