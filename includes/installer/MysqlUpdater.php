@@ -423,6 +423,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'archive', 'usertext_timestamp', 'patch-drop-archive-usertext_timestamp.sql' ],
 			[ 'dropField', 'archive', 'ar_user', 'patch-drop-archive-user-fields.sql' ],
 			[ 'dropField', 'ipblocks', 'ip_by', 'patch-drop-ipblocks-user-fields.sql' ],
+			[ 'dropIndex', 'image', 'img_user_timestamp', 'patch-drop-image-img_user_timestamp.sql' ],
 			[ 'dropField', 'image', 'img_user', 'patch-drop-image-user-fields.sql' ],
 			[ 'dropField', 'oldimage', 'oi_user', 'patch-drop-oldimage-user-fields.sql' ],
 			[ 'dropField', 'filearchive', 'fa_user', 'patch-drop-filearchive-user-fields.sql' ],
