@@ -3,4 +3,4 @@ node_js:
   - 10
 
 script:  
-  - npm ci 
+  - npm ci
