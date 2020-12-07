@@ -90,8 +90,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *
 	 * "toc"
 	 *     Styling rules for the table of contents.
+	 *
+	 * NOTE: The order of the keys defines the order in which the styles are output.
 	 */
 	private const FEATURE_FILES = [
+		'normalize' => [
+			'all' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
+		],
 		'logo' => [
 			// Applies the logo and ensures it downloads prior to printing.
 			'all' => [ 'resources/src/mediawiki.skinning/logo.less' ],
@@ -109,9 +114,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
-		],
-		'normalize' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
@@ -140,18 +142,19 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/** @var string[] */
 	private $features;
 
-	/** @var array */
+	/** @var array please order alphabetically */
 	private const DEFAULT_FEATURES = [
-		'logo' => false,
 		'content' => false,
-		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'content-links' => false,
-		'interface' => false,
+		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'elements' => false,
-		'legacy' => false,
-		'i18n-ordered-lists' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
+		'i18n-ordered-lists' => false,
+		'interface' => false,
+		'legacy' => false,
+		'logo' => false,
+		'normalize' => false,
 		'toc' => true,
 	];
 
@@ -178,11 +181,16 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$compatibilityMode = false;
 		foreach ( $features as $key => $enabled ) {
 			if ( is_bool( $enabled ) ) {
+				$feature = $key;
 				$enabledFeatures[$key] = $enabled;
 			} else {
+				$feature = $enabled;
 				// operating in array mode.
 				$enabledFeatures[$enabled] = true;
 				$compatibilityMode = true;
+			}
+			if ( !isset( self::FEATURE_FILES[$feature] ) || !isset( self::DEFAULT_FEATURES[$feature] ) ) {
+				throw new InvalidArgumentException( "Feature `$key` is not recognised" );
 			}
 		}
 		// If the module didn't specify an option use the default features values.
@@ -225,17 +233,16 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$featureFilePaths = [];
 
-		foreach ( $this->features as $feature ) {
-			if ( !isset( self::FEATURE_FILES[$feature] ) ) {
-				throw new InvalidArgumentException( "Feature `$feature` is not recognised" );
-			}
-			foreach ( self::FEATURE_FILES[$feature] as $mediaType => $files ) {
-				foreach ( $files as $filepath ) {
-					$featureFilePaths[$mediaType][] = new ResourceLoaderFilePath(
-						$filepath,
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
-					);
+		foreach ( self::FEATURE_FILES as $feature => $files ) {
+			if ( in_array( $feature, $this->features ) ) {
+				foreach ( $files as $mediaType => $files ) {
+					foreach ( $files as $filepath ) {
+						$featureFilePaths[$mediaType][] = new ResourceLoaderFilePath(
+							$filepath,
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+					}
 				}
 			}
 		}
