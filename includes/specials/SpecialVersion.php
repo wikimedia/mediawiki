@@ -838,7 +838,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $vcsLink ) {
 				$vcsVerString = Linker::makeExternalLink(
 					$vcsLink,
-					$this->msg( 'version-version', $vcsVersion ),
+					$this->msg( 'version-version', $vcsVersion )->text(),
 					true,
 					'',
 					[ 'class' => 'mw-version-ext-vcs-version' ]
