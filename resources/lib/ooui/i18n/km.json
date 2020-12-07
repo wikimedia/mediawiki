@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pokno Royal",
 			"Sovichet",
 			"គីមស៊្រុន"
 		]
@@ -19,8 +20,10 @@
 	"ooui-dialog-process-retry": "ព្យាយាមម្ដងទៀត",
 	"ooui-dialog-process-continue": "បន្ត",
 	"ooui-selectfile-button-select": "ជ្រើសរើសឯកសារ",
+	"ooui-selectfile-button-select-multiple": "ជ្រើសរើសឯកសារ",
 	"ooui-selectfile-not-supported": "ការជ្រើសរើសឯកសារមិនអាចប្រើបានទេ",
 	"ooui-selectfile-placeholder": "គ្មានឯកសារណាមួយត្រូវបានជ្រើសរើស",
 	"ooui-selectfile-dragdrop-placeholder": "ទម្លាក់ឯកសារនៅទីនេះ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "ទម្លាក់ឯកសារនៅទីនេះ",
 	"ooui-field-help": "ជំនួយ"
 }

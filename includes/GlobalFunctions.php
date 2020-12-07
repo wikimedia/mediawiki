@@ -225,6 +225,7 @@ function wfArrayInsertAfter( array $array, array $insert, $after ) {
 /**
  * Recursively converts the parameter (an object) to an array with the same data
  *
+ * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
  * @param object|array $objOrArray
  * @param bool $recursive
  * @return array

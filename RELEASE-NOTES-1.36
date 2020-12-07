@@ -86,7 +86,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.8 to 1.10.9.
 * wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
-* Updated OOUI from 0.39.3 to 0.40.4.
+* Updated OOUI from 0.39.3 to 0.41.0.
 * Updated jquery.client from 2.0.2 to 3.0.0.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
@@ -322,6 +322,8 @@ because of Phabricator reports.
   It had no known callers.
 * wfForeignMemcKey() and wfMemcKey(), deprecated in 1.35, have been removed.
 * MediaWiki now also requires the php-intl extension.
+* BotPassword::save() now returns a Status object for the result rather than
+  a bool.
 * …
 
 === Deprecations in 1.36 ===
@@ -442,9 +444,6 @@ because of Phabricator reports.
   ::mRevIdFetched, deprecated since 1.32, were removed.
 * Article::mParserOptions and ::setParserOptions were removed.
 * Article and ImagePage::getEmptyPageParserOutput, unused, were removed.
-* All public properties of CacheTime and ParserOutput classes, as well as
-  declaring properties dynamically on these classes were deprecated. Use
-  appropriate getters/setters instead.
 * ParserCache default serialization format was changed from PHP serialization
   to JSON serialization. In case some installed extension do not support JSON
   yet, $wgParserCacheUseJson can be used to revert back to PHP serialization.

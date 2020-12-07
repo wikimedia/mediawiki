@@ -34,7 +34,9 @@ class UploadForm extends HTMLForm {
 	protected $mDestFile;
 
 	protected $mComment;
+	/** @var string raw html */
 	protected $mTextTop;
+	/** @var string raw html */
 	protected $mTextAfterSummary;
 
 	protected $mSourceIds;
@@ -174,6 +176,7 @@ class UploadForm extends HTMLForm {
 		$descriptor = [];
 		if ( $this->mTextTop ) {
 			$descriptor['UploadFormTextTop'] = [
+				// @phan-suppress-next-line SecurityCheck-XSS mTextTop is raw html
 				'type' => 'info',
 				'section' => 'source',
 				'default' => $this->mTextTop,
@@ -341,6 +344,7 @@ class UploadForm extends HTMLForm {
 		];
 		if ( $this->mTextAfterSummary ) {
 			$descriptor['UploadFormTextAfterSummary'] = [
+				// @phan-suppress-next-line SecurityCheck-XSS mTextAfterSummary is raw html
 				'type' => 'info',
 				'section' => 'description',
 				'default' => $this->mTextAfterSummary,

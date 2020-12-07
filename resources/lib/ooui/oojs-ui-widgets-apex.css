@@ -1,25 +1,31 @@
 /*!
- * OOUI v0.40.4
+ * OOUI v0.41.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-10-07T21:26:15Z
+ * Date: 2020-12-03T18:16:55Z
  */
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
+  /* stylelint-disable plugin/no-unsupported-browser-features */
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
+  /* stylelint-enable plugin/no-unsupported-browser-features */
 }
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ):active {
   cursor: url(images/grabbing.cur );
+  /* stylelint-disable plugin/no-unsupported-browser-features */
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
+  /* stylelint-enable plugin/no-unsupported-browser-features */
 }
 .oo-ui-draggableElement-handle.oo-ui-widget-disabled,
 .oo-ui-widget-disabled .oo-ui-draggableElement-handle {
@@ -32,8 +38,14 @@
   display: inline-block;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
   overflow: hidden;
 }
@@ -70,6 +82,8 @@
   border-right: 1px solid #ddd;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indexLayout {
   /* Use two classes to ensure increased specificity over menuLayout */
 }
@@ -87,6 +101,8 @@
   padding: 1.5em;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuLayout {
   top: 0;
   left: 0;
@@ -185,13 +201,21 @@
   bottom: 0 !important;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-stackLayout-continuous > .oo-ui-panelLayout {
   display: block;
   position: relative;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonSelectWidget {
   display: inline-block;
   border-radius: 3px;
@@ -235,6 +259,8 @@
   z-index: -1;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonOptionWidget {
   display: inline-block;
   padding: 0;
@@ -255,7 +281,11 @@
   vertical-align: middle;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleButtonWidget {
   margin-right: 0.5em;
 }
@@ -269,6 +299,8 @@
   color: #000;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleSwitchWidget {
   position: relative;
   display: inline-block;
@@ -374,6 +406,8 @@
   margin-left: -2px;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-selectFileWidget-dropTarget {
   position: relative;
   cursor: default;
@@ -391,6 +425,7 @@
   left: 0.5em;
   background-position: center center;
   background-repeat: no-repeat;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   background-size: contain;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail > .oo-ui-selectFileWidget-noThumbnail-icon {
@@ -446,6 +481,7 @@
 }
 .oo-ui-selectFileWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   cursor: no-drop;
 }
 .oo-ui-selectFileWidget-dropTarget {
@@ -476,7 +512,11 @@
   text-shadow: 0 1px 1px #fff;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineOptionWidget {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -521,6 +561,8 @@
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineControlsWidget {
   background-color: #fff;
 }
@@ -549,6 +591,8 @@
   /* stylelint-disable-line declaration-no-important */
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabSelectWidget {
   text-align: left;
   overflow-x: auto;
@@ -595,6 +639,8 @@
   outline: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabOptionWidget {
   display: inline-block;
   -webkit-box-sizing: border-box;
@@ -666,6 +712,8 @@
   background-color: #e1f3ff;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagMultiselectWidget {
   display: inline-block;
   position: relative;
@@ -819,7 +867,11 @@
   border: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagItemWidget {
   position: relative;
   display: inline-block;
@@ -899,6 +951,8 @@
   border-color: #ccc;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-searchWidget-query {
   position: absolute;
   top: 0;

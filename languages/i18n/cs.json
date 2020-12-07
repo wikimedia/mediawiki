@@ -327,7 +327,7 @@
 	"sort-ascending": "Seřadit vzestupně",
 	"sort-initial": "Vrátit původní pořadí",
 	"nstab-main": "Stránka",
-	"nstab-user": "Uživatelská stránka",
+	"nstab-user": "{{GENDER:$1|Uživatelská stránka}}",
 	"nstab-media": "Soubor",
 	"nstab-special": "Speciální stránka",
 	"nstab-project": "Stránka projektu",

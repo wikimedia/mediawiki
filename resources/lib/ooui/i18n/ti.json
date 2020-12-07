@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joanmp17"
+		]
+	},
+	"ooui-toolbar-more": "ተወሳኺ",
+	"ooui-toolgroup-expand": "ተወሳኺ",
+	"ooui-item-remove": "ኣልግስ",
+	"ooui-dialog-message-accept": "ሕራይ",
+	"ooui-dialog-message-reject": "ኣትርፍ",
+	"ooui-dialog-process-dismiss": "ስጎግ",
+	"ooui-dialog-process-continue": "ቀጽል",
+	"ooui-popup-widget-close-button-aria-label": "ዕጸው",
+	"ooui-field-help": "ሓገዝ"
+}

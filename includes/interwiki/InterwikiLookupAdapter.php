@@ -157,15 +157,16 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	 * @return Interwiki[]
 	 */
 	private function getSiteInterwikis( Site $site ) {
+		$url = $site->getPageUrl();
+		if ( $site instanceof MediaWikiSite ) {
+			$path = $site->getFileUrl( 'api.php' );
+		} else {
+			$path = '';
+		}
+		$local = $site->getSource() === 'local';
+
 		$interwikis = [];
 		foreach ( $site->getInterwikiIds() as $interwiki ) {
-			$url = $site->getPageUrl();
-			if ( $site instanceof MediaWikiSite ) {
-				$path = $site->getFileUrl( 'api.php' );
-			} else {
-				$path = '';
-			}
-			$local = $site->getSource() === 'local';
 			// TODO: How to adapt trans?
 			$interwikis[$interwiki] = new Interwiki(
 				$interwiki,

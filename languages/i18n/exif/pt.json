@@ -378,5 +378,22 @@
 	"exif-usepanoramaviewer-false": "Não",
 	"exif-exposurelockused": "Foi usado o bloqueador de exposição",
 	"exif-exposurelockused-true": "Sim",
-	"exif-exposurelockused-false": "Não"
+	"exif-exposurelockused-false": "Não",
+	"exif-poseheadingdegrees": "Direção do centro da imagem (graus)",
+	"exif-posepitchdegrees": "Inclinação vertical (graus)",
+	"exif-poserolldegrees": "Rotação (graus)",
+	"exif-initialviewheadingdegrees": "Direção da vista inicial (graus)",
+	"exif-initialviewpitchdegrees": "Inclinação da vista inicial (graus)",
+	"exif-initialviewrolldegrees": "Rotação da vista inicial (graus)",
+	"exif-initialhorizontalfovdegrees": "Campo de visão inicial (graus na horizontal)",
+	"exif-initialverticalfovdegrees": "Campo de visão inicial (graus na vertical)",
+	"exif-sourcephotoscount": "Número de fotografias fonte",
+	"exif-croppedareaimagewidthpixels": "Largura cortada do panorama",
+	"exif-croppedareaimageheightpixels": "Altura cortada do panorama",
+	"exif-fullpanowidthpixels": "Largura total do panorama",
+	"exif-fullpanoheightpixels": "Altura total do panorama",
+	"exif-croppedarealeftpixels": "Corte esquerdo do panorama",
+	"exif-croppedareatoppixels": "Corte de topo do panorama",
+	"exif-initialcameradolly": "Posição inicial da câmara",
+	"exif-stitchingsoftware": "Programa de colagem de imagens"
 }

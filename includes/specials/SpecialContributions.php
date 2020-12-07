@@ -69,37 +69,39 @@ class SpecialContributions extends IncludableSpecialPage {
 	private $userOptionsLookup;
 
 	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
-	 * @param ILoadBalancer $loadBalancer
-	 * @param ActorMigration $actorMigration
-	 * @param RevisionStore $revisionStore
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param PermissionManager|null $permissionManager
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param ActorMigration|null $actorMigration
+	 * @param RevisionStore|null $revisionStore
+	 * @param NamespaceInfo|null $namespaceInfo
+	 * @param UserNameUtils|null $userNameUtils
+	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory,
-		PermissionManager $permissionManager,
-		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration,
-		RevisionStore $revisionStore,
-		NamespaceInfo $namespaceInfo,
-		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch,
-		UserOptionsLookup $userOptionsLookup
+		LinkBatchFactory $linkBatchFactory = null,
+		PermissionManager $permissionManager = null,
+		ILoadBalancer $loadBalancer = null,
+		ActorMigration $actorMigration = null,
+		RevisionStore $revisionStore = null,
+		NamespaceInfo $namespaceInfo = null,
+		UserNameUtils $userNameUtils = null,
+		UserNamePrefixSearch $userNamePrefixSearch = null,
+		UserOptionsLookup $userOptionsLookup = null
 	) {
 		parent::__construct( 'Contributions' );
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->permissionManager = $permissionManager;
-		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
-		$this->revisionStore = $revisionStore;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->userNameUtils = $userNameUtils;
-		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->userOptionsLookup = $userOptionsLookup;
+		// This class is extended and therefore falls back to global state - T269521
+		$services = MediaWikiServices::getInstance();
+		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
+		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
+		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
+		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
+		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
+		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
+		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
+		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 	}
 
 	public function execute( $par ) {

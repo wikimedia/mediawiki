@@ -289,7 +289,7 @@
 	"sort-descending": "Аз поён ба боло  ба тартиб овардан",
 	"sort-ascending": "Аз поён ба боло ба тартиб даровардан",
 	"nstab-main": "Мақола",
-	"nstab-user": "Саҳифаи корбар",
+	"nstab-user": "{{GENDER:$1|Саҳифаи корбар}}",
 	"nstab-media": "Расона",
 	"nstab-special": "Саҳифаи вижа",
 	"nstab-project": "Саҳифаи лоиҳа",

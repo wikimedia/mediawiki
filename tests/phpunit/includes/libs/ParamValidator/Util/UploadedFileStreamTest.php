@@ -25,6 +25,10 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 	}
 
 	public function testConstruct_notReadable() {
+		if ( wfIsWindows() ) {
+			$this->markTestSkipped( "Skip test, since chmod does not work on windows" );
+		}
+
 		$filename = $this->makeTemp( __FUNCTION__ );
 
 		chmod( $filename, 0000 );

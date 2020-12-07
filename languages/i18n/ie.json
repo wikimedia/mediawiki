@@ -827,7 +827,7 @@
 	"booksources-search-legend": "Serchar por fontes de libre",
 	"booksources-search": "Serchar",
 	"specialloguserlabel": "Executor:",
-	"speciallogtitlelabel": "Cible (titul o usator):",
+	"speciallogtitlelabel": "Cible (titul o {{ns:user}}:nómine de usator):",
 	"log": "Diariumes",
 	"all-logs-page": "Omni li diariumes public",
 	"allpages": "Omni li págines",

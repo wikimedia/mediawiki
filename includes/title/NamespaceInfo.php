@@ -484,7 +484,8 @@ class NamespaceInfo {
 	}
 
 	/**
-	 * Does the namespace allow subpages?
+	 * Does the namespace allow subpages? Note that this refers to structured
+	 * handling of subpages, and does not include SpecialPage subpage parameters.
 	 *
 	 * @param int $index Index to check
 	 * @return bool

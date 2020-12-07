@@ -1,0 +1,4 @@
+# local build artifacts that must not be included
+/composer.lock
+/node_modules
+/vendor

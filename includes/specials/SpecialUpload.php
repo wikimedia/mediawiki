@@ -113,8 +113,9 @@ class SpecialUpload extends SpecialPage {
 	/** @var bool Subclasses can use this to determine whether a file was uploaded */
 	public $mUploadSuccessful = false;
 
-	/** Text injection points for hooks not using HTMLForm */
+	/** @var string Raw html injection point for hooks not using HTMLForm */
 	public $uploadFormTextTop;
+	/** @var string Raw html injection point for hooks not using HTMLForm */
 	public $uploadFormTextAfterSummary;
 
 	/**

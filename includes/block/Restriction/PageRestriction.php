@@ -35,7 +35,7 @@ class PageRestriction extends AbstractRestriction {
 	public const TYPE_ID = 1;
 
 	/**
-	 * @var \Title|bool
+	 * @var \Title|false|null
 	 */
 	protected $title;
 
@@ -63,7 +63,7 @@ class PageRestriction extends AbstractRestriction {
 
 	/**
 	 * @since 1.33
-	 * @return \Title|null
+	 * @return \Title|false
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
@@ -76,7 +76,7 @@ class PageRestriction extends AbstractRestriction {
 			}
 		}
 
-		return $this->title ?? null;
+		return $this->title;
 	}
 
 	/**
