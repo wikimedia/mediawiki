@@ -8760,6 +8760,8 @@ $wgAllowedCorsHeaders = [
 	/* MediaWiki whitelist */
 	'User-Agent',
 	'Api-User-Agent',
+	/* Allowing caching preflight requests, see T269636 */
+	'Access-Control-Max-Age',
 ];
 
 /**
