@@ -526,9 +526,9 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRespectsCheckTouched() {
 		$cache = $this->createParserCache();
-		$mockPage = $this->createNoOpMock( WikiPage::class, [ 'checkTouched' ] );
-		$mockPage->method( 'checkTouched' )
-			->willReturn( false );
+		$mockPage = $this->createNoOpMock( WikiPage::class, [ 'checkTouched', 'getContentModel' ] );
+		$mockPage->method( 'checkTouched' )->willReturn( false );
+		$mockPage->method( 'getContentModel' )->willReturn( CONTENT_MODEL_WIKITEXT );
 		$this->assertFalse( $cache->get( $mockPage, ParserOptions::newCanonical( 'canonical' ) ) );
 	}
 
