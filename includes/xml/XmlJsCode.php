@@ -51,6 +51,7 @@ class XmlJsCode {
 	 * and re-encodes it as a single XmlJsCode object.
 	 *
 	 * @since 1.33
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object|array $obj Object or associative array to encode
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
 	 * @return XmlJsCode

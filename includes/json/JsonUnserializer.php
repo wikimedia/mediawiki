@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +40,7 @@ interface JsonUnserializer {
 	 * @note JSON objects are unconditionally unserialized as PHP associative
 	 * arrays and not as instances of \stdClass.
 	 *
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param array|string|object $json
 	 * @param string|null $expectedClass What class to expect in unserialization.
 	 *   If null, no expectation. Must be a descendant of JsonUnserializable.

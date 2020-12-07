@@ -86,8 +86,8 @@ class BlockLogFormatter extends LogFormatter {
 				$namespaces = $params[6]['namespaces'] ?? [];
 				$namespaces = array_map( function ( $ns ) {
 					$text = (int)$ns === NS_MAIN
-						? $this->msg( 'blanknamespace' )->text()
-						: $this->context->getLanguage()->getFormattedNsText( $ns );
+						? $this->msg( 'blanknamespace' )->escaped()
+						: htmlspecialchars( $this->context->getLanguage()->getFormattedNsText( $ns ) );
 					$params = [ 'namespace' => $ns ];
 
 					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
