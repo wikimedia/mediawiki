@@ -88,20 +88,21 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		if ( $parsoid !== null ) {
-			$wrapper = TestingAccessWrapper::newFromObject( $handler );
-			$wrapper->parsoid = $parsoid;
+			$handlerWrapper = TestingAccessWrapper::newFromObject( $handler );
+			$helperWrapper = TestingAccessWrapper::newFromObject( $handlerWrapper->htmlHelper );
+			$helperWrapper->parsoid = $parsoid;
 		}
 
 		return $handler;
 	}
 
 	public function testExecuteBare() {
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		$page = $this->getExistingTestPage( 'Talk:HtmlEndpointTestPage/with/slashes' );
 		$request = new RequestData(
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);
 
-		$htmlUrl = 'https://wiki.example.com/rest/v1/page/HtmlEndpointTestPage%2Fwith%2Fslashes/html';
+		$htmlUrl = 'https://wiki.example.com/rest/v1/page/Talk%3AHtmlEndpointTestPage%2Fwith%2Fslashes/html';
 
 		$handler = $this->newHandler();
 		$config = [ 'format' => 'bare' ];
