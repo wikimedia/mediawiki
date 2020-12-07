@@ -1173,8 +1173,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
 		// NOTE: Keep in sync with ParserOutputAccess::shouldUseCache().
 		// TODO: Once ParserOutputAccess is stable, deprecated this method.
-		return $parserOptions->getStubThreshold() == 0
-			&& $this->exists()
+		return $this->exists()
 			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();
 	}
