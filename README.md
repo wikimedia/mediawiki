@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hariclerry/mediawiki.svg?branch=master)](https://travis-ci.org/hariclerry/mediawiki)
+
 # MediaWiki
 
 MediaWiki is a free and open-source wiki software package written in PHP. It
