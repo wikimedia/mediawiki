@@ -274,7 +274,7 @@
 	"page-atom-feed": "\"$1\" Ῥοὴ Atom",
 	"red-link-title": "$1 (δέλτος οὔπω γέγραπται)",
 	"nstab-main": "Δέλτος",
-	"nstab-user": "Δέλτος χρωμένου",
+	"nstab-user": "{{GENDER:$1|Δέλτος χρωμένου}}",
 	"nstab-media": "Δέλτος μέσων",
 	"nstab-special": "Εἰδικὴ δέλτος",
 	"nstab-project": "Δέλτος ἐγχειρήματος",

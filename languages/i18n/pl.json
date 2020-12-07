@@ -636,6 +636,8 @@
 	"botpasswords-help-grants": "Nadawane uprawnienia upoważniają do działań, które możesz już obecnie wykonywać. Wyrażenie zgody tutaj nie daje dostępu do nowych uprawnień. Zobacz [[Special:ListGrants|tabelę uprawnień]], aby uzyskać więcej informacji.",
 	"botpasswords-label-grants-column": "Przyznane",
 	"botpasswords-bad-appid": "Nazwa bota \"$1\" nie jest prawidłowa.",
+	"botpasswords-toolong-restrictions": "Podano zbyt wiele adresów IP lub ich zakresów.",
+	"botpasswords-toolong-grants": "Wybrano zbyt wiele dostępów.",
 	"botpasswords-insert-failed": "Nie udało się dodać robota o nazwie \"$1\". Czy był już wcześniej dodany?",
 	"botpasswords-update-failed": "Nie udało się zmienić robota o nazwie \"$1\". Czy został usunięty?",
 	"botpasswords-created-title": "Hasło bota stworzone",
