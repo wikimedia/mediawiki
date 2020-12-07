@@ -69,7 +69,7 @@ class BlockLogFormatter extends LogFormatter {
 			} else {
 				$params[4] = Message::rawParam(
 					"<span class=\"blockExpiry\" title=\"$durationTooltip\">" .
-					$blockExpiry .
+					htmlspecialchars( $blockExpiry ) .
 					'</span>'
 				);
 			}

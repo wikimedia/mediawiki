@@ -167,6 +167,6 @@ class LanguageFi extends Language {
 			$final .= ' ' . $item;
 		}
 
-		return htmlspecialchars( trim( $final ) );
+		return trim( $final );
 	}
 }
