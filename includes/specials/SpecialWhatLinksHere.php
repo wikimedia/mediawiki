@@ -396,17 +396,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	protected function listItem( $row, $nt, $target, $notClose = false ) {
 		$dirmark = $this->getLanguage()->getDirMark();
 
-		# local message cache
-		static $msgcache = null;
-		if ( $msgcache === null ) {
-			static $msgs = [ 'isredirect', 'istemplate', 'semicolon-separator',
-				'whatlinkshere-links', 'isimage', 'editlink' ];
-			$msgcache = [];
-			foreach ( $msgs as $msg ) {
-				$msgcache[$msg] = $this->msg( $msg )->escaped();
-			}
-		}
-
 		if ( $row->rd_from ) {
 			$query = [ 'redirect' => 'no' ];
 		} else {
@@ -430,24 +419,28 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					$row->rd_fragment
 				) )->escaped();
 		} elseif ( $row->rd_from ) {
-			$props[] = $msgcache['isredirect'];
+			$props[] = $this->msg( 'isredirect' )->escaped();
 		}
 		if ( $row->is_template ) {
-			$props[] = $msgcache['istemplate'];
+			$props[] = $this->msg( 'istemplate' )->escaped();
 		}
 		if ( $row->is_image ) {
-			$props[] = $msgcache['isimage'];
+			$props[] = $this->msg( 'isimage' )->escaped();
 		}
 
 		$this->getHookRunner()->onWhatLinksHereProps( $row, $nt, $target, $props );
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )
-				->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
+				->rawParams( $this->getLanguage()->semicolonList( $props ) )->escaped();
 		}
 
 		# Space for utilities links, with a what-links-here link provided
-		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'], $msgcache['editlink'] );
+		$wlhLink = $this->wlhLink(
+			$nt,
+			$this->msg( 'whatlinkshere-links' )->text(),
+			$this->msg( 'editlink' )->text()
+		);
 		$wlh = Xml::wrapClass(
 			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(),
 			'mw-whatlinkshere-tools'
@@ -470,10 +463,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		if ( $text !== null ) {
-			$text = new HtmlArmor( $text );
-		}
-
 		// always show a "<- Links" link
 		$links = [
 			'links' => $linkRenderer->makeKnownLink(
@@ -492,10 +481,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$this->contentHandlerFactory->getContentHandler( $target->getContentModel() )
 				->supportsDirectEditing()
 		) {
-			if ( $editText !== null ) {
-				$editText = new HtmlArmor( $editText );
-			}
-
 			$links['edit'] = $linkRenderer->makeKnownLink(
 				$target,
 				$editText,
@@ -509,10 +494,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	private function makeSelfLink( $text, $query ) {
-		if ( $text !== null ) {
-			$text = new HtmlArmor( $text );
-		}
-
 		return $this->getLinkRenderer()->makeKnownLink(
 			$this->selfTitle,
 			$text,
@@ -523,8 +504,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 	private function getPrevNext( $prevId, $nextId ) {
 		$currentLimit = $this->opts->getValue( 'limit' );
-		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->escaped();
-		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->escaped();
+		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->text();
+		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->text();
 
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['target'] ); // Already in the request title
@@ -541,14 +522,14 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$limitLinks = [];
 		$lang = $this->getLanguage();
 		foreach ( $this->limits as $limit ) {
-			$prettyLimit = htmlspecialchars( $lang->formatNum( $limit ) );
+			$prettyLimit = $lang->formatNum( $limit );
 			$overrides = [ 'limit' => $limit ];
 			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, $overrides ) );
 		}
 
 		$nums = $lang->pipeList( $limitLinks );
 
-		return $this->msg( 'viewprevnext' )->rawParams( $prev, $next, $nums )->escaped();
+		return $this->msg( 'viewprevnext' )->params( $prev, $next )->rawParams( $nums )->escaped();
 	}
 
 	private function whatlinkshereForm() {
@@ -618,8 +599,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @return string HTML fieldset and filter panel with the show/hide links
 	 */
 	private function getFilterPanel() {
-		$show = $this->msg( 'show' )->escaped();
-		$hide = $this->msg( 'hide' )->escaped();
+		$show = $this->msg( 'show' )->text();
+		$hide = $this->msg( 'hide' )->text();
 
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['target'] ); // Already in the request title
