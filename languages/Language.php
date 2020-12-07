@@ -4051,14 +4051,14 @@ class Language {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
-				return htmlspecialchars( trim( $show ) );
+				return trim( $show );
 			}
 		}
 
 		if ( wfIsInfinity( $str ) ) {
 			foreach ( $duration as $show => $value ) {
 				if ( wfIsInfinity( $value ) ) {
-					return htmlspecialchars( trim( $show ) );
+					return trim( $show );
 				}
 			}
 		}
