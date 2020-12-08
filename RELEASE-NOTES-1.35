@@ -56,6 +56,15 @@ To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
 * Fix trailing ; in patch-sites-site_language-35.sql.
 * (T248852) wfAssembleUrl: Handle empty query field in URL bits.
 * (T268846) Updating wikimedia/testing-access-wrapper (1.0.0 => 2.0.0).
+* (T268887) migrateComments: Cast array keys back to string before passing
+  to the DB.
+* (T266619) Introduce new $wgThumbPath config.
+* (T269178) MemcachedClient: Cast Resource to integer.
+* (T263925) Use the old HookContainer to set up the post-reset services.
+* Change "site cache" to just "cache" in the right-purge message.
+* [UploadedFileStreamTest] Skip test with chmod.
+* (T269710) Updating composer/semver (1.5.1 => 1.7.2).
+* (T269710) Updating mediawiki/mediawiki-codesniffer (33.0.0 => 34.0.0).
 
 == MediaWiki 1.35.0 ==
 
