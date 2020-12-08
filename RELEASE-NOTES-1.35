@@ -470,7 +470,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated wikimedia/xmp-reader from 0.6.3 to 0.7.0.
   Fixes error log spam with too-large XMP data, and adds support for GPano tags.
 * Updated wikimedia/base-convert from v2.0.0 to v2.0.1.
-* Updated composer/semver from 1.5.0 to 1.5.2.
+* Updated composer/semver from 1.5.0 to 1.7.2.
 * Updated wikimedia/remex-html from 2.1.0 to 2.2.0.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
