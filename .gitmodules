@@ -1393,3 +1393,7 @@
 	path = Report
 	url = https://github.com/Kenny2github/Report
 	branch = master
+[submodule "extensions/Report"]
+	path = extensions/Report
+	url = https://github.com/Kenny2github/Report
+	branch = master
