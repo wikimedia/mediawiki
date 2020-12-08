@@ -84,7 +84,7 @@
 		"php-parallel-lint/php-parallel-lint": "1.2.0",
 		"phpunit/phpunit": "^8.5",
 		"pimple/pimple": "3.3.0",
-		"psy/psysh": "0.10.4",
+		"psy/psysh": "0.10.5",
 		"seld/jsonlint": "1.7.1",
 		"symfony/yaml": "~3.4|~5.1",
 		"wikimedia/avro": "1.9.0",
