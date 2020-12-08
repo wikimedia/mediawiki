@@ -2463,7 +2463,7 @@
 	"undeleterevisions": "{{PLURAL:$1|Izbrisana je|Izbrisani sta|Izbrisane so|Izbrisanih je}} $1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij}}",
 	"undeletehistory": "Če obnovite stran, bodo v zgodovino obnovljene vse redakcije.\nČe je bila po brisanju ustvarjena nova stran z enakim imenom, bodo obnovljene redakcije prikazane v prejšnji zgodovini.",
 	"undeleterevdel": "Obnovitev ne bo izvedena, če vodi v delni izbris redakcije vrhnje strani ali datoteke.\nV takem primeru morate odznačiti ali prikazati najnovejšo izbrisano redakcijo.",
-	"undeletehistorynoadmin": "Stran je bila izbrisana.\nRazlog za izbris je skupaj s podrobnostmi o uporabnikih, ki so jo urejali pred izbrisom, naveden v prikazanem povzetku.\nDejansko besedilo izbrisanih redakcij je dostopno le administratorjem.",
+	"undeletehistorynoadmin": "Stran je bila izbrisana.\nRazlog za izbris je skupaj s podrobnostmi o uporabnikih, ki so jo urejali pred izbrisom, naveden v prikazanem povzetku.\nBesedilo izbrisanih redakcij je dostopno le administratorjem.",
 	"undelete-revision": "Izbrisana redakcija $1 (dne $4 ob $5) uporabnika $3:",
 	"undeleterevision-missing": "Napačna ali manjkajoča redakcija.\nMorda imate napačno povezavo ali pa je bila redakcija obnovljena ali odstranjena iz arhiva.",
 	"undeleterevision-duplicate-revid": "$1 {{PLURAL:$1|redakcije|redakcij}} nismo mogli obnoviti, saj je bil {{PLURAL:$1|1=njen|njihov}} <code>rev_id</code> že v uporabi.",

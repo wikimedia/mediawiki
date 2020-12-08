@@ -252,7 +252,7 @@
 	"page-atom-feed": "ⵉⴼⵉⵍⵉ ⴰⵡⵟⵓⵎ ⵏ \"$1\"",
 	"red-link-title": "$1 (ur tlli tasna ad)",
 	"nstab-main": "Tasna",
-	"nstab-user": "Tasna n {{GENDER:{{ROOTPAGENAME}}|usmras|tsmrast}}",
+	"nstab-user": "Tasna n {{GENDER:$1|usmras|tsmrast}}",
 	"nstab-media": "ⵎⵉⴷⵢⴰ",
 	"nstab-special": "Tasna iẓlin",
 	"nstab-project": "Tasna n project",

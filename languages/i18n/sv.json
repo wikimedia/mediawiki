@@ -615,11 +615,12 @@
 	"botpasswords-label-cancel": "Avbryt",
 	"botpasswords-label-delete": "Radera",
 	"botpasswords-label-resetpassword": "Återställ lösenordet",
-	"botpasswords-label-grants": "Tillgängliga beviljanden:",
-	"botpasswords-help-grants": "Beviljande ger åtkomst till användarbehörigheter som ditt användarkonto redan har. När ett beviljande aktiveras här ger det inte åtkomst till de användarrättigheter som ditt användarkonto inte annars skulle ha. Se [[Special:ListGrants|tabellen över beviljanden]] för mer information.",
+	"botpasswords-label-grants": "Tillgängliga behörigheter:",
+	"botpasswords-help-grants": "Behörigheter ger åtkomst till rättigheter som ditt användarkonto redan har. När ett beviljande aktiveras här ger det inte åtkomst till de rättigheter som ditt användarkonto inte annars skulle ha. Se [[Special:ListGrants|tabellen över behörigheter]] för mer information.",
 	"botpasswords-label-grants-column": "Beviljas",
 	"botpasswords-bad-appid": "Botnamnet \"$1\" är inte giltigt.",
 	"botpasswords-toolong-restrictions": "För många IP-adresser eller -intervaller har angivits.",
+	"botpasswords-toolong-grants": "För många behörigheter har markerats.",
 	"botpasswords-insert-failed": "Kunde inte lägga till botnamnet \"$1\". Har det redan lagts till?",
 	"botpasswords-update-failed": "Kunde inte uppdatera botnamnet \"$1\". Har det raderats?",
 	"botpasswords-created-title": "Botlösenord skapades",
@@ -2535,7 +2536,7 @@
 	"undeleterevisions": "$1 {{PLURAL:$1|sidversion|sidversioner}} raderade",
 	"undeletehistory": "Om du återställer sidan kommer alla tidigare sidversioner att återfinnas i versionshistoriken.\nOm en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken.",
 	"undeleterevdel": "Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.\nI sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.",
-	"undeletehistorynoadmin": "Den här sidan har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.",
+	"undeletehistorynoadmin": "Den här sidan har raderats.\nAnledningen till att den raderades visas i sammanfattningen nedan, tillsammans med uppgifter om användarna som redigerade sidan innan den raderades.\nEnbart administratörer har tillgång till texten i de raderade versionerna.",
 	"undelete-revision": "Raderad version av $1 (från den $4 kl. $5) av $3.",
 	"undeleterevision-missing": "Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.",
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|En sidversion|$1 sidversioner}} kunde inte återställas, eftersom dess <code>rev_id</code> redan användes.",
@@ -4022,5 +4023,6 @@
 	"paramvalidator-missingtitle": "\"$2\" är ett ogiltigt värde för titelparametern <var>$1</var>: Sidan finns inte.",
 	"paramvalidator-help-type-title": "Typ: Sidans titel",
 	"paramvalidator-help-type-title-must-exist": "Accepterar endast sidor som finns.",
-	"paramvalidator-help-type-title-no-must-exist": "Accepterar sidor som inte finns."
+	"paramvalidator-help-type-title-no-must-exist": "Accepterar sidor som inte finns.",
+	"nonmain-slot-differences-therefore-readonly": "Du kan inte redigera wikitexten i denna sidversion, eftersom ändringar har gjorts i sidans data efter denna version som inte är wikitextbaserade. [$1 Klicka här för att återställa denna version.]"
 }
