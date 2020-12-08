@@ -1,5 +1,6 @@
 'use strict';
 
+require( 'dotenv' ).config();
 const fs = require( 'fs' );
 const path = require( 'path' );
 const video = require( 'wdio-video-reporter' );
@@ -27,8 +28,8 @@ exports.config = {
 	// Access via `browser.config.<key>`.
 	// Defaults are for MediaWiki-Vagrant
 	// ======
-	mwUser: process.env.MEDIAWIKI_USER || 'Admin',
-	mwPwd: process.env.MEDIAWIKI_PASSWORD || 'vagrant',
+	mwUser: process.env.MEDIAWIKI_USER,
+	mwPwd: process.env.MEDIAWIKI_PASSWORD,
 
 	// ==================
 	// Runner Configuration
@@ -82,8 +83,8 @@ exports.config = {
 	// Stop after this many failures, or 0 to run all tests before reporting failures.
 	bail: 0,
 	// Base for browser.url() and wdio-mediawiki/Page#openTitle()
-	baseUrl: ( process.env.MW_SERVER || 'http://127.0.0.1:8080' ) + (
-		process.env.MW_SCRIPT_PATH || '/w'
+	baseUrl: ( process.env.MW_SERVER ) + (
+		process.env.MW_SCRIPT_PATH
 	),
 	services: [
 		...( process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [] )
