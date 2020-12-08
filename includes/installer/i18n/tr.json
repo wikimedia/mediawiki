@@ -230,7 +230,7 @@
 	"config-email-sender-help": "Giden e-postada iade adresi olarak kullanılacak e-posta adresini girin.\nSıçramaların gönderileceği yer burasıdır.\nÇoğu posta sunucusu, en azından alan adı bölümünün geçerli olmasını gerektirir.",
 	"config-upload-settings": "Resim ve dosya yükleme",
 	"config-upload-enable": "Dosya yüklemeyi etkinleştir",
-	"config-upload-help": "Dosya yüklemeleri, sunucunuzu güvenlik risklerine maruz bırakabilir.\nDaha fazla bilgi için, kılavuzdaki [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security güvenlik bölümünü] okuyun.\n\nDosya yüklemelerini etkinleştirmek için, MediaWiki'nin kök dizini altındaki <code>images</code> alt dizinindeki modu, web sunucusunun yazabilmesi için değiştirin.\nArdından bu seçeneği etkinleştirin.",
+	"config-upload-help": "Dosya yüklemeleri, sunucunuzu güvenlik risklerine maruz bırakabilir.\nDaha fazla bilgi için, kılavuzdaki [https://www.mediawiki.org/wiki/Manual:Security/tr güvenlik bölümünü] okuyun.\n\nDosya yüklemelerini etkinleştirmek için, MediaWiki'nin kök dizini altındaki <code>images</code> alt dizinindeki modu, web sunucusunun yazabilmesi için değiştirin.\nArdından bu seçeneği etkinleştirin.",
 	"config-upload-deleted": "Silinen dosyalar için dizin:",
 	"config-upload-deleted-help": "Silinmiş dosyaların arşivleneceği bir dizin seçin.\nİdeal olarak, bu webden erişilebilir olmamalıdır.",
 	"config-logo": "Logo URL'si:",

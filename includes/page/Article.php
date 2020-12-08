@@ -627,12 +627,9 @@ class Article implements Page {
 		array $textOptions
 	): bool {
 		# Should the parser cache be used?
-		$useParserCache = $this->mPage->shouldCheckParserCache( $parserOptions, $oldid );
-		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) );
-
-		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
-
+		$useParserCache = true;
 		$pOutput = null;
+		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
 
 		// NOTE: $outputDone and $useParserCache may be changed by the hook
 		$this->getHookRunner()->onArticleViewHeader( $this, $outputDone, $useParserCache );
@@ -655,8 +652,9 @@ class Article implements Page {
 			return false; // skip all further output to OutputPage
 		}
 
-		// Try the parser cache
-		if ( $useParserCache ) {
+		// Try the latest parser cache
+		// NOTE: try latest-revision cache first to avoid loading revision.
+		if ( $useParserCache && !$oldid ) {
 			$pOutput = $parserOutputAccess->getCachedParserOutput(
 				$this->getPage(),
 				$parserOptions,
@@ -686,6 +684,24 @@ class Article implements Page {
 			if ( !$this->showDeletedRevisionHeader() ) {
 				wfDebug( __METHOD__ . ": cannot view deleted revision" );
 				return false; // skip all further output to OutputPage
+			}
+
+			// Try the old revision parser cache
+			// NOTE: Repeating cache check for old revision to avoid fetching $rev
+			// before it's absolutely necessary.
+			if ( $useParserCache ) {
+				$pOutput = $parserOutputAccess->getCachedParserOutput(
+					$this->getPage(),
+					$parserOptions,
+					$rev,
+					ParserOutputAccess::OPT_NO_AUDIENCE_CHECK // we already checked in fetchRevisionRevord
+				);
+
+				if ( $pOutput ) {
+					$this->doOutputFromParserCache( $pOutput, $oldid, $outputPage, $textOptions );
+					$this->doOutputMetaData( $pOutput, $outputPage );
+					return true;
+				}
 			}
 		}
 

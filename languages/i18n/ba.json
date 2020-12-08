@@ -309,7 +309,7 @@
 	"sort-ascending": "Ҙурая барыу буйынса тәртипләштереү",
 	"sort-initial": "Башланғыс сортировкалау",
 	"nstab-main": "Мәҡәлә",
-	"nstab-user": "Ҡатнашыусы",
+	"nstab-user": "{{GENDER:$1|Ҡатнашыусы}} бите",
 	"nstab-media": "Мультимедиа",
 	"nstab-special": "Махсус бит",
 	"nstab-project": "Проект бите",
