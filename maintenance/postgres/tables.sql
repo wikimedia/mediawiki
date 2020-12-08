@@ -312,14 +312,15 @@ CREATE TABLE logging (
   log_page        INTEGER
 );
 ALTER SEQUENCE logging_log_id_seq OWNED BY logging.log_id;
-CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
-CREATE INDEX logging_actor_time_backwards ON logging (log_timestamp, log_actor);
-CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timestamp);
-CREATE INDEX logging_times ON logging (log_timestamp);
-CREATE INDEX logging_actor_type_time ON logging (log_actor, log_type, log_timestamp);
-CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
+CREATE INDEX type_time ON logging (log_type, log_timestamp);
+CREATE INDEX actor_time ON logging (log_actor, log_timestamp);
+CREATE INDEX page_time ON logging (log_namespace, log_title, log_timestamp);
+CREATE INDEX times ON logging (log_timestamp);
+CREATE INDEX log_actor_type_time ON logging (log_actor, log_type, log_timestamp);
+CREATE INDEX log_page_id_time ON logging (log_page, log_timestamp);
+CREATE INDEX log_type_action ON logging (log_type, log_action, log_timestamp);
+
 CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
-CREATE INDEX logging_type_action ON logging (log_type, log_action, log_timestamp);
 
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
