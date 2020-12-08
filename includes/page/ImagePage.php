@@ -259,7 +259,7 @@ class ImagePage extends Article {
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = $this->getContext()->msg( 'metadata-help' )->plain();
-		// Intial state is collapsed
+		// Initial state is collapsed
 		// see filepage.css and mediawiki.action.view.metadata module.
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata collapsed\">\n";
 		foreach ( $metadata as $type => $stuff ) {
