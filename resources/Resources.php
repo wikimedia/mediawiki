@@ -1005,6 +1005,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.toc.styles' => [
+		'deprecated' => 'Please use the `toc` feature on ResourceLoaderSkinModule',
 		'class' => ResourceLoaderSkinModule::class,
 		'features' => [ 'toc' ],
 		'targets' => [ 'desktop', 'mobile' ],
