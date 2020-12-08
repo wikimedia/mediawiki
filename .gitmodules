@@ -1388,8 +1388,8 @@
 	url = https://github.com/Universal-Omega/DynamicPageList3.git
 	branch = REL1_35
 	ignore = dirty
-
 [submodule "Report"]
 	path = Report
 	url = https://github.com/Kenny2github/Report
 	branch = master
+	ignore = dirty
