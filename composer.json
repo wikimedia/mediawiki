@@ -19,7 +19,7 @@
 	"prefer-stable": true,
 	"require": {
 		"composer-plugin-api": "^1.1",
-		"composer/semver": "1.5.1",
+		"composer/semver": "1.5.2",
 		"cssjanus/cssjanus": "1.3.0",
 		"ext-ctype": "*",
 		"ext-dom": "*",
