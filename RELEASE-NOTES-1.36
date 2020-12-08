@@ -91,7 +91,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
-* Updated composer/semver from 1.5.1 to 1.5.2.
+* Updated composer/semver from 1.5.1 to 3.2.4.
 * …
 
 ===== Changed development-only external libraries =====
