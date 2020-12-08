@@ -1047,6 +1047,7 @@ class SpecialPageFactory {
 						'InterwikiLookup',
 						'ReadOnlyMode',
 						'UserOptionsManager',
+						'LanguageConverterFactory'
 					]
 				];
 			}
