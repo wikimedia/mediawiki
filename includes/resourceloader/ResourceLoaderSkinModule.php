@@ -95,7 +95,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
 		'content' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/content.less' ],
 		],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
