@@ -140,11 +140,8 @@ class EditPage implements IEditObject {
 	/** @var bool New page or new section */
 	public $isNew = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $deletedSinceEdit;
+	/** @var bool */
+	private $deletedSinceEdit;
 
 	/** @var string */
 	public $formtype;
@@ -155,59 +152,32 @@ class EditPage implements IEditObject {
 	 */
 	public $firsttime;
 
-	/**
-	 * @var bool|stdClass
-	 * @internal
-	 */
-	public $lastDelete;
+	/** @var bool|stdClass */
+	private $lastDelete;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTokenOk = false;
+	/** @var bool */
+	private $mTokenOk = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTokenOkExceptSuffix = false;
+	/** @var bool */
+	private $mTokenOkExceptSuffix = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTriedSave = false;
+	/** @var bool */
+	private $mTriedSave = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $incompleteForm = false;
+	/** @var bool */
+	private $incompleteForm = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $tooBig = false;
+	/** @var bool */
+	private $tooBig = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $missingComment = false;
+	/** @var bool */
+	private $missingComment = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $missingSummary = false;
+	/** @var bool */
+	private $missingSummary = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $allowBlankSummary = false;
+	/** @var bool */
+	private $allowBlankSummary = false;
 
 	/** @var bool */
 	protected $blankArticle = false;
@@ -221,26 +191,19 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	protected $allowSelfRedirect = false;
 
-	/**
-	 * @var string
-	 * @internal
-	 */
-	public $autoSumm = '';
+	/** @var string */
+	private $autoSumm = '';
 
 	/** @var string */
 	private $hookError = '';
 
-	/**
-	 * @var ParserOutput
-	 * @internal
-	 */
-	public $mParserOutput;
+	/** @var ParserOutput */
+	private $mParserOutput;
 
 	/**
 	 * @var bool Has a summary been preset using GET parameter &summary= ?
-	 * @internal
 	 */
-	public $hasPresetSummary = false;
+	private $hasPresetSummary = false;
 
 	/**
 	 * @var Revision|bool|null
@@ -274,17 +237,11 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	public $diff = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $minoredit = false;
+	/** @var bool */
+	private $minoredit = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $watchthis = false;
+	/** @var bool */
+	private $watchthis = false;
 
 	/** @var bool Corresponds to $wgWatchlistExpiry */
 	private $watchlistExpiryEnabled = false;
@@ -295,11 +252,8 @@ class EditPage implements IEditObject {
 	/** @var string|null The expiry time of the watch item, or null if it is not watched temporarily. */
 	private $watchlistExpiry;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $recreate = false;
+	/** @var bool */
+	private $recreate = false;
 
 	/** @var string
 	 * Page content input field.
@@ -314,10 +268,9 @@ class EditPage implements IEditObject {
 
 	/**
 	 * @var bool
-	 * @internal
 	 * If true, hide the summary field.
 	 */
-	public $nosummary = false;
+	private $nosummary = false;
 
 	/** @var string
 	 * Timestamp of the latest revision of the page when editing was initiated
@@ -358,30 +311,20 @@ class EditPage implements IEditObject {
 
 	/**
 	 * @var int Revision ID the edit is based on, adjusted when an edit conflict is resolved.
-	 * @internal
 	 * @see $editRevId
 	 * @see $oldid
 	 * @see getparentRevId()
 	 */
-	public $parentRevId = 0;
+	private $parentRevId = 0;
 
-	/**
-	 * @var string
-	 * @internal
-	 */
-	public $editintro = '';
+	/** @var string */
+	private $editintro = '';
 
-	/**
-	 * @var int|null
-	 * @internal
-	 */
-	public $scrolltop = null;
+	/** @var int|null */
+	private $scrolltop = null;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $markAsBot = true;
+	/** @var bool */
+	private $markAsBot = true;
 
 	/** @var string */
 	public $contentModel;
@@ -505,6 +448,26 @@ class EditPage implements IEditObject {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTokenOk', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTokenOkExceptSuffix', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTriedSave', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'incompleteForm', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'tooBig', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'missingComment', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'missingSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'allowBlankSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'autoSumm', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mParserOutput', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'hasPresetSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'minoredit', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'watchthis', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'recreate', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'nosummaryparentRevId', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'editintro', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'scrolltop', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'markAsBot', '1.35', __CLASS__ );
 	}
 
 	/**
