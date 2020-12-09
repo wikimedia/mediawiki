@@ -96,22 +96,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		return $handler;
 	}
 
-	public function testExecuteBare() {
-		$page = $this->getExistingTestPage( 'Talk:HtmlEndpointTestPage/with/slashes' );
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$htmlUrl = 'https://wiki.example.com/rest/v1/page/Talk%3AHtmlEndpointTestPage%2Fwith%2Fslashes/html';
-
-		$handler = $this->newHandler();
-		$config = [ 'format' => 'bare' ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
-
-		$this->assertResponseData( $page, $data );
-		$this->assertSame( $htmlUrl, $data['html_url'] );
-	}
-
 	public function testExecuteWithHtml() {
 		$this->checkParsoidInstalled();
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
