@@ -84,6 +84,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	> *:first-child {
+		> audio,
 		> img,
 		> video {
 			border: 1px solid #c8ccd1;
@@ -160,6 +161,7 @@ figure[ typeof~='mw:Audio/Thumb' ] {
 
 /* Same as img.thumbborder in content.less */
 .mw-image-border > *:first-child {
+	> audio,
 	> img,
 	> video {
 		border: 1px solid #eaecf0;
@@ -170,6 +172,7 @@ figure[ typeof~='mw:Audio/Thumb' ] {
  * Inline media items
  */
 *:first-child {
+	> audio,
 	> img,
 	> video {
 		.mw-valign-middle > & {
