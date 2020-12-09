@@ -308,7 +308,7 @@
 	"sort-descending": "Kārtot dilstošā secībā",
 	"sort-ascending": "Kārtot augošā secībā",
 	"nstab-main": "Raksts",
-	"nstab-user": "{{GENDER:{{ROOTPAGENAME}}|Dalībnieka lapa|Dalībnieces lapa}}",
+	"nstab-user": "{{GENDER:$1|Dalībnieka lapa|Dalībnieces lapa}}",
 	"nstab-media": "Multivides lapa",
 	"nstab-special": "Īpašā lapa",
 	"nstab-project": "Projekta lapa",

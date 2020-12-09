@@ -2595,7 +2595,7 @@
 	"undeleterevisions": "$1 {{PLURAL:$1|revisão eliminada|revisões eliminadas}}",
 	"undeletehistory": "Se restaurar a página, todas as revisões serão restauradas para o histórico.\nSe uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.",
 	"undeleterevdel": "O restauro não será executado se resultar na remoção parcial da versão mais recente da página ou arquivo.\nEm tais casos, deverá desselecionar ou reverter a ocultação da versão apagada mais recente.",
-	"undeletehistorynoadmin": "Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do usuário que editou esta página antes de eliminar. O texto atual destas edições eliminadas encontra-se agora apenas disponível para administradores.",
+	"undeletehistorynoadmin": "Esta página foi eliminada.\nO motivo da exclusão é mostrado no resumo abaixo, junto com os detalhes dos usuários que editaram esta página antes da exclusão.\nO texto dessas revisões excluídas está disponível apenas para administradores.",
 	"undelete-revision": "Edição eliminada da página $1 (das $5 de $4), por $3:",
 	"undeleterevision-missing": "Edição inválida ou não encontrada. Talvez você esteja com um link incorreto ou talvez a edição foi restaurada ou removida dos arquivos.",
 	"undeleterevision-duplicate-revid": "Não foi possível restaurar {{PLURAL:$1|uma revisão|$1 revisões}}, porque {{PLURAL:$1|a sua <code>rev_id</code> já estava usada|as respetivas <code>rev_id</code> já estavam usadas}}.",
