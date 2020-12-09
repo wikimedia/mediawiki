@@ -247,6 +247,40 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
+	public function testViewOfOldRevisionFromCache() {
+		$this->setMwGlobals( [
+			'wgOldRevisionParserCacheExpireTime' => 100500,
+			'wgMainWANCache' => 'main',
+			'wgWANObjectCaches' => [
+				'main' => [
+					'class' => WANObjectCache::class,
+					'cacheId' => 'hash',
+				],
+			],
+		] );
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		$article = new Article( $page->getTitle(), $idA );
+		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
+
+		// Force cache
+		MediaWikiServices::getInstance()
+			->getParserOutputAccess()
+			->getParserOutput(
+				$page,
+				ParserOptions::newCanonical( $article->getContext()->getUser() ),
+				$revisions[1]
+			);
+
+		$article->view();
+
+		$output = $article->getContext()->getOutput();
+		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
+	}
+
 	public function testViewOfCurrentRevision() {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
