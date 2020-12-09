@@ -1,5 +1,14 @@
 = MediaWiki 1.35 =
 
+MediaWiki 1.35 should mostly work on the recently released PHP 8.0, however
+it is not currently actively supported. Testing (on a development wiki!) is
+appreciated, and bugs with PHP 8.0 on MediaWiki 1.35 will be accepted.
+
+It is anticipated that in a later MediaWiki 1.35 point release, we can
+declare 1.35 as supporting PHP 8.0.
+
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+
 == MediaWiki 1.35.1 ==
 
 THIS IS NOT A RELEASE YET
