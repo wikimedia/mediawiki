@@ -79,19 +79,18 @@
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory"
-		]
+		],
+		"format": "source"
 	},
 	{
 		"path": "/v1/page/{title}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
 			"MainConfig",
 			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
-			"TitleFactory",
-			"ParserCacheFactory",
-			"WikiPageFactory"
+			"TitleFactory"
 		],
 		"format": "bare"
 	},
