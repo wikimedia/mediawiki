@@ -1912,20 +1912,6 @@ class EditPage implements IEditObject {
 			return $status;
 		}
 
-		try {
-			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch ( MWContentSerializationException $ex ) {
-			$status = Status::newFatal(
-				'content-failed-to-parse',
-				$this->contentModel,
-				$this->contentFormat,
-				$ex->getMessage()
-			);
-			$status->value = self::AS_PARSE_ERROR;
-			return $status;
-		}
-
 		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
 			$this->hookError, $this->summary )
 		) {
@@ -1937,6 +1923,20 @@ class EditPage implements IEditObject {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
+		}
+
+		try {
+			# Construct Content object
+			$textbox_content = $this->toEditContent( $this->textbox1 );
+		} catch ( MWContentSerializationException $ex ) {
+			$status = Status::newFatal(
+				'content-failed-to-parse',
+				$this->contentModel,
+				$this->contentFormat,
+				$ex->getMessage()
+			);
+			$status->value = self::AS_PARSE_ERROR;
 			return $status;
 		}
 
