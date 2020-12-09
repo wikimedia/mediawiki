@@ -20,6 +20,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use Content;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use StatusValue;
@@ -38,11 +39,11 @@ class ImageRedirectConstraint implements IEditConstraint {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var Content */
+	private $newContent;
+
 	/** @var LinkTarget */
 	private $title;
-
-	/** @var bool */
-	private $isRedirect;
 
 	/** @var User */
 	private $user;
@@ -52,26 +53,26 @@ class ImageRedirectConstraint implements IEditConstraint {
 
 	/**
 	 * @param PermissionManager $permissionManager
+	 * @param Content $newContent
 	 * @param LinkTarget $title
-	 * @param bool $isRedirect
 	 * @param User $user
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
+		Content $newContent,
 		LinkTarget $title,
-		bool $isRedirect,
 		User $user
 	) {
 		$this->permissionManager = $permissionManager;
+		$this->newContent = $newContent;
 		$this->title = $title;
-		$this->isRedirect = $isRedirect;
 		$this->user = $user;
 	}
 
 	public function checkConstraint() : string {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->title->getNamespace() === NS_FILE &&
-			$this->isRedirect &&
+			$this->newContent->isRedirect() &&
 			!$this->permissionManager->userHasRight( $this->user, 'upload' )
 		) {
 			$this->result = self::CONSTRAINT_FAILED;

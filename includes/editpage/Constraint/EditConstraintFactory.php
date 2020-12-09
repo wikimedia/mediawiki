@@ -179,20 +179,20 @@ class EditConstraintFactory {
 	}
 
 	/**
+	 * @param Content $newContent
 	 * @param LinkTarget $title
-	 * @param bool $isRedirect
 	 * @param User $user
 	 * @return ImageRedirectConstraint
 	 */
 	public function newImageRedirectConstraint(
+		Content $newContent,
 		LinkTarget $title,
-		bool $isRedirect,
 		User $user
 	) : ImageRedirectConstraint {
 		return new ImageRedirectConstraint(
 			$this->permissionManager,
+			$newContent,
 			$title,
-			$isRedirect,
 			$user
 		);
 	}
