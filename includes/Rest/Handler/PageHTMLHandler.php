@@ -13,7 +13,6 @@ use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
 use RequestContext;
-use Title;
 use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
@@ -22,7 +21,6 @@ use Wikimedia\Assert\Assert;
  * A handler that returns Parsoid HTML for the following routes:
  * - /page/{title}/html,
  * - /page/{title}/with_html
- * - /page/{title}/bare routes.
  * Currently the HTML is fetched from RESTBase, thus in order to use the routes,
  * RESTBase must be installed and VirtualRESTService for RESTBase needs to be configured.
  *
@@ -71,17 +69,6 @@ class PageHTMLHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title
-	 * @return string
-	 */
-	private function constructHtmlUrl( Title $title ): string {
-		return $this->getRouter()->getRouteUrl(
-			'/v1/page/{title}/html',
-			[ 'title' => $title->getPrefixedText() ]
-		);
-	}
-
-	/**
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
@@ -94,14 +81,8 @@ class PageHTMLHandler extends SimpleHandler {
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $titleObj !== null, 'Title should be known' );
 
-		$htmlType = $this->getHtmlType();
-		switch ( $htmlType ) {
-			case 'bare':
-				$body = $this->contentHelper->constructMetadata();
-				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
-				$response = $this->getResponseFactory()->createJson( $body );
-				$this->contentHelper->setCacheControl( $response );
-				break;
+		$outputMode = $this->getOutputMode();
+		switch ( $outputMode ) {
 			case 'html':
 				$parserOutput = $this->htmlHelper->getHtml();
 				$response = $this->getResponseFactory()->create();
@@ -118,7 +99,7 @@ class PageHTMLHandler extends SimpleHandler {
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
 			default:
-				throw new LogicException( "Unknown HTML type $htmlType" );
+				throw new LogicException( "Unknown HTML type $outputMode" );
 		}
 
 		return $response;
@@ -134,12 +115,7 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-
-		if ( $this->getHtmlType() === 'bare' ) {
-			return $this->contentHelper->getETag();
-		} else {
-			return $this->htmlHelper->getETag();
-		}
+		return $this->htmlHelper->getETag();
 	}
 
 	/**
@@ -149,15 +125,10 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-
-		if ( $this->getHtmlType() === 'bare' ) {
-			return $this->contentHelper->getLastModified();
-		} else {
-			return $this->htmlHelper->getLastModified();
-		}
+		return $this->htmlHelper->getLastModified();
 	}
 
-	private function getHtmlType(): string {
+	private function getOutputMode(): string {
 		return $this->getConfig()['format'];
 	}
 
