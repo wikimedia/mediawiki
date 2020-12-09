@@ -162,8 +162,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
 		$data['langconversion'] = !$languageConverterFactory->isConversionDisabled();
-		// FIXME: This should use ::isLinkConversionDisabled() instead
-		$data['titleconversion'] = !$languageConverterFactory->isTitleConversionDisabled();
+		$data['linkconversion'] = !$languageConverterFactory->isLinkConversionDisabled();
+		// For backwards compatibility (soft deprecated since MW 1.36)
+		$data['titleconversion'] = $data['linkconversion'];
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$contLangConverter = $languageConverterFactory
