@@ -359,7 +359,7 @@
 	"sort-ascending": "오름차순 정렬",
 	"sort-initial": "첫글자로 정렬",
 	"nstab-main": "문서",
-	"nstab-user": "사용자 문서",
+	"nstab-user": "{{GENDER:$1|사용자 문서}}",
 	"nstab-media": "미디어 문서",
 	"nstab-special": "특수 문서",
 	"nstab-project": "프로젝트 문서",

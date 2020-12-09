@@ -3021,7 +3021,7 @@
 	"revdelete-unrestricted": "u hoqën kufizimet për administruesit",
 	"logentry-block-block": "$1 {{GENDER:$2|bllokoi}} {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|zhbllokoi}} {{GENDER:$4|$3}}",
-	"logentry-block-reblock": "$1 {{GENDER:$2|changed}} bllokoi cilësimet për {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
+	"logentry-block-reblock": "$1 {{GENDER:$2|ndryshoi}} cilësimet e bllokimit për {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|bllokoi}} {{GENDER:$4|$3}} me një kohë të skadimit $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|ndryshoi}} cilësimet e bllokimit për {{GENDER:$4|përdoruesin $3|përdoruesen $3}} me një kohë skadimi prej $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|u importua}} $3 përmes ngarkimit të skedës",
