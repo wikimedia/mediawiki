@@ -663,7 +663,7 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$this->doOutputFromParserCache( $pOutput, $oldid, $outputPage, $textOptions );
+				$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
 			}
@@ -698,7 +698,7 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$this->doOutputFromParserCache( $pOutput, $oldid, $outputPage, $textOptions );
+					$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
 				}
@@ -796,22 +796,14 @@ class Article implements Page {
 
 	/**
 	 * @param ParserOutput $pOutput
-	 * @param int $oldid
 	 * @param OutputPage $outputPage
 	 * @param array $textOptions
 	 */
 	private function doOutputFromParserCache(
 		ParserOutput $pOutput,
-		int $oldid,
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		if ( $oldid ) {
-			wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink" );
-			$this->setOldSubtitle( $oldid );
-		} else {
-			wfDebug( __METHOD__ . ": showing parser cache contents" );
-		}
 		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
