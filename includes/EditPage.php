@@ -3330,16 +3330,19 @@ class EditPage implements IEditObject {
 						RevisionRecord::DELETED_TEXT,
 						$user
 					) ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							// title used in wikilinks, should not contain whitespaces
-							[ 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() ]
+						$out->addHtml(
+							Html::warningBox(
+								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() )->parse(),
+								'plainlinks'
+							)
 						);
 					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							// title used in wikilinks, should not contain whitespaces
-							[ 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() ]
+						$out->addHtml(
+							Html::warningBox(
+								// title used in wikilinks, should not contain whitespaces
+								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() )->parse(),
+								'plainlinks'
+							)
 						);
 					}
 

@@ -520,14 +520,24 @@ class SpecialUndelete extends SpecialPage {
 				$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 					? [ 'rev-suppressed-text-permission', $titleText ]
 					: [ 'rev-deleted-text-permission', $titleText ];
-				$out->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
+				$out->addHtml(
+					Html::warningBox(
+						$this->msg( $msg[0], $msg[1] )->parse(),
+						'plainlinks'
+					)
+				);
 				return;
 			}
 
 			$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 				? [ 'rev-suppressed-text-view', $titleText ]
 				: [ 'rev-deleted-text-view', $titleText ];
-			$out->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
+			$out->addHtml(
+				Html::warningBox(
+					$this->msg( $msg[0], $msg[1] )->parse(),
+					'plainlinks'
+				)
+			);
 			// and we are allowed to see...
 		}
 
@@ -569,7 +579,7 @@ class SpecialUndelete extends SpecialPage {
 		$isText = ( $content instanceof TextContent );
 
 		if ( $this->mPreview || $isText ) {
-			$openDiv = '<div id="mw-undelete-revision" class="mw-warning">';
+			$openDiv = '<div id="mw-undelete-revision" class="warningbox">';
 		} else {
 			$openDiv = '<div id="mw-undelete-revision">';
 		}
