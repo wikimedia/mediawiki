@@ -72,6 +72,13 @@
 		font-weight: normal;
 	}
 
+	// FIXME: Temporarily override min sizes to fix remove button width.
+	// Can be removed with OOUI v0.41.1 rolled out.
+	.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
+		min-width: 20px;
+		min-height: 20px;
+	}
+
 	&-wrapper {
 		&-top {
 			display: flex;
