@@ -101,6 +101,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated monolog/monolog from 1.25.3 to 2.0.2.
 * Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
+* Updated psy/psysh from 0.10.4 to 0.10.5.
 * …
 
 ==== Removed external libraries ====
