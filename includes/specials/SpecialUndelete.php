@@ -849,7 +849,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( $this->mAllowed ) {
-			$out->addModules( 'mediawiki.special.undelete' );
+			$out->addModules( 'mediawiki.misc-authed-ooui' );
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
