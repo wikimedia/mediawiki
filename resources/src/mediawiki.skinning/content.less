@@ -149,27 +149,27 @@ html .thumbcaption {
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	float: right;
 	margin-left: 3px;
-}
 
-.magnify a {
-	display: block;
-	/* Hide the text… */
-	text-indent: 15px;
-	white-space: nowrap;
-	overflow: hidden;
-	/* …and replace it with the image */
-	width: 15px;
-	height: 11px;
-	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
+	a {
+		display: block;
+		/* Hide the text… */
+		text-indent: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		/* …and replace it with the image */
+		width: 15px;
+		height: 11px;
+		/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 
-	/* Use same SVG support hack as mediawiki.legacy's shared.css */
-	background-image: url( images/magnify-clip-ltr.png );
-	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
-	/* Don't annoy people who copy-paste everything too much */
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+		/* Use same SVG support hack as mediawiki.legacy's shared.css */
+		background-image: url( images/magnify-clip-ltr.png );
+		background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+		/* Don't annoy people who copy-paste everything too much */
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 }
 
 img.thumbborder {
