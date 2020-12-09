@@ -28,6 +28,7 @@ use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
+use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -1911,20 +1912,6 @@ class EditPage implements IEditObject {
 			return $status;
 		}
 
-		try {
-			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch ( MWContentSerializationException $ex ) {
-			$status = Status::newFatal(
-				'content-failed-to-parse',
-				$this->contentModel,
-				$this->contentFormat,
-				$ex->getMessage()
-			);
-			$status->value = self::AS_PARSE_ERROR;
-			return $status;
-		}
-
 		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
 			$this->hookError, $this->summary )
 		) {
@@ -1936,6 +1923,20 @@ class EditPage implements IEditObject {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
+		}
+
+		try {
+			# Construct Content object
+			$textbox_content = $this->toEditContent( $this->textbox1 );
+		} catch ( MWContentSerializationException $ex ) {
+			$status = Status::newFatal(
+				'content-failed-to-parse',
+				$this->contentModel,
+				$this->contentFormat,
+				$ex->getMessage()
+			);
+			$status->value = self::AS_PARSE_ERROR;
 			return $status;
 		}
 
@@ -2033,21 +2034,15 @@ class EditPage implements IEditObject {
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
-			if ( $failed instanceof PageSizeConstraint ) {
-				// Error will be displayed by showEditForm()
-				$this->tooBig = true;
-			} elseif ( $failed instanceof SpamRegexConstraint ) {
+			// Need to check SpamRegexConstraint here, to avoid needing to pass
+			// $result by reference again
+			if ( $failed instanceof SpamRegexConstraint ) {
 				$result['spam'] = $failed->getMatch();
-			} elseif ( $failed instanceof UserBlockConstraint ) {
-				// Auto-block user's IP if the account was "hard" blocked
-				if ( !wfReadOnly() ) {
-					$user->spreadAnyEditBlock();
-				}
+			} else {
+				$this->handleFailedConstraint( $failed );
 			}
 
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
+			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2088,14 +2083,8 @@ class EditPage implements IEditObject {
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				if ( $failed instanceof DefaultTextConstraint ) {
-					$this->blankArticle = true;
-				} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-					$this->hookError = $failed->getHookError();
-				}
-				$statusValue = $failed->getLegacyStatus();
-				$status = Status::wrap( $statusValue );
-				return $status;
+				$this->handleFailedConstraint( $failed );
+				return Status::wrap( $failed->getLegacyStatus() );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2276,19 +2265,8 @@ class EditPage implements IEditObject {
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-					$this->hookError = $failed->getHookError();
-				} elseif (
-					$failed instanceof AutoSummaryMissingSummaryConstraint ||
-					$failed instanceof NewSectionMissingSummaryConstraint
-				) {
-					$this->missingSummary = true;
-				} elseif ( $failed instanceof MissingCommentConstraint ) {
-					$this->missingComment = true;
-				}
-				$statusValue = $failed->getLegacyStatus();
-				$status = Status::wrap( $statusValue );
-				return $status;
+				$this->handleFailedConstraint( $failed );
+				return Status::wrap( $failed->getLegacyStatus() );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2345,17 +2323,8 @@ class EditPage implements IEditObject {
 		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
-
-			if ( $failed instanceof PageSizeConstraint ) {
-				// Error will be displayed by showEditForm()
-				$this->tooBig = true;
-			} elseif ( $failed instanceof SelfRedirectConstraint ) {
-				$this->selfRedirect = true;
-			}
-
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
+			$this->handleFailedConstraint( $failed );
+			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
@@ -2423,6 +2392,39 @@ class EditPage implements IEditObject {
 		$statusCode = ( $new ? self::AS_SUCCESS_NEW_ARTICLE : self::AS_SUCCESS_UPDATE );
 		$status = Status::newGood( $statusCode );
 		return $status;
+	}
+
+	/**
+	 * Apply the specific updates needed for the EditPage fields based on which constraint
+	 * failed, rather than interspersing this logic throughout internalAttemptSave at
+	 * each of the points the constraints are checked. Eventually, this will act on the
+	 * result from the backend.
+	 *
+	 * @param IEditConstraint $failed
+	 */
+	private function handleFailedConstraint( IEditConstraint $failed ) {
+		if ( $failed instanceof PageSizeConstraint ) {
+			// Error will be displayed by showEditForm()
+			$this->tooBig = true;
+		} elseif ( $failed instanceof UserBlockConstraint ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			if ( !wfReadOnly() ) {
+				$this->context->getUser()->spreadAnyEditBlock();
+			}
+		} elseif ( $failed instanceof DefaultTextConstraint ) {
+			$this->blankArticle = true;
+		} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+			$this->hookError = $failed->getHookError();
+		} elseif (
+			$failed instanceof AutoSummaryMissingSummaryConstraint ||
+			$failed instanceof NewSectionMissingSummaryConstraint
+		) {
+			$this->missingSummary = true;
+		} elseif ( $failed instanceof MissingCommentConstraint ) {
+			$this->missingComment = true;
+		} elseif ( $failed instanceof SelfRedirectConstraint ) {
+			$this->selfRedirect = true;
+		}
 	}
 
 	/**

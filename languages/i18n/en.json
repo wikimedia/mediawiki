@@ -717,7 +717,7 @@
 	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>Remember that this is only a preview.</strong>\nYour changes have not yet been published!",
 	"continue-editing": "Go to editing area",
-	"previewconflict": "This preview reflects the text in the upper text editing area as it will appear if you choose to published.",
+	"previewconflict": "This preview reflects the text in the upper text editing area as it will appear if you choose to publish it.",
 	"session_fail_preview": "Sorry! We could not process your edit due to a loss of session data.\n\nYou might have been logged out. <strong>Please verify that you're still logged in and try again</strong>.\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
 	"session_fail_preview_html": "Sorry! We could not process your edit due to a loss of session data.\n\n<em>Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.</em>\n\n<strong>If this is a legitimate edit attempt, please try again.</strong>\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
 	"token_suffix_mismatch": "<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.</strong>\nThe edit has been rejected to prevent corruption of the page text.\nThis sometimes happens when you are using a buggy web-based anonymous proxy service.",
