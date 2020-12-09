@@ -2023,8 +2023,8 @@ class EditPage implements IEditObject {
 		);
 		$constraintRunner->addConstraint(
 			$constraintFactory->newImageRedirectConstraint(
+				$textbox_content,
 				$this->mTitle,
-				$textbox_content->isRedirect(),
 				$user
 			)
 		);

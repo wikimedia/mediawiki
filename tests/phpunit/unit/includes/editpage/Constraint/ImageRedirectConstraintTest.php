@@ -32,10 +32,21 @@ use MediaWiki\Permissions\PermissionManager;
 class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
-	public function testPass() {
+	/**
+	 * @param bool $userIsAnon
+	 * @param bool $userHasRight
+	 * @return ImageRedirectConstraint
+	 */
+	private function getConstraint( bool $userIsAnon, bool $userHasRight ) {
+		$content = $this->createMock( Content::class );
+		$content->method( 'isRedirect' )->willReturn( true );
+
 		$title = $this->createMock( Title::class );
 		$title->method( 'getNamespace' )->willReturn( NS_FILE );
+
 		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( $userIsAnon );
+
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->expects( $this->once() )
 			->method( 'userHasRight' )
@@ -43,13 +54,20 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 				$this->equalTo( $user ),
 				$this->equalTo( 'upload' )
 			)
-			->willReturn( true );
+			->willReturn( $userHasRight );
 
-		$constraint = new ImageRedirectConstraint(
+		return new ImageRedirectConstraint(
 			$permissionManager,
+			$content,
 			$title,
-			true, // Is redirect
 			$user
+		);
+	}
+
+	public function testPass() {
+		$constraint = $this->getConstraint(
+			true, // is anon, does not matter
+			true // has `upload` right
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -60,24 +78,9 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 	 * @param int $expectedValue
 	 */
 	public function testFailure( $isAnon, $expectedValue ) {
-		$title = $this->createMock( Title::class );
-		$title->method( 'getNamespace' )->willReturn( NS_FILE );
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( $isAnon );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'upload' )
-			)
-			->willReturn( false );
-
-		$constraint = new ImageRedirectConstraint(
-			$permissionManager,
-			$title,
-			true, // Is redirect
-			$user
+		$constraint = $this->getConstraint(
+			$isAnon,
+			false // lacks `upload` right
 		);
 		$this->assertConstraintFailed( $constraint, $expectedValue );
 	}
