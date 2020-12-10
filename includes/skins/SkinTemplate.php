@@ -647,6 +647,7 @@ class SkinTemplate extends Skin {
 	 * @param bool $checkEdit Check if $title exists and mark with .new if one doesn't
 	 *
 	 * @return array
+	 * @param-taint $message tainted
 	 */
 	public function tabAction( $title, $message, $selected, $query = '', $checkEdit = false ) {
 		$classes = [];
