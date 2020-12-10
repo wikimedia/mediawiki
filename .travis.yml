@@ -7,4 +7,4 @@ services:
 
 script:  
   - npm ci
-  - npm run playwright-testing-lint
+  - npm run lint
