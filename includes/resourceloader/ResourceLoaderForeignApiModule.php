@@ -19,7 +19,7 @@
  */
 
 /**
- * Module for mediawiki.ForeignApi that has dynamically
+ * Module for mediawiki.ForeignApi and mediawiki.ForeignRest that has dynamically
  * generated dependencies, via a hook usable by extensions.
  *
  * @ingroup ResourceLoader

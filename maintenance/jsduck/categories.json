@@ -37,7 +37,7 @@
 			},
 			{
 				"name": "API",
-				"classes": ["mw.Api*", "mw.ForeignApi*"]
+				"classes": ["mw.Api*", "mw.ForeignApi*", "mw.Rest*", "mw.ForeignRest*" ]
 			},
 			{
 				"name": "Language",
