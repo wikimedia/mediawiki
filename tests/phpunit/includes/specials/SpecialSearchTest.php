@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -21,7 +22,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$services->getContentHandlerFactory(),
 			$services->getInterwikiLookup(),
 			$services->getReadOnlyMode(),
-			$services->getUserOptionsManager()
+			$services->getUserOptionsManager(),
+			$services->getLanguageConverterFactory()
 		);
 	}
 
@@ -243,6 +245,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$services->getUserOptionsManager(),
+				$services->getLanguageConverterFactory()
 			] )
 			->setMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -261,7 +264,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function mockSearchEngine( $results ) {
+	protected function mockSearchEngine( SpecialSearchTestMockResultSet $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
 			->setMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
 			->getMock();
@@ -354,6 +357,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$services->getUserOptionsManager(),
+				$services->getLanguageConverterFactory()
 			] )
 			->setMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -373,6 +377,75 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$search->load();
 
 		$this->assertNotNull( $search->goResult( 'TEST_SEARCH_PARAM' ) );
+	}
+
+	/**
+	 * @covers SpecialSearch::showResults
+	 * @throws MWException
+	 */
+	public function test_create_link_not_shown_if_variant_link_is_known() {
+		$searchTerm = "Test create link not shown if variant link is known";
+		$variantLink = "the replaced link variant text should not be visible";
+		$variantTitle = $this->createMock( Title::class );
+
+		$specialSearchFactory = function () use ( $variantTitle, $variantLink, $searchTerm ) {
+			$variantTitle->method( "isKnown" )
+				->willReturn( true );
+
+			$variantTitle->method( "getPrefixedText" )
+				->willReturn( $searchTerm . " (variant)" );
+
+			$languageConverter = $this->createMock( ILanguageConverter::class );
+			$languageConverter->method( 'hasVariants' )->willReturn( true );
+			$languageConverter->expects( $this->once() )
+				->method( 'findVariantLink' )
+				->willReturnCallback(
+					function ( &$link, &$nt, $unused = false ) use ( $searchTerm, $variantTitle, $variantLink ) {
+						if ( $link === $searchTerm ) {
+							$link = $variantLink;
+							$nt = $variantTitle;
+						}
+					}
+				);
+			$languageConverterFactory = $this->createMock( LanguageConverterFactory::class );
+			$languageConverterFactory->method( 'getLanguageConverter' )
+				->willReturn( $languageConverter );
+
+			$mockSearchEngineFactory = $this->createMock( SearchEngineFactory::class );
+			$mockSearchEngineFactory->method( "create" )
+				->willReturn( $this->mockSearchEngine( new SpecialSearchTestMockResultSet() ) );
+
+			$services = MediaWikiServices::getInstance();
+			$specialSearch = new SpecialSearch(
+				$services->getSearchEngineConfig(),
+				$mockSearchEngineFactory,
+				$services->getPermissionManager(),
+				$services->getNamespaceInfo(),
+				$services->getContentHandlerFactory(),
+				$services->getInterwikiLookup(),
+				$services->getReadOnlyMode(),
+				$services->getUserOptionsManager(),
+				$languageConverterFactory
+			);
+			$context = new RequestContext();
+			$context->setRequest( new FauxRequest() );
+			$context->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
+			$specialSearch->setContext( $context );
+			$specialSearch->load();
+			return $specialSearch;
+		};
+		$specialSearch = $specialSearchFactory();
+		$specialSearch->showResults( $searchTerm );
+		$html = $specialSearch->getContext()->getOutput()->getHTML();
+		$this->assertStringNotContainsString( $variantLink, $html );
+		$this->assertStringContainsString( 'class="mw-search-exists"', $html );
+		$this->assertStringNotContainsString( 'class="mw-search-createlink"', $html );
+
+		$specialSearch = $specialSearchFactory();
+		$specialSearch->showResults( $searchTerm . "_search_create_link" );
+		$html = $specialSearch->getContext()->getOutput()->getHTML();
+		$this->assertStringContainsString( 'class="mw-search-createlink"', $html );
+		$this->assertStringNotContainsString( 'class="mw-search-exists"', $html );
 	}
 }
 
