@@ -78,7 +78,10 @@ class Sqlite {
 					continue;
 				}
 
-				$columns = $db->query( "PRAGMA table_info({$table->name})", __METHOD__ );
+				$columns = $db->query(
+					'PRAGMA table_info(' . $db->addIdentifierQuotes( $table->name ) . ')',
+					__METHOD__
+				);
 				foreach ( $columns as $col ) {
 					if ( !isset( $allowedTypes[strtolower( $col->type )] ) ) {
 						$db->close( __METHOD__ );
