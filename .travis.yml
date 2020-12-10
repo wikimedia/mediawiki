@@ -7,4 +7,4 @@ services:
 
 script:  
   - npm ci
-  - docker run hello-world
+  - npm run lint
