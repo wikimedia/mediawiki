@@ -104,7 +104,8 @@
 			"TitleFormatter",
 			"TitleFactory",
 			"ParserCacheFactory",
-			"WikiPageFactory"
+			"WikiPageFactory",
+			"GlobalIdGenerator"
 		],
 		"format": "html"
 	},
@@ -118,7 +119,8 @@
 			"TitleFormatter",
 			"TitleFactory",
 			"ParserCacheFactory",
-			"WikiPageFactory"
+			"WikiPageFactory",
+			"GlobalIdGenerator"
 		],
 		"format": "with_html"
 	},
