@@ -1524,6 +1524,18 @@ abstract class Skin extends ContextSource {
 		}
 
 		$user = $this->getRelevantUser();
+		// The relevant user should only be set if it exists. However, if it exists but is hidden,
+		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
+		// pretend like the user does not exist in such cases, by setting $user to null, which
+		// is what getRelevantUser returns if there is no user set (though it is documented as
+		// always returning a User...) See T120883
+		if ( $user && $user->isRegistered() && $user->isHidden() &&
+			 !MediaWikiServices::getInstance()
+				->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			$user = null;
+		}
+
 		if ( $user ) {
 			$rootUser = $user->getName();
 

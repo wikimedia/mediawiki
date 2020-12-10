@@ -1410,6 +1410,14 @@ class Article implements Page {
 			$ip = User::isIP( $rootPart );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
+			if ( $user && $user->isLoggedIn() && $user->isHidden() &&
+				!$services->getPermissionManager()
+					->userHasRight( $this->getContext()->getUser(), 'hideuser' )
+			) {
+				// T120883 if the user is hidden and the viewer cannot see hidden
+				// users, pretend like it does not exist at all.
+				$user = false;
+			}
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
