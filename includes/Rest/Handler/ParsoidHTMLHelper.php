@@ -34,6 +34,7 @@ use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\UUID\GlobalIdGenerator;
 use WikiPage;
 
 /**
@@ -46,11 +47,16 @@ use WikiPage;
  */
 class ParsoidHTMLHelper {
 
+	private const RENDER_ID_KEY = 'parsoid-render-id';
+
 	/** @var ParserCache */
 	private $parserCache;
 
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
+
+	/** @var GlobalIdGenerator */
+	private $globalIdGenerator;
 
 	/** @var Title|null */
 	private $title = null;
@@ -61,13 +67,16 @@ class ParsoidHTMLHelper {
 	/**
 	 * @param ParserCache $parserCache
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ParserCache $parserCache,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->parserCache = $parserCache;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
 	/**
@@ -90,7 +99,12 @@ class ParsoidHTMLHelper {
 				'discardDataParsoid' => true,
 				'pageBundle' => true,
 			] );
-			return new ParserOutput( $pageBundle->html );
+			$fakeParserOutput = new ParserOutput( $pageBundle->html );
+			// TODO: when we make tighter integration with Parsoid, render ID should become
+			// a standard ParserOutput property. Nothing else needs it now, so don't generate
+			// it in ParserCache just yet.
+			$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
+			return $fakeParserOutput;
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-html-backend-error' ),
@@ -192,17 +206,17 @@ class ParsoidHTMLHelper {
 	}
 
 	/**
-	 * Returns an ETag representing the HTML output. It's based on the timestamp returned
-	 * by getLastModified().
+	 * Returns an ETag uniquely identifying the HTML output.
 	 * @return string|null
 	 */
 	public function getETag(): ?string {
-		// While we are not differentiating the output by parser options and
-		// only provide anon parses, cache time or page touched provides a good
-		// reference for etag. Once we start doing non-anon parses, this needs
-		// to start incorporating current users ParserOptions.
-		// TODO: make this the same as the ETag emitted by RESTbase.
-		return '"' . $this->getLastModified() . '"';
+		$parserOutput = $this->getHtml();
+		$renderId = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
+		// Fallback for backwards compatibility with older cached entries.
+		if ( !$renderId ) {
+			$renderId = $this->getLastModified();
+		}
+		return "\"{$parserOutput->getCacheRevisionId()}/{$renderId}\"";
 	}
 
 	/**
@@ -211,23 +225,7 @@ class ParsoidHTMLHelper {
 	 * @return string|null
 	 */
 	public function getLastModified(): ?string {
-		$wikiPage = $this->wikiPageFactory->newFromTitle( $this->title );
-
-		// The cache time of the metadata belongs to the ParserOutput
-		// variant cached last. While we are not differentiating the
-		// parser options, it's fine. Once we start supporting non-anon
-		// parses, we would need to fetch the actual $titleParserOutput to find
-		// out it's cache time.
-		$cacheMetadata = $this->parserCache->getMetadata(
-			$wikiPage,
-			ParserCache::USE_CURRENT_ONLY
-		);
-
-		if ( $cacheMetadata ) {
-			return $cacheMetadata->getCacheTime();
-		} else {
-			return $wikiPage->getTouched();
-		}
+		return $this->getHtml()->getCacheTime();
 	}
 
 }
