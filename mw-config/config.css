@@ -269,3 +269,23 @@ body {
 	text-decoration: none;
 	background-image: url( images/installer-logo.png );
 }
+
+/** WARNING BOX STYLES */
+/* FIXME: Replace with `warningbox` as part of https://phabricator.wikimedia.org/T232903 */
+.mw-infobox {
+	border: 2px solid #fc3;
+	margin: 0.5em;
+	clear: left;
+	overflow: hidden;
+}
+
+.mw-infobox-left {
+	margin: 7px;
+	float: left;
+	width: 35px;
+}
+
+.mw-infobox-right {
+	margin: 0.5em 0.5em 0.5em 49px;
+}
+/** END WARNING BOX STYLES */
