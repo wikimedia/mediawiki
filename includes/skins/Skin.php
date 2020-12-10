@@ -60,6 +60,20 @@ abstract class Skin extends ContextSource {
 	 */
 	public $stylename = null;
 
+	/** The current major version of the skin specification. */
+	protected const VERSION_MAJOR = 1;
+
+	/**
+	 * Get the current major version of Skin. This is used to manage changes
+	 * to underlying data and for providing support for older and new versions of code.
+	 *
+	 * @since 1.36
+	 * @return int
+	 */
+	public static function getVersion() {
+		return self::VERSION_MAJOR;
+	}
+
 	/**
 	 * Fetch the set of available skins.
 	 *
