@@ -497,6 +497,21 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		global $wgFullyInitialised;
 
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
+		/**
+		 * Fandom change - start (@author ttomalak)
+		 *
+		 * Allow to modify cache options, for example to add additional check keys
+		 * which will allow to invalidate cache on replication.
+		 *
+		 * PLATFORM-5269
+		 */
+		$cacheOpts = [ 'pcTTL' => $cache::TTL_PROC_LONG, 'version' => self::VERSION ];
+
+		$this->getHookContainer()->run( 'UserLoadFromCache', [ $this, &$cacheOpts ] );
+		/** Fandom change - end */
+
+
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
@@ -539,7 +554,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 				return $data;
 			},
-			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'version' => self::VERSION ]
+			$cacheOpts // Fandom change PLATFORM-5269
 		);
 
 		// Restore from cache
