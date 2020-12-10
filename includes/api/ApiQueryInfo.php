@@ -22,6 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -49,6 +50,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false, $fld_varianttitles = false;
 
+	/**
+	 * @var bool Whether to include link class information for the
+	 *    given page titles.
+	 */
+	private $fld_linkclasses = false;
+
 	private $params;
 
 	/** @var Title[] */
@@ -63,6 +70,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $protections, $restrictionTypes, $watched, $watchers, $visitingwatchers,
 		$notificationtimestamps, $talkids, $subjectids, $displaytitles, $variantTitles;
+
+	/**
+	 * @var array<int,string[]> Mapping of page id to list of 'extra link
+	 *   classes' for the given page
+	 */
+	private $linkClasses;
+
 	private $showZeroWatchers = false;
 
 	private $tokenFunctions;
@@ -330,6 +344,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_preload = isset( $prop['preload'] );
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 			$this->fld_varianttitles = isset( $prop['varianttitles'] );
+			$this->fld_linkclasses = isset( $prop['linkclasses'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -394,6 +409,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_varianttitles ) {
 			$this->getVariantTitles();
+		}
+
+		if ( $this->fld_linkclasses ) {
+			$this->getLinkClasses( $this->params['linkcontext'] );
 		}
 
 		/** @var Title $title */
@@ -544,6 +563,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_varianttitles && isset( $this->variantTitles[$pageid] ) ) {
 			$pageInfo['varianttitles'] = $this->variantTitles[$pageid];
+		}
+
+		if ( $this->fld_linkclasses && isset( $this->linkClasses[$pageid] ) ) {
+			$pageInfo['linkclasses'] = $this->linkClasses[$pageid];
 		}
 
 		if ( $this->params['testactions'] ) {
@@ -800,6 +823,51 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	/**
+	 * Fetch the set of extra link classes associated with links to the
+	 * set of titles ("link colours"), as they would appear on the
+	 * given context page.
+	 * @param ?LinkTarget $context_title The page context in which link
+	 *   colors are determined.
+	 */
+	private function getLinkClasses( ?LinkTarget $context_title = null ) {
+		if ( $this->titles === [] ) {
+			return;
+		}
+		// For compatibility with legacy GetLinkColours hook:
+		// $pagemap maps from page id to title (as prefixed db key)
+		// $classes maps from title (prefixed db key) to a space-separated
+		//   list of link classes ("link colours").
+		// The hook should not modify $pagemap, and should only append to
+		// $classes (being careful to maintain space separation).
+		$classes = [];
+		$pagemap = [];
+		foreach ( $this->titles as $pageId => $title ) {
+			$pdbk = $title->getPrefixedDBkey();
+			$pagemap[$pageId] = $pdbk;
+			$classes[$pdbk] = $title->isRedirect() ? 'mw-redirect' : '';
+		}
+		// legacy hook requires a real Title, not a LinkTarget
+		$context_title = $this->titleFactory->newFromLinkTarget(
+			$context_title ?? $this->titleFactory->newMainPage()
+		);
+		$this->getHookRunner()->onGetLinkColours(
+			$pagemap, $classes, $context_title
+		);
+
+		// This API class expects the class list to be:
+		//  (a) indexed by pageid, not title, and
+		//  (b) a proper array of strings (possibly zero-length),
+		//      not a single space-separated string (possibly the empty string)
+		$this->linkClasses = [];
+		foreach ( $this->titles as $pageId => $title ) {
+			$pdbk = $title->getPrefixedDBkey();
+			$this->linkClasses[$pageId] = preg_split(
+				'/\s+/', $classes[$pdbk] ?? '', -1, PREG_SPLIT_NO_EMPTY
+			);
+		}
+	}
+
 	private function getVariantTitles() {
 		if ( $this->titles === [] ) {
 			return;
@@ -998,6 +1066,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'preload',
 					'displaytitle',
 					'varianttitles',
+					'linkclasses', # private: stub length (and possibly hook colors)
 					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
 				],
@@ -1005,6 +1074,11 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_DEPRECATED_VALUES => [
 					'readable' => true, // Since 1.32
 				],
+			],
+			'linkcontext' => [
+				ApiBase::PARAM_TYPE => 'title',
+				ApiBase::PARAM_DFLT => $this->titleFactory->newMainPage()->getPrefixedText(),
+				TitleDef::PARAM_RETURN_OBJECT => true,
 			],
 			'testactions' => [
 				ApiBase::PARAM_TYPE => 'string',
