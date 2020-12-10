@@ -2729,6 +2729,7 @@
 	"svg-long-error": "Fichièr SVG invalid : $1",
 	"show-big-image": "Fichièr d'origina",
 	"show-big-image-preview": "Talha d'aqueste apercebut : $1.",
+	"show-big-image-preview-differ": "Talha d'aquesta previsualizacion $3 per aquest fichièr $2: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Autra resolucion|Autras resolucions}} : $1.",
 	"show-big-image-size": "$1 × $2 pixèls",
 	"file-info-gif-looped": "en bocla",
