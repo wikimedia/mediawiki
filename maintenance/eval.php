@@ -35,6 +35,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 $optionsWithArgs = [ 'd' ];
+$optionsWithoutArgs = [ 'ignore-errors' ];
 
 require_once __DIR__ . "/CommandLineInc.php";
 
@@ -51,6 +52,8 @@ if ( isset( $options['d'] ) ) {
 	}
 }
 
+$__ignoreErrors = isset( $options['ignore-errors'] );
+
 $__useReadline = function_exists( 'readline_add_history' )
 	&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
@@ -62,7 +65,7 @@ if ( $__useReadline ) {
 
 $__e = null; // PHP exception
 while ( ( $__line = Maintenance::readconsole() ) !== false ) {
-	if ( $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
+	if ( !$__ignoreErrors && $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
 		// Internal state may be corrupted or fatals may occur later due
 		// to some object not being set. Don't drop out of eval in case
 		// lines were being pasted in (which would then get dumped to the shell).
@@ -80,6 +83,14 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		fwrite( STDERR, "Caught exception " . get_class( $__e ) .
 			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
 		continue;
+	} catch ( Throwable $__e ) {
+		if ( $__ignoreErrors ) {
+			fwrite( STDERR, "Caught " . get_class( $__e ) .
+				": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
+			continue;
+		} else {
+			throw $__e;
+		}
 	}
 	if ( $__val === null ) {
 		echo "\n";
