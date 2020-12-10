@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.0
+ * OOUI v0.41.1-pre (3175f6d962)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-12-03T18:16:55Z
+ * Date: 2020-12-10T20:40:47Z
  */
 /* stylelint-disable selector-no-vendor-prefix */
 /* stylelint-enable selector-no-vendor-prefix */
@@ -1030,6 +1030,8 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
   display: block;
+  min-width: 20px;
+  min-height: 20px;
   border: 0;
   border-radius: 1.57142857em;
   padding-top: 1.42857143em;
