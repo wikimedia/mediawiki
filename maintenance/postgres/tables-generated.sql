@@ -577,3 +577,39 @@ CREATE INDEX cl_timestamp ON categorylinks (cl_to, cl_timestamp);
 CREATE INDEX cl_collation_ext ON categorylinks (
   cl_collation, cl_to, cl_type, cl_from
 );
+
+
+CREATE TABLE logging (
+  log_id SERIAL NOT NULL,
+  log_type TEXT DEFAULT '' NOT NULL,
+  log_action TEXT DEFAULT '' NOT NULL,
+  log_timestamp TIMESTAMPTZ DEFAULT '1970-01-01 00:00:00+00' NOT NULL,
+  log_actor BIGINT NOT NULL,
+  log_namespace INT DEFAULT 0 NOT NULL,
+  log_title TEXT DEFAULT '' NOT NULL,
+  log_page INT DEFAULT NULL,
+  log_comment_id BIGINT NOT NULL,
+  log_params TEXT NOT NULL,
+  log_deleted SMALLINT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(log_id)
+);
+
+CREATE INDEX type_time ON logging (log_type, log_timestamp);
+
+CREATE INDEX actor_time ON logging (log_actor, log_timestamp);
+
+CREATE INDEX page_time ON logging (
+  log_namespace, log_title, log_timestamp
+);
+
+CREATE INDEX times ON logging (log_timestamp);
+
+CREATE INDEX log_actor_type_time ON logging (
+  log_actor, log_type, log_timestamp
+);
+
+CREATE INDEX log_page_id_time ON logging (log_page, log_timestamp);
+
+CREATE INDEX log_type_action ON logging (
+  log_type, log_action, log_timestamp
+);
