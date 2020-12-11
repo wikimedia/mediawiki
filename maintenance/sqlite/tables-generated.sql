@@ -551,3 +551,36 @@ CREATE INDEX cl_timestamp ON /*_*/categorylinks (cl_to, cl_timestamp);
 CREATE INDEX cl_collation_ext ON /*_*/categorylinks (
   cl_collation, cl_to, cl_type, cl_from
 );
+
+
+CREATE TABLE /*_*/logging (
+  log_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  log_type BLOB DEFAULT '' NOT NULL, log_action BLOB DEFAULT '' NOT NULL,
+  log_timestamp BLOB DEFAULT '19700101000000' NOT NULL,
+  log_actor BIGINT UNSIGNED NOT NULL,
+  log_namespace INTEGER DEFAULT 0 NOT NULL,
+  log_title BLOB DEFAULT '' NOT NULL,
+  log_page INTEGER UNSIGNED DEFAULT NULL,
+  log_comment_id BIGINT UNSIGNED NOT NULL,
+  log_params BLOB NOT NULL, log_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL
+);
+
+CREATE INDEX type_time ON /*_*/logging (log_type, log_timestamp);
+
+CREATE INDEX actor_time ON /*_*/logging (log_actor, log_timestamp);
+
+CREATE INDEX page_time ON /*_*/logging (
+  log_namespace, log_title, log_timestamp
+);
+
+CREATE INDEX times ON /*_*/logging (log_timestamp);
+
+CREATE INDEX log_actor_type_time ON /*_*/logging (
+  log_actor, log_type, log_timestamp
+);
+
+CREATE INDEX log_page_id_time ON /*_*/logging (log_page, log_timestamp);
+
+CREATE INDEX log_type_action ON /*_*/logging (
+  log_type, log_action, log_timestamp
+);
