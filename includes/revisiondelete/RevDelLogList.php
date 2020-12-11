@@ -21,11 +21,40 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * List for logging table items
  */
 class RevDelLogList extends RevDelList {
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/**
+	 * @param IContextSource $context
+	 * @param Title $title
+	 * @param array $ids
+	 * @param LBFactory $lbFactory
+	 * @param ActorMigration $actorMigration
+	 * @param CommentStore $commentStore
+	 */
+	public function __construct(
+		IContextSource $context,
+		Title $title,
+		array $ids,
+		LBFactory $lbFactory,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore
+	) {
+		parent::__construct( $context, $title, $ids, $lbFactory );
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
+	}
+
 	public function getType() {
 		return 'logging';
 	}
@@ -64,8 +93,8 @@ class RevDelLogList extends RevDelList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 
-		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
+		$actorQuery = $this->actorMigration->getJoin( 'log_user' );
 
 		return $db->select(
 			[ 'logging' ] + $commentQuery['tables'] + $actorQuery['tables'],

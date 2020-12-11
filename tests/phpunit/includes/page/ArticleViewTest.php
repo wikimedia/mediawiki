@@ -316,9 +316,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
 
-		$revDelList = new RevDelRevisionList(
-			RequestContext::getMain(), $page->getTitle(), [ $idA ]
-		);
+		$revDelList = $this->getRevDelRevisionList( $page->getTitle(), $idA );
 		$revDelList->setVisibility( [
 			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => "Testing",
@@ -340,9 +338,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
 
-		$revDelList = new RevDelRevisionList(
-			RequestContext::getMain(), $page->getTitle(), [ $idA ]
-		);
+		$revDelList = $this->getRevDelRevisionList( $page->getTitle(), $idA );
 		$revDelList->setVisibility( [
 			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => "Testing",
@@ -582,6 +578,20 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString(
 			'rev-deleted-text-permission: ArticleViewTest::testViewOldError',
 			$this->getHtml( $output )
+		);
+	}
+
+	private function getRevDelRevisionList( $title, $revisionId ) {
+		$services = MediaWikiServices::getInstance();
+		return new RevDelRevisionList(
+			RequestContext::getMain(),
+			$title,
+			[ $revisionId ],
+			$services->getDBLoadBalancerFactory(),
+			$services->getHookContainer(),
+			$services->getHtmlCacheUpdater(),
+			$services->getRevisionStore(),
+			$services->getMainWANObjectCache()
 		);
 	}
 }
