@@ -240,7 +240,15 @@ class SkinTemplate extends Skin {
 							$footerIcon['height'] = 31;
 						}
 					}
-					$footericons[$footerIconsKey][] = $footerIcon;
+
+					// Only output icons which have an image.
+					// For historic reasons this mimics the `icononly` option
+					// for BaseTemplate::getFooterIcons.
+					// In some cases the icon may be an empty array.
+					// Filter these out. (See T269776)
+					if ( is_string( $footerIcon ) || isset( $footerIcon['src'] ) ) {
+						$footericons[$footerIconsKey][] = $footerIcon;
+					}
 				}
 			}
 		}
