@@ -97,7 +97,10 @@ return [
 		// with the interface.css styles; skinStyles should be used if your
 		// skin over-rides common content styling.
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
+			'default' => [
+				'resources/src/mediawiki.skinning/content.parsoid.less',
+				'resources/src/mediawiki.skinning/content.media.less',
+			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
