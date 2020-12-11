@@ -770,7 +770,7 @@ class ParserTestRunner {
 		}
 
 		// If any requirements are not met, mark all tests from the file as skipped
-		if ( !$this->meetsRequirements( $testFileInfo['requirements'] ) ) {
+		if ( !$this->meetsRequirements( $testFileInfo['fileOptions']['requirements'] ?? [] ) ) {
 			foreach ( $testFileInfo['tests'] as $test ) {
 				$this->recorder->startTest( $test );
 				$this->recorder->skipped( $test, 'required extension not enabled' );
