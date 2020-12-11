@@ -227,7 +227,7 @@ class SpecialSearch extends SpecialPage {
 				$url = str_replace( '$1', urlencode( $term ), $searchForwardUrl );
 				$out->redirect( $url );
 			} else {
-				$this->showGoogleSearch( $term );
+				$out->addHTML( $this->showGoogleSearch( $term ) );
 			}
 
 			return;
@@ -241,24 +241,24 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @param string $term Search term
 	 * @todo FIXME Maybe we should get rid of this raw html message at some future time
-	 * @suppress SecurityCheck-XSS
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	private function showGoogleSearch( $term ) {
-		$this->getOutput()->addHTML(
-			"<fieldset>" .
+		return "<fieldset>" .
 				"<legend>" .
 					$this->msg( 'search-external' )->escaped() .
 				"</legend>" .
 				"<p class='mw-searchdisabled'>" .
 					$this->msg( 'searchdisabled' )->escaped() .
 				"</p>" .
+				// googlesearch is part of $wgRawHtmlMessages and safe to use as is here
 				$this->msg( 'googlesearch' )->rawParams(
 					htmlspecialchars( $term ),
 					'UTF-8',
 					$this->msg( 'searchbutton' )->escaped()
 				)->text() .
-			"</fieldset>"
-		);
+			"</fieldset>";
 	}
 
 	/**
