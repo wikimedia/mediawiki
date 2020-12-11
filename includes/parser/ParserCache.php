@@ -142,6 +142,13 @@ class ParserCache {
 		LoggerInterface $logger,
 		$useJson = false
 	) {
+		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
+			$cache = new CachedBagOStuff( $cache, [
+				// Each ParserCache entry uses 2 keys, one for metadata and one for parser output.
+				// So, cache at most 4 different parser outputs in memory. The number was chosen ad hoc.
+				'maxKeys' => 8
+			] );
+		}
 		$this->name = $name;
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;

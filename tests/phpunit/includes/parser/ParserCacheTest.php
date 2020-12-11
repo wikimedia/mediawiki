@@ -576,8 +576,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @param string $data
 	 */
 	public function testCorruptData( bool $json, string $data ) {
-		$bag = new HashBagOStuff();
-		$cache = $this->createParserCache( null, $bag );
+		$cache = $this->createParserCache( null, new HashBagOStuff() );
 		$cache->setJsonSupport( $json, $json );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
@@ -590,7 +589,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$parserOutput->getUsedOptions()
 		);
 
-		$bag->set( $outputKey, $data );
+		$cache->getCacheStorage()->set( $outputKey, $data );
 
 		// just make sure we don't crash and burn
 		$this->assertFalse( $cache->get( $this->page, $options1 ) );
@@ -607,8 +606,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCorruptMetadata() {
 		$this->hideDeprecated( 'ParserCache::getKey' );
-		$bag = new HashBagOStuff();
-		$cache = $this->createParserCache( null, $bag );
+		$cache = $this->createParserCache( null, new HashBagOStuff() );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newCanonical( 'canonical' );
@@ -618,7 +616,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$this->page
 		);
 
-		$bag->set( $optionsKey, 'bad data' );
+		$cache->getCacheStorage()->set( $optionsKey, 'bad data' );
 
 		// just make sure we don't crash and burn
 		$this->assertNull( $cache->getMetadata( $this->page ) );
