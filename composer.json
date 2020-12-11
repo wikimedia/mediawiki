@@ -51,7 +51,7 @@
 		"wikimedia/html-formatter": "1.0.2",
 		"wikimedia/ip-set": "2.1.0",
 		"wikimedia/ip-utils": "1.0.0",
-		"wikimedia/less.php": "3.0.0",
+		"wikimedia/less.php": "3.1.0",
 		"wikimedia/object-factory": "2.1.0",
 		"wikimedia/parsoid": "0.12.1",
 		"wikimedia/php-session-serializer": "1.0.7",
