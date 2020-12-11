@@ -512,11 +512,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		if ( $prevId != 0 ) {
 			$overrides = [ 'from' => $this->opts->getValue( 'back' ) ];
-			$prev = $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) );
+			$prev = Message::rawParam( $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) ) );
 		}
 		if ( $nextId != 0 ) {
 			$overrides = [ 'from' => $nextId, 'back' => $prevId ];
-			$next = $this->makeSelfLink( $next, array_merge( $changed, $overrides ) );
+			$next = Message::rawParam( $this->makeSelfLink( $next, array_merge( $changed, $overrides ) ) );
 		}
 
 		$limitLinks = [];

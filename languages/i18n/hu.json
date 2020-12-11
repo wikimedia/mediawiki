@@ -330,7 +330,7 @@
 	"sort-ascending": "Növekvő sorrend",
 	"sort-initial": "Eredeti sorrend",
 	"nstab-main": "Szócikk",
-	"nstab-user": "Felhasználói lap",
+	"nstab-user": "{{GENDER:$1|Felhasználói lap}}",
 	"nstab-media": "Média",
 	"nstab-special": "Speciális lap",
 	"nstab-project": "Projektlap",

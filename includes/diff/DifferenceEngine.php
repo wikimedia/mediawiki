@@ -862,16 +862,22 @@ class DifferenceEngine extends ContextSource {
 			if ( !$allowed ) {
 				$msg = $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff';
 				# Give explanation for why revision is not visible
-				$out->wrapWikiMsg( "<div id='mw-$msg' class='mw-warning plainlinks'>\n$1\n</div>\n",
-					[ $msg ] );
+				$out->addHtml(
+					Html::warningBox(
+						$this->msg( $msg )->parse(),
+						'plainlinks'
+					)
+				);
 			} else {
 				# Give explanation and add a link to view the diff...
 				$query = $this->getRequest()->appendQueryValue( 'unhide', '1' );
 				$link = $this->getTitle()->getFullURL( $query );
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
-				$out->wrapWikiMsg(
-					"<div id='mw-$msg' class='mw-warning plainlinks'>\n$1\n</div>\n",
-					[ $msg, $link ]
+				$out->addHtml(
+					Html::warningBox(
+						$this->msg( $msg, $link )->parse(),
+						'plainlinks'
+					)
 				);
 			}
 		# Otherwise, output a regular diff...
@@ -880,9 +886,10 @@ class DifferenceEngine extends ContextSource {
 			$notice = '';
 			if ( $deleted ) {
 				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
-				$notice = "<div id='mw-$msg' class='mw-warning plainlinks'>\n" .
-					$this->msg( $msg )->parse() .
-					"</div>\n";
+				$notice = Html::warningBox(
+					$this->msg( $msg )->parse(),
+					'plainlinks'
+				);
 			}
 			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if ( !$diffOnly ) {

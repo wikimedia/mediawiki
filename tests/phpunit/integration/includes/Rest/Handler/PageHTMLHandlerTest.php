@@ -84,7 +84,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				new NullStatsdDataFactory(),
 				new NullLogger()
 			),
-			$this->getServiceContainer()->getWikiPageFactory()
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
 
 		if ( $parsoid !== null ) {
@@ -94,22 +95,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		return $handler;
-	}
-
-	public function testExecuteBare() {
-		$page = $this->getExistingTestPage( 'Talk:HtmlEndpointTestPage/with/slashes' );
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$htmlUrl = 'https://wiki.example.com/rest/v1/page/Talk%3AHtmlEndpointTestPage%2Fwith%2Fslashes/html';
-
-		$handler = $this->newHandler();
-		$config = [ 'format' => 'bare' ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
-
-		$this->assertResponseData( $page, $data );
-		$this->assertSame( $htmlUrl, $data['html_url'] );
 	}
 
 	public function testExecuteWithHtml() {
@@ -203,13 +188,15 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// First, test it works if nothing was cached yet.
 		// Make some time pass since page was created:
-		MWTimestamp::setFakeTime( $time + 10 );
+		$time += 10;
+		MWTimestamp::setFakeTime( $time );
 		$handler = $this->newHandler( $cache );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$etag = $response->getHeaderLine( 'ETag' );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -220,10 +207,11 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
-		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
+		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
+		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, expire the cache
@@ -241,6 +229,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
+		$etag = $response->getHeaderLine( 'ETag' );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );

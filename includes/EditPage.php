@@ -28,6 +28,7 @@ use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
+use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -140,11 +141,8 @@ class EditPage implements IEditObject {
 	/** @var bool New page or new section */
 	public $isNew = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $deletedSinceEdit;
+	/** @var bool */
+	private $deletedSinceEdit;
 
 	/** @var string */
 	public $formtype;
@@ -155,59 +153,32 @@ class EditPage implements IEditObject {
 	 */
 	public $firsttime;
 
-	/**
-	 * @var bool|stdClass
-	 * @internal
-	 */
-	public $lastDelete;
+	/** @var bool|stdClass */
+	private $lastDelete;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTokenOk = false;
+	/** @var bool */
+	private $mTokenOk = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTokenOkExceptSuffix = false;
+	/** @var bool */
+	private $mTokenOkExceptSuffix = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $mTriedSave = false;
+	/** @var bool */
+	private $mTriedSave = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $incompleteForm = false;
+	/** @var bool */
+	private $incompleteForm = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $tooBig = false;
+	/** @var bool */
+	private $tooBig = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $missingComment = false;
+	/** @var bool */
+	private $missingComment = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $missingSummary = false;
+	/** @var bool */
+	private $missingSummary = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $allowBlankSummary = false;
+	/** @var bool */
+	private $allowBlankSummary = false;
 
 	/** @var bool */
 	protected $blankArticle = false;
@@ -221,26 +192,19 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	protected $allowSelfRedirect = false;
 
-	/**
-	 * @var string
-	 * @internal
-	 */
-	public $autoSumm = '';
+	/** @var string */
+	private $autoSumm = '';
 
 	/** @var string */
 	private $hookError = '';
 
-	/**
-	 * @var ParserOutput
-	 * @internal
-	 */
-	public $mParserOutput;
+	/** @var ParserOutput */
+	private $mParserOutput;
 
 	/**
 	 * @var bool Has a summary been preset using GET parameter &summary= ?
-	 * @internal
 	 */
-	public $hasPresetSummary = false;
+	private $hasPresetSummary = false;
 
 	/**
 	 * @var Revision|bool|null
@@ -274,17 +238,11 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	public $diff = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $minoredit = false;
+	/** @var bool */
+	private $minoredit = false;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $watchthis = false;
+	/** @var bool */
+	private $watchthis = false;
 
 	/** @var bool Corresponds to $wgWatchlistExpiry */
 	private $watchlistExpiryEnabled = false;
@@ -295,11 +253,8 @@ class EditPage implements IEditObject {
 	/** @var string|null The expiry time of the watch item, or null if it is not watched temporarily. */
 	private $watchlistExpiry;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $recreate = false;
+	/** @var bool */
+	private $recreate = false;
 
 	/** @var string
 	 * Page content input field.
@@ -314,10 +269,9 @@ class EditPage implements IEditObject {
 
 	/**
 	 * @var bool
-	 * @internal
 	 * If true, hide the summary field.
 	 */
-	public $nosummary = false;
+	private $nosummary = false;
 
 	/** @var string
 	 * Timestamp of the latest revision of the page when editing was initiated
@@ -358,30 +312,20 @@ class EditPage implements IEditObject {
 
 	/**
 	 * @var int Revision ID the edit is based on, adjusted when an edit conflict is resolved.
-	 * @internal
 	 * @see $editRevId
 	 * @see $oldid
 	 * @see getparentRevId()
 	 */
-	public $parentRevId = 0;
+	private $parentRevId = 0;
 
-	/**
-	 * @var string
-	 * @internal
-	 */
-	public $editintro = '';
+	/** @var string */
+	private $editintro = '';
 
-	/**
-	 * @var int|null
-	 * @internal
-	 */
-	public $scrolltop = null;
+	/** @var int|null */
+	private $scrolltop = null;
 
-	/**
-	 * @var bool
-	 * @internal
-	 */
-	public $markAsBot = true;
+	/** @var bool */
+	private $markAsBot = true;
 
 	/** @var string */
 	public $contentModel;
@@ -505,6 +449,26 @@ class EditPage implements IEditObject {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTokenOk', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTokenOkExceptSuffix', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTriedSave', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'incompleteForm', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'tooBig', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'missingComment', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'missingSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'allowBlankSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'autoSumm', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mParserOutput', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'hasPresetSummary', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'minoredit', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'watchthis', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'recreate', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'nosummaryparentRevId', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'editintro', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'scrolltop', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'markAsBot', '1.35', __CLASS__ );
 	}
 
 	/**
@@ -1948,20 +1912,6 @@ class EditPage implements IEditObject {
 			return $status;
 		}
 
-		try {
-			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch ( MWContentSerializationException $ex ) {
-			$status = Status::newFatal(
-				'content-failed-to-parse',
-				$this->contentModel,
-				$this->contentFormat,
-				$ex->getMessage()
-			);
-			$status->value = self::AS_PARSE_ERROR;
-			return $status;
-		}
-
 		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
 			$this->hookError, $this->summary )
 		) {
@@ -1973,6 +1923,20 @@ class EditPage implements IEditObject {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
+		}
+
+		try {
+			# Construct Content object
+			$textbox_content = $this->toEditContent( $this->textbox1 );
+		} catch ( MWContentSerializationException $ex ) {
+			$status = Status::newFatal(
+				'content-failed-to-parse',
+				$this->contentModel,
+				$this->contentFormat,
+				$ex->getMessage()
+			);
+			$status->value = self::AS_PARSE_ERROR;
 			return $status;
 		}
 
@@ -2023,8 +1987,8 @@ class EditPage implements IEditObject {
 		);
 		$constraintRunner->addConstraint(
 			$constraintFactory->newImageRedirectConstraint(
+				$textbox_content,
 				$this->mTitle,
-				$textbox_content->isRedirect(),
 				$user
 			)
 		);
@@ -2070,21 +2034,15 @@ class EditPage implements IEditObject {
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
-			if ( $failed instanceof PageSizeConstraint ) {
-				// Error will be displayed by showEditForm()
-				$this->tooBig = true;
-			} elseif ( $failed instanceof SpamRegexConstraint ) {
+			// Need to check SpamRegexConstraint here, to avoid needing to pass
+			// $result by reference again
+			if ( $failed instanceof SpamRegexConstraint ) {
 				$result['spam'] = $failed->getMatch();
-			} elseif ( $failed instanceof UserBlockConstraint ) {
-				// Auto-block user's IP if the account was "hard" blocked
-				if ( !wfReadOnly() ) {
-					$user->spreadAnyEditBlock();
-				}
+			} else {
+				$this->handleFailedConstraint( $failed );
 			}
 
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
+			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2125,14 +2083,8 @@ class EditPage implements IEditObject {
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				if ( $failed instanceof DefaultTextConstraint ) {
-					$this->blankArticle = true;
-				} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-					$this->hookError = $failed->getHookError();
-				}
-				$statusValue = $failed->getLegacyStatus();
-				$status = Status::wrap( $statusValue );
-				return $status;
+				$this->handleFailedConstraint( $failed );
+				return Status::wrap( $failed->getLegacyStatus() );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2313,19 +2265,8 @@ class EditPage implements IEditObject {
 			// Check the constraints
 			if ( $constraintRunner->checkConstraints() === false ) {
 				$failed = $constraintRunner->getFailedConstraint();
-				if ( $failed instanceof EditFilterMergedContentHookConstraint ) {
-					$this->hookError = $failed->getHookError();
-				} elseif (
-					$failed instanceof AutoSummaryMissingSummaryConstraint ||
-					$failed instanceof NewSectionMissingSummaryConstraint
-				) {
-					$this->missingSummary = true;
-				} elseif ( $failed instanceof MissingCommentConstraint ) {
-					$this->missingComment = true;
-				}
-				$statusValue = $failed->getLegacyStatus();
-				$status = Status::wrap( $statusValue );
-				return $status;
+				$this->handleFailedConstraint( $failed );
+				return Status::wrap( $failed->getLegacyStatus() );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
@@ -2382,17 +2323,8 @@ class EditPage implements IEditObject {
 		// Check the constraints
 		if ( $constraintRunner->checkConstraints() === false ) {
 			$failed = $constraintRunner->getFailedConstraint();
-
-			if ( $failed instanceof PageSizeConstraint ) {
-				// Error will be displayed by showEditForm()
-				$this->tooBig = true;
-			} elseif ( $failed instanceof SelfRedirectConstraint ) {
-				$this->selfRedirect = true;
-			}
-
-			$statusValue = $failed->getLegacyStatus();
-			$status = Status::wrap( $statusValue );
-			return $status;
+			$this->handleFailedConstraint( $failed );
+			return Status::wrap( $failed->getLegacyStatus() );
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
@@ -2460,6 +2392,39 @@ class EditPage implements IEditObject {
 		$statusCode = ( $new ? self::AS_SUCCESS_NEW_ARTICLE : self::AS_SUCCESS_UPDATE );
 		$status = Status::newGood( $statusCode );
 		return $status;
+	}
+
+	/**
+	 * Apply the specific updates needed for the EditPage fields based on which constraint
+	 * failed, rather than interspersing this logic throughout internalAttemptSave at
+	 * each of the points the constraints are checked. Eventually, this will act on the
+	 * result from the backend.
+	 *
+	 * @param IEditConstraint $failed
+	 */
+	private function handleFailedConstraint( IEditConstraint $failed ) {
+		if ( $failed instanceof PageSizeConstraint ) {
+			// Error will be displayed by showEditForm()
+			$this->tooBig = true;
+		} elseif ( $failed instanceof UserBlockConstraint ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			if ( !wfReadOnly() ) {
+				$this->context->getUser()->spreadAnyEditBlock();
+			}
+		} elseif ( $failed instanceof DefaultTextConstraint ) {
+			$this->blankArticle = true;
+		} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
+			$this->hookError = $failed->getHookError();
+		} elseif (
+			$failed instanceof AutoSummaryMissingSummaryConstraint ||
+			$failed instanceof NewSectionMissingSummaryConstraint
+		) {
+			$this->missingSummary = true;
+		} elseif ( $failed instanceof MissingCommentConstraint ) {
+			$this->missingComment = true;
+		} elseif ( $failed instanceof SelfRedirectConstraint ) {
+			$this->selfRedirect = true;
+		}
 	}
 
 	/**
@@ -3330,16 +3295,19 @@ class EditPage implements IEditObject {
 						RevisionRecord::DELETED_TEXT,
 						$user
 					) ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							// title used in wikilinks, should not contain whitespaces
-							[ 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() ]
+						$out->addHtml(
+							Html::warningBox(
+								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() )->parse(),
+								'plainlinks'
+							)
 						);
 					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							// title used in wikilinks, should not contain whitespaces
-							[ 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() ]
+						$out->addHtml(
+							Html::warningBox(
+								// title used in wikilinks, should not contain whitespaces
+								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() )->parse(),
+								'plainlinks'
+							)
 						);
 					}
 

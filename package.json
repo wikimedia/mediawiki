@@ -10,7 +10,7 @@
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
     "selenium": "bash ./tests/selenium/selenium.sh",
-    "selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
+    "selenium-daily": "MW_SCRIPT_PATH=/w npm run selenium-test -- --mochaOpts.grep @daily",
     "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {

@@ -573,7 +573,7 @@
 	"linkstoimage": "Di falarin {{PLURAL:$1|piej lingk|$1 piejdem lingk}}",
 	"nolinkstoimage": "No piej no de we lingk dis fail.",
 	"sharedupload": "Dis fail kom frahn $1 ahn kiahn yuuz bai ada prajek.",
-	"sharedupload-desc-here": "Dis fail koh frah $1 ah kiah yuuz pah adaels prajek. Di diskripshan fiit [$2 fail diskripshan piej] shuo biluo.‎",
+	"sharedupload-desc-here": "Da file yah come fram $1 an' can use inna adda projeck. Di description fram [$2 di description page] deh unda dis.",
 	"uploadnewversion-linktext": "Opluod nyuu voerjan a dis fail",
 	"upload-disallowed-here": "Yu kyaah uobarait dis fail.",
 	"randompage": "Any page, it nuh matta which",
@@ -595,7 +595,7 @@
 	"allpagesfrom": "Displie piej taat a:",
 	"allpagesto": "Displie piej en a:",
 	"allarticles": "Aal piej",
-	"allpagessubmit": "Gwaan",
+	"allpagessubmit": "Sen'",
 	"categories": "Kiatigaridem‎",
 	"linksearch": "Extoernal lingk",
 	"listgrouprights-members": "(lis a memba)",
@@ -785,7 +785,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"logentry-delete-delete": "$1 {{GENDER:$2|diliitid}} piej $3‎",
 	"logentry-move-move": "$1 {{GENDER:$2|muuv}} piej $3 tu $4‎",
-	"logentry-newusers-create": "Yuuza akount $1 eh {{GENDER:$2|krietid}}‎",
+	"logentry-newusers-create": "One account {{GENDER:$2|mek}} fi $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|uploaded}} $3",
 	"searchsuggest-search": "Search {{SITENAME}}"
 }

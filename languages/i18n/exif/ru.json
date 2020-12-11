@@ -374,6 +374,8 @@
 	"exif-urgency-other": "Определённый пользователем приоритет ($1)",
 	"exif-firstphotodate": "Дата первой фотографии",
 	"exif-lastphotodate": "Дата последней фотографии",
+	"exif-projectiontype": "Тип проекции",
+	"exif-usepanoramaviewer": "Использовать программу просмотра панорам",
 	"exif-usepanoramaviewer-true": "Да",
 	"exif-usepanoramaviewer-false": "Нет",
 	"exif-exposurelockused-true": "Да",

@@ -91,7 +91,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
-* Updated composer/semver from 1.5.1 to 1.5.2.
+* Updated composer/semver from 1.5.1 to 3.2.4.
 * …
 
 ===== Changed development-only external libraries =====
@@ -101,6 +101,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated monolog/monolog from 1.25.3 to 2.0.2.
 * Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
+* Updated psy/psysh from 0.10.4 to 0.10.5.
 * …
 
 ==== Removed external libraries ====
@@ -370,6 +371,9 @@ because of Phabricator reports.
 * Skin::privacyLink(), Skin::disclaimerLink() and Skin::aboutLink() have been
   deprecated. Please use Skin::footerLink() instead.
 * Skin::getLogo() has been deprecated. Use ResourceLoaderSkinModule instead.
+* The module `mediawiki.toc.styles` has been replaced by
+ResourceLoaderSkinModule. If you are having problems styling table of contents
+ensure you have an updated skin.
 * Skin::mainPageLink() has been deprecated. Use LinkRenderer service instead.
 * BaseTemplate::getToolbox() method has been hard deprecated. The toolbox data
   is now available in a sidebar data array which you can get from any class

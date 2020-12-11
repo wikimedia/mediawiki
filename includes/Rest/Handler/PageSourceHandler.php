@@ -3,17 +3,22 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use LogicException;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
 use RequestContext;
+use Title;
 use TitleFactory;
 use TitleFormatter;
+use Wikimedia\Assert\Assert;
 
 /**
- * Handler class for Core REST API Page Source endpoint
+ * Handler class for Core REST API Page Source endpoint with the following routes:
+ * - /page/{title}
+ * - /page/{title}/bare
  */
 class PageSourceHandler extends SimpleHandler {
 
@@ -43,18 +48,47 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	/**
+	 * @param Title $title
+	 * @return string
+	 */
+	private function constructHtmlUrl( Title $title ): string {
+		return $this->getRouter()->getRouteUrl(
+			'/v1/page/{title}/html',
+			[ 'title' => $title->getPrefixedText() ]
+		);
+	}
+
+	/**
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 
-		$content = $this->contentHelper->getPageContent();
-		$body = $this->contentHelper->constructMetadata();
-		$body['source'] = $content->getText();
+		$titleObj = $this->contentHelper->getTitle();
+
+		// The call to $this->contentHelper->getTitle() should not return null if
+		// $this->contentHelper->checkAccess() did not throw.
+		Assert::invariant( $titleObj !== null, 'Title should be known' );
+
+		$outputMode = $this->getOutputMode();
+		switch ( $outputMode ) {
+			case 'bare':
+				$body = $this->contentHelper->constructMetadata();
+				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
+				break;
+			case 'source':
+				$content = $this->contentHelper->getPageContent();
+				$body = $this->contentHelper->constructMetadata();
+				$body['source'] = $content->getText();
+				break;
+			default:
+				throw new LogicException( "Unknown HTML type $outputMode" );
+		}
 
 		$response = $this->getResponseFactory()->createJson( $body );
 		$this->contentHelper->setCacheControl( $response );
+
 		return $response;
 	}
 
@@ -73,6 +107,10 @@ class PageSourceHandler extends SimpleHandler {
 	 */
 	protected function getLastModified(): ?string {
 		return $this->contentHelper->getLastModified();
+	}
+
+	private function getOutputMode(): string {
+		return $this->getConfig()['format'];
 	}
 
 	public function needsWriteAccess(): bool {

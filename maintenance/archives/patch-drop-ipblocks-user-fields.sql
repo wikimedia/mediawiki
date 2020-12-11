@@ -1,5 +1,5 @@
 --
--- patch-drop-user-fields.sql
+-- patch-drop-ipblocks-user-fields.sql
 --
 -- T188327. Drop old xx_user and xx_user_text fields, and defaults from xx_actor fields.
 

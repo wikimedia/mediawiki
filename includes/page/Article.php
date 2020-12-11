@@ -663,7 +663,7 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$this->doOutputFromParserCache( $pOutput, $oldid, $outputPage, $textOptions );
+				$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
 			}
@@ -698,7 +698,7 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$this->doOutputFromParserCache( $pOutput, $oldid, $outputPage, $textOptions );
+					$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
 				}
@@ -796,22 +796,14 @@ class Article implements Page {
 
 	/**
 	 * @param ParserOutput $pOutput
-	 * @param int $oldid
 	 * @param OutputPage $outputPage
 	 * @param array $textOptions
 	 */
 	private function doOutputFromParserCache(
 		ParserOutput $pOutput,
-		int $oldid,
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		if ( $oldid ) {
-			wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink" );
-			$this->setOldSubtitle( $oldid );
-		} else {
-			wfDebug( __METHOD__ . ": showing parser cache contents" );
-		}
 		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
@@ -1531,7 +1523,6 @@ class Article implements Page {
 			// Not deleted
 			return true;
 		}
-
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		// Used in wikilinks, should not contain whitespaces
@@ -1542,8 +1533,12 @@ class Article implements Page {
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				[ 'rev-deleted-text-permission', $titleText ] );
+			$outputPage->addHtml(
+				Html::warningBox(
+					$outputPage->msg( 'rev-deleted-text-permission', $titleText )->parse(),
+					'plainlinks'
+				)
+			);
 
 			return false;
 		// If the user needs to confirm that they want to see it...
@@ -1553,7 +1548,12 @@ class Article implements Page {
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", [ $msg, $link ] );
+			$outputPage->addHtml(
+				Html::warningBox(
+					$outputPage->msg( $msg, $link )->parse(),
+					'plainlinks'
+				)
+			);
 
 			return false;
 		// We are allowed to see...
@@ -1561,7 +1561,12 @@ class Article implements Page {
 			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 				? [ 'rev-suppressed-text-view', $titleText ]
 				: [ 'rev-deleted-text-view', $titleText ];
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
+			$outputPage->addHtml(
+				Html::warningBox(
+					$outputPage->msg( $msg[0], $msg[1] )->parse(),
+					'plainlinks'
+				)
+			);
 
 			return true;
 		}
@@ -1983,16 +1988,24 @@ class Article implements Page {
 
 		$backlinkCache = $title->getBacklinkCache();
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'deleting-backlinks-warning' );
+			$outputPage->addHtml(
+				Html::warningBox(
+					$outputPage->msg( 'deleting-backlinks-warning' )->parse(),
+					'plainlinks'
+				)
+			);
 		}
 
 		$subpageQueryLimit = 51;
 		$subpages = $title->getSubpages( $subpageQueryLimit );
 		$subpageCount = count( $subpages );
 		if ( $subpageCount > 0 ) {
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				[ 'deleting-subpages-warning', Message::numParam( $subpageCount ) ] );
+			$outputPage->addHtml(
+				Html::warningBox(
+					$outputPage->msg( 'deleting-subpages-warning', Message::numParam( $subpageCount ) )->parse(),
+					'plainlinks'
+				)
+			);
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 

@@ -69,7 +69,8 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = new ParsoidHTMLHelper(
 			$parserCache,
-			$this->getServiceContainer()->getWikiPageFactory()
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
 
 		if ( $parsoid !== null ) {
@@ -139,7 +140,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( $cache );
 		$helper->init( $page->getTitle() );
 
-		$this->assertNotSame( $etag, $helper->getETag() );
+		$this->assertSame( $etag, $helper->getETag() );
 		$etag = $helper->getETag();
 		$this->assertSame(
 			MWTimestamp::convert( TS_RFC2822, $time + 10 ),

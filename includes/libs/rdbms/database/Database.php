@@ -2683,7 +2683,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * All supported databases have substring functions that behave the same for
 	 * positive $startPosition and non-negative $length, but behaviors differ when
-	 * given 0 or negative $startPosition or negative $length. The simplest
+	 * given negative $startPosition or negative $length. The simplest
 	 * solution to that is to just forbid those values.
 	 *
 	 * @param int $startPosition
@@ -2691,7 +2691,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.31
 	 */
 	protected function assertBuildSubstringParams( $startPosition, $length ) {
-		if ( !is_int( $startPosition ) || $startPosition <= 0 ) {
+		if ( $startPosition === 0 ) {
+			// The DBMSs we support use 1-based indexing here.
+			throw new InvalidArgumentException( 'Use 1 as $startPosition for the beginning of the string' );
+		}
+		if ( !is_int( $startPosition ) || $startPosition < 0 ) {
 			throw new InvalidArgumentException(
 				'$startPosition must be a positive integer'
 			);

@@ -2677,6 +2677,7 @@
 	"confirm-purge-bottom": "Reinsing av ei side slettar mellomlageret og tvingar fram den nyaste versjonen.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Legg denne sida til i overvakingslista di?",
+	"watchlist-expiry-options": "Uavgrensa:infinite,1 veke:1 week,1 månad:1 month,3 månader:3 months,6 månader:6 months",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Fjern denne sida frå overvakingslista di?",
 	"confirm-rollback-button": "OK",

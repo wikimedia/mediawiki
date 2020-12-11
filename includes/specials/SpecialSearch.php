@@ -25,6 +25,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
@@ -116,6 +117,9 @@ class SpecialSearch extends SpecialPage {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	/**
 	 * @var Status Holds any parameter validation errors that should
 	 *  be displayed back to the user.
@@ -133,6 +137,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param InterwikiLookup $interwikiLookup
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserOptionsManager $userOptionsManager
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		SearchEngineConfig $searchConfig,
@@ -142,7 +147,8 @@ class SpecialSearch extends SpecialPage {
 		IContentHandlerFactory $contentHandlerFactory,
 		InterwikiLookup $interwikiLookup,
 		ReadOnlyMode $readOnlyMode,
-		UserOptionsManager $userOptionsManager
+		UserOptionsManager $userOptionsManager,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Search' );
 		$this->searchConfig = $searchConfig;
@@ -153,6 +159,7 @@ class SpecialSearch extends SpecialPage {
 		$this->interwikiLookup = $interwikiLookup;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userOptionsManager = $userOptionsManager;
+		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
 	/**
@@ -422,6 +429,14 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$title = Title::newFromText( $term );
+		$languageConverter = $this->languageConverterFactory->getLanguageConverter();
+		if ( $languageConverter->hasVariants() ) {
+			// findVariantLink will replace the link arg as well but we want to keep our original
+			// search string, use a copy in the $variantTerm var so that $term remains intact.
+			$variantTerm = $term;
+			$languageConverter->findVariantLink( $variantTerm, $title );
+		}
+
 		$showSuggestion = $title === null || !$title->isKnown();
 		$engine->setShowSuggestion( $showSuggestion );
 
