@@ -11,77 +11,8 @@
 		updatingBooklet = false,
 		pages = {},
 		moduleInfoCache = {},
-		baseRequestParams;
-
-	/**
-	 * A wrapper for a widget that provides an enable/disable button
-	 *
-	 * @class
-	 * @private
-	 * @constructor
-	 * @param {OO.ui.Widget} widget
-	 * @param {Object} [config] Configuration options
-	 */
-	function OptionalWidget( widget, config ) {
-		var k;
-
-		config = config || {};
-
-		this.widget = widget;
-		this.$cover = config.$cover ||
-			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-cover' );
-		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
-			.on( 'change', this.onCheckboxChange, [], this );
-
-		OptionalWidget.super.call( this, config );
-
-		// Forward most methods for convenience
-		for ( k in this.widget ) {
-			if ( typeof this.widget[ k ] === 'function' && !this[ k ] ) {
-				this[ k ] = this.widget[ k ].bind( this.widget );
-			}
-		}
-
-		widget.connect( this, {
-			change: [ this.emit, 'change' ]
-		} );
-
-		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
-
-		this.$element
-			.addClass( 'mw-apisandbox-optionalWidget' )
-			.append(
-				this.$cover,
-				$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-fields' ).append(
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-widget' ).append(
-						widget.$element
-					),
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-checkbox' ).append(
-						this.checkbox.$element
-					)
-				)
-			);
-
-		this.setDisabled( widget.isDisabled() );
-	}
-	OO.inheritClass( OptionalWidget, OO.ui.Widget );
-	OptionalWidget.prototype.onCheckboxChange = function ( checked ) {
-		this.setDisabled( !checked );
-	};
-	OptionalWidget.prototype.onOverlayClick = function () {
-		this.setDisabled( false );
-		if ( typeof this.widget.focus === 'function' ) {
-			this.widget.focus();
-		}
-	};
-	OptionalWidget.prototype.setDisabled = function ( disabled ) {
-		OptionalWidget.super.prototype.setDisabled.call( this, disabled );
-		this.widget.setDisabled( this.isDisabled() );
-		this.checkbox.setSelected( !this.isDisabled() );
-		this.$cover.toggle( this.isDisabled() );
-		this.emit( 'change' );
-		return this;
-	};
+		baseRequestParams,
+		OptionalParamWidget = require( './OptionalParamWidget.js' );
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -249,23 +180,6 @@
 					item.$element.addClass( 'apihelp-internal-value' );
 				}
 				return item;
-			}
-		},
-
-		optionalWidget: {
-			getApiValue: function () {
-				return this.isDisabled() ? undefined : this.widget.getApiValue();
-			},
-			setApiValue: function ( v ) {
-				this.setDisabled( v === undefined );
-				this.widget.setApiValue( v );
-			},
-			apiCheckValid: function () {
-				if ( this.isDisabled() ) {
-					return $.Deferred().resolve( true ).promise();
-				} else {
-					return this.widget.apiCheckValid();
-				}
 			}
 		},
 
@@ -698,9 +612,8 @@
 			if ( Util.apiBool( pi.required ) || opts.nooptional ) {
 				finalWidget = widget;
 			} else {
-				finalWidget = new OptionalWidget( widget );
+				finalWidget = new OptionalParamWidget( widget );
 				finalWidget.paramInfo = pi;
-				$.extend( finalWidget, WidgetMethods.optionalWidget );
 				if ( widget.getSubmodules ) {
 					finalWidget.getSubmodules = widget.getSubmodules.bind( widget );
 					finalWidget.on( 'disable', function () {
@@ -1508,7 +1421,7 @@
 			tmp = [];
 			if ( flag && !( widget instanceof OO.ui.TagMultiselectWidget ) &&
 				!(
-					widget instanceof OptionalWidget &&
+					widget instanceof OptionalParamWidget &&
 					widget.widget instanceof OO.ui.TagMultiselectWidget
 				)
 			) {
