@@ -2161,7 +2161,7 @@ class WANObjectCache implements
 
 	/**
 	 * @see BagOStuff::makeKey()
-	 * @param string $class Key class
+	 * @param string $class Key collection name
 	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
@@ -2172,7 +2172,7 @@ class WANObjectCache implements
 
 	/**
 	 * @see BagOStuff::makeGlobalKey()
-	 * @param string $class Key class
+	 * @param string $class Key collection name
 	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
