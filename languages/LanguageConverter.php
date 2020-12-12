@@ -108,10 +108,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		global $wgDisabledVariants;
 
 		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );

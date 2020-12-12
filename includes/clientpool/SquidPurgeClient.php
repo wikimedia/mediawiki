@@ -220,6 +220,7 @@ class SquidPurgeClient {
 		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;
 		// Two ''s to create \r\n\r\n
 		$request[] = '';
+		// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 		$request[] = '';
 
 		$this->requests[] = implode( "\r\n", $request );

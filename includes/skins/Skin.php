@@ -2329,6 +2329,7 @@ abstract class Skin extends ContextSource {
 			}
 			while ( count( $wrapper ) > 0 ) {
 				$element = array_pop( $wrapper );
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$html = Html::rawElement( $element['tag'], $element['attributes'] ?? null, $html );
 			}
 		}

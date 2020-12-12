@@ -35,7 +35,7 @@ class PPDPart_Hash extends PPDPart {
 		} else {
 			$accum = [];
 		}
-		// @phan-suppress-next-line PhanTypeMismatchArgument
+		// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 		parent::__construct( $accum );
 	}
 }
