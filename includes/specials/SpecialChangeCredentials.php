@@ -179,9 +179,9 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		$form->addPreText(
 			Html::openElement( 'dl' )
 			. Html::element( 'dt', [], $this->msg( 'credentialsform-provider' )->text() )
-			. Html::element( 'dd', [], $info['provider'] )
+			. Html::element( 'dd', [], $info['provider']->text() )
 			. Html::element( 'dt', [], $this->msg( 'credentialsform-account' )->text() )
-			. Html::element( 'dd', [], $info['account'] )
+			. Html::element( 'dd', [], $info['account']->text() )
 			. Html::closeElement( 'dl' )
 		);
 
@@ -224,7 +224,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		$groupedRequests = [];
 		foreach ( $this->authRequests as $req ) {
 			$info = $req->describeCredentials();
-			$groupedRequests[(string)$info['provider']][] = $req;
+			$groupedRequests[$info['provider']->text()][] = $req;
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
@@ -237,7 +237,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 				$out->addHTML( Html::rawElement( 'dd', [],
 					$linkRenderer->makeLink(
 						$this->getPageTitle( $req->getUniqueId() ),
-						$info['account']
+						$info['account']->text()
 					)
 				) );
 			}
