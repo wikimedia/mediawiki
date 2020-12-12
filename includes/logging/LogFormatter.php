@@ -675,7 +675,8 @@ class LogFormatter {
 	 * @param Title|null $title The page
 	 * @param array $parameters Query parameters
 	 * @param string|null $html Linktext of the link as raw html
-	 * @return string
+	 * @return string wikitext or html
+	 * @return-taint onlysafefor_html
 	 */
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$title instanceof Title ) {
