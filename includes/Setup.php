@@ -729,7 +729,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		}
 		$list = $wgContLang->listToText( $list );
 		throw new HttpError( 400,
-			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )->plain()
+			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )
 		);
 	}
 
