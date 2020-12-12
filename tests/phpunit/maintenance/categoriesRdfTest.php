@@ -75,8 +75,8 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 			->willReturnCallback( [ $this, 'getCategoryLinksIterator' ] );
 
 		/** @var DumpCategoriesAsRdf $dumpScript */
-		$logFileName = tempnam( sys_get_temp_dir(), "Categories-DumpRdfTest" );
-		$outFileName = tempnam( sys_get_temp_dir(), "Categories-DumpRdfTest" );
+		$logFileName = $this->getNewTempFile();
+		$outFileName = $this->getNewTempFile();
 
 		$dumpScript->loadParamsAndArgs(
 			null,
