@@ -416,6 +416,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * Further array elements are ignored in that case.
 	 *
 	 * @param string|array|MessageSpecifier $value
+	 * @param-taint $value tainted
 	 * @return Message
 	 * @throws InvalidArgumentException
 	 * @since 1.27
@@ -450,6 +451,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @param string|string[] ...$keys Message keys, or first argument as an array of all the
 	 * message keys.
+	 * @param-taint $keys tainted
 	 *
 	 * @return Message
 	 */
