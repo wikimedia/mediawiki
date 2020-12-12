@@ -571,7 +571,7 @@ __INDEXATTR__;
 			$encTable = $this->tableName( $table );
 			foreach ( $rows as $row ) {
 				list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( [ $row ] );
-				$tempsql = "INSERT INTO $encTable ($sqlColumns) VALUES ($sqlTuples)";
+				$tempsql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 
 				$this->startAtomic( "$fname (inner)", self::ATOMIC_CANCELABLE );
 				try {
