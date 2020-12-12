@@ -3231,7 +3231,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Compute experienced level based on edit count and registration date.
 	 *
-	 * @return string 'newcomer', 'learner', or 'experienced'
+	 * @return string|false 'newcomer', 'learner', or 'experienced', false for anonymous users
 	 */
 	public function getExperienceLevel() {
 		global $wgLearnerEdits,
@@ -3248,6 +3248,11 @@ class User implements IDBAccessObject, UserIdentity {
 		$now = time();
 		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
 		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
+		if ( $registration === null ) {
+			// for some very old accounts, this information is missing in the database
+			// treat them as old enough to be 'experienced'
+			$registration = $experiencedRegistration;
+		}
 
 		if ( $editCount < $wgLearnerEdits ||
 		$registration > $learnerRegistration ) {

@@ -930,6 +930,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			[ 460, 33, 'learner' ],
 			[ 525, 28, 'learner' ],
 			[ 538, 33, 'experienced' ],
+			[ 9, null, 'newcomer' ],
+			[ 10, null, 'learner' ],
+			[ 501, null, 'experienced' ],
 		];
 	}
 
@@ -956,7 +959,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$userQuery['joins']
 		);
 		$row->user_editcount = $editCount;
-		$row->user_registration = $db->timestamp( time() - $memberSince * 86400 );
+		if ( $memberSince !== null ) {
+			$row->user_registration = $db->timestamp( time() - $memberSince * 86400 );
+		} else {
+			$row->user_registration = null;
+		}
 		$user = User::newFromRow( $row );
 
 		$this->assertSame( $expLevel, $user->getExperienceLevel() );
