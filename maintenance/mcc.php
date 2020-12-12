@@ -136,6 +136,7 @@ do {
 			if ( array_key_exists( 1, $args ) ) {
 				$sub = $args[1];
 			}
+			// @phan-suppress-next-line SecurityCheck-XSS
 			print "Getting {$args[0]}[$sub]\n";
 			$res = $mcc->get( $args[0] );
 			if ( array_key_exists( 1, $args ) ) {

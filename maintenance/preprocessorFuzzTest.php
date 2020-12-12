@@ -78,6 +78,7 @@ class PPFuzzTester {
 				file_put_contents( "results/ppft-$hash.in", serialize( self::$currentTest ) );
 				file_put_contents( "results/ppft-$hash.fail",
 					"Input:\n$testReport\n\nException report:\n$exceptionReport\n" );
+				// @phan-suppress-next-line SecurityCheck-XSS Return of md5 seems safe
 				print "Test $hash failed\n";
 				$passed = 'failed';
 			}
@@ -85,6 +86,7 @@ class PPFuzzTester {
 
 			if ( $this->verbose ) {
 				printf( "Test $passed in %.3f seconds\n", $t );
+				// @phan-suppress-next-line SecurityCheck-XSS
 				print self::$currentTest->getReport();
 			}
 
