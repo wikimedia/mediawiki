@@ -61,4 +61,5 @@ if ( !$scriptFile ) {
 	exit( 1 );
 }
 
+// @phan-suppress-next-line SecurityCheck-OTHER
 require_once $scriptFile;

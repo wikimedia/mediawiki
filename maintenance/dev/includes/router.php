@@ -87,6 +87,7 @@ if ( $ext == 'php' ) {
 		header( 'Content-Encoding: gzip' );
 	}
 	header( "Content-Length: " . strlen( $content ) );
+	// @phan-suppress-next-line SecurityCheck-XSS
 	echo $content;
 
 	return true;
