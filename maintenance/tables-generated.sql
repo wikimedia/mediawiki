@@ -542,3 +542,33 @@ CREATE TABLE /*_*/logging (
   ),
   PRIMARY KEY(log_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/uploadstash (
+  us_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  us_user INT UNSIGNED NOT NULL,
+  us_key VARCHAR(255) NOT NULL,
+  us_orig_path VARCHAR(255) NOT NULL,
+  us_path VARCHAR(255) NOT NULL,
+  us_source_type VARCHAR(50) DEFAULT NULL,
+  us_timestamp BINARY(14) NOT NULL,
+  us_status VARCHAR(50) NOT NULL,
+  us_chunk_inx INT UNSIGNED DEFAULT NULL,
+  us_props BLOB DEFAULT NULL,
+  us_size INT UNSIGNED NOT NULL,
+  us_sha1 VARCHAR(31) NOT NULL,
+  us_mime VARCHAR(255) DEFAULT NULL,
+  us_media_type ENUM(
+    'UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO',
+    'VIDEO', 'MULTIMEDIA', 'OFFICE',
+    'TEXT', 'EXECUTABLE', 'ARCHIVE',
+    '3D'
+  ) DEFAULT NULL,
+  us_image_width INT UNSIGNED DEFAULT NULL,
+  us_image_height INT UNSIGNED DEFAULT NULL,
+  us_image_bits SMALLINT UNSIGNED DEFAULT NULL,
+  INDEX us_user (us_user),
+  UNIQUE INDEX us_key (us_key),
+  INDEX us_timestamp (us_timestamp),
+  PRIMARY KEY(us_id)
+) /*$wgDBTableOptions*/;
