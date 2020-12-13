@@ -323,6 +323,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'user_properties', 'user_properties_property', 'up_property', false,
 				'patch-user_properties-rename-index.sql' ],
 			[ 'renameIndex', 'sites', 'sites_global_key', 'site_global_key', false, 'patch-sites-rename-indexes.sql' ],
+			[ 'renameIndex', 'logging', 'type_time', 'log_type_time', false, 'patch-logging-rename-indexes.sql' ],
 		];
 	}
 

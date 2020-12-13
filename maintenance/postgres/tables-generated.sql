@@ -594,15 +594,15 @@ CREATE TABLE logging (
   PRIMARY KEY(log_id)
 );
 
-CREATE INDEX type_time ON logging (log_type, log_timestamp);
+CREATE INDEX log_type_time ON logging (log_type, log_timestamp);
 
-CREATE INDEX actor_time ON logging (log_actor, log_timestamp);
+CREATE INDEX log_actor_time ON logging (log_actor, log_timestamp);
 
-CREATE INDEX page_time ON logging (
+CREATE INDEX log_page_time ON logging (
   log_namespace, log_title, log_timestamp
 );
 
-CREATE INDEX times ON logging (log_timestamp);
+CREATE INDEX log_times ON logging (log_timestamp);
 
 CREATE INDEX log_actor_type_time ON logging (
   log_actor, log_type, log_timestamp
