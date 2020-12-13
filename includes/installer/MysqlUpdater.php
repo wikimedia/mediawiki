@@ -475,6 +475,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'content_models', 'model_id', 'patch-content_models-model_id.sql' ],
 			[ 'modifyField', 'categorylinks', 'cl_to', 'patch-categorylinks-cl_to-varbinary.sql' ],
 			[ 'modifyField', 'logging', 'log_title', 'patch-logging-log_title-varbinary.sql' ],
+			[ 'modifyField', 'uploadstash', 'us_timestamp', 'patch-uploadstash-us_timestamp.sql' ],
 		];
 	}
 

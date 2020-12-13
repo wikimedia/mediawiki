@@ -584,3 +584,30 @@ CREATE INDEX log_page_id_time ON /*_*/logging (log_page, log_timestamp);
 CREATE INDEX log_type_action ON /*_*/logging (
   log_type, log_action, log_timestamp
 );
+
+
+CREATE TABLE /*_*/uploadstash (
+  us_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  us_user INTEGER UNSIGNED NOT NULL,
+  us_key VARCHAR(255) NOT NULL,
+  us_orig_path VARCHAR(255) NOT NULL,
+  us_path VARCHAR(255) NOT NULL,
+  us_source_type VARCHAR(50) DEFAULT NULL,
+  us_timestamp BLOB NOT NULL,
+  us_status VARCHAR(50) NOT NULL,
+  us_chunk_inx INTEGER UNSIGNED DEFAULT NULL,
+  us_props BLOB DEFAULT NULL,
+  us_size INTEGER UNSIGNED NOT NULL,
+  us_sha1 VARCHAR(31) NOT NULL,
+  us_mime VARCHAR(255) DEFAULT NULL,
+  us_media_type TEXT DEFAULT NULL,
+  us_image_width INTEGER UNSIGNED DEFAULT NULL,
+  us_image_height INTEGER UNSIGNED DEFAULT NULL,
+  us_image_bits SMALLINT UNSIGNED DEFAULT NULL
+);
+
+CREATE INDEX us_user ON /*_*/uploadstash (us_user);
+
+CREATE UNIQUE INDEX us_key ON /*_*/uploadstash (us_key);
+
+CREATE INDEX us_timestamp ON /*_*/uploadstash (us_timestamp);

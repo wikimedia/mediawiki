@@ -613,3 +613,38 @@ CREATE INDEX log_page_id_time ON logging (log_page, log_timestamp);
 CREATE INDEX log_type_action ON logging (
   log_type, log_action, log_timestamp
 );
+
+CREATE TYPE US_MEDIA_TYPE_ENUM AS ENUM(
+  'UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO',
+  'VIDEO', 'MULTIMEDIA', 'OFFICE',
+  'TEXT', 'EXECUTABLE', 'ARCHIVE',
+  '3D'
+);
+
+
+CREATE TABLE uploadstash (
+  us_id SERIAL NOT NULL,
+  us_user INT NOT NULL,
+  us_key VARCHAR(255) NOT NULL,
+  us_orig_path VARCHAR(255) NOT NULL,
+  us_path VARCHAR(255) NOT NULL,
+  us_source_type VARCHAR(50) DEFAULT NULL,
+  us_timestamp TIMESTAMPTZ NOT NULL,
+  us_status VARCHAR(50) NOT NULL,
+  us_chunk_inx INT DEFAULT NULL,
+  us_props TEXT DEFAULT NULL,
+  us_size INT NOT NULL,
+  us_sha1 VARCHAR(31) NOT NULL,
+  us_mime VARCHAR(255) DEFAULT NULL,
+  us_media_type US_MEDIA_TYPE_ENUM DEFAULT NULL,
+  us_image_width INT DEFAULT NULL,
+  us_image_height INT DEFAULT NULL,
+  us_image_bits SMALLINT DEFAULT NULL,
+  PRIMARY KEY(us_id)
+);
+
+CREATE INDEX us_user ON uploadstash (us_user);
+
+CREATE UNIQUE INDEX us_key ON uploadstash (us_key);
+
+CREATE INDEX us_timestamp ON uploadstash (us_timestamp);
