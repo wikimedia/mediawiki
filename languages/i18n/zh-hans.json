@@ -2706,7 +2706,7 @@
 	"ipaddressorusername": "IP地址，用户名或封禁ID：",
 	"ipbreason": "原因：",
 	"ipbreason-dropdown": "*常见封禁原因\n** 插入虚假信息\n** 移除页面内容\n** 添加垃圾外部链接\n** 插入无意义文字\n** 恐吓行为/骚扰\n** 滥用多个账户\n** 不能接受的用户名",
-	"ipb-hardblock": "封禁使用该IP地址的登陆用户",
+	"ipb-hardblock": "封禁使用该IP地址登录的用户",
 	"ipbcreateaccount": "账户创建",
 	"ipbemailban": "发送电子邮件",
 	"ipbenableautoblock": "自动封禁此用户最后使用的IP地址，以及所有其随后试图用于编辑的IP地址",

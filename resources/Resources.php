@@ -97,7 +97,10 @@ return [
 		// with the interface.css styles; skinStyles should be used if your
 		// skin over-rides common content styling.
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
+			'default' => [
+				'resources/src/mediawiki.skinning/content.parsoid.less',
+				'resources/src/mediawiki.skinning/content.media.less',
+			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -679,8 +682,13 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.feedback' => [
-		'scripts' => 'resources/src/mediawiki.feedback/feedback.js',
-		'styles' => 'resources/src/mediawiki.feedback/feedback.css',
+		'localBasePath' => "$IP/resources/src/mediawiki.feedback",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.feedback",
+		'packageFiles' => [
+			'feedback.js',
+			'FeedbackDialog.js',
+		],
+		'styles' => 'feedback.css',
 		'dependencies' => [
 			'mediawiki.messagePoster',
 			'mediawiki.Title',

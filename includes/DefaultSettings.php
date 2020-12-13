@@ -1038,7 +1038,8 @@ $wgFileBlacklist = [
 	# Other types that may be interpreted by some servers
 	'shtml', 'jhtml', 'pl', 'py', 'cgi',
 	# May contain harmful executables for Windows victims
-	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' ];
+	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'
+];
 
 /**
  * Files with these MIME types will never be allowed as uploads
@@ -4668,6 +4669,13 @@ $wgAllowImageTag = false;
 $wgTidyConfig = [];
 
 /**
+ * Emit using the new media structure described at,
+ * https://www.mediawiki.org/wiki/Parsing/Media_structure
+ * @since 1.36
+ */
+$wgUseNewMediaStructure = false;
+
+/**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.
  * THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
@@ -5591,7 +5599,7 @@ $wgGroupPermissions['user']['applychangetags'] = true;
 $wgGroupPermissions['user']['changetags'] = true;
 $wgGroupPermissions['user']['editcontentmodel'] = true;
 
-// Implicit group for accounts that pass $wgAutoConfirmAge
+// Implicit group for accounts that pass $wgAutoConfirmAge and $wgAutoConfirmCount
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
 $wgGroupPermissions['autoconfirmed']['editsemiprotected'] = true;
 
@@ -7038,7 +7046,7 @@ $wgDisableInternalSearch = false;
 /**
  * Set this to a URL to forward search requests to some external location.
  * If the URL includes '$1', this will be replaced with the URL-encoded
- * search term.
+ * search term. Before using this, $wgDisableTextSearch must be set to true.
  *
  * @par Example:
  * To forward to Google you'd have something like:
@@ -9251,7 +9259,7 @@ $wgVirtualRestConfig = [
  */
 $wgSearchRunSuggestedQuery = true;
 
-/*
+/**
  * Max time (in seconds) a user-generated transaction can spend in writes.
  * If exceeded, the transaction is rolled back with an error instead of being committed.
  *
@@ -9260,7 +9268,7 @@ $wgSearchRunSuggestedQuery = true;
  */
 $wgMaxUserDBWriteDuration = false;
 
-/*
+/**
  * Max time (in seconds) a job-generated transaction can spend in writes.
  * If exceeded, the transaction is rolled back with an error instead of being committed.
  *

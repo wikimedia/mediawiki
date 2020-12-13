@@ -36,8 +36,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	protected $locks = [];
 	/** @var int ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
-	/** @var string */
-	protected $keyspace = 'local';
 	/** @var int Seconds */
 	protected $syncTimeout;
 	/** @var int Bytes; chunk size of segmented cache values */
@@ -68,7 +66,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @see BagOStuff::__construct()
 	 * Additional $params options include:
 	 *   - logger: Psr\Log\LoggerInterface instance
-	 *   - keyspace: Default keyspace for $this->makeKey()
 	 *   - reportDupes: Whether to emit warning log messages for all keys that were
 	 *      requested more than once (requires an asyncHandler).
 	 *   - syncTimeout: How long to wait with WRITE_SYNC in seconds.
@@ -80,15 +77,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *      amount of I/O between application and cache servers that the network can handle.
 	 * @param array $params
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int} $params
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int} $params
 	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
-
-		if ( isset( $params['keyspace'] ) ) {
-			$this->keyspace = $params['keyspace'];
-		}
 
 		if ( !empty( $params['reportDupes'] ) && is_callable( $this->asyncHandler ) ) {
 			$this->reportDupes = true;
@@ -600,18 +593,18 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
 	 *
-	 * @param mixed[] $data Map of (key => value)
+	 * @param mixed[] $valueByKey Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
 	 * @return bool Success
 	 * @since 1.24
 	 */
-	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {
 		if ( $this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
 
-		return $this->doSetMulti( $data, $exptime, $flags );
+		return $this->doSetMulti( $valueByKey, $exptime, $flags );
 	}
 
 	/**
@@ -890,43 +883,26 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return ( $value === (string)$integer );
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
-		$key = $keyspace;
-		foreach ( $components as $component ) {
-			$key .= ':' . str_replace( ':', '%3A', $component );
-		}
-		return strtr( $key, ' ', '_' );
-	}
-
-	/**
-	 * Make a global cache key.
-	 *
-	 * @param string $class Key class
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
-	 * @since 1.27
-	 */
 	public function makeGlobalKey( $class, ...$components ) {
-		return $this->makeKeyInternal( 'global', func_get_args() );
+		return $this->makeKeyInternal( self::GLOBAL_KEYSPACE, func_get_args() );
 	}
 
-	/**
-	 * Make a cache key, scoped to this instance's keyspace.
-	 *
-	 * @param string $class Key class
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
-	 * @since 1.27
-	 */
 	public function makeKey( $class, ...$components ) {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
 	}
 
-	/**
-	 * @param int $flag ATTR_* class constant
-	 * @return int QOS_* class constant
-	 * @since 1.28
-	 */
+	protected function convertGenericKey( $key ) {
+		$components = $this->componentsFromGenericKey( $key );
+		if ( count( $components ) < 2 ) {
+			// Legacy key not from makeKey()/makeGlobalKey(); keep it as-is
+			return $key;
+		}
+
+		$keyspace = array_shift( $components );
+
+		return $this->makeKeyInternal( $keyspace, $components );
+	}
+
 	public function getQoS( $flag ) {
 		return $this->attrMap[$flag] ?? self::QOS_UNKNOWN;
 	}

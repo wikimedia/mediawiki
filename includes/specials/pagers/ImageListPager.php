@@ -373,10 +373,7 @@ class ImageListPager extends TablePager {
 	/**
 	 * Override reallyDoQuery to mix together two queries.
 	 *
-	 * @note $asc is named $descending in IndexPager base class. However
-	 *   it is true when the order is ascending, and false when the order
-	 *   is descending, so I renamed it to $asc here.
-	 * @param int $offset
+	 * @param string $offset
 	 * @param int $limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
@@ -424,10 +421,10 @@ class ImageListPager extends TablePager {
 	 * @param IResultWrapper $res1
 	 * @param IResultWrapper $res2
 	 * @param int $limit
-	 * @param bool $ascending See note about $asc in $this->reallyDoQuery
+	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper $res1 and $res2 combined
 	 */
-	protected function combineResult( $res1, $res2, $limit, $ascending ) {
+	protected function combineResult( $res1, $res2, $limit, $order ) {
 		$res1->rewind();
 		$res2->rewind();
 		$topRes1 = $res1->next();
@@ -435,14 +432,14 @@ class ImageListPager extends TablePager {
 		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
 			if ( strcmp( $topRes1->{$this->mIndexField[0]}, $topRes2->{$this->mIndexField[0]} ) > 0 ) {
-				if ( !$ascending ) {
+				if ( $order !== IndexPager::QUERY_ASCENDING ) {
 					$resultArray[] = $topRes1;
 					$topRes1 = $res1->next();
 				} else {
 					$resultArray[] = $topRes2;
 					$topRes2 = $res2->next();
 				}
-			} elseif ( !$ascending ) {
+			} elseif ( $order !== IndexPager::QUERY_ASCENDING ) {
 				$resultArray[] = $topRes2;
 				$topRes2 = $res2->next();
 			} else {

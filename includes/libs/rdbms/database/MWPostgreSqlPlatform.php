@@ -30,7 +30,6 @@ class MWPostgreSqlPlatform extends PostgreSqlPlatform {
 
 	/**
 	 * @inheritDoc
-	 * @suppress PhanParamSignatureRealMismatchHasNoParamType // Parameter widened by parent
 	 * phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 	 */
 	protected function _getCreateTableSQL( $name, $columns, array $options = [] ) {

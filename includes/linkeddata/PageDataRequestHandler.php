@@ -146,8 +146,7 @@ class PageDataRequestHandler {
 		}
 
 		if ( $format === null ) {
-			$msg = wfMessage( 'pagedata-not-acceptable', implode( ', ', $mimeTypes ) );
-			throw new HttpError( 406, $msg );
+			throw new HttpError( 406, wfMessage( 'pagedata-not-acceptable', implode( ', ', $mimeTypes ) ) );
 		}
 
 		$url = $this->getDocUrl( $title, $format, $revision );

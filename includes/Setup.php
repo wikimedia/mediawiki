@@ -526,7 +526,6 @@ if ( $wgPHPSessionHandling !== 'enable' &&
 if ( defined( 'MW_NO_SESSION' ) ) {
 	// If the entry point wants no session, force 'disable' here unless they
 	// specifically set it to the (undocumented) 'warn'.
-	// @phan-suppress-next-line PhanUndeclaredConstant
 	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
 }
 
@@ -729,7 +728,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		}
 		$list = $wgContLang->listToText( $list );
 		throw new HttpError( 400,
-			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )->plain()
+			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )
 		);
 	}
 

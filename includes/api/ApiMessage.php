@@ -38,6 +38,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 * @param string|null $code
 	 * @param array|null $data
 	 * @return IApiMessage
+	 * @param-taint $msg tainted
 	 */
 	public static function create( $msg, $code = null, array $data = null ) {
 		if ( is_array( $msg ) ) {

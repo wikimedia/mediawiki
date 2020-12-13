@@ -123,8 +123,7 @@ class RawAction extends FormlessAction {
 						'elevated' => $elevated
 					]
 				);
-				$msg = wfMessage( 'unregistered-user-config' );
-				throw new HttpError( 403, $msg );
+				throw new HttpError( 403, wfMessage( 'unregistered-user-config' ) );
 			}
 		}
 

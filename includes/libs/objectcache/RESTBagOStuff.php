@@ -222,6 +222,14 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $this->incr( $key, -$value, $flags );
 	}
 
+	public function makeKeyInternal( $keyspace, $components ) {
+		return $this->genericKeyFromComponents( $keyspace, ...$components );
+	}
+
+	protected function convertGenericKey( $key ) {
+		return $key; // short-circuit; already uses "generic" keys
+	}
+
 	/**
 	 * Processes the response body.
 	 *

@@ -71,13 +71,16 @@ abstract class BagOStuff implements
 {
 	/** @var LoggerInterface */
 	protected $logger;
-
 	/** @var callable|null */
 	protected $asyncHandler;
+
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
 
-	/** @var bool */
+	/** @var string Default keyspace; used by makeKey() */
+	protected $keyspace;
+
+	/** @var bool Whether to send debug log entries to the SPI logger instance */
 	protected $debugMode = false;
 
 	/** @var float|null */
@@ -93,15 +96,40 @@ abstract class BagOStuff implements
 	public const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
 	public const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
 
+	/** @var string Global keyspace; used by makeGlobalKey() */
+	protected const GLOBAL_KEYSPACE = 'global';
+	/** @var string Precomputed global cache key prefix (needs no encoding) */
+	protected const GLOBAL_PREFIX = 'global:';
+	/** @var string Precomputed global cache key prefix length */
+	protected const GLOBAL_PREFIX_LEN = 7;
+
+	/** @var int Item is a single cache key */
+	protected const ARG0_KEY = 0;
+	/** @var int Item is an array of cache keys */
+	protected const ARG0_KEYARR = 1;
+	/** @var int Item is an array indexed by cache keys */
+	protected const ARG0_KEYMAP = 2;
+	/** @var int Item does not involve any keys */
+	protected const ARG0_NONKEY = 3;
+
+	/** @var int Item is an array indexed by cache keys */
+	protected const RES_KEYMAP = 0;
+	/** @var int Item does not involve any keys */
+	protected const RES_NONKEY = 1;
+
 	/**
 	 * Parameters include:
-	 *   - logger: Psr\Log\LoggerInterface instance
+	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
-	 *      In CLI mode, it should run the task immediately.
+	 *      In CLI mode, it should run the task immediately. [Default: null]
+	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
 	 * @param array $params
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{keyspace?:string,logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
+	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $params = [] ) {
+		$this->keyspace = $params['keyspace'] ?? 'local';
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
 	}
@@ -310,13 +338,13 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Delete all objects expiring before a certain date.
+	 * Delete all objects expiring before a certain date
+	 *
 	 * @param string|int $timestamp The reference date in MW or TS_UNIX format
 	 * @param callable|null $progress Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
 	 * @param int $limit Maximum number of keys to delete [default: INF]
-	 *
 	 * @return bool Success; false if unimplemented
 	 */
 	abstract public function deleteObjectsExpiringBefore(
@@ -326,7 +354,8 @@ abstract class BagOStuff implements
 	);
 
 	/**
-	 * Get an associative array containing the item for each of the keys that have items.
+	 * Get an associative array containing the item for each of the keys that have items
+	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
 	 * @return mixed[] Map of (key => value) for existing keys
@@ -340,13 +369,13 @@ abstract class BagOStuff implements
 	 *
 	 * WRITE_BACKGROUND can be used for bulk insertion where the response is not vital
 	 *
-	 * @param mixed[] $data Map of (key => value)
+	 * @param mixed[] $valueByKey Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
 	 * @return bool Success
 	 * @since 1.24
 	 */
-	abstract public function setMulti( array $data, $exptime = 0, $flags = 0 );
+	abstract public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 );
 
 	/**
 	 * Batch deletion
@@ -377,6 +406,7 @@ abstract class BagOStuff implements
 
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
+	 *
 	 * @param string $key Key to increase
 	 * @param int $value Value to add to $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
@@ -386,6 +416,7 @@ abstract class BagOStuff implements
 
 	/**
 	 * Decrease stored value of $key by $value while preserving its TTL
+	 *
 	 * @param string $key
 	 * @param int $value Value to subtract from $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
@@ -446,35 +477,50 @@ abstract class BagOStuff implements
 	abstract public function addBusyCallback( callable $workCallback );
 
 	/**
-	 * Construct a cache key.
+	 * Make a cache key for the given keyspace and components
+	 *
+	 * Long components might be converted to respective hashes due to size constraints.
+	 * In extreme cases, all of them might be combined into a single hash component.
 	 *
 	 * @internal This method should not be used outside of BagOStuff (since 1.36)
+	 *
+	 * @param string $keyspace Keyspace component
+	 * @param string[]|int[] $components Key components (key collection name first)
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
 	 * @since 1.27
-	 * @param string $keyspace
-	 * @param array $components
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 */
 	abstract public function makeKeyInternal( $keyspace, $components );
 
 	/**
-	 * Make a global cache key.
+	 * Make a cache key for the default keyspace and given components
 	 *
+	 * @param string $class Key collection name component
+	 * @param string|int ...$components Key components for entity IDs
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
 	 * @since 1.27
-	 * @param string $class Key class
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeGlobalKey( $class, ...$components );
 
 	/**
-	 * Make a cache key, scoped to this instance's keyspace.
+	 * Make a cache key for the global keyspace and given components
 	 *
+	 * @param string $class Key collection name component
+	 * @param string|int ...$components Key components for entity IDs
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
 	 * @since 1.27
-	 * @param string $class Key class
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeKey( $class, ...$components );
+
+	/**
+	 * Check whether a cache key is in the global keyspace
+	 *
+	 * @param string $key
+	 * @return bool
+	 * @since 1.35
+	 */
+	public function isKeyGlobal( $key ) {
+		return ( strncmp( $key, self::GLOBAL_PREFIX, self::GLOBAL_PREFIX_LEN ) === 0 );
+	}
 
 	/**
 	 * @param int $flag ATTR_* class constant
@@ -533,7 +579,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Prepare values for storage and get their serialized sizes, or, estimate those sizes
+	 * Make a "generic" reversible cache key from the given components
 	 *
 	 * All previously prepared values will be cleared. Each of the new prepared values will be
 	 * individually cleared as they get used by write operations for that key. This is done to
@@ -558,6 +604,102 @@ abstract class BagOStuff implements
 	 * @since 1.35
 	 */
 	abstract public function setNewPreparedValues( array $valueByKey );
+
+	/**
+	 * At a minimum, there must be a keyspace and collection name component
+	 *
+	 * @param string|int ...$components Key components for keyspace, collection name, and IDs
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 * @since 1.35
+	 */
+	final protected function genericKeyFromComponents( ...$components ) {
+		if ( count( $components ) < 2 ) {
+			throw new InvalidArgumentException( "Missing keyspace or collection name" );
+		}
+
+		$key = '';
+		foreach ( $components as $component ) {
+			if ( $key !== '' ) {
+				$key .= ':';
+			}
+			// Escape delimiter (":") and escape ("%") characters
+			$key .= strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
+		}
+
+		return $key;
+	}
+
+	/**
+	 * Extract the components from a "generic" reversible cache key
+	 *
+	 * @see BagOStuff::genericKeyFromComponents()
+	 *
+	 * @param string $key Keyspace-prepended list of encoded components as a colon-separated value
+	 * @return string[] Key components for keyspace, collection name, and IDs
+	 * @since 1.35
+	 */
+	final protected function componentsFromGenericKey( $key ) {
+		// Note that the order of each corresponding search/replace pair matters
+		return str_replace( [ '%3A', '%25' ], [ ':', '%' ], explode( ':', $key ) );
+	}
+
+	/**
+	 * Convert a "generic" reversible cache key into one for this cache
+	 *
+	 * @see BagOStuff::genericKeyFromComponents()
+	 *
+	 * @param string $key Keyspace-prepended list of encoded components as a colon-separated value
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 */
+	abstract protected function convertGenericKey( $key );
+
+	/**
+	 * Call a method on behalf of wrapper BagOStuff instance that uses "generic" keys
+	 *
+	 * @param string $method Name of a non-final public method that reads/changes keys
+	 * @param int $arg0Sig BagOStuff::ARG0_* constant describing argument 0
+	 * @param int $resSig BagOStuff::RES_* constant describing the return value
+	 * @param array $genericArgs Method arguments passed to the wrapper instance
+	 * @return mixed Method result with any resulting cache keys remapped to "generic" keys
+	 */
+	protected function proxyCall( $method, $arg0Sig, $resSig, array $genericArgs ) {
+		// Get the corresponding store-specific cache keys...
+		$storeArgs = $genericArgs;
+		switch ( $arg0Sig ) {
+			case self::ARG0_KEY:
+				$storeArgs[0] = $this->convertGenericKey( $genericArgs[0] );
+				break;
+			case self::ARG0_KEYARR:
+				foreach ( $genericArgs[0] as $i => $genericKey ) {
+					$storeArgs[0][$i] = $this->convertGenericKey( $genericKey );
+				}
+				break;
+			case self::ARG0_KEYMAP:
+				$storeArgs[0] = [];
+				foreach ( $genericArgs[0] as $genericKey => $v ) {
+					$storeArgs[0][$this->convertGenericKey( $genericKey )] = $v;
+				}
+				break;
+		}
+
+		// Result of invoking the method with the corresponding store-specific cache keys
+		$storeRes = $this->$method( ...$storeArgs );
+
+		// Convert any store-specific cache keys in the result back to generic cache keys
+		if ( $resSig === self::RES_KEYMAP ) {
+			// Map of (store-specific cache key => generic cache key)
+			$genericKeyByStoreKey = array_combine( $storeArgs[0], $genericArgs[0] );
+
+			$genericRes = [];
+			foreach ( $storeRes as $storeKey => $value ) {
+				$genericRes[$genericKeyByStoreKey[$storeKey]] = $value;
+			}
+		} else {
+			$genericRes = $storeRes;
+		}
+
+		return $genericRes;
+	}
 
 	/**
 	 * @internal For testing only

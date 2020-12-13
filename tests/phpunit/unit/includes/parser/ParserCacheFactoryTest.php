@@ -24,4 +24,8 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 		// $name
 		return 1;
 	}
+
+	protected function getIgnoredParamNames() {
+		return [ 'cacheBackend', 'hookContainer' ];
+	}
 }

@@ -151,6 +151,7 @@ EOT;
 			} else {
 				$percent = ( $copyPosUnix - $minTsUnix ) / ( $maxTsUnix - $minTsUnix ) * 100;
 			}
+			// @phan-suppress-next-line SecurityCheck-XSS
 			printf( "%s  %.2f%%\n", $copyPos, $percent );
 
 			# Handle all entries with timestamp equal to $copyPos

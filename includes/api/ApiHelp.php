@@ -281,8 +281,9 @@ class ApiHelp extends ApiBase {
 					];
 				} else {
 					$name = $module->getModuleName();
-					$headerContent = $module->getParent()->getModuleManager()->getModuleGroup( $name ) .
-						"=$name";
+					$headerContent = htmlspecialchars(
+						$module->getParent()->getModuleManager()->getModuleGroup( $name ) . "=$name"
+					);
 					if ( $module->getModulePrefix() !== '' ) {
 						$headerContent .= ' ' .
 							$context->msg( 'parentheses', $module->getModulePrefix() )->parse();
@@ -308,7 +309,7 @@ class ApiHelp extends ApiBase {
 					'index' => false,
 				];
 				if ( empty( $options['noheader'] ) ) {
-					$help['header'] .= Html::element(
+					$help['header'] .= Html::rawElement(
 						'h' . min( 6, $level ),
 						$headerAttr,
 						$headerContent

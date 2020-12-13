@@ -117,7 +117,6 @@ class VirtualRESTServiceClient {
 		usort( $matches, $cmpFunc );
 
 		// Return the most specific prefix and corresponding service
-		// @phan-suppress-next-line PhanRedundantCondition
 		return $matches
 			? [ $matches[0], $this->getInstance( $matches[0] ) ]
 			: [ null, null ];
