@@ -1146,10 +1146,10 @@ return [
 	],
 	'mediawiki.action.edit' => [
 		'scripts' => [
-			'resources/src/mediawiki.action/mediawiki.action.edit.js',
-			'resources/src/mediawiki.action/mediawiki.action.edit.stash.js',
+			'resources/src/mediawiki.action.edit/edit.js',
+			'resources/src/mediawiki.action.edit/stash.js',
 		],
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
+		'styles' => 'resources/src/mediawiki.action.edit/edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'mediawiki.editfont.styles',
