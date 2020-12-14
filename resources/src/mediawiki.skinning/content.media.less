@@ -57,6 +57,7 @@ figure[ typeof~='mw:Audio/Thumb' ],
 figure[ typeof~='mw:Image/Frame' ],
 figure[ typeof~='mw:Video/Frame' ],
 figure[ typeof~='mw:Audio/Frame' ] {
+	margin: 0;
 	display: table;
 	text-align: center;
 	border: 1px solid #c8ccd1;
@@ -69,12 +70,27 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		border: 0;
 	}
 
-	// Default to right alignment. This is needed since Parsoid only specifies the
-	// alignment class when the alignment is explicitly set.
-	margin: 0.5em 0 1.3em 1.4em;
-	clear: right;
-	float: right;
+	// Defaults for page content language
+	.mw-content-ltr & {
+		/* @noflip */
+		margin: 0.5em 0 1.3em 1.4em;
+		/* @noflip */
+		clear: right;
+		/* @noflip */
+		float: right;
+	}
 
+	.mw-content-rtl & {
+		/* @noflip */
+		margin: 0.5em 1.4em 1.3em 0;
+		/* @noflip */
+		clear: left;
+		/* @noflip */
+		float: left;
+	}
+
+	// Override defaults when explicitly set
+	// Order of application is important, so don't combine with the defaults
 	&.mw-halign-right {
 		/* @noflip */
 		margin: 0.5em 0 1.3em 1.4em;
@@ -146,7 +162,16 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		 * caption results in the same behavior. */
 		font-size: 88.4%;
 		line-height: 1.4em;
-		text-align: left;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			text-align: left;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			text-align: right;
+		}
 
 		/* taken from .thumbcaption, plus .thumbinner */
 		padding: 3px;
