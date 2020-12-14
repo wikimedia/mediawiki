@@ -973,6 +973,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
 	}
 
+	/**
+	 * @since 1.34
+	 * @return LinkRenderer
+	 */
 	protected function getLinkRenderer() {
 		if ( $this->linkRenderer === null ) {
 			 $this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
