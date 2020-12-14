@@ -13,6 +13,16 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	/** @var DummyConverter */
 	protected $lc;
 
+	/**
+	 * @param User $user
+	 */
+	private function setContextUser( User $user ) {
+		// TODO stop using the deprecated global here, and convert
+		// LanguageConverter to use RequestContext or dependency injection
+		global $wgUser;
+		$wgUser = $user;
+	}
+
 	protected function setUp() : void {
 		parent::setUp();
 		$this->setContentLang( 'tg' );
@@ -144,15 +154,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantUserOption() {
-		global $wgUser;
-
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant', 'tg-latn' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
@@ -161,15 +169,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantUserOptionDeprecated() {
-		global $wgUser;
-
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant', 'bat-smg' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
 	}
@@ -178,15 +184,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantUserOptionBCP47() {
-		global $wgUser;
-
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant', 'en-simple' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
@@ -196,8 +200,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getUserVariant
 	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguage() {
-		global $wgUser;
-
 		$this->setContentLang( 'en' );
 		$user = new User;
 		$user->load(); // from 'defaults'
@@ -205,7 +207,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant-tg', 'tg-latn' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
@@ -215,8 +217,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getUserVariant
 	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguageDeprecated() {
-		global $wgUser;
-
 		$this->setContentLang( 'en' );
 		$user = new User;
 		$user->load(); // from 'defaults'
@@ -224,7 +224,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant-tg', 'bat-smg' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
 	}
@@ -234,8 +234,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getUserVariant
 	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguageBCP47() {
-		global $wgUser;
-
 		$this->setContentLang( 'en' );
 		$user = new User;
 		$user->load(); // from 'defaults'
@@ -243,7 +241,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->mDataLoaded = true;
 		$user->setOption( 'variant-tg', 'en-simple' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
@@ -254,7 +252,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
@@ -264,7 +262,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		// The user's data is ignored because the variant is set in the URL.
 		$user->setOption( 'variant', 'tg-latn' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
