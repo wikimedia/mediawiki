@@ -15,7 +15,7 @@ $namespaceNames = [
 	NS_SPECIAL          => "Spesial",
 	NS_TALK             => "Lo'iya",
 	NS_USER             => "Ta_ohu'uwo",
-	NS_USER_TALK        => "Lo'iya_ta_ohu'owo",
+	NS_USER_TALK        => "Lo'iya_ta_ohu'uwo",
 	NS_PROJECT_TALK     => "Lo'iya_$1",
 	NS_FILE             => "Berkas",
 	NS_FILE_TALK        => "Lo'iya_berkas",
@@ -27,6 +27,10 @@ $namespaceNames = [
 	NS_HELP_TALK        => "Lo'iya_wubodu",
 	NS_CATEGORY         => "Dalala",
 	NS_CATEGORY_TALK    => "Lo'iya_dalala",
+];
+
+$namespaceAliases = [
+	"Lo'iya_ta_ohu'owo" => NS_USER_TALK, // old translation, back compat, see T269991
 ];
 
 /** @phpcs-require-sorted-array */
