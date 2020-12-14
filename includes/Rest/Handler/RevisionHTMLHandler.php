@@ -20,17 +20,18 @@ use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
- * - /page/{title}/html,
- * - /page/{title}/with_html
+ * - /revision/{revision}/html,
+ * - /revision/{revision}/with_html
  *
+ * Class RevisionHTMLHandler
  * @package MediaWiki\Rest\Handler
  */
-class PageHTMLHandler extends SimpleHandler {
+class RevisionHTMLHandler extends SimpleHandler {
 
 	/** @var ParsoidHTMLHelper */
 	private $htmlHelper;
 
-	/** @var PageContentHelper */
+	/** @var RevisionContentHelper */
 	private $contentHelper;
 
 	public function __construct(
@@ -43,7 +44,7 @@ class PageHTMLHandler extends SimpleHandler {
 		WikiPageFactory $wikiPageFactory,
 		GlobalIdGenerator $globalIdGenerator
 	) {
-		$this->contentHelper = new PageContentHelper(
+		$this->contentHelper = new RevisionContentHelper(
 			$config,
 			$permissionManager,
 			$revisionLookup,
@@ -63,8 +64,10 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->contentHelper->init( $user, $this->getValidatedParams() );
 
 		$title = $this->contentHelper->getTitle();
-		if ( $title ) {
-			$this->htmlHelper->init( $title );
+		$revision = $this->contentHelper->getTargetRevision();
+
+		if ( $title && $revision ) {
+			$this->htmlHelper->init( $title, $revision );
 		}
 	}
 
@@ -76,10 +79,15 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->contentHelper->checkAccess();
 
 		$titleObj = $this->contentHelper->getTitle();
+		$revisionRecord = $this->contentHelper->getTargetRevision();
 
 		// The call to $this->contentHelper->getTitle() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $titleObj !== null, 'Title should be known' );
+
+		// The call to $this->contentHelper->getTargetRevision() should not return null if
+		// $this->contentHelper->checkAccess() did not throw.
+		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
@@ -115,6 +123,7 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
+
 		return $this->htmlHelper->getETag();
 	}
 
@@ -125,6 +134,7 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
+
 		return $this->htmlHelper->getLastModified();
 	}
 
@@ -138,5 +148,12 @@ class PageHTMLHandler extends SimpleHandler {
 
 	public function getParamSettings(): array {
 		return $this->contentHelper->getParamSettings();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		return $this->contentHelper->hasContent();
 	}
 }

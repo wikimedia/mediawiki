@@ -17,12 +17,10 @@
  *
  * @file
  */
-
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use Wikimedia\Assert\Assert;
 
 /**
  * PoolWorkArticleView for an old revision of a page, using a simple cache.
@@ -30,47 +28,29 @@ use Wikimedia\Assert\Assert;
  * @internal
  */
 class PoolWorkArticleViewOld extends PoolWorkArticleView {
-	/** @var int */
-	private $cacheExpiry;
 
-	/** @var WANObjectCache */
+	/** @var RevisionOutputCache */
 	private $cache;
 
-	/** @var string */
-	private $cacheKey;
-
-	/** @var JsonCodec */
-	private $jsonCodec;
-
 	/**
-	 * @param string $cacheKey Key for the ParserOutput to use in $cache.
-	 *        Also used as the PoolCounter key.
-	 * @param int $cacheExpiry Expiry for ParserOutput in $cache.
-	 * @param WANObjectCache $cache The cache to store ParserOutput in.
+	 * @param string $workKey PoolCounter key.
+	 * @param RevisionOutputCache $cache The cache to store ParserOutput in.
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
-	 * @param JsonCodec $jsonCodec
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
-		string $cacheKey,
-		int $cacheExpiry,
-		WANObjectCache $cache,
+		string $workKey,
+		RevisionOutputCache $cache,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
-		JsonCodec $jsonCodec,
 		LoggerSpi $loggerSpi
 	) {
-		Assert::parameter( $cacheExpiry > 0, '$cacheExpiry', 'must be greater than zero' );
+		parent::__construct( $workKey, $revision, $parserOptions, $revisionRenderer, $loggerSpi );
 
-		parent::__construct( $cacheKey, $revision, $parserOptions, $revisionRenderer, $loggerSpi );
-
-		$this->cacheKey = $cacheKey;
-		$this->cacheExpiry = $cacheExpiry;
 		$this->cache = $cache;
-		$this->jsonCodec = $jsonCodec;
 
 		$this->cacheable = true;
 	}
@@ -80,84 +60,16 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	 * @param string $cacheTime
 	 */
 	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		$json = $this->encodeAsJson( $output );
-		if ( $json === null ) {
-			return;
-		}
-
-		// TODO: Once we create OldRevisionParserCache abstraction,
-		// checking for cache safety moves in there
-		if ( !$this->parserOptions->isSafeToCache() ) {
-			return;
-		}
-
-		// The ParserOutput might be dynamic and have been marked uncacheable by the parser.
-		$output->updateCacheExpiry( $this->cacheExpiry );
-		$expiry = $output->getCacheExpiry();
-		if ( $expiry > 0 ) {
-			$this->cache->set( $this->cacheKey, $json, $expiry );
-		}
+		$this->cache->save( $output, $this->revision, $this->parserOptions, $cacheTime );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function getCachedWork() {
-		$json = $this->cache->get( $this->cacheKey );
+		$this->parserOutput = $this->cache->get( $this->revision, $this->parserOptions );
 
-		$logger = $this->getLogger();
-		if ( $json === false ) {
-			$logger->debug( 'output cache miss' );
-			return false;
-		} else {
-			$logger->debug( 'output cache hit' );
-		}
-
-		$output = $this->restoreFromJson( $json );
-
-		// Note: if $output is null, $this->parserOutput remains false, not null.
-		if ( $output === null ) {
-			return false;
-		}
-
-		$this->parserOutput = $output;
-		return true;
-	}
-
-	/**
-	 * @param string $json
-	 *
-	 * @return ParserOutput|null
-	 */
-	private function restoreFromJson( string $json ) {
-		try {
-			/** @var ParserOutput $obj */
-			$obj = $this->jsonCodec->unserialize( $json, ParserOutput::class );
-			return $obj;
-		} catch ( InvalidArgumentException $e ) {
-			$this->getLogger()->error( "Unable to unserialize JSON", [
-				'cache_key' => $this->cacheKey,
-				'message' => $e->getMessage()
-			] );
-			return null;
-		}
-	}
-
-	/**
-	 * @param ParserOutput $output
-	 *
-	 * @return string|null
-	 */
-	private function encodeAsJson( ParserOutput $output ) {
-		try {
-			return $this->jsonCodec->serialize( $output );
-		} catch ( InvalidArgumentException $e ) {
-			$this->getLogger()->error( "JSON encoding failed", [
-				'cache_key' => $this->cacheKey,
-				'message' => $e->getMessage(),
-			] );
-			return null;
-		}
+		return (bool)$this->parserOutput;
 	}
 
 }

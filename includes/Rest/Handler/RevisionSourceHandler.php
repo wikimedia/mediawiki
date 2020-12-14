@@ -9,22 +9,28 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use RequestContext;
-use Title;
 use TitleFactory;
 use TitleFormatter;
-use Wikimedia\Assert\Assert;
 
 /**
- * Handler class for Core REST API Page Source endpoint with the following routes:
- * - /page/{title}
- * - /page/{title}/bare
+ * A handler that returns page source and metadata for the following routes:
+ * - /revision/{revision}
+ * - /revision/{revision}/bare
  */
-class PageSourceHandler extends SimpleHandler {
+class RevisionSourceHandler extends SimpleHandler {
 
-	/** @var PageContentHelper */
+	/** @var RevisionContentHelper */
 	private $contentHelper;
 
+	/**
+	 * @param Config $config
+	 * @param PermissionManager $permissionManager
+	 * @param RevisionLookup $revisionLookup
+	 * @param TitleFormatter $titleFormatter
+	 * @param TitleFactory $titleFactory
+	 */
 	public function __construct(
 		Config $config,
 		PermissionManager $permissionManager,
@@ -32,7 +38,7 @@ class PageSourceHandler extends SimpleHandler {
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory
 	) {
-		$this->contentHelper = new PageContentHelper(
+		$this->contentHelper = new RevisionContentHelper(
 			$config,
 			$permissionManager,
 			$revisionLookup,
@@ -48,13 +54,13 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param RevisionRecord $rev
 	 * @return string
 	 */
-	private function constructHtmlUrl( Title $title ): string {
+	private function constructHtmlUrl( RevisionRecord $rev ): string {
 		return $this->getRouter()->getRouteUrl(
-			'/v1/page/{title}/html',
-			[ 'title' => $title->getPrefixedText() ]
+			'/coredev/v0/revision/{id}/html',
+			[ 'id' => $rev->getId() ]
 		);
 	}
 
@@ -62,20 +68,17 @@ class PageSourceHandler extends SimpleHandler {
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
-	public function run(): Response {
+	public function run() {
 		$this->contentHelper->checkAccess();
-
-		$titleObj = $this->contentHelper->getTitle();
-
-		// The call to $this->contentHelper->getTitle() should not return null if
-		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $titleObj !== null, 'Title should be known' );
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'bare':
+				$revisionRecord = $this->contentHelper->getTargetRevision();
 				$body = $this->contentHelper->constructMetadata();
-				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
+				$body['html_url'] = $this->constructHtmlUrl( $revisionRecord );
+				$response = $this->getResponseFactory()->createJson( $body );
+				$this->contentHelper->setCacheControl( $response );
 				break;
 			case 'source':
 				$content = $this->contentHelper->getContent();
@@ -83,7 +86,7 @@ class PageSourceHandler extends SimpleHandler {
 				$body['source'] = $content->getText();
 				break;
 			default:
-				throw new LogicException( "Unknown HTML type $outputMode" );
+				throw new LogicException( "Unknown output mode $outputMode" );
 		}
 
 		$response = $this->getResponseFactory()->createJson( $body );
@@ -93,9 +96,6 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed
-	 * if the latest revision of a page has been made private, un-readable for another reason,
-	 * or a newer revision exists.
 	 * @return string
 	 */
 	protected function getETag(): string {

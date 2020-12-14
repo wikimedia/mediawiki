@@ -31,11 +31,15 @@
 	},
 	{
 		"path": "/v1/revision/{id}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
+			"MainConfig",
+			"PermissionManager",
 			"RevisionLookup",
-			"PermissionManager"
-		]
+			"TitleFormatter",
+			"TitleFactory"
+		],
+		"format": "bare"
 	},
 	{
 		"path": "/v1/search/page",

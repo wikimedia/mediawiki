@@ -12,9 +12,10 @@ use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Rest\Handler\PageHTMLHandler;
+use MediaWiki\Rest\Handler\RevisionHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
@@ -27,13 +28,13 @@ use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\TestingAccessWrapper;
-use WikiPage;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
- * @covers \MediaWiki\Rest\Handler\PageHTMLHandler
+ * @covers \MediaWiki\Rest\Handler\RevisionHTMLHandler
  * @group Database
  */
-class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
+class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
@@ -65,10 +66,10 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param BagOStuff|null $cache
 	 * @param Parsoid|MockObject|null $parsoid
-	 * @return PageHTMLHandler
+	 * @return RevisionHTMLHandler
 	 * @throws Exception
 	 */
-	private function newHandler( BagOStuff $cache = null, Parsoid $parsoid = null ): PageHTMLHandler {
+	private function newHandler( BagOStuff $cache = null, Parsoid $parsoid = null ): RevisionHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
@@ -85,7 +86,17 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactoryOptions
 		);
 
-		$handler = new PageHTMLHandler(
+		/** @var GlobalIdGenerator|MockObject $idGenerator */
+		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
+
+		$uuidCounter = 0;
+		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
+			function () use( &$uuidCounter ) {
+				return 'uuid' . ++$uuidCounter;
+			}
+		);
+
+		$handler = new RevisionHTMLHandler(
 			new HashConfig( [
 				'RightsUrl' => 'https://example.com/rights',
 				'RightsText' => 'some rights',
@@ -97,7 +108,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 			$parserCacheFactory,
 			$this->getServiceContainer()->getWikiPageFactory(),
-			$this->getServiceContainer()->getGlobalIdGenerator()
+			$idGenerator
 		);
 
 		if ( $parsoid !== null ) {
@@ -109,16 +120,28 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		return $handler;
 	}
 
+	private function getExistingPageWithRevisions( $name ) {
+		$page = $this->getNonexistingTestPage( $name );
+
+		$this->editPage( $page, self::WIKITEXT );
+		$revisions['first'] = $page->getRevisionRecord();
+
+		$this->editPage( $page, 'DEAD BEEF' );
+		$revisions['latest'] = $page->getRevisionRecord();
+
+		return [ $page, $revisions ];
+	}
+
 	public function testExecuteWithHtml() {
 		$this->checkParsoidInstalled();
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
 			'Sanity: edited a page'
 		);
 
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
 		$handler = $this->newHandler();
@@ -126,7 +149,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'format' => 'with_html'
 		] );
 
-		$this->assertResponseData( $page, $data );
+		$this->assertResponseData( $revisions['first'], $data );
 		$this->assertStringContainsString( '<!DOCTYPE html>', $data['html'] );
 		$this->assertStringContainsString( '<html', $data['html'] );
 		$this->assertStringContainsString( self::HTML, $data['html'] );
@@ -134,14 +157,14 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecuteHtmlOnly() {
 		$this->checkParsoidInstalled();
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
 			'Sanity: edited a page'
 		);
 
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
 		$handler = $this->newHandler();
@@ -156,11 +179,13 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHtmlIsCached() {
+		$this->markTestSkipped( 'Disabled until T269663 lands' );
+
 		$this->checkParsoidInstalled();
 
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
 		$cache = new HashBagOStuff();
@@ -191,39 +216,39 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$time = time();
 		MWTimestamp::setFakeTime( $time );
 
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
 		$cache = new HashBagOStuff();
 
 		// First, test it works if nothing was cached yet.
 		// Make some time pass since page was created:
-		$time += 10;
-		MWTimestamp::setFakeTime( $time );
+		MWTimestamp::setFakeTime( $time + 10 );
 		$handler = $this->newHandler( $cache );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
+
+		// Now, test that headers work when getting from cache too.
+		$this->markTestSkipped( 'Disabled until T269663 lands' ); // FIXME
+
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
-		// Now, test that headers work when getting from cache too.
 		$handler = $this->newHandler( $cache );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
-		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
+		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, expire the cache
@@ -241,8 +266,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
-		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -282,9 +305,9 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->checkParsoidInstalled();
 
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
 		);
 
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
@@ -304,7 +327,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
-				new MessageValue( "paramvalidator-missingparam", [ 'title' ] ),
+				new MessageValue( "paramvalidator-missingparam", [ 'revision' ] ),
 				400
 			)
 		);
@@ -314,11 +337,11 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecute_error() {
-		$request = new RequestData( [ 'pathParams' => [ 'title' => 'DoesNotExist8237456assda1234' ] ] );
+		$request = new RequestData( [ 'pathParams' => [ 'id' => '2076419894' ] ] );
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
-				new MessageValue( "rest-nonexistent-title", [ 'testing' ] ),
+				new MessageValue( "rest-nonexistent-revision", [ 'testing' ] ),
 				404
 			)
 		);
@@ -328,21 +351,28 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param WikiPage $page
+	 * @param RevisionRecord $rev
 	 * @param array $data
 	 */
-	private function assertResponseData( WikiPage $page, array $data ): void {
-		$this->assertSame( $page->getId(), $data['id'] );
-		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['key'] );
-		$this->assertSame( $page->getTitle()->getPrefixedText(), $data['title'] );
-		$this->assertSame( $page->getLatest(), $data['latest']['id'] );
+	private function assertResponseData( RevisionRecord $rev, array $data ): void {
+		$title = $rev->getPageAsLinkTarget();
+
+		$this->assertSame( $rev->getId(), $data['id'] );
+		$this->assertSame( $rev->getSize(), $data['size'] );
+		$this->assertSame( $rev->isMinor(), $data['minor'] );
 		$this->assertSame(
-			wfTimestampOrNull( TS_ISO_8601, $page->getTimestamp() ),
-			$data['latest']['timestamp']
+			wfTimestampOrNull( TS_ISO_8601, $rev->getTimestamp() ),
+			$data['timestamp']
 		);
+		$this->assertSame( $title->getArticleID(), $data['page']['id'] );
+		$this->assertSame( $title->getDBkey(), $data['page']['key'] ); // assume main namespace
+		$this->assertSame( $title->getText(), $data['page']['title'] ); // assume main namespace
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );
 		$this->assertSame( 'https://example.com/rights', $data['license']['url'] );
 		$this->assertSame( 'some rights', $data['license']['title'] );
+		$this->assertSame( $rev->getComment()->text, $data['comment'] );
+		$this->assertSame( $rev->getUser()->getId(), $data['user']['id'] );
+		$this->assertSame( $rev->getUser()->getName(), $data['user']['name'] );
 	}
 
 }

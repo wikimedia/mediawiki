@@ -4,6 +4,7 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Revision', () => {
 	const client = new REST();
+	const clientV0 = new REST( 'rest.php/coredev/v0' );
 	let mindy;
 
 	before( async () => {
@@ -26,7 +27,8 @@ describe( 'Revision', () => {
 			// XXX: this test requires php-wikidiff2 1.10 or later to be installed
 			const { newrevid: revId1 } = await mindy.edit( page, { text: 'Mindy Edit 1' } );
 			const { newrevid: revId2 } = await mindy.edit( page, { text: 'Mindy Edit 2' } );
-			const { status, body } = await client.get( `/revision/${revId1}/compare/${revId2}` );
+			const response = await client.get( `/revision/${revId1}/compare/${revId2}` );
+			const { status, body } = response;
 			assert.strictEqual( status, 200 );
 			assert.nestedPropertyVal( body, 'from.id', revId1 );
 			assert.nestedPropertyVal( body, 'to.id', revId2 );
@@ -47,6 +49,34 @@ describe( 'Revision', () => {
 		} );
 	} );
 
+	describe( 'GET /revision/{id}', () => {
+		it( 'should successfully get source and metadata for revision', async () => {
+			const page = utils.title( 'Revision' );
+			const { newrevid, pageid, param_summary } = await mindy.edit( page, {
+				text: 'Hello World',
+				summary: 'creating page'
+			} );
+			const { status, body, headers } = await clientV0.get( `/revision/${newrevid}` );
+
+			assert.strictEqual( status, 200 );
+			assert.strictEqual( body.id, newrevid );
+			assert.strictEqual( body.minor, false );
+			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
+			assert.nestedProperty( body, 'timestamp' );
+			assert.nestedPropertyVal( body, 'user.name', mindy.username );
+			assert.strictEqual( body.comment, param_summary );
+			assert.isOk( headers.etag, 'etag' );
+			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
+			assert.nestedPropertyVal( body, 'source', 'Hello World' );
+		} );
+
+		it( 'should return 404 for revision that does not exist', async () => {
+			const { status } = await clientV0.get( '/revision/99999999' );
+
+			assert.strictEqual( status, 404 );
+		} );
+	} );
+
 	describe( 'GET /revision/{id}/bare', () => {
 		it( 'should successfully get information about revision', async () => {
 			const page = utils.title( 'Revision' );
@@ -59,12 +89,13 @@ describe( 'Revision', () => {
 			assert.strictEqual( status, 200 );
 			assert.strictEqual( body.id, newrevid );
 			assert.strictEqual( body.minor, false );
-			assert.deepEqual( body.page, { id: pageid, title: page } );
+			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
 			assert.nestedProperty( body, 'timestamp' );
 			assert.nestedPropertyVal( body, 'user.name', mindy.username );
 			assert.strictEqual( body.comment, param_summary );
 			assert.isOk( headers.etag, 'etag' );
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
+			assert.nestedProperty( body, 'html_url' );
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
