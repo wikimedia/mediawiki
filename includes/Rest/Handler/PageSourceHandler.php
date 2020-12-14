@@ -78,7 +78,7 @@ class PageSourceHandler extends SimpleHandler {
 				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
 				break;
 			case 'source':
-				$content = $this->contentHelper->getPageContent();
+				$content = $this->contentHelper->getContent();
 				$body = $this->contentHelper->constructMetadata();
 				$body['source'] = $content->getText();
 				break;
@@ -119,5 +119,12 @@ class PageSourceHandler extends SimpleHandler {
 
 	public function getParamSettings(): array {
 		return $this->contentHelper->getParamSettings();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		return $this->contentHelper->hasContent();
 	}
 }
