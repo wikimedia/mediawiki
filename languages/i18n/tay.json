@@ -962,7 +962,7 @@
 	"namespace_association": "M’ubuy squw \"kungcyen na sslalu’ \" imi’ niya’",
 	"tooltip-namespace_association": "Prawngan mwazyaw squw “bbzyagan” qaniy ga spgluw niya’ kwara’ quw kin na ppkayal sa wnwazyaw kungcyen na sslalu’, ini’ ga tunux lalu’ nquw kungcyen na sslalu’",
 	"blanknamespace": "(Spzyang balay)",
-	"contributions": "{{GENDER:$1| squliq mniru’}}bniru’ na qmnlah biru’",
+	"tool-link-contributions": "{{GENDER:$1| squliq mniru’}}bniru’ na qmnlah biru’",
 	"contributions-title": "$1 bniq sa pincyuwagan na pptzyuwaw",
 	"mycontris": "Snli’ sa binrwan",
 	"anoncontribs": "Snli’ sa binrwan",

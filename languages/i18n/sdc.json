@@ -1099,7 +1099,7 @@
 	"invert": "invirthi la isciubaradda",
 	"namespace_association": "tipu di pàgina reratibu",
 	"blanknamespace": "(Prinzipari)",
-	"contributions": "{{GENDER:$1|Cuntributi utenti}}",
+	"tool-link-contributions": "{{GENDER:$1|Cuntributi utenti}}",
 	"contributions-title": "Cuntributi di $1",
 	"mycontris": "Li me' cuntributi",
 	"anoncontribs": "Cuntributi",

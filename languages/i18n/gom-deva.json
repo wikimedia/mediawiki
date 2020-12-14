@@ -891,7 +891,7 @@
 	"namespace_association": "संबंदीत नांवथोळ",
 	"tooltip-namespace_association": "चर्चा वा वेंचीक नांवाचें सुवातीक संबंदीत विशयाच्या नांवाची सुवात आस्पावन घेवपाखातीर ह्या बॉक्सांत पळयात",
 	"blanknamespace": "(मुखेल)",
-	"contributions": "{{GENDER:$1|वापरपी}} योगदानां",
+	"tool-link-contributions": "{{GENDER:$1|वापरपी}} योगदानां",
 	"contributions-title": "$1 खातीर वापरप्याचीं योगदानां",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",

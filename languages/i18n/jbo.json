@@ -471,7 +471,7 @@
 	"undeleteviewlink": "cpacu",
 	"namespace": "to cmene canlu toi",
 	"blanknamespace": "(ralju)",
-	"contributions": "{{GENDER:$1|lo pilno}} mo'u stika la'e di'e",
+	"tool-link-contributions": "{{GENDER:$1|lo pilno}} mo'u stika la'e di'e",
 	"mycontris": "lo be mi pu se stika",
 	"sp-contributions-talk": "lo nu casnu",
 	"sp-contributions-submit": "sisku",

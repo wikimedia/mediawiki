@@ -1761,7 +1761,7 @@
 	"namespace_association": "رلدے ناں دی تھاں",
 	"tooltip-namespace_association": "چُݨی ہوئی ناں جاہ نال جُڑیاں مضمون ناں جاہیں یا ڳالھ مہاڑ شامل کرݨ کیتے ایں ݙٻے وچ نشان لاؤ",
 	"blanknamespace": "(مکھ)",
-	"contributions": "\n{{GENDER:$1|ورتݨ آلے}} دیاں حصے داریاں",
+	"tool-link-contributions": "\n{{GENDER:$1|ورتݨ آلے}} دیاں حصے داریاں",
 	"contributions-title": "ورتݨ آلے $1 دی ونڳاراں",
 	"mycontris": "ونڳاراں",
 	"anoncontribs": "ونڳاراں",

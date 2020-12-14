@@ -923,7 +923,7 @@
 	"namespace_association": "Domínio associado",
 	"tooltip-namespace_association": "Marque esta caixa pa ancluir tamien l domínio de cuntenido ó de cumbersa associado a la sue seleçon",
 	"blanknamespace": "(Percipal)",
-	"contributions": "Cuntrebuiçones {{GENDER:$1|de l outelizador|de la outelizadora|de l(a) outelizador(a)}}",
+	"tool-link-contributions": "Cuntrebuiçones {{GENDER:$1|de l outelizador|de la outelizadora|de l(a) outelizador(a)}}",
 	"contributions-title": "Upas {{GENDER:$1|de l outelizador|de la outelizadora}} $1",
 	"mycontris": "Las mies upas",
 	"anoncontribs": "Cuntrebuiçones",

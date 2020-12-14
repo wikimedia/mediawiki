@@ -1256,7 +1256,7 @@
 	"namespace_association": "Barabu turam",
 	"tooltip-namespace_association": "Falal bii néeg ngir boolewaale ci xëtu waxtaanuwaay walla koju barabu tur bi nga fal",
 	"blanknamespace": "(njëkk)",
-	"contributions": "Cëruy bii {{GENDER:$1|jëfandikukat}}",
+	"tool-link-contributions": "Cëruy bii {{GENDER:$1|jëfandikukat}}",
 	"contributions-title": "Cëru yu jëfandikukat bii di $1",
 	"mycontris": "Cëru",
 	"anoncontribs": "Cëru",

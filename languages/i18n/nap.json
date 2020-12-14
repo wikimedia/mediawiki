@@ -2285,7 +2285,7 @@
 	"namespace_association": "Namespace associate",
 	"tooltip-namespace_association": "Nzegna sta casciulella pe ncludere 'e cchiacchiere o l'oggetto d' 'o namespace associato c' 'o namespace scigliuto",
 	"blanknamespace": "(Prencepale)",
-	"contributions": "Contribbute {{GENDER:$1|utente}}",
+	"tool-link-contributions": "Contribbute {{GENDER:$1|utente}}",
 	"contributions-title": "Cuntribbute 'a l'utente pe' $1",
 	"mycontris": "'E ffatiche d''e mmeje",
 	"anoncontribs": "Cuntribbute",

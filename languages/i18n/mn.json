@@ -1704,7 +1704,7 @@
 	"invert": "Зааснаас бусад",
 	"namespace_association": "Заасантай холбоотой",
 	"blanknamespace": "(Гол)",
-	"contributions": "{{GENDER:$1|Хэрэглэгчийн }} оруулсан хувь нэмэр",
+	"tool-link-contributions": "{{GENDER:$1|Хэрэглэгчийн }} оруулсан хувь нэмэр",
 	"contributions-title": "$1 хэрэглэгчийн хувь нэмэр",
 	"mycontris": "Оруулсан хувь нэмэр",
 	"contribsub2": "Хэрэглэгч: {{GENDER:$3|$1}} ($2)",

@@ -1732,7 +1732,7 @@
 	"namespace": "نامء جدایی",
 	"invert": "برگردینگ انتخاب",
 	"blanknamespace": "(بُنیادی)",
-	"contributions": "مشارکتان کاربر",
+	"tool-link-contributions": "مشارکتان کاربر",
 	"contributions-title": "مشارکتان کاربر په $1",
 	"mycontris": "می مشارکتان",
 	"contribsub2": "په $1 ($2)",

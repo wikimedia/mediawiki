@@ -867,7 +867,7 @@
 	"namespace_association": "Adɣar n wassaɣ ittyarna",
 	"tooltip-namespace_association": "Sskcm amidag ɣ tankult ad afad ad rnuḍ daɣ tallunt n ismawen n umyannan yqqnen ar tallunt n  ismawen ittwafrn",
 	"blanknamespace": "(Adslan)",
-	"contributions": "Tidrawin n {{GENDER:$1|usmras|tsmrast}}",
+	"tool-link-contributions": "Tidrawin n {{GENDER:$1|usmras|tsmrast}}",
 	"contributions-title": "tidrawin n {{GENDER:$1|usmras|tsmrast}} $1",
 	"mycontris": "Tidrawin",
 	"anoncontribs": "Tumutin",

@@ -2152,7 +2152,7 @@
 	"namespace_association": "Mandhala aran magepokan",
 	"tooltip-namespace_association": "Cénthang kothak iki kanggo nglebokaké uga mandhala aran parembugan utawa subyèk kang gegayutan karo mandhala aran kapilih",
 	"blanknamespace": "(Pokok)",
-	"contributions": "Pasumbanging {{GENDER:$1|naraguna}}",
+	"tool-link-contributions": "Pasumbanging {{GENDER:$1|naraguna}}",
 	"contributions-title": "Pasumbanging naraguna $1",
 	"mycontris": "Pasumbang",
 	"anoncontribs": "Pasumbang",

@@ -1864,7 +1864,7 @@
 	"namespace_association": "सम्बद्धं नामस्थानम् ।",
 	"tooltip-namespace_association": "चितनामस्थानेन सह सम्बद्धं विषयनामस्थानम् अथवा सम्भाषणम् अपि उपादातुम् इमां मञ्जूषाम् अर्गलयतु ।",
 	"blanknamespace": "(मुख्यम्)",
-	"contributions": "{{GENDER:$1|प्रयोक्तॄणां}} योगदानानि",
+	"tool-link-contributions": "{{GENDER:$1|प्रयोक्तॄणां}} योगदानानि",
 	"contributions-title": "$1 कृते सदस्यस्य योगदानानि",
 	"mycontris": "योगदानानि",
 	"anoncontribs": "अंशदाता",

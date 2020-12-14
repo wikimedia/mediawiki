@@ -433,7 +433,7 @@
 	"namespace_association": "Boowindol toɗɗangol",
 	"tooltip-namespace_association": "Fes ngel gallel ngam soomorde heen boowindol haalal walla toɓɓere toɗɗanangol boowindol labangol ngol",
 	"blanknamespace": "(Dowrowo)",
-	"contributions": "Baylitte {{GENDER:$1|Kuutoro}}",
+	"tool-link-contributions": "Baylitte {{GENDER:$1|Kuutoro}}",
 	"contributions-title": "Ballitte kuutoroe $1",
 	"mycontris": "Ballitte",
 	"anoncontribs": "Ballitte",

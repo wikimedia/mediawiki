@@ -2247,7 +2247,7 @@
 	"namespace_association": "Espaci de nom associat",
 	"tooltip-namespace_association": "Marcatz aquesta casa per inclure tanben l'espaci de noms de discussion associat a l'espaci de noms seleccionat",
 	"blanknamespace": "(Principal)",
-	"contributions": "Contribucions de l'{{GENDER:$1|utilizaire|utilizaira}}",
+	"tool-link-contributions": "Contribucions de l'{{GENDER:$1|utilizaire|utilizaira}}",
 	"contributions-title": "Lista de las contribucions de l’utilizaire $1",
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",

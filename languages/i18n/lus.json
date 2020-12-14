@@ -1121,7 +1121,7 @@
 	"invert": "Thlan lêtna",
 	"namespace_association": "Hminghmun kaihhnawih",
 	"blanknamespace": "(Phekpui)",
-	"contributions": "{{GENDER:$1|Hmangtu}} kutthawhnate",
+	"tool-link-contributions": "{{GENDER:$1|Hmangtu}} kutthawhnate",
 	"contributions-title": "$1 kutthawhnate",
 	"mycontris": "Kutthawhnate",
 	"contribsub2": "$1 tan ($2) .",

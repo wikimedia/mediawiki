@@ -1879,7 +1879,7 @@
 	"namespace_association": "Əlaqəli ad sahəsi",
 	"tooltip-namespace_association": "Seçilən ad sahəsi ilə əlaqəli müzakirə və ya mövzu adını da daxil etmək üçün bu qutuyu yoxlayın",
 	"blanknamespace": "(Ana)",
-	"contributions": "{{GENDER:$1|İstifadəçinin}} fəaliyyəti",
+	"tool-link-contributions": "{{GENDER:$1|İstifadəçinin}} fəaliyyəti",
 	"contributions-title": "$1 istifadəçi fəaliyyətləri",
 	"mycontris": "Fəaliyyətim",
 	"anoncontribs": "Fəaliyyətim",

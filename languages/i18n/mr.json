@@ -2221,7 +2221,7 @@
 	"namespace_association": "सहभागी नामविश्वे",
 	"tooltip-namespace_association": "निवडलेल्या नामविश्वासंबधीत विषय अथवा चर्चा नामविश्वसुद्धा आंतर्भूत करण्याकरिता हा बॉक्स टिचकवून चिह्नित करा",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|सदस्य}} योगदान",
+	"tool-link-contributions": "{{GENDER:$1|सदस्य}} योगदान",
 	"contributions-title": "$1 साठी सदस्य-योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",

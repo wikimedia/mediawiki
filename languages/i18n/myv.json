@@ -1192,7 +1192,7 @@
 	"invert": "Кочказень таркас апаконь кочкамо",
 	"namespace_association": "Мартонзо сюлмазь лемпотмо",
 	"blanknamespace": "(Прявкс)",
-	"contributions": "{{GENDER:$1|Теицянть}} путовксонзо",
+	"tool-link-contributions": "{{GENDER:$1|Теицянть}} путовксонзо",
 	"contributions-title": "Теицянть путовксонзо $1 таркантень",
 	"mycontris": "Монь путовкстнэ",
 	"anoncontribs": "Путовкст",

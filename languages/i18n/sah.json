@@ -2363,7 +2363,7 @@
 	"namespace_association": "Ситимнээх аат даллара",
 	"tooltip-namespace_association": "Бу бэлиэни туруордаххына талбыт аат далгын кытта ситимнээх аат даллара эмиэ холбоһуохтара",
 	"blanknamespace": "(Сүрүн)",
-	"contributions": "{{GENDER:$1|Кыттааччы}} суруйуута (кылаата)",
+	"tool-link-contributions": "{{GENDER:$1|Кыттааччы}} суруйуута (кылаата)",
 	"contributions-title": "$1 кыттааччы киллэрбит уларытыылара",
 	"mycontris": "Суруйуу испииһэгэ",
 	"anoncontribs": "Суруйуу тиһилигэ",

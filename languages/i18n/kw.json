@@ -820,7 +820,7 @@
 	"namespace_association": "Spas hanow kelmys",
 	"tooltip-namespace_association": "Tyckyowgh an gist ma dhe geworra ynwedh an hanow spas keskows po testen kevrennys dhe'n hanow spas dewisyes",
 	"blanknamespace": "(Penn)",
-	"contributions": "Kevrohow an {{GENDER:$1|devnydhyer}}",
+	"tool-link-contributions": "Kevrohow an {{GENDER:$1|devnydhyer}}",
 	"contributions-title": "Kevrohow $1",
 	"mycontris": "Kevrohow",
 	"anoncontribs": "Kevrohow",

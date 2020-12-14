@@ -1218,7 +1218,7 @@
 	"invert": "Inverti sa seletzione",
 	"namespace_association": "Nùmene-logu assotziadu",
 	"blanknamespace": "(Printzipale)",
-	"contributions": "Cuntributos {{GENDER:$1|utente}}",
+	"tool-link-contributions": "Cuntributos {{GENDER:$1|utente}}",
 	"contributions-title": "Contributziones de $1",
 	"mycontris": "Contributos mios",
 	"anoncontribs": "Contributziones",

@@ -484,7 +484,7 @@
 	"namespace_association": "’ima hingha’an karo:o’an",
 	"tooltip-namespace_association": "pawhi:il ka hini he:Syuen fangkway ’anoka hani saeboeh ki pinawhi:il karo:o’an ka ’ima hinfha’ kapaehrahrang a ka Sapang karo:o’an",
 	"blanknamespace": "(’ima Sapang)",
-	"contributions": "{{GENDER:$1| kamamatawaw }} mobay ka pinatawaw",
+	"tool-link-contributions": "{{GENDER:$1| kamamatawaw }} mobay ka pinatawaw",
 	"contributions-title": "noka $1 ka kamamatawaw binoway ka pinatawaw",
 	"mycontris": " mobay ka pinatawaw",
 	"anoncontribs": " mobay ka pinatawaw",

@@ -1912,7 +1912,7 @@
 	"namespace_association": "ආශ්‍රිත නාම අවකාශය",
 	"tooltip-namespace_association": "තෝරාගත් නාම අවකාශය හා සම්බන්ධ සාකච්ඡා හෝ විෂයය නාම අවකාශය ඇතුළත් කිරීමට මෙම කොටුව ලකුණු කරන්න",
 	"blanknamespace": "(ප්‍රධාන)",
-	"contributions": "{{GENDER:$1|පරිශීලකගේ}} දායකත්ව",
+	"tool-link-contributions": "{{GENDER:$1|පරිශීලකගේ}} දායකත්ව",
 	"contributions-title": " $1 සඳහා පරිශීලක දායකත්වයන්",
 	"mycontris": "දායකත්ව",
 	"anoncontribs": "දායකත්වයන්",

@@ -958,7 +958,7 @@
 	"namespace_association": "sparłãczoné òbrëmié mionów",
 	"tooltip-namespace_association": "Zacechùjë nã kastkã dlô ùwzglãdnieniô starnë diskùsëji ë témë sparłãczony z wëlowónyma òbrëmiama mionów.",
 	"blanknamespace": "(Przédnô)",
-	"contributions": "Wkłôd {{GENDER:$1|brëkòwnika|brëkòwniczczi}}",
+	"tool-link-contributions": "Wkłôd {{GENDER:$1|brëkòwnika|brëkòwniczczi}}",
 	"contributions-title": "Wkłôd brëkòwnika $1",
 	"mycontris": "Mój wkłôd",
 	"anoncontribs": "Mój wkłôd",

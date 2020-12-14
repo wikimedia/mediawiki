@@ -1761,7 +1761,7 @@
 	"namespace_association": "Nawězany mjenjowy rum",
 	"tooltip-namespace_association": "Klikni na toś ten kašćik, aby zapśimjeł diskusijny mjenowy rum abo temowy mjenjowy rum, kótaryž jo z wubranym mjenjowym rumom zwězany",
 	"blanknamespace": "(Nastawki)",
-	"contributions": "Pśinoski {{GENDER:$1|wužywarja|wužywarki}}",
+	"tool-link-contributions": "Pśinoski {{GENDER:$1|wužywarja|wužywarki}}",
 	"contributions-title": "Wužywarske pśinoski wót $1",
 	"mycontris": "Pśinoski",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",

@@ -1169,7 +1169,7 @@
 	"invert": "Tanlash tartibini almashtirish",
 	"namespace_association": "Bogʻliq nomfazo",
 	"blanknamespace": "(asosiy)",
-	"contributions": "Hissasi",
+	"tool-link-contributions": "Hissasi",
 	"contributions-title": "{{GENDER:$1|Foydalanuvchi}} $1 hissasi",
 	"mycontris": "Hissam",
 	"anoncontribs": "Qoʻshilgan hissa",

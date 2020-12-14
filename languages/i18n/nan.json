@@ -974,7 +974,7 @@
 	"namespace_association": "Siong-koan ê miâ-khong-kan",
 	"tooltip-namespace_association": "Kau khí-lâi ê kheng-á; siong-koan ê thó-lūn ia̍h mi̍h-kiāⁿ khong-kan ē pau-hâm ji̍p lâi.",
 	"blanknamespace": "(Chú-ia̍h)",
-	"contributions": "{{GENDER:$1|Iōng-chiá}} ê kòng-hiàn",
+	"tool-link-contributions": "{{GENDER:$1|Iōng-chiá}} ê kòng-hiàn",
 	"contributions-title": "Iōng-chiá $1--ê kòng-hiàn",
 	"mycontris": "Kòng-hiàn",
 	"anoncontribs": "Kòng-hiàn",

@@ -1216,7 +1216,7 @@
 	"namespace_association": "Tallunt n isemawen yeqqenen",
 	"tooltip-namespace_association": "Sekcem amidag deg tankult agi iwakken ad rnuḍ daɣen tallunt n isemawen n umyannan yeqqnen ar tallunt n  isemawen yettwafren",
 	"blanknamespace": "(Agejdan)",
-	"contributions": "Ittekkiyen n {{GENDER:$1|umseqdac|tamseqdact}}",
+	"tool-link-contributions": "Ittekkiyen n {{GENDER:$1|umseqdac|tamseqdact}}",
 	"contributions-title": "Umuɣ n tikkin n umseqdac $1",
 	"mycontris": "Ittekkiyen",
 	"anoncontribs": "Ittekkiyen",

@@ -1854,7 +1854,7 @@
 	"namespace_association": "مۇناسىۋەتلىك ئات بوشلۇقى",
 	"tooltip-namespace_association": "بۇ تاللانما تاللانسا تاللانغان ئات بوشلۇقى بىلەن مۇناسىۋەتلىك بولغان مۇنازىرە بېتى ياكى تارماق بەتلىرىنى ئۆز ئىچىگە ئالىدۇ.",
 	"blanknamespace": "(ئاساسىي)",
-	"contributions": "{{GENDER:$1|ئىشلەتكۈچى}} تۆھپىسى",
+	"tool-link-contributions": "{{GENDER:$1|ئىشلەتكۈچى}} تۆھپىسى",
 	"contributions-title": "$1 نىڭ ئىشلەتكۈچى تۆھپىسى",
 	"mycontris": "تۆھپە",
 	"anoncontribs": "تۆھپە",

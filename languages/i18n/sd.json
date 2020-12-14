@@ -1599,7 +1599,7 @@
 	"tooltip-invert": "هن دٻي تي نشان لڳايو صحفن ۾ تبديليون لڪائڻ لاءِ چونڊيل نانءَپولار مان (۽ لاڳاپيل نانءُپولار جيڪڏهن نشان لڳل)",
 	"namespace_association": "منسلڪ نانءُپولار",
 	"blanknamespace": "(مُک)",
-	"contributions": "{{GENDER:$1|واپرائيندڙ}} جون ڀاڱيداريون",
+	"tool-link-contributions": "{{GENDER:$1|واپرائيندڙ}} جون ڀاڱيداريون",
 	"contributions-title": "$1 لاءِ واپرائيندڙ جون ڀاڱيداريون",
 	"mycontris": "ڀاڱيداريون",
 	"anoncontribs": "ڀاڱيداريون",

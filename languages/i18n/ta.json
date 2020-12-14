@@ -2100,7 +2100,7 @@
 	"namespace_association": "தொடர்புடைய  பெயர்வெளி",
 	"tooltip-namespace_association": "தேர்ந்தெடுக்கப்பட்ட பெயர்வெளியுடன் தொடர்புடைய தலைப்பு பெயர்வெளி அல்லது பேச்சை இணைக்கவும் இந்த பெட்டியைத் தேர்ந்தெடு",
 	"blanknamespace": "(முதன்மை)",
-	"contributions": "{{GENDER:$1|பயனர்}} பங்களிப்புக்கள்",
+	"tool-link-contributions": "{{GENDER:$1|பயனர்}} பங்களிப்புக்கள்",
 	"contributions-title": "$1 இற்கான பயனர் பங்களிப்புகள்",
 	"mycontris": "பங்களிப்புக்கள்",
 	"anoncontribs": "பங்களிப்புக்கள்",

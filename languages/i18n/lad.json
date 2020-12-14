@@ -806,7 +806,7 @@
 	"namespace": "Espacio de nombres:",
 	"invert": "Aboltar escojimiento",
 	"blanknamespace": "(Prencipal)",
-	"contributions": "Ajustamientos {{GENDER:$1|del kullaneador|de la kullaneadera}}",
+	"tool-link-contributions": "Ajustamientos {{GENDER:$1|del kullaneador|de la kullaneadera}}",
 	"contributions-title": "Ajustamientos {{GENDER:$1|del usuario|de la usuaria}} $1",
 	"mycontris": "Kontribüsyones",
 	"contribsub2": "Para {{GENDER:$3|$1}}($2)",

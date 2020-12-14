@@ -1649,7 +1649,7 @@
 	"namespace_association": "Байламлы ат алам",
 	"tooltip-namespace_association": "Сайланнган ат алам бла байламлы сюзюу атланы аламын да къошар ючюн бу энни салыгъын",
 	"blanknamespace": "(Баш)",
-	"contributions": "{{GENDER:$1|Къошулуучуну}} къошуму",
+	"tool-link-contributions": "{{GENDER:$1|Къошулуучуну}} къошуму",
 	"contributions-title": "$1 къошулуучуну къошагъы",
 	"mycontris": "Къошум",
 	"contribsub2": "{{GENDER:$3|$1}} къошуму ($2)",

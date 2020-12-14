@@ -676,7 +676,7 @@
 	"namespace_association": "सम्बद्ध नामस्थान",
 	"tooltip-namespace_association": "भी बात या विषय नाम स्थान चयनित नाम स्थान केरऽ साथ जुड़लऽ क॑ शामिल करै लेली इ बक्सा क॑ चिह्नित करऽ.",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|सदस्य}} योगदान",
+	"tool-link-contributions": "{{GENDER:$1|सदस्य}} योगदान",
 	"contributions-title": "$1 लेली सदस्यॊ के योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",

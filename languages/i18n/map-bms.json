@@ -1235,7 +1235,7 @@
 	"namespace": "Bilik jeneng:",
 	"invert": "Balekna pilihan",
 	"blanknamespace": "(Utama)",
-	"contributions": "Kontribusi {{GENDER:$1|panganggo}}",
+	"tool-link-contributions": "Kontribusi {{GENDER:$1|panganggo}}",
 	"contributions-title": "Kontribusi panganggo kanggo $1",
 	"mycontris": "Kontribusi",
 	"contribsub2": "Kanggo $1 ($2)",

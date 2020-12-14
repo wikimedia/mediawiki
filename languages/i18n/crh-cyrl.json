@@ -1099,7 +1099,7 @@
 	"invert": "Сайлангъан тышындакилерни сайла",
 	"namespace_association": "Багълы исим фезасы",
 	"blanknamespace": "(Эсас)",
-	"contributions": "{{GENDER:$1|Къулланыджынынъ}} исселери",
+	"tool-link-contributions": "{{GENDER:$1|Къулланыджынынъ}} исселери",
 	"contributions-title": "$1 къулланыджысынынъ исселери",
 	"mycontris": "Исселер",
 	"anoncontribs": "Исселер",

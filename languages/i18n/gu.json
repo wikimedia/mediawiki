@@ -1803,7 +1803,7 @@
 	"namespace_association": "સંકળાયેલ નામસ્થળ",
 	"tooltip-namespace_association": "પસંદ કરેલા નામસ્થળ સાથેસંલગ્ન નામ સ્થ્ળની માહિતી શામિલ કરવા આ ખાનું પણ અંકિત કરો",
 	"blanknamespace": "(મુખ્ય)",
-	"contributions": "{{GENDER:$1|સભ્ય}}નાં યોગદાનો",
+	"tool-link-contributions": "{{GENDER:$1|સભ્ય}}નાં યોગદાનો",
 	"contributions-title": "$1 માટે સભ્યનાં યોગદાનો",
 	"mycontris": "યોગદાનો",
 	"anoncontribs": "યોગદાનો",

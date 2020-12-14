@@ -648,7 +648,7 @@
 	"namespace_association": "Asuosietid niemspies",
 	"tooltip-namespace_association": "Chek dis bax fi azwel ingkluud di taak ar sobjek niemspies asuosiet wid di silek niemspies",
 	"blanknamespace": "(Main)",
-	"contributions": "{{GENDER:$1|Yuuza}} kanchribyuushan",
+	"tool-link-contributions": "{{GENDER:$1|Yuuza}} kanchribyuushan",
 	"contributions-title": "Yuuza kanchribiushan fi $1",
 	"mycontris": "Mi kanchribyuushan",
 	"anoncontribs": "Kanchribyuushan",

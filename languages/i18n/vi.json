@@ -2527,7 +2527,7 @@
 	"namespace_association": "Không gian tên cùng đôi",
 	"tooltip-namespace_association": "Cũng ẩn không gian tên thảo luận hoặc nội dung ứng với không gian được chọn",
 	"blanknamespace": "(Chính)",
-	"contributions": "{{GENDER:$1}}Đóng góp của người dùng",
+	"tool-link-contributions": "{{GENDER:$1}}Đóng góp của người dùng",
 	"contributions-title": "Đóng góp của người dùng $1",
 	"mycontris": "Đóng góp",
 	"anoncontribs": "Đóng góp",

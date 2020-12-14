@@ -1576,7 +1576,7 @@
 	"namespace": "名冊：",
 	"invert": "反相",
 	"blanknamespace": "主",
-	"contributions": "功績",
+	"tool-link-contributions": "功績",
 	"contributions-title": "$1之功績",
 	"mycontris": "吾績",
 	"anoncontribs": "績",

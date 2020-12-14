@@ -1168,7 +1168,7 @@
 	"namespace_association": "सम्बन्धित नेमस्पेस",
 	"tooltip-namespace_association": "कुरडिकानी या विषय नेमस्पेसहरुलाई सम्वन्धित नेमस्पेसको रुपमि लिनकि लेखा सन्दुकमि चिनो लगाइदिय ।",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|प्रयोगकर्ता}}को योगदान",
+	"tool-link-contributions": "{{GENDER:$1|प्रयोगकर्ता}}को योगदान",
 	"contributions-title": "प्रयोगकर्ता $1 का योगदानअन",
 	"mycontris": "मेरो योगदानहरू",
 	"anoncontribs": "योगदान",

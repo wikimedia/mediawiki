@@ -1134,7 +1134,7 @@
 	"namespace_association": "Genah aran sané mapaiketan",
 	"tooltip-namespace_association": "Céntang kotak puniki mangda marengang genah aran pabligbagan utawi subyék sané mapaiketan genah aran sané kapilih",
 	"blanknamespace": "(Utama)",
-	"contributions": "Pituut {{GENDER:$1|sang anganggé}}",
+	"tool-link-contributions": "Pituut {{GENDER:$1|sang anganggé}}",
 	"contributions-title": "Pituut sang anganggé $1",
 	"mycontris": "Pituut",
 	"anoncontribs": "Pituut",

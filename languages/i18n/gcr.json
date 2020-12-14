@@ -850,7 +850,7 @@
 	"namespace_association": "Lèspas di non asosyé",
 	"tooltip-namespace_association": "Koché sa kaz pou enkli égalman lèspas-a di non di diskisyon oben di sijè, ki asosyé à lèspas-a di non ki sélègsyonnen",
 	"blanknamespace": "(Prensipal)",
-	"contributions": "Kontribisyon di {{GENDER:$1|itilizatò|itilizatris}}",
+	"tool-link-contributions": "Kontribisyon di {{GENDER:$1|itilizatò|itilizatris}}",
 	"contributions-title": "Lis di kontribisyon-yan di itiliza{{GENDER:$1|ò|ris}}-a $1",
 	"mycontris": "Kontribisyon",
 	"anoncontribs": "Kontribisyon",

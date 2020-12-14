@@ -935,7 +935,7 @@
 	"namespace": "Spacie de nómine:",
 	"invert": "Inverter selection",
 	"blanknamespace": "(Principal)",
-	"contributions": "Contributiones de {{GENDER:$1|usator|usatoressa}}",
+	"tool-link-contributions": "Contributiones de {{GENDER:$1|usator|usatoressa}}",
 	"contributions-title": "Contributiones de usator por $1",
 	"mycontris": "Contributiones",
 	"anoncontribs": "Contributiones",

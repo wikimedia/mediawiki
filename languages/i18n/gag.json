@@ -550,7 +550,7 @@
 	"namespace": "Er adı:",
 	"invert": "Seçilmiş dışındakileri göster",
 	"blanknamespace": "(Baş)",
-	"contributions": "Kullanıcının katılmakları",
+	"tool-link-contributions": "Kullanıcının katılmakları",
 	"contributions-title": "$1 için kullanıcı katılmakları",
 	"mycontris": "Katılmaklarım",
 	"contribsub2": "$1 ($2)",

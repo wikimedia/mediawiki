@@ -1297,7 +1297,7 @@
 	"namespace_association": "Gesiano yoltxo",
 	"tooltip-namespace_association": "Prakera va bat bor, va prilaxo ok refo yoltxo gesiano dere di kodoplekur",
 	"blanknamespace": "( Nelkaxo )",
-	"contributions": "webereem ke {{GENDER:$1|Favesik}}",
+	"tool-link-contributions": "webereem ke {{GENDER:$1|Favesik}}",
 	"contributions-title": "Webekseem ke $1 favesik",
 	"mycontris": "Jinaf webekseem",
 	"anoncontribs": "Webekseem",

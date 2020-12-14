@@ -2279,7 +2279,7 @@
 	"namespace_association": "Бәйле арауыҡ",
 	"tooltip-namespace_association": "Һайланған исемдәр арауығы менән бәйле әңгәмә (йәки тема) исем арауыҡтарын ҡушыр өсөн был билдәне ҡуйығыҙ.",
 	"blanknamespace": "(Төп)",
-	"contributions": "{{GENDER:$1|Ҡатнашыусы}} башҡарған эш",
+	"tool-link-contributions": "{{GENDER:$1|Ҡатнашыусы}} башҡарған эш",
 	"contributions-title": "$1 исемле ҡатнашыусы башҡарған эш",
 	"mycontris": "Башҡарған эштәр",
 	"anoncontribs": "Башҡарған эштәр",

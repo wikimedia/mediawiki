@@ -2439,7 +2439,7 @@
 	"namespace_association": "Namespace associou",
 	"tooltip-namespace_association": "Selession-a sta casella pe includde ascì a paggina de discuscion ò l'oggetto do namespace associou co-o namespace selessionou",
 	"blanknamespace": "(Prinçipâ)",
-	"contributions": "Contribûti {{GENDER:$1|uténte}}",
+	"tool-link-contributions": "Contribûti {{GENDER:$1|uténte}}",
 	"contributions-title": "Contribûti de $1",
 	"mycontris": "contribûti",
 	"anoncontribs": "contribûti",

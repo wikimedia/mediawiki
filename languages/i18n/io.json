@@ -1927,7 +1927,7 @@
 	"namespace_association": "Asociita 'namespace'",
 	"tooltip-namespace_association": "Selektez ica buxo anke por inkluzar la diskuto o temo asociita kun la selektita 'namespace'",
 	"blanknamespace": "(Chefa)",
-	"contributions": "Kontributadi dil {{GENDER:$1|uzero}}",
+	"tool-link-contributions": "Kontributadi dil {{GENDER:$1|uzero}}",
 	"contributions-title": "Uzero-kontributadi di $1",
 	"mycontris": "Kontributadi",
 	"anoncontribs": "Kontributadi",

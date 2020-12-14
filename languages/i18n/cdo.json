@@ -928,7 +928,7 @@
 	"invert": "Huāng-sōng",
 	"namespace_association": "Siŏng-guăng gì miàng-kŭng-găng",
 	"blanknamespace": "(Ciō-iéu)",
-	"contributions": "{{GENDER:$1|User}}用戶貢獻",
+	"tool-link-contributions": "{{GENDER:$1|User}}用戶貢獻",
 	"contributions-title": "$1其用戶貢獻",
 	"mycontris": "我其貢獻",
 	"anoncontribs": "Góng-hióng",

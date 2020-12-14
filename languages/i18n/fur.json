@@ -977,7 +977,7 @@
 	"namespace_association": "Namespace associât",
 	"tooltip-namespace_association": "Selezione cheste casele par includi ancje la pagjine di discussion o l'ogjet dal namespace associât cul namespace selezionât",
 	"blanknamespace": "(Principâl)",
-	"contributions": "Contribûts {{GENDER:$1|dal utent|de utente}}",
+	"tool-link-contributions": "Contribûts {{GENDER:$1|dal utent|de utente}}",
 	"contributions-title": "Contribûts di $1",
 	"mycontris": "Contribûts",
 	"anoncontribs": "Contribûts",

@@ -408,7 +408,7 @@
 	"namespace_association": "Liittyjät nimitilat",
 	"tooltip-namespace_association": "Valiče tämä kohta, još haluot lisätä niise valittuh nimitilah liittyjät pakina- tahi aihenimitilat",
 	"blanknamespace": "(Piä)",
-	"contributions": "{{GENDER:$1|Käyttäjän}} panoš",
+	"tool-link-contributions": "{{GENDER:$1|Käyttäjän}} panoš",
 	"contributions-title": "Käyttäjän $1 kohennukšet",
 	"mycontris": "Kirjutukšet",
 	"anoncontribs": "Omat kohennukšet",

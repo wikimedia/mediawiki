@@ -466,7 +466,7 @@
 	"namespace_association": "فەزاێ ناو پەیوەندیدار",
 	"tooltip-namespace_association": "ھەلەێوا لەی جەعبەش نیشانە بدە، تا پەڕەی لێدوانەگان یا باوەت پەیوەندیدار وەرد فەزاێ ناو هەڵوژیاێ بشاریەنەو.",
 	"blanknamespace": "(سەرەکی)",
-	"contributions": "بەشدارییەگان {{GENDER:$1|ئەوکاربەر}}",
+	"tool-link-contributions": "بەشدارییەگان {{GENDER:$1|ئەوکاربەر}}",
 	"contributions-title": "بەشداریەگان ئەوکاربەر $1",
 	"mycontris": "بەشداریەیل",
 	"anoncontribs": "بەشداریەیل",

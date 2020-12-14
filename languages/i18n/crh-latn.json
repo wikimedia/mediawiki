@@ -1096,7 +1096,7 @@
 	"invert": "Saylanğan tışındakilerni sayla",
 	"namespace_association": "Bağlı isim fezası",
 	"blanknamespace": "(Esas)",
-	"contributions": "{{GENDER:$1|Qullanıcınıñ}} isseleri",
+	"tool-link-contributions": "{{GENDER:$1|Qullanıcınıñ}} isseleri",
 	"contributions-title": "$1 qullanıcısınıñ isseleri",
 	"mycontris": "İsseler",
 	"anoncontribs": "İsseler",

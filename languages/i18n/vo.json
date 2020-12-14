@@ -1352,7 +1352,7 @@
 	"namespace": "Nemaspad:",
 	"invert": "Güükön väloti",
 	"blanknamespace": "(Cifik)",
-	"contributions": "{{GENDER:$1|Gebanakeblünots}}",
+	"tool-link-contributions": "{{GENDER:$1|Gebanakeblünots}}",
 	"contributions-title": "Gebanakeblünots pro $1",
 	"mycontris": "Keblünots",
 	"anoncontribs": "Keblünots",

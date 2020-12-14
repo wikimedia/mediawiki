@@ -2283,7 +2283,7 @@
 	"namespace_association": "Spasio de nom asosiada",
 	"tooltip-namespace_association": "Marca esta caxa per inclui ance la spasio de discute o tema asosiada con la spasio elejeda",
 	"blanknamespace": "(Xef)",
-	"contributions": "Contribuis de {{GENDER:$1|usor}}",
+	"tool-link-contributions": "Contribuis de {{GENDER:$1|usor}}",
 	"contributions-title": "Contribuis de usor per $1",
 	"mycontris": "Mea contribuis",
 	"anoncontribs": "Contribuis",

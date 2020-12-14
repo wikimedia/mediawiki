@@ -1953,7 +1953,7 @@
 	"namespace_association": "An t-ainm-spàs co-cheangailte ris",
 	"tooltip-namespace_association": "Cuir cromag sa bhogsa ach an dèid ainm-spàs na deasbaireachd no nan cuspairean a tha ceangailte ris an ainm-spàs a thagh thu a ghabhail a-steach",
 	"blanknamespace": "(Prìomh)",
-	"contributions": "Obair a' chleachdaiche",
+	"tool-link-contributions": "Obair a' chleachdaiche",
 	"contributions-title": "Obair a rinn $1",
 	"mycontris": "M' obair",
 	"anoncontribs": "M’ obair",

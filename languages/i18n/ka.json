@@ -2335,7 +2335,7 @@
 	"namespace_association": "თანმხლები სახელთა სივრცე",
 	"tooltip-namespace_association": "მონიშნეთ ეს უჯრა, რათა აგრეთვე ჩართოთ განხილვის სახელთა სივრცე, რომელიც დაკავშირებულია არჩეულ სახელთა სივრცესთან",
 	"blanknamespace": "(მთავარი)",
-	"contributions": "{{GENDER:$1|მომხმარებლის}} წვლილი",
+	"tool-link-contributions": "{{GENDER:$1|მომხმარებლის}} წვლილი",
 	"contributions-title": "მომხმარებლის წვლილი $1",
 	"mycontris": "წვლილი",
 	"anoncontribs": "წვლილი",

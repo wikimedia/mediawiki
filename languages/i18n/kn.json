@@ -1436,7 +1436,7 @@
 	"namespace_association": "ಅಸೋಸಿಯೇಟೆಡ್ ನೇಮ್ಸ್ಪೇಸ್",
 	"tooltip-namespace_association": "ಆಯ್ಕೆ ಮಾಡಲಾದ ಹೆಸರಿನೊಂದಿಗೆ ಸಂಬಂಧಿಸಿದ ಚರ್ಚೆ ಅಥವಾ ವಿಷಯ ನಾಮಪದವನ್ನು ಸೇರಿಸಲು ಈ ಪೆಟ್ಟಿಗೆಯನ್ನು ಪರಿಶೀಲಿಸಿ",
 	"blanknamespace": "(ಮುಖ್ಯ)",
-	"contributions": "{{GENDER:$1|User}} ಕಾಣಿಕೆಗಳು",
+	"tool-link-contributions": "{{GENDER:$1|User}} ಕಾಣಿಕೆಗಳು",
 	"contributions-title": "$1 ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು",
 	"mycontris": "ಕಾಣಿಕೆಗಳು",
 	"anoncontribs": "ಕಾಣಿಕೆಗಳು",

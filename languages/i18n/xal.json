@@ -645,7 +645,7 @@
 	"namespace": "Нернә у:",
 	"invert": "Зөрү суңһлт",
 	"blanknamespace": "(Һол)",
-	"contributions": "Демнәчнә тәвц",
+	"tool-link-contributions": "Демнәчнә тәвц",
 	"contributions-title": "$1 демнчна тус",
 	"mycontris": "Тәвц",
 	"contribsub2": "{{GENDER:$3|$1}} тәвц ($2)",

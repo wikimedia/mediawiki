@@ -2518,7 +2518,7 @@
 	"namespace_association": "Kapcsolódó névtér",
 	"tooltip-namespace_association": "Pipáld ki ezt a dobozt, ha a kiválasztott névtérhez tartozó vita- vagy tartalmi névteret is bele szeretnéd venni.",
 	"blanknamespace": "(Fő)",
-	"contributions": "{{GENDER:$1|Szerkesztő}} közreműködései",
+	"tool-link-contributions": "{{GENDER:$1|Szerkesztő}} közreműködései",
 	"contributions-title": "$1 közreműködései",
 	"mycontris": "Közreműködések",
 	"anoncontribs": "Közreműködések",

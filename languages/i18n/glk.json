@@ -555,7 +555,7 @@
 	"namespace_association": "مؤرتبطˇ نؤمفضا",
 	"tooltip-namespace_association": "ائره' تيک بزنين تا گبˇ نؤمفضا ىا مؤرتبط مؤضۊع ىا دؤجين بۊبؤ نؤمفضا ني شامل بۊبۊن.",
 	"blanknamespace": "گت",
-	"contributions": "{{GENDER:$1|کارگير}}ˇ مۊشارکتؤن",
+	"tool-link-contributions": "{{GENDER:$1|کارگير}}ˇ مۊشارکتؤن",
 	"mycontris": "مۊشارکتؤن",
 	"anoncontribs": "مۊشارکتؤن",
 	"contribsub2": "{{GENDER:$3|$1}} ($2)ˇ ويسين",

@@ -2330,7 +2330,7 @@
 	"namespace_association": "ملحقہ نام فضا",
 	"tooltip-namespace_association": "منتخب نام فضا سے منسلک تبادلۂ خیال یا ذیلی نام فضا کو شامل کرنے کے لیے اس خانہ کو نشان زد کریں",
 	"blanknamespace": "(مرکزی)",
-	"contributions": "{{GENDER:$1|صارف}} کی شراکتیں",
+	"tool-link-contributions": "{{GENDER:$1|صارف}} کی شراکتیں",
 	"contributions-title": "صارف $1 کی شراکتیں",
 	"mycontris": "شراکتیں",
 	"anoncontribs": "شراکتیں",

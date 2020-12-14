@@ -1842,7 +1842,7 @@
 	"namespace_association": "Orúkọàyè àjọṣe",
 	"tooltip-namespace_association": "Ẹ tẹ ihò-àpótí yìí láti ṣàkómọ́ orúkọàyè ọ̀rọ̀ tàbí olúdálélórí tó ní ìbáṣe mọ́ orúkọàyè sísàyàn.",
 	"blanknamespace": "(Gbangba)",
-	"contributions": "Àwọn àfikún {{GENDER:$1|oníṣe}}",
+	"tool-link-contributions": "Àwọn àfikún {{GENDER:$1|oníṣe}}",
 	"contributions-title": "Àwọn àfikún oníṣe fún $1",
 	"mycontris": "Àwọn àfikún",
 	"anoncontribs": "Àwọn àfikún",

@@ -2455,7 +2455,7 @@
 	"namespace_association": "เนมสเปซที่เกี่ยวข้อง",
 	"tooltip-namespace_association": "เลือกกล่องนี้เพื่อรวมเนมสเปซคุยหรือเรื่องที่เกี่ยวข้องกับเนมสเปซที่เลือกด้วย",
 	"blanknamespace": "(หลัก)",
-	"contributions": "เรื่องที่{{GENDER:$1|ผู้ใช้}}มีส่วนร่วม",
+	"tool-link-contributions": "เรื่องที่{{GENDER:$1|ผู้ใช้}}มีส่วนร่วม",
 	"contributions-title": "เรื่องที่มีส่วนร่วมโดย $1",
 	"mycontris": "ส่วนร่วม",
 	"anoncontribs": "ส่วนร่วม",

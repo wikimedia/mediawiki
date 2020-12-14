@@ -578,7 +578,7 @@
 	"namespace_association": "Namespace che toca leprò",
 	"tooltip-namespace_association": "Druca sun chësta box per mëter leprò ënghe la plates de descuscion o l tema dl namespace che toca pra l namespace che te es cris ora.",
 	"blanknamespace": "(prinzipel)",
-	"contributions": "Contribuc {{GENDER:$1|dl utënt dl'utënta}}",
+	"tool-link-contributions": "Contribuc {{GENDER:$1|dl utënt dl'utënta}}",
 	"contributions-title": "Contribuc dl utënt $1",
 	"mycontris": "Contribuzions",
 	"anoncontribs": "Contribuzions",

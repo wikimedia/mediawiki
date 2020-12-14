@@ -2174,7 +2174,7 @@
 	"namespace_association": "Parth cysylltiedig",
 	"tooltip-namespace_association": "Ticiwch y blwch hwn i gynnwys y parth pwnc neu sgwrs sy'n gysylltiedig â'r parth a ddewiswyd",
 	"blanknamespace": "(Prif)",
-	"contributions": "{{GENDER:$1|Cyfraniadau'r defnyddiwr}}",
+	"tool-link-contributions": "{{GENDER:$1|Cyfraniadau'r defnyddiwr}}",
 	"contributions-title": "Cyfraniadau'r defnyddiwr $1",
 	"mycontris": "Cyfraniadau",
 	"anoncontribs": "Cyfraniadau",

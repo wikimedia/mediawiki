@@ -1888,7 +1888,7 @@
 	"namespace_association": "نوم جایا یٱکاگرتٱ",
 	"tooltip-namespace_association": "اؽ جٱڤٱ ناْ ڤارسی بٱکؽت اؽ جٱڤٱ د ڤٱر گرتٱ چٱک چنٱیا داسوݩ نوم ڤرگٱ شریکی ۉ نوم ڤرگٱ اْنتخاو بیٱ آ",
 	"blanknamespace": "ٱسلی",
-	"contributions": "{{GENDER:$1|کاریار}} هومیاریا",
+	"tool-link-contributions": "{{GENDER:$1|کاریار}} هومیاریا",
 	"contributions-title": "ھومیاری كاریار سی $1",
 	"mycontris": "هومياریا",
 	"anoncontribs": "هومیاریا",

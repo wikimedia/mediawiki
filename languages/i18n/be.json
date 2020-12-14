@@ -2371,7 +2371,7 @@
 	"namespace_association": "Звязаная прастора",
 	"tooltip-namespace_association": "Устанавіце гэтую адзнаку, каб таксама ўключыць прастору імёнаў абмеркавання (або прадметную), звязаную з абранай прасторай імёнаў",
 	"blanknamespace": "(Артыкулы)",
-	"contributions": "Уклад {{GENDER:$1|удзельніка|удзельніцы}}",
+	"tool-link-contributions": "Уклад {{GENDER:$1|удзельніка|удзельніцы}}",
 	"contributions-title": "Уклад {{GENDER:$1|удзельніка|удзельніцы}} $1",
 	"mycontris": "Уклад",
 	"anoncontribs": "Уклад",

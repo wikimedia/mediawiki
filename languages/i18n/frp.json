@@ -2032,7 +2032,7 @@
 	"namespace_association": "Èspâço de noms associyê",
 	"tooltip-namespace_association": "Pouentâd cela câsa por rapondre avouéc l’èspâço de noms de discussion de chousa associyê a l’èspâço de noms chouèsi",
 	"blanknamespace": "(Principâl)",
-	"contributions": "Contribucions de l’utilisat{{GENDER:$1|or|rice}}",
+	"tool-link-contributions": "Contribucions de l’utilisat{{GENDER:$1|or|rice}}",
 	"contributions-title": "Contribucions de l’utilisat{{GENDER:$1|or|rice}} $1",
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",

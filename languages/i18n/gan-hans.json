@@ -1008,7 +1008,7 @@
 	"namespace": "空间名:",
 	"invert": "反选",
 	"blanknamespace": "（主要）",
-	"contributions": "{{GENDER:$1|用户}}贡献",
+	"tool-link-contributions": "{{GENDER:$1|用户}}贡献",
 	"contributions-title": "$1𠮶用户贡献",
 	"mycontris": "偶𠮶贡献",
 	"contribsub2": "$1𠮶贡献 （$2）",

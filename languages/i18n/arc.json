@@ -980,7 +980,7 @@
 	"invert": "ܐܗܦܟ ܠܓܘܒܝܐ",
 	"namespace_association": "ܚܩܠܐ ܠܐܝܡܐ",
 	"blanknamespace": "(ܪܫܝܬܐ)",
-	"contributions": "ܫܘܬܦܘ̈ܬܐ {{GENDER:$1|ܕܡܦܠܚܢܐ|ܕܡܦܠܚܢܬܐ}}",
+	"tool-link-contributions": "ܫܘܬܦܘ̈ܬܐ {{GENDER:$1|ܕܡܦܠܚܢܐ|ܕܡܦܠܚܢܬܐ}}",
 	"contributions-title": "ܫܘܬܦܘ̈ܬܐ ܕܡܦܠܚܢܐ ܠ$1",
 	"mycontris": "ܫܘܬܦܘ̈ܬܐ",
 	"contribsub2": "ܠ{{GENDER:$3|$1}} ($2)",

@@ -1987,7 +1987,7 @@
 	"namespace_association": "Ferbünjen nöömrüm",
 	"tooltip-namespace_association": "Saat diar en tiaken, am di ferbünjen nöömrüm of diskusjuunsnöömrüm mä iintubetjin.",
 	"blanknamespace": "(Sidjen)",
-	"contributions": "{{GENDER:$1|Brüker}}bidracher",
+	"tool-link-contributions": "{{GENDER:$1|Brüker}}bidracher",
 	"contributions-title": "Brükerbidracher för \"$1\"",
 	"mycontris": "Bidracher",
 	"anoncontribs": "Bidracher",

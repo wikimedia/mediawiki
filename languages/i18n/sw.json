@@ -1825,7 +1825,7 @@
 	"invert": "Geuza uteuzi",
 	"namespace_association": "Eneo linalohusisha",
 	"blanknamespace": "(Kuu)",
-	"contributions": "Michango ya {{GENDER:$1|mtumiaji}}",
+	"tool-link-contributions": "Michango ya {{GENDER:$1|mtumiaji}}",
 	"contributions-title": "Michango ya mtumiaji $1",
 	"mycontris": "Michango",
 	"anoncontribs": "Michango",

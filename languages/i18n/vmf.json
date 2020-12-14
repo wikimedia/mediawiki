@@ -515,7 +515,7 @@
 	"namespace": "Nôômâraum:",
 	"invert": "Auswaal umdreâ",
 	"blanknamespace": "(Sajdn)",
-	"contributions": "{{GENDER:$1|Beidrääch}}",
+	"tool-link-contributions": "{{GENDER:$1|Beidrääch}}",
 	"contributions-title": "Bajdrääch fo „$1“",
 	"mycontris": "Bajdreech",
 	"contribsub2": "Von {{GENDER:$3|$1}} ($2)",

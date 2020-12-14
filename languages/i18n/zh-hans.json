@@ -2645,7 +2645,7 @@
 	"namespace_association": "关联的名字空间",
 	"tooltip-namespace_association": "选中此复选框可包括与选定名字空间相关的讨论或主题名字空间",
 	"blanknamespace": "（主）",
-	"contributions": "{{GENDER:$1|用户}}贡献",
+	"tool-link-contributions": "{{GENDER:$1|用户}}贡献",
 	"contributions-title": "$1的用户贡献",
 	"mycontris": "贡献",
 	"anoncontribs": "贡献",

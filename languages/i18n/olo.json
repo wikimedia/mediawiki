@@ -793,7 +793,7 @@
 	"namespace_association": "Liittyjät nimitilat",
 	"tooltip-namespace_association": "Tahtonet kerale sežo vallittuh nimitilah liittyjät pagin- libo tiemunimitilat, valliče tämä kohtu.",
 	"blanknamespace": "(Piä)",
-	"contributions": "{{GENDER:$1|Käyttäi}} kirjutukset",
+	"tool-link-contributions": "{{GENDER:$1|Käyttäi}} kirjutukset",
 	"mycontris": "Kirjutukset",
 	"anoncontribs": "Sinun panos",
 	"uctop": "Nygöine",

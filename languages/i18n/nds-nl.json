@@ -1849,7 +1849,7 @@
 	"namespace_association": "Bybehöyrende naamruumde",
 	"tooltip-namespace_association": "Vink dit vakjen an um ouk de oaverleg- en underwarpnaamruumde in te slüten dee by de selekteerde naamruumde höyret.",
 	"blanknamespace": "(Höyvdnaamruumde)",
-	"contributions": "{{GENDER:$1|Gebrukersbydragen}}",
+	"tool-link-contributions": "{{GENDER:$1|Gebrukersbydragen}}",
 	"contributions-title": "Bydragen van $1",
 	"mycontris": "Bydragen",
 	"anoncontribs": "Bydragen",

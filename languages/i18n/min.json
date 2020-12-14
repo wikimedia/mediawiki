@@ -1967,7 +1967,7 @@
 	"namespace_association": "Ruangnamo takaik",
 	"tooltip-namespace_association": "Centang laman ko untuak mamasuakkan ruang namo rundiang atau topik nan takaik jo ruang namo nan dipiliah",
 	"blanknamespace": "(Utamo)",
-	"contributions": "Jariah {{GENDER:$1|pangguno}}",
+	"tool-link-contributions": "Jariah {{GENDER:$1|pangguno}}",
 	"contributions-title": "Jariah pangguno untuak $1",
 	"mycontris": "Jariah",
 	"anoncontribs": "Jariah",

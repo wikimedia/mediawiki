@@ -1701,7 +1701,7 @@
 	"namespace_association": "Byhearrende nammeromte",
 	"tooltip-namespace_association": "Oanfinkje om by de selektearre nammeromte ek de ferbûne nammeromte foar oerlis of ynhâld te belûken",
 	"blanknamespace": "(Haad)",
-	"contributions": "Bydragen fan 'e {{GENDER:$1|meidogger|meidochster}}",
+	"tool-link-contributions": "Bydragen fan 'e {{GENDER:$1|meidogger|meidochster}}",
 	"contributions-title": "Bydragen fan $1",
 	"mycontris": "Bydragen",
 	"anoncontribs": "Bydragen",

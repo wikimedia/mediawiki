@@ -2459,7 +2459,7 @@
 	"namespace_association": "सम्बद्ध नामस्थान",
 	"tooltip-namespace_association": "भी बात या विषय नाम स्थान चयनित नाम स्थान के साथ जुड़े को शामिल करने के लिए इस बक्से को चिह्नित करें।",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|सदस्य}} योगदान",
+	"tool-link-contributions": "{{GENDER:$1|सदस्य}} योगदान",
 	"contributions-title": "$1 कय योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",

@@ -1995,7 +1995,7 @@
 	"namespace_association": "فضای نام مرتبط",
 	"tooltip-namespace_association": "این جعبه را علامت بزنید تا فضای نام بحث یا موضوع مرتبط با فضای نام انتخاب شده هم شامل شود",
 	"blanknamespace": "(سەر/اصلی)",
-	"contributions": "هؤمکاریۀل{{GENDER:$1|کاربۀر}}",
+	"tool-link-contributions": "هؤمکاریۀل{{GENDER:$1|کاربۀر}}",
 	"contributions-title": "مشارکت‌های کاربری $1",
 	"mycontris": "بەشاکرەل(هام بێرەل)",
 	"anoncontribs": "بەشاکرەل(هام بێرەل)",

@@ -716,7 +716,7 @@
 	"namespace_association": "Huwali lo tanggulo a'aayita",
 	"tooltip-namespace_association": "Centang halaman botiye u mopowayito huwali lo tanggulo lo'iyawa meyalo subjek u a'ayita wolo huwali lo tanggulo u tilulawoto.",
 	"blanknamespace": "(Bungaliyo)",
-	"contributions": "Kontribusi {{GENDER:$1|Ta ohu'uwo}}",
+	"tool-link-contributions": "Kontribusi {{GENDER:$1|Ta ohu'uwo}}",
 	"contributions-title": "Kontribusi ta ohu'uwo ode $1",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusi",

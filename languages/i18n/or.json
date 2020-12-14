@@ -1885,7 +1885,7 @@
 	"namespace_association": "ସମ୍ଭନ୍ଧିତ ନେମସ୍ପେସ",
 	"tooltip-namespace_association": "ବଛାଯାଇଥିବା ନେମ୍ସସ୍ପେସ ସହ ଯୋଡ଼ା ଆଲୋଚନା ବା ବିଷୟ ନେମସ୍ପେସ ଏହା ଅନ୍ତଭୁକ୍ତ କରିବା ନିମନ୍ତେ ଏହି ଘରକୁ ବାଛନ୍ତୁ",
 	"blanknamespace": "(ମୂଳ)",
-	"contributions": "{{GENDER:$1|ବ୍ୟବହାରକାରୀ}}ଙ୍କ ଅବଦାନ",
+	"tool-link-contributions": "{{GENDER:$1|ବ୍ୟବହାରକାରୀ}}ଙ୍କ ଅବଦାନ",
 	"contributions-title": "ବ୍ୟବହାରକାରୀ $1ଙ୍କ ଅବଦାନ",
 	"mycontris": "ଅବଦାନ",
 	"anoncontribs": "ଅବଦାନ",

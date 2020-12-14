@@ -613,7 +613,7 @@
 	"namespace_association": "Байланышлы атлар аралыгъы",
 	"tooltip-namespace_association": "Сайлангъан атысакъламагъа байлавлу атсакъламаны, пикирлешивлени къошмакъ учун бу белгини де сал.",
 	"blanknamespace": "(Аслу)",
-	"contributions": "{{GENDER:$1|Къоллавчуну}} къошуму",
+	"tool-link-contributions": "{{GENDER:$1|Къоллавчуну}} къошуму",
 	"contributions-title": "Ортакъчыны ярдымы $1",
 	"mycontris": "Къошум",
 	"anoncontribs": "Къошум",

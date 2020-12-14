@@ -901,7 +901,7 @@
 	"namespace": "Lewainoa:",
 	"invert": "Kuapo i ke koho",
 	"blanknamespace": "(‘ano nui)",
-	"contributions": "Nā haʻawina o ka {{GENDER:$1|mea hoʻohana}}",
+	"tool-link-contributions": "Nā haʻawina o ka {{GENDER:$1|mea hoʻohana}}",
 	"contributions-title": "Nā Hāʻawina mea hoʻohana no $1",
 	"mycontris": "Kaʻu mau haʻawina",
 	"contribsub2": "No {{GENDER:$3|$1}} ($2)",

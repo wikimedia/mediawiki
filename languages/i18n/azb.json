@@ -1954,7 +1954,7 @@
 	"namespace_association": "باغلی آدفضاسی",
 	"tooltip-namespace_association": "بو قوتونو علامت له ین یالنیز آد بحث فضاسی یا مرتبط اولان آد فضاسی ایله انتخاب اولا",
 	"blanknamespace": "(آنا)",
-	"contributions": "{{GENDER:$1|ایشلدن}} چالیشمالاری",
+	"tool-link-contributions": "{{GENDER:$1|ایشلدن}} چالیشمالاری",
 	"contributions-title": "$1 ایشلدن چالیشمالاری",
 	"mycontris": "چالیشمالار",
 	"anoncontribs": "چالیشمالار",

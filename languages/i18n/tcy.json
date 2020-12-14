@@ -1850,7 +1850,7 @@
 	"namespace_association": "ಸಂಬಂದೊ ಪಟ್ಟಿನ ಪುದರ್-ಜಾಗೆ",
 	"tooltip-namespace_association": "ಆಯ್ತಿ ಪುದರ್-ಜಾಗೆಗ್ ಸಂಬಂಧ ಪಟ್ಟಿನ ಪಾತೆರ ಅತ್ತಾಂಡ ವಿಸಯದ ಪುದರ್-ಜಾಗೆನ್ಲಾ ಒಟ್ಟುಗು ಸೇರಾಯೆರೆ ಈ ಪೆಟ್ಟಿಗೆನ್ ಆಯ್ಪುಲೆ",
 	"blanknamespace": "(ಮುಕ್ಯೊ)",
-	"contributions": "{{GENDER:$1|ಸದಸ್ಯೆರ್ನ}} ಕಾಣಿಕೆಲು",
+	"tool-link-contributions": "{{GENDER:$1|ಸದಸ್ಯೆರ್ನ}} ಕಾಣಿಕೆಲು",
 	"contributions-title": "$1 ಗ್ ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆ",
 	"mycontris": "ಎನ್ನ ಕಾನಿಕೆಲು",
 	"anoncontribs": "ಕಾನಿಕೆಲು",

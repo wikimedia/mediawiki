@@ -2105,7 +2105,7 @@
 	"namespace_association": "אָנגעבונדענער נאָמענטייל",
 	"tooltip-namespace_association": "צייכנט דאס קעסטל כדי איינשליסן דעם שמועס אדער סוביעקט נאמענטייל וואס געהערט צום אויסגעקליבענעם נאמענטייל",
 	"blanknamespace": "(הויפט)",
-	"contributions": "{{GENDER:$1|באניצער}} בײַשטײַערונגען",
+	"tool-link-contributions": "{{GENDER:$1|באניצער}} בײַשטײַערונגען",
 	"contributions-title": "בײַשטײַערונגען פֿון באַניצער $1",
 	"mycontris": "בײַשטײַערונגען",
 	"anoncontribs": "בײַשטײַערונגען",

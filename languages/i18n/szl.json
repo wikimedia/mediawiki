@@ -1461,7 +1461,7 @@
 	"namespace_association": "Swiōnzanŏ przestrzyń mian",
 	"tooltip-namespace_association": "Ôznŏcz te pole, coby przidać strōnã dyskusyje i tymat swiōnzane ze ôbranōm przestrzyniōm mian",
 	"blanknamespace": "(Przodniŏ)",
-	"contributions": "Wkłŏd ôd {{GENDER:$1|używŏcza|używŏczki}}",
+	"tool-link-contributions": "Wkłŏd ôd {{GENDER:$1|używŏcza|używŏczki}}",
 	"contributions-title": "Wkłŏd {{GENDER:$1|używŏcza|używŏczki}} $1",
 	"mycontris": "Edycyje",
 	"anoncontribs": "Edycyje",

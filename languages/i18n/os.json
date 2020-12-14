@@ -1234,7 +1234,7 @@
 	"invert": "Зыгъуыммæ æвзæрст",
 	"namespace_association": "Баст номдон",
 	"blanknamespace": "(Сæйраг)",
-	"contributions": "{{GENDER:$1|Архайæджы}} бавæрд",
+	"tool-link-contributions": "{{GENDER:$1|Архайæджы}} бавæрд",
 	"contributions-title": "Архайæджы бавæрд: $1",
 	"mycontris": "Бавæрд",
 	"contribsub2": "Архайæг: $1 ($2)",

@@ -2121,7 +2121,7 @@
 	"namespace_association": "सम्बद्ध चेन्हासी",
 	"tooltip-namespace_association": "ई बक्साकेँ सही करी जइसँ वार्ता आ विषय नामस्थान समाहित कएल जा सकए चुनल नामस्थानमे",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|प्रयोगकर्ता}} योगदान",
+	"tool-link-contributions": "{{GENDER:$1|प्रयोगकर्ता}} योगदान",
 	"contributions-title": "$1 लेल प्रयोक्ताक अवदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदानसभ",

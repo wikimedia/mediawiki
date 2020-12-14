@@ -1829,7 +1829,7 @@
 	"namespace_association": "Kaugnay na ngalan-espasyo",
 	"tooltip-namespace_association": "Tsekan ang kahong ito upang maisama ang puwang na pampangalan ng usapan o paksa na may kaugnayan sa napiling puwang na pampangalan",
 	"blanknamespace": "(Pangunahin)",
-	"contributions": "Mga ambag ng {{GENDER:$1|tagagamit}}",
+	"tool-link-contributions": "Mga ambag ng {{GENDER:$1|tagagamit}}",
 	"contributions-title": "Mga ambag ng tagagamit na si $1",
 	"mycontris": "Mga ambag",
 	"anoncontribs": "Mga inambag",

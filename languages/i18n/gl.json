@@ -2487,7 +2487,7 @@
 	"namespace_association": "Espazo de nomes asociado",
 	"tooltip-namespace_association": "Marque esta caixa para incluír tamén o espazo de nomes de conversa ou de contidos asociado a aquel seleccionado",
 	"blanknamespace": "(Principal)",
-	"contributions": "Contribucións {{GENDER:$1|do usuario|da usuaria}}",
+	"tool-link-contributions": "Contribucións {{GENDER:$1|do usuario|da usuaria}}",
 	"contributions-title": "Contribucións de $1",
 	"mycontris": "Contribucións",
 	"anoncontribs": "Contribucións",

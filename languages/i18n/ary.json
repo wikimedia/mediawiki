@@ -1488,7 +1488,7 @@
 	"namespace_association": "النطاق المقتارن",
 	"tooltip-namespace_association": "ورّك على هاد الخيار باش تزيد نطاق النقاش أولا الموضوع المقتارن بالنطاق المختار",
 	"blanknamespace": "(رئيسي)",
-	"contributions": "مساهمات {{GENDER:$1|لمستخدم|لمستخدمة}}",
+	"tool-link-contributions": "مساهمات {{GENDER:$1|لمستخدم|لمستخدمة}}",
 	"contributions-title": "مساهمات لمستخدم $1",
 	"mycontris": "مساهمات",
 	"anoncontribs": "مساهمات",

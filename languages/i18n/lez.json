@@ -753,7 +753,7 @@
 	"namespace": "Тlварарин генгвал:",
 	"invert": "Хкягънавайди элкъуьрун",
 	"blanknamespace": "(Асул)",
-	"contributions": "{{GENDER:$1|Уртахдин}} кутур крар",
+	"tool-link-contributions": "{{GENDER:$1|Уртахдин}} кутур крар",
 	"contributions-title": "$1 уртахди кутур крар",
 	"mycontris": "Кутур кар",
 	"anoncontribs": "Кутур кар",

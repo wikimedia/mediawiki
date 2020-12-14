@@ -2457,7 +2457,7 @@
 	"namespace_association": "Espaciu de nome asociáu",
 	"tooltip-namespace_association": "Marca esta caxella p'amestar tamién l'espaciu de nombres d'alderique o asuntu asociaos col espaciu de nomes seleicionáu",
 	"blanknamespace": "(Principal)",
-	"contributions": "Collaboraciones {{GENDER:$1|del usuariu|de la usuaria}}",
+	"tool-link-contributions": "Collaboraciones {{GENDER:$1|del usuariu|de la usuaria}}",
 	"contributions-title": "Contribuciones d'usuariu pa $1",
 	"mycontris": "Collaboraciones",
 	"anoncontribs": "Contribuciones",

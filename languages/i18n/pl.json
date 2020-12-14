@@ -2584,7 +2584,7 @@
 	"namespace_association": "powiązana przestrzeń nazw",
 	"tooltip-namespace_association": "Zaznacz to pole, aby uwzględnić strony dyskusji i tematu związane z wybranymi przestrzeniami nazw",
 	"blanknamespace": "(Główna)",
-	"contributions": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}}",
+	"tool-link-contributions": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"contributions-title": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1",
 	"mycontris": "Edycje",
 	"anoncontribs": "Edycje",

@@ -2458,7 +2458,7 @@
 	"namespace_association": "Ruang nama berkaitan",
 	"tooltip-namespace_association": "Tandai kotak ini untuk turut menyertakan ruang nama perbincangan atau subjek yang dikaitkan dengan ruang nama terpilih",
 	"blanknamespace": "(Utama)",
-	"contributions": "Sumbangan {{GENDER:$1|pengguna}}",
+	"tool-link-contributions": "Sumbangan {{GENDER:$1|pengguna}}",
 	"contributions-title": "Sumbangan oleh $1",
 	"mycontris": "Sumbangan",
 	"anoncontribs": "Sumbangan",

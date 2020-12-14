@@ -1097,7 +1097,7 @@
 	"invert": "Fán-hiong sién-tho̍k",
 	"namespace_association": "Siông-kôan miang-miàng khûng-kiên",
 	"blanknamespace": "(Chú-yeu)",
-	"contributions": "{{GENDER:$1|Yung-fu}} kung-hien",
+	"tool-link-contributions": "{{GENDER:$1|Yung-fu}} kung-hien",
 	"contributions-title": "$1嘅用戶貢獻",
 	"mycontris": "Kung-hien",
 	"anoncontribs": "Kung-hien",

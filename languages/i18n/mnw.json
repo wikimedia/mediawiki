@@ -1197,7 +1197,7 @@
 	"namespace_association": "မပံင်ဗစိုပ် ကုဒၞာဲယၟု",
 	"tooltip-namespace_association": "ကဵုစၟတ် ပ္ဍဲ ခံက်အၚ်ဏအ် ယဝ်ရ မိက်ဂွံ ပါလုပ် အရာမဓရီုကျာ ဟွံသေၚ်မ္ဂး ပရူပရာ ယၟုစၞောန် မဆက်စပ် ကု ယၟုစၞောန် မရုဲစှ်လဝ်တအ်",
 	"blanknamespace": "(တမ်)",
-	"contributions": "{{GENDER:$1|User}} ပတိတ်တြး",
+	"tool-link-contributions": "{{GENDER:$1|User}} ပတိတ်တြး",
 	"contributions-title": "အရာမကၠောန်ဗဒှ် ညးလွပ် သွက် $1",
 	"mycontris": "ကမၠောန်ဂမၠိုင်",
 	"anoncontribs": "ကမၠောန်ဂမၠိုင်",

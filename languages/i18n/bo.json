@@ -682,7 +682,7 @@
 	"namespace": "མིང་གནས།",
 	"invert": "གདམ་པའི་ལྡོག་ཕྱོགས།",
 	"blanknamespace": "(གཙོ་གནད།)",
-	"contributions": "{{GENDER:$1|སྤྱོད་མི།}} མཐུན་འགྱུར།",
+	"tool-link-contributions": "{{GENDER:$1|སྤྱོད་མི།}} མཐུན་འགྱུར།",
 	"mycontris": "མཐུན་འགྱུར།",
 	"month": "ཟླ་བ་འདི་ནས།",
 	"year": "ལོ་འདི་ནས།",

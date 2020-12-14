@@ -1581,7 +1581,7 @@
 	"invert": "არძო, მერჩქინელიშ მოხ",
 	"namespace_association": "ელმაჸვენჯი ჯოხოეფიშ ოფირჩა",
 	"blanknamespace": "(დუდ)",
-	"contributions": "{{GENDER:$1|მახვარებუშ}} მიშნაღელ თია",
+	"tool-link-contributions": "{{GENDER:$1|მახვარებუშ}} მიშნაღელ თია",
 	"contributions-title": "$1-შა მახვარებუშ მიშაღალირ თია",
 	"mycontris": "ჩქიმ მიშნაღელ თია",
 	"anoncontribs": "მიშნაღელი თიეფი",

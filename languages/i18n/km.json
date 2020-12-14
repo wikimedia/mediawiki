@@ -1945,7 +1945,7 @@
 	"namespace_association": "លំហឈ្មោះដែលទាក់ទិន",
 	"tooltip-namespace_association": "គូសធីកប្រអប់នេះដើម្បីដាក់លំហឈ្មោះការពិភាក្សានិងប្រធានបទភ្ជាប់ទាក់ទិនទៅលំហឈ្មោះដែលបានជ្រើសយក",
 	"blanknamespace": "(ទូទៅ)",
-	"contributions": "ការរួមចំណែក​របស់{{GENDER:$1|អ្នកប្រើប្រាស់}}",
+	"tool-link-contributions": "ការរួមចំណែក​របស់{{GENDER:$1|អ្នកប្រើប្រាស់}}",
 	"contributions-title": "ការរួមចំណែករបស់អ្នកប្រើប្រាស់ $1",
 	"mycontris": "ការរួមចំណែក",
 	"anoncontribs": "ការរួមចំណែក",
