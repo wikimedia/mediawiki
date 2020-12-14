@@ -49,7 +49,16 @@ class ApiQuery extends ApiBase {
 		'fileusage' => ApiQueryBacklinksprop::class,
 		'images' => ApiQueryImages::class,
 		'imageinfo' => ApiQueryImageInfo::class,
-		'info' => ApiQueryInfo::class,
+		'info' => [
+			'class' => ApiQueryInfo::class,
+			'services' => [
+				'ContentLanguage',
+				'LinkBatchFactory',
+				'NamespaceInfo',
+				'TitleFactory',
+				'WatchedItemStore',
+			],
+		],
 		'links' => ApiQueryLinks::class,
 		'linkshere' => ApiQueryBacklinksprop::class,
 		'iwlinks' => ApiQueryIWLinks::class,

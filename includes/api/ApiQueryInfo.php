@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -29,6 +30,17 @@ use MediaWiki\Permissions\PermissionManager;
  * @ingroup API
  */
 class ApiQueryInfo extends ApiQueryBase {
+
+	/** @var Language */
+	private $contentLanguage;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+	/** @var TitleFactory */
+	private $titleFactory;
+	/** @var WatchedItemStore */
+	private $watchedItemStore;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -57,8 +69,30 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $countTestedActions = 0;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'in' );
+	/**
+	 * @param ApiQuery $queryModule
+	 * @param string $moduleName
+	 * @param Language $contentLanguage
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleFactory $titleFactory
+	 * @param WatchedItemStore $watchedItemStore
+	 */
+	public function __construct(
+		ApiQuery $queryModule,
+		$moduleName,
+		Language $contentLanguage,
+		LinkBatchFactory $linkBatchFactory,
+		NamespaceInfo $namespaceInfo,
+		TitleFactory $titleFactory,
+		WatchedItemStore $watchedItemStore
+	) {
+		parent::__construct( $queryModule, $moduleName, 'in' );
+		$this->contentLanguage = $contentLanguage;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->titleFactory = $titleFactory;
+		$this->watchedItemStore = $watchedItemStore;
 	}
 
 	/**
@@ -310,7 +344,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			// clutter queries
 			$cont = explode( '|', $this->params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$conttitle = Title::makeTitleSafe( $cont[0], $cont[1] );
+			$conttitle = $this->titleFactory->makeTitleSafe( $cont[0], $cont[1] );
 			foreach ( $this->everything as $pageid => $title ) {
 				if ( Title::compare( $title, $conttitle ) >= 0 ) {
 					break;
@@ -625,8 +659,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		// Get protections for missing titles
 		if ( count( $this->missing ) ) {
 			$this->resetQueryParams();
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $this->missing );
+			$lb = $this->linkBatchFactory->newLinkBatch( $this->missing );
 			$this->addTables( 'protected_titles' );
 			$this->addFields( [ 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ] );
 			$this->addWhere( $lb->constructSet( 'pt', $db ) );
@@ -656,8 +689,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $others );
+			$lb = $this->linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
 			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
@@ -670,7 +702,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[$row->tl_namespace][$row->tl_title][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
@@ -693,7 +725,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[NS_FILE][$row->il_to][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
@@ -710,7 +742,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = [];
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$nsInfo = $this->namespaceInfo;
 
 		/** @var Title $t */
 		foreach ( $this->everything as $t ) {
@@ -730,8 +762,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// Construct a custom WHERE clause that matches
 		// all titles in $getTitles
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$lb = $linkBatchFactory->newLinkBatch( $getTitles );
+		$lb = $this->linkBatchFactory->newLinkBatch( $getTitles );
 		$this->resetQueryParams();
 		$this->addTables( 'page' );
 		$this->addFields( [ 'page_title', 'page_namespace', 'page_id' ] );
@@ -783,7 +814,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private function getAllVariants( $text, $ns = NS_MAIN ) {
 		$result = [];
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->contentLanguage;
 		foreach ( $contLang->getVariants() as $variant ) {
 			$convertTitle = $contLang->autoConvert( $text, $variant );
 			if ( $ns !== NS_MAIN ) {
@@ -811,8 +842,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->watched = [];
 		$this->notificationtimestamps = [];
 
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$timestamps = $store->getNotificationTimestampsBatch( $user, $this->everything );
+		$timestamps = $this->watchedItemStore->getNotificationTimestampsBatch( $user, $this->everything );
 
 		if ( $this->fld_watched ) {
 			foreach ( $timestamps as $namespaceId => $dbKeys ) {
@@ -851,7 +881,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$countOptions['minimumWatchers'] = $unwatchedPageThreshold;
 		}
 
-		$this->watchers = MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchersMultiple(
+		$this->watchers = $this->watchedItemStore->countWatchersMultiple(
 			$this->everything,
 			$countOptions
 		);
@@ -878,8 +908,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$titlesWithThresholds = [];
 		if ( $this->titles ) {
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $this->titles );
+			$lb = $this->linkBatchFactory->newLinkBatch( $this->titles );
 
 			// Fetch last edit timestamps for pages
 			$this->resetQueryParams();
@@ -919,8 +948,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				)
 			);
 		}
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$this->visitingwatchers = $store->countVisitingWatchersMultiple(
+		$this->visitingwatchers = $this->watchedItemStore->countVisitingWatchersMultiple(
 			$titlesWithThresholds,
 			!$canUnwatchedpages ? $unwatchedPageThreshold : null
 		);
