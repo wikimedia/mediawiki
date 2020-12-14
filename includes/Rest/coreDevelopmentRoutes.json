@@ -36,6 +36,18 @@
 		"mode" : "user"
 	},
 	{
+		"path": "/coredev/v0/revision/{id}",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"TitleFactory"
+		],
+		"format": "source"
+	},
+	{
 		"path": "/coredev/v0/revision/{id}/html",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 		"services": [
