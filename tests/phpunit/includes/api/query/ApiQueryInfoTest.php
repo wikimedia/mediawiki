@@ -12,6 +12,13 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryInfoTest extends ApiTestCase {
 
+	protected function setUp(): void {
+		parent::setUp();
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
+	}
+
 	/**
 	 * @covers ::execute
 	 * @covers ::extractPageInfo
@@ -19,12 +26,22 @@ class ApiQueryInfoTest extends ApiTestCase {
 	public function testExecute() {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
+		$user = $this->getTestUser()->getUser();
+		WatchAction::doWatch(
+			$title,
+			$user,
+			User::CHECK_USER_RIGHTS,
+			'30300101000000'
+		);
+		$watchItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$expiry = $watchItemStore->getWatchedItem( $user, $title )->getExpiry( TS_ISO_8601 );
 
 		list( $data ) = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
+				'inprop' => 'watched',
 				'titles' => $title->getText(),
-		] );
+		], null, false, $user );
 
 		$this->assertArrayHasKey( 'query', $data );
 		$this->assertArrayHasKey( 'pages', $data['query'] );
@@ -42,6 +59,8 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertSame( $title->getLatestRevID(), $info['lastrevid'] );
 		$this->assertSame( $title->getLength(), $info['length'] );
 		$this->assertSame( $title->isNewPage(), $info['new'] );
+		$this->assertTrue( $info['watched'] );
+		$this->assertSame( $expiry, $info['watchlistexpiry'] );
 		$this->assertArrayNotHasKey( 'actions', $info );
 		$this->assertArrayNotHasKey( 'linkclasses', $info );
 	}
