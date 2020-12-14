@@ -920,14 +920,18 @@ return [
 	'ParserCacheFactory' => function ( MediaWikiServices $services ) : ParserCacheFactory {
 		$config = $services->getMainConfig();
 		$cache = ObjectCache::getInstance( $config->get( 'ParserCacheType' ) );
+		$wanCache = $services->getMainWANObjectCache();
+
+		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, $config );
+
 		return new ParserCacheFactory(
 			$cache,
-			$config->get( 'CacheEpoch' ),
+			$wanCache,
 			$services->getHookContainer(),
 			$services->getJsonCodec(),
 			$services->getStatsdDataFactory(),
 			LoggerFactory::getInstance( 'ParserCache' ),
-			$config->get( 'ParserCacheUseJson' )
+			$options
 		);
 	},
 
@@ -963,12 +967,10 @@ return [
 	'ParserOutputAccess' => function ( MediaWikiServices $services ) : ParserOutputAccess {
 		return new ParserOutputAccess(
 			$services->getParserCache(),
-			$services->getMainWANObjectCache(),
-			$services->getMainConfig()->get( 'OldRevisionParserCacheExpireTime' ),
+			$services->getParserCacheFactory()->getRevisionOutputCache( 'rcache' ),
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getJsonCodec(),
 			LoggerFactory::getProvider()
 		);
 	},

@@ -2,6 +2,7 @@
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -69,13 +70,26 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'',
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec(),
-			$this->getServiceContainer()->getStatsdDataFactory(),
+			new NullStatsdDataFactory(),
 			new NullLogger()
 		);
 
-		// TODO: remove this once PoolWorkArticleView has the ParserCache injected
-		$this->setService( 'ParserCache', $parserCache );
 		return $parserCache;
+	}
+
+	private function getRevisionOutputCache( $bag = null, $expiry = 3600 ) {
+		$wanCache = new WANObjectCache( [ 'cache' => $bag ?: new HashBagOStuff() ] );
+		$revisionOutputCache = new RevisionOutputCache(
+			'test',
+			$wanCache,
+			$expiry,
+			'',
+			new JsonCodec(),
+			new NullStatsdDataFactory(),
+			new NullLogger()
+		);
+
+		return $revisionOutputCache;
 	}
 
 	/**
@@ -92,9 +106,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param ParserCache|null $parserCache
-	 * @param BagOStuff|null $secondaryCache
-	 * @param int $secondaryExpiry
-	 *
+	 * @param RevisionOutputCache|null $revisionOutputCache
 	 * @param int|bool $maxRenderCalls
 	 *
 	 * @return ParserOutputAccess
@@ -102,22 +114,20 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getParserOutputAccessWithCache(
 		$parserCache = null,
-		$secondaryCache = null,
-		$secondaryExpiry = 3600,
+		$revisionOutputCache = null,
 		$maxRenderCalls = false
 	) {
 		if ( !$parserCache ) {
 			$parserCache = $this->getParserCache( new HashBagOStuff() );
 		}
 
-		if ( !$secondaryCache ) {
-			$secondaryCache = new HashBagOStuff();
+		if ( !$revisionOutputCache ) {
+			$revisionOutputCache = $this->getRevisionOutputCache( new HashBagOStuff() );
 		}
 
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$stats = new NullStatsdDataFactory();
-		$jsonCodec = new JsonCodec();
 
 		if ( $maxRenderCalls ) {
 			$realRevRenderer = $revRenderer;
@@ -129,18 +139,12 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				->willReturnCallback( [ $realRevRenderer, 'getRenderedRevision' ] );
 		}
 
-		$secondaryWANCache = new WANObjectCache( [
-			'cache' => $secondaryCache
-		] );
-
 		return new ParserOutputAccess(
 			$parserCache,
-			$secondaryWANCache,
-			$secondaryExpiry,
+			$revisionOutputCache,
 			$revRenderer,
 			$stats,
 			$lbFactory,
-			$jsonCodec,
 			$this->getLoggerSpi()
 		);
 	}
@@ -149,8 +153,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @return ParserOutputAccess
 	 */
 	private function getParserOutputAccessNoCache() {
-		$cache = $this->getParserCache( new EmptyBagOStuff() );
-		return $this->getParserOutputAccessWithCache( $cache, new EmptyBagOStuff() );
+		return $this->getParserOutputAccessWithCache(
+			$this->getParserCache( new EmptyBagOStuff() ),
+			$this->getRevisionOutputCache( new EmptyBagOStuff() )
+		);
 	}
 
 	/**
@@ -195,7 +201,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLatestRevisionUseCached() {
 		// Allow only one render call, use default caches
-		$access = $this->getParserOutputAccessWithCache( null, null, 3600, 1 );
+		$access = $this->getParserOutputAccessWithCache( null, null, 1 );
 
 		$parserOptions = $this->getParserOptions();
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -449,6 +455,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParserOutputAccess::OPT_NO_AUDIENCE_CHECK
 		);
 		$this->assertContainsHtml( 'First', $status );
+
+		// even though the output was generated, it wasn't cached, since it's not public
+		$cachedOutput = $access->getCachedParserOutput( $page, $parserOptions, $firstRev );
+		$this->assertNull( $cachedOutput );
 	}
 
 	/**
@@ -456,7 +466,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOldRevisionUseCached() {
 		// Allow only one render call, use default caches
-		$access = $this->getParserOutputAccessWithCache( null, null, 3600, 1 );
+		$access = $this->getParserOutputAccessWithCache( null, null, 1 );
 
 		$parserOptions = $this->getParserOptions();
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -477,7 +487,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOldRevisionDisableCached() {
 		// Use default caches, but expiry 0 for the secondary cache
-		$access = $this->getParserOutputAccessWithCache( null, null, 0 );
+		$access = $this->getParserOutputAccessWithCache(
+			null,
+			$this->getRevisionOutputCache( null, 0 )
+		);
 
 		$parserOptions = $this->getParserOptions();
 		$page = $this->getNonexistingTestPage( __METHOD__ );
