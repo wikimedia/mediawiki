@@ -1658,7 +1658,7 @@
 	"namespace_association": "Tilknýtt navnarúm",
 	"tooltip-namespace_association": "Set kross í henda kassan soleiðis at kjak- ella evnisnavnarúm, sum hava samband við tað valda navnarúmið, eisini vera tikin við",
 	"blanknamespace": "(Greinir)",
-	"contributions": "{{GENDER:$1|Brúkaraíkøst}}",
+	"tool-link-contributions": "{{GENDER:$1|Brúkaraíkøst}}",
 	"contributions-title": "Brúkaraíkøst fyri $1",
 	"mycontris": "Íkøst",
 	"anoncontribs": "Íkøst",

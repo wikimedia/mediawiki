@@ -580,7 +580,7 @@
 	"namespace_association": "Quri iyax ptngahan",
 	"tooltip-namespace_association": "Geegi nii ka gmaaw saw patas 4 muhing supu kana ni gmaaw iyax ptngahan quri ka empprngaw aji uri o iyax ptngahan pusu kari",
 	"blanknamespace": "(pusu bi)",
-	"contributions": "{{GENDER:$1|Empduuy}} suyang qnpahan",
+	"tool-link-contributions": "{{GENDER:$1|Empduuy}} suyang qnpahan",
 	"contributions-title": "$1 ka seejiq mduuy suyang qnpahan",
 	"mycontris": "Suyang qnpahan",
 	"anoncontribs": "Suyang qnpahan",

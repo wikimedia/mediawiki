@@ -2330,7 +2330,7 @@
 	"namespace_association": "Susijusi vardų sritis",
 	"tooltip-namespace_association": "Įjunkite šią parinktį, kad taip pat įtrauktumėte aptarimų arba temos sritį, susijusią su pasirinkta sritimi",
 	"blanknamespace": "(Pagrindinis)",
-	"contributions": "{{GENDER:$1|Naudotojo|Naudotojos}} indėlis",
+	"tool-link-contributions": "{{GENDER:$1|Naudotojo|Naudotojos}} indėlis",
 	"contributions-title": "{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis",
 	"mycontris": "Indėlis",
 	"anoncontribs": "Indėlis",

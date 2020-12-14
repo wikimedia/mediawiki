@@ -760,7 +760,7 @@
 	"namespace": "Аттар делгеми:",
 	"invert": "Шилээнин аңдарар. (Обратить выбранное)",
 	"blanknamespace": "(Кол)",
-	"contributions": "{{GENDER:$1|киржикчиниң}} үлүү",
+	"tool-link-contributions": "{{GENDER:$1|киржикчиниң}} үлүү",
 	"contributions-title": "«$1» деп ажыглакчының салыышкыннары",
 	"mycontris": "Дадывыр",
 	"contribsub2": "$1 ($2)",

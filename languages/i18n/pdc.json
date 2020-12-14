@@ -527,7 +527,7 @@
 	"undelete-show-file-submit": "Ya",
 	"namespace": "Blatznaame:",
 	"blanknamespace": "(Bledder)",
-	"contributions": "Ardickele vum {{GENDER:$1|Yuuser}}",
+	"tool-link-contributions": "Ardickele vum {{GENDER:$1|Yuuser}}",
 	"contributions-title": "Ardickele vun „$1“",
 	"mycontris": "Mei Ardickele",
 	"contribsub2": "Fer {{GENDER:$3|$1}} ($2)",

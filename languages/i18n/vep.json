@@ -1407,7 +1407,7 @@
 	"invert": "Käta erigoittud sanad vastkarin",
 	"namespace_association": "Sidotud nimiavaruz",
 	"blanknamespace": "(Pälehtpoled)",
-	"contributions": "{{GENDER:$1|Kävutajan}} tond",
+	"tool-link-contributions": "{{GENDER:$1|Kävutajan}} tond",
 	"contributions-title": "$1-kävutajan tond",
 	"mycontris": "Minun tond",
 	"contribsub2": "{{GENDER:$3|$1}}-kävutajan ($2) tond",

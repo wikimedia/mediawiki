@@ -875,7 +875,7 @@
 	"namespace": "Hapësira:",
 	"invert": "inverzo zgjedhjen",
 	"blanknamespace": "(Artikujt)",
-	"contributions": "Kontributet",
+	"tool-link-contributions": "Kontributet",
 	"contributions-title": "Kontributet e përdoruesit në $1",
 	"mycontris": "Redaktimet e mia",
 	"contribsub2": "Për $1 ($2)",

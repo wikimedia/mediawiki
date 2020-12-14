@@ -2232,7 +2232,7 @@
 	"namespace_association": "Associated namespace",
 	"tooltip-namespace_association": "Chuna gais panna ke baat waala panna, nai to, subject namespace ke include kare ke khatir, ii box ke tick karo",
 	"blanknamespace": "(Pahila)",
-	"contributions": "{{GENDER:$1|Sadasya}} ke yogdaan",
+	"tool-link-contributions": "{{GENDER:$1|Sadasya}} ke yogdaan",
 	"contributions-title": "$1 ke yogdaan",
 	"mycontris": "Yogdaan",
 	"anoncontribs": "Yogdaan",

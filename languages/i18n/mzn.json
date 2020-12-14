@@ -628,7 +628,7 @@
 	"namespace_association": "مرتبط فضائون",
 	"tooltip-namespace_association": "این جعبه ره علامت بزنین تا گپ یا دیگه مرتبط فضائون هم انتخاب بواشِن",
 	"blanknamespace": "(مـار)",
-	"contributions": "{{GENDER:$1|کارور}} کایری‌ئون",
+	"tool-link-contributions": "{{GENDER:$1|کارور}} کایری‌ئون",
 	"contributions-title": "$1 کایری‌ئون",
 	"mycontris": "مه کایری‌ئون",
 	"anoncontribs": "کومِک هاکردن",

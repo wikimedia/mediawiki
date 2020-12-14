@@ -1385,7 +1385,7 @@
 	"invert": "Utwahl ümkehren",
 	"namespace_association": "Tohörige Naamruum",
 	"blanknamespace": "(Hööft-)",
-	"contributions": "Bidrääg vun den {{GENDER:$1|Bruker}}",
+	"tool-link-contributions": "Bidrääg vun den {{GENDER:$1|Bruker}}",
 	"contributions-title": "Brukerbidrääg vun „$1“",
 	"mycontris": "Mien Arbeid",
 	"contribsub2": "För $1 ($2)",

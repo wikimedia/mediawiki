@@ -1610,7 +1610,7 @@
 	"namespace_association": "Kasumpay nga mga ngaran-lat'ang",
 	"tooltip-namespace_association": "Igcheck inin nga kahon para liwat iglakip an hiruhimangraw o himangrawon nga ngaran-latáng nga may pagkahisumpay ha pinili nga ngaran-lat'ang",
 	"blanknamespace": "(Panguna)",
-	"contributions": "Mga ámot ni {{GENDER:$1|User}}",
+	"tool-link-contributions": "Mga ámot ni {{GENDER:$1|User}}",
 	"contributions-title": "Mga amot han gumaramit para ha $1",
 	"mycontris": "Mga ámot nakon",
 	"anoncontribs": "Mga amot",

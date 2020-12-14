@@ -2222,7 +2222,7 @@
 	"namespace_association": "相關命名空間",
 	"tooltip-namespace_association": "剔呢個格就可以收埋相關嘅討論頁命名空間",
 	"blanknamespace": "（主）",
-	"contributions": "{{GENDER:$1|用戶}}貢獻",
+	"tool-link-contributions": "{{GENDER:$1|用戶}}貢獻",
 	"contributions-title": "$1嘅用戶貢獻",
 	"mycontris": "個人貢獻",
 	"anoncontribs": "貢獻",

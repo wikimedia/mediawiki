@@ -630,7 +630,7 @@
 	"namespace": "Лӱм-влакын кумдыкышт:",
 	"invert": "инвертировать выделенное",
 	"blanknamespace": "(Тӱҥ)",
-	"contributions": "{{GENDER:$1|User}}-ын пашаже",
+	"tool-link-contributions": "{{GENDER:$1|User}}-ын пашаже",
 	"contributions-title": "$1 пайдаланышын паша",
 	"mycontris": "Мыйын паша",
 	"contribsub2": "$1 лан ($2)",

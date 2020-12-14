@@ -749,7 +749,7 @@
 	"namespace": "Espace de noms:",
 	"invert": "Inverser la sélection",
 	"blanknamespace": "(Principal)",
-	"contributions": "Contributions de l’{{GENDER:$1|useur|useuse}}",
+	"tool-link-contributions": "Contributions de l’{{GENDER:$1|useur|useuse}}",
 	"mycontris": "Contributions",
 	"uctop": "actuel",
 	"sp-contributions-talk": "Discuter",

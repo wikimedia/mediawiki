@@ -557,7 +557,7 @@
 	"namespace_association": "İlişkili ad alanı",
 	"tooltip-namespace_association": "Seçili ad alanıyla ilgili tartışma ya da madde ad alanlarını da eklemek için bu kutucuğu işaretleyin",
 	"blanknamespace": "(Dudi)",
-	"contributions": "{{GENDER:$1|User}} işi meşvelape",
+	"tool-link-contributions": "{{GENDER:$1|User}} işi meşvelape",
 	"contributions-title": "$1 şeni maxmareş meşvelape",
 	"mycontris": "Çkimi meşvelape",
 	"anoncontribs": "Çkimi meşvelape",

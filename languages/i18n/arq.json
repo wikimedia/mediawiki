@@ -876,7 +876,7 @@
 	"namespace_association": "وسَع التسمية المربوط",
 	"tooltip-namespace_association": "علّم على هاد المقيبسة باش تدخّل تاني المهادرة ولا وسَع التسمية تاع الموضوع المربوط معا وسَع التسمية المسيليكسيوني",
 	"blanknamespace": "رئيسي",
-	"contributions": "مساهمات {{GENDER:$1|المستخدم|المستخدمه}}",
+	"tool-link-contributions": "مساهمات {{GENDER:$1|المستخدم|المستخدمه}}",
 	"contributions-title": "مساهمات {{GENDER:$1|المستخدم|المستخدمه}} $1",
 	"mycontris": "المساهمات تاعي",
 	"anoncontribs": "المساهمات",

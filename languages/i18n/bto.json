@@ -514,7 +514,7 @@
 	"undelete-show-file-submit": "Ano",
 	"namespace": "Butangan:",
 	"blanknamespace": "(Una)",
-	"contributions": "Mga ambag ka {{GENDER:$1|User}}",
+	"tool-link-contributions": "Mga ambag ka {{GENDER:$1|User}}",
 	"mycontris": "Mga ambag",
 	"contribsub2": "Para sa {{GENDER:$3|$1}} ($2)",
 	"uctop": "nguwan",

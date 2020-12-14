@@ -2468,7 +2468,7 @@
 	"namespace_association": "Зьвязаная прастора назваў",
 	"tooltip-namespace_association": "Пазначце гэтае поле, каб уключыць прастору назваў абмеркаваньняў (альбо прадметную), зьвязаных з выбранай прасторай назваў",
 	"blanknamespace": "(Асноўная)",
-	"contributions": "Унёсак {{GENDER:$1|удзельніка|удзельніцы}}",
+	"tool-link-contributions": "Унёсак {{GENDER:$1|удзельніка|удзельніцы}}",
 	"contributions-title": "Унёсак {{GENDER:$1|удзельніка|удзельніцы}} $1",
 	"mycontris": "Унёсак",
 	"anoncontribs": "Унёсак",

@@ -2150,7 +2150,7 @@
 	"namespace_association": "Anaran-tsehatra nampiarahana",
 	"tooltip-namespace_association": "Mariho ity boaty ity mba hampiditra ny pejin-dresaky ny anaran-tsehatra voafidy",
 	"blanknamespace": "(fotony)",
-	"contributions": "Fandraisan'anjaran'ny mpikambana{{GENDER:$1}}",
+	"tool-link-contributions": "Fandraisan'anjaran'ny mpikambana{{GENDER:$1}}",
 	"contributions-title": "Fandraisan'anjaran'i $1",
 	"mycontris": "Fandraisan'anjara",
 	"anoncontribs": "Fandraisan'anjara",

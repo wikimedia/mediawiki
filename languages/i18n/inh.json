@@ -1045,7 +1045,7 @@
 	"namespace_association": "ВIашагIйийхка моттиг",
 	"tooltip-namespace_association": "Оттае ер белгало, иштта хьахержача цIерий меттигаца вIашагIъювзаенна дувцара цIерий моттиг (е кхыяр) юкъейоаккхаргйолаш",
 	"blanknamespace": "(Керттера)",
-	"contributions": "{{GENDER:$1|Доакъашхочун}} къахьегам",
+	"tool-link-contributions": "{{GENDER:$1|Доакъашхочун}} къахьегам",
 	"contributions-title": "{{GENDER:$1|Доакъашхочун}} $1 къахьегам",
 	"mycontris": "Къахьегам",
 	"anoncontribs": "Къахьегам",

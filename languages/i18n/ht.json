@@ -826,7 +826,7 @@
 	"invert": "Envèse seleksyon an",
 	"namespace_association": "Non menm jan an",
 	"blanknamespace": "(Prensipal)",
-	"contributions": "Kontribisyon $1",
+	"tool-link-contributions": "Kontribisyon $1",
 	"contributions-title": "Lis tout kontribisyon itilizatè ki rele $1",
 	"mycontris": "Kontribisyon mwen",
 	"contribsub2": "Lis kontribisyon $1 ($2).",

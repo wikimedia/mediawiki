@@ -2319,7 +2319,7 @@
 	"namespace_association": "Esaouennoù anv liammet",
 	"tooltip-namespace_association": "Askañ ar voest-mañ da lakaat ivez e-barzh ar gaozeadenn pe danvez an esaouenn anv liammet ouzh an esaouenn anv diuzet",
 	"blanknamespace": "(Pennañ)",
-	"contributions": "Degasadennoù an {{GENDER:$1|implijer|implijerez}}",
+	"tool-link-contributions": "Degasadennoù an {{GENDER:$1|implijer|implijerez}}",
 	"contributions-title": "Degasadennoù an implijer evit $1",
 	"mycontris": "Ma degasadennoù",
 	"anoncontribs": "Ma degasadennoù",

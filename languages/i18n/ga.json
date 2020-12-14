@@ -1093,7 +1093,7 @@
 	"namespace": "Ainmspás:",
 	"invert": "Iompaigh rogha bunoscionn",
 	"blanknamespace": "(Gnáth)",
-	"contributions": "Iarrachtaí {{GENDER:$1|úsáideora}}",
+	"tool-link-contributions": "Iarrachtaí {{GENDER:$1|úsáideora}}",
 	"contributions-title": "Dréachtaí úsáideora do $1",
 	"mycontris": "Iarrachtaí",
 	"anoncontribs": "Dréachtaí",

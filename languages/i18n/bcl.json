@@ -2104,7 +2104,7 @@
 	"namespace_association": "Asosyado na espasyong-ngaran",
 	"tooltip-namespace_association": "I-tsek ining kahon tangani man ibali an olay o subheto na espasyong-ngaran na asosyado sa pinagpili na espasyong-ngaran",
 	"blanknamespace": "(Panginot)",
-	"contributions": "{{GENDER:$1|Paragamit}} na mga kaambagan",
+	"tool-link-contributions": "{{GENDER:$1|Paragamit}} na mga kaambagan",
 	"contributions-title": "Mga kontribusyon kan paragamit para sa $1",
 	"mycontris": "Mga Kaarambagan",
 	"anoncontribs": "Mga Kaarambagan",

@@ -485,7 +485,7 @@
 	"namespace_association": "Taci e mamowisinasonaniwok",
 	"tooltip-namespace_association": "Tcikisinaha nohwe kikesinahikan kata acotcisinatek kirika taci e mamowisinasinaniwok e aimihitonaniwok kekotc kekwan,taci ka ki orapitcikateki icinikatewina",
 	"blanknamespace": "(Ka ici ocitakiniwok)",
-	"contributions": "Wir ka ki witcihietc {{GENDER:$1|User}}",
+	"tool-link-contributions": "Wir ka ki witcihietc {{GENDER:$1|User}}",
 	"mycontris": "Witcihewin",
 	"anoncontribs": "E ki witcihehin",
 	"uctop": "mekwatc",

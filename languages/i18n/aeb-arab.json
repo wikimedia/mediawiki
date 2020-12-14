@@ -659,7 +659,7 @@
 	"namespace": "النطاق:",
 	"invert": "اعكس الاختيار",
 	"blanknamespace": "(رئيسي)",
-	"contributions": "مساهمات {{GENDER:$1|المستعمل|المستعملة}}",
+	"tool-link-contributions": "مساهمات {{GENDER:$1|المستعمل|المستعملة}}",
 	"contributions-title": "مساهمات المستخدم $1",
 	"mycontris": "مساهمات",
 	"anoncontribs": "مساهمات",

@@ -1100,7 +1100,7 @@
 	"namespace": "Pirinan lagyu (Namespace):",
 	"invert": "Ibaligtad la pamitukituki",
 	"blanknamespace": "(Pun)",
-	"contributions": "{{GENDER:$1|User}} deng ambag",
+	"tool-link-contributions": "{{GENDER:$1|User}} deng ambag",
 	"contributions-title": "Deng ambag da reng talagamit para king $1",
 	"mycontris": "Deng ambag",
 	"anoncontribs": "Deng ambag",

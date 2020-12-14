@@ -2535,7 +2535,7 @@
 	"namespace_association": "Tilknyttet navnerom",
 	"tooltip-namespace_association": "Kryss av denne boksen for å også inkludere diskusjons- eller subjektnavnerommet som er tilknyttet det valgte navnerommet",
 	"blanknamespace": "(Hoved)",
-	"contributions": "{{GENDER:$1|Brukerbidrag}}",
+	"tool-link-contributions": "{{GENDER:$1|Brukerbidrag}}",
 	"contributions-title": "Brukerbidrag av $1",
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",

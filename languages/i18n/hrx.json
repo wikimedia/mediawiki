@@ -1752,7 +1752,7 @@
 	"namespace_association": "Zugehöricher Noomeraum",
 	"tooltip-namespace_association": "Das Auswahlfeld oonklicke, um den deiner Auswahl zugehörige Diskussionsnoomeraum, orrer im umgekehrte Fall, den zugehöriche Nooameraum, mit inzubeziehe",
 	"blanknamespace": "(Seite)",
-	"contributions": "{{GENDER:$1|Benutzerbeiträche}}",
+	"tool-link-contributions": "{{GENDER:$1|Benutzerbeiträche}}",
 	"contributions-title": "Benutzerbeiträche von „$1“",
 	"mycontris": "Beiträche",
 	"anoncontribs": "Beiträche",

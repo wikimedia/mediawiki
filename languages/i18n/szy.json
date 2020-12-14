@@ -2113,7 +2113,7 @@
 	"namespace_association": "sasuala panganganan a salaedan",
 	"tooltip-namespace_association": "pili’en hatizaay kuyni mapili’ay atilad i yamalyilu atu mipili’ sasuala panganganan a salaedan sasukamu atu satangahan panganganan a salaedan",
 	"blanknamespace": "(sausi)",
-	"contributions": "{{GENDER:$1| misaungayay}}paanin tu nisulitan",
+	"tool-link-contributions": "{{GENDER:$1| misaungayay}}paanin tu nisulitan",
 	"contributions-title": "$1 a misaungayay a paanin",
 	"mycontris": "paanin",
 	"anoncontribs": "paanin",

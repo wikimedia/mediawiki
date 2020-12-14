@@ -2353,7 +2353,7 @@
 	"namespace_association": "సంబంధిత పేరుబరి",
 	"tooltip-namespace_association": "ఎంచుకున్న పేరుబరికి చెందిన చర్చ లేదా విషయం పేరుబరిని కూడా ఎంచుకునేందుకు ఈ పెట్టెను చెక్ చెయ్యండి.",
 	"blanknamespace": "(మొదటి)",
-	"contributions": "{{GENDER:$1|వాడుకరి}} రచనలు",
+	"tool-link-contributions": "{{GENDER:$1|వాడుకరి}} రచనలు",
 	"contributions-title": "$1 మార్పుచేర్పులు",
 	"mycontris": "నా మార్పులు",
 	"anoncontribs": "మార్పుచేర్పులు",

@@ -2422,7 +2422,7 @@
 	"namespace_association": "Povezan imenski prostor",
 	"tooltip-namespace_association": "Označite ovu kutiju da također uključite razgovor ili imenski prostor teme koja je povezana sa odabranim imenskim prostorom",
 	"blanknamespace": "(Glavno)",
-	"contributions": "Doprinosi {{GENDER:$1|korisnika|korisnice}}",
+	"tool-link-contributions": "Doprinosi {{GENDER:$1|korisnika|korisnice}}",
 	"contributions-title": "Doprinosi {{GENDER:$1|korisnika|korisnice}} $1",
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",

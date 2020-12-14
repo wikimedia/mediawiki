@@ -2426,7 +2426,7 @@
 	"namespace_association": "Liittyvä nimityhjyys",
 	"tooltip-namespace_association": "Valitye tämä kohta, jos halvaat haun sisältävän myös valittuun nimiavaruuteen liittyvän keskustelu- tai aihenimiavaruuden.",
 	"blanknamespace": "(Päätyhjyys)",
-	"contributions": "{{GENDER:$1|Käyttäjän}} mookkaukset",
+	"tool-link-contributions": "{{GENDER:$1|Käyttäjän}} mookkaukset",
 	"contributions-title": "Käyttäjän $1 mookkaukset",
 	"mycontris": "Mookkaukset",
 	"anoncontribs": "Mookkaukset",

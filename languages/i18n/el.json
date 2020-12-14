@@ -2485,7 +2485,7 @@
 	"namespace_association": "Συσχετισμένος ονοματοχώρος",
 	"tooltip-namespace_association": "Επιλέξτε αυτό το κουτάκι για να συμπεριλάβετε τον ονοματοχώρο συζήτησης ή θέματος που σχετίζεται με τον επιλεγμένο ονοματοχώρο",
 	"blanknamespace": "(Κύριος ονοματοχώρος)",
-	"contributions": "Συνεισφορές {{GENDER:$1|χρήστη}}",
+	"tool-link-contributions": "Συνεισφορές {{GENDER:$1|χρήστη}}",
 	"contributions-title": "Συνεισφορές χρήστη για {{GENDER:$1|τον|την}} $1",
 	"mycontris": "Συνεισφορές",
 	"anoncontribs": "Συνεισφορές",

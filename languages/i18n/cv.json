@@ -809,7 +809,7 @@
 	"namespace": "Ят хушши:",
 	"invert": "Суйланине ҫавӑр",
 	"blanknamespace": "(Тĕп)",
-	"contributions": "{{GENDER:$1|Усă куракан}} ӳсĕмĕсем",
+	"tool-link-contributions": "{{GENDER:$1|Усă куракан}} ӳсĕмĕсем",
 	"contributions-title": "Усă куракан $1 хушни",
 	"mycontris": "Хушни",
 	"anoncontribs": "Хушни",

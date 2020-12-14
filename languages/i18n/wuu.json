@@ -1487,7 +1487,7 @@
 	"namespace_association": "搭界个名字空间",
 	"tooltip-namespace_association": "打上扎勾来加上搭选定名字空间搭界个讨论或主题名字空间",
 	"blanknamespace": "（主）",
-	"contributions": "{{GENDER:$1|用户}}贡献",
+	"tool-link-contributions": "{{GENDER:$1|用户}}贡献",
 	"contributions-title": "$1个贡献",
 	"mycontris": "我个贡献",
 	"anoncontribs": "贡献",

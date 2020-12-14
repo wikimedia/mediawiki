@@ -2096,7 +2096,7 @@
 	"namespace_association": "Tilknytt namnerom",
 	"tooltip-namespace_association": "Hak av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg",
 	"blanknamespace": "(hovud)",
-	"contributions": "{{GENDER:$1|Brukarbidrag}}",
+	"tool-link-contributions": "{{GENDER:$1|Brukarbidrag}}",
 	"contributions-title": "Bidrag av $1",
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",

@@ -952,7 +952,7 @@
 	"namespace": "Аталыштар мейкиндиги:",
 	"invert": "Белгиленгенди текскерилетүү",
 	"blanknamespace": "(Негизги)",
-	"contributions": "{{GENDER:$1|Колдонуучунун}} салымдары",
+	"tool-link-contributions": "{{GENDER:$1|Колдонуучунун}} салымдары",
 	"contributions-title": "$1 үчүн колдонуучунун салымдары",
 	"mycontris": "Салымдар",
 	"contribsub2": "$1 үчүн ($2)",

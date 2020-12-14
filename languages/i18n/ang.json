@@ -862,7 +862,7 @@
 	"invert": "Onhwirf gecorennesse",
 	"namespace_association": "Gesibbe namstedas",
 	"blanknamespace": "(Heafod)",
-	"contributions": "{{GENDER:$1|Brucendes}} forðunga",
+	"tool-link-contributions": "{{GENDER:$1|Brucendes}} forðunga",
 	"contributions-title": "$1 brucendes forðunga",
 	"mycontris": "Forðunga",
 	"anoncontribs": "forðunga",

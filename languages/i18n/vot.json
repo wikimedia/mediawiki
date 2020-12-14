@@ -466,7 +466,7 @@
 	"namespace": "Nimiruumi:",
 	"invert": "Cäänn nimiruumivalimin päävassaizõssi",
 	"blanknamespace": "(Artikkelid)",
-	"contributions": "{{GENDER:$1|Cäüttijää}} avittamizõd",
+	"tool-link-contributions": "{{GENDER:$1|Cäüttijää}} avittamizõd",
 	"contributions-title": "Cäüttijää $1 avittamizõd",
 	"mycontris": "Minu avittamizõd",
 	"contribsub2": "Cäüttijää $1 ($2) avittamizõd",

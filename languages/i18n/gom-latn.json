@@ -895,7 +895,7 @@
 	"namespace_association": "Sombondhit nanvtholl",
 	"tooltip-namespace_association": "Vinchlele nanvthollache sombondhit bhasabhas vo vixoiacho nanvthollakui gheupak hem boks khunnai",
 	"blanknamespace": "(Mukhel)",
-	"contributions": "{{GENDER:$1|Vaporpi}} yogdanam",
+	"tool-link-contributions": "{{GENDER:$1|Vaporpi}} yogdanam",
 	"contributions-title": "$1 hea vaporpean kelelim yogdanam",
 	"mycontris": "Yogdanam",
 	"anoncontribs": "Yogdanam",

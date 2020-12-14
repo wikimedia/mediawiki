@@ -2453,7 +2453,7 @@
 	"namespace_association": "Lotutako izen-tartea",
 	"tooltip-namespace_association": "Klik egin kutxa honetan aukeratutako izentartearekin lotutako gaia edo eztabaida orriak sartzeko.",
 	"blanknamespace": "(Nagusia)",
-	"contributions": "{{GENDER:$1|Lankidearen}} ekarpenak",
+	"tool-link-contributions": "{{GENDER:$1|Lankidearen}} ekarpenak",
 	"contributions-title": "$1(r)entzat lankidearen ekarpenak",
 	"mycontris": "Ekarpenak",
 	"anoncontribs": "Ekarpenak",

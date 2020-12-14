@@ -2306,7 +2306,7 @@
 	"namespace_association": "Gekoppeldje naomruumdje",
 	"tooltip-namespace_association": "Vink dit aan óm ouch verangere te tuine inne euverlègk- of óngerwerpnaomruumdje dae bie de geselecteerde naomruumdje heurt",
 	"blanknamespace": "(hoofnaamruumde)",
-	"contributions": "{{GENDER:$1|Biedrages per gebroeker}}",
+	"tool-link-contributions": "{{GENDER:$1|Biedrages per gebroeker}}",
 	"contributions-title": "Biedrage van $1",
 	"mycontris": "Biedrage",
 	"anoncontribs": "Biedrage",

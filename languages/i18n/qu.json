@@ -1760,7 +1760,7 @@
 	"namespace_association": "Huñupasqa suti k'iti",
 	"tooltip-namespace_association": "Kay k'itichata ñit'iywan sananchay, akllasqa suti k'itiwan huñupasqa rimanakuy suti k'ititapas ch'aqtanapaq",
 	"blanknamespace": "(Uma)",
-	"contributions": "{{GENDER:$1|Ruraqpa}} llamk'apusqankuna",
+	"tool-link-contributions": "{{GENDER:$1|Ruraqpa}} llamk'apusqankuna",
 	"contributions-title": "$1 sutiyuq ruraqpa llamk'apusqankuna",
 	"mycontris": "Llamk'apusqaykuna",
 	"anoncontribs": "Llamk'apusqakuna",

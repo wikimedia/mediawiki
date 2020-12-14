@@ -2318,7 +2318,7 @@
 	"namespace_association": "Namespace associate",
 	"tooltip-namespace_association": "Signe sta sckatele pure pe 'ngludere le namespace de le 'ngazzaminde o le suggette associate cu 'u namespace scacchiate",
 	"blanknamespace": "(Prengepàle)",
-	"contributions": "Condrebbute de l'{{GENDER:$1|utende}}",
+	"tool-link-contributions": "Condrebbute de l'{{GENDER:$1|utende}}",
 	"contributions-title": "Condrebbute de l'utende pe $1",
 	"mycontris": "Condrebbute mie",
 	"anoncontribs": "Condrebbute",

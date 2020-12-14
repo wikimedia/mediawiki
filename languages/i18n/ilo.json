@@ -2295,7 +2295,7 @@
 	"namespace_association": "Mainaig a nagan ti espasio",
 	"tooltip-namespace_association": "Ikur-it daytoy a kahon ti panagiraman ti tungtungan wenno suheto ti nagan ti espasio a nairaman kadagiti napili a nagan ti espasio",
 	"blanknamespace": "(Umuna)",
-	"contributions": "Dagiti kontribusion ti {{GENDER:$1|agar-aramat}}",
+	"tool-link-contributions": "Dagiti kontribusion ti {{GENDER:$1|agar-aramat}}",
 	"contributions-title": "Kontribusion ti agar-aramat para kenni $1",
 	"mycontris": "Inar-aramid",
 	"anoncontribs": "Inar-aramid",

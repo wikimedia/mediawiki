@@ -2541,7 +2541,7 @@
 	"namespace_association": "Liittyvä nimiavaruus",
 	"tooltip-namespace_association": "Valitse tämä kohta, jos haluat haun sisältävän myös valittuun nimiavaruuteen liittyvän keskustelu- tai aihenimiavaruuden.",
 	"blanknamespace": "(Päänimiavaruus)",
-	"contributions": "{{GENDER:$1|Käyttäjän}} muokkaukset",
+	"tool-link-contributions": "{{GENDER:$1|Käyttäjän}} muokkaukset",
 	"contributions-title": "Käyttäjän $1 muokkaukset",
 	"mycontris": "Muokkaukset",
 	"anoncontribs": "Muokkaukset",

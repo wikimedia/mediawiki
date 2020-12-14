@@ -1678,7 +1678,7 @@
 	"namespace_association": "Associated namespace",
 	"tooltip-namespace_association": "ای جئبه ئا ئلامت بجنیت تا که مربوتین موزو ئی پزای نامی گپ گۆ\nانتخاب بوته ئین پزای ناما شامل بیت",
 	"blanknamespace": "(بُنیادی)",
-	"contributions": "{{GENDER:$1|کار زوروک}} ئی شراکت ئان",
+	"tool-link-contributions": "{{GENDER:$1|کار زوروک}} ئی شراکت ئان",
 	"contributions-title": "$1 ئی کار زوروکئ شراکت ئان",
 	"mycontris": "شراکت ئان",
 	"anoncontribs": "شراکت ئان",

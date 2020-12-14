@@ -2382,7 +2382,7 @@
 	"namespace_association": "അനുബന്ധനാമമേഖലകൾ",
 	"tooltip-namespace_association": "താങ്കൾ തിരഞ്ഞെടുത്ത നാമമേഖലയുടെ കൂടെ സംവാദം അല്ലെങ്കിൽ വിഷയ നാമമേഖലയും കൂടെ ചേർക്കണമെങ്കിൽ ഇവിടെ ശരി ചേർക്കുക",
 	"blanknamespace": "(മുഖ്യം)",
-	"contributions": "{{GENDER:$1|ഉപയോക്താവിന്റെ}} സംഭാവനകൾ",
+	"tool-link-contributions": "{{GENDER:$1|ഉപയോക്താവിന്റെ}} സംഭാവനകൾ",
 	"contributions-title": "$1 എന്ന ഉപയോക്താവിന്റെ സംഭാവനകൾ",
 	"mycontris": "സംഭാവനകൾ",
 	"anoncontribs": "സംഭാവനകൾ",

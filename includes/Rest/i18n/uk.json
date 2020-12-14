@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Base",
 			"Movses",
 			"Piramidion",
 			"Ата"
@@ -12,8 +13,12 @@
 	"rest-nonexistent-title": "Зазначеної назви ($1) не існує",
 	"rest-nonexistent-title-revision": "Зазначена версія ($1) не існує для зазначеної сторінки ($2)",
 	"rest-nonexistent-revision": "Запитувана версія ($1) не існує.",
+	"rest-nonexistent-user": "Вказаний користувач ($1) не існує",
+	"rest-invalid-user": "Вказане ім'я користувача ($1) недопустиме",
+	"rest-permission-denied-anon": "Не доступно анонімним користувачам",
 	"rest-permission-denied-title": "Цей користувач не має прав читати назву сторінки ($1)",
 	"rest-permission-denied-revision": "Користувач не має доступу до запитуваної версії ($1).",
+	"rest-resource-limit-exceeded": "Перевищено обмеження на ресурси при обробці запиту.",
 	"rest-pagehistory-incompatible-params": "Параметри \"older_than\" та \"newer_than\" не можуть бути вказаними одночасно",
 	"rest-pagehistory-param-range-error": "Ідентифікатор версії має бути більшим за 0",
 	"rest-pagehistory-timestamp-error": "Не вдалося отримати часової мітки для вказаної версії ($1)",
@@ -37,5 +42,6 @@
 	"rest-bad-content-model": "Неправильна модель вмісту: $1",
 	"rest-update-cannot-create-page": "Сторінка «$1» не може бути створена оскільки вже існує. Щоб її оновити, вкажіть ідентифікатор базової версії під «останнім» ключем тіла запиту.",
 	"rest-extraneous-csrf-token": "Виявлено зайвий токен CSRF. Токени CSRF не повинні використовуватись при використанні таких механізмів автентифікації, як OAuth, які є забезпечені від CSRF-атак.",
-	"rest-cannot-load-file": "Файл з назвою «$1» неможливо завантажити."
+	"rest-cannot-load-file": "Файл з назвою «$1» неможливо завантажити.",
+	"rest-cross-origin-anon-write": "Анонімні cross-origin запити на запис не дозволені"
 }

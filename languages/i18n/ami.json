@@ -492,7 +492,7 @@
 	"namespace_association": "  pakayniay i pipanganganan",
 	"tooltip-namespace_association": " Mikawit tonini a masa’apelada, o pahapinang to masaloma’ay to ko nikalalicay ato patosokan to sapangangan",
 	"blanknamespace": "(kalimelaan)",
-	"contributions": "{{GENDER:$1| micokaymasay}} nipaini/ nipafeli",
+	"tool-link-contributions": "{{GENDER:$1| micokaymasay}} nipaini/ nipafeli",
 	"contributions-title": "nipaini/ nipafeli no micokaymasay a $1",
 	"mycontris": " nipafelian",
 	"anoncontribs": "nipafelian",

@@ -1961,7 +1961,7 @@
 	"namespace_association": "مل نومتشيال",
 	"tooltip-namespace_association": "د ټاکلي نومتشيال سره د سکالو نومتشيال اړوندولو او يا هم د خبرو اترو مخ شاملولو لپاره دا چوکاټ په نښه کړئ",
 	"blanknamespace": "(آرنی)",
-	"contributions": "{{GENDER:$1|کارن}} ونډې",
+	"tool-link-contributions": "{{GENDER:$1|کارن}} ونډې",
 	"contributions-title": "د $1 کارن ونډې",
 	"mycontris": "ونډې",
 	"anoncontribs": "ونډې",

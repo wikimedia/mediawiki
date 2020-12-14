@@ -1422,7 +1422,7 @@
 	"namespace": "At giňişligi:",
 	"invert": "Saýlanmadyklar",
 	"blanknamespace": "(Baş)",
-	"contributions": "{{GENDER:$1|Ulanyjy}} goşantlary",
+	"tool-link-contributions": "{{GENDER:$1|Ulanyjy}} goşantlary",
 	"contributions-title": "$1 üçin ulanyjy goşantlary",
 	"mycontris": "Goşantlar",
 	"anoncontribs": "Goşantlar",

@@ -1445,7 +1445,7 @@
 	"namespace_association": "نوم جایٱل یٱکاگرهڌاْ",
 	"tooltip-namespace_association": "ای جٱڤاْ نٱ ڤارسی کونین نأ ڤارسي کونين، ای جٱڤاْ  ز ڤٱرگرهڌاْ چٱک چناْ یٱل داسۊن نوم ڤٱرگٱ شریکی و نوم ڤٱرگٱ گولاْڤورچیناْ.",
 	"blanknamespace": "(ٱسلی)",
-	"contributions": "{{GENDER:$1|کاریار}} هومیاریٱل",
+	"tool-link-contributions": "{{GENDER:$1|کاریار}} هومیاریٱل",
 	"contributions-title": "هومیاری کاریارٱل سی $1",
 	"mycontris": "هومياریٱل",
 	"anoncontribs": "هومياریٱل",

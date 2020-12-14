@@ -1560,7 +1560,7 @@
 	"namespace_association": "संबंधित नाँवस्थान",
 	"tooltip-namespace_association": "चुनल गइल नाँवस्थान से जुड़ल बातचीत या बिसय नाँवस्थान के शामिल करे खातिर ए बाकस के चिन्हित करीं",
 	"blanknamespace": "(मुख्य)",
-	"contributions": "{{GENDER:$1|प्रयोगकर्ता}} के योगदान",
+	"tool-link-contributions": "{{GENDER:$1|प्रयोगकर्ता}} के योगदान",
 	"contributions-title": " $1 खातिर प्रयोगकर्ता योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",

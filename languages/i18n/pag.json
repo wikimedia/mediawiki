@@ -441,7 +441,7 @@
 	"undelete-search-submit": "Anapen",
 	"undelete-show-file-submit": "On",
 	"blanknamespace": "(Manuman)",
-	"contributions": "Saray kontribusyon na {{GENDER:$1|manguusar}}",
+	"tool-link-contributions": "Saray kontribusyon na {{GENDER:$1|manguusar}}",
 	"mycontris": "Saray entolong",
 	"anoncontribs": "Saray entolong",
 	"year": "Taon:",

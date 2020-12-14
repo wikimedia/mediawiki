@@ -1601,7 +1601,7 @@
 	"namespace_association": "Тудуш аттардыҥ телкеми",
 	"tooltip-namespace_association": "Темдекти тургузып салар,  анайда ок  шӱӱжӱниҥ аттардыҥ телкеминде (эмезе предметный), тудуш талдап алган аттардыҥ телкемин кожорго",
 	"blanknamespace": "(Тӧс учурлу)",
-	"contributions": "{{GENDER:$1|Туружаачыныҥ}} кошконы",
+	"tool-link-contributions": "{{GENDER:$1|Туружаачыныҥ}} кошконы",
 	"contributions-title": "$1 туружаачыныҥ кошконы",
 	"mycontris": "Кошконы",
 	"anoncontribs": "Кошконы",

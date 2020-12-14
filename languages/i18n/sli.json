@@ -1113,7 +1113,7 @@
 	"namespace": "Noamensraum:",
 	"invert": "Oauswoahl imkehra",
 	"blanknamespace": "(Seyta)",
-	"contributions": "Benutzerbeiträge",
+	"tool-link-contributions": "Benutzerbeiträge",
 	"contributions-title": "Benutzerbeiträge voo „$1“",
 	"mycontris": "Vu mer verändart",
 	"contribsub2": "Fier $1 ($2)",

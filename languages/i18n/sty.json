@@ -407,7 +407,7 @@
 	"namespace_association": "Пәйле киңнек",
 	"tooltip-namespace_association": "Сайланҡан исемнәр киңнек пелән пәйле пулған уйлап ҡаралған исемнәрнең киңнеген кергесер өцөн пы пилгене ҡороң",
 	"blanknamespace": "(Төп)",
-	"contributions": "{{GENDER:$1|ҡатнашыуцының}} ҡылған эше",
+	"tool-link-contributions": "{{GENDER:$1|ҡатнашыуцының}} ҡылған эше",
 	"contributions-title": "$1 исемле ҡатнашыуцының ҡылған эше",
 	"mycontris": "Кергескән эшләр",
 	"anoncontribs": "Кергескән эшләр",

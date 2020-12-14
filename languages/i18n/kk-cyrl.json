@@ -1930,7 +1930,7 @@
 	"namespace_association": "Қатысты есім аясы",
 	"tooltip-namespace_association": "Бұл белгіні қойсаңыз кейде таңдалған есім кеңістігіне қатысты талқылау немесе бастауыш есім кеңістігіндегі өзгерістер қосылып көрсетіледі",
 	"blanknamespace": "Негізгі беттердегі",
-	"contributions": "{{GENDER:$1|Қатысушы}} үлестері",
+	"tool-link-contributions": "{{GENDER:$1|Қатысушы}} үлестері",
 	"contributions-title": "$1 есімді қатысушының үлесі",
 	"mycontris": "Үлесім",
 	"anoncontribs": "Үлесім",

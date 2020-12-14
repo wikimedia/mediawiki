@@ -515,7 +515,7 @@
 	"undelete-show-file-submit": "Sin",
 	"namespace": "Espasu pájina nian:",
 	"blanknamespace": "(Prinsipál)",
-	"contributions": "{{GENDER:$1|Kontribuisaun uza-na'in}}",
+	"tool-link-contributions": "{{GENDER:$1|Kontribuisaun uza-na'in}}",
 	"contributions-title": "Kontribuisaun \"$1\" nian",
 	"mycontris": "Kontribuisaun",
 	"contribsub2": "Ba $1 ($2)",

@@ -1560,7 +1560,7 @@
 	"namespace_association": "ਸਬੰਧਤ ਨਾਂ-ਥਾਂ",
 	"tooltip-namespace_association": "ਚੁਣੇ ਗਏ ਨਾਮਸਥਾਨ ਨਾਲ ਸੰਬੰਧਿਤ ਗੱਲਬਾਤ ਜਾਂ ਵਿਸ਼ਾ ਨਾਮਸਥਾਨ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਇਸ ਡੱਬੇ ਨੂੰ ਚੁਣੋ",
 	"blanknamespace": "(ਮੁੱਖ)",
-	"contributions": "{{GENDER:$1|ਮੈਂਬਰ}} ਯੋਗਦਾਨ",
+	"tool-link-contributions": "{{GENDER:$1|ਮੈਂਬਰ}} ਯੋਗਦਾਨ",
 	"contributions-title": "$1 ਲਈ ਵਰਤੋਂਕਾਰ ਯੋਗਦਾਨ",
 	"mycontris": "ਯੋਗਦਾਨ",
 	"anoncontribs": "ਯੋਗਦਾਨ",

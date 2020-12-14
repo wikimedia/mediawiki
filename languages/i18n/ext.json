@@ -1118,7 +1118,7 @@
 	"namespace": "Espáciu de nombris:",
 	"invert": "Invertil seleción",
 	"blanknamespace": "(Prencipal)",
-	"contributions": "Endirguis {{GENDER:$1|el usuáriu|la usuária}}",
+	"tool-link-contributions": "Endirguis {{GENDER:$1|el usuáriu|la usuária}}",
 	"contributions-title": "Contribucionis del usuáriu a $1",
 	"mycontris": "Endirguis",
 	"contribsub2": "Pa $1 ($2)",

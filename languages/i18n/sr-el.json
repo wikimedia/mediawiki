@@ -2491,7 +2491,7 @@
 	"namespace_association": "Povezani imenski prostor",
 	"tooltip-namespace_association": "Označite ovo polje da biste uključili razgovor ili imenski prostor teme koja je povezana sa izabranim imenskim prostorom",
 	"blanknamespace": "(glavni)",
-	"contributions": "{{GENDER:$1|Doprinosi korisnika|Doprinosi korisnice|Korisnički doprinosi}}",
+	"tool-link-contributions": "{{GENDER:$1|Doprinosi korisnika|Doprinosi korisnice|Korisnički doprinosi}}",
 	"contributions-title": "Doprinosi {{GENDER:$1|korisnika|korisnice}} $1",
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",

@@ -1528,7 +1528,7 @@
 	"namespace_association": "Espacio de nombres asociau",
 	"tooltip-namespace_association": "Marca ista caixeta ta incluir tamién o espacio de nombres de discusión asociau con o espacio de nombres trigau",
 	"blanknamespace": "(Prencipal)",
-	"contributions": "Contribucions de {{GENDER:$1|l'usuario|la usuaria}}",
+	"tool-link-contributions": "Contribucions de {{GENDER:$1|l'usuario|la usuaria}}",
 	"contributions-title": "Contribucions de l'usuario $1",
 	"mycontris": "Contribucions",
 	"contribsub2": "Ta {{GENDER:$3|$1}} ($2)",

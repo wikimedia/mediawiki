@@ -1601,7 +1601,7 @@
 	"invert": "Пинҳон кардани интихобкардашуда",
 	"namespace_association": "Фазои номи марбут",
 	"blanknamespace": "(Аслӣ)",
-	"contributions": "Ҳиссагузориҳои {{GENDER:$1|корбар}}",
+	"tool-link-contributions": "Ҳиссагузориҳои {{GENDER:$1|корбар}}",
 	"contributions-title": "Ҳиссагузориҳои корбар барои $1",
 	"mycontris": "Ҳиссагузориҳо",
 	"anoncontribs": "Саҳмгузориҳо",

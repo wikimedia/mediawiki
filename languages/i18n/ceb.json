@@ -723,7 +723,7 @@
 	"tooltip-invert": "I-tsek kini nga kahon aron tagoon ang mga kausaban sa mga panid sa gipili nga <i>namespace</i> (ug sa <i>associated namespace</i> kon gi-tsekan)",
 	"tooltip-namespace_association": "I-tsek kini nga kahon aron iapil ang mga panid sa hisgot o <i>subject namespace</i> nga may kalabotan sa gipili nga <i>namespace</i>",
 	"blanknamespace": "(Meyn)",
-	"contributions": "Mga tampo ning {{GENDER:$1|gumagamit}}",
+	"tool-link-contributions": "Mga tampo ning {{GENDER:$1|gumagamit}}",
 	"contributions-title": "Mga tampo sa gumagamit para kang $1",
 	"mycontris": "Mga tampo",
 	"anoncontribs": "Mga tampo",

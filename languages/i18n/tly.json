@@ -617,7 +617,7 @@
 	"namespace_association": "Əloğə bıə məkon",
 	"tooltip-namespace_association": "Nışonə ıyo ogətən bıdə jəqo no-peqəton nomon makonon pekarde, kom əloğənine de vıjniyə bıə nomon məkoni",
 	"blanknamespace": "(Əsos)",
-	"contributions": "{{GENDER:$1|Иштирокәкә}} гәнҹ",
+	"tool-link-contributions": "{{GENDER:$1|Иштирокәкә}} гәнҹ",
 	"contributions-title": "Иштирокәкә гәнҹ $1",
 	"mycontris": "Tohfəon",
 	"anoncontribs": "Tohfəon",

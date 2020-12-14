@@ -590,7 +590,7 @@
 	"invert": "обрати иꙁборъ",
 	"namespace_association": "съвѧꙁани имєнъ простори",
 	"blanknamespace": "(главьно)",
-	"contributions": "{{GENDER:$1|польꙃєватєлꙗ|польꙃєватєлицѧ}} добродѣꙗниꙗ",
+	"tool-link-contributions": "{{GENDER:$1|польꙃєватєлꙗ|польꙃєватєлицѧ}} добродѣꙗниꙗ",
 	"contributions-title": "польꙃєватєлꙗ ⁖ $1 ⁖ добродѣꙗниꙗ",
 	"mycontris": "добродѣꙗниꙗ",
 	"anoncontribs": "добродѣꙗниꙗ",

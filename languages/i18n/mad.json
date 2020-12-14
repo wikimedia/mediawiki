@@ -402,7 +402,7 @@
 	"namespace_association": "Ruangnyama takaè'",
 	"tooltip-namespace_association": "Torè koṭak arèya ghâbây pangkèng nyama pakanḍhâ'ân otabâ subjèk sè takaè' ḍâ' pangkèng nyama tapèlè",
 	"blanknamespace": "(Otama)",
-	"contributions": "Dhurrun {{GENDER:$1|pangangghuy}}",
+	"tool-link-contributions": "Dhurrun {{GENDER:$1|pangangghuy}}",
 	"contributions-title": "Dhurrun pangangghuy ghâbây $1",
 	"mycontris": "Dhurrun",
 	"anoncontribs": "Dhurrun",

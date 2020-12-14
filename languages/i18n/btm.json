@@ -487,7 +487,7 @@
 	"namespace_association": "Kumpulan ruang gorar",
 	"tooltip-namespace_association": "Centang kotak on giot mambunion ruang gorar pangecean sanga subjek na tarkait dohot ruang gorar na ipili",
 	"blanknamespace": "(Utamo)",
-	"contributions": "{{GENDER:$1|User}} kontribusi",
+	"tool-link-contributions": "{{GENDER:$1|User}} kontribusi",
 	"contributions-title": "Kontribusi pangguna tu $1",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusingku",

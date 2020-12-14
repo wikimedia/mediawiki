@@ -895,7 +895,7 @@
 	"invert": "Auswoi umdraan",
 	"namespace_association": "Zuagordnéter Nåmensraum",
 	"blanknamespace": "(Seitn)",
-	"contributions": "{{GENDER:$1|Nutza}}beidreg",
+	"tool-link-contributions": "{{GENDER:$1|Nutza}}beidreg",
 	"contributions-title": "Nutzabeidräg vo „$1“",
 	"mycontris": "Meine Beidreg",
 	"contribsub2": "Vo {{GENDER:$3|$1}} ($2)",

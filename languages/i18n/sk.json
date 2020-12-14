@@ -2465,7 +2465,7 @@
 	"namespace_association": "Asociovaný menný priestor",
 	"tooltip-namespace_association": "Zaškrtnite, ak chcete zahrnúť aj diskusné stránky alebo predmetový menný priestor spojený s vybraným menným priestorom",
 	"blanknamespace": "(Hlavný)",
-	"contributions": "Príspevky {{GENDER:$1|používateľa|používateľky}}",
+	"tool-link-contributions": "Príspevky {{GENDER:$1|používateľa|používateľky}}",
 	"contributions-title": "Príspevky používateľa pre $1",
 	"mycontris": "Príspevky",
 	"anoncontribs": "Príspevky",

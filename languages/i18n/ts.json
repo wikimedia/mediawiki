@@ -491,7 +491,7 @@
 	"namespace": "Swikhomela viti",
 	"invert": "Invert selection",
 	"blanknamespace": "(Ntsindza)",
-	"contributions": "Minyikelo ya mutirhisi",
+	"tool-link-contributions": "Minyikelo ya mutirhisi",
 	"contributions-title": "Minyikelo ya vutirhisi ya $1",
 	"mycontris": "Minyikelo ya mina",
 	"contribsub2": "For $1 ($2)",

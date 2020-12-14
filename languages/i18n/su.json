@@ -2120,7 +2120,7 @@
 	"namespace_association": "Ngaranspasi nu patali",
 	"tooltip-namespace_association": "Céklis ieu kotak pikeun ngaitkeun ngaranspasi atawa judul ngaranspasi jeung ngaranspasi nu dipilih",
 	"blanknamespace": "(Utama)",
-	"contributions": "Kontribusi {{GENDER:$1|pamaké}}",
+	"tool-link-contributions": "Kontribusi {{GENDER:$1|pamaké}}",
 	"contributions-title": "Sumbangan tulisan ti $1",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusi",

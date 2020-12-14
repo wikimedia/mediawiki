@@ -1846,7 +1846,7 @@
 	"namespace_association": "Maafarru šilbante",
 	"tooltip-namespace_association": "Bataa woo guna ka deedaa da dam wala maafarru kondantaa kaŋ goo maafarru suubantaa bande \\",
 	"blanknamespace": "(Boŋ)",
-	"contributions": "{{GENDER:$1|Goykaw}} kanbuzaamawey",
+	"tool-link-contributions": "{{GENDER:$1|Goykaw}} kanbuzaamawey",
 	"contributions-title": "Goykaw kanbuzaamawey $1 se",
 	"mycontris": "Kanbuzaamawey",
 	"anoncontribs": "Kanbuzaamawey",

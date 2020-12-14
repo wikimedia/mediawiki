@@ -837,7 +837,7 @@
 	"namespace_association": "Zukehrische Noamensraum",
 	"tooltip-namespace_association": "De Kaschde oagligge, um a's Dischbediere vum zukearisch Noamensraum zu krische.",
 	"blanknamespace": "(Schdadsaid)",
-	"contributions": "{{GENDER:$1|Wassa gemachd hodd}}",
+	"tool-link-contributions": "{{GENDER:$1|Wassa gemachd hodd}}",
 	"contributions-title": "Middawaidabaidräsch vun $1",
 	"mycontris": "Baidräsch",
 	"contribsub2": "Fa {{GENDER:$3|$1}} ($2)",

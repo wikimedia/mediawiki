@@ -1607,7 +1607,7 @@
 	"namespace_association": "Tip da pagina associà",
 	"tooltip-namespace_association": "Activescha quest champ per era tschertgar en las paginas da discussiun (u cuntrari era en la pagina principala) associadas al tip da pagina tschernì",
 	"blanknamespace": "(principal)",
-	"contributions": "Contribuziuns {{GENDER:$1|da l'utilisader|da l'utilisadra}}",
+	"tool-link-contributions": "Contribuziuns {{GENDER:$1|da l'utilisader|da l'utilisadra}}",
 	"contributions-title": "Contribuziuns d'utilisader da $1",
 	"mycontris": "Contribuziuns",
 	"anoncontribs": "Contribuziuns",

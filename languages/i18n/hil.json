@@ -1166,7 +1166,7 @@
 	"invert": "Sulion ang ginpili",
 	"namespace_association": "Kaupod nga espasyo sg mga ngalan",
 	"blanknamespace": "(Puno)",
-	"contributions": "Mga kontribusyon sang {{GENDER:$1|naga-usar}}",
+	"tool-link-contributions": "Mga kontribusyon sang {{GENDER:$1|naga-usar}}",
 	"contributions-title": "Mga Kontribusyon sang Naga-Usar para $1",
 	"mycontris": "Kontribusyon",
 	"anoncontribs": "Mga kontribusyon",

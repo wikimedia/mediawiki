@@ -1258,7 +1258,7 @@
 	"namespace_association": "Spatium nominale pertinens",
 	"tooltip-namespace_association": "Pungere ut spatium associatum celes",
 	"blanknamespace": "(principale)",
-	"contributions": "Conlationes {{GENDER:$1|usoris}}",
+	"tool-link-contributions": "Conlationes {{GENDER:$1|usoris}}",
 	"contributions-title": "Conlationes usoris $1",
 	"mycontris": "Conlationes",
 	"anoncontribs": "Conlationes",

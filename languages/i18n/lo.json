@@ -639,7 +639,7 @@
 	"undelete-search-submit": "ຊອກຫາ",
 	"namespace": "ຊື່ຂອບເຂດ:",
 	"blanknamespace": "(ຫຼັກ)",
-	"contributions": "ການປະກອບສ່ວນ",
+	"tool-link-contributions": "ການປະກອບສ່ວນ",
 	"mycontris": "ປະກອບສ່ວນ",
 	"contribsub2": "ສຳຫຼັບ $1 ($2)",
 	"nocontribs": "ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.",

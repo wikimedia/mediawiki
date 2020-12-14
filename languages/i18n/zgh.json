@@ -948,7 +948,7 @@
 	"namespace_association": "ⵜⵉⵔⵉⵡⵜ ⵏ ⵢⵉⵙ ⵎⵉⵣⴷⵉⵏ",
 	"tooltip-namespace_association": "ⵙⵎⴰⵜⵔ ⵜⴰⴼⵏⵉⵇⵜ ⴰⴷ ⵃⵎⴰ ⴰⴷ ⵜⵙⵎⵓⵏⴷ ⴰⵍⵜⵓ ⵜⵉⵔⵉⵡⵜ ⵏ ⵉⵙⵎ ⵏ ⵓⵎⵙⴰⵡⴰⵍ ⵏⵖ ⵜⵉⵏ ⵜⵖⴰⵡⵙⴰ ⵉⵣⴷⵉⵏ ⴷ ⵜⵔⵉⵡⵜ ⵏ ⵉⵙⵎ ⵏⵏⴰ ⵜⵙⵜⵉⴷ",
 	"blanknamespace": "(ⴰⴷⵙⵍⴰⵏ)",
-	"contributions": "ⵜⵓⵎⵓⵜⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ}}",
+	"tool-link-contributions": "ⵜⵓⵎⵓⵜⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ}}",
 	"contributions-title": "ⵜⵓⵎⵓⵜⵉⵏ ⵏ ⵓⵎⵙⵙⵎⵔⵙ $1",
 	"mycontris": "ⵜⵓⵎⵓⵜⵉⵏ",
 	"anoncontribs": "ⵜⵓⵎⵓⵜⵉⵏ",

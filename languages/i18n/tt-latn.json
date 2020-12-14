@@ -1115,7 +1115,7 @@
 	"invert": "Kiresen saylaw",
 	"tooltip-invert": "Saylanğan isem qırlarına qarağan bitlärgä (häm bu isem qırına da) kertelgän üzgärtmälärne kürsätmäw öçen bu saylaw tartmasın bilgelägez",
 	"blanknamespace": "(Töp)",
-	"contributions": "{{GENDER:$1|Qullanuçınıñ}} kerteme",
+	"tool-link-contributions": "{{GENDER:$1|Qullanuçınıñ}} kerteme",
 	"contributions-title": "$1 isemle qullanuçınıñ kerteme",
 	"mycontris": "Kertem",
 	"contribsub2": "$1 ($2) öçen",

@@ -2529,7 +2529,7 @@
 	"namespace_association": "Spații de nume asociate",
 	"tooltip-namespace_association": "Bifați această căsuță pentru a include și spațiul de nume destinat discuțiilor care este asociat cu spațiul de nume deja selectat",
 	"blanknamespace": "Articole",
-	"contributions": "Contribuții {{GENDER:$1|utilizator}}",
+	"tool-link-contributions": "Contribuții {{GENDER:$1|utilizator}}",
 	"contributions-title": "Contribuțiile utilizatorului $1",
 	"mycontris": "Contribuții",
 	"anoncontribs": "Contribuții",

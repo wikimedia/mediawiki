@@ -2019,7 +2019,7 @@
 	"namespace_association": "সাংসৰ্গিক নামস্থান",
 	"tooltip-namespace_association": "নিৰ্বাচিত নামস্থানৰ লগত থকা আলোচনা বা বিষয় নামস্থান সন্নিৱিষ্ট কৰিবলৈ এই ঘৰটো চিহ্নিত কৰক",
 	"blanknamespace": "(মুখ্য)",
-	"contributions": "{{GENDER:$1|সদস্যৰ}} বৰঙণিসমূহ",
+	"tool-link-contributions": "{{GENDER:$1|সদস্যৰ}} বৰঙণিসমূহ",
 	"contributions-title": "$1ৰ বৰঙণিসমূহ",
 	"mycontris": "বৰঙণিসমূহ",
 	"anoncontribs": "বৰঙণি",

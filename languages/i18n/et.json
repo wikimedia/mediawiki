@@ -2509,7 +2509,7 @@
 	"namespace_association": "Seonduv nimeruum",
 	"tooltip-namespace_association": "Tee kasti linnuke, kui soovid valida ka valitud nimeruumiga seotud arutelu- või sisulehekülgede nimeruumi",
 	"blanknamespace": "(Artiklid)",
-	"contributions": "{{GENDER:$1|Kasutaja}} kaastöö",
+	"tool-link-contributions": "{{GENDER:$1|Kasutaja}} kaastöö",
 	"contributions-title": "Kasutaja $1 kaastöö",
 	"mycontris": "Kaastöö",
 	"anoncontribs": "Kaastöö",

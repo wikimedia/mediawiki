@@ -1873,7 +1873,7 @@
 	"namespace_association": "Spassi nominal associà",
 	"tooltip-namespace_association": "Ch'a selession-a sta casela për anserì ëdcò la discussion o lë spassi nominal dël soget associà a lë spassi nomina selessionà",
 	"blanknamespace": "(Prinsipal)",
-	"contributions": "Contribussion dë st'{{GENDER:$1|utent}}-sì",
+	"tool-link-contributions": "Contribussion dë st'{{GENDER:$1|utent}}-sì",
 	"contributions-title": "Contribussion ëd $1",
 	"mycontris": "Contribussion",
 	"anoncontribs": "Contribussion",

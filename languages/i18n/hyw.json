@@ -811,7 +811,7 @@
 	"namespace_association": "Առնչուած անուանատարածք",
 	"tooltip-namespace_association": "Նշեցէ՛ք տուփիկը՝ ներառնելու համար տուեալ անուանատարածքին հետ կապուած քննարկումները կամ նիւթերու անուանատարածքը նոյնպէս։",
 	"blanknamespace": "(Գլխաւոր)",
-	"contributions": "{{GENDER:$1|Մասնակիցի}} ներդրումներ",
+	"tool-link-contributions": "{{GENDER:$1|Մասնակիցի}} ներդրումներ",
 	"contributions-title": "$1 մասնակիցի ներդրումը",
 	"mycontris": "Ներդրումներ",
 	"anoncontribs": "Ներդրումներ",

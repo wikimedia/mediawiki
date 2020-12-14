@@ -1940,7 +1940,7 @@
 	"namespace_association": "Zuegordnete Namensruum",
 	"tooltip-namespace_association": "Des Chäschtli aaklicke go dr Diskussionsnamensruum oder dr Namesnruum zuesätzlig mityybezie, wu zue Dyre Uuswahl derzue ghert.",
 	"blanknamespace": "(Haupt-)",
-	"contributions": "{{GENDER:$1|Benutzer-Byträg}}",
+	"tool-link-contributions": "{{GENDER:$1|Benutzer-Byträg}}",
 	"contributions-title": "Benutzerbyytreg vu „$1“",
 	"mycontris": "Myyni Byyträg",
 	"anoncontribs": "Byyträg",

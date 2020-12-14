@@ -2042,7 +2042,7 @@
 	"namespace_association": "Йихкина меттиг",
 	"tooltip-namespace_association": "ХӀоттае хӀара билгало, иштта дийцарийн (я кхин) цӀерийн меттиг юкъахь хилийта",
 	"blanknamespace": "(Коьрта)",
-	"contributions": "{{GENDER:$1|Декъашхочун}} къинхьегам",
+	"tool-link-contributions": "{{GENDER:$1|Декъашхочун}} къинхьегам",
 	"contributions-title": "{{GENDER:$1|Декъашхочун}} къинхьегам $1",
 	"mycontris": "Сан къинхьегам",
 	"anoncontribs": "Къинхьегам",

@@ -686,7 +686,7 @@
 	"namespace_association": "Éspache d' noms achuchonné",
 	"tooltip-namespace_association": "Cochez chole case pour inclure égalemint chl’éspache d' noms éd discussion o du sujet, achuchonné à chl’éspache de noms sélekcionné",
 	"blanknamespace": "(Moaite)",
-	"contributions": "Contérbuchons éd l’{{GENDER:$1|utilisateu|utilisatriche}}",
+	"tool-link-contributions": "Contérbuchons éd l’{{GENDER:$1|utilisateu|utilisatriche}}",
 	"contributions-title": "Contérbuchons dechl uzeu à pérpos éd $1",
 	"mycontris": "Mes contérbuchons",
 	"anoncontribs": "Contérbuchons",

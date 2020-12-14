@@ -2246,7 +2246,7 @@
 	"namespace_association": "Tengd nafnrými",
 	"tooltip-namespace_association": "Hakaðu við þennan kassa til að hafa með spjallsíður eða tengd nafnrými.",
 	"blanknamespace": "(Aðalnafnrýmið)",
-	"contributions": "Framlög {{GENDER:$1|notanda}}",
+	"tool-link-contributions": "Framlög {{GENDER:$1|notanda}}",
 	"contributions-title": "Framlög notanda $1",
 	"mycontris": "Framlög",
 	"anoncontribs": "Framlög",

@@ -1592,7 +1592,7 @@
 	"namespace_association": "Ruang-ngaran tarait",
 	"tooltip-namespace_association": "Pariksa kutak ngini hagan maumpatakan jua ruang-ngaran pamandiran atawa judul tarait awan ruang-ngaran tapilih",
 	"blanknamespace": "(Tatambaian)",
-	"contributions": "Sumbangan {{GENDER:$1|pamakai}}",
+	"tool-link-contributions": "Sumbangan {{GENDER:$1|pamakai}}",
 	"contributions-title": "Sumbangan pamakai gasan $1",
 	"mycontris": "Sumbangan",
 	"anoncontribs": "Sumbangan",

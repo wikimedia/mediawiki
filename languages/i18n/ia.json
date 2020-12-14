@@ -2494,7 +2494,7 @@
 	"namespace_association": "Spatio de nomines associate",
 	"tooltip-namespace_association": "Marca iste quadrato pro includer anque le spatio de nomines de discussion o de subjecto associate al spatio de nomines seligite",
 	"blanknamespace": "(Principal)",
-	"contributions": "Contributiones del {{GENDER:$1|usator}}",
+	"tool-link-contributions": "Contributiones del {{GENDER:$1|usator}}",
 	"contributions-title": "Contributiones del usator $1",
 	"mycontris": "Contributiones",
 	"anoncontribs": "Contributiones",

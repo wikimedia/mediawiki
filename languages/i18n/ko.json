@@ -2557,7 +2557,7 @@
 	"namespace_association": "관련된 이름공간",
 	"tooltip-namespace_association": "선택한 이름공간과 관련된 토론이나 본문 이름공간을 포함하려면 이 상자를 선택하세요",
 	"blanknamespace": "(일반)",
-	"contributions": "{{GENDER:$1|사용자}} 기여",
+	"tool-link-contributions": "{{GENDER:$1|사용자}} 기여",
 	"contributions-title": "$1의 사용자 기여",
 	"mycontris": "기여",
 	"anoncontribs": "기여",

@@ -950,7 +950,7 @@
 	"tooltip-invert": "Calaamadee santuuqan si aad u qariso isbeddellada kujira bogagga magacyada la xushay (iyo magacyada laxiriirta haddii la calaamadeeyay)",
 	"namespace_association": "La xiriira xarun magaceedka",
 	"blanknamespace": "(Bogga hore)",
-	"contributions": "{{GENDER:$1|Isticmaale}} ku darsaday",
+	"tool-link-contributions": "{{GENDER:$1|Isticmaale}} ku darsaday",
 	"contributions-title": "Waxa oo ku darsaday isticmaalaha $1",
 	"mycontris": "Ku darsashooyinka",
 	"contribsub2": "Ku socoto {{GENDER:$3|$1}} ($2)",
