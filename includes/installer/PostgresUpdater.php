@@ -877,6 +877,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'uploadstash', 'us_timestamp', 'NOT NULL', true ],
 			[ 'changeNullableField', 'uploadstash', 'us_status', 'NOT NULL', true ],
 			[ 'changeNullableField', 'uploadstash', 'us_size', 'NOT NULL', true ],
+			[ 'changeNullableField', 'uploadstash', 'us_sha1', 'NOT NULL', true ],
 			[ 'renameIndex', 'uploadstash', 'us_user_idx', 'us_user' ],
 			[ 'renameIndex', 'uploadstash', 'us_key_idx', 'us_key' ],
 			[ 'renameIndex', 'uploadstash', 'us_timestamp_idx', 'us_timestamp' ],
