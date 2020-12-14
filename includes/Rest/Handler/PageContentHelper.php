@@ -39,19 +39,19 @@ class PageContentHelper {
 	protected $titleFormatter;
 
 	/** @var TitleFactory */
-	private $titleFactory;
+	protected $titleFactory;
 
 	/** @var User|null */
 	protected $user = null;
 
 	/** @var string[] */
-	private $parameters = null;
+	protected $parameters = null;
 
 	/** @var RevisionRecord|bool|null */
-	private $latestRevision = null;
+	protected $targetRevision = null;
 
 	/** @var Title|bool|null */
-	private $titleObject = null;
+	protected $titleObject = null;
 
 	/**
 	 * @param Config $config
@@ -103,18 +103,20 @@ class PageContentHelper {
 	}
 
 	/**
+	 * Returns the target revision. No permission checks are applied.
+	 *
 	 * @return RevisionRecord|bool latest revision or false if unable to retrieve revision
 	 */
 	public function getTargetRevision() {
-		if ( $this->latestRevision === null ) {
+		if ( $this->targetRevision === null ) {
 			$title = $this->getTitle();
 			if ( $title && $title->getArticleID() ) {
-				$this->latestRevision = $this->revisionLookup->getRevisionByTitle( $title );
+				$this->targetRevision = $this->revisionLookup->getRevisionByTitle( $title );
 			} else {
-				$this->latestRevision = false;
+				$this->targetRevision = false;
 			}
 		}
-		return $this->latestRevision;
+		return $this->targetRevision;
 	}
 
 	// Default to main slot
@@ -126,7 +128,7 @@ class PageContentHelper {
 	 * @return TextContent
 	 * @throws LocalizedHttpException slot content is not TextContent or Revision/Slot is inaccessible
 	 */
-	public function getPageContent(): TextContent {
+	public function getContent(): TextContent {
 		$revision = $this->getTargetRevision();
 
 		if ( !$revision ) {
@@ -178,13 +180,13 @@ class PageContentHelper {
 	 */
 	public function getETag(): ?string {
 		$revision = $this->getTargetRevision();
-		$latestRevision = $revision ? $revision->getId() : 'e0';
+		$revId = $revision ? $revision->getId() : 'e0';
 
 		$isAccessible = $this->isAccessible();
 		$accessibleTag = $isAccessible ? 'a1' : 'a0';
 
-		$revisionTag = $latestRevision . $accessibleTag;
-		return '"' . sha1( "$revisionTag" ) . '"';
+		$revisionTag = $revId . $accessibleTag;
+		return '"' . sha1( $revisionTag ) . '"';
 	}
 
 	/**
@@ -203,6 +205,8 @@ class PageContentHelper {
 	}
 
 	/**
+	 * Checks whether content exists. Permission checks are not considered.
+	 *
 	 * @return bool
 	 */
 	public function hasContent(): bool {

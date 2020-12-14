@@ -74,7 +74,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
-	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPageContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
 	 */
 	public function testGetTargetRevisionAndContent() {
 		$page = $this->getExistingTestPage( __METHOD__ );
@@ -86,7 +86,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( RevisionRecord::class, $targetRev );
 		$this->assertSame( $rev->getId(), $targetRev->getId() );
 
-		$pageContent = $helper->getPageContent();
+		$pageContent = $helper->getContent();
 		$this->assertSame(
 			$rev->getContent( SlotRecord::MAIN )->serialize(),
 			$pageContent->serialize()
@@ -99,7 +99,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::isAccessible()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
-	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPageContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
@@ -119,7 +119,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( self::NO_REVISION_ETAG, $helper->getETag() );
 
 		try {
-			$helper->getPageContent();
+			$helper->getContent();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -139,7 +139,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::isAccessible()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
-	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPageContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
@@ -161,7 +161,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( self::NO_REVISION_ETAG, $helper->getETag() );
 
 		try {
-			$helper->getPageContent();
+			$helper->getContent();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -181,7 +181,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::isAccessible()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
-	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPageContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()

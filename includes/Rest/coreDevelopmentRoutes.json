@@ -34,5 +34,35 @@
 			"UserNameUtils"
 		],
 		"mode" : "user"
+	},
+	{
+		"path": "/coredev/v0/revision/{id}/html",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"TitleFactory",
+			"ParserCacheFactory",
+			"WikiPageFactory",
+			"GlobalIdGenerator"
+		],
+		"format": "html"
+	},
+	{
+		"path": "/coredev/v0/revision/{id}/with_html",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"TitleFactory",
+			"ParserCacheFactory",
+			"WikiPageFactory",
+			"GlobalIdGenerator"
+		],
+		"format": "with_html"
 	}
 ]
