@@ -880,6 +880,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'uploadstash', 'us_user_idx', 'us_user' ],
 			[ 'renameIndex', 'uploadstash', 'us_key_idx', 'us_key' ],
 			[ 'renameIndex', 'uploadstash', 'us_timestamp_idx', 'us_timestamp' ],
+			[ 'renameIndex', 'user_properties', 'user_properties_property', 'up_property' ],
 		];
 	}
 

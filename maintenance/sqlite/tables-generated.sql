@@ -91,7 +91,7 @@ CREATE TABLE /*_*/user_properties (
   PRIMARY KEY(up_user, up_property)
 );
 
-CREATE INDEX user_properties_property ON /*_*/user_properties (up_property);
+CREATE INDEX up_property ON /*_*/user_properties (up_property);
 
 
 CREATE TABLE /*_*/log_search (

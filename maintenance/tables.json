@@ -285,7 +285,7 @@
 			}
 		],
 		"indexes": [
-			{ "name": "user_properties_property", "columns": [ "up_property" ], "unique": false }
+			{ "name": "up_property", "columns": [ "up_property" ], "unique": false }
 		],
 		"pk": [ "up_user", "up_property" ]
 	},
