@@ -12,7 +12,8 @@
 		pages = {},
 		moduleInfoCache = {},
 		baseRequestParams,
-		OptionalParamWidget = require( './OptionalParamWidget.js' );
+		OptionalParamWidget = require( './OptionalParamWidget.js' ),
+		UploadParamWidget = require( './UploadParamWidget.js' );
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -197,24 +198,6 @@
 				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( val ) {
 					return { value: val, path: map[ val ] };
 				} );
-			}
-		},
-
-		uploadWidget: {
-			getApiValueForDisplay: function () {
-				return '...';
-			},
-			getApiValue: function () {
-				return this.getValue();
-			},
-			setApiValue: function () {
-				// Can't, sorry.
-			},
-			apiCheckValid: function ( shouldSuppressErrors ) {
-				var ok = this.getValue() !== null && this.getValue() !== undefined || shouldSuppressErrors;
-				this.info.setIcon( ok ? null : 'alert' );
-				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
-				return $.Deferred().resolve( ok ).promise();
 			}
 		}
 	};
@@ -439,9 +422,8 @@
 					break;
 
 				case 'upload':
-					widget = new OO.ui.SelectFileWidget();
+					widget = new UploadParamWidget();
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.uploadWidget );
 					break;
 
 				case 'namespace':
