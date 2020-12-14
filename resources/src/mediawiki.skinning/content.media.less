@@ -1,9 +1,12 @@
 /**
  * Block media items
  */
-figure[ typeof*='mw:Image' ],
-figure[ typeof*='mw:Video' ],
-figure[ typeof*='mw:Audio' ] {
+figure[ typeof~='mw:Image' ],
+figure[ typeof~='mw:Video' ],
+figure[ typeof~='mw:Audio' ],
+figure[ typeof~='mw:Image/Frameless' ],
+figure[ typeof~='mw:Video/Frameless' ],
+figure[ typeof~='mw:Audio/Frameless' ] {
 	margin: 0;
 
 	a {
@@ -62,9 +65,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	background-color: #f8f9fa;
 	width: 1px;  // From https://stackoverflow.com/a/6536025
 
-	// Avoid !important
-	&.mw-halign-center {
-		border-collapse: separate;
+	a {
+		border: 0;
 	}
 
 	// Default to right alignment. This is needed since Parsoid only specifies the
@@ -73,14 +75,36 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	clear: right;
 	float: right;
 
-	&.mw-halign-left {
-		/* @noflip */
-		margin: 0.5em 1.4em 1.3em 0;
-	}
-
 	&.mw-halign-right {
 		/* @noflip */
 		margin: 0.5em 0 1.3em 1.4em;
+		/* @noflip */
+		clear: right;
+		/* @noflip */
+		float: right;
+	}
+
+	&.mw-halign-left {
+		/* @noflip */
+		margin: 0.5em 1.4em 1.3em 0;
+		/* @noflip */
+		clear: left;
+		/* @noflip */
+		float: left;
+	}
+
+	&.mw-halign-none {
+		margin: 0;
+		clear: none;
+		float: none;
+	}
+
+	&.mw-halign-center {
+		margin: 0 auto 0.5em auto;
+		display: table;
+		border-collapse: separate;
+		clear: none;
+		float: none;
 	}
 
 	> *:first-child {
