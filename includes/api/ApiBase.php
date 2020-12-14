@@ -2043,7 +2043,7 @@ abstract class ApiBase extends ContextSource {
 		$limit2 = $limit2 ?: self::LIMIT_SML2;
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
-		// because it unstubs $wgUser
+		// if we don't need to because its fairly expensive
 		$valuesList = $this->explodeMultiValue( $value, $limit2 + 1 );
 		$sizeLimit = count( $valuesList ) > $limit1 && $this->mMainModule->canApiHighLimits()
 			? $limit2
