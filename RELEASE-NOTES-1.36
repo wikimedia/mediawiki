@@ -71,6 +71,10 @@ For notes on 1.35.x and older releases, see HISTORY.
   unknown tags is numeric formatting; non-EXIF tags which are non-numeric
   should always use this method to specify the desired formatting.
 * The new 'title' type can be used to validate action API and REST API inputs.
+* The new 'raw' type can be used to validate action API inputs. It bypasses
+  the Unicode NFC normalization done on inputs of type 'string', so it more
+  suitable when the input is binary or may contain deprecated Unicode
+  sequences or characters (such as U+2001) that should be passed unmodified.
 * …
 
 === External library changes in 1.36 ===

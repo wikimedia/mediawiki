@@ -38,7 +38,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$this->assertSame(
 			[
 				'boolean', 'enum', 'expiry', 'integer', 'limit', 'namespace', 'NULL', 'password',
-				'string', 'submodule', 'tags', 'text', 'timestamp', 'title', 'user', 'upload',
+				'raw', 'string', 'submodule', 'tags', 'text', 'timestamp', 'title', 'user', 'upload',
 			],
 			$validator->knownTypes()
 		);
@@ -536,17 +536,21 @@ class ApiParamValidatorTest extends ApiTestCase {
 	public function testGetValue( ?string $data, $settings, $expect ) : void {
 		[ $validator, $main ] = $this->getValidator( new FauxRequest( [ 'aptest' => $data ] ) );
 		$module = $main->getModuleFromPath( 'query+allpages' );
+		$options = [
+			'parse-limit' => false,
+			'raw' => ( $settings[ParamValidator::PARAM_TYPE] ?? '' ) === 'raw',
+		];
 
 		if ( $expect instanceof ApiUsageException ) {
 			try {
-				$validator->getValue( $module, 'test', $settings, [] );
+				$validator->getValue( $module, 'test', $settings, $options );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( ApiUsageException $e ) {
 				$this->assertSame( $module->getModulePath(), $e->getModulePath() );
 				$this->assertEquals( $expect->getStatusValue(), $e->getStatusValue() );
 			}
 		} else {
-			$this->assertEquals( $expect, $validator->getValue( $module, 'test', $settings, [] ) );
+			$this->assertEquals( $expect, $validator->getValue( $module, 'test', $settings, $options ) );
 		}
 	}
 
@@ -580,6 +584,24 @@ class ApiParamValidatorTest extends ApiTestCase {
 				'',
 				false,
 				true,
+			],
+			// The 'string' type will be NFC normalized (in this case,
+			// U+2001 will be converted to U+2003; see Figure 5 of
+			// of https://unicode.org/reports/tr15 for more examples).
+			'Test string (Unicode NFC)' => [
+				"\u{2001}",
+				[
+					ParamValidator::PARAM_TYPE => 'string',
+				],
+				"\u{2003}",
+			],
+			// The 'raw' type bypasses Unicode NFC normalization.
+			'Test string (raw)' => [
+				"\u{2001}",
+				[
+					ParamValidator::PARAM_TYPE => 'raw',
+				],
+				"\u{2001}",
 			],
 			'Validation failure' => [
 				'xyz',

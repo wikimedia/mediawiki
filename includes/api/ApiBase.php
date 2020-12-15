@@ -1049,6 +1049,7 @@ abstract class ApiBase extends ContextSource {
 		$validator = $this->getMain()->getParamValidator();
 		$value = $validator->getValue( $this, $name, $settings, [
 			'parse-limit' => $parseLimit,
+			'raw' => ( $settings[ParamValidator::PARAM_TYPE] ?? '' ) === 'raw',
 		] );
 
 		// @todo Deprecate and remove this, if possible.
