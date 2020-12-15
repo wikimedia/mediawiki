@@ -85,7 +85,7 @@ CREATE TABLE /*_*/user_properties (
   up_user INT UNSIGNED NOT NULL,
   up_property VARBINARY(255) NOT NULL,
   up_value BLOB DEFAULT NULL,
-  INDEX user_properties_property (up_property),
+  INDEX up_property (up_property),
   PRIMARY KEY(up_user, up_property)
 ) /*$wgDBTableOptions*/;
 

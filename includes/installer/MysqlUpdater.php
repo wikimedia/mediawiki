@@ -476,6 +476,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'categorylinks', 'cl_to', 'patch-categorylinks-cl_to-varbinary.sql' ],
 			[ 'modifyField', 'logging', 'log_title', 'patch-logging-log_title-varbinary.sql' ],
 			[ 'modifyField', 'uploadstash', 'us_timestamp', 'patch-uploadstash-us_timestamp.sql' ],
+			[ 'renameIndex', 'user_properties', 'user_properties_property', 'up_property', false,
+				'patch-user_properties-rename-index.sql' ],
 		];
 	}
 
