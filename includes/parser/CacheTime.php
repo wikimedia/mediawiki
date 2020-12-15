@@ -43,11 +43,6 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	protected $mParseUsedOptions = [];
 
 	/**
-	 * @var string|null Compatibility check
-	 */
-	public $mVersion = Parser::VERSION;
-
-	/**
 	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
@@ -257,7 +252,6 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 			'CacheExpiry' => $this->mCacheExpiry,
 			'CacheTime' => $this->mCacheTime,
 			'CacheRevisionId' => $this->mCacheRevisionId,
-			'Version' => $this->mVersion, // XXX: we can probably remove this
 		];
 	}
 
@@ -285,7 +279,6 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 		$this->mCacheExpiry = $jsonData['CacheExpiry'];
 		$this->mCacheTime = $jsonData['CacheTime'];
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
-		$this->mVersion = $jsonData['Version']; // XXX: we can probably remove this
 	}
 
 	public function __wakeup() {

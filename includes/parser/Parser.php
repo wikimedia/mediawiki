@@ -82,13 +82,6 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
-	/**
-	 * Update this version number when the ParserOutput format
-	 * changes in an incompatible way, so the parser cache
-	 * can automatically discard old data.
-	 */
-	public const VERSION = '1.6.4';
-
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
 	public const SFH_OBJECT_ARGS = 2;
