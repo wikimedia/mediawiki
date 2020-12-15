@@ -28,6 +28,7 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
+use MWTimestamp;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
@@ -169,7 +170,11 @@ class RevisionOutputCache {
 			return false;
 		}
 
-		if ( $output->getCacheTime() < $this->cacheEpoch ) {
+		$cacheTime = (int)MWTimestamp::convert( TS_UNIX, $output->getCacheTime() );
+		$expiryTime = (int)MWTimestamp::convert( TS_UNIX, $this->cacheEpoch );
+		$expiryTime = max( $expiryTime, (int)MWTimestamp::now( TS_UNIX ) - $this->cacheExpiry );
+
+		if ( $cacheTime < $expiryTime ) {
 			$this->incrementStats( $revision, 'miss.expired' );
 			return false;
 		}

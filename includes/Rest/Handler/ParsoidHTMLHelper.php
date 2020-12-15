@@ -23,6 +23,7 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use ParserCache;
@@ -51,6 +52,9 @@ class ParsoidHTMLHelper {
 	/** @var ParserCache */
 	private $parserCache;
 
+	/** @var RevisionOutputCache */
+	private $revisionOutputCache;
+
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
@@ -68,17 +72,20 @@ class ParsoidHTMLHelper {
 
 	/**
 	 * @param ParserCache $parserCache
+	 * @param RevisionOutputCache $revisionOutputCache
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ParserCache $parserCache,
+		RevisionOutputCache $revisionOutputCache,
 		WikiPageFactory $wikiPageFactory,
 		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->parserCache = $parserCache;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->globalIdGenerator = $globalIdGenerator;
+		$this->revisionOutputCache = $revisionOutputCache;
 	}
 
 	/**
@@ -187,13 +194,13 @@ class ParsoidHTMLHelper {
 		$revId = $this->revision ? $this->revision->getId() : $wikiPage->getLatest();
 		$isOld = $revId !== $wikiPage->getLatest();
 
-		// TODO: caching for old revisions, see T269663
-
-		if ( !$isOld ) {
+		if ( $isOld ) {
+			$parserOutput = $this->revisionOutputCache->get( $this->revision, $parserOptions );
+		} else {
 			$parserOutput = $this->parserCache->get( $wikiPage, $parserOptions );
-			if ( $parserOutput ) {
-				return $parserOutput;
-			}
+		}
+		if ( $parserOutput ) {
+			return $parserOutput;
 		}
 
 		$fakeParserOutput = $this->parse();
@@ -208,7 +215,9 @@ class ParsoidHTMLHelper {
 		// it in ParserCache just yet.
 		$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
 
-		if ( !$isOld ) {
+		if ( $isOld ) {
+			$this->revisionOutputCache->save( $fakeParserOutput, $this->revision, $parserOptions, $now );
+		} else {
 			$this->parserCache->save( $fakeParserOutput, $wikiPage, $parserOptions, $now );
 		}
 

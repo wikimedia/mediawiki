@@ -8,6 +8,7 @@ use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\Handler\ParsoidHTMLHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWikiIntegrationTestCase;
@@ -16,6 +17,7 @@ use NullStatsdDataFactory;
 use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
+use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -29,8 +31,16 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
+	private const CACHE_EPOCH = '20001111010101';
+
+	private const TIMESTAMP_OLD = '20200101112233';
+	private const TIMESTAMP = '20200101223344';
+	private const TIMESTAMP_LATER = '20200101234200';
+
+	private const WIKITEXT_OLD = 'Hello \'\'\'Goat\'\'\'';
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
+	private const HTML_OLD = '<p>Hello <b>Goat</b></p>';
 	private const HTML = '<p>Hello <b>World</b></p>';
 
 	protected function setUp(): void {
@@ -39,6 +49,8 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
 			$this->markTestSkipped( 'Parsoid is not configured' );
 		}
+
+		$this->setMwGlobals( 'wgCacheEpoch', self::CACHE_EPOCH );
 
 		// Clean up these tables after each test
 		$this->tablesUsed = [
@@ -57,11 +69,23 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	private function newHelper( BagOStuff $cache = null, Parsoid $parsoid = null ): ParsoidHTMLHelper {
+		$cache = $cache ?: new EmptyBagOStuff();
+
 		$parserCache = new ParserCache(
-			'Test',
-			$cache ?: new EmptyBagOStuff(),
-			0,
+			'TestPCache',
+			$cache,
+			self::CACHE_EPOCH,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getJsonCodec(),
+			new NullStatsdDataFactory(),
+			new NullLogger()
+		);
+
+		$revisionOutputCache = new RevisionOutputCache(
+			'TestRCache',
+			new WANObjectCache( [ 'cache' => $cache ] ),
+			60 * 60,
+			self::CACHE_EPOCH,
 			$this->getServiceContainer()->getJsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger()
@@ -69,6 +93,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = new ParsoidHTMLHelper(
 			$parserCache,
+			$revisionOutputCache,
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getGlobalIdGenerator()
 		);
@@ -81,25 +106,51 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		return $helper;
 	}
 
-	public function testGetHtml() {
-		$page = $this->getExistingTestPage( 'HtmlHelperTestPage/with/slashes' );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
-			'Sanity: edited a page'
-		);
+	private function getExistingPageWithRevisions( $name ) {
+		$page = $this->getNonexistingTestPage( $name );
+
+		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
+		$this->editPage( $page, self::WIKITEXT_OLD );
+		$revisions['first'] = $page->getRevisionRecord();
+
+		MWTimestamp::setFakeTime( self::TIMESTAMP );
+		$this->editPage( $page, self::WIKITEXT );
+		$revisions['latest'] = $page->getRevisionRecord();
+
+		MWTimestamp::setFakeTime( self::TIMESTAMP_LATER );
+		return [ $page, $revisions ];
+	}
+
+	public function provideRevisionReferences() {
+		return [
+			'current' => [ null, [ 'html' => self::HTML, 'timestamp' => self::TIMESTAMP ] ],
+			'old' => [ 'first', [ 'html' => self::HTML_OLD, 'timestamp' => self::TIMESTAMP_OLD ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRevisionReferences()
+	 */
+	public function testGetHtml( $revRef, $revInfo ) {
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
+		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$helper = $this->newHelper();
-		$helper->init( $page->getTitle() );
+		$helper->init( $page->getTitle(), $rev );
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlresult );
 		$this->assertStringContainsString( '<html', $htmlresult );
-		$this->assertStringContainsString( self::HTML, $htmlresult );
+		$this->assertStringContainsString( $revInfo['html'], $htmlresult );
 	}
 
-	public function testHtmlIsCached() {
-		$page = $this->getExistingTestPage( 'HtmlHelperTestPage/with/slashes' );
+	/**
+	 * @dataProvider provideRevisionReferences()
+	 */
+	public function testHtmlIsCached( $revRef, $revInfo ) {
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
+		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$cache = new HashBagOStuff();
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
@@ -109,60 +160,69 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper( $cache, $parsoid );
 
-		$helper->init( $page->getTitle() );
+		$helper->init( $page->getTitle(), $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 
 		// check that we can run the test again and ensure that the parse is only run once
 		$helper = $this->newHelper( $cache, $parsoid );
-		$helper->init( $page->getTitle() );
+		$helper->init( $page->getTitle(), $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 	}
 
-	public function testEtagLastModified() {
-		$time = time();
-		MWTimestamp::setFakeTime( $time );
-
-		$page = $this->getExistingTestPage( 'HtmlHelperTestPage/with/slashes' );
+	/**
+	 * @dataProvider provideRevisionReferences()
+	 */
+	public function testEtagLastModified( $revRef, $revInfo ) {
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
+		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$cache = new HashBagOStuff();
 
 		// First, test it works if nothing was cached yet.
-		// Make some time pass since page was created:
-		MWTimestamp::setFakeTime( $time + 10 );
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page->getTitle() );
-		$etag = $helper->getETag(); // remember etag using LastModified
+		$helper->init( $page->getTitle(), $rev );
+		$etag = $helper->getETag();
+		$lastModified = $helper->getLastModified();
 		$helper->getHtml(); // put HTML into the cache
 
-		// Now, test that headers work when getting from cache too.
-		$helper = $this->newHelper( $cache );
-		$helper->init( $page->getTitle() );
-
+		// make sure the etag didn't change after getHtml();
 		$this->assertSame( $etag, $helper->getETag() );
-		$etag = $helper->getETag();
 		$this->assertSame(
-			MWTimestamp::convert( TS_RFC2822, $time + 10 ),
-			MWTimestamp::convert( TS_RFC2822, $helper->getLastModified() )
+			MWTimestamp::convert( TS_MW, $lastModified ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
 		);
 
-		// Now, expire the cache
-		$time += 1000;
-		MWTimestamp::setFakeTime( $time );
+		// Advance the time, but not so much that caches would expire.
+		// The time in the header should remain as before.
+		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 100;
+		MWTimestamp::setFakeTime( $now );
+		$helper = $this->newHelper( $cache );
+		$helper->init( $page->getTitle(), $rev );
+
+		$this->assertSame( $etag, $helper->getETag() );
+		$this->assertSame(
+			MWTimestamp::convert( TS_MW, $lastModified ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+		);
+
+		// Now, expire the cache. etag and timestamp should change
+		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 10000;
+		MWTimestamp::setFakeTime( $now );
 		$this->assertTrue(
-			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $time ) ),
+			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $now ) ),
 			'Sanity: can invalidate cache'
 		);
 		DeferredUpdates::doUpdates();
 
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page->getTitle() );
+		$helper->init( $page->getTitle(), $rev );
 
 		$this->assertNotSame( $etag, $helper->getETag() );
 		$this->assertSame(
-			MWTimestamp::convert( TS_RFC2822, $time ),
-			MWTimestamp::convert( TS_RFC2822, $helper->getLastModified() )
+			MWTimestamp::convert( TS_MW, $now ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
 		);
 	}
 
@@ -198,7 +258,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		Exception $parsoidException,
 		Exception $expectedException
 	) {
-		$page = $this->getExistingTestPage( 'HtmlHelperTestPage/with/slashes' );
+		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
 		$parsoid->expects( $this->once() )

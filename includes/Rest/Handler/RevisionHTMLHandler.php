@@ -53,6 +53,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getParserCache( 'parsoid' ),
+			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
 			$wikiPageFactory,
 			$globalIdGenerator
 		);
