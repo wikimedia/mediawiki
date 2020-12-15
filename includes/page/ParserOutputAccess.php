@@ -151,10 +151,7 @@ class ParserOutputAccess {
 		// NOTE: when we allow caching of old revisions in the future,
 		//       we must not allow caching of deleted revisions.
 
-		if ( $parserOptions->getStubThreshold() !== 0
-			|| !$page->exists()
-			|| !$page->getContentHandler()->isParserCacheSupported()
-		) {
+		if ( !$page->exists() || !$page->getContentHandler()->isParserCacheSupported() ) {
 			return self::CACHE_NONE;
 		}
 
@@ -187,11 +184,6 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?ParserOutput {
-		if ( $parserOptions->getStubThreshold() ) {
-			$this->statsDataFactory->updateCount( 'pcache.miss.stub', 1 );
-			return null;
-		}
-
 		$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
