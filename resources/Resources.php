@@ -1146,10 +1146,10 @@ return [
 	],
 	'mediawiki.action.edit' => [
 		'scripts' => [
-			'resources/src/mediawiki.action/mediawiki.action.edit.js',
-			'resources/src/mediawiki.action/mediawiki.action.edit.stash.js',
+			'resources/src/mediawiki.action.edit/edit.js',
+			'resources/src/mediawiki.action.edit/stash.js',
 		],
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
+		'styles' => 'resources/src/mediawiki.action.edit/edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'mediawiki.editfont.styles',
@@ -1832,8 +1832,13 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox' => [
-		'styles' => 'resources/src/mediawiki.special.apisandbox/apisandbox.less',
-		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.special.apisandbox",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.apisandbox",
+		'styles' => 'apisandbox.less',
+		'packageFiles' => [
+			'apisandbox.js',
+			'OptionalParamWidget.js',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'mediawiki.Uri',
