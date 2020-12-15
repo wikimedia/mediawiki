@@ -2,6 +2,11 @@
  * JavaScript for Special:Undelete
  */
 ( function () {
+
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'Undelete' ) {
+		return;
+	}
+
 	$( function () {
 		var $widget = $( '#wpComment' ).closest( '.oo-ui-widget' ),
 			wpComment;

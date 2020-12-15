@@ -1948,13 +1948,14 @@ return [
 			'special.movePage.js',
 			'special.mute.js',
 			'special.pageLanguage.js',
+			'special.undelete.js',
 		],
 		'dependencies' => [
-			'mediawiki.api', // Used by special.changecredentials.js
-			'mediawiki.htmlform.ooui', // Used by special.changecredentials.js
-			'mediawiki.widgets.visibleLengthLimit', // Used by special.movePage.js
-			'mediawiki.widgets', // Used by special.movePage.js
-			'oojs-ui-core', // Used by special.pageLanguage.js
+			'mediawiki.api', // special.changecredentials.js
+			'mediawiki.htmlform.ooui', // special.changecredentials.js
+			'mediawiki.widgets.visibleLengthLimit', // special.movePage.js, special.undelete.js
+			'mediawiki.widgets', // special.movePage.js, special.undelete.js
+			'oojs-ui-core', // special.pageLanguage.js
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2141,11 +2142,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.undelete' => [
-		'scripts' => 'resources/src/mediawiki.special.undelete.js',
-		'dependencies' => [
-			'mediawiki.widgets.visibleLengthLimit',
-			'mediawiki.widgets',
-		],
+		'dependencies' => 'mediawiki.misc-authed-ooui',
+		'deprecated' => 'Use mediawiki.misc-authed-ooui instead',
 	],
 	'mediawiki.special.unwatchedPages' => [
 		'scripts' => 'resources/src/mediawiki.special.unwatchedPages/unwatchedPages.js',
