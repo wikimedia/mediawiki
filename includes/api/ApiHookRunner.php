@@ -44,6 +44,7 @@ class ApiHookRunner implements
 	Hook\RequestHasSameOriginSecurityHook,
 	\MediaWiki\Hook\EditFormPreloadTextHook,
 	\MediaWiki\Hook\FileUndeleteCompleteHook,
+	\MediaWiki\Hook\GetLinkColoursHook,
 	\MediaWiki\Hook\ImportSourcesHook,
 	\MediaWiki\Hook\LanguageLinksHook,
 	\MediaWiki\Hook\OutputPageCheckLastModifiedHook,
@@ -289,6 +290,13 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'FileUndeleteComplete',
 			[ $title, $fileVersions, $user, $reason ]
+		);
+	}
+
+	public function onGetLinkColours( $pagemap, &$classes, $title ) {
+		return $this->container->run(
+			'GetLinkColours',
+			[ $pagemap, &$classes, $title ]
 		);
 	}
 

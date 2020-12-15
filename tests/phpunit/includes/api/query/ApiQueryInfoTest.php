@@ -43,6 +43,32 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertSame( $title->getLength(), $info['length'] );
 		$this->assertSame( $title->isNewPage(), $info['new'] );
 		$this->assertArrayNotHasKey( 'actions', $info );
+		$this->assertArrayNotHasKey( 'linkclasses', $info );
+	}
+
+	/**
+	 * @covers ::execute
+	 * @covers ::extractPageInfo
+	 */
+	public function testExecuteLinkClasses() {
+		$page = $this->getExistingTestPage( 'Pluto' );
+		$title = $page->getTitle();
+
+		list( $data ) = $this->doApiRequest( [
+				'action' => 'query',
+				'prop' => 'info',
+				'titles' => $title->getText(),
+				'inprop' => 'linkclasses',
+				'inlinkcontext' => $title->getText(),
+		] );
+
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'pages', $data['query'] );
+		$this->assertArrayHasKey( $page->getId(), $data['query']['pages'] );
+
+		$info = $data['query']['pages'][$page->getId()];
+		$this->assertArrayHasKey( 'linkclasses', $info );
+		$this->assertEquals( [], $info['linkclasses'] );
 	}
 
 	/**
