@@ -13,7 +13,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiLangTestCase;
 use MWException;
-use User;
 use WikiExporter;
 use WikiPage;
 
@@ -202,7 +201,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	/**
 	 * Default set up function.
 	 *
-	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
+	 * Reports errors from addDBData to PHPUnit
 	 */
 	protected function setUp() : void {
 		parent::setUp();
@@ -212,8 +211,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		if ( $this->exceptionFromAddDBData !== null ) {
 			throw $this->exceptionFromAddDBData;
 		}
-
-		$this->setMwGlobals( 'wgUser', new User() );
 	}
 
 	/**
