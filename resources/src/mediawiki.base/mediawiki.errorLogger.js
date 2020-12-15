@@ -134,56 +134,6 @@ mw.errorLogger = {
 	 */
 
 	/**
-	 * Track an error as a `global_error` event.
-	 *
-	 * If the error isn't an instance of `Error`, doesn't have a stack trace, or has an unparseable
-	 * stack trace, then no event will be tracked.
-	 *
-	 * @param {Mixed} error
-	 */
-	logError: function ( error ) {
-		var stackTrace,
-			firstLine, parts,
-			columnNumber, lineNumber, url;
-
-		if ( !error || !( error instanceof Error ) || !error.stack ) {
-			return;
-		}
-
-		stackTrace = mw.errorLogger.crossBrowserStackTrace( error.stack );
-
-		if ( !stackTrace ) {
-			return;
-		}
-
-		firstLine = stackTrace.split( '\n' )[ 0 ];
-
-		// crossBrowserStackTrace returns lines in the form
-		//
-		//     at [funcName] scriptUrl:lineNo:colNo
-		//
-		// and we want to extract scriptUrl, lineNo, and colNo.
-		parts = firstLine.split( ' ' );
-		parts = parts[ parts.length - 1 ].split( ':' );
-
-		columnNumber = parseInt( parts[ parts.length - 1 ], 10 );
-		lineNumber = parseInt( parts[ parts.length - 2 ], 10 );
-
-		// If the URL contains a port (or another unencoded ":" character?), then we need to
-		// reconstruct it from the remaining parts.
-		url = parts.slice( 0, parts.length - 2 ).join( ':' );
-
-		mw.track( 'global.error', {
-			errorMessage: error.message,
-			url: url,
-			lineNumber: columnNumber,
-			columnNumber: lineNumber,
-			stackTrace: stackTrace,
-			errorObject: error
-		} );
-	},
-
-	/**
 	 * Install a window.onerror handler that will report via mw.track, while preserving
 	 * any previous handler.
 	 *
