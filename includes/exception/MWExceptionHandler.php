@@ -105,7 +105,7 @@ class MWExceptionHandler {
 			} else {
 				MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
 			}
-		} catch ( Exception $e2 ) {
+		} catch ( Throwable $e2 ) {
 			// Exception occurred from within exception handler
 			// Show a simpler message for the original exception,
 			// don't try to invoke report()
