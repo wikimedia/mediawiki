@@ -914,7 +914,7 @@ return [
 
 	'ParserCache' => function ( MediaWikiServices $services ) : ParserCache {
 		return $services->getParserCacheFactory()
-			->getInstance( ParserCacheFactory::DEFAULT_NAME );
+			->getParserCache( ParserCacheFactory::DEFAULT_NAME );
 	},
 
 	'ParserCacheFactory' => function ( MediaWikiServices $services ) : ParserCacheFactory {

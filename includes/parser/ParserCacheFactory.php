@@ -107,19 +107,6 @@ class ParserCacheFactory {
 
 	/**
 	 * Get a ParserCache instance by $name.
-	 *
-	 * @deprecated since 1.36 use getParserCache
-	 * @todo remove before the 1.36 release, so we don't need to go through hard deprecation.
-	 *
-	 * @param string $name
-	 * @return ParserCache
-	 */
-	public function getInstance( string $name ) : ParserCache {
-		return $this->getParserCache( $name );
-	}
-
-	/**
-	 * Get a ParserCache instance by $name.
 	 * @param string $name
 	 * @return ParserCache
 	 */

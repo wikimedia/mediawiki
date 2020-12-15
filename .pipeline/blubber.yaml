@@ -1,14 +1,16 @@
 version: v4
-base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-blubber
-
 lives:
   in: /var/www/html
 
 variants:
   dev:
+    base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-blubber
     runs:
       insecurely: true
     builder:
       command: [.pipeline/dev_prereq.sh]
       requirements: [.pipeline, .pipeline/dev_prereq.sh, composer.json]
+    copies: [local]
+  production:
+    base: docker-registry.wikimedia.org/php7.2-fpm
     copies: [local]

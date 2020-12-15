@@ -186,9 +186,7 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 		return !$this->isCacheable() // parser says it's not cacheable
 			|| $this->getCacheTime() < $touched
 			|| $this->getCacheTime() <= $wgCacheEpoch
-			|| $this->getCacheTime() < $expiry // expiry period has passed
-			|| !isset( $this->mVersion )
-			|| version_compare( $this->mVersion, Parser::VERSION, "lt" );
+			|| $this->getCacheTime() < $expiry; // expiry period has passed
 	}
 
 	/**
