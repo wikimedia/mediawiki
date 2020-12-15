@@ -78,6 +78,13 @@ To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
   result rather than a bool. The length of the bot password grants and
   restriction fields are now validated, and an error will be thrown if it
   would be truncated by the database.
+* (T265778) Fix English/*nix specific error messages in FSFileBackend.
+* (T267543) Split dropping of image.img_user_timestamp.
+* [FileTest] Do not assume /tmp exists on windows.
+* Clean up temp files correctly after unit tests.
+* Skip undo related phpunit tests when diff3 is missing.
+* (T269964) rdbms: Remove outer parentheses in insert query for Postgres.
+* (T263911) In MWExceptionHandler::report(), catch all throwables.
 
 == MediaWiki 1.35.0 ==
 
