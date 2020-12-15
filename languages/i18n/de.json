@@ -3353,6 +3353,7 @@
 	"duplicate-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$2“ überschreibt den früheren Anzeigetitel „$1“.",
 	"restricted-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$1“ wurde ignoriert, da er nicht mit dem tatsächlichen Seitentitel gleichwertig ist.",
 	"invalid-indicator-name": "<strong>Fehler:</strong> Das Attribut <code>name</code> des Seitenstatusindikators darf nicht leer sein.",
+	"invalid-langconvert-attrs": "<strong>Fehler:</strong> Die Attribute <code>from</code> und <code>to</code> des Langconvert-Tags dürfen nicht leer sein und müssen Codes für konvertierbare Varianten derselben Sprache enthalten.",
 	"version": "Version",
 	"version-extensions": "Installierte Erweiterungen",
 	"version-skins": "Installierte Benutzeroberflächen",
