@@ -373,7 +373,7 @@ class ParserCache {
 			return false;
 		}
 
-		if ( !$popts->isSafeToCache() ) {
+		if ( !$popts->isSafeToCache( $parserOutputMetadata->getUsedOptions() ) ) {
 			$this->incrementStats( $wikiPage, 'miss.unsafe' );
 			return false;
 		}
@@ -447,7 +447,7 @@ class ParserCache {
 
 		$expire = $parserOutput->getCacheExpiry();
 
-		if ( !$popts->isSafeToCache() ) {
+		if ( !$popts->isSafeToCache( $parserOutput->getUsedOptions() ) ) {
 			$this->logger->debug(
 				'Parser options are not safe to cache and has not been saved',
 				[ 'name' => $this->name ]
