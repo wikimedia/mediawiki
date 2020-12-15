@@ -339,14 +339,14 @@ CREATE TABLE /*_*/sites (
   site_data BLOB NOT NULL,
   site_forward TINYINT(1) NOT NULL,
   site_config BLOB NOT NULL,
-  UNIQUE INDEX sites_global_key (site_global_key),
-  INDEX sites_type (site_type),
-  INDEX sites_group (site_group),
-  INDEX sites_source (site_source),
-  INDEX sites_language (site_language),
-  INDEX sites_protocol (site_protocol),
-  INDEX sites_domain (site_domain),
-  INDEX sites_forward (site_forward),
+  UNIQUE INDEX site_global_key (site_global_key),
+  INDEX site_type (site_type),
+  INDEX site_group (site_group),
+  INDEX site_source (site_source),
+  INDEX site_language (site_language),
+  INDEX site_protocol (site_protocol),
+  INDEX site_domain (site_domain),
+  INDEX site_forward (site_forward),
   PRIMARY KEY(site_id)
 ) /*$wgDBTableOptions*/;
 

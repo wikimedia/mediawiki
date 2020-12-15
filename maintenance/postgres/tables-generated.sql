@@ -382,21 +382,21 @@ CREATE TABLE sites (
   PRIMARY KEY(site_id)
 );
 
-CREATE UNIQUE INDEX sites_global_key ON sites (site_global_key);
+CREATE UNIQUE INDEX site_global_key ON sites (site_global_key);
 
-CREATE INDEX sites_type ON sites (site_type);
+CREATE INDEX site_type ON sites (site_type);
 
-CREATE INDEX sites_group ON sites (site_group);
+CREATE INDEX site_group ON sites (site_group);
 
-CREATE INDEX sites_source ON sites (site_source);
+CREATE INDEX site_source ON sites (site_source);
 
-CREATE INDEX sites_language ON sites (site_language);
+CREATE INDEX site_language ON sites (site_language);
 
-CREATE INDEX sites_protocol ON sites (site_protocol);
+CREATE INDEX site_protocol ON sites (site_protocol);
 
-CREATE INDEX sites_domain ON sites (site_domain);
+CREATE INDEX site_domain ON sites (site_domain);
 
-CREATE INDEX sites_forward ON sites (site_forward);
+CREATE INDEX site_forward ON sites (site_forward);
 
 
 CREATE TABLE user_newtalk (
