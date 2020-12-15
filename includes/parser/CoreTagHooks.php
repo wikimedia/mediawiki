@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Various tag hooks, registered in Parser::firstCallInit()
  * @ingroup Parser
@@ -36,6 +38,7 @@ class CoreTagHooks {
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
+		$parser->setHook( 'langconvert', [ __CLASS__, 'langconvert' ] );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
@@ -182,4 +185,38 @@ class CoreTagHooks {
 
 		return '';
 	}
+
+	/**
+	 * Returns content converted into the requested language variant, using LanguageConverter.
+	 *
+	 * @param string $content
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.36
+	 */
+	public static function langconvert( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+		if ( isset( $attributes['from'] ) && isset( $attributes['to'] ) ) {
+			$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+			$to = trim( $attributes['to'] );
+			$langFrom = $langFactory->getParentLanguage( trim( $attributes['from'] ) );
+			$langTo = $langFactory->getParentLanguage( $to );
+			if ( $langFrom && $langTo && $langFrom->equals( $langTo ) ) {
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $langFrom );
+				return $converter->autoConvert(
+					$parser->recursiveTagParse( $content, $frame ),
+					$to
+				);
+			}
+		}
+
+		return Html::rawElement(
+			'span',
+			[ 'class' => 'error' ],
+			wfMessage( 'invalid-langconvert-attrs' )->inContentLanguage()->parse()
+		);
+	}
+
 }

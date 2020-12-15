@@ -26583,6 +26583,98 @@ Special:Foobar
 </p>
 !! end
 
+!! test
+Langconvert tag: crh-latn to crh-cyrl
+!! wikitext
+<langconvert from="crh-latn" to="crh-cyrl">test</langconvert>
+!! html
+<p>тест
+</p>
+!! end
+
+!! test
+Langconvert tag: en to en-x-piglatin
+!! config
+wgUsePigLatinVariant=true
+!! wikitext
+<langconvert from="en" to="en-x-piglatin">test</langconvert>
+!! html
+<p>esttay
+</p>
+!! end
+
+!! test
+Langconvert tag: gan-hans to gan-hant
+!! wikitext
+<langconvert from="gan-hans" to="gan-hant">爱</langconvert>
+!! html
+<p>愛
+</p>
+!! end
+
+!! test
+Langconvert tag: kk-latn to kk-cyrl
+!! wikitext
+<langconvert from="kk-latn" to="kk-cyrl">test</langconvert>
+!! html
+<p>тест
+</p>
+!! end
+
+!! test
+Langconvert tag: ku-latn to ku-arab
+!! wikitext
+<langconvert from="ku-latn" to="ku-arab">test</langconvert>
+!! html
+<p>تەست
+</p>
+!! end
+
+!! test
+Langconvert tag: shi-latn to shi-tfng
+!! wikitext
+<langconvert from="shi-latn" to="shi-tfng">test</langconvert>
+!! html
+<p>ⵜⴻⵙⵜ
+</p>
+!! end
+
+!! test
+Langconvert tag: sr-el to sr-ec
+!! wikitext
+<langconvert from="sr-el" to="sr-ec">zdravo</langconvert>
+!! html
+<p>здраво
+</p>
+!! end
+
+!! test
+Langconvert tag: tg to tg-latn
+!! wikitext
+<langconvert from="tg" to="tg-latn">тест</langconvert>
+!! html
+<p>test
+</p>
+!! end
+
+!! test
+Langconvert tag: uz-cyrl to uz-latn
+!! wikitext
+<langconvert from="uz-cyrl" to="uz-latn">тест</langconvert>
+!! html
+<p>test
+</p>
+!! end
+
+!! test
+Langconvert tag: zh-hans to zh-hant
+!! wikitext
+<langconvert from="zh-hans" to="zh-hant">爱</langconvert>
+!! html
+<p>愛
+</p>
+!! end
+
 # {{=}} will be converted to a parser function which expands to `=`
 # If you have it defined as a Template that expands to `=` that's ok;
 # and using it explicitly as {{Template:=}} (regardless of what it
