@@ -288,6 +288,7 @@ class ParserTestRunner {
 		$setup['wgLocaltimezone'] = 'UTC';
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
+		$setup['wgUsePigLatinVariant'] = false;
 		$reset = function () {
 			// Reset to follow changes to $wgDisable*Conversion
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
@@ -1070,9 +1071,15 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
 		};
 		$reset = function () {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
+			$mwServices = MediaWikiServices::getInstance();
+			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'ParserFactory' );
+			$mwServices->resetServiceForTesting( 'ParserFactory' );
+			// If !!config touches $wgUsePigLatinVariant or the local wiki
+			// defaults to $wgUsePigLatinVariant=true, these need to be reset
+			$mwServices->resetServiceForTesting( 'LanguageConverterFactory' );
+			$mwServices->resetServiceForTesting( 'LanguageFactory' );
+			$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
