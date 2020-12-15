@@ -2,31 +2,31 @@
 
 .mw-ui-container {
 	.mixin-clearfix();
-}
 
-/* Disable the underline that Vector puts on h2 headings, and bold them. */
-.mw-ui-container h2 {
-	border: 0;
-	font-weight: bold;
-}
+	/* Disable the underline that Vector puts on h2 headings, and bold them. */
+	h2 {
+		border: 0;
+		font-weight: bold;
+	}
 
-/* Benefits column CSS to the right (if it fits) of the form. */
-.mw-ui-container #userloginForm {
-	float: left;
-	/* Override the right margin of the form to give space in case a benefits
-	 * column appears to the side. */
-	margin-right: 100px;
-	/* Override `.mw-body-content` to ensure useful, readable paragraphs */
-	line-height: 1.4;
+	/* Benefits column CSS to the right (if it fits) of the form. */
+	#userloginForm {
+		float: left;
+		/* Override the right margin of the form to give space in case a benefits
+		 * column appears to the side. */
+		margin-right: 100px;
+		/* Override `.mw-body-content` to ensure useful, readable paragraphs */
+		line-height: 1.4;
+	}
 }
 
 .mw-createacct-benefits-container {
 	/* Keeps this column compact and close to the form, but tends to squish contents. */
 	float: left;
-}
 
-.mw-createacct-benefits-container h2 {
-	margin-bottom: 30px;
+	h2 {
+		margin-bottom: 30px;
+	}
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
