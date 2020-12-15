@@ -1020,6 +1020,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @param mixed $raw
+	 * @param-taint $raw html,raw_param
 	 *
 	 * @return array Array with a single "raw" key.
 	 */
