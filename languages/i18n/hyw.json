@@ -158,6 +158,7 @@
 	"talk": "Քննարկում",
 	"views": "Տեսնուած",
 	"toolbox": "Գործիքներ",
+	"cactions": "Աւելի",
 	"tool-link-userrights": "Փոխել {{GENDER:$1|գործածող}} խումբեր",
 	"tool-link-userrights-readonly": "Տեսնել {{GENDER:$1|գործածող}} խումբեր",
 	"tool-link-emailuser": "Ղրկել ասիկա էլ-նամակով {{GENDER:$1|գործածողին}}",

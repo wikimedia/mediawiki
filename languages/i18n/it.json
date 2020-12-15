@@ -2613,6 +2613,7 @@
 	"namespace_association": "Namespace associato",
 	"tooltip-namespace_association": "Seleziona questa casella per includere anche la pagina di discussione o l'oggetto del namespace associato con il namespace selezionato",
 	"blanknamespace": "(Principale)",
+	"contributions": "Contributi dell'utente",
 	"tool-link-contributions": "Contributi {{GENDER:$1|utente}}",
 	"contributions-title": "Contributi di $1",
 	"mycontris": "contributi",

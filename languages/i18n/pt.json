@@ -2579,6 +2579,7 @@
 	"namespace_association": "Espaço nominal associado",
 	"tooltip-namespace_association": "Marque esta caixa para incluir também o domínio de conteúdo ou de discussão associado à sua seleção",
 	"blanknamespace": "(Principal)",
+	"contributions": "Contribuições do utilizador",
 	"tool-link-contributions": "Contribuições {{GENDER:$1|do utilizador|da utilizadora}}",
 	"contributions-title": "Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1",
 	"mycontris": "Contribuições",

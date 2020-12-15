@@ -2518,6 +2518,7 @@
 	"namespace_association": "Поврзан именски простор",
 	"tooltip-namespace_association": "Штиклирајте го полево за  да го вклучите и именскиот простор за разговор (или наслов) поврзан со одбраниот именски простор",
 	"blanknamespace": "(Главен)",
+	"contributions": "Кориснички придонеси",
 	"tool-link-contributions": "{{GENDER:$1|Придонеси на корисникот}}",
 	"contributions-title": "Придонеси на корисникот $1",
 	"mycontris": "придонеси",
