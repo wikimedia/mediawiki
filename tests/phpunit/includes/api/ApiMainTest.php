@@ -722,11 +722,7 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testCheckExecutePermissionWriteDisabled() {
 		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Editing of this wiki through the API is disabled. Make sure the ' .
-				'"$wgEnableWriteAPI=true;" statement is included in the wiki\'s ' .
-				'"LocalSettings.php" file.'
-		);
+		$this->expectExceptionMessage( 'Editing of this wiki through the API is disabled.' );
 		$main = new ApiMain( new FauxRequest( [
 			'action' => 'edit',
 			'title' => 'Some page',

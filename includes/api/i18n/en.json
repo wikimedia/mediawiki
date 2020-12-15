@@ -1832,7 +1832,7 @@
 	"apierror-mustbeloggedin": "You must be logged in to $1.",
 	"apierror-mustbeposted": "The <kbd>$1</kbd> module requires a POST request.",
 	"apierror-mustpostparams": "The following {{PLURAL:$2|parameter was|parameters were}} found in the query string, but must be in the POST body: $1.",
-	"apierror-noapiwrite": "Editing of this wiki through the API is disabled. Make sure the <code>$wgEnableWriteAPI=true;</code> statement is included in the wiki's <code>LocalSettings.php</code> file.",
+	"apierror-noapiwrite": "Editing of this wiki through the API is disabled.",
 	"apierror-nochanges": "No changes were requested.",
 	"apierror-nodeleteablefile": "No such old version of the file.",
 	"apierror-no-direct-editing": "Direct editing via API is not supported for content model $1 used by $2.",
