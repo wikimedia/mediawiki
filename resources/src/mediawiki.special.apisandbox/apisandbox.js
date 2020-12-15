@@ -25,14 +25,14 @@
 				}
 				this.setValue( v );
 			},
-			apiCheckValid: function () {
+			apiCheckValid: function ( shouldSuppressErrors ) {
 				var that = this;
 				return this.getValidity().then( function () {
 					return $.Deferred().resolve( true ).promise();
 				}, function () {
 					return $.Deferred().resolve( false ).promise();
 				} ).done( function ( ok ) {
-					ok = ok || suppressErrors;
+					ok = ok || shouldSuppressErrors;
 					that.setIcon( ok ? null : 'alert' );
 					that.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				} );
@@ -91,6 +91,9 @@
 			setApiValue: function ( v ) {
 				this.setValue( Util.apiBool( v ) );
 			},
+			// there is a parameter `shouldSuppressErrors` available, but
+			// it is not included in the function declaration because that
+			// causes eslint to complain since it is unused
 			apiCheckValid: function () {
 				return $.Deferred().resolve( true ).promise();
 			}
@@ -113,8 +116,8 @@
 					menu.selectItemByData( String( v ) );
 				}
 			},
-			apiCheckValid: function () {
-				var ok = this.getApiValue() !== undefined || suppressErrors;
+			apiCheckValid: function ( shouldSuppressErrors ) {
+				var ok = this.getApiValue() !== undefined || shouldSuppressErrors;
 				this.setIcon( ok ? null : 'alert' );
 				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
@@ -151,11 +154,11 @@
 				}
 				this.setValue( this.parseApiValue( v ) );
 			},
-			apiCheckValid: function () {
+			apiCheckValid: function ( shouldSuppressErrors ) {
 				var ok = true,
 					pi = this.paramInfo;
 
-				if ( !suppressErrors ) {
+				if ( !shouldSuppressErrors ) {
 					ok = this.getApiValue() !== undefined && !(
 						pi.allspecifier !== undefined &&
 						this.getValue().length > 1 &&
@@ -207,8 +210,8 @@
 			setApiValue: function () {
 				// Can't, sorry.
 			},
-			apiCheckValid: function () {
-				var ok = this.getValue() !== null && this.getValue() !== undefined || suppressErrors;
+			apiCheckValid: function ( shouldSuppressErrors ) {
+				var ok = this.getValue() !== null && this.getValue() !== undefined || shouldSuppressErrors;
 				this.info.setIcon( ok ? null : 'alert' );
 				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
@@ -593,7 +596,7 @@
 
 				func = function () {
 					if ( !innerWidget.isDisabled() ) {
-						innerWidget.apiCheckValid().done( function ( ok ) {
+						innerWidget.apiCheckValid( suppressErrors ).done( function ( ok ) {
 							if ( ok ) {
 								widget.addTag( innerWidget.getApiValue() );
 								innerWidget.setApiValue( undefined );
@@ -982,7 +985,7 @@
 					if ( tokenWidgets.length ) {
 						// Check all token widgets' validity separately
 						deferred = $.when.apply( $, tokenWidgets.map( function ( w ) {
-							return w.apiCheckValid();
+							return w.apiCheckValid( suppressErrors );
 						} ) );
 
 						deferred.done( function () {
@@ -1947,7 +1950,7 @@
 		} else {
 			// eslint-disable-next-line no-jquery/no-map-util
 			promises = $.map( this.widgets, function ( widget ) {
-				return widget.apiCheckValid();
+				return widget.apiCheckValid( suppressErrors );
 			} );
 			$.when.apply( $, promises ).then( function () {
 				that.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;
