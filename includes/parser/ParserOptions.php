@@ -68,7 +68,6 @@ class ParserOptions {
 		'dateformat' => true,
 		'numberheadings' => true,
 		'thumbsize' => true,
-		'stubthreshold' => true,
 		'printable' => true,
 		'userlang' => true,
 	];
