@@ -65,6 +65,10 @@ class GenerateSchemaChangeSql extends Maintenance {
 		$sqlPath = $this->getOption( 'sql' );
 		$abstractSchemaChange = json_decode( file_get_contents( $jsonPath ), true );
 
+		if ( $abstractSchemaChange === null ) {
+			$this->fatalError( "'$jsonPath' seems to be invalid json. Check the syntax and try again!" );
+		}
+
 		$schemaChangeBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaChangeBuilder(
 			$this->getOption( 'type', 'mysql' )
 		);
