@@ -9,13 +9,29 @@
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-style: normal;
-}
 
-.mw-json th,
-.mw-json td {
-	border: 1px solid #72777d;
-	font-size: 16px;
-	padding: 0.5em 1em;
+	th,
+	td {
+		border: 1px solid #72777d;
+		font-size: 16px;
+		padding: 0.5em 1em;
+	}
+
+	tr {
+		background-color: #eaecf0;
+		margin-bottom: 0.5em;
+	}
+
+	th {
+		background-color: #fff;
+		font-weight: normal;
+		vertical-align: top;
+
+		span {
+			position: sticky;
+			top: 0.5em;
+		}
+	}
 }
 
 .mw-json-value,
@@ -32,20 +48,4 @@
 .mw-json-empty {
 	background-color: #fff;
 	font-style: italic;
-}
-
-.mw-json tr {
-	background-color: #eaecf0;
-	margin-bottom: 0.5em;
-}
-
-.mw-json th {
-	background-color: #fff;
-	font-weight: normal;
-	vertical-align: top;
-}
-
-.mw-json th span {
-	position: sticky;
-	top: 0.5em;
 }

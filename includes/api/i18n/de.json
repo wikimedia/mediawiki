@@ -798,6 +798,8 @@
 	"apihelp-query+info-paramvalue-prop-preload": "Gibt den Text aus, der von EditFormPreloadText zurückgegeben wurde.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Gibt die Art und Weise an, in der der Seitentitel tatsächlich angezeigt wird.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Gibt den Anzeigetitel in allen Varianten der Sprache des Websiteinhalts aus.",
+	"apihelp-query+info-paramvalue-prop-linkclasses": "Gibt die zusätzlichen CSS-Klassen (z. B. Link-Farben) an, die für Links auf diese Seite verwendet werden, wenn sie auf der durch <var>$1linkcontext</var> benannten Seite erscheinen würden.",
+	"apihelp-query+info-param-linkcontext": "Der Kontexttitel, der bei der Ermittlung von zusätzlichen CSS-Klassen (z. B. Link-Farben) verwendet wird, wenn <var>$1prop</var> <var>classes</var> enthält.",
 	"apihelp-query+info-param-testactions": "Überprüft, ob der aktuelle Benutzer gewisse Aktionen auf der Seite ausführen kann.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Gibt einen booleschen Wert für jede Aktion zurück.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Gibt Nachrichten zurück, die erklären, warum diese Aktion nicht erlaubt ist oder ein leeres Array, wenn sie erlaubt ist.",
