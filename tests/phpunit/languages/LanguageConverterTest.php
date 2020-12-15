@@ -19,7 +19,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( [
 			'wgDefaultLanguageVariant' => false,
-			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => new User,
 		] );
 

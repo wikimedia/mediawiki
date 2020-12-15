@@ -391,7 +391,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			session_id( '' );
 		}
 
-		$wgRequest = new FauxRequest();
+		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
@@ -651,7 +651,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			session_write_close();
 			session_id( '' );
 		}
-		$wgRequest = new FauxRequest();
+		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 		MediaWiki\Auth\AuthManager::resetCache();
 
@@ -772,6 +772,19 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->resetServices();
+	}
+
+	/**
+	 * Set the global request in the two places it is stored.
+	 * @param WebRequest $request
+	 * @since 1.36
+	 */
+	protected function setRequest( $request ) {
+		global $wgRequest;
+		// It's not necessary to stash the value with setMwGlobals(), since
+		// it's reset on teardown anyway.
+		$wgRequest = $request;
+		RequestContext::getMain()->setRequest( $request );
 	}
 
 	/**

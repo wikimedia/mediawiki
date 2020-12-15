@@ -28,8 +28,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'uploader' => static::getTestUser(),
 		];
 
+		$this->setRequest( new FauxRequest( [] ) );
 		$this->setMwGlobals( [
-			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->getUser(),
 		] );
 

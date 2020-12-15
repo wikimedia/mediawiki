@@ -1224,9 +1224,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSessionAndRequest() {
 		$req1 = new WebRequest;
-		$this->setMwGlobals( [
-			'wgRequest' => $req1,
-		] );
+		$this->setRequest( $req1 );
 		$user = User::newFromSession();
 		$request = $user->getRequest();
 

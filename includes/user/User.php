@@ -669,7 +669,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Create a new user object using data from session. If the login
 	 * credentials are invalid, the result is an anonymous user.
 	 *
-	 * @param WebRequest|null $request Object to use; $wgRequest will be used if omitted.
+	 * @param WebRequest|null $request Object to use; the global request will be used if omitted.
 	 * @return User
 	 */
 	public static function newFromSession( WebRequest $request = null ) {
@@ -3107,9 +3107,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->mRequest ) {
 			return $this->mRequest;
 		}
-
-		global $wgRequest;
-		return $wgRequest;
+		return RequestContext::getMain()->getRequest();
 	}
 
 	/**
@@ -3266,8 +3264,8 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Persist this user's session (e.g. set cookies)
 	 *
-	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
-	 *        is passed.
+	 * @param WebRequest|null $request WebRequest object to use; the global request
+	 *        will be used if null is passed.
 	 * @param bool|null $secure Whether to force secure/insecure cookies or use default
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
@@ -3738,7 +3736,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @since 1.27
 	 * @param string|string[] $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return MediaWiki\Session\Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
@@ -3762,7 +3760,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @since 1.19
 	 * @param string|string[] $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
@@ -3777,7 +3775,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param WebRequest|null $request Object to use, or null to use the global request
 	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
@@ -3791,7 +3789,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param WebRequest|null $request Object to use, or null to use the global request
 	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
