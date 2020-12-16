@@ -856,9 +856,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
 	 */
 	public function testGetUserAutopromoteBlockedDoesNotRecurse() {
-		$this->markTestSkipped(
-			'Requires a fix which will be done in another change - T270145' );
-
 		// Make sure session handling is started
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install(

@@ -168,11 +168,13 @@ return [
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
 		return new BlockManager(
 			new ServiceOptions(
-				BlockManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+				BlockManager::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
 			),
 			$services->getPermissionManager(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserGroupManagerFactory()->getUserGroupManager()
 		);
 	},
 
