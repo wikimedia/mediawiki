@@ -120,20 +120,18 @@ class ApiMainTest extends ApiTestCase {
 		$manager = $this->createMock( ApiContinuationManager::class );
 		$api->setContinuationManager( $manager );
 		$this->assertTrue( true, 'No exception' );
-		return [ $api, $manager ];
 	}
 
-	/**
-	 * @depends testSetContinuationManager
-	 */
-	public function testSetContinuationManagerTwice( $args ) {
+	public function testSetContinuationManagerTwice() {
 		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage(
 			'ApiMain::setContinuationManager: tried to set manager from  ' .
 				'when a manager is already set from '
 		);
 
-		list( $api, $manager ) = $args;
+		$api = new ApiMain();
+		$manager = $this->createMock( ApiContinuationManager::class );
+		$api->setContinuationManager( $manager );
 		$api->setContinuationManager( $manager );
 	}
 
