@@ -3530,6 +3530,7 @@
 	"duplicate-displaytitle": "<strong>Attention :</strong> le titre d’affichage « $2 » écrase l’ancien titre d’affichage « $1 ».",
 	"restricted-displaytitle": "<strong>Avertissement :</strong> le titre d’affichage « $1 » a été ignoré car il n’est pas équivalent au titre effectif de la page.",
 	"invalid-indicator-name": "<strong>Erreur :</strong> l’attribut <code>name</code> des indicateurs d’état de la page ne doit pas être vide.",
+	"invalid-langconvert-attrs": "<strong>Erreur :</strong> Les attributs <code>from</code> et <code>to</code> de la balise Langconvert ne doivent pas être vides et doivent contenir des codes pour les variantes convertibles de la même langue.",
 	"version": "Version",
 	"version-extensions": "Extensions installées",
 	"version-skins": "Habillages installés",

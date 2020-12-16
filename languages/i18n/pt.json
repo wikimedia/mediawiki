@@ -3323,6 +3323,7 @@
 	"duplicate-displaytitle": "<strong>Aviso:</strong> O título de apresentação \"$2\" substitui o título anterior \"$1\".",
 	"restricted-displaytitle": "<strong>Aviso</strong>: A apresentação do título \"$1\" foi ignorada porque não é equivalente ao título atual da página.",
 	"invalid-indicator-name": "<strong>Erro:</strong> O atributo <code>name</code>, da página de estados, não deve estar em branco.",
+	"invalid-langconvert-attrs": "<strong>Erro:</strong> Os atributos <code>from</code> e <code>to</code> da etiqueta langconvert não podem estar vazios e não podem conter códigos de variantes conversíveis da mesma língua.",
 	"version": "Versão",
 	"version-extensions": "Extensões instaladas",
 	"version-skins": "Temas instalados",

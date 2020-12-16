@@ -15,6 +15,7 @@
 			"Hamilton Abreu",
 			"Iváns",
 			"Macofe",
+			"Matma Rex",
 			"Toliño",
 			"Umherirrender",
 			"VaiPolaSombra"
@@ -1565,7 +1566,7 @@
 	"apierror-mustbeloggedin": "Debe estar conectado para $1.",
 	"apierror-mustbeposted": "O módulo <kbd>$1</kbd> require unha petición POST.",
 	"apierror-mustpostparams": "{{PLURAL:$2|Atopouse o seguinte parámetro|Atopáronse os seguintes parámetros}} na cadea da consulta, pero deben estar no corpo do POST: $1.",
-	"apierror-noapiwrite": "A edición deste wiki a través da API está deshabilitada. Asegúrese de que a declaración <code>$wgEnableWriteAPI=true;</code> está incluída no ficheiro <code>LocalSettings.php</code> da wiki.",
+	"apierror-noapiwrite": "A edición deste wiki a través da API está deshabilitada.",
 	"apierror-nochanges": "Non se solicitou ningún cambio.",
 	"apierror-nodeleteablefile": "Non existe esa versión antiga do ficheiro.",
 	"apierror-no-direct-editing": "A edición directa a través da API non é compatible co modelo de contido $1 utilizado por $2.",

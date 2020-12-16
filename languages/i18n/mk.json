@@ -3375,6 +3375,7 @@
 	"duplicate-displaytitle": "<strong>Предупредување:</strong> Приказниот наслов „$2“ го заменува претходнито приказен наслов „$1“.",
 	"restricted-displaytitle": "<strong>Предупредување:</strong> Насловот за приказ „$1“ е занемарен бидејќи не е истоветен на стварниот наслов на страницата.",
 	"invalid-indicator-name": "<strong>Грешка:</strong> Атрибутот <code>name</code> што го покажува статусот на страницата не може да биде празен.",
+	"invalid-langconvert-attrs": "<strong>Грешка:</strong> Атрибутите <code>from</code> и <code>to</code> на ознаките на Langconvert не смеат да стојат празни и мора да содржат кодови за претворливи варијанти од истиот јазик.",
 	"version": "Верзија",
 	"version-extensions": "Воспоставени додатоци",
 	"version-skins": "Воспоставени рува",

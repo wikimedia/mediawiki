@@ -2562,6 +2562,7 @@
 	"namespace_association": "النطاق المقترن",
 	"tooltip-namespace_association": "أشِّر هذا الخيار لتضمين نطاق النقاش أو الموضوع المقترن بالنطاق المختار",
 	"blanknamespace": "(رئيسي)",
+	"contributions": "مساهمات المستخدم",
 	"tool-link-contributions": "مساهمات {{GENDER:$1|المستخدم|المستخدمة}}",
 	"contributions-title": "مساهمات المستخدم $1",
 	"mycontris": "مساهمات",
