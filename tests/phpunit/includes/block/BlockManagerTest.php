@@ -116,14 +116,16 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$user = $options['loggedIn'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
+		$response = new FauxResponse;
+
 		$blockManager->trackBlockWithCookie(
 			$user,
-			$user->getRequest()->response()
+			$response
 		);
 
 		$this->assertCount(
 			$expectKeepCookie ? 0 : 1,
-			$user->getRequest()->response()->getCookies()
+			$response->getCookies()
 		);
 
 		$blockStore->deleteBlock( $block );
