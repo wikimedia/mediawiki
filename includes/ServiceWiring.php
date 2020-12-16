@@ -373,7 +373,7 @@ return [
 
 		$srvCache = $services->getLocalServerObjectCache();
 		if ( $srvCache instanceof EmptyBagOStuff ) {
-			// Use process cache if the main stash is disabled
+			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
 			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
 		}
 
