@@ -85,6 +85,12 @@ To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
 * Skip undo related phpunit tests when diff3 is missing.
 * (T269964) rdbms: Remove outer parentheses in insert query for Postgres.
 * (T263911) In MWExceptionHandler::report(), catch all throwables.
+* (T268894) Use Html::element in ChangeListSpecialPage for sanity.
+* (T268917) Use Xml::element in SpecialUserrights for sanity.
+* (T268938) Pass escaped html to LogFormatter::makePageLink for sanity.
+* (T268938) Fixed mixed escaping in Language::translateBlockExpiry.
+* (T263911) UserOptionsManager: don't differentiate anons caches.
+* (T261260) HeaderCallback: pre-cache request ID.
 
 == MediaWiki 1.35.0 ==
 
