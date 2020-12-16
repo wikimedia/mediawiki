@@ -13,7 +13,7 @@
 		moduleInfoCache = {},
 		baseRequestParams,
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
-		UploadParamWidget = require( './UploadParamWidget.js' );
+		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -422,7 +422,7 @@
 					break;
 
 				case 'upload':
-					widget = new UploadParamWidget();
+					widget = new UploadSelectFileParamWidget();
 					widget.paramInfo = pi;
 					break;
 
