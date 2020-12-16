@@ -76,7 +76,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	public function testRecursiveParse() {
 		$title = Title::newFromText( 'foo' );
 		$parser = MediaWikiServices::getInstance()->getParser();
-		$po = new ParserOptions;
+		$po = ParserOptions::newFromAnon();
 		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage(
@@ -87,7 +87,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public function helperParserFunc( $input, $args, $parser ) {
 		$title = Title::newFromText( 'foo' );
-		$po = new ParserOptions;
+		$po = ParserOptions::newFromAnon();
 		$parser->parse( $input, $title, $po );
 		return 'bar';
 	}
@@ -96,7 +96,11 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		// Normal parses test passing PPNodes. Test passing an array.
 		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
 		$parser = MediaWikiServices::getInstance()->getParser();
-		$parser->startExternalParse( $title, new ParserOptions(), Parser::OT_HTML );
+		$parser->startExternalParse(
+			$title,
+			ParserOptions::newFromAnon(),
+			Parser::OT_HTML
+		);
 		$frame = $parser->getPreprocessor()->newFrame();
 		$ret = $parser->callParserFunction( $frame, '#tag',
 			[ 'pre', 'foo', 'style' => 'margin-left: 1.6em' ]
@@ -114,8 +118,11 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetSections() {
 		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
-		$out = MediaWikiServices::getInstance()->getParser()
-			->parse( "==foo==\n<h2>bar</h2>\n==baz==\n", $title, new ParserOptions() );
+		$out = MediaWikiServices::getInstance()->getParser()->parse(
+			"==foo==\n<h2>bar</h2>\n==baz==\n",
+			$title,
+			ParserOptions::newFromAnon()
+		);
 		$this->assertSame( [
 			[
 				'toclevel' => 1,
@@ -194,7 +201,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public function testWrapOutput() {
 		$title = Title::newFromText( 'foo' );
-		$po = new ParserOptions();
+		$po = ParserOptions::newFromAnon();
 		$parser = MediaWikiServices::getInstance()->getParser();
 		$parser->parse( 'Hello World', $title, $po );
 		$text = $parser->getOutput()->getText();

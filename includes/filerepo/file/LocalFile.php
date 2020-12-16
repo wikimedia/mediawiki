@@ -2190,7 +2190,13 @@ class LocalFile extends File {
 		}
 
 		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$rendered = $renderer->getRenderedRevision( $revision, new ParserOptions( null, $lang ) );
+		$rendered = $renderer->getRenderedRevision(
+			$revision,
+			ParserOptions::newFromUserAndLang(
+				RequestContext::getMain()->getUser(),
+				$lang
+			)
+		);
 
 		if ( !$rendered ) {
 			// audience check failed
