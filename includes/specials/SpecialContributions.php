@@ -178,11 +178,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->msg( 'contributions-title', $target )->plain()
 			)->inContentLanguage() );
 
-			# For IP ranges, we want the contributionsSub, but not the skin-dependent
-			# links under 'Tools', which may include irrelevant links like 'Logs'.
-			if ( !IPUtils::isValidRange( $target ) ) {
-				$this->getSkin()->setRelevantUser( $userObj );
-			}
+			$this->getSkin()->setRelevantUser( $userObj );
 		}
 
 		$ns = $request->getVal( 'namespace', null );
