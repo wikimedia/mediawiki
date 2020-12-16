@@ -41,6 +41,9 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const HTML = '<p>Hello <b>World</b></p>';
 
+	/** @var int */
+	private static $uuidCounter = 0;
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -73,7 +76,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60,
+			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
 
 		$parserCacheFactory = new ParserCacheFactory(
@@ -89,10 +92,9 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		/** @var GlobalIdGenerator|MockObject $idGenerator */
 		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
 
-		$uuidCounter = 0;
 		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
-			function () use( &$uuidCounter ) {
-				return 'uuid' . ++$uuidCounter;
+			function () {
+				return 'uuid' . ++self::$uuidCounter;
 			}
 		);
 
@@ -179,8 +181,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHtmlIsCached() {
-		$this->markTestSkipped( 'Disabled until T269663 lands' );
-
 		$this->checkParsoidInstalled();
 
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
@@ -231,29 +231,26 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
-		$etag = $response->getHeaderLine( 'ETag' );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-
-		// Now, test that headers work when getting from cache too.
-		$this->markTestSkipped( 'Disabled until T269663 lands' ); // FIXME
-
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
+		$etag = $response->getHeaderLine( 'ETag' );
+
+		// Now, test that headers work when getting from cache too.
+		MWTimestamp::setFakeTime( $time + 20 );
 		$handler = $this->newHandler( $cache );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
-		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
-		$etag = $response->getHeaderLine( 'ETag' );
+		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
-		// Now, expire the cache
-		$time += 1000;
-		MWTimestamp::setFakeTime( $time );
+		// Now, expire the cache, and assert we are getting a new timestamp back
+		MWTimestamp::setFakeTime( $time + 10000 );
 		$this->assertTrue(
 			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $time ) ),
 			'Sanity: can invalidate cache'
@@ -267,7 +264,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
-		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
+		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time + 10000 ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 	}
 

@@ -66,17 +66,22 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param BagOStuff|null $storage
 	 * @param LoggerInterface|null $logger
+	 * @param int $expiry
+	 * @param string $epoch
+	 *
 	 * @return RevisionOutputCache
 	 */
 	private function createRevisionOutputCache(
 		BagOStuff $storage = null,
-		LoggerInterface $logger = null
+		LoggerInterface $logger = null,
+		$expiry = 3600,
+		$epoch = '19900220000000'
 	): RevisionOutputCache {
 		return new RevisionOutputCache(
 			'test',
 			new WANObjectCache( [ 'cache' => $storage ?: new HashBagOStuff() ] ),
-			60 * 60,
-			'19900220000000',
+			$expiry,
+			$epoch,
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			$logger ?: new NullLogger()
@@ -170,6 +175,50 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$cache->save( $parserOutput, $this->revision, $options1, $this->cacheTime );
 
 		$this->assertFalse( $cache->get( $this->revision, $options1 ) );
+	}
+
+	/**
+	 * Test that setting the cache epoch will cause outdated entries to be ignored
+	 * @covers \MediaWiki\Parser\RevisionOutputCache::get
+	 */
+	public function testExpiresByEpoch() {
+		$store = new HashBagOStuff();
+		$cache = $this->createRevisionOutputCache( $store );
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$cache->save( $parserOutput, $this->revision, $options, $this->cacheTime );
+
+		// determine cache epoch younger than cache time
+		$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
+		$epoch = MWTimestamp::convert( TS_MW, $cacheTime + 60 );
+
+		// create a cache with the new epoch
+		$cache = $this->createRevisionOutputCache( $store, null, 60 * 60, $epoch );
+		$this->assertFalse( $cache->get( $this->revision, $options ) );
+	}
+
+	/**
+	 * Test that setting the cache expiry period will cause outdated entries to be ignored
+	 * @covers \MediaWiki\Parser\RevisionOutputCache::get
+	 */
+	public function testExpiresByDuration() {
+		$store = new HashBagOStuff();
+
+		// original cache is good for an hour
+		$cache = $this->createRevisionOutputCache( $store );
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$cache->save( $parserOutput, $this->revision, $options, $this->cacheTime );
+
+		// move the clock forward by 60 seconds
+		$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
+		MWTimestamp::setFakeTime( $cacheTime + 60 );
+
+		// create a cache that expires after 30 seconds
+		$cache = $this->createRevisionOutputCache( $store, null, 30 );
+		$this->assertFalse( $cache->get( $this->revision, $options ) );
 	}
 
 	/**
