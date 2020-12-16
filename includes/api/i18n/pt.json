@@ -10,6 +10,7 @@
 			"Macofe",
 			"Mansil",
 			"Mansil alfalb",
+			"Matma Rex",
 			"Vitorvicentevalente",
 			"Waldir"
 		]
@@ -870,6 +871,8 @@
 	"apihelp-query+info-paramvalue-prop-preload": "Fornece o texto devolvido por EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece a forma como o título da página é apresentado.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Fornece o título de apresentação em todas as variantes da língua de conteúdo da wiki.",
+	"apihelp-query+info-paramvalue-prop-linkclasses": "Fornece as classes CSS adicionais (por exemplo, a cor das hiperligações) usadas em hiperligações para esta página se estas aparecessem na página nomeada em <var>$1linkcontext</var>.",
+	"apihelp-query+info-param-linkcontext": "O título de contexto a ser usado ao determinar classes CSS extra (por exemplo, a cor das hiperligações) quando <var>$1prop</var> contém <var>classes</var>.",
 	"apihelp-query+info-param-testactions": "Testar se o utilizador pode realizar certas operações na página.",
 	"apihelp-query+info-param-testactionsdetail": "Nível de detalhe de <var>$1testactions</var>. Use os parâmetros <var>errorformat</var> e <var>errorlang</var> do [[Special:ApiHelp/main|módulo principal]] para controlar o formato das mensagens devolvidas.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Devolver um valor booliano para cada ação.",
@@ -1710,7 +1713,7 @@
 	"apierror-mustbeloggedin": "Tem de ter uma sessão iniciada para $1.",
 	"apierror-mustbeposted": "O módulo <kbd>$1</kbd> requer um pedido POST.",
 	"apierror-mustpostparams": "{{PLURAL:$2|O seguinte parâmetro foi encontrado|Os seguintes parâmetros foram encontrados}} no texto da pesquisa, mas têm de estar no corpo do POST: $1.",
-	"apierror-noapiwrite": "A edição desta wiki através da API foi impossibilitada. Certifique-se de que a declaração <code>$wgEnableWriteAPI=true;</code> está incluída no ficheiro <code>LocalSettings.php</code> da wiki.",
+	"apierror-noapiwrite": "A edição desta wiki através da API foi impossibilitada.",
 	"apierror-nochanges": "Não foi pedida nenhuma mudança.",
 	"apierror-nodeleteablefile": "Essa versão antiga do ficheiro não existe.",
 	"apierror-no-direct-editing": "A edição direta através da API não é suportada para o modelo de conteúdo $1 usado por $2.",

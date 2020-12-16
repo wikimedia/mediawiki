@@ -7,7 +7,8 @@
 			"Jeblad",
 			"Jon Harald Søby",
 			"Kingu",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentasjon]]\n* [[mw:Special:MyLanguage/API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-en er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt feile kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Feil og advarsler]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].</p>",
@@ -1705,7 +1706,7 @@
 	"apierror-mustbeloggedin": "Du må være logget inn for å $1.",
 	"apierror-mustbeposted": "Modulen <kbd>$1</kbd> krever en POST-forespørsel.",
 	"apierror-mustpostparams": "Følgende {{PLURAL:$2|parameter|parametre}} ble funnet i spørringsstrengen, men må være i POST-innholdet: $1.",
-	"apierror-noapiwrite": "Redigering av denne wikien via API er slått av. Sjekk at utsagnet <code>$wgEnableWriteAPI=true;</code> inkluderes i wikiens <code>LocalSettings.php</code>-fil.",
+	"apierror-noapiwrite": "Redigering av denne wikien via API er slått av.",
 	"apierror-nochanges": "Ingen endringer ble forespurt.",
 	"apierror-nodeleteablefile": "Ingen slik gammel versjon av fila.",
 	"apierror-no-direct-editing": "Direkte redigering via API-et støttes ikke for innholdsmodellen $1 som brukes av $2.",

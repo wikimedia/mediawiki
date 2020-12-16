@@ -3366,6 +3366,7 @@
 	"duplicate-displaytitle": "<strong>Uwaga:</strong> Wyświetlenie tytułu „$2” powoduje nadpisanie wcześniej wyświetlanego tytułu „$1”.",
 	"restricted-displaytitle": "<strong>Ostrzeżenie:</strong> Tytuł do wyświetlania \"$1\" został zignorowany, ponieważ nie jest odpowiednikiem aktualnego tytułu tej strony.",
 	"invalid-indicator-name": "<strong>Błąd:</strong> Atrybut stanu strony <code>name</code> nie może być pusty.",
+	"invalid-langconvert-attrs": "<strong>Błąd:</strong> Atrybuty <code>from</code> oraz <code>to</code> znacznika langconvert nie mogą być puste i muszą zawierać kody konwertowalnych wariantów tego samego języka.",
 	"version": "Wersja oprogramowania",
 	"version-extensions": "Zainstalowane rozszerzenia",
 	"version-skins": "Zainstalowane skórki",
@@ -4074,5 +4075,6 @@
 	"paramvalidator-missingtitle": "Nieprawidłowa wartość „$2” parametru <var>$1</var>: strona o podanym tytule nie istnieje.",
 	"paramvalidator-help-type-title": "Typ: nazwa strony",
 	"paramvalidator-help-type-title-must-exist": "Akceptowane są tylko istniejące strony.",
-	"paramvalidator-help-type-title-no-must-exist": "Akceptuje nieistniejące strony."
+	"paramvalidator-help-type-title-no-must-exist": "Akceptuje nieistniejące strony.",
+	"nonmain-slot-differences-therefore-readonly": "Nie możesz edytować wikitekstu w tej wersji strony, ponieważ w międzyczasie na tej stronie miały miejsce zmiany w danych, które nie są już oparte na wikitekście. [$1 Kliknij tutaj, aby odtworzyć tę wersję.]"
 }
