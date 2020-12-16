@@ -15,6 +15,7 @@ THIS IS NOT A RELEASE YET
   would be truncated by the database.
 * (T264536, T233012) SectionProfiler: Do not attempt to use null values as arrays.
 * (T269178) MemcachedClient: Cast Resource to integer.
+* (T268917) Use Xml::element in SpecialUserrights for sanity.
 
 == MediaWiki 1.31.10 ==
 
