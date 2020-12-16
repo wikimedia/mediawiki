@@ -50,15 +50,17 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		$this->setMwGlobals( $blockManagerConfig );
 		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$services = MediaWikiServices::getInstance();
 		return [
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
 				BlockManager::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
+				$services->getMainConfig()
 			),
-			MediaWikiServices::getInstance()->getPermissionManager(),
+			$services->getPermissionManager(),
 			$logger,
-			MediaWikiServices::getInstance()->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserGroupManagerFactory()->getUserGroupManager()
 		];
 	}
 
