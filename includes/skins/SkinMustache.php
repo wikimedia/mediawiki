@@ -281,12 +281,7 @@ class SkinMustache extends SkinTemplate {
 			foreach ( $footerIcons as $blockName => $blockIcons ) {
 				$html = '';
 				foreach ( $blockIcons as $key => $icon ) {
-					// Only output icons which have an image.
-					// For historic reasons this mimics the `icononly` option
-					// for BaseTemplate::getFooterIcons.
-					if ( is_string( $icon ) || isset( $icon['src'] ) ) {
-						$html .= $this->makeFooterIcon( $icon );
-					}
+					$html .= $this->makeFooterIcon( $icon );
 				}
 				// For historic reasons this mimics the `icononly` option
 				// for BaseTemplate::getFooterIcons. Empty rows should not be output.
