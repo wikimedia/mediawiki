@@ -1544,7 +1544,6 @@ abstract class Skin extends ContextSource {
 	 */
 	protected function buildNavUrls() {
 		$out = $this->getOutput();
-		$request = $this->getRequest();
 		$title = $this->getTitle();
 		$thispage = $title->getPrefixedDBkey();
 		$uploadNavigationUrl = $this->getConfig()->get( 'UploadNavigationUrl' );
