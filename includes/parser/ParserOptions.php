@@ -1043,11 +1043,12 @@ class ParserOptions {
 	/**
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
-	 * @param User|null $user
+	 * @param User|null $user (null falls back to $wgUser and is deprecated since 1.36)
 	 * @param Language|null $lang
 	 */
 	public function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
+			wfDeprecated( __CLASS__ . ' being created with a User object', '1.36' );
 			global $wgUser;
 			if ( $wgUser === null ) {
 				$user = new User;
@@ -1139,6 +1140,12 @@ class ParserOptions {
 		} elseif ( $context instanceof User || $context === null ) {
 			if ( $context === null ) {
 				wfDeprecated( __METHOD__ . ' with no user', '1.35' );
+
+				// Avoid sending out another deprecation notice from calling
+				// __construct with null
+				// TODO remove support for this instead
+				global $wgUser;
+				$context = $wgUser;
 			}
 			$ret = new self( $context, $userLang );
 		} else {

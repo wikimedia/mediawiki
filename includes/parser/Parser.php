@@ -4664,7 +4664,12 @@ class Parser {
 		if ( !$parsing ) {
 			global $wgTitle;
 			$magicScopeVariable = $this->lock();
-			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
+			$this->startParse(
+				$wgTitle,
+				ParserOptions::newFromUser( RequestContext::getMain()->getUser() ),
+				self::OT_PREPROCESS,
+				true
+			);
 		}
 
 		# Option to disable this feature
@@ -5541,7 +5546,12 @@ class Parser {
 		global $wgTitle; # not generally used but removes an ugly failure mode
 
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
+		$this->startParse(
+			$wgTitle,
+			ParserOptions::newFromUser( RequestContext::getMain()->getUser() ),
+			self::OT_PLAIN,
+			true
+		);
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
@@ -5711,7 +5721,12 @@ class Parser {
 	 */
 	public function getFlatSectionInfo( $text ) {
 		$magicScopeVariable = $this->lock();
-		$this->startParse( null, new ParserOptions, self::OT_PLAIN, true );
+		$this->startParse(
+			null,
+			ParserOptions::newFromUser( RequestContext::getMain()->getUser() ),
+			self::OT_PLAIN,
+			true
+		);
 		$frame = $this->getPreprocessor()->newFrame();
 		$root = $this->preprocessToDom( $text, 0 );
 		$node = $root->getFirstChild();

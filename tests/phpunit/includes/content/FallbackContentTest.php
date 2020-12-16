@@ -40,7 +40,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 		$content = $this->newContent( 'Horkyporky ~~~' );
 
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 
 		$this->assertSame( $content, $content->preSaveTransform( $title, $user, $options ) );
 	}
@@ -52,7 +52,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Test' );
 		$content = $this->newContent( 'Horkyporky ~~~' );
 
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 
 		$this->assertSame( $content, $content->preloadTransform( $title, $options ) );
 	}
