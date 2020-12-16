@@ -25,12 +25,15 @@ use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\PHPSessionHandler;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
+use RequestContext;
 use TestLogger;
 use User;
 use WebRequest;
@@ -846,6 +849,47 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$block->insert();
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
 			$manager->getUserAutopromoteGroups( $blockedUser ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
+	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
+	 */
+	public function testGetUserAutopromoteBlockedDoesNotRecurse() {
+		$this->markTestSkipped(
+			'Requires a fix which will be done in another change - T270145' );
+
+		// Make sure session handling is started
+		if ( !PHPSessionHandler::isInstalled() ) {
+			PHPSessionHandler::install(
+				SessionManager::singleton()
+			);
+		}
+		$oldSessionId = session_id();
+
+		$context = RequestContext::getMain();
+		// Variables are unused but needed to reproduce the failure
+		$oInfo = $context->exportSession();
+
+		$user = User::newFromName( 'UnitTestContextUser' );
+		$user->addToDatabase();
+
+		$sinfo = [
+			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
+			'userId' => $user->getId(),
+			'ip' => '192.0.2.0',
+			'headers' => [
+				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
+			]
+		];
+		$this->setMwGlobals( [
+			'wgAutopromote' => [ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ],
+		] );
+		// Variables are unused but needed to reproduce the failure
+		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
+		$info = $context->exportSession();
+
+		$this->assertEmpty( $user->getBlock() );
 	}
 
 	/**
