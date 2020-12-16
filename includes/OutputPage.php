@@ -3162,7 +3162,9 @@ class OutputPage extends ContextSource {
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
 
-		if ( $relevantUser ) {
+		if ( $relevantUser && ( !$relevantUser->isHidden() || $user->isAllowed( 'hideuser' ) ) ) {
+			// T120883 if the user is hidden and the viewer cannot see
+			// hidden users, pretend like it does not exist at all.
 			$vars['wgRelevantUserName'] = $relevantUser->getName();
 		}
 
