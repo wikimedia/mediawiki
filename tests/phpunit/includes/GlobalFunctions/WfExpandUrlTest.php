@@ -15,9 +15,9 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( [
 			'wgServer' => $server,
 			'wgCanonicalServer' => $canServer,
-			'wgRequest' => new FauxRequest( [], false, null, $httpsMode ? 'https' : 'http' ),
 			'wgHttpsPort' => $httpsPort
 		] );
+		$this->setRequest( new FauxRequest( [], false, null, $httpsMode ? 'https' : 'http' ) );
 
 		$this->assertEquals( $fullUrl, wfExpandUrl( $shortUrl, $defaultProto ), $message );
 	}

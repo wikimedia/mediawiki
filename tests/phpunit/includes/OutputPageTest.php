@@ -2799,9 +2799,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$fauxRequest = new FauxRequest( $queryData, false );
-		$this->setMwGlobals( [
-			'wgRequest' => $fauxRequest,
-		] );
+		$this->setRequest( $fauxRequest );
 
 		$actualReturn = OutputPage::transformCssMedia( $args['media'] );
 		$this->assertSame( $args['expectedReturn'], $actualReturn, $args['message'] );
