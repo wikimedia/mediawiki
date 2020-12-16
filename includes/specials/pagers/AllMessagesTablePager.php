@@ -272,6 +272,11 @@ class AllMessagesTablePager extends TablePager {
 		return Html::closeElement( 'table' );
 	}
 
+	/**
+	 * @param string $field
+	 * @param string $value
+	 * @return string HTML
+	 */
 	public function formatValue( $field, $value ) {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
@@ -336,7 +341,7 @@ class AllMessagesTablePager extends TablePager {
 				$formatted = "\u{00A0}";
 			}
 
-			$s .= Html::element( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
+			$s .= Html::rawElement( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
 				. Html::closeElement( 'tr' );
 		}
 
