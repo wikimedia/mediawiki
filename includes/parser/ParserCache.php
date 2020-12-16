@@ -292,37 +292,21 @@ class ParserCache {
 			$metadata = $this->restoreFromJson( $metadata, $pageKey, CacheTime::class );
 		}
 
-		if ( $metadata instanceof CacheTime ) {
-			if (
-				$staleConstraint < self::USE_EXPIRED
-				&& $metadata->expired( $wikiPage->getTouched() )
-			) {
-				$this->incrementStats( $wikiPage, "miss.expired" );
-				$this->logger->debug( 'Parser options key expired', [
-					'name' => $this->name,
-					'touched' => $wikiPage->getTouched(),
-					'epoch' => $this->cacheEpoch,
-					'cache_time' => $metadata->getCacheTime()
-				] );
-				return null;
-			} elseif ( $staleConstraint < self::USE_OUTDATED &&
-				$metadata->isDifferentRevision( $wikiPage->getLatest() )
-			) {
-				$this->incrementStats( $wikiPage, "miss.revid" );
-				$this->logger->debug( 'ParserOutput key is for an old revision', [
-					'name' => $this->name,
-					'rev_id' => $wikiPage->getLatest(),
-					'cached_rev_id' => $metadata->getCacheRevisionId()
-				] );
-				return null;
-			}
-
-			$this->logger->debug( 'Parser cache options found', [
-				'name' => $this->name
-			] );
-			return $metadata;
+		if ( !$metadata instanceof CacheTime ) {
+			$this->incrementStats( $wikiPage, 'miss.unserialize' );
+			return null;
 		}
-		return null;
+
+		if ( $this->checkExpired( $metadata, $wikiPage, $staleConstraint, 'metadata' ) ) {
+			return null;
+		}
+
+		if ( $this->checkOutdated( $metadata, $wikiPage, $staleConstraint, 'metadata' ) ) {
+			return null;
+		}
+
+		$this->logger->debug( 'Parser cache options found', [ 'name' => $this->name ] );
+		return $metadata;
 	}
 
 	/**
@@ -377,22 +361,18 @@ class ParserCache {
 	 * @return ParserOutput|bool False on failure
 	 */
 	public function get( WikiPage $wikiPage, $popts, $useOutdated = false ) {
-		$canCache = $wikiPage->checkTouched();
-		if ( !$canCache ) {
+		if ( !$wikiPage->checkTouched() ) {
 			// It's a redirect now
+			$this->incrementStats( $wikiPage, 'miss.redirect' );
 			return false;
 		}
 
-		$touched = $wikiPage->getTouched();
-
-		$parserOutputMetadata = $this->getMetadata(
-			$wikiPage,
-			$useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY
-		);
+		$staleConstraint = $useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY;
+		$parserOutputMetadata = $this->getMetadata( $wikiPage, $staleConstraint );
 		if ( !$parserOutputMetadata ) {
-			$this->incrementStats( $wikiPage, 'miss.absent' );
 			return false;
 		}
+
 		if ( !$popts->isSafeToCache() ) {
 			$this->incrementStats( $wikiPage, 'miss.unsafe' );
 			return false;
@@ -407,9 +387,7 @@ class ParserCache {
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( $value === false ) {
 			$this->incrementStats( $wikiPage, "miss.absent" );
-			$this->logger->debug( 'ParserOutput cache miss', [
-				'name' => $this->name
-			] );
+			$this->logger->debug( 'ParserOutput cache miss', [ 'name' => $this->name ] );
 			return false;
 		}
 
@@ -426,46 +404,26 @@ class ParserCache {
 		}
 
 		if ( !$value instanceof ParserOutput ) {
-			$this->logger->debug( "ParserOutput bad endtry.", [ 'name' => $this->name ] );
+			$this->incrementStats( $wikiPage, 'miss.unserialize' );
 			return false;
 		}
 
-		/** @var ParserOutput $value */
-		$this->logger->debug( 'ParserOutput cache found', [
-			'name' => $this->name
-		] );
+		if ( $this->checkExpired( $value, $wikiPage, $staleConstraint, 'output' ) ) {
+			return false;
+		}
 
-		if ( !$useOutdated && $value->expired( $touched ) ) {
-			$this->incrementStats( $wikiPage, "miss.expired" );
-			$this->logger->debug( 'ParserOutput key expired', [
-				'name' => $this->name,
-				'touched' => $touched,
-				'epoch' => $this->cacheEpoch,
-				'cache_time' => $value->getCacheTime()
-			] );
-			$value = false;
-		} elseif (
-			!$useOutdated
-			&& $value->isDifferentRevision( $wikiPage->getLatest() )
-		) {
-			$this->incrementStats( $wikiPage, "miss.revid" );
-			$this->logger->debug( 'ParserOutput key is for an old revision', [
-				'name' => $this->name,
-				'rev_id' => $wikiPage->getLatest(),
-				'cached_rev_id' => $value->getCacheRevisionId()
-			] );
-			$value = false;
-		} elseif (
-			$this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false
-		) {
+		if ( $this->checkOutdated( $value, $wikiPage, $staleConstraint, 'output' ) ) {
+			return false;
+		}
+
+		if ( $this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false ) {
 			$this->incrementStats( $wikiPage, 'miss.rejected' );
 			$this->logger->debug( 'key valid, but rejected by RejectParserCacheValue hook handler',
 				[ 'name' => $this->name ] );
-			$value = false;
-		} else {
-			$this->incrementStats( $wikiPage, "hit" );
+			return false;
 		}
 
+		$this->logger->debug( 'ParserOutput cache found', [ 'name' => $this->name ] );
 		return $value;
 	}
 
@@ -488,94 +446,104 @@ class ParserCache {
 		}
 
 		$expire = $parserOutput->getCacheExpiry();
+
 		if ( !$popts->isSafeToCache() ) {
 			$this->logger->debug(
 				'Parser options are not safe to cache and has not been saved',
 				[ 'name' => $this->name ]
 			);
 			$this->incrementStats( $wikiPage, 'save.unsafe' );
-		} elseif ( $expire <= 0 ) {
+			return;
+		}
+
+		if ( $expire <= 0 ) {
 			$this->logger->debug(
 				'Parser output was marked as uncacheable and has not been saved',
 				[ 'name' => $this->name ]
 			);
 			$this->incrementStats( $wikiPage, 'save.uncacheable' );
-		} elseif ( !$this->cache instanceof EmptyBagOStuff ) {
-			$cacheTime = $cacheTime ?: wfTimestampNow();
-			if ( !$revId ) {
-				$revision = $wikiPage->getRevisionRecord();
-				$revId = $revision ? $revision->getId() : null;
-			}
-
-			$metadata = new CacheTime;
-			$metadata->recordOptions( $parserOutput->getUsedOptions() );
-			$metadata->updateCacheExpiry( $expire );
-
-			$metadata->setCacheTime( $cacheTime );
-			$parserOutput->setCacheTime( $cacheTime );
-			$metadata->setCacheRevisionId( $revId );
-			$parserOutput->setCacheRevisionId( $revId );
-
-			$parserOutputKey = $this->makeParserOutputKey(
-				$wikiPage,
-				$popts,
-				$metadata->getUsedOptions()
-			);
-
-			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
-
-			$msg = "Saved in parser cache with key $parserOutputKey" .
-				" and timestamp $cacheTime" .
-				" and revision id $revId.";
-			if ( $this->writeJson ) {
-				$msg .= " Serialized with JSON.";
-			} else {
-				$msg .= " Serialized with PHP.";
-			}
-			$parserOutput->addCacheMessage( $msg );
-
-			$pageKey = $this->makeMetadataKey( $wikiPage );
-
-			if ( $this->writeJson ) {
-				$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
-				$metadataData = $this->encodeAsJson( $metadata, $pageKey );
-			} else {
-				// rely on implicit PHP serialization in the cache
-				$parserOutputData = $parserOutput;
-				$metadataData = $metadata;
-			}
-
-			if ( $parserOutputData && $metadataData ) {
-				// Save the parser output
-				$this->cache->set(
-					$parserOutputKey,
-					$parserOutputData,
-					$expire,
-					BagOStuff::WRITE_ALLOW_SEGMENTS
-				);
-
-				// ...and its pointer
-				$this->cache->set( $pageKey, $metadataData, $expire );
-
-				$this->hookRunner->onParserCacheSaveComplete(
-					$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
-
-				$this->logger->debug( 'Saved in parser cache', [
-					'name' => $this->name,
-					'key' => $parserOutputKey,
-					'cache_time' => $cacheTime,
-					'rev_id' => $revId
-				] );
-				$this->incrementStats( $wikiPage, 'save.success' );
-			} else {
-				$this->logger->warning(
-					'Parser output failed to serialize and was not saved',
-					[ 'name' => $this->name ]
-				);
-				$this->incrementStats( $wikiPage, 'save.nonserializable' );
-			}
+			return;
 		}
+
+		if ( $this->cache instanceof EmptyBagOStuff ) {
+			return;
+		}
+
+		$cacheTime = $cacheTime ?: wfTimestampNow();
+		if ( !$revId ) {
+			$revision = $wikiPage->getRevisionRecord();
+			$revId = $revision ? $revision->getId() : null;
+		}
+
+		$metadata = new CacheTime;
+		$metadata->recordOptions( $parserOutput->getUsedOptions() );
+		$metadata->updateCacheExpiry( $expire );
+
+		$metadata->setCacheTime( $cacheTime );
+		$parserOutput->setCacheTime( $cacheTime );
+		$metadata->setCacheRevisionId( $revId );
+		$parserOutput->setCacheRevisionId( $revId );
+
+		$parserOutputKey = $this->makeParserOutputKey(
+			$wikiPage,
+			$popts,
+			$metadata->getUsedOptions()
+		);
+
+		// Save the timestamp so that we don't have to load the revision row on view
+		$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
+
+		$msg = "Saved in parser cache with key $parserOutputKey" .
+			" and timestamp $cacheTime" .
+			" and revision id $revId.";
+		if ( $this->writeJson ) {
+			$msg .= " Serialized with JSON.";
+		} else {
+			$msg .= " Serialized with PHP.";
+		}
+		$parserOutput->addCacheMessage( $msg );
+
+		$pageKey = $this->makeMetadataKey( $wikiPage );
+
+		if ( $this->writeJson ) {
+			$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
+			$metadataData = $this->encodeAsJson( $metadata, $pageKey );
+		} else {
+			// rely on implicit PHP serialization in the cache
+			$parserOutputData = $parserOutput;
+			$metadataData = $metadata;
+		}
+
+		if ( !$parserOutputData || !$metadataData ) {
+			$this->logger->warning(
+				'Parser output failed to serialize and was not saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $wikiPage, 'save.nonserializable' );
+			return;
+		}
+
+		// Save the parser output
+		$this->cache->set(
+			$parserOutputKey,
+			$parserOutputData,
+			$expire,
+			BagOStuff::WRITE_ALLOW_SEGMENTS
+		);
+
+		// ...and its pointer
+		$this->cache->set( $pageKey, $metadataData, $expire );
+
+		$this->hookRunner->onParserCacheSaveComplete(
+			$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
+
+		$this->logger->debug( 'Saved in parser cache', [
+			'name' => $this->name,
+			'key' => $parserOutputKey,
+			'cache_time' => $cacheTime,
+			'rev_id' => $revId
+		] );
+		$this->incrementStats( $wikiPage, 'save.success' );
 	}
 
 	/**
@@ -588,6 +556,62 @@ class ParserCache {
 	 */
 	public function getCacheStorage() {
 		return $this->cache;
+	}
+
+	/**
+	 * Check if $entry expired for $wikiPage given the $staleConstraint
+	 * when fetching from $cacheTier.
+	 * @param CacheTime $entry
+	 * @param WikiPage $wikiPage
+	 * @param int $staleConstraint One of USE_* constants.
+	 * @param string $cacheTier
+	 * @return bool
+	 */
+	private function checkExpired(
+		CacheTime $entry,
+		WikiPage $wikiPage,
+		int $staleConstraint,
+		string $cacheTier
+	): bool {
+		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $wikiPage->getTouched() ) ) {
+			$this->incrementStats( $wikiPage, "miss.expired" );
+			$this->logger->debug( "{$cacheTier} key expired", [
+				'name' => $this->name,
+				'touched' => $wikiPage->getTouched(),
+				'epoch' => $this->cacheEpoch,
+				'cache_time' => $entry->getCacheTime()
+			] );
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if $entry belongs to the latest revision of $wikiPage
+	 * given $staleConstraint when fetched from $cacheTier.
+	 * @param CacheTime $entry
+	 * @param WikiPage $wikiPage
+	 * @param int $staleConstraint One of USE_* constants.
+	 * @param string $cacheTier
+	 * @return bool
+	 */
+	private function checkOutdated(
+		CacheTime $entry,
+		WikiPage $wikiPage,
+		int $staleConstraint,
+		string $cacheTier
+	): bool {
+		$latestRevId = $wikiPage->getLatest();
+		if ( $staleConstraint < self::USE_OUTDATED && $entry->isDifferentRevision( $latestRevId ) ) {
+			$this->incrementStats( $wikiPage, "miss.revid" );
+			$this->logger->debug( "{$cacheTier} key is for an old revision", [
+				'name' => $this->name,
+				'rev_id' => $wikiPage->getLatest(),
+				'cached_rev_id' => $entry->getCacheRevisionId()
+			] );
+			return true;
+		}
+		return false;
 	}
 
 	/**
