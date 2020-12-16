@@ -1838,6 +1838,7 @@ return [
 		'packageFiles' => [
 			'apisandbox.js',
 			'OptionalParamWidget.js',
+			'UploadParamWidget.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
