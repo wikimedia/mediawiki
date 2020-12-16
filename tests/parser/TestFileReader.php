@@ -40,7 +40,8 @@ class TestFileReader {
 		$parsoidReader = ParsoidTestFileReader::read( $file, function ( $msg ) {
 			wfDeprecatedMsg( $msg, '1.35', false, false );
 		} );
-		if ( $parsoidReader->testFormat < 2 ) {
+		$testFormat = intval( $parsoidReader->fileOptions['version'] ?? '1' );
+		if ( $testFormat < 2 ) {
 			throw new MWException(
 				"Support for the parserTest v1 file format was removed in MediaWiki 1.36"
 			);
@@ -59,7 +60,7 @@ class TestFileReader {
 			];
 		}
 		return [
-			'requirements' => $parsoidReader->requirements,
+			'fileOptions' => $parsoidReader->fileOptions,
 			'tests' => $tests,
 			'articles' => $articles,
 		];
