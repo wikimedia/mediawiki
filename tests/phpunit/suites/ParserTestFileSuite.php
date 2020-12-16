@@ -26,7 +26,7 @@ class ParserTestFileSuite extends TestSuite {
 				$fileName . ': ' . $e->getMessage()
 			);
 		}
-		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['requirements'] ) ) {
+		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['fileOptions']['requirements'] ?? [] ) ) {
 			$skipMessage = 'required extension not enabled';
 		} else {
 			$skipMessage = null;
