@@ -279,6 +279,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
+		$this->assertSame( $idA, $output->getRevisionId() );
 	}
 
 	public function testViewOfCurrentRevision() {
