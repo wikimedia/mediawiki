@@ -1355,7 +1355,9 @@ class SkinTemplate extends Skin {
 		// pretend like the user does not exist in such cases, by setting $user to null, which
 		// is what getRelevantUser returns if there is no user set (though it is documented as
 		// always returning a User...) See T120883
-		if ( $user && $user->isRegistered() && $user->isHidden() && !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( $user && $user->isRegistered() && $user->isHidden() &&
+			!$this->getUser()->isAllowed( 'hideuser' )
+		) {
 			$user = null;
 		}
 
