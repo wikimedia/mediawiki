@@ -233,6 +233,7 @@ class Names {
 		'kbd' => 'Адыгэбзэ', # Kabardian
 		'kbd-cyrl' => 'Адыгэбзэ', # Kabardian (Cyrillic)
 		'kbp' => 'Kabɩyɛ', # Kabiyè
+		'kcg' => 'Tyap', # Tyap
 		'kg' => 'Kongo', # Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 		'khw' => 'کھوار', # Khowar
 		'ki' => 'Gĩkũyũ', # Gikuyu

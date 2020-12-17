@@ -135,6 +135,7 @@ because of Phabricator reports.
 * (T259330) Added language support for Mara (mhr).
 * (T264582) Added language support for Nias (nia).
 * (T264582) Added language support for Madurese (mad).
+* (T270365) Added language support for Tyap (kcg).
 
 === Breaking changes in 1.36 ===
 * (T176526) EditPage::getContextTitle() will now throw an exception if a context
