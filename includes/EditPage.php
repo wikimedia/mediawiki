@@ -2791,7 +2791,9 @@ ERROR;
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
 			$userExists = ( $user && $user->isLoggedIn() );
-			if ( $userExists && $user->isHidden() && !$this->permManager->userHasRight( $this->context->getUser(), 'hideuser' ) ) {
+			if ( $userExists && $user->isHidden() &&
+				!$this->permManager->userHasRight( $this->context->getUser(), 'hideuser' )
+			) {
 				// If the user exists, but is hidden, and the viewer cannot see hidden
 				// users, pretend like they don't exist at all. See T120883
 				$userExists = false;
