@@ -241,7 +241,7 @@ abstract class DatabaseUpdater {
 	 * Set the HookContainer to use for loading extension schema updates.
 	 *
 	 * @internal For use by DatabaseInstaller
-	 * @since 1.36
+	 * @since 1.35.1
 	 * @param HookContainer $hookContainer
 	 */
 	public function setAutoExtensionHookContainer( HookContainer $hookContainer ) {

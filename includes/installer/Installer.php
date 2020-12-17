@@ -1639,7 +1639,7 @@ abstract class Installer {
 	 * Get the hook container previously populated by includeExtensions().
 	 *
 	 * @internal For use by DatabaseInstaller
-	 * @since 1.36
+	 * @since 1.35.1
 	 * @return HookContainer
 	 */
 	public function getAutoExtensionHookContainer() {
