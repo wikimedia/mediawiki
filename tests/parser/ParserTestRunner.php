@@ -1719,7 +1719,7 @@ class ParserTestRunner {
 		if ( isset( $parser->mTagHooks[$name] ) ) {
 			return true;
 		} else {
-			$this->recorder->warning( "   Skpping this test suite because it requires the '$name' hook, " .
+			$this->recorder->warning( "   Skipping this test suite because it requires the '$name' hook, " .
 				"which isn't provided by any loaded extension." );
 			return false;
 		}
