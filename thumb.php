@@ -585,7 +585,7 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
  *
  * @param File $file File object for file in question
  * @param array $params Array of parameters so far
- * @return array Parameters array with more parameters
+ * @return array|null Parameters array with more parameters, or null
  */
 function wfExtractThumbParams( $file, $params ) {
 	if ( !isset( $params['thumbName'] ) ) {

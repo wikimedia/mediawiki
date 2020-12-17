@@ -878,7 +878,7 @@
 	"apihelp-query+info-paramvalue-prop-displaytitle": "נותן את האופן שבה שם הדף באמת מוצג.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "כותרת התצוגה בכל הגרסאות של שפת התוכן של האתר.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "נותן מחלקות CSS נוספות (למשל צבעי קישורים) שמשמשים לקישורים לדף הזה אם הם מופיעים בדף ששמו ניתן על־ידי <var>$1linkcontext</var>.",
-	"apihelp-query+info-param-linkcontext": "כותרות ההקשר שישמש בעד קביעת מחלקות CSS נוספות (למשל צבעי קישורים) כש־<var>$1prop</var> מכיל <var>classes</var>.",
+	"apihelp-query+info-param-linkcontext": "כותרות ההקשר שישמש בעד קביעת מחלקות CSS נוספות (למשל צבעי קישורים) כש־<var>$1prop</var> מכיל <var>linkclasses</var>.",
 	"apihelp-query+info-param-testactions": "בדיקה האם המשתמש הנוכחי יכול לבצע פעולות מסוימות על הדף.",
 	"apihelp-query+info-param-testactionsdetail": "רמת פירוט של <var>$1testactions</var>. יש להשתמש בפרמטרים <var>errorformat</var> ו־<var>errorlang</var> של [[Special:ApiHelp/main|המודול הראשי]] כדי לשלוט בתסדיר את ההודעות המוחזרות.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "החזרת ערך בוליאני עבור כל פעולה.",
