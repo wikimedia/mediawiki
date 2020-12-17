@@ -129,7 +129,6 @@ class CheckStorage {
 				$id = $row->old_id;
 
 				// Create flagStats row if it doesn't exist
-				// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 				$flagStats += [ $flags => 0 ];
 				// Increment counter
 				$flagStats[$flags]++;
@@ -269,7 +268,6 @@ class CheckStorage {
 						continue;
 					}
 
-					// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 					$objectStats += [ $className => 0 ];
 					$objectStats[$className]++;
 
