@@ -290,9 +290,78 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::prepareContentForEdit
+	 * @covers WikiPage::doUserEditContent
 	 */
 	public function testDoEditContent() {
+		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
+
+		global $wgUser;
+
+		$page = $this->newPage( __METHOD__ );
+		$title = $page->getTitle();
+
+		$content = ContentHandler::makeContent(
+			"[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
+			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$content = ContentHandler::makeContent(
+			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est. ~~~~",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertFalse(
+			$status->value['revision']->getContent()->equals( $content ),
+			'not equals (PST must substitute signature)'
+		);
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
+
+		# ------------------------
+		$page = new WikiPage( $title );
+
+		$retrieved = $page->getContent();
+		$newText = $retrieved->serialize();
+		$this->assertStringContainsString( '[[gubergren]]', $newText, 'New text must replace old text.' );
+		$this->assertStringNotContainsString( '[[Lorem ipsum]]', $newText, 'New text must replace old text.' );
+		$this->assertStringNotContainsString( '~~~~', $newText, 'PST must substitute signature.' );
+		$this->assertStringContainsString( $wgUser->getName(), $newText,
+			'Must fall back to $wgUser when no user has been specified.' );
+	}
+
+	/**
+	 * @covers WikiPage::doUserEditContent
+	 * @covers WikiPage::prepareContentForEdit
+	 */
+	public function testDoUserEditContent() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'Revision::getContent' );
@@ -322,7 +391,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user1 );
 
-		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW, false, $user1 );
+		$status = $page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
 
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
@@ -373,7 +442,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$page = new WikiPage( $title );
 
 		// try null edit, with a different user
-		$status = $page->doEditContent( $content, 'This changes nothing', EDIT_UPDATE, false, $user2 );
+		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNull( $status->value['revision'], 'revision' );
@@ -388,7 +457,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$status = $page->doUserEditContent( $content, $user1, "testing 2", EDIT_UPDATE );
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->value['revision'], 'revision' );
@@ -417,13 +486,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
+		// two in page text and two in signature
+		$this->assertEquals( 4, $n, 'pagelinks should contain four links from the page' );
 	}
 
 	/**
-	 * @covers WikiPage::doEditContent
+	 * @covers WikiPage::doUserEditContent
 	 */
-	public function testDoEditContent_twice() {
+	public function testDoUserEditContent_twice() {
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status exists 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status exists 'revision'" );
 
@@ -431,10 +501,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$page = WikiPage::factory( $title );
 		$content = ContentHandler::makeContent( '$1 van $2', $title );
 
+		$user = $this->getTestUser()->getUser();
+
 		// Make sure we can do the exact same save twice.
 		// This tests checks that internal caches are reset as appropriate.
-		$status1 = $page->doEditContent( $content, __METHOD__ );
-		$status2 = $page->doEditContent( $content, __METHOD__ );
+		$status1 = $page->doUserEditContent( $content, $user, __METHOD__ );
+		$status2 = $page->doUserEditContent( $content, $user, __METHOD__ );
 
 		$this->assertTrue( $status1->isOK(), 'OK' );
 		$this->assertTrue( $status2->isOK(), 'OK' );
@@ -1189,24 +1261,29 @@ more stuff
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
+		$user = $this->getTestUser()->getUser();
+
 		$page = $this->newPage( __METHOD__ );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			new WikitextContent( 'one' ),
+			$user,
 			"first edit",
 			EDIT_NEW
 		);
 		$rev1 = $page->getRevision();
 
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			new WikitextContent( 'two' ),
+			$user,
 			"second edit",
 			EDIT_UPDATE
 		);
 
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			new WikitextContent( 'three' ),
+			$user,
 			"third edit",
 			EDIT_UPDATE
 		);
@@ -1251,16 +1328,16 @@ more stuff
 
 		// Make some edits
 		$text = "one";
-		$status1 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-			"section one", EDIT_NEW, false, $admin );
+		$status1 = $page->doUserEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+			$admin, "section one", EDIT_NEW );
 
 		$text .= "\n\ntwo";
-		$status2 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-			"adding section two", 0, false, $user1 );
+		$status2 = $page->doUserEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+			$user1, "adding section two" );
 
 		$text .= "\n\nthree";
-		$status3 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-			"adding section three", 0, false, $user2 );
+		$status3 = $page->doUserEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+			$user2, "adding section three" );
 
 		/** @var Revision $rev1 */
 		/** @var Revision $rev2 */
@@ -1335,24 +1412,21 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( __METHOD__ );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			$admin,
 			"section one",
-			EDIT_NEW,
-			false,
-			$admin
+			EDIT_NEW
 		);
 		$rev1 = $page->getRevision();
 
 		$user1 = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			"adding section two",
-			0,
-			false,
-			$user1
+			$user1,
+			"adding section two"
 		);
 
 		# now, do a the rollback from the same user was doing the edit before
@@ -1415,24 +1489,21 @@ more stuff
 
 		$text = 'First line';
 		$page = $this->newPage( 'WikiPageTest_testDoRollbackTagging' );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			$admin,
 			'Added first line',
-			EDIT_NEW,
-			false,
-			$admin
+			EDIT_NEW
 		);
 
 		$secondUser = new User();
 		$secondUser->setName( '92.65.217.32' );
 		$text .= '\n\nSecond line';
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			'Adding second line',
-			0,
-			false,
-			$secondUser
+			$secondUser,
+			'Adding second line'
 		);
 
 		// Now, try the rollback
@@ -1544,7 +1615,7 @@ more stuff
 
 			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModel() );
 
-			$page->doEditContent( $content, "test edit $c", $c < 2 ? EDIT_NEW : 0, false, $user );
+			$page->doUserEditContent( $content, $user, "test edit $c", $c < 2 ? EDIT_NEW : 0 );
 
 			$c += 1;
 		}
