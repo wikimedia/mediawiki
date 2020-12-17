@@ -14,7 +14,7 @@ See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.36 upgrades are below:
-* MediaWiki 1.36 now requires that the internationalization extension
+* MediaWiki 1.36 now requires the PHP internationalization extension
   (commonly referred to as Intl, ext-intl and php-intl).
 * …
 
@@ -114,7 +114,7 @@ For notes on 1.35.x and older releases, see HISTORY.
   if it founds you reversed them (based on assumption that higher revision ID
   indicates a later revision). The assumption is not always true and is
   hindering proper edit undoing in some cases, hence the logic has been removed.
-  Reversing the paramaters will now lead to edit conflict or undefined behavior.
+  Reversing the parameters will now lead to edit conflict or undefined behavior.
 * (T263340) In history merging, pages with a content model that does not support
   redirects will now be recorded as deleted if no revision is being left in the
   source page (that's if all revisions of the page have been merged to another).
@@ -133,7 +133,7 @@ because of Phabricator reports.
 
 * (T245359) Split Bali script locale from "ban" (Balinese) (ban-bali).
 * (T259330) Added language support for Mara (mhr).
-* (T263968) Added support for Nias language (nia).
+* (T264582) Added language support for Nias (nia).
 * (T264582) Added language support for Madurese (mad).
 
 === Breaking changes in 1.36 ===
