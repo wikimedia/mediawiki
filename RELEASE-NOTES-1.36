@@ -84,24 +84,26 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* pear/mail_mime was upgraded from 1.10.8 to 1.10.9.
-* wikimedia/html-formatter was upgraded from 1.0.2 to 2.0.0.
-* Updated OOUI from 0.39.3 to 0.41.0.
-* Updated jquery.client from 2.0.2 to 3.0.0.
-* Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
-* Updated pear/net_smtp from 1.9.1 to 1.9.2.
-* Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
 * Updated composer/semver from 1.5.1 to 3.2.4.
+* Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
+* Updated jquery.client from 2.0.2 to 3.0.0.
+* Updated OOUI from 0.39.3 to 0.41.0.
+* Updated pear/mail_mime from 1.10.8 to 1.10.9.
+* Updated pear/net_smtp from 1.9.1 to 1.9.2.
+* Updated wikimedia/html-formatter from 1.0.2 to 2.0.0.
+* Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
 * …
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.3 to 1.5.4.
-* doctrine/sql-formatter was upgraded from 1.1.0 to 1.1.1.
-* doctrine/dbal was upgraded from 2.10.2 to 2.10.4.
-* Updated nikic/php-parser from 4.4.0 to 4.10.2.
+* Updated doctrine/dbal from 2.10.2 to 2.10.4.
+* Updated doctrine/sql-formatter from 1.1.0 to 1.1.1.
+* Updated mediawiki/mediawiki-phan-config from 0.10.2 to 0.10.6.
 * Updated monolog/monolog from 1.25.3 to 2.0.2.
-* Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
+* Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated psy/psysh from 0.10.4 to 0.10.5.
+* Updated symfony/yaml from ~3.4|~4.3|~5.0.5 to ~3.4|~5.1.
+* Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
 * …
 
 ==== Removed external libraries ====
