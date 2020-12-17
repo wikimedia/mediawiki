@@ -3065,7 +3065,9 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get whether the user is logged in
+	 * Get whether the user is registered.
+	 *
+	 * @deprecated since 1.36 (backported in 1.35.2); use isRegistered() directly
 	 * @return bool
 	 */
 	public function isLoggedIn() {

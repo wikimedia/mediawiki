@@ -14,6 +14,8 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.1 ===
+* (T270450) The confusingly-named User->isLoggedIn() method has been deprecated
+  in favour of the method it wraps, User->isRegistered().
 
 == MediaWiki 1.35.1 ==
 
