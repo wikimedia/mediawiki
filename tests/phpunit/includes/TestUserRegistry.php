@@ -64,7 +64,7 @@ class TestUserRegistry {
 
 		$testUser = self::$testUsers[$key] ?? false;
 
-		if ( !$testUser || !$testUser->getUser()->isLoggedIn() ) {
+		if ( !$testUser || !$testUser->getUser()->isRegistered() ) {
 			$id = self::getNextId();
 			// Hack! If this is the primary sysop account, make the username
 			// be 'UTSysop', for back-compat, and for the sake of PHPUnit data

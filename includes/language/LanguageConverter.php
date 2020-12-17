@@ -198,7 +198,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// NOTE: For calls from Setup.php, wgUser or the session might not be set yet (T235360)
 		// Use case: During autocreation, User::isUsableName is called which uses interface
 		// messages for reserved usernames.
-		if ( $wgUser && $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
+		if ( $wgUser && $wgUser->isSafeToLoad() && $wgUser->isRegistered() && !$req ) {
 			$req = $this->getUserVariant( $wgUser );
 		} elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
@@ -311,7 +311,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return false;
 		}
 
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			// Get language variant preference from logged in users
 			if (
 				$this->mMainLanguageCode ==

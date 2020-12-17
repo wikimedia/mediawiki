@@ -84,7 +84,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 
-		$user = $options['loggedIn'] ? $this->user : new User();
+		$user = $options['registered'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		$this->assertSame( $expected, (bool)$blockManager->getBlockFromCookieValue(
@@ -115,7 +115,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 
-		$user = $options['loggedIn'] ? $this->user : new User();
+		$user = $options['registered'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		$response = new FauxResponse;
@@ -138,7 +138,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Autoblocking user block' => [
 				[
 					'target' => '',
-					'loggedIn' => true,
+					'registered' => true,
 					'blockOptions' => [
 						'enableAutoblock' => true
 					],
@@ -148,7 +148,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Autoblocking user block for anonymous user' => [
 				[
 					'target' => '',
-					'loggedIn' => false,
+					'registered' => false,
 					'blockOptions' => [
 						'enableAutoblock' => true
 					],
@@ -158,7 +158,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Non-autoblocking user block' => [
 				[
 					'target' => '',
-					'loggedIn' => true,
+					'registered' => true,
 					'blockOptions' => [],
 				],
 				false,
@@ -166,7 +166,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'IP block for anonymous user' => [
 				[
 					'target' => '127.0.0.1',
-					'loggedIn' => false,
+					'registered' => false,
 					'blockOptions' => [],
 				],
 				true,
@@ -174,7 +174,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'IP block for logged in user' => [
 				[
 					'target' => '127.0.0.1',
-					'loggedIn' => true,
+					'registered' => true,
 					'blockOptions' => [],
 				],
 				false,
@@ -182,7 +182,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'IP range block for anonymous user' => [
 				[
 					'target' => '127.0.0.0/8',
-					'loggedIn' => false,
+					'registered' => false,
 					'blockOptions' => [],
 				],
 				true,

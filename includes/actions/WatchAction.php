@@ -244,8 +244,8 @@ class WatchAction extends FormAction {
 		User $user,
 		string $expiry = null
 	) {
-		// User must be logged in, and either changing the watch state or at least the expiry.
-		if ( !$user->isLoggedIn() ) {
+		// User must be registered, and either changing the watch state or at least the expiry.
+		if ( !$user->isRegistered() ) {
 			return Status::newGood();
 		}
 

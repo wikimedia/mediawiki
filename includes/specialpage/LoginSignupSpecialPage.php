@@ -265,7 +265,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
 			 ( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
-			 $this->getUser()->isLoggedIn()
+			 $this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
 			return;
@@ -569,7 +569,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// warning header for non-standard workflows (e.g. security reauthentication)
 		if (
 			!$this->isSignup() &&
-			$this->getUser()->isLoggedIn() &&
+			$this->getUser()->isRegistered() &&
 			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
 		) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
@@ -729,9 +729,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function getFieldDefinitions() {
 		global $wgEmailConfirmToEdit;
 
-		$isLoggedIn = $this->getUser()->isLoggedIn();
+		$isRegistered = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
-		$anotherPart = $isLoggedIn ? 'another-' : '';
+		$anotherPart = $isRegistered ? 'another-' : '';
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$expiration = $this->getRequest()->getSession()->getProvider()->getRememberUserDuration();
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
@@ -762,7 +762,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
-					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
+					'placeholder-message' => $isRegistered ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
 				],
 				'mailpassword' => [
@@ -838,7 +838,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'realname' => [
 					'type' => 'text',
-					'help-message' => $isLoggedIn ? 'createacct-another-realname-tip'
+					'help-message' => $isRegistered ? 'createacct-another-realname-tip'
 						: 'prefs-help-realname',
 					'label-message' => 'createacct-realname',
 					'cssclass' => 'loginText',
@@ -1029,26 +1029,26 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				if ( $this->mLanguage ) {
 					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 				}
-				$loggedIn = $this->getUser()->isLoggedIn();
+				$isRegistered = $this->getUser()->isRegistered();
 
 				$fieldDefinitions['createOrLogin'] = [
 					'type' => 'info',
 					'raw' => true,
 					'linkQuery' => $linkq,
-					'default' => function ( $params ) use ( $loggedIn, $linkTitle ) {
+					'default' => function ( $params ) use ( $isRegistered, $linkTitle ) {
 						return Html::rawElement( 'div',
-							[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
-								'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-							( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
+							[ 'id' => 'mw-createaccount' . ( !$isRegistered ? '-cta' : '' ),
+								'class' => ( $isRegistered ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
+							( $isRegistered ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
 							. Html::element( 'a',
 								[
-									'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
+									'id' => 'mw-createaccount-join' . ( $isRegistered ? '-loggedin' : '' ),
 									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
-									'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
+									'class' => ( $isRegistered ? '' : 'mw-ui-button' ),
 									'tabindex' => 100,
 								],
 								$this->msg(
-									$loggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
+									$isRegistered ? 'userlogin-createanother' : 'userlogin-joinproject'
 								)->text()
 							)
 						);
@@ -1190,7 +1190,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			!$this->isSignup()
 		) {
 			$user = $this->getUser();
-			if ( $user->isLoggedIn() ) {
+			if ( $user->isRegistered() ) {
 				$formDescriptor['username']['default'] = $user->getName();
 			} else {
 				$formDescriptor['username']['default'] =

@@ -1565,7 +1565,7 @@ class ApiMain extends ApiBase {
 			(
 				$this->getConfig()->get( 'ForceHTTPS' ) ||
 				$request->getSession()->shouldForceHTTPS() ||
-				( $this->getUser()->isLoggedIn() &&
+				( $this->getUser()->isRegistered() &&
 					$this->getUser()->requiresHTTPS() )
 			)
 		) {

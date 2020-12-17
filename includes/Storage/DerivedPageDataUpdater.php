@@ -1585,7 +1585,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 					if ( User::isIP( $shortTitle ) ) {
 						// An anonymous user
 						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
-					} elseif ( $recipient->isLoggedIn() ) {
+					} elseif ( $recipient->isRegistered() ) {
 						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} else {
 						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user" );

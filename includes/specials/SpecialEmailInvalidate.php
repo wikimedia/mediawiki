@@ -83,7 +83,7 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		$user->saveSettings();
 		$this->getOutput()->addWikiMsg( 'confirmemail_invalidated' );
 
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			$this->getOutput()->returnToMain();
 		}
 	}

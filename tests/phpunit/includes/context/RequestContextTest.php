@@ -95,7 +95,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );
 		}
-		$this->assertTrue( $context->getUser()->isLoggedIn(), "Correct context user." );
+		$this->assertTrue( $context->getUser()->isRegistered(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals(
 			'UnitTestContextUser',

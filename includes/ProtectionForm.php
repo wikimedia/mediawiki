@@ -552,8 +552,8 @@ class ProtectionForm {
 							'id' => 'mwProtect-reason', 'maxlength' => $maxlength ] ) .
 					"</td>
 				</tr>";
-			# Disallow watching is user is not logged in
-			if ( $user->isLoggedIn() ) {
+			# Disallow watching is user is not registered
+			if ( $user->isRegistered() ) {
 				$out .= "
 				<tr>
 					<td></td>

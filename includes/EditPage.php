@@ -2501,7 +2501,7 @@ class EditPage implements IEditObject {
 	 */
 	protected function updateWatchlist() {
 		$user = $this->context->getUser();
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			return;
 		}
 
@@ -2771,7 +2771,7 @@ class EditPage implements IEditObject {
 			$ip = User::isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
-			$userExists = ( $user && $user->isLoggedIn() );
+			$userExists = ( $user && $user->isRegistered() );
 			if ( $userExists && $user->isHidden() &&
 				!$this->permManager->userHasRight( $this->context->getUser(), 'hideuser' )
 			) {
@@ -2812,7 +2812,7 @@ class EditPage implements IEditObject {
 			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
 				$this->context->msg( 'helppage' )->inContentLanguage()->text()
 			) );
-			if ( $this->context->getUser()->isLoggedIn() ) {
+			if ( $this->context->getUser()->isRegistered() ) {
 				$out->wrapWikiMsg(
 					// Suppress the external link icon, consider the help url an internal one
 					"<div class=\"mw-newarticletext plainlinks\">\n$1\n</div>",
@@ -4351,7 +4351,7 @@ class EditPage implements IEditObject {
 			];
 		}
 
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$checkboxes = array_merge(
 				$checkboxes,
 				$this->getCheckboxesDefinitionForWatchlist( $checked['watch'] )

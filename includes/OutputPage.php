@@ -2930,7 +2930,7 @@ class OutputPage extends ContextSource {
 				[], // modules; not relevant
 				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
-				$this->getUser()->isLoggedIn() ? $this->getUser()->getName() : null,
+				$this->getUser()->isRegistered() ? $this->getUser()->getName() : null,
 				null, // version; not relevant
 				ResourceLoader::inDebugMode(),
 				null, // only; not relevant
@@ -3341,7 +3341,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 		];
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
@@ -3452,7 +3452,7 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			// Anons have predictable edit tokens
 			return false;
 		}

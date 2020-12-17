@@ -248,7 +248,7 @@ class DoubleRedirectJob extends Job {
 			$username = wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text();
 			self::$user = User::newFromName( $username );
 			# User::newFromName() can return false on a badly configured wiki.
-			if ( self::$user && !self::$user->isLoggedIn() ) {
+			if ( self::$user && !self::$user->isRegistered() ) {
 				self::$user->addToDatabase();
 			}
 		}

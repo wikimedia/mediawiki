@@ -185,10 +185,10 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		$userLatest = $user->getInstanceForUpdate();
 		$userLatest->confirmEmail();
 		$userLatest->saveSettings();
-		$message = $this->getUser()->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
+		$message = $this->getUser()->isRegistered() ? 'confirmemail_loggedin' : 'confirmemail_success';
 		$this->getOutput()->addWikiMsg( $message );
 
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			$title = SpecialPage::getTitleFor( 'Userlogin' );
 			$this->getOutput()->returnToMain( true, $title );
 		}

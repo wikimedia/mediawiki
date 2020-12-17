@@ -398,7 +398,7 @@ class UploadForm extends HTMLForm {
 	 */
 	protected function getOptionsSection() {
 		$user = $this->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$descriptor = [
 				'Watchthis' => [
 					'type' => 'check',

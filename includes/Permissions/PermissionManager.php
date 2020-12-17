@@ -1347,7 +1347,7 @@ class PermissionManager {
 			);
 
 			if (
-				$user->isLoggedIn() &&
+				$user->isRegistered() &&
 				$this->options->get( 'BlockDisablesLogin' ) &&
 				$user->getBlock()
 			) {

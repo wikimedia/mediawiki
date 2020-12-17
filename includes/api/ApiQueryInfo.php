@@ -298,7 +298,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param User $user
 	 */
 	public static function getWatchToken( User $user ) {
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
@@ -316,7 +316,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param User $user
 	 */
 	public static function getOptionsToken( User $user ) {
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
