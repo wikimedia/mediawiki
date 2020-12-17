@@ -1,6 +1,6 @@
 == MediaWiki 1.31.11 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.10 ===
 * Fix undefined $wgRedirectOnLogin.
@@ -15,7 +15,13 @@ THIS IS NOT A RELEASE YET
   would be truncated by the database.
 * (T264536, T233012) SectionProfiler: Do not attempt to use null values as arrays.
 * (T269178) MemcachedClient: Cast Resource to integer.
-* (T268917) Use Xml::element in SpecialUserrights for sanity.
+* (T268917, CVE-2020-35475) SECURITY: Use Xml::element in SpecialUserrights for
+  sanity.
+* (T268938, CVE-2020-35479) SECURITY: BlockLogFormatter can output raw html.
+* (T205908, CVE-2020-35477) SECURITY: Unable to change visibility of log entries
+  when MediaWiki:Mainpage uses Special:MyLanguage.
+* (T120883, CVE-2020-35480) SECURITY: Divergent behavior for contributions and
+  user pages of hidden users and missing users.
 
 == MediaWiki 1.31.10 ==
 
