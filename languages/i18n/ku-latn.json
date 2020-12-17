@@ -1427,7 +1427,7 @@
 	"cantrollback": "Guherto nikare were vegerandin.\nBeşdarê dawî nivîskarê tenê ya vê rûpelê ye.",
 	"alreadyrolled": "Guherandina dawiya [[$1]]\nbi [[User:$2|$2]] ([[User talk:$2|gotûbêj]]) venizivre; kesekî din ew rûpel zîvirandiye an guherandiye.\n\nGuhertoya dawî bi [[User:$3|$3]] ([[User talk:$3|gotûbêj]]).",
 	"editcomment": "Kurtenivîsa guhartinê ev bû: <em>$1</em>.",
-	"revertpage": "Guhartinên [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) hat betal kirin, vegerand guhertoya dawî ya [[User:$1|$1]]",
+	"revertpage": "Guhartinên [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) hatine betalkirin, vegerand guhertoya dawî ya [[User:$1|$1]]",
 	"rollback-success": "Guherandina $1 şondakir; dîsa guharte verzyona $2.",
 	"changecontentmodel-title-label": "Sernavê rûpelê:",
 	"changecontentmodel-reason-label": "Sedem:",

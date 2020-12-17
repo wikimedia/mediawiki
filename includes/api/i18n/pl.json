@@ -872,6 +872,7 @@
 	"apierror-mustbeloggedin-generic": "Musisz być zalogowany.",
 	"apierror-mustbeloggedin-removeauth": "Aby usunąć dane uwierzytelniające, musisz się zalogować.",
 	"apierror-mustbeloggedin": "Musisz się zalogować, aby mieć możliwość $1.",
+	"apierror-noapiwrite": "Edytowanie przez API jest wyłączone na tej wiki.",
 	"apierror-nochanges": "Nie zażądano żadnych zmian.",
 	"apierror-nodeleteablefile": "Nie ma takiej starej wersji pliku.",
 	"apierror-noedit-anon": "Niezarejestrowani użytkownicy nie mogą edytować stron.",

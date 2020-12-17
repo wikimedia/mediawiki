@@ -2397,7 +2397,7 @@
 	"delete-warning-toobig": "Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata {{GRAMMAR:genitive|{{SITENAME}}}} suorituskykyä.",
 	"deleteprotected": "Et voi poistaa tätä sivua, koska se on suojattu.",
 	"deleting-backlinks-warning": "<strong>Varoitus:</strong> Sivulle, jota olet poistamassa, johtaa [[Special:WhatLinksHere/{{FULLPAGENAME}}|linkkejä muilta sivuilta]], taikka sivu on sisällytetty muuhun sivuun.",
-	"deleting-subpages-warning": "<strong>Varoitus:</strong> Sivu jota olet poistamassa on [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|alasivu|$1 alasivua|51=yli 50 alasivua}}]].",
+	"deleting-subpages-warning": "<strong>Varoitus:</strong> Sivulla, jota olet poistamassa on [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|alasivu|$1 alasivua|51=yli 50 alasivua}}]].",
 	"rollback": "palauta aiempaan versioon",
 	"rollback-confirmation-confirm": "Vahvista:",
 	"rollback-confirmation-yes": "Tee palautus",
