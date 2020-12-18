@@ -2325,6 +2325,7 @@
 	"namespace_association": "Povezani imenski prostor",
 	"tooltip-namespace_association": "Označite ovu kućicu da biste uključili i imenski prostor razgovora ili imenski prostor teme koja je povezana s odabranim imenskim prostorom",
 	"blanknamespace": "(Glavni)",
+	"contributions": "Doprinosi {{gender:|suradnika|suradnice|suradnika}}",
 	"tool-link-contributions": "Doprinosi {{GENDER:$1|suradnika|suradnice}}",
 	"contributions-title": "Doprinosi {{GENDER:$1|suradnika|suradnice}} $1",
 	"mycontris": "Doprinosi",

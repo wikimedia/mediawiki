@@ -2613,6 +2613,7 @@
 	"namespace_association": "関連付けられた名前空間も含める",
 	"tooltip-namespace_association": "選択した名前空間に関連付けられたトークページ (逆にトークページの名前空間を選択した場合も同様) の名前空間も含めるには、このボックスにチェックを入れる",
 	"blanknamespace": "（標準）",
+	"contributions": "利用者の投稿記録",
 	"tool-link-contributions": "{{GENDER:$1|利用者}}の投稿記録",
 	"contributions-title": "$1の投稿記録",
 	"mycontris": "投稿記録",

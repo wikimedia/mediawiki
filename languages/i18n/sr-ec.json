@@ -2511,6 +2511,7 @@
 	"namespace_association": "Повезани именски простор",
 	"tooltip-namespace_association": "Означите ово поље да бисте укључили разговор или именски простор теме која је повезана са изабраним именским простором",
 	"blanknamespace": "(главни)",
+	"contributions": "Кориснички доприноси",
 	"tool-link-contributions": "{{GENDER:$1|Доприноси корисника|Доприноси кориснице}}",
 	"contributions-title": "Доприноси {{GENDER:$1|корисника|кориснице}} $1",
 	"mycontris": "Доприноси",

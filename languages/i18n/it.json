@@ -2943,7 +2943,7 @@
 	"import-interwiki-text": "Selezionare un progetto wiki e il titolo della pagina da importare.\nLe date di pubblicazione e i nomi degli autori delle varie versioni saranno conservati.\nTutte le operazioni di importazione da altri wiki sono registrate nel [[Special:Log/import|registro di importazione]].",
 	"import-interwiki-sourcewiki": "Wiki di origine:",
 	"import-interwiki-sourcepage": "Pagina di origine:",
-	"import-interwiki-history": "Copia l'intera cronologia di questa pagina",
+	"import-interwiki-history": "Copia tutte le versioni di questa pagina",
 	"import-interwiki-templates": "Includi tutti i template",
 	"import-interwiki-submit": "Importa",
 	"import-mapping-default": "Importa in destinazione predefinita",

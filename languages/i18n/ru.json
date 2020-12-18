@@ -2648,7 +2648,7 @@
 	"namespace_association": "Связанное пространство",
 	"tooltip-namespace_association": "Установите эту отметку, чтобы также включить пространство имён обсуждения (или предметное), связанное с выбранным пространством имён",
 	"blanknamespace": "(Основное)",
-	"contributions": "Вклад участника",
+	"contributions": "Вклад",
 	"tool-link-contributions": "Вклад {{GENDER:$1|участника|участницы}}",
 	"contributions-title": "Вклад {{GENDER:$1|участника|участницы}} $1",
 	"mycontris": "Вклад",

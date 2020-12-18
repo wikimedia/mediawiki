@@ -284,7 +284,7 @@
 	"sort-descending": "رتب بلهبوط",
 	"sort-ascending": "رتب بطلوع",
 	"nstab-main": "الصفحة",
-	"nstab-user": "صفحة المستخدم",
+	"nstab-user": "{{GENDER:$1|صفحة المستخدم}}",
 	"nstab-media": "صفحة ديال ميديا",
 	"nstab-special": "صفحة خاصة",
 	"nstab-project": "صفحة المشروع",
