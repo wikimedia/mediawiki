@@ -830,7 +830,7 @@ class OutputPage extends ContextSource {
 		// Don't output a compressed blob when using ob_gzhandler;
 		// it's technically against HTTP spec and seems to confuse
 		// Firefox when the response gets split over two packets.
-		wfClearOutputBuffers();
+		wfResetOutputBuffers( false );
 
 		return true;
 	}

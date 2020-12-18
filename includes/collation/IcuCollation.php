@@ -362,7 +362,7 @@ class IcuCollation extends Collation {
 			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 		} else {
 			// FIXME: Is this still used?
-			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			$letters = $this->getPrecompiledData( "first-letters-{$this->locale}.ser" );
 			if ( $letters === false ) {
 				throw new MWException( "MediaWiki does not support ICU locale " .
 					"\"{$this->locale}\"" );
@@ -476,6 +476,26 @@ class IcuCollation extends Collation {
 		unset( $letterMap );
 
 		return $data;
+	}
+
+	/**
+	 * Get an object from the precompiled serialized directory
+	 *
+	 * Replaced use of wfGetPrecompiledData
+	 *
+	 * @param string $name
+	 * @return mixed The variable on success, false on failure
+	 */
+	private function getPrecompiledData( $name ) {
+		global $IP;
+		$file = "$IP/serialized/$name";
+		if ( file_exists( $file ) ) {
+			$blob = file_get_contents( $file );
+			if ( $blob ) {
+				return unserialize( $blob );
+			}
+		}
+		return false;
 	}
 
 	/**
