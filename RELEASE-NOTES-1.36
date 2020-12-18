@@ -437,6 +437,8 @@ ensure you have an updated skin.
 * Html::infoBox() has been deprecated. There's no replacement.
 * BagOStuff::makeKeyInternal() usage outside of BagOStuff has been deprecated.
 * The global function wfAppendToArrayIfNotDefault() has been deprecated.
+* MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
+  incompatibility with PHPUnit 8, was removed.
 * …
 
 === Other changes in 1.36 ===

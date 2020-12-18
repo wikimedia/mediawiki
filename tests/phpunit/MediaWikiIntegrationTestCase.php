@@ -2189,27 +2189,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Asserts the type of the provided value. This can be either
-	 * in internal type such as boolean or integer, or a class or
-	 * interface the value extends or implements.
-	 *
-	 * @deprecated since 1.35 Following the PHPUnit deprecation of assertInternalType
-	 *
-	 * @param string $type
-	 * @param mixed $actual
-	 * @param string $message
-	 */
-	protected function assertType( $type, $actual, $message = '' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( class_exists( $type ) || interface_exists( $type ) ) {
-			$this->assertInstanceOf( $type, $actual, $message );
-		} else {
-			// phpcs:ignore MediaWiki.Usage.PHPUnitDeprecatedMethods.AssertInternalTypeGeneric
-			$this->assertInternalType( $type, $actual, $message );
-		}
-	}
-
-	/**
 	 * Returns true if the given namespace defaults to Wikitext
 	 * according to $wgNamespaceContentModels
 	 *
