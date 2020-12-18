@@ -8,6 +8,8 @@ pipelines:
           image:
             tags: [dev]
   wmf-publish:
+    blubberfile: blubber.yaml
+    stages:
       - name: build
         build:
           variant: production
