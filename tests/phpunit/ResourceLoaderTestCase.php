@@ -38,13 +38,13 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 		];
 		$resourceLoader = $rl ?: new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$request = new FauxRequest( [
-				'debug' => $options['debug'],
-				'lang' => $options['lang'],
-				'modules' => $options['modules'],
-				'only' => $options['only'],
-				'safemode' => $options['safemode'],
-				'skin' => $options['skin'],
-				'target' => 'phpunit',
+			'debug' => $options['debug'],
+			'lang' => $options['lang'],
+			'modules' => $options['modules'],
+			'only' => $options['only'],
+			'safemode' => $options['safemode'],
+			'skin' => $options['skin'],
+			'target' => 'phpunit',
 		] );
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->setConstructorArgs( [ $resourceLoader, $request ] )
