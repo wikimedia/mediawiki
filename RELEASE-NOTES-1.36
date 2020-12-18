@@ -345,6 +345,8 @@ because of Phabricator reports.
 * The User class, which was marked as @newable in 1.35, is no longer newable,
   meaning that it is no longer safe to manually call the constructor via
   `new User`. Instead, use the UserFactory service.
+* The confusingly-named User->isLoggedIn() method has been deprecated in favour
+  of the method it wraps, User->isRegistered().
 * Use of the `preprocessor=Preprocessor_DOM` option in parser test files has
   been deprecated.  Preprocessor_DOM was removed in 1.35.
 * ParserOptions::setTidy() has been deprecated.  It has had no effect since
