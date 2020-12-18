@@ -220,6 +220,8 @@ because of Phabricator reports.
   the internal object, use ObjectCache::getLocalClusterInstance instead.
 * CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
   has been removed.
+* GenderCache::singleton(), which was deprecated in 1.28 and hard-deprecated
+  in 1.35, has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
 * Parser::setFunctionTagHook(), deprecated in 1.35, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
