@@ -146,6 +146,7 @@ class FileTest extends MediaWikiMediaTestCase {
 			->setMethods( [ 'fileExists', 'getLocalReference' ] )
 			->getMock();
 
+		$tempDir = wfTempDir();
 		$fsFile = new FSFile( 'fsFilePath' );
 
 		$repoMock->expects( $this->any() )
@@ -185,6 +186,9 @@ class FileTest extends MediaWikiMediaTestCase {
 		$reflection_property->setValue( $fileMock, $handlerMock );
 
 		if ( $data['tmpBucketedThumbCache'] !== null ) {
+			foreach ( $data['tmpBucketedThumbCache'] as $bucket => &$tmpBucketed ) {
+				$tmpBucketed = str_replace( '/tmp', $tempDir, $tmpBucketed );
+			}
 			$reflection_property = $reflection->getProperty( 'tmpBucketedThumbCache' );
 			$reflection_property->setAccessible( true );
 			$reflection_property->setValue( $fileMock, $data['tmpBucketedThumbCache'] );
@@ -193,7 +197,11 @@ class FileTest extends MediaWikiMediaTestCase {
 		$result = $fileMock->getThumbnailSource(
 			[ 'physicalWidth' => $data['physicalWidth'] ] );
 
-		$this->assertEquals( $data['expectedPath'], $result['path'], $data['message'] );
+		$this->assertEquals(
+			str_replace( '/tmp', $tempDir, $data['expectedPath'] ),
+			$result['path'],
+			$data['message']
+		);
 	}
 
 	public function getThumbnailSourceProvider() {

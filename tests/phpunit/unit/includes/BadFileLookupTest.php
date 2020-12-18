@@ -25,17 +25,16 @@ WIKITEXT;
 	/** Shared with GlobalWithDBTest */
 	public static function badImageHook( $name, &$bad ) {
 		switch ( $name ) {
-		case 'Hook_bad.jpg':
-		case 'Redirect_to_hook_good.jpg':
-			$bad = true;
-			return false;
+			case 'Hook_bad.jpg':
+			case 'Redirect_to_hook_good.jpg':
+				$bad = true;
+				return false;
 
-		case 'Hook_good.jpg':
-		case 'Redirect_to_hook_bad.jpg':
-			$bad = false;
-			return false;
+			case 'Hook_good.jpg':
+			case 'Redirect_to_hook_bad.jpg':
+				$bad = false;
+				return false;
 		}
-
 		return true;
 	}
 
@@ -47,16 +46,16 @@ WIKITEXT;
 				$mockFile->expects( $this->once() )->method( 'getTitle' )
 					->will( $this->returnCallback( function () use ( $name ) {
 						switch ( $name ) {
-						case 'Redirect to bad.jpg':
-							return new TitleValue( NS_FILE, 'Bad.jpg' );
-						case 'Redirect_to_good.jpg':
-							return new TitleValue( NS_FILE, 'Good.jpg' );
-						case 'Redirect to hook bad.jpg':
-							return new TitleValue( NS_FILE, 'Hook_bad.jpg' );
-						case 'Redirect to hook good.jpg':
-							return new TitleValue( NS_FILE, 'Hook_good.jpg' );
-						default:
-							return new TitleValue( NS_FILE, $name );
+							case 'Redirect to bad.jpg':
+								return new TitleValue( NS_FILE, 'Bad.jpg' );
+							case 'Redirect_to_good.jpg':
+								return new TitleValue( NS_FILE, 'Good.jpg' );
+							case 'Redirect to hook bad.jpg':
+								return new TitleValue( NS_FILE, 'Hook_bad.jpg' );
+							case 'Redirect to hook good.jpg':
+								return new TitleValue( NS_FILE, 'Hook_good.jpg' );
+							default:
+								return new TitleValue( NS_FILE, $name );
 						}
 					} ) );
 				$mockFile->expects( $this->never() )->method( $this->anythingBut( 'getTitle' ) );
@@ -89,14 +88,14 @@ WIKITEXT;
 			}
 			list( $ns, $text ) = explode( ':', $text );
 			switch ( $ns ) {
-			case 'Image':
-			case 'File':
-				$ns = NS_FILE;
-				break;
+				case 'Image':
+				case 'File':
+					$ns = NS_FILE;
+					break;
 
-			case 'User':
-				$ns = NS_USER;
-				break;
+				case 'User':
+					$ns = NS_USER;
+					break;
 			}
 			return new TitleValue( $ns, $text );
 		} ) );

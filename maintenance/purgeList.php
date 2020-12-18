@@ -47,7 +47,7 @@ class PurgeList extends Maintenance {
 			. "To query the database for input, use --namespace or --all-namespaces instead."
 		);
 		$this->addOption( 'namespace', 'Purge pages with this namespace number', false, true );
-		$this->addOption( 'all-namespace', 'Purge pages in all namespaces', false, false );
+		$this->addOption( 'all-namespaces', 'Purge pages in all namespaces', false, false );
 		$this->addOption( 'db-touch', 'Update the page.page_touched database field', false, false );
 		$this->addOption( 'delay', 'Number of seconds to delay between each purge', false, true );
 		$this->addOption( 'verbose', 'Show more output', false, false, 'v' );

@@ -69,7 +69,8 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		$expiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		$expiry = $this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName );
+
 		// Even though we're never unwatching here, use doWatchOrUnwatch() because it also checks for changed expiry.
 		return self::doWatchOrUnwatch( true, $this->getTitle(), $this->getUser(), $expiry );
 	}
@@ -125,25 +126,54 @@ class WatchAction extends FormAction {
 	 * @return mixed[] With keys `options` (string[]) and `default` (string).
 	 */
 	public static function getExpiryOptions( MessageLocalizer $msgLocalizer, $watchedItem ) {
-		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
-		$expiryOptionsMsgText = $expiryOptionsMsg->text();
-		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsgText );
-		$default = 'infinite';
+		$expiryOptions = self::getExpiryOptionsFromMessage( $msgLocalizer );
+		$default = in_array( 'infinite', $expiryOptions )
+			? 'infinite'
+			: current( $expiryOptions );
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() ) {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
-			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
+			$default = $watchedItem->getExpiry( TS_ISO_8601 );
 			$daysLeft = $watchedItem->getExpiryInDaysText( $msgLocalizer, true );
-			$expiryOptions = array_merge(
-				[ $daysLeft => $expiry->getTimestamp( TS_ISO_8601 ) ],
-				$expiryOptions
-			);
-			$default = $expiry->getTimestamp( TS_ISO_8601 );
+			$expiryOptions = array_merge( [ $daysLeft => $default ], $expiryOptions );
 		}
 		return [
 			'options' => $expiryOptions,
 			'default' => $default,
 		];
+	}
+
+	/**
+	 * Parse expiry options message. Fallback to english options
+	 * if translated options are invalid or broken
+	 *
+	 * @param MessageLocalizer $msgLocalizer
+	 * @param string|null $lang
+	 * @return string[]
+	 */
+	private static function getExpiryOptionsFromMessage(
+		MessageLocalizer $msgLocalizer, ?string $lang = null
+	) : array {
+		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
+		$optionsText = !$lang ? $expiryOptionsMsg->text() : $expiryOptionsMsg->inLanguage( $lang )->text();
+		$options = XmlSelect::parseOptionsMessage(
+			$optionsText
+		);
+
+		$expiryOptions = [];
+		foreach ( $options as $label => $value ) {
+			if ( strtotime( $value ) || wfIsInfinity( $value ) ) {
+				$expiryOptions[$label] = $value;
+			}
+		}
+
+		// If message options is invalid try to recover by returning
+		// english options (T267611)
+		if ( !$expiryOptions && $expiryOptionsMsg->getLanguage()->getCode() !== 'en' ) {
+			return self::getExpiryOptionsFromMessage( $msgLocalizer, 'en' );
+		}
+
+		return $expiryOptions;
 	}
 
 	protected function alterForm( HTMLForm $form ) {
@@ -173,7 +203,7 @@ class WatchAction extends FormAction {
 		if ( $submittedExpiry ) {
 			// We can't use $this->watcheditem to get the expiry because it's not been saved at this
 			// point in the request and so its values are those from before saving.
-			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry );
+			$expiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS_ISO_8601 );
 
 			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
 			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );
@@ -225,9 +255,11 @@ class WatchAction extends FormAction {
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
+			$oldWatchPeriod = $oldWatchedItem->getExpiry() === null
+				? 'infinity'
+				: $oldWatchedItem->getExpiry();
 			$changingWatchStatus = $changingWatchStatus ||
-				ExpiryDef::normalizeExpiry( $oldWatchedItem->getExpiry() ) !==
-				ExpiryDef::normalizeExpiry( $expiry );
+				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
 		}
 
 		if ( $changingWatchStatus ) {

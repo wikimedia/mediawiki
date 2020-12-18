@@ -76,6 +76,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 		while ( true ) {
 			$where = [];
 			foreach ( $needComments as $need => $dummy ) {
+				$need = (string)$need; // T268887
 				$where[] = $dbw->makeList(
 					[
 						'comment_hash' => CommentStore::hash( $need, null ),

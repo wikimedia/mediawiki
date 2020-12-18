@@ -291,6 +291,8 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$newestRevertedRevIndex,
 		$originalRevIndex
 	) {
+		$this->markTestSkippedIfNoDiff3();
+
 		$context = RequestContext::getMain();
 		$revisionIds = $this->setUpPageForTesting( $revisions );
 		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
@@ -395,6 +397,8 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$newestRevertedRevIndex,
 		$originalRevIndex
 	) {
+		$this->markTestSkippedIfNoDiff3();
+
 		$revisionIds = $this->setUpPageForTesting( $revisions );
 		$context = RequestContext::getMain();
 		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );

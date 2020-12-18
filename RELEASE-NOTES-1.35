@@ -1,5 +1,106 @@
 = MediaWiki 1.35 =
 
+MediaWiki 1.35 should mostly work on the recently released PHP 8.0, however
+it is not currently actively supported. Testing (on a development wiki!) is
+appreciated, and bugs with PHP 8.0 on MediaWiki 1.35 will be accepted.
+
+It is anticipated that in a later MediaWiki 1.35 point release, we can
+declare 1.35 as supporting PHP 8.0.
+
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+
+== MediaWiki 1.35.1 ==
+
+This is a maintenance release of the MediaWiki 1.35 branch.
+
+While normally running update.php isn't required for point releases,
+it is recommended to run it for 1.35.1 so that sites.site_language is
+updated to take 35 characters.
+
+Watchlist Expiry is no longer considered experimental, but is off by default.
+To enable it, set $wgWatchlistExpiry = true; in your LocalSettings.php.
+
+=== Changes since MediaWiki 1.35.0 ===
+* (T263929) purgeList.php Fix all-namespaces option to match one used in code.
+* (T248719) ParserCache::get - fix wfDeprecated call.
+* (T261430) WatchlistExpiryWidget: Move focus to expiry dropdown after hitting
+  Tab.
+* Preload mediawiki.watchstar.widgets before api request.
+* (T261030) ApiEditPage: Show existing watchlist expiry if status is not being
+  changed.
+* (T264502) Fix PHP 8 compat with strcspn() $length parameter exceeding string.
+* (T248925) Remove final modifier on private function.
+* (T264683) Remove ipb_anon_only from ipb_address_unique index addition.
+* (T261415) Add days left messages to changes-lists' clock icons.
+* Fix order of wfDeprecated parameters in ExternalStoreDB::getSlave.
+* (T261260) Preload class used in HeaderCallback.
+* (T260868, T260009) Normalize WatchedItem expiry field.
+* (T264683) Remove doTable check from (Mysql|Sqlite)Updater::indexHasFields.
+* (T264534) ApiPageSet: Avoid infinite loop when merging redirects.
+* (T196906) Empty Monolog loggers are now real blackholes.
+* (T258649) WatchAction: avoid UPDATE when old and new watch period is
+  indefinite.
+* Parser: Adjust typehint to show that getTitle can return null.
+* (T263592) media: Fix case of FlashPixVersion in
+  FormatMetadata::makeFormattedData().
+* (T265223) BaseTemplate: Guard against passing zero arg to array_merge().
+* (T264965) Fix base path handling for MessagePosterModule registration.
+* (T252183) Fix Database::getTempTableWrites for multi table DDLs.
+* (T182546) Fix switch/case indentation per mediawiki coding conventions.
+* Flip Yoda conditionals.
+* (T263213) Move SkinTemplate::getFooterLinks() to Skin.
+* build: Updating mediawiki/mediawiki-codesniffer to 33.0.0.
+* (T267105) Make ImageBuilder::checkMissingImage public.
+* Updating guzzlehttp/guzzle (6.5.4 => 6.5.5).
+* (T266681) Support new style hook registration on install and update.
+* (T266980) Fix unsetting of copyright icon in FooterIcons.
+* upload.js: Don't assume that warnings array will include 'code' key.
+* upload.js:  Fix typo in upload API.
+* (T264333, T190988, T266903) Pass along ignorewarnings param to all
+  individual chunks being uploaded.
+* (T267558) importTextFiles.php: Replace deprecated WikiRevision:setText().
+* (T266418) composer.json: add requirement for composer-plugin-api ^1.1.
+* (T261431) Add ARIA attributes to watchlink and its notification.
+* (T258877) Change invalid 'Content-Encoding: none' header.
+* Fix trailing ; in patch-sites-site_language-35.sql.
+* (T248852) wfAssembleUrl: Handle empty query field in URL bits.
+* (T268846) Updating wikimedia/testing-access-wrapper (1.0.0 => 2.0.0).
+* (T268887) migrateComments: Cast array keys back to string before passing
+  to the DB.
+* (T266619) Introduce new $wgThumbPath config.
+* (T269178) MemcachedClient: Cast Resource to integer.
+* (T263925) Use the old HookContainer to set up the post-reset services.
+* Change "site cache" to just "cache" in the right-purge message.
+* [UploadedFileStreamTest] Skip test with chmod.
+* (T269710) Updating composer/semver (1.5.1 => 1.7.2).
+* (T269710) Updating mediawiki/mediawiki-codesniffer (33.0.0 => 34.0.0).
+* (T260631, T260633), BotPassword::save() now returns a Status object for the
+  result rather than a bool. The length of the bot password grants and
+  restriction fields are now validated, and an error will be thrown if it
+  would be truncated by the database.
+* (T265778) Fix English/*nix specific error messages in FSFileBackend.
+* (T267543) Split dropping of image.img_user_timestamp.
+* [FileTest] Do not assume /tmp exists on windows.
+* Clean up temp files correctly after unit tests.
+* Skip undo related phpunit tests when diff3 is missing.
+* (T269964) rdbms: Remove outer parentheses in insert query for Postgres.
+* (T263911) In MWExceptionHandler::report(), catch all throwables.
+* (T268894, CVE-2020-35474) SECURITY: Use Html::element in
+  ChangeListSpecialPage for sanity.
+* (T268917) Use Xml::element in SpecialUserrights for sanity.
+* (T268938, CVE-2020-35478, CVE-2020-35479) SECURITY: Pass escaped html
+  to LogFormatter::makePageLink for sanity.
+* (T268938) Fixed mixed escaping in Language::translateBlockExpiry.
+* (T263911) UserOptionsManager: don't differentiate anons caches.
+* (T261260) HeaderCallback: pre-cache request ID.
+* Parsoid updated to v0.12.1.
+* (T205908, CVE-2020-35477) SECURITY: Unable to change visibility of log
+  entries when MediaWiki:Mainpage uses Special:MyLanguage.
+* (T120883, CVE-2020-35480) SECURITY: Divergent behavior for contributions
+  and user pages of hidden users and missing users.
+* (T270145) Fix condition that can lead to using APCOND_BLOCKED in
+  $wgAutopromote to cause an OOM in PHP.
+
 == MediaWiki 1.35.0 ==
 
 === Changes since MediaWiki 1.35.0-rc.3 ===
@@ -386,7 +487,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
-* Added wikimedia/parsoid 0.12.0.
+* Added wikimedia/parsoid 0.12.1.
 * Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
@@ -409,11 +510,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated pear/net_smtp from 1.8.1 from to 1.9.1.
 * Updated psr/log from 1.0.2 to 1.1.3.
 * Updated jquery.i18n from 1.0.5 to 1.0.7.
-* Updated guzzlehttp/guzzle from 6.3.3 to 6.5.4.
+* Updated guzzlehttp/guzzle from 6.3.3 to 6.5.5.
 * Updated wikimedia/xmp-reader from 0.6.3 to 0.7.0.
   Fixes error log spam with too-large XMP data, and adds support for GPano tags.
 * Updated wikimedia/base-convert from v2.0.0 to v2.0.1.
-* Updated composer/semver from 1.5.0 to 1.5.1.
+* Updated composer/semver from 1.5.0 to 1.7.2.
 * Updated wikimedia/remex-html from 2.1.0 to 2.2.0.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
@@ -425,10 +526,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated php-parallel-lint/php-parallel-lint from v0.9.2 to v1.2.0.
 * Updated psy/psysh from 0.9.9 to 0.10.4.
 * Updated monolog/monolog from 1.24.0 to 1.25.2.
-* Upgrade mediawiki-codesniffer from 28.0.0 to 30.0.0.
+* Upgrade mediawiki-codesniffer from 28.0.0 to 34.0.0.
 * Updated composer/spdx-licenses from 1.5.1 to 1.5.3.
 * Updated monolog/monolog from 1.25.2 to 1.25.3.
 * Updated qunit from 2.9.1 to 2.10.0.
+* Updating wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
 
 ==== Removed external libraries ====
 * phpunit/php-invoker (dev-only).
@@ -505,6 +607,7 @@ because of Phabricator reports.
 * (T248299) Added language support for Inari Sami (smn).
 * (T251369) Added language support for Ladin (lld).
 * (T251369) Added language support for Seediq (trv), also known as Taroko.
+* (T254854) Added language support for Southern Altay (alt).
 
 === Breaking changes in 1.35 ===
 * MediaWiki no longer supports PHP 7.2; use PHP 7.3.19+ (T228346, T257879).

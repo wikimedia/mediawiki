@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Hook\MediaWikiServicesHook;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Services\DestructibleService;
 use Wikimedia\Services\SalvageableService;
@@ -12,6 +15,8 @@ use Wikimedia\Services\ServiceDisabledException;
  */
 class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	private $deprecatedServices = [];
+
+	public static $mockServiceWiring = [];
 
 	/**
 	 * @return Config
@@ -38,6 +43,12 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$instance->loadWiringFiles( $wiringFiles );
 
 		return $instance;
+	}
+
+	private function newConfigWithMockWiring() {
+		$config = new HashConfig;
+		$config->set( 'ServiceWiringFiles', [ __DIR__ . '/MockServiceWiring.php' ] );
+		return $config;
 	}
 
 	public function testGetInstance() {
@@ -131,6 +142,48 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $theServices, $newServices );
 		$this->assertNotSame( $theServices, $oldServices );
 
+		MediaWikiServices::forceGlobalInstance( $oldServices );
+	}
+
+	public function testResetGlobalInstance_T263925() {
+		$newServices = $this->newMediaWikiServices();
+		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
+		self::$mockServiceWiring = [
+			'HookContainer' => function ( MediaWikiServices $services ) {
+				return new HookContainer(
+					new StaticHookRegistry(
+						[],
+						[
+							'MediaWikiServices' => [
+								[
+									'handler' => [
+										'name' => 'test',
+										'factory' => function () {
+											return new class implements MediaWikiServicesHook {
+												public function onMediaWikiServices( $services ) {
+												}
+											};
+										}
+									],
+									'deprecated' => false,
+									'extensionPath' => 'path'
+								],
+							]
+						],
+						[]
+					),
+					$this->createSimpleObjectFactory()
+				);
+			}
+		];
+		$newServices->redefineService( 'HookContainer',
+			self::$mockServiceWiring['HookContainer'] );
+
+		$newServices->getHookContainer()->run( 'MediaWikiServices', [ $newServices ] );
+		MediaWikiServices::resetGlobalInstance( $this->newConfigWithMockWiring(), 'quick' );
+		$this->assertTrue( true, 'expected no exception from above' );
+
+		self::$mockServiceWiring = [];
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 	}
 

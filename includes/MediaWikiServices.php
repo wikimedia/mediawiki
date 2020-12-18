@@ -277,7 +277,7 @@ class MediaWikiServices extends ServiceContainer {
 		self::$instance = self::newInstance( $bootstrapConfig, 'load' );
 
 		// Provides a traditional hook point to allow extensions to configure services.
-		$runner = new HookRunner( self::$instance->getHookContainer() );
+		$runner = new HookRunner( $oldInstance->getHookContainer() );
 		$runner->onMediaWikiServices( self::$instance );
 
 		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );

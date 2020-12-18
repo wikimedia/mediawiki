@@ -343,7 +343,9 @@ abstract class DatabaseInstaller {
 		}
 
 		// Now run updates to create tables for old extensions
-		DatabaseUpdater::newForDB( $this->db )->doUpdates( [ 'extensions' ] );
+		$updater = DatabaseUpdater::newForDB( $this->db );
+		$updater->setAutoExtensionHookContainer( $this->parent->getAutoExtensionHookContainer() );
+		$updater->doUpdates( [ 'extensions' ] );
 
 		return $status;
 	}

@@ -208,6 +208,8 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	public function testInterveningEdit() {
+		$this->markTestSkippedIfNoDiff3();
+
 		$name = ucfirst( __FUNCTION__ );
 		$oldRevRecord = $this->editPage( $name, "A\n\nB" )->value['revision-record'];
 		$this->editPage( $name, "A\n\nC" );

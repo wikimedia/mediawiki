@@ -754,6 +754,8 @@ class ApiEditPageTest extends ApiTestCase {
 	 * This can happen if importing an old revision.
 	 */
 	public function testUndoWithSwappedRevisions() {
+		$this->markTestSkippedIfNoDiff3();
+
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$titleObj = Title::newFromText( $name );
 
@@ -818,6 +820,8 @@ class ApiEditPageTest extends ApiTestCase {
 	 * meaning, so that the two are effectively interchangeable.
 	 */
 	public function testReversedUndoAfter() {
+		$this->markTestSkippedIfNoDiff3();
+
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		$this->editPage( $name, '0' );

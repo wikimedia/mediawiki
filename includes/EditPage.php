@@ -1025,12 +1025,13 @@ class EditPage implements IEditObject {
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
-			if ( $this->watchlistExpiryEnabled ) {
+			$expiry = $request->getText( 'wpWatchlistExpiry' );
+			if ( $this->watchlistExpiryEnabled && $expiry !== '' ) {
 				// This parsing of the user-posted expiry is done for both preview and saving. This
 				// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
 				// only works because the unnormalized value is retrieved again below in
 				// getCheckboxesDefinitionForWatchlist().
-				$expiry = ExpiryDef::normalizeExpiry( $request->getText( 'wpWatchlistExpiry' ) );
+				$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
 				if ( $expiry !== false ) {
 					$this->watchlistExpiry = $expiry;
 				}
@@ -2788,7 +2789,15 @@ ERROR;
 			$user = User::newFromName( $username, false /* allow IP users */ );
 			$ip = User::isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
-			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
+
+			$userExists = ( $user && $user->isLoggedIn() );
+			if ( $userExists && $user->isHidden() && !$this->permManager->userHasRight( $this->context->getUser(), 'hideuser' ) ) {
+				// If the user exists, but is hidden, and the viewer cannot see hidden
+				// users, pretend like they don't exist at all. See T120883
+				$userExists = false;
+			}
+
+			if ( !$userExists && !$ip ) { # User does not exist
 				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
 			} elseif (

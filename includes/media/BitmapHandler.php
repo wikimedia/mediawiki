@@ -38,7 +38,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 *
 	 * @param string $dstPath
 	 * @param bool $checkDstPath
-	 * @return string|Callable One of client, im, custom, gd, imext or an array( object, method )
+	 * @return string|callable One of client, im, custom, gd, imext or an array( object, method )
 	 */
 	protected function getScalerType( $dstPath, $checkDstPath = true ) {
 		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;

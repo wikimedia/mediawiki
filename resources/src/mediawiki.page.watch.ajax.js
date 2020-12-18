@@ -186,6 +186,12 @@
 	 * @param {boolean} callback.isWatched Whether the article is now watched
 	 */
 	function watchstar( $links, title, callback ) {
+		// Set up the ARIA connection between the watch link and the notification.
+		// This is set outside the click handler so that it's already present when the user clicks.
+		var notificationId = 'mw-watchlink-notification';
+		$links.attr( 'aria-controls', notificationId );
+
+		// Add click handler.
 		$links.on( 'click', function ( e ) {
 			var mwTitle, action, api, $link;
 
@@ -211,8 +217,13 @@
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
 
-			api = new mw.Api();
+			// Preload watchlist expiry widget so it runs in parallel
+			// with the api call
+			if ( isWatchlistExpiryEnabled ) {
+				mw.loader.load( 'mediawiki.watchstar.widgets' );
+			}
 
+			api = new mw.Api();
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
 					var message,
@@ -233,7 +244,7 @@
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
-						mw.loader.using( 'mediawiki.watchstar.widgets' ).done( function ( require ) {
+						mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
@@ -255,6 +266,7 @@
 
 							mw.notify( watchlistPopup.$element, {
 								tag: 'watch-self',
+								id: notificationId,
 								autoHideSeconds: 'short'
 							} );
 
@@ -266,7 +278,8 @@
 						// * removedwatchtext-talk
 						// * removedwatchtext
 						mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-							tag: 'watch-self'
+							tag: 'watch-self',
+							id: notificationId
 						} );
 					}
 
@@ -286,7 +299,8 @@
 					// Report to user about the error
 					mw.notify( $msg, {
 						tag: 'watch-self',
-						type: 'error'
+						type: 'error',
+						id: notificationId
 					} );
 				} );
 		} );

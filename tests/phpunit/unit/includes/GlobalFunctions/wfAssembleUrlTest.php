@@ -67,9 +67,9 @@ class WfAssembleUrlTest extends MediaWikiUnitTestCase {
 		$cases = [];
 		foreach ( $schemes as $scheme => $schemeParts ) {
 			foreach ( $hosts as $host => $hostParts ) {
-				foreach ( [ '', '/path' ] as $path ) {
-					foreach ( [ '', 'query' ] as $query ) {
-						foreach ( [ '', 'fragment' ] as $fragment ) {
+				foreach ( [ '', '/', '/0', '/path' ] as $path ) {
+					foreach ( [ '', '0', 'query' ] as $query ) {
+						foreach ( [ '', '0', 'fragment' ] as $fragment ) {
 							$parts = array_merge(
 								$schemeParts,
 								$hostParts
@@ -78,14 +78,14 @@ class WfAssembleUrlTest extends MediaWikiUnitTestCase {
 								$host .
 								$path;
 
-							if ( $path ) {
+							if ( $path !== '' ) {
 								$parts['path'] = $path;
 							}
-							if ( $query ) {
+							if ( $query !== '' ) {
 								$parts['query'] = $query;
 								$url .= '?' . $query;
 							}
-							if ( $fragment ) {
+							if ( $fragment !== '' ) {
 								$parts['fragment'] = $fragment;
 								$url .= '#' . $fragment;
 							}
@@ -105,6 +105,22 @@ class WfAssembleUrlTest extends MediaWikiUnitTestCase {
 		$cases[] = [
 			wfParseUrl( $complexURL ),
 			$complexURL,
+		];
+
+		// Account for parse_url() on PHP >= 8 returning an empty query field
+		// for URLs ending with '?' such as "http://url.with.empty.query/foo?"
+		// (T268852)
+		$urlWithEmptyQuery = [
+			'scheme' => 'http',
+			'delimiter' => '://',
+			'host' => 'url.with.empty.query',
+			'path' => '/foo',
+			'query' => '',
+		];
+
+		$cases[] = [
+			$urlWithEmptyQuery,
+			'http://url.with.empty.query/foo'
 		];
 
 		return $cases;

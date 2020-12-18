@@ -36,6 +36,18 @@ class BotPassword implements IDBAccessObject {
 	 */
 	public const PASSWORD_MINLENGTH = 32;
 
+	/**
+	 * Maximum length of the json representation of restrictions
+	 * @since 1.35.1
+	 */
+	public const RESTRICTIONS_MAXLENGTH = 65535;
+
+	/**
+	 * Maximum length of the json representation of grants
+	 * @since 1.35.1
+	 */
+	public const GRANTS_MAXLENGTH = 65535;
+
 	/** @var bool */
 	private $isSaved;
 
@@ -277,17 +289,44 @@ class BotPassword implements IDBAccessObject {
 	 * Save the BotPassword to the database
 	 * @param string $operation 'update' or 'insert'
 	 * @param Password|null $password Password to set.
-	 * @return bool Success
+	 * @return Status
+	 * @throws UnexpectedValueException
 	 */
 	public function save( $operation, Password $password = null ) {
+		// Ensure operation is valid
+		if ( $operation !== 'insert' && $operation !== 'update' ) {
+			throw new UnexpectedValueException(
+				"Expected 'insert' or 'update'; got '{$operation}'."
+			);
+		}
+
 		$conds = [
 			'bp_user' => $this->centralId,
 			'bp_app_id' => $this->appId,
 		];
+
+		$res = Status::newGood();
+
+		$restrictions = $this->restrictions->toJson();
+
+		if ( strlen( $restrictions ) > self::RESTRICTIONS_MAXLENGTH ) {
+			$res->fatal( 'botpasswords-toolong-restrictions' );
+		}
+
+		$grants = FormatJson::encode( $this->grants );
+
+		if ( strlen( $grants ) > self::GRANTS_MAXLENGTH ) {
+			$res->fatal( 'botpasswords-toolong-grants' );
+		}
+
+		if ( !$res->isGood() ) {
+			return $res;
+		}
+
 		$fields = [
 			'bp_token' => MWCryptRand::generateHex( User::TOKEN_LENGTH ),
-			'bp_restrictions' => $this->restrictions->toJson(),
-			'bp_grants' => FormatJson::encode( $this->grants ),
+			'bp_restrictions' => $restrictions,
+			'bp_grants' => $grants,
 		];
 
 		if ( $password !== null ) {
@@ -297,24 +336,23 @@ class BotPassword implements IDBAccessObject {
 		}
 
 		$dbw = self::getDB( DB_MASTER );
-		switch ( $operation ) {
-			case 'insert':
-				$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
-				break;
 
-			case 'update':
-				$dbw->update( 'bot_passwords', $fields, $conds, __METHOD__ );
-				break;
-
-			default:
-				return false;
+		if ( $operation === 'insert' ) {
+			$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
+		} else {
+			// Must be update, already checked above
+			$dbw->update( 'bot_passwords', $fields, $conds, __METHOD__ );
 		}
 		$ok = (bool)$dbw->affectedRows();
 		if ( $ok ) {
 			$this->token = $dbw->selectField( 'bot_passwords', 'bp_token', $conds, __METHOD__ );
 			$this->isSaved = true;
+
+			return $res;
 		}
-		return $ok;
+
+		// Messages: botpasswords-insert-failed, botpasswords-update-failed
+		return Status::newFatal( "botpasswords-{$operation}-failed", $this->appId );
 	}
 
 	/**

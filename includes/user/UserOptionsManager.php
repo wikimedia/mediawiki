@@ -576,12 +576,12 @@ class UserOptionsManager extends UserOptionsLookup {
 	}
 
 	/**
-	 * Gets a unique key for various caches.
+	 * Gets a key for various caches.
 	 * @param UserIdentity $user
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+		return $user->isRegistered() ? "u:{$user->getId()}" : 'anon';
 	}
 
 	/**

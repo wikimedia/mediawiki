@@ -960,7 +960,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$storeRecord = $store->newRevisionFromRowAndSlots(
 			$row,
 			iterator_to_array( $slotRows ),
-			[],
+			0,
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
@@ -995,7 +995,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		);
 		$storeRecord = $store->newRevisionFromRow(
 			$row,
-			[],
+			0,
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
@@ -1020,7 +1020,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
@@ -1046,7 +1046,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
@@ -1074,7 +1074,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
@@ -2016,7 +2016,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle()
 		);
 
@@ -2036,7 +2036,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		// and regrab the user name
 		$recordAfter = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle(),
 			true
 		);
@@ -2065,7 +2065,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle()
 		);
 
@@ -2081,7 +2081,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		// and regrab the deleted bitmask
 		$recordAfter = $store->newRevisionFromRow(
 			$this->revisionRecordToRow( $revRecord ),
-			[],
+			0,
 			$page->getTitle(),
 			true
 		);
