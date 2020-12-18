@@ -621,6 +621,29 @@ class ParserTestRunner {
 				'iw_url' => 'http://wikisource.org/wiki/$1',
 				'iw_local' => 1,
 			],
+			// Additions from Parsoid
+			[
+				'iw_prefix' => 'en',
+				'iw_url' => 'http://en.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'stats',
+				'iw_url' => 'https://stats.wikimedia.org/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'gerrit',
+				'iw_url' => 'https://gerrit.wikimedia.org/$1',
+				'iw_local' => 1,
+			],
+			// Deliberately missing a $1 in the URL to exercise a common
+			// misconfiguration.
+			[
+				'iw_prefix' => 'wikinvest',
+				'iw_url' => 'https://meta.wikimedia.org/wiki/Interwiki_map/discontinued#Wikinvest',
+				'iw_local' => 1,
+			],
 		];
 		// When running from parserTests.php, database setup happens *after*
 		// interwiki setup, and that changes the wiki id.  In order to avoid
