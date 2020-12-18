@@ -2,6 +2,7 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Message\DataMessageValue;
@@ -26,31 +27,41 @@ class UserDefTest extends TypeDefTestCase {
 		);
 	}
 
-	private $wgHooks = null;
+	private $wgInterwikiCache = null;
 
 	protected function setUp(): void {
-		global $wgHooks;
+		global $wgInterwikiCache;
 
 		parent::setUp();
 
 		// We don't have MediaWikiIntegrationTestCase's methods available, so we have to do it ourself.
-		$this->wgHooks = $wgHooks;
-		$wgHooks['InterwikiLoadPrefix'][] = function ( $prefix, &$iwdata ) {
-			if ( $prefix === 'interwiki' ) {
-				$iwdata = [
-					'iw_url' => 'http://example.com/',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				];
-				return false;
-			}
-		};
+		$this->wgInterwikiCache = $wgInterwikiCache;
+		$wgInterwikiCache = ClassicInterwikiLookup::buildCdbHash( [
+			[
+				'iw_prefix' => 'interwiki',
+				'iw_url' => 'http://example.com/',
+				'iw_local' => 0,
+				'iw_trans' => 0,
+			],
+		] );
+		// UserFactory holds UserNameUtils holds
+		// TitleParser (aka _MediaWikiTitleCodec) holds InterwikiLookup
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 	}
 
 	protected function tearDown(): void {
-		global $wgHooks;
+		global $wgInterwikiCache;
 
-		$wgHooks = $this->wgHooks;
+		$wgInterwikiCache = $this->wgInterwikiCache;
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 
 		parent::tearDown();
 	}

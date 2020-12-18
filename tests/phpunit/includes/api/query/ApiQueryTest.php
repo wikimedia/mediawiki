@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+
 /**
  * @group API
  * @group Database
@@ -11,15 +13,13 @@ class ApiQueryTest extends ApiTestCase {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix
-		$this->setMwGlobals( 'wgHooks', [
-			'InterwikiLoadPrefix' => [
-				function ( $prefix, &$data ) {
-					if ( $prefix == 'apiquerytestiw' ) {
-						$data = [ 'iw_url' => 'wikipedia' ];
-					}
-					return false;
-				}
-			]
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'apiquerytestiw',
+					'iw_url' => 'wikipedia',
+				],
+			] ),
 		] );
 	}
 

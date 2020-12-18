@@ -8,6 +8,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -621,19 +622,15 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCanonicalName( $name, array $expectedArray ) {
 		// fake interwiki map for the 'Interwiki prefix' testcase
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'InterwikiLoadPrefix' => [
-				function ( $prefix, &$iwdata ) {
-					if ( $prefix === 'interwiki' ) {
-						$iwdata = [
-							'iw_url' => 'http://example.com/',
-							'iw_local' => 0,
-							'iw_trans' => 0,
-						];
-						return false;
-					}
-				},
-			],
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'interwiki',
+					'iw_url' => 'http://example.com/',
+					'iw_local' => 0,
+					'iw_trans' => 0,
+				],
+			] ),
 		] );
 
 		foreach ( $expectedArray as $validate => $expected ) {

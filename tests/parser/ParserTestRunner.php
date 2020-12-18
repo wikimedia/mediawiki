@@ -26,6 +26,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -356,16 +357,7 @@ class ParserTestRunner {
 		$this->appendNamespaceSetup( $setup, $teardown );
 
 		// Set up interwikis and append teardown function
-		$teardown[] = $this->setupInterwikis();
-
-		// This affects title normalization in links. It invalidates
-		// MediaWikiTitleCodec objects.
-		$setup['wgLocalInterwikis'] = [ 'local', 'mi' ];
-		$reset = function () {
-			$this->resetTitleServices();
-		};
-		$setup[] = $reset;
-		$teardown[] = $reset;
+		$this->appendInterwikiSetup( $setup, $teardown );
 
 		// Set up a mock MediaHandlerFactory
 		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
@@ -569,85 +561,90 @@ class ParserTestRunner {
 	 * Insert hardcoded interwiki in the lookup table.
 	 *
 	 * This function insert a set of well known interwikis that are used in
-	 * the parser tests. They can be considered has fixtures are injected in
-	 * the interwiki cache by using the 'InterwikiLoadPrefix' hook.
-	 * Since we are not interested in looking up interwikis in the database,
-	 * the hook completely replace the existing mechanism (hook returns false).
-	 *
-	 * @return closure for teardown
+	 * the parser tests. We use the $wgInterwikiCache mechanism to completely
+	 * replace any other lookup.  (Note that the InterwikiLoadPrefix hook
+	 * isn't used because it doesn't alter the result of
+	 * Interwiki::getAllPrefixes() and so is incompatible with some users,
+	 * including Parsoid.)
 	 */
-	private function setupInterwikis() {
-		# Hack: insert a few Wikipedia in-project interwiki prefixes,
-		# for testing inter-language links
-		Hooks::register( 'InterwikiLoadPrefix', function ( $prefix, &$iwData ) {
-			static $testInterwikis = [
-				'local' => [
-					'iw_url' => 'http://doesnt.matter.org/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ],
-				'wikipedia' => [
-					'iw_url' => 'http://en.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ],
-				'meatball' => [
-					'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ],
-				'memoryalpha' => [
-					'iw_url' => 'http://www.memory-alpha.org/en/index.php/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ],
-				'zh' => [
-					'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-				'es' => [
-					'iw_url' => 'http://es.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-				'fr' => [
-					'iw_url' => 'http://fr.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-				'ru' => [
-					'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-				'mi' => [
-					'iw_url' => 'http://mi.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-				'mul' => [
-					'iw_url' => 'http://wikisource.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ],
-			];
-			if ( array_key_exists( $prefix, $testInterwikis ) ) {
-				$iwData = $testInterwikis[$prefix];
-			}
-
-			// We only want to rely on the above fixtures
-			return false;
-		} );// hooks::register
-
-		// Reset the service in case any other tests already cached some prefixes.
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
-
-		return function () {
-			// Tear down
-			Hooks::clear( 'InterwikiLoadPrefix' );
+	private function appendInterwikiSetup( &$setup, &$teardown ) {
+		static $testInterwikis = [
+			[
+				'iw_prefix' => 'local',
+				'iw_url' => 'http://doesnt.matter.org/$1',
+				'iw_local' => 0,
+			],
+			[
+				'iw_prefix' => 'wikipedia',
+				'iw_url' => 'http://en.wikipedia.org/wiki/$1',
+				'iw_local' => 0,
+			],
+			[
+				'iw_prefix' => 'meatball',
+				// this has been updated in the live wikis, but the parser tests
+				// expect the old value
+				'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+				'iw_local' => 0,
+			],
+			[
+				'iw_prefix' => 'memoryalpha',
+				'iw_url' => 'http://www.memory-alpha.org/en/index.php/$1',
+				'iw_local' => 0,
+			],
+			[
+				'iw_prefix' => 'zh',
+				'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'es',
+				'iw_url' => 'http://es.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'fr',
+				'iw_url' => 'http://fr.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'ru',
+				'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'mi',
+				'iw_url' => 'http://mi.wikipedia.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			[
+				'iw_prefix' => 'mul',
+				'iw_url' => 'http://wikisource.org/wiki/$1',
+				'iw_local' => 1,
+			],
+		];
+		// When running from parserTests.php, database setup happens *after*
+		// interwiki setup, and that changes the wiki id.  In order to avoid
+		// breaking the interwiki cache, use 'global scope' for the interwiki
+		// lookup.
+		$GLOBAL_SCOPE = 2; // See docs for $wgInterwikiScopes
+		$setup['wgInterwikiScopes'] = $GLOBAL_SCOPE;
+		$setup['wgInterwikiCache'] =
+			ClassicInterwikiLookup::buildCdbHash( $testInterwikis, $GLOBAL_SCOPE );
+		$reset = function () {
+			// Reset the service in case any other tests already cached some prefixes.
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
 		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
+
+		// This affects title normalization in links. It invalidates
+		// MediaWikiTitleCodec objects.
+		$setup['wgLocalInterwikis'] = [ 'local', 'mi' ];
+		$reset = function () {
+			$this->resetTitleServices();
+		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
 	}
 
 	/**
@@ -1594,6 +1591,7 @@ class ParserTestRunner {
 
 		// Add special namespaces, in case that hasn't been done by staticSetup() yet
 		$this->appendNamespaceSetup( $setup, $teardown );
+		$this->appendInterwikiSetup( $setup, $teardown );
 
 		// wgCapitalLinks obviously needs initialisation
 		$setup['wgCapitalLinks'] = true;

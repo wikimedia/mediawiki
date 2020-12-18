@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -149,18 +150,16 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	private function secureAndSplitGlobals() {
 		$this->setMwGlobals( [
 			'wgLocalInterwikis' => [ 'localtestiw' ],
-			'wgHooks' => [
-				'InterwikiLoadPrefix' => [
-					function ( $prefix, &$data ) {
-						if ( $prefix === 'localtestiw' ) {
-							$data = [ 'iw_url' => 'localtestiw' ];
-						} elseif ( $prefix === 'remotetestiw' ) {
-							$data = [ 'iw_url' => 'remotetestiw' ];
-						}
-						return false;
-					}
-				]
-			]
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'localtestiw',
+					'iw_url' => 'localtestiw',
+				],
+				[
+					'iw_prefix' => 'remotetestiw',
+					'iw_url' => 'remotetestiw',
+				],
+			] ),
 		] );
 	}
 
@@ -1018,19 +1017,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCreateFragmentTitle
 	 */
 	public function testCreateFragmentTitle( Title $title, $fragment ) {
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'InterwikiLoadPrefix' => [
-				function ( $prefix, &$iwdata ) {
-					if ( $prefix === 'interwiki' ) {
-						$iwdata = [
-							'iw_url' => 'http://example.com/',
-							'iw_local' => 0,
-							'iw_trans' => 0,
-						];
-						return false;
-					}
-				},
-			],
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'interwiki',
+					'iw_url' => 'http://example.com/',
+					'iw_local' => 0,
+					'iw_trans' => 0,
+				],
+			] ),
 		] );
 
 		$fragmentTitle = $title->createFragmentTarget( $fragment );
