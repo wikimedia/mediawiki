@@ -12079,7 +12079,7 @@ parsoid=wt2html
 <p>{{a<b>|foo|a=b|a = b}}
 </b></p>
 !! html/parsoid
-<p>{{a<b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>|<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>|<span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span>=<span about="#mwt4" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span>|a =b}}</b></p>
+<p>{{a<b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>|<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>|<span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span>=<span about="#mwt4" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span>|a = b}}</b></p>
 !! end
 
 !! test
