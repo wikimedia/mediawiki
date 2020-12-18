@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\Database;
  * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).
  *
  * This implements two levels of caching (in-process array and a WANObjectCache)
- * and tree storage backends (SQL, CDB, and plain PHP arrays).
+ * and three storage backends (SQL, CDB, and plain PHP arrays).
  *
  * All information is loaded on creation when called by $this->fetch( $prefix ).
  * All work is done on replica DB, because this should *never* change (except during
