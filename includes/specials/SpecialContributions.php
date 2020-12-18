@@ -124,7 +124,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
 			if ( !IP::isValidRange( $target ) &&
-				( User::isIP( $target ) || $userObj->isRegistered() )
+				( User::isIP( $target ) || $userObj->isLoggedIn() )
 			) {
 				// Don't add non-existent users, because hidden users
 				// that we add here will be removed later to pretend
