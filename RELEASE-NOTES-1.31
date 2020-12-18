@@ -1,8 +1,9 @@
 == MediaWiki 1.31.12 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.11 ===
+* Fixed issues relating to User::isRegistered() not existing in 1.31.
 
 == MediaWiki 1.31.11 ==
 
