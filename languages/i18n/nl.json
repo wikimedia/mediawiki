@@ -2919,7 +2919,7 @@
 	"import-interwiki-text": "Selecteer een wiki en paginanaam om te importeren.\nVersie- en auteursgegevens blijven hierbij bewaard.\nAlle importhandelingen worden opgeslagen in het [[Special:Log/import|importlogboek]].",
 	"import-interwiki-sourcewiki": "Bronwiki:",
 	"import-interwiki-sourcepage": "Bronpagina:",
-	"import-interwiki-history": "Volledige geschiedenis van deze pagina ook kopiëren",
+	"import-interwiki-history": "Kopieer alle versies van deze pagina",
 	"import-interwiki-templates": "Alle sjablonen opnemen",
 	"import-interwiki-submit": "Importeren",
 	"import-mapping-default": "Importeren naar standaardplaatsen",
