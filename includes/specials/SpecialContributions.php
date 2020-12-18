@@ -193,10 +193,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 
 			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-			$out->setHTMLTitle( $this->msg(
-				'pagetitle',
-				$this->msg( 'contributions-title', $target )->plain()
-			)->inContentLanguage() );
+			$out->setPageTitle( $this->msg( 'contributions-title', $target ) );
 		} else {
 			$nt = Title::makeTitleSafe( NS_USER, $target );
 			if ( !$nt ) {
@@ -212,10 +209,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			$target = $nt->getText();
 			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-			$out->setHTMLTitle( $this->msg(
-				'pagetitle',
-				$this->msg( 'contributions-title', $target )->plain()
-			)->inContentLanguage() );
+			$out->setPageTitle( $this->msg( 'contributions-title', $target ) );
 
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
