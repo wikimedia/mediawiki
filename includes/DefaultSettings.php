@@ -70,7 +70,7 @@ $wgConfigRegistry = [
 /**
  * MediaWiki version number
  * @since 1.2
- * @deprecated since 1.35; use the MW_VERSION constant instead
+ * @deprecated since 1.35 (backported in 1.31.7); use the MW_VERSION constant instead
  */
 $wgVersion = MW_VERSION;
 
