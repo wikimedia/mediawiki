@@ -390,8 +390,8 @@ because of Phabricator reports.
   deprecated. Please use Skin::footerLink() instead.
 * Skin::getLogo() has been deprecated. Use ResourceLoaderSkinModule instead.
 * The module `mediawiki.toc.styles` has been replaced by
-ResourceLoaderSkinModule. If you are having problems styling table of contents
-ensure you have an updated skin.
+  ResourceLoaderSkinModule. If you are having problems styling table of contents
+  ensure you have an updated skin.
 * Skin::mainPageLink() has been deprecated. Use LinkRenderer service instead.
 * BaseTemplate::getToolbox() method has been hard deprecated. The toolbox data
   is now available in a sidebar data array which you can get from any class
@@ -436,7 +436,14 @@ ensure you have an updated skin.
 * WikiRevision::importUpload, soft-deprecated since 1.31, was hard-deprecated.
 * Html::infoBox() has been deprecated. There's no replacement.
 * BagOStuff::makeKeyInternal() usage outside of BagOStuff has been deprecated.
-* The global function wfAppendToArrayIfNotDefault() has been deprecated.
+* The following global functions have been hard deprecated:
+   - wfAppendToArrayIfNotDefault
+   - wfAcceptToPrefs
+   - wfClearOutputBuffers
+   - wfConfiguredReadOnlyReason
+   - wfDebugMem
+   - wfGetPrecompiledData
+   - wfNegotiateType
 * MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
   incompatibility with PHPUnit 8, was removed.
 * …
