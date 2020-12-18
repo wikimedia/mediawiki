@@ -180,7 +180,15 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
-			if ( !IPUtils::isValidRange( $target ) ) {
+			if ( !IPUtils::isValidRange( $target ) &&
+				( User::isIP( $target ) || $userObj->isRegistered() )
+			) {
+				// Don't add non-existent users, because hidden users
+				// that we add here will be removed later to pretend
+				// that they don't exist, and if users that actually don't
+				// exist are added here and then not removed, it exposes
+				// which users exist and are hidden vs. which actually don't
+				// exist. But, do set the relevant user for single IPs.
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
 		}
@@ -360,7 +368,14 @@ class SpecialContributions extends IncludableSpecialPage {
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
 				$message = '';
+			} elseif ( $userObj->isHidden() &&
+				!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+			) {
+				// User is registered, but make sure that the viewer can see them, to avoid
+				// having different behavior for missing and hidden users; see T120883
+				$message = '';
 			} else {
+				// Not hidden, or hidden but the viewer can still see it
 				$message = 'sp-contributions-footer';
 			}
 
@@ -380,7 +395,16 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * Could be combined.
 	 */
 	protected function contributionsSub( $userObj ) {
-		if ( $userObj->isAnon() ) {
+		$isAnon = $userObj->isAnon();
+		if ( !$isAnon && $userObj->isHidden() &&
+			!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			// T120883 if the user is hidden and the viewer cannot see hidden
+			// users, pretend like it does not exist at all.
+			$isAnon = true;
+		}
+
+		if ( $isAnon ) {
 			// Show a warning message that the user being searched for doesn't exist.
 			// User::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
 			// but returns false for IP ranges. We don't want to suggest either of these are
