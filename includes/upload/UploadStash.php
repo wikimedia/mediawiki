@@ -87,10 +87,12 @@ class UploadStash {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
-		// if a user was passed, use it. otherwise, attempt to use the global.
+		// if a user was passed, use it. otherwise, attempt to use the global request context.
 		// this keeps FileRepo from breaking when it creates an UploadStash object
-		global $wgUser;
-		$this->user = $user ?: $wgUser;
+		if ( !$user ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+		$this->user = $user;
 
 		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();
