@@ -1896,7 +1896,8 @@ MESSAGE;
 	 * @return bool Whether $moduleName is a valid module name
 	 */
 	public static function isValidModuleName( $moduleName ) {
-		return strcspn( $moduleName, '!,|', 0, 255 ) === strlen( $moduleName );
+		$len = strlen( $moduleName );
+		return $len <= 255 && strcspn( $moduleName, '!,|', 0, $len ) === $len;
 	}
 
 	/**

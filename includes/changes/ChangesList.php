@@ -601,10 +601,12 @@ class ChangesList extends ContextSource {
 			'title' => $daysLeftText,
 			'classes' => [ 'mw-changesList-watchlistExpiry' ],
 		] );
-		// Add labels for assistive technologies.
 		$widget->setAttributes( [
+			// Add labels for assistive technologies.
 			'role' => 'img',
 			'aria-label' => $this->msg( 'watchlist-expires-in-aria-label' )->text(),
+			// Days-left is used in resources/src/mediawiki.special.changeslist.watchlistexpiry/watchlistexpiry.js
+			'data-days-left' => $item->getExpiryInDays(),
 		] );
 		// Add spaces around the widget (the page title is to one side,
 		// and a semicolon or opening-parenthesis to the other).

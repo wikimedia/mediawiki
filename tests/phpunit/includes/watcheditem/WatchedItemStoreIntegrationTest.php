@@ -145,12 +145,22 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $store->isTempWatched( $user, $title ) );
 
 		// Invalid expiry, nothing should change.
-		$store->addWatch( $user, $title, 'invalid expiry' );
-		$this->assertSame(
-			$expiry,
-			$store->loadWatchedItem( $user, $title )->getExpiry()
-		);
-		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
+		$exceptionThrown = false;
+		try {
+			$store->addWatch( $user, $title, 'invalid expiry' );
+		} catch ( InvalidArgumentException $exception ) {
+			$exceptionThrown = true;
+			// Asserting watchedItem getExpiry stays unchanged
+			$this->assertSame(
+				$expiry,
+				$store->loadWatchedItem( $user, $title )->getExpiry()
+			);
+			$this->assertSame(
+				$initialUserWatchedItems + 1,
+				$store->countWatchedItems( $user )
+			);
+		}
+		$this->assertTrue( $exceptionThrown );
 
 		// Changed to infinity, so expiry row should be removed.
 		$store->addWatch( $user, $title, 'infinity' );
@@ -343,15 +353,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$store->addWatch( $user, $titleOld->getTalkPage(), '99990123000000' );
 
 		// Fetch stored expiry (may have changed due to wgWatchlistExpiryMaxDuration).
-		$expectedExpiry = wfTimestamp( TS_MW,
-			$store->getWatchedItem( $user, $titleOld )->getExpiry() );
+		$expectedExpiry = $store->getWatchedItem( $user, $titleOld )->getExpiry();
 
 		// Use the standard test user as well, so we can test that each user's
 		// respective expiry is correctly copied.
 		$user2 = $this->getTestSysop()->getUser();
-		$expectedExpiry2 = \Wikimedia\ParamValidator\TypeDef\ExpiryDef::normalizeExpiry( '1 week' );
-		$store->addWatch( $user2, $titleOld->getSubjectPage(), $expectedExpiry2 );
-		$store->addWatch( $user2, $titleOld->getTalkPage(), $expectedExpiry2 );
+		$store->addWatch( $user2, $titleOld->getSubjectPage(), '1 week' );
+		$store->addWatch( $user2, $titleOld->getTalkPage(), '1 week' );
+		$expectedExpiry2 = $store->getWatchedItem( $user2, $titleOld )->getExpiry();
 
 		// Cleanup after previous tests
 		$store->removeWatch( $user, $titleNew->getSubjectPage() );
@@ -362,7 +371,6 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 			$callback();
 		};
 		$store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
-
 		$store->duplicateAllAssociatedEntries( $titleOld, $titleNew );
 
 		$this->assertTrue( $store->isWatched( $user, $titleOld->getSubjectPage() ) );
@@ -370,15 +378,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $store->isWatched( $user, $titleNew->getSubjectPage() ) );
 		$this->assertTrue( $store->isWatched( $user, $titleNew->getTalkPage() ) );
 
-		$oldExpiry = wfTimestamp( TS_MW, $store->getWatchedItem( $user, $titleOld )->getExpiry() );
-		$newExpiry = wfTimestamp( TS_MW, $store->getWatchedItem( $user, $titleNew )->getExpiry() );
+		$oldExpiry = $store->getWatchedItem( $user, $titleOld )->getExpiry();
+		$newExpiry = $store->getWatchedItem( $user, $titleNew )->getExpiry();
 		$this->assertSame( $expectedExpiry, $oldExpiry );
 		$this->assertSame( $expectedExpiry, $newExpiry );
 
 		// Same for $user2 and $expectedExpiry2
-		$oldExpiry = wfTimestamp( TS_MW, $store->getWatchedItem( $user2, $titleOld )->getExpiry() );
-		$newExpiry = wfTimestamp( TS_MW, $store->getWatchedItem( $user2, $titleNew )->getExpiry() );
-		$expectedExpiry2 = wfTimestamp( TS_MW, $expectedExpiry2 );
+		$oldExpiry = $store->getWatchedItem( $user2, $titleOld )->getExpiry();
+		$newExpiry = $store->getWatchedItem( $user2, $titleNew )->getExpiry();
 		$this->assertSame( $expectedExpiry2, $oldExpiry );
 		$this->assertSame( $expectedExpiry2, $newExpiry );
 	}

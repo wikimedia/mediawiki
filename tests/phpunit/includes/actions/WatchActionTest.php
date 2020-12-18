@@ -89,9 +89,24 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmitHookAborted() {
+		// WatchlistExpiry feature flag.
+		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+
+		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->onlyMethods( [ 'getRequest' ] )
+			->setConstructorArgs( [ $this->watchAction->getContext() ] )
+			->getMock();
+
 		// Change the context to have a logged in user with correct permission.
-		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $this->getUser( true, true, [ 'editmywatchlist' ] ) );
+
+		/** @var MockObject|WebRequest $testRequest */
+		$testRequest = $this->createMock( WebRequest::class );
+		$testRequest->expects( $this->once() )
+			->method( 'getVal' )
+			->willReturn( '6 months' );
+		$testContext->method( 'getRequest' )->willReturn( $testRequest );
+
 		$this->watchAction = new WatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
@@ -579,6 +594,51 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->assertSame( $expectedNoExpiryWIFalse, $optionsNoExpiryWIFalse );
+	}
+
+	/**
+	 * @covers WatchAction::getExpiryOptions()
+	 */
+	public function testGetExpiryOptionsWithInvalidTranslations() {
+		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );
+		$mockLanguage = $this->createMock( Language::class );
+		$mockLanguage->method( 'getCode' )->willReturn( 'not-english' );
+		$mockMessage = $this->getMockMessage( 'invalid:invalid, foo:bar, thing' );
+		$mockMessage->method( 'getLanguage' )->willReturn( $mockLanguage );
+
+		$mockMessageLocalizer->expects( $this->exactly( 2 ) )
+			->method( 'msg' )
+			->will(
+				$this->onConsecutiveCalls(
+					$mockMessage,
+					new Message( 'watchlist-expiry-options' )
+				)
+			);
+
+		$expected = WatchAction::getExpiryOptions( new MockMessageLocalizer( 'en' ), false );
+		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
+		$this->assertSame( $expected, $expiryOptions );
+	}
+
+	/**
+	 * @covers WatchAction::getExpiryOptions()
+	 */
+	public function testGetExpiryOptionsWithPartialInvalidTranslations() {
+		$mockMessageLocalizer = $this->createMock( MockMessageLocalizer::class );
+		$mockMessageLocalizer->expects( $this->once() )
+			->method( 'msg' )
+			->with( 'watchlist-expiry-options' )
+			->willReturn( $this->getMockMessage( 'invalid:invalid, thing, 1 week: 1 week,3 days:3 days' ) );
+
+		$expected = [
+			'options' => [
+				'1 week' => '1 week',
+				'3 days' => '3 days',
+			],
+			'default' => '1 week'
+		];
+		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
+		$this->assertSame( $expected, $expiryOptions );
 	}
 
 	/**

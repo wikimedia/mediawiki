@@ -35,6 +35,8 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatch() {
+		// Watch for a duration greater than the max ($wgWatchlistExpiryMaxDuration),
+		// which should get changed to the max
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'Talk:Test page',

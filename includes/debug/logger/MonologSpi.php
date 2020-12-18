@@ -21,6 +21,7 @@
 namespace MediaWiki\Logger;
 
 use MediaWiki\Logger\Monolog\BufferHandler;
+use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Wikimedia\ObjectFactory;
@@ -221,10 +222,14 @@ class MonologSpi implements Spi {
 			}
 		}
 
-		if ( isset( $spec['handlers'] ) ) {
+		if ( isset( $spec['handlers'] ) && $spec['handlers'] ) {
 			foreach ( $spec['handlers'] as $handler ) {
 				$obj->pushHandler( $this->getHandler( $handler ) );
 			}
+		} else {
+			// When no handlers are registered Monolog 1.x sends logs to stderr,
+			// which could be not expected: avoid this behaviour
+			$obj->pushHandler( new NullHandler() );
 		}
 		return $obj;
 	}

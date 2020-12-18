@@ -370,6 +370,10 @@ ${serverSetting}
 
 {$this->dbSettings}
 
+# Shared database table
+# This has no effect unless \$wgSharedDB is also set.
+\$wgSharedTables[] = \"actor\";
+
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
 \$wgMemCachedServers = $mcservers;
@@ -390,7 +394,10 @@ ${serverSetting}
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
-## available UTF-8 locale
+## available UTF-8 locale. This should ideally be set to an English
+## language locale so that the behaviour of C library functions will
+## be consistent with typical installations. Use \$wgLanguageCode to
+## localise the wiki.
 {$locale}\$wgShellLocale = \"{$this->values['wgShellLocale']}\";
 
 ## Set \$wgCacheDirectory to a writable directory on the web server

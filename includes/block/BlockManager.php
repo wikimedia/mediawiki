@@ -27,6 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use Message;
 use MWCryptHash;
@@ -72,23 +73,29 @@ class BlockManager {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
+	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		PermissionManager $permissionManager,
 		LoggerInterface $logger,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		UserGroupManager $userGroupManager
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -129,7 +136,17 @@ class BlockManager {
 		// or they may be exempt (case #2). If affected, look for additional blocks
 		// against the IP address and referenced in a cookie.
 		$checkIpBlocks = $request &&
-			!$this->permissionManager->userHasRight( $user, 'ipblock-exempt' );
+			// We cannot use userHasRight here because Autopromote
+			// checkCondition calls user->getBlock which leads to
+			// this function which then leads back to checkCondition
+			// and continues the cycle until it runs out of memory.
+			// See T270145.
+			!in_array(
+				'ipblock-exempt',
+				$this->permissionManager->getGroupPermissions(
+					$this->userGroupManager->getUserGroups( $user )
+				)
+			);
 
 		if ( $request && $checkIpBlocks ) {
 

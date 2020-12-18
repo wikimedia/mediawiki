@@ -59,11 +59,11 @@ class ApiPageSetTest extends ApiTestCase {
 		);
 	}
 
-	protected function createPageSetWithRedirect() {
+	protected function createPageSetWithRedirect( $targetContent = 'api page set test' ) {
 		$target = Title::makeTitle( NS_MAIN, 'UTRedirectTarget' );
 		$sourceA = Title::makeTitle( NS_MAIN, 'UTRedirectSourceA' );
 		$sourceB = Title::makeTitle( NS_MAIN, 'UTRedirectSourceB' );
-		self::editPage( 'UTRedirectTarget', 'api page set test' );
+		self::editPage( 'UTRedirectTarget', $targetContent );
 		self::editPage( 'UTRedirectSourceA', '#REDIRECT [[UTRedirectTarget]]' );
 		self::editPage( 'UTRedirectSourceB', '#REDIRECT [[UTRedirectTarget]]' );
 
@@ -78,6 +78,34 @@ class ApiPageSetTest extends ApiTestCase {
 		$pageSet->populateFromTitles( [ $sourceA, $sourceB ] );
 
 		return [ $target, $pageSet ];
+	}
+
+	public function testRedirectMergePolicyRedirectLoop() {
+		$loopA = Title::makeTitle( NS_MAIN, 'UTPageRedirectOne' );
+		$loopB = Title::makeTitle( NS_MAIN, 'UTPageRedirectTwo' );
+		self::editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
+		self::editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
+		list( $target, $pageSet ) = $this->createPageSetWithRedirect(
+			'#REDIRECT [[UTPageRedirectOne]]'
+		);
+		$pageSet->setRedirectMergePolicy( function ( $cur, $new ) {
+			throw new \RuntimeException( 'unreachable, no merge when target is redirect loop' );
+		} );
+		// This could infinite loop in a bugged impl, but php doesn't offer
+		// a great way to time constrain this.
+		$result = new ApiResult( false );
+		$pageSet->populateGeneratorData( $result );
+		// Assert something, mostly we care that the above didn't infinite loop.
+		// This verifies the page set followed our redirect chain and saw the loop.
+		$this->assertEqualsCanonicalizing(
+			[
+				'UTRedirectSourceA', 'UTRedirectSourceB', 'UTRedirectTarget',
+				'UTPageRedirectOne', 'UTPageRedirectTwo',
+			],
+			array_map( function ( $x ) {
+				return $x->getPrefixedText();
+			}, $pageSet->getTitles() )
+		);
 	}
 
 	public function testHandleNormalization() {

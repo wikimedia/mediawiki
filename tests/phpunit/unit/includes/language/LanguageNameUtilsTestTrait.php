@@ -202,32 +202,32 @@ trait LanguageNameUtilsTestTrait {
 		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
-				case 'de':
-					$names = [
-						'de' => 'Deutsch',
-						'en' => 'Englisch',
-						'fr' => 'Französisch',
-					];
-					break;
+					case 'de':
+						$names = [
+							'de' => 'Deutsch',
+							'en' => 'Englisch',
+							'fr' => 'Französisch',
+						];
+						break;
 
-				case 'en':
-					$names = [
-						'de' => 'German',
-						'en' => 'English',
-						'fr' => 'French',
-						'sqsqsqsq' => '!!?!',
-						'bat-smg' => 'Samogitian',
-					];
-					break;
+					case 'en':
+						$names = [
+							'de' => 'German',
+							'en' => 'English',
+							'fr' => 'French',
+							'sqsqsqsq' => '!!?!',
+							'bat-smg' => 'Samogitian',
+						];
+						break;
 
-				case 'fr':
-					$names = [
-						'de' => 'allemand',
-						'en' => 'anglais',
-						// Deliberate mistake (no cedilla)
-						'fr' => 'francais',
-					];
-					break;
+					case 'fr':
+						$names = [
+							'de' => 'allemand',
+							'en' => 'anglais',
+							// Deliberate mistake (no cedilla)
+							'fr' => 'francais',
+						];
+						break;
 				}
 			}
 		);
@@ -375,14 +375,14 @@ trait LanguageNameUtilsTestTrait {
 		$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames',
 			function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
-				case 'fr':
-					$names = [ 'en-x-piglatin' => 'latin de cochons' ];
-					break;
+					case 'fr':
+						$names = [ 'en-x-piglatin' => 'latin de cochons' ];
+						break;
 
-				case 'en-x-piglatin':
-					// Deliberately lowercase
-					$names = [ 'en-x-piglatin' => 'igpay atinlay' ];
-					break;
+					case 'en-x-piglatin':
+						// Deliberately lowercase
+						$names = [ 'en-x-piglatin' => 'igpay atinlay' ];
+						break;
 				}
 			}
 		);

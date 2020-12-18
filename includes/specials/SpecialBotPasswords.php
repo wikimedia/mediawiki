@@ -322,6 +322,11 @@ class SpecialBotPasswords extends FormSpecialPage {
 			)
 		] );
 
+		if ( $bp === null ) {
+			// Messages: botpasswords-insert-failed, botpasswords-update-failed
+			return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
+		}
+
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = BotPassword::generatePassword( $this->getConfig() );
 			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
@@ -330,24 +335,25 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$password = null;
 		}
 
-		if ( $bp->save( $this->operation, $password ) ) {
-			$this->logger->info(
-				"Bot password {op} for {user}@{app_id}",
-				[
-					'op' => $this->operation,
-					'user' => $this->getUser()->getName(),
-					'app_id' => $this->par,
-					'centralId' => $this->userId,
-					'restrictions' => $data['restrictions'],
-					'grants' => $bp->getGrants(),
-					'client_ip' => $this->getRequest()->getIP()
-				]
-			);
-			return Status::newGood();
-		} else {
-			// Messages: botpasswords-insert-failed, botpasswords-update-failed
-			return Status::newFatal( "botpasswords-{$this->operation}-failed", $this->par );
-		}
+		$res = $bp->save( $this->operation, $password );
+
+		$success = $res->isGood();
+
+		$this->logger->info(
+			'Bot password {op} for {user}@{app_id} ' . ( $success ? 'succeeded' : 'failed' ),
+			[
+				'op' => $this->operation,
+				'user' => $this->getUser()->getName(),
+				'app_id' => $this->par,
+				'centralId' => $this->userId,
+				'restrictions' => $data['restrictions'],
+				'grants' => $bp->getGrants(),
+				'client_ip' => $this->getRequest()->getIP(),
+				'success' => $success,
+			]
+		);
+
+		return $res;
 	}
 
 	public function onSuccess() {

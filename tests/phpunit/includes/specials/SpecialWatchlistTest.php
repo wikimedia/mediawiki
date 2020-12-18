@@ -76,26 +76,26 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		$wikiDefaults = $page->getDefaultOptions()->getAllValues();
 
 		switch ( $expectedValuesDefaults ) {
-		case 'allFalse':
-			$allFalse = $wikiDefaults;
+			case 'allFalse':
+				$allFalse = $wikiDefaults;
 
-			foreach ( $allFalse as $key => $value ) {
-				if ( $value === true ) {
-					$allFalse[$key] = false;
+				foreach ( $allFalse as $key => $value ) {
+					if ( $value === true ) {
+						$allFalse[$key] = false;
+					}
 				}
-			}
 
-			// This is not exposed on the form (only in preferences) so it
-			// respects the preference.
-			$allFalse['extended'] = true;
+				// This is not exposed on the form (only in preferences) so it
+				// respects the preference.
+				$allFalse['extended'] = true;
 
-			$expectedValues += $allFalse;
-			break;
-		case 'wikiDefaults':
-			$expectedValues += $wikiDefaults;
-			break;
-		default:
-			$this->fail( "Unknown \$expectedValuesDefaults: $expectedValuesDefaults" );
+				$expectedValues += $allFalse;
+				break;
+			case 'wikiDefaults':
+				$expectedValues += $wikiDefaults;
+				break;
+			default:
+				$this->fail( "Unknown \$expectedValuesDefaults: $expectedValuesDefaults" );
 		}
 
 		$page = TestingAccessWrapper::newFromObject(

@@ -302,7 +302,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 
-		if ( $option == 'flat' ) {
+		if ( $option == 'flat' && count( $validFooterLinks ) ) {
 			// fold footerlinks into a single array using a bit of trickery
 			$validFooterLinks = array_merge( ...array_values( $validFooterLinks ) );
 		}
@@ -341,10 +341,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				}
 			}
 		} elseif ( $option == 'nocopyright' ) {
-			unset( $footericons['copyright']['copyright'] );
-			if ( $footericons['copyright'] === [] ) {
-				unset( $footericons['copyright'] );
-			}
+			unset( $footericons['copyright'] );
 		}
 
 		return $footericons;

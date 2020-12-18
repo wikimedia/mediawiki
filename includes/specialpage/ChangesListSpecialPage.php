@@ -625,9 +625,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->considerActionsForDefaultSavedQuery( $subpage );
 
-		// Enable OOUI for the clock icon.
+		// Enable OOUI and module for the clock icon.
 		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$this->getOutput()->enableOOUI();
+			$this->getOutput()->addModules( 'mediawiki.special.changeslist.watchlistexpiry' );
 		}
 
 		$opts = $this->getOptions();
@@ -1784,7 +1785,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				[ 'class' => 'mw-changeslist-legend-watchlistexpiry' ],
 				$widget
 			);
-			$legend .= Html::rawElement(
+			$legend .= Html::element(
 				'dd',
 				[ 'class' => 'mw-changeslist-legend-watchlistexpiry', 'id' => $watchlistLabelId ],
 				$context->msg( 'recentchanges-legend-watchlistexpiry' )->text()

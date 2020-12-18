@@ -63,15 +63,21 @@ function wfThumbMain() {
  * @return void
  */
 function wfThumbHandle404() {
-	// Determine the request path relative to the thumbnail zone base
-	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
-	$baseUrl = $repo->getZoneUrl( 'thumb' );
-	if ( substr( $baseUrl, 0, 1 ) === '/' ) {
-		$basePath = $baseUrl;
+	global $wgThumbPath;
+
+	if ( $wgThumbPath ) {
+		$relPath = WebRequest::getRequestPathSuffix( $wgThumbPath );
 	} else {
-		$basePath = parse_url( $baseUrl, PHP_URL_PATH );
+		// Determine the request path relative to the thumbnail zone base
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$baseUrl = $repo->getZoneUrl( 'thumb' );
+		if ( substr( $baseUrl, 0, 1 ) === '/' ) {
+			$basePath = $baseUrl;
+		} else {
+			$basePath = parse_url( $baseUrl, PHP_URL_PATH );
+		}
+		$relPath = WebRequest::getRequestPathSuffix( $basePath );
 	}
-	$relPath = WebRequest::getRequestPathSuffix( $basePath );
 
 	$params = wfExtractThumbRequestInfo( $relPath ); // basic wiki URL param extracting
 	if ( $params == null ) {

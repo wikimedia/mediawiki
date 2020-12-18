@@ -1524,6 +1524,18 @@ abstract class Skin extends ContextSource {
 		}
 
 		$user = $this->getRelevantUser();
+		// The relevant user should only be set if it exists. However, if it exists but is hidden,
+		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
+		// pretend like the user does not exist in such cases, by setting $user to null, which
+		// is what getRelevantUser returns if there is no user set (though it is documented as
+		// always returning a User...) See T120883
+		if ( $user && $user->isRegistered() && $user->isHidden() &&
+			 !MediaWikiServices::getInstance()
+				->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			$user = null;
+		}
+
 		if ( $user ) {
 			$rootUser = $user->getName();
 
@@ -2468,4 +2480,54 @@ abstract class Skin extends ContextSource {
 
 		return $html;
 	}
+
+	/**
+	 * Get template representation of the footer containing
+	 * site footer links as well as standard footer links.
+	 *
+	 * All values are resolved and can be added to by the
+	 * SkinAddFooterLinks hook.
+	 *
+	 * @since 1.35
+	 * @internal
+	 * @return array
+	 */
+	protected function getFooterLinks(): array {
+		$out = $this->getOutput();
+		$title = $out->getTitle();
+		$titleExists = $title->exists();
+		$config = $this->getConfig();
+		$maxCredits = $config->get( 'MaxCredits' );
+		$showCreditsIfMax = $config->get( 'ShowCreditsIfMax' );
+		$useCredits = $titleExists
+			&& $out->isArticle()
+			&& $out->isRevisionCurrent()
+			&& $maxCredits !== 0;
+
+		/** @var CreditsAction $action */
+		if ( $titleExists ) {
+			$article = Article::newFromWikiPage( $this->getWikiPage(), $this );
+			$action = Action::factory( 'credits', $article, $this );
+		}
+
+		'@phan-var CreditsAction $action';
+		$data = [
+			'info' => [
+				'lastmod' => !$useCredits ? $this->lastModified() : null,
+				'numberofwatchingusers' => null,
+				'credits' => $useCredits ?
+					$action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
+				'copyright' => $titleExists &&
+					$out->showsCopyright() ? $this->getCopyright() : null,
+			],
+			'places' => $this->getSiteFooterLinks(),
+		];
+		foreach ( $data as $key => $existingItems ) {
+			$newItems = [];
+			$this->getHookRunner()->onSkinAddFooterLinks( $this, $key, $newItems );
+			$data[$key] = $existingItems + $newItems;
+		}
+		return $data;
+	}
+
 }

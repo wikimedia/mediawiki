@@ -168,11 +168,13 @@ return [
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
 		return new BlockManager(
 			new ServiceOptions(
-				BlockManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+				BlockManager::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
 			),
 			$services->getPermissionManager(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserGroupManagerFactory()->getUserGroupManager()
 		);
 	},
 
@@ -975,13 +977,13 @@ return [
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
 		$rl->register( 'mediawiki.messagePoster', [
-			'localBasePath' => '',
+			'localBasePath' => $IP,
 			'debugRaw' => false,
 			'scripts' => array_merge(
 				[
-					"$IP/resources/src/mediawiki.messagePoster/factory.js",
-					"$IP/resources/src/mediawiki.messagePoster/MessagePoster.js",
-					"$IP/resources/src/mediawiki.messagePoster/WikitextMessagePoster.js",
+					"resources/src/mediawiki.messagePoster/factory.js",
+					"resources/src/mediawiki.messagePoster/MessagePoster.js",
+					"resources/src/mediawiki.messagePoster/WikitextMessagePoster.js",
 				],
 				$msgPosterAttrib['scripts'] ?? []
 			),
