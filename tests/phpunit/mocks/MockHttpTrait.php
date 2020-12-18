@@ -34,11 +34,18 @@ trait MockHttpTrait {
 
 	/**
 	 * @see TestCase::getMockBuilder()
+	 *
+	 * @param string $className
+	 * @return MockBuilder
 	 */
 	abstract public function getMockBuilder( $className ): MockBuilder;
 
 	/**
 	 * @see MediaWikiIntegrationTestCase::setService()
+	 *
+	 * @param string $name
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object|callable $service
 	 */
 	abstract protected function setService( $name, $service );
 
