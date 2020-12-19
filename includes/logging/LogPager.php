@@ -114,8 +114,8 @@ class LogPager extends ReverseChronologicalPager {
 		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 
+		$this->limitLogId( $logId ); // set before types per T269761
 		$this->limitType( $types ); // also excludes hidden types
-		$this->limitLogId( $logId );
 		$this->limitFilterTypes();
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
@@ -200,7 +200,10 @@ class LogPager extends ReverseChronologicalPager {
 		$this->types = $types;
 		// Don't show private logs to unprivileged users.
 		// Also, only show them upon specific request to avoid suprises.
-		$audience = $types ? 'user' : 'public';
+		// Exception: if we are showing only a single log entry based on the log id,
+		// we don't require that "specific request" so that the links-in-logs feature
+		// works. See T269761
+		$audience = ( $types || $this->hasEqualsClause( 'log_id' ) ) ? 'user' : 'public';
 		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $user );
 		if ( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
