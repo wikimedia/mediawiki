@@ -3278,7 +3278,6 @@ class OutputPage extends ContextSource {
 		// Get the relevant title so that AJAX features can use the correct page name
 		// when making API requests from certain special pages (T36972).
 		$relevantTitle = $sk->getRelevantTitle();
-		$relevantUser = $sk->getRelevantUser();
 
 		if ( $ns === NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
@@ -3379,11 +3378,9 @@ class OutputPage extends ContextSource {
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
 		}
-		if ( $relevantUser && ( !$relevantUser->isHidden() ||
-				$this->getAuthority()->isAllowed( 'hideuser' ) )
-		) {
-			// T120883 if the user is hidden and the viewer cannot see
-			// hidden users, pretend like it does not exist at all.
+
+		$relevantUser = $sk->getRelevantUser();
+		if ( $relevantUser ) {
 			$vars['wgRelevantUserName'] = $relevantUser->getName();
 		}
 		// End of stable config vars
