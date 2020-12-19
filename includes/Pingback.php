@@ -20,17 +20,28 @@
  * @file
  */
 
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * Send information about this MediaWiki instance to MediaWiki.org.
+ * Send information about this MediaWiki instance to mediawiki.org.
  *
+ * This service uses two kinds of rows in the `update_log` database table:
+ *
+ * - ul_key `PingBack`, this holds a random identifier for this wiki,
+ *   created only once, when the first ping after wiki creation is sent.
+ * - ul_key `Pingback-<MW_VERSION>`, this holds a timestamp and is created
+ *   once after each MediaWiki upgrade, and then updated up to once a month.
+ *
+ * @internal For use by Setup.php only
  * @since 1.28
  */
 class Pingback {
-
 	/**
 	 * @var int Revision ID of the JSON schema that describes the pingback payload.
 	 * The schema lives on Meta-Wiki, at <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
@@ -39,28 +50,44 @@ class Pingback {
 
 	/** @var LoggerInterface */
 	protected $logger;
-
 	/** @var Config */
 	protected $config;
-
+	/** @var ILoadBalancer */
+	protected $lb;
+	/** @var BagOStuff */
+	protected $cache;
+	/** @var HttpRequestFactory */
+	protected $http;
 	/** @var string updatelog key (also used as cache/db lock key) */
 	protected $key;
 
-	/** @var string Randomly-generated identifier for this wiki */
-	protected $id;
-
 	/**
-	 * @param Config|null $config
-	 * @param LoggerInterface|null $logger
+	 * @param Config $config
+	 * @param ILoadBalancer $lb
+	 * @param BagOStuff $cache
+	 * @param HttpRequestFactory $http
+	 * @param LoggerInterface $logger
 	 */
-	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
-		$this->config = $config ?: RequestContext::getMain()->getConfig();
-		$this->logger = $logger ?: LoggerFactory::getInstance( __CLASS__ );
+	public function __construct(
+		Config $config,
+		ILoadBalancer $lb,
+		BagOStuff $cache,
+		HttpRequestFactory $http,
+		LoggerInterface $logger
+	) {
+		$this->config = $config;
+		$this->lb = $lb;
+		$this->cache = $cache;
+		$this->http = $http;
+		$this->logger = $logger;
 		$this->key = 'Pingback-' . MW_VERSION;
 	}
 
 	/**
 	 * Maybe send a ping.
+	 *
+	 * @throws DBError If identifier insert fails
+	 * @throws DBError If timestamp upsert fails
 	 */
 	public function run() : void {
 		if ( !$this->config->get( 'Pingback' ) ) {
@@ -88,10 +115,11 @@ class Pingback {
 
 	/**
 	 * Was a pingback sent in the last month for this MediaWiki version?
+	 *
 	 * @return bool
 	 */
-	private function wasRecentlySent() {
-		$dbr = wfGetDB( DB_REPLICA );
+	private function wasRecentlySent() : bool {
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$timestamp = $dbr->selectField(
 			'updatelog',
 			'ul_value',
@@ -102,7 +130,7 @@ class Pingback {
 			return false;
 		}
 		// send heartbeat ping if last ping was over a month ago
-		if ( time() - (int)$timestamp > 60 * 60 * 24 * 30 ) {
+		if ( ConvertibleTimestamp::time() - (int)$timestamp > 60 * 60 * 24 * 30 ) {
 			return false;
 		}
 		return true;
@@ -116,13 +144,13 @@ class Pingback {
 	 *
 	 * @return bool Whether lock was acquired
 	 */
-	private function acquireLock() {
-		$cache = ObjectCache::getLocalClusterInstance();
-		if ( !$cache->add( $this->key, 1, 60 * 60 ) ) {
+	private function acquireLock() : bool {
+		$cacheKey = $this->cache->makeKey( 'pingback', $this->key );
+		if ( !$this->cache->add( $cacheKey, 1, $this->cache::TTL_HOUR ) ) {
 			return false;  // throttled
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
 			return false;  // already in progress
 		}
@@ -133,36 +161,38 @@ class Pingback {
 	/**
 	 * Get the EventLogging packet to be sent to the server
 	 *
+	 * @throws DBError If identifier insert fails
 	 * @return array
 	 */
-	private function getData() {
+	protected function getData() : array {
 		return [
-			'schema'           => 'MediaWikiPingback',
-			'revision'         => self::SCHEMA_REV,
-			'wiki'             => $this->fetchOrInsertId(),
-			'event'            => $this->getSystemInfo(),
+			'schema' => 'MediaWikiPingback',
+			'revision' => self::SCHEMA_REV,
+			'wiki' => $this->fetchOrInsertId(),
+			'event' => self::getSystemInfo( $this->config ),
 		];
 	}
 
 	/**
 	 * Collect basic data about this MediaWiki installation and return it
-	 * as an associative array conforming to the Pingback schema on MetaWiki
+	 * as an associative array conforming to the Pingback schema on Meta-Wiki
 	 * (<https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>).
 	 *
 	 * Developers: If you're adding a new piece of data to this, please document
 	 * this data at <https://www.mediawiki.org/wiki/Manual:$wgPingback>.
 	 *
 	 * @internal For use by Installer only to display which data we send.
+	 * @param Config $config With `DBtype` set.
 	 * @return array
 	 */
-	public function getSystemInfo() {
+	public static function getSystemInfo( Config $config ) : array {
 		$event = [
-			'database'   => $this->config->get( 'DBtype' ),
-			'MediaWiki'  => MW_VERSION,
-			'PHP'        => PHP_VERSION,
-			'OS'         => PHP_OS . ' ' . php_uname( 'r' ),
-			'arch'       => PHP_INT_SIZE === 8 ? 64 : 32,
-			'machine'    => php_uname( 'm' ),
+			'database' => $config->get( 'DBtype' ),
+			'MediaWiki' => MW_VERSION,
+			'PHP' => PHP_VERSION,
+			'OS' => PHP_OS . ' ' . php_uname( 'r' ),
+			'arch' => PHP_INT_SIZE === 8 ? 64 : 32,
+			'machine' => php_uname( 'm' ),
 		];
 
 		if ( isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
@@ -183,33 +213,31 @@ class Pingback {
 	 * If the identifier does not already exist, create it and save it in the
 	 * database. The identifier is randomly-generated.
 	 *
+	 * @throws DBError If identifier insert fails
 	 * @return string 32-character hex string
 	 */
 	private function fetchOrInsertId() : string {
-		if ( !$this->id ) {
-			$id = wfGetDB( DB_REPLICA )->selectField(
-				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
-
-			if ( $id == false ) {
-				$id = MWCryptRand::generateHex( 32 );
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->insert(
-					'updatelog',
-					[ 'ul_key' => 'PingBack', 'ul_value' => $id ],
-					__METHOD__,
-					[ 'IGNORE' ]
-				);
-
-				if ( !$dbw->affectedRows() ) {
-					$id = $dbw->selectField(
-						'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
-				}
-			}
-
-			$this->id = $id;
+		// We've already obtained a master connection for the lock, and plan to do a write.
+		// But, still prefer reading this immutable value from a replica to reduce load.
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$id = $dbr->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
+		if ( $id !== false ) {
+			return $id;
 		}
 
-		return $this->id;
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$id = $dbw->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
+		if ( $id !== false ) {
+			return $id;
+		}
+
+		$id = MWCryptRand::generateHex( 32 );
+		$dbw->insert(
+			'updatelog',
+			[ 'ul_key' => 'PingBack', 'ul_value' => $id ],
+			__METHOD__
+		);
+		return $id;
 	}
 
 	/**
@@ -226,24 +254,25 @@ class Pingback {
 	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>
 	 *
 	 * @param array $data Pingback data as an associative array
-	 * @return bool true on success, false on failure
+	 * @return bool
 	 */
-	private function postPingback( array $data ) {
+	private function postPingback( array $data ) : bool {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url, [], __METHOD__ ) !== null;
+		return $this->http->post( $url, [], __METHOD__ ) !== null;
 	}
 
 	/**
 	 * Record the fact that we have sent a pingback for this MediaWiki version,
 	 * to ensure we don't submit data multiple times.
-	 * @return bool
+	 *
+	 * @throws DBError If timestamp upsert fails
 	 */
-	private function markSent() {
-		$dbw = wfGetDB( DB_MASTER );
-		$timestamp = time();
-		return $dbw->upsert(
+	private function markSent() : void {
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$timestamp = ConvertibleTimestamp::time();
+		$dbw->upsert(
 			'updatelog',
 			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
 			'ul_key',
@@ -256,9 +285,15 @@ class Pingback {
 	 * Schedule a deferred callable that will check if a pingback should be
 	 * sent and (if so) proceed to send it.
 	 */
-	public static function schedulePingback() {
+	public static function schedulePingback() : void {
 		DeferredUpdates::addCallableUpdate( function () {
-			$instance = new Pingback;
+			$instance = new Pingback(
+				MediaWikiServices::getInstance()->getMainConfig(),
+				MediaWikiServices::getInstance()->getDBLoadBalancer(),
+				ObjectCache::getLocalClusterInstance(),
+				MediaWikiServices::getInstance()->getHttpRequestFactory(),
+				LoggerFactory::getInstance( 'Pingback' )
+			);
 			$instance->run();
 		} );
 	}
