@@ -330,7 +330,7 @@ class ApiParamValidator {
 	 * @param ValidationException $ex
 	 * @throws ApiUsageException always
 	 */
-	private function convertValidationException( ApiBase $module, ValidationException $ex ) : array {
+	private function convertValidationException( ApiBase $module, ValidationException $ex ) {
 		$mv = $ex->getFailureMessage();
 		throw ApiUsageException::newWithMessage(
 			$module,
