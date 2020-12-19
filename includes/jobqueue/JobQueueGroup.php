@@ -75,7 +75,10 @@ class JobQueueGroup {
 		}
 
 		if ( !isset( self::$instances[$domain] ) ) {
-			self::$instances[$domain] = new self( $domain, wfConfiguredReadOnlyReason() );
+			$reason = MediaWikiServices::getInstance()
+				->getConfiguredReadOnlyMode()
+				->getReason();
+			self::$instances[$domain] = new self( $domain, $reason );
 			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 			// the job runner system into spawning endless RPC requests that fail (T171371).
 			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );

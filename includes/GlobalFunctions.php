@@ -954,8 +954,10 @@ function wfIsDebugRawPage() {
  * Send a line giving PHP memory usage.
  *
  * @param bool $exact Print exact byte values instead of kibibytes (default: false)
+ * @deprecated since 1.36
  */
 function wfDebugMem( $exact = false ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	$mem = memory_get_usage();
 	if ( !$exact ) {
 		$mem = floor( $mem / 1024 ) . ' KiB';
@@ -1150,8 +1152,10 @@ function wfReadOnlyReason() {
  *
  * @return string|bool String when in read-only mode; false otherwise
  * @since 1.27
+ * @deprecated since 1.36
  */
 function wfConfiguredReadOnlyReason() {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	return MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
 		->getReason();
 }
@@ -1694,8 +1698,11 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
  * also need to suppress the output of ob_gzhandler to keep to spec
  * and avoid breaking Firefox in rare cases where the headers and
  * body are broken over two packets.
+ *
+ * @deprecated since 1.36
  */
 function wfClearOutputBuffers() {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	wfResetOutputBuffers( false );
 }
 
@@ -1706,8 +1713,10 @@ function wfClearOutputBuffers() {
  * @param string $accept
  * @param string $def Default
  * @return float[] Associative array of string => float pairs
+ * @deprecated since 1.36
  */
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	# No arg means accept anything (per HTTP spec)
 	if ( !$accept ) {
 		return [ $def => 1.0 ];
@@ -1770,9 +1779,10 @@ function mimeTypeMatch( $type, $avail ) {
  *
  * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
- * @todo The function appears unused. Is it worth to keep?
+ * @deprecated since 1.36
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	$combine = [];
 
 	foreach ( array_keys( $sprefs ) as $type ) {
@@ -2387,8 +2397,10 @@ function wfRelativePath( $path, $from ) {
  *
  * @param string $name
  * @return mixed The variable on success, false on failure
+ * @deprecated since 1.36
  */
 function wfGetPrecompiledData( $name ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	global $IP;
 
 	$file = "$IP/serialized/$name";

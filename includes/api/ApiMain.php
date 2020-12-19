@@ -1400,7 +1400,7 @@ class ApiMain extends ApiBase {
 			Wikimedia\suppressWarnings();
 			ini_set( 'zlib.output_compression', 0 );
 			Wikimedia\restoreWarnings();
-			wfClearOutputBuffers();
+			wfResetOutputBuffers( false );
 
 			return false;
 		}

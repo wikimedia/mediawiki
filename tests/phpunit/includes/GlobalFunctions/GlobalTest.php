@@ -263,6 +263,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfNegotiateType
 	 */
 	public function testNegotiateType() {
+		$this->hideDeprecated( 'wfNegotiateType' );
+
 		$this->assertEquals(
 			'text/html',
 			wfNegotiateType(
@@ -308,6 +310,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfDebugMem
 	 */
 	public function testDebugFunctionTest() {
+		$this->hideDeprecated( 'wfDebugMem' );
+
 		$debugLogFile = $this->getNewTempFile();
 
 		$this->setMwGlobals( [
