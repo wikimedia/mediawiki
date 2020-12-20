@@ -365,21 +365,21 @@ CREATE TABLE /*_*/sites (
   site_config BLOB NOT NULL
 );
 
-CREATE UNIQUE INDEX sites_global_key ON /*_*/sites (site_global_key);
+CREATE UNIQUE INDEX site_global_key ON /*_*/sites (site_global_key);
 
-CREATE INDEX sites_type ON /*_*/sites (site_type);
+CREATE INDEX site_type ON /*_*/sites (site_type);
 
-CREATE INDEX sites_group ON /*_*/sites (site_group);
+CREATE INDEX site_group ON /*_*/sites (site_group);
 
-CREATE INDEX sites_source ON /*_*/sites (site_source);
+CREATE INDEX site_source ON /*_*/sites (site_source);
 
-CREATE INDEX sites_language ON /*_*/sites (site_language);
+CREATE INDEX site_language ON /*_*/sites (site_language);
 
-CREATE INDEX sites_protocol ON /*_*/sites (site_protocol);
+CREATE INDEX site_protocol ON /*_*/sites (site_protocol);
 
-CREATE INDEX sites_domain ON /*_*/sites (site_domain);
+CREATE INDEX site_domain ON /*_*/sites (site_domain);
 
-CREATE INDEX sites_forward ON /*_*/sites (site_forward);
+CREATE INDEX site_forward ON /*_*/sites (site_forward);
 
 
 CREATE TABLE /*_*/user_newtalk (
