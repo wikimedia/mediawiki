@@ -1363,6 +1363,8 @@ class Article implements Page {
 
 		$services = MediaWikiServices::getInstance();
 
+		$contextUser = $this->getContext()->getUser();
+
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $title->getNamespace() === NS_USER
 			|| $title->getNamespace() === NS_USER_TALK
@@ -1374,7 +1376,7 @@ class Article implements Page {
 
 			if ( $user && $user->isLoggedIn() && $user->isHidden() &&
 				!$services->getPermissionManager()
-					->userHasRight( $this->getContext()->getUser(), 'hideuser' )
+					->userHasRight( $contextUser, 'hideuser' )
 			) {
 				// T120883 if the user is hidden and the viewer cannot see hidden
 				// users, pretend like it does not exist at all.
@@ -1418,8 +1420,9 @@ class Article implements Page {
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
 		$dbCache = ObjectCache::getInstance( 'db-replicated' );
 		$key = $dbCache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
-		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
+		$loggedIn = $contextUser->isLoggedIn();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
+
 		if ( $loggedIn || $dbCache->get( $key ) || $sessionExists ) {
 			$logTypes = [ 'delete', 'move', 'protect' ];
 
@@ -1477,7 +1480,7 @@ class Article implements Page {
 				if ( $revRecord && $revRecord->audienceCan(
 					RevisionRecord::DELETED_TEXT,
 					RevisionRecord::FOR_THIS_USER,
-					$this->getContext()->getUser()
+					$contextUser
 				) ) {
 					$text = wfMessage(
 						'missing-revision-permission', $oldid,
@@ -1488,10 +1491,10 @@ class Article implements Page {
 					$text = wfMessage( 'missing-revision', $oldid )->plain();
 				}
 
-			} elseif ( $pm->quickUserCan( 'create', $this->getContext()->getUser(), $title ) &&
-				$pm->quickUserCan( 'edit', $this->getContext()->getUser(), $title )
+			} elseif ( $pm->quickUserCan( 'create', $contextUser, $title ) &&
+				$pm->quickUserCan( 'edit', $contextUser, $title )
 			) {
-				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+				$message = $loggedIn ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
 			} else {
 				$text = wfMessage( 'noarticletext-nopermission' )->plain();
