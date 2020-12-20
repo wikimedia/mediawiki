@@ -478,6 +478,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'uploadstash', 'us_timestamp', 'patch-uploadstash-us_timestamp.sql' ],
 			[ 'renameIndex', 'user_properties', 'user_properties_property', 'up_property', false,
 				'patch-user_properties-rename-index.sql' ],
+			[ 'renameIndex', 'sites', 'sites_global_key', 'site_global_key', false, 'patch-sites-rename-indexes.sql' ],
 		];
 	}
 

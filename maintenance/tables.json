@@ -1148,14 +1148,14 @@
 			}
 		],
 		"indexes": [
-			{ "name": "sites_global_key", "columns": [ "site_global_key" ], "unique": true },
-			{ "name": "sites_type", "columns": [ "site_type" ], "unique": false },
-			{ "name": "sites_group", "columns": [ "site_group" ], "unique": false },
-			{ "name": "sites_source", "columns": [ "site_source" ], "unique": false },
-			{ "name": "sites_language", "columns": [ "site_language" ], "unique": false },
-			{ "name": "sites_protocol", "columns": [ "site_protocol" ], "unique": false },
-			{ "name": "sites_domain", "columns": [ "site_domain" ], "unique": false },
-			{ "name": "sites_forward", "columns": [ "site_forward" ], "unique": false }
+			{ "name": "site_global_key", "columns": [ "site_global_key" ], "unique": true },
+			{ "name": "site_type", "columns": [ "site_type" ], "unique": false },
+			{ "name": "site_group", "columns": [ "site_group" ], "unique": false },
+			{ "name": "site_source", "columns": [ "site_source" ], "unique": false },
+			{ "name": "site_language", "columns": [ "site_language" ], "unique": false },
+			{ "name": "site_protocol", "columns": [ "site_protocol" ], "unique": false },
+			{ "name": "site_domain", "columns": [ "site_domain" ], "unique": false },
+			{ "name": "site_forward", "columns": [ "site_forward" ], "unique": false }
 		],
 		"pk": [ "site_id" ]
 	},
