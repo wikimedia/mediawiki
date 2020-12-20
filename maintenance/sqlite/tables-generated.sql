@@ -611,3 +611,34 @@ CREATE INDEX us_user ON /*_*/uploadstash (us_user);
 CREATE UNIQUE INDEX us_key ON /*_*/uploadstash (us_key);
 
 CREATE INDEX us_timestamp ON /*_*/uploadstash (us_timestamp);
+
+
+CREATE TABLE /*_*/filearchive (
+  fa_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  fa_name BLOB DEFAULT '' NOT NULL, fa_archive_name BLOB DEFAULT '',
+  fa_storage_group BLOB DEFAULT NULL,
+  fa_storage_key BLOB DEFAULT '', fa_deleted_user INTEGER DEFAULT NULL,
+  fa_deleted_timestamp BLOB DEFAULT NULL,
+  fa_deleted_reason_id BIGINT UNSIGNED NOT NULL,
+  fa_size INTEGER UNSIGNED DEFAULT 0,
+  fa_width INTEGER DEFAULT 0, fa_height INTEGER DEFAULT 0,
+  fa_metadata BLOB DEFAULT NULL, fa_bits INTEGER DEFAULT 0,
+  fa_media_type TEXT DEFAULT NULL, fa_major_mime TEXT DEFAULT 'unknown',
+  fa_minor_mime BLOB DEFAULT 'unknown',
+  fa_description_id BIGINT UNSIGNED NOT NULL,
+  fa_actor BIGINT UNSIGNED NOT NULL,
+  fa_timestamp BLOB DEFAULT NULL, fa_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  fa_sha1 BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX fa_name ON /*_*/filearchive (fa_name, fa_timestamp);
+
+CREATE INDEX fa_storage_group ON /*_*/filearchive (
+  fa_storage_group, fa_storage_key
+);
+
+CREATE INDEX fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
+
+CREATE INDEX fa_actor_timestamp ON /*_*/filearchive (fa_actor, fa_timestamp);
+
+CREATE INDEX fa_sha1 ON /*_*/filearchive (fa_sha1);

@@ -894,6 +894,20 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'logging', 'actor_time', 'log_actor_time' ],
 			[ 'renameIndex', 'logging', 'page_time', 'log_page_time' ],
 			[ 'renameIndex', 'logging', 'times', 'log_times' ],
+			[ 'setDefault', 'filearchive', 'fa_name', '' ],
+			[ 'setDefault', 'filearchive', 'fa_archive_name', '' ],
+			[ 'setDefault', 'filearchive', 'fa_storage_key', '' ],
+			[ 'dropFkey', 'filearchive', 'fa_deleted_user' ],
+			[ 'changeField', 'filearchive', 'fa_deleted_reason_id', 'BIGINT', '' ],
+			[ 'changeField', 'filearchive', 'fa_metadata', 'TEXT', '' ],
+			[ 'changeField', 'filearchive', 'fa_bits', 'INTEGER', '' ],
+			[ 'changeField', 'filearchive', 'fa_description_id', 'BIGINT', '' ],
+			[ 'changeField', 'filearchive', 'fa_actor', 'BIGINT', '' ],
+			[ 'renameIndex', 'filearchive', 'fa_name_time', 'fa_name' ],
+			[ 'renameIndex', 'filearchive', 'fa_dupe', 'fa_storage_group' ],
+			[ 'renameIndex', 'filearchive', 'fa_notime', 'fa_deleted_timestamp' ],
+			[ 'dropPgIndex', 'filearchive', 'fa_nouser' ],
+			[ 'addPgIndex', 'filearchive', 'fa_actor_timestamp', '(fa_actor, fa_timestamp)' ],
 		];
 	}
 

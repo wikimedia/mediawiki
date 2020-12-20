@@ -572,3 +572,47 @@ CREATE TABLE /*_*/uploadstash (
   INDEX us_timestamp (us_timestamp),
   PRIMARY KEY(us_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/filearchive (
+  fa_id INT AUTO_INCREMENT NOT NULL,
+  fa_name VARBINARY(255) DEFAULT '' NOT NULL,
+  fa_archive_name VARBINARY(255) DEFAULT '',
+  fa_storage_group VARBINARY(16) DEFAULT NULL,
+  fa_storage_key VARBINARY(64) DEFAULT '',
+  fa_deleted_user INT DEFAULT NULL,
+  fa_deleted_timestamp BINARY(14) DEFAULT NULL,
+  fa_deleted_reason_id BIGINT UNSIGNED NOT NULL,
+  fa_size INT UNSIGNED DEFAULT 0,
+  fa_width INT DEFAULT 0,
+  fa_height INT DEFAULT 0,
+  fa_metadata MEDIUMBLOB DEFAULT NULL,
+  fa_bits INT DEFAULT 0,
+  fa_media_type ENUM(
+    'UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO',
+    'VIDEO', 'MULTIMEDIA', 'OFFICE',
+    'TEXT', 'EXECUTABLE', 'ARCHIVE',
+    '3D'
+  ) DEFAULT NULL,
+  fa_major_mime ENUM(
+    'unknown', 'application', 'audio',
+    'image', 'text', 'video', 'message',
+    'model', 'multipart', 'chemical'
+  ) DEFAULT 'unknown',
+  fa_minor_mime VARBINARY(100) DEFAULT 'unknown',
+  fa_description_id BIGINT UNSIGNED NOT NULL,
+  fa_actor BIGINT UNSIGNED NOT NULL,
+  fa_timestamp BINARY(14) DEFAULT NULL,
+  fa_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  fa_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
+  INDEX fa_name (fa_name, fa_timestamp),
+  INDEX fa_storage_group (
+    fa_storage_group, fa_storage_key
+  ),
+  INDEX fa_deleted_timestamp (fa_deleted_timestamp),
+  INDEX fa_actor_timestamp (fa_actor, fa_timestamp),
+  INDEX fa_sha1 (
+    fa_sha1(10)
+  ),
+  PRIMARY KEY(fa_id)
+) /*$wgDBTableOptions*/;
