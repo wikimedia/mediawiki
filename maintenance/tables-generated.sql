@@ -6,8 +6,8 @@ CREATE TABLE /*_*/site_identifiers (
   si_type VARBINARY(32) NOT NULL,
   si_key VARBINARY(32) NOT NULL,
   si_site INT UNSIGNED NOT NULL,
-  INDEX site_ids_site (si_site),
-  INDEX site_ids_key (si_key),
+  INDEX si_site (si_site),
+  INDEX si_key (si_key),
   PRIMARY KEY(si_type, si_key)
 ) /*$wgDBTableOptions*/;
 

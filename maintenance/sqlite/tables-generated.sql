@@ -9,9 +9,9 @@ CREATE TABLE /*_*/site_identifiers (
   PRIMARY KEY(si_type, si_key)
 );
 
-CREATE INDEX site_ids_site ON /*_*/site_identifiers (si_site);
+CREATE INDEX si_site ON /*_*/site_identifiers (si_site);
 
-CREATE INDEX site_ids_key ON /*_*/site_identifiers (si_key);
+CREATE INDEX si_key ON /*_*/site_identifiers (si_key);
 
 
 CREATE TABLE /*_*/updatelog (
