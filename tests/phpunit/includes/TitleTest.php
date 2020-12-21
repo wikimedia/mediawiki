@@ -798,7 +798,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'User page is watchable' => [
 				Title::makeTitle( NS_USER, 'Jane' ), true
 			],
-			'Talke page is watchable' => [
+			'Talk page is watchable' => [
 				Title::makeTitle( NS_TALK, 'Foo' ), true
 			],
 			'Special page is not watchable' => [
@@ -881,7 +881,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsWatchable( Title $title, $expected ) {
-		$actual = $title->canHaveTalkPage();
+		$actual = $title->isWatchable();
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
