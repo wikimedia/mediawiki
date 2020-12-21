@@ -527,12 +527,12 @@ CREATE TABLE /*_*/logging (
   log_comment_id BIGINT UNSIGNED NOT NULL,
   log_params BLOB NOT NULL,
   log_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
-  INDEX type_time (log_type, log_timestamp),
-  INDEX actor_time (log_actor, log_timestamp),
-  INDEX page_time (
+  INDEX log_type_time (log_type, log_timestamp),
+  INDEX log_actor_time (log_actor, log_timestamp),
+  INDEX log_page_time (
     log_namespace, log_title, log_timestamp
   ),
-  INDEX times (log_timestamp),
+  INDEX log_times (log_timestamp),
   INDEX log_actor_type_time (
     log_actor, log_type, log_timestamp
   ),

@@ -1715,25 +1715,25 @@
 		],
 		"indexes": [
 			{
-				"name": "type_time",
+				"name": "log_type_time",
 				"comment": "Special:Log type filter",
 				"columns": [ "log_type", "log_timestamp" ],
 				"unique": false
 			},
 			{
-				"name": "actor_time",
+				"name": "log_actor_time",
 				"comment": "Special:Log performer filter",
 				"columns": [ "log_actor", "log_timestamp" ],
 				"unique": false
 			},
 			{
-				"name": "page_time",
+				"name": "log_page_time",
 				"comment": "Special:Log title filter, log extract",
 				"columns": [ "log_namespace", "log_title", "log_timestamp" ],
 				"unique": false
 			},
 			{
-				"name": "times",
+				"name": "log_times",
 				"comment": "Special:Log unfiltered",
 				"columns": [ "log_timestamp" ],
 				"unique": false

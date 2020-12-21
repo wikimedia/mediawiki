@@ -565,15 +565,15 @@ CREATE TABLE /*_*/logging (
   log_params BLOB NOT NULL, log_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL
 );
 
-CREATE INDEX type_time ON /*_*/logging (log_type, log_timestamp);
+CREATE INDEX log_type_time ON /*_*/logging (log_type, log_timestamp);
 
-CREATE INDEX actor_time ON /*_*/logging (log_actor, log_timestamp);
+CREATE INDEX log_actor_time ON /*_*/logging (log_actor, log_timestamp);
 
-CREATE INDEX page_time ON /*_*/logging (
+CREATE INDEX log_page_time ON /*_*/logging (
   log_namespace, log_title, log_timestamp
 );
 
-CREATE INDEX times ON /*_*/logging (log_timestamp);
+CREATE INDEX log_times ON /*_*/logging (log_timestamp);
 
 CREATE INDEX log_actor_type_time ON /*_*/logging (
   log_actor, log_type, log_timestamp
