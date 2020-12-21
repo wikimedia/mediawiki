@@ -272,7 +272,7 @@ class WikiMap {
 		// compatibility with some common cases. Assume that if the DB domain schema is just
 		// the installer default then it is probably the case that the schema is the same for
 		// all wikis in the farm. Historically, any wiki farm had to make the database/prefix
-		// combination unique per wiki. Ommit the schema if it does not seem wiki specific.
+		// combination unique per wiki. Omit the schema if it does not seem wiki specific.
 		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
 			// This means a site admin may have specifically taylored the schemas.
 			// Domain IDs might use the form <DB>-<project>- or <DB>-<project>-<language>_,
