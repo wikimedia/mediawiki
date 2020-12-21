@@ -33099,15 +33099,16 @@ parsoid={
 [[stats:v2/#/fr.wikipedia.org/reading/page-views-by-country/normal%7Cmap%7C2-Year~2016060100~2018071100%7C~total|10]]
 !! end
 
-## FIXME: "gerrit" isn't in PHP's setupInterwikis
 !! test
 T199926: Hash only interwiki link
+!! config
+wgFragmentMode=[ 'html5' ]
 !! wikitext
 [[meatball:Test#1/2]]
 [[gerrit:#/q/project:mediawiki/services/parsoid|Gerrit]]
 !! html/php+tidy
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2" class="extiw" title="meatball:Test">meatball:Test#1/2</a>
-<a href="/index.php?title=Gerrit:&amp;action=edit&amp;redlink=1" class="new" title="Gerrit: (page does not exist)">Gerrit</a>
+<a href="https://gerrit.wikimedia.org/#/q/project:mediawiki/services/parsoid" class="extiw" title="gerrit:">Gerrit</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2" title="meatball:Test" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2"},"sa":{"href":"meatball:Test#1/2"},"isIW":true}'>meatball:Test#1/2</a>
