@@ -44,7 +44,7 @@ class SessionConsistentConnectionManagerTest extends TestCase {
 		$this->assertSame( $database, $actual );
 	}
 
-	public function testGetReadConnectionReturnsWriteDbOnForceMatser() {
+	public function testGetReadConnectionReturnsWriteDbOnForceMaster() {
 		$database = $this->getIDatabaseMock();
 		$lb = $this->getLoadBalancerMock();
 
