@@ -2982,6 +2982,7 @@
 	"autoblocklist-otherblocks": "[[File:Special AutoBlockList new.png|thumb|Example]]\nUsed on [[Special:AutoblockList]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks.\n\nParameters:\n* $1 - number of blocks",
 	"ipblocklist": "Title of [[Special:Ipblocklist]].",
 	"ipblocklist-legend": "Used as legend of the form in [[Special:BlockList]].\n\nSee also:\n* {{msg-mw|Ipblocklist-legend}}\n* {{msg-mw|Ipblocklist-submit}}",
+	"blocklist-autoblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]]. \n{{Related|Blocklist-blocks}}",
 	"blocklist-userblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-tempblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-indefblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",

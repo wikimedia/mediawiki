@@ -122,6 +122,7 @@ class SpecialBlockList extends SpecialPage {
 				'options-messages' => [
 					'blocklist-tempblocks' => 'tempblocks',
 					'blocklist-indefblocks' => 'indefblocks',
+					'blocklist-autoblocks' => 'autoblocks',
 					'blocklist-userblocks' => 'userblocks',
 					'blocklist-addressblocks' => 'addressblocks',
 					'blocklist-rangeblocks' => 'rangeblocks',
@@ -209,6 +210,10 @@ class SpecialBlockList extends SpecialPage {
 		# Apply filters
 		if ( in_array( 'userblocks', $this->options ) ) {
 			$conds['ipb_user'] = 0;
+		}
+		if ( in_array( 'autoblocks', $this->options ) ) {
+			// ipb_parent_block_id = 0 because of T282890
+			$conds[] = "ipb_parent_block_id IS NULL OR ipb_parent_block_id = 0";
 		}
 		if ( in_array( 'addressblocks', $this->options ) ) {
 			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
