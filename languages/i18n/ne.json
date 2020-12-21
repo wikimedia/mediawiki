@@ -163,7 +163,6 @@
 	"category-article-count-limited": "निम्न {{PLURAL:$1|पृष्ठ|$1 पृष्ठहरू}} यस श्रेणीमा रहेको ।",
 	"category-file-count": "{{PLURAL:$2|यो श्रेणीमा निम्न फाइल मात्र छ ।|निम्न श्रेणीमा {{PLURAL:$1|फाइल|$1 फाइलहरू}} , कुल  $2 मध्ये रहेको ।}}",
 	"category-file-count-limited": "निम्न  {{PLURAL:$1|फाइल|$1 फाइलहरू}} यस श्रेणीमा रहेको ।",
-	"listingcontinuesabbrev": "निरन्तरता...",
 	"index-category": "क्रमाङ्कित पृष्ठहरू",
 	"noindex-category": "अनुक्रमण नगरिएका पृष्ठहरू",
 	"broken-file-category": "टुटेको फाइल लिङ्कहरूसितको पृष्ठ",

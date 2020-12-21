@@ -73,7 +73,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Senez gruppaz on ainult vahtiaava alagruppa.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 alagruppaa kuuluvad}} sihee gruppaa. Alagruppaďďe cisla gruppaza on $2.}}",
 	"category-article-count": "{{PLURAL:$2|Senez gruppaz on ainult vahtiaava cülci.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 cülciä kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}",
 	"category-file-count": "{{PLURAL:$2|Senez gruppaz on ainult vahtiaava faili.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 failid kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}",
-	"listingcontinuesabbrev": "ladvaub",
 	"noindex-category": "Ebäindekseeritettäväd lehocülled",
 	"about": "Täätühsed",
 	"newwindow": "(avaub uuvvõza akkunaza)",

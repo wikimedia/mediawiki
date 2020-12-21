@@ -138,7 +138,6 @@
 	"category-article-count-limited": "वर्तमान श्रेणी में नीचे दिहल {{PLURAL:$1|पन्ना बा|$1 पन्ना बाड़ें}}।",
 	"category-file-count": "{{PLURAL:$2|ए श्रेणी में नीचे दिहल एकही ठो फाइल भर बाटे।|ए श्रेणी में मौजूद कुल $2 में से {{PLURAL:$1|फाइल नीचे देखावल जात बा|$1 फाइलसभ नीचे देखावल जात बाड़ीं}}।}}",
 	"category-file-count-limited": "वर्तमान श्रेणी में नीचे दिहल {{PLURAL:$1|फाइल बा|$1 फाइल बाड़ीं}}।",
-	"listingcontinuesabbrev": "जारी...",
 	"index-category": "सूचीबद्ध पन्ना",
 	"noindex-category": "बिनासूचीबद्ध पन्ना",
 	"broken-file-category": "गायब फाइल वाला पन्ना",

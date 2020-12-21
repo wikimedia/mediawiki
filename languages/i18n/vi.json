@@ -182,7 +182,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại hiện hành.",
 	"category-file-count": "{{PLURAL:$2|Thể loại này gồm tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.",
-	"listingcontinuesabbrev": "(tiếp theo)",
 	"index-category": "Trang được ghi chỉ mục",
 	"noindex-category": "Trang không hiển thị trong bộ máy tìm kiếm",
 	"broken-file-category": "Trang có sử dụng tập tin không tồn tại",

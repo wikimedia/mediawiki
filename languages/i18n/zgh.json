@@ -139,7 +139,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|ⵜⴰⵙⵏⴰ ⴰⴷ ⵜⵍⵍⴰ|$1 ⵜⴰⵙⵏⵉⵡⵉⵏ ⴰⴷ ⵍⵍⴰⵏⵜ}} ⴳ ⵓⵙⵎⵉⵍ ⴰⴷ.",
 	"category-file-count": "{{PLURAL:$2|ⴰⵙⵎⵉⵍ ⴰⴷ ⵢⵓⵎⵢ ⵖⴰⵙ ⴰⴼⴰⵢⵍⵓ ⴰ.|{{PLURAL:$1|ⴰⴼⴰⵢⵍⵓ|$1 ⵏ ⵉⴼⵓⵢⵍⴰ}} ⴳ ⵓⵙⵎⵉⵍ ⴰ, ⵙⴳ $2 ⴰⵖⵔⵓⴷ.}}",
 	"category-file-count-limited": "{{PLURAL:$1|ⴰⴼⴰⵢⵍⵓ ⴰⴷ ⵉⵍⵍⴰ|$1 ⵉⴼⴰⵢⵍⵓⵜⵏ ⴰⴷ ⵍⵍⴰⵏ}} ⴳ ⵓⵙⵎⵉⵍ ⴰⴷ.",
-	"listingcontinuesabbrev": "ⴹⴼⵓⵔ",
 	"index-category": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⵉⵜⵜⵡⴰⵙⴽⵉⵏⵏ",
 	"noindex-category": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⵎⵉ ⵓⵔ ⵉⵜⵜⵓⴳⵉ ⵓⵙⴳⴱⵔ",
 	"broken-file-category": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⴳ ⵍⵍⴰⵏ ⵉⵙⵖⵏⴻⵏ ⵏ ⵉⴼⵓⵢⵍⴰ ⵕⵥⴰⵏⵉⵏ",

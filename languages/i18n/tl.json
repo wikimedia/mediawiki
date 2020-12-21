@@ -161,7 +161,6 @@
 	"category-article-count-limited": "Ang sumusunod na {{PLURAL:$1|pahina ay|$1 pahina ay}} nasa pangkasalukuyang kategorya.",
 	"category-file-count": "{{PLURAL:$2|Ang kategoryang ito ay naglalaman lamang ng sumusunod na talaksan.|Ang sumusunod na {{PLURAL:$1|talaksan ay|$1 talaksan ay}} nasa kategoryang ito, mula sa kabuuan na $2.}}",
 	"category-file-count-limited": "Ang sumusunod na {{PLURAL:$1|talaksan ay|$1 talaksan}} ay nasa kasalukuyang kategorya.",
-	"listingcontinuesabbrev": "karugtong",
 	"index-category": "Mga pahinang may talatuntunan",
 	"noindex-category": "Mga pahinang walang talatuntunan",
 	"broken-file-category": "Mga pahina na may sirang mga kawing ng talaksan",

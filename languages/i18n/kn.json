@@ -165,7 +165,6 @@
 	"category-article-count-limited": "ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಪುಟ ಇದೆ|$1 ಪುಟಗಳು ಇವೆ}}.",
 	"category-file-count": "{{PLURAL:$2|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ ಫೈಲು ಇದೆ.|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲನ್ನು|$1 ಫೈಲುಗಳನ್ನು}} ಸೇರಿಸಿ, ಒಟ್ಟು $2 ಇವೆ.}}",
 	"category-file-count-limited": "ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲು ಇದೆ|$1 ಫೈಲುಗಳು ಇವೆ}}.",
-	"listingcontinuesabbrev": "ಮುಂದು.",
 	"index-category": "ಅನುಕ್ರಮಣೆಗೊಂಡ ಪುಟಗಳು",
 	"noindex-category": "ಅನುಕ್ರಮಣೆಗೊಳಪಡದ ಪುಟಗಳು",
 	"broken-file-category": "ಕಡತ ಕೊಂಡಿಗಳು ಮುರಿದಿರುವ ಪುಟಗಳು",

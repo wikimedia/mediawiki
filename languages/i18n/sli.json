@@ -122,7 +122,6 @@
 	"category-article-count-limited": "Fulgende {{PLURAL:$1|Seite ies|$1 Seita sein}} ei dieser Kategorie enthaala:",
 	"category-file-count": "{{PLURAL:$2|Diese Kategorie enthält fulgende Seite:|{{PLURAL:$1|Fulgende Seite ies anne vu insgesomt $2 Seita ei dieser Kategorie:|'S waan $1 vu insgesomt $2 Seita ei dieser Kategorie oagezäat:}}}}",
 	"category-file-count-limited": "Folgende {{PLURAL:$1|Datei ies|$1 Dateien sein}} ei dieser Kategorie enthalta:",
-	"listingcontinuesabbrev": "(Furtsetzung)",
 	"index-category": "Indizierte Seyta",
 	"noindex-category": "Neindizierte Seyta",
 	"about": "Ieber",

@@ -151,7 +151,6 @@
 	"category-article-count-limited": "Dees categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}.",
 	"category-file-count": "{{PLURAL:$2|Dees categorie bevat 't volgende bestandj.|Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}, van in totaal $2.}}",
 	"category-file-count-limited": "Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}.",
-	"listingcontinuesabbrev": "wiejer",
 	"index-category": "Geïndexeerde pazjena's",
 	"noindex-category": "Neet-geïndexeerde pazjena's",
 	"broken-file-category": "Pazjena's mit ónjuuste bestandjsverwiezinge",

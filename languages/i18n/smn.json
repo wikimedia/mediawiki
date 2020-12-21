@@ -83,7 +83,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Taan luokkaast lii čuávuvâš vyeliluokka.|{{PLURAL:$1|Čuávuvâš vyeliluokka kulá|Čuávuvááh $1 vyeliluoka kuleh}} taan luokan. Vyeliluokai ubâlâš meeri luokkaast lii $2.}}",
 	"category-article-count": "{{PLURAL:$2|Taan luokkaast lii čuávuvâš sijđo.|{{PLURAL:$1|Čuávuvâš sijđo|Čuávuvááh $1 siijđo kuleh}} taan luokan. Siijđoi ubâlâš meeri luokkaast lii $2.}}",
 	"category-file-count": "{{PLURAL:$2|Taan luokkaast lii čuávuvâš tiätuvuárkká.|{{PLURAL:$1|Čuávuvâš tiátuvuárkká kulá|Čuávuvâš $1 tiätuvuárháh kuleh}} taan luokan. Tiätuvuárháh luokkaast láá ohcis $2.}}",
-	"listingcontinuesabbrev": "jotk.",
 	"noindex-category": "Ij-indeksistum siijđoh",
 	"broken-file-category": "Siijđoh, main láá toimâhánnáá tiätuvuárkkáliiŋkah",
 	"categoryviewer-pagedlinks": "($1) ($2)",
@@ -504,7 +503,7 @@
 	"license-header": "Lisens",
 	"listfiles-delete": "siho",
 	"imgfile": "tiätuvuárkká",
-	"listfiles": "Tiätuvuärkká luvâtâllâm",
+	"listfiles": "Tiätuvuárkká luvâtâllâm",
 	"listfiles_date": "Peivim",
 	"listfiles_name": "Nommâ",
 	"listfiles_description": "Kuvvim",
@@ -612,7 +611,7 @@
 	"delete-confirm": "Siho \"$1\"",
 	"dellogpage": "Sikkumloki",
 	"rollbacklink": "maaccât",
-	"rollbacklinkcount": "maaccât $1 {{PLURAL:$1|nubástâs|nubástâsâid}}",
+	"rollbacklinkcount": "maaccât $1 {{PLURAL:$1|nubástus|nubástussâd}}",
 	"protectlogpage": "Suoijimlogi",
 	"protectedarticle": "suoijij siijđo [[$1]]",
 	"modifiedarticleprotection": "nubástutij siijđo \"[[$1]]\" suoijimasâttâsâid",
@@ -728,7 +727,7 @@
 	"tooltip-diff": "Čääiti tohhum nubástusâid",
 	"tooltip-compareselectedversions": "Viärdádâl väljejum versioid",
 	"tooltip-watch": "Lasseet taam siijđo jiejat tarkkumliiston",
-	"tooltip-rollback": "Macâttempargonievvu koomeet siijđo majemuu hämmejeijjee oovtâ táikâ enâbijd nubástusâid siämmáá tove.",
+	"tooltip-rollback": "Macâttempargonievvu koomeet siijđo majemuu hämmejeijjee oovtâ teikâ eenâb nubástusâid siämmáá tove.",
 	"tooltip-undo": "\"Macâttem\" maaccât táám nubástus ja liäkkâ artikkal munekeččâmist. Čuákánkiäsu kiädán puáhtá čäälliđ macâttem suujâ.",
 	"tooltip-preferences-save": "Vuorkkii asâttâsâid",
 	"tooltip-summary": "Čäle uánehâs čuákánkiäsu",
@@ -831,5 +830,5 @@
 	"searchsuggest-search": "Search {{SITENAME}}:st",
 	"duration-days": "$1 {{PLURAL:$1|peivi|peeivi}}",
 	"pagelang-language": "Kielâ",
-	"randomrootpage": "Sáti váldusiijđo"
+	"randomrootpage": "Säti váldusiijđo"
 }

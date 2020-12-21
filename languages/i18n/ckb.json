@@ -156,7 +156,6 @@
 	"category-article-count-limited": "ئەم {{PLURAL:$1|لاپەڕە|$1 لاپەڕانە}}، لەم هاوپۆلەدان.",
 	"category-file-count": "{{PLURAL:$2|ئەم هاوپۆلە تەنها ئەم پەڕگەی لەخۆ گرتووە.|ئەم‌ {{PLURAL:$1|پەڕگەیە}} کە بەشێکە لە هەموو $2پەڕگەی ئەم هاوپۆلە‌ دەیبینی.}}",
 	"category-file-count-limited": "ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.",
-	"listingcontinuesabbrev": "(درێژە)",
 	"index-category": "پەڕە پێرستەکراوەکان",
 	"noindex-category": "پەڕە پێرستنەکراوەکان",
 	"broken-file-category": "ئەو پەڕانەی بەستەری پەڕگەکانیان شکاوە",

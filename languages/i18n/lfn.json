@@ -145,7 +145,6 @@
 	"category-article-count-limited": "La {{PLURAL:$1|paje|$1pajes }} seguente es en la categoria presente.",
 	"category-file-count": "{{PLURAL:$2|Esta categoria conteni sola la fix seguente.|La {{PLURAL:$1|fix|$1 fixes}} seguente es en esta categoria, de un cuantia intera de $2.}}",
 	"category-file-count-limited": "The {{PLURAL:$1|fix|$1 fixes}} seguente es en la categoria presente.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Pajes catalogida",
 	"noindex-category": "Pajes noncatalogida",
 	"broken-file-category": "Pajes con lias de fix rompeda",

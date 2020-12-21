@@ -115,7 +115,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|L' pache d'apré ale est|Chés $1 paches d'apré sont}} dins l'catégorie-lo.",
 	"category-file-count": "Chol catégorie al o  {{PLURAL:$2|seulemint ech fichié-lo:|$2 fichiés dont chés $1 fichiés suivants:}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ech fichié d'apré est|Chés $1 fichiés d'apré sont}} dins l'catégorie-lo.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paches indécsées",
 	"noindex-category": "Paches nin indécsées",
 	"broken-file-category": "Paches aveuc des loïens d'fichiés bérzillés",

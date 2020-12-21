@@ -141,7 +141,6 @@
 	"category-article-count-limited": "نوئا {{PLURAL:$1|بٱلگٱ هؽ|$1بٱلگٱیا هؽسن}} د دٱسٱ ایسنی.",
 	"category-file-count": "{{PLURAL:$2|ای دٱسٱ فقٱت د ڤٱرگرتٱ جانؽا نهاییٱ.| نهایی {{PLURAL:$1|جانؽا هؽ|$1 جانیایا هؽسن}} د اؽ دٱسٱ، ڤ دٱر د کولٛ $2 .}}",
 	"category-file-count-limited": " {{PLURAL:$1|[جانیا هؽ|1$جانیایا هؽن}} نوئایی یا هان د دٱسٱ ایسنی.",
-	"listingcontinuesabbrev": "دۏمبالٱ",
 	"index-category": "بٱلگٱیا نومگٱ کاری بیٱ",
 	"noindex-category": "بٱلگٱیا بؽ فهرست",
 	"broken-file-category": "بٱلگٱیایؽ کاْ هوم پاٛڤٱن جانؽایا اْشگس ناْ دارٱن",

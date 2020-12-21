@@ -133,7 +133,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Ruodoms|Ruodomė|Ruodom}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}}.",
 	"category-file-count": "{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|fails|failā|failu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ruodoms|Ruodomė|Ruodom}} $1 tuos kateguorėjės {{PLURAL:$1|fails|failā|failu}}.",
-	"listingcontinuesabbrev": "tes.",
 	"index-category": "Indeksoutė poslapē",
 	"noindex-category": "Neindeksoutė poslapē",
 	"broken-file-category": "Poslapē, katrėi tor bluogas nūruodas abruozdieliūsp",

@@ -131,7 +131,6 @@
 	"category-article-count-limited": "निम्नलिखित {{PLURAL:$1|पृष्ठ|$1 पृष्ठ सब}} इ श्रेणी मं॑ छै.",
 	"category-file-count": "{{PLURAL:$2|इ श्रेणी मं॑ खाली निम्न फ़ाइल शामिल छै|निम्न  {{PLURAL:$1|फ़ाइल छै|$1 फ़ाइल सब छै}} इ श्रेणी मं॑, पूरे $2 मं॑ स॑.}}",
 	"category-file-count-limited": "इ श्रेणी मं॑ निम्नलिखित {{PLURAL:$1|फ़ाइल छै।|फ़ाइल सब छै।}}",
-	"listingcontinuesabbrev": "जारी",
 	"index-category": "अनुक्रमित पन्ना",
 	"noindex-category": "असूचीबद्ध पन्ना",
 	"broken-file-category": "टूटलऽ फ़ाइल कड़ी वाला पन्ना",

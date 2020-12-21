@@ -131,7 +131,6 @@
 	"category-article-count-limited": "Batu {{PLURAL:$1|bu tir|$1 bu tid}} koe noeltafa loma.",
 	"category-file-count": "{{PLURAL:$2|Bata loma va bat iyeltak anton ruldar.|Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe bata loma, ke $2 varon.}}",
 	"category-file-count-limited": "Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe noeltafa loma.",
-	"listingcontinuesabbrev": "loon",
 	"index-category": "Jlayenu bu",
 	"noindex-category": "Mejlayeyenu bu",
 	"broken-file-category": "Bu dem empayana gluyaxa",

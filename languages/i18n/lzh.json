@@ -162,7 +162,6 @@
 	"category-article-count-limited": "類有頁$1。",
 	"category-file-count": "{{PLURAL:$2|類有檔如下。|類有檔$1，轄下檔數$2也。}}",
 	"category-file-count-limited": "類有檔$1。",
-	"listingcontinuesabbrev": "續",
 	"index-category": "已索之頁",
 	"noindex-category": "未索之頁",
 	"broken-file-category": "帶壞檔之頁",

@@ -76,7 +76,6 @@
 	"category-subcat-count": "{{PLURAL:$2|hini ka’a’apolan hani nanaw saeboeh ray wahoer 1 ka ’ima ’ol’olae’an ka’a’apolan .|hini ka’a’apolan hani saeboeh wahoer $1 ka ima ’ol’olae’an ka’a’apolan , saeboeh $2. }}",
 	"category-article-count": "{{PLURAL:$2|hini ka’a’apolan hani ray wahoer saeboeh ’aehae’ ka yemyen.|hini ka’a’apolan hani ray wahoer saeboeh ’ $1 aehae’ ka yemyen, saeboeh $2 .}}",
 	"category-file-count": "{{PLURAL:$2|hini ka’a’apolan hani saeboeh nanaw ’ano ’aehae’ naehan tang’an.|hini ka’a’apolan hani saeboeh waehoer $1 ka tang’an, saeboeh $2.}}",
-	"listingcontinuesabbrev": "lososo:oy",
 	"noindex-category": "’inokay ka:ati kaSa’amoehan kina:at ka yemien",
 	"broken-file-category": " tang’an  lomotor ’aewhay ilaka yemien",
 	"about": "’inakhini’an",

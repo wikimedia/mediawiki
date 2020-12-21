@@ -133,7 +133,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Nece lehtpol' om|$1 nened lehtpoled oma}} neciš kategorijas.",
 	"category-file-count": "{{PLURAL:$2|Neciš kategorijas om vaiše üks' fail.|{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas; om kaiked $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} neciš kategorijas.",
-	"listingcontinuesabbrev": "jatktand",
 	"index-category": "Indeksiruidud lehtpoled",
 	"noindex-category": "Indeksiruimatomad lehtpoled",
 	"broken-file-category": "Lehptoled, kudambil om radmatomid kosketusid",

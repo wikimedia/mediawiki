@@ -140,7 +140,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Ti sumaganad a panid|Dagiti sumaganad a $1 a panid}} ket adda iti agdama a kategoria.",
 	"category-file-count": "{{PLURAL:$2|Daytoy a kategoria ket aglaon laeng iti sumaganad a papeles.|{{PLURAL:$1|Ti sumaganad a papeles|Dagiti sumaganad a $1 a papeles}} ket adda iti daytoy a kategoria, iti $2 a dagup.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ti sumaganad a papeles|Dagiti sumaganad a $1 a papeles}} ket adda iti agdama a kategoria.",
-	"listingcontinuesabbrev": "tuloy.",
 	"index-category": "Naipagsurotan a pampanid",
 	"noindex-category": "Di naipagsurotan a pampanid",
 	"broken-file-category": "Pampanid nga addaan kadagiti nadadael a silpo ti papeles",

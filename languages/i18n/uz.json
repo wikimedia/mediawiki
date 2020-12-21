@@ -146,7 +146,6 @@
 	"category-article-count-limited": "Ushbu turkumda $1 ta sahifa mavjud.",
 	"category-file-count": "{{PLURAL:$2|Ushbu turkumda faqat bitta fayl mavjud.|Quyida ushbu turkumga kiruvchi $2 ta fayldan $1 tasi koʻrsatilgan.}}",
 	"category-file-count-limited": "Ushbu turkumda $1 ta fayl mavjud.",
-	"listingcontinuesabbrev": "davomi",
 	"index-category": "Indekslanadigan sahifalar",
 	"noindex-category": "Indekslanmaydigan sahifalar",
 	"broken-file-category": "Ishlamaydigan fayl havolalari bor sahifalar",

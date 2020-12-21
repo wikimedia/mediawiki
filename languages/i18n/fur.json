@@ -141,7 +141,6 @@
 	"category-article-count-limited": "Cheste categorie e conten {{PLURAL:$1|la pagjine|lis $1 pagjinis}} ca sot.",
 	"category-file-count": "{{PLURAL:$2|Cheste categorie e conten dome un file, mostrât ca sot.|Cheste categorie e conten {{PLURAL:$1|un file, mostrât|$1 files, mostrâts}} ca sot, suntun totâl di $2.}}",
 	"category-file-count-limited": "Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Pagjinis indicizadis",
 	"noindex-category": "Pagjinis no indicizadis",
 	"broken-file-category": "Pagjnis cun leams a file no corets",

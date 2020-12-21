@@ -147,7 +147,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Ukurasa ufuatao upo|Kurasa $1 zifuatazo zipo}} kati ya kurasa za jamii hii.",
 	"category-file-count": "{{PLURAL:$2|Jamii hii ina faili hili tu.|{{PLURAL:$1|Faili linalofuata limo|Mafaili $1 yanayofuata yamo}} katika jamii hii, kati ya jumla ya $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Faili lifuatalo lipo|Mafaili $1 yafuatayo yapo}} kati ya mafaili ya jamii hii.",
-	"listingcontinuesabbrev": "endelea",
 	"index-category": "Kurasa kuu",
 	"noindex-category": "Kurasa zisizokuu",
 	"broken-file-category": "Kurasa zenye viungo vilivyovunjika",

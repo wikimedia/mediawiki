@@ -153,7 +153,6 @@
 	"category-article-count-limited": "Ant sta categorìa-sì a-i {{PLURAL:$1|resta mach sta pàgina|resto $1 pàgine}}.",
 	"category-file-count": "{{PLURAL:$2|Sta categorìa-sì a l'ha nomach st'archivi.|Sta categorìa-sì a l'ha {{PLURAL:$1|n'|$1}} archivi, ëd $2 ch'a-i në j'é an total.}}",
 	"category-file-count-limited": "Ant sta categorìa-sì a-i {{PLURAL:$1|intra mach st'|intro $1}} archivi.",
-	"listingcontinuesabbrev": "anans",
 	"index-category": "Pàgine indicisà",
 	"noindex-category": "Pàgine nen indicisà",
 	"broken-file-category": "Pàgine con dle liure cioche a d'archivi",

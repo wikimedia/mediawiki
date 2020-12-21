@@ -143,7 +143,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Sa pàgina chi sighit est|Is $1 pàginas chi sighint sunt}} in custa categoria.",
 	"category-file-count": "{{PLURAL:$2|Custa categoria cuntenet feti su documentu chi sighit.|{{PLURAL:$1|Su documentu chi sighit est|Is $1 documentos chi sighint sunt}} in custa categoria, dae $2 totales.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Su documentu chi sighit est|Is $1 documentos chi sighint sunt}} in sa categoria currente.",
-	"listingcontinuesabbrev": "sighit",
 	"index-category": "Pàginas inditzizadas",
 	"noindex-category": "Pàginas no inditzizadas",
 	"broken-file-category": "Pàginas chi ligant a documentos chi no esistint",

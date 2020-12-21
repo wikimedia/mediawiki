@@ -115,7 +115,6 @@
 	"category-article-count-limited": "Орчн әәшлд {{PLURAL:$1|1=нег халх|$1 халх}} бәәнә.",
 	"category-file-count": "{{PLURAL:$2|Эн әәшлд һанцхн халх бәәнә.|Эн әәшлд {{PLURAL:$1|1=нег боомг|$1 боомгуд}} $2 тооһас.}}",
 	"category-file-count-limited": "Орчн әәшлд эн {{PLURAL:$1|боомг|$1 боомгуд}} бәәнә.",
-	"listingcontinuesabbrev": "(залһан)",
 	"index-category": "Келкгдм халхс",
 	"noindex-category": "Келкгдшго халхс",
 	"about": "Бичлһн",

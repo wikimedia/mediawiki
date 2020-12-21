@@ -152,7 +152,6 @@
 	"category-article-count-limited": "Chista categurìa téne {{PLURAL:$1|sta pàggena|sti $1 pàggene}} dinto.",
 	"category-file-count": "{{PLURAL:$2|Chista categurìa cunténe nu file solo, nzignato ccà sotto.|Chista categurìa cunténe {{PLURAL:$1|nu file, nzignato|$1 file nzignate}} ccà sotto, faccenno nu totale 'e $2.}}",
 	"category-file-count-limited": "Chista categurìa téne {{PLURAL:$1|sta pàggena|sti $1 pàggene}} dinto.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paggene ennecezzate",
 	"noindex-category": "Paggene nun ennecezzate",
 	"broken-file-category": "Paggene cca 'ncludono file 'nesistente",

@@ -115,7 +115,6 @@
 	"category-article-count-limited": "Deêze categorie bevat de volhende {{PLURAL:$1|pahina|$1 pahina's}}.",
 	"category-file-count": "{{PLURAL:$2|Deêze categorie bevat 't volhende bestand.|Deêze categorie bevat {{PLURAL:$1|'t volhende bestand|de volgende $1 bestan'n}}, van in totaol $2.}}",
 	"category-file-count-limited": "Deêze categorie bevat {{PLURAL:$1|'t volhende bestand|de volhende $1 bestan'n}}.",
-	"listingcontinuesabbrev": "vedder",
 	"index-category": "Te indexeren pagina's",
 	"noindex-category": "Niet te indexeren pagina's",
 	"broken-file-category": "Pagina's mei 'n onjuuste bestandsverwiezienge",

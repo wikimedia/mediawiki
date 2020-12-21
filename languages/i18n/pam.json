@@ -126,7 +126,6 @@
 	"category-article-count-limited": "{{PLURAL:$1| yang bulung ing kayabe|$1 lang bulung ding kayabe}} king salukuyan a kategoriya.",
 	"category-file-count": "{{PLURAL:$2|Bukud mung ing makatuking simpan (file) ing kayabe king kategoriyang iti.|{{PLURAL:$1|ya ing simpan a kayabe|$1 la reng simpan a kayabe}} king kategoriyang ini, ibat king $2 pangkabilugan.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ing makatuking simpan kayabe ya|Deng makatuking $1 simpan kayabe la}} king salukuyang kategoriya.",
-	"listingcontinuesabbrev": "katuglung.",
 	"about": "Tungkul",
 	"article": "Kalamnan ning bulung",
 	"newwindow": "(mibusni ya king bayung awang)",

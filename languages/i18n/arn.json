@@ -76,7 +76,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Tüfachi trokiñ niey kiñe minchetrokiñ müten.|Tüfachi trokiñ niey {{PLURAL:$1 minchetrokiñ}}, $2 mew.}}",
 	"category-article-count": "{{PLURAL:$2|Tüfachi trokiñ niey tüfachi wülngiñ.|Tüfachi {{PLURAL:$1wülngiñ}} tüfachi trokiñ mew, kom $2 mew.}}",
 	"category-file-count": "{{PLURAL:$2|Tüfachi trokiñ niey tüfachi wülngiñ müten.|Tüfachi {{PLURAL:$1 eltukawün}} müley tüfachi trokiñ mew, kom $2 mew.}}",
-	"listingcontinuesabbrev": "ramt.",
 	"index-category": "Wülngiñ mülelu wif mew",
 	"noindex-category": "Wülngiñ mülenolu wif mew",
 	"about": "Ñi dungu",

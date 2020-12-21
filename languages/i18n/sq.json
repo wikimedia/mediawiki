@@ -173,7 +173,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|faqe është|$1 faqe janë}} në këtë kategori.",
 	"category-file-count": "{{PLURAL:$2|Kjo kategori ka vetëm këtë skedar.|Kjo kategori ka {{PLURAL:$1|skedar|$1 skedarë}} nga gjithsej $2.}}",
 	"category-file-count-limited": "Në kategorinë aktuale ka {{PLURAL:$1|skedar|$1 skedarë}}.",
-	"listingcontinuesabbrev": "vazh.",
 	"index-category": "Faqe të indeksuara",
 	"noindex-category": "Faqe jo të indeksuara",
 	"broken-file-category": "Faqet me lidhje të parregullta",

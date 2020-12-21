@@ -137,7 +137,6 @@
 	"category-article-count-limited": "Ang masunod nga {{PLURAL:$1|panid|$1 mga panid}} yara sa categorya karon.",
 	"category-file-count": "{{PLURAL:$2|Ang ini nga categorya may yara lamang sang masunod nga hilera.|Ang masunod nga {{PLURAL:$1|hilera|$1 mga hilera}} yari sa sini nga categorya, halin sa kabug-osan nga $2.}}",
 	"category-file-count-limited": "Ang masunod nga {{PLURAL:$1|hilera|$1 mga hilera}} ara sa categorya karon.",
-	"listingcontinuesabbrev": "pdyn",
 	"index-category": "Naka-index nga mga panid",
 	"noindex-category": "Wala naka-index nga mga panid",
 	"broken-file-category": "Mga panid nga may guba nga link sang hilera",

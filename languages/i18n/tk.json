@@ -122,7 +122,6 @@
 	"category-article-count-limited": "Aşakdaky {{PLURAL:$1|sahypa|$1 sahypa}} şu kategoriýadadyr.",
 	"category-file-count": "{{PLURAL:$2|Bu kategoriýa diňe aşakdaky faýly öz içine alýar.|Jemi $2 sanydan, aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.}}",
 	"category-file-count-limited": "Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.",
-	"listingcontinuesabbrev": "(dowamy)",
 	"index-category": "Indeksirlenen sahypalar",
 	"noindex-category": "Indeksirlenmedik sahypalar",
 	"broken-file-category": "Üzük faýl baglary bar bolan sahypalar",

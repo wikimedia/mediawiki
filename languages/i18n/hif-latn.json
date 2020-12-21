@@ -152,7 +152,6 @@
 	"category-article-count-limited": "Etna {{PLURAL:$1|panna|$1 panna}} ii vibhag me hai.",
 	"category-file-count": "{{PLURAL:$2|Ii vibhag me khali etna file hai.|Kul jorr $2 me se ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.}}",
 	"category-file-count-limited": "Ii vibhag me etna {{PLURAL:$1|file hai|$1 files hai}}.",
-	"listingcontinuesabbrev": "aur",
 	"index-category": "Indexed panna",
 	"noindex-category": "Bina index karaa gais panna",
 	"broken-file-category": "Panna jisme tuuta file ke jorr hae",

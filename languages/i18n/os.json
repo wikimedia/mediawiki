@@ -132,7 +132,6 @@
 	"category-article-count-limited": "Ацы категорийы мидæг {{PLURAL:$1|$1 фарс|$1 фарсы}} ис.",
 	"category-file-count": "{{PLURAL:$2|Ацы категорийы æрмæст иу файл ис.|Ацы категорийы $2 файлæй {{PLURAL:$1|æвдыст у $1.|æвдыст сты $1.}}}}",
 	"category-file-count-limited": "Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.",
-	"listingcontinuesabbrev": "(дарддæргонд)",
 	"index-category": "Индексгонд фæрстæ",
 	"noindex-category": "Нæиндексгонд фæрстæ",
 	"broken-file-category": "Файлтæм саст æрвитæнтæ кæм ис, ахæм фæрстæ",

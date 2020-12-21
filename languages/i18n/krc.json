@@ -137,7 +137,6 @@
 	"category-article-count-limited": "Бу категорияда {{PLURAL:$1|$1 бет|1=джангыз бир бет}} барды.",
 	"category-file-count": "{{PLURAL:$2|Бу категорияда къуру бир файл барды.|Категориядагъы $2 файлдан {{PLURAL:$1|бир файл|$1 файлы}} кёргюзюлгенди.}}",
 	"category-file-count-limited": "Бу категорияда {{PLURAL:$1|$1 файл|1=джангыз бир файл}} барды.",
-	"listingcontinuesabbrev": "(баргъаны)",
 	"index-category": "Индексленнген бетле",
 	"noindex-category": "Индексленмеген бетле",
 	"broken-file-category": "Ишлемеген файл джибериулери болгъан бетле",

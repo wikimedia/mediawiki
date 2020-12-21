@@ -139,7 +139,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|A pachina siguient fa parte|As $1 pachinas siguients fan parte}} d'ista categoría.",
 	"category-file-count": "{{PLURAL:$2|Ista categoría nomás contiene o fichero siguient.|{{PLURAL:$1|O fichero siguient fa parte|Os $1 fichers siguients fan parte}} d'ista categoría, d'un total de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|O fichero siguient fa parte|Os $1 fichers siguients fan parte}} d'ista categoría.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Pachinas indexadas",
 	"noindex-category": "Pachinas sin indexar",
 	"broken-file-category": "Pachinas con vinclos a fichero trencaus",

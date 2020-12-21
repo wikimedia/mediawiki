@@ -106,7 +106,6 @@
 	"category-subcat-count-limited": "Hea vorgan heo {{PLURAL:$1|upvorg}} asat.",
 	"category-article-count": "{{PLURAL:$2|Hea vorgan fokot hem ek pan asa.|Hea vorgan {{PLURAL:$1|hem pan asa|him $1 panam asat}} beriz $2 panam modem.}}",
 	"category-file-count": "{{PLURAL:$2|Hea vorgan fokot hi ek fayl asa.|Hea vorgan {{PLURAL:$1|hi fayl asa|heo $1 fayli asat}}, beriz $2 fayli modem.}}",
-	"listingcontinuesabbrev": "chalu",
 	"index-category": "Suchi-potran zoddlolim panam",
 	"noindex-category": "Suchi-potran zoddunk-naslelim panam",
 	"broken-file-category": "Tuttlolea faylinche duve aslelim panam‎",

@@ -102,7 +102,6 @@
 	"category-article-count-limited": "Die {{PLURAL:$1|Said|$1 Saide}} hodds inde Sachgrubb.",
 	"category-file-count": "{{PLURAL:$2|Die Sachgrubb hoddä Said.|Die {{PLURAL:$1|Said isch änni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
 	"category-file-count-limited": "Die {{PLURAL:$1|Dadai|$1 Dadije}} hodds inde Sachgrubb.",
-	"listingcontinuesabbrev": "(Waida)",
 	"index-category": "Eafassdi Saide",
 	"noindex-category": "Saide, wu ned im Vazaischnis sinn",
 	"about": "Iwwa",

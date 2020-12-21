@@ -123,7 +123,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|صفحهٔ|$1 صفحهٔ}} که این بن درنه اینتا رج دله قرار هایتنه.",
 	"category-file-count": "{{PLURAL:$2|این رج دله فقط همینتا عکس دره.|{{PLURAL:$1|این اتا پرونده|این $1تا پرونده}} این رج دله {{PLURAL:$1|دره|درنه}}؛ این رج کلاً $2تا پرونده دانّه.}}",
 	"category-file-count-limited": "{{PLURAL:$1|پرونده|$1 پرونده}} این رج دله درنه.",
-	"listingcontinuesabbrev": "(دمباله)",
 	"index-category": "صفحه‌ئون نمایه بَیی",
 	"noindex-category": "صفحه‌ئون نمایه نَیی",
 	"broken-file-category": "صفحه‌ئونی که اتا عکس اسا وشون سر دنی‌یه",

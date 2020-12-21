@@ -312,7 +312,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|0=Aucune page ne figure|1=La page suivante figure|Les $1 pages suivantes figurent}} dans la présente catégorie.",
 	"category-file-count": "Cette catégorie {{PLURAL:$2|0=ne comprend aucun fichier|1=comprend le fichier suivant|comprend $2 fichiers, dont {{PLURAL:$1|0=aucun|1=celui|les $1}} ci-dessous}}.",
 	"category-file-count-limited": "{{PLURAL:$1|0=Aucun fichier ne figure|1=Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans la présente catégorie.",
-	"listingcontinuesabbrev": "(suite)",
 	"index-category": "Pages indexées",
 	"noindex-category": "Pages non indexées",
 	"broken-file-category": "Pages avec des liens de fichiers brisés",

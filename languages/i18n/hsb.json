@@ -146,7 +146,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Slědowaca strona je|Slědowacej $1 stronje stej|Slědowace $1 strony su|Slědowacych $1 stronow je}} w tutej kategoriji:",
 	"category-file-count": "{{PLURAL:$2|Tuta kategorija wobsahuje jenož slědowacu stronu.|{{PLURAL:$1|Slědowaca dataja je|Slědowacej $1 dataji stej|Slědowace $1 dataje|Slědowacych $1 datajow je}} w tutej kategoriji z dohromady $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:",
-	"listingcontinuesabbrev": "(pokročowanje)",
 	"index-category": "Indicěrowane strony",
 	"noindex-category": "Njeindicěrowane strony",
 	"broken-file-category": "Strony z njepłaćiwymi datajowymi wotkazami",

@@ -141,7 +141,6 @@
 	"category-article-count-limited": "Kategori kiye duwe {{PLURAL:$1|siji kaca|$1 kaca-kaca}} nang ngisor kiye.",
 	"category-file-count": "{{PLURAL:$2|Kategori kiye mung nduweni kaca kiye.|Kategori kiye duwe {{PLURAL:$1|kaca|$1 kaca-kaca}}, sekang total $2.}}",
 	"category-file-count-limited": "Kategori kiye duwe {{PLURAL:$1|siji berkas|$1 berkas-berkas}} nang ngisor kiye.",
-	"listingcontinuesabbrev": "samb.",
 	"index-category": "Kaca sing diindhèks",
 	"noindex-category": "Kaca sing ora diindhèks",
 	"broken-file-category": "Kaca-kaca sing duwe pranala berkas bodhol",

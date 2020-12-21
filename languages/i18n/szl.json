@@ -143,7 +143,6 @@
 	"category-article-count-limited": "W katygoryji {{PLURAL:$1|je pokozano $1 zajta|sům pokozane $1 zajty|je pokazanych $1 zajtůw}}.",
 	"category-file-count": "{{PLURAL:$2|We tyj kategoryji je ino jedyn zbiōr.|We tyj kategoryji {{PLURAL:$1|je tyn $1 zbiōr|sōm te $1 zbiory|je te $1 zbiorōw}} ze wszyjskich $2 zbiorōw.}}",
 	"category-file-count-limited": "W katygoryji {{PLURAL:$1|je pokozany $1 plik|sům pokozane $1 pliki|je pokozanych $1 plikůw}}.",
-	"listingcontinuesabbrev": "cd.",
 	"index-category": "Indeksowane zajty",
 	"noindex-category": "Niyindeksowane strōny",
 	"broken-file-category": "Strōny ze zepsutymi linkami do zbiorōw",

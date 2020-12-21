@@ -165,7 +165,6 @@
 	"category-article-count-limited": "$1 หน้าต่อไปนี้อยู่ในหมวดหมู่นี้",
 	"category-file-count": "{{PLURAL:$2|หมวดหมู่นี้มีเพียงไฟล์นี้|$1 ไฟล์ต่อไปนี้อยู่ในหมวดหมู่นี้ จากทั้งหมด $2 ไฟล์}}",
 	"category-file-count-limited": "{{PLURAL:$1|ไฟล์|ไฟล์}}ต่อไปนี้อยู่ในหมวดหมู่นี้",
-	"listingcontinuesabbrev": "ต่อ",
 	"index-category": "หน้าที่มีดัชนี",
 	"noindex-category": "หน้าที่ไม่มีดัชนี",
 	"broken-file-category": "หน้าที่มีลิงก์ไฟล์เสีย",

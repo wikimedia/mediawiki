@@ -137,7 +137,6 @@
 	"category-article-count-limited": "Chësta categoria contëgn{{PLURAL:$1|la plata mostrada|$1 plates mostrades}} suandënc",
 	"category-file-count": "{{PLURAL:$2|Chësta categoria à mé chësta plata.|Chësta {{PLURAL:$1|plata ie|$1 plates ie}} te chësta categoria, sun n total de $2.}}",
 	"category-file-count-limited": "Chësta categoria contëgn {{PLURAL:$1|le file mostré|$1 i file mostrá}} suandënc",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Plates indizisades",
 	"noindex-category": "Plates nia indizisades",
 	"broken-file-category": "Plates cun lians cun files nia corec",

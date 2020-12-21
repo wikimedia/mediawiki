@@ -147,7 +147,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Þes tramet is|$1 Þas trametas sind}} on þissum flocce her.",
 	"category-file-count": "{{PLURAL:$2|Þes flocc hæfþ ane þas ymelan.|{{PLURAL:$1|Þeos ymele is|Þas $1 ymelena sind}} in þissum flocce - þæt fulle rim ymelena is $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Þeos ymele is|$1 Þas ymelan sind}} in þissum flocce her.",
-	"listingcontinuesabbrev": "ma",
 	"index-category": "Getæcnede trametas",
 	"noindex-category": "Ungetæcnede trametas",
 	"broken-file-category": "Trametas þā habbaþ gebrocene hlencan mid ymelum",

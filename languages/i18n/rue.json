@@ -139,7 +139,6 @@
 	"category-article-count-limited": "В тій катеґорії {{PLURAL:$1|$1 сторінка|$1 сторінкы|$1 сторінок}}.",
 	"category-file-count": "{{PLURAL:$2|Тота катеґорія обсягує лем тот файл.|{{PLURAL:$1|Вказаный $1 файл|Вказаны $1 файлы|Вказаных $1 файлів}} той катеґорії з $2.}}",
 	"category-file-count-limited": "В тій катеґорії {{PLURAL:$1|$1 файл|$1 файлы|$1 файлів}}.",
-	"listingcontinuesabbrev": "(дале)",
 	"index-category": "Індексованы сторінкы",
 	"noindex-category": "Неіндексованы сторінкы",
 	"broken-file-category": "Сторінкы, што ся одказують на неіснуючі файлы",

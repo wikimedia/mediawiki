@@ -120,7 +120,6 @@
 	"category-article-count-limited": "Qeybtaan hadda waxaa ku jirto {{PLURAL:$1|oo maqaal|$1 oo maqaalo ah}}",
 	"category-file-count": "{{PLURAL:$2|Qeybtaan waxaa ku jira intaan oo maqaal kaliya.|waxaa meeshaan ku jira {{PLURAL:$1| oo maqaal|$1 oo maqaallo ah}} waxeena ku jiraan qeybtaan, waana $2 guud ahaan.}}",
 	"category-file-count-limited": "Qeybtaan hadda waxaa ku jirto {{PLURAL:$1|oo maqaal|$1 oo maqaalo ah}}.",
-	"listingcontinuesabbrev": "kont",
 	"index-category": "Maqaalada indeksed",
 	"noindex-category": "Maqaalada noindeksed",
 	"broken-file-category": "Bog ka samaysan file aan jirin.",

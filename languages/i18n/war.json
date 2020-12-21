@@ -146,7 +146,6 @@
 	"category-article-count-limited": "An mga nasunod nga {{PLURAL:$1|ka pakli|$1 ka mga pakli aada}} han yana nga kaarangay.",
 	"category-file-count": "{{PLURAL:$2|Ini nga kaarangay mayda hin amo la nga fayl.|An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga fayl aada}} han hini nga kaarangay, tikang hin $2 nga kabug-osan.}}",
 	"category-file-count-limited": "An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga faly aada}} han yana nga kaarangay.",
-	"listingcontinuesabbrev": "pdyn.",
 	"index-category": "Mga nakatudlokan nga pagkli",
 	"noindex-category": "Mga waray nakaindex nga pakli",
 	"broken-file-category": "Mga pakli nga mayda utod nga mga sumpay hin paypay",

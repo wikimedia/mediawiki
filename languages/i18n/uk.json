@@ -218,7 +218,6 @@
 	"category-article-count-limited": "У цій категорії {{PLURAL:$1|$1 сторінка|$1 сторінки|$1 сторінок}}.",
 	"category-file-count": "Показано $1 {{PLURAL:$1|файл|файли|файлів}} цієї категорії (із $2).",
 	"category-file-count-limited": "У цій категорії {{PLURAL:$1|$1 файл|$1 файли|$1 файлів}}.",
-	"listingcontinuesabbrev": "(прод.)",
 	"index-category": "Індексовані сторінки",
 	"noindex-category": "Неіндексовані сторінки",
 	"broken-file-category": "Сторінки, що посилаються на неіснуючі файли",

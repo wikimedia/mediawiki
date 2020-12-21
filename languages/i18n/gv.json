@@ -120,7 +120,6 @@
 	"category-article-count": "Ta {{PLURAL:$1|yn $1 duillag|yn $1 duillag|yn $1 ghuillag| ny $1 duillagyn}} heese 'sy ronney shoh, jeh'n lane-sym $2.",
 	"category-article-count-limited": "Ta{{PLURAL:$1|'n $1 duillag|'n $1 duillag|'n $1 ghuillag|&nbsp;ny $1 duillagyn}} heese 'sy ronney shoh.",
 	"category-file-count-limited": "Ta{{PLURAL:$1|'n $1 coadan|'n $1 choadan|'n $1 choadan|&nbsp;ny $1 coadanyn}} heese 'sy ronney shoh.",
-	"listingcontinuesabbrev": "tooil.",
 	"index-category": "Duillagyn er ayndagh",
 	"noindex-category": "Duillagyn nagh vel er ayndagh",
 	"broken-file-category": "Duillagyn as kianglaghyn brishtey coadan oc",

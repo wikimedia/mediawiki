@@ -64,7 +64,6 @@
 	"category-subcat-count": "{{PLURAL:$2|onini kasakilac matafo ko cecay i kalaenoay/kaikoray a wawaay a silsil 。|onini kasakilac matafoay ko i kalaenoay/kaikoray $1 a wawaay a silsil, $2 mapo:long。}}",
 	"category-article-count": "{{PLURAL:$2|onini kasakilac maala halo i kalaenoay/kaikoray a felih。|onini a kasakilac matafo ko i kalaenoay/kaikoray  $1 a felih, $2 mapo:long.}}",
 	"category-file-count": "{{PLURAL:$2|onini kasakilac matafoay ko cecay i kalaenoay/kaikoray a tang^an。|onini kasakilac matafoay ko i kalaenoay/kaikoray  $1 a tang^an， $2 mapo:long.}}",
-	"listingcontinuesabbrev": "milingato",
 	"noindex-category": "Awaayay a masorit i pikiliman a felih i kaikor",
 	"broken-file-category": "o matastasay a felih to pipatatongodan",
 	"about": "pakayni i",
