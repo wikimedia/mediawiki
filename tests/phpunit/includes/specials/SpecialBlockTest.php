@@ -30,8 +30,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		$this->resetTables();
+		parent::tearDown();
 	}
 
 	/**
@@ -214,7 +214,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = DatabaseBlock::newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
-		$this->assertSame( true, $block->isAutoblocking() );
+		$this->assertTrue( $block->isAutoblocking() );
 	}
 
 	/**
@@ -805,10 +805,10 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		// Getting errors about creating users in db in provider.
 		// Need to use mutable to ensure different named testusers.
 		$users = [
-			'u1' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
-			'u2' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
-			'u3' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
-			'u4' => TestUserRegistry::getMutableTestUser( __CLASS__, 'sysop' )->getUser(),
+			'u1' => $this->getMutableTestUser( 'sysop' )->getUser(),
+			'u2' => $this->getMutableTestUser( 'sysop' )->getUser(),
+			'u3' => $this->getMutableTestUser( 'sysop' )->getUser(),
+			'u4' => $this->getMutableTestUser( 'sysop' )->getUser(),
 			'nonsysop' => $this->getTestUser()->getUser()
 		];
 		foreach ( [ 'blockedUser', 'blockPerformer', 'adjustPerformer', 'adjustTarget' ] as $var ) {
