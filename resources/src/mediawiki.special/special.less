@@ -10,31 +10,33 @@
 	.mixin-screen-reader-text();
 }
 
-#mw-allmessagestable tbody:hover td {
-	/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
-	 * so that it also applies when hovering a lower cell
-	 * within the same rowspan */
-	background-color: #eaf3ff;
-}
+#mw-allmessagestable {
+	tbody:hover td {
+		/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
+		 * so that it also applies when hovering a lower cell
+		 * within the same rowspan */
+		background-color: #eaf3ff;
+	}
 
-/* stylelint-disable-next-line selector-class-pattern */
-#mw-allmessagestable .am_default {
-	background-color: #fcffc4;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	.am_default {
+		background-color: #fcffc4;
+	}
 
-/* stylelint-disable-next-line selector-class-pattern */
-#mw-allmessagestable tbody:hover .am_default {
-	background-color: #faff90;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	tbody:hover .am_default {
+		background-color: #faff90;
+	}
 
-/* stylelint-disable-next-line selector-class-pattern */
-#mw-allmessagestable .am_actual {
-	background-color: #e2ffe2;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	.am_actual {
+		background-color: #e2ffe2;
+	}
 
-/* stylelint-disable-next-line selector-class-pattern */
-#mw-allmessagestable tbody:hover .am_actual {
-	background-color: #b1ffb1;
+	/* stylelint-disable-next-line selector-class-pattern */
+	tbody:hover .am_actual {
+		background-color: #b1ffb1;
+	}
 }
 
 /* Common for Special:Allpages and Special:PrefixIndex */
@@ -144,11 +146,11 @@
 	-webkit-columns: 16em 2;
 	-moz-columns: 16em 2;
 	columns: 16em 2;
-}
 
-.mw-specialpages-list ul {
-	margin-top: 0;
-	margin-bottom: 0;
+	ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 /* Special:Statistics */
