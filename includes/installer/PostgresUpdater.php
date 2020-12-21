@@ -890,6 +890,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'sites', 'sites_protocol', 'site_protocol' ],
 			[ 'renameIndex', 'sites', 'sites_domain', 'site_domain' ],
 			[ 'renameIndex', 'sites', 'sites_forward', 'site_forward' ],
+			[ 'renameIndex', 'logging', 'type_name', 'log_type_time' ],
+			[ 'renameIndex', 'logging', 'actor_time', 'log_actor_time' ],
+			[ 'renameIndex', 'logging', 'page_time', 'log_page_time' ],
+			[ 'renameIndex', 'logging', 'times', 'log_times' ],
 		];
 	}
 
