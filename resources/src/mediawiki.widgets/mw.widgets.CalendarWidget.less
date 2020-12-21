@@ -18,22 +18,22 @@
 .mw-widget-calendarWidget-header {
 	position: relative;
 	line-height: 2.5;
-}
 
-// Overwrite OOUI's `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
-.mw-widget-calendarWidget-header .oo-ui-buttonWidget.oo-ui-iconElement {
-	margin-left: 0;
-	margin-right: 0;
-}
+	// Overwrite OOUI's `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
+	.oo-ui-buttonWidget.oo-ui-iconElement {
+		margin-left: 0;
+		margin-right: 0;
+	}
 
-.mw-widget-calendarWidget-header .mw-widget-calendarWidget-labelButton {
-	margin: 0 auto;
-	display: block;
-	width: @calendarWidth - 2 * 3em;
-
-	.oo-ui-buttonElement-button {
+	.mw-widget-calendarWidget-labelButton {
+		margin: 0 auto;
+		display: block;
 		width: @calendarWidth - 2 * 3em;
-		text-align: center;
+
+		.oo-ui-buttonElement-button {
+			width: @calendarWidth - 2 * 3em;
+			text-align: center;
+		}
 	}
 }
 
