@@ -76,7 +76,6 @@
 	"hidden-categories": "{{PLURAL:$1|Fedde suuɗiinde|Pelle cuuɗiiɗe}}",
 	"category-subcat-count": "{{PLURAL:$2|Ndee fedde jogii tan ko ngel-ɗoo pellel.|Ndee fedde jogii ko {{PLURAL:$1|ngel-ɗoo pellel|$1 kon-ɗoo pellon}}, e nder $2 e kuuɓal.}}",
 	"category-article-count": "{{PLURAL:$2|Ndee fedde soomi ko ngoo-ɗoo hello.|{{PLURAL:$1|Ngoo-ɗoo hello woni|$1 Ɗee-ɗoo kelle ngoni}} iko e ndee fedde, e nder $2 e kuuɓal.}}",
-	"listingcontinuesabbrev": "jokku",
 	"noindex-category": "Kello njoopaaka",
 	"about": "Baɗte",
 	"newwindow": "(udditata e henorde hesere)",

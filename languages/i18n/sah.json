@@ -150,7 +150,6 @@
 	"category-article-count-limited": "Бу категорияҕа {{PLURAL:$1|1 эрэ сирэй|$1 сирэй}} баар.",
 	"category-file-count": "{{PLURAL:$2|Бу категория манна эрэ көстүбүт билэлээх.|Бу категорияҕа баар $2 билэттэн {{PLURAL:$1|билэтэ|$1 билэтэ}} көрдөрүлүннэ.}}",
 	"category-file-count-limited": "Бу категорияҕа  {{PLURAL:$1|соҕотох билэ|$1 билэ}} баар.",
-	"listingcontinuesabbrev": "(салгыыта)",
 	"index-category": "Индекстэммит сирэйдэр",
 	"noindex-category": "Көрдөммөт сирэйдэр",
 	"broken-file-category": "Билэҕэ сигэлэрэ алҕастаах сирэйдэр",

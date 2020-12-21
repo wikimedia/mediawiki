@@ -163,7 +163,6 @@
 	"category-article-count-limited": "નીચે જણાવેલ {{PLURAL:$1|પાનું|$1 પાનાં}} આ શ્રેણીમાં છે.",
 	"category-file-count": "{{PLURAL:$2|આ શ્રેણીમાં ફક્ત નીચે દર્શાવેલ દસ્તાવેજ છે.|આ શ્રેણીમાં કુલ $2 પૈકી નીચે દર્શાવેલ {{PLURAL:$1|દસ્તાવેજ|દસ્તાવેજો}} છે.}}",
 	"category-file-count-limited": "નીચે દર્શાવેલ {{PLURAL:$1|દસ્તાવેજ|દસ્તાવેજો}} પ્રસ્તુત શ્રેણીમાં છે.",
-	"listingcontinuesabbrev": "ચાલુ..",
 	"index-category": "અનુક્રમણિકા બનાવેલા પાનાં",
 	"noindex-category": "અનુક્રમણિકા નહીં બનાવેલા પાનાં",
 	"broken-file-category": "ફાઇલોની ત્રૂટક કડીઓવાળાં પાનાં",

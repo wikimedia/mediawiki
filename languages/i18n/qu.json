@@ -135,7 +135,6 @@
 	"category-article-count-limited": "Kay katiguriyapiqa kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}}.",
 	"category-file-count": "{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla willañiqim.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|willañiqim|$1 willañiqikunam}}, $2-pura.}}",
 	"category-file-count-limited": "Kay katiguriyapiqa kay qatiq {{PLURAL:$1|willañiqim|$1 willañiqikunam}}.",
-	"listingcontinuesabbrev": "qatiy",
 	"index-category": "Yuyarinachasqa p'anqakuna",
 	"noindex-category": "Mana yuyarinachasqa p'anqakuna",
 	"broken-file-category": "P'akisqa willañiqi t'inkiyuq p'anqakuna",

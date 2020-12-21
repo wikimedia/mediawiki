@@ -164,7 +164,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Laman berikut|$1 laman berikut}} kini terkandung dalam kategori terkini.",
 	"category-file-count": "{{PLURAL:$2|Kategori ini mengandungi sebuah fail berikut.|Yang berikut ialah $1 daripada $2 buah fail dalam kategori ini.}}",
 	"category-file-count-limited": "$1 fail berikut terdapat dalam kategori ini.",
-	"listingcontinuesabbrev": "samb.",
 	"index-category": "Laman terindeks",
 	"noindex-category": "Laman tak diindekskan",
 	"broken-file-category": "Laman yang ada pautan fail yang terputus",

@@ -131,7 +131,6 @@
 	"category-article-count-limited": "Follichende {{PLURAL:$1|Seite ist|$1 Seite sind}} in der Kategorie enthalt:",
 	"category-file-count": "{{PLURAL:$2|Die Kategorie enthält follichende Seit:|{{PLURAL:$1|Follichen Seit ist en von insgesamt $2 Seite in der Kategorie:|Es werre $1 von insgesamt $2 Seite in der Kategorie oongezeicht:}}}}",
 	"category-file-count-limited": "Follichende {{PLURAL:$1|Datei ist|$1 Dateie sind}} in der Kategorie enthalt:",
-	"listingcontinuesabbrev": "(Fortsetzung)",
 	"index-category": "Indexierte Seite",
 	"noindex-category": "Netindexeerd Seite",
 	"broken-file-category": "Seite mit defekte Dateilinks",

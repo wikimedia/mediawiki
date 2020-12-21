@@ -158,7 +158,6 @@
 	"category-article-count-limited": "下底个{{PLURAL:$1|页面|$1只页面}}属于当前分类。",
 	"category-file-count": "{{PLURAL:$2|箇分类便只下头个文件。|箇分类里有下头$1个文件，共$2个文件。}}",
 	"category-file-count-limited": "下底个{{PLURAL:$1|文件|$1只文件}}属于当前分类。",
-	"listingcontinuesabbrev": "续",
 	"index-category": "索引拉许个页面",
 	"noindex-category": "朆索引个页",
 	"broken-file-category": "有坏脱文件链接个页面",

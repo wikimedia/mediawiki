@@ -137,7 +137,6 @@
 	"category-article-count-limited": "The following {{PLURAL:$1|صفحا|$1 صفحات}} in the current category.",
 	"category-file-count": "{{PLURAL:$2|مضمون شینی|{{PLURAL:$1|صفحا|صفحا}} $2 ھیہ زمرا مضمون شینی}}",
 	"category-file-count-limited": "The following {{PLURAL:$1|file is|$1 files are}} in the current category.",
-	"listingcontinuesabbrev": "جاری",
 	"index-category": "نو انڈیکس صفحات",
 	"noindex-category": "غیر فہرست شدہ صفحات",
 	"broken-file-category": "نس پھت صفحات",

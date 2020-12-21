@@ -145,7 +145,6 @@
 	"category-article-count-limited": "In disse kategory {{PLURAL:$1|steyt de volgende syde|stån de volgende $1 syden}}.",
 	"category-file-count": "In disse kategory {{PLURAL:$2|steyt et volgende bestand|stån de volgende $1 bestanden, van in totaal $2}}.",
 	"category-file-count-limited": "In disse kategory {{PLURAL:$1|steyt et volgende bestand|stån de volgende $1 bestanden}}.",
-	"listingcontinuesabbrev": "(vervolg)",
 	"index-category": "Te indekseren syden",
 	"noindex-category": "Neet-indekseerde syden",
 	"broken-file-category": "Syden mid verkeyrde bestandsverwysingen",

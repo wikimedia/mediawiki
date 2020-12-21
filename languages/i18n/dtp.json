@@ -128,7 +128,6 @@
 	"category-article-count-limited": "Iti {{PLURAL:$1|bolikon|$1 bobolikon}} hiti id katogori.",
 	"category-file-count": "{{PLURAL:$2|Kisuang ot ka-kalas diti do papail dilo.|Soginumu {{PLURAL:$1|pail nopo|$1 papail do}} id kalas diti, mantad $2 koinsanai.}}",
 	"category-file-count-limited": "Iti {{PLURAL:$1|pail|$1 papail}} hiti id katogori.",
-	"listingcontinuesabbrev": "Mononoluod",
 	"index-category": "Bolikon naka-abisi",
 	"noindex-category": "Bolikon awu naka-abisi",
 	"broken-file-category": "Bobolikon miampai pongoput pail do noputut",

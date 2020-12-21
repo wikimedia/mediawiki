@@ -139,7 +139,6 @@
 	"category-article-count-limited": "निम्न {{PLURAL:$1|पानो|$1 पानाहरू}} ये श्रेणीमी रया छ ।",
 	"category-file-count": "{{PLURAL:$2|यै श्रेणीमी एक मात्र फाइल रया छ।|कुल $2 मध्ये यै श्रेणीमी {{PLURAL:$1|फाइल|$1 फाइलहरू}} रहेका छन् । }}",
 	"category-file-count-limited": "निम्न {{PLURAL:$1|फाइल|$1 फाइलहरू}} यै श्रेणीमी रया छ ।",
-	"listingcontinuesabbrev": "निरन्तरता...",
 	"index-category": "क्रमाङ्कित पानाहरू",
 	"noindex-category": "अनुक्रमित नअरियाऽ पन्नाअन",
 	"broken-file-category": "टुटेको फाइल लिङ्कहरूसितको पाना",

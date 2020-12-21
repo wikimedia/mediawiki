@@ -153,7 +153,6 @@
 	"category-article-count-limited": "Kategori ko punyo {{PLURAL:$1|$1 laman}} barikuik.",
 	"category-file-count": "{{PLURAL:$2|Kategori ko ado {{PLURAL:$1|$1 berkas}}, dari total $2 berkas.}}",
 	"category-file-count-limited": "Kategori ko ado {{PLURAL:$1|$1 berkas}} barikuik.",
-	"listingcontinuesabbrev": "samb.",
 	"index-category": "Laman nan diindeks",
 	"noindex-category": "Laman nan indak diindeks",
 	"broken-file-category": "Laman jo berkas rusak",

@@ -141,7 +141,6 @@
 	"category-article-count-limited": "Fylgjandi {{PLURAL:$1|síða er|$1 síður eru}} í verandi bólki.",
 	"category-file-count": "{{PLURAL:$2|Hesin bólkur inniheldur bert fylgjandi fílu.|Henda {{PLURAL:$1|fila er|$1 filur eru}} í hesum bólki, út av $2 í alt.}}",
 	"category-file-count-limited": "Fylgjandi {{PLURAL:$1|fila er|$1 filur eru}} í verandi bólki.",
-	"listingcontinuesabbrev": "frh.",
 	"index-category": "Indekseraðar síður",
 	"noindex-category": "Ikki indekseraðar síður",
 	"broken-file-category": "Síður við brotnum fílu slóðum",

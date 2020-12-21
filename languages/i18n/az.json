@@ -170,7 +170,6 @@
 	"category-article-count-limited": "Bu kateqoriyada {{PLURAL:$1|$1 səhifə}} var.",
 	"category-file-count": "{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı fayldan ibarətdir.|Cəmi $2 fayldan {{PLURAL:$1|fayl|$1 fayl}} bu kateqoriyadadır.}}",
 	"category-file-count-limited": "Bu kateqoriyada {{PLURAL:$1|$1 fayl}} var.",
-	"listingcontinuesabbrev": "(davam)",
 	"index-category": "İndeksləşdirilmiş səhifələr",
 	"noindex-category": "İndeksləşdirilməyən səhifələr",
 	"broken-file-category": "İşləməyən fayl keçidləri olan səhifələr",

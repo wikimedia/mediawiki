@@ -141,7 +141,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Ceta pâge figure|Cetes $1 pâges figuront}} dedens la presenta catègoria.",
 	"category-file-count": "{{PLURAL:$2|Cela catègoria contint mas que ceti fichiér.|{{PLURAL:$1|Ceti fichiér est|Cetos $1 fichiérs sont}} a cela catègoria, sur na soma de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ceti fichiér figure|Cetos $1 fichiérs figuront}} dedens la presenta catègoria.",
-	"listingcontinuesabbrev": "(suita)",
 	"index-category": "Pâges endèxâyes",
 	"noindex-category": "Pâges pas endèxâyes",
 	"broken-file-category": "Pâges avouéc de lims de fichiérs câssos",

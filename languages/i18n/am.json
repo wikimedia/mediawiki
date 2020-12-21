@@ -121,7 +121,6 @@
 	"category-article-count-limited": "በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው መጣጥፍ አለ|የሚከተሉት $1 መጣጥፎች አሉ}}።",
 	"category-file-count": "{{PLURAL:$2|ይኸው መደብ የሚከተለውን ፋይል ብቻ አለው።|በዚሁ መደብ ውስጥ (ከ$2 በጠቅላላ) {{PLURAL:$1|የሚከተለው ፋይል አለ።|የሚከተሉት $1 ፋይሎች አሉ።}}}}",
 	"category-file-count-limited": "በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ፋይል አለ|የሚከተሉት $1 ፋይሎች አሉ}}።",
-	"listingcontinuesabbrev": "(ተቀጥሏል)",
 	"index-category": "ማውጫው ላይ የተመዘገቡ ገጾች",
 	"noindex-category": "ማውጫው ላይ ያልተመዘገቡ ገጾች",
 	"broken-file-category": "የማይኖሩ ፋይሎች ያሉባቸው ገጾች",

@@ -162,7 +162,6 @@
 	"category-article-count-limited": "The follaein {{PLURAL:$1|page|$1 pages}} is in this categerie.",
 	"category-file-count": "{{PLURAL:$2|This categerie hauds juist the ae follaein file.|The follaein {{PLURAL:$1|file|$1 files}}s is in this category, oot o $2 awthegither.}}",
 	"category-file-count-limited": "The follaein {{PLURAL:$1|file is|$1 files ar}} in this categerie.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Index't pages",
 	"noindex-category": "Noindexed pages",
 	"broken-file-category": "Pages wi broken file links",

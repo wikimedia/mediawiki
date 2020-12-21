@@ -117,7 +117,6 @@
 	"category-article-count-limited": "Bu kategoriyada aşağıdaki {{PLURAL:$1|1|$1}} saife bar.",
 	"category-file-count": "{{PLURAL:$2|Bu kategoriyada tek bir aşağıdaki fayl bar.|Bu kategoriyadaki toplam $2 fayldan aşağıdaki $1 fayl kösterilgen.}}",
 	"category-file-count-limited": "Bu kategoriyada aşağıdaki {{PLURAL:$1|1|$1}} fayl bar.",
-	"listingcontinuesabbrev": " (devam)",
 	"index-category": "İndeksli saifeler",
 	"noindex-category": "İndekssiz saifeler",
 	"broken-file-category": "İçinde bozuq fayl bağlantıları olğan saifeler",

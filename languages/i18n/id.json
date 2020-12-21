@@ -209,7 +209,6 @@
 	"category-article-count-limited": "Kategori ini memiliki {{PLURAL:$1|$1 halaman}} berikut.",
 	"category-file-count": "{{PLURAL:$2|Kategori ini memiliki {{PLURAL:$1|$1 berkas}} berikut, dari total $2.}}",
 	"category-file-count-limited": "Kategori ini memiliki {{PLURAL:$1|$1 berkas}} berikut.",
-	"listingcontinuesabbrev": "samb.",
 	"index-category": "Halaman yang diindeks",
 	"noindex-category": "Halaman yang diindeks",
 	"broken-file-category": "Halaman dengan berkas rusak",

@@ -150,7 +150,6 @@
 	"category-article-count-limited": "Li secuent {{PLURAL:$1|págine|$1 pagines}} es contenet in ti-ci categorie:",
 	"category-file-count": "{{PLURAL:$2|Ti categorie contene solmen li sequent file.|Li sequent {{PLURAL:$1|file es|$1 files es}} in ti categorie, de un total de $2.}}",
 	"category-file-count-limited": "Li secuent {{PLURAL:$1|file|$1 files}} es contenet in ti-ci categorie:",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Indexat págines",
 	"noindex-category": "Págines ne indexet",
 	"broken-file-category": "Págines con ruptet file-links.",

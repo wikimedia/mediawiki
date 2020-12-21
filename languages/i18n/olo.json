@@ -133,7 +133,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Tämä sivu on|$1 Nämmä sivut ollah}} täs kategouries.",
 	"category-file-count": "{{PLURAL:$2|Täs kategouriis on vaiku tämä failu.| {{PLURAL:$1|Tämä failu on|$1 Nämmä failat ollah}} täs kategouries, $2 kaikkiedah.}}",
 	"category-file-count-limited": "Täs kategouries on {{PLURAL:$1|yksi tiijosto|$1 tiijostuo}}",
-	"listingcontinuesabbrev": "(jatko)",
 	"index-category": "Indeksiruitut sivut",
 	"noindex-category": "Indeksiruičemattomat sivut",
 	"broken-file-category": "Sivut, kudamil on avuamattomii failulinkilöi",

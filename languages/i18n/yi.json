@@ -149,7 +149,6 @@
 	"category-article-count-limited": "די קאטעגאריע אנטהאלט {{PLURAL:$1|דעם פאלגנדן בלאט|די פאלגנדע $1 בלעטער}}.",
 	"category-file-count": "{{PLURAL:$2|די קאטעגאריע האט נאר די פֿאלגנדע טעקע|די קאטעגאריע האט די פֿאלגנדע {{PLURAL:$1| טעקע|$1 טעקעס}}, פֿון $2 אינגאנצן}}.",
 	"category-file-count-limited": "די פֿאלגנדע {{PLURAL:$1|טעקע|$1 טעקעס}} זענען אין דער דאזיגע קאטעגאריע.",
-	"listingcontinuesabbrev": "(המשך)",
 	"index-category": "אינדעקסירטע בלעטער",
 	"noindex-category": "אומאינדעקסירטע בלעטער",
 	"broken-file-category": "בלעטער מיט צעבראכענע טעקע לינקען",

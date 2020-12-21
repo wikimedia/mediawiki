@@ -145,7 +145,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Detdiar sidj stäänt|Jodiar $1 sidjen stun}} uun detdiar kategorii.",
 	"category-file-count": "{{PLURAL:$2|Uun detdiar kategorii stäänt ian datei.|Uun detdiar kategorii {{PLURAL:$1|stäänt ian datei|stun jodiar $1 datein}} faan $2 uun't gehial.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Detdiar datei stäänt|Jodiar $1 datein stun}} uun detdiar kategorii.",
-	"listingcontinuesabbrev": "(gongt widjer)",
 	"index-category": "Indisiaret sidjen",
 	"noindex-category": "Ei indisiaret sidjen",
 	"broken-file-category": "Sid ma önjstöögne ferwisinge",

@@ -115,7 +115,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|sahifai|$1 sahifahoi}} zerin dar gurūhi fe'lī qaror {{PLURAL:dorad|dorand}}.",
 	"category-file-count": "{{PLURAL:$2|In gurūh tanho parvandai zerinro dar bar megirad.|{{PLURAL:$1|In parvandai|$1 parvandahoi}} zerin dar in gurūh qaror {{PLURAL:$1|dorad|dorand}}. In gurūh dar kul havoi $2 sahifa ast.}}",
 	"category-file-count-limited": "{{PLURAL:$1|parvandai|$1 parvandahoi}} zerin dar gurūhi fe'lī qaror {{PLURAL:dorad|dorand}}.",
-	"listingcontinuesabbrev": "idoma",
 	"index-category": "Sahifahoi namojaşuda",
 	"noindex-category": "Sahifahoi namoijanaşuda",
 	"about": "Dar borai",

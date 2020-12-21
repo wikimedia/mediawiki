@@ -137,7 +137,6 @@
 	"category-article-count-limited": "De Kategorie bargt disse {{PLURAL:$1|Siet|$1 Sieden}}:",
 	"category-file-count": "{{PLURAL:$2|De Kategorie bargt disse Datei:|De Kategorie bargt disse Datei{{PLURAL:$1||n}}, vun $2 Datein alltohoop:}}",
 	"category-file-count-limited": "De Kategorie bargt disse {{PLURAL:$1|Datei|$1 Datein}}:",
-	"listingcontinuesabbrev": "wieder",
 	"index-category": "indexeerte Sieden",
 	"noindex-category": "nich-indexeerte Sieden",
 	"broken-file-category": "Sieden mit kaputten Dateilenken",

@@ -139,7 +139,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Tämä sivu kuuluu|Nämä $1 sivua kuuluvat}} nykyisheen kategohriaan.",
 	"category-file-count": "{{PLURAL:$2|Tässä katekuurissa oon vain seuraava fiili.|{{PLURAL:$1|Seuraava fiili oon|Seuraavat $1 fiiliä ovat}} tässä katekuurissa. Fiilejä katekuurissa oon kaikkians $2.}}",
 	"category-file-count-limited": "Tässä luokassa oon {{PLURAL:$1|yksi faili|$1 failia}}.",
-	"listingcontinuesabbrev": "jatkuu",
 	"index-category": "Indeksoiut sivut",
 	"noindex-category": "Ei-indekseerattuja sivuja",
 	"broken-file-category": "Sivut, joissa on toimimattomia fiililänkkejä",

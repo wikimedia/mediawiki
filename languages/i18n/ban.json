@@ -147,7 +147,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Kaca|$1 kaca}} puniki wénten ring kategori sané mangkin.",
 	"category-file-count": "{{PLURAL:$2|golongan puniki madue{{PLURAL:$1|$1 lembar}}, saking total $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Berkas|$1 berkas}} puniki wénten ring kategori sané mangkin.",
-	"listingcontinuesabbrev": "lant.",
 	"index-category": "Lembar sane maindeks",
 	"noindex-category": "Lembar sane nenten maindeks",
 	"broken-file-category": "Suratan sane ngelah pranala usak",

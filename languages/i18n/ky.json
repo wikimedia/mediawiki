@@ -140,7 +140,6 @@
 	"category-article-count-limited": "Бул категорияда {{PLURAL:$1|$1 барак}} бар.",
 	"category-file-count": "{{PLURAL:$2|Бул категория төмөнкү файлды гана камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|файл|$1 файл}} бар.}}",
 	"category-file-count-limited": "Бул категорияда {{PLURAL:$1|$1|$1|$1}} файл бар.",
-	"listingcontinuesabbrev": "уланд.",
 	"index-category": "Индекстелген барактар",
 	"noindex-category": "Индекстелбеген барактар",
 	"broken-file-category": "Файлдарга туура эмес шилтеме берген барактар",

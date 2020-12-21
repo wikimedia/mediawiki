@@ -160,7 +160,6 @@
 	"category-article-count-limited": "Eftirfarandi $1 {{PLURAL:$1|síða er|síður eru}} í þessum flokki.",
 	"category-file-count": "Þessi flokkur inniheldur {{PLURAL:$1|$1 skrá|$1 skrár}}, af alls {{PLURAL:$2|$2}}.",
 	"category-file-count-limited": "Eftirfarandi $1 {{PLURAL:$1|skrá er|skrár eru}} í þessum flokki.",
-	"listingcontinuesabbrev": "frh.",
 	"index-category": "Raðaðar skrár",
 	"noindex-category": "Óraðaðar skrár",
 	"broken-file-category": "Síður með brotna skráartengla",

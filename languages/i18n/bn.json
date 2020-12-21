@@ -180,7 +180,6 @@
 	"category-article-count-limited": "নিচের {{PLURAL:$1|পাতাটি|$1 পাতাগুলো}} এই বিষয়শ্রেণীতে রয়েছে।",
 	"category-file-count": "{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবল নিচের পাতাটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি পাতার মধ্যে {{PLURAL:$1|$1টি পাতা}} নিচে দেখানো হলো।}}",
 	"category-file-count-limited": "নিচের {{PLURAL:$1|ফাইলটি|$1 ফাইলগুলো}} এই বিষয়শ্রেণীতে রয়েছে।",
-	"listingcontinuesabbrev": "আরও আছে",
 	"index-category": "নির্ঘণ্ট পাতা",
 	"noindex-category": "নির্ঘণ্ট নয় এমন পাতা",
 	"broken-file-category": "অকার্যকর ফাইল সংযোগসহ পাতাসমূহ",

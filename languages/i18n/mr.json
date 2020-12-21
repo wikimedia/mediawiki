@@ -186,7 +186,6 @@
 	"category-article-count-limited": "खालील {{PLURAL:$1|पान|$1 पाने}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.",
 	"category-file-count": "{{PLURAL:$2|या वर्गात फक्त खालील संचिका आहे.|एकूण $2 पैकी खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.}}",
 	"category-file-count-limited": "खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.",
-	"listingcontinuesabbrev": "पुढे चला",
 	"index-category": "अनुक्रमित पाने",
 	"noindex-category": "अनुक्रमित नसलेली पाने",
 	"broken-file-category": "तुटलेल्या संचिका दुव्यांसह असलेली पाने",

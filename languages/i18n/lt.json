@@ -171,7 +171,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|puslapis|puslapiai|puslapių}}.",
 	"category-file-count": "{{PLURAL:$2|Šioje kategorijoje yra viena rinkmena.|{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|rinkmena|rinkmenos|rinkmenų}} (iš viso kategorijoje yra $2 {{PLURAL:$2|rinkmena|rinkmenos|rinkmenų}}).}}",
 	"category-file-count-limited": "{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|failas|failai|failų}}.",
-	"listingcontinuesabbrev": "tęsti",
 	"index-category": "Indeksuoti puslapiai",
 	"noindex-category": "Neindeksuoti puslapiai",
 	"broken-file-category": "Puslapiai su neteisingomis nuorodomis į failus",

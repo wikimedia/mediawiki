@@ -169,7 +169,6 @@
 	"category-article-count-limited": "呢個類入邊有$1版。",
 	"category-file-count": "{{PLURAL:$2|呢類淨係有下面嘅檔案。|呢類有下面嘅$1個檔案，總共有$2個檔案。}}",
 	"category-file-count-limited": "呢個類入邊有$1個檔案。",
-	"listingcontinuesabbrev": "續",
 	"index-category": "做咗索引嘅版",
 	"noindex-category": "未做索引嘅版",
 	"broken-file-category": "文件鏈接壞咗嘅版",

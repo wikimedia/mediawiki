@@ -140,7 +140,6 @@
 	"category-article-count-limited": "هيٺِون {{PLURAL:$1|صفحو آهي|$1 صفحا آهن}} تازي زمري ۾.",
 	"category-file-count": "{{PLURAL:$2|هي زمرو رڳو هيٺيون فائيل رکي ٿو.|سمورن $2 مان، هيٺيون(يان) {{PLURAL:$1|فائيل|$1 فائيلَ}} هن زمري ۾ آھي(آھن).}}",
 	"category-file-count-limited": "هيٺيون يا هيٺيان {{PLURAL:$1|فائيل آهي|$1 فائيل آهن}} هن تازي زمري ۾.",
-	"listingcontinuesabbrev": "جاري.",
 	"index-category": "ڏسڻيل صفحا",
 	"noindex-category": "غيرڏسڻيل صفحا",
 	"broken-file-category": "ٽٽل فائل ڳنڍڻن وارا صفحا",

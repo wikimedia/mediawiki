@@ -156,7 +156,6 @@
 	"category-article-count-limited": "निम्नलिखित {{PLURAL:$1|पृष्ठ|$1 पृष्ठ}} ई श्रेणीमे अछि।",
 	"category-file-count": "{{PLURAL:$2|ई श्रेणीमे मात्र निम्नलिखित फाइल अछि।|ई श्रेणीमे निम्नलिखित {{PLURAL:$1|फाइल|$1 फाइलसभ}} अछि, कुल फाइलसभ $2}}",
 	"category-file-count-limited": "ई श्रेणीमे निम्नलिखित {{PLURAL:$1|फाइल अछि।|फाइलसभ अछि।}}",
-	"listingcontinuesabbrev": "शेष आगाँ।",
 	"index-category": "सूचीबद्ध पृष्ठ",
 	"noindex-category": "असूचीबद्ध पृष्ठ",
 	"broken-file-category": "पन्नासभ जाहिमे फाइल लिङ्कसभ टूटल हुअए",

@@ -120,7 +120,6 @@
 	"category-article-count-limited": "Bu törkemdä {{PLURAL:$1|$1 bit}} bar.",
 	"category-file-count": "{{PLURAL:$2|Bu törkemdä ber genä fayl bar.|Törkemdäge $2 faylnıñ {{PLURAL:$1|$1 faylı kürsätelgän}}.}}",
 	"category-file-count-limited": "Bu törkemdä {{PLURAL:$1|$1 fayl}} bar.",
-	"listingcontinuesabbrev": "däwamı",
 	"index-category": "İndekslanğan bitlär",
 	"noindex-category": "İndekslanmağan bitlär",
 	"about": "Taswirlama",

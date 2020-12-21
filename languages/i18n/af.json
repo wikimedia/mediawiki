@@ -163,7 +163,6 @@
 	"category-article-count-limited": "Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is in die huidige kategorie.",
 	"category-file-count": "{{PLURAL:$2|Hierdie kategorie bevat net die volgende lêer.|Die volgende {{PLURAL:$1|lêer|$1 lêers}} is in hierdie kategorie, uit 'n totaal van $2.}}",
 	"category-file-count-limited": "Die volgende {{PLURAL:$1|lêer|$1 lêers}} is in die huidige kategorie.",
-	"listingcontinuesabbrev": "vervolg",
 	"index-category": "Geïndekseerde bladsye",
 	"noindex-category": "Ongeïndekseerde bladsye",
 	"broken-file-category": "Bladsye met gebreekte lêer skakels",

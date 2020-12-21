@@ -121,7 +121,6 @@
 	"category-article-count-limited": "Бу категорияда ашагъыдаки {{PLURAL:$1|1=1|$1}} саифе бар.",
 	"category-file-count": "{{PLURAL:$2|1=Бу категорияда тек бир ашагъыдаки файл бар.|Бу категориядаки топлам $2 файлдан ашагъыдаки $1 файл косьтерильген.}}",
 	"category-file-count-limited": "Бу категорияда ашагъыдаки {{PLURAL:$1|1=1|$1}} файл бар.",
-	"listingcontinuesabbrev": " (девам)",
 	"index-category": "Индексли саифелер",
 	"noindex-category": "Индекссиз саифелер",
 	"broken-file-category": "Ичинде бозукъ файл багълантылары олгъан саифелер",

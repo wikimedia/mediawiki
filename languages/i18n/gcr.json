@@ -132,7 +132,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|0=Pyès paj ka figiré|1=Paj-a swivan ka figiré|$1 Paj-ya swivan ka figiré}} annan sa katégori.",
 	"category-file-count": "Sa katégori {{PLURAL:$2|0=ka konprann pyès fiché|1=ka konprann fiché ki ka swiv|ka konprann $2 fiché, don {{PLURAL:$1|0=pyès|1=sala|$1}} ki anba}}.",
 	"category-file-count-limited": "{{PLURAL:$1|0=Pyès fiché ka figiré|1=Fiché-a ki ka swiv ka figiré|$1 Fiché-ya ki ka swiv ka figiré}} annan sa katégori.",
-	"listingcontinuesabbrev": "(swit)",
 	"index-category": "Paj endèksé",
 	"noindex-category": "Paj ki pa endèksé",
 	"broken-file-category": "Paj ké yannaj-ya di fiché ki brizé",

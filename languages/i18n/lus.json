@@ -116,7 +116,6 @@
 	"category-article-count-limited": "{{PLURAL:$1 |$1He|$1 Heng}} phekte hi hë pawl, i en mékah hian a awm.",
 	"category-file-count": "{{PLURAL:$2|He pawl hian hë taksa chauh hi a kengtel.|{{PLURAL:$1|He taksa $1 |Heng taksa $1-te}} hi he pawlah hian a awm, a vaia $2 zingah}}",
 	"category-file-count-limited": "{{PLURAL:$1|He taksa|$1Heng taksate}} hi hemi pawl, i en mékah hian a awm.",
-	"listingcontinuesabbrev": "chhunz.",
 	"index-category": "Phêk tarlante",
 	"noindex-category": "Phêk tarlan lohte",
 	"broken-file-category": "Taksa kehchhe zawmna awm phêkte",

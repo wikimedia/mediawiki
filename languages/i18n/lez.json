@@ -111,7 +111,6 @@
 	"category-article-count-limited": "И категорияда {{PLURAL:$1|ччин|$1 ччинар}} ава.",
 	"category-file-count": "{{PLURAL:$2|И категорияда анжах гуьгъуьна авайди файл ава|$2-кай къалурнавай {{PLURAL:$1|файл|$1 файлар}} гьа а категориядин файл я}}",
 	"category-file-count-limited": "И категорияда {{PLURAL:$1|файл|$1 файлар}} ава.",
-	"listingcontinuesabbrev": "(кьатӀ)",
 	"index-category": "Индексавунвай ччинар",
 	"noindex-category": "Индекстежезвай ччинар",
 	"broken-file-category": "ЧӀуру файлдин элячӀунар авай ччинар",

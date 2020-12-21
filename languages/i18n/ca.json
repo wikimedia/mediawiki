@@ -201,7 +201,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|La següent pàgina és|Les següents $1 pàgines són}} dins la categoria actual.",
 	"category-file-count": "{{PLURAL:$2|Aquesta categoria només conté el fitxer següent.|{{PLURAL:$1|El fitxer és|Els $1 fitxers són}} dins d’aquesta categoria, d’un total de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|El següent fitxer és|Els següents $1 fitxers són}} dins la categoria actual.",
-	"listingcontinuesabbrev": " cont.",
 	"index-category": "Pàgines indexades",
 	"noindex-category": "Pàgines no indexades",
 	"broken-file-category": "Pàgines amb enllaços a fitxer trencats",

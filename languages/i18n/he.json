@@ -177,7 +177,6 @@
 	"category-article-count-limited": "קטגוריה זו מכילה את {{PLURAL:$1|הדף הבא|$1 הדפים הבאים}}.",
 	"category-file-count": "{{PLURAL:$2|קטגוריה זו מכילה את הקובץ הבא בלבד.|קטגוריה זו מכילה את {{PLURAL:$1|הקובץ המוצג להלן|$1 הקבצים המוצגים להלן}}, ומכילה בסך־הכול $2 קבצים.}}",
 	"category-file-count-limited": "קטגוריה זו מכילה את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}.",
-	"listingcontinuesabbrev": "(המשך)",
 	"index-category": "דפים המופיעים במנועי חיפוש",
 	"noindex-category": "דפים המוסתרים ממנועי חיפוש",
 	"broken-file-category": "דפים עם קישורים שבורים לקבצים",

@@ -154,7 +154,6 @@
 	"category-article-count-limited": "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
 	"category-file-count": "{{PLURAL:$2|Nid oes dim ffeiliau|Dim ond y ffeil sy'n dilyn sydd|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 	"category-file-count-limited": "Mae'r {{PLURAL:$1|dim ffeil|un ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn y categori hwn.",
-	"listingcontinuesabbrev": "parh.",
 	"index-category": "Tudalennau wedi eu mynegeio",
 	"noindex-category": "Tudalennau heb eu mynegeio",
 	"broken-file-category": "Tudalennau a chysylltiadau toredig i ffeiliau ynddynt",

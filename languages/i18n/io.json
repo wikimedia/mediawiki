@@ -150,7 +150,6 @@
 	"category-article-count-limited": "La sequanta {{PLURAL:$1|pagino|$1 pagini}} es en la aktuala kategorio.",
 	"category-file-count": "{{PLURAL:$2|Ica kategorio havas nur la sequanta arkivo.|La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en ica kategorio, ek $2.}}",
 	"category-file-count-limited": "La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.",
-	"listingcontinuesabbrev": "seq.",
 	"index-category": "indexigata pagini",
 	"noindex-category": "pagini sen indexi",
 	"broken-file-category": "Pagini kun ligili a neexistanta pagini",

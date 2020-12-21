@@ -142,7 +142,6 @@
 	"category-article-count-limited": "Бу категорияда {{PLURAL:$1|бӱк}} бар.",
 	"category-file-count": "{{PLURAL:$2|Бу категорияныҥ ичинде јаҥыс файл.|Бу категорияда {{PLURAL:$1|файл}}, $2 бастыра јаба.}}",
 	"category-file-count-limited": "Бу категорияда {{PLURAL:$1|файл}} бар.",
-	"listingcontinuesabbrev": "(оноҥ ары)",
 	"index-category": "Indexed бӱктер",
 	"noindex-category": "Индекстелбеген бӱктер",
 	"broken-file-category": "Файлдардыҥ тайантылары иштебей турган бӱктер",

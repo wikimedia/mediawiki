@@ -132,7 +132,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Faqja âsht|$1 faqe janë}} në këtë kategori.",
 	"category-file-count": "{{PLURAL:$2|Kjo kategori ka vetëm këtë skedë.|{{PLURAL:$1|kjo skedë âsht|$1 skeda janë}} në këtë kategori, prej gjithsejt $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Kjo skedë âsht|$1 skeda janë}} në këtë kategori.",
-	"listingcontinuesabbrev": "vazh.",
 	"index-category": "Faqe e indeksume",
 	"noindex-category": "Faqe e paindeksume",
 	"about": "Rreth",

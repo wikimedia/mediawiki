@@ -170,7 +170,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|1=Sledeća stranica je|Sledeće $1 stranice su|Sledećih $1 stranica je}} u ovoj kategoriji.",
 	"category-file-count": "{{PLURAL:$2|1=Ova kategorija sadrži samo sledeću datoteku.|{{PLURAL:$1|1=Sledeća datoteka je|Sledeće $1 datoteke su|Sledećih $1 datoteka je}} u ovoj kategoriji, od ukupno $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|1=Sledeća datoteka je|Sledeće $1 datoteke su|Sledećih $1 datoteka je}} u ovoj kategoriji.",
-	"listingcontinuesabbrev": "nast.",
 	"index-category": "Indeksirane stranice",
 	"noindex-category": "Neindeksirane stranice",
 	"broken-file-category": "Stranice sa neispravnim vezama do datoteka",

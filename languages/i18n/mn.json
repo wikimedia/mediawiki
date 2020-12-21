@@ -140,7 +140,6 @@
 	"category-article-count-limited": "Энэ ангилалд дараах {{PLURAL:$1|хуудас|$1 хуудаснууд}} байна.",
 	"category-file-count": "{{PLURAL:$2|Энэ ангилалд дараах файл л байна.|Энэ ангилалд нийт $2-с дараах $1 файл байна.}}",
 	"category-file-count-limited": "Энэ ангилалд дараах {{PLURAL:$1|файл|$1 файлнууд}} байна.",
-	"listingcontinuesabbrev": "-н үргэлжлэл",
 	"index-category": "Индекслэгдсэн хуудсууд",
 	"noindex-category": "Индекслэгдээгүй хуудсууд",
 	"broken-file-category": "Эвдэрсэн файлын холбоостой хуудас",

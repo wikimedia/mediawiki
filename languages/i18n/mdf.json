@@ -130,7 +130,6 @@
 	"category-article-count-limited": "Вага {{PLURAL:$1|лопа|$1 лопат}} тя категориеса.",
 	"category-file-count": "{{PLURAL:$2|Тя категориеса аньцек фкя файл.|Вага {{PLURAL:$1|файл|$1 файлхт}} тя категориеса $2-нь эста.}}",
 	"category-file-count-limited": "Вага {{PLURAL:$1|файл|$1 файлхт}} тя категориеса.",
-	"listingcontinuesabbrev": "полатксоц",
 	"index-category": "Индексыяф лопат",
 	"noindex-category": "↓Индексфтома лопатне",
 	"broken-file-category": "Лопат колаф сюлмафкснень мархта",

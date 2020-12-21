@@ -165,7 +165,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Järgmine lehekülg|Järgmised $1 lehekülge}} on selles kategoorias.",
 	"category-file-count": "{{PLURAL:$2|Selles kategoorias on ainult järgmine fail.|{{PLURAL:$1|Järgmine fail |Järgmised $1 faili}} on selles kategoorias (kokku $2).}}",
 	"category-file-count-limited": "{{PLURAL:$1|Järgmine fail|Järgmised $1 faili}} on selles kategoorias.",
-	"listingcontinuesabbrev": "jätk",
 	"index-category": "Indekseeritud leheküljed",
 	"noindex-category": "Indekseerimata leheküljed",
 	"broken-file-category": "Katkiste pildilinkidega leheküljed",

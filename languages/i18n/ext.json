@@ -131,7 +131,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|La siguienti páhina está|Las siguientis $1 páhinas están}} nesta categoria.",
 	"category-file-count": "{{PLURAL:$2|Esta categoria solu contiini el siguienti archivu.|{{PLURAL:$1|El siguienti archivu está|Los siguientis $1 archivus están}} nesta categoria, dun total de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|El siguienti archivu está|Los siguientis $1 archivus están}} nesta categoria.",
-	"listingcontinuesabbrev": "acont.",
 	"broken-file-category": "Páhinas con atihus esgalçaos a archivus",
 	"about": "Al tentu",
 	"article": "Artículu",

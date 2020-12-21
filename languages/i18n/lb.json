@@ -148,7 +148,6 @@
 	"category-article-count-limited": "Dës {{PLURAL:$1|Säit ass|$1 Säite sinn}} an dëser Kategorie.",
 	"category-file-count": "{{PLURAL:$2|Just dëse Fichier ass an dëser Kategorie.|{{PLURAL:$1|Just dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie, vu(n) $2 am Ganzen.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie.",
-	"listingcontinuesabbrev": "(Fortsetzung)",
 	"index-category": "Indexéiert Säiten",
 	"noindex-category": "Net-indexéiert Säiten",
 	"broken-file-category": "Säite mat futtisse Linken op Fichieren",

@@ -236,7 +236,6 @@
 	"category-article-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 strona|są $1 strony|jest $1 stron}}.",
 	"category-file-count": "{{PLURAL:$2|W tej kategorii znajduje się tylko jeden plik.|Poniżej wyświetlono $1 spośród wszystkich $2 plików w tej kategorii.}}",
 	"category-file-count-limited": "W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.",
-	"listingcontinuesabbrev": "cd.",
 	"index-category": "Strony indeksowane",
 	"noindex-category": "Strony nieindeksowane",
 	"broken-file-category": "Strony z odwołaniami do nieistniejących plików",

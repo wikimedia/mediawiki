@@ -145,7 +145,6 @@
 	"category-article-count-limited": "Stâ catiguria cunteni {{PLURAL:$1|la pàggina ndicata|li $1 pàggini ndicati}} ccà sutta.",
 	"category-file-count": "{{PLURAL:$2|Sta catigurìa cunteni nu sulu file, ndicatu ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|nu file, ndicatu|$1 file, ndicati}} ccà sutta, su nu totali di $2.}}",
 	"category-file-count-limited": "Sta catigurìa cunteni {{PLURAL:$1|lu file ndicatu|li $1 file ndicati}} ccà sutta.",
-	"listingcontinuesabbrev": " cunt.",
 	"index-category": "Pàggini nnicizzati",
 	"noindex-category": "Pàggini nun nnicizzati",
 	"broken-file-category": "Pàggini ca nclùdunu file inesistenti",
