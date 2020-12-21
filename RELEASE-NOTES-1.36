@@ -444,6 +444,9 @@ because of Phabricator reports.
    - wfDebugMem
    - wfGetPrecompiledData
    - wfNegotiateType
+* The InterwikiLoadPrefix hook has been deprecated; it is not compatible
+  with future wikitext parsers (which need to enumerate all interwiki
+  prefixes).  In test cases please use $wgInterwikiCache instead.
 * MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
   incompatibility with PHPUnit 8, was removed.
 * …

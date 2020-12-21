@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+
 /**
  * @group Upload
  */
@@ -13,12 +15,10 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 		$this->upload = new UploadTestHandler;
 
-		$this->setMwGlobals( 'wgHooks', [
-			'InterwikiLoadPrefix' => [
-				function ( $prefix, &$data ) {
-					return false;
-				}
-			],
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				// no entries, no interwiki prefixes
+			] ),
 		] );
 	}
 
