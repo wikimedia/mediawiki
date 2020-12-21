@@ -21842,6 +21842,17 @@ language=sr
 !! end
 
 !! test
+Balinese language conversion
+!! options
+language=ban variant=ban-x-palmleaf
+!! wikitext
+ᬫᬦ᭄ᬢ᭄ᬭ -{ban-x-palmleaf:AAA;ban:BBB}-
+!! html
+<p>mantra AAA
+</p>
+!! end
+
+!! test
 T2529: Uncovered bullet
 !! wikitext
 *Foo {{bullet}}
