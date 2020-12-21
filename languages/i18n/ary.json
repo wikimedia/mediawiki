@@ -146,7 +146,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|هاد صفحة كاينة|هاد $1 ديال صفحات كاينين}} فهاد تصنيف.",
 	"category-file-count": "{{PLURAL:$2|هاد تصنيف فيه غير هاد لملف.|هاد {{PLURAL:$1|لملف كاين|$1 لملفات كاينين}} فهاد تصنيف، من أصل $2 فلمجموع.}}",
 	"category-file-count-limited": "{{PLURAL:$1|هاد لملف كاين|هاد $1 ديال لملفات كاينين}} فهاد تصنيف.",
-	"listingcontinuesabbrev": "لكمالة",
 	"index-category": "صفاحي مفهرسة",
 	"noindex-category": "صفحات ما فيهومش الفهرس",
 	"broken-file-category": "صفحات فيها رابط ملف معطوب",

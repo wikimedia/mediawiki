@@ -143,7 +143,6 @@
 	"category-article-count-limited": "Tha {{PLURAL:$1|an $1 duilleag|an $1 dhuilleag|na $1 duilleagan|na $1 duilleag}} a leanas san roinn-seòrsa làithreach.",
 	"category-file-count": "{{PLURAL:$2|Chan eil ach am faidhle a leanas san roinn-seòrsa seo.|Tha {{PLURAL:$1|an $1 fhaidhle|an $1 fhaidhle|na $1 faidhlichean|na $1 faidhle}} a leanas san roinn-seòrsa seo (a-mach à $2 uile gu lèir).}}",
 	"category-file-count-limited": "Tha {{PLURAL:$1|an $1 fhaidhle|an $1 fhaidhle|na $1 faidhlichean|na $1 faidhle}} a leanas san roinn-seòrsa làithreach.",
-	"listingcontinuesabbrev": "(an corr)",
 	"index-category": "Duilleagan air a' chlàr-innse",
 	"noindex-category": "Duilleagan nach deach inneacsadh",
 	"broken-file-category": "Duilleagan sa bheil ceanglaichean faidhle a tha briste",

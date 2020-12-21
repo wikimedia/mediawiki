@@ -122,7 +122,6 @@
 	"category-article-count-limited": "Yma an {{PLURAL:$1|folen|$1 folen}} a syw y'n klass-ma.",
 	"category-file-count": "{{PLURAL:$2|Nyns eus dhe'n klass ma marnas an restren a syw.|Yma an {{PLURAL:$1|restren|$1 restren}} a syw y'n klass ma, dhyworth somm a $2.}}",
 	"category-file-count-limited": "Yma an {{PLURAL:$1|folen|$1 folen}} a syw y'n klass-ma.",
-	"listingcontinuesabbrev": "pes.",
 	"about": "A-dro dhe",
 	"article": "Folen dhalgh",
 	"newwindow": "(ygeri yn fenester nowydh)",

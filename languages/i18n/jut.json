@@ -133,7 +133,6 @@
 	"category-article-count-limited": "Kategorien inholje {{PLURAL:$1|nierstoenje siid|di nierstoenje $1 side}}.",
 	"category-file-count": "Kategorien inholje {{PLURAL:$2|kons den nierstoenje siid|{{PLURAL:$1|i nierstoenje fil|di nierstoenje $1 file}} å i ållt $2.}}",
 	"category-file-count-limited": "Kategorien inholje {{PLURAL:$1|nierstoenje fili|di nierstoenje $1 file}}.",
-	"listingcontinuesabbrev": "forts.",
 	"index-category": "Indeksiirtje side",
 	"noindex-category": "Intj-indeksiirtje side",
 	"broken-file-category": "Side mä bruden filhenwisnenge",

@@ -134,7 +134,6 @@
 	"category-article-count-limited": "КIэлъыкIорэ {{PLURAL:$1|файлыр илъ|$1 файлэхэр илъых}} мы категорием.",
 	"category-file-count": "{{PLURAL:$2|Мы категорием къык1элъык1орэ файлэ закъо илъ.|Мы {{PLURAL:$1|файлыр|$1 файлэхэр}} мы категорием илъхэр, $2 пстэумк1э.}}",
 	"category-file-count-limited": "КIэлъыкIорэ {{PLURAL:$1|файлыр илъ|$1 файлэхэр илъых}} мы категорием.",
-	"listingcontinuesabbrev": "пэубл.",
 	"index-category": "Индекс хъурэ нэкIубгъохэр",
 	"noindex-category": "Индекс мыхъурэ нэкIубгъохэр",
 	"broken-file-category": "Къончэ зэпыщэхэр зиIэ нэкIубгъохэр",

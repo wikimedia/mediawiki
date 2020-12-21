@@ -154,7 +154,6 @@
 	"category-article-count-limited": "'Sta categorîa a contegne {{PLURAL:$1|'sta paggina|'ste $1 paggine}}.",
 	"category-file-count": "{{PLURAL:$2|Sta categoria a conten solo sto file.|{{PLURAL:$1|Sto file o l'é|Sti $1 file son}} inte sta categoria, pe 'n totale de $2.}}",
 	"category-file-count-limited": "Questa categoria a contegne {{PLURAL:$1|o file indicao|i $1 file indicæ}} chi de sotta.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paggine indiçizzæ",
 	"noindex-category": "Paggine sença endexo",
 	"broken-file-category": "Paggine con di colegamenti a di file che no ghe son",

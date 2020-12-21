@@ -149,7 +149,6 @@
 	"category-article-count-limited": "V tej kategoriji {{PLURAL:$1|je $1 naslednja stran|sta $1 naslednji strani|so $1 naslednje strani|je $1 naslednjih strani}}.",
 	"category-file-count": "Ta kategorija vsebuje $1 {{PLURAL:$1|naslednjo datoteko|naslednji datoteki|naslednje datoteke|naslednjih datotek}}{{PLURAL:$2||, od skupno $2}}.",
 	"category-file-count-limited": "V tej kategoriji {{PLURAL:$1|je $1 naslednja datoteka|sta $1 naslednji datoteki|so $1 naslednje datoteke|je $1 naslednjih datotek}}.",
-	"listingcontinuesabbrev": "nadalj.",
 	"index-category": "Indeksirane strani",
 	"noindex-category": "Neindeksirane strani",
 	"broken-file-category": "Strani s pretrganimi povezavami do datotek",

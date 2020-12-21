@@ -114,7 +114,6 @@
 	"category-article-count-limited": "Ang mga gasunod nga{{PLURAL:$1|ka pahina|$1 ka mga pahina}} ara yanda sa kategorya.",
 	"category-file-count": "{{PLURAL:$2|Mini nga kategorya naga-unod lang gid sang gasunod nga file. |Ang mga gasunod nga {{PLURAL:$1|ka pahina|$1 ka mga pahina}} sa mini nga kategroya, sa $2 nga kabilugan.}}",
 	"category-file-count-limited": "Ang gasunod nga {{PLURAL:$1|ka file|$1 ka mga file}} ara sa yanda nga kategorya.",
-	"listingcontinuesabbrev": "padayon",
 	"index-category": "Na-index nga mga pahina",
 	"noindex-category": "Wala na-index nga mga pahina",
 	"broken-file-category": "Mga pahina nga may guba nga mga file links",

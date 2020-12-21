@@ -154,7 +154,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins la presenta categoria.",
 	"category-file-count": "{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.",
-	"listingcontinuesabbrev": "(seguida)",
 	"index-category": "Paginas indexadas",
 	"noindex-category": "Paginas pas indexadas",
 	"broken-file-category": "Paginas amb ligams de fichièrs copats",

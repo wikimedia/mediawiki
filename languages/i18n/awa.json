@@ -145,7 +145,6 @@
 	"category-article-count-limited": "निचे दिहल {{PLURAL:$1|पन्ना|$1 पन्ना}} इ श्रेणी में है।",
 	"category-file-count": "{{PLURAL:$2|इ श्रेणी में खालि निचे दिहल फ़ाइल है।|इ श्रेणी में निचे दिहल {{PLURAL:$1|फ़ाइल|$1 फ़ाइल}} है, सब फ़ाइल $2}}",
 	"category-file-count-limited": "निचे दिहल {{PLURAL:$1|पन्ना|$1 पन्ना}} इ श्रेणी में है।",
-	"listingcontinuesabbrev": "आगे.",
 	"index-category": "सूचीबद्ध पन्ना",
 	"noindex-category": "असूचीबद्ध पन्ना",
 	"broken-file-category": "टूटल फ़ाइल कड़ि वाला पन्ना",

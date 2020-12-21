@@ -147,7 +147,6 @@
 	"category-article-count-limited": "შემდეგი {{PLURAL:$1|გვერდი არის|$1 გვერდები არიან}} მოცემულ კატეგორიაში",
 	"category-file-count": "{{PLURAL:$2|თე კატეგორიას ხვალე ათე გეჸვენჯი ფაილი რე.|თე კატეგორიას რე გეჸვენჯი $1, ართოიანო $2-შე.}}",
 	"category-file-count-limited": "შემდეგი {{PLURAL:$1|ფაილი|$1 ფაილები}} ამ კატეგორიაშია.",
-	"listingcontinuesabbrev": "გჷნძარ.",
 	"index-category": "ხასჷლეფი ინდექსირაფაშ",
 	"noindex-category": "ხასჷლეფი ინდექსირაფაშ უმუშო",
 	"broken-file-category": "გვერდები ფაილების არასწორი ბმულებით",

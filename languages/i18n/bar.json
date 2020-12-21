@@ -138,7 +138,6 @@
 	"category-article-count-limited": "De {{PLURAL:$1|foigande Seiten is|foiganden $1 Seiten san}} in derer Kategorie enthoiden:",
 	"category-file-count": "{{PLURAL:$2|De Kategorie enthoid foigende Datei:|{{PLURAL:$1|Foigende Datei is oane vo insgsamt $2 Datein in dera Kategorie:|Es wean $1 von insgsamt $2 Datein in dera Kategorie ozoagt:}}}}",
 	"category-file-count-limited": "{{PLURAL:$1|D' foingde Datei is|De foingden $1 Datein san}} in de Kategorie eisortird:",
-	"listingcontinuesabbrev": "(Fortsetzung)",
 	"index-category": "Indizirde Seiten",
 	"noindex-category": "Ned-indiziade Seitn",
 	"broken-file-category": "Seiten mid kaputte Daateilinks",

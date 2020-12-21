@@ -148,7 +148,6 @@
 	"category-article-count-limited": "Ағымдағы санатта келесі $1 бет бар.",
 	"category-file-count": "{{PLURAL:$2|Бұл санатта тек келесі файл бар.|Бұл санатта келесі {{PLURAL:$1|файл|$1 файл}} бар, барлығы $2 сыртында.}}",
 	"category-file-count-limited": "Ағымдағы санатта келесі $1 файл бар.",
-	"listingcontinuesabbrev": "(жалғ.)",
 	"index-category": "Индекстелген беттер",
 	"noindex-category": "Индекстелмейтін беттер",
 	"broken-file-category": "Ақаулы файлдық сілтемелері бар беттер",

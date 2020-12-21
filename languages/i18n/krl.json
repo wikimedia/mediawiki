@@ -87,7 +87,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Täššä luokašša on vain tämä alaluokka.|Täššä luokašša on nämä {{PLURAL:$1|subcategory|$1 alaluokkua}}, kaikkieštah $2.}}",
 	"category-article-count": "{{PLURAL:$2|Täššä luokašša on vain tämä šivu.|{{PLURAL:$1|Tämä šivu on|$1 Nämä šivut ollah}} täššä luokašša, $2 kaikkieštah.}}",
 	"category-file-count": "{{PLURAL:$2|Täššä luokašša on vain tämä šivu.|{{PLURAL:$1|Tämä šivu on|$1 Nämä šivut ollah}} täššä luokašša, $2 kaikkieštah.}}",
-	"listingcontinuesabbrev": "jatkuu",
 	"broken-file-category": "Sivut, joissa on toimimattomia tiedostolinkkejä",
 	"about": "Tietuo",
 	"article": "Šivu",

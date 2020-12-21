@@ -130,7 +130,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Pad sököl binon|Pads sököl $1 binons}} in klad at.",
 	"category-file-count": "{{PLURAL:$2|Klad at labon te ragivi sököl.|{{PLURAL:$1|Ragiv sököl binon |Ragivs sököl $1 binons}} in klad at, se $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ragiv sököl binon|Ragivs sököl $1 binons}} in klad at.",
-	"listingcontinuesabbrev": "(fov.)",
 	"index-category": "Pads mafädanumöls",
 	"noindex-category": "Pads nemafädanumöls",
 	"about": "Tefü",

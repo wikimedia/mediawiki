@@ -232,7 +232,6 @@
 	"category-article-count-limited": "निम्नलिखित {{PLURAL:$1|पृष्ठ|$1 पृष्ठ}} इस श्रेणी में हैं।",
 	"category-file-count": "{{PLURAL:$2|इस श्रेणी में केवल निम्नलिखित फ़ाइल है।|इस श्रेणी में निम्नलिखित {{PLURAL:$1|फ़ाइल|$1 फ़ाइलें}} हैं, कुल फ़ाइलें $2}}",
 	"category-file-count-limited": "इस श्रेणी में निम्नलिखित {{PLURAL:$1|फ़ाइल है।|फ़ाइलें हैं।}}",
-	"listingcontinuesabbrev": "जारी",
 	"index-category": "सूचीबद्ध पृष्ठ",
 	"noindex-category": "असूचीबद्ध पृष्ठ",
 	"broken-file-category": "टूटी हुई फ़ाइल कड़ियों वाले पृष्ठ",

@@ -149,7 +149,6 @@
 	"category-article-count-limited": "بۇ تۈردە {{PLURAL:$1|بەت|$1 بەت}}  بار.",
 	"category-file-count": "{{PLURAL:$2| بۇ تۈرنىڭ تۆۋەندىكى ھۆججىتىلا بار.| بۇ تۈردە تۆۋەندىكى $1 ھۆججەت، جەمئى $2 ھۆججەت بار.}}",
 	"category-file-count-limited": "نۆۋەتتىكى تۈردە تۆۋەندىكى {{PLURAL:$1|ھۆججەت|$1 ھۆججەت}}  بار.",
-	"listingcontinuesabbrev": "داۋاملاشتۇر",
 	"index-category": "ئىندېكسلانغان بەتلەر",
 	"noindex-category": "ئىندېكسلانمىغان بەتلەر",
 	"broken-file-category": "ھۆججەت ئۇلىنىشى بۇزۇلغان بەتلەر",

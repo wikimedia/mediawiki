@@ -117,7 +117,6 @@
 	"category-article-count-limited": "এরে {{PLURAL:$1|পাতাহান|$1 পাতাহানি}} এরে বিষয়থাকে আসে।",
 	"category-file-count": "{{PLURAL:$2|এরে বিষয়থাকে হুদ্দা তলর ফাইলগ আসে।|এরে বিষয়থাকে তলে {{PLURAL:$1|গ ফাইল|$1 গি ফাইল}} আসে, হাবিয়ে $2 গর মা।}}",
 	"category-file-count-limited": "তলে {{PLURAL:$1|গ ফাইল|$1 গি ফাইল}} এরে বিষয়থাকে আসে।",
-	"listingcontinuesabbrev": "চলতই",
 	"index-category": "ইনডেক্স করিসি পাতাহানি",
 	"noindex-category": "ইনডেক্স নাকরিসি পাতাহানি",
 	"broken-file-category": "কামনাকরের ফাইলন আসে পাতাহানি",

@@ -187,7 +187,6 @@
 	"category-article-count-limited": "Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien.",
 	"category-file-count": "{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}",
 	"category-file-count-limited": "Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.",
-	"listingcontinuesabbrev": "forts.",
 	"index-category": "Indekserte sider",
 	"noindex-category": "Ikke-indekserte sider",
 	"broken-file-category": "Sider med brutte fillenker",

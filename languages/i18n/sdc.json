@@ -120,7 +120,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Chistha categuria cunteni un'unica sottocateguria, indicadda inogghi.|Chistha categuria cunteni {{PLURAL:$1|la sottocateguria indicadda|li $1 sottocategurì indicaddi}} inogghi, i' un tutari di $2.}}",
 	"category-article-count": "{{PLURAL:$2|Chistha categuria cunteni un'única pàgina, indicadda inogghi.|Chistha categuria cunteni {{PLURAL:$1|la pàgina indicadda|li $1 pàgini indicaddi}} inogghi, i' un tutari di $2.}}",
 	"category-file-count": "{{PLURAL:$2|Chistha categuria cunteni unu únicu file, indicaddu inogghi.|{{PLURAL:$1|Lu file sighenti è|$1 Li file sighenti so}} inogghi, i' un tutari di $2.}}",
-	"listingcontinuesabbrev": "(séguiddu)",
 	"broken-file-category": "Pàgini ki hani liadduri di file cu difetti",
 	"about": "Infuimmazioni",
 	"article": "Pagina",

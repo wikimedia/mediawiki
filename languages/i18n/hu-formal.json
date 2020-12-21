@@ -115,7 +115,6 @@
 	"category-article-count-limited": "Ebben a kategóriában a következő {{PLURAL:$1|lap|$1 lap}} található:",
 	"category-file-count": "{{PLURAL:$2|Csak a következő fájl található ebben a kategóriában.|Az összesen $2 fájlból a következő $1-t listázza ez a kategórialap, a többi a további oldalakon található.}}",
 	"category-file-count-limited": "Ebben a kategóriában a következő {{PLURAL:$1|lap|$1 lap}} található:",
-	"listingcontinuesabbrev": "folyt.",
 	"index-category": "Indexelt lapok",
 	"noindex-category": "Nem indexelt lapok",
 	"broken-file-category": "Hibás fájlhivatkozásokat tartalmazó lapok",

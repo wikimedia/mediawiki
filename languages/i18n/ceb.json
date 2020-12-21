@@ -121,7 +121,6 @@
 	"category-article-count-limited": "Ang mosunod nga {{PLURAL:$1|panid |$1 mga panid}} anaa sa kasamtangang kategoriya.",
 	"category-file-count": "{{PLURAL:$2|Ang kini nga kategoriya may usa lamang ka payl.|Ang mosunod nga {{PLURAL:$1|payl|$1 mga payl}} anaa niining kategoriya, sa $2 nga total.}}",
 	"category-file-count-limited": "Ang mosunod nga {{PLURAL:$1|payl|$1 ka mga payl}} anaa niining kategoryaha.",
-	"listingcontinuesabbrev": "pad.",
 	"about": "Mahitungod",
 	"article": "Panid sa sulod",
 	"newwindow": "(maabli sa laing ''window'')",

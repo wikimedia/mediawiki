@@ -141,7 +141,6 @@
 	"category-article-count-limited": "Укх оагӀата чу {{PLURAL:$1|$1 оагӀув я|1=цхьа оагӀув мара яц}}.",
 	"category-file-count": "{{PLURAL:$2|Укх оагӀата чу цаI мара файл яц.|Укх оагӀата чу йолча $2 файлах {{PLURAL:$1|1=хьагуш я $1 файл}} }}",
 	"category-file-count-limited": "Укх категори чу {{PLURAL:$1|$1 файл|$1 файлаш|1=цаI мара файл яц}}.",
-	"listingcontinuesabbrev": "(дIахо)",
 	"index-category": "Индекс оттаеш оагIонаш",
 	"noindex-category": "Индекс оттайинза оагIонаш",
 	"broken-file-category": "Файла тIахьожаяргаш болхбеш йоаца оагIонаш",

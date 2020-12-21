@@ -217,7 +217,6 @@
 	"category-article-count-limited": "이 분류에 {{PLURAL:$1|문서가|문서 $1개가}} 있습니다.",
 	"category-file-count": "{{PLURAL:$2|이 분류에는 파일 1개만이 속해 있습니다.|다음은 이 분류에 속하는 {{PLURAL:$1|파일}} $2개 가운데 $1개입니다.}}",
 	"category-file-count-limited": "이 분류에 {{PLURAL:$1|파일이|파일 $1개가}} 있습니다.",
-	"listingcontinuesabbrev": "(계속)",
 	"index-category": "색인된 문서",
 	"noindex-category": "색인에서 제외되는 문서",
 	"broken-file-category": "깨진 파일 링크가 포함된 문서",
@@ -2557,6 +2556,7 @@
 	"namespace_association": "관련된 이름공간",
 	"tooltip-namespace_association": "선택한 이름공간과 관련된 토론이나 본문 이름공간을 포함하려면 이 상자를 선택하세요",
 	"blanknamespace": "(일반)",
+	"contributions": "사용자 기여",
 	"tool-link-contributions": "{{GENDER:$1|사용자}} 기여",
 	"contributions-title": "$1의 사용자 기여",
 	"mycontris": "기여",
@@ -2886,7 +2886,7 @@
 	"import-interwiki-text": "문서를 가져올 위키를 선택하고 문서 제목을 입력해주세요.\n편집 날짜와 편집자의 이름이 보존될 것입니다.\n모든 가져오기는 [[Special:Log/import|가져오기 기록]]에 기록됩니다.",
 	"import-interwiki-sourcewiki": "원본 위키:",
 	"import-interwiki-sourcepage": "원본 문서:",
-	"import-interwiki-history": "이 문서의 모든 역사를 가져오기",
+	"import-interwiki-history": "이 문서의 모든 판을 복사하기",
 	"import-interwiki-templates": "모든 틀을 포함하기",
 	"import-interwiki-submit": "가져오기",
 	"import-mapping-default": "기본 위치로 들여오기",
@@ -3670,7 +3670,7 @@
 	"feedback-thanks-title": "감사합니다!",
 	"feedback-useragent": "사용자 에이전트:",
 	"searchsuggest-search": "{{SITENAME}} 검색",
-	"searchsuggest-containing": "다음 문자열 포함...",
+	"searchsuggest-containing": "문서 안에서 단어 검색",
 	"search-match-redirect-label": "검색에서 완전 일치하는 문서로 바로 이동하기",
 	"search-match-redirect-help": "선택하면 문서 제목과 검색한 구문이 일치할 때 해당 문서로 이동합니다",
 	"api-clientside-error-noconnect": "서버에 연결할 수 없습니다. 인터넷 연결이 올바르게 작동하는지 확인하고 다시 시도해 주십시오.",
@@ -4002,5 +4002,7 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP 대역",
 	"paramvalidator-help-type-user-subtype-interwiki": "인터위키 이름 (예: \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "사용자 ID (예: \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "사용자 ID (예: \"#12345\")",
+	"paramvalidator-help-type-title-must-exist": "존재하는 문서만 허용합니다.",
+	"paramvalidator-help-type-title-no-must-exist": "존재하지 않는 문서를 허용합니다."
 }

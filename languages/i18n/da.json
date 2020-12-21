@@ -208,7 +208,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Den nedenstående side|De nedenstående $1 sider}} er i denne kategori.",
 	"category-file-count": "{{PLURAL:$2|Denne kategori indeholder kun den nedenstående fil.|{{PLURAL:$1|Den nedenstående fil|De nedenstående $1 filer}} er i denne kategori, ud af i alt $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Den nedenstående fil|De nedenstående $1 filer}} er i denne kategori.",
-	"listingcontinuesabbrev": "forts.",
 	"index-category": "Indekserede sider",
 	"noindex-category": "Ikke-indekserede sider",
 	"broken-file-category": "Sider med brudte filhenvisninger",

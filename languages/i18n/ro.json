@@ -177,7 +177,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Următoarea pagină este|Următoarele $1 pagini sunt|Următoarele $1 de pagini sunt}} în categoria curentă.",
 	"category-file-count": "{{PLURAL:$2|Această categorie conține doar următorul fișier.|{{PLURAL:$1|Următorul fișier|Următoarele $1 fișiere}} se află în această categorie, dintr-un total de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Următorul fișier este|Următoarele $1 fișiere sunt |Următoarele $1 de fișiere sunt}} în categoria curentă.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Pagini indexate",
 	"noindex-category": "Pagini neindexate",
 	"broken-file-category": "Pagini cu legături invalide către fișiere",

@@ -132,7 +132,6 @@
 	"category-article-count": "{{PLURAL:$2|Kategori on umna marisi alaman ima.|Onma{{PLURAL:$1|alaman ima|$1 alaman}} i kategori on, tingon bahat $2.}}",
 	"category-article-count-limited": "Kategori on puna {{PLURAL:$1|$1 alaman}} onma.",
 	"category-file-count": "{{PLURAL:$2|Kategori on umna marisi alaman ima.|Onma{{PLURAL:$1|alaman ima|$1 alaman}} i kategori on, tingon bahat $2.}}",
-	"listingcontinuesabbrev": "Sat",
 	"index-category": "Alaman na iindeks",
 	"noindex-category": "Alaman naso tarindeks",
 	"broken-file-category": "Alaman dot link berkas sega",

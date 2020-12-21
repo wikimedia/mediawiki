@@ -143,7 +143,6 @@
 	"category-article-count-limited": "Tá {{PLURAL:$1|an leathanach|na $1 leathanaigh}} seo a leanas sa chatagóir reatha.",
 	"category-file-count": "{{PLURAL:$2|Tá ach an comhad a leanas sa chatagóir seo|Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir seo, as $2 san iomlán.}}",
 	"category-file-count-limited": "Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir reatha.",
-	"listingcontinuesabbrev": "ar lean.",
 	"index-category": "Leathanaigh innéacsaithe",
 	"about": "Maidir leis",
 	"article": "Leathanach ábhair",

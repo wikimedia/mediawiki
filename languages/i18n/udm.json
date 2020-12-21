@@ -132,7 +132,6 @@
 	"category-article-count-limited": "Со категориын {{PLURAL:$1|$1 бам}}.",
 	"category-file-count": "{{PLURAL:$2|1=Со категориын одӥг файл гинэ.|Возьматэмын {{PLURAL:$1|$1 файл}} $2 пӧлысь.}}",
 	"category-file-count-limited": "Со категориын {{PLURAL:$1|$1 файл}}.",
-	"listingcontinuesabbrev": "азьлань",
 	"index-category": "Индексировать кароно бамъёс",
 	"noindex-category": "Индексировать каронтэм бамъёс",
 	"broken-file-category": "Файл вылэ чигтэм чӧлсконъёсын бамъёс",

@@ -173,7 +173,6 @@
 	"category-article-count-limited": "درج ذیل {{PLURAL:$1|صفحہ|$1 صفحات}} اس زمرہ میں شامل {{PLURAL:$1|ہے|ہیں}}۔",
 	"category-file-count": "{{PLURAL:$2|اس زمرہ میں صرف درج ذیل فائل موجود ہے۔|اس زمرہ کی کل $2 فائلوں میں سے $1 {{PLURAL:$1|فائل|فائلیں}} حسب ذیل {{PLURAL:$1|ہے|ہیں}}}}۔",
 	"category-file-count-limited": "درج ذیل {{PLURAL:$1|فائل|$1 فائلیں}} اس زمرہ میں شامل {{PLURAL:$1|ہے|ہیں}}۔",
-	"listingcontinuesabbrev": "جاری۔",
 	"index-category": "فہرست شدہ صفحات",
 	"noindex-category": "غیر فہرست شدہ صفحات",
 	"broken-file-category": "فائلوں کے شکستہ روابط پر مشتمل صفحات",

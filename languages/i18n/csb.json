@@ -142,7 +142,6 @@
 	"category-article-count-limited": "W ti kategòrëji {{PLURAL:$1|je 1 starna|są $1 starnë|je $1 starnów}}.",
 	"category-file-count": "{{PLURAL:$2|Na kategòrëjô zamëkô w se blós jeden lopk.|W ti kategòrëji {{PLURAL:$1|je 1 lopk|są $1 lopczi|je $1 lopków}} z oòglowi wielënë $2 lopków.}}",
 	"category-file-count-limited": "W ti kategòrëji {{PLURAL:$1|je 1 lopk|są $1 lopczi|je $1 lopków}}.",
-	"listingcontinuesabbrev": "kònt.",
 	"index-category": "Indeksowóné starnë",
 	"noindex-category": "Nieindeksowóné starnë",
 	"broken-file-category": "Starnë lënkùjącé do nieegzystëjących lopków",

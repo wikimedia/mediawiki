@@ -148,7 +148,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|La páxina siguiente ta|Les $1 páxines siguientes tán}} na categoría actual.",
 	"category-file-count": "{{PLURAL:$2|Esta categoría contien namái el ficheru siguiente.|{{PLURAL:$1|El ficheru siguiente ta|Los $1 ficheros siguientes tán}} nesta categoría, d'un total de $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|El ficheru siguiente ta|Los $1 ficheros siguientes tán}} na categoría actual.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Páxines indexaes",
 	"noindex-category": "Páxines sin indexar",
 	"broken-file-category": "Páxines con enllaces frañíos a ficheros",

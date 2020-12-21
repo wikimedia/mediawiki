@@ -165,7 +165,6 @@
 	"category-article-count-limited": "Был категорияла {{PLURAL:$1|$1 бит}} бар.",
 	"category-file-count": "{{PLURAL:$2|Был категорияла бер генә файл бар.|Категориялағы $2 файлдың {{PLURAL:$1|$1 файлы күрһәтелгән}}.}}",
 	"category-file-count-limited": "Был категорияла {{PLURAL:$1|$1 файл}} бар.",
-	"listingcontinuesabbrev": "дауамы",
 	"index-category": "Индексланған биттәр",
 	"noindex-category": "Индексланмаған биттәр",
 	"broken-file-category": "Файлға һылтанмалары эшләмәгән биттәр",

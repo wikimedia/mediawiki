@@ -142,7 +142,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Paj sa|$1 paj sa yo}} nan kategori kouran.",
 	"category-file-count": "{{PLURAL:$2|Kategori sa gen sèlman dokiman swivan ladan l.|{{PLURAL:$1|Dokiman sa|$1 dokiman sa yo}} nan kategori sa, sou $2 total.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Dokiman sa|$1 dokiman sa yo}} nan kategori kouran.",
-	"listingcontinuesabbrev": "(kontinye)",
 	"index-category": "Paj endèkse yo",
 	"noindex-category": "Paj ki pa endèkse yo",
 	"broken-file-category": "Paj ak lyen fichye kase",

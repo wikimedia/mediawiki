@@ -144,7 +144,6 @@
 	"category-article-count-limited": "En dä Saachrupp heh {{PLURAL:$1|es ein Sigg dren:|sin $1 Sigge dren:|es kein Sigg dren.}}",
 	"category-file-count": "En dä Saachrupp heh {{PLURAL:$2|es ein Datei dren:|sin $2 Dateie dren, {{PLURAL:$1|un dovun weed heh nur ein|un dovun weede $1 heh|ävver dovun weed heh kein}} aanjezeich:|es kein Datei dren.}}",
 	"category-file-count-limited": "En dä Saachrupp heh {{PLURAL:$1|es ein Dattei dren:|sin $1 Datteie dren:|es kein Dattei dren.}}",
-	"listingcontinuesabbrev": "… (wigger)",
 	"index-category": "Sigge, di de Söhkmaschihne opnämme sulle",
 	"noindex-category": "Sigge, di de Söhkmaschihne nit opnämme sulle",
 	"broken-file-category": "Sigge met kappodde Lengks op Datteije",

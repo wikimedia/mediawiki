@@ -145,7 +145,6 @@
 	"category-article-count-limited": "An minasunod na {{PLURAL:$1|pahina|$1 mga pahina}} yaon sa presenteng kategorya.",
 	"category-file-count": "{{PLURAL:$2|Ining kategorya naglalaman sana kan minasunod na sagunson.|An minasunod {{PLURAL:$1|sagunson iyo|$1 na mga sagunson iyo}} sa kategoryang ini, na ginahi sa $2 sa kabilogan.}}",
 	"category-file-count-limited": "An minasunod {{PLURAL:$1|na sagunson|$1 na mga sagunson}} yaon sa presenteng kategorya.",
-	"listingcontinuesabbrev": "kasumpay",
 	"index-category": "Panhinukdong mga pahina",
 	"noindex-category": "Mayong panhinukdong mga pahina",
 	"broken-file-category": "Mga pahina na igwang nagkaparasa na sagunsong kilyawan",

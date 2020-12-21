@@ -161,7 +161,6 @@
 	"category-article-count-limited": "Šajā kategorijā ir {{PLURAL:$1|šīs $1 lapas|šī $1 lapa|šīs $1 lapas}}.",
 	"category-file-count": "{{PLURAL:$2|Šajā kategorijā ir $2 failu, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.|Šajā kategorijā ir $2 fails, no kura {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.|Šajā kategorijā ir $2 faili, no kuriem {{PLURAL:$1|ir redzami $1|redzams ir $1|ir redzami $1}}.}}",
 	"category-file-count-limited": "Šajā kategorijā atrodas {{PLURAL:$1|šie $1 faili|tikai šis fails|šie $1 faili}}.",
-	"listingcontinuesabbrev": " (turpinājums)",
 	"index-category": "Indeksētās lapas",
 	"noindex-category": "Neindeksētās lapas",
 	"broken-file-category": "Lapas, kurās ir bojātas failu saites",

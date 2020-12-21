@@ -155,7 +155,6 @@
 	"category-article-count-limited": "In däre Kategori het s die {{PLURAL:$1|Syte|$1 Syte}}:",
 	"category-file-count": "{{PLURAL:$2|In däre Kategori het s die Datei:|{{PLURAL:$1|Die Datei isch eini vu insgsamt $2 Dateie in däre Kategori:|S wäre $1 vu insgsamt $2 Dateie in däre Kategori aazeigt:}}}}",
 	"category-file-count-limited": "In däre Kategori het s die {{PLURAL:$1|Datei|$1 Dateie}}:",
-	"listingcontinuesabbrev": "(Forts.)",
 	"index-category": "Verzeichneti Syte",
 	"noindex-category": "Syte wu nit verzeichnet sin",
 	"broken-file-category": "Syte mit kaputtige Dateilink",

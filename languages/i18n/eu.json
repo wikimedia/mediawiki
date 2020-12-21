@@ -170,7 +170,6 @@
 	"category-article-count-limited": "Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago.|$1 orri hauek kategoria honetan daude.}}",
 	"category-file-count": "{{PLURAL:$2|Kategoria honek ondorengo fitxategi hau baino ez du.|Ondorengo {{PLURAL:$1|fitxategi hau kategoria honetan dago|$1 fitxategiak kategoria honetan daude}}, eta guztira $2 fitxategi dira kategoria honetan.}}",
 	"category-file-count-limited": "Ondorengo {{PLURAL:$1|fitxategia kategoria honetan dago.|$1 fitxategiak kategoria honetan daude.}}",
-	"listingcontinuesabbrev": "jarr.",
 	"index-category": "Indexatutako orrialdeak",
 	"noindex-category": "Indexatugabeko orrialdeak",
 	"broken-file-category": "Fitxategiren baterako lotura hautsia duten orriak",

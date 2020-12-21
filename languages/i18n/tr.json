@@ -246,7 +246,6 @@
 	"category-article-count-limited": "Bu kategoride {{PLURAL:$1|sayfa|$1 sayfa}} bulunmaktadır.",
 	"category-file-count": "{{PLURAL:$2|Bu kategori sadece aşağıdaki dosyayı içerir.|Bu kategorideki toplam $2 dosyadan $1 tanesi aşağıdadır.}}",
 	"category-file-count-limited": "Aşağıdaki {{PLURAL:$1|dosya|$1 dosya}} bu kategoridedir.",
-	"listingcontinuesabbrev": "devam",
 	"index-category": "Dizinlenmiş sayfalar",
 	"noindex-category": "Dizinlenmemiş sayfalar",
 	"broken-file-category": "Bozuk dosya bağlantıları içeren sayfalar",

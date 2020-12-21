@@ -158,7 +158,6 @@
 	"category-article-count-limited": "এই {{PLURAL:$1|পৃষ্ঠা|$1 পৃষ্ঠাসমূহ}} সাম্প্ৰতিক শ্ৰেণীত আছে ।",
 	"category-file-count": "{{PLURAL:$2|এই শ্ৰেণীটোত কেৱল তলত দিয়া ফাইলটোহে আছে। মুঠ $2টাৰ ভিতৰত এই শ্ৰেণীটোত তলৰ {{PLURAL:$1|এটা ফাইল|$1 টা ফাইল}} আছে।}}",
 	"category-file-count-limited": "তলৰ {{PLURAL:$1|ফাইলটো|$1 ফাইলসমূহ}} সাম্প্ৰতিক শ্ৰেণীত আছে।",
-	"listingcontinuesabbrev": "আগলৈ",
 	"index-category": "সূচীকৃত পৃষ্ঠাসমূহ",
 	"noindex-category": "অসূচীকৃত পৃষ্ঠাসমূহ",
 	"broken-file-category": "অবৈধ ফাইল সংযোগযুক্ত পৃষ্ঠাবোৰ",

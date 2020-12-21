@@ -126,7 +126,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Tasna d yuckan tlla|Tisniwin $1 llid yuckan llant}} ɣ taggayt ad",
 	"category-file-count": "Taggayt ad {{PLURAL:$2|ur tumi abla tasna ad iḍfarn.|tumi $2 tasniwin, gisnt {{PLURAL:$1|tasna ad iḍfarn|tasniwin ad ḍfarnin}}.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Asdaw ad yuckan illa|isdawn ad $1 llid yuckan llan}} ɣ taggayt ad",
-	"listingcontinuesabbrev": "Mad iḍfarn",
 	"index-category": "ⵜⴰⵙⵡⵏⵉⵡⵉⵏ ⵜⵜⵡⴰⵏⴷⵉⴽⵙⴰⵏⵉⵏ",
 	"noindex-category": "Tasniwin war-amatar",
 	"broken-file-category": "Tasniwin ɣ llan ilinkn rẓanin",

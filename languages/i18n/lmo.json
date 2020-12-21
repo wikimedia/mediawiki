@@ -145,7 +145,6 @@
 	"category-article-count-limited": "Chèsta categuria la g'ha dét {{PLURAL:$1|l'artìcol|i $1 artìcoi}} elencàcc ché sota:",
 	"category-file-count": "{{PLURAL:$2|Quela categuria chì la gh'ha denter dumà el file chì suta|Quela categuria chì la gh'ha denter {{PLURAL:$1|'l file|$1 i file}} ripurtaa chì suta, sü un tutal de $2.}}",
 	"category-file-count-limited": "Chèsta categuria la g'ha dét {{PLURAL:$1|l'archivi|i $1 archivi}} elencàcc ché sota:",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paginn indicizaa",
 	"noindex-category": "Paginn minga indicizaa",
 	"broken-file-category": "Pàgine con dét colegamèncc che va mìa",

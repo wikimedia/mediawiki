@@ -136,7 +136,6 @@
 	"category-article-count-limited": "Hai, nesta catadorie, {{PLURAL:$1|la páigina a seguir|las $1 páiginas a seguir}}.",
 	"category-file-count": "{{PLURAL:$2|Esta catadorie solo cuntén l seguinte fexeiro.|Esta catadorie cuntén {{PLURAL:$1|l seguinte fexeiro|ls seguintes $1 fexeiros}} (dun total de $2).}}",
 	"category-file-count-limited": "Nesta catadorie hai {{PLURAL:$1|un fexeiro|$1 fexeiros}}.",
-	"listingcontinuesabbrev": "cunt.",
 	"index-category": "Páiginas ourganizadas an índece",
 	"noindex-category": "Páiginas nó ourganizadas an índece",
 	"broken-file-category": "Páiginas cun lhigaçones scachadas pa fexeiros",

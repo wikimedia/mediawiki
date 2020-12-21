@@ -157,7 +157,6 @@
 	"category-article-count-limited": "ਮੌਜੂਦਾ ਕੈਟੇਗਰੀ ਵਿਚ ਇਹ {{PLURAL:$1|ਸਫ਼ਾ ਹੈ|$1 ਸਫ਼ੇ ਹਨ}}।",
 	"category-file-count": "{{PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਕੇਵਲ ਇਹ ਫ਼ਾਈਲ ਹੈ।| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ, ਕੁੱਲ $2 ਵਿੱਚੋਂ, ਇਹ {{PLURAL:$1|ਫ਼ਾਈਲ ਹੈ|$1 ਫ਼ਾਈਲਾਂ ਹਨ}}}}।",
 	"category-file-count-limited": "ਮੌਜੂਦਾ ਕੈਟੇਗਰੀ ਵਿਚ ਇਹ {{PLURAL:$1|ਫ਼ਾਈਲ ਹੈ|$1 ਫ਼ਾਈਲਾਂ ਹਨ}}।",
-	"listingcontinuesabbrev": "ਜਾਰੀ",
 	"index-category": "ਤਤਕਰੇ ਵਾਲ਼ੇ ਸਫ਼ੇ",
 	"noindex-category": "ਬਿਨਾਂ ਤਤਕਰੇ ਵਾਲੇ ਸਫ਼ੇ",
 	"broken-file-category": "ਟੁੱਟੇ ਹੋਏ ਫ਼ਾਈਲ ਜੋੜਾਂ ਵਾਲ਼ੇ ਸਫ਼ੇ",

@@ -157,7 +157,6 @@
 	"category-article-count-limited": "Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}}.",
 	"category-file-count": "{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}",
 	"category-file-count-limited": "Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.",
-	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paginae quae in indice sunt",
 	"noindex-category": "Paginae quae non in indice sunt",
 	"broken-file-category": "Paginae cum nexibus ad fasciculos ruptis",

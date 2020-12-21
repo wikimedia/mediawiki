@@ -168,7 +168,6 @@
 	"category-article-count-limited": "У гэтай катэгорыі ёсць наступн{{PLURAL:$1|ая старонка|ыя $1 старонкі|ыя $1 старонак}}.",
 	"category-file-count": "У гэтай катэгорыі ёсць {{PLURAL:$2|$2 файл|наступн{{PLURAL:$1|ы файл|ыя $1 файлаў}} з агульнага ліку $2}}.",
 	"category-file-count-limited": "У гэтай катэгорыі ёсць $1 {{PLURAL:$1|файл|файлы|файлаў}}.",
-	"listingcontinuesabbrev": "працяг",
 	"index-category": "Індэксаваныя старонкі",
 	"noindex-category": "Неіндэксаваныя старонкі",
 	"broken-file-category": "Старонкі з няслушнымі спасылкамі на файлы",

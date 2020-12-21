@@ -141,7 +141,6 @@
 	"category-article-count-limited": "{{PLURAL:$1||الصفحة التابعة|الـ $1 ‘ن صفحة التابعة}} مصنّفة ب هاذ التصنيف.",
 	"category-file-count": "هاذ الكاتيكورى فيها {{PLURAL:$2|هاذ الفيشيي|$2 الفيشيي, اللي{{PLURAL:$1|هاذ|نتع$1}} من تحتا}}.",
 	"category-file-count-limited": "{{PLURAL:$1|الملف التابع مصنّف|الملفات الـ $1 التابعة مصنّفة}} ب هاذ التصنيف.",
-	"listingcontinuesabbrev": "يُتبع",
 	"index-category": "صفحات مفهّرسة",
 	"noindex-category": "باجات ماشي مفهرسة",
 	"broken-file-category": "صفحات فيها وصيلات تاع ملفّات خاسرة",

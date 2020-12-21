@@ -112,7 +112,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Olupapula luno luli|Empapula zino $1 ziri}} mu ttuluba lino.",
 	"category-file-count": "{{PLURAL:$2|Fayiro emenyedwa wano ye yokka eri mu ttuluba lino.|{{PLURAL:$1|Fayiro eno y'eri|Fayiro $1 zino ze ziri}} mu ttuluba lino. Lirimu fayiro $2 awamu.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Fayiro eno eri|Fayiro zino $1 ziri}} mu ttuluba lino.",
-	"listingcontinuesabbrev": "era...",
 	"index-category": "Empapula ezikkirizidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 	"noindex-category": "Empapula ezigaanidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 	"broken-file-category": "Empapula eziriko ennyunzi ezitalina kwe zigguka",

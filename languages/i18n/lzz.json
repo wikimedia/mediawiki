@@ -94,7 +94,6 @@
 	"category-subcat-count-limited": "Am k'at'egori tudes na dgin {{PLURAL:$1|tude k'at'egoris|$1 tude k'at'egoris}} uğun.",
 	"category-article-count": "{{PLURAL:$2|Am kʼatʼegoris, xvala, tude na ren kʼatʼegori uğun.|Tʼoplami $2 şen, tude na ren {{PLURAL:$1|butʼkʼa|$1 butʼkʼa}} am kʼatʼegoris ren.}}",
 	"category-file-count": "{{PLURAL:$2|Am kʼatʼegoris, xvala, tude na ren kʼatʼegori uğun.|Tʼoplami $2 şen, tude na ren {{PLURAL:$1|butʼkʼa|$1 butʼkʼa}} am kʼatʼegoris ren.}}",
-	"listingcontinuesabbrev": "(naqona)",
 	"index-category": "Indexi na uğun but'k'ape",
 	"noindex-category": "Indexi muşi na var uğun sayfape",
 	"broken-file-category": "Bozuk dosya bağlantıları içeren sayfalar",

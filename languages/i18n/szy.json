@@ -135,7 +135,6 @@
 	"category-article-count": "{{PLURAL:$2|uyni kakuniza hatiza ku cacay yamalyilu sailuc-kakuniza. kina kakuniza yamalyilu isasa $2 a sailuc-kasasizuma, ilabu {{PLURAL$1}}mahiza ku isasaay}}",
 	"category-article-count-limited": "isasa’ay a {{PLURAL:$1|kasabelih ku}} i masitudungay a kakuniza.",
 	"category-file-count": "{{PLURAL:$2|kakuniza yamalyilu isasaay a cacay ku tangan. kakuniza yamalyilu isasaay izaway $1 ku tangan, pulung $2 makalaan.}}",
-	"listingcontinuesabbrev": "palalid",
 	"index-category": "mapatayza kapah pikiliman tu nisulitan miasipay kasabelih",
 	"noindex-category": "caay kasilsil i kapah pikiliman tu nisulitan miasipay kasabelih",
 	"broken-file-category": "tangan masasiket malepi’ay a kasabelih",

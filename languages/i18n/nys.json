@@ -67,7 +67,6 @@
 	"category-subcat-count": "{{PLURAL:$2|Nidja warrangan ken-y ngawaliny warrangan.|Nidja warrangan ken-y ngawaliny {{PLURAL:$1|warrangan}}, ung $2 bandang.}}",
 	"category-article-count": "{{PLURAL:$2|Nidja warrangan ken-y ngawaliny bibol.|Ngawaliny {{PLURAL:$1|bibol|$1 bibol-ung}} il nidja warrangan, ung $2 bandang.}}",
 	"category-file-count": "{{PLURAL:$2|Nidja warrangan kore ken-y file.|Ngawaliny {{PLURAL:$1|file be|$1 files be}} bura nidja warrangan, winnir barnder-yuck $2.}}",
-	"listingcontinuesabbrev": "koorliny",
 	"noindex-category": "Uart gwabbanijow bibol",
 	"broken-file-category": "Bibol nidja bunga-nginnaga file beda",
 	"about": "Nartj nitja",

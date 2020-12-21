@@ -147,7 +147,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|صفحهٔ|$1 صفحهٔ}} زیر در ردهٔ فعلی قرار دارند.",
 	"category-file-count": "{{PLURAL:$2|This category contains only the following file.|The following {{PLURAL:$1|file is|$1 files are}} in this category, out of $2 total.}}",
 	"category-file-count-limited": "{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.",
-	"listingcontinuesabbrev": "(ادامه)",
 	"index-category": "صفحه‌های نمایه‌شده",
 	"noindex-category": "صفحه‌های نمایه‌نشده",
 	"broken-file-category": "صفحه‌های دارای پیوند خراب به پرونده",

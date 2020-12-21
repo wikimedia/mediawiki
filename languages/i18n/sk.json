@@ -175,7 +175,6 @@
 	"category-article-count-limited": "V tejto kategórii sa {{PLURAL:$1|nachádza jedna stránka|nachádzajú $1 stránky|nachádza $1 stránok}}.",
 	"category-file-count": "{{PLURAL:$2|Táto kategória obsahuje iba nasledovný súbor.|V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}} z $2 celkom.}}",
 	"category-file-count-limited": "V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}}",
-	"listingcontinuesabbrev": "pokrač.",
 	"index-category": "Indexované stránky",
 	"noindex-category": "Neindexované stránky",
 	"broken-file-category": "Stránky s odkazom na neexistujúci súbor",

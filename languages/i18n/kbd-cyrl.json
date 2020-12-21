@@ -116,7 +116,6 @@
 	"category-article-count-limited": "Мы категориэм хэтыр {{PLURAL:$1|напэкӀуэцӀу $1|напэкӀуэцӀхэ $1}}.",
 	"category-file-count": "{{PLURAL:$2|Мы категориэм файлу хэт къуэдер.|{{PLURAL:$1|Файлу гъэлъэгъуар $1|Файлу гъэлъэгъуахэр $1}} категориэм щыщ $2.}}",
 	"category-file-count-limited": "Мы категориэм хэт {{PLURAL:$1|файл|$1 файлхэр}}",
-	"listingcontinuesabbrev": "(кӀэлъыкуэгъуэ)",
 	"index-category": "Индекс зырат напэкӀуэцӀхэр",
 	"noindex-category": "НапэкӀуэцӀ индекс зыхуэмыныкуъэхэр",
 	"broken-file-category": "Файл техьэпӀэхэр здэмылажэ напэкӀуэцӀхэр",

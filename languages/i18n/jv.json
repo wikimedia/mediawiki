@@ -151,7 +151,6 @@
 	"category-article-count-limited": "Kategori iki ngemu {{PLURAL:$1|kaca|$1 kaca}} kang kapacak ing isor iki.",
 	"category-file-count": "{{PLURAL:$2|Kategori iki mung isi berkas iki.|{{PLURAL:$1|Berkas|$1 berkas}} iki ana ing jero kategori iki saka $2 gunggungé.}}",
 	"category-file-count-limited": "Kategori iki duwé {{PLURAL:$1|berkas|$1 berkas}} kang kapacak ing sor iki.",
-	"listingcontinuesabbrev": "samb.",
 	"index-category": "Kaca kaindhèks",
 	"noindex-category": "Kaca ora kaindhèks",
 	"broken-file-category": "Kaca mawa pranala berkas rusak",

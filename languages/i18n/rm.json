@@ -125,7 +125,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|La suandanta pagina è|Las suandantas $1 paginas èn}} actualmain en la categoria.",
 	"category-file-count": "{{PLURAL:$2|Questa categoria cuntegna be la suandanta pagina.|{{PLURAL:$1|La suandanta datoteca è|Las $1 suandantas datotecas èn}} en questa categoria che cuntegna totalmain $2 datotecas.}}",
 	"category-file-count-limited": "{{PLURAL:$1|La suandanta datoteca è|Las suandantas $1 datotecas èn}} actualmain en la categoria.",
-	"listingcontinuesabbrev": "cuntinuaziun",
 	"index-category": "Paginas inditgadas",
 	"noindex-category": "Paginas betg inditgadas",
 	"broken-file-category": "Paginas cun colliaziuns da datoteca che na funcziunan betg",

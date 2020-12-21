@@ -138,7 +138,6 @@
 	"category-article-count-limited": "Kategori boti woluwo {{PLURAL:$1|halaman|$1 halaman}} to delomo kategori",
 	"category-file-count": "{{PLURAL:$2|To kategori boti woluwo berkas {{PLURAL:$1|berkas|$1 berkas}} to delomo kategori, lonto nga'amila $2}}",
 	"category-file-count-limited": "Woluwo {{PLURAL:$1|berkas|S1 berkas}} to delomo kategori.",
-	"listingcontinuesabbrev": "wumb",
 	"index-category": "Halaman to indeks",
 	"noindex-category": "Halaman ja to indeks",
 	"broken-file-category": "Halaman wolo wumbuta berkas ma lorusa",

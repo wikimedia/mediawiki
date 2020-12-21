@@ -135,7 +135,6 @@
 	"category-article-count-limited": "Seon katõgoorian {{PLURAL:$1|om järgmäne lehekülg|ommaq järgmädseq $1 lehekülge}}.",
 	"category-file-count": "{{PLURAL:$2|Seon katõgoorian om õnnõ järgmäne teedüstü.|{{PLURAL:$1|Järgmäne teedüstü om |Järgmädseq $1 teedüstüt ommaq}} seon katõgoorian (kokko $2).}}",
 	"category-file-count-limited": "{{PLURAL:$1|Järgmäne teedüstü om|Järgmädseq $1 teedüstüt}} ommaq seon katõgoorian.",
-	"listingcontinuesabbrev": "lätt edesi",
 	"index-category": "Indeksiga leheq",
 	"noindex-category": "Indeksildä leheq",
 	"broken-file-category": "Katskiidsi pildilinkega leheküleq",
