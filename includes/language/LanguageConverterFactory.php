@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Languages;
 
+use BanConverter;
 use CrhConverter;
 use EnConverter;
 use GanConverter;
@@ -48,6 +49,7 @@ class LanguageConverterFactory {
 	 * @var array
 	 */
 	private $converterClasses = [
+		'ban' => BanConverter::class,
 		'crh' => CrhConverter::class,
 		'gan' => GanConverter::class,
 		'iu' => IuConverter::class,

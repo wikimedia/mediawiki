@@ -281,7 +281,26 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'az' => [ 'az', 'TrivialLanguageConverter', [], [], [], [], [] ],
 			'azb' => [ 'azb', 'TrivialLanguageConverter', [], [], [], [], [] ],
 			'ba' => [ 'ba', 'TrivialLanguageConverter', [], [], [], [], [] ],
-			'ban' => [ 'ban', 'TrivialLanguageConverter', [], [], [], [], [] ],
+
+			# $code, $type, $variants, $variantFallbacks, $variantNames, $flags, $manualLevel
+
+			'ban' => [ 'ban', 'BanConverter',
+				[ 'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku' ],
+				[
+					'ban-bali' => 'ban',
+					'ban-x-dharma' => 'ban',
+					'ban-x-palmleaf' => 'ban',
+					'ban-x-pku' => 'ban',
+				],
+				[], [], [
+					'ban' => 'bidirectional',
+					'ban-bali' => 'bidirectional',
+					'ban-x-dharma' => 'bidirectional',
+					'ban-x-palmleaf' => 'bidirectional',
+					'ban-x-pku' => 'bidirectional',
+				]
+			],
+			'ban-bali' => [ 'ban-bali', 'TrivialLanguageConverter', [], [], [], [], [] ],
 			'bar' => [ 'bar', 'TrivialLanguageConverter', [], [], [], [], [] ],
 			'bat-smg' => [ 'bat-smg', 'TrivialLanguageConverter', [], [], [], [], [] ],
 			'bbc' => [ 'bbc', 'TrivialLanguageConverter', [], [], [], [], [] ],
