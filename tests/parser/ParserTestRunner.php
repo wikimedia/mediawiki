@@ -1391,7 +1391,7 @@ class ParserTestRunner {
 				'width' => 2480,
 				'height' => 3508,
 				'bits' => 0,
-				'media_type' => MEDIATYPE_BITMAP,
+				'media_type' => MEDIATYPE_OFFICE,
 				'mime' => 'image/vnd.djvu',
 				'metadata' => '<?xml version="1.0" ?>
 <!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
@@ -1704,7 +1704,7 @@ class ParserTestRunner {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
 		$parser->firstCallInit(); // make sure hooks are loaded.
-		if ( preg_match( '/^extension:(.*)$/', $name, $matches ) ) {
+		if ( preg_match( '/^[Ee]xtension:(.*)$/', $name, $matches ) ) {
 			$extName = $matches[1];
 			if ( ExtensionRegistry::getInstance()->isLoaded( $extName ) ) {
 				return true;
