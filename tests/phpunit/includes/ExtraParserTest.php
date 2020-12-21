@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -245,29 +246,29 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideParseLinkParameter
 	 */
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
-		$this->setTemporaryHook( 'InterwikiLoadPrefix', function ( $prefix, &$iwData ) {
-			static $testInterwikis = [
-				'local' => [
-					'iw_url' => 'http://doesnt.matter.invalid/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0
-				],
-				'mw' => [
-					'iw_url' => 'https://www.mediawiki.org/wiki/$1',
-					'iw_api' => 'https://www.mediawiki.org/w/api.php',
-					'iw_wikiid' => '',
-					'iw_local' => 0
-				]
-			];
-			if ( array_key_exists( $prefix, $testInterwikis ) ) {
-				$iwData = $testInterwikis[$prefix];
-			}
-
-			// We only want to rely on the above fixtures
-			return false;
-		} );
-
+		static $testInterwikis = [
+			[
+				'iw_prefix' => 'local',
+				'iw_url' => 'http://doesnt.matter.invalid/$1',
+				'iw_api' => '',
+				'iw_wikiid' => '',
+				'iw_local' => 0
+			],
+			[
+				'iw_prefix' => 'mw',
+				'iw_url' => 'https://www.mediawiki.org/wiki/$1',
+				'iw_api' => 'https://www.mediawiki.org/w/api.php',
+				'iw_wikiid' => '',
+				'iw_local' => 0
+			]
+		];
+		$this->setMwGlobals(
+			'wgInterwikiCache',
+			ClassicInterwikiLookup::buildCdbHash( $testInterwikis )
+		);
+		MediaWikiServices::getInstance()->resetServiceForTesting(
+			'InterwikiLookup'
+		);
 		Title::clearCaches();
 		$this->parser->startExternalParse(
 			Title::newFromText( __FUNCTION__ ),

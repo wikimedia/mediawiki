@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
@@ -279,19 +280,16 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCanonical_interwiki() {
 		// fake interwiki map for the 'Interwiki prefix' testcase
-		$this->setTemporaryHook(
-			'InterwikiLoadPrefix',
-			function ( $prefix, &$iwdata ) {
-				if ( $prefix === 'interwiki' ) {
-					$iwdata = [
-						'iw_url' => 'http://example.com/',
-						'iw_local' => 0,
-						'iw_trans' => 0,
-					];
-					return false;
-				}
-			}
-		);
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'interwiki',
+					'iw_url' => 'http://example.com/',
+					'iw_local' => 0,
+					'iw_trans' => 0,
+				],
+			] ),
+		] );
 
 		$utils = $this->getUtils(
 			[],

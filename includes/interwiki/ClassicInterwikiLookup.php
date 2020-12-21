@@ -403,6 +403,42 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	}
 
 	/**
+	 * Given the array returned by getAllPrefixes(), build a PHP hash which
+	 * can be given to \Cdb\Reader\Hash() as $this->cdbData, ie as the
+	 * value of $wgInterwikiCache.  This is used to construct mock
+	 * interwiki lookup services for testing (in particular, parsertests).
+	 * @param array $allPrefixes An array of interwiki information such as
+	 *   would be returned by ::getAllPrefixes()
+	 * @param int $scope The scope at which to insert interwiki prefixes.
+	 *   See the $interwikiScopes parameter to ::__construct().
+	 * @param ?string $thisSite The value of $thisSite, if $scope is 3.
+	 * @return array A PHP associative array suitable to use as
+	 *   $wgInterwikiCache
+	 */
+	public static function buildCdbHash(
+		array $allPrefixes, int $scope = 1, ?string $thisSite = null
+	): array {
+		$result = [];
+		$wikiId = WikiMap::getCurrentWikiId();
+		$keyPrefix = ( $scope >= 2 ) ? '__global' : $wikiId;
+		if ( $scope >= 3 && $thisSite ) {
+			$result[ "__sites:$wikiId" ] = $thisSite;
+			$keyPrefix = "_$thisSite";
+		}
+		$list = [];
+		foreach ( $allPrefixes as $iwInfo ) {
+			$prefix = $iwInfo['iw_prefix'];
+			$result["$keyPrefix:$prefix"] = implode( ' ', [
+				$iwInfo['iw_local'] ?? 0, $iwInfo['iw_url']
+			] );
+			$list[] = $prefix;
+		}
+		$result["__list:$keyPrefix"]  = implode( ' ', $list );
+		$result["__list:__sites"] = $wikiId;
+		return $result;
+	}
+
+	/**
 	 * Fetch all interwiki prefixes from DB
 	 *
 	 * @param string|null $local If not null, limits output to local/non-local interwikis
