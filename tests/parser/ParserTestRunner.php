@@ -504,7 +504,9 @@ class ParserTestRunner {
 	 * @param ScopedCallback|null $nextTeardown A ScopedCallback to consume
 	 * @return ScopedCallback
 	 */
-	protected function createTeardownObject( $teardown, $nextTeardown = null ) {
+	protected function createTeardownObject(
+		array $teardown, ?ScopedCallback $nextTeardown = null
+	) {
 		return new ScopedCallback( function () use ( $teardown, $nextTeardown ) {
 			// Schedule teardown snippets in reverse order
 			$teardown = array_reverse( $teardown );
@@ -800,7 +802,7 @@ class ParserTestRunner {
 		}
 
 		// Add articles
-		$this->addArticles( $testFileInfo['articles'] );
+		$teardown = $this->addArticles( $testFileInfo['articles'] );
 
 		// Run tests
 		foreach ( $testFileInfo['tests'] as $test ) {
@@ -814,7 +816,7 @@ class ParserTestRunner {
 		}
 
 		// Clean up
-		$this->cleanupArticles( $testFileInfo['articles'] );
+		ScopedCallback::consume( $teardown );
 
 		return $ok;
 	}
@@ -1582,9 +1584,18 @@ class ParserTestRunner {
 	/**
 	 * Add articles to the test DB.
 	 *
+	 * @see staticSetup() for more information about setup/teardown
+	 *
 	 * @param array $articles Article info array from TestFileReader
+	 * @param ?ScopedCallback $nextTeardown The next teardown object
+	 * @return ScopedCallback The teardown object
 	 */
-	public function addArticles( $articles ) {
+	public function addArticles(
+		array $articles, ?ScopedCallback $nextTeardown = null
+	): ScopedCallback {
+		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'staticSetup' );
+
 		$setup = [];
 		$teardown = [];
 
@@ -1612,13 +1623,6 @@ class ParserTestRunner {
 			$teardown[] = $reset;
 		}
 
-		// Add special namespaces, in case that hasn't been done by staticSetup() yet
-		$this->appendNamespaceSetup( $setup, $teardown );
-		$this->appendInterwikiSetup( $setup, $teardown );
-
-		// wgCapitalLinks obviously needs initialisation
-		$setup['wgCapitalLinks'] = true;
-
 		$teardown[] = $this->executeSetupSnippets( $setup );
 
 		foreach ( $articles as $info ) {
@@ -1630,6 +1634,10 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 
 		$this->executeSetupSnippets( $teardown );
+
+		return $this->createTeardownObject( [ function () use ( $articles ) {
+			$this->cleanupArticles( $articles );
+		} ], $nextTeardown );
 	}
 
 	/**
@@ -1640,6 +1648,8 @@ class ParserTestRunner {
 	 * @param array $articles Article info array from TestFileReader
 	 */
 	public function cleanupArticles( $articles ) {
+		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'staticSetup' );
 		$user = RequestContext::getMain()->getUser();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info['name'] );

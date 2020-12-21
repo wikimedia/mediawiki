@@ -159,6 +159,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 			MediaWikiIntegrationTestCase::restoreMwServices();
 		} );
 
+		$teardown = $this->ptRunner->staticSetup( $teardown );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
 	}
