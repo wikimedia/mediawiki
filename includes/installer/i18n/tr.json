@@ -152,7 +152,7 @@
 	"config-sqlite-fts3-downgrade": "PHP, FTS3 desteğinden eksik, tabloların sürümü düşürülüyor.",
 	"config-can-upgrade": "Bu veritabanında MediaWiki tabloları var.\nBunları MediaWiki $1 yükseltmek için <strong>Devam et</strong>'e tıklayın.",
 	"config-upgrade-error": "Veritabanınızdaki MediaWiki tablolarını yükseltirken bir hata oluştu.\n\nDaha fazla bilgi için yukarıdaki günlüğe bakın, tekrar denemek için <strong>Devam et</strong>'e tıklayın.",
-	"config-upgrade-done": "Yükseltme tamamlandı.\n\nŞimdi [$1 vikinizi kullanmaya başlayabilirsiniz].\n\n<code>LocalSettings.php</code> dosyanızı yeniden oluşturmak istiyorsanız, aşağıdaki düğmeyi tıklayın.\nViki ile ilgili bir problem yaşamadıkça, bu <strong>önerilmez</strong>.",
+	"config-upgrade-done": "Yükseltme tamamlandı.\n\nŞimdi [$1 vikinizi kullanmaya başlayabilirsiniz].\n\n<code>LocalSettings.php</code> dosyanızı yeniden oluşturmak istiyorsanız, aşağıdaki düğmeyi tıklayın.\nViki ile ilgili bir sorun yaşamadıkça, bu <strong>önerilmez</strong>.",
 	"config-upgrade-done-no-regenerate": "Yükseltme tamamlandı.\n\nVikinizi kullanmaya [$1 başlayabilirsiniz].",
 	"config-regenerate": "LocalSettings.php'yi yeniden oluştur →",
 	"config-show-table-status": "<code>SHOW TABLE STATUS</code> sorgu başarısız!",

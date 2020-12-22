@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
+			"Mguix",
 			"Toniher"
 		]
 	},
@@ -14,7 +15,7 @@
 	"rest-permission-denied-revision": "L'usuari no té accés a revisió sol·licitada ($1).",
 	"rest-pagehistory-param-range-error": "L'ID de la revisió ha de ser més gran que 0",
 	"rest-pagehistory-timestamp-error": "No es pot recuperar la marca horària de la revisió especificada ($1)",
-	"rest-pagehistorycount-type-unrecognized": "El tipus de recompte especificat ($1) no és vàlid",
+	"rest-pagehistorycount-type-unrecognized": "El tipus de recompte ($1) especificat no és vàlid",
 	"rest-search-error": "S'ha produït un error en retornar els resultats de la cerca: $1",
 	"rest-no-revision": "No s'ha pogut recuperar la revisió del títol $1",
 	"rest-html-backend-error": "No es pot recuperar l'HTML de Parsoid.",
