@@ -40,8 +40,6 @@ class SkinTemplate extends Skin {
 	/**
 	 * @var string For QuickTemplate, the name of the subclass which will
 	 *   actually fill the template.
-	 *
-	 * It is automatically filled in if the template option has been set.
 	 */
 	public $template;
 
@@ -52,12 +50,6 @@ class SkinTemplate extends Skin {
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
-
-	public function __construct( $options = null ) {
-		parent::__construct( $options );
-
-		$this->template = $this->template ?? $options['template'] ?? QuickTemplate::class;
-	}
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
@@ -76,7 +68,14 @@ class SkinTemplate extends Skin {
 	 */
 	protected function setupTemplateForOutput() {
 		$this->setupTemplateContext();
-		$tpl = $this->setupTemplate( $this->template );
+		$template = $this->options['template'] ?? $this->template;
+		if ( !$template ) {
+			throw new RuntimeException(
+				'SkinTemplate skins must define a `template` either as a public'
+					. ' property of by passing in a`template` option to the constructor.'
+			);
+		}
+		$tpl = $this->setupTemplate( $template );
 		return $tpl;
 	}
 
