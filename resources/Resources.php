@@ -1513,6 +1513,7 @@ return [
 					'search' => true,
 					'collapsible' => true,
 					'sortable' => true,
+					'sitenoticeAnons' => $config->get( 'DismissableSiteNoticeForAnons' ),
 				];
 
 				Hooks::runner()->onSkinPageReadyConfig( $context, $readyConfig );
@@ -1521,10 +1522,11 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.util',
-			'mediawiki.api'
+			'mediawiki.api',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'messages' => [
+			'sitenotice_id',
 			'logging-out-notify'
 		]
 	],

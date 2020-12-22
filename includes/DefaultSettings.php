@@ -9700,6 +9700,18 @@ $wgRestAllowCrossOriginCookieAuth = false;
 $wgParserCacheUseJson = true;
 
 /**
+ * Whether site notice dimiss button `[dismiss]` should be shown to
+ * anonymous (unregistered) users. If it's false (default), sitenotices
+ * are effectively undissmissable unless one registers.
+ *
+ * The button will be shown to all registered users irrespective of this setting.
+ *
+ * @since 1.36
+ * @var bool
+ */
+$wgDismissableSiteNoticeForAnons = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
