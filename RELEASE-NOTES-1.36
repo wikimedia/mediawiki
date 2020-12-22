@@ -102,6 +102,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated monolog/monolog from 1.25.3 to 2.0.2.
 * Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated psy/psysh from 0.10.4 to 0.10.5.
+* Updated seld/jsonlint from 1.7.1 to 1.8.3.
 * Updated symfony/yaml from ~3.4|~4.3|~5.0.5 to ~3.4|~5.1.
 * Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
 * …
