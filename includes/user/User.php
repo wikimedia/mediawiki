@@ -1228,7 +1228,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// returned here, so just use it if applicable.
 		$session = $this->getRequest()->getSession();
 		$user = $session->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$this->loadFromUserObject( $user );
 
 			// Other code expects these to be set in the session, so set them.
@@ -2961,8 +2961,7 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Alias of isLoggedIn() with a name that describes its actual functionality. UserIdentity has
-	 * only this new name and not the old isLoggedIn() variant.
+	 * Get whether the user is registered.
 	 *
 	 * @return bool True if user is registered on this wiki, i.e., has a user ID. False if user is
 	 *   anonymous or has no local account (which can happen when importing). This is equivalent to
@@ -3527,7 +3526,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * in code along the lines of:
 	 *
 	 *   $user = User::newFromName( $name );
-	 *   if ( !$user->isLoggedIn() ) {
+	 *   if ( !$user->isRegistered() ) {
 	 *       $user->addToDatabase();
 	 *   }
 	 *   // do something with $user...
@@ -3537,7 +3536,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * calling sequence as far as possible.
 	 *
 	 * Note that if the user exists, this function will acquire a write lock,
-	 * so it is still advisable to make the call conditional on isLoggedIn(),
+	 * so it is still advisable to make the call conditional on isRegistered(),
 	 * and to commit the transaction after calling.
 	 *
 	 * @throws MWException
@@ -3628,7 +3627,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
-		if ( $this->isLoggedIn() && $this->getBlock() ) {
+		if ( $this->isRegistered() && $this->getBlock() ) {
 			return $this->spreadBlock();
 		}
 

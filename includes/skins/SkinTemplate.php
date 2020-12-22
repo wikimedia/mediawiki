@@ -49,6 +49,7 @@ class SkinTemplate extends Skin {
 	public $titletxt;
 	public $userpage;
 	public $thisquery;
+	// TODO: Rename this to $isRegistered (but that's a breaking change)
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
@@ -105,7 +106,7 @@ class SkinTemplate extends Skin {
 			unset( $query['returntoquery'] );
 		}
 		$this->thisquery = wfArrayToCgi( $query );
-		$this->loggedin = $user->isLoggedIn();
+		$this->loggedin = $user->isRegistered();
 		$this->username = $user->getName();
 
 		if ( $this->loggedin ) {

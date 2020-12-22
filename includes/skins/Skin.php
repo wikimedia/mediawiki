@@ -284,7 +284,7 @@ abstract class Skin extends ContextSource {
 
 		$services = MediaWikiServices::getInstance();
 		$permManager = $services->getPermissionManager();
-		if ( $user->isLoggedIn()
+		if ( $user->isRegistered()
 			&& $permManager->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {
@@ -313,7 +313,7 @@ abstract class Skin extends ContextSource {
 
 		// User/talk link
 		$user = $this->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$titles[] = $user->getUserPage();
 			$titles[] = $user->getTalkPage();
 		}
@@ -428,7 +428,7 @@ abstract class Skin extends ContextSource {
 				if ( $user ) {
 					$user->load( User::READ_NORMAL );
 
-					if ( $user->isLoggedIn() ) {
+					if ( $user->isRegistered() ) {
 						$this->mRelevantUser = $user;
 					}
 				}
@@ -2036,7 +2036,7 @@ abstract class Skin extends ContextSource {
 		$siteNotice = '';
 
 		if ( $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this ) ) {
-			if ( $this->getUser()->isLoggedIn() ) {
+			if ( $this->getUser()->isRegistered() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );

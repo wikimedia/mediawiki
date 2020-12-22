@@ -44,7 +44,7 @@ class TestUser {
 		// But for now, we just need to create or update the user with the desired properties.
 		// we particularly need the new password, since we just generated it randomly.
 		// In core MediaWiki, there is no functionality to delete users, so this is the best we can do.
-		if ( !$this->user->isLoggedIn() ) {
+		if ( !$this->user->isRegistered() ) {
 			// create the user
 			$this->user = User::createNew(
 				$this->username, [

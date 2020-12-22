@@ -73,7 +73,7 @@ class UploadStash {
 	protected $fileProps = [];
 
 	// current user
-	protected $user, $userId, $isLoggedIn;
+	protected $user, $userId, $isRegistered;
 
 	/**
 	 * Represents a temporary filestore, with metadata in the database.
@@ -96,7 +96,7 @@ class UploadStash {
 
 		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();
-			$this->isLoggedIn = $this->user->isLoggedIn();
+			$this->isRegistered = $this->user->isRegistered();
 		}
 	}
 
@@ -120,7 +120,7 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth && !$this->isLoggedIn ) {
+		if ( !$noAuth && !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -277,7 +277,7 @@ class UploadStash {
 		$stashPath = $storeStatus->value;
 
 		// fetch the current user ID
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -338,7 +338,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function clear() {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -368,7 +368,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function removeFile( $key ) {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -438,7 +438,7 @@ class UploadStash {
 	 * @return array|false
 	 */
 	public function listFiles() {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);

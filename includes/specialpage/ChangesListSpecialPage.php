@@ -191,7 +191,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'user-newcomer',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
 							$performer = $rc->getPerformer();
-							return $performer && $performer->isLoggedIn() &&
+							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'newcomer';
 						}
 					],
@@ -202,7 +202,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'user-learner',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
 							$performer = $rc->getPerformer();
-							return $performer && $performer->isLoggedIn() &&
+							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'learner';
 						},
 					],
@@ -213,7 +213,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'user-experienced',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
 							$performer = $rc->getPerformer();
-							return $performer && $performer->isLoggedIn() &&
+							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'experienced';
 						},
 					]

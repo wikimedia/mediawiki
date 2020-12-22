@@ -914,7 +914,7 @@ hello
 		$this->setMwGlobals( 'wgWatchlistExpiry', true );
 		MWTimestamp::setFakeTime( '20200505120000' );
 		$user = $this->getTestUser()->getUser();
-		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isRegistered() );
 
 		// Create the EditPage.
 		$title = Title::newFromText( __METHOD__ );

@@ -229,7 +229,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	private function needsWatchlistFeatures(): bool {
 		return !$this->including()
-			&& $this->getUser()->isLoggedIn()
+			&& $this->getUser()->isRegistered()
 			&& $this->permissionManager->userHasRight( $this->getUser(), 'viewmywatchlist' );
 	}
 

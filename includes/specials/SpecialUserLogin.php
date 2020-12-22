@@ -68,7 +68,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	public function setHeaders() {
 		// override the page title if we are doing a forced reauthentication
 		parent::setHeaders();
-		if ( $this->securityLevel && $this->getUser()->isLoggedIn() ) {
+		if ( $this->securityLevel && $this->getUser()->isRegistered() ) {
 			$this->getOutput()->setPageTitle( $this->msg( 'login-security' ) );
 		}
 	}

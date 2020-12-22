@@ -752,7 +752,7 @@ class SpecialSearch extends SpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( $user->isLoggedIn() &&
+		if ( $user->isRegistered() &&
 			$user->matchEditToken(
 				$request->getVal( 'nsRemember' ),
 				'searchnamespace',

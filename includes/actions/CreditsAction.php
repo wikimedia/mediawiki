@@ -135,7 +135,7 @@ class CreditsAction extends FormlessAction {
 		/** @var User $user */
 		foreach ( $contributors as $user ) {
 			$cnt--;
-			if ( $user->isLoggedIn() ) {
+			if ( $user->isRegistered() ) {
 				$link = $this->link( $user );
 				if ( $this->canShowRealUserName() && $user->getRealName() ) {
 					$real_names[] = $link;

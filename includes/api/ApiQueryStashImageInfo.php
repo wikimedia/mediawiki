@@ -34,7 +34,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function execute() {
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			$this->dieWithError( 'apierror-mustbeloggedin-uploadstash', 'notloggedin' );
 		}
 

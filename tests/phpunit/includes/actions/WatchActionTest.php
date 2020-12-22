@@ -97,7 +97,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
 			->getMock();
 
-		// Change the context to have a logged in user with correct permission.
+		// Change the context to have a registered user with correct permission.
 		$testContext->setUser( $this->getUser( true, true, [ 'editmywatchlist' ] ) );
 
 		/** @var MockObject|WebRequest $testRequest */
@@ -143,10 +143,10 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::checkCanExecute()
 	 */
 	public function testShowUserLoggedInNoException() {
-		$loggedInUser = $this->createMock( User::class );
-		$loggedInUser->method( 'isLoggedIn' )->willReturn( true );
+		$registeredUser = $this->createMock( User::class );
+		$registeredUser->method( 'isRegistered' )->willReturn( true );
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
-		$testContext->setUser( $loggedInUser );
+		$testContext->setUser( $registeredUser );
 		$watchAction = new WatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
@@ -159,7 +159,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$exception = $e;
 		}
 		$this->assertNull( $exception,
-			'UserNotLoggedIn exception should not be thrown if user is logged in.' );
+			'UserNotLoggedIn exception should not be thrown if user is a registered one.' );
 	}
 
 	/**
@@ -653,7 +653,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param bool $isLoggedIn Whether the user should be "marked" as logged in
+	 * @param bool $isRegistered Whether the user should be "marked" as registered
 	 * @param bool|string $isWatched The value any call to isWatched should return.
 	 *   A string value is the expiry that should be used.
 	 * @param array $permissions The permissions of the user
@@ -661,13 +661,13 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	private function getUser(
-		$isLoggedIn = true,
+		$isRegistered = true,
 		$isWatched = true,
 		$permissions = []
 	) {
 		$user = $this->createMock( User::class );
 		$user->method( 'getId' )->willReturn( 42 );
-		$user->method( 'isLoggedIn' )->willReturn( $isLoggedIn );
+		$user->method( 'isRegistered' )->willReturn( $isRegistered );
 		$user->method( 'isWatched' )->willReturn( $isWatched );
 
 		// Override WatchedItemStore to think the page is watched, if applicable.

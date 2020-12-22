@@ -217,31 +217,31 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 	public static function provideGetAuthenticationRequests() {
 		$anon = [ 'username' => null ];
-		$loggedIn = [ 'username' => 'UTSysop' ];
+		$registered = [ 'username' => 'UTSysop' ];
 
 		return [
 			[ AuthManager::ACTION_LOGIN, $anon, [
 				new PasswordAuthenticationRequest
 			] ],
-			[ AuthManager::ACTION_LOGIN, $loggedIn, [
+			[ AuthManager::ACTION_LOGIN, $registered, [
 				new PasswordAuthenticationRequest
 			] ],
 			[ AuthManager::ACTION_CREATE, $anon, [] ],
-			[ AuthManager::ACTION_CREATE, $loggedIn, [
+			[ AuthManager::ACTION_CREATE, $registered, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
 			[ AuthManager::ACTION_LINK, $anon, [] ],
-			[ AuthManager::ACTION_LINK, $loggedIn, [] ],
+			[ AuthManager::ACTION_LINK, $registered, [] ],
 			[ AuthManager::ACTION_CHANGE, $anon, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
-			[ AuthManager::ACTION_CHANGE, $loggedIn, [
+			[ AuthManager::ACTION_CHANGE, $registered, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
 			[ AuthManager::ACTION_REMOVE, $anon, [
 				new TemporaryPasswordAuthenticationRequest
 			] ],
-			[ AuthManager::ACTION_REMOVE, $loggedIn, [
+			[ AuthManager::ACTION_REMOVE, $registered, [
 				new TemporaryPasswordAuthenticationRequest
 			] ],
 		];

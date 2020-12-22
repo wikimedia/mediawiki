@@ -139,7 +139,7 @@ class SpecialUpload extends SpecialPage {
 		$this->mDestWarningAck = $request->getText( 'wpDestFileWarningAck' );
 		$this->mIgnoreWarning = $request->getCheck( 'wpIgnoreWarning' )
 			|| $request->getCheck( 'wpUploadIgnoreWarning' );
-		$this->mWatchthis = $request->getBool( 'wpWatchthis' ) && $this->getUser()->isLoggedIn();
+		$this->mWatchthis = $request->getBool( 'wpWatchthis' ) && $this->getUser()->isRegistered();
 		$this->mCopyrightStatus = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource = $request->getText( 'wpUploadSource' );
 

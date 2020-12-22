@@ -196,7 +196,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveSubpages = $request->getBool( 'wpMovesubpages' );
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
-		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
+		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
 
 		if ( $request->getVal( 'action' ) == 'submit' && $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
@@ -521,7 +521,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		# Don't allow watching if user is not logged in
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$watchChecked = ( $this->watch || $this->userOptionsLookup->getBoolOption( $user, 'watchmoves' )
 				|| $user->isWatched( $this->oldTitle ) );
 			$fields[] = new OOUI\FieldLayout(

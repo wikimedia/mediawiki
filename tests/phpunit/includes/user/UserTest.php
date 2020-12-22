@@ -728,31 +728,31 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isAnon
 	 * @covers User::logOut
 	 */
-	public function testLoggedIn() {
+	public function testIsRegistered() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
-		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertFalse( $user->isAnon() );
 
 		$this->setTemporaryHook( 'UserLogout', function ( &$user ) {
 			return false;
 		} );
 		$user->logout();
-		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isRegistered() );
 
 		$this->removeTemporaryHook( 'UserLogout' );
 		$user->logout();
-		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertFalse( $user->isRegistered() );
 
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
 		$this->assertFalse( $user->isRegistered() );
-		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 
 		$user = new User;
 		$this->assertFalse( $user->isRegistered() );
-		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 	}
 
@@ -789,7 +789,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testCheckAndSetTouched() {
 		$user = $this->getMutableTestUser()->getUser();
 		$user = TestingAccessWrapper::newFromObject( $user );
-		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isRegistered() );
 
 		$touched = $user->getDBTouched();
 		$this->assertTrue(

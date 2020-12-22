@@ -116,7 +116,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$this->user = User::newSystemUser( $username, [ 'steal' => $steal ] );
 			if ( !$this->user ) {
 				$user = User::newFromName( $username );
-				if ( !$steal && $user && $user->isLoggedIn() ) {
+				if ( !$steal && $user && $user->isRegistered() ) {
 					$this->fatalError( "User $username already exists.\n"
 						. "Use --steal if you really want to steal it from the human who currently owns it."
 					);

@@ -292,7 +292,7 @@ class Article implements Page {
 
 			$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		} else {
-			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+			$message = $this->getContext()->getUser()->isRegistered() ? 'noarticletext' : 'noarticletextanon';
 			$content = new MessageContent( $message, null );
 		}
 
@@ -1374,7 +1374,7 @@ class Article implements Page {
 			$ip = User::isIP( $rootPart );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
-			if ( $user && $user->isLoggedIn() && $user->isHidden() &&
+			if ( $user && $user->isRegistered() && $user->isHidden() &&
 				!$services->getPermissionManager()
 					->userHasRight( $contextUser, 'hideuser' )
 			) {
@@ -1382,7 +1382,7 @@ class Article implements Page {
 				// users, pretend like it does not exist at all.
 				$user = false;
 			}
-			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
+			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
 			} elseif (
@@ -1420,10 +1420,10 @@ class Article implements Page {
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
 		$dbCache = ObjectCache::getInstance( 'db-replicated' );
 		$key = $dbCache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
-		$loggedIn = $contextUser->isLoggedIn();
+		$isRegistered = $contextUser->isRegistered();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
 
-		if ( $loggedIn || $dbCache->get( $key ) || $sessionExists ) {
+		if ( $isRegistered || $dbCache->get( $key ) || $sessionExists ) {
 			$logTypes = [ 'delete', 'move', 'protect' ];
 
 			$dbr = wfGetDB( DB_REPLICA );
@@ -1440,7 +1440,7 @@ class Article implements Page {
 					'lim' => 10,
 					'conds' => $conds,
 					'showIfEmpty' => false,
-					'msgKey' => [ $loggedIn || $sessionExists
+					'msgKey' => [ $isRegistered || $sessionExists
 						? 'moveddeleted-notice'
 						: 'moveddeleted-notice-recent'
 					]
@@ -1494,7 +1494,7 @@ class Article implements Page {
 			} elseif ( $pm->quickUserCan( 'create', $contextUser, $title ) &&
 				$pm->quickUserCan( 'edit', $contextUser, $title )
 			) {
-				$message = $loggedIn ? 'noarticletext' : 'noarticletextanon';
+				$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
 			} else {
 				$text = wfMessage( 'noarticletext-nopermission' )->plain();
@@ -2077,7 +2077,7 @@ class Article implements Page {
 			]
 		);
 
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpWatch',

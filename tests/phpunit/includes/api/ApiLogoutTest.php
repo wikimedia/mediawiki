@@ -27,30 +27,30 @@ class ApiLogoutTest extends ApiTestCase {
 			$token = 'invalid token';
 			$this->doUserLogout( $token, $user );
 		} finally {
-			$this->assertTrue( $user->isLoggedIn(), 'not logged out' );
+			$this->assertTrue( $user->isRegistered(), 'not logged out' );
 		}
 	}
 
 	public function testUserLogout() {
 		$user = $this->getTestSysop()->getUser();
 
-		$this->assertTrue( $user->isLoggedIn(), 'sanity check' );
+		$this->assertTrue( $user->isRegistered(), 'sanity check' );
 		$token = $this->getUserCsrfTokenFromApi( $user );
 		$this->doUserLogout( $token, $user );
-		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertFalse( $user->isRegistered() );
 	}
 
 	public function testUserLogoutWithWebToken() {
 		global $wgRequest;
 
 		$user = $this->getTestSysop()->getUser();
-		$this->assertTrue( $user->isLoggedIn(), 'sanity check' );
+		$this->assertTrue( $user->isRegistered(), 'sanity check' );
 
 		// Logic copied from SkinTemplate.
 		$token = $user->getEditToken( 'logoutToken', $wgRequest );
 
 		$this->doUserLogout( $token, $user );
-		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertFalse( $user->isRegistered() );
 	}
 
 	private function getUserCsrfTokenFromApi( User $user ) {
