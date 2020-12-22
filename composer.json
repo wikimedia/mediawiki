@@ -83,7 +83,7 @@
 		"phpunit/phpunit": "^8.5",
 		"pimple/pimple": "3.3.1",
 		"psy/psysh": "0.10.4",
-		"seld/jsonlint": "1.7.1",
+		"seld/jsonlint": "1.8.3",
 		"symfony/yaml": "~3.4|~4.3|~5.0.5",
 		"wikimedia/avro": "1.9.0",
 		"wikimedia/testing-access-wrapper": "~2.0",
