@@ -2,103 +2,66 @@
 
 /**
  * @covers Sanitizer::validateEmail
- * @todo all test methods in this class should be refactored and...
- *    use a single test method and a single data provider...
- *    Also, it should be made a pure unit test once ::validateEmail is migrated to proper DI
+ * @todo should be made a pure unit test once ::validateEmail is migrated to proper DI
  */
 class SanitizerValidateEmailTest extends MediaWikiIntegrationTestCase {
 
-	private function checkEmail( $addr, $expected = true, $msg = '' ) {
-		if ( $msg == '' ) {
-			$msg = "Testing $addr";
-		}
+	public function provideValidEmails() {
+		yield 'normal #1' => [ 'user@example.com' ];
+		yield 'normal #2' => [ 'user@example.museum' ];
+		yield 'with uppercase #1' => [ 'USER@example.com' ];
+		yield 'with uppercase #2' => [ 'user@EXAMPLE.COM' ];
+		yield 'with uppercase #3' => [ 'user@Example.com' ];
+		yield 'with uppercase #4' => [ 'USER@eXAMPLE.com' ];
+		yield 'with plus #1' => [ 'user+sub@example.com' ];
+		yield 'with plus #2' => [ 'user+@example.com' ];
+		yield 'TLD not neeeded #1' => [ "user@localhost" ];
+		yield 'TLD not neeeded #2' => [ "FooBar@localdomain" ];
+		yield 'TLD not neeeded #3' => [ "nobody@mycompany" ];
 
-		$this->assertEquals(
-			$expected,
-			Sanitizer::validateEmail( $addr ),
-			$msg
-		);
-	}
+		yield 'with hythen #1' => [ "user-foo@example.org" ];
+		yield 'with hythen #2' => [ "userfoo@ex-ample.org" ];
 
-	private function valid( $addr, $msg = '' ) {
-		$this->checkEmail( $addr, true, $msg );
-	}
+		yield 'email with dot #1' => [ "user.@localdomain" ];
+		yield 'email with dot #2' => [ ".@localdomain" ];
 
-	private function invalid( $addr, $msg = '' ) {
-		$this->checkEmail( $addr, false, $msg );
-	}
-
-	public function testEmailWellKnownUserAtHostDotTldAreValid() {
-		$this->valid( 'user@example.com' );
-		$this->valid( 'user@example.museum' );
-	}
-
-	public function testEmailWithUpperCaseCharactersAreValid() {
-		$this->valid( 'USER@example.com' );
-		$this->valid( 'user@EXAMPLE.COM' );
-		$this->valid( 'user@Example.com' );
-		$this->valid( 'USER@eXAMPLE.com' );
-	}
-
-	public function testEmailWithAPlusInUserName() {
-		$this->valid( 'user+sub@example.com' );
-		$this->valid( 'user+@example.com' );
-	}
-
-	public function testEmailDoesNotNeedATopLevelDomain() {
-		$this->valid( "user@localhost" );
-		$this->valid( "FooBar@localdomain" );
-		$this->valid( "nobody@mycompany" );
-	}
-
-	public function testEmailWithWhiteSpacesBeforeOrAfterAreInvalids() {
-		$this->invalid( " user@host.com" );
-		$this->invalid( "user@host.com " );
-		$this->invalid( "\tuser@host.com" );
-		$this->invalid( "user@host.com\t" );
-	}
-
-	public function testEmailWithWhiteSpacesAreInvalids() {
-		$this->invalid( "User user@host" );
-		$this->invalid( "first last@mycompany" );
-		$this->invalid( "firstlast@my company" );
+		yield 'funny characters' => [ "\$user!ex{this}@123.com" ];
+		yield 'numerical TLD' => [ "user@example.1234" ];
+		yield 'only one character needed' => [ 'user@a' ];
 	}
 
 	/**
-	 * T28948 : comma were matched by an incorrect regexp range
+	 * @dataProvider provideValidEmails
 	 */
-	public function testEmailWithCommasAreInvalids() {
-		$this->invalid( "user,foo@example.org" );
-		$this->invalid( "userfoo@ex,ample.org" );
+	public function testValidateEmail_valid( string $addr ) {
+		$this->assertTrue( Sanitizer::validateEmail( $addr ) );
 	}
 
-	public function testEmailWithHyphens() {
-		$this->valid( "user-foo@example.org" );
-		$this->valid( "userfoo@ex-ample.org" );
+	public function provideInvalidEmails() {
+		yield 'whitespace before #1' => [ " user@host.com" ];
+		yield 'whitespace before #2' => [ "\tuser@host.com" ];
+		yield 'whitespace after #1' => [ "user@host.com " ];
+		yield 'whitespace after #2' => [ "user@host.com\t" ];
+		yield 'with whitespace #1' => [ "User user@host" ];
+		yield 'with whitespace #2' => [ "first last@mycompany" ];
+		yield 'with whitespace #3' => [ "firstlast@my company" ];
+
+		// T28948 : comma were matched by an incorrect regexp range
+		yield 'invalid comma #1' => [ "user,foo@example.org" ];
+		yield 'invalid comma #2' => [ "userfoo@ex,ample.org" ];
+
+		yield 'domain beginning with dot #1' => [ "user@." ];
+		yield 'domain beginning with dot #2' => [ "user@.localdomain" ];
+		yield 'domain beginning with dot #3' => [ "user@localdomain." ];
+		yield 'domain beginning with dot #4' => [ ".@a............" ];
+
+		yield 'missing @' => [ 'useràexample.com' ];
 	}
 
-	public function testEmailDomainCanNotBeginWithDot() {
-		$this->invalid( "user@." );
-		$this->invalid( "user@.localdomain" );
-		$this->invalid( "user@localdomain." );
-		$this->valid( "user.@localdomain" );
-		$this->valid( ".@localdomain" );
-		$this->invalid( ".@a............" );
-	}
-
-	public function testEmailWithFunnyCharacters() {
-		$this->valid( "\$user!ex{this}@123.com" );
-	}
-
-	public function testEmailTopLevelDomainCanBeNumerical() {
-		$this->valid( "user@example.1234" );
-	}
-
-	public function testEmailWithoutAtSignIsInvalid() {
-		$this->invalid( 'useràexample.com' );
-	}
-
-	public function testEmailWithOneCharacterDomainIsValid() {
-		$this->valid( 'user@a' );
+	/**
+	 * @dataProvider provideInvalidEmails
+	 */
+	public function testValidateEmail_invalid( string $addr ) {
+		$this->assertFalse( Sanitizer::validateEmail( $addr ) );
 	}
 }

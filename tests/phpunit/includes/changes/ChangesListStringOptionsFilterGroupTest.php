@@ -19,10 +19,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 			] )
 		);
 
-		$this->assertSame(
-			false,
-			$falseGroup->isFullCoverage
-		);
+		$this->assertFalse( $falseGroup->isFullCoverage );
 
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'You must specify isFullCoverage' );
