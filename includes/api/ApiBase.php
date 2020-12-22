@@ -60,11 +60,10 @@ abstract class ApiBase extends ContextSource {
 	private $hookRunner;
 
 	/**
-	 * @name Old constants for ::getAllowedParams() arrays
+	 * @name   Old constants for ::getAllowedParams() arrays
 	 * @deprecated since 1.35, use the equivalent ParamValidator or TypeDef constants instead.
 	 * @{
 	 */
-
 	public const PARAM_DFLT = ParamValidator::PARAM_DEFAULT;
 	public const PARAM_ISMULTI = ParamValidator::PARAM_ISMULTI;
 	public const PARAM_TYPE = ParamValidator::PARAM_TYPE;
@@ -84,6 +83,7 @@ abstract class ApiBase extends ContextSource {
 	public const PARAM_ISMULTI_LIMIT2 = ParamValidator::PARAM_ISMULTI_LIMIT2;
 	public const PARAM_MAX_BYTES = StringDef::PARAM_MAX_BYTES;
 	public const PARAM_MAX_CHARS = StringDef::PARAM_MAX_CHARS;
+	/** @} */
 
 	/**
 	 * (boolean) Inverse of IntegerDef::PARAM_IGNORE_RANGE
@@ -91,12 +91,8 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public const PARAM_RANGE_ENFORCE = 'api-param-range-enforce';
 
-	/** @} */
-
-	/**
-	 * @name API-specific constants for ::getAllowedParams() arrays
-	 * @{
-	 */
+	// region   API-specific constants for ::getAllowedParams() arrays
+	/** @name   API-specific constants for ::getAllowedParams() arrays */
 
 	/**
 	 * (string|array|Message) Specify an alternative i18n documentation message
@@ -156,7 +152,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public const PARAM_TEMPLATE_VARS = 'param-template-vars';
 
-	/** @} */
+	// endregion -- end of API-specific constants for ::getAllowedParams() arrays
 
 	public const ALL_DEFAULT_STRING = '*';
 
@@ -219,10 +215,9 @@ abstract class ApiBase extends ContextSource {
 		}
 	}
 
-	/************************************************************************//**
-	 * @name   Methods to implement
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Methods to implement
+	/** @name   Methods to implement */
 
 	/**
 	 * Evaluates the parameters, performs the requested query, and sets up
@@ -429,12 +424,11 @@ abstract class ApiBase extends ContextSource {
 		return null;
 	}
 
-	/** @} */
+	// endregion -- end of methods to implement
 
-	/************************************************************************//**
-	 * @name   Data access methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Data access methods
+	/** @name   Data access methods */
 
 	/**
 	 * Get the name of the module being executed by this instance
@@ -662,12 +656,11 @@ abstract class ApiBase extends ContextSource {
 		return $this->hookRunner;
 	}
 
-	/** @} */
+	// endregion -- end of data access methods
 
-	/************************************************************************//**
-	 * @name   Parameter handling
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Parameter handling
+	/** @name   Parameter handling */
 
 	/**
 	 * Indicate if the module supports dynamically-determined parameters that
@@ -1113,12 +1106,11 @@ abstract class ApiBase extends ContextSource {
 		return false;
 	}
 
-	/** @} */
+	// endregion -- end of parameter handling
 
-	/************************************************************************//**
-	 * @name   Utility methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Utility methods
+	/** @name   Utility methods */
 
 	/**
 	 * Gets the user for whom to get the watchlist
@@ -1273,12 +1265,11 @@ abstract class ApiBase extends ContextSource {
 		} );
 	}
 
-	/** @} */
+	// endregion -- end of utility methods
 
-	/************************************************************************//**
-	 * @name   Warning and error reporting
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Warning and error reporting
+	/** @name   Warning and error reporting */
 
 	/**
 	 * Add a warning for this module.
@@ -1607,12 +1598,11 @@ abstract class ApiBase extends ContextSource {
 		wfDebugLog( 'api-feature-usage', $s, 'private', $ctx );
 	}
 
-	/** @} */
+	// endregion -- end of warning and error reporting
 
-	/************************************************************************//**
-	 * @name   Help message generation
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Help message generation
+	/** @name   Help message generation */
 
 	/**
 	 * Return the summary message.
@@ -1993,12 +1983,11 @@ abstract class ApiBase extends ContextSource {
 	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 	}
 
-	/** @} */
+	// endregion -- end of help message generation
 
-	/************************************************************************//**
-	 * @name   Deprecated methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Deprecated methods
+	/** @name   Deprecated methods */
 
 	/**
 	 * Split a multi-valued parameter string, like explode()
@@ -2155,11 +2144,15 @@ abstract class ApiBase extends ContextSource {
 		);
 	}
 
-	/** @} */
+	// endregion -- end of deprecated methods
 
 }
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */

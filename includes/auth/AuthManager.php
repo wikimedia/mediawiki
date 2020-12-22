@@ -287,10 +287,9 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/**
-	 * @name Authentication
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Authentication
+	/** @name   Authentication */
 
 	/**
 	 * Indicate whether user authentication is possible
@@ -871,12 +870,11 @@ class AuthManager implements LoggerAwareInterface {
 		return array_keys( $ret );
 	}
 
-	/** @} */
+	// endregion -- end of Authentication
 
-	/**
-	 * @name Authentication data changing
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Authentication data changing
+	/** @name   Authentication data changing */
 
 	/**
 	 * Revoke any authentication credentials for a user
@@ -958,12 +956,11 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Authentication data changing
 
-	/**
-	 * @name Account creation
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Account creation
+	/** @name   Account creation */
 
 	/**
 	 * Determine whether accounts can be created
@@ -1818,12 +1815,11 @@ class AuthManager implements LoggerAwareInterface {
 		return Status::newGood();
 	}
 
-	/** @} */
+	// endregion -- end of Account creation
 
-	/**
-	 * @name Account linking
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Account linking
+	/** @name   Account linking */
 
 	/**
 	 * Determine whether accounts can be linked
@@ -2043,12 +2039,11 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Account linking
 
-	/**
-	 * @name Information methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Information methods
+	/** @name   Information methods */
 
 	/**
 	 * Return the applicable list of AuthenticationRequests
@@ -2282,12 +2277,11 @@ class AuthManager implements LoggerAwareInterface {
 		return null;
 	}
 
-	/** @} */
+	// endregion -- end of Information methods
 
-	/**
-	 * @name Internal methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Internal methods
+	/** @name   Internal methods */
 
 	/**
 	 * Store authentication in the current session
@@ -2523,11 +2517,15 @@ class AuthManager implements LoggerAwareInterface {
 		return $this->hookRunner;
 	}
 
-	/** @} */
+	// endregion -- end of Internal methods
 
 }
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */

@@ -35,8 +35,8 @@
 class FormOptions implements ArrayAccess {
 	/** @name Type constants
 	 * Used internally to map an option value to a WebRequest accessor
+	 * @{
 	 */
-	/* @{ */
 	/** Mark value for automatic detection (for simple data types only) */
 	public const AUTO = -1;
 	/** String type, maps guessType() to WebRequest::getText() */
@@ -57,7 +57,7 @@ class FormOptions implements ArrayAccess {
 	 * @since 1.29
 	 */
 	public const ARR = 5;
-	/* @} */
+	/** @} */
 
 	/**
 	 * Map of known option names to information about them.
@@ -381,11 +381,12 @@ class FormOptions implements ArrayAccess {
 		}
 	}
 
-	/** @name ArrayAccess functions
+	/***************************************************************************/
+	// region   ArrayAccess functions
+	/** @name   ArrayAccess functions
 	 * These functions implement the ArrayAccess PHP interface.
 	 * @see https://www.php.net/manual/en/class.arrayaccess.php
 	 */
-	/* @{ */
 
 	/**
 	 * Whether the option exists.
@@ -422,5 +423,5 @@ class FormOptions implements ArrayAccess {
 		$this->delete( $name );
 	}
 
-	/* @} */
+	// endregion -- end of ArrayAccess functions
 }

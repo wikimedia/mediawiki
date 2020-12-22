@@ -38,17 +38,15 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
-	/**
-	 * @name Constants for internal use. Don't use externally.
-	 * @{
-	 */
+	// region Constants for internal use. Don't use externally.
+	/** @name Constants for internal use. Don't use externally. */
 
 	// Bits to indicate the results of the revdel permission check on a revision,
 	// see self::checkRevDel()
 	private const IS_DELETED = 1; // Whether the field is revision-deleted
 	private const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
 
-	/** @} */
+	// endregion
 
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
 		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,

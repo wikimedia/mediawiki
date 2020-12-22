@@ -523,8 +523,11 @@ class User implements IDBAccessObject, UserIdentity {
 		return true;
 	}
 
-	/** @name newFrom*() static factory methods */
-	// @{
+	/***************************************************************************/
+	// region   newFrom*() static factory methods
+	/** @name   newFrom*() static factory methods
+	 * @{
+	 */
 
 	/**
 	 * @see UserFactory::newFromName
@@ -862,7 +865,8 @@ class User implements IDBAccessObject, UserIdentity {
 		return $user;
 	}
 
-	// @}
+	/** @} */
+	// endregion -- end of newFrom*() static factory methods
 
 	/**
 	 * Get the username corresponding to a given user ID

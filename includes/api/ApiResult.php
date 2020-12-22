@@ -170,10 +170,9 @@ class ApiResult implements ApiSerializable {
 		return $this->data;
 	}
 
-	/************************************************************************//**
-	 * @name   Content
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Content
+	/** @name   Content */
 
 	/**
 	 * Clear the current result data.
@@ -501,12 +500,11 @@ class ApiResult implements ApiSerializable {
 			self::OVERRIDE | self::NO_SIZE_CHECK );
 	}
 
-	/** @} */
+	// endregion -- end of Content
 
-	/************************************************************************//**
-	 * @name   Metadata
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Metadata
+	/** @name   Metadata */
 
 	/**
 	 * Set the name of the content field name (META_CONTENT)
@@ -764,12 +762,11 @@ class ApiResult implements ApiSerializable {
 		self::setArrayTypeRecursive( $arr, $tag, $kvpKeyName );
 	}
 
-	/** @} */
+	// endregion -- end of Metadata
 
-	/************************************************************************//**
-	 * @name   Utility
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Utility
+	/** @name   Utility */
 
 	/**
 	 * Test whether a key should be considered metadata
@@ -1204,11 +1201,15 @@ class ApiResult implements ApiSerializable {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Utility
 
 }
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */
