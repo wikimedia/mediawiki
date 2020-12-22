@@ -18,6 +18,7 @@ THIS IS NOT A RELEASE YET
   in favour of the method it wraps, User->isRegistered().
 * Upgrade pimple/pimple from 3.3.0 to 3.3.1 for PHP 8.0 support.
 * Upgrade seld/jsonlint from 1.7.1 to 1.8.3 for PHP 8.0 support.
+* Upgrade doctrine/dbal from 2.10.4 to 3.0.0 for PHP 8.0 support.
 
 == MediaWiki 1.35.1 ==
 
@@ -504,7 +505,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added vuex v3.1.3.
 
 ===== New development-only external libraries =====
-* Added doctrine/dbal 2.10.2.
+* Added doctrine/dbal 3.0.0.
 * Added doctrine/sql-formatter 1.1.0.
 * Added pimple/pimple 3.3.1.
 
