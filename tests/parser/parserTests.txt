@@ -26598,7 +26598,7 @@ Special:Foobar
 Langconvert tag: crh-latn to crh-cyrl
 !! wikitext
 <langconvert from="crh-latn" to="crh-cyrl">test</langconvert>
-!! html
+!! html/php
 <p>тест
 </p>
 !! end
@@ -26609,7 +26609,7 @@ Langconvert tag: en to en-x-piglatin
 wgUsePigLatinVariant=true
 !! wikitext
 <langconvert from="en" to="en-x-piglatin">test</langconvert>
-!! html
+!! html/php
 <p>esttay
 </p>
 !! end
@@ -26618,7 +26618,7 @@ wgUsePigLatinVariant=true
 Langconvert tag: gan-hans to gan-hant
 !! wikitext
 <langconvert from="gan-hans" to="gan-hant">爱</langconvert>
-!! html
+!! html/php
 <p>愛
 </p>
 !! end
@@ -26627,7 +26627,7 @@ Langconvert tag: gan-hans to gan-hant
 Langconvert tag: kk-latn to kk-cyrl
 !! wikitext
 <langconvert from="kk-latn" to="kk-cyrl">test</langconvert>
-!! html
+!! html/php
 <p>тест
 </p>
 !! end
@@ -26636,7 +26636,7 @@ Langconvert tag: kk-latn to kk-cyrl
 Langconvert tag: ku-latn to ku-arab
 !! wikitext
 <langconvert from="ku-latn" to="ku-arab">test</langconvert>
-!! html
+!! html/php
 <p>تەست
 </p>
 !! end
@@ -26645,7 +26645,7 @@ Langconvert tag: ku-latn to ku-arab
 Langconvert tag: shi-latn to shi-tfng
 !! wikitext
 <langconvert from="shi-latn" to="shi-tfng">test</langconvert>
-!! html
+!! html/php
 <p>ⵜⴻⵙⵜ
 </p>
 !! end
@@ -26654,7 +26654,7 @@ Langconvert tag: shi-latn to shi-tfng
 Langconvert tag: sr-el to sr-ec
 !! wikitext
 <langconvert from="sr-el" to="sr-ec">zdravo</langconvert>
-!! html
+!! html/php
 <p>здраво
 </p>
 !! end
@@ -26663,7 +26663,7 @@ Langconvert tag: sr-el to sr-ec
 Langconvert tag: tg to tg-latn
 !! wikitext
 <langconvert from="tg" to="tg-latn">тест</langconvert>
-!! html
+!! html/php
 <p>test
 </p>
 !! end
@@ -26672,7 +26672,7 @@ Langconvert tag: tg to tg-latn
 Langconvert tag: uz-cyrl to uz-latn
 !! wikitext
 <langconvert from="uz-cyrl" to="uz-latn">тест</langconvert>
-!! html
+!! html/php
 <p>test
 </p>
 !! end
@@ -26681,7 +26681,7 @@ Langconvert tag: uz-cyrl to uz-latn
 Langconvert tag: zh-hans to zh-hant
 !! wikitext
 <langconvert from="zh-hans" to="zh-hant">爱</langconvert>
-!! html
+!! html/php
 <p>愛
 </p>
 !! end
