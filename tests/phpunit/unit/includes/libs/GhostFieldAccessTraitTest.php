@@ -12,10 +12,6 @@ use Wikimedia\Tests\SerializationTestUtils;
  */
 class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-	}
-
 	private function provideUnserializedInstances( string $testCaseName ) {
 		// Not using the trait since we only need deserialization tests.
 		$serializationTestUtils = new SerializationTestUtils(
