@@ -286,7 +286,18 @@ class Pingback {
 	 * sent and (if so) proceed to send it.
 	 */
 	public static function schedulePingback() : void {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( !$config->get( 'Pingback' ) ) {
+			// Fault tolerance:
+			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
+			// feature making use of DeferredUpdates and DB_MASTER on most page views.
+			// In order for the wiki to remain available and readable even if DeferredUpdates
+			// or DB_MASTER have issues, allow this to be turned off completely. (T269516)
+			return;
+		}
 		DeferredUpdates::addCallableUpdate( function () {
+			// Avoid re-use of $config as that would hold the same object from
+			// the outer call via Setup.php, all the way here through post-send.
 			$instance = new Pingback(
 				MediaWikiServices::getInstance()->getMainConfig(),
 				MediaWikiServices::getInstance()->getDBLoadBalancer(),
