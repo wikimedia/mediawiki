@@ -39,9 +39,11 @@ use MediaWiki\MediaWikiServices;
 class SkinTemplate extends Skin {
 	/**
 	 * @var string For QuickTemplate, the name of the subclass which will
-	 *   actually fill the template.  Child classes should override the default.
+	 *   actually fill the template.
+	 *
+	 * It is automatically filled in if the template option has been set.
 	 */
-	public $template = QuickTemplate::class;
+	public $template;
 
 	public $thispage;
 	public $titletxt;
@@ -50,6 +52,12 @@ class SkinTemplate extends Skin {
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
+
+	public function __construct( $options = null ) {
+		parent::__construct( $options );
+
+		$this->template = $this->template ?? $options['template'] ?? QuickTemplate::class;
+	}
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
