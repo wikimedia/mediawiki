@@ -1899,7 +1899,7 @@
 	"lockmanager-fail-closelock": "\"$1\" için kilit dosyası kapatılamıyor.",
 	"lockmanager-fail-deletelock": "\"$1\" için kilit dosyası silinemiyor.",
 	"lockmanager-fail-acquirelock": "\"$1\" için kilit alınamıyor.",
-	"lockmanager-fail-openlock": "\"$1\" için kilit dosyası açılamıyor. Yükleme dizininizin doğru şekilde yapılandırıldığından ve web sunucunuzun bu dizine yazma izninin olduğundan emin olun. Daha fazla bilgi için https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory bağlantısına bakın.",
+	"lockmanager-fail-openlock": "\"$1\" için kilit dosyası açılamıyor. Yükleme dizininizin doğru şekilde yapılandırıldığından ve web sunucunuzun bu dizine yazma izninin olduğundan emin olun. Daha fazla bilgi için https://www.mediawiki.org/wiki/Manual:$wgUploadDirectory/tr bağlantısına bakın.",
 	"lockmanager-fail-releaselock": "\"$1\" için kilidi yayınlanmıyor.",
 	"lockmanager-fail-db-bucket": "$1 kovasında yeterli kilit veri tabanına iletişim sağlanamadı.",
 	"lockmanager-fail-db-release": "$1 veritabanında kilitler yayınlanmıyor.",
