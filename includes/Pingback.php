@@ -32,9 +32,8 @@ use Psr\Log\LoggerInterface;
 class Pingback {
 
 	/**
-	 * @var int Revision ID of the JSON schema that describes the pingback
-	 *   payload. The schema lives on MetaWiki, at
-	 *   <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
+	 * @var int Revision ID of the JSON schema that describes the pingback payload.
+	 * The schema lives on Meta-Wiki, at <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
 	 */
 	private const SCHEMA_REV = 15781718;
 
@@ -61,18 +60,37 @@ class Pingback {
 	}
 
 	/**
-	 * Should a pingback be sent?
-	 * @return bool
+	 * Maybe send a ping.
 	 */
-	private function shouldSend() {
-		return $this->config->get( 'Pingback' ) && !$this->checkIfSent();
+	public function run() : void {
+		if ( !$this->config->get( 'Pingback' ) ) {
+			// disabled
+			return;
+		}
+		if ( $this->wasRecentlySent() ) {
+			// already sent recently
+			return;
+		}
+		if ( !$this->acquireLock() ) {
+			$this->logger->debug( __METHOD__ . ": couldn't acquire lock" );
+			return;
+		}
+
+		$data = $this->getData();
+		if ( !$this->postPingback( $data ) ) {
+			$this->logger->warning( __METHOD__ . ": failed to send; check 'http' log channel" );
+			return;
+		}
+
+		$this->markSent();
+		$this->logger->debug( __METHOD__ . ": pingback sent OK ({$this->key})" );
 	}
 
 	/**
-	 * Has a pingback been sent in the last month for this MediaWiki version?
+	 * Was a pingback sent in the last month for this MediaWiki version?
 	 * @return bool
 	 */
-	private function checkIfSent() {
+	private function wasRecentlySent() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$timestamp = $dbr->selectField(
 			'updatelog',
@@ -88,23 +106,6 @@ class Pingback {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Record the fact that we have sent a pingback for this MediaWiki version,
-	 * to ensure we don't submit data multiple times.
-	 * @return bool
-	 */
-	private function markSent() {
-		$dbw = wfGetDB( DB_MASTER );
-		$timestamp = time();
-		return $dbw->upsert(
-			'updatelog',
-			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
-			'ul_key',
-			[ 'ul_value' => $timestamp ],
-			__METHOD__
-		);
 	}
 
 	/**
@@ -130,15 +131,28 @@ class Pingback {
 	}
 
 	/**
+	 * Get the EventLogging packet to be sent to the server
+	 *
+	 * @return array
+	 */
+	private function getData() {
+		return [
+			'schema'           => 'MediaWikiPingback',
+			'revision'         => self::SCHEMA_REV,
+			'wiki'             => $this->fetchOrInsertId(),
+			'event'            => $this->getSystemInfo(),
+		];
+	}
+
+	/**
 	 * Collect basic data about this MediaWiki installation and return it
 	 * as an associative array conforming to the Pingback schema on MetaWiki
 	 * (<https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>).
 	 *
-	 * This is public so we can display it in the installer
+	 * Developers: If you're adding a new piece of data to this, please document
+	 * this data at <https://www.mediawiki.org/wiki/Manual:$wgPingback>.
 	 *
-	 * Developers: If you're adding a new piece of data to this, please ensure
-	 * that you update https://www.mediawiki.org/wiki/Manual:$wgPingback
-	 *
+	 * @internal For use by Installer only to display which data we send.
 	 * @return array
 	 */
 	public function getSystemInfo() {
@@ -164,20 +178,6 @@ class Pingback {
 	}
 
 	/**
-	 * Get the EventLogging packet to be sent to the server
-	 *
-	 * @return array
-	 */
-	private function getData() {
-		return [
-			'schema'           => 'MediaWikiPingback',
-			'revision'         => self::SCHEMA_REV,
-			'wiki'             => $this->getOrCreatePingbackId(),
-			'event'            => $this->getSystemInfo(),
-		];
-	}
-
-	/**
 	 * Get a unique, stable identifier for this wiki
 	 *
 	 * If the identifier does not already exist, create it and save it in the
@@ -185,7 +185,7 @@ class Pingback {
 	 *
 	 * @return string 32-character hex string
 	 */
-	private function getOrCreatePingbackId() {
+	private function fetchOrInsertId() : string {
 		if ( !$this->id ) {
 			$id = wfGetDB( DB_REPLICA )->selectField(
 				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
@@ -213,16 +213,17 @@ class Pingback {
 	}
 
 	/**
-	 * Serialize pingback data and send it to MediaWiki.org via a POST
-	 * to its event beacon endpoint.
+	 * Serialize pingback data and send it to mediawiki.org via a POST request
+	 * to its EventLogging beacon endpoint.
 	 *
-	 * The data encoding conforms to the expectations of EventLogging,
-	 * a software suite used by the Wikimedia Foundation for logging and
-	 * processing analytic data.
+	 * The data encoding conforms to the expectations of EventLogging as used by
+	 * Wikimedia Foundation for logging and processing analytic data.
 	 *
 	 * Compare:
-	 * <https://github.com/wikimedia/mediawiki-extensions-EventLogging/
-	 *   blob/7e5fe4f1ef/includes/EventLogging.php#L32-L74>
+	 * <https://gerrit.wikimedia.org/g/mediawiki/extensions/EventLogging/+/7e5fe4f1ef/includes/EventLogging.php#L32>
+	 *
+	 * The schema for the data is located at:
+	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>
 	 *
 	 * @param array $data Pingback data as an associative array
 	 * @return bool true on success, false on failure
@@ -235,35 +236,20 @@ class Pingback {
 	}
 
 	/**
-	 * Send information about this MediaWiki instance to MediaWiki.org.
-	 *
-	 * The data is structured and serialized to match the expectations of
-	 * EventLogging, a software suite used by the Wikimedia Foundation for
-	 * logging and processing analytic data.
-	 *
-	 * Compare:
-	 * <https://github.com/wikimedia/mediawiki-extensions-EventLogging/
-	 *   blob/7e5fe4f1ef/includes/EventLogging.php#L32-L74>
-	 *
-	 * The schema for the data is located at:
-	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>
+	 * Record the fact that we have sent a pingback for this MediaWiki version,
+	 * to ensure we don't submit data multiple times.
 	 * @return bool
 	 */
-	public function sendPingback() {
-		if ( !$this->acquireLock() ) {
-			$this->logger->debug( __METHOD__ . ": couldn't acquire lock" );
-			return false;
-		}
-
-		$data = $this->getData();
-		if ( !$this->postPingback( $data ) ) {
-			$this->logger->warning( __METHOD__ . ": failed to send pingback; check 'http' log" );
-			return false;
-		}
-
-		$this->markSent();
-		$this->logger->debug( __METHOD__ . ": pingback sent OK ({$this->key})" );
-		return true;
+	private function markSent() {
+		$dbw = wfGetDB( DB_MASTER );
+		$timestamp = time();
+		return $dbw->upsert(
+			'updatelog',
+			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
+			'ul_key',
+			[ 'ul_value' => $timestamp ],
+			__METHOD__
+		);
 	}
 
 	/**
@@ -273,9 +259,7 @@ class Pingback {
 	public static function schedulePingback() {
 		DeferredUpdates::addCallableUpdate( function () {
 			$instance = new Pingback;
-			if ( $instance->shouldSend() ) {
-				$instance->sendPingback();
-			}
+			$instance->run();
 		} );
 	}
 }
