@@ -449,6 +449,8 @@ because of Phabricator reports.
   prefixes).  In test cases please use $wgInterwikiCache instead.
 * MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
   incompatibility with PHPUnit 8, was removed.
+* Skin::getSkinStylePath() has been deprecated. Please replace usages with
+  the direct path to the resources.
 * …
 
 === Other changes in 1.36 ===

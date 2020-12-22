@@ -169,9 +169,11 @@ abstract class Skin extends ContextSource {
 			$this->skinname = $options;
 		} elseif ( $options ) {
 			$name = $options['name'] ?? null;
+
 			if ( !$name ) {
 				throw new SkinException( 'Skin name must be specified' );
 			}
+
 			$this->options = $options;
 			$this->skinname = $name;
 		}
@@ -1265,6 +1267,8 @@ abstract class Skin extends ContextSource {
 	 *
 	 * Requires $stylename to be set, otherwise throws MWException.
 	 *
+	 * @deprecated since 1.36, Replace usages with direct path of
+	 *  the resource and then remove the $stylename property.
 	 * @param string $name The name or path of a skin resource file
 	 * @return string The fully resolved style path URL
 	 * @throws MWException
