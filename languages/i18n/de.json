@@ -386,7 +386,7 @@
 	"sort-ascending": "Aufsteigend sortieren",
 	"sort-initial": "Ursprüngliche Sortierung",
 	"nstab-main": "Seite",
-	"nstab-user": "{{GENDER:$1|Benutzerseite|Benutzerinnenseite|Benutzendenseite}}",
+	"nstab-user": "{{GENDER:$1|Benutzerseite|Benutzerinnenseite|Benutzerseite}}",
 	"nstab-media": "Medienseite",
 	"nstab-special": "Spezialseite",
 	"nstab-project": "Projektseite",

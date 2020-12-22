@@ -2370,7 +2370,7 @@
 	"notvisiblerev": "Версія була вилучена",
 	"watchlist-details": "У Вашому списку спостереження $1 {{PLURAL:$1|сторінка|сторінки|сторінок}} (а ще сторінки обговорення).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|Залишився $1 день|Залишилося $1 дні|Залишилося $1 днів}}",
-	"watchlist-expiring-days-full-text": "Ще {{PLURAL:$1|$1 день|$1 дні|$1 днів}} вашому списку спостереження",
+	"watchlist-expiring-days-full-text": "Ще {{PLURAL:$1|$1 день|$1 дні|$1 днів}} у вашому списку спостереження",
 	"watchlist-expiry-hours-left": "Залишилося кілька годин",
 	"watchlist-expiring-hours-full-text": "У Вашому списку спостереження на ще кілька годин",
 	"wlheader-enotif": "Сповіщення електронною поштою ввімкнено.",
