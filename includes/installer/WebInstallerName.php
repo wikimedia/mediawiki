@@ -50,10 +50,12 @@ class WebInstallerName extends WebInstallerPage {
 			wfMessage( 'config-ns-other-default' )->inContentLanguage()->text()
 		);
 
-		$pingbackInfo = ( new Pingback() )->getSystemInfo();
 		// Database isn't available in config yet, so take it
 		// from the installer
-		$pingbackInfo['database'] = $this->getVar( 'wgDBtype' );
+		$pingbackConf = new HashConfig( [
+			'DBtype' => $this->getVar( 'wgDBtype' ),
+		] );
+		$pingbackInfo = Pingback::getSystemInfo( $pingbackConf );
 
 		$this->addHTML(
 			$this->parent->getTextBox( [
