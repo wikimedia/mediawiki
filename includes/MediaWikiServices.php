@@ -167,9 +167,36 @@ class MediaWikiServices extends ServiceContainer {
 	use NonSerializableTrait;
 
 	/**
+	 * @var bool
+	 */
+	private static $globalInstanceAllowed = false;
+
+	/**
 	 * @var MediaWikiServices|null
 	 */
 	private static $instance = null;
+
+	/**
+	 * Allows a global service container instance to exist.
+	 *
+	 * This should be called only after configuration settings have been read and extensions
+	 * have been registered. Any change made to configuration after this method has been called
+	 * may be ineffective or even harmful.
+	 *
+	 * @see getInstance()
+	 *
+	 * @since 1.36
+	 */
+	public static function allowGlobalInstance() {
+		self::$globalInstanceAllowed = true;
+
+		if ( self::$instance ) {
+			// TODO: in 1.37, getInstance() should fail if $globalInstanceAllowed is false! (T153256)
+			// Until then, we have to reset service instances that have already been created.
+			// No need to warn here, getService() has already triggered a deprecation warning.
+			self::resetGlobalInstance( null, 'quick' );
+		}
+	}
 
 	/**
 	 * Returns true if an instance has already been initialized. This can be used to avoid accessing
@@ -184,6 +211,8 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * Returns the global default instance of the top level service locator.
 	 *
+	 * @note if called before allowGlobalInstance(), this method will fail.
+	 *
 	 * @since 1.27
 	 *
 	 * The default instance is initialized using the service instantiator functions
@@ -196,6 +225,11 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return MediaWikiServices
 	 */
 	public static function getInstance() : self {
+		// TODO: in 1.37, getInstance() should fail if $globalInstanceAllowed is false! (T153256)
+		if ( !self::$globalInstanceAllowed ) {
+			wfDeprecatedMsg( 'Premature access to service container', '1.36' );
+		}
+
 		if ( self::$instance === null ) {
 			// NOTE: constructing GlobalVarConfig here is not particularly pretty,
 			// but some information from the global scope has to be injected here,
@@ -210,6 +244,15 @@ class MediaWikiServices extends ServiceContainer {
 			$runner->onMediaWikiServices( self::$instance );
 		}
 		return self::$instance;
+	}
+
+	public function getService( $name ) {
+		// TODO: in 1.37, getInstance() should fail if $globalInstanceAllowed is false! (T153256)
+		if ( !self::$globalInstanceAllowed && $this === self::$instance ) {
+			wfDeprecatedMsg( "Premature access to service '$name'", '1.36', false, 3 );
+		}
+
+		return parent::getService( $name );
 	}
 
 	/**
