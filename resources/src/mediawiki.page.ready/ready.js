@@ -133,6 +133,27 @@ $( function () {
 		);
 		e.preventDefault();
 	} );
+
+	if ( mw.config.get( 'wgUserName' ) !== null || config.sitenoticeAnons ) {
+		mw.loader.using( [ 'mediawiki.cookie', 'mediawiki.util' ] ).then( function () {
+			var cookieName = 'dismissSiteNotice',
+				noticeId = mw.message( 'sitenotice_id' ).text();
+
+			if ( mw.cookie.get( cookieName ) !== noticeId ) {
+				mw.util.addCSS( '.client-js .mw-dismissable-notice { display: block; }' );
+
+				$( '.mw-dismissable-notice-close' ).find( 'a' ).on( 'click keypress',
+					function ( e ) {
+						if ( e.type === 'click' ||
+							( e.type === 'keypress' ) && ( e.which === 13 )
+						) {
+							$( this ).closest( '.mw-dismissable-notice' ).hide();
+							mw.cookie.set( cookieName, noticeId, { expires: 30, path: '/' } );
+						}
+					} );
+			}
+		} );
+	}
 } );
 
 /**
