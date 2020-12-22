@@ -16,6 +16,7 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.35.1 ===
 * (T270450) The confusingly-named User->isLoggedIn() method has been deprecated
   in favour of the method it wraps, User->isRegistered().
+* Upgrade pimple/pimple from 3.3.0 to 3.3.1 for PHP 8.0 support.
 
 == MediaWiki 1.35.1 ==
 
@@ -504,7 +505,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 ===== New development-only external libraries =====
 * Added doctrine/dbal 2.10.2.
 * Added doctrine/sql-formatter 1.1.0.
-* Added pimple/pimple 3.3.0.
+* Added pimple/pimple 3.3.1.
 
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.8.
