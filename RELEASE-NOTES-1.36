@@ -90,7 +90,9 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated OOUI from 0.39.3 to 0.41.0.
 * Updated pear/mail_mime from 1.10.8 to 1.10.9.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
+* Updated pimple/pimple from 3.3.0 to 3.3.1.
 * Updated wikimedia/html-formatter from 1.0.2 to 2.0.0.
+* Updated wikimedia/less.php from 3.0.0 to 3.1.0.
 * Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
 * …
 
