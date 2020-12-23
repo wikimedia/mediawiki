@@ -119,6 +119,7 @@
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
+		"phan": "phan -d . -p",
 		"phpcs": "phpcs -p -s",
 		"fix": "phpcbf -p",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
