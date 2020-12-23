@@ -7,18 +7,13 @@ class XmlJsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers XmlJsCode::__construct
-	 * @dataProvider provideConstruction
 	 */
-	public function testConstruction( $value ) {
-		$obj = new XmlJsCode( $value );
-		$this->assertEquals( $value, $obj->value );
-	}
+	public function testConstruction() {
+		$obj = new XmlJsCode( '' );
+		$this->assertSame( '', $obj->value );
 
-	public static function provideConstruction() {
-		return [
-			[ null ],
-			[ '' ],
-		];
+		$obj = new XmlJsCode( null );
+		$this->assertNull( $obj->value );
 	}
 
 }

@@ -28,6 +28,12 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		parent::tearDown();
 	}
 
+	private function emptyChangeTagsTables() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+	}
+
 	// TODO most methods are not tested
 
 	/** @dataProvider provideModifyDisplayQuery */
@@ -398,9 +404,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		$revId = 341;
@@ -442,8 +446,6 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$revId = 342;
 		ChangeTags::updateTags( [ 'tag1' ], [], $rcId, $revId );
 		ChangeTags::updateTags( [ 'tag3' ], [], $rcId, $revId );
-
-		$dbr = wfGetDB( DB_REPLICA );
 
 		$expected = [
 			(object)[
@@ -495,9 +497,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -547,9 +547,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -588,9 +586,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDeleteTags() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
@@ -681,9 +677,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTagUsageStatistics() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
@@ -696,9 +690,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testListExplicitlyDefinedTags() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
+		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );

@@ -15,11 +15,6 @@ class XmlSelectTest extends \MediaWikiUnitTestCase {
 		$this->select = new XmlSelect();
 	}
 
-	protected function tearDown() : void {
-		parent::tearDown();
-		$this->select = null;
-	}
-
 	/**
 	 * @covers XmlSelect::__construct
 	 */

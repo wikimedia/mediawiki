@@ -31,6 +31,11 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	protected function tearDown() : void {
+		Title::clearCaches();
+		parent::tearDown();
+	}
+
 	public static function provideInNamespace() {
 		return [
 			[ 'Main Page', NS_MAIN, true ],
@@ -435,10 +440,5 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
-	}
-
-	protected function tearDown() : void {
-		Title::clearCaches();
-		parent::tearDown();
 	}
 }

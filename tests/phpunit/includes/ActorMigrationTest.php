@@ -50,8 +50,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		ScopedCallback::consume( $this->resetActorMigration );
+		parent::tearDown();
 	}
 
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {

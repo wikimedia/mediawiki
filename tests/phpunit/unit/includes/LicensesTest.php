@@ -3,7 +3,7 @@
 /**
  * @covers Licenses
  */
-class LicensesTest extends \MediaWikiUnitTestCase {
+class LicensesTest extends MediaWikiUnitTestCase {
 
 	public function testLicenses() {
 		$str = "
@@ -20,6 +20,6 @@ class LicensesTest extends \MediaWikiUnitTestCase {
 			'name' => 'AnotherName',
 			'licenses' => $str,
 		] );
-		$this->assertThat( $lc, $this->isInstanceOf( Licenses::class ) );
+		$this->assertInstanceOf( Licenses::class, $lc );
 	}
 }

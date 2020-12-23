@@ -21,13 +21,6 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->article = new Article( $this->title );
 	}
 
-	/** cleanup title object and its article object */
-	protected function tearDown() : void {
-		parent::tearDown();
-		$this->title = null;
-		$this->article = null;
-	}
-
 	/**
 	 * @covers Article::__get
 	 */

@@ -11,6 +11,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	private $mimeAnalyzer;
 
 	protected function setUp() : void {
+		parent::setUp();
 		$this->mimeAnalyzer = new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
@@ -22,7 +23,6 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'html' => 'text/html', // application/xhtml+xml?
 			]
 		] );
-		parent::setUp();
 	}
 
 	private function doGuessMimeType( array $parameters = [] ) {

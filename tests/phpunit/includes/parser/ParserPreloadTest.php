@@ -50,10 +50,9 @@ class ParserPreloadTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
-
 		unset( $this->testParser );
 		unset( $this->title );
+		parent::tearDown();
 	}
 
 	public function testPreloadSimpleText() {
