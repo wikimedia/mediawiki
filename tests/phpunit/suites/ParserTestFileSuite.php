@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestSuite;
+use Wikimedia\ScopedCallback;
 
 /**
  * This is the suite class for running tests within a single .txt source file.
@@ -13,6 +14,9 @@ class ParserTestFileSuite extends TestSuite {
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;
+
+	/** @var ScopedCallback */
+	private $ptTeardownScope;
 
 	public function __construct( $runner, $name, $fileName ) {
 		parent::__construct( $name );
@@ -39,10 +43,14 @@ class ParserTestFileSuite extends TestSuite {
 	}
 
 	protected function setUp() : void {
-		$this->ptRunner->addArticles( $this->ptFileInfo[ 'articles'] );
+		$this->ptTeardownScope = $this->ptRunner->addArticles(
+			$this->ptFileInfo[ 'articles']
+		);
 	}
 
 	protected function tearDown() : void {
-		$this->ptRunner->cleanupArticles( $this->ptFileInfo[ 'articles'] );
+		if ( $this->ptTeardownScope ) {
+			ScopedCallback::consume( $this->ptTeardownScope );
+		}
 	}
 }
