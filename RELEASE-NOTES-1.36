@@ -503,7 +503,7 @@ but support for them is somewhat less mature.
 The supported versions are:
 
 * MySQL 5.5.8 or later
-* PostgreSQL 9.2 or later
+* PostgreSQL 9.4 or later
 * SQLite 3.8.0 or later
 
 == Online documentation ==

@@ -18,7 +18,7 @@ Required software as of MediaWiki 1.35.0:
 ** xml
 * A SQL server, the following types are supported
 ** MySQL 5.5.8 or higher
-** PostgreSQL 9.2 or higher
+** PostgreSQL 9.4 or higher
 ** SQLite 3.8.0 or higher
 
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
