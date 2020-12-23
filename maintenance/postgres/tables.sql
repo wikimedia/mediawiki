@@ -193,38 +193,6 @@ CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
 CREATE INDEX oi_sha1              ON oldimage (oi_sha1);
 
 
-CREATE SEQUENCE filearchive_fa_id_seq;
-CREATE TABLE filearchive (
-  fa_id                 INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('filearchive_fa_id_seq'),
-  fa_name               TEXT         NOT NULL,
-  fa_archive_name       TEXT,
-  fa_storage_group      TEXT,
-  fa_storage_key        TEXT,
-  fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
-  fa_deleted_reason_id  INTEGER      NOT NULL,
-  fa_size               INTEGER      NOT NULL,
-  fa_width              INTEGER      NOT NULL,
-  fa_height             INTEGER      NOT NULL,
-  fa_metadata           BYTEA        NOT NULL  DEFAULT '',
-  fa_bits               SMALLINT,
-  fa_media_type         TEXT,
-  fa_major_mime         TEXT                   DEFAULT 'unknown',
-  fa_minor_mime         TEXT                   DEFAULT 'unknown',
-  fa_description_id     INTEGER      NOT NULL,
-  fa_actor              INTEGER      NOT NULL,
-  fa_timestamp          TIMESTAMPTZ,
-  fa_deleted            SMALLINT     NOT NULL DEFAULT 0,
-  fa_sha1               TEXT         NOT NULL DEFAULT ''
-);
-ALTER SEQUENCE filearchive_fa_id_seq OWNED BY filearchive.fa_id;
-CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
-CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
-CREATE INDEX fa_notime    ON filearchive (fa_deleted_timestamp);
-CREATE INDEX fa_nouser    ON filearchive (fa_deleted_user);
-CREATE INDEX fa_sha1      ON filearchive (fa_sha1);
-
-
 CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
