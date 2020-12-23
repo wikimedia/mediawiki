@@ -347,6 +347,8 @@ because of Phabricator reports.
 * MediaWiki now also requires the php-intl extension.
 * BotPassword::save() now returns a Status object for the result rather than
   a bool.
+* The methods in CoreTagHooks have been marked @internal and type hints have
+  been added.  The methods were unused outside of MediaWiki core.
 * SquidPurgeClient and SquidPurgeClientPool, deprecated since 1.35, have been
   removed.
 * …
