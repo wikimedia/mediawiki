@@ -686,3 +686,11 @@ CREATE INDEX fa_deleted_timestamp ON filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_actor_timestamp ON filearchive (fa_actor, fa_timestamp);
 
 CREATE INDEX fa_sha1 ON filearchive (fa_sha1);
+
+
+CREATE TABLE text (
+  old_id SERIAL NOT NULL,
+  old_text TEXT NOT NULL,
+  old_flags TEXT NOT NULL,
+  PRIMARY KEY(old_id)
+);

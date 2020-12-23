@@ -563,4 +563,3 @@ __DATA__
 ## Known exceptions
 OLD: searchindex          ## We use tsearch2 directly on the page table instead
 RENAME: user mwuser       ## Reserved word causing lots of problems
-RENAME: text pagecontent  ## Reserved word

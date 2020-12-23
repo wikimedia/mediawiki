@@ -46,10 +46,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			# rename tables 1.7.3
 			# r15791 Change reserved word table names "user" and "text"
 			[ 'renameTable', 'user', 'mwuser' ],
-			[ 'renameTable', 'text', 'pagecontent' ],
 			[ 'renameIndex', 'mwuser', 'user_pkey', 'mwuser_pkey' ],
 			[ 'renameIndex', 'mwuser', 'user_user_name_key', 'mwuser_user_name_key' ],
-			[ 'renameIndex', 'pagecontent', 'text_pkey', 'pagecontent_pkey' ],
 
 			# renamed sequences
 			[ 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq' ],
@@ -336,7 +334,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'checkIndex', 'ts2_page_text', [
 				[ 'textvector', 'tsvector_ops', 'gist', 0 ],
 			],
-			'CREATE INDEX "ts2_page_text" ON "pagecontent" USING "gist" ("textvector")' ],
+				'CREATE INDEX "ts2_page_text" ON "text" USING "gist" ("textvector")' ],
 			[ 'checkIndex', 'ts2_page_title', [
 				[ 'titlevector', 'tsvector_ops', 'gist', 0 ],
 			],
@@ -548,7 +546,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setSequenceOwner', 'page', 'page_id', 'page_page_id_seq' ],
 			[ 'setSequenceOwner', 'revision', 'rev_id', 'revision_rev_id_seq' ],
 			[ 'setSequenceOwner', 'ip_changes', 'ipc_rev_id', 'ip_changes_ipc_rev_id_seq' ],
-			[ 'setSequenceOwner', 'pagecontent', 'old_id', 'text_old_id_seq' ],
+			[ 'setSequenceOwner', 'text', 'old_id', 'text_old_id_seq' ],
 			[ 'setSequenceOwner', 'comment', 'comment_id', 'comment_comment_id_seq' ],
 			[ 'setSequenceOwner', 'page_restrictions', 'pr_id', 'page_restrictions_pr_id_seq' ],
 			[ 'setSequenceOwner', 'archive', 'ar_id', 'archive_ar_id_seq' ],
@@ -910,6 +908,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'filearchive', 'fa_actor_timestamp', '(fa_actor, fa_timestamp)' ],
 			[ 'addPgIndex', 'ipblocks', 'ipb_expiry', '(ipb_expiry)' ],
 			[ 'addPgIndex', 'ipblocks', 'ipb_timestamp', '(ipb_timestamp)' ],
+			[ 'renameTable', 'pagecontent', 'text' ],
+			[ 'renameIndex', 'text', 'pagecontent_pkey', 'text_pkey' ],
+			[ 'changeNullableField', 'text', 'old_text', 'NOT NULL', true ],
+			[ 'changeNullableField', 'text', 'old_flags', 'NOT NULL', true ],
 		];
 	}
 

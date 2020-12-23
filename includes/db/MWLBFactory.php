@@ -190,7 +190,7 @@ abstract class MWLBFactory {
 			$server += [
 				'port' => $options->get( 'DBport' ),
 				// Work around the reserved word usage in MediaWiki schema
-				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
+				'keywordTableMap' => [ 'user' => 'mwuser' ]
 			];
 		}
 

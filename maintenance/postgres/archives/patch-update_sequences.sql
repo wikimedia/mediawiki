@@ -1,8 +1,8 @@
 ALTER TABLE revision RENAME rev_rev_id_val TO revision_rev_id_seq;
 ALTER TABLE revision ALTER COLUMN rev_id SET DEFAULT NEXTVAL('revision_rev_id_seq');
 
-ALTER TABLE pagecontent RENAME text_old_id_val TO text_old_id_seq;
-ALTER TABLE pagecontent ALTER COLUMN old_id SET DEFAULT nextval('text_old_id_seq');
+ALTER TABLE text RENAME text_old_id_val TO text_old_id_seq;
+ALTER TABLE text ALTER COLUMN old_id SET DEFAULT nextval('text_old_id_seq');
 
 ALTER TABLE category RENAME category_id_seq TO category_cat_id_seq;
 ALTER TABLE category ALTER COLUMN cat_id SET DEFAULT nextval('category_cat_id_seq');
