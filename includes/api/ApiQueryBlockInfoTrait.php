@@ -64,10 +64,9 @@ trait ApiQueryBlockInfoTrait {
 		}
 	}
 
-	/**
-	 * @name Methods required from ApiQueryBase
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Methods required from ApiQueryBase
+	/** @name   Methods required from ApiQueryBase */
 
 	/**
 	 * @see ApiBase::getDB
@@ -112,6 +111,6 @@ trait ApiQueryBlockInfoTrait {
 	 */
 	abstract protected function addJoinConds( $conds );
 
-	/** @} */
+	// endregion -- end of methods required from ApiQueryBase
 
 }

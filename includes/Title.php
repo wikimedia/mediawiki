@@ -65,12 +65,13 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public const NEW_CLONE = 'clone';
 
-	/**
-	 * @name Private member variables
+	/***************************************************************************/
+	// region   Private member variables
+	/** @name   Private member variables
 	 * Please use the accessor functions instead.
 	 * @internal
+	 * @{
 	 */
-	// @{
 
 	/** @var string Text form (spaces not underscores) of the main part */
 	public $mTextform = '';
@@ -183,7 +184,10 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/** @var bool|null Is the title known to be valid? */
 	private $mIsValid = null;
-	// @}
+
+	// endregion -- end of private member variables
+	/** @} */
+	/***************************************************************************/
 
 	/**
 	 * Shorthand for getting a Language Converter for specific language
