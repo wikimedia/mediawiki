@@ -957,7 +957,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * @internal
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			// @codeCoverageIgnoreStart
 			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
 			// @codeCoverageIgnoreEnd
