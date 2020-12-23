@@ -191,7 +191,6 @@
 	"exif-photometricinterpretation-3": "Palette",
 	"exif-photometricinterpretation-4": "Transparansymasker",
 	"exif-photometricinterpretation-5": "Skeiden (wårskynlik CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-kodering)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-kodering)",
 	"exif-unknowndate": "Unbekende datum",

@@ -205,7 +205,6 @@
 	"exif-photometricinterpretation-3": "Цветовая палитра",
 	"exif-photometricinterpretation-4": "Маска прозрачности",
 	"exif-photometricinterpretation-5": "Разделены (вероятно CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-кодирование)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-кодирование)",
 	"exif-unknowndate": "Неизвестная дата",

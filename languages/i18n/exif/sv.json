@@ -204,7 +204,6 @@
 	"exif-photometricinterpretation-3": "Palett",
 	"exif-photometricinterpretation-4": "Genomskinlighetsmask",
 	"exif-photometricinterpretation-5": "Separerad (förmodligen CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-kodning)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-kodning)",
 	"exif-unknowndate": "Okänt datum",

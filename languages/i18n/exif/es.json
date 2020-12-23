@@ -206,7 +206,6 @@
 	"exif-photometricinterpretation-3": "Paleta",
 	"exif-photometricinterpretation-4": "Máscara de transparencia",
 	"exif-photometricinterpretation-5": "Separados (Probablemente CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",
 	"exif-photometricinterpretation-32803": "Matriz de filtro de color",

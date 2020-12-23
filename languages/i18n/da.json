@@ -2391,6 +2391,7 @@
 	"namespace_association": "Tilknyttet navnerum",
 	"tooltip-namespace_association": "Afkryds dette felt for også at inkludere det diskussions- eller emnenavnerum, der er tilknyttet det valgte navnerum",
 	"blanknamespace": "(Hoved)",
+	"contributions": "Brugerbidrag",
 	"tool-link-contributions": "{{GENDER:$1|Brugerbidrag}}",
 	"contributions-title": "Brugerbidrag for $1",
 	"mycontris": "Bidrag",

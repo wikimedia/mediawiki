@@ -495,7 +495,7 @@
 	"exif-sensingmethod-5": "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).\n{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-7": "{{exif-qqq}}\n{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-8": "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).\n{{Related|Exif-sensingmethod}}",
-	"exif-filesource-3": "{{optional}}",
+	"exif-filesource-3": "{{exif-qqq}}",
 	"exif-scenetype-1": "See also:\n* {{msg-mw|Exif-scenetype}}\n* {{msg-mw|Exif-scenetype-1}}",
 	"exif-customrendered-0": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",
 	"exif-customrendered-1": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",
