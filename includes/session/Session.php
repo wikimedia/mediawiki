@@ -579,8 +579,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 		$this->backend->save();
 	}
 
-	/**
-	 * @name Interface methods
+	// region   Interface methods
+	/** @name   Interface methods
 	 * @{
 	 */
 
@@ -658,5 +658,5 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/** @} */
-
+	// endregion  -- end of Interface methods
 }

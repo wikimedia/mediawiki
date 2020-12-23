@@ -387,10 +387,9 @@ final class SessionManager implements SessionManagerInterface {
 		return is_string( $id ) && preg_match( '/^[a-zA-Z0-9_-]{32,}$/', $id );
 	}
 
-	/**
-	 * @name Internal methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Internal methods
+	/** @name   Internal methods */
 
 	/**
 	 * Prevent future sessions for the user
@@ -1079,6 +1078,6 @@ final class SessionManager implements SessionManagerInterface {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Internal methods
 
 }

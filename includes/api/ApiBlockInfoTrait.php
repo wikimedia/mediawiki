@@ -67,8 +67,8 @@ trait ApiBlockInfoTrait {
 		return $vals;
 	}
 
-	/**
-	 * @name Methods required from ApiBase
+	// region   Methods required from ApiBase
+	/** @name   Methods required from ApiBase
 	 * @{
 	 */
 
@@ -79,5 +79,6 @@ trait ApiBlockInfoTrait {
 	abstract public function getLanguage();
 
 	/** @} */
+	// endregion -- end of methods required from ApiBase
 
 }

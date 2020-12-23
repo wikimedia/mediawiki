@@ -41,8 +41,8 @@ use Wikimedia\ObjectFactory;
  */
 class ParamValidator {
 
-	/**
-	 * @name Constants for parameter settings arrays
+	// region    Constants for parameter settings arrays
+	/** @name    Constants for parameter settings arrays
 	 * These constants are keys in the settings array that define how the
 	 * parameters coming in from the request are to be interpreted.
 	 *
@@ -168,6 +168,7 @@ class ParamValidator {
 	public const PARAM_IGNORE_UNRECOGNIZED_VALUES = 'param-ignore-unrecognized-values';
 
 	/** @} */
+	// endregion -- end of Constants for parameter settings arrays
 
 	/** Magic "all values" value when PARAM_ALL is true. */
 	public const ALL_DEFAULT_STRING = '*';
