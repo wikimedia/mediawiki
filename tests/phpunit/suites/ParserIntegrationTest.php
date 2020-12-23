@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\ScopedCallback;
-
 /**
  * This is the TestCase subclass for running a single parser test via the
  * ParserTestRunner integration test system.
@@ -38,9 +36,6 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	/** @var ParserTestRunner */
 	private $ptRunner;
 
-	/** @var ScopedCallback */
-	private $ptTeardownScope;
-
 	/** @var string|null */
 	private $skipMessage = null;
 
@@ -63,16 +58,5 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 			$result = new ParserTestResult( $this->ptTest, "SKIP", "SKIP" );
 		}
 		$this->assertEquals( $result->expected, $result->actual );
-	}
-
-	protected function setUp() : void {
-		$this->ptTeardownScope = $this->ptRunner->staticSetup();
-		$this->hideDeprecated( 'Hooks::clear' );
-	}
-
-	protected function tearDown() : void {
-		if ( $this->ptTeardownScope ) {
-			ScopedCallback::consume( $this->ptTeardownScope );
-		}
 	}
 }
