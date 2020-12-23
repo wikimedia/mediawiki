@@ -2,13 +2,15 @@
 
 namespace Wikimedia\Rdbms;
 
-use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
-class MWPostgreSqlPlatform extends PostgreSqlPlatform {
-
+/**
+ * @suppress PhanRedefinedExtendedClass
+ */
+class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
 	/**
 	 * Handles Postgres unique timestamp format
+	 * @suppress PhanRedefinedClassReference
 	 * @inheritDoc
 	 *
 	 * @param mixed[] $column The column definition array.
@@ -29,6 +31,7 @@ class MWPostgreSqlPlatform extends PostgreSqlPlatform {
 	}
 
 	/**
+	 * @suppress PhanRedefinedClassReference
 	 * @inheritDoc
 	 * phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 	 */
