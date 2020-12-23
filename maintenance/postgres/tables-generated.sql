@@ -648,3 +648,41 @@ CREATE INDEX us_user ON uploadstash (us_user);
 CREATE UNIQUE INDEX us_key ON uploadstash (us_key);
 
 CREATE INDEX us_timestamp ON uploadstash (us_timestamp);
+
+
+CREATE TABLE filearchive (
+  fa_id SERIAL NOT NULL,
+  fa_name TEXT DEFAULT '' NOT NULL,
+  fa_archive_name TEXT DEFAULT '',
+  fa_storage_group TEXT DEFAULT NULL,
+  fa_storage_key TEXT DEFAULT '',
+  fa_deleted_user INT DEFAULT NULL,
+  fa_deleted_timestamp TIMESTAMPTZ DEFAULT NULL,
+  fa_deleted_reason_id BIGINT NOT NULL,
+  fa_size INT DEFAULT 0,
+  fa_width INT DEFAULT 0,
+  fa_height INT DEFAULT 0,
+  fa_metadata TEXT DEFAULT NULL,
+  fa_bits INT DEFAULT 0,
+  fa_media_type TEXT DEFAULT NULL,
+  fa_major_mime TEXT DEFAULT 'unknown',
+  fa_minor_mime TEXT DEFAULT 'unknown',
+  fa_description_id BIGINT NOT NULL,
+  fa_actor BIGINT NOT NULL,
+  fa_timestamp TIMESTAMPTZ DEFAULT NULL,
+  fa_deleted SMALLINT DEFAULT 0 NOT NULL,
+  fa_sha1 TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(fa_id)
+);
+
+CREATE INDEX fa_name ON filearchive (fa_name, fa_timestamp);
+
+CREATE INDEX fa_storage_group ON filearchive (
+  fa_storage_group, fa_storage_key
+);
+
+CREATE INDEX fa_deleted_timestamp ON filearchive (fa_deleted_timestamp);
+
+CREATE INDEX fa_actor_timestamp ON filearchive (fa_actor, fa_timestamp);
+
+CREATE INDEX fa_sha1 ON filearchive (fa_sha1);

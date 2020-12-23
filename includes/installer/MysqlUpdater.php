@@ -480,6 +480,9 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_properties-rename-index.sql' ],
 			[ 'renameIndex', 'sites', 'sites_global_key', 'site_global_key', false, 'patch-sites-rename-indexes.sql' ],
 			[ 'renameIndex', 'logging', 'type_time', 'log_type_time', false, 'patch-logging-rename-indexes.sql' ],
+			[ 'modifyField', 'filearchive', 'fa_name', 'patch-filearchive-fa_name.sql' ],
+			[ 'dropDefault', 'filearchive', 'fa_deleted_timestamp' ],
+			[ 'dropDefault', 'filearchive', 'fa_timestamp' ],
 		];
 	}
 
