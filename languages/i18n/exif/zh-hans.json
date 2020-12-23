@@ -205,7 +205,6 @@
 	"exif-photometricinterpretation-3": "主色调",
 	"exif-photometricinterpretation-4": "透明遮罩",
 	"exif-photometricinterpretation-5": "分隔（可能是CMYK）",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b*（ICC编码）",
 	"exif-photometricinterpretation-10": "CIE L*a*b*（ITU编码）",
 	"exif-photometricinterpretation-32803": "色彩滤镜矩阵",

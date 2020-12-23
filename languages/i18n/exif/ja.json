@@ -216,7 +216,6 @@
 	"exif-photometricinterpretation-4": "透明マスク",
 	"exif-photometricinterpretation-5": "分版 (おそらく CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC エンコード)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU エンコード)",
 	"exif-photometricinterpretation-32803": "カラーフィルター配列",
