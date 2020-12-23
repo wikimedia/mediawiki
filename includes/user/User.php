@@ -2945,6 +2945,8 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return bool
 	 */
 	public function isLoggedIn() {
+		// Hard-deprecated in 1.37
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->isRegistered();
 	}
 
