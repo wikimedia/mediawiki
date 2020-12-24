@@ -289,7 +289,7 @@ class LogPager extends ReverseChronologicalPager {
 		 * is on.
 		 *
 		 * This is not a problem with simple title matches, because then we can
-		 * use the page_time index.  That should have no more than a few hundred
+		 * use the log_page_time index.  That should have no more than a few hundred
 		 * log entries for even the busiest pages, so it can be safely scanned
 		 * in full to satisfy an impossible condition on user or similar.
 		 */
@@ -389,7 +389,7 @@ class LogPager extends ReverseChronologicalPager {
 		if ( $this->performer !== '' || $this->types !== [] ) {
 			// T223151, T237026: MariaDB's optimizer, at least 10.1, likes to choose a wildly bad plan for
 			// some reason for these code paths. Tell it not to use the wrong index it wants to pick.
-			$options['IGNORE INDEX'] = [ 'logging' => [ 'times' ] ];
+			$options['IGNORE INDEX'] = [ 'logging' => [ 'log_times' ] ];
 		}
 
 		$info = [
