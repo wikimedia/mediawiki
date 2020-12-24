@@ -223,7 +223,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	public static function getTestSysop() {
-		return self::getTestUser( [ 'sysop', 'bureaucrat' ] );
+		return static::getTestUser( [ 'sysop', 'bureaucrat' ] );
 	}
 
 	/**
@@ -249,7 +249,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$page = WikiPage::factory( $title );
 
 		if ( !$page->exists() ) {
-			$user = self::getTestSysop()->getUser();
+			$user = static::getTestSysop()->getUser();
 			$page->doEditContent(
 				ContentHandler::makeContent( 'UTContent', $title ),
 				'UTPageSummary',
@@ -285,7 +285,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$page = WikiPage::factory( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal( 'Testing', $this->getTestSysop()->getUser() );
+			$page->doDeleteArticleReal( 'Testing', static::getTestSysop()->getUser() );
 		}
 
 		return $page;
@@ -2369,7 +2369,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @param User|null $user If null, $this->getTestUser()->getUser() is used.
+	 * @param User|null $user If null, static::getTestUser()->getUser() is used.
 	 * @return Status Object as returned by WikiPage::doEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
@@ -2399,7 +2399,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		if ( $user === null ) {
-			$user = $this->getTestUser()->getUser();
+			$user = static::getTestUser()->getUser();
 		}
 
 		if ( is_string( $content ) ) {
