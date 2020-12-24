@@ -437,11 +437,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCalendar
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/Widgets"]
-	path = extensions/Widgets
-	url = https://github.com/wikimedia/mediawiki-extensions-Widgets
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/AuthorProtect"]
 	path = extensions/AuthorProtect
 	url = https://github.com/wikimedia/mediawiki-extensions-AuthorProtect
