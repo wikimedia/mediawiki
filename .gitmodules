@@ -1392,3 +1392,4 @@
 	path = extensions/Validator
 	url = https://github.com/JeroenDeDauw/Validator
 	branch = master
+	ignore = dirty
