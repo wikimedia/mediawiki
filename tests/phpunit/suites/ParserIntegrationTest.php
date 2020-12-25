@@ -40,7 +40,7 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	private $skipMessage = null;
 
 	public function __construct( $runner, $fileName, $test, $skipMessage = null ) {
-		parent::__construct( 'testParse', [ '[details omitted]' ],
+		parent::__construct( 'testParse', [ ( $test['parsoid'] ?? false ) ? 'parsoid' : 'legacy parser' ],
 			basename( $fileName ) . ': ' . $test['desc'] );
 		$this->ptTest = $test;
 		$this->ptRunner = $runner;
@@ -52,7 +52,11 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 			$this->markTestSkipped( $this->skipMessage );
 		}
 		$this->ptRunner->getRecorder()->setTestCase( $this );
-		$result = $this->ptRunner->runTest( $this->ptTest );
+		if ( $this->ptTest['parsoid'] ?? false ) {
+			$result = $this->ptRunner->runParsoidTest( $this->ptTest['parsoid'] );
+		} else {
+			$result = $this->ptRunner->runTest( $this->ptTest );
+		}
 		if ( $result === false ) {
 			// Test intentionally skipped.
 			$result = new ParserTestResult( $this->ptTest, "SKIP", "SKIP" );

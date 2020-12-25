@@ -108,6 +108,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		$testList = [];
 		$counter = 0;
 		foreach ( $filesToTest as $extensionName => $fileName ) {
+			$isCore = ( strpos( $fileName, $mwTestDir ) === 0 );
 			if ( is_int( $extensionName ) ) {
 				// If there's no extension name because this is coming
 				// from the legacy global, then assume the next level directory
@@ -134,8 +135,17 @@ class ParserTestTopLevelSuite extends TestSuite {
 			// just override the name.
 
 			self::debug( "Adding test class $parserTestClassName" );
+			// Legacy parser
 			$this->addTest( new ParserTestFileSuite(
-				$this->ptRunner, $parserTestClassName, $fileName ) );
+				$this->ptRunner, "Legacy$parserTestClassName", $fileName ) );
+			// Parsoid (only run this on extensions for now, since Parsoid
+			// has its own copy of core's parser tests which it runs in its
+			// own test suite)
+			if ( !$isCore ) {
+				$this->addTest( new ParsoidTestFileSuite(
+					$this->ptRunner, "Parsoid$parserTestClassName", $fileName
+				) );
+			}
 		}
 	}
 
