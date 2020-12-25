@@ -4,7 +4,8 @@ use PHPUnit\Framework\TestSuite;
 use Wikimedia\ScopedCallback;
 
 /**
- * This is the suite class for running tests within a single .txt source file.
+ * This is the suite class for running tests with the legacy parser
+ * within a single .txt source file.
  * It is not invoked directly. Use --filter to select files, or
  * use parserTests.php.
  */
@@ -37,6 +38,7 @@ class ParserTestFileSuite extends TestSuite {
 		}
 
 		foreach ( $this->ptFileInfo['tests'] as $test ) {
+			$test['parsoid'] = false;
 			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage ),
 				[ 'Database', 'Parser', 'ParserTests' ] );
 		}

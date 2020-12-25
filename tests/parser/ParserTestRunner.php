@@ -31,6 +31,12 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
+use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
+use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
+use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
+use Wikimedia\Parsoid\ParserTests\TestUtils as ParsoidTestUtils;
+use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -298,6 +304,13 @@ class ParserTestRunner {
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
 		$setup['wgExtraInterlanguageLinkPrefixes'] = [ 'mul' ];
+
+		// Parsoid settings for testing
+		$setup['wgParsoidSettings'] = [
+			'nativeGalleryEnabled' => true,
+			// Parsoid deliberately ignores the per-user thumbsize preference
+			'thumbsize' => 220,
+		];
 
 		// All FileRepo changes should be done here by injecting services,
 		// there should be no need to change global variables.
@@ -822,55 +835,32 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Get a Parser object
-	 *
-	 * @return Parser
+	 * Shared code to initialize ParserOptions based on the $test object,
+	 * used by both the legacy Parser and the Parsoid parser.
+	 * @param stdClass $test
+	 * @param callable $parserOptionsCallback A callback to create the
+	 *   initial ParserOptions object.  This allows for some minor
+	 *   differences in how the legacy Parser and Parsoid create this.
+	 * @return array An array of Title, ParserOptions, and integer revId.
 	 */
-	public function getParser() {
-		$parserFactory = MediaWikiServices::getInstance()->getParserFactory();
-		$parser = $parserFactory->create(); // A fresh parser object.
-		ParserTestParserHook::setup( $parser );
-		return $parser;
-	}
-
-	/**
-	 * Run a given wikitext input through a freshly-constructed wiki parser,
-	 * and compare the output against the expected results.
-	 * Prints status and explanatory messages to stdout.
-	 *
-	 * staticSetup() and setupWikiData() must be called before this function
-	 * is entered.
-	 *
-	 * @param array $test The test parameters:
-	 *  - test: The test name
-	 *  - desc: The subtest description
-	 *  - input: Wikitext to try rendering
-	 *  - options: Array of test options
-	 *  - config: Overrides for global variables, one per line
-	 *
-	 * @return ParserTestResult|false false if skipped
-	 */
-	public function runTest( $test ) {
-		wfDebug( __METHOD__ . ": running {$test['desc']}" );
-		$opts = $test['options'];
-		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
-			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
-			return false; // Skip test.
-		}
-		$teardownGuard = $this->perTestSetup( $test );
-
+	private function setupParserOptions( $test, callable $parserOptionsCallback ) {
+		$opts = $test->options;
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
-		$options = ParserOptions::newFromContext( $context );
-		$options->setTimestamp( $this->getFakeTimestamp() );
-
 		$revId = 1337; // see Parser::getRevisionId()
 		$title = isset( $opts['title'] )
 			? Title::newFromText( $opts['title'] )
 			: $this->defaultTitle;
+		$wikitext = $test->wikitext ?? $test->input;
+
+		$options = $parserOptionsCallback(
+			$context, $title, $revId, $wikitext
+		);
+		$options->setTimestamp( $this->getFakeTimestamp() );
+		$options->setUserLang( $context->getLanguage() );
 
 		if ( isset( $opts['lastsavedrevision'] ) ) {
-			$content = new WikitextContent( $test['input'] );
+			$content = new WikitextContent( $test->wikitext ?? $test->input );
 			$title = Title::newFromRow( (object)[
 				'page_id' => 187,
 				'page_len' => $content->getSize(),
@@ -906,6 +896,55 @@ class ParserTestRunner {
 			$options->setMaxTemplateDepth( $opts['maxtemplatedepth'] );
 		}
 
+		return [ $title, $options, $revId ];
+	}
+
+	/**
+	 * Get a Parser object
+	 *
+	 * @return Parser
+	 */
+	public function getParser() {
+		$parserFactory = MediaWikiServices::getInstance()->getParserFactory();
+		$parser = $parserFactory->create(); // A fresh parser object.
+		ParserTestParserHook::setup( $parser );
+		return $parser;
+	}
+
+	/**
+	 * Run a given wikitext input through a freshly-constructed instance
+	 * of the legacy wiki parser, and compare the output against the expected
+	 * results.
+	 *
+	 * Prints status and explanatory messages to stdout.
+	 *
+	 * staticSetup() and setupWikiData() must be called before this function
+	 * is entered.
+	 *
+	 * @param array $test The test parameters:
+	 *  - test: The test name
+	 *  - desc: The subtest description
+	 *  - input: Wikitext to try rendering
+	 *  - options: Array of test options
+	 *  - config: Overrides for global variables, one per line
+	 *
+	 * @return ParserTestResult|false false if skipped
+	 */
+	public function runTest( $test ) {
+		wfDebug( __METHOD__ . ": running {$test['desc']}" );
+		$opts = $test['options'];
+		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
+			return false; // Skip test.
+		}
+		$teardownGuard = $this->perTestSetup( $test );
+		[ $title, $options, $revId ] = $this->setupParserOptions(
+			(object)$test,
+			function ( $context, $title, $revId, $wikitext ) {
+				return ParserOptions::newFromContext( $context );
+			}
+		);
+
 		$local = isset( $opts['local'] );
 		$parser = $this->getParser();
 
@@ -923,7 +962,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $test['input'], $title, $user, $options );
+			$out = $parser->preSaveTransform( $test['input'], $title, $options->getUser(), $options );
 			$output = $parser->getOutput();
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $test['input'], $options, $title );
@@ -991,6 +1030,141 @@ class ParserTestRunner {
 		}
 
 		$testResult = new ParserTestResult( $test, $expected, $out );
+		return $testResult;
+	}
+
+	/**
+	 * Run a given wikitext input through a freshly-constructed Parsoid parser,
+	 * running in 'integrated' mode, and compare the output against the
+	 * expected results.
+	 *
+	 * Prints status and explanatory messages to stdout.
+	 *
+	 * staticSetup() and setupWikiData() must be called before this function
+	 * is entered.
+	 *
+	 * @param array $test The test parameters:
+	 *  - test: The test name
+	 *  - desc: The subtest description
+	 *  - input: Wikitext to try rendering
+	 *  - options: Array of test options
+	 *  - config: Overrides for global variables, one per line
+	 *
+	 * @return ParserTestResult|false false if skipped
+	 */
+	public function runParsoidTest( ParsoidTest $test ) {
+		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid)" );
+		$opts = $test->options;
+		$parsoidOnly = isset( $test->sections['html/parsoid'] ) ||
+			isset( $test->sections['html/parsoid+integrated'] ) ||
+			( isset( $test->sections['html/parsoid+langconv'] ) ) ||
+			( isset( $opts['parsoid'] ) && !isset( $opts['parsoid']['normalizePhp'] ) );
+		$modes = $opts['parsoid']['modes'] ?? null;
+		if (
+			$modes &&
+			array_search( 'wt2html', $modes, true ) === false &&
+			array_search( 'wt2html+integrated', $modes, true ) === false
+		) {
+			return false; // Skip test, it doesn't have a wt2html mode
+		}
+		$normOpts = [
+			'parsoidOnly' => $parsoidOnly,
+			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
+			'scrubWikitext' => isset( $opts['parsoid']['scrubWikitext'] ),
+		];
+
+		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			return false; // Skip test.
+		}
+		// Skip tests targetting features Parsoid doesn't (yet) support
+		// @todo T270312
+		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
+			 isset( $opts['msg'] ) || isset( $opts['section'] ) ||
+			 isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
+			 isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
+			 isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
+			 isset( $opts['cat'] ) || isset( $opts['showflags'] ) ) {
+			return false; // skip test
+		}
+		$parsoidHtml = $test->sections['html/parsoid+integrated'] ??
+			$test->parsoidHtml;
+		// @todo T270311 eventually we should support the full set of
+		// test modes: wt2html, wt2wt, html2wt, html2html, and selser
+		if ( $test->wikitext === null || $parsoidHtml === null ) {
+			return false; // Legacy-only test or non-wt2html
+		}
+		if ( ( $test->knownFailures['wt2html'] ?? null ) !== null ) {
+			// @todo: Parsoid's built-in test runner checks the output
+			// even on the known failure list.
+			return false; // on the known failures list
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$siteConfig = $services->get( 'ParsoidSiteConfig' );
+		$dataAccess = $services->get( 'ParsoidDataAccess' );
+		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
+		$pageConfig = null;
+
+		$teardownGuard = $this->perTestSetup( $test );
+		[ $title, $options, $revId ] = $this->setupParserOptions(
+			$test,
+			function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
+				$pageConfig = $pageConfigFactory->create(
+					$title,
+					$context->getUser(),
+					// @todo T270310: Parsoid doesn't have a mechanism
+					// to override revid with a fake revision, like the
+					// legacy parser does, so {{REVISIONID}} will be
+					// 'wrong' in parser tests.  Probably need to
+					// override
+					// ParserOptions::getCurrentRevisionRecordCallback()
+					// (like we do for the 'lastsavedrevision' option
+					// below) in order to fix this.
+					null/*$revId*/,
+					// @todo T270310: Parsoid should really accept a
+					// RevisionRecord here, instead of raw wikitext.
+					$wikitext,
+					$context->getLanguage()->getCode()
+				);
+				return $pageConfig->getParserOptions();
+			} );
+
+		// Create Parsoid object.
+		// @todo T270307: unregister these after this test
+		$siteConfig->registerExtensionModule( ParsoidParserHook::class );
+		if ( ( $opts['wgrawhtml'] ?? null ) === '1' ) {
+			$siteConfig->registerExtensionModule( ParsoidRawHTML::class );
+		}
+		if ( isset( $opts['styletag'] ) ) {
+			$siteConfig->registerExtensionModule( ParsoidStyleTag::class );
+		}
+
+		$parsoid = new Parsoid( $siteConfig, $dataAccess );
+
+		$out = $parsoid->wikitext2html( $pageConfig, [
+			'body_only' => true,
+			'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
+			'scrubWikitext' => $normOpts['scrubWikitext'],
+		] );
+		$expected = $parsoidHtml;
+
+		$out = ParsoidTestUtils::normalizeOut( $out, $normOpts );
+		if ( $normOpts['parsoidOnly'] ) {
+			$expected = ParsoidTestUtils::normalizeOut( $expected, $normOpts );
+		} else {
+			$expected = ParsoidTestUtils::normalizeHTML( $expected );
+		}
+
+		$testResult = new ParserTestResult( [
+			'test' => $test->testName,
+			'desc' => ( $test->comment ?? '' ) . $test->testName,
+			'input' => $test->wikitext,
+			'result' => $test->legacyHtml,
+			'options' => $test->options,
+			'config' => $test->config,
+			'line' => $test->lineNumStart,
+			'file' => $test->filename,
+		], $expected, $out );
 		return $testResult;
 	}
 
