@@ -3943,7 +3943,8 @@ class WikiPage implements Page, IDBAccessObject {
 		// NOTE: once Content::getDeletionUpdates() is removed, we only need to content
 		// model here, not the content object!
 		// TODO: consolidate with similar logic in DerivedPageDataUpdater::getSecondaryDataUpdates()
-		/** @var Content $content */
+		/** @var ?Content $content */
+		$content = null; // in case $slotContent is zero-length
 		foreach ( $slotContent as $role => $content ) {
 			$handler = $content->getContentHandler();
 
