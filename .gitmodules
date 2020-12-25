@@ -1388,3 +1388,8 @@
 	url = https://github.com/Kenny2github/Report
 	branch = master
 	ignore = dirty
+[submodule "extensions/Validator"]
+	path = extensions/Validator
+	url = https://github.com/JeroenDeDauw/Validator
+	branch = master
+	ignore = dirty
