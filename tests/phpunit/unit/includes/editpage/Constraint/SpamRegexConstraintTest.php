@@ -95,7 +95,7 @@ class SpamRegexConstraintTest extends MediaWikiUnitTestCase {
 			$logger,
 			$spamChecker,
 			$summary,
-			'new',
+			'',
 			$sectionHeading,
 			$text,
 			'Request-IP',
