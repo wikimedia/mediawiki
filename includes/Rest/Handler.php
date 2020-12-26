@@ -398,7 +398,8 @@ abstract class Handler {
 	 * ResponseFactory::createFromReturnValue().
 	 *
 	 * To automatically construct an error response, execute() should throw a
-	 * RestException. Such exceptions will not be logged like a normal exception.
+	 * \MediaWiki\Rest\HttpException. Such exceptions will not be logged like
+	 * a normal exception.
 	 *
 	 * If execute() throws any other kind of exception, the exception will be
 	 * logged and a generic 500 error page will be shown.
