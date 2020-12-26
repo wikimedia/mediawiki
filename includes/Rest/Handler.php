@@ -18,6 +18,9 @@ abstract class Handler {
 	/**
 	 * (string) ParamValidator constant to specify the source of the parameter.
 	 * Value must be 'path', 'query', or 'post'.
+	 * 'post' refers to application/x-www-form-urlencoded or multipart/form-data encoded parameters
+	 * in the body of a POST request (in other words, parameters in PHP's $_POST). For other kinds
+	 * of POST parameters, such as JSON fields, use BodyValidator instead of ParamValidator.
 	 */
 	public const PARAM_SOURCE = 'rest-param-source';
 
@@ -226,6 +229,10 @@ abstract class Handler {
 	 *
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
 	 * the request is to contain the parameter.
+	 *
+	 * Can be used for validating parameters inside an application/x-www-form-urlencoded or
+	 * multipart/form-data POST body (i.e. parameters which would be present in PHP's $_POST
+	 * array). For validating other kinds of request bodies, override getBodyValidator().
 	 *
 	 * @stable to override
 	 *
