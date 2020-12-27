@@ -82,13 +82,17 @@ class SiteImporter {
 		$document = new DOMDocument();
 
 		$oldLibXmlErrors = libxml_use_internal_errors( true );
-		$oldDisable = libxml_disable_entity_loader( true );
+		if ( LIBXML_VERSION < 20900 ) {
+			$oldDisable = libxml_disable_entity_loader( true );
+		}
 		$ok = $document->loadXML( $xml, LIBXML_NONET );
 
 		if ( !$ok ) {
 			$errors = libxml_get_errors();
 			libxml_use_internal_errors( $oldLibXmlErrors );
-			libxml_disable_entity_loader( $oldDisable );
+			if ( LIBXML_VERSION < 20900 ) {
+				libxml_disable_entity_loader( $oldDisable );
+			}
 
 			foreach ( $errors as $error ) {
 				/** @var LibXMLError $error */
@@ -101,7 +105,9 @@ class SiteImporter {
 		}
 
 		libxml_use_internal_errors( $oldLibXmlErrors );
-		libxml_disable_entity_loader( $oldDisable );
+		if ( LIBXML_VERSION < 20900 ) {
+			libxml_disable_entity_loader( $oldDisable );
+		}
 		$this->importFromDOM( $document->documentElement );
 	}
 
