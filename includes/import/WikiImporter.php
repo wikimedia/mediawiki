@@ -61,13 +61,9 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportSource $source
 	 * @param Config $config
-	 * @throws Exception
+	 * @throws MWException
 	 */
 	public function __construct( ImportSource $source, Config $config ) {
-		if ( !class_exists( 'XMLReader' ) ) {
-			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
-		}
-
 		$this->reader = new XMLReader();
 		$this->config = $config;
 		$this->hookRunner = Hooks::runner();
