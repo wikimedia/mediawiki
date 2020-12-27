@@ -73,9 +73,11 @@ class WikiImporter {
 		}
 		$id = UploadSourceAdapter::registerSource( $source );
 
-		// Enable the entity loader, as it is needed for loading external URLs via
-		// XMLReader::open (T86036)
-		$oldDisable = libxml_disable_entity_loader( false );
+		if ( LIBXML_VERSION < 20900 ) {
+			// Enable the entity loader, as it is needed for loading external URLs via
+			// XMLReader::open (T86036)
+			$oldDisable = libxml_disable_entity_loader( false );
+		}
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$status = $this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
 		} else {
@@ -83,11 +85,15 @@ class WikiImporter {
 		}
 		if ( !$status ) {
 			$error = libxml_get_last_error();
-			libxml_disable_entity_loader( $oldDisable );
+			if ( LIBXML_VERSION < 20900 ) {
+				libxml_disable_entity_loader( $oldDisable );
+			}
 			throw new MWException( 'Encountered an internal error while initializing WikiImporter object: ' .
 				$error->message );
 		}
-		libxml_disable_entity_loader( $oldDisable );
+		if ( LIBXML_VERSION < 20900 ) {
+			libxml_disable_entity_loader( $oldDisable );
+		}
 
 		// Default callbacks
 		$this->setPageCallback( [ $this, 'beforeImportPage' ] );
@@ -567,16 +573,20 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function doImport() {
-		// Calls to reader->read need to be wrapped in calls to
-		// libxml_disable_entity_loader() to avoid local file
-		// inclusion attacks (T48932).
-		$oldDisable = libxml_disable_entity_loader( true );
+		if ( LIBXML_VERSION < 20900 ) {
+			// Calls to reader->read need to be wrapped in calls to
+			// libxml_disable_entity_loader() to avoid local file
+			// inclusion attacks (T48932).
+			$oldDisable = libxml_disable_entity_loader( true );
+		}
 		$rethrow = null;
 		try {
 			$this->reader->read();
 
 			if ( $this->reader->localName != 'mediawiki' ) {
-				libxml_disable_entity_loader( $oldDisable );
+				if ( LIBXML_VERSION < 20900 ) {
+					libxml_disable_entity_loader( $oldDisable );
+				}
 				throw new MWException( "Expected <mediawiki> tag, got " .
 					$this->reader->localName );
 			}
@@ -625,7 +635,9 @@ class WikiImporter {
 				}
 			}
 		} finally {
-			libxml_disable_entity_loader( $oldDisable );
+			if ( LIBXML_VERSION < 20900 ) {
+				libxml_disable_entity_loader( $oldDisable );
+			}
 			$this->reader->close();
 		}
 
