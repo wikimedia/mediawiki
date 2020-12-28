@@ -46,11 +46,11 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 	protected function tearDown() : void {
 		global $wgGroupPermissions;
 
-		parent::tearDown();
-
 		if ( $this->oldPatrollersGroup !== null ) {
 			$wgGroupPermissions['patrollers'] = $this->oldPatrollersGroup;
 		}
+
+		parent::tearDown();
 	}
 
 	abstract public function provideParseParameters();

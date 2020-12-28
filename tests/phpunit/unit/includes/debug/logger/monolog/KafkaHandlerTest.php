@@ -29,13 +29,12 @@ use Monolog\Logger;
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
 	protected function setUp() : void {
+		parent::setUp();
 		if ( !class_exists( \Monolog\Handler\AbstractProcessingHandler::class )
 			|| !class_exists( \Kafka\Produce::class )
 		) {
 			$this->markTestSkipped( 'Monolog and Kafka are required for the KafkaHandlerTest' );
 		}
-
-		parent::setUp();
 	}
 
 	public function topicNamingProvider() {

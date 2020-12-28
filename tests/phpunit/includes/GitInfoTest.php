@@ -37,6 +37,7 @@ class GitInfoTest extends MediaWikiIntegrationTestCase {
 		if ( self::$tempDir ) {
 			wfRecursiveRemoveDir( self::$tempDir );
 		}
+		parent::tearDownAfterClass();
 	}
 
 	protected function setUp() : void {

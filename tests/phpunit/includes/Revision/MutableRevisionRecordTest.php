@@ -26,8 +26,8 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	use RevisionRecordTests;
 
 	protected function setUp() : void {
-		Title::clearCaches();
 		parent::setUp();
+		Title::clearCaches();
 	}
 
 	/**

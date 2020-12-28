@@ -30,8 +30,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		ResourceLoader::clearCache();
+		parent::tearDown();
 	}
 
 	/**

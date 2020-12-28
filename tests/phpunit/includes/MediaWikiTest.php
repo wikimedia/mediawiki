@@ -21,10 +21,10 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		$_SERVER = $this->oldServer;
 		$_GET = $this->oldGet;
 		$_POST = $this->oldPost;
+		parent::tearDown();
 	}
 
 	public static function provideTryNormaliseRedirect() {

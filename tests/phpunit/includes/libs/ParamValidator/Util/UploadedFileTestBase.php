@@ -31,8 +31,6 @@ abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 	}
 
 	public static function tearDownAfterClass() : void {
-		parent::tearDownAfterClass();
-
 		// Clean up temporary directory.
 		if ( self::$tmpdir !== null ) {
 			$iter = new RecursiveIteratorIterator(
@@ -49,6 +47,7 @@ abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 			rmdir( self::$tmpdir );
 			self::$tmpdir = null;
 		}
+		parent::tearDownAfterClass();
 	}
 
 	protected static function assertTmpdir() {

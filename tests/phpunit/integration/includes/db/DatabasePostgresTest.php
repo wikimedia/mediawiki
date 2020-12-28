@@ -11,6 +11,13 @@ use Wikimedia\TestingAccessWrapper;
  */
 class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 
+	protected function setUp() : void {
+		parent::setUp();
+		if ( !$this->db instanceof DatabasePostgres ) {
+			$this->markTestSkipped( 'Not PostgreSQL' );
+		}
+	}
+
 	private function doTestInsertIgnore() {
 		$fname = __METHOD__;
 		$reset = new ScopedCallback( function () use ( $fname ) {
@@ -64,9 +71,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreOld() {
-		if ( !$this->db instanceof DatabasePostgres ) {
-			$this->markTestSkipped( 'Not PostgreSQL' );
-		}
 		if ( $this->db->getServerVersion() < 9.5 ) {
 			$this->doTestInsertIgnore();
 		} else {
@@ -88,9 +92,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreNew() {
-		if ( !$this->db instanceof DatabasePostgres ) {
-			$this->markTestSkipped( 'Not PostgreSQL' );
-		}
 		if ( $this->db->getServerVersion() < 9.5 ) {
 			$this->markTestSkipped( 'PostgreSQL version is ' . $this->db->getServerVersion() );
 		}
@@ -154,9 +155,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreOld() {
-		if ( !$this->db instanceof DatabasePostgres ) {
-			$this->markTestSkipped( 'Not PostgreSQL' );
-		}
 		if ( $this->db->getServerVersion() < 9.5 ) {
 			$this->doTestInsertSelectIgnore();
 		} else {
@@ -178,9 +176,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreNew() {
-		if ( !$this->db instanceof DatabasePostgres ) {
-			$this->markTestSkipped( 'Not PostgreSQL' );
-		}
 		if ( $this->db->getServerVersion() < 9.5 ) {
 			$this->markTestSkipped( 'PostgreSQL version is ' . $this->db->getServerVersion() );
 		}

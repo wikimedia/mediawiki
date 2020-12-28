@@ -11,15 +11,11 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
-
-		$this->tablesUsed[] = 'job';
-	}
-
 	protected function setUp() : void {
 		global $wgJobTypeConf;
 		parent::setUp();
+
+		$this->tablesUsed[] = 'job';
 
 		$services = MediaWikiServices::getInstance();
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
@@ -55,7 +51,6 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		foreach (
 			[
 				'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',
@@ -67,6 +62,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->$q = null;
 		}
+		parent::tearDown();
 	}
 
 	/**

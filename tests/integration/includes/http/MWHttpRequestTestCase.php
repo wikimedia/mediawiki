@@ -32,8 +32,8 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		Http::$httpEngine = $this->oldHttpEngine;
+		parent::tearDown();
 	}
 
 	public function testIsRedirect() {

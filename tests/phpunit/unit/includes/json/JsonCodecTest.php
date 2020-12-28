@@ -29,8 +29,8 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Null' => [ null, json_encode( null ) ];
 		yield 'Array' => [ [ 1, 2, 3 ], json_encode( [ 1, 2, 3 ] ) ];
 		yield 'Assoc array' => [ [ 'a' => 'b' ], json_encode( [ 'a' => 'b' ] ) ];
-		$object = new stdClass();
-		$object->c = 'd';
+
+		$object = (object)[ 'c' => 'd' ];
 		yield 'Object' => [ (array)$object, json_encode( $object ) ];
 	}
 
@@ -151,16 +151,16 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], true, '$.a.2' ];
 		yield 'JsonUnserializable instance' => [ new JsonUnserializableSuperClass( 'Test' ), true, null ];
 		yield 'JsonUnserializable instance, in array' =>
-		[ [ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
+			[ [ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
 		yield 'JsonUnserializable instance, in stdClass' =>
-		[ (object)[ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
+			[ (object)[ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
 		yield 'JsonSerializable instance' => [ $serializableClass, false, null ];
 		yield 'JsonSerializable instance, in array' => [ [ $serializableClass ], false, null ];
 		yield 'JsonSerializable instance, in stdClass' => [ (object)[ $serializableClass ], false, null ];
 		yield 'JsonSerializable instance, expect unserialize' => [ $serializableClass, true, '$' ];
 		yield 'JsonSerializable instance, in array, expect unserialize' => [ [ $serializableClass ], true, '$.0' ];
 		yield 'JsonSerializable instance, in stdClass, expect unserialize' =>
-		[ (object)[ $serializableClass ], true, '$.0' ];
+			[ (object)[ $serializableClass ], true, '$.0' ];
 	}
 
 	/**

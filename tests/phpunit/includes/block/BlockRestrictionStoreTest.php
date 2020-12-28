@@ -26,8 +26,8 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		$this->resetTables();
+		parent::tearDown();
 	}
 
 	/**
