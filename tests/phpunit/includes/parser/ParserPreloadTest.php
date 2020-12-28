@@ -49,12 +49,6 @@ class ParserPreloadTest extends MediaWikiIntegrationTestCase {
 		$this->title = Title::newFromText( 'Preload Test' );
 	}
 
-	protected function tearDown() : void {
-		unset( $this->testParser );
-		unset( $this->title );
-		parent::tearDown();
-	}
-
 	public function testPreloadSimpleText() {
 		$this->assertPreloaded( 'simple', 'simple' );
 	}
