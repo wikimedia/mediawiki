@@ -99,17 +99,21 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$e = null;
 		try {
-			$value = $conn->get( $key );
-			if ( $getToken && $value !== false ) {
-				$casToken = $value;
+			$blob = $conn->get( $key );
+			if ( $getToken && $blob !== false ) {
+				$casToken = $blob;
 			}
-			$result = $this->unserialize( $value );
+			$result = $this->unserialize( $blob );
+			$valueSize = strlen( $blob );
 		} catch ( RedisException $e ) {
 			$result = false;
+			$valueSize = false;
 			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'get', $key, $conn->getServer(), $e );
+
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key ], null, [ $valueSize ] );
 
 		return $result;
 	}
@@ -121,13 +125,14 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
+		$serialized = $this->getSerialized( $value, $key );
 
 		$e = null;
 		try {
 			if ( $ttl ) {
-				$result = $conn->setex( $key, $ttl, $this->getSerialized( $value, $key ) );
+				$result = $conn->setex( $key, $ttl, $serialized );
 			} else {
-				$result = $conn->set( $key, $this->getSerialized( $value, $key ) );
+				$result = $conn->set( $key, $serialized );
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -135,6 +140,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$this->logRequest( 'set', $key, $conn->getServer(), $e );
+
+		$this->updateOpStats( self::METRIC_OP_SET, [ $key ], [ strlen( $serialized ) ] );
 
 		return $result;
 	}
@@ -156,6 +163,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'delete', $key, $conn->getServer(), $e );
 
+		$this->updateOpStats( self::METRIC_OP_DELETE, [ $key ] );
+
 		return $result;
 	}
 
@@ -172,7 +181,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 
-		$result = [];
+		$blobsFound = [];
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
@@ -189,9 +198,9 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 					continue;
 				}
 
-				foreach ( $batchResult as $i => $value ) {
-					if ( $value !== false ) {
-						$result[$batchKeys[$i]] = $this->unserialize( $value );
+				foreach ( $batchResult as $i => $blob ) {
+					if ( $blob !== false ) {
+						$blobsFound[$batchKeys[$i]] = $blob;
 					}
 				}
 			} catch ( RedisException $e ) {
@@ -200,6 +209,24 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 			$this->logRequest( 'get', implode( ',', $batchKeys ), $server, $e );
 		}
+
+		// Preserve the order of $keys
+		$result = [];
+		$valueSizes = [];
+		foreach ( $keys as $key ) {
+			if ( array_key_exists( $key, $blobsFound ) ) {
+				$blob = $blobsFound[$key];
+				$value = $this->unserialize( $blob );
+				if ( $value !== false ) {
+					$result[$key] = $value;
+				}
+				$valueSizes[] = strlen( $blob );
+			} else {
+				$valueSizes[] = false;
+			}
+		}
+
+		$this->updateOpStats( self::METRIC_OP_GET, $keys, [], $valueSizes );
 
 		return $result;
 	}
@@ -221,18 +248,21 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$op = $ttl ? 'setex' : 'set';
 
 		$result = true;
+		$valueSizes = [];
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
 			$e = null;
+			$serialized = $this->getSerialized( $data[$key], $key );
+			$valueSizes[] = strlen( $serialized );
 			try {
 				// Avoid mset() to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
 					if ( $ttl ) {
-						$conn->setex( $key, $ttl, $this->getSerialized( $data[$key], $key ) );
+						$conn->setex( $key, $ttl, $serialized );
 					} else {
-						$conn->set( $key, $this->getSerialized( $data[$key], $key ) );
+						$conn->set( $key, $serialized );
 					}
 				}
 				$batchResult = $conn->exec();
@@ -248,6 +278,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
+
+		$this->updateOpStats( self::METRIC_OP_SET, array_keys( $data ), $valueSizes );
 
 		return $result;
 	}
@@ -291,10 +323,12 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( 'delete', implode( ',', $batchKeys ), $server, $e );
 		}
 
+		$this->updateOpStats( self::METRIC_OP_DELETE, $keys );
+
 		return $result;
 	}
 
-	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
 		$batches = [];
@@ -342,6 +376,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
+		$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, $keys );
+
 		return $result;
 	}
 
@@ -352,10 +388,11 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$ttl = $this->getExpirationAsTTL( $expiry );
+		$serialized = $this->getSerialized( $value, $key );
 		try {
 			$result = $conn->set(
 				$key,
-				$this->getSerialized( $value, $key ),
+				$serialized,
 				$ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ]
 			);
 		} catch ( RedisException $e ) {
@@ -364,6 +401,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$this->logRequest( 'add', $key, $conn->getServer(), $result );
+
+		$this->updateOpStats( self::METRIC_OP_ADD, [ $key ], [ strlen( $serialized ) ] );
 
 		return $result;
 	}
@@ -387,6 +426,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'incr', $key, $conn->getServer(), $result );
 
+		$this->updateOpStats( self::METRIC_OP_INCR, [ $key ] );
+
 		return $result;
 	}
 
@@ -408,6 +449,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$this->logRequest( 'decr', $key, $conn->getServer(), $result );
+
+		$this->updateOpStats( self::METRIC_OP_DECR, [ $key ] );
 
 		return $result;
 	}
@@ -434,6 +477,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
+
+		$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, [ $key ] );
 
 		return $result;
 	}

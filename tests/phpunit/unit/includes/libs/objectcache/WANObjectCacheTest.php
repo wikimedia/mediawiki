@@ -2467,6 +2467,28 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			}
 		}
 	}
+
+	/**
+	 * @param string $key
+	 * @param string $expectedCollection
+	 * @covers WANObjectCache::getCollectionFromKey()
+	 * @dataProvider provideCollectionKeys
+	 */
+	public function testGetCollectionFromKey( $key, $expectedCollection ) {
+		$this->assertSame( $expectedCollection, WANObjectCache::getCollectionFromKey( $key ) );
+	}
+
+	public static function provideCollectionKeys() {
+		return [
+			[ 'WANCache:collection:a:b|#|v', 'collection' ],
+			[ 'WANCache:{collection:a:b}:v', 'collection' ],
+			[ 'WANCache:v:collection:a:b', 'collection' ],
+			[ 'WANCache:collection:a:b|#|t', 'internal' ],
+			[ 'WANCache:{collection:a:b}:t', 'internal' ],
+			[ 'WANCache:t:collection:a:b', 'internal' ],
+			[ 'WANCache:improper-key', 'internal' ],
+		];
+	}
 }
 
 class McrouterHashBagOStuff extends HashBagOStuff {

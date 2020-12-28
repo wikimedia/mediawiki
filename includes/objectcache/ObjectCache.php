@@ -149,6 +149,10 @@ class ObjectCache {
 			'reportDupes' => true,
 		];
 
+		if ( !isset( $params['stats'] ) ) {
+			$params['stats'] = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		}
+
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
 		}
