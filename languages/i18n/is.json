@@ -1287,7 +1287,6 @@
 	"recentchanges-label-plusminus": "Stærð síðunnar breyttist um svona mörg bæti",
 	"recentchanges-legend-heading": "<strong>Fyrirsögn:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sjá einng [[Special:NewPages|lista yfir nýjar síður]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Sýna",
 	"rcfilters-tag-remove": "Fjarlægja '$1'",
 	"rcfilters-legend-heading": "<strong>Listi yfir styttingar</strong>",

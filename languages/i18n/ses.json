@@ -1130,7 +1130,6 @@
 	"recentchanges-label-plusminus": "Moɲoo azzaatoo barmay nda cebsi hinnaa woo",
 	"recentchanges-legend-heading": "<strong>Maana:</strong>",
 	"recentchanges-legend-newpage": "{{int:barmay kokorantey-šilbay-moo taaga}} (guna da [[Special:NewPages|moo taagey maašeede]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "Ne ganda {{PLURAL:$5|ti barmay|barmawey}} za <strong>$3, $4</strong> (hala <strong>$1</strong> kaŋ ga cebandi).",
 	"rclistfrom": "Cebe barmay taagey kaŋ ga šintin $2, $3 ga",
 	"rcshowhideminor": "Barmay kaccu $1",

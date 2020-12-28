@@ -1234,7 +1234,7 @@
 	"userrights-groupsmember-auto": "Anggota implisit dari:",
 	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "{{GENDER:$1|Pengguna ini}} adalah pengguna sistem",
-	"userrights-groups-help": "Anda dapat mengubah kelompok pengguna ini:\n* Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan.\n* Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut.\n* Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.\n* Tanda # menandai bahwa Anda hanya dapat mengembalikan waktu kedaluwarsa keanggotaan kelompok ini, tetapi Anda tidak dapat memajukan waktu kedaluwarsanya.",
+	"userrights-groups-help": "Anda dapat mengubah kelompok {{GENDER:$1|pengguna ini}}:\n* Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan.\n* Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut.\n* Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.\n* Tanda # menandai bahwa Anda hanya dapat mengembalikan waktu kedaluwarsa keanggotaan kelompok ini, tetapi Anda tidak dapat memajukan waktu kedaluwarsanya.",
 	"userrights-reason": "Alasan:",
 	"userrights-no-interwiki": "Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.",
 	"userrights-nodatabase": "Basis data $1 tidak ada atau bukan lokal.",
@@ -2728,7 +2728,7 @@
 	"emaillink": "kirim surel",
 	"autoblocker": "Diblokir secara otomatis karena alamat IP Anda digunakan oleh \"[[User:$1|$1]]\".\nAlasan yang diberikan untuk pemblokiran $1 adalah: \"$2\"",
 	"blocklogpage": "Log pemblokiran",
-	"blocklog-showlog": "Pengguna ini telah diblokir sebelumnya.\nLog pemblokiran disediakan di bawah untuk referensi:",
+	"blocklog-showlog": "{{GENDER:$1|Pengguna}} ini telah diblokir sebelumnya.\nLog pemblokiran disediakan di bawah untuk referensi:",
 	"blocklog-showsuppresslog": "Pengguna ini telah diblokir dan disembunyikan sebelumnya. Log supresi disediakan di bawah untuk referensi:",
 	"blocklogentry": "memblokir [[$1]] dengan waktu kedaluwarsa $2 $3",
 	"reblock-logentry": "mengubah pemblokiran [[$1]] dengan waktu kedaluwarsa $2 $3",
@@ -2904,7 +2904,7 @@
 	"import-interwiki-text": "Pilih suatu wiki dan judul halaman yang akan di impor.\nTanggal revisi dan nama penyunting akan dipertahankan.\nSemua aktivitas impor dari wiki lainnya akan dicatat di [[Special:Log/import|log impor]].",
 	"import-interwiki-sourcewiki": "Wiki sumber:",
 	"import-interwiki-sourcepage": "Sumber halaman:",
-	"import-interwiki-history": "Salin semua versi terdahulu dari halaman ini",
+	"import-interwiki-history": "Salin semua revisi dari halaman ini",
 	"import-interwiki-templates": "Sertakan semua templat",
 	"import-interwiki-submit": "Impor",
 	"import-mapping-default": "Impor ke lokasi standar",
@@ -4094,5 +4094,6 @@
 	"paramvalidator-help-type-title": "Tipe: judul halaman",
 	"paramvalidator-help-type-title-must-exist": "Hanya menerima halaman yang ada.",
 	"paramvalidator-help-type-title-no-must-exist": "Menerima halaman yang tidak ada.",
-	"nonmain-slot-differences-therefore-readonly": "Anda tidak bisa menyunting teks wiki di revisi halaman ini, karena telah ada perubahan data non-teks wiki di halaman ini setelah revisi ini. [$1 Tekan di sini untuk mengembalikan revisi ini.]"
+	"nonmain-slot-differences-therefore-readonly": "Anda tidak bisa menyunting teks wiki di revisi halaman ini, karena telah ada perubahan data non-teks wiki di halaman ini setelah revisi ini. [$1 Tekan di sini untuk mengembalikan revisi ini.]",
+	"sitenotice-close-label": "tutup"
 }

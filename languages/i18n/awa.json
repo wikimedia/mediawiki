@@ -1395,7 +1395,6 @@
 	"recentchanges-label-plusminus": "पन्ना कय आकार इ बाइट संख्या से बदला",
 	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नवा पन्नन् कय सूची]] कय भी देखा जाय)",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "देखावा",
 	"rcfilters-tag-remove": "$1 का हटावा",
 	"rcfilters-legend-heading": "<strong>संकेताक्षर कय सूची:</strong>",

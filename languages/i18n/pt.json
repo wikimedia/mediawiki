@@ -1508,7 +1508,6 @@
 	"recentchanges-label-plusminus": "Alteração no tamanho da página, em bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|lista de páginas novas]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Página vigiada temporariamente",
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-tag-remove": "Remover '$1'",
@@ -4033,5 +4032,6 @@
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Só aceita páginas que existem.",
 	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem.",
-	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]"
+	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]",
+	"sitenotice-close-label": "fechar"
 }

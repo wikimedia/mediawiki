@@ -1463,7 +1463,6 @@
 	"recentchanges-label-plusminus": "Μεταβολή του μεγέθους της σελίδας σε bytes",
 	"recentchanges-legend-heading": "<strong>Υπόμνημα:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (δείτε [[Special:NewPages|κατάλογος νέων σελίδων]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Προσωρινά παρακολουθούμενη σελίδα",
 	"recentchanges-submit": "Προβολή",
 	"rcfilters-tag-remove": "Διαγράψετε το '$1'",

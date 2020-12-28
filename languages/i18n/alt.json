@@ -1414,7 +1414,6 @@
 	"recentchanges-label-plusminus": "Солынган кеми байттарда",
 	"recentchanges-legend-heading": "<strong>Легендазы:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (анайда ок кӧрӧр [[Special:NewPages|јаҥы бӱктердиҥ тизимин]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Бир канча ӧйгӧ ширтелген бӱк",
 	"recentchanges-submit": "Кӧргӱзер",
 	"rcfilters-tag-remove": "'$1' кырар",

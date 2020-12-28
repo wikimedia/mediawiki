@@ -1026,7 +1026,6 @@
 	"recentchanges-label-plusminus": "صفحے دا ناپ اینے بائٹاں نال بدلیا گیا",
 	"recentchanges-legend-heading": "<strong>وات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ایہ وی دیکھو [[Special:NewPages|نویں صفحےآں دی لسٹ]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "عارضی طور اُتے دیکھیا گیا صفحہ",
 	"recentchanges-submit": "وکھاؤ",
 	"rcfilters-tag-remove": "ہٹاؤ '$1'",

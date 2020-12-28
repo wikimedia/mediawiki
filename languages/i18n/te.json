@@ -1368,7 +1368,6 @@
 	"recentchanges-label-plusminus": "ఈ పేజి పరిమాణంలో  జరిగిన మార్పుల  బైట్ల సంఖ్య",
 	"recentchanges-legend-heading": "<strong>సూచిక :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "తాత్కాలిక వీక్షణ పేజీ",
 	"recentchanges-submit": "చూపించు",
 	"rcfilters-tag-remove": "'$1'ను తీసివెయ్యి",

@@ -1161,7 +1161,6 @@
 	"recentchanges-label-plusminus": "Байт бойынша беттің өзгеріс мөлшері",
 	"recentchanges-legend-heading": "<strong>Шартты белгілер:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (қ: [[Special:NewPages|бөлек бетте]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Көрсету",
 	"rcnotefrom": "Төменде <strong>$3, $4</strong> кезінен бергі (<strong>$1</strong> өңдемеге дейін) {{PLURAL:$5|өзгерістер|өзгерістер}} көрсетіледі.",
 	"rclistfrom": "$2, $3 кезінен бергі жаңа өзгерістерді көрсет.",
