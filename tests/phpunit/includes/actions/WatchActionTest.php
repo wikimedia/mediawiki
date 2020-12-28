@@ -45,11 +45,11 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws MWException
 	 */
 	protected function tearDown() : void {
-		parent::tearDown();
-
 		$this->hideDeprecated( 'Hooks::clear' );
 		Hooks::clear( 'WatchArticle' );
 		Hooks::clear( 'UnwatchArticle' );
+
+		parent::tearDown();
 	}
 
 	/**

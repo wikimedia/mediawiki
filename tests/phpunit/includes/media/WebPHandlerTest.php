@@ -11,8 +11,8 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		unlink( $this->tempFileName );
+		parent::tearDown();
 	}
 
 	/**

@@ -29,10 +29,10 @@ use Wikimedia\AtEase\AtEase;
 class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
 	protected function setUp() : void {
+		parent::setUp();
 		if ( !class_exists( \AvroStringIO::class ) ) {
 			$this->markTestSkipped( 'Avro is required for the AvroFormatterTest' );
 		}
-		parent::setUp();
 	}
 
 	public function testSchemaNotAvailable() {

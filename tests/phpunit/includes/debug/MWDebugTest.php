@@ -15,9 +15,9 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function tearDownAfterClass() : void {
-		parent::tearDownAfterClass();
 		MWDebug::deinit();
 		Wikimedia\restoreWarnings();
+		parent::tearDownAfterClass();
 	}
 
 	/**

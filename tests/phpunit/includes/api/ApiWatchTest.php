@@ -25,9 +25,8 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	protected function tearDown(): void {
-		parent::tearDown();
-
 		ConvertibleTimestamp::setFakeTime( false );
+		parent::tearDown();
 	}
 
 	protected function getTokens() {

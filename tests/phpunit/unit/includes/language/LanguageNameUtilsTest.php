@@ -5,6 +5,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
 
 class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
+	use LanguageNameUtilsTestTrait;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -32,8 +34,6 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 			$this->hookContainer
 		);
 	}
-
-	use LanguageNameUtilsTestTrait;
 
 	protected function setLanguageTemporaryHook( string $hookName, $handler ): void {
 		$this->hookContainer->register( $hookName, $handler );

@@ -190,7 +190,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( ILoadBalancer::class )
 		);
 
-		static::assertFalse( $batch->doGenderQuery() );
+		$this->assertFalse( $batch->doGenderQuery() );
 	}
 
 	public function testDoGenderQueryWithLanguageWithoutGenderDistinction() {
@@ -209,7 +209,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			new TitleValue( NS_MAIN, 'Foo' )
 		);
 
-		static::assertFalse( $batch->doGenderQuery() );
+		$this->assertFalse( $batch->doGenderQuery() );
 	}
 
 	public function testDoGenderQueryWithLanguageWithGenderDistinction() {
@@ -231,6 +231,6 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			new TitleValue( NS_MAIN, 'Foo' )
 		);
 
-		static::assertTrue( $batch->doGenderQuery() );
+		$this->assertTrue( $batch->doGenderQuery() );
 	}
 }
