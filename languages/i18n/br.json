@@ -1325,7 +1325,6 @@
 	"recentchanges-label-plusminus": "Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù",
 	"recentchanges-legend-heading": "<strong>Alc'hwez :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Diskouez",
 	"rcfilters-tag-remove": "Dilemel '$1'",
 	"rcfilters-legend-heading": "<strong>Roll ar berradurioù&nbsp;:</strong>",

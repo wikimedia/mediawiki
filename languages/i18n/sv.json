@@ -4025,5 +4025,6 @@
 	"paramvalidator-help-type-title": "Typ: Sidans titel",
 	"paramvalidator-help-type-title-must-exist": "Accepterar endast sidor som finns.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepterar sidor som inte finns.",
-	"nonmain-slot-differences-therefore-readonly": "Du kan inte redigera wikitexten i denna sidversion, eftersom ändringar har gjorts i sidans data efter denna version som inte är wikitextbaserade. [$1 Klicka här för att återställa denna version.]"
+	"nonmain-slot-differences-therefore-readonly": "Du kan inte redigera wikitexten i denna sidversion, eftersom ändringar har gjorts i sidans data efter denna version som inte är wikitextbaserade. [$1 Klicka här för att återställa denna version.]",
+	"sitenotice-close-label": "stäng"
 }

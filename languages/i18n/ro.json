@@ -1522,7 +1522,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nou veniți",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Editorii înregistrați care au mai puțin de 10 editări sau 4 zile de activitate.",
 	"rcfilters-filter-user-experience-level-learner-label": "Cursanți",
-	"rcfilters-filter-user-experience-level-learner-description": "Editorii înregistrați a căror experiență este între \"Noi veniți\" și \"Utilizatori experimentați\".",
+	"rcfilters-filter-user-experience-level-learner-description": "Editorii înregistrați a căror experiență este între „Noi veniți” și „Utilizatori experimentați”.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Utilizatori experimentați",
 	"rcfilters-filter-user-experience-level-experienced-description": "Editorii înregistrați cu mai mult de 500 de editări și 30 de zile de activitate.",
 	"rcfilters-filtergroup-automated": "Contribuții automate",

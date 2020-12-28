@@ -1180,7 +1180,6 @@
 	"recentchanges-label-plusminus": "Seo meud atharrachadh na duilleige ann am byte",
 	"recentchanges-legend-heading": "<strong>Treòir:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (faic [[Special:NewPages|liosta nan duilleagan ùra]] cuideachd)",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcfilters-legend-heading": "<strong>Liosta nan giorrachaidhean:</strong>",
 	"rcfilters-activefilters": "Criathragan gnìomhach",
 	"rcfilters-activefilters-hide": "Falaich",

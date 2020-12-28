@@ -1318,7 +1318,6 @@
 	"recentchanges-label-plusminus": "ცვლილებების ზომა ბაიტებში",
 	"recentchanges-legend-heading": "<strong>ლეგენდა:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (იხ. აგრეთვე [[Special:NewPages|ახალი გვერდების სია]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "დროებითი კონტროლის ქვეშ მყოფი გვერდები",
 	"recentchanges-submit": "ჩვენება",
 	"rcfilters-tag-remove": "'$1'-ის წაშლა",

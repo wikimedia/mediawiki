@@ -1516,7 +1516,6 @@
 	"recentchanges-label-plusminus": "Deze paginagrootte is met dit aantal bytes gewijzigd",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(zie ook de [[Special:NewPages|lijst met nieuwe pagina's]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Tijdelijk gevolgde pagina",
 	"recentchanges-submit": "Weergeven",
 	"rcfilters-tag-remove": "Verwijder '$1'",
@@ -4051,5 +4050,6 @@
 	"paramvalidator-help-type-title": "Soort: paginatitel",
 	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's.",
-	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]"
+	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]",
+	"sitenotice-close-label": "sluiten"
 }

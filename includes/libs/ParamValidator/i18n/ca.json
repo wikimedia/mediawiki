@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
+			"Mguix",
 			"Toniher"
 		]
 	},
@@ -18,7 +19,7 @@
 	"paramvalidator-help-type-boolean": "Tipus: {{PLURAL:$1|1=booleà|2=llista de booleans}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Cal que sigui buit|Pot ser buit o $1}}",
 	"paramvalidator-help-type-limit": "Type: enter o «max»",
-	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=El valor no ha de ser major|2=Els valors no han de ser majors}} que $3.",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=El valor no ha|2=Els valors no han}} de ser més gran que $3.",
 	"paramvalidator-help-type-presenceboolean": "Tipus: booleà",
 	"paramvalidator-help-type-string-maxbytes": "No pot tenir més {{PLURAL:$1|d'$1 byte|de $1 bytes}}.",
 	"paramvalidator-help-type-string-maxchars": "No pot tenir més {{PLURAL:$1|d'$1 caràcter|de $1 caràcters}}.",

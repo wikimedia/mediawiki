@@ -1326,7 +1326,6 @@
 	"recentchanges-label-plusminus": "Šiuo baitų skaičiumi pakeista puslapio apimtis",
 	"recentchanges-legend-heading": "<strong>Paaiškinimai:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taip pat žiūrėkite [[Special:NewPages|naujausių straipsnių sąrašą]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Rodyti",
 	"rcfilters-tag-remove": "Pašalinti '$1'",
 	"rcfilters-legend-heading": "<strong>Santrumpų sąrašas:</strong>",

@@ -1538,7 +1538,6 @@
 	"recentchanges-label-plusminus": "Sayfa boyutundaki değişikliğin bayt bazında değeri",
 	"recentchanges-legend-heading": "<strong>Gösterge:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ayrıca [[Special:NewPages|yeni sayfalar listesine]] bakınız)",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Geçici olarak izlenen sayfa",
 	"recentchanges-submit": "Göster",
 	"rcfilters-tag-remove": "'$1' etiketi kaldır",
