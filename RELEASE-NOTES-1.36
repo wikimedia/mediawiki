@@ -358,6 +358,8 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* (T245963) User::getGrantName() is now hard deprecated and will be removed in
+  a subsequent release. Use MWGrants::grantName() instead.
 * wfIncrStats() is now deprecated. Use MediaWikiServices::getInstance()
   ->getStatsdDataFactory()->updateCount() instead.
 * WikiPage::doEditContent() is now deprecated. Use
