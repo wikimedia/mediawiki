@@ -2037,7 +2037,7 @@
 	"delete-legend": "Wušmórnyć",
 	"historywarning": "<strong>Kedźbu:</strong> Strona, kotruž chceš zhašeć, ma stawizny z přibližnje $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi}}:",
 	"historyaction-submit": "Wersije pokazać",
-	"confirmdeletetext": "Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.\nProšu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.",
+	"confirmdeletetext": "Chceš stronu ze wšěmi stawiznami wušmórnyć. Prošu potwjerdź, zo maš tutón wotpohlad, zo rozumiš sćěhi a zo činiš to wotpowědnje [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]].",
 	"actioncomplete": "Dokónčene",
 	"actionfailed": "Akcija je so njeporadźiła",
 	"deletedtext": "Strona „$1” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.",
