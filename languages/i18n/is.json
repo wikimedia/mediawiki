@@ -767,7 +767,7 @@
 	"last": "þessi",
 	"page_first": "fyrsta",
 	"page_last": "síðasta",
-	"histlegend": "Mismunarval: merktu við einvalshnappanna fyrir þær útgáfur sem á að bera saman og styddu svo á færsluhnappinn.<br />\nSkýringartexti: (nú) = skoðanamunur á núverandi útgáfu,\n(síðast) = skoðanamunur á undanfarandi útgáfu, M = minniháttar breyting.",
+	"histlegend": "Ýttu á dagsetningu til að sjá síðuna eins og hún leit út þá. Hægt er að bera saman útgáfur með því að ýta á hringlaga hnappana við hliðina á dagsetningunni og ýta svo á „{{int:Compareselectedversions}}“<br />\nSkýring: <strong>({{int:cur}})</strong> = bera saman þessa útgáfu við núverandi útgáfu, <strong>({{int:last}})</strong> = sjá hvaða breytingu útgáfan gerði, <strong>{{int:minoreditletter}}</strong> = minniháttar breyting",
 	"history-fieldset-title": "Sía breytingar",
 	"history-show-deleted": "Eingöngu eyddar breytingar",
 	"histfirst": "elstu",
