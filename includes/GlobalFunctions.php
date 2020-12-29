@@ -1118,6 +1118,8 @@ function wfLogProfilingData() {
  * @param string $key
  * @param int $count
  * @return void
+ *
+ * @deprecated since 1.36, use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
  */
 function wfIncrStats( $key, $count = 1 ) {
 	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();

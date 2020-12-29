@@ -338,6 +338,8 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* wfIncrStats() is now deprecated. Use MediaWikiServices::getInstance()
+  ->getStatsdDataFactory()->updateCount() instead.
 * WikiPage::doEditContent() is now deprecated. Use
   WikiPage::doUserEditContent() instead. Note that doEditContent() was also
   deprecated in 1.32 for unrelated reasons and doUserEditContent() is
