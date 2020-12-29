@@ -1652,7 +1652,7 @@ class Linker {
 		} else {
 			$stxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
 		}
-		return "<span class=\"history-size mw-diff-bytes\">$stxt</span>";
+		return "<span class=\"history-size mw-diff-bytes\" data-mw-bytes=\"$size\">$stxt</span>";
 	}
 
 	/**
