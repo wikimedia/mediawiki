@@ -2739,27 +2739,6 @@ function wfUnpack( $format, $data, $length = false ) {
 }
 
 /**
- * Determine if an image exists on the 'bad image list'.
- *
- * The format of MediaWiki:Bad_image_list is as follows:
- *    * Only list items (lines starting with "*") are considered
- *    * The first link on a line must be a link to a bad image
- *    * Any subsequent links on the same line are considered to be exceptions,
- *      i.e. articles where the image may occur inline.
- *
- * @deprecated since 1.34, use the BadFileLookup service directly instead
- *
- * @param string $name The image name to check
- * @param Title|bool $contextTitle The page on which the image occurs, if known
- * @return bool
- */
-function wfIsBadImage( $name, $contextTitle = false ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	$services = MediaWikiServices::getInstance();
-	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
-}
-
-/**
  * Determine whether the client at a given source IP is likely to be able to
  * access the wiki via HTTPS.
  *
