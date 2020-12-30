@@ -1228,7 +1228,8 @@ class SpecialUndelete extends SpecialPage {
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {
-			return '<span class="history-deleted">' . $time . '</span>';
+			// TODO The condition cannot be true when the function is called
+			return '<span class="history-deleted">' . htmlspecialchars( $time ) . '</span>';
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(

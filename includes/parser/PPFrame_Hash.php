@@ -126,6 +126,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
+		// @phan-suppress-next-line SecurityCheck-XSS taint track for keys in named args, false positive
 		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
 	}
 

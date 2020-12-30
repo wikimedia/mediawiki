@@ -801,6 +801,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param array $options Current options
 	 * @param bool $active Whether to show the link in bold
 	 * @return string
+	 * Annotations needed to tell taint about HtmlArmor
+	 * @param-taint $title escapes_html
 	 */
 	private function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $this->convertParamsForLink( $override + $options );
@@ -840,7 +842,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$config = $this->getConfig();
 		if ( $options['from'] ) {
-			$resetLink = $this->makeOptionsLink( $this->msg( 'rclistfromreset' ),
+			$resetLink = $this->makeOptionsLink( $this->msg( 'rclistfromreset' )->text(),
 				[ 'from' => '' ], $nondefaults );
 
 			$noteFromMsg = $this->msg( 'rcnotefrom' )
@@ -941,7 +943,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'span',
 			[ 'class' => 'rclistfrom' ],
 			$this->makeOptionsLink(
-				$this->msg( 'rclistfrom' )->plaintextParams( $now, $timenow, $datenow )->parse(),
+				$this->msg( 'rclistfrom' )->plaintextParams( $now, $timenow, $datenow )->text(),
 				[ 'from' => $timestamp, 'fromFormatted' => $now ],
 				$nondefaults
 			)

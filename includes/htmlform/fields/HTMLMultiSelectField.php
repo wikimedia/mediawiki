@@ -200,6 +200,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 			if ( $this->mOptionsLabelsNotFromMessage ) {
 				foreach ( $options as &$option ) {
+					// @phan-suppress-next-line SecurityCheck-XSS Labels are raw when not from message
 					$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
 				}
 			}
@@ -218,6 +219,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			if ( $sectionLabel ) {
 				$out[] = new OOUI\FieldsetLayout( [
 					'items' => [ $widget ],
+					// @phan-suppress-next-line SecurityCheck-XSS Key is html, taint cannot track that
 					'label' => new OOUI\HtmlSnippet( $sectionLabel ),
 				] );
 			} else {

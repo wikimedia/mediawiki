@@ -718,6 +718,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$sql = "SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM $cur WHERE ";
 			$dupeTitles = [];
 			foreach ( $duplicate as $ns => $titles ) {
+				$ns = (int)$ns;
 				$dupeTitles[] = "( cur_namespace = {$ns} AND cur_title in ("
 					. $this->db->makeList( $titles ) . ") ) \n";
 			}

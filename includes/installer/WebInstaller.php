@@ -669,7 +669,8 @@ class WebInstaller extends Installer {
 	 *
 	 * @param string $msg
 	 * @param mixed ...$args
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getHelpBox( $msg, ...$args ) {
 		$args = array_map( 'htmlspecialchars', $args );
@@ -726,9 +727,10 @@ class WebInstaller extends Installer {
 	 *
 	 * @param string $msg
 	 * @param string $forId
-	 * @param string $contents
+	 * @param string $contents HTML
 	 * @param string $helpData
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function label( $msg, $forId, $contents, $helpData = "" ) {
 		if ( strval( $msg ) == '' ) {
@@ -769,7 +771,8 @@ class WebInstaller extends Installer {
 	 *      value:       The current value of the variable (optional)
 	 *      help:        The html for the help text (optional)
 	 *
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getTextBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -865,7 +868,8 @@ class WebInstaller extends Installer {
 	 *      value:       The current value of the variable (optional)
 	 *      help:        The html for the help text (optional)
 	 *
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getPasswordBox( $params ) {
 		if ( !isset( $params['value'] ) ) {
@@ -895,7 +899,8 @@ class WebInstaller extends Installer {
 	 *      value:       The current value of the variable (optional)
 	 *      help:        The html for the help text (optional)
 	 *
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getCheckBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -952,7 +957,8 @@ class WebInstaller extends Installer {
 	 *      value:           The current value of the variable (optional)
 	 *      help:            The html for the help text (optional)
 	 *
-	 * @return string
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getRadioSet( $params ) {
 		$items = $this->getRadioElements( $params );
@@ -982,7 +988,8 @@ class WebInstaller extends Installer {
 	 * @see getRadioSet
 	 *
 	 * @param mixed[] $params
-	 * @return array
+	 * @return string[] HTML
+	 * @return-taint escaped
 	 */
 	public function getRadioElements( $params ) {
 		if ( !isset( $params['controlName'] ) ) {

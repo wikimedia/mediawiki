@@ -151,8 +151,7 @@ class XmlSelect {
 			}
 			// Extract the two parts.
 			list( $label, $value ) = explode( ':', $option );
-			// Escape special chars just to be safe, even though there should never be any.
-			$options[ trim( $label ) ] = htmlspecialchars( trim( $value ) );
+			$options[ trim( $label ) ] = trim( $value );
 		}
 		return $options;
 	}
