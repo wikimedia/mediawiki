@@ -109,6 +109,10 @@ trait ApiWatchlistTrait {
 				if ( $userWatching ) {
 					return true;
 				}
+				// If the user is a bot, act as 'nochange' to avoid big watchlists on single users
+				if ( $user->isBot() ) {
+					return $userWatching;
+				}
 				// If no user option was passed, use watchdefault and watchcreations
 				if ( $userOption === null ) {
 					return $user->getBoolOption( 'watchdefault' ) ||
