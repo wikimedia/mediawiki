@@ -1393,3 +1393,8 @@
 	url = https://github.com/JeroenDeDauw/Validator
 	branch = master
 	ignore = dirty
+[submodule "extensions/EditNotify"]
+	path = extensions/EditNotify
+	url = https://github.com/wikimedia/mediawiki-extensions-EditNotify
+	branch = REL1_35
+	ignore = dirty
