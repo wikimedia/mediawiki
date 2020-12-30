@@ -173,20 +173,16 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideXmlMimeType() {
+		// $mimetype, $isXmlMimeType
 		return [
-			// ( $mimetype, $isXmlMimeType )
-			# HTML is not an XML MimeType
-			[ 'text/html', false ],
-			# XML is an XML MimeType
-			[ 'text/xml', true ],
-			[ 'application/xml', true ],
-			# XHTML is an XML MimeType
-			[ 'application/xhtml+xml', true ],
-			# Make sure other +xml MimeTypes are supported
+			'HTML is not an XML MimeType' => [ 'text/html', false ],
+			'XML is an XML MimeType #1' => [ 'text/xml', true ],
+			'XML is an XML MimeType #2' => [ 'application/xml', true ],
+			'XHTML is an XML MimeType' => [ 'application/xhtml+xml', true ],
+
 			# SVG is another random MimeType even though we don't use it
-			[ 'image/svg+xml', true ],
-			# Complete random other MimeTypes are not XML
-			[ 'text/plain', false ],
+			'Make sure other +xml MimeTypes are supported' => [ 'image/svg+xml', true ],
+			'Complete random other MimeTypes are not XML' => [ 'text/plain', false ],
 		];
 	}
 
@@ -354,8 +350,17 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	public function testNamespaceSelector() {
+	/** @dataProvider provideNamespaceSelector */
+	public function testNamespaceSelector( $expected, $params, $selectAttribs = [] ) {
 		$this->assertEquals(
+			$expected,
+			Html::namespaceSelector( $params, $selectAttribs )
+		);
+	}
+
+	public static function provideNamespaceSelector() {
+		// $expected, $params [, $selectAttribs ]
+		yield 'Basic namespace selector without custom options' => [
 			'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="0">(Principal)</option>' . "\n" .
 				'<option value="1">Talk</option>' . "\n" .
@@ -374,11 +379,9 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="100">Custom</option>' . "\n" .
 				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(),
-			'Basic namespace selector without custom options'
-		);
-
-		$this->assertEquals(
+			[]
+		];
+		yield 'Basic namespace selector with custom values' => [
 			'<label for="mw-test-namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="mw-test-namespace" name="wpNamespace">' . "\n" .
 				'<option value="all">todos</option>' . "\n" .
@@ -399,14 +402,10 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="100">Custom</option>' . "\n" .
 				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(
-				[ 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ],
-				[ 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' ]
-			),
-			'Basic namespace selector with custom values'
-		);
-
-		$this->assertEquals(
+			[ 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ],
+			[ 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' ]
+		];
+		yield 'Basic namespace selector with a custom label but no id attribtue for the <select>' => [
 			'<label for="namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="0">(Principal)</option>' . "\n" .
@@ -426,13 +425,9 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="100">Custom</option>' . "\n" .
 				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(
-				[ 'label' => 'Select a namespace:' ]
-			),
-			'Basic namespace selector with a custom label but no id attribute for the <select>'
-		);
-
-		$this->assertEquals(
+			[ 'label' => 'Select a namespace:' ]
+		];
+		yield 'Basic namespace selector in user language' => [
 			'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="0">(Principal)</option>' . "\n" .
 				'<option value="1">Discusión</option>' . "\n" .
@@ -453,15 +448,9 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="100">Personalizado</option>' . "\n" .
 				'<option value="101">Personalizado discusión</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(
-				[ 'in-user-lang' => true ]
-			),
-			'Basic namespace selector in user language'
-		);
-	}
-
-	public function testCanFilterOutNamespaces() {
-		$this->assertEquals(
+			[ 'in-user-lang' => true ]
+		];
+		yield 'Namespace selector namespace filtering.' => [
 			'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="2">User</option>' . "\n" .
 				'<option value="4">MyWiki</option>' . "\n" .
@@ -475,12 +464,9 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="14">Category</option>' . "\n" .
 				'<option value="15">Category talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(
-				[ 'exclude' => [ 0, 1, 3, 100, 101 ] ]
-			),
-			'Namespace selector namespace filtering.'
-		);
-		$this->assertEquals(
+			[ 'exclude' => [ 0, 1, 3, 100, 101 ] ]
+		];
+		yield 'Namespace selector namespace filtering with empty custom "all" option.' => [
 			'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="" selected="">todos</option>' . "\n" .
 				'<option value="2">User</option>' . "\n" .
@@ -495,15 +481,9 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="14">Category</option>' . "\n" .
 				'<option value="15">Category talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector(
-				[ 'exclude' => [ 0, 1, 3, 100, 101 ], 'all' => '' ]
-			),
-			'Namespace selector namespace filtering with empty custom "all" option.'
-		);
-	}
-
-	public function testCanDisableANamespaces() {
-		$this->assertEquals(
+			[ 'exclude' => [ 0, 1, 3, 100, 101 ], 'all' => '' ]
+		];
+		yield 'Namespace selector namespace disabling' => [
 			'<select id="namespace" name="namespace">' . "\n" .
 				'<option disabled="" value="0">(Principal)</option>' . "\n" .
 				'<option disabled="" value="1">Talk</option>' . "\n" .
@@ -522,11 +502,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'<option value="100">Custom</option>' . "\n" .
 				'<option value="101">Custom talk</option>' . "\n" .
 				'</select>',
-			Html::namespaceSelector( [
-				'disable' => [ 0, 1, 2, 3, 4 ]
-			] ),
-			'Namespace selector namespace disabling'
-		);
+			[ 'disable' => [ 0, 1, 2, 3, 4 ] ]
+		];
 	}
 
 	/**
@@ -596,25 +573,21 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * Full list at https://www.w3.org/TR/html-markup/input.html
 	 */
 	public static function provideHtml5InputTypes() {
-		$types = [
-			'datetime',
-			'datetime-local',
-			'date',
-			'month',
-			'time',
-			'week',
-			'number',
-			'range',
-			'email',
-			'url',
-			'search',
-			'tel',
-			'color',
+		return [
+			[ 'datetime' ],
+			[ 'datetime-local' ],
+			[ 'date' ],
+			[ 'month' ],
+			[ 'time' ],
+			[ 'week' ],
+			[ 'number' ],
+			[ 'range' ],
+			[ 'email' ],
+			[ 'url' ],
+			[ 'search' ],
+			[ 'tel' ],
+			[ 'color' ],
 		];
-
-		foreach ( $types as $type ) {
-			yield [ $type ];
-		}
 	}
 
 	/**
@@ -629,144 +602,86 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		# Use cases in a concise format:
 		# <expected>, <element name>, <array of attributes> [, <message>]
 		# Will be mapped to Html::element()
-		$cases = [];
 
 		# ## Generic cases, match $attribDefault static array
-		$cases[] = [ '<area>',
-			'area', [ 'shape' => 'rect' ]
-		];
+		yield [ '<area>', 'area', [ 'shape' => 'rect' ] ];
 
-		$cases[] = [ '<button type="submit"></button>',
-			'button', [ 'formaction' => 'GET' ]
-		];
-		$cases[] = [ '<button type="submit"></button>',
-			'button', [ 'formenctype' => 'application/x-www-form-urlencoded' ]
-		];
+		yield [ '<button type="submit"></button>', 'button', [ 'formaction' => 'GET' ] ];
+		yield [ '<button type="submit"></button>', 'button', [ 'formenctype' => 'application/x-www-form-urlencoded' ] ];
 
-		$cases[] = [ '<canvas></canvas>',
-			'canvas', [ 'height' => '150' ]
-		];
-		$cases[] = [ '<canvas></canvas>',
-			'canvas', [ 'width' => '300' ]
-		];
+		yield [ '<canvas></canvas>', 'canvas', [ 'height' => '150' ] ];
+		yield [ '<canvas></canvas>', 'canvas', [ 'width' => '300' ] ];
 		# Also check with numeric values
-		$cases[] = [ '<canvas></canvas>',
-			'canvas', [ 'height' => 150 ]
-		];
-		$cases[] = [ '<canvas></canvas>',
-			'canvas', [ 'width' => 300 ]
-		];
+		yield [ '<canvas></canvas>', 'canvas', [ 'height' => 150 ] ];
+		yield [ '<canvas></canvas>', 'canvas', [ 'width' => 300 ] ];
 
-		$cases[] = [ '<form></form>',
-			'form', [ 'action' => 'GET' ]
-		];
-		$cases[] = [ '<form></form>',
-			'form', [ 'autocomplete' => 'on' ]
-		];
-		$cases[] = [ '<form></form>',
-			'form', [ 'enctype' => 'application/x-www-form-urlencoded' ]
-		];
+		yield [ '<form></form>', 'form', [ 'action' => 'GET' ] ];
+		yield [ '<form></form>', 'form', [ 'autocomplete' => 'on' ] ];
+		yield [ '<form></form>', 'form', [ 'enctype' => 'application/x-www-form-urlencoded' ] ];
 
-		$cases[] = [ '<input>',
-			'input', [ 'formaction' => 'GET' ]
-		];
-		$cases[] = [ '<input>',
-			'input', [ 'type' => 'text' ]
-		];
+		yield [ '<input>', 'input', [ 'formaction' => 'GET' ] ];
+		yield [ '<input>', 'input', [ 'type' => 'text' ] ];
 
-		$cases[] = [ '<keygen>',
-			'keygen', [ 'keytype' => 'rsa' ]
-		];
+		yield [ '<keygen>', 'keygen', [ 'keytype' => 'rsa' ] ];
+		yield [ '<link>', 'link', [ 'media' => 'all' ] ];
+		yield [ '<link>', 'link', [ 'type' => 'text/css' ] ];
+		yield [ '<link>', 'link', [ 'type' => 'text/css', 'media' => 'all' ] ];
+		yield [ '<menu></menu>', 'menu', [ 'type' => 'list' ] ];
+		yield [ '<script></script>', 'script', [ 'type' => 'text/javascript' ] ];
 
-		$cases[] = [ '<link>',
-			'link', [ 'media' => 'all' ]
-		];
-		$cases[] = [ '<link>',
-			'link', [ 'type' => 'text/css' ]
-		];
-		$cases[] = [ '<link>',
-			'link', [ 'type' => 'text/css', 'media' => 'all' ]
-		];
+		yield [ '<style></style>', 'style', [ 'media' => 'all' ] ];
+		yield [ '<style></style>', 'style', [ 'type' => 'text/css' ] ];
 
-		$cases[] = [ '<menu></menu>',
-			'menu', [ 'type' => 'list' ]
-		];
-
-		$cases[] = [ '<script></script>',
-			'script', [ 'type' => 'text/javascript' ]
-		];
-
-		$cases[] = [ '<style></style>',
-			'style', [ 'media' => 'all' ]
-		];
-		$cases[] = [ '<style></style>',
-			'style', [ 'type' => 'text/css' ]
-		];
-
-		$cases[] = [ '<textarea></textarea>',
-			'textarea', [ 'wrap' => 'soft' ]
-		];
+		yield [ '<textarea></textarea>', 'textarea', [ 'wrap' => 'soft' ] ];
 
 		# ## SPECIFIC CASES
 
 		# <input> specific handling
-		$cases[] = [ '<input type="checkbox">',
+		yield [ '<input type="checkbox">',
 			'input', [ 'type' => 'checkbox', 'value' => 'on' ],
 			'Default value "on" is stripped of checkboxes',
 		];
-		$cases[] = [ '<input type="radio">',
+		yield [ '<input type="radio">',
 			'input', [ 'type' => 'radio', 'value' => 'on' ],
 			'Default value "on" is stripped of radio buttons',
 		];
-		$cases[] = [ '<input type="submit" value="Submit">',
+		yield [ '<input type="submit" value="Submit">',
 			'input', [ 'type' => 'submit', 'value' => 'Submit' ],
 			'Default value "Submit" is kept on submit buttons (for possible l10n issues)',
 		];
-		$cases[] = [ '<input type="color">',
+		yield [ '<input type="color">',
 			'input', [ 'type' => 'color', 'value' => '' ],
 		];
-		$cases[] = [ '<input type="range">',
+		yield [ '<input type="range">',
 			'input', [ 'type' => 'range', 'value' => '' ],
 		];
 
 		# <button> specific handling
 		# see remarks on https://msdn.microsoft.com/library/ms535211(v=vs.85).aspx
-		$cases[] = [ '<button type="submit"></button>',
+		yield [ '<button type="submit"></button>',
 			'button', [ 'type' => 'submit' ],
 			'According to standard the default type is "submit". '
 				. 'Depending on compatibility mode IE might use "button", instead.',
 		];
 
-		# <select> specific handling
-		$cases[] = [ '<select multiple=""></select>',
-			'select', [ 'size' => '4', 'multiple' => true ],
-		];
-		# .. with numeric value
-		$cases[] = [ '<select multiple=""></select>',
-			'select', [ 'size' => 4, 'multiple' => true ],
-		];
-		$cases[] = [ '<select></select>',
-			'select', [ 'size' => '1', 'multiple' => false ],
-		];
-		# .. with numeric value
-		$cases[] = [ '<select></select>',
-			'select', [ 'size' => 1, 'multiple' => false ],
-		];
+		# <select> specific handling, with both string and numeric values
+		yield [ '<select multiple=""></select>', 'select', [ 'size' => '4', 'multiple' => true ] ];
+		yield [ '<select multiple=""></select>', 'select', [ 'size' => 4, 'multiple' => true ] ];
+		yield [ '<select></select>', 'select', [ 'size' => '1', 'multiple' => false ] ];
+		yield [ '<select></select>', 'select', [ 'size' => 1, 'multiple' => false ] ];
 
 		# Passing an array as value
-		$cases[] = [ '<a class="css-class-one css-class-two"></a>',
+		yield [ '<a class="css-class-one css-class-two"></a>',
 			'a', [ 'class' => [ 'css-class-one', 'css-class-two' ] ],
 			"dropDefaults accepts values given as an array"
 		];
 
 		# FIXME: doDropDefault should remove defaults given in an array
 		# Expected should be '<a></a>'
-		$cases[] = [ '<a class=""></a>',
+		yield [ '<a class=""></a>',
 			'a', [ 'class' => [ '', '' ] ],
 			"dropDefaults accepts values given as an array"
 		];
-
-		return $cases;
 	}
 
 	public function testWrapperInput() {
