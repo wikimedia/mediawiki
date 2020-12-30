@@ -325,6 +325,7 @@
 	"lineno": "Baris $1:",
 	"editundo": "paulak",
 	"diff-empty": "(Soada parasingan)",
+	"diff-multi-otherusers": "(Ndang dipataridahon do {{PLURAL:$1|Sada padengganan antara|$1 padengganan antara}} na dibahen {{PLURAL:$2|sada panghasea na asingna|$2 panghasea}})",
 	"searchresults": "Hasil na niluluan",
 	"searchresults-title": "Abak na niluluan di \"$1\"",
 	"prevn": "andorang so {{PLURAL:$1|$1}}",

@@ -466,7 +466,7 @@
 	"mergehistory-go": "Ẓṛ imbddln lli izḍarn ad mun.",
 	"mergehistory-submit": "Smun ilqqmn.",
 	"mergehistory-empty": "Ḥtta kra n ulqm ur izḍar ad imun ɣ wayya.",
-	"mergehistory-done": "Tiḍfay $4 n $1 ttuysmann ɣ [[:$2]].\n$3.",
+	"mergehistory-done": "$4 {{PLURAL:$4|tiḍfit|tiḍfay}} n $1 ttuysmann ɣ [[:$2]].\n$3.",
 	"mergehistory-fail": "Ur as yuffi ad yili umun ɣ yan n imzruyn. Sti daɣ tasna d ḥtta iɣwwarn n usakud.",
 	"mergehistory-no-source": "Tasna taɣbalut $1 ur tlli.",
 	"mergehistory-no-destination": "Tasna n uwttas $1 ur tlli.",
