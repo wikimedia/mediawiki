@@ -92,8 +92,6 @@ $cfg['null_casts_as_any_type'] = true;
 $cfg['scalar_implicit_cast'] = true;
 $cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
 $cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
-// TODO Mostly false positives to suppress inline
-$cfg['suppress_issue_types'][] = 'SecurityCheck-DoubleEscaped';
 
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility

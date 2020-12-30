@@ -446,6 +446,7 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page - 1 ]
 						);
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped link getting a key, false positive
 						$thumb1 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
@@ -466,6 +467,7 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page + 1 ]
 						);
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped link getting a key, false positive
 						$thumb2 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
