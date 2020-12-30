@@ -70,6 +70,7 @@ class BlockLogFormatter extends LogFormatter {
 			} else {
 				$params[4] = Message::rawParam(
 					"<span class=\"blockExpiry\" title=\"$durationTooltip\">" .
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped language class does not escape
 					htmlspecialchars( $blockExpiry ) .
 					'</span>'
 				);

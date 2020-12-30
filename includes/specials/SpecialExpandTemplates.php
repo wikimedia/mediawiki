@@ -146,6 +146,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$pout = $this->generateHtml( $title, $output );
 			$rawhtml = $pout->getText();
 			if ( $this->generateRawHtml && strlen( $rawhtml ) > 0 ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 

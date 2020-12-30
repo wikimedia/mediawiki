@@ -72,6 +72,7 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Ambiguous with the true for nohtml
 				$val = $formatter->flattenArrayReal( $val, 'ul', true );
 			}
 		}

@@ -690,12 +690,14 @@ abstract class DatabaseInstaller {
 	public function getInstallUserBox() {
 		return Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', [], wfMessage( 'config-db-install-account' )->text() ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getTextBox(
 				'_InstallUser',
 				'config-db-username',
 				[ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-install-username' )
 			) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getPasswordBox(
 				'_InstallPassword',
 				'config-db-password',
