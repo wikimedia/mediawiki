@@ -125,7 +125,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function contextLine( $line ) {
-		return $this->wrapLine( "\u{00A0}", 'diff-context', $line );
+		return $this->wrapLine( '', 'diff-context', $line );
 	}
 
 	/**
@@ -139,9 +139,16 @@ class TableDiffFormatter extends DiffFormatter {
 		if ( $line !== '' ) {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
 			$line = Html::rawElement( 'div', [], $this->escapeWhiteSpace( $line ) );
+		} else {
+			$line = Html::element( 'br' );
 		}
 
-		return Html::element( 'td', [ 'class' => 'diff-marker' ], $marker ) .
+		$markerAttrs = [ 'class' => 'diff-marker' ];
+		if ( $marker ) {
+			$markerAttrs['data-marker'] = $marker;
+		}
+
+		return Html::element( 'td', $markerAttrs ) .
 			Html::rawElement( 'td', [ 'class' => $class ], $line );
 	}
 
@@ -149,7 +156,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function emptyLine() {
-		return Html::element( 'td', [ 'colspan' => '2' ], "\u{00A0}" );
+		return Html::element( 'td', [ 'colspan' => '2' ] );
 	}
 
 	/**
