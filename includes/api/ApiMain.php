@@ -143,7 +143,12 @@ class ApiMain extends ApiBase {
 				'UserCache',
 			]
 		],
-		'move' => ApiMove::class,
+		'move' => [
+			'class' => ApiMove::class,
+			'services' => [
+				'MovePageFactory',
+			]
+		],
 		'edit' => ApiEditPage::class,
 		'upload' => ApiUpload::class,
 		'filerevert' => ApiFileRevert::class,
