@@ -722,7 +722,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		// Input token queue
 		$x0 = $x1 = $x2 = '';
 		// Decoded queue
-		$d0 = $d1 = $d2 = '';
+		$d0 = $d1 = '';
 		// Decoded integer codepoints
 		$ord0 = $ord1 = $ord2 = 0;
 		// Re-encoded queue
@@ -735,7 +735,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			// Shift the queues down
 			$x2 = $x1;
 			$x1 = $x0;
-			$d2 = $d1;
 			$d1 = $d0;
 			$ord2 = $ord1;
 			$ord1 = $ord0;
@@ -743,7 +742,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$r1 = $r0;
 			// Load the current input token and decoded values
 			$inChar = $byteClass[$pos];
-			if ( $inChar == '\\' ) {
+			if ( $inChar === '\\' ) {
 				if ( preg_match( '/x([0-9a-fA-F]{2})/A', $byteClass, $m, 0, $pos + 1 ) ) {
 					$x0 = $inChar . $m[0];
 					$d0 = chr( hexdec( $m[1] ) );
@@ -757,7 +756,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				} else {
 					$d0 = $byteClass[$pos + 1];
 					$x0 = $inChar . $d0;
-					$pos += 1;
+					$pos++;
 				}
 			} else {
 				$x0 = $d0 = $inChar;
