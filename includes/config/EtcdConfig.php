@@ -107,12 +107,14 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	public function has( $name ) {
 		$this->load();
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		return array_key_exists( $name, $this->procCache['config'] );
 	}
 
 	public function get( $name ) {
 		$this->load();
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		if ( !array_key_exists( $name, $this->procCache['config'] ) ) {
 			throw new ConfigException( "No entry found for '$name'." );
 		}
@@ -122,6 +124,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 	public function getModifiedIndex() {
 		$this->load();
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		return $this->procCache['modifiedIndex'];
 	}
 

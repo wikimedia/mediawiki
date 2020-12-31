@@ -519,6 +519,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 					}
 				}
 				if ( $changed ) {
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped Explained above with decodeTagAttributes
 					$element = $elementMatches[1] . Html::expandAttributes( $attrs ) .
 						$close . $elementMatches[3];
 				}
@@ -1286,6 +1287,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string
 	 */
 	public function convertHtml( $text ) {
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped convert() is documented to return html
 		return htmlspecialchars( $this->convert( $text ) );
 	}
 }

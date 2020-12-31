@@ -361,7 +361,6 @@ class CheckStorage {
 			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 			if ( count( $errors ) ) {
 				$description = $this->errorDescriptions[$name];
-				// @phan-suppress-next-line SecurityCheck-XSS
 				echo "$description: " . implode( ',', array_keys( $errors ) ) . "\n";
 			}
 		}
@@ -378,13 +377,11 @@ class CheckStorage {
 		print "\nFlag statistics:\n";
 		$total = array_sum( $flagStats );
 		foreach ( $flagStats as $flag => $count ) {
-			// @phan-suppress-next-line SecurityCheck-XSS
 			printf( "%-30s %10d %5.2f%%\n", $flag, $count, $count / $total * 100 );
 		}
 		print "\nLocal object statistics:\n";
 		$total = array_sum( $objectStats );
 		foreach ( $objectStats as $className => $count ) {
-			// @phan-suppress-next-line SecurityCheck-XSS
 			printf( "%-30s %10d %5.2f%%\n", $className, $count, $count / $total * 100 );
 		}
 	}
@@ -398,17 +395,14 @@ class CheckStorage {
 			foreach ( $ids as $id ) {
 				$revIds = array_unique( array_merge( $revIds, $this->oldIdMap[$id] ) );
 			}
-			// @phan-suppress-next-line SecurityCheck-XSS
 			print "$msg in text rows " . implode( ', ', $ids ) .
 				", revisions " . implode( ', ', $revIds ) . "\n";
 		} else {
 			$id = $ids;
 			$revIds = $this->oldIdMap[$id];
 			if ( count( $revIds ) == 1 ) {
-				// @phan-suppress-next-line SecurityCheck-XSS
 				print "$msg in old_id $id, rev_id {$revIds[0]}\n";
 			} else {
-				// @phan-suppress-next-line SecurityCheck-XSS
 				print "$msg in old_id $id, revisions " . implode( ', ', $revIds ) . "\n";
 			}
 		}
@@ -513,7 +507,6 @@ class CheckStorage {
 		);
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
 		$importer->setNoticeCallback( function ( $msg, $params ) {
-			// @phan-suppress-next-line SecurityCheck-XSS
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
 		$importer->doImport();

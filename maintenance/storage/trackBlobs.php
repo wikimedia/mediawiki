@@ -179,7 +179,6 @@ class TrackBlobs {
 				$startId = (int)$row->rev_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
-					// @phan-suppress-next-line SecurityCheck-XSS
 					echo "Invalid DB:// URL in rev_id {$row->rev_id}\n";
 					continue;
 				}
@@ -264,7 +263,6 @@ class TrackBlobs {
 				$startId = (int)$row->old_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
-					// @phan-suppress-next-line SecurityCheck-XSS
 					echo "Invalid DB:// URL in old_id {$row->old_id}\n";
 					continue;
 				}

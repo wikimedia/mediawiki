@@ -118,6 +118,7 @@ class PPFrame_Hash implements PPFrame {
 						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
 							wfEscapeWikiText( $this->title ),
 							wfEscapeWikiText( $title ),
+							// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint track for named args
 							wfEscapeWikiText( $name ) )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
@@ -126,6 +127,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
+		// @phan-suppress-next-line SecurityCheck-XSS taint track for keys in named args, false positive
 		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
 	}
 
@@ -327,6 +329,7 @@ class PPFrame_Hash implements PPFrame {
 					}
 					$out .= $s;
 				} else {
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$out .= $this->parser->extensionSubstitution( $bits, $this );
 				}
 			} elseif ( $contextName === 'h' ) {

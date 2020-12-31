@@ -61,6 +61,7 @@ class HTMLRadioField extends HTMLFormField {
 		foreach ( $this->getOptions() as $label => $data ) {
 			$options[] = [
 				'data' => $data,
+				// @phan-suppress-next-line SecurityCheck-XSS Labels are raw when not from message
 				'label' => $this->mOptionsLabelsNotFromMessage ? new OOUI\HtmlSnippet( $label ) : $label,
 			];
 		}

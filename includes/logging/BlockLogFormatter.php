@@ -65,10 +65,12 @@ class BlockLogFormatter extends LogFormatter {
 				wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
 			);
 			if ( $this->plaintext ) {
+				// @phan-suppress-next-line SecurityCheck-XSS Plain text
 				$params[4] = Message::rawParam( $blockExpiry );
 			} else {
 				$params[4] = Message::rawParam(
 					"<span class=\"blockExpiry\" title=\"$durationTooltip\">" .
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped language class does not escape
 					htmlspecialchars( $blockExpiry ) .
 					'</span>'
 				);
@@ -106,6 +108,7 @@ class BlockLogFormatter extends LogFormatter {
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
 				}
 
+				// @phan-suppress-next-line SecurityCheck-XSS the restrictions contains raw params, false positive
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
 			}
 		}

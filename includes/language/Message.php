@@ -1377,6 +1377,7 @@ class Message implements MessageSpecifier, Serializable {
 		// return the concatenated values as 'after'. We handle this by turning
 		// the list into a RawMessage and processing that as a parameter.
 		$vars = $this->getLanguage()->$func( $vars );
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped RawMessage is safe here
 		return $this->extractParam( new RawMessage( $vars, $params ), $format );
 	}
 }

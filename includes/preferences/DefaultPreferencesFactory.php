@@ -383,7 +383,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->text(),
-			// @phan-suppress-next-line SecurityCheck-XSS UserGroupMembership::getLink is ambigous T183174
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 				->escaped(),

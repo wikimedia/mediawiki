@@ -201,6 +201,17 @@ class CategoryViewer extends ContextSource {
 			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
 	}
 
+	/**
+	 * @param string $type
+	 * @param Title $title
+	 * @param bool $isRedirect
+	 * @param string|null $html
+	 * @return string
+	 * Annotations needed to tell taint about HtmlArmor,
+	 * due to the use of the hook it is not possible to avoid raw html handling here
+	 * @param-taint $html tainted
+	 * @return-taint escaped
+	 */
 	private function generateLink( $type, Title $title, $isRedirect, $html = null ) {
 		$link = null;
 		$this->getHookRunner()->onCategoryViewer__generateLink( $type, $title, $html, $link );

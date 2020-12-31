@@ -228,6 +228,7 @@ abstract class DatabaseInstaller {
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->db->begin( __METHOD__ );
 
+		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive
 		$error = $this->db->sourceFile(
 			call_user_func( [ $this, $sourceFileMethod ], $this->db )
 		);
@@ -549,8 +550,9 @@ abstract class DatabaseInstaller {
 	 * @param string $var
 	 * @param string $label
 	 * @param array $attribs
-	 * @param string $helpData
-	 * @return string
+	 * @param string $helpData HTML
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getTextBox( $var, $label, $attribs = [], $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
@@ -576,8 +578,9 @@ abstract class DatabaseInstaller {
 	 * @param string $var
 	 * @param string $label
 	 * @param array $attribs
-	 * @param string $helpData
-	 * @return string
+	 * @param string $helpData HTML
+	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	public function getPasswordBox( $var, $label, $attribs = [], $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
@@ -687,12 +690,14 @@ abstract class DatabaseInstaller {
 	public function getInstallUserBox() {
 		return Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', [], wfMessage( 'config-db-install-account' )->text() ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getTextBox(
 				'_InstallUser',
 				'config-db-username',
 				[ 'dir' => 'ltr' ],
 				$this->parent->getHelpBox( 'config-db-install-username' )
 			) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->getPasswordBox(
 				'_InstallPassword',
 				'config-db-password',

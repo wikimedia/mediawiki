@@ -38,7 +38,6 @@ $lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en
 $title = Title::newFromText( $args[0] );
 if ( isset( $options['start'] ) ) {
 	$start = wfTimestamp( TS_MW, strtotime( $options['start'] ) );
-	// @phan-suppress-next-line SecurityCheck-XSS
 	echo "Starting from " . $lang->timeanddate( $start ) . "\n";
 } else {
 	$start = '19700101000000';
@@ -90,7 +89,6 @@ $serialized = serialize( $blob );
 $t += microtime( true );
 # print_r( $blob->mDiffMap );
 
-// @phan-suppress-next-line SecurityCheck-XSS
 printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n",
 	$type,
 	count( $hashes ),

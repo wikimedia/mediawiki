@@ -455,7 +455,6 @@ abstract class LBFactory implements ILBFactory {
 				!$lb->hasStreamingReplicaServers() ||
 				// No writes since the last replication wait
 				(
-					// @phan-suppress-next-line PhanImpossibleConditionInLoop
 					$opts['ifWritesSince'] &&
 					$lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
 				)

@@ -58,6 +58,7 @@ class WebInstallerName extends WebInstallerPage {
 		$pingbackInfo = Pingback::getSystemInfo( $pingbackConf );
 
 		$this->addHTML(
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => 'wgSitename',
 				'label' => 'config-site-name',
@@ -66,6 +67,7 @@ class WebInstallerName extends WebInstallerPage {
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-ns-site-name, config-ns-generic, config-ns-other
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getRadioSet( [
 				'var' => '_NamespaceType',
 				'label' => 'config-project-namespace',
@@ -81,6 +83,7 @@ class WebInstallerName extends WebInstallerPage {
 				'attribs' => [ 'class' => 'enabledByOther' ]
 			] ) .
 			$this->getFieldsetStart( 'config-admin-box' ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => '_AdminName',
 				'label' => 'config-admin-name',
@@ -94,6 +97,7 @@ class WebInstallerName extends WebInstallerPage {
 				'var' => '_AdminPasswordConfirm',
 				'label' => 'config-admin-password-confirm'
 			] ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => '_AdminEmail',
 				'attribs' => [
@@ -102,11 +106,13 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => 'config-admin-email',
 				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			] ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => '_Subscribe',
 				'label' => 'config-subscribe',
 				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			] ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgPingback',
 				'label' => 'config-pingback',

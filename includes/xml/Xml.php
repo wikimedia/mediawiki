@@ -86,6 +86,8 @@ class Xml {
 	 * @param array|null $attribs Name=>value pairs. Values will be escaped.
 	 * @param string|null $contents Null to make an open tag only; '' for a contentless closed tag (default)
 	 * @return string
+	 * @param-taint $attribs escapes_html
+	 * @param-taint $contents escapes_html
 	 */
 	public static function elementClean( $element, $attribs = [], $contents = '' ) {
 		if ( $attribs ) {
