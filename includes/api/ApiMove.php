@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
 
 /**
  * API Module to move pages
@@ -30,8 +31,17 @@ class ApiMove extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	/** @var MovePageFactory */
+	private $movePageFactory;
+
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		MovePageFactory $movePageFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+
+		$this->movePageFactory = $movePageFactory;
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
@@ -184,7 +194,7 @@ class ApiMove extends ApiBase {
 	 * @return Status
 	 */
 	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
-		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $from, $to );
+		$mp = $this->movePageFactory->newMovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
 			return $valid;
@@ -215,7 +225,7 @@ class ApiMove extends ApiBase {
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect, $changeTags = [] ) {
 		$retval = [];
 
-		$mp = new MovePage( $fromTitle, $toTitle );
+		$mp = $this->movePageFactory->newMovePage( $fromTitle, $toTitle );
 		$result =
 			$mp->moveSubpagesIfAllowed( $this->getUser(), $reason, !$noredirect, $changeTags );
 		if ( !$result->isOK() ) {
