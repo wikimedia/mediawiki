@@ -6350,6 +6350,7 @@ $wgGrantPermissions['delete']['deleterevision'] = true;
 $wgGrantPermissions['delete']['undelete'] = true;
 
 $wgGrantPermissions['oversight']['suppressrevision'] = true;
+$wgGrantPermissions['oversight']['viewsuppressed'] = true;
 
 $wgGrantPermissions['protect'] = $wgGrantPermissions['editprotected'];
 $wgGrantPermissions['protect']['protect'] = true;
