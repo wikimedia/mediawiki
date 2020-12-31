@@ -86,7 +86,7 @@ class TemplatesOnThisPageFormatter {
 		}
 		$outText .= "</div><ul>\n";
 
-		usort( $templates, 'Title::compare' );
+		usort( $templates, [ Title::class, 'compare' ] );
 		foreach ( $templates as $template ) {
 			$outText .= $this->formatTemplate( $template );
 		}

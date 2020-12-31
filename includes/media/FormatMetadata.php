@@ -1987,7 +1987,7 @@ class FormatMetadata extends ContextSource {
 		}
 
 		// Handle API metadata keys (particularly "_type")
-		$keys = array_filter( array_keys( $arr ), 'ApiResult::isMetadataKey' );
+		$keys = array_filter( array_keys( $arr ), [ ApiResult::class, 'isMetadataKey' ] );
 		if ( $keys ) {
 			ApiResult::setPreserveKeysList( $arr, $keys );
 		}

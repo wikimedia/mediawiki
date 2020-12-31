@@ -463,7 +463,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 		}
 
-		return array_values( array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) ) );
+		return array_values( array_unique( array_filter( $paths, [ FileBackend::class, 'isStoragePath' ] ) ) );
 	}
 
 	/**
