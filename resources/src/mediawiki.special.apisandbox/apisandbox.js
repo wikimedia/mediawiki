@@ -346,6 +346,7 @@
 					}
 					break;
 
+				case 'raw':
 				case 'text':
 					widget = new OO.ui.MultilineTextInputWidget( {
 						required: Util.apiBool( pi.required )
