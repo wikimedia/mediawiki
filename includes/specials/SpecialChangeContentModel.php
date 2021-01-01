@@ -169,8 +169,16 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$titleWithNewContentModel = clone $this->title;
 		$titleWithNewContentModel->setContentModel( $data['model'] );
 		$user = $this->getUser();
+
+		$creationErrors = [];
+		if ( !$current->exists() ) {
+			$creationErrors = $this->title->getUserPermissionErrors( 'create', $user );
+		}
+
 		// Check permissions and make sure the user has permission to:
 		$errors = wfMergeErrorArrays(
+			// Potentially include creation errors, if applicable
+			$creationErrors,
 			// edit the contentmodel of the page
 			$this->title->getUserPermissionsErrors( 'editcontentmodel', $user ),
 			// edit the page under the old content model
