@@ -61,6 +61,9 @@ class ApiParamValidator {
 			] ],
 		],
 		'password' => [ 'class' => PasswordDef::class ],
+		// Unlike 'string', the 'raw' type will not be subject to Unicode
+		// NFC normalization.
+		'raw' => [ 'class' => StringDef::class ],
 		'string' => [ 'class' => StringDef::class ],
 		'submodule' => [ 'class' => SubmoduleDef::class ],
 		'tags' => [ 'class' => TagsDef::class ],
