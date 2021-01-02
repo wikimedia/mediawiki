@@ -80,7 +80,7 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 
 	public function testReadFromQueue_nonexistent() {
 		$registry = new ExtensionRegistry();
-		$this->expectException( PHPUnit\Framework\Error\Error::class );
+		$this->expectError();
 		$registry->readFromQueue( [
 			__DIR__ . '/doesnotexist.json' => 1
 		] );

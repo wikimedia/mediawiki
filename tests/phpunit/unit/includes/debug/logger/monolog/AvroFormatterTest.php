@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-use PHPUnit\Framework\Error\Notice;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -37,8 +36,8 @@ class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
 	public function testSchemaNotAvailable() {
 		$formatter = new AvroFormatter( [] );
-		$this->expectException( Notice::class );
-		$this->expectExceptionMessage( "The schema for channel 'marty' is not available" );
+		$this->expectNotice();
+		$this->expectNoticeMessage( "The schema for channel 'marty' is not available" );
 		$formatter->format( [ 'channel' => 'marty' ] );
 	}
 
