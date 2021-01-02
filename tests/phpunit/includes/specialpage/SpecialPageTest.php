@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\Error\Notice;
 
 /**
  * @covers SpecialPage
@@ -37,7 +36,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testInvalidGetTitleFor() {
-		$this->expectException( Notice::class );
+		$this->expectNotice();
 		$title = SpecialPage::getTitleFor( 'cat' );
 		$expected = Title::makeTitle( NS_SPECIAL, 'Cat' );
 		$this->assertEquals( $expected, $title );
@@ -47,7 +46,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider getTitleForWithWarningProvider
 	 */
 	public function testGetTitleForWithWarning( $expected, $name ) {
-		$this->expectException( Notice::class );
+		$this->expectNotice();
 		$title = SpecialPage::getTitleFor( $name );
 		$this->assertEquals( $expected, $title );
 	}

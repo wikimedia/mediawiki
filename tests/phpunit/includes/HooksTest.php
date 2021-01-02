@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\Error\Deprecated;
 use Wikimedia\ScopedCallback;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
@@ -229,7 +228,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_Deprecated() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->register( 'MediaWikiHooksTest001', 'NothingClass::someStatic' );
-		$this->expectException( Deprecated::class );
+		$this->expectDeprecation();
 		Hooks::run( 'MediaWikiHooksTest001', [], '1.31' );
 	}
 
