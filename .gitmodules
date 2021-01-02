@@ -1236,7 +1236,7 @@
 [submodule "skins/Femiwiki"]
 	path = skins/Femiwiki
 	url = https://github.com/femiwiki/FemiwikiSkin.git
-	branch = master 
+	branch = REL1_35 
 	ignore = dirty
 [submodule "skins/Citizen"]
 	path = skins/Citizen
