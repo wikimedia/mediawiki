@@ -435,6 +435,8 @@ because of Phabricator reports.
 * The PHPUnit6And8Compat class, used to provide compatibility with PHPUnit 6,
   was removed without deprecation. This class was introduced during the
   upgrade to PHPUnit 8, but never used.
+* MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
+  incompatibility with PHPUnit 8, was removed.
 * ParserCache::getETag has been deprecated, instead build suitable etag
   explicitly.
 * The following functions from the Language class have been hard deprecated
@@ -463,8 +465,6 @@ because of Phabricator reports.
 * The InterwikiLoadPrefix hook has been deprecated; it is not compatible
   with future wikitext parsers (which need to enumerate all interwiki
   prefixes).  In test cases please use $wgInterwikiCache instead.
-* MediaWikiIntegrationTestCase::assertType, hard-deprecated in 1.35 due to
-  incompatibility with PHPUnit 8, was removed.
 * Skin::getSkinStylePath() has been deprecated. Please replace usages with
   the direct path to the resources.
 * The second argument of EnhancedChangesList::getDiffHistLinks, $query, has
