@@ -1603,8 +1603,8 @@
 			{
 				"name": "cl_timestamp",
 				"comment": "This isn't really used at present. Provided for an optional sorting method by approximate addition time.",
-				"type": "mwtimestamp",
-				"options": { "notnull": true }
+				"type": "datetimetz",
+				"options": { "notnull": true, "PlatformOptions": {"version": true} }
 			},
 			{
 				"name": "cl_collation",
