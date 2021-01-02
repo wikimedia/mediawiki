@@ -467,6 +467,8 @@ because of Phabricator reports.
   incompatibility with PHPUnit 8, was removed.
 * Skin::getSkinStylePath() has been deprecated. Please replace usages with
   the direct path to the resources.
+* The second argument of EnhancedChangesList::getDiffHistLinks, $query, has
+  been deprecated.
 * …
 
 === Other changes in 1.36 ===
