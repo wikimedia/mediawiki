@@ -2389,7 +2389,7 @@ function wfRelativePath( $path, $from ) {
 		array_shift( $against );
 	}
 
-	array_push( $pieces, wfBaseName( $path ) );
+	$pieces[] = wfBaseName( $path );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
 }
