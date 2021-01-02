@@ -768,7 +768,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
-			array_push( $this->priorFlags, $this->flags );
+			$this->priorFlags[] = $this->flags;
 		}
 
 		$this->flags |= $flag;
@@ -783,7 +783,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
-			array_push( $this->priorFlags, $this->flags );
+			$this->priorFlags[] = $this->flags;
 		}
 
 		$this->flags &= ~$flag;
