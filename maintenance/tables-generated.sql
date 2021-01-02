@@ -501,7 +501,7 @@ CREATE TABLE /*_*/categorylinks (
   cl_to VARBINARY(255) DEFAULT '' NOT NULL,
   cl_sortkey VARBINARY(230) DEFAULT '' NOT NULL,
   cl_sortkey_prefix VARBINARY(255) DEFAULT '' NOT NULL,
-  cl_timestamp BINARY(14) NOT NULL,
+  cl_timestamp TIMESTAMP NOT NULL,
   cl_collation VARBINARY(32) DEFAULT '' NOT NULL,
   cl_type ENUM('page', 'subcat', 'file') DEFAULT 'page' NOT NULL,
   INDEX cl_sortkey (

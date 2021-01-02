@@ -562,7 +562,7 @@ CREATE TABLE categorylinks (
   cl_to TEXT DEFAULT '' NOT NULL,
   cl_sortkey TEXT DEFAULT '' NOT NULL,
   cl_sortkey_prefix TEXT DEFAULT '' NOT NULL,
-  cl_timestamp TIMESTAMPTZ NOT NULL,
+  cl_timestamp TIMESTAMP(0) WITH TIME ZONE NOT NULL,
   cl_collation TEXT DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   PRIMARY KEY(cl_from, cl_to)
