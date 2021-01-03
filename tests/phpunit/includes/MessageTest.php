@@ -165,17 +165,17 @@ class MessageTest extends MediaWikiLangTestCase {
 			'empty' => [
 				'key' => [],
 				'expected' => null,
-				'exception' => 'InvalidArgumentException',
+				'exception' => InvalidArgumentException::class,
 			],
 			'null' => [
 				'key' => null,
 				'expected' => null,
-				'exception' => 'InvalidArgumentException',
+				'exception' => InvalidArgumentException::class,
 			],
 			'bad type' => [
 				'key' => 123,
 				'expected' => null,
-				'exception' => 'InvalidArgumentException',
+				'exception' => InvalidArgumentException::class,
 			],
 		];
 	}
