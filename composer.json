@@ -2,7 +2,10 @@
 	"name": "mediawiki/core",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
 	"type": "mediawiki-core",
-	"keywords": ["mediawiki", "wiki"],
+	"keywords": [
+		"mediawiki",
+		"wiki"
+	],
 	"homepage": "https://www.mediawiki.org/",
 	"authors": [
 		{
@@ -107,7 +110,7 @@
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer",
 			"ComposerVendorHtaccessCreator": "includes/composer",
-			"ComposerPhpunitXmlCoverageEdit":"includes/composer"
+			"ComposerPhpunitXmlCoverageEdit": "includes/composer"
 		}
 	},
 	"autoload-dev": {
@@ -118,8 +121,11 @@
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
+		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s",
-		"fix": "phpcbf -p",
+		"fix": [
+			"phpcbf"
+		],
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
