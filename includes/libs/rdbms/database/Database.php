@@ -4935,16 +4935,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public static function getCacheSetOptions( IDatabase $db1, IDatabase $db2 = null ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
-		foreach ( func_get_args() as $db ) {
-			/** @var IDatabase $db */
-			$status = $db->getSessionLagStatus();
-			if ( $status['lag'] === false ) {
-				$res['lag'] = false;
-			} elseif ( $res['lag'] !== false ) {
-				$res['lag'] = max( $res['lag'], $status['lag'] );
+
+		foreach ( [ $db1, $db2 ] as $db ) {
+			if ( $db instanceof IDatabase ) {
+				$status = $db->getSessionLagStatus();
+
+				if ( $status['lag'] === false ) {
+					$res['lag'] = false;
+				} elseif ( $res['lag'] !== false ) {
+					$res['lag'] = max( $res['lag'], $status['lag'] );
+				}
+				$res['since'] = min( $res['since'], $status['since'] );
+				$res['pending'] = $res['pending'] ?: $db->writesPending();
 			}
-			$res['since'] = min( $res['since'], $status['since'] );
-			$res['pending'] = $res['pending'] ?: $db->writesPending();
 		}
 
 		return $res;
