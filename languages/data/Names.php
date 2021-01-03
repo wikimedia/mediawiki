@@ -397,9 +397,9 @@ class Names {
 		'sg' => 'Sängö', # Sango/Sangho
 		'sgs' => 'žemaitėška', # Samogitian
 		'sh' => 'srpskohrvatski / српскохрватски', # Serbocroatian
-		'shi' => 'Tašlḥiyt/ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (multiple scripts - defaults to Latin)
+		'shi' => 'Taclḥit', # Tachelhit, Shilha (multiple scripts - defaults to Latin)
 		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
-		'shi-latn' => 'Tašlḥiyt', # Tachelhit (Latin script)
+		'shi-latn' => 'Taclḥit', # Tachelhit (Latin script)
 		'shn' => 'ၽႃႇသႃႇတႆး ', # Shan
 		'shy-latn' => 'tacawit', # Shawiya (Latin script) - T194047
 		'si' => 'සිංහල', # Sinhalese
