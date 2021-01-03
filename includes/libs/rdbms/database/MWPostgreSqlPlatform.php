@@ -58,4 +58,11 @@ class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
 	public function getFloatDeclarationSQL( array $column ) {
 		return 'FLOAT';
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getDateTimeTzTypeDeclarationSQL( array $column ) {
+		return 'TIMESTAMPTZ';
+	}
 }
