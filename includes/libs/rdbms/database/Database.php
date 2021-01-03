@@ -2711,7 +2711,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Check type and bounds conditions parameters for update
 	 *
 	 * In order to prevent possible performance or replication issues,
-	 * empty condition for 'update' queries isn't allowed
+	 * empty condition for 'update' and 'delete' queries isn't allowed
 	 *
 	 * @param array|string $conds conditions to be validated on emptiness
 	 * @param string $fname caller's function name to be passed to exception
@@ -5130,7 +5130,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Database independent variable replacement. Replaces a set of variables
+	 * Database-independent variable replacement. Replaces a set of variables
 	 * in an SQL statement with their contents as given by $this->getSchemaVars().
 	 *
 	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables.
