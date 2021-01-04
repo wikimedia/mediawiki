@@ -491,6 +491,7 @@ $wgAutoloadLocalClasses = [
 	'FallbackContentHandler' => __DIR__ . '/includes/content/FallbackContentHandler.php',
 	'FatalError' => __DIR__ . '/includes/exception/FatalError.php',
 	'FauxRequest' => __DIR__ . '/includes/FauxRequest.php',
+	'FauxRequestUpload' => __DIR__ . '/includes/FauxRequestUpload.php',
 	'FauxResponse' => __DIR__ . '/includes/FauxResponse.php',
 	'FauxSearchResult' => __DIR__ . '/includes/search/FauxSearchResult.php',
 	'FauxSearchResultSet' => __DIR__ . '/includes/search/FauxSearchResultSet.php',

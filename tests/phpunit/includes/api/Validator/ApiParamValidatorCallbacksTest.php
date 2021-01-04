@@ -92,7 +92,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		$filePath = $this->filePath( 'yuv420.jpg' );
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 
-		$_FILES['file2'] = [
+		$this->requestDataFiles['file2'] = [
 			'name' => '',
 			'type' => '',
 			'tmp_name' => '',
@@ -100,7 +100,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 			'error' => UPLOAD_ERR_NO_FILE,
 		];
 
-		$_FILES['file3'] = [
+		$this->requestDataFiles['file3'] = [
 			'name' => 'xxx.png',
 			'type' => '',
 			'tmp_name' => '',
@@ -112,10 +112,12 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 	public function testHasUpload() : void {
 		$this->setupUploads();
 
-		[ $callbacks, $main ] = $this->getCallbacks( new FauxRequest( [
+		$request = new FauxRequest( [
 			'foo' => '1',
 			'bar' => '',
-		] ) );
+		] );
+		$request->setUploadData( $this->requestDataFiles );
+		[ $callbacks, $main ] = $this->getCallbacks( $request );
 
 		$this->assertFalse( $callbacks->hasUpload( 'foo', [] ) );
 		$this->assertFalse( $callbacks->hasUpload( 'bar', [] ) );
@@ -133,10 +135,12 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 	public function testGetUploadedFile() : void {
 		$this->setupUploads();
 
-		[ $callbacks, $main ] = $this->getCallbacks( new FauxRequest( [
+		$request = new FauxRequest( [
 			'foo' => '1',
 			'bar' => '',
-		] ) );
+		] );
+		$request->setUploadData( $this->requestDataFiles );
+		[ $callbacks, $main ] = $this->getCallbacks( $request );
 
 		$this->assertNull( $callbacks->getUploadedFile( 'foo', [] ) );
 		$this->assertNull( $callbacks->getUploadedFile( 'bar', [] ) );
