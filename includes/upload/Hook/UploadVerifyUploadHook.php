@@ -34,7 +34,7 @@ interface UploadVerifyUploadHook {
 	 *   provide machine-readable details for the API.)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUploadVerifyUpload( $upload, $user, $props, $comment,
+	public function onUploadVerifyUpload( UploadBase $upload, User $user, ?array $props, $comment,
 		$pageText, &$error
 	);
 }
