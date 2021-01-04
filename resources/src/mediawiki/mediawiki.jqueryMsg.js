@@ -1163,7 +1163,7 @@
 						}
 					} );
 				} else {
-				target = textify( arg );
+					target = textify( arg );
 					if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
 						$el.attr( 'href', target );
 					} else {
