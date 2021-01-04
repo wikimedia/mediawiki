@@ -57,6 +57,10 @@ class ApiProtect extends ApiBase {
 		}
 
 		$restrictionTypes = $titleObj->getRestrictionTypes();
+		$levels = MWNamespace::getRestrictionLevels(
+			$titleObj->getNamespace(),
+			$user
+		);
 
 		$protections = [];
 		$expiryarray = [];
@@ -75,7 +79,7 @@ class ApiProtect extends ApiBase {
 			if ( !in_array( $p[0], $restrictionTypes ) && $p[0] != 'create' ) {
 				$this->dieWithError( [ 'apierror-protect-invalidaction', wfEscapeWikiText( $p[0] ) ] );
 			}
-			if ( !in_array( $p[1], $this->getConfig()->get( 'RestrictionLevels' ) ) && $p[1] != 'all' ) {
+			if ( !in_array( $p[1], $levels ) && $p[1] != 'all' ) {
 				$this->dieWithError( [ 'apierror-protect-invalidlevel', wfEscapeWikiText( $p[1] ) ] );
 			}
 
