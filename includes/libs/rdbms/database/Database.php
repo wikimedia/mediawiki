@@ -4936,7 +4936,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public static function getCacheSetOptions( IDatabase $db1, IDatabase $db2 = null ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 
-		foreach ( [ $db1, $db2 ] as $db ) {
+		foreach ( func_get_args() as $db ) {
 			if ( $db instanceof IDatabase ) {
 				$status = $db->getSessionLagStatus();
 
