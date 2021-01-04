@@ -657,7 +657,7 @@
 	"shown-title": "وکھاؤ $1 {{PLURAL:$1|نتیجے}}",
 	"viewprevnext": "($1 {{int:pipe-separator}} $2) ݙیکھو ($3)",
 	"searchmenu-exists": "<strong>ایں وکی تے  \"[[:$1]]\" نامی ورقہ ہے.</strong> {{PLURAL:$2|0=|ٻئے ڳولݨ نتیجے وی ݙیکھو.}}",
-	"searchmenu-new": "'''ایں وکی تے \"[[:$1]]\" ورقہ بݨاؤ''' {{PLURAL:$2|0=|اپنی ڳول نال لبھے ورقے ݙیکھو.|لبھے ڳولݨ نتیجے وی ݙیکھو.}}",
+	"searchmenu-new": "'''ایں وکی تے \"[[:$1]]\" ورقہ بݨاؤ'''ـ {{PLURAL:$2|0=|آپݨی ڳول نال لبھے ورقے ݙیکھو.|لبھے ڳولݨ نتیجے وی ݙیکھو.}}",
 	"searchprofile-articles": "لسٹ ورقے",
 	"searchprofile-images": "ملٹی میڈیا",
 	"searchprofile-everything": "سب کجھ",

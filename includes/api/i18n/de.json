@@ -150,7 +150,7 @@
 	"apihelp-edit-param-nocreate": "Einen Fehler zurückgeben, falls die Seite nicht vorhanden ist.",
 	"apihelp-edit-param-watch": "Seite der Beobachtungsliste hinzufügen.",
 	"apihelp-edit-param-unwatch": "Seite von der Beobachtungsliste entfernen.",
-	"apihelp-edit-param-watchlist": "Die Seite zur Beobachtungsliste des aktuellen Benutzers hinzufügen oder von ihr entfernen, die Standardeinstellungen verwenden oder die Beobachtung nicht ändern.",
+	"apihelp-edit-param-watchlist": "Die Seite zur Beobachtungsliste des aktuellen Benutzers hinzufügen oder von ihr entfernen, die Standardeinstellungen (werden für Bot-Benutzer ignoriert) verwenden oder die Beobachtung nicht ändern.",
 	"apihelp-edit-param-md5": "Der MD5-Hash des Parameters $1text oder der aneinandergehängten Parameter $1prependtext und $1appendtext. Wenn angegeben, wird die Bearbeitung nicht ausgeführt, wenn der Hash nicht korrekt ist.",
 	"apihelp-edit-param-prependtext": "Diesen Text an den Anfang der Seite setzen. Überschreibt $1text.",
 	"apihelp-edit-param-appendtext": "Diesen Text an das Ende der Seite hinzufügen. Überschreibt $1text.\n\nVerwende statt dieses Parameters $1section=new zum Anhängen eines neuen Abschnitts.",

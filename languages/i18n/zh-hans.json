@@ -138,6 +138,7 @@
 			"列维劳德",
 			"夢蝶葬花",
 			"御坂美琴",
+			"机智的小鱼君",
 			"沈澄心",
 			"燃玉",
 			"神樂坂秀吉",
@@ -324,7 +325,7 @@
 	"create": "创建",
 	"create-local": "添加本地说明",
 	"delete": "删除",
-	"undelete_short": "还原$1次编辑",
+	"undelete_short": "还原{{PLURAL:$1|一次编辑|$1 次编辑}}",
 	"viewdeleted_short": "查看{{PLURAL:$1|$1个被删除的编辑}}",
 	"protect": "保护",
 	"protect_change": "更改",
@@ -1069,6 +1070,7 @@
 	"mergehistory-same-destination": "来源页面与目的页面不可以相同",
 	"mergehistory-reason": "原因：",
 	"mergehistory-source-deleted-reason": "源页面在合并历史后已自动删除，因为它的页面模型不支持重定向，且没有残留的历史版本。",
+	"mergehistory-source-deleted": "另外，[[:$1]]已被删除，因为它不再具有任何可见的修改，且其内容模型不支持保留重定向。",
 	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "合并日志",
 	"revertmerge": "解除合并",
@@ -3443,6 +3445,7 @@
 	"duplicate-displaytitle": "<strong>警告：</strong>显示的标题“$2”重写了此前显示的标题“$1”。",
 	"restricted-displaytitle": "<strong>警告：</strong>显示标题“$1”被忽略，因为它不等同于页面的实际标题。",
 	"invalid-indicator-name": "<strong>错误：</strong>页面状态指示器的<code>name</code>属性必须不为空。",
+	"invalid-langconvert-attrs": "<strong>错误：</strong> 语言转换标记 <code>from</code> 以及 <code>to</code> 属性不得为空且必须为同一语言的不同变体。",
 	"version": "版本",
 	"version-extensions": "安装的扩展程序",
 	"version-skins": "安装的皮肤",
@@ -4153,5 +4156,6 @@
 	"paramvalidator-missingtitle": "无效的标题<var>$1</var>参数值\"$2\"：该页面不存在。",
 	"paramvalidator-help-type-title": "类型：页面标题",
 	"paramvalidator-help-type-title-must-exist": "仅接受存在的页面。",
-	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。"
+	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。",
+	"sitenotice-close-label": "关闭"
 }

@@ -3888,6 +3888,7 @@
 	"mw-widgets-dateinput-no-date": "لا تاريخ تم اختياره",
 	"mw-widgets-mediasearch-input-placeholder": "البحث عن ملفات",
 	"mw-widgets-mediasearch-noresults": "لم يتم العثور على نتائج.",
+	"mw-widgets-mediasearch-results-aria-label": "نتائج بحث الوسائط",
 	"mw-widgets-table-row-delete": "احذف الصف",
 	"mw-widgets-titleinput-description-new-page": "الصفحة غير موجودة بعد",
 	"mw-widgets-titleinput-description-redirect": "تحويل إلى $1",

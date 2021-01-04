@@ -759,7 +759,7 @@
 	"pt-userlogout": "{{Doc-actionlink}}\n{{Identical|Log out}}",
 	"pear-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message which is returned by PEAR mailer.",
 	"php-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message",
-	"php-mail-error-unknown": "Used as error message when <code>mail()</code> returned empty error message.",
+	"php-mail-error-unknown": "{{doc-important|Do not translate \"mail()\".}}\n\nUsed as error message when <code>mail()</code> returned empty error message.",
 	"user-mail-no-addy": "This is the error message in case an email could not be sent because there was no email address to send it to.",
 	"user-mail-no-body": "This is the error message in case an email has an empty or unreasonably short body.",
 	"changepassword": "Section heading on [[Special:Preferences]], tab 'User profile'.\n{{Identical|Change password}}",
