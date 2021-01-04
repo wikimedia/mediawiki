@@ -14903,17 +14903,21 @@ pst title=[[Somearticle (context)]]
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with comma in title
+pre-save transform: context links ("pipe trick") with single, double-width and Arabic comma in title
 !! options
 pst title=[[Someplace, Somewhere]]
 !! wikitext
 [[|Otherplace]]
 [[Otherplace, Elsewhere|]]
 [[Otherplace, Elsewhere, Anywhere|]]
+[[Otherplace，Elsewhere|]]
+[[Otherplace، Elsewhere|]]
 !! html/php
 [[Otherplace, Somewhere|Otherplace]]
 [[Otherplace, Elsewhere|Otherplace]]
 [[Otherplace, Elsewhere, Anywhere|Otherplace]]
+[[Otherplace，Elsewhere|Otherplace]]
+[[Otherplace، Elsewhere|Otherplace]]
 !! end
 
 !! test
