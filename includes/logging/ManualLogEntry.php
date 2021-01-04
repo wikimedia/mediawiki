@@ -38,6 +38,7 @@ use Wikimedia\Rdbms\IDatabase;
  *       but should be changed to use the builder pattern or the
  *       command pattern.
  * @since 1.19
+ * @see https://www.mediawiki.org/wiki/Manual:Logging_to_Special:Log
  */
 class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var string Type of log entry */
@@ -85,8 +86,10 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/**
 	 * @stable to call
 	 * @since 1.19
-	 * @param string $type
-	 * @param string $subtype
+	 * @param string $type Log type. Should match $wgLogTypes.
+	 * @param string $subtype Log subtype (action). Should match $wgLogActions or
+	 *   (together with $type) $wgLogActionsHandlers.
+	 * @note
 	 */
 	public function __construct( $type, $subtype ) {
 		$this->type = $type;
@@ -98,11 +101,18 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * You can pass params to the log action message by prefixing the keys with
 	 * a number and optional type, using colons to separate the fields. The
-	 * numbering should start with number 4, the first three parameters are
-	 * hardcoded for every message.
+	 * numbering should start with number 4 (matching the $4 message parameter),
+	 * the first three parameters are hardcoded for every message ($1 is a link
+	 * to the username and user talk page of the performing user, $2 is just the
+	 * username (for determining gender), $3 is a link to the target page).
+	 *
+	 * Typically, these parameters will be used in the logentry-<type>-<subtype>
+	 * message, but custom formatters, declared via $wgLogActionsHandlers, can
+	 * override that.
 	 *
 	 * If you want to store stuff that should not be available in messages, don't
-	 * prefix the array key with a number and don't use the colons.
+	 * prefix the array key with a number and don't use the colons. Parameters
+	 * which should be searchable need to be set with setRelations() instead.
 	 *
 	 * Example:
 	 *   $entry->setParameters(
@@ -113,6 +123,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * @since 1.19
 	 * @param array $parameters Associative array
+	 * @see LogFormatter::formatParameterValue for valid parameter types and
+	 *   their meanings
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
