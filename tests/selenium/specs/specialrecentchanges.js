@@ -23,6 +23,15 @@ describe( 'Special:RecentChanges', function () {
 			await bot.edit( name, content );
 		} );
 
+		browser.waitUntil( async () => {
+			const result = await bot.request( {
+				action: 'query',
+				list: 'recentchanges',
+				rctitle: name
+			} );
+			return result.query.recentchanges.length > 0;
+		} );
+
 		RecentChangesPage.open();
 
 		assert.strictEqual( RecentChangesPage.titles[ 0 ].getText(), name );
