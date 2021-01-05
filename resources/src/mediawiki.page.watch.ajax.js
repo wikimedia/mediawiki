@@ -195,7 +195,7 @@
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
-			var mwTitle, action, api, $link;
+			var mwTitle, action, api, $link, modulesToLoad;
 
 			mwTitle = mw.Title.newFromText( title );
 			action = mwUriGetAction( this.href );
@@ -217,13 +217,14 @@
 			updateWatchLink( $link, action, 'loading', null );
 
 			// Preload the notification module for mw.notify
-			mw.loader.load( 'mediawiki.notification' );
+			modulesToLoad = [ 'mediawiki.notification' ];
 
-			// Preload watchlist expiry widget so it runs in parallel
-			// with the api call
+			// Preload watchlist expiry widget so it runs in parallel with the api call
 			if ( isWatchlistExpiryEnabled ) {
-				mw.loader.load( 'mediawiki.watchstar.widgets' );
+				modulesToLoad.push( 'mediawiki.watchstar.widgets' );
 			}
+
+			mw.loader.load( modulesToLoad );
 
 			api = new mw.Api();
 			api[ action ]( title )
