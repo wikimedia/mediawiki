@@ -1407,3 +1407,4 @@
 	path = extensions/WikibaseLexeme
 	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseLexeme
 	branch = REL1_35
+	ignore = dirty
