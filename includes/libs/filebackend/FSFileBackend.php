@@ -1032,7 +1032,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 			if ( function_exists( 'pcntl_strerror' ) ) {
 				$alternatives[] = preg_quote( ': ' . pcntl_strerror( 2 ), '/' );
-			} elseif ( function_exists( 'socket_strerror' ) ) {
+			} elseif ( function_exists( 'socket_strerror' ) && defined( 'SOCKET_ENOENT' ) ) {
 				$alternatives[] = preg_quote( ': ' . socket_strerror( SOCKET_ENOENT ), '/' );
 			}
 			$regex = '/(' . implode( '|', $alternatives ) . ')$/';
