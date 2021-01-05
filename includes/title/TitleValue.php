@@ -302,7 +302,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		$name = $this->namespace . ':' . $this->dbkey;
 
 		if ( $this->fragment !== '' ) {

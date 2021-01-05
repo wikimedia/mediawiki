@@ -464,7 +464,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $prefix Module prefix
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
-		$arr[$prefix . 'ns'] = (int)$title->getNamespace();
+		$arr[$prefix . 'ns'] = $title->getNamespace();
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 

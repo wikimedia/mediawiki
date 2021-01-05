@@ -57,7 +57,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		$link->parent = $parser;
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedDBkey' )->willReturn( $nsText );
-		$title->method( 'getNamespace' )->willReturn( 'dummy ns' );
+		$title->method( 'getNamespace' )->willReturn( 1234 );
 		$title->method( 'isExternal' )->willReturn( $isExternal );
 
 		$this->assertSame( 0, $link->size );
@@ -85,7 +85,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		} else {
 			$this->assertArrayEquals(
 				[
-					'dummy ns' => [
+					1234 => [
 						'dummy link' => [
 							'title' => $title,
 							'text' => 'test3 prefixtest1 texttest',
@@ -103,12 +103,12 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		yield [
 			'dummy string',
 			false,
-			'<!--LINK\'" dummy ns:dummy link-->2 trail',
+			'<!--LINK\'" 1234:dummy link-->2 trail',
 		];
 		yield [
 			'<!--LINK\'" q:w:e-->',
 			false,
-			'<!--LINK\'" dummy ns:dummy link-->2 trail',
+			'<!--LINK\'" 1234:dummy link-->2 trail',
 		];
 		yield [
 			'dummy string',

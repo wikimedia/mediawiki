@@ -307,7 +307,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			'interwiki' => '',
 			'local_interwiki' => false,
 			'fragment' => '',
-			'namespace' => $defaultNamespace,
+			'namespace' => (int)$defaultNamespace,
 			'dbkey' => $dbkey,
 		];
 

@@ -63,7 +63,7 @@ interface ProperPageIdentity extends PageIdentity {
 	 *
 	 * @return int
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL );
+	public function getId( $wikiId = PageIdentity::LOCAL ): int;
 
 	/**
 	 * Always true.
@@ -71,6 +71,6 @@ interface ProperPageIdentity extends PageIdentity {
 	 *
 	 * @return bool
 	 */
-	public function canExist();
+	public function canExist(): bool;
 
 }
