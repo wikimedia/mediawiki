@@ -24,6 +24,7 @@
 
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -2301,6 +2302,14 @@ class Title implements LinkTarget, IDBAccessObject {
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
 			if ( $wgRequest->getVal( 'action' ) == 'render' ) {
+				LoggerFactory::getInstance( 'T263581' )
+					->debug(
+						"Title::getLocalURL called from render action",
+						[
+							'title' => $this->getPrefixedDBkey(),
+							'exception' => new Exception()
+						]
+					);
 				$url = $wgServer . $url;
 			}
 		}
