@@ -506,6 +506,9 @@ because of Phabricator reports.
 * ParserCache default serialization format was changed from PHP serialization
   to JSON serialization. In case some installed extension do not support JSON
   yet, $wgParserCacheUseJson can be used to revert back to PHP serialization.
+* PermissionManager::groupHasPermission, ::getGroupPermissions and
+  ::getGroupsWithPermission were deprecated, use GroupPermissionsLookup
+  service instead.
 
 == Compatibility ==
 MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:

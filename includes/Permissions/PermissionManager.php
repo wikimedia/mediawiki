@@ -31,6 +31,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
 use NamespaceInfo;
@@ -84,6 +85,12 @@ class PermissionManager {
 
 	/** @var NamespaceInfo */
 	private $nsInfo;
+
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionLookup;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
 
 	/** @var string[]|null Cached results of getAllPermissions() */
 	private $allRights;
@@ -204,6 +211,8 @@ class PermissionManager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
+	 * @param GroupPermissionsLookup $groupPermissionLookup
+	 * @param UserGroupManager $userGroupManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
 	 * @param UserCache $userCache
@@ -213,6 +222,8 @@ class PermissionManager {
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo,
+		GroupPermissionsLookup $groupPermissionLookup,
+		UserGroupManager $userGroupManager,
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
 		UserCache $userCache
@@ -222,6 +233,8 @@ class PermissionManager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
+		$this->groupPermissionLookup = $groupPermissionLookup;
+		$this->userGroupManager = $userGroupManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userCache = $userCache;
@@ -1321,8 +1334,7 @@ class PermissionManager {
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
 			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
-				// TODO Inject UserGroupManager, but needs cirular dependency fixed - T254537
-				$user->getEffectiveGroups()
+				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
 			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );
 
@@ -1399,6 +1411,7 @@ class PermissionManager {
 	 * from anyone.
 	 *
 	 * @since 1.34
+	 * @deprecated since 1.36 Use GroupPermissionLookup instead
 	 *
 	 * @param string $group Group to check
 	 * @param string $role Role to check
@@ -1406,56 +1419,33 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function groupHasPermission( $group, $role ) {
-		$groupPermissions = $this->options->get( 'GroupPermissions' );
-		$revokePermissions = $this->options->get( 'RevokePermissions' );
-		return isset( $groupPermissions[$group][$role] ) && $groupPermissions[$group][$role] &&
-			!( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
+		return $this->groupPermissionLookup->groupHasPermission( $group, $role );
 	}
 
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
 	 * @since 1.34
+	 * @deprecated since 1.36 Use GroupPermissionLookup instead
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
 	public function getGroupPermissions( $groups ) {
-		$rights = [];
-		// grant every granted permission first
-		foreach ( $groups as $group ) {
-			if ( isset( $this->options->get( 'GroupPermissions' )[$group] ) ) {
-				$rights = array_merge( $rights,
-					// array_filter removes empty items
-					array_keys( array_filter( $this->options->get( 'GroupPermissions' )[$group] ) ) );
-			}
-		}
-		// now revoke the revoked permissions
-		foreach ( $groups as $group ) {
-			if ( isset( $this->options->get( 'RevokePermissions' )[$group] ) ) {
-				$rights = array_diff( $rights,
-					array_keys( array_filter( $this->options->get( 'RevokePermissions' )[$group] ) ) );
-			}
-		}
-		return array_unique( $rights );
+		return $this->groupPermissionLookup->getGroupPermissions( $groups );
 	}
 
 	/**
 	 * Get all the groups who have a given permission
 	 *
 	 * @since 1.34
+	 * @deprecated since 1.36, use GroupPermissionLookup instead.
 	 *
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public function getGroupsWithPermission( $role ) {
-		$allowedGroups = [];
-		foreach ( array_keys( $this->options->get( 'GroupPermissions' ) ) as $group ) {
-			if ( $this->groupHasPermission( $group, $role ) ) {
-				$allowedGroups[] = $group;
-			}
-		}
-		return $allowedGroups;
+		return $this->groupPermissionLookup->getGroupsWithPermission( $role );
 	}
 
 	/**
