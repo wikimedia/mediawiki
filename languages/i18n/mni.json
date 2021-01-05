@@ -414,7 +414,7 @@
 	"loginerror": "ꯆꯪꯁꯤꯟ ꯑꯁꯣꯏꯕ ꯂꯩꯔꯦ",
 	"createacct-error": "ꯑꯀꯥꯎꯟ ꯁꯦꯝꯕꯗꯥ ꯑꯁꯣꯏꯕꯥ ꯂꯩꯔꯦ",
 	"createaccounterror": "$1 ꯑꯦꯀꯥꯎꯟ ꯁꯥꯕꯥ ꯌꯥꯗꯔꯦ",
-	"nocookiesnew": "The user account was created, but you are not logged in.\n{{SITENAME}} uses cookies to log in users.\nYou have cookies disabled.\nPlease enable them, then log in with your new username and password.",
+	"nocookiesnew": "ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯑꯦꯀꯥꯎꯟ ꯁꯦꯝꯈ꯭ꯔꯦ, ꯑꯗꯨꯕꯨ ꯅꯪ ꯃꯅꯨꯡ ꯆꯪꯗ꯭ꯔꯤ ꯫\n{{SITENAME}}ꯅ ꯀꯣꯀꯤꯁ ꯁꯤꯖꯤꯟꯅꯒꯅꯤ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯌꯥꯝ ꯃꯅꯨꯡ ꯆꯪꯅꯕ ꯫ ꯅꯪꯅ ꯀꯨꯀꯤꯁ ꯁꯤꯖꯤꯟꯅꯕ ꯌꯥꯍꯟꯗ꯭ꯔꯦ ꯫ ꯆꯥꯟꯕꯤꯗꯨꯅ ꯌꯥꯍꯟꯕꯤꯌꯨ, ꯑꯗꯩꯗꯤ ꯅꯪꯒꯤ ꯑꯅꯧꯕ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯃꯤꯡ ꯑꯃꯗꯤ ꯄꯥꯁꯋꯥꯔꯗ ꯁꯤꯖꯤꯟꯅꯔꯒ ꯃꯅꯨꯡ ꯆꯪꯕ ꯌꯥꯔꯅꯤ ꯫",
 	"nocookieslogin": "{{SITENAME}} uses cookies to log in users.\nYou have cookies disabled.\nPlease enable them and try again.",
 	"loginsuccesstitle": "ꯂꯣꯒ ꯏꯟ",
 	"nosuchuser": " \"$1\" ꯁꯤꯒꯥ ꯃꯥꯟꯅꯕ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ-ꯃꯃꯤꯡ ꯂꯩꯇꯦ ꯫ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ-ꯃꯃꯤꯡ ꯑꯁꯤ ꯌꯥꯝꯅꯥ ꯃꯔꯨꯑꯣꯏꯕꯅꯤ ꯂꯣꯟꯆꯟ ꯆꯨꯝꯕꯔꯥ ꯌꯦꯡꯉꯨ, ꯅꯠꯇꯔꯒ\n[[Special:CreateAccount|ꯑꯦꯀꯥꯎꯟ ꯑꯅꯧꯕ ꯱ ꯁꯥꯔꯣ]].",
