@@ -51,6 +51,10 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 	 * @param WebRequest|null $request Web request that may contain URL parameters, etc
 	 * @param Language|string|null $language The language which should be used in the context
 	 * @param User|null $user The user which should be used in the context of this special page
+	 * @param bool $fullHtml if true, the entirety of the generated HTML will be returned, this
+	 * includes the opening <!DOCTYPE> declaration and closing </html> tag. If false, only value
+	 * of OutputPage::getHTML() will be returned except if the page is redirect or where OutputPage
+	 * is completely disabled.
 	 *
 	 * @throws Exception
 	 * @return array [ string, WebResponse ] A two-elements array containing the HTML output
@@ -60,14 +64,16 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 		$subPage = '',
 		WebRequest $request = null,
 		$language = null,
-		User $user = null
+		User $user = null,
+		$fullHtml = false
 	) {
 		return ( new SpecialPageExecutor() )->executeSpecialPage(
 			$this->newSpecialPage(),
 			$subPage,
 			$request,
 			$language,
-			$user
+			$user,
+			$fullHtml
 		);
 	}
 
