@@ -28,10 +28,10 @@ describe( 'The usercontribs list query', function testUserContribsListQuery() {
 	};
 
 	before( async () => {
-		await Promise.all( [
-			fiona.account( 'Fiona_' ),
-			franky.account( 'Franky_' )
-		] );
+		// NOTE: we can't use Promise.all to create the users in parallel for now,
+		// since that can trigger T199393.
+		await fiona.account( 'Fiona_' );
+		await franky.account( 'Franky_' );
 
 		// Fiona edits X, second edit is minor, first edit is creation
 		edits.fiona1 = await fiona.edit( titleX, { text: 'Fiona X ONE', summary: 'fiona x one' } );
