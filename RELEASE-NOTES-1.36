@@ -492,6 +492,9 @@ because of Phabricator reports.
   been deprecated.
 * The ParserTestTables hook has been deprecated; it is no longer necessary
   after a ParserTestRunner refactoring.
+* The following classes have been hard deprecated: CachedAction,
+  SpecialCachedPage, CacheHelper, ICacheHelper. They were unused in MediaWiki
+  ecosystem, so no replacement was provided.
 * …
 
 === Other changes in 1.36 ===
