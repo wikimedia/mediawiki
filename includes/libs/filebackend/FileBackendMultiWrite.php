@@ -102,33 +102,34 @@ class FileBackendMultiWrite extends FileBackend {
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = [];
-		foreach ( $config['backends'] as $index => $config ) {
-			$name = $config['name'];
+		foreach ( $config['backends'] as $index => $beConfig ) {
+			$name = $beConfig['name'];
 			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
 				throw new LogicException( "Two or more backends defined with the name $name." );
 			}
 			$namesUsed[$name] = 1;
 			// Alter certain sub-backend settings for sanity
-			unset( $config['readOnly'] ); // use proxy backend setting
-			unset( $config['fileJournal'] ); // use proxy backend journal
-			unset( $config['lockManager'] ); // lock under proxy backend
-			$config['domainId'] = $this->domainId; // use the proxy backend wiki ID
-			if ( !empty( $config['isMultiMaster'] ) ) {
+			unset( $beConfig['readOnly'] ); // use proxy backend setting
+			unset( $beConfig['fileJournal'] ); // use proxy backend journal
+			unset( $beConfig['lockManager'] ); // lock under proxy backend
+			$beConfig['domainId'] = $this->domainId; // use the proxy backend wiki ID
+			$beConfig['logger'] = $this->logger; // use the proxy backend logger
+			if ( !empty( $beConfig['isMultiMaster'] ) ) {
 				if ( $this->masterIndex >= 0 ) {
 					throw new LogicException( 'More than one master backend defined.' );
 				}
 				$this->masterIndex = $index; // this is the "master"
-				$config['fileJournal'] = $this->fileJournal; // log under proxy backend
+				$beConfig['fileJournal'] = $this->fileJournal; // log under proxy backend
 			}
-			if ( !empty( $config['readAffinity'] ) ) {
+			if ( !empty( $beConfig['readAffinity'] ) ) {
 				$this->readIndex = $index; // prefer this for reads
 			}
 			// Create sub-backend object
-			if ( !isset( $config['class'] ) ) {
+			if ( !isset( $beConfig['class'] ) ) {
 				throw new InvalidArgumentException( 'No class given for a backend config.' );
 			}
-			$class = $config['class'];
-			$this->backends[$index] = new $class( $config );
+			$class = $beConfig['class'];
+			$this->backends[$index] = new $class( $beConfig );
 		}
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new LogicException( 'No master backend defined.' );
