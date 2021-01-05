@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js v10
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_MW_DOCKER_PORT: 8080
+          envkey_MW_SCRIPT_PATH: /w
+          envkey_MW_SERVER: "http://localhost:8080"
+          envkey_MEDIAWIKI_USER: "Admin"
+          envkey_MEDIAWIKI_PASSWORD: "dockerpass"
+          envkey_XDEBUG_CONFIG: ""
+      - name: Create docker-compose.override.yml
+        run: ${{ github.action_path }}/docker-compose.override.sh
+        shell: bash
+      - name: Start Mediawiki-docker
+        run: |
+          docker-compose up -d
+          docker-compose exec -T mediawiki composer update
+          docker-compose exec -T mediawiki /bin/bash /docker/install.sh
+      - name: Clone skins/Vector
+        run: git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
+      - name: Setup LocalSettings.php
+        run: echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
+      - name: Test mediawiki
+        run: curl https://localhost:8080/w
