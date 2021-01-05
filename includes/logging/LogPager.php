@@ -387,9 +387,12 @@ class LogPager extends ReverseChronologicalPager {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 		if ( $this->performer !== '' || $this->types !== [] ) {
+			// Index being renamed
+			$index = $this->mDb->indexExists( 'logging', 'times', __METHOD__ ) ? 'times' : 'log_times';
+
 			// T223151, T237026: MariaDB's optimizer, at least 10.1, likes to choose a wildly bad plan for
 			// some reason for these code paths. Tell it not to use the wrong index it wants to pick.
-			$options['IGNORE INDEX'] = [ 'logging' => [ 'log_times' ] ];
+			$options['IGNORE INDEX'] = [ 'logging' => [ $index ] ];
 		}
 
 		$info = [
