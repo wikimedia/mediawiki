@@ -2249,6 +2249,13 @@ abstract class Skin extends ContextSource {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
+			// Set class for the link to link-class, when defined.
+			// This allows newer notifications content navigation to retain their classes
+			// when merged back into the personal tools.
+			// Doing this here allows the loop below to overwrite the class if defined directly.
+			if ( isset( $plink['link-class'] ) ) {
+				$ptool['links'][0]['class'] = $plink['link-class'];
+			}
 			foreach ( [
 				'href',
 				'class',

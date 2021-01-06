@@ -45,6 +45,14 @@ class SkinMustache extends SkinTemplate {
 		if ( $name === 'actions' ) {
 			$name = 'cactions';
 		}
+
+		// user-menu is the new personal tools, without the notifications.
+		// A lot of user code and gadgets relies on it being named personal.
+		// This allows it to function as a drop-in replacement.
+		if ( $name === 'user-menu' ) {
+			$name = 'personal';
+		}
+
 		$id = Sanitizer::escapeIdForAttribute( "p-$name" );
 		$data = [
 			'id' => $id,
@@ -226,14 +234,24 @@ class SkinMustache extends SkinTemplate {
 				}
 			}
 		}
+
 		foreach ( $contentNavigation as $name => $items ) {
+			if ( $name === 'user-menu' ) {
+				$items = $this->getPersonalToolsForMakeListItem( $items );
+			}
+
 			$portlets['data-' . $name] = $this->getPortletData( $name, $items );
 		}
-		$portlets['data-personal'] = $this->getPortletData( 'personal',
-			self::getPersonalToolsForMakeListItem(
-				$this->buildPersonalUrls()
+
+		// A menu that includes the notifications. This will be deprecated in future versions
+		// of the skin API spec.
+		$portlets['data-personal'] = $this->getPortletData(
+			'personal',
+			$this->getPersonalToolsForMakeListItem(
+				$this->insertNotificationsIntoPersonalTools( $contentNavigation )
 			)
 		);
+
 		return [
 			'data-portlets' => $portlets,
 			'data-portlets-sidebar' => [
