@@ -47,11 +47,13 @@
  * @file
  */
 
+use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
  * Environment checks
@@ -124,7 +126,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	die( 1 );
 }
 
-MediaWiki\HeaderCallback::register();
+HeaderCallback::register();
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
 // This is also the default for mbstring functions.
@@ -152,6 +154,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK );
+}
+
+// Start time limit
+if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
+	RequestTimeout::singleton()->setWallTimeLimit( $wgRequestTimeLimit );
 }
 
 /**
@@ -704,6 +711,7 @@ $wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
+		HeaderCallback::warnIfHeadersSent();
 		session_name( $wgSessionName ?: $wgCookiePrefix . '_session' );
 	}
 

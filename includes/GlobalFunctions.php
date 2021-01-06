@@ -31,6 +31,7 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\WrappedString;
 
 /**
@@ -2633,7 +2634,7 @@ function wfMemoryLimit( $newLimit ) {
 }
 
 /**
- * Set PHP's time limit to the larger of php.ini or $wgTransactionalTimeLimit
+ * Raise the request time limit to $wgTransactionalTimeLimit
  *
  * @return int Prior time limit
  * @since 1.26
@@ -2641,12 +2642,21 @@ function wfMemoryLimit( $newLimit ) {
 function wfTransactionalTimeLimit() {
 	global $wgTransactionalTimeLimit;
 
-	$timeLimit = (int)ini_get( 'max_execution_time' );
-	// Note that CLI scripts use 0
-	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
-		set_time_limit( $wgTransactionalTimeLimit );
+	$timeout = RequestTimeout::singleton();
+	$timeLimit = $timeout->getWallTimeLimit();
+	if ( $timeLimit !== INF ) {
+		// RequestTimeout library is active
+		if ( $wgTransactionalTimeLimit > $timeLimit ) {
+			$timeout->setWallTimeLimit( $wgTransactionalTimeLimit );
+		}
+	} else {
+		// Fallback case, likely $wgRequestTimeLimit === null
+		$timeLimit = (int)ini_get( 'max_execution_time' );
+		// Note that CLI scripts use 0
+		if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
+			$timeout->setWallTimeLimit( $wgTransactionalTimeLimit );
+		}
 	}
-
 	ignore_user_abort( true ); // ignore client disconnects
 
 	return $timeLimit;

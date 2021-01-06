@@ -548,6 +548,8 @@
 	"missingarticle-diff": "Used as <code>$2</code> in {{msg-mw|Missing-article}}\n\nPreceded by the page title.\n\n[{{canonicalurl:Translating:Tasks|diff=372398&oldid=371789000}} Click here] to see an example of such an error message.\n\nParameters:\n* $1 - the old revision ID\n* $2 - the revision ID to build the diff with",
 	"readonly_lag": "Error message displayed when the database is locked.",
 	"nonwrite-api-promise-error": "Error message displayed when the 'Promise-Non-Write-API-Action' HTTP header is misused.",
+	"timeouterror": "Used as a page title when the request runs for too long",
+	"timeouterror-text": "Error message displayed when a request runs for too long.\nParameters:\n* $1 - the configured time limit in seconds",
 	"internalerror": "{{Identical|Internal error}}",
 	"internalerror_info": "Parameters:\n* $1 - error message\n{{Identical|Internal error}}",
 	"internalerror-fatal-exception": "Error message displayed by MediaWiki itself when the request failed, inside an error box which also contains a code, a timestamp and a colon before this message.\nParameters:\n* $1 - proper name of the kind of error\n* $2 - alphanumeric code identifying the error in the server logs\n* $3 - URL which resulted in the error\n$2 and $3 are not used by default and only available for wiki customisations, because they are useful for communication to the wiki system administrator.",
