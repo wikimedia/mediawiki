@@ -777,7 +777,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( is_bool( $query ) ) {
 			$useParentheses = $query;
 		} elseif ( $query !== null ) {
-			wfDeprecated( __METHOD__ . ' with $query parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' with $query parameter', '1.36' );
 		}
 		if ( $useParentheses === null ) {
 			$useParentheses = true;
