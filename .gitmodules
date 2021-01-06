@@ -1398,3 +1398,13 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-EditNotify
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/WikibaseQualityConstraints"]
+	path = extensions/WikibaseQualityConstraints
+	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseQualityConstraints
+	branch = REL1_35
+	ignore = dirty
+[submodule "extensions/WikibaseLexeme"]
+	path = extensions/WikibaseLexeme
+	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseLexeme
+	branch = REL1_35
+	ignore = dirty
