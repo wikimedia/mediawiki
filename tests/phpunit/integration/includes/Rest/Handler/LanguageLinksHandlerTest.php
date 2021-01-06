@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
@@ -20,7 +21,7 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
-	public function addDBDataOnce() {
+	public function addDBData() {
 		$defaults = [
 			'iw_local' => 0,
 			'iw_api' => '/w/api.php',
@@ -29,16 +30,13 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 		$base = 'https://wiki.test/';
 
-		$this->db->insert(
-			'interwiki',
-			[
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
 				[ 'iw_prefix' => 'de', 'iw_url' => $base . '/de', 'iw_wikiid' => 'dewiki' ] + $defaults,
 				[ 'iw_prefix' => 'en', 'iw_url' => $base . '/en', 'iw_wikiid' => 'enwiki' ] + $defaults,
 				[ 'iw_prefix' => 'fr', 'iw_url' => $base . '/fr', 'iw_wikiid' => 'frwiki' ] + $defaults,
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+			] ),
+		] );
 
 		$this->editPage( __CLASS__ . '_Foo', 'Foo [[fr:Fou baux]] [[de:Füh bär]]' );
 	}
