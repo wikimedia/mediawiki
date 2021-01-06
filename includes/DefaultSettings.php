@@ -9660,23 +9660,8 @@ $wgRestAllowCrossOriginCookieAuth = false;
 $wgParserCacheUseJson = true;
 
 /**
- * Whether site notice dimiss button `[dismiss]` should be shown to
- * anonymous (unregistered) users. If it's false (default), sitenotices
- * are effectively undissmissable unless one registers.
- *
- * The button will be shown to all registered users irrespective of this setting.
- *
- * @since 1.36
- * @var bool
- */
-$wgDismissableSiteNoticeForAnons = false;
-
-/*
- * This file uses VisualStudio style region/endregion fold markers which are
- * recognised by PHPStorm. If modelines are enabled, the following editor
- * configuration will also enable folding in vim, if it is in the last 5 lines
- * of the file. We also use "@name" which creates sections in Doxygen.
- *
- * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
+ * For really cool vim folding this needs to be at the end:
+ * vim: foldmarker=@{,@} foldmethod=marker
+ * @}
  */
 // endregion
