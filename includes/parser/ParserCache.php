@@ -424,6 +424,7 @@ class ParserCache {
 		}
 
 		$this->logger->debug( 'ParserOutput cache found', [ 'name' => $this->name ] );
+		$this->incrementStats( $wikiPage, 'hit' );
 		return $value;
 	}
 
