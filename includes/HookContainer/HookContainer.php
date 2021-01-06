@@ -149,7 +149,7 @@ class HookContainer implements SalvageableService {
 		}
 
 		$handlers = $this->getHandlers( $hook, $options );
-		$funcName = 'on' . str_replace( ':', '_',  ucfirst( $hook ) );
+		$funcName = 'on' . strtr( ucfirst( $hook ), ':-', '__' );
 
 		foreach ( $handlers as $handler ) {
 			$return = $handler->$funcName( ...$args );
