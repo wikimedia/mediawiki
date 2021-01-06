@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
@@ -30,6 +31,9 @@ abstract class Handler {
 	/** @var RequestInterface */
 	private $request;
 
+	/** @var Authority */
+	private $authority;
+
 	/** @var array */
 	private $config;
 
@@ -53,18 +57,20 @@ abstract class Handler {
 
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
-	 * @internal
 	 * @param Router $router
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param Authority $authority
 	 * @param ResponseFactory $responseFactory
 	 * @param HookContainer $hookContainer
+	 * @internal
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-		ResponseFactory $responseFactory, HookContainer $hookContainer
+								Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
 	) {
 		$this->router = $router;
 		$this->request = $request;
+		$this->authority = $authority;
 		$this->config = $config;
 		$this->responseFactory = $responseFactory;
 		$this->hookContainer = $hookContainer;
@@ -131,6 +137,17 @@ abstract class Handler {
 	 */
 	public function getRequest(): RequestInterface {
 		return $this->request;
+	}
+
+	/**
+	 * Get the current acting authority. The return type declaration causes it to raise
+	 * a fatal error if init() has not yet been called.
+	 *
+	 * @since 1.36
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority {
+		return $this->authority;
 	}
 
 	/**

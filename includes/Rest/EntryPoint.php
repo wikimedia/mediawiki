@@ -40,17 +40,16 @@ class EntryPoint {
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
+		$authority = $context->getAuthority();
 		$authorizer = new CompoundAuthorizer();
 		$authorizer
-			->addAuthorizer( new MWBasicAuthorizer( $context->getUser(),
-				$services->getPermissionManager() ) )
+			->addAuthorizer( new MWBasicAuthorizer( $authority ) )
 			->addAuthorizer( $cors );
 
 		$objectFactory = $services->getObjectFactory();
 		$restValidator = new Validator( $objectFactory,
-			$services->getPermissionManager(),
 			$request,
-			RequestContext::getMain()->getUser()
+			$authority
 		);
 
 		// Always include the "official" routes. Include additional routes if specified.
@@ -71,6 +70,7 @@ class EntryPoint {
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
 			$authorizer,
+			$authority,
 			$objectFactory,
 			$restValidator,
 			$services->getHookContainer()
