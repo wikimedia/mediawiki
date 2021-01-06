@@ -4,13 +4,11 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
-use RequestContext;
 use TitleFactory;
 use TitleFormatter;
 
@@ -26,21 +24,18 @@ class RevisionSourceHandler extends SimpleHandler {
 
 	/**
 	 * @param Config $config
-	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory
 	) {
 		$this->contentHelper = new RevisionContentHelper(
 			$config,
-			$permissionManager,
 			$revisionLookup,
 			$titleFormatter,
 			$titleFactory
@@ -48,9 +43,7 @@ class RevisionSourceHandler extends SimpleHandler {
 	}
 
 	protected function postValidationSetup() {
-		// TODO: inject user properly
-		$user = RequestContext::getMain()->getUser();
-		$this->contentHelper->init( $user, $this->getValidatedParams() );
+		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 	}
 
 	/**

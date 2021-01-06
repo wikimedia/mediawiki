@@ -40,7 +40,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory"
@@ -52,7 +51,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory",
@@ -67,7 +65,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
 			"TitleFactory",

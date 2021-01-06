@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -18,7 +18,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use User;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
@@ -237,19 +236,30 @@ trait HandlerTestTrait {
 	}
 
 	/**
-	 * @internal
-	 * @return PermissionManager|MockObject
+	 * Create a mock Authority implementation which prohibits access
+	 * to pages with 'Forbidden' in their titles
+	 * @return Authority
 	 */
-	private function makeMockPermissionManager() {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan' ]
-		);
-		$permissionManager->method( 'userCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
+	private function makeMockAuthority(): Authority {
+		return new class(
+			new UserIdentityValue( 0, 'Fake User', 0 )
+		) extends UltimateAuthority {
 
-		return $permissionManager;
+			public function probablyCan(
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status = null
+			): bool {
+				return !preg_match( '/Forbidden/', $target->getDBkey() );
+			}
+
+			public function authorizeRead(
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status = null
+			): bool {
+				return $this->probablyCan( $action, $target, $status );
+			}
+		};
 	}
 }

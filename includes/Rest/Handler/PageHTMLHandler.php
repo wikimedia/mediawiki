@@ -6,13 +6,11 @@ use Config;
 use LogicException;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
-use RequestContext;
 use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
@@ -35,7 +33,6 @@ class PageHTMLHandler extends SimpleHandler {
 
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory,
@@ -45,7 +42,6 @@ class PageHTMLHandler extends SimpleHandler {
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
-			$permissionManager,
 			$revisionLookup,
 			$titleFormatter,
 			$titleFactory
@@ -59,9 +55,7 @@ class PageHTMLHandler extends SimpleHandler {
 	}
 
 	protected function postValidationSetup() {
-		// TODO: inject user properly
-		$user = RequestContext::getMain()->getUser();
-		$this->contentHelper->init( $user, $this->getValidatedParams() );
+		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 
 		$title = $this->contentHelper->getTitle();
 		if ( $title ) {

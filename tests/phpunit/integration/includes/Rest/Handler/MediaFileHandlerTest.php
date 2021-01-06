@@ -23,7 +23,6 @@ class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 
 	private function newHandler() {
 		return new MediaFileHandler(
-			$this->makeMockPermissionManager(),
 			$this->makeMockRepoGroup()
 		);
 	}

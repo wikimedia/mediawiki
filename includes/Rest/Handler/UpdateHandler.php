@@ -185,12 +185,12 @@ class UpdateHandler extends EditHandler {
 		$baseContent = $baseRev->getContent(
 			SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER,
-			$this->getUser()
+			$this->getAuthority()
 		);
 		$currentContent = $currentRev->getContent(
 			SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER,
-			$this->getUser()
+			$this->getAuthority()
 		);
 
 		if ( !$baseContent || !$currentContent ) {

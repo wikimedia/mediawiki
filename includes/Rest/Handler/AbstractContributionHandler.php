@@ -7,7 +7,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
-use RequestContext;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -58,8 +57,8 @@ abstract class AbstractContributionHandler extends Handler {
 	 */
 	protected function getTargetUser() {
 		if ( $this->me ) {
-			$user = RequestContext::getMain()->getUser();
-			if ( $user->isAnon() ) {
+			$user = $this->getAuthority()->getActor();
+			if ( !$user->isRegistered() ) {
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-permission-denied-anon' ), 401
 				);

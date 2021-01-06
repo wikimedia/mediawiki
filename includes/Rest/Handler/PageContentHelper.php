@@ -3,7 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
@@ -16,7 +16,6 @@ use TextContent;
 use Title;
 use TitleFactory;
 use TitleFormatter;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -29,9 +28,6 @@ class PageContentHelper {
 	/** @var Config */
 	protected $config;
 
-	/** @var PermissionManager */
-	protected $permissionManager;
-
 	/** @var RevisionLookup */
 	protected $revisionLookup;
 
@@ -41,8 +37,8 @@ class PageContentHelper {
 	/** @var TitleFactory */
 	protected $titleFactory;
 
-	/** @var User|null */
-	protected $user = null;
+	/** @var Authority|null */
+	protected $authority = null;
 
 	/** @var string[] */
 	protected $parameters = null;
@@ -55,31 +51,28 @@ class PageContentHelper {
 
 	/**
 	 * @param Config $config
-	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory
 	) {
 		$this->config = $config;
-		$this->permissionManager = $permissionManager;
 		$this->revisionLookup = $revisionLookup;
 		$this->titleFormatter = $titleFormatter;
 		$this->titleFactory = $titleFactory;
 	}
 
 	/**
-	 * @param User $user
+	 * @param Authority $authority
 	 * @param string[] $parameters validated parameters
 	 */
-	public function init( User $user, array $parameters ) {
-		$this->user = $user;
+	public function init( Authority $authority, array $parameters ) {
+		$this->authority = $authority;
 		$this->parameters = $parameters;
 	}
 
@@ -143,7 +136,7 @@ class PageContentHelper {
 
 		try {
 			$content = $revision
-				->getSlot( $slotRole, RevisionRecord::FOR_THIS_USER, $this->user )
+				->getSlot( $slotRole, RevisionRecord::FOR_THIS_USER, $this->authority )
 				->getContent()
 				->convert( CONTENT_MODEL_TEXT );
 			if ( !( $content instanceof TextContent ) ) {
@@ -169,7 +162,7 @@ class PageContentHelper {
 	public function isAccessible(): bool {
 		$title = $this->getTitle();
 		return $title && $title->getArticleID()
-			&& $this->permissionManager->userCan( 'read', $this->user, $title );
+			&& $this->authority->probablyCan( 'read', $title );
 	}
 
 	/**
@@ -279,7 +272,7 @@ class PageContentHelper {
 			);
 		}
 
-		if ( !$this->isAccessible() ) {
+		if ( !$this->authority->authorizeRead( 'read', $this->getTitle() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),
 				403
