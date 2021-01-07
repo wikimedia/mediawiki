@@ -29,7 +29,7 @@ interface ArticleDeleteHook {
 	 * @param bool $suppress Whether this is a suppression deletion or not (added in 1.27)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onArticleDelete( $wikiPage, $user, &$reason, &$error, &$status,
+	public function onArticleDelete( WikiPage $wikiPage, User $user, &$reason, &$error, Status &$status,
 		$suppress
 	);
 }

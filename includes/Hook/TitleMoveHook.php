@@ -27,5 +27,5 @@ interface TitleMoveHook {
 	 *   	(i.e. call $status->fatal())
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onTitleMove( $old, $nt, $user, $reason, &$status );
+	public function onTitleMove( Title $old, Title $nt, User $user, $reason, Status &$status );
 }
