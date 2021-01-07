@@ -190,5 +190,4 @@ class SimpleAuthority implements Authority {
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}
-
 }
