@@ -185,7 +185,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 		foreach ( $this->features as $feature ) {
 			if ( !isset( self::FEATURE_FILES[$feature] ) ) {
-				throw new InvalidArgumentException( "Feature `$feature` is not recognised" );
+				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
+				continue;
 			}
 			foreach ( self::FEATURE_FILES[$feature] as $mediaType => $files ) {
 				if ( !isset( $styles[$mediaType] ) ) {
