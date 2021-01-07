@@ -190,7 +190,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 				$compatibilityMode = true;
 			}
 			if ( !isset( self::FEATURE_FILES[$feature] ) || !isset( self::DEFAULT_FEATURES[$feature] ) ) {
-				throw new InvalidArgumentException( "Feature `$key` is not recognised" );
+				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
+				continue;
 			}
 		}
 		// If the module didn't specify an option use the default features values.
