@@ -1907,32 +1907,33 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'test3' ], $user->getGroups(), 'Hooks can stop removal of a group' );
 	}
 
+	private const CHANGEABLE_GROUPS_TEST_CONFIG = [
+		'wgGroupPermissions' => [
+			'doEverything' => [
+				'userrights' => true,
+			],
+		],
+		'wgAddGroups' => [
+			'sysop' => [ 'rollback' ],
+			'bureaucrat' => [ 'sysop', 'bureaucrat' ],
+		],
+		'wgRemoveGroups' => [
+			'sysop' => [ 'rollback' ],
+			'bureaucrat' => [ 'sysop' ],
+		],
+		'wgGroupsAddToSelf' => [
+			'sysop' => [ 'flood' ],
+		],
+		'wgGroupsRemoveFromSelf' => [
+			'flood' => [ 'flood' ],
+		],
+	];
+
 	/**
 	 * @covers User::changeableGroups
 	 */
 	public function testChangeableGroups() {
-		// todo: test changeableByGroup here as well
-		$this->setMwGlobals( [
-			'wgGroupPermissions' => [
-				'doEverything' => [
-					'userrights' => true,
-				],
-			],
-			'wgAddGroups' => [
-				'sysop' => [ 'rollback' ],
-				'bureaucrat' => [ 'sysop', 'bureaucrat' ],
-			],
-			'wgRemoveGroups' => [
-				'sysop' => [ 'rollback' ],
-				'bureaucrat' => [ 'sysop' ],
-			],
-			'wgGroupsAddToSelf' => [
-				'sysop' => [ 'flood' ],
-			],
-			'wgGroupsRemoveFromSelf' => [
-				'flood' => [ 'flood' ],
-			],
-		] );
+		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
 
 		$allGroups = User::getAllGroups();
 
@@ -1971,6 +1972,32 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			],
 			$changeableGroups
 		);
+	}
+
+	public function provideChangeableByGroup() {
+		yield 'sysop' => [ 'sysop', [
+			'add' => [ 'rollback' ],
+			'remove' => [ 'rollback' ],
+			'add-self' => [ 'flood' ],
+			'remove-self' => [],
+		] ];
+		yield 'flood' => [ 'flood', [
+			'add' => [],
+			'remove' => [],
+			'add-self' => [],
+			'remove-self' => [ 'flood' ],
+		] ];
+	}
+
+	/**
+	 * @dataProvider provideChangeableByGroup
+	 * @covers User::changeableByGroup
+	 * @param string $group
+	 * @param array $expected
+	 */
+	public function testChangeableByGroup( string $group, array $expected ) {
+		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
+		$this->assertGroupsEquals( $expected, User::changeableByGroup( $group ) );
 	}
 
 	private function assertGroupsEquals( array $expected, array $actual ) {

@@ -4147,72 +4147,12 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *     'remove' => [ removablegroups ],
 	 *     'add-self' => [ addablegroups to self ],
 	 *     'remove-self' => [ removable groups from self ] ]
-	 * @suppress PhanTypeComparisonFromArray False positives with $wgGroupsAddToSelf
+	 * @deprecated since 1.36 Use UserGroupManager::getGroupsChangeableByGroup instead.
 	 */
 	public static function changeableByGroup( $group ) {
-		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
-
-		$groups = [
-			'add' => [],
-			'remove' => [],
-			'add-self' => [],
-			'remove-self' => []
-		];
-
-		if ( empty( $wgAddGroups[$group] ) ) {
-			// Don't add anything to $groups
-		} elseif ( $wgAddGroups[$group] === true ) {
-			// You get everything
-			$groups['add'] = self::getAllGroups();
-		} elseif ( is_array( $wgAddGroups[$group] ) ) {
-			$groups['add'] = $wgAddGroups[$group];
-		}
-
-		// Same thing for remove
-		if ( empty( $wgRemoveGroups[$group] ) ) {
-			// Do nothing
-		} elseif ( $wgRemoveGroups[$group] === true ) {
-			$groups['remove'] = self::getAllGroups();
-		} elseif ( is_array( $wgRemoveGroups[$group] ) ) {
-			$groups['remove'] = $wgRemoveGroups[$group];
-		}
-
-		// Re-map numeric keys of AddToSelf/RemoveFromSelf to the 'user' key for backwards compatibility
-		if ( empty( $wgGroupsAddToSelf['user'] ) || $wgGroupsAddToSelf['user'] !== true ) {
-			foreach ( $wgGroupsAddToSelf as $key => $value ) {
-				if ( is_int( $key ) ) {
-					$wgGroupsAddToSelf['user'][] = $value;
-				}
-			}
-		}
-
-		if ( empty( $wgGroupsRemoveFromSelf['user'] ) || $wgGroupsRemoveFromSelf['user'] !== true ) {
-			foreach ( $wgGroupsRemoveFromSelf as $key => $value ) {
-				if ( is_int( $key ) ) {
-					$wgGroupsRemoveFromSelf['user'][] = $value;
-				}
-			}
-		}
-
-		// Now figure out what groups the user can add to him/herself
-		if ( empty( $wgGroupsAddToSelf[$group] ) ) {
-			// Do nothing
-		} elseif ( $wgGroupsAddToSelf[$group] === true ) {
-			// No idea WHY this would be used, but it's there
-			$groups['add-self'] = self::getAllGroups();
-		} elseif ( is_array( $wgGroupsAddToSelf[$group] ) ) {
-			$groups['add-self'] = $wgGroupsAddToSelf[$group];
-		}
-
-		if ( empty( $wgGroupsRemoveFromSelf[$group] ) ) {
-			// Do nothing
-		} elseif ( $wgGroupsRemoveFromSelf[$group] === true ) {
-			$groups['remove-self'] = self::getAllGroups();
-		} elseif ( is_array( $wgGroupsRemoveFromSelf[$group] ) ) {
-			$groups['remove-self'] = $wgGroupsRemoveFromSelf[$group];
-		}
-
-		return $groups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getGroupsChangeableByGroup( $group );
 	}
 
 	/**
@@ -4221,41 +4161,12 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *  'remove' => [ removablegroups ],
 	 *  'add-self' => [ addablegroups to self ],
 	 *  'remove-self' => [ removable groups from self ] ]
+	 * @deprecated since 1.36 Use UserGroupManager::getGroupsChangeableBy instead.
 	 */
 	public function changeableGroups() {
-		if ( $this->isAllowed( 'userrights' ) ) {
-			// This group gives the right to modify everything (reverse-
-			// compatibility with old "userrights lets you change
-			// everything")
-			// Using array_merge to make the groups reindexed
-			$all = array_merge( self::getAllGroups() );
-			return [
-				'add' => $all,
-				'remove' => $all,
-				'add-self' => [],
-				'remove-self' => []
-			];
-		}
-
-		// Okay, it's not so simple, we will have to go through the arrays
-		$groups = [
-			'add' => [],
-			'remove' => [],
-			'add-self' => [],
-			'remove-self' => []
-		];
-		$addergroups = $this->getEffectiveGroups();
-
-		foreach ( $addergroups as $addergroup ) {
-			$groups = array_merge_recursive(
-				$groups, $this->changeableByGroup( $addergroup )
-			);
-			$groups['add'] = array_unique( $groups['add'] );
-			$groups['remove'] = array_unique( $groups['remove'] );
-			$groups['add-self'] = array_unique( $groups['add-self'] );
-			$groups['remove-self'] = array_unique( $groups['remove-self'] );
-		}
-		return $groups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getGroupsChangeableBy( $this );
 	}
 
 	/**
