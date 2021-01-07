@@ -3605,6 +3605,5 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "సంకేతపదం, వాడుకరిపేరూ ఒకటే ఉండే వీల్లేదు.",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "సంకేతపదం నిషేధించిన సంకేతపదాలతో సరిపోలరాదు",
 	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి",
-	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు",
-	"sitenotice-close-label": "విస్మరించు"
+	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు"
 }

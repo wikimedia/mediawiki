@@ -3790,6 +3790,5 @@
 	"paramvalidator-help-type-user-subtype-ip": "διεύθυνση IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Εύρος IP",
 	"paramvalidator-help-type-user-subtype-id": "user ID (π.χ. «#12345»)",
-	"paramvalidator-help-type-title": "Τύπος: τίτλος σελίδας",
-	"sitenotice-close-label": "απόρριψη"
+	"paramvalidator-help-type-title": "Τύπος: τίτλος σελίδας"
 }

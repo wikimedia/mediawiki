@@ -3940,6 +3940,5 @@
 	"paramvalidator-help-type-title": "Vrsta: naslov strani",
 	"paramvalidator-help-type-title-must-exist": "Sprejme samo strani, ki obstajajo.",
 	"paramvalidator-help-type-title-no-must-exist": "Sprejme neobstoječe strani.",
-	"nonmain-slot-differences-therefore-readonly": "Na tej redakciji strani ne morete urejati wikibesedila, ker so bile po tej redakciji na strani narejene spremembe podatkov, ki ne temeljijo na wikibesedilu. [$1 Kliknite tukaj za obnovitev te redakcije.]",
-	"sitenotice-close-label": "skrij"
+	"nonmain-slot-differences-therefore-readonly": "Na tej redakciji strani ne morete urejati wikibesedila, ker so bile po tej redakciji na strani narejene spremembe podatkov, ki ne temeljijo na wikibesedilu. [$1 Kliknite tukaj za obnovitev te redakcije.]"
 }

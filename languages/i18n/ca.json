@@ -4005,6 +4005,5 @@
 	"paramvalidator-help-type-title": "Tipus: títol de pàgina",
 	"paramvalidator-help-type-title-must-exist": "Només s'accepten pàgines que existeixen.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepta pàgines que no existeixen.",
-	"nonmain-slot-differences-therefore-readonly": "No podeu editar el wikitext en la revisió d'aquesta pàgina, atès que s'han produït canvis en les dades de la pàgina des d'aquesta revisió que no són basats en wikitext. [$1 Per a restaurar la revisió feu clic ací.].",
-	"sitenotice-close-label": "descarta"
+	"nonmain-slot-differences-therefore-readonly": "No podeu editar el wikitext en la revisió d'aquesta pàgina, atès que s'han produït canvis en les dades de la pàgina des d'aquesta revisió que no són basats en wikitext. [$1 Per a restaurar la revisió feu clic ací.]."
 }

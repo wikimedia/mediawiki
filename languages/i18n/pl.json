@@ -4075,6 +4075,5 @@
 	"paramvalidator-help-type-title": "Typ: nazwa strony",
 	"paramvalidator-help-type-title-must-exist": "Akceptowane są tylko istniejące strony.",
 	"paramvalidator-help-type-title-no-must-exist": "Akceptuje nieistniejące strony.",
-	"nonmain-slot-differences-therefore-readonly": "Nie możesz edytować wikitekstu w tej wersji strony, ponieważ w międzyczasie na tej stronie miały miejsce zmiany w danych, które nie są już oparte na wikitekście. [$1 Kliknij tutaj, aby odtworzyć tę wersję.]",
-	"sitenotice-close-label": "ukryj"
+	"nonmain-slot-differences-therefore-readonly": "Nie możesz edytować wikitekstu w tej wersji strony, ponieważ w międzyczasie na tej stronie miały miejsce zmiany w danych, które nie są już oparte na wikitekście. [$1 Kliknij tutaj, aby odtworzyć tę wersję.]"
 }

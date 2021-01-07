@@ -3973,6 +3973,5 @@
 	"paramvalidator-help-type-title": "Tüüp: lehekülje pealkiri",
 	"paramvalidator-help-type-title-must-exist": "Nõustub ainult olemasolevate lehekülgedega.",
 	"paramvalidator-help-type-title-no-must-exist": "Nõustub lehekülgedega, mida pole.",
-	"nonmain-slot-differences-therefore-readonly": "Lehekülje selle redaktsiooni vikiteksti ei saa redigeerida, sest leheküljel on hiljem muudetud andmeid, mis pole vikitekstipõhised. [$1 Klõpsa siia, et see redaktsioon taastada.]",
-	"sitenotice-close-label": "sule"
+	"nonmain-slot-differences-therefore-readonly": "Lehekülje selle redaktsiooni vikiteksti ei saa redigeerida, sest leheküljel on hiljem muudetud andmeid, mis pole vikitekstipõhised. [$1 Klõpsa siia, et see redaktsioon taastada.]"
 }

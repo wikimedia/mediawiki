@@ -4136,6 +4136,5 @@
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Só aceita páginas que existem.",
 	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem.",
-	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]",
-	"sitenotice-close-label": "ocultar"
+	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]"
 }

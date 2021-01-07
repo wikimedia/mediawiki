@@ -4009,6 +4009,5 @@
 	"paramvalidator-missingtitle": "<var>$1</var> 제목 변수의 유효하지 않은 값 \"$2\": 문서가 존재하지 않습니다.",
 	"paramvalidator-help-type-title": "유형: 문서 제목",
 	"paramvalidator-help-type-title-must-exist": "존재하는 문서만 허용합니다.",
-	"paramvalidator-help-type-title-no-must-exist": "존재하지 않는 문서를 허용합니다.",
-	"sitenotice-close-label": "숨기기"
+	"paramvalidator-help-type-title-no-must-exist": "존재하지 않는 문서를 허용합니다."
 }
