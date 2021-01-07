@@ -26,6 +26,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -41,12 +42,20 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	protected $mRepo;
 
 	/**
+	 * @var GroupPermissionsLookup
+	 */
+	private $groupPermissionsLookup;
+
+	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
-		$this->mRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		// TODO: inject
+		$services = MediaWikiServices::getInstance();
+		$this->mRepo = $services->getRepoGroup()->getLocalRepo();
+		$this->groupPermissionsLookup = $services->getGroupPermissionsLookup();
 	}
 
 	/**
@@ -215,7 +224,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$this->addJoinConds( [ 'user_groups' => [
 					'LEFT JOIN',
 					[
-						'ug_group' => $this->getPermissionManager()->getGroupsWithPermission( 'bot' ),
+						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
 						'ug_user = ' . $actorQuery['fields']['img_user'],
 						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]

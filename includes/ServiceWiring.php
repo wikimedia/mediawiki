@@ -195,7 +195,7 @@ return [
 				BlockManager::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getPermissionManager(),
+			$services->getGroupPermissionsLookup(),
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getHookContainer(),
 			$services->getUserGroupManagerFactory()->getUserGroupManager()

@@ -387,7 +387,7 @@ class RebuildRecentchanges extends Maintenance {
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
 		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol ) ?
-			MediaWikiServices::getInstance()->getPermissionManager()
+			MediaWikiServices::getInstance()->getGroupPermissionsLookup()
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits

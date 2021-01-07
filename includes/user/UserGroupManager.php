@@ -543,7 +543,7 @@ class UserGroupManager implements IDBAccessObject {
 				return $user->getBlock() && $user->getBlock()->isSitewide();
 			case APCOND_ISBOT:
 				return in_array( 'bot', $this->groupPermissionsLookup
-					->getGroupPermissions( $this->getUserGroups( $user ) ) );
+					->getGroupPermissions( ...$this->getUserGroups( $user ) ) );
 			default:
 				$result = null;
 				$this->hookRunner->onAutopromoteCondition( $cond[0],

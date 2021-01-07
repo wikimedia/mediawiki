@@ -53,9 +53,10 @@ function wfImageAuthMain() {
 
 	$services = \MediaWiki\MediaWikiServices::getInstance();
 	$permissionManager = $services->getPermissionManager();
+	$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 
 	$request = RequestContext::getMain()->getRequest();
-	$publicWiki = in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true );
+	$publicWiki = $groupPermissionsLookup->groupHasPermission( '*', 'read' );
 
 	// Find the path assuming the request URL is relative to the local public zone URL
 	$baseUrl = $services->getRepoGroup()->getLocalRepo()->getZoneUrl( 'public' );
