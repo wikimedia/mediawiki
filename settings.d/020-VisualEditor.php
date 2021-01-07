@@ -17,9 +17,6 @@ $wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
 $wgHiddenPrefs[] = 'visualeditor-enable';
 $wgHiddenPrefs[] = 'visualeditor-newwikitext';
 
-// OPTIONAL: Enable VisualEditor's experimental code features
-#$wgDefaultUserOptions['visualeditor-enable-experimental'] = 1;
-
 // Per default, the VisualEditor only works with Namespace 0 (NS_MAIN),
 // i.e. the main article namespace. To change this, adapt the following example
 // that enables namespaces 0 (main), 2 (user) and 102 (some user specific one)
@@ -30,25 +27,4 @@ $wgVisualEditorAvailableNamespaces = [
     "_merge_strategy" => "array_plus"
 ];
 
-// Creating base64 encoded path
-$fullPath = $GLOBALS['wgServer'] . $GLOBALS['wgScriptPath'];
-$encFullPath = base64_encode( $fullPath );
-
-// Linking with Parsoid
-$wgVirtualRestConfig['modules']['parsoid'] = array(
-	'url' => $GLOBALS['wgServer'] . $GLOBALS['wgScriptPath'] . '/rest.php',
-	'domain' => $GLOBALS['wgServer'],
-	'forwardCookies' => true
-);
-
 $wgVisualEditorEnableWikitext = true;
-
-//Use new bundeled PHP version of Parsoid
-//https://www.mediawiki.org/wiki/Parsoid/PHP
-wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
-$GLOBALS['wgParsoidSettings'] = [
-	'useSelser' => true,
-	'rtTestMode' => false,
-	'linting' => false
-];
-$GLOBALS['wgEnableRestAPI'] = true;
