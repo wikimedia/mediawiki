@@ -4606,7 +4606,5 @@
 	"paramvalidator-help-type-title": "Used to indicate that a parameter is a page title or list of page titles.",
 	"paramvalidator-help-type-title-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that only titles referring to existing pages are valid.",
 	"paramvalidator-help-type-title-no-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that titles referring to non-existent pages are also valid.",
-	"nonmain-slot-differences-therefore-readonly": "Shown if user attempts to edit a revision of a page that contains non-main-slot differences from the current revision. Parameters:\n* $1 - link to the mcrrestore page to restore the revision",
-	"sitenotice-close-label": "Label for button to dismiss site notice. You can see this on the right side of the [[MediaWiki:Sitenotice|sitenotice]].\n\nThe word \"dismiss\" (or \"close\") should be in the infinitive mood.\n{{Identical|Dismiss}}",
-	"sitenotice_id": "{{notranslate}}"
+	"nonmain-slot-differences-therefore-readonly": "Shown if user attempts to edit a revision of a page that contains non-main-slot differences from the current revision. Parameters:\n* $1 - link to the mcrrestore page to restore the revision"
 }

@@ -42,9 +42,6 @@ use Wikimedia\WrappedStringList;
 abstract class Skin extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	/** The current major version of the skin specification. */
-	protected const VERSION_MAJOR = 2;
-
 	/**
 	 * @var string|null
 	 */
@@ -62,6 +59,9 @@ abstract class Skin extends ContextSource {
 	 *   located. Only needs to be set if you intend to use the getSkinStylePath() method.
 	 */
 	public $stylename = null;
+
+	/** The current major version of the skin specification. */
+	protected const VERSION_MAJOR = 1;
 
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
@@ -2056,44 +2056,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
-
-		return $this->appendNoticeDismissButton( $siteNotice );
-	}
-
-	/**
-	 * Takes a pre-built site notice and possibly append a `dismmiss` button to it.
-	 *
-	 * @param string $notice
-	 * @return string HTML fragment
-	 */
-	private function appendNoticeDismissButton( $notice ) {
-		if ( $notice === '' ) {
-			return $notice;
-		}
-
-		$newNotice = $notice;
-		$dismissForAnon = $this->getConfig()->get( 'DismissableSiteNoticeForAnons' );
-
-		if ( $this->getUser()->isRegistered() || $dismissForAnon ) {
-			$label = Html::element( 'a',
-				[
-					'tabindex' => '0',
-					'role' => 'button'
-				],
-				$this->msg( 'sitenotice-close-label' )->text()
-			);
-
-			$newNotice = Html::rawElement( 'div', [ 'class' => 'mw-dismissable-notice' ],
-				Html::rawElement(
-					'div',
-					[ 'class' => 'mw-dismissable-notice-close' ],
-					$this->msg( 'brackets' )->rawParams( $label )->escaped()
-				) .
-				Html::rawElement( 'div', [ 'class' => 'mw-dismissable-notice-body' ], $notice )
-			);
-		}
-
-		return $newNotice;
+		return $siteNotice;
 	}
 
 	/**
