@@ -3,6 +3,8 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * Split into separate \MediaWiki\Tests\Unit\XmlTest for unit tests
+ *
  * @group Xml
  */
 class XmlTest extends MediaWikiIntegrationTestCase {
@@ -93,15 +95,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
 			'Input with a value of 0 (T25797)'
-		);
-	}
-
-	/**
-	 * @covers Xml::escapeTagsOnly
-	 */
-	public function testEscapeTagsOnly() {
-		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
-			'replace " > and < with their HTML entitites'
 		);
 	}
 
@@ -340,49 +333,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			'<label for="testlang">Language:</label>',
 			$select[0]
-		);
-	}
-
-	public function provideEncodeJsVar() {
-		// $expected, $input
-		yield 'boolean' => [ 'true', true ];
-		yield 'null' => [ 'null', null ];
-		yield 'array' => [ '["a",1]', [ 'a', 1 ] ];
-		yield 'associative arary' => [ '{"a":"a","b":1}', [ 'a' => 'a', 'b' => 1 ] ];
-		yield 'object' => [ '{"a":"a","b":1}', (object)[ 'a' => 'a', 'b' => 1 ] ];
-		yield 'int' => [ '123456', 123456 ];
-		yield 'float' => [ '1.5', 1.5 ];
-		yield 'int-like string' => [ '"123456"', '123456' ];
-
-		$code = 'function () { foo( 42 ); }';
-		yield 'code' => [ $code, new XmlJsCode( $code ) ];
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 * @dataProvider provideEncodeJsVar
-	 */
-	public function testEncodeJsVar( string $expect, $input ) {
-		$this->assertEquals(
-			$expect,
-			Xml::encodeJsVar( $input )
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 * @covers XmlJsCode::encodeObject
-	 */
-	public function testEncodeObject() {
-		$codeA = 'function () { foo( 42 ); }';
-		$codeB = 'function ( jQuery ) { bar( 142857 ); }';
-		$obj = XmlJsCode::encodeObject( [
-			'a' => new XmlJsCode( $codeA ),
-			'b' => new XmlJsCode( $codeB )
-		] );
-		$this->assertEquals(
-			"{\"a\":$codeA,\"b\":$codeB}",
-			Xml::encodeJsVar( $obj )
 		);
 	}
 
