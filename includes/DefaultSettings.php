@@ -9659,9 +9659,12 @@ $wgRestAllowCrossOriginCookieAuth = false;
  */
 $wgParserCacheUseJson = true;
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
- * @}
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */
 // endregion
