@@ -3923,6 +3923,8 @@ class Parser {
 			}
 
 			if ( isset( $this->mTagHooks[$name] ) ) {
+				// Note that $content may be null here, for example if the
+				// tag is self-closed.
 				$output = call_user_func_array( $this->mTagHooks[$name],
 					[ $content, $attributes, $this, $frame ] );
 			} else {

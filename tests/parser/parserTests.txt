@@ -1488,6 +1488,24 @@ parsoid=wt2html
 </p>
 !! end
 
+!! test
+Self-closed tag hooks
+!! wikitext
+<pre />
+<gallery />
+<indicator name="something" />
+!! html/php
+<pre></pre>
+<ul class="gallery mw-gallery-traditional">
+</ul>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{}}'></pre>
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt5" data-mw='{"name":"gallery","attrs":{},"body":null}'>
+</ul>
+<p><span typeof="mw:Extension/indicator" about="#mwt7" data-mw='{"name":"indicator","attrs":{"name":"something"}}'>
+</span></p>
+!! end
+
 ###
 ### Special characters
 ###
@@ -23091,6 +23109,19 @@ wgRawHtml=1
 !! end
 
 !! test
+Empty tag w/ raw HTML ($wgRawHtml==true)
+!! options
+wgRawHtml=1
+!! wikitext
+<html />
+!! html/php
+<p class="mw-empty-elt">
+</p>
+!! html/parsoid
+<p><link typeof="mw:Extension/html" about="#mwt2" data-mw='{"name":"html","attrs":{}}'/></p>
+!! end
+
+!! test
 Parents of subpages, one level up
 !! options
 subpage title=[[Subpage test/L1/L2/L3]]
@@ -26683,6 +26714,15 @@ Langconvert tag: zh-hans to zh-hant
 <langconvert from="zh-hans" to="zh-hant">爱</langconvert>
 !! html/php
 <p>愛
+</p>
+!! end
+
+!! test
+Langconvert tag: self-closed
+!! wikitext
+x<langconvert from="crh-latn" to="crh-cyrl"/>x
+!! html/php
+<p>xx
 </p>
 !! end
 
