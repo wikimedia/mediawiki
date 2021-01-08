@@ -169,7 +169,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		$options['lessMessages'] = self::LESS_MESSAGES;
+		$options['lessMessages'] = array_merge(
+			$options['lessMessages'] ?? [],
+			self::LESS_MESSAGES
+		);
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 		$features = $options['features'] ??
 			// For historic reasons if nothing is declared logo and legacy features are enabled.
