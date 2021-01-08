@@ -25,7 +25,6 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 			false,
 			$services->getLinkRenderer(),
 			$services->getRepoGroup(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),

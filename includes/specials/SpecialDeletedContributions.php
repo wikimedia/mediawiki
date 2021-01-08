@@ -158,7 +158,6 @@ class SpecialDeletedContributions extends SpecialPage {
 			$opts->getValue( 'namespace' ),
 			$this->getLinkRenderer(),
 			$this->getHookContainer(),
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->commentStore,
 			$this->actorMigration,

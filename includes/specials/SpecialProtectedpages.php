@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -36,9 +35,6 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -54,7 +50,6 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -62,7 +57,6 @@ class SpecialProtectedpages extends SpecialPage {
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -70,7 +64,6 @@ class SpecialProtectedpages extends SpecialPage {
 	) {
 		parent::__construct( 'Protectedpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
@@ -108,7 +101,6 @@ class SpecialProtectedpages extends SpecialPage {
 			$noRedirect,
 			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->commentStore,
 			$this->actorMigration,

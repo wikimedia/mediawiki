@@ -21,7 +21,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -60,7 +59,6 @@ class ActiveUsersPager extends UsersPager {
 	 * @param FormOptions $opts
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
 	 */
@@ -69,7 +67,6 @@ class ActiveUsersPager extends UsersPager {
 		FormOptions $opts,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		UserGroupManager $userGroupManager
 	) {
@@ -79,7 +76,6 @@ class ActiveUsersPager extends UsersPager {
 			null,
 			$linkBatchFactory,
 			$hookContainer,
-			$permissionManager,
 			$loadBalancer,
 			$userGroupManager
 		);
