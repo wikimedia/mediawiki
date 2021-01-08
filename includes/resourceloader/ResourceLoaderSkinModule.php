@@ -251,11 +251,15 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			}
 		}
 
-		foreach ( $featureFilePaths as $mediaType => $paths ) {
-			$styles[$mediaType] = array_merge( $paths, $styles[$mediaType] ?? [] );
+		// Styles defines in options are added to the $featureFilePaths to ensure
+		// that $featureFilePaths styles precede module defined ones.
+		// This is particularly important given the `normalize` styles need to be the first
+		// outputted (see T269618).
+		foreach ( $styles as $mediaType => $paths ) {
+			$featureFilePaths[$mediaType] = array_merge( $featureFilePaths[$mediaType] ?? [], $paths );
 		}
 
-		return $styles;
+		return $featureFilePaths;
 	}
 
 	/**
