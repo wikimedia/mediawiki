@@ -4,8 +4,6 @@ use MediaWiki\Interwiki\InterwikiLookupAdapter;
 
 /**
  * @covers MediaWiki\Interwiki\InterwikiLookupAdapter
- *
- * @group MediaWiki
  * @group Interwiki
  */
 class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {

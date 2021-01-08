@@ -4,9 +4,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @covers MediaWikiIntegrationTestCase
- *
  * @group Database
- * @group MediaWikiIntegrationTestCaseTest
  */
 class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCase {
 
