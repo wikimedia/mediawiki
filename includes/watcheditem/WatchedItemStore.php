@@ -721,6 +721,17 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return WatchedItem|false
 	 */
 	public function loadWatchedItem( UserIdentity $user, LinkTarget $target ) {
+		$item = $this->loadWatchedItemsBatch( $user, [ $target ] );
+		return $item ? $item[0] : false;
+	}
+
+	/**
+	 * @since 1.36
+	 * @param UserIdentity $user
+	 * @param LinkTarget[] $targets
+	 * @return WatchedItem[]|false
+	 */
+	public function loadWatchedItemsBatch( UserIdentity $user, array $targets ) {
 		// Only registered user can have a watchlist
 		if ( !$user->isRegistered() ) {
 			return false;
@@ -728,22 +739,27 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$row = $this->fetchWatchedItems(
+		$rows = $this->fetchWatchedItems(
 			$dbr,
 			$user,
-			[ 'wl_notificationtimestamp' ],
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			[],
-			$target
+			$targets
 		);
 
-		if ( !$row ) {
+		if ( !$rows ) {
 			return false;
 		}
 
-		$item = $this->getWatchedItemFromRow( $user, $target, $row );
-		$this->cache( $item );
+		$items = [];
+		foreach ( $rows as $row ) {
+			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
+			$item = $this->getWatchedItemFromRow( $user, $target, $row );
+			$this->cache( $item );
+			$items[] = $item;
+		}
 
-		return $item;
+		return $items;
 	}
 
 	/**
@@ -818,7 +834,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * Fetches either a single or all watched items for the given user.
+	 * Fetches either a single or all watched items for the given user, or a specific set of items.
 	 * If a $target is given, IDatabase::selectRow() is called, otherwise select().
 	 * If $wgWatchlistExpiry is enabled, expired items are not returned.
 	 *
@@ -826,7 +842,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 * @param array $vars we_expiry is added when $wgWatchlistExpiry is enabled.
 	 * @param array $options
-	 * @param LinkTarget|null $target null if selecting all watched items.
+	 * @param LinkTarget|LinkTarget[]|null $target null if selecting all watched items.
 	 * @return IResultWrapper|stdClass|false
 	 */
 	private function fetchWatchedItems(
@@ -834,17 +850,31 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		UserIdentity $user,
 		array $vars,
 		array $options = [],
-		?LinkTarget $target = null
+		$target = null
 	) {
 		$dbMethod = 'select';
 		$conds = [ 'wl_user' => $user->getId() ];
 
 		if ( $target ) {
-			$dbMethod = 'selectRow';
-			$conds = array_merge( $conds, [
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			] );
+			if ( $target instanceof LinkTarget ) {
+				$dbMethod = 'selectRow';
+				$conds = array_merge( $conds, [
+					'wl_namespace' => $target->getNamespace(),
+					'wl_title' => $target->getDBkey(),
+				] );
+			} else {
+				$titleConds = [];
+				foreach ( $target as $linkTarget ) {
+					$titleConds[] = $db->makeList(
+						[
+							'wl_namespace' => $linkTarget->getNamespace(),
+							'wl_title' => $linkTarget->getDBkey(),
+						],
+						$db::LIST_AND
+					);
+				}
+				$conds[] = $db->makeList( $titleConds, $db::LIST_OR );
+			}
 		}
 
 		if ( $this->expiryEnabled ) {

@@ -137,6 +137,18 @@ interface WatchedItemStoreInterface {
 	public function loadWatchedItem( UserIdentity $user, LinkTarget $target );
 
 	/**
+	 * Loads a set of WatchedItems from the db.
+	 *
+	 * @since 1.36
+	 *
+	 * @param UserIdentity $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return WatchedItem[]|false
+	 */
+	public function loadWatchedItemsBatch( UserIdentity $user, array $targets );
+
+	/**
 	 * @since 1.31 Method Added
 	 * @since 1.35 Allows 'sortByExpiry' as a key in $options
 	 *
