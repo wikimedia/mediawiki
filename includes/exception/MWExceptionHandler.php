@@ -355,14 +355,15 @@ TXT;
 	 * Generate a string representation of a throwable's stack trace
 	 *
 	 * Like Throwable::getTraceAsString, but replaces argument values with
-	 * argument type or class name.
+	 * their type or class name, and prepends the start line of the throwable.
 	 *
 	 * @param Throwable $e
 	 * @return string
 	 * @see prettyPrintTrace()
 	 */
 	public static function getRedactedTraceAsString( Throwable $e ) {
-		return self::prettyPrintTrace( self::getRedactedTrace( $e ) );
+		$from = 'from ' . $e->getFile() . '(' . $e->getLine() . ')' . "\n";
+		return $from . self::prettyPrintTrace( self::getRedactedTrace( $e ) );
 	}
 
 	/**
@@ -474,8 +475,6 @@ TXT;
 	public static function getLogMessage( Throwable $e ) {
 		$id = WebRequest::getRequestId();
 		$type = get_class( $e );
-		$file = $e->getFile();
-		$line = $e->getLine();
 		$message = $e->getMessage();
 		$url = self::getURL() ?: '[no req]';
 
@@ -485,7 +484,7 @@ TXT;
 				. $message;
 		}
 
-		return "[$id] $url   $type from line $line of $file: $message";
+		return "[$id] $url   $type: $message";
 	}
 
 	/**
@@ -499,11 +498,9 @@ TXT;
 	 */
 	public static function getLogNormalMessage( Throwable $e ) {
 		$type = get_class( $e );
-		$file = $e->getFile();
-		$line = $e->getLine();
 		$message = $e->getMessage();
 
-		return "[{exception_id}] {exception_url}   $type from line $line of $file: $message";
+		return "[{exception_id}] {exception_url}   $type: $message";
 	}
 
 	/**

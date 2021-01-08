@@ -40,6 +40,7 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 		$dummyFile = TestThrowerDummy::getFile();
 		$dummyClass = TestThrowerDummy::class;
 		$expected = <<<TEXT
+from ${dummyFile}(17)
 #0 ${dummyFile}(13): ${dummyClass}->getQuux()
 #1 ${dummyFile}(9): ${dummyClass}->getBar()
 #2 ${dummyFile}(5): ${dummyClass}->doFoo()
@@ -48,7 +49,7 @@ TEXT;
 
 		// Trim up until our call()
 		$trace = MWExceptionHandler::getRedactedTraceAsString( $e );
-		$actual = implode( "\n", array_slice( explode( "\n", trim( $trace ) ), 0, 4 ) );
+		$actual = implode( "\n", array_slice( explode( "\n", trim( $trace ) ), 0, 5 ) );
 
 		$this->assertEquals( $expected, $actual );
 	}
