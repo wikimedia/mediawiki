@@ -67,6 +67,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected $db;
 
 	/**
+	 * Cloned database
+	 *
+	 * @var ?CloneDatabase
+	 */
+	private static $dbClone = null;
+
+	/**
 	 * @var array
 	 * @since 1.19
 	 */
@@ -408,7 +415,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
-			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
@@ -417,7 +424,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {
-				$this->setupAllTestDBs();
+				self::setupAllTestDBs(
+					$this->db, $this->dbPrefix(), $useTemporaryTables
+				);
 				$this->addCoreDBData();
 			}
 
@@ -1450,6 +1459,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
+		if ( self::$dbClone ) {
+			self::$dbClone->destroy( true );
+			self::$dbClone = null;
+		}
+
 		// T219673: close any connections from code that failed to call reuseConnection()
 		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
 		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
@@ -1492,9 +1506,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 			$db->tablePrefix( $oldPrefix );
 			$tablesCloned = self::listTables( $db );
-			$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
-			$dbClone->useTemporaryTables( self::$useTemporaryTables );
-			$dbClone->cloneTableStructure();
+			self::$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
+			self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
+			self::$dbClone->cloneTableStructure();
 
 			$db->tablePrefix( $prefix );
 			$db->_originalTablePrefix = $oldPrefix;
@@ -1506,15 +1520,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return true;
 	}
 
-	public function setupAllTestDBs() {
+	public static function setupAllTestDBs( $db, ?string $testPrefix = null, ?bool $useTemporaryTables = null ) {
 		global $wgDBprefix;
 
 		self::$oldTablePrefix = $wgDBprefix;
 
-		$testPrefix = $this->dbPrefix();
+		$testPrefix = $testPrefix ?? self::getTestPrefixFor( $db );
 
 		// switch to a temporary clone of the database
-		self::setupTestDB( $this->db, $testPrefix );
+		self::$useTemporaryTables = $useTemporaryTables ?? self::$useTemporaryTables;
+		self::setupTestDB( $db, $testPrefix );
 
 		if ( self::isUsingExternalStoreDB() ) {
 			self::setupExternalStoreTestDBs( $testPrefix );
@@ -1844,12 +1859,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
-		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-		$dbClone->cloneTableStructure();
+		self::$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
+		self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
+		self::$dbClone->cloneTableStructure();
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $lb->getLocalDomainID() );
+		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
 	}
 
 	/**
@@ -1927,7 +1942,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function isNotUnittest( $table ) {
-		return strpos( $table, self::DB_PREFIX ) !== 0;
+		return strpos( $table, self::DB_PREFIX ) !== 0 &&
+			strpos( $table, ParserTestRunner::DB_PREFIX ) !== 0;
 	}
 
 	/**

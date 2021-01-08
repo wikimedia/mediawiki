@@ -8,6 +8,7 @@ namespace MediaWiki\Hook;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @deprecated No longer invoked by MW 1.36+
  */
 interface ParserTestTablesHook {
 	/**

@@ -37,7 +37,6 @@ use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\Parsoid\ParserTests\TestUtils as ParsoidTestUtils;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -61,18 +60,12 @@ class ParserTestRunner {
 	];
 
 	/**
-	 * @var bool Use temporary tables for the temporary database
-	 */
-	private $useTemporaryTables = true;
-
-	/**
 	 * @var array The status of each setup function
 	 */
 	private $setupDone = [
 		'staticSetup' => false,
 		'perTestSetup' => false,
 		'setupDatabase' => false,
-		'setDatabase' => false,
 		'setupUploads' => false,
 	];
 
@@ -139,6 +132,11 @@ class ParserTestRunner {
 
 	/** @var Title */
 	private $defaultTitle;
+
+	/**
+	 * Table name prefix.
+	 */
+	public const DB_PREFIX = 'parsertest_';
 
 	/**
 	 * @param TestRecorder $recorder
@@ -551,14 +549,10 @@ class ParserTestRunner {
 	/**
 	 * Ensure one of the given setup stages has been done, throw an exception otherwise.
 	 * @param string $funcName
-	 * @param string|null $funcName2
 	 */
-	protected function checkSetupDone( string $funcName, string $funcName2 = null ) {
-		if ( !$this->setupDone[$funcName]
-			&& ( $funcName2 === null || !$this->setupDone[$funcName2] )
-		) {
-			$name = ( $funcName2 === null ) ? $funcName : "$funcName or $funcName2";
-			throw new MWException( "$name must be called before calling " . wfGetCaller() );
+	protected function checkSetupDone( string $funcName ) {
+		if ( !$this->setupDone[$funcName] ) {
+			throw new MWException( "$funcName must be called before calling " . wfGetCaller() );
 		}
 	}
 
@@ -731,8 +725,9 @@ class ParserTestRunner {
 	public function runTestsFromFiles( $filenames ) {
 		$ok = false;
 
-		$teardownGuard = $this->staticSetup();
+		$teardownGuard = null;
 		$teardownGuard = $this->setupDatabase( $teardownGuard );
+		$teardownGuard = $this->staticSetup( $teardownGuard );
 		$teardownGuard = $this->setupUploads( $teardownGuard );
 
 		$this->recorder->start();
@@ -1192,7 +1187,7 @@ class ParserTestRunner {
 	public function perTestSetup( $test, $nextTeardown = null ) {
 		$teardown = [];
 
-		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'setupDatabase' );
 		$teardown[] = $this->markSetupDone( 'perTestSetup' );
 
 		$opts = is_array( $test ) ? $test['options'] : $test->options;
@@ -1323,51 +1318,14 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * List of temporary tables to create, without prefix.
-	 * Some of these probably aren't necessary.
-	 * @return string[]
-	 */
-	private function listTables() {
-		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
-			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
-			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
-			'site_stats', 'ipblocks', 'image', 'oldimage',
-			'recentchanges', 'watchlist', 'interwiki', 'logging', 'log_search',
-			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
-			'archive', 'user_groups', 'page_props', 'category',
-			'slots', 'content', 'slot_roles', 'content_models',
-			'comment', 'revision_comment_temp', 'actor', 'revision_actor_temp',
-			'change_tag', 'change_tag_def',
-		];
-
-		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite' ] ) ) {
-			array_push( $tables, 'searchindex' );
-		}
-
-		// Allow extensions to add to the list of tables to duplicate;
-		// may be necessary if they hook into page save or other code
-		// which will require them while running tests.
-		Hooks::runner()->onParserTestTables( $tables );
-
-		return $tables;
-	}
-
-	public function setDatabase( IDatabase $db ) {
-		$this->db = $db;
-		$this->setupDone['setDatabase'] = true;
-	}
-
-	/**
 	 * Set up temporary DB tables.
 	 *
 	 * For best performance, call this once only for all tests. However, it can
 	 * be called at the start of each test if more isolation is desired.
 	 *
-	 * @todo This is basically an unrefactored copy of
-	 * MediaWikiIntegrationTestCase::setupAllTestDBs. They should be factored out somehow.
 	 *
-	 * Do not call this function from a MediaWikiIntegrationTestCase subclass, since
-	 * MediaWikiIntegrationTestCase does its own DB setup. Instead use setDatabase().
+	 * Do not call this function from a MediaWikiIntegrationTestCase subclass,
+	 * since MediaWikiIntegrationTestCase does its own DB setup.
 	 *
 	 * @see staticSetup() for more information about setup/teardown
 	 *
@@ -1377,33 +1335,31 @@ class ParserTestRunner {
 	public function setupDatabase( $nextTeardown = null ) {
 		global $wgDBprefix;
 
-		$this->db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
-		$dbType = $this->db->getType();
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->db = $lb->getConnection( DB_MASTER );
 
-		$suspiciousPrefixes = [ 'parsertest_', MediaWikiIntegrationTestCase::DB_PREFIX ];
+		$suspiciousPrefixes = [ self::DB_PREFIX, MediaWikiIntegrationTestCase::DB_PREFIX ];
 		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {
 			throw new MWException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
 		}
 
 		$teardown = [];
-
 		$teardown[] = $this->markSetupDone( 'setupDatabase' );
 
-		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		if ( MediaWikiServices::getInstance()->getDBLoadBalancer()->getServerCount() != 1 ) {
-			$this->useTemporaryTables = false;
-		}
-
-		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
-		$prefix = 'parsertest_';
-
-		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );
-		$this->dbClone->useTemporaryTables( $temporary );
-		$this->dbClone->cloneTableStructure();
-		CloneDatabase::changePrefix( $prefix );
-
+		// Set up a test DB just for parser tests
+		MediaWikiIntegrationTestCase::setupAllTestDBs(
+			$this->db,
+			self::DB_PREFIX,
+			true // postgres requires that we use temporary tables
+		);
+		MediaWikiIntegrationTestCase::resetNonServiceCaches();
 		$teardown[] = function () {
-			$this->teardownDatabase();
+			MediaWikiIntegrationTestCase::teardownTestDB();
+		};
+
+		MediaWikiIntegrationTestCase::installMockMwServices();
+		$teardown[] = function () {
+			MediaWikiIntegrationTestCase::restoreMwServices();
 		};
 
 		// Wipe some DB query result caches on setup and teardown
@@ -1421,8 +1377,7 @@ class ParserTestRunner {
 
 	/**
 	 * Add data about uploads to the new test DB, and set up the upload
-	 * directory. This should be called after either setDatabase() or
-	 * setupDatabase().
+	 * directory. This should be called after setupDatabase().
 	 *
 	 * @param ScopedCallback|null $nextTeardown The next teardown object
 	 * @return ScopedCallback The teardown object
@@ -1430,7 +1385,7 @@ class ParserTestRunner {
 	public function setupUploads( $nextTeardown = null ) {
 		$teardown = [];
 
-		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'setupDatabase' );
 		$teardown[] = $this->markSetupDone( 'setupUploads' );
 
 		// Create the files in the upload directory (or pretend to create them
@@ -1628,36 +1583,6 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Helper for database teardown, called from the teardown closure. Destroy
-	 * the database clone and fix up some things that CloneDatabase doesn't fix.
-	 *
-	 * @todo Move most things here to CloneDatabase
-	 */
-	private function teardownDatabase() {
-		$this->checkSetupDone( 'setupDatabase' );
-
-		$this->dbClone->destroy();
-
-		if ( $this->useTemporaryTables ) {
-			if ( $this->db->getType() == 'sqlite' ) {
-				# Under SQLite the searchindex table is virtual and need
-				# to be explicitly destroyed. See T31912
-				# See also MediaWikiIntegrationTestCase::destroyDB()
-				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex" );
-				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
-			}
-			# Don't need to do anything
-			return;
-		}
-
-		$tables = $this->listTables();
-
-		foreach ( $tables as $table ) {
-			$this->db->query( "DROP TABLE `parsertest_$table`" );
-		}
-	}
-
-	/**
 	 * Upload test files to the backend created by createRepoGroup().
 	 *
 	 * @return callable The teardown callback
@@ -1767,7 +1692,7 @@ class ParserTestRunner {
 	public function addArticles(
 		array $articles, ?ScopedCallback $nextTeardown = null
 	): ScopedCallback {
-		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
 
 		$setup = [];
@@ -1822,9 +1747,9 @@ class ParserTestRunner {
 	 * @param array $articles Article info array from TestFileReader
 	 */
 	public function cleanupArticles( $articles ) {
-		$this->checkSetupDone( 'setupDatabase', 'setDatabase' );
+		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
-		$user = RequestContext::getMain()->getUser();
+		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info['name'] );
 			$title = Title::newFromText( $name );
@@ -1835,6 +1760,10 @@ class ParserTestRunner {
 
 	/**
 	 * Insert a temporary test article
+	 *
+	 * @see MediaWikiIntegrationTestCase::addCoreDBData()
+	 * @todo Refactor to share more code w/ ::addCoreDBData() or ::editPage
+	 *
 	 * @param string $name The title, including any prefix
 	 * @param string $text The article text
 	 * @param string $file The input file name
@@ -1852,6 +1781,8 @@ class ParserTestRunner {
 		if ( $title === null ) {
 			throw new MWException( "invalid title '$name' at $file:$line\n" );
 		}
+
+		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
 
 		$newContent = ContentHandler::makeContent( $text, $title );
 
@@ -1883,7 +1814,9 @@ class ParserTestRunner {
 			$status = $page->doEditContent(
 				$newContent,
 				'',
-				EDIT_NEW | EDIT_INTERNAL
+				EDIT_NEW | EDIT_SUPPRESS_RC | EDIT_INTERNAL,
+				false,
+				$user
 			);
 		} finally {
 			if ( $restore ) {
@@ -1894,6 +1827,12 @@ class ParserTestRunner {
 		if ( !$status->isOK() ) {
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}
+
+		// an edit always attempt to purge backlink links such as history
+		// pages. That is unnecessary.
+		JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+		// WikiPages::doEditUpdates randomly adds RC purges
+		JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->inNamespace( NS_FILE ) ) {

@@ -351,6 +351,10 @@ because of Phabricator reports.
   been added.  The methods were unused outside of MediaWiki core.
 * SquidPurgeClient and SquidPurgeClientPool, deprecated since 1.35, have been
   removed.
+* ParserTestRunner no longer invokes the ParserTestTables hook, instead
+  cloning all database tables before running tests as MediaWikiIntegrationTest
+  does.  If an extension was misusing the hook to *exclude* tables from the
+  clone, that will no longer occur and tests may fail.
 * …
 
 === Deprecations in 1.36 ===
@@ -476,6 +480,8 @@ because of Phabricator reports.
   the direct path to the resources.
 * The second argument of EnhancedChangesList::getDiffHistLinks, $query, has
   been deprecated.
+* The ParserTestTables hook has been deprecated; it is no longer necessary
+  after a ParserTestRunner refactoring.
 * …
 
 === Other changes in 1.36 ===

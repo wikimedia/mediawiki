@@ -225,7 +225,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return MediaWikiServices The old MediaWikiServices object, so it can be restored later.
 	 */
 	public static function forceGlobalInstance( MediaWikiServices $services ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( __METHOD__ . ' must not be used outside unit tests.' );
 		}
 
