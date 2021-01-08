@@ -12,11 +12,11 @@
  * @since 1.22
  */
 class ParserTestResult {
-	/** The test info array */
+	/** @var array The test info array */
 	public $test;
-	/** Text that was expected */
+	/** @var string Text that was expected */
 	public $expected;
-	/** Actual text rendered */
+	/** @var string Actual text rendered */
 	public $actual;
 
 	/**

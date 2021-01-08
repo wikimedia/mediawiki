@@ -22,7 +22,7 @@
 abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
-	 * Enable to print in-depth debugging info during the test run
+	 * @var bool Enable to print in-depth debugging info during the test run
 	 */
 	protected $mVerbose = false;
 
