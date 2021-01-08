@@ -47,7 +47,7 @@
 -- Some multi-wiki sites may share a single central user table
 -- between separate wikis using the $wgSharedDB setting.
 --
--- Note that when a external authentication plugin is used,
+-- Note that when an external authentication plugin is used,
 -- user table entries still need to be created to store
 -- preferences and to key tracking information in the other
 -- tables.
