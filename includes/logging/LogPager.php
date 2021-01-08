@@ -25,7 +25,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -68,9 +67,6 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ActorMigration */
 	private $actorMigration;
 
@@ -89,7 +85,6 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param ILoadBalancer|null $loadBalancer
-	 * @param PermissionManager|null $permissionManager
 	 * @param ActorMigration|null $actorMigration
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
@@ -97,7 +92,6 @@ class LogPager extends ReverseChronologicalPager {
 		$tagFilter = '', $action = '', $logId = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		ILoadBalancer $loadBalancer = null,
-		PermissionManager $permissionManager = null,
 		ActorMigration $actorMigration = null
 	) {
 		$services = MediaWikiServices::getInstance();
@@ -111,7 +105,6 @@ class LogPager extends ReverseChronologicalPager {
 
 		// Class is used directly in extensions - T266480
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 
 		$this->limitLogId( $logId ); // set before types per T269761
@@ -186,7 +179,7 @@ class LogPager extends ReverseChronologicalPager {
 		$needReindex = false;
 		foreach ( $types as $type ) {
 			if ( isset( $restrictions[$type] )
-				&& !$this->permissionManager->userHasRight( $user, $restrictions[$type] )
+				&& !$this->getAuthority()->isAllowed( $restrictions[$type] )
 			) {
 				$needReindex = true;
 				$types = array_diff( $types, [ $type ] );
@@ -511,10 +504,9 @@ class LogPager extends ReverseChronologicalPager {
 			return;
 		}
 		$this->actionRestrictionsEnforced = true;
-		$user = $this->getUser();
-		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
@@ -529,10 +521,9 @@ class LogPager extends ReverseChronologicalPager {
 			return;
 		}
 		$this->performerRestrictionsEnforced = true;
-		$user = $this->getUser();
-		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}

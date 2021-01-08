@@ -248,7 +248,6 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'logid' ),
 			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->permissionManager,
 			$this->actorMigration
 		);
 

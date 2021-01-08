@@ -23,8 +23,6 @@
  * @since 1.22
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This class formats move log entries.
  *
@@ -62,9 +60,7 @@ class MoveLogFormatter extends LogFormatter {
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| $this->entry->getSubtype() !== 'move'
-			|| !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->context->getUser(), 'move' )
+			|| !$this->context->getAuthority()->isAllowed( 'move' )
 		) {
 			return '';
 		}
