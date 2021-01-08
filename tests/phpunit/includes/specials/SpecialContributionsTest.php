@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Permissions\UltimateAuthority;
+
 /**
  * @author Ammarpad
  * @group Database
@@ -22,7 +24,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 				return;
 			}
 		);
-		$this->admin = $this->getTestSysop()->getUser();
+		$this->admin = new UltimateAuthority( $this->getTestSysop()->getUser() );
 	}
 
 	/**

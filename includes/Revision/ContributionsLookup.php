@@ -10,12 +10,11 @@ use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use Message;
 use NamespaceInfo;
 use RequestContext;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -35,9 +34,6 @@ class ContributionsLookup {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -52,7 +48,6 @@ class ContributionsLookup {
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ActorMigration $actorMigration
 	 * @param NamespaceInfo $namespaceInfo
@@ -62,7 +57,6 @@ class ContributionsLookup {
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		ActorMigration $actorMigration,
 		NamespaceInfo $namespaceInfo
@@ -71,7 +65,6 @@ class ContributionsLookup {
 		$this->linkRenderer = $linkRenderer;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->actorMigration = $actorMigration;
 		$this->namespaceInfo = $namespaceInfo;
@@ -115,7 +108,7 @@ class ContributionsLookup {
 	/**
 	 * @param UserIdentity $target the user from whom to retrieve contributions
 	 * @param int $limit the maximum number of revisions to return
-	 * @param User $performer the user used for permission checks
+	 * @param Authority $performer the user used for permission checks
 	 * @param string $segment
 	 * @param string|null $tag
 	 *
@@ -125,12 +118,12 @@ class ContributionsLookup {
 	public function getContributions(
 		UserIdentity $target,
 		int $limit,
-		User $performer,
+		Authority $performer,
 		string $segment = '',
 		string $tag = null
 	): ContributionsSegment {
 		$context = new RequestContext();
-		$context->setUser( $performer );
+		$context->setAuthority( $performer );
 
 		$paramArr = $this->getPagerParams( $limit, $segment );
 		$context->setRequest( new FauxRequest( $paramArr ) );
@@ -237,14 +230,14 @@ class ContributionsLookup {
 	 * Returns the number of edits by the given user.
 	 *
 	 * @param UserIdentity $user
-	 * @param User $performer the user used for permission checks
+	 * @param Authority $performer the user used for permission checks
 	 * @param string|null $tag
 	 *
 	 * @return int
 	 */
-	public function getContributionCount( UserIdentity $user, User $performer, $tag = null ): int {
+	public function getContributionCount( UserIdentity $user, Authority $performer, $tag = null ): int {
 		$context = new RequestContext();
-		$context->setUser( $performer );
+		$context->setAuthority( $performer );
 		$context->setRequest( new FauxRequest( [] ) );
 
 		// TODO: explore moving this to factory method for testing
@@ -274,7 +267,6 @@ class ContributionsLookup {
 			$this->linkRenderer,
 			$this->linkBatchFactory,
 			$this->hookContainer,
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,

@@ -22,9 +22,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -42,7 +39,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->hookContainer = $services->getHookContainer();
-		$this->permissionManager = $services->getPermissionManager();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->actorMigration = $services->getActorMigration();
 		$this->namespaceInfo = $services->getNamespaceInfo();
@@ -59,7 +55,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->linkRenderer,
 			$this->linkBatchFactory,
 			$this->hookContainer,
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,

@@ -107,7 +107,6 @@ class ApiFeedContributions extends ApiBase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$this->revisionStore,
