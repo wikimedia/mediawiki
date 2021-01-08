@@ -25,6 +25,7 @@ namespace MediaWiki\User;
 use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
+use MediaWiki\Permissions\Authority;
 use stdClass;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -283,6 +284,18 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 */
 	public function newFromRow( $row, $data = null ) {
 		return User::newFromRow( $row, $data );
+	}
+
+	/**
+	 * @internal for transition from User to Authority as performer concept.
+	 * @param Authority $authority
+	 * @return User
+	 */
+	public function newFromAuthority( Authority $authority ): User {
+		if ( $authority instanceof User ) {
+			return $authority;
+		}
+		return $this->newFromUserIdentity( $authority->getActor() );
 	}
 
 }

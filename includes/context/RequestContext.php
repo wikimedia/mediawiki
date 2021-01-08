@@ -24,6 +24,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -63,6 +64,11 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @var User
 	 */
 	private $user;
+
+	/**
+	 * @var Authority
+	 */
+	private $authority;
 
 	/**
 	 * @var Language
@@ -273,6 +279,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function setUser( User $user ) {
 		$this->user = $user;
+		// Keep authority consistent
+		$this->authority = $user;
 		// Invalidate cached user interface language
 		$this->lang = null;
 	}
@@ -286,6 +294,20 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 
 		return $this->user;
+	}
+
+	public function setAuthority( Authority $authority ) {
+		$this->authority = $authority;
+		// Keep user consistent
+		$this->user = MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromAuthority( $authority );
+		// Invalidate cached user interface language
+		$this->lang = null;
+	}
+
+	public function getAuthority(): Authority {
+		return $this->authority ?: $this->getUser();
 	}
 
 	/**
