@@ -197,8 +197,7 @@ return [
 			),
 			$services->getPermissionManager(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getHookContainer(),
-			$services->getUserGroupManagerFactory()->getUserGroupManager()
+			$services->getHookContainer()
 		);
 	},
 
