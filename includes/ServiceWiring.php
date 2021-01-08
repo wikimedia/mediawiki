@@ -91,6 +91,7 @@ use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -479,6 +480,12 @@ return [
 			function ( $command ) {
 				return wfShellExec( $command );
 			}
+		);
+	},
+
+	'GroupPermissionsLookup' => function ( MediaWikiServices $services ) : GroupPermissionsLookup {
+		return new GroupPermissionsLookup(
+			new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
 		);
 	},
 
@@ -1018,6 +1025,8 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
 			$services->getNamespaceInfo(),
+			$services->getGroupPermissionsLookup(),
+			$services->getUserGroupManager(),
 			$services->getBlockErrorFormatter(),
 			$services->getHookContainer(),
 			$services->getUserCache()
@@ -1419,11 +1428,11 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$services->getUserEditTracker(),
+			$services->getGroupPermissionsLookup(),
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			[ function ( UserIdentity $user ) use ( $services ) {
-				// TODO Needs cirular dependency fixed - T254537
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
-				User::newFromIdentity( $user )->invalidateCache();
+				$services->getUserFactory()->newFromUserIdentity( $user )->invalidateCache();
 			} ]
 		);
 	},

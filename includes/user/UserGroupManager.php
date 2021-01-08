@@ -30,7 +30,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use Sanitizer;
@@ -83,6 +83,9 @@ class UserGroupManager implements IDBAccessObject {
 
 	/** @var UserEditTracker */
 	private $userEditTracker;
+
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -137,6 +140,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param ILBFactory $loadBalancerFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
@@ -147,6 +151,7 @@ class UserGroupManager implements IDBAccessObject {
 		ILBFactory $loadBalancerFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		LoggerInterface $logger,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
@@ -158,6 +163,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->logger = $logger;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
@@ -536,9 +542,7 @@ class UserGroupManager implements IDBAccessObject {
 			case APCOND_BLOCKED:
 				return $user->getBlock() && $user->getBlock()->isSitewide();
 			case APCOND_ISBOT:
-				// TODO: Injecting permission manager will cause a cyclic dependency. T254537
-				return in_array( 'bot', MediaWikiServices::getInstance()
-					->getPermissionManager()
+				return in_array( 'bot', $this->groupPermissionsLookup
 					->getGroupPermissions( $this->getUserGroups( $user ) ) );
 			default:
 				$result = null;
