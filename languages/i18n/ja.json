@@ -4202,5 +4202,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP範囲",
 	"paramvalidator-help-type-user-subtype-interwiki": "インターウィキの名前（例: \"prefix>ExampleName\"）",
-	"paramvalidator-help-type-user-subtype-id": "利用者ID（例: #12345）"
+	"paramvalidator-help-type-user-subtype-id": "利用者ID（例: #12345）",
+	"paramvalidator-help-type-title": "タイプ : ページタイトル"
 }
