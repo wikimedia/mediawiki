@@ -36,6 +36,14 @@ use MediaWiki\Shell\Shell;
 class SevenZipStream {
 	protected $stream;
 
+	public static function register() {
+		static $done = false;
+		if ( !$done ) {
+			$done = true;
+			stream_wrapper_register( 'mediawiki.compress.7z', self::class );
+		}
+	}
+
 	private function stripPath( $path ) {
 		$prefix = 'mediawiki.compress.7z://';
 
@@ -93,5 +101,3 @@ class SevenZipStream {
 		return fseek( $this->stream, $offset, $whence );
 	}
 }
-
-stream_wrapper_register( 'mediawiki.compress.7z', SevenZipStream::class );

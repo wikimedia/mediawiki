@@ -6,10 +6,6 @@
  * @file
  */
 
-// Set a flag which can be used to detect when other scripts have been entered
-// through this entry point or not.
-define( 'MW_PHPUNIT_TEST', true );
-
 // Start up MediaWiki in command-line mode
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
@@ -29,6 +25,10 @@ class PHPUnitMaintClass extends Maintenance {
 	}
 
 	public function setup() {
+		// Set a flag which can be used to detect when other scripts have been entered
+		// through this entry point or not.
+		define( 'MW_PHPUNIT_TEST', true );
+
 		parent::setup();
 
 		require_once __DIR__ . '/../common/TestSetup.php';
@@ -131,4 +131,4 @@ class PHPUnitMaintClass extends Maintenance {
 }
 
 $maintClass = PHPUnitMaintClass::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

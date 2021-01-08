@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+// NO_AUTOLOAD -- file scope code
+
 use MediaWiki\MediaWikiServices;
 
 define( 'REPORTING_INTERVAL', 1 );
