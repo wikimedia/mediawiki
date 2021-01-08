@@ -285,9 +285,8 @@ class InfoAction extends FormlessAction {
 		$pageLangHtml = $pageLang . ' - ' .
 			$services->getLanguageNameUtils()->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
-		$permissionManager = $services->getPermissionManager();
 		if ( $config->get( 'PageLanguageUseDB' )
-			&& $permissionManager->userCan( 'pagelang', $user, $title )
+			&& $this->getContext()->getAuthority()->probablyCan( 'pagelang', $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
@@ -303,7 +302,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $permissionManager->userCan( 'editcontentmodel', $user, $title ) ) {
+		if ( $this->getContext()->getAuthority()->probablyCan( 'editcontentmodel', $title ) ) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
@@ -343,7 +342,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
-		if ( $permissionManager->userHasRight( $user, 'unwatchedpages' ) ||
+		if ( $this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -358,7 +357,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$permissionManager->userHasRight( $user, 'unwatchedpages' ) ) {
+					$this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )
