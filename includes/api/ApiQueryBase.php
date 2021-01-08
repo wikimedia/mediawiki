@@ -373,7 +373,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add an option such as LIMIT or USE INDEX. If an option was set
 	 * before, the old value will be overwritten
 	 * @param string $name Option name
-	 * @param int|string|string[]|null $value Option value
+	 * @param mixed $value The option value, or null for a boolean option
 	 */
 	protected function addOption( $name, $value = null ) {
 		$this->getQueryBuilder()->option( $name, $value );
