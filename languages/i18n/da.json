@@ -260,7 +260,7 @@
 	"protect_change": "ændr",
 	"unprotect": "Ændr beskyttelse",
 	"newpage": "Ny side",
-	"talkpagelinktext": "snak",
+	"talkpagelinktext": "diskussion",
 	"specialpage": "Speciel side",
 	"personaltools": "Personlige værktøjer",
 	"talk": "Diskussion",
@@ -285,7 +285,7 @@
 	"protectedpage": "Beskyttet side",
 	"jumpto": "Hop til:",
 	"jumptonavigation": "navigering",
-	"jumptosearch": "søg",
+	"jumptosearch": "søgning",
 	"view-pool-error": "Beklager, men serverne er i øjeblikket overbelastede.\nFor mange brugere prøver at se denne side.\nVent venligst lidt, før du igen prøver at besøge denne side.\n\n$1",
 	"generic-pool-error": "Beklager, men serverne er i øjeblikket overbelastede.\nFor mange brugere prøver at se denne side.\nVent venligst lidt, før du igen prøver at besøge denne side.",
 	"pool-timeout": "Timeout mens der blev ventet på låsen",
@@ -2779,7 +2779,7 @@
 	"tooltip-n-currentevents": "Find baggrundsinformation om aktuelle begivenheder",
 	"tooltip-n-recentchanges": "Listen over de seneste ændringer i wikien.",
 	"tooltip-n-randompage": "Gå til en tilfældig side",
-	"tooltip-n-help": "Stedet hvor du finder",
+	"tooltip-n-help": "Stedet hvor du finder hjælp",
 	"tooltip-t-whatlinkshere": "Liste med alle sider som henviser hertil",
 	"tooltip-t-recentchangeslinked": "Seneste ændringer af sider som denne side henviser til",
 	"tooltip-feed-rss": "RSS-feed for denne side",
@@ -3568,5 +3568,6 @@
 	"userlogout-continue": "Ønsker du at logge af?",
 	"paramvalidator-help-type-user-subtype-name": "brugernavn",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-cidr": "IP-interval"
+	"paramvalidator-help-type-user-subtype-cidr": "IP-interval",
+	"paramvalidator-help-type-title-must-exist": "Accepterer kun sider der findes."
 }
