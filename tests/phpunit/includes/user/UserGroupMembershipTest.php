@@ -28,10 +28,10 @@ class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $userId
-	 * @param $group
-	 * @param $expiry
-	 * @param $exception
+	 * @param int $userId
+	 * @param string|null $group
+	 * @param string|null $expiry
+	 * @param string $exception
 	 *
 	 * @dataProvider provideInstantiationValidationErrors
 	 * @covers UserGroupMembership
@@ -51,12 +51,12 @@ class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $userId
-	 * @param $group
-	 * @param $expiry
-	 * @param $userId_
-	 * @param $group_
-	 * @param $expiry_
+	 * @param int $userId
+	 * @param string|null $group
+	 * @param string|null $expiry
+	 * @param int $userId_
+	 * @param string|null $group_
+	 * @param string|null $expiry_
 	 *
 	 * @dataProvider provideInstantiationValidation
 	 * @covers UserGroupMembership

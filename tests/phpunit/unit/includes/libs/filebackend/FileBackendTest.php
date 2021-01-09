@@ -380,8 +380,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::hasFeatures
 	 * @dataProvider provideHasFeatures
 	 * @param bool $expected
-	 * @param int $testedFeatures
 	 * @param int $actualFeatures
+	 * @param int $testedFeatures
 	 */
 	public function testHasFeatures(
 		bool $expected, int $actualFeatures, int $testedFeatures

@@ -19,8 +19,8 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers       DatabaseLogEntry::newFromId
-	 * @covers       DatabaseLogEntry::getSelectQueryData
+	 * @covers DatabaseLogEntry::newFromId
+	 * @covers DatabaseLogEntry::getSelectQueryData
 	 *
 	 * @dataProvider provideNewFromId
 	 *

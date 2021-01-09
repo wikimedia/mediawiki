@@ -488,10 +488,10 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider providerSplitBlobAddress
 	 *
-	 * @param $address
-	 * @param $schema
-	 * @param $id
-	 * @param $parameters
+	 * @param string $address
+	 * @param string $schema
+	 * @param string $id
+	 * @param array $parameters
 	 */
 	public function testSplitBlobAddress( $address, $schema, $id, $parameters ) {
 		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );

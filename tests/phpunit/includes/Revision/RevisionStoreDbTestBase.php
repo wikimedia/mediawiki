@@ -2132,7 +2132,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetContentBlobsForBatchOptions
-	 * @covers       \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
+	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
 	 * @param array|null $slots
 	 * @throws \MWException
 	 */
@@ -2294,7 +2294,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNewRevisionsFromBatchOptions
-	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
@@ -2358,7 +2358,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNewRevisionsFromBatchOptions
-	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options

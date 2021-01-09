@@ -47,7 +47,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideSimpleTypes
-	 * @param $value
+	 * @param mixed $value
 	 * @param string $serialization
 	 */
 	public function testSimpleTypesUnserialize( $value, string $serialization ) {
@@ -57,7 +57,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideSimpleTypes
 	 * @dataProvider provideInvalidJsonData
-	 * @param $jsonData
+	 * @param mixed $jsonData
 	 */
 	public function testInvalidJsonDataForClassExpectation( $jsonData ) {
 		$this->expectException( InvalidArgumentException::class );
@@ -167,7 +167,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideValidateSerializable
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableData
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableDataInternal
-	 * @param $value
+	 * @param mixed $value
 	 * @param bool $expectUnserialize
 	 * @param string|null $result
 	 */
@@ -189,7 +189,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideSerializeThrowsOnFailure
 	 * @covers \MediaWiki\Json\JsonCodec::serialize
-	 * @param $value
+	 * @param mixed $value
 	 */
 	public function testSerializeThrowsOnFailure( $value ) {
 		$this->expectException( InvalidArgumentException::class );
@@ -209,7 +209,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideSerializeSuccess
 	 * @covers \MediaWiki\Json\JsonCodec::serialize
-	 * @param $value
+	 * @param mixed $value
 	 * @param string $expected
 	 */
 	public function testSerializeSuccess( $value, string $expected ) {

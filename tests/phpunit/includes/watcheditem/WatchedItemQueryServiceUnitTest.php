@@ -70,7 +70,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param IDatabase $mockDb
-	 * @param PermissionManager $mockPM
+	 * @param PermissionManager|null $mockPM
 	 * @return WatchedItemQueryService
 	 */
 	private function newService( $mockDb, $mockPM = null ) {

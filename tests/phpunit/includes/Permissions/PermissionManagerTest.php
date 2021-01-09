@@ -1121,7 +1121,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetRestrictionLevels
-	 * @covers       \MediaWiki\Permissions\PermissionManager::getNamespaceRestrictionLevels
+	 * @covers \MediaWiki\Permissions\PermissionManager::getNamespaceRestrictionLevels
 	 *
 	 * @param array $expected
 	 * @param int $ns

@@ -178,7 +178,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsEmpty
-	 * @covers       FallbackContent::isEmpty
+	 * @covers FallbackContent::isEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );
@@ -198,7 +198,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideEquals
-	 * @covers       FallbackContent::equals
+	 * @covers FallbackContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

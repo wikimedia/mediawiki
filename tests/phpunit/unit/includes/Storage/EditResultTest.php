@@ -127,8 +127,8 @@ class EditResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\Storage\EditResult::getRevertMethod()
-	 * @covers       \MediaWiki\Storage\EditResult::getRevertTags()
+	 * @covers \MediaWiki\Storage\EditResult::getRevertMethod()
+	 * @covers \MediaWiki\Storage\EditResult::getRevertTags()
 	 * @dataProvider provideGetRevertMethodEditResults
 	 *
 	 * @param EditResult $er

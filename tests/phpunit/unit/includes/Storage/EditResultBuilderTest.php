@@ -133,8 +133,8 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	/**
 	 * Test the case where the edit restored the page exactly to a previous state.
 	 *
-	 * @covers       \MediaWiki\Storage\EditResult
-	 * @covers       \MediaWiki\Storage\EditResultBuilder
+	 * @covers \MediaWiki\Storage\EditResult
+	 * @covers \MediaWiki\Storage\EditResultBuilder
 	 * @dataProvider provideEnabledSoftwareTagsForRollback
 	 *
 	 * @param string[] $changeTags
