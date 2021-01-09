@@ -908,6 +908,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'filearchive', 'fa_notime', 'fa_deleted_timestamp' ],
 			[ 'dropPgIndex', 'filearchive', 'fa_nouser' ],
 			[ 'addPgIndex', 'filearchive', 'fa_actor_timestamp', '(fa_actor, fa_timestamp)' ],
+			[ 'addPgIndex', 'ipblocks', 'ipb_expiry', '(ipb_expiry)' ],
+			[ 'addPgIndex', 'ipblocks', 'ipb_timestamp', '(ipb_timestamp)' ],
 		];
 	}
 

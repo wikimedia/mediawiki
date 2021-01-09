@@ -148,6 +148,8 @@ CREATE TABLE ipblocks (
 ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
 CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
+CREATE INDEX ipb_timestamp ON ipblocks (ipb_timestamp);
+CREATE INDEX ipb_expiry ON ipblocks (ipb_expiry);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
 
