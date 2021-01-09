@@ -1408,3 +1408,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-WikibaseLexeme
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/Commentbox"]
+	path = extensions/Commentbox
+	url = https://github.com/wikimedia/mediawiki-extensions-Commentbox
+	branch = master
+	ignore = dirty
