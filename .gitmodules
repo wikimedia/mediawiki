@@ -168,11 +168,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/MultiUpload"]
-	path = extensions/MultiUpload
-	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/Timeline"]
 	path = extensions/Timeline
 	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
@@ -340,11 +335,6 @@
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
-	branch = REL1_35
-	ignore = dirty
-[submodule "extensions/FeaturedFeeds"]
-	path = extensions/FeaturedFeeds
-	url = https://github.com/wikimedia/mediawiki-extensions-FeaturedFeeds
 	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/NoTitle"]
@@ -766,11 +756,6 @@
 	path = extensions/EventLogging
 	url = https://github.com/wikimedia/mediawiki-extensions-EventLogging
 	branch = REL1_35
-	ignore = dirty
-[submodule "extensions/ArticleFeedbackv5"]
-	path = extensions/ArticleFeedbackv5
-	url = https://github.com/wikimedia/mediawiki-extensions-ArticleFeedbackv5
-	branch = master
 	ignore = dirty
 [submodule "vendor"]
 	path = vendor
