@@ -1520,7 +1520,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
 			$services->getHookContainer(),
-			$services->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getUserFactory()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

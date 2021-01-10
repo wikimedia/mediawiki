@@ -7,6 +7,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -119,6 +120,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private $linkBatchFactory;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @var string|null Maximum configured relative expiry.
 	 */
@@ -135,6 +139,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param RevisionLookup $revisionLookup
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -146,7 +151,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
 		HookContainer $hookContainer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -166,6 +172,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->revisionLookup = $revisionLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->userFactory = $userFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -1372,7 +1379,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		// Hook expects User and Title, not UserIdentity and LinkTarget
-		$userObj = User::newFromId( $user->getId() );
+		$userObj = $this->userFactory->newFromId( $user->getId() );
 		$titleObj = Title::castFromLinkTarget( $title );
 		if ( !$this->hookRunner->onBeforeResetNotificationTimestamp(
 			$userObj, $titleObj, $force, $oldid )
