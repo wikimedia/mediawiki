@@ -1325,8 +1325,8 @@
 	ignore = dirty
 [submodule "extensions/Video"]
 	path = extensions/Video
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Video
-	branch = master
+	url = https://github.com/wikimedia/mediawiki-extensions-Video
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/CleanChanges"]
 	path = extensions/CleanChanges
