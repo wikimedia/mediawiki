@@ -94,6 +94,7 @@ class ApiTag extends ApiBase {
 		switch ( $type ) {
 			case 'rcid':
 				$valid = RecentChange::newFromId( $id );
+				// TODO: replace use of PermissionManager
 				if ( $valid && $this->getPermissionManager()->isBlockedFrom( $user, $valid->getTitle() ) ) {
 					$idResult['status'] = 'error';
 					// @phan-suppress-next-line PhanTypeMismatchArgument
@@ -107,6 +108,7 @@ class ApiTag extends ApiBase {
 				break;
 			case 'revid':
 				$valid = $this->revisionStore->getRevisionById( $id );
+				// TODO: replace use of PermissionManager
 				if (
 					$valid &&
 					$this->getPermissionManager()->isBlockedFrom( $user, $valid->getPageAsLinkTarget() )

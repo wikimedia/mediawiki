@@ -24,7 +24,6 @@ use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\Permissions\PermissionManager;
 
 /**
  * API module that facilitates the unblocking of users. Requires API write mode
@@ -42,9 +41,6 @@ class ApiUnblock extends ApiBase {
 	/** @var UnblockUserFactory */
 	private $unblockUserFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserCache */
 	private $userCache;
 
@@ -53,14 +49,12 @@ class ApiUnblock extends ApiBase {
 		$action,
 		BlockPermissionCheckerFactory $permissionCheckerFactory,
 		UnblockUserFactory $unblockUserFactory,
-		PermissionManager $permissionManager,
 		UserCache $userCache
 	) {
 		parent::__construct( $main, $action );
 
 		$this->permissionCheckerFactory = $permissionCheckerFactory;
 		$this->unblockUserFactory = $unblockUserFactory;
-		$this->permissionManager = $permissionManager;
 		$this->userCache = $userCache;
 	}
 
@@ -73,7 +67,7 @@ class ApiUnblock extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
 
-		if ( !$this->permissionManager->userHasRight( $performer, 'block' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'block' ) ) {
 			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
 		}
 

@@ -459,7 +459,7 @@ class ApiQuery extends ApiBase {
 		if ( count( $titles ) ) {
 			/** @var Title $title */
 			foreach ( $titles as $title ) {
-				if ( $this->getPermissionManager()->userCan( 'read', $this->getUser(), $title ) ) {
+				if ( $this->getAuthority()->authorizeRead( 'read', $title ) ) {
 					$exportTitles[] = $title;
 				}
 			}

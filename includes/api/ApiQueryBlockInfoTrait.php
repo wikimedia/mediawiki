@@ -19,7 +19,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -59,7 +59,7 @@ trait ApiQueryBlockInfoTrait {
 		] );
 
 		// Don't show hidden names
-		if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
 		}
 	}
@@ -75,16 +75,10 @@ trait ApiQueryBlockInfoTrait {
 	abstract protected function getDB();
 
 	/**
-	 * @see ApiBase::getPermissionManager
-	 * @return PermissionManager
+	 * @see IContextSource::getAuthority
+	 * @return Authority
 	 */
-	abstract protected function getPermissionManager(): PermissionManager;
-
-	/**
-	 * @see IContextSource::getUser
-	 * @return User
-	 */
-	abstract public function getUser();
+	abstract public function getAuthority();
 
 	/**
 	 * @see ApiQueryBase::addTables
