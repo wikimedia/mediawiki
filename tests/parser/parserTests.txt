@@ -26682,11 +26682,20 @@ Langconvert tag: shi-latn to shi-tfng
 !! end
 
 !! test
-Langconvert tag: sr-el to sr-ec
+Langconvert tag: sr-latn to sr-cyrl
+!! wikitext
+<langconvert from="sr-latn" to="sr-cyrl">zdravo</langconvert>
+!! html/php
+<p>здраво
+</p>
+!! end
+
+!! test
+Langconvert tag: sr-el to sr-ec (should fail)
 !! wikitext
 <langconvert from="sr-el" to="sr-ec">zdravo</langconvert>
 !! html/php
-<p>здраво
+<p><span class="error"><strong>Error:</strong> Langconvert tag's <code>from</code> and <code>to</code> attributes must not be empty and must contain BCP 47 codes for convertible variants of the same language.</span>
 </p>
 !! end
 

@@ -201,17 +201,30 @@ class CoreTagHooks {
 	 */
 	public static function langconvert( ?string $content, array $attributes, Parser $parser, PPFrame $frame ): string {
 		if ( isset( $attributes['from'] ) && isset( $attributes['to'] ) ) {
-			$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
-			$to = trim( $attributes['to'] );
-			$langFrom = $langFactory->getParentLanguage( trim( $attributes['from'] ) );
-			$langTo = $langFactory->getParentLanguage( $to );
-			if ( $langFrom && $langTo && $langFrom->equals( $langTo ) ) {
+			$fromArg = trim( $attributes['from'] );
+			$toArg = trim( $attributes['to'] );
+			$fromLangCode = explode( '-', $fromArg )[0];
+			if ( $fromLangCode && $fromLangCode === explode( '-', $toArg )[0] ) {
+				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $fromLangCode );
 				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-					->getLanguageConverter( $langFrom );
-				return $converter->autoConvert(
-					$parser->recursiveTagParse( $content ?? '', $frame ),
-					$to
-				);
+					->getLanguageConverter( $lang );
+
+				# ensure that variants are available,
+				# and the variants are valid BCP 47 codes
+				if ( $converter->hasVariants()
+					&& strcasecmp( $fromArg, LanguageCode::bcp47( $fromArg ) ) === 0
+					&& strcasecmp( $toArg, LanguageCode::bcp47( $toArg ) ) === 0 ) {
+
+						$toVariant = $converter->validateVariant( $toArg );
+
+						if ( $toVariant ) {
+							return $converter->autoConvert(
+								$parser->recursiveTagParse( $content ?? '', $frame ),
+								$toVariant
+							);
+						}
+				}
 			}
 		}
 
