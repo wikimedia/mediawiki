@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialNewFiles extends IncludableSpecialPage {
@@ -31,8 +31,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var string[] */
 	protected $mediaTypes;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var ActorMigration */
 	private $actorMigration;
@@ -45,20 +45,20 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
-	 * @param PermissionManager $permissionManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
-		PermissionManager $permissionManager,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
 		UserCache $userCache
 	) {
 		parent::__construct( 'Newimages' );
-		$this->permissionManager = $permissionManager;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->actorMigration = $actorMigration;
 		$this->loadBalancer = $loadBalancer;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
@@ -135,7 +135,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$context,
 			$opts,
 			$this->getLinkRenderer(),
-			$this->permissionManager,
+			$this->groupPermissionsLookup,
 			$this->actorMigration,
 			$this->loadBalancer,
 			$this->userCache

@@ -317,7 +317,7 @@ class SpecialPage implements MessageLocalizer {
 	public function isRestricted() {
 		// DWIM: If anons can do something, then it is not restricted
 		return $this->mRestriction != '' && !MediaWikiServices::getInstance()
-				->getPermissionManager()
+				->getGroupPermissionsLookup()
 				->groupHasPermission( '*', $this->mRestriction );
 	}
 

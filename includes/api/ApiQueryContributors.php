@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -39,10 +40,16 @@ class ApiQueryContributors extends ApiQueryBase {
 	 */
 	private const MAX_PAGES = 100;
 
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
+
 	public function __construct( ApiQuery $query, $moduleName ) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
 		parent::__construct( $query, $moduleName, 'pc' );
+		// TODO: inject
+		$this->groupPermissionsLookup = MediaWikiServices::getInstance()
+			->getGroupPermissionsLookup();
 	}
 
 	public function execute() {
@@ -145,10 +152,8 @@ class ApiQueryContributors extends ApiQueryBase {
 			$limitGroups = $params['excludegroup'];
 		} elseif ( $params['rights'] ) {
 			$excludeGroups = false;
-			foreach ( $params['rights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
-					->getGroupsWithPermission( $r ) );
-			}
+			$limitGroups = $this->groupPermissionsLookup
+				->getGroupsWithAnyPermissions( ...$params['rights'] );
 
 			// If no group has the rights requested, no need to query
 			if ( !$limitGroups ) {
@@ -162,10 +167,8 @@ class ApiQueryContributors extends ApiQueryBase {
 			}
 		} elseif ( $params['excluderights'] ) {
 			$excludeGroups = true;
-			foreach ( $params['excluderights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
-					->getGroupsWithPermission( $r ) );
-			}
+			$limitGroups = $this->groupPermissionsLookup
+				->getGroupsWithAnyPermissions( ...$params['excluderights'] );
 		}
 
 		if ( $limitGroups ) {

@@ -485,6 +485,7 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
 		$permissionManager = $services->getPermissionManager();
+		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
@@ -604,7 +605,7 @@ class SkinTemplate extends Skin {
 			];
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
-			if ( $permissionManager->groupHasPermission( '*', 'edit' ) ) {
+			if ( $groupPermissionsLookup->groupHasPermission( '*', 'edit' ) ) {
 				// Non interactive placeholder for anonymous users.
 				// It's unstyled by default (black color). Skin that
 				// needs it, can style it using the 'pt-anonuserpage' id.
@@ -640,7 +641,7 @@ class SkinTemplate extends Skin {
 			}
 
 			if ( $authManager->canAuthenticateNow() ) {
-				$key = $permissionManager->groupHasPermission( '*', 'read' )
+				$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
 					? 'login'
 					: 'login-private';
 				$personal_urls[$key] = $login_url;

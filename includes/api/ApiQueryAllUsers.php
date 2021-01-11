@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 
 /**
  * Query module to enumerate all registered users.
@@ -30,8 +32,14 @@ use MediaWiki\Block\DatabaseBlock;
 class ApiQueryAllUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
+
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'au' );
+		// TODO: inject
+		$this->groupPermissionsLookup = MediaWikiServices::getInstance()
+			->getGroupPermissionsLookup();
 	}
 
 	/**
@@ -89,11 +97,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
-			$groups = [];
-			foreach ( $params['rights'] as $r ) {
-				$groups = array_merge( $groups, $this->getPermissionManager()
-					->getGroupsWithPermission( $r ) );
-			}
+			$groups = $this->groupPermissionsLookup->getGroupsWithAnyPermissions( ...$params['rights'] );
 
 			// no group with the given right(s) exists, no need for a query
 			if ( $groups === [] ) {
@@ -101,8 +105,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				return;
 			}
-
-			$groups = array_unique( $groups );
 
 			if ( $params['group'] === null ) {
 				$params['group'] = $groups;
@@ -304,7 +306,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 
 				if ( $fld_rights ) {
-					$data['rights'] = $this->getPermissionManager()->getGroupPermissions( $groups );
+					$data['rights'] = $this->groupPermissionsLookup->getGroupPermissions( ...$groups );
 					ApiResult::setIndexedTagName( $data['rights'], 'r' );
 					ApiResult::setArrayType( $data['rights'], 'array' );
 				}
