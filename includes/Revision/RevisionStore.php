@@ -38,6 +38,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
@@ -480,7 +481,7 @@ class RevisionStore
 	private function insertRevisionInternal(
 		RevisionRecord $rev,
 		IDatabase $dbw,
-		User $user,
+		UserIdentity $user,
 		CommentStoreComment $comment,
 		Title $title,
 		$pageId,
@@ -588,13 +589,13 @@ class RevisionStore
 	/**
 	 * Insert IP revision into ip_changes for use when querying for a range.
 	 * @param IDatabase $dbw
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param RevisionRecord $rev
 	 * @param int $revisionId
 	 */
 	private function insertIpChangesRow(
 		IDatabase $dbw,
-		User $user,
+		UserIdentity $user,
 		RevisionRecord $rev,
 		$revisionId
 	) {
@@ -882,7 +883,7 @@ class RevisionStore
 	 * @param Title $title Title of the page to read from
 	 * @param CommentStoreComment $comment RevisionRecord's summary
 	 * @param bool $minor Whether the revision should be considered as minor
-	 * @param User $user The user to attribute the revision to
+	 * @param UserIdentity $user The user to attribute the revision to
 	 *
 	 * @return RevisionRecord|null RevisionRecord or null on error
 	 */
@@ -891,7 +892,7 @@ class RevisionStore
 		Title $title,
 		CommentStoreComment $comment,
 		$minor,
-		User $user
+		UserIdentity $user
 	) {
 		$this->checkDatabaseDomain( $dbw );
 
@@ -3169,7 +3170,7 @@ class RevisionStore
 	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
-	 * @param User|null $user the user who's access rights to apply
+	 * @param Authority|null $performer the user who's access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
 	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
@@ -3183,7 +3184,7 @@ class RevisionStore
 		$pageId,
 		RevisionRecord $old = null,
 		RevisionRecord $new = null,
-		User $user = null,
+		Authority $performer = null,
 		$max = null,
 		$options = []
 	) {
@@ -3198,8 +3199,10 @@ class RevisionStore
 		if ( $old && $new && $new->getId() === $old->getId() ) {
 			if ( empty( $options ) ) {
 				return [];
+			} elseif ( $performer ) {
+				return [ $new->getUser( RevisionRecord::FOR_THIS_USER, $performer ) ];
 			} else {
-				return $user ? [ $new->getUser( RevisionRecord::FOR_PUBLIC, $user ) ] : [ $new->getUser() ];
+				return [ $new->getUser() ];
 			}
 		}
 
@@ -3240,7 +3243,7 @@ class RevisionStore
 	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
-	 * @param User|null $user the user who's access rights to apply
+	 * @param Authority|null $performer the user who's access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
 	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
@@ -3254,13 +3257,13 @@ class RevisionStore
 		$pageId,
 		RevisionRecord $old = null,
 		RevisionRecord $new = null,
-		User $user = null,
+		Authority $performer = null,
 		$max = null,
 		$options = []
 	) {
 		// TODO: Implement with a separate query to avoid cost of selecting unneeded fields
 		// and creation of UserIdentity stuff.
-		return count( $this->getAuthorsBetween( $pageId, $old, $new, $user, $max, $options ) );
+		return count( $this->getAuthorsBetween( $pageId, $old, $new, $performer, $max, $options ) );
 	}
 
 	/**
