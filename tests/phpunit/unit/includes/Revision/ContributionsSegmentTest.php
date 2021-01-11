@@ -4,9 +4,10 @@ namespace MediaWiki\Tests\Revision;
 
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Storage\MutableRevisionRecord;
-use Title;
+use MockTitleTrait;
 
 class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
+	use MockTitleTrait;
 
 	public function provideFlags() {
 		yield [
@@ -72,8 +73,7 @@ class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsSegment
 	 */
 	public function testConstruction() {
-		$mockTitle = $this->createNoOpMock( Title::class, [ 'getArticleID' ] );
-		$mockTitle->method( 'getArticleID' )->willReturn( 1 );
+		$mockTitle = $this->makeMockTitle( 'Foo', [ 'id' => 1 ] );
 		$revisionRecords = [ new MutableRevisionRecord( $mockTitle ), new MutableRevisionRecord( $mockTitle ) ];
 		$before = 'before';
 		$after = 'after';

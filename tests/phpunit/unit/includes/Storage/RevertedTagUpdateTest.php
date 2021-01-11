@@ -9,9 +9,9 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\RevertedTagUpdate;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use Psr\Log\LoggerInterface;
-use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -19,6 +19,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @see RevertedTagUpdateIntegrationTest for an end-to-end test with the database
  */
 class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
+	use MockTitleTrait;
 
 	/**
 	 * Convenience function for creating a RevertedTagUpdate that does not use
@@ -121,7 +122,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		?string $sha1 = null
 	) {
 		$revisionRecord = new MutableRevisionRecord(
-			$this->createMock( Title::class )
+			$this->makeMockTitle( __METHOD__, [ 'id' => $pageId ] )
 		);
 		$revisionRecord->setId( $revisionId );
 		$revisionRecord->setTimestamp( $timestamp );

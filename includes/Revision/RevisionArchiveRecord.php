@@ -23,10 +23,10 @@
 namespace MediaWiki\Revision;
 
 use CommentStoreComment;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MWTimestamp;
-use Title;
-use User;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -49,7 +49,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $page The page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param \stdClass $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
@@ -58,14 +58,14 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
 	public function __construct(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
 		$dbDomain = false
 	) {
-		parent::__construct( $title, $slots, $dbDomain );
+		parent::__construct( $page, $slots, $dbDomain );
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		$timestamp = MWTimestamp::convert( TS_MW, $row->ar_timestamp );
@@ -73,10 +73,10 @@ class RevisionArchiveRecord extends RevisionRecord {
 
 		$this->mArchiveId = intval( $row->ar_id );
 
-		// NOTE: ar_page_id may be different from $this->mTitle->getArticleID() in some cases,
+		// NOTE: ar_page_id may be different from $this->mPage->getId() in some cases,
 		// notably when a partially restored page has been moved, and a new page has been created
 		// with the same title. Archive rows for that title will then have the wrong page id.
-		$this->mPageId = isset( $row->ar_page_id ) ? intval( $row->ar_page_id ) : $title->getArticleID();
+		$this->mPageId = isset( $row->ar_page_id ) ? intval( $row->ar_page_id ) : $this->getArticleId( $this->mPage );
 
 		// NOTE: ar_parent_id = 0 indicates that there is no parent revision, while null
 		// indicates that the parent revision is unknown. As per MW 1.31, the database schema
@@ -140,24 +140,24 @@ class RevisionArchiveRecord extends RevisionRecord {
 
 	/**
 	 * @param int $audience
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 *
 	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
 	 */
-	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
-		return parent::getUser( $audience, $user );
+		return parent::getUser( $audience, $performer );
 	}
 
 	/**
 	 * @param int $audience
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 *
 	 * @return CommentStoreComment The revision comment, null if access is forbidden.
 	 */
-	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
-		return parent::getComment( $audience, $user );
+		return parent::getComment( $audience, $performer );
 	}
 
 	/**

@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionAccessException;
@@ -12,9 +14,12 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use TextContent;
 use Title;
+use TitleValue;
 use User;
+use Wikimedia\Assert\PreconditionException;
 use WikitextContent;
 
 /**
@@ -22,7 +27,7 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RevisionRecord
  */
 class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
-
+	use MockTitleTrait;
 	use RevisionRecordTests;
 
 	protected function setUp() : void {
@@ -67,28 +72,46 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	public function provideConstructor() {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
-
-		yield [
-			$title,
-			'acmewiki'
+		yield 'local wiki, with title' => [ $title, PageIdentity::LOCAL ];
+		yield 'local wiki' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			PageIdentity::LOCAL,
 		];
+		yield 'foreign wiki' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
+			'acmewiki',
+			PreconditionException::class
+		];
+		// This case exists for b/c and should eventually be deprecated.
+		yield 'foreign wiki, with Title' => [ $title, 'acmewiki' ];
 	}
 
 	/**
 	 * @dataProvider provideConstructor
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param bool $wikiId
+	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
-		Title $title,
-		$wikiId = false
+		PageIdentity $page,
+		$wikiId = PageIdentity::LOCAL,
+		string $expectedException = null
 	) {
-		$rec = new MutableRevisionRecord( $title, $wikiId );
+		$rec = new MutableRevisionRecord( $page, $wikiId );
 
-		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
-		$this->assertSame( $title, $rec->getPage(), 'getPage' );
+		$this->assertTrue( $page->isSamePageAs( $rec->getPage() ), 'getPage' );
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
+
+		if ( $expectedException ) {
+			$this->expectException( $expectedException );
+			$rec->getPageAsLinkTarget();
+		} else {
+			$this->assertTrue(
+				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
+			);
+		}
 	}
 
 	public function provideConstructorFailure() {
@@ -337,8 +360,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideNotReadyForInsertion() {
-		/** @var Title $title */
-		$title = $this->createMock( Title::class );
+		$title = $this->makeMockTitle( 'Dummy' );
 
 		/** @var User $user */
 		$user = $this->createMock( User::class );
@@ -414,7 +436,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
-			'A User object must be given when checking FOR_THIS_USER audience.'
+			'An Authority object must be given when checking FOR_THIS_USER audience.'
 		);
 		$rev->audienceCan( RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER );
 	}

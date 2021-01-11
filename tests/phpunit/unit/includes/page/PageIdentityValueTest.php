@@ -90,7 +90,7 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 			'#0 [1:Bar_Baz]'
 		];
 		yield [
-			new PageIdentityValue( 7, 200, 'tea', 'codewiki', PageIdentity::LOCAL ),
+			new PageIdentityValue( 7, 200, 'tea', 'codewiki' ),
 			'#7@codewiki [200:tea]'
 		];
 	}

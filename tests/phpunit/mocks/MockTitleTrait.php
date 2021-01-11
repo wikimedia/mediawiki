@@ -13,6 +13,7 @@ trait MockTitleTrait {
 	 * @param array $props Additional properties to set. Supported keys:
 	 *        - id: int
 	 *        - namespace: int
+	 * 		  - language: Language
 	 *
 	 * @return Title|MockObject
 	 */
@@ -39,9 +40,11 @@ trait MockTitleTrait {
 		$title->method( 'getPrefixedDBkey' )->willReturn( str_replace( ' ', '_', $preText ) );
 
 		$title->method( 'getArticleID' )->willReturn( $id );
+		$title->method( 'getId' )->willReturn( $id );
 		$title->method( 'getNamespace' )->willReturn( $props['namespace'] ?? 0 );
 		$title->method( 'exists' )->willReturn( $id > 0 );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
+		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
 
 		return $title;
 	}

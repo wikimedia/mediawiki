@@ -420,8 +420,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				$this->assertSame( $expected['summary'], $summary );
 				$this->assertSame( EDIT_NEW, $flags );
 
-				$title = $renderedRevision->getRevision()->getPageAsLinkTarget();
-				$this->assertSame( $expected['title']->getFullText(), $title->getFullText() );
+				$this->assertTrue(
+					$expected['title']->isSamePageAs( $renderedRevision->getRevision()->getPage() )
+				);
+				$this->assertTrue(
+					$expected['title']->isSameLinkAs( $renderedRevision->getRevision()->getPageAsLinkTarget() )
+				);
 
 				$slots = $renderedRevision->getRevision()->getSlots();
 				foreach ( $expected['slots'] as $slot => $content ) {

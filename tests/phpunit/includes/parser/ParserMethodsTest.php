@@ -12,6 +12,7 @@ use MediaWiki\User\UserIdentityValue;
  * @covers BlockLevelPass
  */
 class ParserMethodsTest extends MediaWikiLangTestCase {
+	use MockTitleTrait;
 
 	public static function providePreSaveTransform() {
 		return [
@@ -211,25 +212,10 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertStringContainsString( 'class="mw-parser-output"', $text );
 	}
 
-	/**
-	 * @param string $name
-	 * @return Title
-	 */
-	private function getMockTitle( $name ) {
-		$title = $this->createMock( Title::class );
-		$title->method( 'getPrefixedDBkey' )->willReturn( $name );
-		$title->method( 'getPrefixedText' )->willReturn( $name );
-		$title->method( 'getDBkey' )->willReturn( $name );
-		$title->method( 'getText' )->willReturn( $name );
-		$title->method( 'getNamespace' )->willReturn( 0 );
-		$title->method( 'getPageLanguage' )->willReturn(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
-
-		return $title;
-	}
-
 	public function provideRevisionAccess() {
-		$title = $this->getMockTitle( 'ParserRevisionAccessTest' );
+		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
+			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
+		] );
 
 		$frank = $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
@@ -337,7 +323,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$expectedInHtml,
 		$expectedInPst = null
 	) {
-		$title = $this->getMockTitle( 'ParserRevisionAccessTest' );
+		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
+			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
+		] );
 
 		$po->enableLimitReport( false );
 

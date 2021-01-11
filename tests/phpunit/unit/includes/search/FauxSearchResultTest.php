@@ -7,50 +7,32 @@ use MediaWiki\Revision\MutableRevisionRecord;
  * @covers FauxSearchResultSet
  */
 class FauxSearchResultTest extends MediaWikiUnitTestCase {
+	use MockTitleTrait;
 
 	public function testConstruct() {
-		$title = $this->getTitleMock( 'Foo' );
+		$title = $this->makeMockTitle( 'Foo', [ 'id' => 0 ] );
 		$r = new FauxSearchResult( $title );
 		$this->assertSame( $title, $r->getTitle() );
 		$this->assertTrue( $r->isMissingRevision() );
 		$this->assertNull( $r->getFile() );
 		$this->assertSame( 0, $r->getWordCount() );
 
-		$title = $this->getTitleMock( 'Foo', 1 );
+		$title = $this->makeMockTitle( 'Foo', [ 'id' => 1 ] );
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setTimestamp( '20000101000000' );
 		$r = new FauxSearchResult( $title, $rev );
 		$this->assertFalse( $r->isMissingRevision() );
 		$this->assertSame( '20000101000000', $r->getTimestamp() );
 
-		$title = $this->getTitleMock( 'Foo', 1 );
+		$title = $this->makeMockTitle( 'Foo', [ 'id' => 1 ] );
 		$rev = new MutableRevisionRecord( $title );
 		$r = new FauxSearchResult( $title, $rev, null, '123' );
 		$this->assertSame( 3, $r->getByteSize() );
 
-		$title = $this->getTitleMock( 'Foo' );
+		$title = $this->makeMockTitle( 'Foo', [ 'id' => 0 ] );
 		$file = $this->getFileMock( 'Foo.png' );
 		$r = new FauxSearchResult( $title, null, $file );
 		$this->assertSame( $file, $r->getFile() );
-	}
-
-	/**
-	 * @param string $titleText
-	 * @param int|null $articleId
-	 * @return Title
-	 */
-	private function getTitleMock( $titleText, $articleId = null ) {
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getPrefixedText', 'getArticleID' ] )
-			->getMock();
-		$title->method( 'getPrefixedText' )->willReturn( $titleText );
-		if ( $articleId ) {
-			$title->method( 'getArticleID' )->willReturn( $articleId );
-		} else {
-			$title->expects( $this->never() )->method( 'getArticleID' );
-		}
-		return $title;
 	}
 
 	/**
