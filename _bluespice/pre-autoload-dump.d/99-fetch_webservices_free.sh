@@ -16,14 +16,11 @@ then
         rm -f extensions/BlueSpiceUEModulePDF/webservices/BShtml2PDF.war
         /usr/bin/env wget -P extensions/BlueSpiceUEModulePDF/webservices https://buildservice.bluespice.com/webservices/REL1_27/BShtml2PDF.war
 
- # This condition can be removed after the merge with branch REL1_31_dev, REL1_31 or REL1_27
-elif [ "$BRANCH" == "REL1_31_dev-webservices-autodownload" ];
+elif [ "$BRANCH" == "REL1_35" ] || [ "$BRANCH" == "master" ];
 then
         mkdir extensions/BlueSpiceUEModulePDF/webservices
         rm -f extensions/BlueSpiceUEModulePDF/webservices/BShtml2PDF.war
-        /usr/bin/env wget -P extensions/BlueSpiceUEModulePDF/webservices https://buildservice.bluespice.com/webservices/REL1_31/BShtml2PDF.war
- # This condition can be removed after the merge with branch REL1_31_dev, REL1_31 or REL1_27
-
+        /usr/bin/env wget -P extensions/BlueSpiceUEModulePDF/webservices https://buildservice.bluespice.com/webservices/REL1_35/BShtml2PDF.war
 else
     echo "Suitable web services are not found for this version: $BRANCH"
 fi
