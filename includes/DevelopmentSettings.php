@@ -97,3 +97,6 @@ $wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
 
 // Enable uploads for FileImporter browser tests (T190829)
 $wgEnableUploads = true;
+
+// Enable the new wikitext mode for browser testing (T270240)
+$wgVisualEditorEnableWikitext = true;
