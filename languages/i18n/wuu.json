@@ -217,7 +217,7 @@
 	"cactions": "更多",
 	"tool-link-userrights": "保存{{GENDER:$1|用户}}组",
 	"tool-link-userrights-readonly": "望{{GENDER:$1|用户}}组",
-	"tool-link-emailuser": "电邮联系该{{GENDER:$1|用户}}",
+	"tool-link-emailuser": "发邮件给{{GENDER:$1|他|她}}",
 	"imagepage": "望文件頁",
 	"mediawikipage": "望信息頁",
 	"templatepage": "望模板頁",

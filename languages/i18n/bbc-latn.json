@@ -635,6 +635,7 @@
 	"pageinfo-article-id": "Alaman ID",
 	"pageinfo-language": "Parhataan ni isi alaman",
 	"pageinfo-content-model": "Rupa ni isi alaman",
+	"pageinfo-robot-policy": "Indeks na dibahen robot",
 	"pageinfo-robot-index": "Dipaloas",
 	"pageinfo-robot-noindex": "Bolatan",
 	"pageinfo-watchers": "Bilangan ni pangengger alaman",

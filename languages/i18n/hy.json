@@ -1698,7 +1698,7 @@
 	"ipblocklist-empty": "Արգելափակումների ցանկը դատարկ է։",
 	"ipblocklist-no-results": "Նշված IP-հասցեն կամ մասնակցի անունը արգելափակված չէ։",
 	"blocklink": "արգելափակել",
-	"unblocklink": "հանել արգելափակումից",
+	"unblocklink": "ապաարգելափակել",
 	"change-blocklink": "փոխել արգելափակումը",
 	"contribslink": "ներդրում",
 	"emaillink": "ուղարկել էլ. նամակ",

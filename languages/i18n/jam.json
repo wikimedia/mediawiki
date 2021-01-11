@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			")8",
 			"Chabi1",
 			"Dcljr",
 			"Dentonius",
@@ -446,7 +447,7 @@
 	"permissionserrors": "Permishan herro",
 	"permissionserrorstext-withaction": "Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:",
 	"moveddeleted-notice": "Dis piej eh diliit.\nDi diliishan ah muuv lag fi di piej provaid biluo fi refrans.‎",
-	"edit-conflict": "Hedit kanflik: $1",
+	"edit-conflict": "Edit kanflik.",
 	"viewpagelogs": "Vyuu lagdem fi dis piej",
 	"currentrev-asof": "Lietis rivijan az av $1",
 	"revisionasof": "'Ow di page did set a $1",
