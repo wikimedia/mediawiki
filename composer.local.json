@@ -1,0 +1,20 @@
+{
+	"minimum-stability": "dev",
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"_bluespice/build/*/composer.json"
+			],
+			"merge-extra": true,
+			"merge-scripts": true
+		}
+	},
+	"scripts": {
+		"pre-autoload-dump": [
+			"sh _bluespice/pre-autoload-dump.sh"
+		]
+	},
+	"archive": {
+		"exclude": ["!/vendor", "!/composer.local.json", "!/composer.json", "!/composer.lock"]
+	}
+}

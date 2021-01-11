@@ -1,0 +1,4 @@
+{
+	"bs-installer-title": "BlueSpice $2 (on MediaWiki $1)",
+	"bs-installer-config-support-info": "BlueSpice supports the following database systems:\n\n$1\n\nIf you do not see the database system you are trying to use listed below, then follow the instructions linked above to enable support."
+}

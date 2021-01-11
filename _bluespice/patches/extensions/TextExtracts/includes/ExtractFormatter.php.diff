@@ -1,0 +1,11 @@
+--- TextExtracts.old/includes/ExtractFormatter.php	2020-07-31 14:10:39.759922324 +0200
++++ TextExtracts/includes/ExtractFormatter.php	2020-07-31 12:33:50.081000000 +0200
+@@ -68,6 +68,8 @@
+ 			$text = str_replace( "\r", "\n", $text );
+ 			// normalise newlines
+ 			$text = preg_replace( "/\n{3,}/", "\n\n", $text );
++			// Remove header syntax
++			$text = preg_replace( "/\\x01\\x02(\d)\\x02\\x01/", '', $text );
+ 		}
+ 
+ 

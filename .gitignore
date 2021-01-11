@@ -89,4 +89,15 @@ Thumbs.db
 
 # Docker
 docker-compose.override.yml
+
+#bluespice free
+/images/bluespice
+/settings.d/*.local.php
+LocalSettings.local.php
+BLUESPICE-INSTALL
+BLUESPICE-LICENCE
+BLUESPICE-RELEASE-HISTORY
+BLUESPICE-RELEASE-NOTES
+dynamic_file.php
+installcheck.php
 .env
