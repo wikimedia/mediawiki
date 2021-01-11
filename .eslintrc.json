@@ -1,4 +1,5 @@
 {
+	"root": true,
 	"extends": "wikimedia",
 	"env": {
 		"browser": true,
