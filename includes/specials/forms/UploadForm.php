@@ -331,15 +331,15 @@ class UploadForm extends HTMLForm {
 				'nodata' => strval( $this->mDestFile ) !== '',
 			],
 			'UploadDescription' => [
-				'type' => 'textarea',
+				'type' => $this->mForReUpload
+					? 'text'
+					: 'textarea',
 				'section' => 'description',
 				'id' => 'wpUploadDescription',
 				'label-message' => $this->mForReUpload
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
 				'default' => $this->mComment,
-				'cols' => 80,
-				'rows' => 8,
 			]
 		];
 		if ( $this->mTextAfterSummary ) {
@@ -362,6 +362,7 @@ class UploadForm extends HTMLForm {
 
 		if ( $this->mForReUpload ) {
 			$descriptor['DestFile']['readonly'] = true;
+			$descriptor['UploadDescription']['size'] = 60;
 		} else {
 			$descriptor['License'] = [
 				'type' => 'select',
@@ -370,6 +371,7 @@ class UploadForm extends HTMLForm {
 				'id' => 'wpLicense',
 				'label-message' => 'license',
 			];
+			$descriptor['UploadDescription']['rows'] = 8;
 		}
 
 		if ( $config->get( 'UseCopyrightUpload' ) ) {
