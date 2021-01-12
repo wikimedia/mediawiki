@@ -348,7 +348,7 @@
 	"sort-ascending": "Ordena ascendentment",
 	"sort-initial": "Ordenació inicial",
 	"nstab-main": "Pàgina",
-	"nstab-user": "Página {{GENDER:$1|d'usuari|d'usuària}}",
+	"nstab-user": "Pàgina {{GENDER:$1|d'usuari|d'usuària}}",
 	"nstab-media": "Pàgina de multimèdia",
 	"nstab-special": "Pàgina especial",
 	"nstab-project": "Pàgina del projecte",
