@@ -3,6 +3,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
@@ -16,6 +17,8 @@ use Wikimedia\TestingAccessWrapper;
  * @author Addshore
  *
  * @covers WatchedItemStore
+ *
+ * TODO convert this to actually be a Unit test
  */
 class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
@@ -196,6 +199,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
 		] );
 
+		// TODO mocking and convert to a Unit test
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		$db = $mocks['db'] ?? $this->getMockDb();
 		return new WatchedItemStore(
 			$options,
@@ -208,7 +213,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->createHookContainer(),
-			$this->getMockLinkBatchFactory( $db )
+			$this->getMockLinkBatchFactory( $db ),
+			$userFactory
 		);
 	}
 
