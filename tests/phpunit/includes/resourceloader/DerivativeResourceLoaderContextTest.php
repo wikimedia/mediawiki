@@ -4,7 +4,7 @@
  * @group ResourceLoader
  * @covers DerivativeResourceLoaderContext
  */
-class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
+class DerivativeResourceLoaderContextTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 
