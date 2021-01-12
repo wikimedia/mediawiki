@@ -501,8 +501,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
-		if ( $this->fld_watched && $this->watched && $this->watched[$ns][$dbkey] ) {
-			$pageInfo['watched'] = $this->watched[$ns][$dbkey];
+		if ( $this->fld_watched ) {
+			$pageInfo['watched'] = false;
+
+			if ( isset( $this->watched[$ns][$dbkey] ) ) {
+				$pageInfo['watched'] = $this->watched[$ns][$dbkey];
+			}
 
 			if ( isset( $this->watchlistExpiries[$ns][$dbkey] ) ) {
 				$pageInfo['watchlistexpiry'] = $this->watchlistExpiries[$ns][$dbkey];
@@ -527,7 +531,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_notificationtimestamp ) {
 			$pageInfo['notificationtimestamp'] = '';
-			if ( $this->notificationtimestamps[$ns][$dbkey] ) {
+			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
 				$pageInfo['notificationtimestamp'] =
 					wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
 			}

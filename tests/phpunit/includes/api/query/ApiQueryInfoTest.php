@@ -39,8 +39,8 @@ class ApiQueryInfoTest extends ApiTestCase {
 		list( $data ) = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
-				'inprop' => 'watched',
-				'titles' => $title->getText(),
+				'inprop' => 'watched|notificationtimestamp',
+				'titles' => $title->getText() . '|' . 'NonExistingPage_lkasdoiewlmasdoiwem7483',
 		], null, false, $user );
 
 		$this->assertArrayHasKey( 'query', $data );
