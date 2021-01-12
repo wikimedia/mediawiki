@@ -23,7 +23,6 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -46,23 +45,14 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
 	/**
 	 * @param PermissionManager $permManager
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param AuthManager $authManager
 	 */
-	public function __construct(
-		PermissionManager $permManager,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		AuthManager $authManager
-	) {
+	public function __construct( PermissionManager $permManager, AuthManager $authManager ) {
 		parent::__construct( 'CreateAccount' );
 
 		$this->permManager = $permManager;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->setAuthManager( $authManager );
 	}
 
@@ -71,7 +61,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	public function isRestricted() {
-		return !$this->groupPermissionsLookup->groupHasPermission( '*', 'createaccount' );
+		return !$this->permManager->groupHasPermission( '*', 'createaccount' );
 	}
 
 	public function userCanExecute( User $user ) {

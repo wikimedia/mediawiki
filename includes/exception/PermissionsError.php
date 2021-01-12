@@ -52,7 +52,7 @@ class PermissionsError extends ErrorPageError {
 		if ( !count( $errors ) ) {
 			$groups = [];
 			foreach ( MediaWikiServices::getInstance()
-						  ->getGroupPermissionsLookup()
+						  ->getPermissionManager()
 						  ->getGroupsWithPermission( $this->permission ) as $group ) {
 				$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
 			}

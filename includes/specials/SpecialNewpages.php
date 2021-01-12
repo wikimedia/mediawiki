@@ -23,7 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -56,8 +56,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	/** @var PermissionManager */
+	private $permissionManager;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -78,7 +78,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param CommentStore $commentStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
@@ -89,7 +89,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		CommentStore $commentStore,
 		IContentHandlerFactory $contentHandlerFactory,
-		GroupPermissionsLookup $groupPermissionsLookup,
+		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
@@ -100,7 +100,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->commentStore = $commentStore;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
@@ -232,7 +232,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->opts,
 			$this->linkBatchFactory,
 			$this->getHookContainer(),
-			$this->groupPermissionsLookup,
+			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
 			$this->actorMigration
@@ -578,7 +578,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->opts,
 			$this->linkBatchFactory,
 			$this->getHookContainer(),
-			$this->groupPermissionsLookup,
+			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
 			$this->actorMigration
@@ -650,8 +650,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	private function canAnonymousUsersCreatePages() {
-		return $this->groupPermissionsLookup
-			->groupHasAnyPermission( '*', 'createpage', 'createtalk' );
+		return $this->permissionManager->groupHasPermission( '*', 'createpage' ) ||
+			$this->permissionManager->groupHasPermission( '*', 'createtalk' );
 	}
 
 	protected function getGroupName() {

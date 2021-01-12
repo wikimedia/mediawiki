@@ -26,7 +26,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -45,8 +45,8 @@ use Wikimedia\IPUtils;
  * @since 1.34 Refactored from User and Block.
  */
 class BlockManager {
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	/** @var PermissionManager */
+	private $permissionManager;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -77,21 +77,21 @@ class BlockManager {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param PermissionManager $permissionManager
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		GroupPermissionsLookup $groupPermissionsLookup,
+		PermissionManager $permissionManager,
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
 		UserGroupManager $userGroupManager
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->permissionManager = $permissionManager;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userGroupManager = $userGroupManager;
@@ -142,8 +142,8 @@ class BlockManager {
 			// See T270145.
 			!in_array(
 				'ipblock-exempt',
-				$this->groupPermissionsLookup->getGroupPermissions(
-					...$this->userGroupManager->getUserGroups( $user )
+				$this->permissionManager->getGroupPermissions(
+					$this->userGroupManager->getUserGroups( $user )
 				)
 			);
 

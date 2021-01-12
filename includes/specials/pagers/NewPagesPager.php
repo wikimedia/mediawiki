@@ -22,7 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -46,8 +46,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	/** @var PermissionManager */
+	private $permissionManager;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -60,7 +60,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param FormOptions $opts
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
@@ -70,7 +70,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		FormOptions $opts,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		GroupPermissionsLookup $groupPermissionsLookup,
+		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
 		ActorMigration $actorMigration
@@ -82,7 +82,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->opts = $opts;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->permissionManager = $permissionManager;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
 	}
@@ -162,8 +162,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	private function canAnonymousUsersCreatePages() {
-		return $this->groupPermissionsLookup
-			->groupHasAnyPermission( '*', 'createpage', 'createtalk' );
+		return $this->permissionManager->groupHasPermission( '*', 'createpage' ) ||
+			$this->permissionManager->groupHasPermission( '*', 'createtalk' );
 	}
 
 	// Based on ContribsPager.php

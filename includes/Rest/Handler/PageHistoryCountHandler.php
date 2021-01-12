@@ -3,7 +3,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use ChangeTags;
-use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -54,9 +53,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -79,7 +75,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
 	 * @param PermissionManager $permissionManager
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $cache
 	 */
@@ -87,14 +82,12 @@ class PageHistoryCountHandler extends SimpleHandler {
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
 		PermissionManager $permissionManager,
-		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
 		WANObjectCache $cache
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->permissionManager = $permissionManager;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 
@@ -477,7 +470,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					'1',
 					[
 						'actor.actor_user = ug_user',
-						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
+						'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
 					__METHOD__

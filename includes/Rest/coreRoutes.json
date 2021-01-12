@@ -6,7 +6,6 @@
 			"RevisionStore",
 			"NameTableStoreFactory",
 			"PermissionManager",
-			"GroupPermissionsLookup",
 			"DBLoadBalancer"
 		]
 	},
@@ -17,7 +16,6 @@
 			"RevisionStore",
 			"NameTableStoreFactory",
 			"PermissionManager",
-			"GroupPermissionsLookup",
 			"DBLoadBalancer",
 			"MainWANObjectCache"
 		]

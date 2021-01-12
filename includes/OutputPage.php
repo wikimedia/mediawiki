@@ -2713,7 +2713,6 @@ class OutputPage extends ContextSource {
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
-		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 		foreach ( $errors as $key => $error ) {
 			$errors[$key] = (array)$error;
 		}
@@ -2727,8 +2726,8 @@ class OutputPage extends ContextSource {
 		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
 			&& $this->getUser()->isAnon() && count( $errors ) == 1 && isset( $errors[0][0] )
 			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
-			&& ( $groupPermissionsLookup->groupHasPermission( 'user', $action )
-				|| $groupPermissionsLookup->groupHasPermission( 'autoconfirmed', $action ) )
+			&& ( $permissionManager->groupHasPermission( 'user', $action )
+				|| $permissionManager->groupHasPermission( 'autoconfirmed', $action ) )
 		) {
 			$displayReturnto = null;
 

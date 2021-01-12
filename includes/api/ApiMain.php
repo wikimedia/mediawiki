@@ -1961,7 +1961,6 @@ class ApiMain extends ApiBase {
 			);
 		}
 		$help['permissions'] .= Html::openElement( 'dl' );
-		$groupPermissionsLookup = MediaWikiServices::getInstance()->getGroupPermissionsLookup();
 		foreach ( self::RIGHTS_MAP as $right => $rightMsg ) {
 			$help['permissions'] .= Html::element( 'dt', null, $right );
 
@@ -1970,7 +1969,7 @@ class ApiMain extends ApiBase {
 
 			$groups = array_map( function ( $group ) {
 				return $group == '*' ? 'all' : $group;
-			}, $groupPermissionsLookup->getGroupsWithPermission( $right ) );
+			}, $this->getPermissionManager()->getGroupsWithPermission( $right ) );
 
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )
