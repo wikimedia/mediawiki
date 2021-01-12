@@ -343,7 +343,7 @@ class LoadBalancer implements ILoadBalancer {
 			$flags |= self::CONN_INTENT_WRITABLE;
 		}
 
-		if ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT ) {
+		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
 			// Callers use CONN_TRX_AUTOCOMMIT to bypass REPEATABLE-READ staleness without
 			// resorting to row locks (e.g. FOR UPDATE) or to make small out-of-band commits
 			// during larger transactions. This is useful for avoiding lock contention.
@@ -376,7 +376,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @throws DBUnexpectedError
 	 */
 	private function enforceConnectionFlags( IDatabase $conn, $flags ) {
-		if ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT ) {
+		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
 			if ( $conn->trxLevel() ) { // sanity
 				throw new DBUnexpectedError(
 					$conn,
@@ -770,7 +770,7 @@ class LoadBalancer implements ILoadBalancer {
 		$i = ( $i === self::DB_MASTER ) ? $this->getWriterIndex() : $i;
 		// Connection handles required to be in auto-commit mode use a separate connection
 		// pool since the main pool is effected by implicit and explicit transaction rounds
-		$autocommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+		$autocommit = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
 
 		$conn = false;
 		foreach ( $this->conns as $connsByServer ) {
@@ -943,7 +943,7 @@ class LoadBalancer implements ILoadBalancer {
 			: $this->getForeignConnection( $i, $domain, $flags );
 		// Throw an error or otherwise bail out if the connection attempt failed
 		if ( !( $conn instanceof IDatabase ) ) {
-			if ( ( $flags & self::CONN_SILENCE_ERRORS ) != self::CONN_SILENCE_ERRORS ) {
+			if ( !self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 				$this->reportConnectionError();
 			}
 
@@ -955,7 +955,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->trxProfiler->recordConnection(
 				$conn->getServer(),
 				$conn->getDBname(),
-				( ( $flags & self::CONN_INTENT_WRITABLE ) == self::CONN_INTENT_WRITABLE )
+				self::fieldHasBit( $flags, self::CONN_INTENT_WRITABLE )
 			);
 		}
 
@@ -1096,7 +1096,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @throws UnexpectedValueException When the DB domain of the connection is corrupted
 	 */
 	private function getLocalConnection( $i, $flags = 0 ) {
-		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+		$autoCommit = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
 		// Connection handles required to be in auto-commit mode use a separate connection
 		// pool since the main pool is effected by implicit and explicit transaction rounds
 		$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
@@ -1159,7 +1159,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function getForeignConnection( $i, $domain, $flags = 0 ) {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
-		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
+		$autoCommit = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
 		// Connection handles required to be in auto-commit mode use a separate connection
 		// pool since the main pool is effected by implicit and explicit transaction rounds
 		if ( $autoCommit ) {
@@ -1396,7 +1396,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return int Bit field of IDatabase::DBO_* constants to use with Database::factory()
 	 */
 	private function initConnFlags( $flags ) {
-		if ( ( $flags & IDatabase::DBO_DEFAULT ) === IDatabase::DBO_DEFAULT ) {
+		if ( self::fieldHasBit( $flags, IDatabase::DBO_DEFAULT ) ) {
 			if ( $this->cliMode ) {
 				$flags &= ~IDatabase::DBO_TRX;
 			} else {
@@ -2070,7 +2070,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn->dbSchema()
 		);
 
-		if ( ( $flags & self::CONN_REFRESH_READ_ONLY ) == self::CONN_REFRESH_READ_ONLY ) {
+		if ( self::fieldHasBit( $flags, self::CONN_REFRESH_READ_ONLY ) ) {
 			try {
 				$readOnly = (int)$conn->serverIsReadOnly();
 			} catch ( DBError $e ) {
@@ -2419,6 +2419,15 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function getMasterServerName() {
 		return $this->getServerName( $this->getWriterIndex() );
+	}
+
+	/**
+	 * @param int $flags A bitfield of flags
+	 * @param int $bit Bit flag constant
+	 * @return bool Whether the bit field has the specified bit flag set
+	 */
+	private function fieldHasBit( int $flags, int $bit ) {
+		return ( ( $flags & $bit ) === $bit );
 	}
 
 	public function __destruct() {

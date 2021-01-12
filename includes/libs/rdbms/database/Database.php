@@ -5487,13 +5487,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param int $field
-	 * @param int $flags
-	 * @return bool
+	 * @param int $flags A bitfield of flags
+	 * @param int $bit Bit flag constant
+	 * @return bool Whether the bit field has the specified bit flag set
 	 * @since 1.34
 	 */
-	final protected function fieldHasBit( $field, $flags ) {
-		return ( ( $field & $flags ) === $flags );
+	final protected function fieldHasBit( int $flags, int $bit ) {
+		return ( ( $flags & $bit ) === $bit );
 	}
 
 	/**
