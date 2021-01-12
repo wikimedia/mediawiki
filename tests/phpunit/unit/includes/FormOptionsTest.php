@@ -1,12 +1,4 @@
 <?php
-/**
- * This file host two test case classes for the MediaWiki FormOptions class:
- *  - FormOptionsInitializationTest : tests initialization of the class.
- *  - FormOptionsTest : tests methods an on instance
- *
- * The split let us take advantage of setting up a fixture for the methods
- * tests.
- */
 
 /**
  * Test class for FormOptions methods.
@@ -15,7 +7,7 @@
  *
  * @author Antoine Musso
  */
-class FormOptionsTest extends \MediaWikiUnitTestCase {
+class FormOptionsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers FormOptions::guessType
