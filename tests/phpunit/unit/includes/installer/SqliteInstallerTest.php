@@ -2,10 +2,9 @@
 
 /**
  * @group sqlite
- * @group Database
  * @group medium
  */
-class SqliteInstallerTest extends \MediaWikiUnitTestCase {
+class SqliteInstallerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers SqliteInstaller::checkDataDir
 	 */

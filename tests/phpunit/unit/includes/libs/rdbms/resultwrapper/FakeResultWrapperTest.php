@@ -24,7 +24,6 @@
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
- * @group Database
  * @covers \Wikimedia\Rdbms\FakeResultWrapper
  */
 class FakeResultWrapperTest extends PHPUnit\Framework\TestCase {
