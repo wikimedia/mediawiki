@@ -620,7 +620,8 @@ class WikiPage implements Page, IDBAccessObject {
 						);
 						return $this->mTitle->getContentModel();
 					}
-				}
+				},
+				[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 			);
 		}
 
