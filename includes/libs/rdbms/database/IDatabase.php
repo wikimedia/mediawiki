@@ -2076,7 +2076,7 @@ interface IDatabase {
 	 *
 	 * Callers should avoid using this method while a transaction is active
 	 *
-	 * @return int|bool Database replication lag in seconds or false on error
+	 * @return float|int|false Database replication lag in seconds or false on error
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
 	public function getLag();
