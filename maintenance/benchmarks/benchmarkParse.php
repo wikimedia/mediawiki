@@ -22,7 +22,7 @@
  * @ingroup Benchmark
  */
 
-require __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -194,4 +194,4 @@ class BenchmarkParse extends Maintenance {
 }
 
 $maintClass = BenchmarkParse::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

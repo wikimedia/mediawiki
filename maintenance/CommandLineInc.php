@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+// NO_AUTOLOAD -- unsafe file-scope code
+
 require_once __DIR__ . '/Maintenance.php';
 
 global $optionsWithArgs, $optionsWithoutArgs, $allowUnregisteredOptions;
@@ -71,4 +73,4 @@ class CommandLineInc extends Maintenance {
 }
 
 $maintClass = CommandLineInc::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

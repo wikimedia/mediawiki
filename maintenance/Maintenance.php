@@ -20,9 +20,15 @@
  * @defgroup Maintenance Maintenance
  */
 
-if ( !defined( 'MW_ENTRY_POINT' ) ) {
-	define( 'MW_ENTRY_POINT', 'cli' );
+if ( defined( 'MEDIAWIKI' ) ) {
+	// This file is included by many autoloaded class files, and so may
+	// potentially be invoked in the context of a web request or another CLI
+	// script. It's not appropriate to run the following file-scope code in
+	// such a case.
+	return;
 }
+
+define( 'MW_ENTRY_POINT', 'cli' );
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.

@@ -21,7 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-require __DIR__ . '/../includes/Benchmarker.php';
+require_once __DIR__ . '/../includes/Benchmarker.php';
 
 class BenchmarkTidy extends Benchmarker {
 	public function __construct() {
@@ -79,4 +79,4 @@ class BenchmarkTidy extends Benchmarker {
 }
 
 $maintClass = BenchmarkTidy::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

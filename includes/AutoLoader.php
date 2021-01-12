@@ -20,6 +20,8 @@
  * @file
  */
 
+// NO_AUTOLOAD -- file scope code, can't load self
+
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses

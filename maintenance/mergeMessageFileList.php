@@ -22,6 +22,8 @@
  * @ingroup Maintenance
  */
 
+// NO_AUTOLOAD -- file-scope define() used to modify behaviour
+
 # Start from scratch
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 

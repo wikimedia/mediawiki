@@ -26,7 +26,6 @@
  */
 
 require_once __DIR__ . '/BackupDumper.php';
-require_once __DIR__ . '/SevenZipStream.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
@@ -149,6 +148,8 @@ TEXT
 			$this->loadWithArgv( $args );
 			$this->processOptions();
 		}
+
+		SevenZipStream::register();
 	}
 
 	/**
