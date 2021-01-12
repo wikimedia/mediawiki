@@ -340,6 +340,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * Like splitTemplate() but for a raw child array. For internal use only.
 	 * @param array $children
 	 * @return array
+	 * @suppress SecurityCheck-XSS
 	 */
 	public static function splitRawTemplate( array $children ) {
 		$parts = [];
