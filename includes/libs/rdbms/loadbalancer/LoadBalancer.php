@@ -147,15 +147,19 @@ class LoadBalancer implements ILoadBalancer {
 	private static $INFO_FORIEGN = 'foreign';
 	private static $INFO_FOREIGN_REF_COUNT = 'foreignPoolRefCount';
 
-	/** @var int Warn when this many connection are held */
-	private const CONN_HELD_WARN_THRESHOLD = 10;
+	/**
+	 * @var int Default 'maxLag' when unspecified
+	 * @internal Only for use within LoadBalancer/LoadMonitor
+	 */
+	public const MAX_LAG_DEFAULT = 6;
 
-	/** @var int Default 'maxLag' when unspecified */
-	private const MAX_LAG_DEFAULT = 6;
 	/** @var int Default 'waitTimeout' when unspecified */
 	private const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master DB server read-only status */
 	private const TTL_CACHE_READONLY = 5;
+
+	/** @var int Warn when this many connection are held */
+	private const CONN_HELD_WARN_THRESHOLD = 10;
 
 	private const KEY_LOCAL = 'local';
 	private const KEY_FOREIGN_FREE = 'foreignFree';
