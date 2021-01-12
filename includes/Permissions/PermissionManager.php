@@ -837,10 +837,8 @@ class PermissionManager {
 
 			if ( !$this->userHasRight( $user, 'move' ) ) {
 				// User can't move anything
-				$userCanMove = $this->groupPermissionLookup
-					->groupHasPermission( 'user', 'move' );
-				$autoconfirmedCanMove = $this->groupPermissionLookup
-					->groupHasPermission( 'autoconfirmed', 'move' );
+				$userCanMove = $this->groupHasPermission( 'user', 'move' );
+				$autoconfirmedCanMove = $this->groupHasPermission( 'autoconfirmed', 'move' );
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = [ 'movenologintext' ];
@@ -1335,8 +1333,8 @@ class PermissionManager {
 		$user = User::newFromIdentity( $user );
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
-			$this->usersRights[ $rightsCacheKey ] = $this->groupPermissionLookup->getGroupPermissions(
-				...$this->userGroupManager->getUserEffectiveGroups( $user )
+			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
+				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
 			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );
 
@@ -1434,7 +1432,7 @@ class PermissionManager {
 	 * @return string[] permission key names for given groups combined
 	 */
 	public function getGroupPermissions( $groups ) {
-		return $this->groupPermissionLookup->getGroupPermissions( ...$groups );
+		return $this->groupPermissionLookup->getGroupPermissions( $groups );
 	}
 
 	/**
@@ -1589,7 +1587,7 @@ class PermissionManager {
 				$right = 'editsemiprotected'; // BC
 			}
 			if ( $right != '' ) {
-				$namespaceRightGroups[$right] = $this->groupPermissionLookup->getGroupsWithPermission( $right );
+				$namespaceRightGroups[$right] = $this->getGroupsWithPermission( $right );
 			}
 		}
 
@@ -1610,10 +1608,7 @@ class PermissionManager {
 			) {
 				// Do any of the namespace rights imply the restriction right? (see explanation above)
 				foreach ( $namespaceRightGroups as $groups ) {
-					if ( !array_diff(
-						$groups,
-						$this->groupPermissionLookup->getGroupsWithPermission( $right )
-					) ) {
+					if ( !array_diff( $groups, $this->getGroupsWithPermission( $right ) ) ) {
 						// Yes, this one does.
 						continue 2;
 					}

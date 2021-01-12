@@ -315,7 +315,6 @@ class SpecialPageFactory {
 			'class' => \SpecialCreateAccount::class,
 			'services' => [
 				'PermissionManager',
-				'GroupPermissionsLookup',
 				'AuthManager',
 			]
 		],
@@ -508,7 +507,7 @@ class SpecialPageFactory {
 			'class' => \SpecialNewFiles::class,
 			'services' => [
 				'MimeAnalyzer',
-				'GroupPermissionsLookup',
+				'PermissionManager',
 				'ActorMigration',
 				'DBLoadBalancer',
 				'UserCache',
@@ -539,7 +538,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'CommentStore',
 				'ContentHandlerFactory',
-				'GroupPermissionsLookup',
+				'PermissionManager',
 				'DBLoadBalancer',
 				'RevisionLookup',
 				'NamespaceInfo',

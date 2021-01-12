@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -38,8 +38,8 @@ class NewFilesPager extends RangeChronologicalPager {
 	 */
 	protected $opts;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	/** @var PermissionManager */
+	private $permissionManager;
 
 	/** @var ActorMigration */
 	private $actorMigration;
@@ -51,7 +51,7 @@ class NewFilesPager extends RangeChronologicalPager {
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param PermissionManager $permissionManager
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
@@ -60,7 +60,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		IContextSource $context,
 		FormOptions $opts,
 		LinkRenderer $linkRenderer,
-		GroupPermissionsLookup $groupPermissionsLookup,
+		PermissionManager $permissionManager,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
 		UserCache $userCache
@@ -71,7 +71,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		parent::__construct( $context, $linkRenderer );
 
 		$this->opts = $opts;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->permissionManager = $permissionManager;
 		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
 		$this->setLimit( $opts->getValue( 'limit' ) );
@@ -104,7 +104,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
-			$groupsWithBotPermission = $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = $this->permissionManager->getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';

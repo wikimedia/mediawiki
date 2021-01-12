@@ -51,30 +51,6 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $result, "Groups with permission $right" );
 	}
 
-	/**
-	 * @covers  \MediaWiki\Permissions\GroupPermissionsLookup::getGroupsWithAnyPermissions
-	 */
-	public function testGetGroupsWithAnyPermissions() {
-		$this->assertArrayEquals(
-			[ 'unittesters', 'testwriters' ],
-			$this->createGroupPermissionsLookup()->getGroupsWithAnyPermissions( 'runtest', 'modifytest' )
-		);
-	}
-
-	/**
-	 * @covers \MediaWiki\Permissions\GroupPermissionsLookup::getGroupsWithAllPermissions
-	 */
-	public function testGetGroupsWithAllPermissions() {
-		$this->assertArrayEquals(
-			[],
-			$this->createGroupPermissionsLookup()->getGroupsWithAllPermissions( 'runtest', 'modifytest' )
-		);
-		$this->assertArrayEquals(
-			[ 'unittesters' ],
-			$this->createGroupPermissionsLookup()->getGroupsWithAllPermissions( 'test', 'runtest' )
-		);
-	}
-
 	public static function provideGetGroupsWithPermission() {
 		return [
 			[
@@ -101,14 +77,14 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGroupPermissions() {
 		$rights = $this->createGroupPermissionsLookup()
-			->getGroupPermissions( 'unittesters' );
+			->getGroupPermissions( [ 'unittesters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
 		$this->assertNotContains( 'modifytest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 
 		$rights = $this->createGroupPermissionsLookup()
-			->getGroupPermissions( 'unittesters', 'testwriters' );
+			->getGroupPermissions( [ 'unittesters', 'testwriters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertContains( 'writetest', $rights );
 		$this->assertContains( 'modifytest', $rights );
@@ -120,7 +96,7 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	 */
 	public function testRevokePermissions() {
 		$rights = $this->createGroupPermissionsLookup()
-			->getGroupPermissions( 'unittesters', 'formertesters' );
+			->getGroupPermissions( [ 'unittesters', 'formertesters' ] );
 		$this->assertNotContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
 		$this->assertNotContains( 'modifytest', $rights );
@@ -131,33 +107,12 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Permissions\GroupPermissionsLookup::groupHasPermission
 	 */
 	public function testGroupHasPermission() {
-		$this->assertTrue( $this->createGroupPermissionsLookup()
-			->groupHasPermission( 'unittesters', 'test' ) );
-		$this->assertFalse( $this->createGroupPermissionsLookup()
-			->groupHasPermission( 'formertesters', 'runtest' ) );
-	}
+		$result = $this->createGroupPermissionsLookup()
+			->groupHasPermission( 'unittesters', 'test' );
+		$this->assertTrue( $result );
 
-	/**
-	 * @covers \MediaWiki\Permissions\GroupPermissionsLookup::groupHasAnyPermission
-	 */
-	public function testGroupHasAnyPermission() {
-		$this->assertTrue( $this->createGroupPermissionsLookup()
-			->groupHasAnyPermission( 'unittesters', 'test', 'runtest' ) );
-		$this->assertTrue( $this->createGroupPermissionsLookup()
-			->groupHasAnyPermission( 'unittesters', 'nukeworld', 'runtest' ) );
-		$this->assertFalse( $this->createGroupPermissionsLookup()
-			->groupHasAnyPermission( 'formertesters', 'nukeworld', 'runtest' ) );
-	}
-
-	/**
-	 * @covers \MediaWiki\Permissions\GroupPermissionsLookup::groupHasAllPermissions
-	 */
-	public function testGroupHasAllPermission() {
-		$this->assertTrue( $this->createGroupPermissionsLookup()
-			->groupHasAllPermissions( 'unittesters', 'test', 'runtest' ) );
-		$this->assertFalse( $this->createGroupPermissionsLookup()
-			->groupHasAllPermissions( 'unittesters', 'nukeworld', 'runtest' ) );
-		$this->assertFalse( $this->createGroupPermissionsLookup()
-			->groupHasAllPermissions( 'formertesters', 'nukeworld', 'runtest' ) );
+		$result = $this->createGroupPermissionsLookup()
+			->groupHasPermission( 'formertesters', 'runtest' );
+		$this->assertFalse( $result );
 	}
 }

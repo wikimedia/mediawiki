@@ -57,7 +57,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 				BlockManager::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getGroupPermissionsLookup(),
+			$services->getPermissionManager(),
 			$logger,
 			$services->getHookContainer(),
 			$services->getUserGroupManagerFactory()->getUserGroupManager()

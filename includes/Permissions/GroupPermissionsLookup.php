@@ -73,49 +73,12 @@ class GroupPermissionsLookup {
 	}
 
 	/**
-	 * Check if the given group has any of the given permissions.
+	 * Get the permissions associated with a given list of groups
 	 *
-	 * Returns true if the $permissions are empty.
-	 *
-	 * @param string $group
-	 * @param string ...$permissions
-	 * @return bool
-	 */
-	public function groupHasAnyPermission( string $group, string ...$permissions ): bool {
-		foreach ( $permissions as $permission ) {
-			if ( $this->groupHasPermission( $group, $permission ) ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Check if the given group has all of the given permissions.
-	 *
-	 * Returns true if the $permissions are empty.
-	 *
-	 * @param string $group
-	 * @param string ...$permissions
-	 * @return bool
-	 */
-	public function groupHasAllPermissions( string $group, string ...$permissions ): bool {
-		foreach ( $permissions as $permission ) {
-			if ( !$this->groupHasPermission( $group, $permission ) ) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * Get the permissions associated with a given list of groups.
-	 * If no groups are provided, empty array is returned.
-	 *
-	 * @param string ...$groups internal group names
+	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
-	public function getGroupPermissions( string ...$groups ): array {
+	public function getGroupPermissions( array $groups ): array {
 		$rights = [];
 		// grant every granted permission first
 
@@ -147,41 +110,9 @@ class GroupPermissionsLookup {
 	 * @return string[] internal group names with the given permission
 	 */
 	public function getGroupsWithPermission( string $permission ): array {
-		return $this->getGroupsWithAllPermissions( $permission );
-	}
-
-	/**
-	 * Get all groups which have any of the given permissions.
-	 *
-	 * Returns all groups if no $permissions are provided.
-	 *
-	 * @param string ...$permissions
-	 * @return string[] internal group names with any of the given permissions
-	 */
-	public function getGroupsWithAnyPermissions( string ...$permissions ): array {
-		if ( !$permissions ) {
-			return array_keys( $this->groupPermissions );
-		}
-
-		$groups = [];
-		foreach ( $permissions as $permission ) {
-			$groups = array_merge( $groups, $this->getGroupsWithPermission( $permission ) );
-		}
-		return array_unique( $groups );
-	}
-
-	/**
-	 * Get all groups which have all of the given permissions.
-	 *
-	 * Returns an empty set if no $permissions are provided.
-	 *
-	 * @param string ...$permissions
-	 * @return array internal group names with all of the given permissions
-	 */
-	public function getGroupsWithAllPermissions( string ...$permissions ): array {
 		$allowedGroups = [];
 		foreach ( array_keys( $this->groupPermissions ) as $group ) {
-			if ( $this->groupHasAllPermissions( $group, ...$permissions ) ) {
+			if ( $this->groupHasPermission( $group, $permission ) ) {
 				$allowedGroups[] = $group;
 			}
 		}
