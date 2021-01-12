@@ -108,7 +108,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated doctrine/dbal from 2.10.2 to 3.0.0.
 * Updated doctrine/sql-formatter from 1.1.0 to 1.1.1.
 * Updated mediawiki/mediawiki-phan-config from 0.10.2 to 0.10.6.
-* Updated monolog/monolog from 1.25.3 to 2.1.1.
+* Updated monolog/monolog from 1.25.3 to 2.2.0.
 * Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated psy/psysh from 0.10.4 to 0.10.5.
 * Updated seld/jsonlint from 1.7.1 to 1.8.3.
