@@ -580,7 +580,10 @@ class ApiHelp extends ApiBase {
 									if ( isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
 										is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
 									) {
-										$namespaces = array_merge( $namespaces, $settings[ApiBase::PARAM_EXTRA_NAMESPACES] );
+										$namespaces = array_merge(
+											$namespaces,
+											$settings[ApiBase::PARAM_EXTRA_NAMESPACES]
+										);
 									}
 									sort( $namespaces );
 									$count = count( $namespaces );
@@ -700,7 +703,8 @@ class ApiHelp extends ApiBase {
 								if ( $settings[ApiBase::PARAM_TYPE] === 'namespace' ) {
 									$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
 								} else {
-									$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+									$allSpecifier = ( is_string( $allowAll )
+										? $allowAll : ApiBase::ALL_DEFAULT_STRING );
 								}
 								$info[] = $context->msg( 'api-help-param-multi-all' )
 									->params( $allSpecifier )

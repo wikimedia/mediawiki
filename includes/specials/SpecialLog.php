@@ -102,7 +102,10 @@ class SpecialLog extends SpecialPage {
 							'ls_field' => [ 'target_author_actor', $field ], // So LogPager::getQueryInfo() works right
 							$db->makeList( [
 								$db->makeList(
-									[ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ], LIST_AND
+									[
+										'ls_field' => 'target_author_actor',
+										'ls_value' => $offender->getActorId()
+									], LIST_AND
 								),
 								$db->makeList( [ 'ls_field' => $field, 'ls_value' => $value ], LIST_AND ),
 							], LIST_OR ),

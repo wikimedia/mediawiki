@@ -213,8 +213,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				],
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
-										  &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+			'queryCallable' => function ( $specialPageClassName, $context, $dbr, &$tables,
+				&$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				if ( $selectedValues === [ 'seen' ] ) {
 					$conds[] = $dbr->makeList( [
 						'wl_notificationtimestamp IS NULL',

@@ -75,7 +75,8 @@ class ApiComparePages extends ApiBase {
 					$toRev = $id ? Revision::newFromId( $id ) : null;
 					if ( !$toRev ) {
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					}
 					$toContent = $toRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
@@ -296,7 +297,8 @@ class ApiComparePages extends ApiBase {
 				if ( !$suppliedContent ) {
 					if ( $title->exists() ) {
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					} else {
 						$this->dieWithError(
