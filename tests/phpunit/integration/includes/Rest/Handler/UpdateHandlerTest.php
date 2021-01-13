@@ -14,6 +14,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiTitleCodec;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Status;
 use Title;
@@ -29,6 +30,7 @@ use WikitextContentHandler;
 class UpdateHandlerTest extends \MediaWikiLangTestCase {
 
 	use ActionModuleBasedHandlerTestTrait;
+	use MockTitleTrait;
 
 	private function newHandler( $resultData, $throwException = null, $csrfSafe = false ) {
 		$config = new HashConfig( [

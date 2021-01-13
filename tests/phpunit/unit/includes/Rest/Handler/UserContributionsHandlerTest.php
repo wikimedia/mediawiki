@@ -13,6 +13,7 @@ use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use Message;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
@@ -23,6 +24,7 @@ use Wikimedia\Message\MessageValue;
 class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	use ContributionsTestTrait;
 	use HandlerTestTrait;
+	use MockTitleTrait;
 
 	private const DEFAULT_LIMIT = 20;
 
