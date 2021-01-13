@@ -102,6 +102,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/** @var int An access constant; make sure this is kept as the largest number in this group */
 	public const ORIGIN_ALL = 10;
 
+	/** @var int Cache version for user-script JS validation errors from validateScriptFile(). */
+	private const USERJSPARSE_CACHE_VERSION = 2;
+
 	/**
 	 * Get this module's name. This is set when the module is registered
 	 * with ResourceLoader::register()
@@ -946,51 +949,60 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		return $this->getGroup() === 'private';
 	}
 
-	private static $parseCacheVersion = 1;
-
 	/**
-	 * Validate a given script file; if valid returns the original source.
-	 * If invalid, returns replacement JS source that throws an exception.
+	 * Validate a user-provided JavaScript blob.
 	 *
 	 * @param string $fileName
-	 * @param string $contents
-	 * @return string JS with the original, or a replacement error
+	 * @param string $contents JavaScript code
+	 * @return string JavaScript code, either the original content or a replacement
+	 *  that uses `mw.log.error()` to communicate a syntax error.
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
-		if ( !$this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+		$error = null;
+
+		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			// Cache potentially slow parsing of JavaScript code during the
+			// critical path. This happens lazily when responding to requests
+			// for modules=site, modules=user, and Gadgets.
+			$error = $cache->getWithSetCallback(
+				$cache->makeKey(
+					'resourceloader-userjsparse',
+					self::USERJSPARSE_CACHE_VERSION,
+					md5( $contents ),
+					$fileName
+				),
+				$cache::TTL_WEEK,
+				function () use ( $contents, $fileName ) {
+					$parser = new JSParser();
+					try {
+						// Ignore compiler warnings (T77169)
+						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+						@$parser->parse( $contents, $fileName, 1 );
+					} catch ( Exception $e ) {
+						return $e->getMessage();
+					}
+					// Cache success as null
+					return null;
+				}
+			);
+		}
+
+		if ( $error ) {
+			// Send the error to the browser console client-side.
+			// By returning this as replacement for the actual script,
+			// we ensure user-provided scripts are safe to include in a batch
+			// request, without risk of a syntax error in this blob breaking
+			// the response itself.
+			return 'mw.log.error(' .
+				json_encode(
+					'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
+					$error
+				) .
+				');';
+		} else {
 			return $contents;
 		}
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeGlobalKey(
-				'resourceloader-jsparse',
-				self::$parseCacheVersion,
-				md5( $contents ),
-				$fileName
-			),
-			$cache::TTL_WEEK,
-			function () use ( $contents, $fileName ) {
-				$parser = new JSParser();
-				$err = null;
-				try {
-					// Ignore compiler warnings (T77169)
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					@$parser->parse( $contents, $fileName, 1 );
-				} catch ( Exception $e ) {
-					$err = $e;
-				}
-				if ( $err ) {
-					// Send the error to the browser console client-side.
-					// By returning this as replacement for the actual script,
-					// we ensure modules are safe to load in a batch request,
-					// without causing other unrelated modules to break.
-					return 'mw.log.error(' . Xml::encodeJsVar(
-						'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
-						$err->getMessage() ) . ');';
-				}
-				return $contents;
-			}
-		);
 	}
 
 	/**
