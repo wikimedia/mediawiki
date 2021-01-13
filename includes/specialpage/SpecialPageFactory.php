@@ -815,6 +815,7 @@ class SpecialPageFactory {
 				'PermissionManager',
 				'ContentHandlerFactory',
 				'SearchEngineFactory',
+				'NamespaceInfo',
 			]
 		],
 		'MergeHistory' => [
