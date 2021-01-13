@@ -2470,7 +2470,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function setEmail( $str ) {
 		$this->load();
-		if ( $str == $this->mEmail ) {
+		if ( $str == $this->getEmail() ) {
 			return;
 		}
 		$this->invalidateEmail();
@@ -3018,7 +3018,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isSystemUser() {
 		$this->load();
-		if ( $this->mEmail || $this->mToken !== self::INVALID_TOKEN ||
+		if ( $this->getEmail() || $this->mToken !== self::INVALID_TOKEN ||
 			MediaWikiServices::getInstance()->getAuthManager()->userCanAuthenticate( $this->mName )
 		) {
 			return false;
@@ -4034,7 +4034,7 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( $this->isAnon() ) {
 				return false;
 			}
-			if ( !Sanitizer::validateEmail( $this->mEmail ) ) {
+			if ( !Sanitizer::validateEmail( $this->getEmail() ) ) {
 				return false;
 			}
 			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
