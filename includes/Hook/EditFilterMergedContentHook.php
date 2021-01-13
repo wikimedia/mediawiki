@@ -34,7 +34,7 @@ interface EditFilterMergedContentHook {
 	 *   Returning true if $status->isOK() returns false means "don't save but continue user
 	 *   interaction", e.g. show the edit form.
 	 */
-	public function onEditFilterMergedContent( $context, $content, $status,
-		$summary, $user, $minoredit
+	public function onEditFilterMergedContent( IContextSource $context, Content $content, Status $status,
+		$summary, User $user, $minoredit
 	);
 }

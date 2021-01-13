@@ -9,6 +9,10 @@ pipelines:
             tags: [dev]
   wmf-publish:
     blubberfile: blubber.yaml
+    fetch:
+      shallow: true
+      depth: 50
+      submodules: true
     stages:
       - name: build
         build:

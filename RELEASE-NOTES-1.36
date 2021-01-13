@@ -71,6 +71,9 @@ For notes on 1.35.x and older releases, see HISTORY.
   unknown tags is numeric formatting; non-EXIF tags which are non-numeric
   should always use this method to specify the desired formatting.
 * The new 'title' type can be used to validate action API and REST API inputs.
+* The new ArticleParserOptions hook allows customizing the parser options
+  used to parse wikitext for an article, based on user preferences, title,
+  etc.
 * The new 'raw' type can be used to validate action API inputs. It bypasses
   the Unicode NFC normalization done on inputs of type 'string', so it more
   suitable when the input is binary or may contain deprecated Unicode
@@ -105,7 +108,7 @@ For notes on 1.35.x and older releases, see HISTORY.
 * Updated doctrine/dbal from 2.10.2 to 3.0.0.
 * Updated doctrine/sql-formatter from 1.1.0 to 1.1.1.
 * Updated mediawiki/mediawiki-phan-config from 0.10.2 to 0.10.6.
-* Updated monolog/monolog from 1.25.3 to 2.0.2.
+* Updated monolog/monolog from 1.25.3 to 2.2.0.
 * Updated nikic/php-parser from 4.4.0 to 4.10.2.
 * Updated psy/psysh from 0.10.4 to 0.10.5.
 * Updated seld/jsonlint from 1.7.1 to 1.8.3.
@@ -344,6 +347,14 @@ because of Phabricator reports.
 * MediaWiki now also requires the php-intl extension.
 * BotPassword::save() now returns a Status object for the result rather than
   a bool.
+* The methods in CoreTagHooks have been marked @internal and type hints have
+  been added.  The methods were unused outside of MediaWiki core.
+* SquidPurgeClient and SquidPurgeClientPool, deprecated since 1.35, have been
+  removed.
+* ParserTestRunner no longer invokes the ParserTestTables hook, instead
+  cloning all database tables before running tests as MediaWikiIntegrationTest
+  does.  If an extension was misusing the hook to *exclude* tables from the
+  clone, that will no longer occur and tests may fail.
 * …
 
 === Deprecations in 1.36 ===
@@ -469,6 +480,8 @@ because of Phabricator reports.
   the direct path to the resources.
 * The second argument of EnhancedChangesList::getDiffHistLinks, $query, has
   been deprecated.
+* The ParserTestTables hook has been deprecated; it is no longer necessary
+  after a ParserTestRunner refactoring.
 * …
 
 === Other changes in 1.36 ===
@@ -501,6 +514,9 @@ because of Phabricator reports.
 * ParserCache default serialization format was changed from PHP serialization
   to JSON serialization. In case some installed extension do not support JSON
   yet, $wgParserCacheUseJson can be used to revert back to PHP serialization.
+* PermissionManager::groupHasPermission, ::getGroupPermissions and
+  ::getGroupsWithPermission were deprecated, use GroupPermissionsLookup
+  service instead.
 
 == Compatibility ==
 MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:

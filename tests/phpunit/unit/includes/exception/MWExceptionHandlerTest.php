@@ -76,6 +76,80 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * Lame JSON schema validation.
+	 *
+	 * @covers MWExceptionHandler::jsonSerializeException
+	 *
+	 * @param string $expectedKeyType Type expected as returned by gettype()
+	 * @param string $exClass An exception class (ie: Exception, MWException)
+	 * @param string $key Name of the key to validate in the serialized JSON
+	 * @dataProvider provideJsonSerializedKeys
+	 */
+	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
+		# Make sure we log a backtrace:
+		$GLOBALS['wgLogExceptionBacktrace'] = true;
+
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new $exClass() )
+		);
+		$this->assertObjectHasAttribute( $key, $json,
+			"JSON serialized exception is missing key '$key'"
+		);
+		$this->assertSame( $expectedKeyType, gettype( $json->$key ),
+			"JSON serialized key '$key' has type " . gettype( $json->$key )
+			. " (expected: $expectedKeyType)."
+		);
+	}
+
+	/**
+	 * Returns test cases: exception class, key name, gettype()
+	 */
+	public static function provideJsonSerializedKeys() {
+		$testCases = [];
+		foreach ( [ Exception::class, MWException::class ] as $exClass ) {
+			$exTests = [
+				[ 'string', $exClass, 'id' ],
+				[ 'string', $exClass, 'file' ],
+				[ 'integer', $exClass, 'line' ],
+				[ 'string', $exClass, 'message' ],
+				[ 'NULL', $exClass, 'url' ],
+				# Backtrace only enabled with wgLogExceptionBacktrace = true
+				[ 'array', $exClass, 'backtrace' ],
+			];
+			$testCases = array_merge( $testCases, $exTests );
+		}
+		return $testCases;
+	}
+
+	/**
+	 * Given wgLogExceptionBacktrace is true
+	 * then serialized exception SHOULD have a backtrace
+	 *
+	 * @covers MWExceptionHandler::jsonSerializeException
+	 */
+	public function testJsonserializeexceptionBacktracingEnabled() {
+		$GLOBALS['wgLogExceptionBacktrace'] = true;
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new Exception() )
+		);
+		$this->assertObjectHasAttribute( 'backtrace', $json );
+	}
+
+	/**
+	 * Given wgLogExceptionBacktrace is false
+	 * then serialized exception SHOULD NOT have a backtrace
+	 *
+	 * @covers MWExceptionHandler::jsonSerializeException
+	 */
+	public function testJsonserializeexceptionBacktracingDisabled() {
+		$GLOBALS['wgLogExceptionBacktrace'] = false;
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new Exception() )
+		);
+		$this->assertObjectNotHasAttribute( 'backtrace', $json );
+	}
+
+	/**
 	 * Helper function for testExpandArgumentsInCall
 	 *
 	 * Pass it an object and an array, and something by reference :-)

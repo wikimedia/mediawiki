@@ -4,8 +4,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * @covers Interwiki
- *
- * @group MediaWiki
  * @group Database
  */
 class InterwikiTest extends MediaWikiIntegrationTestCase {

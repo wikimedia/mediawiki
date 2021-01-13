@@ -115,6 +115,13 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
  *                             The expressions will be given to a JavaScript frontend
  *                             module which will continually update the field's
  *                             visibility.
+ *    'section'                -- A string name for the section of the form to which the field
+ *                             belongs. Subsections may be added using the separator '/', e.g.:
+ *                               'section' => 'section1/subsection1'
+ *                             More levels may be added, e.g.:
+ *                               'section' => 'section1/subsection2/subsubsection1'
+ *                             The message key for a section or subsection header is built from
+ *                             its name and the form's message prefix (if present).
  *
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
@@ -129,8 +136,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
  * method calls done after that would simply not be part of the form :(
  *
  * @stable to extend
- *
- * @todo Document 'section' / 'subsection' stuff
  */
 class HTMLForm extends ContextSource {
 	use ProtectedHookAccessorTrait;

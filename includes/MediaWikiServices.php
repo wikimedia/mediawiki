@@ -58,6 +58,7 @@ use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Revision\ContributionsLookup;
@@ -225,7 +226,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return MediaWikiServices The old MediaWikiServices object, so it can be restored later.
 	 */
 	public static function forceGlobalInstance( MediaWikiServices $services ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( __METHOD__ . ' must not be used outside unit tests.' );
 		}
 
@@ -771,6 +772,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGlobalIdGenerator() : GlobalIdGenerator {
 		return $this->getService( 'GlobalIdGenerator' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return GroupPermissionsLookup
+	 */
+	public function getGroupPermissionsLookup() : GroupPermissionsLookup {
+		return $this->getService( 'GroupPermissionsLookup' );
 	}
 
 	/**

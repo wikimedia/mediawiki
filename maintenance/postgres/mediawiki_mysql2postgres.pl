@@ -278,9 +278,6 @@ for my $t (@torder, 'objectcache', 'querycache') {
 }
 print "\n\n";
 
-print qq{-- Temporarily rename pagecontent to "${table_prefix}text"\n};
-print qq{ALTER TABLE pagecontent RENAME TO "${table_prefix}text";\n\n};
-
 print qq{-- Allow rc_ip to contain empty string, will convert at end\n};
 print qq{ALTER TABLE recentchanges ALTER rc_ip TYPE text USING host(rc_ip);\n\n};
 
@@ -378,7 +375,6 @@ my @alist;
 }
 
 warn qq{Writing information to return Postgres database to normal\n} if $verbose;
-print qq{ALTER TABLE "${table_prefix}text" RENAME TO pagecontent;\n};
 print qq{ALTER TABLE ${table_prefix}recentchanges ALTER rc_ip TYPE cidr USING\n};
 print qq{  CASE WHEN rc_ip = '' THEN NULL ELSE rc_ip::cidr END;\n};
 
@@ -415,7 +411,7 @@ SELECT setval('page_page_id_seq',      1+coalesce(max(page_id),0),false) FROM pa
 SELECT setval('page_restrictions_pr_id_seq', 1+coalesce(max(pr_id)  ,0),false) FROM page_restrictions;
 SELECT setval('recentchanges_rc_id_seq',     1+coalesce(max(rc_id)  ,0),false) FROM recentchanges;
 SELECT setval('revision_rev_id_seq',         1+coalesce(max(rev_id) ,0),false) FROM revision;
-SELECT setval('text_old_id_seq',       1+coalesce(max(old_id) ,0),false) FROM pagecontent;
+SELECT setval('text_old_id_seq',       1+coalesce(max(old_id) ,0),false) FROM "text";
 SELECT setval('user_user_id_seq',      1+coalesce(max(user_id),0),false) FROM mwuser;
 };
 
@@ -428,7 +424,6 @@ exit;
 __DATA__
 ## Known remappings: either indicate the MySQL name,
 ## or leave blank if it should be skipped
-pagecontent text
 mwuser user
 archive2
 profiling

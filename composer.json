@@ -2,7 +2,10 @@
 	"name": "bluespice/core",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
 	"type": "mediawiki-core",
-	"keywords": ["mediawiki", "wiki"],
+	"keywords": [
+		"mediawiki",
+		"wiki"
+	],
 	"homepage": "https://www.mediawiki.org/",
 	"authors": [
 		{
@@ -79,7 +82,7 @@
 		"justinrainbow/json-schema": "~5.2",
 		"mediawiki/mediawiki-codesniffer": "34.0.0",
 		"mediawiki/mediawiki-phan-config": "0.10.6",
-		"monolog/monolog": "~2.0.2",
+		"monolog/monolog": "~2.2.0",
 		"nikic/php-parser": "4.10.2",
 		"nmred/kafka-php": "0.1.5",
 		"php-parallel-lint/php-console-highlighter": "0.5",
@@ -110,7 +113,7 @@
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer",
 			"ComposerVendorHtaccessCreator": "includes/composer",
-			"ComposerPhpunitXmlCoverageEdit":"includes/composer"
+			"ComposerPhpunitXmlCoverageEdit": "includes/composer"
 		}
 	},
 	"autoload-dev": {
@@ -123,7 +126,9 @@
 		"lint": "parallel-lint --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s",
-		"fix": "phpcbf -p",
+		"fix": [
+			"phpcbf"
+		],
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",

@@ -33,5 +33,5 @@ interface UploadStashFileHook {
 	 *   -readable details for the API.)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUploadStashFile( $upload, $user, $props, &$error );
+	public function onUploadStashFile( UploadBase $upload, User $user, ?array $props, &$error );
 }

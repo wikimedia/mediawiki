@@ -700,7 +700,6 @@ class MediaWiki {
 		$cpIndex = null;
 		$cpClientId = null;
 		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex, $cpClientId );
-		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
 
 		$allowHeaders = !( $output->isDisabled() || headers_sent() );
 		if ( $cpIndex > 0 ) {

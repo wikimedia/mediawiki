@@ -168,7 +168,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				'password' => $password,
 				'dbname' => $dbName,
 				'schema' => $schema,
-				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ],
+				'keywordTableMap' => [ 'user' => 'mwuser' ],
 			] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
@@ -621,17 +621,18 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			return $status;
 		}
-		$error = $conn->sourceFile( $this->getSchemaPath( $conn ) );
+
+		$error = $conn->sourceFile( $this->getGeneratedSchemaPath( $conn ) );
 		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );
-			$status->fatal( 'config-install-tables-manual-failed', $error );
+			$status->fatal( 'config-install-tables-failed', $error );
 		} else {
-			$error = $conn->sourceFile( $this->getGeneratedSchemaPath( $conn ) );
+			$error = $conn->sourceFile( $this->getSchemaPath( $conn ) );
 			if ( $error !== true ) {
 				$conn->reportQueryError( $error, 0, '', __METHOD__ );
 				$conn->rollback( __METHOD__ );
-				$status->fatal( 'config-install-tables-failed', $error );
+				$status->fatal( 'config-install-tables-manual-failed', $error );
 			} else {
 				$conn->commit( __METHOD__ );
 			}

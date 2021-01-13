@@ -36,18 +36,11 @@ require_once __DIR__ . '/dumpIterator.php';
  * @ingroup Maintenance
  */
 class PreprocessDump extends DumpIterator {
+	/** @var Preprocessor|null */
+	private $preprocessor;
 
-	/* Variables for dressing up as a parser */
-	public $mTitle = 'PreprocessDump';
-	public $mPPNodeCount = 0;
-	/** @var Preprocessor */
-	public $mPreprocessor;
-
-	public function getStripList() {
-		$parser = MediaWikiServices::getInstance()->getParser();
-
-		return $parser->getStripList();
-	}
+	/** @var int Bit field of Preprocessor::DOM_* constants */
+	private $ptoFlags;
 
 	public function __construct() {
 		parent::__construct();
@@ -60,15 +53,10 @@ class PreprocessDump extends DumpIterator {
 	}
 
 	public function checkOptions() {
-		global $wgPreprocessorCacheThreshold;
-
-		if ( !$this->hasOption( 'cache' ) ) {
-			$wgPreprocessorCacheThreshold = false;
-		}
-
 		$parser = MediaWikiServices::getInstance()->getParser();
-		$parser->firstCallInit();
-		$this->mPreprocessor = new Preprocessor_Hash( $parser );
+		$parser->firstCallInit(); // make sure strip list is loaded
+		$this->preprocessor = $parser->getPreprocessor();
+		$this->ptoFlags = $this->hasOption( 'cache' ) ? 0 : Preprocessor::DOM_UNCACHED;
 	}
 
 	/**
@@ -77,7 +65,6 @@ class PreprocessDump extends DumpIterator {
 	 */
 	public function processRevision( WikiRevision $rev ) {
 		$content = $rev->getContent();
-
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return;
 		}
@@ -85,7 +72,7 @@ class PreprocessDump extends DumpIterator {
 		'@phan-var WikitextContent $content';
 
 		try {
-			$this->mPreprocessor->preprocessToObj( strval( $content->getText() ), 0 );
+			$this->preprocessor->preprocessToObj( strval( $content->getText() ), $this->ptoFlags );
 		} catch ( Exception $e ) {
 			$this->error( "Caught exception " . $e->getMessage() . " in "
 				. $rev->getTitle()->getPrefixedText() );

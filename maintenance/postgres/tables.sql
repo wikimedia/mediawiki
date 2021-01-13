@@ -93,14 +93,6 @@ CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
 CREATE INDEX rev_actor_timestamp    ON revision (rev_actor,rev_timestamp,rev_id);
 CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
 
-CREATE SEQUENCE text_old_id_seq;
-CREATE TABLE pagecontent ( -- replaces reserved word 'text'
-  old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_seq'),
-  old_text   TEXT,
-  old_flags  TEXT
-);
-ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
-
 
 CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE archive (
@@ -148,6 +140,8 @@ CREATE TABLE ipblocks (
 ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
 CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
+CREATE INDEX ipb_timestamp ON ipblocks (ipb_timestamp);
+CREATE INDEX ipb_expiry ON ipblocks (ipb_expiry);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
 
@@ -256,7 +250,7 @@ CREATE TRIGGER ts2_page_title BEFORE INSERT OR UPDATE ON page
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_title();
 
 
-ALTER TABLE pagecontent ADD textvector tsvector;
+ALTER TABLE text ADD textvector tsvector;
 CREATE FUNCTION ts2_page_text() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
@@ -269,8 +263,8 @@ RETURN NEW;
 END;
 $mw$;
 
-CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
+CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON text
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
 
 CREATE INDEX ts2_page_title ON page USING gin(titlevector);
-CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
+CREATE INDEX ts2_page_text ON text USING gin(textvector);

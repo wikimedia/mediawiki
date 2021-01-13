@@ -9325,6 +9325,10 @@ $wgEventRelayerConfig = [
  *
  * For details about what data is sent, see: https://www.mediawiki.org/wiki/Manual:$wgPingback
  *
+ * For the pingback privacy policy, see: https://wikimediafoundation.org/wiki/MediaWiki_Pingback_Privacy_Statement
+ *
+ * Aggregate pingback data is available at: https://pingback.wmflabs.org/
+ *
  * @var bool
  * @since 1.28
  */
@@ -9658,18 +9662,6 @@ $wgRestAllowCrossOriginCookieAuth = false;
  * @see https://phabricator.wikimedia.org/T263579
  */
 $wgParserCacheUseJson = true;
-
-/**
- * Whether site notice dimiss button `[dismiss]` should be shown to
- * anonymous (unregistered) users. If it's false (default), sitenotices
- * are effectively undissmissable unless one registers.
- *
- * The button will be shown to all registered users irrespective of this setting.
- *
- * @since 1.36
- * @var bool
- */
-$wgDismissableSiteNoticeForAnons = false;
 
 /*
  * This file uses VisualStudio style region/endregion fold markers which are

@@ -91,6 +91,7 @@ use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -373,7 +374,7 @@ return [
 
 		$srvCache = $services->getLocalServerObjectCache();
 		if ( $srvCache instanceof EmptyBagOStuff ) {
-			// Use process cache if the main stash is disabled
+			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
 			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
 		}
 
@@ -479,6 +480,12 @@ return [
 			function ( $command ) {
 				return wfShellExec( $command );
 			}
+		);
+	},
+
+	'GroupPermissionsLookup' => function ( MediaWikiServices $services ) : GroupPermissionsLookup {
+		return new GroupPermissionsLookup(
+			new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
 		);
 	},
 
@@ -1018,6 +1025,8 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
 			$services->getNamespaceInfo(),
+			$services->getGroupPermissionsLookup(),
+			$services->getUserGroupManager(),
 			$services->getBlockErrorFormatter(),
 			$services->getHookContainer(),
 			$services->getUserCache()
@@ -1419,11 +1428,11 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$services->getUserEditTracker(),
+			$services->getGroupPermissionsLookup(),
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			[ function ( UserIdentity $user ) use ( $services ) {
-				// TODO Needs cirular dependency fixed - T254537
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
-				User::newFromIdentity( $user )->invalidateCache();
+				$services->getUserFactory()->newFromUserIdentity( $user )->invalidateCache();
 			} ]
 		);
 	},
@@ -1511,7 +1520,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
 			$services->getHookContainer(),
-			$services->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getUserFactory()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

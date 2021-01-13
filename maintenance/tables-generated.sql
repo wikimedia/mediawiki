@@ -616,3 +616,11 @@ CREATE TABLE /*_*/filearchive (
   ),
   PRIMARY KEY(fa_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/text (
+  old_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  old_text MEDIUMBLOB NOT NULL,
+  old_flags TINYBLOB NOT NULL,
+  PRIMARY KEY(old_id)
+) /*$wgDBTableOptions*/;

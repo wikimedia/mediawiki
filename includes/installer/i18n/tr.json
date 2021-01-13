@@ -74,7 +74,7 @@
 	"config-env-bad": "Ortam kontrol edildi.\nMediaWiki'yi kuramazsınız.",
 	"config-env-php": "PHP $1 kurulu.",
 	"config-unicode-using-intl": "Unicode normalleştirmesi için [https://php.net/manual/tr/book.intl.php PHP inlt uzantı] kullanımı.",
-	"config-unicode-update-warning": "<strong>Uyarı:</strong> Yüklü durumdaki Unicode normalleştirme sarıcı [http://site.icu-project.org/ ICU proje] kütüphanesinin eski bir sürümünü kullanır.\nUnicode kullanımı konusunda endişeleriniz varsa [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations yükseltme] yapmanız gerekmektedir.",
+	"config-unicode-update-warning": "<strong>Uyarı:</strong> Unicode normalleştirme sarmalayıcısının kurulu sürümü, [http://site.icu-project.org/ ICU projesinin] kitaplığının eski bir sürümünü kullanır.\nUnicode kullanma konusunda endişeleriniz varsa, [https://www.mediawiki.org/wiki/Unicode_normalization_considerations/tr yükseltmelisiniz].",
 	"config-no-db": "Uygun bir veri tabanı sürücüsü bulunamadı! PHP için bir veri tabanı sürücüsü kurmanız gerekir. Şu veri tabanı {{PLURAL:$2|türü|türleri}} desteklenmektedir: $1\n\nEğer PHP'yi kendiniz derlediyseniz, bu durumda <code>./configure --with-mysqli</code> kullanarak etkinleştirilmiş veri tabanı istemcisi ile yeniden yapılandırmalısınız.\nPHP'yi bir Debian veya Ubuntu paketinden yüklediyseniz, bu durumda <code>php-mysql</code> paketini de kurmanız gerekir.",
 	"config-outdated-sqlite": "<strong>Uyarı:</strong> sizin SQLite $2 var. Gerekli minimum sürüm: $1. SQLite kullanılamayacaktır.",
 	"config-no-fts3": "<strong>Uyarı:</strong> SQLite [//sqlite.org/fts3.html FTS3 modülü] olmadan derlendi, bu arkayüzde arama özellikleri kullanılamayacaktır.",

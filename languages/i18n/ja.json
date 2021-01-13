@@ -3821,7 +3821,7 @@
 	"logentry-rights-autopromote": "$1 が $4 から $5 に自動的に{{GENDER:$2|昇格しました}}",
 	"logentry-upload-upload": "$1 が $3 を {{GENDER:$2|アップロードしました}}",
 	"logentry-upload-overwrite": "$1 が $3 の新しいバージョンを {{GENDER:$2|アップロードしました}}",
-	"logentry-upload-revert": "$1 が $3 を元の版に {{GENDER:$2|巻き戻しました}}",
+	"logentry-upload-revert": "$1 が $3 を以前の版に {{GENDER:$2|差し戻しました}}",
 	"log-name-managetags": "タグ管理記録",
 	"log-description-managetags": "このページは[[Special:Tags|タグ]]に関係する管理タスクをリストアップしています。ログには管理者によって手動で実行された操作の記録しか記載されていません。ウィキ・ソフトウェアによって、ログを残さずにタグが作成・削除されている場合があります。",
 	"logentry-managetags-create": "$1 がタグ「$4」を{{GENDER:$2|作成しました}}",
@@ -4202,5 +4202,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP範囲",
 	"paramvalidator-help-type-user-subtype-interwiki": "インターウィキの名前（例: \"prefix>ExampleName\"）",
-	"paramvalidator-help-type-user-subtype-id": "利用者ID（例: #12345）"
+	"paramvalidator-help-type-user-subtype-id": "利用者ID（例: #12345）",
+	"paramvalidator-help-type-title": "タイプ : ページタイトル"
 }

@@ -72,6 +72,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$notificationtimestamps, $talkids, $subjectids, $displaytitles, $variantTitles;
 
 	/**
+	 * Watchlist expiries that corresponds with the $watched property. Keyed by namespace and title.
+	 * @var array<int,array<string,string>>
+	 */
+	private $watchlistExpiries;
+
+	/**
 	 * @var array<int,string[]> Mapping of page id to list of 'extra link
 	 *   classes' for the given page
 	 */
@@ -495,8 +501,16 @@ class ApiQueryInfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
-		if ( $this->fld_watched && $this->watched !== null ) {
-			$pageInfo['watched'] = $this->watched[$ns][$dbkey];
+		if ( $this->fld_watched ) {
+			$pageInfo['watched'] = false;
+
+			if ( isset( $this->watched[$ns][$dbkey] ) ) {
+				$pageInfo['watched'] = $this->watched[$ns][$dbkey];
+			}
+
+			if ( isset( $this->watchlistExpiries[$ns][$dbkey] ) ) {
+				$pageInfo['watchlistexpiry'] = $this->watchlistExpiries[$ns][$dbkey];
+			}
 		}
 
 		if ( $this->fld_watchers ) {
@@ -517,7 +531,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_notificationtimestamp ) {
 			$pageInfo['notificationtimestamp'] = '';
-			if ( $this->notificationtimestamps[$ns][$dbkey] ) {
+			if ( isset( $this->notificationtimestamps[$ns][$dbkey] ) ) {
 				$pageInfo['notificationtimestamp'] =
 					wfTimestamp( TS_ISO_8601, $this->notificationtimestamps[$ns][$dbkey] );
 			}
@@ -908,22 +922,28 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$this->watched = [];
+		$this->watchlistExpiries = [];
 		$this->notificationtimestamps = [];
 
-		$timestamps = $this->watchedItemStore->getNotificationTimestampsBatch( $user, $this->everything );
+		/** @var WatchedItem[] $items */
+		$items = $this->watchedItemStore->loadWatchedItemsBatch( $user, $this->everything );
 
-		if ( $this->fld_watched ) {
-			foreach ( $timestamps as $namespaceId => $dbKeys ) {
-				$this->watched[$namespaceId] = array_map(
-					function ( $x ) {
-						return $x !== false;
-					},
-					$dbKeys
-				);
+		foreach ( $items as $item ) {
+			$nsId = $item->getLinkTarget()->getNamespace();
+			$dbKey = $item->getLinkTarget()->getDBkey();
+
+			if ( $this->fld_watched ) {
+				$this->watched[$nsId][$dbKey] = true;
+
+				$expiry = $item->getExpiry( TS_ISO_8601 );
+				if ( $expiry ) {
+					$this->watchlistExpiries[$nsId][$dbKey] = $expiry;
+				}
 			}
-		}
-		if ( $this->fld_notificationtimestamp ) {
-			$this->notificationtimestamps = $timestamps;
+
+			if ( $this->fld_notificationtimestamp ) {
+				$this->notificationtimestamps[$nsId][$dbKey] = $item->getNotificationTimestamp();
+			}
 		}
 	}
 

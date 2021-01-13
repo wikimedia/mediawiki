@@ -70,6 +70,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testGetBlockFromCookieValue( $options, $expected ) {
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject(
 			$this->getBlockManager( [
 				'wgCookieSetOnAutoblock' => true,
@@ -101,6 +102,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testTrackBlockWithCookieRemovesBlocks( $options, $expectKeepCookie ) {
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject(
 			$this->getBlockManager( [
 				'wgCookieSetOnAutoblock' => true,
@@ -195,6 +197,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::isLocallyBlockedProxy
 	 */
 	public function testIsLocallyBlockedProxy( $proxyList, $expected ) {
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject(
 			$this->getBlockManager( [
 				'wgProxyList' => $proxyList
@@ -332,6 +335,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	public function testGetUniqueBlocks() {
 		$blockId = 100;
 
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
@@ -534,6 +538,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::shouldTrackBlockWithCookie
 	 */
 	public function testShouldTrackBlockWithCookieSystemBlock() {
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 		$this->assertFalse( $blockManager->shouldTrackBlockWithCookie(
 			new SystemBlock(),
@@ -556,6 +561,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 				->willReturn( $options['autoblocking'] );
 		}
 
+		/** @var BlockManager $blockManager */
 		$blockManager = TestingAccessWrapper::newFromObject(
 			$this->getBlockManager( $options['blockManagerConfig'] )
 		);

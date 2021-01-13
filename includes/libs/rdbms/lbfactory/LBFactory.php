@@ -233,6 +233,8 @@ abstract class LBFactory implements ILBFactory {
 		$cpClientId = $chronProt->getClientId();
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
+
+		$this->replLogger->debug( 'LBFactory shutdown completed' );
 	}
 
 	/**

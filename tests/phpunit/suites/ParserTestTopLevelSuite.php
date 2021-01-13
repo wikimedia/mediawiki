@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestSuite;
 use Wikimedia\ScopedCallback;
 
@@ -21,8 +20,6 @@ class ParserTestTopLevelSuite extends TestSuite {
 
 	/** @var ScopedCallback */
 	private $ptTeardownScope;
-
-	private $oldTablePrefix = '';
 
 	/**
 	 * @defgroup filtering_constants Filtering constants
@@ -150,36 +147,24 @@ class ParserTestTopLevelSuite extends TestSuite {
 	}
 
 	protected function setUp() : void {
-		wfDebug( __METHOD__ );
+		// MediaWikiIntegrationTestCase leaves its test DB hanging around.
+		// we want to make sure we have a clean instance, so tear down any
+		// existing test DB.  This has no effect if no test DB exists.
+		MediaWikiIntegrationTestCase::teardownTestDB();
+		// Similarly, make sure we don't reuse Test users from other tests
+		TestUserRegistry::clear();
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$db = $lb->getConnection( DB_MASTER );
-		$type = $db->getType();
-		$prefix = MediaWikiIntegrationTestCase::DB_PREFIX;
-		$this->oldTablePrefix = $db->tablePrefix();
-		MediaWikiIntegrationTestCase::setupTestDB( $db, $prefix );
-		CloneDatabase::changePrefix( $prefix );
-
-		$this->ptRunner->setDatabase( $db );
-
-		MediaWikiIntegrationTestCase::resetNonServiceCaches();
-
-		MediaWikiIntegrationTestCase::installMockMwServices();
-		$teardown = new ScopedCallback( function () {
-			MediaWikiIntegrationTestCase::restoreMwServices();
-		} );
-
+		$teardown = $this->ptRunner->setupDatabase( null );
 		$teardown = $this->ptRunner->staticSetup( $teardown );
 		$teardown = $this->ptRunner->setupUploads( $teardown );
 		$this->ptTeardownScope = $teardown;
 	}
 
 	protected function tearDown() : void {
-		wfDebug( __METHOD__ );
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}
-		CloneDatabase::changePrefix( $this->oldTablePrefix );
+		TestUserRegistry::clear();
 	}
 
 	/**

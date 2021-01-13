@@ -6,10 +6,12 @@ use Content;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\User\UserGroupManager;
 use MediaWikiUnitTestCase;
 use NamespaceInfo;
 use Title;
@@ -47,6 +49,12 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( RevisionLookup::class );
 		$namespaceInfo = $options['namespaceInfo'] ??
 			$this->createMock( NamespaceInfo::class );
+		$groupPermissionsLookup = $options['groupPermissionsLookup'] ??
+			new GroupPermissionsLookup(
+				new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $config )
+			);
+		$userGroupManager = $options['userGroupManager'] ??
+			$this->createMock( UserGroupManager::class );
 		$blockErrorFormatter = $options['blockErrorFormatter'] ??
 			$this->createMock( BlockErrorFormatter::class );
 		$hookContainer = $options['hookContainer'] ??
@@ -59,6 +67,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$specialPageFactory,
 			$revisionLookup,
 			$namespaceInfo,
+			$groupPermissionsLookup,
+			$userGroupManager,
 			$blockErrorFormatter,
 			$hookContainer,
 			$userCache

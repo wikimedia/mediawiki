@@ -169,7 +169,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		$options['lessMessages'] = self::LESS_MESSAGES;
+		$options['lessMessages'] = array_merge(
+			$options['lessMessages'] ?? [],
+			self::LESS_MESSAGES
+		);
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 		$features = $options['features'] ??
 			// For historic reasons if nothing is declared logo and legacy features are enabled.
@@ -190,7 +193,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 				$compatibilityMode = true;
 			}
 			if ( !isset( self::FEATURE_FILES[$feature] ) || !isset( self::DEFAULT_FEATURES[$feature] ) ) {
-				throw new InvalidArgumentException( "Feature `$key` is not recognised" );
+				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
+				continue;
 			}
 		}
 		// If the module didn't specify an option use the default features values.
@@ -247,11 +251,15 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			}
 		}
 
-		foreach ( $featureFilePaths as $mediaType => $paths ) {
-			$styles[$mediaType] = array_merge( $paths, $styles[$mediaType] ?? [] );
+		// Styles defines in options are added to the $featureFilePaths to ensure
+		// that $featureFilePaths styles precede module defined ones.
+		// This is particularly important given the `normalize` styles need to be the first
+		// outputted (see T269618).
+		foreach ( $styles as $mediaType => $paths ) {
+			$featureFilePaths[$mediaType] = array_merge( $featureFilePaths[$mediaType] ?? [], $paths );
 		}
 
-		return $styles;
+		return $featureFilePaths;
 	}
 
 	/**

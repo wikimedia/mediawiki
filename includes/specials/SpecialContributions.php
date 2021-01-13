@@ -68,6 +68,9 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var ContribsPager|null */
+	private $pager = null;
+
 	/**
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param PermissionManager|null $permissionManager
@@ -145,6 +148,45 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
 		$this->opts['hideMinor'] = $request->getBool( 'hideMinor' );
 
+		$ns = $request->getVal( 'namespace', null );
+		if ( $ns !== null && $ns !== '' && $ns !== 'all' ) {
+			$this->opts['namespace'] = intval( $ns );
+		} else {
+			$this->opts['namespace'] = '';
+		}
+
+		// Backwards compatibility: Before using OOUI form the old HTML form had
+		// fields for nsInvert and associated. These have now been replaced with the
+		// wpFilters query string parameters. These are retained to keep old URIs working.
+		$this->opts['associated'] = $request->getBool( 'associated' );
+		$this->opts['nsInvert'] = (bool)$request->getVal( 'nsInvert' );
+		$nsFilters = $request->getArray( 'wpfilters', null );
+		if ( $nsFilters !== null ) {
+			$this->opts['associated'] = in_array( 'associated', $nsFilters );
+			$this->opts['nsInvert'] = in_array( 'nsInvert', $nsFilters );
+		}
+
+		$this->opts['tagfilter'] = (string)$request->getVal( 'tagfilter' );
+
+		// Allows reverts to have the bot flag in recent changes. It is just here to
+		// be passed in the form at the top of the page
+		if ( MediaWikiServices::getInstance()
+				 ->getPermissionManager()
+				 ->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' )
+		) {
+			$this->opts['bot'] = '1';
+		}
+
+		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
+		# Offset overrides year/month selection
+		if ( !$skip ) {
+			$this->opts['year'] = $request->getVal( 'year' );
+			$this->opts['month'] = $request->getVal( 'month' );
+
+			$this->opts['start'] = $request->getVal( 'start' );
+			$this->opts['end'] = $request->getVal( 'end' );
+		}
+
 		$id = 0;
 		if ( ExternalUserNames::isExternal( $target ) ) {
 			$userObj = User::newFromName( $target, false );
@@ -193,41 +235,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		$ns = $request->getVal( 'namespace', null );
-		if ( $ns !== null && $ns !== '' && $ns !== 'all' ) {
-			$this->opts['namespace'] = intval( $ns );
-		} else {
-			$this->opts['namespace'] = '';
-		}
-
-		// Backwards compatibility: Before using OOUI form the old HTML form had
-		// fields for nsInvert and associated. These have now been replaced with the
-		// wpFilters query string parameters. These are retained to keep old URIs working.
-		$this->opts['associated'] = $request->getBool( 'associated' );
-		$this->opts['nsInvert'] = (bool)$request->getVal( 'nsInvert' );
-		$nsFilters = $request->getArray( 'wpfilters', null );
-		if ( $nsFilters !== null ) {
-			$this->opts['associated'] = in_array( 'associated', $nsFilters );
-			$this->opts['nsInvert'] = in_array( 'nsInvert', $nsFilters );
-		}
-
-		$this->opts['tagfilter'] = (string)$request->getVal( 'tagfilter' );
-
-		// Allows reverts to have the bot flag in recent changes. It is just here to
-		// be passed in the form at the top of the page
-		if ( $this->permissionManager->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' ) ) {
-			$this->opts['bot'] = '1';
-		}
-
-		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
-		# Offset overrides year/month selection
-		if ( !$skip ) {
-			$this->opts['year'] = $request->getVal( 'year' );
-			$this->opts['month'] = $request->getVal( 'month' );
-
-			$this->opts['start'] = $request->getVal( 'start' );
-			$this->opts['end'] = $request->getVal( 'end' );
-		}
 		$this->opts = ContribsPager::processDateFilter( $this->opts );
 
 		if ( $this->opts['namespace'] < NS_MAIN ) {
@@ -289,33 +296,10 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
 			$id, $userObj, $this )
 		) {
-			$pager = new ContribsPager(
-				$this->getContext(), [
-					'target' => $target,
-					'namespace' => $this->opts['namespace'],
-					'tagfilter' => $this->opts['tagfilter'],
-					'start' => $this->opts['start'],
-					'end' => $this->opts['end'],
-					'deletedOnly' => $this->opts['deletedOnly'],
-					'topOnly' => $this->opts['topOnly'],
-					'newOnly' => $this->opts['newOnly'],
-					'hideMinor' => $this->opts['hideMinor'],
-					'nsInvert' => $this->opts['nsInvert'],
-					'associated' => $this->opts['associated'],
-				],
-				$this->getLinkRenderer(),
-				$this->linkBatchFactory,
-				$this->getHookContainer(),
-				$this->permissionManager,
-				$this->loadBalancer,
-				$this->actorMigration,
-				$this->revisionStore,
-				$this->namespaceInfo
-			);
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
-
+			$pager = $this->getPager();
 			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
@@ -361,7 +345,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( IPUtils::isValidRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) && $pager->isQueryableRange( $target ) ) {
 				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IPUtils::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
@@ -428,13 +412,13 @@ class SpecialContributions extends IncludableSpecialPage {
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
 		$links = '';
-		if ( $talk ) {
-			$tools = self::getUserLinks(
-				$this,
-				$userObj,
-				$this->permissionManager,
-				$this->getHookRunner()
-			);
+
+		// T211910. Don't show action links if a range is outside block limit
+		$showForIp = IPUtils::isValid( $userObj ) ||
+			( IPUtils::isValidRange( $userObj ) && $this->getPager()->isQueryableRange( $userObj ) );
+
+		if ( $talk && ( $userObj->isRegistered() || $showForIp ) ) {
+			$tools = self::getUserLinks( $this, $userObj );
 			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
 			foreach ( $tools as $tool ) {
 				$links .= Html::rawElement( 'span', [], $tool ) . ' ';
@@ -834,6 +818,32 @@ class SpecialContributions extends IncludableSpecialPage {
 		// Autocomplete subpage as user list - public to allow caching
 		return $this->userNamePrefixSearch
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
+	}
+
+	private function getPager() {
+		if ( $this->pager === null ) {
+			$options = [
+				'target' => $this->opts['target'],
+				'namespace' => $this->opts['namespace'],
+				'tagfilter' => $this->opts['tagfilter'],
+				'start' => $this->opts['start'],
+				'end' => $this->opts['end'],
+				'deletedOnly' => $this->opts['deletedOnly'],
+				'topOnly' => $this->opts['topOnly'],
+				'newOnly' => $this->opts['newOnly'],
+				'hideMinor' => $this->opts['hideMinor'],
+				'nsInvert' => $this->opts['nsInvert'],
+				'associated' => $this->opts['associated'],
+			];
+
+			$this->pager = new ContribsPager(
+				$this->getContext(),
+				$options,
+				$this->getLinkRenderer()
+			);
+		}
+
+		return $this->pager;
 	}
 
 	protected function getGroupName() {

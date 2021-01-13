@@ -562,7 +562,7 @@ CREATE TABLE categorylinks (
   cl_to TEXT DEFAULT '' NOT NULL,
   cl_sortkey TEXT DEFAULT '' NOT NULL,
   cl_sortkey_prefix TEXT DEFAULT '' NOT NULL,
-  cl_timestamp TIMESTAMP(0) WITH TIME ZONE NOT NULL,
+  cl_timestamp TIMESTAMPTZ NOT NULL,
   cl_collation TEXT DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   PRIMARY KEY(cl_from, cl_to)
@@ -686,3 +686,11 @@ CREATE INDEX fa_deleted_timestamp ON filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_actor_timestamp ON filearchive (fa_actor, fa_timestamp);
 
 CREATE INDEX fa_sha1 ON filearchive (fa_sha1);
+
+
+CREATE TABLE text (
+  old_id SERIAL NOT NULL,
+  old_text TEXT NOT NULL,
+  old_flags TEXT NOT NULL,
+  PRIMARY KEY(old_id)
+);

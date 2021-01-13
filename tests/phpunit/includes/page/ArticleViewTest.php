@@ -52,6 +52,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$revisions[ $key ] = $rev;
 		}
 
+		// Clear content model cache to support tests that mock the revision
+		$this->getServiceContainer()->getMainWANObjectCache()->clearProcessCache();
+
 		return $page;
 	}
 

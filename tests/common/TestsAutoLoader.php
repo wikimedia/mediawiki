@@ -235,6 +235,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/filebackend
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
 
+	# tests/phpunit/unit/includes/HookContainer
+	'MediaWiki\Tests\HookContainer\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
+
 	# tests/phpunit/unit/includes/json
 	'MediaWiki\\Tests\\Json\\JsonUnserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSuperClass.php",
 	'MediaWiki\\Tests\\Json\\JsonUnserializableSubClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSubClass.php",

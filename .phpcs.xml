@@ -250,4 +250,5 @@
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
+	<exclude-pattern>LocalSettings-installer\.php</exclude-pattern>
 </ruleset>

@@ -2186,5 +2186,43 @@
 		"pk": [
 			"fa_id"
 		]
+	},
+	{
+		"name": "text",
+		"comment": "Holds text of individual page revisions. Field names are a holdover from the 'old' revisions table in MediaWiki 1.4 and earlier: an upgrade will transform that table into the 'text' table to minimize unnecessary churning and downtime. If upgrading, the other fields will be left unused.",
+		"columns": [
+			{
+				"name": "old_id",
+				"comment": "Unique text storage key number. Note that the 'oldid' parameter used in URLs does *not* refer to this number anymore, but to rev_id. content.content_address refers to this column",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "old_text",
+				"comment": "Depending on the contents of the old_flags field, the text may be convenient plain text, or it may be funkily encoded.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "old_flags",
+				"comment": "Comma-separated list of flags:\n* gzip: text is compressed with PHP's gzdeflate() function.\n* utf-8: text was stored as UTF-8. If $wgLegacyEncoding option is on, rows *without* this flag will be converted to UTF-8 transparently at load time. Note that due to a bug in a maintenance script, this flag may have been stored as 'utf8' in some cases (T18841).\n* object: text field contained a serialized PHP object. The object either contains multiple versions compressed together to achieve a better compression ratio, or it refers to another row where the text can be found.\n* external: text was stored in an external location specified by old_text. Any additional flags apply to the data stored at that URL, not the URL itself. The 'object' flag is *not* set for URLs of the form 'DB://cluster/id/itemid', because the external storage system itself decompresses these.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			}
+		],
+		"indexes": [],
+		"pk": [
+			"old_id"
+		]
 	}
 ]

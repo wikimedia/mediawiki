@@ -642,3 +642,9 @@ CREATE INDEX fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_actor_timestamp ON /*_*/filearchive (fa_actor, fa_timestamp);
 
 CREATE INDEX fa_sha1 ON /*_*/filearchive (fa_sha1);
+
+
+CREATE TABLE /*_*/text (
+  old_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  old_text BLOB NOT NULL, old_flags BLOB NOT NULL
+);

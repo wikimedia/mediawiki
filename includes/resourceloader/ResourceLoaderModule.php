@@ -26,7 +26,6 @@ use MediaWiki\ResourceLoader\HookRunner;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\RelPath;
 
 /**
@@ -974,12 +973,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				$parser = new JSParser();
 				$err = null;
 				try {
-					AtEase::suppressWarnings();
-					$parser->parse( $contents, $fileName, 1 );
+					// Ignore compiler warnings (T77169)
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					@$parser->parse( $contents, $fileName, 1 );
 				} catch ( Exception $e ) {
 					$err = $e;
-				} finally {
-					AtEase::restoreWarnings();
 				}
 				if ( $err ) {
 					// Send the error to the browser console client-side.

@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+// NO_AUTOLOAD -- due to hashbang above
+
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;

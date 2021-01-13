@@ -81,6 +81,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		return $this->actualStore->loadWatchedItem( $user, $target );
 	}
 
+	public function loadWatchedItemsBatch( UserIdentity $user, array $targets ) {
+		return $this->actualStore->loadWatchedItemsBatch( $user, $targets );
+	}
+
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
 		return $this->actualStore->getWatchedItemsForUser( $user, $options );
 	}

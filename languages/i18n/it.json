@@ -799,7 +799,7 @@
 	"userpage-userdoesnotexist": "L'account \"$1\" non corrisponde a un utente registrato.\nVerificare che si intenda davvero creare o modificare questa pagina.",
 	"userpage-userdoesnotexist-view": "L'utenza \"$1\" non è registrata.",
 	"blocked-notice-logextract": "Questo {{GENDER:$1|utente}} è attualmente bloccato.\nL'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-	"clearyourcache": "<strong>Nota:</strong> dopo aver salvato, potrebbe essere necessario pulire la cache del proprio browser per vedere i cambiamenti. \n*<strong>Firefox / Safari:</strong> tenere premuto il tasto delle maiuscole <em>Shift</em> e fare clic su <em>Ricarica</em>, oppure premere <em>Ctrl-F5</em> o <em>Ctrl-R</em> (<em>⌘-R</em> su Mac)\n*<strong>Google Chrome:</strong> premere <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> su un Mac)\n*<strong>Internet Explorer / Edge:</strong> tenere premuto il tasto <em>Ctrl</em> e fare clic su <em>Aggiorna</em>, oppure premere <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Vai nel <em>Menu → Impostazioni</em> (<em>Opera → Preferenze</em> su un Mac) e poi in <em>Privacy & sicurezza → Pulisci dati del browser → Immagini e file nella cache</em>.",
+	"clearyourcache": "<strong>Nota:</strong> dopo aver salvato, potrebbe essere necessario pulire la cache del proprio browser per vedere i cambiamenti. \n*<strong>Firefox / Safari:</strong> tieni premuto il tasto delle maiuscole <em>Shift</em> e fai clic su <em>Ricarica</em>, oppure premi <em>Ctrl-F5</em> o <em>Ctrl-R</em> (<em>⌘-R</em> su Mac)\n*<strong>Google Chrome:</strong> premi <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> su un Mac)\n*<strong>Internet Explorer / Edge:</strong> tieni premuto il tasto <em>Ctrl</em> e fai clic su <em>Aggiorna</em>, oppure premi <em>Ctrl-F5</em>\n* <strong>Opera:</strong> premi <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "<strong>Suggerimento:<strong> usa il pulsante \"{{int:showpreview}}\" per provare il tuo nuovo CSS prima di salvarlo.",
 	"userjsonyoucanpreview": "<strong>Suggerimento:<strong> usa il pulsante \"{{int:showpreview}}\" per provare il tuo nuovo JSON prima di salvarlo.",
 	"userjsyoucanpreview": "<strong>Suggerimento:<strong> usa il pulsante \"{{int:showpreview}}\" per provare il tuo nuovo JavaScript prima di salvarlo.",
@@ -2395,7 +2395,7 @@
 	"addedwatchtext": "\"[[:$1]]\" e la sua pagina di discussione sono state aggiunte alla tua [[Special:Watchlist|lista degli osservati speciali]].",
 	"addedwatchtext-talk": "\"[[:$1]]\" e la sua pagina associata sono state aggiunte alla tua [[Special:Watchlist|lista degli osservati speciali]].",
 	"addedwatchtext-short": "La pagina \"$1\" è stata aggiunta alla propria lista degli osservati speciali.",
-	"addedwatchexpiry-options-label": "Periodo di tempo per la lista di osservati speciali:",
+	"addedwatchexpiry-options-label": "Periodo di tempo nella lista di osservati speciali:",
 	"addedwatchexpiryhours": "\"[[:$1]]\" e la sua pagina di discussione sono state aggiunte alla tua [[Special:Watchlist|lista degli osservati speciali]] per poche ore.",
 	"addedwatchexpiryhours-talk": "\"[[:$1]]\" e la pagina ad essa collegata sono state aggiunte alla tua [[Special:Watchlist|lista degli osservati speciali]] per qualche ora.",
 	"addedwatchexpirytext-talk": "\"[[:$1]]\" e la pagina ad essa collegata sono state aggiunte alla tua [[Special:Watchlist|lista degli osservati speciali]] per $2.",
@@ -4069,6 +4069,5 @@
 	"paramvalidator-help-type-user-subtype-id": "ID utente (ad esempio \"#12345\")",
 	"paramvalidator-help-type-title": "Tipo: titolo della pagina",
 	"paramvalidator-help-type-title-must-exist": "Accetta solamente pagine esistenti.",
-	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti.",
-	"sitenotice-close-label": "nascondi"
+	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti."
 }

@@ -139,7 +139,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers       \MediaWiki\HookContainer\HookContainer::salvage
 		 */
 		public function testSalvageThrows() {
-			$this->expectException( 'MWException' );
+			$this->expectException( \MWException::class );
 			$hookContainer = $this->newHookContainer();
 			$hookContainer->register( 'TestHook', 'TestHandler' );
 			$hookContainer->salvage( $hookContainer );
@@ -272,7 +272,7 @@ namespace MediaWiki\HookContainer {
 			$this->hideDeprecated(
 				'returning a string from a hook handler (done by hook-MWTestHook-closure for MWTestHook)'
 			);
-			$this->expectException( 'UnexpectedValueException' );
+			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->register( 'MWTestHook', 123 );
 			$hookContainer->run( 'MWTestHook', [] );
 		}

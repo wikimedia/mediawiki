@@ -762,7 +762,7 @@
 	"userpage-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.\nControleer of u deze pagina wel wilt aanmaken/bewerken.",
 	"userpage-userdoesnotexist-view": "Gebruikersaccount \"$1\" bestaat niet.",
 	"blocked-notice-logextract": "Deze {{GENDER:$1|gebruiker}} is momenteel geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
-	"clearyourcache": "<strong>Opmerking:</strong> nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.\n* <strong>Firefox / Safari:</strong> houd <em>Shift</em> ingedrukt terwijl u op <em>Vernieuwen</em> klikt of druk op <em>Ctrl-F5</em> of <em>Ctrl-R</em> (<em>⌘-Shift-R</em> op een Mac)\n* <strong>Google Chrome:</strong> druk op <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> op een Mac)\n* <strong>Internet Explorer / Edge:</strong> houd <em>Ctrl</em> ingedrukt terwijl u op <em>Vernieuwen</em> klikt of druk op <em>Ctrl-F5</em>\n* '''Opera:''' ga naar <em>Menu → Instellingen</em> (<em>Opera → Voorkeuren</em> op een Mac) en daarna naar <em>Privacy & beveiliging → Browsegegevens wissen... →  Tijdelijk opgeslagen afbeeldingen en bestanden</em>.",
+	"clearyourcache": "<strong>Opmerking:</strong> nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.\n* <strong>Firefox / Safari:</strong> houd <em>Shift</em> ingedrukt terwijl u op <em>Vernieuwen</em> klikt of druk op <em>Ctrl-F5</em> of <em>Ctrl-R</em> (<em>⌘-Shift-R</em> op een Mac)\n* <strong>Google Chrome:</strong> druk op <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> op een Mac)\n* <strong>Internet Explorer / Edge:</strong> houd <em>Ctrl</em> ingedrukt terwijl u op <em>Vernieuwen</em> klikt of druk op <em>Ctrl-F5</em>\n* <strong>Opera:</strong> druk op <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
 	"userjsonyoucanpreview": "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JSON te testen alvorens op te slaan.",
 	"userjsyoucanpreview": "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
@@ -4050,6 +4050,5 @@
 	"paramvalidator-help-type-title": "Soort: paginatitel",
 	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's.",
-	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]",
-	"sitenotice-close-label": "sluiten"
+	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]"
 }

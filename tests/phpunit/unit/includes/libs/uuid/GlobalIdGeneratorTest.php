@@ -190,7 +190,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 	 * @param string $uuid
 	 * @param string $ts
 	 * @dataProvider provideGetTimestampFromUUIDv1
-	 * @covers UIDGenerator::getTimestampFromUUIDv1
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getTimestampFromUUIDv1
 	 */
 	public function testGetTimestampFromUUIDv1( string $uuid, string $ts ) {
 		$this->assertEquals( $ts, $this->globalIdGenerator->getTimestampFromUUIDv1( $uuid ) );
@@ -208,11 +208,11 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @param string $uuid
 	 * @dataProvider provideGetTimestampFromUUIDv1InvalidUUIDv1
-	 * @covers UIDGenerator::getTimestampFromUUIDv1
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getTimestampFromUUIDv1
 	 */
 	public function testGetTimestampFromUUIDv1InvalidUUIDv1( string $uuid ) {
 		$this->expectException( InvalidArgumentException::class );
-		UIDGenerator::getTimestampFromUUIDv1( $uuid );
+		$this->globalIdGenerator->getTimestampFromUUIDv1( $uuid );
 	}
 
 	protected function setUp() : void {

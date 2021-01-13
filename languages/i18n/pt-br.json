@@ -787,7 +787,7 @@
 	"userpage-userdoesnotexist": "A conta \"<nowiki>$1</nowiki>\" não se encontra registrada.\nVerifique se deseja mesmo criar/editar esta página.",
 	"userpage-userdoesnotexist-view": "A conta de usuário \"$1\" não está registrada.",
 	"blocked-notice-logextract": "{{GENDER:$1|Este usuário está atualmente bloqueado|Esta usuária está atualmente bloqueada|Este(a) usuário(a) está atualmente bloqueado(a)}}.\nO registro de bloqueio mais recente é fornecido abaixo, para referência:",
-	"clearyourcache": "<strong>Nota:</strong> Após salvar, você pode ter que limpar o \"cache\" do seu navegador para ver as alterações.\n*<strong>Firefox / Safari:</strong> Pressione <em>Shift</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em> ou <em>Ctrl-R</em> (<em>⌘-R</em> no Mac)\n*<strong>Google Chrome:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> no Mac)\n* <strong>Internet Explorer/Edge:</strong> Pressione<em>Ctrl</em> enquanto clica <em>Recarregar</em>, ou Pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Vá para <em>Menu → Configurações</em> (<em>Opera → Preferencias</em> no Mac) e depois para <em>Privacidade e Segurança → Limpar dados de navegação → Imagens e arquivos em cache</em>.",
+	"clearyourcache": "<strong>Nota:</strong> Após salvar, você pode ter que limpar o \"cache\" do seu navegador para ver as alterações.\n*<strong>Firefox / Safari:</strong> Pressione <em>Shift</em> enquanto clica <em>Recarregar</em>, ou pressione <em>Ctrl-F5</em> ou <em>Ctrl-R</em> (<em>⌘-R</em> no Mac)\n*<strong>Google Chrome:</strong> Pressione <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> no Mac)\n* <strong>Internet Explorer/Edge:</strong> Pressione<em>Ctrl</em> enquanto clica <em>Recarregar</em>, ou Pressione <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Pressione <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 	"userjsonyoucanpreview": "<strong>Dica:</strong> Use o botão \"{{int:showpreview}}\" para testar o seu novo JSON antes de gravar.",
 	"userjsyoucanpreview": "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
@@ -3295,9 +3295,6 @@
 	"variantname-ike-cans": "ike-Cans",
 	"variantname-ike-latn": "ike-Latn",
 	"variantname-iu": "iu",
-	"variantname-shi-tfng": "shi-Tfng",
-	"variantname-shi-latn": "shi-Latn",
-	"variantname-shi": "shi",
 	"variantname-uz": "uz",
 	"metadata": "Metadados",
 	"metadata-help": "Este arquivo contém dados adicionais, provavelmente adicionados pela câmera digital ou scanner utilizado para criar ou digitalizá-lo.\nCaso o arquivo tenha sofrido alterações, alguns detalhes poderão ser diferentes do que o arquivo atual é.",
@@ -4139,6 +4136,5 @@
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Só aceita páginas que existem.",
 	"paramvalidator-help-type-title-no-must-exist": "Aceita páginas que não existem.",
-	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]",
-	"sitenotice-close-label": "ocultar"
+	"nonmain-slot-differences-therefore-readonly": "Não pode editar o texto wiki desta revisão da página, porque os dados da página sofreram alterações posteriores à revisão que não são baseadas em texto wiki. [$1 Para restaurar esta revisão, clique aqui.]"
 }

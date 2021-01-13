@@ -150,9 +150,15 @@ trait MediaWikiTestCaseTrait {
 	 * @param array $actual
 	 * @param bool $ordered If the order of the values should match
 	 * @param bool $named If the keys should match
+	 * @param string $message
+	 * @param float $delta Deprecated in assertEquals()
+	 * @param int $maxDepth Deprecated in assertEquals()
+	 * @param bool $canonicalize Deprecated in assertEquals()
+	 * @param bool $ignoreCase Deprecated in assertEquals()
 	 */
 	public function assertArrayEquals(
-		array $expected, array $actual, $ordered = false, $named = false
+		array $expected, array $actual, $ordered = false, $named = false, string $message = '',
+		float $delta = 0.0, int $maxDepth = 10, bool $canonicalize = false, bool $ignoreCase = false
 	) {
 		if ( !$ordered ) {
 			$this->objectAssociativeSort( $expected );
@@ -164,7 +170,11 @@ trait MediaWikiTestCaseTrait {
 			$actual = array_values( $actual );
 		}
 
-		$this->assertEquals( $expected, $actual, ...array_slice( func_get_args(), 4 ) );
+		$this->assertEquals(
+			$expected, $actual, $message,
+			// Deprecated args
+			$delta, $maxDepth, $canonicalize, $ignoreCase
+		);
 	}
 
 	/**

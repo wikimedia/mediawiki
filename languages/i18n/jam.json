@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			")8",
 			"Chabi1",
 			"Dcljr",
 			"Dentonius",
@@ -112,7 +113,7 @@
 	"category-empty": "''Dis kiatigari korantli no kantien no piej nar midia.''",
 	"hidden-categories": "{{PLURAL:$1|Category weh nuh show|Category dem weh nuh show}}",
 	"hidden-category-category": "Aidwe kiatigari",
-	"category-subcat-count": "{{PLURAL:$2|Dis kiatigari ab onggl di falarin sobkiatigari.|Dis kiatigari ab di falarin {{PLURAL:$1|sobkiatigari|$1 sobkiatigaridem}}, out a $2 tuotal.}}",
+	"category-subcat-count": "{{PLURAL:$2|A ongle da subcategory dis ya category 'ave.|Dis ya category 'ave {{PLURAL:$1|one subcategory|$1 subcategory}} outta $2.}}",
 	"category-subcat-count-limited": "Dis kiatigari ab di falarin {{PLURAL:$1|sobkiatigari|$1 sobkiatigari}}.",
 	"category-article-count": "{{PLURAL:$2|Dis kiatigari kantien onggl di falarin piej.|Di falarin {{PLURAL:$1|piej a|$1 piejdem a}} ina dis kiatigari, outa $2 tuotal.}}",
 	"category-article-count-limited": "Di falarin {{PLURAL:$1|piej de|$1 piej de}} ina di korant kiatigari.",
@@ -411,7 +412,7 @@
 	"newarticle": "(Nyuu)",
 	"newarticletext": "Yu fala lingk tu piej we no egzis yet.\nFi kriet di piej, taat taip ina di bax biluo (si di [$1 elp piej] fi muo infamieshan).\nEf yu de ya by mistiek, klik yu brouza '''bak''' botn.",
 	"anontalkpagetext": "----''Dis a di diskoshan piej fi ananimos yuuza uu no kriet no akount yet, ar uu no yuuzi.\nWi dierfuor afi yuuz di nyuumerikal IP ajres fi aidentifai im/ar.\nSoch a IP ajres kiahn shier bai sebral yuuza.\nEf yu a ananimos yuuza ahn fiil se irelivant kament dairek tu yu, begyu [[Special:CreateAccount|kriet a akount]] ar [[Special:UserLogin|lag iin]] fi avaid fyuucha kanfyuujan wid ada ananimos yuuza.''",
-	"noarticletext": "Korentli no tex no de ina dis piej.\nYu kiahn [[Special:Search/{{PAGENAME}}|saach fi dis piej taikl]] ina ada piej,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} saach di rilietid lagdem],\nar [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit dis piej]</span>.",
+	"noarticletext": "Dis ya page n'ave nuttn pon i'. Ef yuh waan, yuh can [[Special:Search/{{PAGENAME}}|look fi da page tikle yah]] pon adda page, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pree di log dem weh link], or [{{fullurl:{{FULLPAGENAME}}|action=edit}} mek da page yah]</span>.",
 	"noarticletext-nopermission": "Korantli no tex no de ina dis piej.\nYu kiah [[Special:Search/{{PAGENAME}}|saach fi dis piej taikl]] ina ada piej, ar <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} saach di rilietid lagdem]</span>, bot yu not ab pomishan fi kriet dis piej.‎",
 	"userpage-userdoesnotexist": "Yuuza akount \"<nowiki>$1</nowiki>\" no rejista.\nBegyu chek ef yu waahn fi kriet/edit dis piej.",
 	"userpage-userdoesnotexist-view": "Yuuza akount \"$1\" no rejista.",
@@ -446,7 +447,7 @@
 	"permissionserrors": "Permishan herro",
 	"permissionserrorstext-withaction": "Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:",
 	"moveddeleted-notice": "Dis piej eh diliit.\nDi diliishan ah muuv lag fi di piej provaid biluo fi refrans.‎",
-	"edit-conflict": "Hedit kanflik: $1",
+	"edit-conflict": "Edit kanflik.",
 	"viewpagelogs": "Vyuu lagdem fi dis piej",
 	"currentrev-asof": "Lietis rivijan az av $1",
 	"revisionasof": "'Ow di page did set a $1",

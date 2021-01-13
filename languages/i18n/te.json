@@ -2668,7 +2668,7 @@
 	"import-interwiki-text": "దిగుమతి చేసుకోవడానికి ఓ వికీని, ఓ పేజీనీ ఎంచుకోండి.\nకూర్పుల తేదీలను, మార్పులు చేసిన వారి పేర్లనూ భద్రపరుస్తాం.\nఇతర వికీలనుండి చేసిన దిగుమతులన్నీ [[Special:Log/import|దిగుమతుల చిట్టా]]లో నమోదవుతాయి.",
 	"import-interwiki-sourcewiki": "మూల వికీ:",
 	"import-interwiki-sourcepage": "మూల పేజీ:",
-	"import-interwiki-history": "ఈ పేజీ యొక్క అన్ని చారిత్రక కూర్పులను కాపీ చెయ్యి",
+	"import-interwiki-history": "ఈ పేజీకి ఉన్న కూర్పులన్నిటినీ కాపీచేయి",
 	"import-interwiki-templates": "అన్ని మూసలను ఉంచు",
 	"import-interwiki-submit": "దిగుమతించు",
 	"import-mapping-default": "అప్రమేయ స్థానాలకు దిగుమతించు",
@@ -3605,6 +3605,5 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "సంకేతపదం, వాడుకరిపేరూ ఒకటే ఉండే వీల్లేదు.",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "సంకేతపదం నిషేధించిన సంకేతపదాలతో సరిపోలరాదు",
 	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి",
-	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు",
-	"sitenotice-close-label": "విస్మరించు"
+	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు"
 }

@@ -108,13 +108,19 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 * @return array LESS variables
 	 */
 	protected function getLessVars( ResourceLoaderContext $context ) {
+		$vars = parent::getLessVars( $context );
+
 		$blob = parent::getMessageBlob( $context );
 		$messages = $this->pluckFromMessageBlob( $blob, $this->lessVariables );
-
-		$vars = parent::getLessVars( $context );
-		foreach ( $messages as $msgKey => $value ) {
-			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $value );
+		// It is important that we iterate the declared list from $this->lessVariables,
+		// and not $messages since in the case of undefined messages, the key is
+		// omitted entirely from the blob. This emits a log warning for developers,
+		// but we must still carry on and produce a valid LESS variable declaration,
+		// to avoid a LESS syntax error (T267785).
+		foreach ( $this->lessVariables as $msgKey ) {
+			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $messages[$msgKey] ?? "⧼${msgKey}⧽" );
 		}
+
 		return $vars;
 	}
 }

@@ -432,10 +432,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 */
 	protected function getCurlMulti( array $opts ) {
 		if ( !$this->cmh ) {
-			if ( !function_exists( 'curl_multi_init' ) ) {
-				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
-			}
 			$cmh = curl_multi_init();
 			// Limit the size of the idle connection cache such that consecutive parallel
 			// request batches to the same host can avoid having to keep making connections
@@ -443,9 +439,13 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$this->cmh = $cmh;
 		}
 
-		// Limit the number of in-flight requests for any given host
-		$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
-		curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
+		// CURLMOPT_MAX_HOST_CONNECTIONS is available since PHP 7.0.7 and cURL 7.30.0
+		if ( version_compare( curl_version()['version'], '7.30.0', '>=' ) ) {
+			// Limit the number of in-flight requests for any given host
+			$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
+			curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
+		}
+
 		// Configure when to multiplex multiple requests onto single TCP handles
 		$pipelining = $opts['usePipelining'] ?? $this->usePipelining;
 		curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining ? 3 : 0 );
