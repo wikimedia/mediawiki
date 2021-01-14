@@ -1993,6 +1993,7 @@
 	"addwatch": "K wobkedźbowankam přidać",
 	"addedwatchtext": "Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.\nPřichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować.",
 	"addedwatchtext-short": "Strona \"$1\" je so wobkedźbowankam přidała.",
+	"addedwatchindefinitelytext": "\"[[:$1]]\" a diskusijna strona stej so trajnje k twojim [[Special:Watchlist|wobkedźbowankam]] přidałoj.",
 	"removewatch": "Z wobkedźbowankow wotstronić",
 	"removedwatchtext": "Strona \"[[:$1]]\" bu z [[Special:Watchlist|twojich wobkedźbowankow]] wotstronjena.",
 	"removedwatchtext-short": "Strona \"$1\" je so z twojich wobkedźbowankow wotstroniła.",

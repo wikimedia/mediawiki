@@ -328,6 +328,7 @@
 	"history-title": "Paubahon turi ni \"$1\"",
 	"difference-title": "Parbedaan padengganan ni $1",
 	"lineno": "Baris $1:",
+	"compareselectedversions": "Patudos ragam na tarpillit",
 	"editundo": "paulak",
 	"diff-empty": "(Soada parasingan)",
 	"diff-multi-otherusers": "(Ndang dipataridahon do {{PLURAL:$1|Sada padengganan antara|$1 padengganan antara}} na dibahen {{PLURAL:$2|sada panghasea na asingna|$2 panghasea}})",

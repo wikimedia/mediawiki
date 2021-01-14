@@ -2849,7 +2849,7 @@
 	"cant-move-subpages": "Alt sayfaları taşıma izniniz yok.",
 	"namespace-nosubpages": "\"$1\" ad alanı alt sayfalara izin vermiyor.",
 	"newtitle": "Yeni başlık:",
-	"move-watch": "Kaynak sayfayı ve hedef sayfayı izleyin",
+	"move-watch": "Kaynak sayfayı ve hedef sayfayı izleme listenize alın",
 	"movepagebtn": "Sayfayı taşı",
 	"pagemovedsub": "Taşıma başarılı",
 	"cannotmove": "Sayfa şu {{PLURAL:$1|nedenden|nedenlerden}} dolayı taşınamadı:",
