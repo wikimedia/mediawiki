@@ -276,11 +276,11 @@ class ApiBaseTest extends ApiTestCase {
 	 * @param string|null $input
 	 * @param array $paramSettings
 	 * @param mixed $expected
+	 * @param string[] $warnings
 	 * @param array $options Key-value pairs:
 	 *   'parseLimits': true|false
 	 *   'apihighlimits': true|false
 	 *   'prefix': true|false
-	 * @param string[] $warnings
 	 */
 	private function doGetParameterFromSettings(
 		$input, $paramSettings, $expected, $warnings, $options = []

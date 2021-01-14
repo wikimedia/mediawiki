@@ -3032,7 +3032,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::sendCacheControl
 	 * @dataProvider provideSendCacheControl
 	 */
-	public function testSendCacheControl( array $options = [], array $expecations = [] ) {
+	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
 		$output = $this->newInstance( [
 			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
 			'UseCdn' => $options['useCdn'] ?? false,
@@ -3061,7 +3061,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $headers as $header => $default ) {
-			$value = $expecations[$header] ?? $default;
+			$value = $expectations[$header] ?? $default;
 			if ( $value === true ) {
 				$this->assertNotEmpty( $response->getHeader( $header ) );
 			} elseif ( $value === false ) {

@@ -69,8 +69,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param MockObject|Database $mockDb
-	 * @param MockObject|PermissionManager $mockPM
+	 * @param IDatabase $mockDb
+	 * @param PermissionManager $mockPM
 	 * @return WatchedItemQueryService
 	 */
 	private function newService( $mockDb, $mockPM = null ) {
@@ -133,8 +133,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param MockObject|IDatabase $mockDb
-	 * @return MockObject|LoadBalancer
+	 * @param IDatabase $mockDb
+	 * @return LoadBalancer
 	 */
 	private function getMockLoadBalancer( $mockDb ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
@@ -163,8 +163,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string $notAllowedAction
-	 * @return MockObject|PermissionManager
+	 * @param string|null $notAllowedAction
+	 * @return PermissionManager
 	 */
 	private function getMockPermissionManager( $notAllowedAction = null ) {
 		$mock = $this->getMockBuilder( PermissionManager::class )

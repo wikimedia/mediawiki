@@ -47,8 +47,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $db
-	 * @return MockObject|LoadBalancer
+	 * @param IDatabase $db
+	 * @return LoadBalancer
 	 */
 	private function getMockLoadBalancer( $db ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )

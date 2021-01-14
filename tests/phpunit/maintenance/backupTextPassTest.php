@@ -420,7 +420,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 *
 	 * @param string $templateName
 	 * @param string $schemaVersion
-	 * @param string $outFile (Optional) Absolute name of the file to write
+	 * @param string|null $outFile Absolute name of the file to write
 	 *   the stub into. If this parameter is null, a new temporary
 	 *   file is generated that is automatically removed upon tearDown.
 	 * @param int $iterations (Optional) specifies how often the block
@@ -530,6 +530,8 @@ class TextPassDumperAccessor extends TextPassDumper {
 	 * (Yes, bufferSize is internal state of the TextPassDumper, but aiding
 	 * debugging of testCheckpoint... in the future seems to be worth testing
 	 * against it nonetheless.)
+	 *
+	 * @return int
 	 */
 	public function getBufferSize() {
 		return $this->bufferSize;

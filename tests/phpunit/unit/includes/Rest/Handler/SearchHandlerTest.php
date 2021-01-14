@@ -36,7 +36,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 	private $searchEngine = null;
 
 	/**
-	 * @param $query
+	 * @param string $query
 	 * @param SearchResultSet|Status $titleResult
 	 * @param SearchResultSet|Status $textResult
 	 * @param SearchSuggestionSet|null $completionResult

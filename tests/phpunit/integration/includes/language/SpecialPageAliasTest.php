@@ -20,8 +20,8 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	public function testValidSpecialPageAliases( $code, $specialPageAliases ) {
 		foreach ( $specialPageAliases as $specialPage => $aliases ) {
 			foreach ( $aliases as $alias ) {
-				$msg = "$specialPage alias '$alias' in $code is valid with no slashes";
-				$this->assertRegExp( '/^[^\/]*$/', $msg );
+				$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
+				$this->assertStringNotContainsString( '/', $alias, $msg );
 			}
 		}
 	}

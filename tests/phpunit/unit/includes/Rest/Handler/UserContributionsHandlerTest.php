@@ -111,7 +111,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param ContributionsLookup $contributionsLookup
+	 * @param ContributionsLookup|null $contributionsLookup
 	 *
 	 * @return UserContributionsHandler
 	 */

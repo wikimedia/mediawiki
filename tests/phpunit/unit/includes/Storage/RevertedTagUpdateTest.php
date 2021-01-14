@@ -26,8 +26,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	 * object should be provided.
 	 * TODO: clean this up once T245964 is resolved
 	 *
-	 * @param $futureChangeTags
-	 *
+	 * @param \FutureChangeTags $futureChangeTags
 	 * @param RevisionStore $revisionStore
 	 * @param LoggerInterface $logger
 	 * @param string[] $softwareTags

@@ -70,7 +70,7 @@ class ApiParseTest extends ApiTestCase {
 	 * parser adds around the parsed page.  Also asserts that warnings match
 	 * the provided $warning.
 	 *
-	 * @param string $html Expected HTML
+	 * @param string $expected Expected HTML
 	 * @param array $res Returned from doApiRequest()
 	 * @param string|null $warnings Exact value of expected warnings, null for
 	 *   no warnings
@@ -83,7 +83,7 @@ class ApiParseTest extends ApiTestCase {
 	 * Same as above, but asserts that the HTML matches a regexp instead of a
 	 * literal string match.
 	 *
-	 * @param string $html Expected HTML
+	 * @param string $expected Expected HTML
 	 * @param array $res Returned from doApiRequest()
 	 * @param string|null $warnings Exact value of expected warnings, null for
 	 *   no warnings
