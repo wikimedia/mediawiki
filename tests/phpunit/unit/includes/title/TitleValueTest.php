@@ -19,6 +19,9 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+
 /**
  * @covers TitleValue
  *
@@ -160,6 +163,18 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
 		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
 		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
+	}
+
+	public function testNewFromPage() {
+		$page = new PageIdentityValue( 0, NS_USER, 'Test', PageIdentity::LOCAL );
+		$title = TitleValue::newFromPage( $page );
+
+		$this->assertSame( NS_USER, $title->getNamespace() );
+		$this->assertSame( 'Test', $title->getDBkey() );
+		$this->assertSame( 'Test', $title->getText() );
+		$this->assertSame( '', $title->getFragment() );
+		$this->assertSame( '', $title->getInterwiki() );
+		$this->assertFalse( $title->isExternal() );
 	}
 
 	public function getTextProvider() {
