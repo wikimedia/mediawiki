@@ -30,8 +30,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param null $version
-	 * @param null $sqlDump
+	 * @param string|null $version
+	 * @param string|null &$sqlDump
 	 * @return \PHPUnit\Framework\MockObject\MockObject|DatabaseSqlite
 	 */
 	private function newMockDb( $version = null, &$sqlDump = null ) {
@@ -80,10 +80,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $sql
-	 * @return string|string[]|null
+	 * @param string $sql
+	 * @return string
 	 */
 	private function replaceVars( $sql ) {
+		/** @var Database $wrapper */
 		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
 		// normalize spacing to hide implementation details
 		return preg_replace( '/\s+/', ' ', $wrapper->replaceVars( $sql ) );

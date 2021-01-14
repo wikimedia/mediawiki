@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Revision\MutableRevisionRecord;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Search
@@ -36,9 +35,9 @@ class FauxSearchResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param $titleText
+	 * @param string $titleText
 	 * @param int|null $articleId
-	 * @return Title|MockObject
+	 * @return Title
 	 */
 	private function getTitleMock( $titleText, $articleId = null ) {
 		$title = $this->getMockBuilder( Title::class )
@@ -56,7 +55,7 @@ class FauxSearchResultTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param string $filename
-	 * @return File|MockObject
+	 * @return File
 	 */
 	private function getFileMock( $filename ) {
 		$title = $this->getMockBuilder( File::class )

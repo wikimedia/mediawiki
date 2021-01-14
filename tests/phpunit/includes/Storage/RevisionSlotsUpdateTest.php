@@ -48,9 +48,9 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromRevisionSlots(
 		RevisionSlots $newSlots,
-		RevisionSlots $parentSlots = null,
-		array $modified = [],
-		array $removed = []
+		?RevisionSlots $parentSlots,
+		array $modified,
+		array $removed
 	) {
 		$update = RevisionSlotsUpdate::newFromRevisionSlots( $newSlots, $parentSlots );
 

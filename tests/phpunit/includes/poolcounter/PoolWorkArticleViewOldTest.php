@@ -51,7 +51,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	}
 
 	/**
-	 * @param BagOStuff $bag
+	 * @param BagOStuff|null $bag
 	 *
 	 * @return RevisionOutputCache
 	 */
