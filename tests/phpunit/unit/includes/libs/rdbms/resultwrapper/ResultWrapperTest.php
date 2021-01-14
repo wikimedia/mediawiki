@@ -25,7 +25,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**
- * @group Database
  * @covers \Wikimedia\Rdbms\ResultWrapper
  */
 class ResultWrapperTest extends PHPUnit\Framework\TestCase {
