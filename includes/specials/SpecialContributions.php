@@ -272,10 +272,10 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		// Don't use year and month for the feed URL, but pass them on if
 		// we redirect to API (if $feedType is specified)
-		if ( $feedType && $this->opts['year'] !== null ) {
+		if ( $feedType && isset( $this->opts['year'] ) ) {
 			$feedParams['year'] = $this->opts['year'];
 		}
-		if ( $feedType && $this->opts['month'] !== null ) {
+		if ( $feedType && isset( $this->opts['month'] ) ) {
 			$feedParams['month'] = $this->opts['month'];
 		}
 
@@ -826,8 +826,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				'target' => $this->opts['target'],
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
-				'start' => $this->opts['start'],
-				'end' => $this->opts['end'],
+				'start' => $this->opts['start'] ?? '',
+				'end' => $this->opts['end'] ?? '',
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
