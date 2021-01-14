@@ -23,6 +23,37 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * Test end-to-end formatting of an exception, such as used by LogstashFormatter.
+	 *
+	 * @covers MWExceptionHandler
+	 * @see MWExceptionHandler::prettyPrintTrace
+	 */
+	public function testTraceFormatting() {
+		try {
+			$dummy = new TestThrowerDummy();
+			$startLine = __LINE__ + 1;
+			$dummy->main();
+		} catch ( Exception $e ) {
+		}
+
+		$startFile = __FILE__;
+		$dummyFile = TestThrowerDummy::getFile();
+		$dummyClass = TestThrowerDummy::class;
+		$expected = <<<TEXT
+#0 ${dummyFile}(13): ${dummyClass}->getQuux()
+#1 ${dummyFile}(9): ${dummyClass}->getBar()
+#2 ${dummyFile}(5): ${dummyClass}->doFoo()
+#3 ${startFile}($startLine): ${dummyClass}->main()
+TEXT;
+
+		// Trim up until our call()
+		$trace = MWExceptionHandler::getRedactedTraceAsString( $e );
+		$actual = implode( "\n", array_slice( explode( "\n", trim( $trace ) ), 0, 4 ) );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
 	 * @covers MWExceptionHandler::getRedactedTrace
 	 */
 	public function testGetRedactedTrace() {
