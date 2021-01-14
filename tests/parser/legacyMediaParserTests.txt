@@ -1073,7 +1073,7 @@ Image with nested tables in caption
 |}
 ]]
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Foo&lt;br/>\n{|\n|\n{|\n|z\n|}\n|}\n"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption data-parsoid='{"dsr":[null,50,null,null]}'>Foo<br data-parsoid='{"stx":"html","selfClose":true}'/>
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Foo&lt;br/>\n{|\n|\n{|\n|z\n|}\n|}\n"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Foo<br data-parsoid='{"stx":"html","selfClose":true}'/>
 <table>
 <tbody><tr><td>
 <table>
@@ -2468,7 +2468,7 @@ File:Foobar.jpg|</ref>
 </ul>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext" data-parsoid='{"dsr":[41,55,0,0]}'>&lt;/ref></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">&lt;/ref></div></li>
 </ul>
 !! end
 
@@ -2780,7 +2780,7 @@ File:Foobar.jpg
 		</div></li>
 </ul>
 !! html/parsoid
-<ul class="gallery mw-gallery-packed" typeof="mw:Extension/gallery" about="#mwt3" data-parsoid='{"dsr":[0,50,23,10]}' data-mw='{"name":"gallery","attrs":{"mode":"packed"},"body":{}}'>
+<ul class="gallery mw-gallery-packed" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"mode":"packed"},"body":{}}'>
 <li class="gallerybox" style="width: 1061.3333333333333px;"><div class="thumb" style="width: 1059.3333333333333px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/1589px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="120" width="1060" srcset="http://example.com/images/3/3a/Foobar.jpg 1.5x, http://example.com/images/3/3a/Foobar.jpg 2x"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
@@ -3462,7 +3462,7 @@ language=de
 !! html+tidy
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Datei:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Datei:Foobar.jpg" class="internal" title="vergrößern"></a></div><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Wikipedia:Foo</a> bar</div></div></div>
 !! html/parsoid
-<figure class="mw-default-size mw-halign-right" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"right","ak":"right"},{"ck":"caption","ak":"[[:Wikipedia:Foo]] bar"}],"dsr":[0,54,2,2]}'><a href="./Datei:Foobar.jpg" data-parsoid="{}"><img resource="./Datei:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./Datei:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption data-parsoid='{"dsr":[30,52,0,0]}'><a rel="mw:WikiLink" href="./Wikipedia:Foo" title="Wikipedia:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Wikipedia:Foo"},"sa":{"href":":Wikipedia:Foo"},"dsr":[30,48,2,2]}' class="new">Wikipedia:Foo</a> bar</figcaption></figure>
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"right","ak":"right"},{"ck":"caption","ak":"[[:Wikipedia:Foo]] bar"}]}'><a href="./Datei:Foobar.jpg" data-parsoid="{}"><img resource="./Datei:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./Datei:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption><a rel="mw:WikiLink" href="./Wikipedia:Foo" title="Wikipedia:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Wikipedia:Foo"},"sa":{"href":":Wikipedia:Foo"}}' class="new">Wikipedia:Foo</a> bar</figcaption></figure>
 !! end
 
 ## Don't necessarily expect this to roundtrip, but run serialization to catch crashers
