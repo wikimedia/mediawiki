@@ -56,6 +56,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
@@ -64,13 +67,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param NamespaceInfo $namespaceInfo
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
 		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		NamespaceInfo $namespaceInfo
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
@@ -78,6 +83,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function execute( $par ) {
@@ -174,13 +180,20 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		];
 
 		$namespace = $this->opts->getValue( 'namespace' );
-		$invert = $this->opts->getValue( 'invert' );
-		$nsComparison = ( $invert ? '!= ' : '= ' ) . $dbr->addQuotes( $namespace );
 		if ( is_int( $namespace ) ) {
-			$conds['redirect'][] = "page_namespace $nsComparison";
-			$conds['pagelinks'][] = "pl_from_namespace $nsComparison";
-			$conds['templatelinks'][] = "tl_from_namespace $nsComparison";
-			$conds['imagelinks'][] = "il_from_namespace $nsComparison";
+			$invert = $this->opts->getValue( 'invert' );
+			if ( $invert ) {
+				// Select all namespaces except for the specified one.
+				// This allows the database to use the *_from_namespace index. (T241837)
+				$namespaces = array_diff(
+					$this->namespaceInfo->getValidNamespaces(), [ $namespace ] );
+			} else {
+				$namespaces = $namespace;
+			}
+			$conds['redirect']['page_namespace'] = $namespaces;
+			$conds['pagelinks']['pl_from_namespace'] = $namespaces;
+			$conds['templatelinks']['tl_from_namespace'] = $namespaces;
+			$conds['imagelinks']['il_from_namespace'] = $namespaces;
 		}
 
 		if ( $from ) {
