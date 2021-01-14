@@ -968,9 +968,6 @@ class ApiMainTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideExceptionErrors
-	 * @param Exception $error
-	 * @param array $expectReturn
-	 * @param array $expectResult
 	 */
 	public function testExceptionErrors( $error, $expectReturn, $expectResult ) {
 		$context = new RequestContext();

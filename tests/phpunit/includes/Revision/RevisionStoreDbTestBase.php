@@ -2133,8 +2133,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetContentBlobsForBatchOptions
 	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
-	 * @param array|null $slots
-	 * @throws \MWException
 	 */
 	public function testGetContentBlobsForBatch( $slots ) {
 		$this->hideDeprecated( 'Revision::getContentModel' );
@@ -2298,7 +2296,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
-	 * @throws \MWException
 	 */
 	public function testNewRevisionsFromBatch_preloadContent(
 		$queryOptions,
@@ -2362,7 +2359,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
-	 * @throws \MWException
 	 */
 	public function testNewRevisionsFromBatch_archive(
 		$queryOptions,

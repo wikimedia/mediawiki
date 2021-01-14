@@ -31,10 +31,6 @@ class ApiBaseTest extends ApiTestCase {
 	/**
 	 * This covers a variety of stub methods that return a fixed value.
 	 *
-	 * @param string $expected Expected value
-	 * @param string|array $method Name of method, or [ name, params... ]
-	 * @param array $args
-	 *
 	 * @dataProvider provideStubMethods
 	 */
 	public function testStubMethods( $expected, $method, $args = [] ) {

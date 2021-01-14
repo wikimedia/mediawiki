@@ -22,7 +22,6 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 	 * @param array|null $oldContentArgs To pass to makeContent() (if not null)
 	 * @param array|null $newContentArgs
 	 * @param string|Exception $expectedResult
-	 * @throws Exception
 	 */
 	public function testGetDiff(
 		?array $oldContentArgs, ?array $newContentArgs, $expectedResult

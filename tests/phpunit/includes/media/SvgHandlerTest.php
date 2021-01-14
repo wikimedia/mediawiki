@@ -181,12 +181,6 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers SvgHandler::normaliseParamsInternal()
 	 * @dataProvider provideNormaliseParamsInternal
-	 *
-	 * @param string $message
-	 * @param int $width
-	 * @param int $height
-	 * @param array $params
-	 * @param array|null $paramsExpected
 	 */
 	public function testNormaliseParamsInternal( $message,
 		$width,

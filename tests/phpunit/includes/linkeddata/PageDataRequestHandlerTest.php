@@ -290,8 +290,6 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 	 * @param Title $title
 	 * @param array $headers Request headers
 	 * @param string $expectedRedirectSuffix Expected suffix of the HTTP Location header.
-	 *
-	 * @throws HttpError
 	 */
 	public function testHttpContentNegotiation(
 		Title $title,

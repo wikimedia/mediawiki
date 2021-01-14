@@ -167,10 +167,6 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideStringifyValue
-	 * @param mixed $value
-	 * @param string|null $expect
-	 * @param array $settings
-	 * @param array $options Options array
 	 */
 	public function testStringifyValue( $value, $expect, array $settings = [], array $options = [] ) {
 		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );

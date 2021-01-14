@@ -43,8 +43,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::set()
 	 * @covers WANObjectCache::get()
 	 * @covers WANObjectCache::makeKey()
-	 * @param mixed $value
-	 * @param int $ttl
 	 */
 	public function testSetAndGet( $value, $ttl ) {
 		list( $cache ) = $this->newWanCache();
@@ -1430,8 +1428,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @dataProvider getBusyValues_Provider
-	 * @param mixed $busyValue
-	 * @param mixed $expected
 	 */
 	public function testBusyValueTypes( $busyValue, $expected ) {
 		list( $cache, $bag ) = $this->newWanCache();

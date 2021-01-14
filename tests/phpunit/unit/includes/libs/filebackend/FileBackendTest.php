@@ -60,7 +60,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::__construct
 	 * @dataProvider provideConstruct_validName
-	 * @param mixed $name
 	 */
 	public function testConstruct_validName( $name ) : void {
 		$this->newMockFileBackend( [ 'name' => $name ] );
@@ -152,7 +151,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::__construct
 	 * @dataProvider provideConstruct_invalidDomainId
-	 * @param mixed $domainId
 	 */
 	public function testConstruct_invalidDomainId( $domainId ) : void {
 		$this->expectException( InvalidArgumentException::class );
@@ -178,7 +176,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::__construct
 	 * @dataProvider provideConstruct_invalidWikiId
-	 * @param mixed $wikiId
 	 */
 	public function testConstruct_invalidWikiId( $wikiId ) : void {
 		$this->expectException( InvalidArgumentException::class );
@@ -792,7 +789,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::__construct
 	 * @covers ::getContainerStoragePath
 	 * @dataProvider provideConstruct_validName
-	 * @param mixed $name
 	 */
 	public function testGetContainerStoragePath( $name ) : void {
 		$backend = $this->newMockFileBackend( [ 'name' => $name ] );

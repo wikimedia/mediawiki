@@ -104,7 +104,6 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSecretsRoundTripping
-	 * @param mixed $data
 	 */
 	public function testSecretsRoundTripping( $data ) {
 		$session = TestUtils::getDummySession();

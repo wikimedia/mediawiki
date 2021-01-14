@@ -42,11 +42,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::__construct
 	 *
-	 * @param array $handlerSpecs
-	 * @param string $contentHandlerClass
-	 *
-	 * @throws MWException
-	 * @throws MWUnknownContentModelException
 	 * @dataProvider provideHandlerSpecs $handlerSpecs
 	 */
 	public function testGetContentHandler_callWithProvider_same(
@@ -88,11 +83,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHook
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
 	 *
-	 * @param array $handlerSpecs
-	 * @param string $contentHandlerClass
-	 *
-	 * @throws MWException
-	 * @throws MWUnknownContentModelException
 	 * @dataProvider provideHandlerSpecs $handlerSpecs
 	 */
 	public function testGetContentHandler_hookWithProvider_same(
@@ -244,13 +234,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentModels
 	 *
 	 * @dataProvider provideValidDummySpecList
-	 *
-	 * @param string $name1
-	 * @param string $name2
-	 * @param string $name3
-	 * @param string $name4
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public function testGetContentModels_flow_same(
 		string $name1, string $name2, string $name3, string $name4
@@ -294,12 +277,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::isDefinedModel
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHook
 	 * @dataProvider provideValidDummySpecList
-	 *
-	 * @param string $name1
-	 * @param string $name2
-	 * @param string $name3
-	 * @param string $name4
-	 * @throws MWException
 	 */
 	public function testIsDefinedModel_flow_same(
 		string $name1, string $name2, string $name3, string $name4

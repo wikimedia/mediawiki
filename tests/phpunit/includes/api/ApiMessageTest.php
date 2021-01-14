@@ -53,7 +53,6 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers ApiMessageTrait
 	 * @dataProvider provideInvalidCode
-	 * @param mixed $code
 	 */
 	public function testInvalidCode( $code ) {
 		$msg = new ApiMessage( 'foo' );

@@ -14,7 +14,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWikiLangTestCase;
-use MWException;
 use RequestContext;
 use stdClass;
 use TestAllServiceOptionsUsed;
@@ -1122,11 +1121,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRestrictionLevels
 	 * @covers \MediaWiki\Permissions\PermissionManager::getNamespaceRestrictionLevels
-	 *
-	 * @param array $expected
-	 * @param int $ns
-	 * @param array|null $userGroups
-	 * @throws MWException
 	 */
 	public function testGetRestrictionLevels( array $expected, $ns, array $userGroups = null ) {
 		$this->setMwGlobals( [

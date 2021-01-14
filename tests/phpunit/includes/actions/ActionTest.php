@@ -157,8 +157,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetActionNameNotPossible
-	 * @param mixed $requestedAction
-	 * @param string $expected
 	 */
 	public function testGetActionNameNotPossible( $requestedAction, string $expected ) {
 		$actionName = Action::getActionName(
