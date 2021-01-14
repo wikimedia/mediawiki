@@ -148,6 +148,10 @@ TEXT
 			$this->loadWithArgv( $args );
 			$this->processOptions();
 		}
+	}
+
+	public function finalSetup() {
+		parent::finalSetup();
 
 		SevenZipStream::register();
 	}
