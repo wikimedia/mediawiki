@@ -53,7 +53,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var array */
 	protected $relations = [];
 
-	/** @var User Performer of the action for the log entry */
+	/** @var UserIdentity Performer of the action for the log entry */
 	protected $performer;
 
 	/** @var Title Target title for the log entry */
@@ -148,7 +148,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @param UserIdentity $performer
 	 */
 	public function setPerformer( UserIdentity $performer ) {
-		$this->performer = User::newFromIdentity( $performer );
+		$this->performer = $performer;
 	}
 
 	/**
@@ -304,7 +304,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		}
 		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $comment );
 		$data += ActorMigration::newMigration()
-			->getInsertValues( $dbw, 'log_user', $this->getPerformer() );
+			->getInsertValues( $dbw, 'log_user', $this->getPerformerIdentity() );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();
@@ -347,9 +347,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		$formatter->setContext( $context );
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
-		$user = $this->getPerformer();
+		$user = $this->getPerformerIdentity();
 		$ip = "";
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			// "MediaWiki default" and friends may have
 			// no IP address in their name
 			if ( IPUtils::isIPAddress( $user->getName() ) ) {
@@ -457,6 +457,13 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @return User
 	 */
 	public function getPerformer() {
+		return User::newFromIdentity( $this->performer );
+	}
+
+	/**
+	 * @return UserIdentity
+	 */
+	public function getPerformerIdentity() : UserIdentity {
 		return $this->performer;
 	}
 

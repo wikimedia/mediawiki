@@ -22,6 +22,7 @@
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 
 /**
@@ -817,7 +818,7 @@ class RecentChange implements Taggable {
 	/**
 	 * @param string $timestamp
 	 * @param Title $title
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
@@ -866,7 +867,7 @@ class RecentChange implements Taggable {
 
 		$rc = new RecentChange;
 		$rc->mTitle = $target;
-		$rc->mPerformer = $user;
+		$rc->mPerformer = User::newFromIdentity( $user );
 		$rc->mAttribs = [
 			'rc_timestamp' => $timestamp,
 			'rc_namespace' => $target->getNamespace(),
