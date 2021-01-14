@@ -79,28 +79,28 @@ use LogicException;
  * @ingroup Database
  */
 interface ILoadBalancer {
-	/** @var int Request a replica DB connection */
+	/** Request a replica DB connection */
 	public const DB_REPLICA = -1;
-	/** @var int Request a master DB connection */
+	/** Request a master DB connection */
 	public const DB_MASTER = -2;
 
-	/** @var string Domain specifier when no specific database needs to be selected */
+	/** Domain specifier when no specific database needs to be selected */
 	public const DOMAIN_ANY = '';
-	/** @var string The generic query group */
+	/** The generic query group */
 	public const GROUP_GENERIC = '';
 
-	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
+	/** DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	public const CONN_TRX_AUTOCOMMIT = 1;
-	/** @var int Return null on connection failure instead of throwing an exception */
+	/** Return null on connection failure instead of throwing an exception */
 	public const CONN_SILENCE_ERRORS = 2;
-	/** @var int Caller is requesting the master DB server for possibly writes */
+	/** Caller is requesting the master DB server for possibly writes */
 	public const CONN_INTENT_WRITABLE = 4;
-	/** @var int Bypass and update any server-side read-only mode state cache */
+	/** Bypass and update any server-side read-only mode state cache */
 	public const CONN_REFRESH_READ_ONLY = 8;
 
-	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
+	/** Manager of ILoadBalancer instances is running post-commit callbacks */
 	public const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
-	/** @var string Manager of ILoadBalancer instances is running post-rollback callbacks */
+	/** Manager of ILoadBalancer instances is running post-rollback callbacks */
 	public const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
 
 	/**
