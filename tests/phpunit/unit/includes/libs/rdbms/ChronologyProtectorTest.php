@@ -24,7 +24,6 @@
 use Wikimedia\Rdbms\ChronologyProtector;
 
 /**
- * @group Database
  * @covers \Wikimedia\Rdbms\ChronologyProtector::__construct
  * @covers \Wikimedia\Rdbms\ChronologyProtector::getClientId
  */
