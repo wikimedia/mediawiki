@@ -4,6 +4,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * @group Database
@@ -499,6 +500,42 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $expected->equals( $actual ), 'Title equality' );
 	}
 
+	public function provideCastFromPageIdentity() {
+		yield [ null ];
+
+		$fake = $this->createMock( PageIdentity::class );
+		$fake->method( 'getId' )->willReturn( 7 );
+		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$fake->method( 'getDBkey' )->willReturn( 'Test' );
+
+		yield [ $fake ];
+
+		$fake = $this->createMock( Title::class );
+		$fake->method( 'getId' )->willReturn( 7 );
+		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$fake->method( 'getDBkey' )->willReturn( 'Test' );
+
+		yield [ $fake ];
+	}
+
+	/**
+	 * @covers Title::castFromPageIdentity
+	 * @dataProvider provideCastFromPageIdentity
+	 */
+	public function testCastFromPageIdentity( ?PageIdentity $value ) {
+		$title = Title::castFromPageIdentity( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} elseif ( $value instanceof Title ) {
+			$this->assertSame( $value, $title );
+		} else {
+			$this->assertSame( $value->getId(), $title->getArticleID() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
+		}
+	}
+
 	public static function provideNewFromTitleValue() {
 		return [
 			[ new TitleValue( NS_MAIN, 'Foo' ) ],
@@ -754,6 +791,23 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			$title->exists( Title::READ_LATEST ),
 			'exists() should re-query database when READ_LATEST is used'
 		);
+	}
+
+	/**
+	 * @covers Title::getArticleID
+	 * @covers Title::getId
+	 */
+	public function testGetArticleID() {
+		$title = Title::makeTitle( NS_PROJECT, __METHOD__ );
+		$this->assertSame( 0, $title->getArticleID() );
+		$this->assertSame( $title->getArticleID(), $title->getId() );
+
+		$article = new Article( $title );
+		$page = $article->getPage();
+		$page->doEditContent( new WikitextContent( 'Some [[link]]' ), 'summary' );
+
+		$this->assertGreaterThan( 0, $title->getArticleID() );
+		$this->assertSame( $title->getArticleID(), $title->getId() );
 	}
 
 	public function provideCanHaveTalkPage() {

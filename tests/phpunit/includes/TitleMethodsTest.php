@@ -2,6 +2,7 @@
 
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\PreconditionException;
 
 /**
  * @group ContentHandler
@@ -441,4 +442,85 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
 	}
+
+	/**
+	 * @covers Title::getWikiId
+	 */
+	public function testGetWikiId() {
+		$title = Title::newFromText( 'Foo' );
+		$this->assertFalse( $title->getWikiId() );
+	}
+
+	public function provideProperPage() {
+		return [
+			[ NS_MAIN, 'Test' ],
+			[ NS_MAIN, 'User' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideProperPage
+	 * @covers Title::toPageIdentity
+	 */
+	public function testToPageIdentity( $ns, $text ) {
+		$title = Title::makeTitle( $ns, $text );
+
+		$page = $title->toPageIdentity();
+
+		$this->assertNotSame( $title, $page );
+		$this->assertSame( $title->getId(), $page->getId() );
+		$this->assertSame( $title->getNamespace(), $page->getNamespace() );
+		$this->assertSame( $title->getDBkey(), $page->getDBkey() );
+		$this->assertSame( $title->getWikiId(), $page->getWikiId() );
+	}
+
+	public function provideImproperPage() {
+		return [
+			[ NS_MAIN, '' ],
+			[ NS_MAIN, '<>' ],
+			[ NS_MAIN, '|' ],
+			[ NS_MAIN, '#' ],
+			[ NS_PROJECT, '#test' ],
+			[ NS_MAIN, '', 'test', 'acme' ],
+			[ NS_MAIN, ' Test' ],
+			[ NS_MAIN, '_Test' ],
+			[ NS_MAIN, 'Test ' ],
+			[ NS_MAIN, 'Test_' ],
+			[ NS_MAIN, "Test\nthis" ],
+			[ NS_MAIN, "Test\tthis" ],
+			[ -33, 'Test' ],
+			[ 77663399, 'Test' ],
+
+			// Valid but can't exist
+			[ NS_MAIN, '', 'test' ],
+			[ NS_SPECIAL, 'Test' ],
+			[ NS_MAIN, 'Test', '', 'acme' ],
+
+			// Can exist but include a fragment
+			[ NS_MAIN, 'Foo', 'bar' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::getId
+	 */
+	public function testGetId_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->getId();
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::toPageIdentity
+	 */
+	public function testToPageIdentity_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->toPageIdentity();
+	}
+
 }
