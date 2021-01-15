@@ -33,6 +33,9 @@ $wgAutoloadClasses += [
 	# tests/integration
 	'MWHttpRequestTestCase' => "$testDir/integration/includes/http/MWHttpRequestTestCase.php",
 
+	# tests/exception
+	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
+
 	# tests/parser
 	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
 	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",

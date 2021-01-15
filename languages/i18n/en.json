@@ -4033,7 +4033,7 @@
 	"feedback-thanks-title": "Thank you!",
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Search {{SITENAME}}",
-	"searchsuggest-containing": "Search within pages for the term",
+	"searchsuggest-containing": "Search for pages containing",
 	"search-match-redirect-label": "Redirect to exact matches when searching",
 	"search-match-redirect-help": "Select to get redirected to a page when that page title matches what you have searched for",
 	"api-clientside-error-noconnect": "Could not connect to the server. Make sure you have a working internet connection and try again.",
