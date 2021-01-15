@@ -4106,6 +4106,28 @@ class WikiPage implements Page, IDBAccessObject, ProperPageIdentity {
 	 * @inheritDoc
 	 * @since 1.36
 	 */
+	public function isSamePageAs( PageIdentity $other ) {
+		// NOTE: keep in sync with PageIdentityValue::isSamePageAs()!
+
+		if ( $other->getWikiId() !== $this->getWikiId()
+			|| $other->getId() !== $this->getId() ) {
+			return false;
+		}
+
+		if ( $this->getId() === 0 ) {
+			if ( $other->getNamespace() !== $this->getNamespace()
+				|| $other->getDBkey() !== $this->getDBkey() ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @since 1.36
+	 */
 	public function __toString() {
 		return $this->mTitle->__toString();
 	}
