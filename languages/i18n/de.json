@@ -3723,7 +3723,7 @@
 	"feedback-thanks-title": "Danke!",
 	"feedback-useragent": "User Agent:",
 	"searchsuggest-search": "{{SITENAME}} durchsuchen",
-	"searchsuggest-containing": "Suche innerhalb von Seiten nach dem Begriff",
+	"searchsuggest-containing": "Suche nach Seiten mit",
 	"search-match-redirect-label": "Weiterleitung zum exakten Treffer beim Suchen",
 	"search-match-redirect-help": "Wähle dies aus, um zur Seite weiterzuleiten, wenn ein Seitenname mit dem Suchbegriff übereinstimmt",
 	"api-clientside-error-noconnect": "Es konnte keine Verbindung zum Server hergestellt werden. Stelle sicher, dass du eine funktionierende Internetverbindung hast und versuche es erneut.",

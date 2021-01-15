@@ -3361,7 +3361,7 @@
 	"feedback-thanks": "Tak! Dine tilbagemeldinger er blevet noteret på siden \"[$2 $1]\".",
 	"feedback-thanks-title": "Tak!",
 	"searchsuggest-search": "Søg på {{SITENAME}}",
-	"searchsuggest-containing": "indeholder...",
+	"searchsuggest-containing": "Søg efter sider der indeholder",
 	"api-clientside-error-timeout": "Serveren svarede ikke tilbage inden for den forventede tid.",
 	"api-clientside-error-invalidresponse": "Ugyldigt svar fra serveren.",
 	"api-error-badtoken": "Intern fejl: ugyldigt mærke.",
