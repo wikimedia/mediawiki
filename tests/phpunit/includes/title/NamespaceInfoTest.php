@@ -1253,7 +1253,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * TODO: This is superceeded by PermissionManagerTest::testGetNamespaceRestrictionLevels
 	 * Remove when deprecated method is removed.
 	 * @dataProvider provideGetRestrictionLevels
-	 * @covers       NamespaceInfo::getRestrictionLevels
+	 * @covers NamespaceInfo::getRestrictionLevels
 	 *
 	 * @param array $expected
 	 * @param int $ns

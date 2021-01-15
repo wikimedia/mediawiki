@@ -203,7 +203,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideTitlesToConvert
-	 * @covers       LanguageConverter::convertTitle
+	 * @covers LanguageConverter::convertTitle
 	 *
 	 * @param LinkTarget $linkTarget LinkTarget to convert
 	 * @param string $expected

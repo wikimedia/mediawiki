@@ -8,8 +8,8 @@ use Wikimedia\TestingAccessWrapper;
 class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers       \MediaWiki\HookContainer\DeprecatedHooks::__construct
-	 * @covers       \MediaWiki\HookContainer\DeprecatedHooks::isHookDeprecated
+	 * @covers \MediaWiki\HookContainer\DeprecatedHooks::__construct
+	 * @covers \MediaWiki\HookContainer\DeprecatedHooks::isHookDeprecated
 	 */
 	public function testIsHookDeprecated() {
 		$extDeprecatedHooks = [
@@ -21,7 +21,7 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\HookContainer\DeprecatedHooks::markDeprecated
+	 * @covers \MediaWiki\HookContainer\DeprecatedHooks::markDeprecated
 	 */
 	public function testMarkDeprecatedException() {
 		$extDeprecatedHooks = [
@@ -36,7 +36,7 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\HookContainer\DeprecatedHooks::markDeprecated
+	 * @covers \MediaWiki\HookContainer\DeprecatedHooks::markDeprecated
 	 */
 	public function testMarkDeprecated() {
 		$deprecatedHooks = new DeprecatedHooks();
@@ -54,7 +54,7 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\HookContainer\DeprecatedHooks::getDeprecationInfo
+	 * @covers \MediaWiki\HookContainer\DeprecatedHooks::getDeprecationInfo
 	 */
 	public function testGetDeprecationInfo() {
 		$extDeprecatedHooks = [

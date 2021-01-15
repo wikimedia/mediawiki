@@ -37,7 +37,7 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Shell\Shell::makeScriptCommand
 	 * @dataProvider provideMakeScriptCommand
 	 *
-	 * @param string $expected    expected in POSIX
+	 * @param string $expected expected in POSIX
 	 * @param string $expectedWin expected in Windows
 	 * @param string $script
 	 * @param string[] $parameters

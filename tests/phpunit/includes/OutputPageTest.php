@@ -1881,7 +1881,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::parseAsContent
 	 * @param array $args To pass to parse()
 	 * @param string $expectedHTML Expected return value for parseAsContent()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 * @param string|null $expectedHTMLInline Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsContent(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -1895,7 +1895,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::parseAsInterface
 	 * @param array $args To pass to parse()
 	 * @param string $expectedHTML Expected return value for parseAsInterface()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 * @param string|null $expectedHTMLInline Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsInterface(
 		array $args, $expectedHTML, $expectedHTMLInline = null
