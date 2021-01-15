@@ -34,7 +34,6 @@ class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideUnserializedInstancesWithValues
-	 * @param GhostFieldTestClass $instance
 	 */
 	public function testUnserializedWithValues( GhostFieldTestClass $instance ) {
 		$this->assertSame( 'private_value', $instance->getPrivateField() );
@@ -48,7 +47,6 @@ class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideUnserializedInstancesWithNulls
-	 * @param GhostFieldTestClass $instance
 	 */
 	public function testUnserializedWithNulls( GhostFieldTestClass $instance ) {
 		$this->assertNull( $instance->getPrivateField() );

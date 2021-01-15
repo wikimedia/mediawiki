@@ -37,7 +37,6 @@ class ContentHandlerSanityTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideHandlers
-	 * @param ContentHandler $handler
 	 */
 	public function testMakeEmptyContent( ContentHandler $handler ) {
 		$content = $handler->makeEmptyContent();

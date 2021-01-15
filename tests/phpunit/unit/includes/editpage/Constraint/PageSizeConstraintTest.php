@@ -33,8 +33,6 @@ class PageSizeConstraintTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCodes
-	 * @param string $type
-	 * @param int $errorCode unused
 	 */
 	public function testPass( string $type, int $errorCode ) {
 		// 1023 < ( 1 * 1024 )
@@ -48,8 +46,6 @@ class PageSizeConstraintTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCodes
-	 * @param string $type
-	 * @param int $errorCode
 	 */
 	public function testFailure( string $type, int $errorCode ) {
 		// 1025 > ( 1 * 1024 )

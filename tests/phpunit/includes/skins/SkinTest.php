@@ -19,9 +19,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 * @covers Skin::isResponsive
 	 *
 	 * @dataProvider provideSkinResponsiveOptions
-	 *
-	 * @param array $options
-	 * @param bool $expected
 	 */
 	public function testIsResponsive( array $options, bool $expected ) {
 		$skin = new class( $options ) extends Skin {

@@ -23,7 +23,6 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideHookRunners
-	 * @param string $hookRunnerClass
 	 */
 	public function testAllMethodsInheritedFromInterface( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -46,7 +45,6 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideHookRunners
-	 * @param string $hookRunnerClass
 	 */
 	public function testHookInterfacesHaveUniqueMethods( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -72,8 +70,6 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideHookMethods
-	 * @param string $hookRunnerClass
-	 * @param ReflectionMethod $hookMethod
 	 */
 	public function testAllArgumentsArePassed(
 		string $hookRunnerClass,

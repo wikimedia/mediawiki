@@ -251,8 +251,6 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideHandlesParsoidError
-	 * @param Exception $parsoidException
-	 * @param Exception $expectedException
 	 */
 	public function testHandlesParsoidError(
 		Exception $parsoidException,

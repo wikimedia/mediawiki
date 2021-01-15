@@ -166,9 +166,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
 	 *
 	 * @dataProvider provideHandlerSpecsWithMWException
-	 *
-	 * @param array $handlerSpecs
-	 * @param string $exceptionClassName
 	 */
 	public function testCreateContentHandlerForModelID_callWithProvider_throwsException(
 		array $handlerSpecs,

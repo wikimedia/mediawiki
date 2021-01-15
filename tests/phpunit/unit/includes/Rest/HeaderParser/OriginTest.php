@@ -45,8 +45,6 @@ class OriginTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideOriginParse
-	 * @param string $header
-	 * @param array $originList
 	 */
 	public function testOriginParse( string $header, array $originList, bool $isMulti ) {
 		$header = Origin::parseHeaderList( [ $header ] );
@@ -230,8 +228,6 @@ class OriginTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideMatch
-	 * @param string $header
-	 * @param array $allowList
 	 */
 	public function testMatch( string $header, array $allowList, array $excludeList, bool $expect ) {
 		$header = Origin::parseHeaderList( [ $header ] );

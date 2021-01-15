@@ -1202,7 +1202,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @dataProvider provideCoalesceAndMcrouterSettings
-	 * @param array $params
 	 */
 	public function testLockTSE( array $params ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );
@@ -1270,7 +1269,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @covers WANObjectCache::set()
 	 * @dataProvider provideCoalesceAndMcrouterSettings
-	 * @param array $params
 	 */
 	public function testLockTSESlow( array $params ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );
@@ -1353,7 +1351,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @dataProvider provideCoalesceAndMcrouterSettings
-	 * @param array $params
 	 */
 	public function testBusyValueBasic( array $params ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );
@@ -1794,7 +1791,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::useInterimHoldOffCaching
 	 * @covers WANObjectCache::getInterimValue
 	 * @dataProvider provideCoalesceAndMcrouterSettings
-	 * @param array $params
 	 */
 	public function testInterimHoldOffCaching( array $params ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );

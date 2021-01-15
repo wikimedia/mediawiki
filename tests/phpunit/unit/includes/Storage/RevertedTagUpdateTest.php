@@ -207,9 +207,6 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	 * Test cases where the update is disabled through configuration.
 	 *
 	 * @dataProvider provideRevertedTagUpdateDisabled
-	 *
-	 * @param array $softwareChangeTags
-	 * @param int $revertedTagMaxDepth
 	 */
 	public function testRevertedTagUpdateDisabled(
 		array $softwareChangeTags,
@@ -267,8 +264,6 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideInvalidEditResults
-	 *
-	 * @param EditResult $editResult
 	 */
 	public function testInvalidEditResult( EditResult $editResult ) {
 		$futureChangeTags = $this->getMockBuilder( \FutureChangeTags::class )
@@ -398,10 +393,6 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider providePageIdMismatch
-	 *
-	 * @param int $oldestRevertedPageId
-	 * @param int $newestRevertedPageId
-	 * @param int $revertPageId
 	 */
 	public function testPageIdMismatch(
 		int $oldestRevertedPageId,

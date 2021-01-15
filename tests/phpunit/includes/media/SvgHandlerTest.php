@@ -296,9 +296,6 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers \SvgHandler::getAvailableLanguages()
 	 * @dataProvider provideAvailableLanguages
-	 *
-	 * @param array $metadata
-	 * @param array $expected
 	 */
 	public function testGetAvailableLanguages( array $metadata, array $expected ) {
 		$metadata['version'] = SvgHandler::SVG_METADATA_VERSION;

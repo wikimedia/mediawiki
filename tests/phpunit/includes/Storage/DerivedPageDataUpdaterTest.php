@@ -1133,9 +1133,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeEnqueueRevertedTagUpdateJob
 	 * @dataProvider provideEnqueueRevertedTagUpdateJob
-	 *
-	 * @param bool $approved
-	 * @param int $queueSize
 	 */
 	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
 		$page = $this->getPage( __METHOD__ );
