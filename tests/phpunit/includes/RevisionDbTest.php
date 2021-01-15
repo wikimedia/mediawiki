@@ -1829,7 +1829,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetTextId
-	 * @covers       Revision::getTextId()
+	 * @covers Revision::getTextId()
 	 */
 	public function testGetTextId( Revision $rev, $expected ) {
 		$this->hideDeprecated( 'Revision::getTextId' );
@@ -1849,7 +1849,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetSerializedData
-	 * @covers       Revision::getTextId()
+	 * @covers Revision::getTextId()
 	 *
 	 * @param Revision $rev
 	 * @param int $expected

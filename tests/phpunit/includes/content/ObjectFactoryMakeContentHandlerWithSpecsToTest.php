@@ -22,7 +22,7 @@ class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiIntegratio
 	}
 
 	/**
-	 * @covers       \Wikimedia\ObjectFactory::createObject
+	 * @covers \Wikimedia\ObjectFactory::createObject
 	 *
 	 * @param array $handlerSpecs
 	 *
@@ -54,7 +54,7 @@ class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiIntegratio
 	}
 
 	/**
-	 * @covers       \Wikimedia\ObjectFactory::createObject
+	 * @covers \Wikimedia\ObjectFactory::createObject
 	 *
 	 * @dataProvider provideHandlerSpecsWithMWException
 	 *

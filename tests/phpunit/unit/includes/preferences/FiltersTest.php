@@ -38,7 +38,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       MediaWiki\Preferences\TimezoneFilter::filterFromForm()
+	 * @covers MediaWiki\Preferences\TimezoneFilter::filterFromForm()
 	 * @dataProvider provideTimezoneFilter
 	 *
 	 * @param string $input

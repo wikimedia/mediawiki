@@ -200,8 +200,8 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 	 * @dataProvider handleRequestProvider
 	 *
 	 * @param string $subpage The subpage to request (or '')
-	 * @param array  $params  Request parameters
-	 * @param array  $headers  Request headers
+	 * @param array $params Request parameters
+	 * @param array $headers Request headers
 	 * @param string $expectedOutput
 	 * @param int $expectedStatusCode Expected HTTP status code.
 	 * @param string[] $expectedHeaders Expected HTTP response headers.

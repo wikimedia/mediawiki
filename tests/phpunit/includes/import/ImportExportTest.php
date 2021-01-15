@@ -68,6 +68,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $prefix
+	 * @param string[] $keys
 	 *
 	 * @return string[]
 	 */

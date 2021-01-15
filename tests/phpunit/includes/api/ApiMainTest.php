@@ -968,7 +968,7 @@ class ApiMainTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideExceptionErrors
-	 * @param Exception $exception
+	 * @param Exception $error
 	 * @param array $expectReturn
 	 * @param array $expectResult
 	 */

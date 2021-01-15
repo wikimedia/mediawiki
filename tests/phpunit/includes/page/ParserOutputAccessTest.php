@@ -652,9 +652,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * flagged as "dirty".
 	 *
 	 * @dataProvider providePoolWorkDirty
-	 * @param $status
-	 * @param false $fastStale
-	 * @param $expectedMessage
+	 * @param Status $status
+	 * @param bool $fastStale
+	 * @param string $expectedMessage
 	 *
 	 * @throws MWException
 	 */

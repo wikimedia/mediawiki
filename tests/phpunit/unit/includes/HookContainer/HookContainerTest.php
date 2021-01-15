@@ -121,7 +121,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::salvage
+		 * @covers \MediaWiki\HookContainer\HookContainer::salvage
 		 */
 		public function testSalvage() {
 			$hookContainer = $this->newHookContainer();
@@ -136,7 +136,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::salvage
+		 * @covers \MediaWiki\HookContainer\HookContainer::salvage
 		 */
 		public function testSalvageThrows() {
 			$this->expectException( \MWException::class );
@@ -147,8 +147,8 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::isRegistered
-		 * @covers       \MediaWiki\HookContainer\HookContainer::register
+		 * @covers \MediaWiki\HookContainer\HookContainer::isRegistered
+		 * @covers \MediaWiki\HookContainer\HookContainer::register
 		 */
 		public function testRegisteredLegacy() {
 			$hookContainer = $this->newHookContainer();
@@ -158,7 +158,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testScopedRegister() {
 			$hookContainer = $this->newHookContainer();
@@ -169,7 +169,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testScopedRegisterTwoHandlers() {
 			$hookContainer = $this->newHookContainer();
@@ -203,7 +203,7 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * Register handlers with scopedReigster() and register()
-		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testHandlersRegisteredWithScopedRegisterAndRegister() {
 			$hookContainer = $this->newHookContainer();
@@ -230,7 +230,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::isRegistered
+		 * @covers \MediaWiki\HookContainer\HookContainer::isRegistered
 		 */
 		public function testNotRegisteredLegacy() {
 			$hookContainer = $this->newHookContainer();
@@ -238,11 +238,11 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::getHandlers
+		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlers
 		 * @dataProvider provideGetHandlers
-		 * @param $hook
-		 * @param $handlerToRegister
-		 * @param $expectedReturn
+		 * @param string $hook
+		 * @param callable|null $handlerToRegister
+		 * @param array $expectedReturn
 		 */
 		public function testGetHandlers( $hook, $handlerToRegister, $expectedReturn ) {
 			if ( $handlerToRegister ) {
@@ -264,7 +264,7 @@ namespace MediaWiki\HookContainer {
 
 		/**
 		 * @dataProvider provideRunLegacyErrors
-		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test errors thrown with invalid handlers
 		 */
 		public function testRunLegacyErrors() {
@@ -278,7 +278,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::getLegacyHandlers
+		 * @covers \MediaWiki\HookContainer\HookContainer::getLegacyHandlers
 		 */
 		public function testGetLegacyHandlers() {
 			$hookContainer = $this->newHookContainer();
@@ -297,13 +297,13 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::run
-		 * @covers       \MediaWiki\HookContainer\HookContainer::callLegacyHook
-		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::callLegacyHook
+		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunLegacy
 		 * Test Hook run with legacy hook system, registered via wgHooks()
-		 * @param $event
-		 * @param $hook
+		 * @param string $event
+		 * @param callable $hook
 		 * @param array $hookArguments
 		 * @param array $options
 		 * @throws \FatalError
@@ -316,8 +316,8 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::run
-		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test HookContainer::run() with abortable option
 		 */
 		public function testRunNotAbortable() {
@@ -337,8 +337,8 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::run
-		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test HookContainer::run() when the handler returns false
 		 */
 		public function testRunAbort() {
@@ -369,7 +369,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::register
+		 * @covers \MediaWiki\HookContainer\HookContainer::register
 		 * Test HookContainer::register() successfully registers even when hook is deprecated
 		 */
 		public function testRegisterDeprecated() {
@@ -391,7 +391,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::isRegistered
+		 * @covers \MediaWiki\HookContainer\HookContainer::isRegistered
 		 * Test HookContainer::isRegistered() with current hook system with arguments
 		 */
 		public function testIsRegistered() {
@@ -404,8 +404,8 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::run
-		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * @covers \MediaWiki\HookContainer\HookContainer::run
+		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test HookContainer::run() throws exceptions appropriately
 		 */
 		public function testRunExceptions() {
@@ -421,7 +421,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
+		 * @covers \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
 		 */
 		public function testEmitDeprecationWarnings() {
 			$hooks = [
@@ -441,7 +441,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
+		 * @covers \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
 		 */
 		public function testEmitDeprecationWarningsSilent() {
 			$hooks = [
@@ -464,7 +464,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::clear
+		 * @covers \MediaWiki\HookContainer\HookContainer::clear
 		 */
 		public function testClear() {
 			// Register handlers in three different ways
@@ -506,7 +506,7 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
-		 * @covers       \MediaWiki\HookContainer\HookContainer::scopedRegister
+		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testScopedHandlerWithReplace() {
 			$hookContainer = $this->newHookContainer(
