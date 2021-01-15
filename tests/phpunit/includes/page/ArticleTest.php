@@ -78,7 +78,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testMissingArticleMessage() {
 		// Use a well-known system message
-		$title = Title::makeTitle( NS_MEDIAWIKI, 'Uploadedimage' );
+		$title = Title::makeTitle( NS_MEDIAWIKI, 'uploadedimage' );
 		$article = new Article( $title, 0 );
 		$article->getContext()->getOutput()->setTitle( $title );
 		$article->showMissingArticle();
