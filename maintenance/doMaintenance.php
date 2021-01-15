@@ -125,24 +125,7 @@ try {
 // Potentially debug globals
 $maintenance->globals();
 
-if ( $maintenance->getDbType() !== Maintenance::DB_NONE &&
-	// Service might be disabled, e.g. when running install.php
-	!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
-) {
-	// Perform deferred updates.
-	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-	$lbFactory->commitMasterChanges( $maintClass );
-	DeferredUpdates::doUpdates();
-}
-
-// log profiling info
-wfLogProfilingData();
-
-if ( isset( $lbFactory ) ) {
-	// Commit and close up!
-	$lbFactory->commitMasterChanges( 'doMaintenance' );
-	$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
-}
+$maintenance->shutdown();
 
 // Exit with an error status if execute() returned false
 if ( $success === false ) {
