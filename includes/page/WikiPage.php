@@ -28,7 +28,9 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -40,6 +42,7 @@ use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -52,7 +55,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
  */
-class WikiPage implements Page, IDBAccessObject {
+class WikiPage implements Page, IDBAccessObject, ProperPageIdentity {
 	use NonSerializableTrait;
 	use ProtectedHookAccessorTrait;
 
@@ -134,9 +137,17 @@ class WikiPage implements Page, IDBAccessObject {
 	private $derivedDataUpdater = null;
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 */
-	public function __construct( Title $title ) {
+	public function __construct( PageIdentity $pageIdentity ) {
+		$pageIdentity->assertWiki( PageIdentity::LOCAL );
+
+		if ( !$pageIdentity->canExist() ) {
+			throw new MWException( "Title '$pageIdentity' cannot exist as a page" );
+		}
+
+		// TODO: remove the need for casting to Title.
+		$title = Title::castFromPageIdentity( $pageIdentity );
 		$this->mTitle = $title;
 	}
 
@@ -149,16 +160,18 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Create a WikiPage object of the appropriate class for the given title.
+	 * Create a WikiPage object of the appropriate class for the given PageIdentity.
+	 * The PageIdentity must represent a proper page that can exist on the wiki,
+	 * that is, not a special page or media link or section link or interwiki link.
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 *
 	 * @throws MWException
 	 * @return WikiPage|WikiCategoryPage|WikiFilePage
 	 * @deprecated since 1.36, use WikiPageFactory::newFromTitle instead
 	 */
-	public static function factory( Title $title ) {
-		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+	public static function factory( PageIdentity $pageIdentity ) {
+		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $pageIdentity );
 	}
 
 	/**
@@ -540,9 +553,30 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Throws if $wikiId is not PageIdentity::LOCAL.
+	 *
+	 * @since 1.36
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 * @throws PreconditionException
+	 */
+	public function assertWiki( $wikiId ) {
+		if ( $wikiId !== PageIdentity::LOCAL ) {
+			throw new PreconditionException(
+				"Expected this PageIdentity to belong to $wikiId, "
+				. 'but it belongs to the local wiki'
+			);
+		}
+	}
+
+	/**
+	 * @param string|false $wikiId
+	 *
 	 * @return int Page ID
 	 */
-	public function getId() {
+	public function getId( $wikiId = PageIdentity::LOCAL ) {
+		$this->assertWiki( $wikiId );
+
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -4034,6 +4068,46 @@ class WikiPage implements Page, IDBAccessObject {
 		// As a side-effect, this makes sure mLastRevision doesn't
 		// end up being an instance of the old Revision class (see T259181).
 		$this->clear();
+	}
+
+	/**
+	 * @inheritDoc
+	 * @since 1.36
+	 */
+	public function getNamespace() {
+		return $this->getTitle()->getNamespace();
+	}
+
+	/**
+	 * @inheritDoc
+	 * @since 1.36
+	 */
+	public function getDBkey() {
+		return $this->getTitle()->getDBkey();
+	}
+
+	/**
+	 * @return false PageIdentity::LOCAL
+	 * @since 1.36
+	 */
+	public function getWikiId() {
+		return $this->getTitle()->getWikiId();
+	}
+
+	/**
+	 * @return true
+	 * @since 1.36
+	 */
+	public function canExist() {
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @since 1.36
+	 */
+	public function __toString() {
+		return $this->mTitle->__toString();
 	}
 
 }
