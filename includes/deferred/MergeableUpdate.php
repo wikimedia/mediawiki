@@ -6,12 +6,13 @@
  * DeferredUpdates uses this to merge all pending updates of PHP class into a single update
  * by calling merge(). Note that upon merge(), the combined update goes to the back of the FIFO
  * queue so that such updates occur after related non-mergeable deferred updates. For example,
- * suppose updates that purge URLs can be merged, and the calling pattern is:
+ * suppose updates that purge URL objects all use the same MergeableUpdate class, updates that
+ * delete URL objects use a different class, and the calling pattern is:
  *   - a) DeferredUpdates::addUpdate( $purgeCdnUrlsA );
  *   - b) DeferredUpdates::addUpdate( $deleteContentUrlsB );
  *   - c) DeferredUpdates::addUpdate( $purgeCdnUrlsB )
  *
- * The purges for urls A and B will all happen after the $deleteContentUrlsB update.
+ * In this case, purges for urls A and B will all happen after the $deleteContentUrlsB update.
  *
  * @stable to implement
  *
@@ -19,9 +20,9 @@
  */
 interface MergeableUpdate extends DeferrableUpdate {
 	/**
-	 * Merge this update with $update
+	 * Merge this enqueued update with a new MergeableUpdate of the same qualified class name
 	 *
-	 * @param MergeableUpdate $update Update of the same class type
+	 * @param MergeableUpdate $update The new update (having the same class)
 	 */
 	public function merge( MergeableUpdate $update );
 }

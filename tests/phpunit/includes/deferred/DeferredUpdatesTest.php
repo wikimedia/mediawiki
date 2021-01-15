@@ -6,10 +6,10 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::addUpdate
-	 * @covers DeferredUpdates::push
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::attemptUpdate
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testAddAndRun() {
 		$update = $this->getMockBuilder( DeferrableUpdate::class )
@@ -22,7 +22,8 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::addUpdate
-	 * @covers DeferredUpdates::push
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testAddMergeable() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
@@ -92,8 +93,9 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
@@ -189,8 +191,9 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testDoUpdatesCLI() {
 		$this->setMwGlobals( 'wgCommandLineMode', true );
@@ -263,8 +266,9 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testPresendAddOnPostsendRun() {
 		$this->setMwGlobals( 'wgCommandLineMode', true );
@@ -338,6 +342,9 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::tryOpportunisticExecute
+	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testTryOpportunisticExecute() {
 		$calls = [];
@@ -399,6 +406,8 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdatesScopeStack
+	 * @covers DeferredUpdatesScope
 	 */
 	public function testNestedExecution() {
 		// No immediate execution
@@ -409,27 +418,54 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$resSubSub = null;
 		$resA = null;
 
+		DeferredUpdates::clearPendingUpdates();
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
+
 		// T249069: TransactionRoundDefiningUpdate => JobRunner => DeferredUpdates::doUpdates()
 		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate(
 			function () use ( &$res, &$resSub, &$resSubSub, &$resA ) {
 				$res = 1;
+
+				$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+				$this->assertSame( 1, DeferredUpdates::getRecursiveExecutionStackDepth() );
+
 				// Add update to subqueue of in-progress top-queue job
 				DeferredUpdates::addCallableUpdate( function () use ( &$resSub, &$resSubSub ) {
 					$resSub = 'a';
+
+					$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+					$this->assertSame( 2, DeferredUpdates::getRecursiveExecutionStackDepth() );
+
 					// Add update to subqueue of in-progress top-queue job (not recursive)
 					DeferredUpdates::addCallableUpdate( function () use ( &$resSubSub ) {
 						$resSubSub = 'b';
 					} );
+
+					$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
 				} );
+
+				$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
+				$this->assertSame( 1, DeferredUpdates::getRecursiveExecutionStackDepth() );
+
 				if ( $resSub === null && $resA === null && $resSubSub === null ) {
 					$res = 418;
 				}
+
 				DeferredUpdates::doUpdates();
 			}
 		) );
+
+		$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
+
 		DeferredUpdates::addCallableUpdate( function () use ( &$resA ) {
 			$resA = 93;
 		} );
+
+		$this->assertSame( 2, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
 
 		$this->assertSame( null, $resA );
 		$this->assertSame( null, $res );
@@ -438,6 +474,8 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 		DeferredUpdates::doUpdates();
 
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
 		$this->assertSame( 418, $res );
 		$this->assertSame( 'a', $resSub );
 		$this->assertSame( 'b', $resSubSub );

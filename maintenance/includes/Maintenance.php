@@ -1260,6 +1260,31 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Call before shutdown to run any deferred updates
+	 * @since 1.36
+	 */
+	public function shutdown() {
+		$lbFactory = null;
+		if (
+			$this->getDbType() !== self::DB_NONE &&
+			// Service might be disabled, e.g. when running install.php
+			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
+		) {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory->commitMasterChanges( get_class( $this ) );
+			// @TODO: make less assumptions about deferred updates being coupled to the DB
+			DeferredUpdates::doUpdates();
+		}
+
+		wfLogProfilingData();
+
+		if ( $lbFactory ) {
+			$lbFactory->commitMasterChanges( 'doMaintenance' );
+			$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+		}
+	}
+
+	/**
 	 * Generic setup for most installs. Returns the location of LocalSettings
 	 * @return string
 	 */
