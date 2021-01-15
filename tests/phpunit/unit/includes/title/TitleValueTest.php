@@ -221,45 +221,4 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			$value->__toString()
 		);
 	}
-
-	public function provideIsSameLinkAs() {
-		yield [
-			new TitleValue( 0, 'Foo' ),
-			new TitleValue( 0, 'Foo' ),
-			true
-		];
-		yield [
-			new TitleValue( 1, 'Bar_Baz' ),
-			new TitleValue( 1, 'Bar_Baz' ),
-			true
-		];
-		yield [
-			new TitleValue( 0, 'Foo' ),
-			new TitleValue( 1, 'Foo' ),
-			false
-		];
-		yield [
-			new TitleValue( 0, 'Foo' ),
-			new TitleValue( 0, 'Foozz' ),
-			false
-		];
-		yield [
-			new TitleValue( 0, 'Foo', '' ),
-			new TitleValue( 0, 'Foo', 'Bar' ),
-			false
-		];
-		yield [
-			new TitleValue( 0, 'Foo', '', 'bar' ),
-			new TitleValue( 0, 'Foo', '', '' ),
-			false
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsSameLinkAs
-	 */
-	public function testIsSameLinkAs( TitleValue $a, TitleValue $b, $expected ) {
-		$this->assertSame( $expected, $a->isSameLinkAs( $b ) );
-		$this->assertSame( $expected, $b->isSameLinkAs( $a ) );
-	}
 }
