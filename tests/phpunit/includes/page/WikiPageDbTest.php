@@ -2,6 +2,8 @@
 
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -913,9 +915,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function provideHasViewableContent() {
 		return [
 			[ 'WikiPageTest_testHasViewableContent', false, true ],
-			[ 'Special:WikiPageTest_testHasViewableContent', false ],
 			[ 'MediaWiki:WikiPageTest_testHasViewableContent', false ],
-			[ 'Special:Userlogin', true ],
 			[ 'MediaWiki:help', true ],
 		];
 	}
@@ -1659,6 +1659,11 @@ more stuff
 		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
 
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( WikiPage::class, get_class( $page ) );
+		$this->assertSame( $page, WikiPage::factory( $page ) );
+
+		$title = new PageIdentityValue( 0, NS_MAIN, 'SomePage', PageIdentity::LOCAL );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( WikiPage::class, get_class( $page ) );
 	}
@@ -2584,4 +2589,5 @@ more stuff
 		$this->assertTrue( $isCalled );
 		$this->assertSame( $expectedWikiPage, $wikiPage );
 	}
+
 }
