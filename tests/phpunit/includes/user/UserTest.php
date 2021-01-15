@@ -1,8 +1,5 @@
 <?php
 
-define( 'NS_UNITTEST', 5600 );
-define( 'NS_UNITTEST_TALK', 5601 );
-
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
