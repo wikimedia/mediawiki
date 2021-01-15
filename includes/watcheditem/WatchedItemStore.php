@@ -1723,8 +1723,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				// Batch the insertions.
 				$batches = array_chunk( $expiryData, $this->updateRowsPerQuery );
 				foreach ( $batches as $toInsert ) {
-					$dbw->insert(
+					$dbw->replace(
 						'watchlist_expiry',
+						'we_item',
 						$toInsert,
 						$method
 					);
