@@ -170,14 +170,6 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function getFakeRow( array $rowValues ) {
-		$fakeRow = (object)[];
-		foreach ( $rowValues as $valueName => $value ) {
-			$fakeRow->$valueName = $value;
-		}
-		return $fakeRow;
-	}
-
 	/**
 	 * @param array $mocks Associative array providing mocks to use when constructing the
 	 *   WatchedItemStore. Anything not provided will fall back to a default. Valid keys:
@@ -397,10 +389,9 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb = $this->getMockDb();
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
-			),
+			(object)[ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ],
+			(object)[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ],
 		];
 		$mockDb->expects( $this->once() )
 			->method( 'makeWhereFrom2d' )
@@ -467,10 +458,9 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb = $this->getMockDb();
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
-			),
+			(object)[ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ],
+			(object)[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ],
 		];
 
 		$mockDb->expects( $this->once() )
@@ -575,11 +565,9 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
-			$this->getFakeRow(
-				[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
-			),
+			(object)[ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ],
+			(object)[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ],
 		];
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 + 1 ) )
@@ -670,17 +658,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
-			$this->getFakeRow(
-				[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
-			),
-			$this->getFakeRow(
-				[ 'wl_title' => 'SomeNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '100' ]
-			),
-			$this->getFakeRow(
-				[ 'wl_title' => 'OtherNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '200' ]
-			),
+			(object)[ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ],
+			(object)[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ],
+			(object)[ 'wl_title' => 'SomeNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '100' ],
+			(object)[ 'wl_title' => 'OtherNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '200' ],
 		];
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 ) )
@@ -941,14 +923,14 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 	public function testDuplicateEntry_somethingToDuplicate() {
 		$fakeRows = [
-			$this->getFakeRow( [
+			(object)[
 				'wl_user' => '1',
 				'wl_notificationtimestamp' => '20151212010101',
-			] ),
-			$this->getFakeRow( [
+			],
+			(object)[
 				'wl_user' => '2',
 				'wl_notificationtimestamp' => null,
-			] ),
+			],
 		];
 
 		$mockDb = $this->getMockDb();
@@ -1053,11 +1035,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		LinkTarget $newTarget
 	) {
 		$fakeRows = [
-			$this->getFakeRow( [
+			(object)[
 				'wl_user' => '1',
 				'wl_notificationtimestamp' => '20151212010101',
 				'we_expiry' => null,
-			] ),
+			],
 		];
 
 		$mockDb = $this->getMockDb();
@@ -1293,12 +1275,12 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101',
 					'we_expiry' => '20300101000000'
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -1473,12 +1455,12 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101',
 					'we_expiry' => '20300101000000'
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -1611,17 +1593,17 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				[ 'wl_user' => 1, 'we_expiry IS NULL OR we_expiry > 20200101000000' ]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo1',
 					'wl_notificationtimestamp' => '20151212010101',
 					'we_expiry' => '20300101000000'
-				] ),
-				$this->getFakeRow( [
+				],
+				(object)[
 					'wl_namespace' => 1,
 					'wl_title' => 'Foo2',
 					'wl_notificationtimestamp' => null,
-				] ),
+				],
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -1713,23 +1695,23 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				[ 'wl_user' => 1, 'we_expiry IS NULL OR we_expiry > 20200101000000' ]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo1',
 					'wl_notificationtimestamp' => '20151212010101',
 					'we_expiry' => '20300101000000'
-				] ),
-				$this->getFakeRow( [
+				],
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo2',
 					'wl_notificationtimestamp' => '20151212010101',
 					'we_expiry' => '20300701000000'
-				] ),
-				$this->getFakeRow( [
+				],
+				(object)[
 					'wl_namespace' => 1,
 					'wl_title' => 'Foo3',
 					'wl_notificationtimestamp' => null,
-				] ),
+				],
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -1796,11 +1778,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101',
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -1893,18 +1875,16 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		$mockDb = $this->getMockDb();
 		$dbResult = [
-			$this->getFakeRow( [
+			(object)[
 				'wl_namespace' => '0',
 				'wl_title' => 'SomeDbKey',
 				'wl_notificationtimestamp' => '20151212010101',
-			] ),
-			$this->getFakeRow(
-				[
-					'wl_namespace' => '1',
-					'wl_title' => 'AnotherDbKey',
-					'wl_notificationtimestamp' => null,
-				]
-			),
+			],
+			(object)[
+				'wl_namespace' => '1',
+				'wl_title' => 'AnotherDbKey',
+				'wl_notificationtimestamp' => null,
+			],
 		];
 
 		$mockDb->expects( $this->once() )
@@ -1977,7 +1957,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->will( $this->returnValue( $this->getFakeRow( [] ) ) );
+			->will( $this->returnValue( (object)[] ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->once() )
@@ -2029,9 +2009,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				$this->isType( 'string' )
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow(
-					[ 'wl_namespace' => '1', 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
-				)
+				(object)[ 'wl_namespace' => '1', 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -2196,11 +2174,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101',
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -2412,11 +2390,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101',
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -2600,11 +2578,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '30151212010101',
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -2700,11 +2678,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				]
 			)
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '30151212010101',
-				] )
+				]
 			] ) );
 
 		$mockCache = $this->getMockCache();
@@ -2947,11 +2925,11 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->will( $this->returnValue( [
-				$this->getFakeRow( [
+				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101'
-				] )
+				]
 			] ) );
 		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
