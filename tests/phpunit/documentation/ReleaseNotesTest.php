@@ -59,7 +59,7 @@ class ReleaseNotesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertFileLength( $type, $fileName ) {
-		$lines = file( $fileName, FILE_IGNORE_NEW_LINES );
+		$lines = file( $fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 
 		$this->assertNotFalse(
 			$lines,
@@ -79,12 +79,11 @@ class ReleaseNotesTest extends MediaWikiIntegrationTestCase {
 			}
 			$errors[] = "line $num: length $length > $max_length:\n$line";
 		}
-		# Use assertSame() instead of assertEqual(), to show the full line in the diff
+		// Use assertSame() instead of assertEqual(), to show the full line in the diff
 		$this->assertSame(
 			[],
 			$errors,
-			"$type file '$fileName' lines " .
-			"have at most $max_length characters"
+			"$type file '$fileName' lines have at most $max_length characters"
 		);
 	}
 }
