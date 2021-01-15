@@ -182,29 +182,4 @@ class PageIdentityValue implements ProperPageIdentity {
 
 		return $name . ' [' . $this->namespace . ':' . $this->dbKey . ']';
 	}
-
-	/**
-	 * @param PageIdentity $other
-	 *
-	 * @return bool
-	 */
-	public function isSamePageAs( PageIdentity $other ) {
-		// NOTE: keep in sync with Title::isSamePageAs()!
-		// NOTE: keep in sync with WikiPage::isSamePageAs()!
-
-		if ( $other->getWikiId() !== $this->getWikiId()
-			|| $other->getId() !== $this->getId() ) {
-			return false;
-		}
-
-		if ( $this->getId() === 0 ) {
-			if ( $other->getNamespace() !== $this->getNamespace()
-				|| $other->getDBkey() !== $this->getDBkey() ) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 }

@@ -315,17 +315,4 @@ class TitleValue implements LinkTarget {
 
 		return $name;
 	}
-
-	/**
-	 * @param LinkTarget $other
-	 *
-	 * @return bool
-	 */
-	public function isSameLinkAs( LinkTarget $other ) {
-		// NOTE: keep in sync with Title::isSameLinkAs()!
-		return ( $other->getInterwiki() === $this->getInterwiki() )
-			&& ( $other->getDBkey() === $this->getDBkey() )
-			&& ( $other->getNamespace() === $this->getNamespace() )
-			&& ( $other->getFragment() === $this->getFragment() );
-	}
 }

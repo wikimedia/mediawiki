@@ -2,8 +2,6 @@
 
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -915,7 +913,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function provideHasViewableContent() {
 		return [
 			[ 'WikiPageTest_testHasViewableContent', false, true ],
+			[ 'Special:WikiPageTest_testHasViewableContent', false ],
 			[ 'MediaWiki:WikiPageTest_testHasViewableContent', false ],
+			[ 'Special:Userlogin', true ],
 			[ 'MediaWiki:help', true ],
 		];
 	}
@@ -1659,11 +1659,6 @@ more stuff
 		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
 
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiPage::class, get_class( $page ) );
-		$this->assertSame( $page, WikiPage::factory( $page ) );
-
-		$title = new PageIdentityValue( 0, NS_MAIN, 'SomePage', PageIdentity::LOCAL );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( WikiPage::class, get_class( $page ) );
 	}
@@ -2589,96 +2584,4 @@ more stuff
 		$this->assertTrue( $isCalled );
 		$this->assertSame( $expectedWikiPage, $wikiPage );
 	}
-
-	/**
-	 * @covers WikiPage::getTitle
-	 * @covers WikiPage::getId
-	 * @covers WikiPage::getNamespace
-	 * @covers WikiPage::getDBkey
-	 * @covers WikiPage::getWikiId
-	 * @covers WikiPage::canExist
-	 */
-	public function testGetTitle() {
-		$page = $this->createPage( __METHOD__, 'whatever' );
-
-		$title = $page->getTitle();
-		$this->assertSame( __METHOD__, $title->getText() );
-
-		$this->assertSame( $page->getId(), $title->getId() );
-		$this->assertSame( $page->getNamespace(), $title->getNamespace() );
-		$this->assertSame( $page->getDBkey(), $title->getDBkey() );
-		$this->assertSame( $page->getWikiId(), $title->getWikiId() );
-		$this->assertSame( $page->canExist(), $title->canExist() );
-	}
-
-	/**
-	 * @param int $id
-	 * @param int $ns
-	 * @param string $name
-	 *
-	 * @return WikiPage
-	 */
-	private function makeMockForIsSamePageAs( $id, $ns, $name ) {
-		$title = Title::makeTitle( $ns, $name );
-
-		/** @var MockObject|WikiPage $page */
-		$page = $this->getMockBuilder( WikiPage::class )
-			->setConstructorArgs( [ $title ] )
-			->onlyMethods( [ 'getId' ] )
-			->getMock();
-
-		$page->method( 'getId' )->willReturn( $id );
-
-		return $page;
-	}
-
-	public function provideIsSamePageAs() {
-		yield [
-			$this->makeMockForIsSamePageAs( 1, 0, 'Foo' ),
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
-			true
-		];
-
-		yield [
-			$this->makeMockForIsSamePageAs( 0, 1, 'Bar_Baz' ),
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
-			true
-		];
-
-		yield [
-			$this->makeMockForIsSamePageAs( 0, 0, 'Foo' ),
-			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
-			false
-		];
-
-		yield [
-			$this->makeMockForIsSamePageAs( 0, 0, 'Foo' ),
-			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
-			false
-		];
-
-		yield [
-			$this->makeMockForIsSamePageAs( 1, 0, 'Foo' ),
-			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
-			false
-		];
-
-		yield [
-			$this->makeMockForIsSamePageAs( 0, 0, 'Foo' ),
-			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
-			false
-		];
-	}
-
-	/**
-	 * @covers WikiPage::isSamePageAs
-	 * @dataProvider provideIsSamePageAs
-	 */
-	public function testIsSamePageAs( WikiPage $firstValue, $secondValue, $expectedSame ) {
-		$this->assertSame(
-			$expectedSame,
-			$firstValue->isSamePageAs( $secondValue )
-		);
-	}
-
 }

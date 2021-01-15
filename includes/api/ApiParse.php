@@ -249,14 +249,13 @@ class ApiParse extends ApiBase {
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
 				$pageObj = WikiPage::factory( $titleObj );
-				list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
-			} else { // A special page, presumably
-				// XXX: Why is this needed at all? Can't we just fail?
-				$pageObj = null;
-				$popts = ParserOptions::newCanonical( $this->getContext() );
-				list( $popts, $reset ) = $this->tweakParserOptions( $popts, $titleObj, $params );
+			} else {
+				// Do like MediaWiki::initializeArticle()
+				$article = Article::newFromTitle( $titleObj, $this->getContext() );
+				$pageObj = $article->getPage();
 			}
 
+			list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
 			$textProvided = $text !== null;
 
 			if ( !$textProvided ) {
@@ -332,7 +331,7 @@ class ApiParse extends ApiBase {
 		$result_array = [];
 
 		$result_array['title'] = $titleObj->getPrefixedText();
-		$result_array['pageid'] = $pageid ?: $titleObj->getArticleID();
+		$result_array['pageid'] = $pageid ?: $pageObj->getId();
 		if ( $this->contentIsDeleted ) {
 			$result_array['textdeleted'] = true;
 		}
@@ -361,10 +360,7 @@ class ApiParse extends ApiBase {
 			// - Hook: OutputPageBeforeHTML
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
-
-			if ( $pageObj ) {
-				$context->setWikiPage( $pageObj );
-			}
+			$context->setWikiPage( $pageObj );
 			// Some hooks only apply to pages when action=view, which this API
 			// call is simulating.
 			$context->setRequest( new FauxRequest( [ 'action' => 'view' ] ) );
@@ -608,21 +604,8 @@ class ApiParse extends ApiBase {
 	 *
 	 * @return array [ ParserOptions, ScopedCallback, bool $suppressCache ]
 	 */
-	private function makeParserOptions( WikiPage $pageObj, array $params ) {
+	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
-		return $this->tweakParserOptions( $popts, $pageObj->getTitle(), $params );
-	}
-
-	/**
-	 * Tweaks a ParserOptions object
-	 *
-	 * @param ParserOptions $popts
-	 * @param Title $title
-	 * @param array $params
-	 *
-	 * @return array [ ParserOptions, ScopedCallback, bool $suppressCache ]
-	 */
-	private function tweakParserOptions( ParserOptions $popts, Title $title, array $params ) {
 		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
@@ -633,7 +616,7 @@ class ApiParse extends ApiBase {
 
 		$reset = null;
 		$suppressCache = false;
-		$this->getHookRunner()->onApiMakeParserOptions( $popts, $title,
+		$this->getHookRunner()->onApiMakeParserOptions( $popts, $pageObj->getTitle(),
 			$params, $this, $reset, $suppressCache );
 
 		return [ $popts, $reset, $suppressCache ];
