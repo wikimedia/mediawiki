@@ -648,3 +648,27 @@ CREATE TABLE /*_*/text (
   old_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   old_text BLOB NOT NULL, old_flags BLOB NOT NULL
 );
+
+
+CREATE TABLE /*_*/oldimage (
+  oi_name BLOB DEFAULT '' NOT NULL, oi_archive_name BLOB DEFAULT '' NOT NULL,
+  oi_size INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  oi_width INTEGER DEFAULT 0 NOT NULL,
+  oi_height INTEGER DEFAULT 0 NOT NULL,
+  oi_bits INTEGER DEFAULT 0 NOT NULL,
+  oi_description_id BIGINT UNSIGNED NOT NULL,
+  oi_actor BIGINT UNSIGNED NOT NULL,
+  oi_timestamp BLOB NOT NULL, oi_metadata BLOB NOT NULL,
+  oi_media_type TEXT DEFAULT NULL, oi_major_mime TEXT DEFAULT 'unknown' NOT NULL,
+  oi_minor_mime BLOB DEFAULT 'unknown' NOT NULL,
+  oi_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  oi_sha1 BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX oi_actor_timestamp ON /*_*/oldimage (oi_actor, oi_timestamp);
+
+CREATE INDEX oi_name_timestamp ON /*_*/oldimage (oi_name, oi_timestamp);
+
+CREATE INDEX oi_name_archive_name ON /*_*/oldimage (oi_name, oi_archive_name);
+
+CREATE INDEX oi_sha1 ON /*_*/oldimage (oi_sha1);

@@ -164,29 +164,6 @@ CREATE INDEX img_size_idx      ON image (img_size);
 CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE INDEX img_sha1          ON image (img_sha1);
 
-CREATE TABLE oldimage (
-  oi_name          TEXT         NOT NULL,
-  oi_archive_name  TEXT         NOT NULL,
-  oi_size          INTEGER      NOT NULL,
-  oi_width         INTEGER      NOT NULL,
-  oi_height        INTEGER      NOT NULL,
-  oi_bits          SMALLINT         NULL,
-  oi_description_id INTEGER     NOT NULL,
-  oi_actor         INTEGER      NOT NULL,
-  oi_timestamp     TIMESTAMPTZ      NULL,
-  oi_metadata      BYTEA        NOT NULL DEFAULT '',
-  oi_media_type    TEXT             NULL,
-  oi_major_mime    TEXT             NULL DEFAULT 'unknown',
-  oi_minor_mime    TEXT             NULL DEFAULT 'unknown',
-  oi_deleted       SMALLINT     NOT NULL DEFAULT 0,
-  oi_sha1          TEXT         NOT NULL DEFAULT ''
-);
-ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE INDEX oi_name_timestamp    ON oldimage (oi_name,oi_timestamp);
-CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
-CREATE INDEX oi_sha1              ON oldimage (oi_sha1);
-
-
 CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),

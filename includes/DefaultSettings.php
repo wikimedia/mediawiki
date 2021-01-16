@@ -3699,242 +3699,235 @@ $wgMangleFlashPolicy = true;
 /**
  * Define extra client-side modules to be registered with ResourceLoader.
  *
- * NOTE: It is recommended to define modules in extension.json or skin.json
- * whenever possible.
+ * @note It is recommended to define modules using the `ResourceModule` attribute
+ * in `extension.json` or `skin.json` when possible (instead of via PHP global variables).
  *
- * ## Using resource modules
+ * Registration is internally handled by ResourceLoader::register.
  *
- * By default modules are registered as an instance of ResourceLoaderFileModule.
- * You find the relevant code in resources/Resources.php. These are the options:
+ * ## Available modules
  *
- * ### class
+ * Modules that ship with %MediaWiki core are registered via
+ * resources/Resources.php. For a full list with documentation, see:
+ * [ResourceLoader/Core_modules](https://www.mediawiki.org/wiki/ResourceLoader/Core_modules).
  *
- * Alternate subclass of ResourceLoaderModule (rather than default ResourceLoaderFileModule).
- * If this is used, some of the other properties may not apply, and you can specify your
- * own arguments. Since MediaWiki 1.30, it may now specify a callback function as an
- * alternative to a plain class name, using the factory key in the module description array.
- * This allows dependency injection to be used for %ResourceLoader modules.
+ * ## Options
  *
- * Class name of alternate subclass
+ * - class `{string}`:
+ *   By default a module is assumed to bundle file resources
+ *   as handled by the ResourceLoaderFileModule class. Use this option
+ *   to use a different implementation of ResourceLoaderModule instead.
  *
- * @par Example:
+ *   Default: `ResourceLoaderFileModule`
+ *
+ * - factory `{string}`:
+ *   Override the instantiation of the ResourceLoaderModule class using
+ *   a PHP callback. This allows dependency injection to be used.
+ *   This option cannot be combined with the `class` option.
+ *
+ *   Since: **MW 1.30**
+ *
+ * - dependencies `{string[]|string}`:
+ *   Modules that must be executed before this module.
+ *   Module name string or list of module name strings.
+ *
+ *   Default: `[]`
+ *
+ * - deprecated `{bool|string}`:
+ *   Whether the module is deprecated and usage is discouraged.
+ *   Set to boolean true, or a string to include in the warning message.
+ *
+ *   Default: `false`
+ *
+ * - group `{string}`:
+ *   Optional request group to override which modules may be downloaded
+ *   together in an HTTP batch request. By default, any two modules may be
+ *   loaded together in the same batch request. Set this option to a
+ *   descriptive string to give the module its own HTTP request. To allow
+ *   other modules to join this new request, give those the same request group.
+ *
+ *   Use this option with caution. The default behaviour is well-tuned already,
+ *   and setting this often does more harm than good. For more about request
+ *   balancing optimisations, see
+ *   [ResourceLoader/Architecture#Balance](https://www.mediawiki.org/wiki/ResourceLoader/Architecture#Balance).
+ *
+ * - skipFunction `{string}`:
+ *   Allow this module to be satisfied as dependency without actually loading
+ *   or executing scripts from the server, if the specified JavaScript function
+ *   returns true.
+ *
+ *   Use this to provide polyfills that are natively available in newer browsers.
+ *   Specify the relative path to a JavaScript file containing a top-level return
+ *   statement. The contents of the file should not contain any wrapping function,
+ *   it will be wrapped by %ResourceLoader in an anonymous function and invoked
+ *   when the module is considered for loading.
+ *
+ * - targets `{string[]}`
+ *   List of %ResourceLoader targets where the module may be loaded from.
+ *   This is used by the MobileFrontend extension to prevent certain modules
+ *   from being loaded.
+ *
+ *   This option is **deprecated**. See [T127268](https://phabricator.wikimedia.org/T127268).
+ *
+ *   Default: `["desktop"]`
+ *
+ * ## FileModule options
+ *
+ * - localBasePath `{string}`:
+ *   Base file path to prepend to relative file paths specified in other options.
+ *
+ *   Default: `$IP`
+ *
+ * - remoteBasePath `{string}`:
+ *   Base URL path to prepend to relative file paths specified in other options.
+ *   This is used to form URLs for files, such as when referencing images in
+ *   stylesheets, or in debug mode to serve JavaScript files directly.
+ *
+ *   Default: @ref $wgResourceBasePath (which defaults to @ref $wgScriptPath)
+ *
+ * - remoteExtPath `{string}`:
+ *   Shortcut for `remoteBasePath` that is relative to $wgExtensionAssetsPath.
+ *   Use this when defining modules from an extension, so as to avoid hardcoding
+ *   the script path of the %MediaWiki install or the location of the extensions
+ *   directory.
+ *
+ *   This option is mutually exclusive with `remoteBasePath`.
+ *
+ * - styles `{string[]|string|array<string,array>}`:
+ *   Styles to always include in the module.
+ *   %File path or list of file paths, relative to `localBasePath`.
+ *   The stylesheet can be automatically wrapped in a `@media` query by specifying
+ *   the file path as the key in an object (instead of the value), with the value
+ *   specifying a `media` query.
+ *
+ *   See @ref wgResourceModules-example-stylesheet "Stylesheet examples" below.
+ *
+ *   See also @ref $wgResourceModuleSkinStyles.
+ *
+ *   Extended options:
+ *
+ *   - skinStyles `{string[]|string}`: Styles to include in specific skin contexts.
+ *     Array keyed is by skin name with file path or list of file paths as value,
+ *     relative to `localBasePath`.
+ *
+ *   Default: `[]`
+ *
+ * - noflip `{bool}`:
+ *   By default, CSSJanus will be used automatically to perform LTR-to-RTL flipping
+ *   when loaded in a right-to-left (RTL) interface language context.
+ *   Use this option to skip CSSJanus LTR-to-RTL flipping for this module, for example
+ *   when registering an external library that already handles RTL styles.
+ *
+ *   Default: `false`
+ *
+ * - packageFiles `{string[]|array[]}`
+ *   Specify script files and (virtual) data files to include in the module.
+ *   Each internal JavaScript file retains its own local module scope and its
+ *   private exports can be accessed separately by other client-side code in the
+ *   same module, via the local `require()` function.
+ *
+ *   Modules that use package files should export any public API methods using
+ *   `module.exports`.
+ *
+ *   See examples at [ResourceLoader/Package_files](https://www.mediawiki.org/wiki/ResourceLoader/Package_files)
+ *   on mediawiki.org.
+ *
+ *   The `packageFiles` feature cannot be combined with legacy scripts that use
+ *   the `scripts` option, including its extended variants `languageScripts`,
+ *   `skinScripts`, and `debugScripts`.
+ *
+ *   Since: **MW 1.33**
+ *
+ *   Default: `[]`
+ *
+ * - scripts `{string[]|string}`:
+ *   Scripts to always include in the module.
+ *   %File path or list of file paths, relative to `localBasePath`.
+ *
+ *   These files are concatenated blindly and executed as a single client-side script.
+ *   Modules using this option are sometimes referred to as "legacy scripts" to
+ *   distinguish them from those that use the `packageFiles` option.
+ *
+ *   Modules that use legacy scripts usually attach any public APIs they have
+ *   to the `mw` global variable. If a module contains just one file, it is also
+ *   supported to use the newer `module.exports` mechanism, though if the module
+ *   contains more than one legacy script, it is considered unsafe and unsupported
+ *   to use this mechanism (use `packageFiles` instead). See also
+ *   [Coding conventions/JavaScript](https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Exporting).
+ *
+ *   Extended options:
+ *
+ *   - languageScripts `{string[]|string}`: Scripts to include in specific language contexts.
+ *     Array is keyed by language code with file path or list of file path.
+ *   - skinScripts `{string[]|string}`: Scripts to include in specific skin contexts.
+ *     Array keyed is by skin name with file path or list of file paths.
+ *   - debugScripts `{string[]|string}`: Scripts to include in debug contexts.
+ *     %File path or list of file paths.
+ *
+ *   Default: `[]`
+ *
+ * - messages `{string[]}`
+ *   Localisation messages to bundle with this module, for client-side use
+ *   via `mw.msg()` and `mw.message()`. List of message keys.
+ *
+ *   Default: `[]`
+ *
+ * - templates `{string[]}`
+ *   List of template files to be loaded for client-side usage via `mw.templates`.
+ *
+ *   Default: `[]`
+ *
+ * ## Examples
+ *
+ * @par Example: Using an alternate subclass
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
  *     'class' => ResourceLoaderWikiModule::class,
  *   ];
  * @endcode
  *
- * ### debugScripts
- *
- * Scripts to include in debug contexts.
- *
- * %File path string or array of file path strings.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'debugScripts' => 'resources/MyExtension/debugMyExt.js',
- *   ];
- * @endcode
- *
- * ### dependencies
- *
- * Modules which must be loaded before this module.
- *
- * Module name string or array of module name strings.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'dependencies' => [ 'jquery.cookie', 'mediawiki.util' ],
- *   ];
- * @endcode
- *
- * ### deprecated
- *
- * Whether the module is deprecated and usage is discouraged.
- *
- * Either a boolean, or a string or an object with key message can be used to customise
- * deprecation message.
- *
- * @par Example:
+ * @par Example: Deprecated module
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
  *     'deprecated' => 'You should use ext.myExtension2 instead',
  *   ];
  * @endcode
  *
- * ### group
- *
- * Group which this module should be loaded together with.
- *
- * Group name string.
- *
- * @par Example:
+ * @par Example: Base paths in extension.json
  * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'group' => 'myExtGroup',
+ *   "ext.myExtension": {
+ *     "localBasePath": "modules/ext.MyExtension",
+ *     "remoteExtPath": "MyExtension/modules/ext.MyExtension"
+ *   }
+ * @endcode
+ *
+ * @par Example: Base paths in core with PHP
+ * @code
+ *   $wgResourceModules['mediawiki.example'] = [
+ *     'localBasePath' => "$IP/resources/src/mediawiki.example",
+ *     'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.example",
  *   ];
  * @endcode
  *
- * See also
- * [Groups](https://www.mediawiki.org/wiki/Special:MyLanguage/ResourceLoader/Features#Groups)
- * on mediawiki.org.
+ * @par Example: Define a skip function
+ * @code
+ *   $wgResourceModules['ext.myExtension.SomeWebAPI'] = [
+ *     'skipFunction' => 'skip-SomeWebAPI.js',
+ *   ];
+ * @endcode
+ * @par Example: Contents of skip function file
+ * @code
+ *   return typeof SomeWebAPI === 'function' && SomeWebAPI.prototype.duckMethod;
+ * @endcode
  *
- * ### languageScripts
- *
- * Scripts to include in specific language contexts. See the scripts option below for an
- * example.
- *
- * Array keyed by language code containing file path string or array of file path strings.
- *
- * ### localBasePath
- *
- * Base path to prepend to all local paths in $options. Defaults to $IP.
- *
- * Base path string
- *
- * @par Example:
+ * @par Example: Module targets
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
- *     'localBasePath' => __DIR__,
+ *     'targets' => [ 'desktop', 'mobile' ],
  *   ];
  * @endcode
  *
- * ### messages
- *
- * Messages to always load
- *
- * Array of message key strings.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'messages' => [
- *       'searchsuggest-search',
- *       'searchsuggest-containing',
- *     ],
- *   ];
- * @endcode
- *
- * ### noflip
- *
- * Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles
- * imported from libraries that already properly handle their RTL styles. Default is false,
- * meaning CSSJanus will be applied on RTL-mode output.
- *
- * Boolean.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'noflip' => true,
- *   ];
- * @endcode
- *
- * ### packageFiles
- *
- * Package files that can be require()d. 'packageFiles' cannot be combined with any of the
- * scripts options: 'scripts', 'languageScripts' and 'debugScripts'.
- *
- * String or array of package file.
- *
- * ### remoteBasePath
- *
- * Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath.
- * Cannot be combined with remoteExtPath.
- *
- * Base path string
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'remoteBasePath' => '/w/extensions/MyExtension',
- *   ];
- * @endcode
- *
- * ### remoteExtPath
- *
- * Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath. Cannot be
- * combined with remoteBasePath
- *
- * Base path string
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'remoteExtPath' => 'MyExtension',
- *   ];
- * @endcode
- *
- * ### scripts
- *
- * Scripts to always include.
- *
- * %File path string or array of file path strings.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'languageScripts' => [
- *       'bs' => 'extensions/MyExtension/languages/bs.js',
- *       'fi' => 'extensions/MyExtension/languages/fi.js',
- *     ],
- *     'scripts' => [
- *       'extensions/MyExtension/myExtension.js',
- *       'extensions/MyExtension/utils.js',
- *     ],
- *   ];
- * @endcode
- *
- * ### skinScripts
- *
- * Scripts to include in specific skin contexts.
- *
- * Array keyed by skin name containing file path string or array of file path strings.
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'skinScripts' => [
- *       'default' => 'extensions/MyExtension/default-skin-overrides.js',
- *     ],
- *   ];
- * @endcode
- *
- * ### skinStyles
- *
- * Styles to include in specific skin contexts. (mapping of skin name to style(s))
- * See $wgResourceModuleSkinStyles below for an example.
- *
- * Array keyed by skin name containing file path string or array of file path strings.
- *
- * ### skipFunction
- *
- * Function that returns true when the module should be skipped. Intended for when the
- * module provides a polyfill that is not required in modern browsers
- *
- * Filename of a JavaScript file with a top-level return (it should not be wrapped in a
- * function).
- *
- * @par Example:
- * @code
- *   $wgResourceModules['ext.myExtension'] = [
- *     'skipFunction' => 'myext-polyfill-needed.js',
- *   ];
- * @endcode
- *
- * ### styles
- *
- * Styles to always include in the module.
- *
- * %File path string or list of file path strings. The included file can be automatically
- * wrapped in a @media query by specifying the file path as the key in an object, with
- * the value specifying the media query.
- *
- * See $wgResourceModuleSkinStyles below for additional examples.
- *
- * @par Example:
+ * @anchor wgResourceModules-example-stylesheet
+ * @par Example: Stylesheets
  * @code
  *   $wgResourceModules['example'] = [
  *     'styles' => [
@@ -3954,26 +3947,41 @@ $wgMangleFlashPolicy = true;
  *   ];
  * @endcode
  *
- * ### targets
+ * @par Example: Package files
+ * @code
+ *   "ext.myExtension": {
+ *     "localBasePath": "modules/ext.MyExtension",
+ *     "remoteExtPath": "MyExtension/modules/ext.MyExtension",
+ *     "packageFiles": [
+ *       "index.js",
+ *       "utils.js",
+ *       "data.json"
+ *     ]
+ *   }
+ * }
+ * @endcode
  *
- * %ResourceLoader target the module can run on.
- *
- * String or array of targets.
- *
- * @par Example:
+ * @par Example: Legacy scripts
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
- *     'targets' => [ 'desktop', 'mobile' ],
+ *     'scripts' => [
+ *       'modules/ext.myExtension/utils.js',
+ *       'modules/ext.myExtension/myExtension.js',
+ *     ],
+ *     'languageScripts' => [
+ *       'bs' => 'modules/ext.myExtension/languages/bs.js',
+ *       'fi' => 'modules/ext.myExtension/languages/fi.js',
+ *     ],
+ *     'skinScripts' => [
+ *       'default' => 'modules/ext.myExtension/skin-default.js',
+ *     ],
+ *     'debugScripts' => [
+ *       'modules/ext.myExtension/debug.js',
+ *     ],
  *   ];
  * @endcode
  *
- * ### templates
- *
- * Templates to be loaded for client-side usage.
- *
- * Object or array of templates.
- *
- * @par Example:
+ * @par Example: Template files
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
  *     'templates' => [
@@ -3982,6 +3990,8 @@ $wgMangleFlashPolicy = true;
  *     ],
  *   ];
  * @endcode
+ *
+ * @since 1.17
  */
 $wgResourceModules = [];
 

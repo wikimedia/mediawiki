@@ -694,3 +694,25 @@ CREATE TABLE text (
   old_flags TEXT NOT NULL,
   PRIMARY KEY(old_id)
 );
+
+
+CREATE TABLE oldimage (
+  oi_name TEXT DEFAULT '' NOT NULL, oi_archive_name TEXT DEFAULT '' NOT NULL,
+  oi_size INT DEFAULT 0 NOT NULL, oi_width INT DEFAULT 0 NOT NULL,
+  oi_height INT DEFAULT 0 NOT NULL, oi_bits INT DEFAULT 0 NOT NULL,
+  oi_description_id BIGINT NOT NULL,
+  oi_actor BIGINT NOT NULL, oi_timestamp TIMESTAMPTZ NOT NULL,
+  oi_metadata TEXT NOT NULL, oi_media_type TEXT DEFAULT NULL,
+  oi_major_mime TEXT DEFAULT 'unknown' NOT NULL,
+  oi_minor_mime TEXT DEFAULT 'unknown' NOT NULL,
+  oi_deleted SMALLINT DEFAULT 0 NOT NULL,
+  oi_sha1 TEXT DEFAULT '' NOT NULL
+);
+
+CREATE INDEX oi_actor_timestamp ON oldimage (oi_actor, oi_timestamp);
+
+CREATE INDEX oi_name_timestamp ON oldimage (oi_name, oi_timestamp);
+
+CREATE INDEX oi_name_archive_name ON oldimage (oi_name, oi_archive_name);
+
+CREATE INDEX oi_sha1 ON oldimage (oi_sha1);
