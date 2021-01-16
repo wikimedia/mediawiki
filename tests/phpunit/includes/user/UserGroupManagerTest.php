@@ -55,6 +55,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $configOverrides
 	 * @param UserEditTracker|null $userEditTrackerOverride
+	 * @param callable|null $callback
 	 * @return UserGroupManager
 	 */
 	private function getManager(

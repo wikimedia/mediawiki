@@ -189,6 +189,7 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param string[] $methodsToReturnTrue
 	 * @return Title
 	 */
 	private function mockProtectedTitle( $methodsToReturnTrue ) {

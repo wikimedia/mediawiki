@@ -11,7 +11,10 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	/** @var MultiHttpClient|MockObject */
 	protected $client;
 
-	/** @return MultiHttpClient|MockObject */
+	/**
+	 * @param array $options
+	 * @return MultiHttpClient|MockObject
+	 */
 	private function createClient( $options = [] ) {
 		$client = $this->getMockBuilder( MultiHttpClient::class )
 			->setConstructorArgs( [ $options ] )

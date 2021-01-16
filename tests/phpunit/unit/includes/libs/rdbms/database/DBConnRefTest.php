@@ -63,6 +63,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @param ILoadBalancer|null $lb
 	 * @return IDatabase
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {

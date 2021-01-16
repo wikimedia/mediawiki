@@ -428,6 +428,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * that assert behaviour when the name is a mismatch, we need to
 	 * catch the error here instead of there).
 	 *
+	 * @param string[] $methods
 	 * @return Database
 	 */
 	private function getMockDB( $methods = [] ) {

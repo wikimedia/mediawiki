@@ -266,6 +266,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * error in the way we construct the mock.
 	 *
 	 * @param bool $canProcessExpiries
+	 * @return ApiUserrights
 	 */
 	private function getMockForProcessingExpiries( $canProcessExpiries ) {
 		$sysop = $this->getTestSysop()->getUser();

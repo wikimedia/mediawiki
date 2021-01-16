@@ -122,6 +122,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param array $server
 	 * @return LoadBalancer|MockObject
 	 */
 	private function getLoadBalancerMock( array $server ) {
@@ -144,6 +145,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param array $params
 	 * @return Database|MockObject
 	 */
 	private function getDatabaseMock( array $params ) {

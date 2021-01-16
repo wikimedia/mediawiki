@@ -640,6 +640,8 @@ class UploadTestHandler extends UploadBase {
 	 * Almost the same as UploadBase::detectScriptInSvg, except it's
 	 * public, works on an xml string instead of filename, and returns
 	 * the result instead of interpreting them.
+	 * @param string $svg
+	 * @return array
 	 */
 	public function checkSvgString( $svg ) {
 		$check = new XmlTypeCheck(
@@ -656,6 +658,7 @@ class UploadTestHandler extends UploadBase {
 
 	/**
 	 * Same as parent function, but override visibility to 'public'.
+	 * @inheritDoc
 	 */
 	public function detectScriptInSvg( $filename, $partial ) {
 		return parent::detectScriptInSvg( $filename, $partial );

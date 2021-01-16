@@ -206,6 +206,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * var_export( $x );
 	 * @endcode
 	 *
+	 * @param array $opts
 	 * @return Xhprof
 	 */
 	protected function getXhprofDataFixture( array $opts = [] ) {

@@ -158,6 +158,8 @@ class ParserFuzzTest extends Maintenance {
 
 	/**
 	 * Estimate the size of the input variable
+	 * @param mixed $var
+	 * @return int
 	 */
 	public function guessVarSize( $var ) {
 		$length = 0;
