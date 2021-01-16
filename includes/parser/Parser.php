@@ -4561,8 +4561,8 @@ class Parser {
 		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";
 		// [[ns:page（context）|]] (double-width brackets, added in r40257)
 		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)( ?（$tc+）)\\|]]/";
-		// [[ns:page (context), context|]] (using either single or double-width comma)
-		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)((?:, |，)$tc+|)\\|]]/";
+		// [[ns:page (context), context|]] (using single, double-width or Arabic comma)
+		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)((?:, |，|، )$tc+|)\\|]]/";
 		// [[|page]] (reverse pipe trick: add context from page title)
 		$p2 = "/\[\[\\|($tc+)]]/";
 
