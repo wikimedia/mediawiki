@@ -192,11 +192,12 @@ CREATE TABLE recentchanges (
 );
 ALTER SEQUENCE recentchanges_rc_id_seq OWNED BY recentchanges.rc_id;
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
-CREATE INDEX rc_timestamp_bot   ON recentchanges (rc_timestamp) WHERE rc_bot = 0;
 CREATE INDEX rc_namespace_title_timestamp ON recentchanges (rc_namespace, rc_title, rc_timestamp);
 CREATE INDEX rc_cur_id          ON recentchanges (rc_cur_id);
 CREATE INDEX new_name_timestamp ON recentchanges (rc_new, rc_namespace, rc_timestamp);
 CREATE INDEX rc_ip              ON recentchanges (rc_ip);
+CREATE INDEX rc_ns_actor        ON recentchanges (rc_namespace, rc_actor);
+CREATE INDEX rc_actor           ON recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 CREATE INDEX rc_this_oldid      ON recentchanges (rc_this_oldid);
 

@@ -927,6 +927,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'oldimage', 'oi_minor_mime', 'NOT NULL', true ],
 			[ 'dropFkey', 'oldimage', 'oi_name' ],
 			[ 'addPgIndex', 'oldimage', 'oi_actor_timestamp', '(oi_actor, oi_timestamp)' ],
+			[ 'dropPgIndex', 'recentchanges', 'rc_timestamp_bot' ],
+			[ 'addPgIndex', 'recentchanges', 'rc_ns_actor', '(rc_namespace, rc_actor)' ],
+			[ 'addPgIndex', 'recentchanges', 'rc_actor', '(rc_actor, rc_timestamp)' ],
 		];
 	}
 
