@@ -1,0 +1,2 @@
+ALTER TABLE /*_*/oldimage MODIFY oi_name VARBINARY(255) DEFAULT '' NOT NULL,
+    MODIFY oi_archive_name VARBINARY(255) DEFAULT '' NOT NULL;

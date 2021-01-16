@@ -483,6 +483,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'filearchive', 'fa_name', 'patch-filearchive-fa_name.sql' ],
 			[ 'dropDefault', 'filearchive', 'fa_deleted_timestamp' ],
 			[ 'dropDefault', 'filearchive', 'fa_timestamp' ],
+			[ 'modifyField', 'oldimage', 'oi_name', 'patch-oldimage-oi_name-varbinary.sql' ],
+			[ 'dropDefault', 'oldimage', 'oi_timestamp' ],
 		];
 	}
 

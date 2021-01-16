@@ -624,3 +624,40 @@ CREATE TABLE /*_*/text (
   old_flags TINYBLOB NOT NULL,
   PRIMARY KEY(old_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/oldimage (
+  oi_name VARBINARY(255) DEFAULT '' NOT NULL,
+  oi_archive_name VARBINARY(255) DEFAULT '' NOT NULL,
+  oi_size INT UNSIGNED DEFAULT 0 NOT NULL,
+  oi_width INT DEFAULT 0 NOT NULL,
+  oi_height INT DEFAULT 0 NOT NULL,
+  oi_bits INT DEFAULT 0 NOT NULL,
+  oi_description_id BIGINT UNSIGNED NOT NULL,
+  oi_actor BIGINT UNSIGNED NOT NULL,
+  oi_timestamp BINARY(14) NOT NULL,
+  oi_metadata MEDIUMBLOB NOT NULL,
+  oi_media_type ENUM(
+    'UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO',
+    'VIDEO', 'MULTIMEDIA', 'OFFICE',
+    'TEXT', 'EXECUTABLE', 'ARCHIVE',
+    '3D'
+  ) DEFAULT NULL,
+  oi_major_mime ENUM(
+    'unknown', 'application', 'audio',
+    'image', 'text', 'video', 'message',
+    'model', 'multipart', 'chemical'
+  ) DEFAULT 'unknown' NOT NULL,
+  oi_minor_mime VARBINARY(100) DEFAULT 'unknown' NOT NULL,
+  oi_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  oi_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
+  INDEX oi_actor_timestamp (oi_actor, oi_timestamp),
+  INDEX oi_name_timestamp (oi_name, oi_timestamp),
+  INDEX oi_name_archive_name (
+    oi_name,
+    oi_archive_name(14)
+  ),
+  INDEX oi_sha1 (
+    oi_sha1(10)
+  )
+) /*$wgDBTableOptions*/;
