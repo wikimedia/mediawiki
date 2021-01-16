@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * The RevisionRenderer service provides access to rendered output for revisions.
- * It does so be acting as a factory for RenderedRevision instances, which in turn
+ * It does so by acting as a factory for RenderedRevision instances, which in turn
  * provide lazy access to ParserOutput objects.
  *
  * One key responsibility of RevisionRenderer is implementing the layout used to combine
@@ -113,7 +113,7 @@ class RevisionRenderer {
 			?? ( $forUser ? RevisionRecord::FOR_THIS_USER : RevisionRecord::FOR_PUBLIC );
 
 		if ( !$rev->audienceCan( RevisionRecord::DELETED_TEXT, $audience, $forUser ) ) {
-			// Returning null here is awkward, but consist with the signature of
+			// Returning null here is awkward, but consistent with the signature of
 			// Revision::getContent() and RevisionRecord::getContent().
 			return null;
 		}
