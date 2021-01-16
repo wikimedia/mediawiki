@@ -327,6 +327,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Register a module with the ResourceLoader system.
 	 *
+	 * @see $wgResourceModules for the available options.
 	 * @param string|array[] $name Module name as a string or, array of module info arrays
 	 *  keyed by name.
 	 * @param array|null $info Module info array. When using the first parameter to register

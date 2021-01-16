@@ -31,6 +31,7 @@ use Wikimedia\RelPath;
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
  *
+ * @see $wgResourceModules for the available options when registering a module.
  * @stable to extend
  * @ingroup ResourceLoader
  * @since 1.17
