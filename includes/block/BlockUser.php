@@ -153,6 +153,9 @@ class BlockUser {
 	/** @var string[] */
 	private $tags = [];
 
+	/** @var int|null */
+	private $logDeletionFlags;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param BlockRestrictionStore $blockRestrictionStore
@@ -278,6 +281,14 @@ class BlockUser {
 		) {
 			$this->isHideUser = $blockOptions['isHideUser'];
 		}
+	}
+
+	/**
+	 * @unstable This method might be removed without prior notice (see T271101)
+	 * @param int $flags One of LogPage::* constants
+	 */
+	public function setLogDeletionFlags( int $flags ) : void {
+		$this->logDeletionFlags = $flags;
 	}
 
 	/**
@@ -619,6 +630,9 @@ class BlockUser {
 		// Relate log ID to block ID (T27763)
 		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logEntry->addTags( $this->tags );
+		if ( $this->logDeletionFlags !== null ) {
+			$logEntry->setDeleted( $this->logDeletionFlags );
+		}
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}
