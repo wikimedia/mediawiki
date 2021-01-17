@@ -101,15 +101,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		} catch ( UploadStashFileNotFoundException $e ) {
 			$code = 404;
 			$message = $e->getMessage();
-		} catch ( UploadStashZeroLengthFileException $e ) {
-			$code = 500;
-			$message = $e->getMessage();
-		} catch ( UploadStashBadPathException $e ) {
-			$code = 500;
-			$message = $e->getMessage();
-		} catch ( SpecialUploadStashTooLargeException $e ) {
-			$code = 500;
-			$message = $e->getMessage();
 		} catch ( Exception $e ) {
 			$code = 500;
 			$message = $e->getMessage();

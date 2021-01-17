@@ -1832,7 +1832,7 @@ abstract class ApiBase extends ContextSource {
 					if ( $m ) {
 						$m = new ApiHelpParamValueMessage(
 							$value,
-							// @phan-suppress-next-line PhanTypeMismatchArgument
+							// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 							[ $m->getKey(), 'api-help-param-no-description' ],
 							$m->getParams(),
 							isset( $deprecatedValues[$value] )

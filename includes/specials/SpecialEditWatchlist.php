@@ -89,7 +89,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param int $mode
+	 * @param string|null $mode
 	 */
 	public function execute( $mode ) {
 		$this->initServices();

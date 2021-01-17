@@ -328,7 +328,7 @@ class ImageListPager extends TablePager {
 	 * @note $asc is named $descending in IndexPager base class. However
 	 *   it is true when the order is ascending, and false when the order
 	 *   is descending, so I renamed it to $asc here.
-	 * @param int $offset
+	 * @param string $offset
 	 * @param int $limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return FakeResultWrapper

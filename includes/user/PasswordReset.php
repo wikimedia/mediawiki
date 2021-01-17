@@ -251,7 +251,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		// Get the first element in $users by using `reset` function just in case $users is changed
 		// in 'SpecialPasswordResetOnSubmit' hook.
-		$firstUser = reset( $users ) ?? null;
+		$firstUser = reset( $users );
 
 		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
 			&& $method === 'username'

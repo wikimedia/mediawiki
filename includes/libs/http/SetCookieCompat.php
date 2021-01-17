@@ -51,8 +51,6 @@ class SetCookieCompat {
 			if ( $urlEncode ) {
 				return setcookie( $name, $value, $options );
 			} else {
-				// Phan has a new prototype for setcookie() but not yet for setrawcookie()
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				return setrawcookie( $name, $value, $options );
 			}
 		}

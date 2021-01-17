@@ -342,7 +342,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$allBooleansFalse[ $filter->getName() ] = false;
 			}
 
-			$params = $params + $allBooleansFalse;
+			$params += $allBooleansFalse;
 		}
 
 		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization

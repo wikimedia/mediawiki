@@ -110,7 +110,7 @@ class BitmapMetadataHandler {
 	public function addMetadata( $metaArray, $type = 'other' ) {
 		if ( isset( $this->metadata[$type] ) ) {
 			/* merge with old data */
-			$metaArray = $metaArray + $this->metadata[$type];
+			$metaArray += $this->metadata[$type];
 		}
 
 		$this->metadata[$type] = $metaArray;
@@ -146,7 +146,7 @@ class BitmapMetadataHandler {
 						}
 					}
 
-					$temp = $temp + $this->metadata[$type];
+					$temp += $this->metadata[$type];
 				}
 			}
 		}

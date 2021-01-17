@@ -2052,7 +2052,7 @@ abstract class Skin extends ContextSource {
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
 			$toolbox['recentchangeslinked']['rel'] = 'nofollow';
 		}
-		if ( $feedUrls ?? null ) {
+		if ( $feedUrls ) {
 			$toolbox['feeds']['id'] = 'feedlinks';
 			$toolbox['feeds']['links'] = [];
 			foreach ( $feedUrls as $key => $feed ) {
@@ -2249,6 +2249,7 @@ abstract class Skin extends ContextSource {
 			}
 			while ( count( $wrapper ) > 0 ) {
 				$element = array_pop( $wrapper );
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$html = Html::rawElement( $element['tag'], $element['attributes'] ?? null, $html );
 			}
 		}

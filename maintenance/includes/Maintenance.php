@@ -1242,7 +1242,6 @@ abstract class Maintenance {
 	 */
 	protected function afterFinalSetup() {
 		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
-			// @phan-suppress-next-line PhanUndeclaredConstant
 			call_user_func( MW_CMDLINE_CALLBACK );
 		}
 	}

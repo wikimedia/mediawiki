@@ -129,8 +129,7 @@ class CheckStorage {
 				$id = $row->old_id;
 
 				// Create flagStats row if it doesn't exist
-				// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
-				$flagStats = $flagStats + [ $flags => 0 ];
+				$flagStats += [ $flags => 0 ];
 				// Increment counter
 				$flagStats[$flags]++;
 
@@ -269,8 +268,7 @@ class CheckStorage {
 						continue;
 					}
 
-					// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
-					$objectStats = $objectStats + [ $className => 0 ];
+					$objectStats += [ $className => 0 ];
 					$objectStats[$className]++;
 
 					switch ( $className ) {
@@ -408,7 +406,7 @@ class CheckStorage {
 				print "$msg in old_id $id, revisions " . implode( ', ', $revIds ) . "\n";
 			}
 		}
-		$this->errors[$type] = $this->errors[$type] + array_flip( $revIds );
+		$this->errors[$type] += array_flip( $revIds );
 	}
 
 	private function checkExternalConcatBlobs( $externalConcatBlobs ) {

@@ -376,6 +376,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		parent::setMockTime( $time );
 		foreach ( $this->caches as $cache ) {
 			$cache->setMockTime( $time );
+			// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 			$cache->setMockTime( $time );
 		}
 	}

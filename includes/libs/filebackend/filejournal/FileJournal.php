@@ -176,6 +176,7 @@ abstract class FileJournal {
 		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );
 		if ( $limit && count( $entries ) > $limit ) {
 			$last = array_pop( $entries ); // remove the extra entry
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$next = $last['id']; // update for next call
 		} else {
 			$next = null; // end of list

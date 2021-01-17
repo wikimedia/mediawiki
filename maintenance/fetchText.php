@@ -80,11 +80,7 @@ class FetchText extends Maintenance {
 			try {
 				$text = $this->getBlobStore()->getBlob( $blobAddress );
 				$textLen = strlen( $text );
-			} catch ( BlobAccessException $ex ) {
-				// XXX: log $ex to stderr?
-				$textLen = '-1';
-				$text = '';
-			} catch ( InvalidArgumentException $ex ) {
+			} catch ( BlobAccessException | InvalidArgumentException $ex ) {
 				// XXX: log $ex to stderr?
 				$textLen = '-1';
 				$text = '';

@@ -426,9 +426,7 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
 
 				if (
-					// @phan-suppress-next-line PhanImpossibleCondition
 					empty( $pageRestrictions ) &&
-					// @phan-suppress-next-line PhanImpossibleCondition
 					empty( $namespaceRestrictions )
 				) {
 					$fields['Editing']['default'] = false;

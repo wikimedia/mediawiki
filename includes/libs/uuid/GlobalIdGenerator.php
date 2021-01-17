@@ -110,7 +110,7 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile88', 1, 1024, 1024 );
-		$info['offsetCounter'] = $info['offsetCounter'] % 1024;
+		$info['offsetCounter'] %= 1024;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID88( $info ), 2, $base );
 	}
@@ -162,7 +162,7 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile128', 16384, 1048576, 1048576 );
-		$info['offsetCounter'] = $info['offsetCounter'] % 1048576;
+		$info['offsetCounter'] %= 1048576;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID128( $info ), 2, $base );
 	}
