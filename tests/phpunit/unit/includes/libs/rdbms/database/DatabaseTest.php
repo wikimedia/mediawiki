@@ -780,7 +780,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Database::executeQuery()
 	 * @covers Database::assertIsWritableMaster()
 	 */
-	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection(): void {
+	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
 
@@ -796,7 +796,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Database::executeQuery()
 	 * @covers Database::assertIsWritableMaster()
 	 */
-	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection(): void {
+	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
 			[ 'topologyRole' => Database::ROLE_STREAMING_REPLICA ]
@@ -820,7 +820,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Database::executeQuery()
 	 * @covers Database::assertIsWritableMaster()
 	 */
-	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection(): void {
+	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
 
@@ -840,7 +840,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Database::executeQuery()
 	 * @covers Database::assertIsWritableMaster()
 	 */
-	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection(): void {
+	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
 			[ 'topologyRole' => Database::ROLE_STREAMING_MASTER ]
@@ -855,7 +855,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Database::executeQuery()
 	 * @covers Database::assertIsWritableMaster()
 	 */
-	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet(): void {
+	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Cannot write; target role is DB_REPLICA' );
 
