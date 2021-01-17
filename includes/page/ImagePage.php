@@ -408,6 +408,7 @@ class ImagePage extends Article {
 									&& max( $size[0], $size[1] ) <= $wgSVGMaxSize )
 							)
 							&& $size[0] != $width && $size[1] != $height
+							&& $size[0] != $maxWidth && $size[1] != $maxHeight
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
 							if ( $sizeLink ) {
