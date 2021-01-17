@@ -207,11 +207,7 @@ class StatusValue {
 	 * @param mixed ...$parameters
 	 */
 	public function fatal( $message, ...$parameters ) {
-		$this->errors[] = [
-			'type' => 'error',
-			'message' => $message,
-			'params' => $parameters
-		];
+		$this->error( $message, ...$parameters );
 		$this->ok = false;
 	}
 
