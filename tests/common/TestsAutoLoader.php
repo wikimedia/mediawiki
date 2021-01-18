@@ -216,6 +216,7 @@ $wgAutoloadClasses += [
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
+	'MockTitleTrait' => "$testDir/phpunit/mocks/MockTitleTrait.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
 	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
