@@ -128,6 +128,7 @@
 			"XinuGod",
 			"Xiplus",
 			"Yfdyh000",
+			"Yining Chen",
 			"Ywang",
 			"Zhuyifei1999",
 			"Zoglun",
@@ -3815,7 +3816,7 @@
 	"feedback-thanks-title": "谢谢您！",
 	"feedback-useragent": "用户代理：",
 	"searchsuggest-search": "搜索{{SITENAME}}",
-	"searchsuggest-containing": "在页面中搜索该词",
+	"searchsuggest-containing": "页面搜索包含",
 	"search-match-redirect-label": "搜索时，跳转到完全匹配的项目",
 	"search-match-redirect-help": "当搜索关键词与页面标题匹配时提供跳转选项",
 	"api-clientside-error-noconnect": "无法连接到服务器。请确保您的网络连接正常工作，并重试。",
@@ -4156,5 +4157,6 @@
 	"paramvalidator-missingtitle": "无效的标题<var>$1</var>参数值\"$2\"：该页面不存在。",
 	"paramvalidator-help-type-title": "类型：页面标题",
 	"paramvalidator-help-type-title-must-exist": "仅接受存在的页面。",
-	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。"
+	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。",
+	"nonmain-slot-differences-therefore-readonly": "您无法编辑此页面修订上的wikitext，因为自此修订以来，页面上的数据发生了不基于wikitext的更改。[$1 要恢复此修订，请单击此处。]"
 }

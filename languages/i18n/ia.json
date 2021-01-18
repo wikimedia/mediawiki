@@ -3593,7 +3593,7 @@
 	"feedback-thanks-title": "Gratias!",
 	"feedback-useragent": "Agente usator:",
 	"searchsuggest-search": "Cercar in {{SITENAME}}",
-	"searchsuggest-containing": "Cercar le termino in le paginas",
+	"searchsuggest-containing": "Cercar paginas que contine",
 	"search-match-redirect-label": "Rediriger al pagina si un recerca ha trovate un titulo exacte",
 	"search-match-redirect-help": "Selige isto pro esser redirigite a un pagina quando le titulo del pagina corresponde a lo que tu ha cercate",
 	"api-clientside-error-noconnect": "Impossibile connecter al servitor. Assecura te que le connexion a Internet functiona e tenta de novo.",
