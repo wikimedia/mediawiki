@@ -4952,8 +4952,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see WANObjectCache::set()
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
-	 * @param IDatabase $db1
-	 * @param IDatabase|null $db2 [optional]
+	 * @param IDatabase|null ...$dbs
+	 * Note: For backward compatibility, it is allowed for null values
+	 * to be passed among the parameters. This is deprecated since 1.36,
+	 * only IDatabase objects should be passed.
+	 *
 	 * @return array Map of values:
 	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
 	 *   - since: oldest UNIX timestamp of any of the DB lag estimates
@@ -4961,7 +4964,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBError
 	 * @since 1.27
 	 */
-	public static function getCacheSetOptions( IDatabase $db1, IDatabase $db2 = null ) {
+	public static function getCacheSetOptions( ?IDatabase ...$dbs ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 
 		foreach ( func_get_args() as $db ) {
