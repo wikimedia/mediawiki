@@ -2192,6 +2192,8 @@
 	"htmlform-no": "Ոչ",
 	"htmlform-yes": "Այո",
 	"htmlform-cloner-delete": "Հեռացնել",
+	"htmlform-date-placeholder": "ՏՏՏՏ-ԱԱ-ՕՕ",
+	"htmlform-time-placeholder": "ԺԺ:ՐՐ:ՎՎ",
 	"htmlform-title-not-exists": "$1՝ գոյություն չունի",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ջնջեց}} $3 էջը",
 	"logentry-delete-restore": "$1 վերականգնեց $3 ($4) էջը",

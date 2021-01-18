@@ -3710,7 +3710,7 @@
 	"feedback-thanks-title": "Bedankt!",
 	"feedback-useragent": "Useragent:",
 	"searchsuggest-search": "Doorzoek {{SITENAME}}",
-	"searchsuggest-containing": "Zoek in pagina's naar de tekst",
+	"searchsuggest-containing": "Zoek naar pagina's met de tekst",
 	"search-match-redirect-label": "Doorverwijzen naar een exacte overeenkomst bij het zoeken",
 	"search-match-redirect-help": "Selecteer deze optie om doorverwezen te worden naar een pagina wanneer de pagina titel overeenkomt met de zoekopdracht",
 	"api-clientside-error-noconnect": "Kon geen verbinding met de server maken. Controleer of u een werkende internetverbinding heeft en probeer het opnieuw.",

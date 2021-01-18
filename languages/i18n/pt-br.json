@@ -3796,7 +3796,7 @@
 	"feedback-thanks-title": "Obrigado!",
 	"feedback-useragent": "Agente de usuário:",
 	"searchsuggest-search": "Pesquisar em {{SITENAME}}",
-	"searchsuggest-containing": "Procurar o termo nas páginas",
+	"searchsuggest-containing": "Procure por páginas contendo",
 	"search-match-redirect-label": "Redirecionar para correspondências exatas ao pesquisar",
 	"search-match-redirect-help": "Selecione para ser redirecionado para uma página quando o título da página corresponder ao que você pesquisou",
 	"api-clientside-error-noconnect": "Não foi possível ligar ao servidor. Certifique-se que tem uma ligação à Internet a funcionar e tente novamente.",
