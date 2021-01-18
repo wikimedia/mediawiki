@@ -3735,7 +3735,7 @@
 	"feedback-thanks-title": "Dziękujemy!",
 	"feedback-useragent": "Aplikacja klienta:",
 	"searchsuggest-search": "Przeszukaj {{GRAMMAR:B.lp|{{SITENAME}}}}",
-	"searchsuggest-containing": "Szukaj tekstu w treści stron",
+	"searchsuggest-containing": "Szukaj stron zawierających tekst",
 	"search-match-redirect-label": "Przekieruj do właściwych wyników podczas wyszukiwania",
 	"search-match-redirect-help": "Przekieruj do strony, gdy jej tytuł odpowiada tekstowi wyszukiwania",
 	"api-clientside-error-noconnect": "Nie udało się połączyć z serwerem. Upewnij się, że masz działające połączenie z internetem i spróbuj ponownie.",

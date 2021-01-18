@@ -3736,7 +3736,7 @@
 	"feedback-thanks-title": "Grazie!",
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Cerca in {{SITENAME}}",
-	"searchsuggest-containing": "Cerca le pagine che contengono il termine",
+	"searchsuggest-containing": "Cerca le pagine che contengono",
 	"search-match-redirect-label": "Reindirizza ai risultati corretti durante la ricerca",
 	"search-match-redirect-help": "Seleziona questa opzione per essere reindirizzato/a a una pagina quando il titolo della pagina coincide con ciò che hai cercato",
 	"api-clientside-error-noconnect": "Impossibile connettersi al server. Verifica di avere una connessione a internet funzionante e riprova.",
