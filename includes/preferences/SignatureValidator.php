@@ -50,7 +50,7 @@ class SignatureValidator {
 	}
 
 	/**
-	 * @param string $signature
+	 * @param string $signature Signature before PST
 	 * @return string[]|bool If localizer is defined: List of errors, as HTML (empty array for no errors)
 	 *   If localizer is not defined: True if there are errors, false if there are no errors
 	 */
@@ -149,11 +149,19 @@ class SignatureValidator {
 			}
 		}
 
+		if ( !$this->checkLineBreaks( $signature ) ) {
+			if ( $this->localizer ) {
+				$errors[] = $this->localizer->msg( 'badsiglinebreak' )->parse();
+			} else {
+				$errors = true;
+			}
+		}
+
 		return $errors;
 	}
 
 	/**
-	 * @param string $signature
+	 * @param string $signature Signature before PST
 	 * @return string|bool Signature with PST applied, or false if applying PST yields wikitext that
 	 *     would change if PST was applied again
 	 */
@@ -188,7 +196,7 @@ class SignatureValidator {
 	}
 
 	/**
-	 * @param string $signature
+	 * @param string $signature Signature after PST
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
 	 */
 	protected function checkLintErrors( string $signature ) : array {
@@ -238,7 +246,7 @@ class SignatureValidator {
 	}
 
 	/**
-	 * @param string $signature
+	 * @param string $signature Signature after PST
 	 * @return bool Whether signature contains required links
 	 */
 	protected function checkUserLinks( string $signature ) : bool {
@@ -277,6 +285,14 @@ class SignatureValidator {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string $signature Signature after PST
+	 * @return bool Whether signature contains no line breaks
+	 */
+	protected function checkLineBreaks( string $signature ) : bool {
+		return !preg_match( "/[\r\n]/", $signature );
 	}
 
 	// Adapted from the Linter extension

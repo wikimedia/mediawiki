@@ -1160,6 +1160,7 @@
 	"badsiglinks": "Your signature must include a link to your user page, talk page or contributions on this wiki. Please add it, for example: <code>$1</code>.",
 	"badsigsubst": "Your signature contains nested substitution (e.g. <code>subst:</code> or <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Your signature is too long.\nIt must not be more than $1 {{PLURAL:$1|character|characters}} long.",
+	"badsiglinebreak": "Your signature must consist of a single line of wikitext.",
 	"linter-pager-bogus-image-options-details": "Bogus file option",
 	"linter-pager-deletable-table-tag-details": "Table tag that should be deleted",
 	"linter-pager-html5-misnesting-details": "Misnesting (now broken)",
