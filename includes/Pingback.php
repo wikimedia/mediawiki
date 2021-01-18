@@ -147,12 +147,14 @@ class Pingback {
 	private function acquireLock() : bool {
 		$cacheKey = $this->cache->makeKey( 'pingback', $this->key );
 		if ( !$this->cache->add( $cacheKey, 1, $this->cache::TTL_HOUR ) ) {
-			return false;  // throttled
+			// throttled
+			return false;
 		}
 
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
-			return false;  // already in progress
+			// already in progress
+			return false;
 		}
 
 		return true;
@@ -200,7 +202,7 @@ class Pingback {
 		}
 
 		$limit = ini_get( 'memory_limit' );
-		if ( $limit && $limit != -1 ) {
+		if ( $limit && $limit !== "-1" ) {
 			$event['memoryLimit'] = $limit;
 		}
 
