@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use File;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use RepoGroup;
 use ThumbnailImage;
@@ -16,6 +17,7 @@ use Title;
 trait MediaTestTrait {
 
 	use HandlerTestTrait;
+	use MockTitleTrait;
 
 	/**
 	 * @param Title|string $title

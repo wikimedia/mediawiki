@@ -12,6 +12,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MockSearchResultSet;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
 use SearchEngineFactory;
@@ -29,6 +30,7 @@ use Wikimedia\Message\MessageValue;
 class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
+	use MockTitleTrait;
 
 	/**
 	 * @var SearchEngine|MockObject|null

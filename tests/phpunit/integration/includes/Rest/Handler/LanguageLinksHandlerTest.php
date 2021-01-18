@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MockTitleTrait;
 use Title;
 use Wikimedia\Message\MessageValue;
 
@@ -20,6 +21,7 @@ use Wikimedia\Message\MessageValue;
 class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
+	use MockTitleTrait;
 
 	public function addDBData() {
 		$defaults = [
