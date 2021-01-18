@@ -364,6 +364,12 @@ because of Phabricator reports.
   been added.  The methods were unused outside of MediaWiki core.
 * SquidPurgeClient and SquidPurgeClientPool, deprecated since 1.35, have been
   removed.
+* Several methods on WikiPage will now throw an exception when called on a
+  WikiPage instance that where constructed on a title that does not refer to a
+  proper page (but rather a special page or interwiki link). The behavior was
+  previously undefined and could in some cases lead to data corruption.
+  Affected methods are: getId(), insertOn(), newPageUpdater(),
+  doUpdateRestrictions(), doDeleteArticleReal(), doRollback(), doEditContent().
 * ParserTestRunner no longer invokes the ParserTestTables hook, instead
   cloning all database tables before running tests as MediaWikiIntegrationTest
   does.  If an extension was misusing the hook to *exclude* tables from the
@@ -502,6 +508,9 @@ because of Phabricator reports.
 * The InterwikiLoadPrefix hook has been deprecated; it is not compatible
   with future wikitext parsers (which need to enumerate all interwiki
   prefixes).  In test cases please use $wgInterwikiCache instead.
+* WikiPage instances should no longer be constructed for titles that do not
+  represent editable pages (e.g. special pages). WikiPages were always
+  documented to represent "MediaWiki article and history".
 * Skin::getSkinStylePath() has been deprecated. Please replace usages with
   the direct path to the resources.
 * The second argument of EnhancedChangesList::getDiffHistLinks, $query, has
