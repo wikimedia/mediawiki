@@ -244,7 +244,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$vals = [
 					'pageid' => (int)$row->page_id,
-					'ns' => (int)$title->getNamespace(),
+					'ns' => $title->getNamespace(),
 					'title' => $title->getPrefixedText()
 				];
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );

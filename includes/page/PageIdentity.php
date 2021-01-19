@@ -123,7 +123,7 @@ interface PageIdentity {
 	 * @see canExist()
 	 *
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL );
+	public function getId( $wikiId = PageIdentity::LOCAL ): int;
 
 	/**
 	 * Checks whether this PageIdentity represents a "proper" page,
@@ -144,7 +144,7 @@ interface PageIdentity {
 	 *
 	 * @see getId()
 	 */
-	public function canExist();
+	public function canExist(): bool;
 
 	/**
 	 * Checks if the page currently exists.
@@ -158,7 +158,7 @@ interface PageIdentity {
 	 *
 	 * @return bool
 	 */
-	public function exists();
+	public function exists(): bool;
 
 	/**
 	 * Returns the page's namespace number.
@@ -171,7 +171,7 @@ interface PageIdentity {
 	 *
 	 * @return int
 	 */
-	public function getNamespace();
+	public function getNamespace(): int;
 
 	/**
 	 * Get the page title in DB key form.
@@ -181,7 +181,7 @@ interface PageIdentity {
 	 *
 	 * @return string
 	 */
-	public function getDBkey();
+	public function getDBkey(): string;
 
 	/**
 	 * Returns an informative human readable representation of the page identity,
@@ -189,6 +189,6 @@ interface PageIdentity {
 	 *
 	 * @return string
 	 */
-	public function __toString();
+	public function __toString(): string;
 
 }
