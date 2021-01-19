@@ -133,7 +133,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		try {
 			$this->assertSame( $expected, TestingAccessWrapper::newFromObject( $object )->$propName );
 		} catch ( ReflectionException $e ) {
-			if ( !preg_match( "/Property (TestDeprecated(Class|Subclass)::)?$propName does not exist/",
+			if ( !preg_match( "/Property (TestDeprecated(Class|Subclass)::\\$?)?$propName does not exist/",
 				$e->getMessage() )
 			) {
 				throw $e;
