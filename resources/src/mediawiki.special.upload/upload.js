@@ -48,18 +48,18 @@
 				iiprop: 'uploadwarning',
 				errorformat: 'html',
 				errorlang: mw.config.get( 'wgUserLanguage' )
-			} ).done( function ( result ) {
+			} ).then( function ( result ) {
 				var
 					resultOut = '',
-					page = result && result.query && result.query.pages && result.query.pages.length ?
-						result.query.pages[ 0 ] : {};
+					page = result.query.pages[ 0 ];
 				if ( page.imageinfo ) {
 					resultOut = page.imageinfo[ 0 ].html;
 				} else if ( page.invalidreason ) {
 					resultOut = page.invalidreason.html;
 				}
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
-			} ).always( function () {
+				$spinnerDestCheck.remove();
+			} ).catch( function () {
 				$spinnerDestCheck.remove();
 			} );
 		},

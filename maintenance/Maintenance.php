@@ -20,6 +20,20 @@
  * @defgroup Maintenance Maintenance
  */
 
+/**
+ * @defgroup MaintenanceArchive Maintenance archives
+ * @ingroup Maintenance
+ */
+
+if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
+	// Define this so scripts can easily find doMaintenance.php
+	define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
+
+	// Original name for compat, harmless
+	// Support: MediaWiki < 1.31
+	define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN );
+}
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	// This file is included by many autoloaded class files, and so may
 	// potentially be invoked in the context of a web request or another CLI
@@ -34,18 +48,6 @@ define( 'MW_ENTRY_POINT', 'cli' );
 // dependencies.
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'text' );
-
-/**
- * @defgroup MaintenanceArchive Maintenance archives
- * @ingroup Maintenance
- */
-
-// Define this so scripts can easily find doMaintenance.php
-define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
-
-// Original name for compat, harmless
-// Support: MediaWiki < 1.31
-define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN );
 
 /**
  * @var string|false
