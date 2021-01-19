@@ -7,6 +7,7 @@ figure[ typeof~='mw:Audio' ],
 figure[ typeof~='mw:Image/Frameless' ],
 figure[ typeof~='mw:Video/Frameless' ],
 figure[ typeof~='mw:Audio/Frameless' ] {
+	/* Maybe belongs in element.css for figure */
 	margin: 0;
 
 	a {
@@ -14,6 +15,7 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 
 	&.mw-halign-right {
+		/* Matches div.floatright in content.less */
 		/* @noflip */
 		margin: 0 0 0.5em 0.5em;
 		/* @noflip */
@@ -23,6 +25,7 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 
 	&.mw-halign-left {
+		/* Matches div.floatleft in content.less */
 		/* @noflip */
 		margin: 0 0.5em 0.5em 0;
 		/* @noflip */
@@ -32,13 +35,13 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 
 	&.mw-halign-none {
-		margin: 0;
 		clear: none;
 		float: none;
 	}
 
 	&.mw-halign-center {
-		margin: 0 auto 0.5em auto;
+		/* Matches *.center * in element.less */
+		margin: 0 auto;
 		display: table;
 		border-collapse: collapse;
 		clear: none;
@@ -57,7 +60,10 @@ figure[ typeof~='mw:Audio/Thumb' ],
 figure[ typeof~='mw:Image/Frame' ],
 figure[ typeof~='mw:Video/Frame' ],
 figure[ typeof~='mw:Audio/Frame' ] {
-	margin: 0;
+	/* As above, resetting defaults for figure maybe belongs in element.css
+	 * And, matches div.thumb in content.less
+	 */
+	margin: 0 0 0.5em 0;
 	display: table;
 	text-align: center;
 	border: 1px solid #c8ccd1;
@@ -71,7 +77,9 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	// Defaults for page content language
+
 	.mw-content-ltr & {
+		/* Matches div.tright in content.less */
 		/* @noflip */
 		margin: 0.5em 0 1.3em 1.4em;
 		/* @noflip */
@@ -81,6 +89,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	.mw-content-rtl & {
+		/* Matches div.tleft in content.less */
 		/* @noflip */
 		margin: 0.5em 1.4em 1.3em 0;
 		/* @noflip */
@@ -91,7 +100,9 @@ figure[ typeof~='mw:Audio/Frame' ] {
 
 	// Override defaults when explicitly set
 	// Order of application is important, so don't combine with the defaults
+
 	&.mw-halign-right {
+		/* Matches div.tright in content.less */
 		/* @noflip */
 		margin: 0.5em 0 1.3em 1.4em;
 		/* @noflip */
@@ -101,6 +112,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	&.mw-halign-left {
+		/* Matches div.tleft in content.less */
 		/* @noflip */
 		margin: 0.5em 1.4em 1.3em 0;
 		/* @noflip */
@@ -110,12 +122,19 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	&.mw-halign-none {
-		margin: 0;
+		/* Override the default margin from mw-content-xxx above
+		 * And, matches div.thumb in content.less
+		 */
+		margin: 0 0 0.5em 0;
 		clear: none;
 		float: none;
 	}
 
 	&.mw-halign-center {
+		/* Override the default margin from mw-content-xxx above
+		 * And, matches div.thumb in content.less
+		 * And, also, matches *.center * in element.less
+		 */
 		margin: 0 auto 0.5em auto;
 		display: table;
 		border-collapse: separate;
