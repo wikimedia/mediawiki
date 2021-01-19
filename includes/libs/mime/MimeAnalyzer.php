@@ -1067,15 +1067,14 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 	/**
 	 * Returns a media code matching the given MIME type or file extension.
+	 *
 	 * File extensions are represented by a string starting with a dot (.) to
 	 * distinguish them from MIME types.
 	 *
-	 * This function relies on the mapping defined by $this->mMediaTypes
-	 * @internal
 	 * @param string $extMime
 	 * @return int|string
 	 */
-	public function findMediaType( $extMime ) {
+	private function findMediaType( string $extMime ) {
 		if ( strpos( $extMime, '.' ) === 0 ) {
 			// If it's an extension, look up the MIME types
 			$m = $this->getMimeTypesFromExtension( substr( $extMime, 1 ) );
