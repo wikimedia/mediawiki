@@ -3600,7 +3600,7 @@
 	"feedback-thanks-title": "Hvala!",
 	"feedback-useragent": "Uporabniški agent:",
 	"searchsuggest-search": "Iskanje po {{GRAMMAR:dajalnik|{{SITENAME}}}}",
-	"searchsuggest-containing": "Išči besedo znotraj strani",
+	"searchsuggest-containing": "Išči strani, ki vsebujejo",
 	"search-match-redirect-label": "Med iskanjem preusmeri na točne zadetke",
 	"search-match-redirect-help": "Označite, če želite biti preusmerjeni na stran, ko se naslov strani ujema s tem, kar ste iskali",
 	"api-clientside-error-noconnect": "Ne moremo se povezati s strežnikom. Prepričajte se, da imate delujočo internetno povezavo in poskusite znova.",
