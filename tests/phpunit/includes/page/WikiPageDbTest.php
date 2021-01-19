@@ -133,6 +133,29 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		serialize( $page );
 	}
 
+	public function provideTitlesThatCannotExist() {
+		yield 'Special' => [ NS_SPECIAL, 'Recentchanges' ]; // existing special page
+		yield 'Invalid character' => [ NS_MAIN, '#' ]; // bad character
+	}
+
+	/**
+	 * @dataProvider provideTitlesThatCannotExist
+	 */
+	public function testConstructionWithPageThatCannotExist( $ns, $text ) {
+		$title = Title::makeTitle( $ns, $text );
+
+		// NOTE: once WikiPage becomes a ProperPageIdentity, the constructor should throw!
+		$this->filterDeprecated( '/WikiPage constructed on a Title that cannot exist as a page/' );
+		$this->filterDeprecated( '/Accessing WikiPage that cannot exist as a page/' );
+		$page = new WikiPage( $title );
+
+		$this->assertFalse( $page->exists() );
+		$this->assertNull( $page->getRevisionRecord() );
+
+		// NOTE: once WikiPage becomes a PageIdentity, getId() should throw!
+		$this->assertSame( 0, $page->getId() );
+	}
+
 	/**
 	 * @covers WikiPage::prepareContentForEdit
 	 */
@@ -913,9 +936,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function provideHasViewableContent() {
 		return [
 			[ 'WikiPageTest_testHasViewableContent', false, true ],
-			[ 'Special:WikiPageTest_testHasViewableContent', false ],
 			[ 'MediaWiki:WikiPageTest_testHasViewableContent', false ],
-			[ 'Special:Userlogin', true ],
 			[ 'MediaWiki:help', true ],
 		];
 	}
@@ -1657,10 +1678,6 @@ more stuff
 		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
-
-		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( WikiPage::class, get_class( $page ) );
 	}
 
 	/**
@@ -2584,4 +2601,5 @@ more stuff
 		$this->assertTrue( $isCalled );
 		$this->assertSame( $expectedWikiPage, $wikiPage );
 	}
+
 }

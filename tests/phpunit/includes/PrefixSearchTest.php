@@ -34,6 +34,11 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 		$this->insertPage( 'User:Example' );
 
+		$this->setMwGlobals( [
+			'wgExtraNamespaces' => [ self::NS_NONCAP => 'NonCap' ],
+			'wgCapitalLinkOverrides' => [ self::NS_NONCAP => false ],
+		] );
+
 		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'Bar' ) );
 		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'Upper' ) );
 		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'sandbox' ) );
