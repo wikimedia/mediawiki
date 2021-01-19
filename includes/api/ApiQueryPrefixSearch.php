@@ -78,7 +78,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 			$count = 0;
 			foreach ( $titles as $title ) {
 				$vals = [
-					'ns' => (int)$title->getNamespace(),
+					'ns' => $title->getNamespace(),
 					'title' => $title->getPrefixedText(),
 				];
 				if ( $title->isSpecialPage() ) {

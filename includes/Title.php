@@ -1054,7 +1054,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return string Main part of the title, with underscores
 	 */
-	public function getDBkey() {
+	public function getDBkey(): string {
 		return $this->mDbkeyform;
 	}
 
@@ -1063,7 +1063,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return int Namespace index
 	 */
-	public function getNamespace() {
+	public function getNamespace(): int {
 		return $this->mNamespace;
 	}
 
@@ -1217,7 +1217,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return bool true if and only if this title can be used to perform an edit.
 	 */
-	public function canExist() {
+	public function canExist(): bool {
 		// NOTE: Don't use getArticleID(), we don't want to
 		// trigger a database query here. This check is supposed to
 		// act as an optimization, not add extra cost.
@@ -1895,7 +1895,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return string Representation of this title
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		return $this->getPrefixedText();
 	}
 
@@ -3964,7 +3964,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
 	 */
-	public function exists( $flags = 0 ) {
+	public function exists( $flags = 0 ): bool {
 		$exists = $this->getArticleID( $flags ) != 0;
 		Hooks::runner()->onTitleExists( $this, $exists );
 		return $exists;
@@ -4634,7 +4634,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return int
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL ) {
+	public function getId( $wikiId = PageIdentity::LOCAL ): int {
 		$this->assertWiki( $wikiId );
 		$this->assertProperPage();
 		return $this->getArticleID();

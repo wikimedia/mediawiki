@@ -386,15 +386,18 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	public function test_create_link_not_shown_if_variant_link_is_known() {
 		$searchTerm = "Test create link not shown if variant link is known";
 		$variantLink = "the replaced link variant text should not be visible";
-		$variantTitle = $this->createMock( Title::class );
+
+		$variantTitle = $this->createNoOpMock(
+			Title::class,
+			[ 'isKnown', 'getPrefixedText', 'getDBkey', 'isExternal' ]
+		);
+
+		$variantTitle->method( "isKnown" )->willReturn( true );
+		$variantTitle->method( "isExternal" )->willReturn( false );
+		$variantTitle->method( "getDBkey" )->willReturn( $searchTerm . " (variant)" );
+		$variantTitle->method( "getPrefixedText" )->willReturn( $searchTerm . " (variant)" );
 
 		$specialSearchFactory = function () use ( $variantTitle, $variantLink, $searchTerm ) {
-			$variantTitle->method( "isKnown" )
-				->willReturn( true );
-
-			$variantTitle->method( "getPrefixedText" )
-				->willReturn( $searchTerm . " (variant)" );
-
 			$languageConverter = $this->createMock( ILanguageConverter::class );
 			$languageConverter->method( 'hasVariants' )->willReturn( true );
 			$languageConverter->expects( $this->once() )
