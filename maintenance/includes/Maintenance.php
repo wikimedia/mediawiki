@@ -103,7 +103,7 @@ abstract class Maintenance {
 	 * Batch size. If a script supports this, they should set
 	 * a default with setBatchSize()
 	 *
-	 * @var int
+	 * @var int|null
 	 */
 	protected $mBatchSize = null;
 
@@ -122,7 +122,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used by getDB() / setDB()
-	 * @var IMaintainableDatabase
+	 * @var IMaintainableDatabase|null
 	 */
 	private $mDb = null;
 
@@ -131,7 +131,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used when creating separate schema files.
-	 * @var resource
+	 * @var resource|null
 	 */
 	public $fileHandle;
 
@@ -144,7 +144,7 @@ abstract class Maintenance {
 	/**
 	 * Accessible via getConfig()
 	 *
-	 * @var Config
+	 * @var Config|null
 	 */
 	private $config;
 
