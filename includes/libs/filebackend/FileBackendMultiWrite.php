@@ -141,6 +141,7 @@ class FileBackendMultiWrite extends FileBackend {
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = $this->newStatus();
 
+		$fname = __METHOD__;
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
 		// Acquire any locks as needed
@@ -165,7 +166,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$syncStatus = $this->consistencyCheck( $relevantPaths );
 		if ( !$syncStatus->isOK() ) {
 			$this->logger->error(
-				__METHOD__ . ": failed sync check: " . FormatJson::encode( $relevantPaths )
+				"$fname: failed sync check: " . FormatJson::encode( $relevantPaths )
 			);
 			// Try to resync the clone backends to the master on the spot
 			if (
@@ -194,17 +195,19 @@ class FileBackendMultiWrite extends FileBackend {
 				if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 					// Bind $scopeLock to the callback to preserve locks
 					DeferredUpdates::addCallableUpdate(
-						function () use ( $backend, $realOps, $opts, $scopeLock, $relevantPaths ) {
-							$this->logger->error(
-								"'{$backend->getName()}' async replication; paths: " .
+						function () use (
+							$backend, $realOps, $opts, $scopeLock, $relevantPaths, $fname
+						) {
+							$this->logger->debug(
+								"$fname: '{$backend->getName()}' async replication; paths: " .
 								FormatJson::encode( $relevantPaths )
 							);
 							$backend->doOperations( $realOps, $opts );
 						}
 					);
 				} else {
-					$this->logger->error(
-						"'{$backend->getName()}' sync replication; paths: " .
+					$this->logger->debug(
+						"$fname: '{$backend->getName()}' sync replication; paths: " .
 						FormatJson::encode( $relevantPaths )
 					);
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
@@ -417,6 +420,7 @@ class FileBackendMultiWrite extends FileBackend {
 					if ( $resyncMode === 'conservative' ) {
 						// Do not delete stray files; reduces the risk of data loss
 						$status->fatal( 'backend-fail-synced', $path );
+						$this->logger->error( "$fname: not allowed to delete file '$clonePath'" );
 					} else {
 						// Delete the stay file from the clone backend
 						$status->merge( $cloneBackend->quickDelete( [ 'src' => $clonePath ] ) );
