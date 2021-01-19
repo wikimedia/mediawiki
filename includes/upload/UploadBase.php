@@ -1039,20 +1039,24 @@ abstract class UploadBase {
 		} else {
 			$this->mFinalExtension = '';
 
-			# No extension, try guessing one
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$mime = $magic->guessMimeType( $this->mTempPath );
-			if ( $mime !== 'unknown/unknown' ) {
-				# Get a space separated list of extensions
-				$mimeExt = $magic->getExtensionFromMimeTypeOrNull( $mime );
-				if ( $mimeExt !== null ) {
-					# Set the extension to the canonical extension
-					$this->mFinalExtension = $mimeExt;
+			// No extension, try guessing one from the temporary file
+			// FIXME: Sometimes we mTempPath isn't set yet here, possibly due to an unrealistic
+			// or incomplete test case in UploadBaseTest (T272328)
+			if ( $this->mTempPath !== null ) {
+				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+				$mime = $magic->guessMimeType( $this->mTempPath );
+				if ( $mime !== 'unknown/unknown' ) {
+					# Get a space separated list of extensions
+					$mimeExt = $magic->getExtensionFromMimeTypeOrNull( $mime );
+					if ( $mimeExt !== null ) {
+						# Set the extension to the canonical extension
+						$this->mFinalExtension = $mimeExt;
 
-					# Fix up the other variables
-					$this->mFilteredName .= ".{$this->mFinalExtension}";
-					$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
-					$ext = [ $this->mFinalExtension ];
+						# Fix up the other variables
+						$this->mFilteredName .= ".{$this->mFinalExtension}";
+						$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
+						$ext = [ $this->mFinalExtension ];
+					}
 				}
 			}
 		}
