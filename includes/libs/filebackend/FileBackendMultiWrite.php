@@ -417,6 +417,7 @@ class FileBackendMultiWrite extends FileBackend {
 					if ( $resyncMode === 'conservative' ) {
 						// Do not delete stray files; reduces the risk of data loss
 						$status->fatal( 'backend-fail-synced', $path );
+						$this->logger->error( "$fname: not allowed to delete file '$clonePath'" );
 					} else {
 						// Delete the stay file from the clone backend
 						$status->merge( $cloneBackend->quickDelete( [ 'src' => $clonePath ] ) );
