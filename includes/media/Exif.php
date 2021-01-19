@@ -701,7 +701,7 @@ class Exif {
 	 * @return bool
 	 */
 	private function isSlong( $in ) {
-		if ( $this->isLong( abs( $in ) ) ) {
+		if ( $this->isLong( abs( (float)$in ) ) ) {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
