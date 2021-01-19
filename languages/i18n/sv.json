@@ -2911,7 +2911,7 @@
 	"import-upload-username-prefix": "Interwiki-prefix:",
 	"import-assign-known-users": "Tilldela redigeringar till lokala användare där de namngivna användarna finns lokalt",
 	"import-comment": "Kommentar:",
-	"importtext": "Var god exportera filen frånkällwikin med hjälp av [[Special:Export|exporteringsverktyget]].\nSpara den på din dator och ladda upp den här.",
+	"importtext": "Var god exportera filen från källwikin med hjälp av [[Special:Export|exporteringsverktyget]].\nSpara den på din dator och ladda upp den här.",
 	"importstart": "Importerar sidor....",
 	"import-revision-count": "$1 {{PLURAL:$1|version|versioner}}",
 	"importnopages": "Det finns inga sidor att importera.",

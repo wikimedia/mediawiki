@@ -2172,7 +2172,7 @@
 	"filehist-current": "Link in file description page.\n\n{{Identical|Current}}",
 	"filehist-datetime": "Used on image descriptions, see for example [[:File:Yes.png#filehistory]].\n{{Identical|Date}}",
 	"filehist-thumb": "Shown in the file history list of a file description page.\n\nExample: [[:Image:Addon-icn.png]]\n{{Identical|Thumbnail}}",
-	"filehist-thumbtext": "Shown in the file history list of a file description page. Parameters:\n* $1 - timestamp, localized. e.g. ''10:23, 18 april 2007''\n* $2 - (Optional) the date\n* $3 - (Optional) the time\nExample: [[wikipedia:Image:Madeleine close2.jpg]]",
+	"filehist-thumbtext": "Shown in the file history list of a file description page, as 'alt text' of the thumbnail(s). Parameters:\n* $1 - timestamp, localized. e.g. ''10:23, 18 april 2007''\n* $2 - (Optional) the date\n* $3 - (Optional) the time\nExample: [[wikipedia:Image:Madeleine close2.jpg]]",
 	"filehist-nothumb": "Shown if no thumbnail is available in the file history list of a file desription page.\n\nExample: [[:Image:Addon-icn.png]]",
 	"filehist-user": "In image description page.\n\n{{Identical|User}}",
 	"filehist-dimensions": "Used as label in file description page.\n\nFollowed by length, or width x height, and filesize. e.g. \"1.5 s (13 KB)\".",
