@@ -87,6 +87,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 		$rec = new MutableRevisionRecord( $title, $wikiId );
 
 		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
+		$this->assertSame( $title, $rec->getPage(), 'getPage' );
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
 	}
 
