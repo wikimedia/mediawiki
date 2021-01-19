@@ -387,6 +387,38 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	private function installFakeInterwikiLookup() {
+		$interwikiLookup =
+			$this->createNoOpMock( InterwikiLookup::class, [ 'fetch', 'isValidInterwiki' ] );
+
+		$interwikis = [
+			'' => null,
+			'acme' => new Interwiki(
+				'acme',
+				'https://acme.test/$1'
+			),
+			'yy' => new Interwiki(
+				'yy',
+				'https://yy.wiki.test/wiki/$1',
+				'/w/api.php',
+				'yywiki',
+				true
+			),
+		];
+
+		$interwikiLookup->method( 'fetch' )
+			->willReturnCallback( function ( $interwiki ) use ( $interwikis ) {
+				return $interwikis[$interwiki] ?? false;
+			} );
+
+		$interwikiLookup->method( 'isValidInterwiki' )
+			->willReturnCallback( function ( $interwiki ) use ( $interwikis ) {
+				return isset( $interwikis[$interwiki] );
+			} );
+
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
+	}
+
 	/**
 	 * @dataProvider provideGetLinkURL
 	 *
@@ -412,32 +444,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'wgFragmentMode' => [ 'html5', 'legacy' ]
 		] );
 
-		$interwikiLookup = $this->createMock( InterwikiLookup::class );
-
-		$interwikiLookup->method( 'fetch' )
-			->willReturnCallback( function ( $interwiki ) {
-				switch ( $interwiki ) {
-					case '':
-						return null;
-					case 'acme':
-						return new Interwiki(
-							'acme',
-							'https://acme.test/$1'
-						);
-					case 'yy':
-						return new Interwiki(
-							'yy',
-							'https://yy.wiki.test/wiki/$1',
-							'/w/api.php',
-							'yywiki',
-							true
-						);
-					default:
-						return false;
-				}
-			} );
-
-		$this->setService( 'InterwikiLookup', $interwikiLookup );
+		$this->installFakeInterwikiLookup();
 
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
@@ -521,6 +528,93 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$this->expectException( PreconditionException::class );
 		$title->toPageIdentity();
+	}
+
+	public function provideMakeTitle() {
+		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
+		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
+		yield 'fragment' => [ 'Foo#Section', NS_MAIN, 'Foo', 'Section' ];
+		yield 'only fragment' => [ '#Section', NS_MAIN, '', 'Section' ];
+		yield 'interwiki' => [ 'acme:Foo', NS_MAIN, 'Foo', '', 'acme' ];
+		yield 'normalized underscores' => [ 'Foo Bar', NS_MAIN, 'Foo_Bar' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitle
+	 * @covers Title::makeTitle
+	 */
+	public function testMakeTitle( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$this->installFakeInterwikiLookup();
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->assertTrue( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitle_invalid() {
+		yield 'bad namespace' => [ 'Special:Badtitle/NS-1234:Foo', -1234, 'Foo' ];
+		yield 'lower case' => [ 'User:foo', NS_USER, 'foo' ];
+		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'bad character' => [ 'Foo|Bar', NS_MAIN, 'Foo|Bar' ];
+
+		// Is the trailing # intentional?
+		yield 'bad interwiki' => [ 'qwerty:Foo#', NS_MAIN, 'Foo', null, 'qwerty' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitle_invalid
+	 * @covers Title::makeTitle
+	 */
+	public function testMakeTitle_invalid( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$this->installFakeInterwikiLookup();
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->assertFalse( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitleSafe() {
+		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
+		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
+		yield 'fragment' => [ 'Foo#Section', NS_MAIN, 'Foo', 'Section' ];
+		yield 'only fragment' => [ '#Section', NS_MAIN, '', 'Section' ];
+		yield 'interwiki' => [ 'acme:Foo', NS_MAIN, 'Foo', '', 'acme' ];
+
+		// Normalize
+		yield 'normalized underscores' => [ 'Foo Bar', NS_MAIN, 'Foo_Bar' ];
+		yield 'lower case' => [ 'User:Foo', NS_USER, 'foo' ];
+
+		// Bad interwiki becomes part of the title text. Is this intentional?
+		yield 'bad interwiki' => [ 'Qwerty:Foo', NS_MAIN, 'Foo', '', 'qwerty' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitleSafe
+	 * @covers Title::makeTitleSafe
+	 */
+	public function testMakeTitleSafe( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$this->installFakeInterwikiLookup();
+		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
+
+		$this->assertTrue( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitleSafe_invalid() {
+		yield 'bad namespace' => [ -1234, 'Foo' ];
+		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'bad character' => [ NS_MAIN, 'Foo|Bar' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitleSafe_invalid
+	 * @covers Title::makeTitleSafe
+	 */
+	public function testMakeTitleSafe_invalid( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$this->installFakeInterwikiLookup();
+		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
+
+		$this->assertNull( $title );
 	}
 
 }
