@@ -165,6 +165,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$rec = new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
 
 		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
+		$this->assertSame( $title, $rec->getPage(), 'getPage' );
 		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 

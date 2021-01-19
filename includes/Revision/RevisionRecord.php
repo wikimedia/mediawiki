@@ -27,6 +27,7 @@ use Content;
 use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use Title;
@@ -341,6 +342,17 @@ abstract class RevisionRecord {
 	 * @return LinkTarget
 	 */
 	public function getPageAsLinkTarget() {
+		return $this->mTitle;
+	}
+
+	/**
+	 * Returns the page this revision belongs to.
+	 *
+	 * @since 1.36
+	 *
+	 * @return PageIdentity
+	 */
+	public function getPage() {
 		return $this->mTitle;
 	}
 
