@@ -2400,5 +2400,30 @@
 				"options": { "lengths": [ 10 ] }
 			}
 		]
+	},
+	{
+		"name": "objectcache",
+		"comment": "For a few generic cache operations if not using Memcached",
+		"columns": [
+			{
+				"name": "keyname",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 255 }
+			},
+			{
+				"name": "value",
+				"type": "blob",
+				"options": { "notnull": false, "length": 16777215 }
+			},
+			{
+				"name": "exptime",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "exptime", "columns": [ "exptime" ], "unique": false }
+		],
+		"pk": [ "keyname" ]
 	}
 ]

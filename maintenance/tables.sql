@@ -615,15 +615,4 @@ CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
 CREATE FULLTEXT INDEX /*i*/si_title ON /*_*/searchindex (si_title);
 CREATE FULLTEXT INDEX /*i*/si_text ON /*_*/searchindex (si_text);
 
-
---
--- For a few generic cache operations if not using Memcached
---
-CREATE TABLE /*_*/objectcache (
-  keyname varbinary(255) NOT NULL default '' PRIMARY KEY,
-  value mediumblob,
-  exptime datetime
-) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
-
 -- vim: sw=2 sts=2 et
