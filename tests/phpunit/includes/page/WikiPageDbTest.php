@@ -513,6 +513,47 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 4, $n, 'pagelinks should contain four links from the page' );
 	}
 
+	public function provideNonPageTitle() {
+		yield 'bad case and char' => [ Title::makeTitle( NS_MAIN, 'lower case and bad # char' ) ];
+		yield 'empty' => [ Title::makeTitle( NS_MAIN, '' ) ];
+		yield 'special' => [ Title::makeTitle( NS_SPECIAL, 'Dummy' ) ];
+		yield 'relative' => [ Title::makeTitle( NS_MAIN, '', '#section' ) ];
+		yield 'interwiki' => [ Title::makeTitle( NS_MAIN, 'Foo', '', 'acme' ) ];
+	}
+
+	/**
+	 * @dataProvider provideNonPageTitle
+	 * @covers WikiPage::doUserEditContent
+	 */
+	public function testDoUserEditContent_bad_page( $title ) {
+		$user1 = $this->getTestUser()->getUser();
+
+		$content = ContentHandler::makeContent(
+			"Yadda yadda",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		try {
+			$page = $this->newPage( $title );
+			$status = $page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
+		} catch ( Exception $ex ) {
+			// Throwing is an acceptable way to react to an invalid title,
+			// as long as no garbage is written to the database.
+		}
+
+		$row = $this->db->selectRow(
+			'page',
+			'*',
+			[
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey()
+			]
+		);
+
+		$this->assertFalse( $row );
+	}
+
 	/**
 	 * @covers WikiPage::doUserEditContent
 	 */
