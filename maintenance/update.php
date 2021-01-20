@@ -44,7 +44,6 @@ class UpdateMediaWiki extends Maintenance {
 		$this->addOption( 'skip-compat-checks', 'Skips compatibility checks, mostly for developers' );
 		$this->addOption( 'quick', 'Skip 5 second countdown before starting' );
 		$this->addOption( 'doshared', 'Also update shared tables' );
-		$this->addOption( 'nopurge', 'Do not purge the objectcache table after updates' );
 		$this->addOption( 'noschema', 'Only do the updates that are not done during schema updates' );
 		$this->addOption(
 			'schema',
@@ -199,9 +198,8 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$updater->setFileAccess();
-		if ( !$this->hasOption( 'nopurge' ) ) {
-			$updater->purgeCache();
-		}
+
+		$updater->purgeCache();
 
 		$time2 = microtime( true );
 
