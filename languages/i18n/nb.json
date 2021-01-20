@@ -3678,7 +3678,7 @@
 	"feedback-thanks-title": "Takk!",
 	"feedback-useragent": "Brukeragent:",
 	"searchsuggest-search": "Søk i {{SITENAME}}",
-	"searchsuggest-containing": "Søk i sider etter begrepet",
+	"searchsuggest-containing": "Søk etter sider som inneholder",
 	"search-match-redirect-label": "Omdiriger til nøyaktig treff når man søker",
 	"search-match-redirect-help": "Velg denne for å bli omdirigert til siden når sidetittelen er nøyaktig det samme som det du søkte etter",
 	"api-clientside-error-noconnect": "Kunne ikke koble til tjeneren. Sjekk at internettforbindelsen din virker og prøv igjen.",
