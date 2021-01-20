@@ -892,26 +892,37 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $this->user->getBlock() );
 	}
 
+	public function provideIsPingLimitable() {
+		yield 'Not ip excluded' => [ [], null, true ];
+		yield 'Ip excluded' => [ [ '1.2.3.4' ], null, false ];
+		yield 'Ip subnet excluded' => [ [ '1.2.3.0/8' ], null, false ];
+		yield 'noratelimit right' => [ [], 'noratelimit', false ];
+	}
+
 	/**
+	 * @dataProvider provideIsPingLimitable
 	 * @covers User::isPingLimitable
+	 * @param array $rateLimitExcludeIps
+	 * @param string|null $rightOverride
+	 * @param bool $expected
 	 */
-	public function testIsPingLimitable() {
+	public function testIsPingLimitable(
+		array $rateLimitExcludeIps,
+		?string $rightOverride,
+		bool $expected
+	) {
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
 		$user = User::newFromSession( $request );
+		// We are trying to test for current user behaviour
+		// since we are interested in request IP
+		RequestContext::getMain()->setUser( $user );
 
-		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
-		$this->assertTrue( $user->isPingLimitable() );
-
-		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [ '1.2.3.4' ] );
-		$this->assertFalse( $user->isPingLimitable() );
-
-		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [ '1.2.3.0/8' ] );
-		$this->assertFalse( $user->isPingLimitable() );
-
-		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
-		$this->overrideUserPermissions( $user, 'noratelimit' );
-		$this->assertFalse( $user->isPingLimitable() );
+		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', $rateLimitExcludeIps );
+		if ( $rightOverride ) {
+			$this->overrideUserPermissions( $user, $rightOverride );
+		}
+		$this->assertSame( $expected, $user->isPingLimitable() );
 	}
 
 	public function provideExperienceLevel() {
@@ -2433,7 +2444,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$access = TestingAccessWrapper::newFromObject( $user );
 		$access->mRequest = $req;
 		$access->mId = $id;
-		$access->setItemLoaded( 'id' );
+		$access->mLoadedItems = true;
 
 		$this->overrideUserPermissions( $user, [
 			'noratelimit' => false,
@@ -2640,5 +2651,26 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testBadUserID() {
 		$user = User::newFromId( 999999999 );
 		$this->assertSame( 'Unknown user', $user->getName() );
+	}
+
+	/**
+	 * @covers User::probablyCan
+	 * @covers User::definitelyCan
+	 * @covers User::authorizeRead
+	 * @covers User::authorizeWrite
+	 */
+	public function testAuthorityMethods() {
+		$user = $this->getTestUser()->getUser();
+		$page = Title::makeTitle( NS_MAIN, 'Test' );
+		$this->assertFalse( $user->probablyCan( 'create', $page ) );
+		$this->assertFalse( $user->definitelyCan( 'create', $page ) );
+		$this->assertFalse( $user->authorizeRead( 'create', $page ) );
+		$this->assertFalse( $user->authorizeWrite( 'create', $page ) );
+
+		$this->overrideUserPermissions( $user, 'createpage' );
+		$this->assertTrue( $user->probablyCan( 'create', $page ) );
+		$this->assertTrue( $user->definitelyCan( 'create', $page ) );
+		$this->assertTrue( $user->authorizeRead( 'create', $page ) );
+		$this->assertTrue( $user->authorizeWrite( 'create', $page ) );
 	}
 }
