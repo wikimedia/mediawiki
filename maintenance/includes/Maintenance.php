@@ -62,7 +62,7 @@ abstract class Maintenance {
 	public const DB_ADMIN = 2;
 
 	// Const for getStdin()
-	public const STDIN_ALL = 'all';
+	public const STDIN_ALL = -1;
 
 	/**
 	 * Array of desired/allowed params
@@ -398,8 +398,8 @@ abstract class Maintenance {
 
 	/**
 	 * Return input from stdin.
-	 * @param int|null $len The number of bytes to read. If null, just return the handle.
-	 *   Maintenance::STDIN_ALL returns the full length
+	 * @param int|null $len The number of bytes to read. If null, just
+	 * return the handle. Maintenance::STDIN_ALL returns the full content
 	 * @return mixed
 	 */
 	protected function getStdin( $len = null ) {
