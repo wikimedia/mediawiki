@@ -137,6 +137,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Title $title
 	 */
 	public function __construct( Title $title ) {
+		if ( !$title->canExist() ) {
+			// TODO: In order to allow WikiPage to implement ProperPageIdentity,
+			//       throw here to prevent construction of a WikiPage that doesn't
+			//       represent a proper page.
+			wfDeprecatedMsg(
+				"WikiPage constructed on a Title that cannot exist as a page: $title",
+				'1.36'
+			);
+		}
+
 		$this->mTitle = $title;
 	}
 
@@ -430,6 +440,18 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return void
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
+		if ( !$this->mTitle->canExist() ) {
+			// NOTE: If and when WikiPage implements PageIdentity but not yet ProperPageIdentity,
+			//       throw here to prevent usage of a WikiPage that doesn't
+			//       represent a proper page.
+			// NOTE: The constructor will already have triggered a warning, but seeing how
+			//       bad instances of WikiPage are used will be helpful.
+			wfDeprecatedMsg(
+				"Accessing WikiPage that cannot exist as a page: {$this->mTitle}. ",
+				'1.36'
+			);
+		}
+
 		$from = self::convertSelectType( $from );
 		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
 			// We already have the data from the correct location, no need to load it twice.
@@ -692,6 +714,18 @@ class WikiPage implements Page, IDBAccessObject {
 	protected function loadLastEdit() {
 		if ( $this->mLastRevision !== null ) {
 			return; // already loaded
+		}
+
+		if ( !$this->mTitle->canExist() ) {
+			// NOTE: If and when WikiPage implements PageIdentity but not yet ProperPageIdentity,
+			//       throw here to prevent usage of a WikiPage that doesn't
+			//       represent a proper page.
+			// NOTE: The constructor will already have triggered a warning, but seeing how
+			//       bad instances of WikiPage are used will be helpful.
+			wfDeprecatedMsg(
+				"Accessing WikiPage that cannot exist as a page: {$this->mTitle}. ",
+				'1.36'
+			);
 		}
 
 		$latest = $this->getLatest();
