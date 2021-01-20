@@ -28,6 +28,10 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
@@ -51,9 +55,12 @@ use Wikimedia\ScopedCallback;
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  *
+ * @note User implements Authority to ease transition. Always prefer
+ * using existing Authority or obtaining a proper Authority implementation.
+ *
  * @newable in 1.35 only, the constructor is @internal since 1.36
  */
-class User implements IDBAccessObject, UserIdentity {
+class User implements Authority, IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
 
 	/**
@@ -219,6 +226,9 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
+
+	/** @var Authority|null lazy-initialized Authority of this user */
+	private $mThisAsAuthority;
 
 	/** @var int[] */
 	public static $idCacheByName = [];
@@ -1585,15 +1595,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// - Check if this is the user associated with the main request
 		// - If so, pass the relevant request information to the block manager
 		$request = null;
-
-		// The session user is set up towards the end of Setup.php. Until then,
-		// assume it's a logged-out user.
-		$sessionUser = RequestContext::getMain()->getUser();
-		$globalUserName = $sessionUser->isSafeToLoad()
-			? $sessionUser->getName()
-			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
-
-		if ( $this->getName() === $globalUserName ) {
+		if ( $this->isGlobalSessionUser() ) {
 			// This is the global user, so we need to pass the request
 			$request = $this->getRequest();
 		}
@@ -3026,46 +3028,16 @@ class User implements IDBAccessObject, UserIdentity {
 		return true;
 	}
 
-	/**
-	 * Check if user is allowed to access a feature / make an action
-	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasAnyRights(...) instead
-	 *
-	 * @param string ...$permissions Permissions to test
-	 * @return bool True if user is allowed to perform *any* of the given actions
-	 */
-	public function isAllowedAny( ...$permissions ) {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $this, ...$permissions );
+	public function isAllowedAny( ...$permissions ): bool {
+		return $this->getThisAsAuthority()->isAllowedAny( ...$permissions );
 	}
 
-	/**
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasAllRights(...) instead
-	 * @param string ...$permissions Permissions to test
-	 * @return bool True if the user is allowed to perform *all* of the given actions
-	 */
-	public function isAllowedAll( ...$permissions ) {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAllRights( $this, ...$permissions );
+	public function isAllowedAll( ...$permissions ): bool {
+		return $this->getThisAsAuthority()->isAllowedAll( ...$permissions );
 	}
 
-	/**
-	 * Internal mechanics of testing a permission
-	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasRight(...) instead
-	 *
-	 * @param string $action
-	 *
-	 * @return bool
-	 */
-	public function isAllowed( $action = '' ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->userHasRight( $this, $action );
+	public function isAllowed( string $permission ): bool {
+		return $this->getThisAsAuthority()->isAllowed( $permission );
 	}
 
 	/**
@@ -4447,5 +4419,94 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isAllowUsertalk() {
 		return $this->mAllowUsertalk;
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @return UserIdentity
+	 */
+	public function getActor(): UserIdentity {
+		return $this;
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function probablyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->probablyCan( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function definitelyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->definitelyCan( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeRead( string $action, PageIdentity $target, PermissionStatus $status = null
+	): bool {
+		return $this->getThisAsAuthority()->authorizeRead( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeWrite( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->authorizeWrite( $action, $target, $status );
+	}
+
+	/**
+	 * Returns the Authority of this User if it's the main request context user.
+	 * This is intended to exist only for the period of transition to Authority.
+	 * @return Authority
+	 */
+	private function getThisAsAuthority(): Authority {
+		if ( !$this->mThisAsAuthority ) {
+			// TODO: For users that are not User::isGlobalSessionUser,
+			// creating a UserAuthority here is incorrect, since it depends
+			// on global WebRequest, but that is what we've used to do before Authority.
+			// When PermissionManager is refactored into Authority, we need
+			// to provide base implementation, based on just user groups/rights,
+			// and use it here.
+			$this->mThisAsAuthority = new UserAuthority(
+				$this,
+				MediaWikiServices::getInstance()->getPermissionManager()
+			);
+		}
+		return $this->mThisAsAuthority;
+	}
+
+	/**
+	 * Check whether this is the global session user.
+	 * @return bool
+	 */
+	private function isGlobalSessionUser(): bool {
+		// The session user is set up towards the end of Setup.php. Until then,
+		// assume it's a logged-out user.
+		$sessionUser = RequestContext::getMain()->getUser();
+		$globalUserName = $sessionUser->isSafeToLoad()
+			? $sessionUser->getName()
+			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
+
+		return $this->getName() === $globalUserName;
 	}
 }

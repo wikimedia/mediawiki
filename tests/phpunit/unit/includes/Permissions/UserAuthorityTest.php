@@ -20,25 +20,21 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
-use FauxRequest;
 use InvalidArgumentException;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Permissions\WebRequestAuthority;
-use MediaWiki\Session\Session;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use User;
-use WebRequest;
 
 /**
- * @covers \MediaWiki\Permissions\WebRequestAuthority
+ * @covers \MediaWiki\Permissions\UserAuthority
  */
-class WebRequestAuthorityTest extends MediaWikiUnitTestCase {
+class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	private function newPermissionsManager( array $permissions ): PermissionManager {
 		/** @var PermissionManager|MockObject $manager */
@@ -77,18 +73,10 @@ class WebRequestAuthorityTest extends MediaWikiUnitTestCase {
 		return $this->createNoOpMock( User::class );
 	}
 
-	private function newAuthority( UserIdentity $actor, array $permissions ): Authority {
-		$session = $this->createNoOpMock( Session::class, [ 'getUser' ] );
-		$session->method( 'getUser' )->willReturn( $actor );
-
-		/** @var WebRequest|MockObject $request */
-		$request = $this->createNoOpMock( FauxRequest::class, [ 'getSession' ] );
-		$request->method( 'getSession' )->willReturn( $session );
-
+	private function newAuthority( User $actor, array $permissions ): Authority {
 		$permissionManager = $this->newPermissionsManager( $permissions );
-
-		return new WebRequestAuthority(
-			$request,
+		return new UserAuthority(
+			$actor,
 			$permissionManager
 		);
 	}

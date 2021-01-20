@@ -25,18 +25,21 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use TitleValue;
-use WebRequest;
+use User;
 
 /**
- * Represents the authority of a given web request. For anonymous visitors, this will typically
+ * Represents the authority of a given User. For anonymous visitors, this will typically
  * allow only basic permissions. For logged in users, permissions are generally based on group
  * membership, but may be adjusted based on things like IP range blocks, OAuth grants, or
  * rate limits.
  *
+ * @note Currently this uses global WebRequest, but in future it will get WebRequest directly in
+ * the constructor.
+ *
  * @unstable
  * @since 1.36
  */
-class WebRequestAuthority implements Authority {
+class UserAuthority implements Authority {
 
 	/**
 	 * @var PermissionManager
@@ -49,16 +52,15 @@ class WebRequestAuthority implements Authority {
 	private $actor;
 
 	/**
-	 * @param WebRequest $request
+	 * @param User $user
 	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
-		WebRequest $request,
+		User $user,
 		PermissionManager $permissionManager
 	) {
 		$this->permissionManager = $permissionManager;
-
-		$this->actor = $request->getSession()->getUser();
+		$this->actor = $user;
 	}
 
 	/**
