@@ -4659,14 +4659,15 @@ class EditPage implements IEditObject {
 					$lang->formatNum( $maxArticleSize )
 				]
 			);
-		} elseif ( !$this->context->msg( 'longpage-hint' )->isDisabled() ) {
-			$out->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
-				[
-					'longpage-hint',
-					$lang->formatSize( strlen( $this->textbox1 ) ),
-					strlen( $this->textbox1 )
-				]
-			);
+		} else {
+			$longPageHint = $this->context->msg( 'longpage-hint' );
+			if ( !$longPageHint->isDisabled() ) {
+				$msgText = trim( $longPageHint->params( $lang->formatSize( $this->contentLength ),
+					$this->contentLength )->text() );
+				if ( $msgText !== '' && $msgText !== '-' ) {
+					$out->addWikiTextAsInterface( "<div id='mw-edit-longpage-hint'>\n$msgText\n</div>" );
+				}
+			}
 		}
 	}
 
