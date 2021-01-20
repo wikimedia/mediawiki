@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\User\UserIdentityValue;
+
 /**
  * @group Database
  * @group RequestContext
@@ -112,5 +115,28 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct restored user ID." );
 		$this->assertFalse( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent(),
 			'Global session isn\'t persistent after restoring the context' );
+	}
+
+	/**
+	 * @covers RequestContext::getUser
+	 * @covers RequestContext::setUser
+	 * @covers RequestContext::getAuthority
+	 * @covers RequestContext::setAuthority
+	 */
+	public function testTestGetSetAuthority() {
+		$context = new RequestContext();
+
+		$user = $this->getTestUser()->getUser();
+
+		$context->setUser( $user );
+		$this->assertTrue( $user->equals( $context->getAuthority()->getActor() ) );
+		$this->assertTrue( $user->equals( $context->getUser() ) );
+
+		$authorityActor = new UserIdentityValue( 42, 'Test', 24 );
+		$authority = new UltimateAuthority( $authorityActor );
+
+		$context->setAuthority( $authority );
+		$this->assertTrue( $context->getUser()->equals( $authorityActor ) );
+		$this->assertTrue( $context->getAuthority()->getActor()->equals( $authorityActor ) );
 	}
 }

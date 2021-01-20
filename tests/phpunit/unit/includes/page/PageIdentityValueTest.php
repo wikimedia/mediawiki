@@ -136,6 +136,11 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
 			false
 		];
+		yield [
+			new PageIdentityValue( 3, 0, 'Foo', 'bar' ),
+			new PageIdentityValue( 3, 0, 'Foo', 'bar' ),
+			true
+		];
 	}
 
 	/**

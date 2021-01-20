@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
@@ -153,6 +154,17 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$row must be an object' );
 		$this->getUserFactory()->newFromRow( [] );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserFactory::newFromAuthority
+	 */
+	public function testNewFromAuthority() {
+		$authority = new UltimateAuthority( new UserIdentityValue( 42, 'Test', 24 ) );
+		$user = $this->getUserFactory()->newFromAuthority( $authority );
+		$this->assertSame( 42, $user->getId() );
+		$this->assertSame( 'Test', $user->getName() );
+		$this->assertSame( 24, $user->getActorId() );
 	}
 
 }

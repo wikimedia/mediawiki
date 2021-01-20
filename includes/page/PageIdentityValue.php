@@ -192,12 +192,13 @@ class PageIdentityValue implements ProperPageIdentity {
 		// NOTE: keep in sync with Title::isSamePageAs()!
 		// NOTE: keep in sync with WikiPage::isSamePageAs()!
 
-		if ( $other->getWikiId() !== $this->getWikiId()
-			|| $other->getId() !== $this->getId() ) {
+		$wikiId = $this->getWikiId();
+		if ( $other->getWikiId() !== $wikiId
+			|| $other->getId( $wikiId ) !== $this->getId( $wikiId ) ) {
 			return false;
 		}
 
-		if ( $this->getId() === 0 ) {
+		if ( $this->getId( $wikiId ) === 0 ) {
 			if ( $other->getNamespace() !== $this->getNamespace()
 				|| $other->getDBkey() !== $this->getDBkey() ) {
 				return false;
