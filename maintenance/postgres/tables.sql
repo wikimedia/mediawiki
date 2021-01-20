@@ -201,14 +201,6 @@ CREATE INDEX rc_actor           ON recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 CREATE INDEX rc_this_oldid      ON recentchanges (rc_this_oldid);
 
-
-CREATE TABLE objectcache (
-  keyname  TEXT                   UNIQUE,
-  value    BYTEA        NOT NULL  DEFAULT '',
-  exptime  TIMESTAMPTZ  NOT NULL
-);
-CREATE INDEX objectcacache_exptime ON objectcache (exptime);
-
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 ALTER TABLE page ADD titlevector tsvector;
