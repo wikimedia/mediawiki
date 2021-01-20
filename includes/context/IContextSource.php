@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\Permissions\Authority;
+
 /**
  * Interface for objects which can provide a MediaWiki context on request
  *
@@ -94,6 +96,12 @@ interface IContextSource extends MessageLocalizer {
 	 * @return User
 	 */
 	public function getUser();
+
+	/**
+	 * @unstable
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority;
 
 	/**
 	 * @return Language

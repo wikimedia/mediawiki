@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Permissions\Authority;
+
 /**
  * Request-dependant objects containers.
  *
@@ -53,6 +56,12 @@ interface MutableContext {
 	 * @param User $user
 	 */
 	public function setUser( User $user );
+
+	/**
+	 * @unstable
+	 * @param Authority $authority
+	 */
+	public function setAuthority( Authority $authority );
 
 	/**
 	 * @param Language|string $language Language instance or language code

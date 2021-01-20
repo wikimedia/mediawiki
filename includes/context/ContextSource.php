@@ -19,6 +19,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -133,6 +134,13 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority {
+		return $this->getContext()->getAuthority();
 	}
 
 	/**
