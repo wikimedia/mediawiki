@@ -81,9 +81,14 @@ trait HandlerTestTrait {
 	 * @internal to the trait
 	 * @param Handler $handler
 	 * @param null|Validator $validator
+	 * @param User|null $user User provided by request
 	 * @throws HttpException
 	 */
-	private function validateHandler( Handler $handler, Validator $validator = null ) {
+	private function validateHandler(
+		Handler $handler,
+		Validator $validator = null,
+		?User $user = null
+	) {
 		if ( !$validator ) {
 			/** @var PermissionManager|MockObject $permissionManager */
 			$permissionManager = $this->createNoOpMock(
@@ -96,7 +101,9 @@ trait HandlerTestTrait {
 			$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
 			$objectFactory = new ObjectFactory( $serviceContainer );
 
-			$user = new UserIdentityValue( 0, 'Fake User', 0 );
+			if ( !$user ) {
+				$user = new UserIdentityValue( 0, 'Fake User', 0 );
+			}
 			$validator = new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
 		}
 		$handler->validate( $validator );
@@ -130,10 +137,17 @@ trait HandlerTestTrait {
 	 * @param array $hooks Hook overrides
 	 * @param array $validatedParams Path/query params to return as already valid
 	 * @param array $validatedBody Body params to return as already valid
+	 * @param User|null $user User provided by request
 	 * @return ResponseInterface
 	 */
-	private function executeHandler( Handler $handler, RequestInterface $request,
-		$config = [], $hooks = [], $validatedParams = [], $validatedBody = []
+	private function executeHandler(
+		Handler $handler,
+		RequestInterface $request,
+		$config = [],
+		$hooks = [],
+		$validatedParams = [],
+		$validatedBody = [],
+		?User $user = null
 	) {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
@@ -144,7 +158,7 @@ trait HandlerTestTrait {
 			/** @var Validator|MockObject $validator */
 			$validator = $this->getMockValidator( $validatedParams, $validatedBody );
 		}
-		$this->validateHandler( $handler, $validator );
+		$this->validateHandler( $handler, $validator, $user );
 
 		// Check conditional request headers
 		$earlyResponse = $handler->checkPreconditions();
@@ -171,7 +185,9 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks
-	 *
+	 * @param array $validatedParams Path/query params to return as already valid
+	 * @param array $validatedBody Body params to return as already valid
+	 * @param User|null $user User provided by request
 	 * @return array
 	 */
 	private function executeHandlerAndGetBodyData(
@@ -180,9 +196,18 @@ trait HandlerTestTrait {
 		$config = [],
 		$hooks = [],
 		$validatedParams = [],
-		$validatedBody = []
+		$validatedBody = [],
+		?User $user = null
 	) {
-		$response = $this->executeHandler( $handler, $request, $config, $hooks, $validatedParams, $validatedBody );
+		$response = $this->executeHandler(
+			 $handler,
+			 $request,
+			 $config,
+			 $hooks,
+			 $validatedParams,
+			 $validatedBody,
+			 $user
+		);
 
 		$this->assertTrue(
 			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,
