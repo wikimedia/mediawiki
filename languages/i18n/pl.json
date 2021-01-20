@@ -2415,7 +2415,7 @@
 	"confirm": "Potwierdź",
 	"excontent": "treść: „$1”",
 	"excontentauthor": "treść: „$1”, jedyny autor: „[[Special:Contributions/$2|$2]]” ([[User talk:$2|dyskusja]])",
-	"exbeforeblank": "poprzednia zawartość, obecnie pustej strony: „$1”",
+	"exbeforeblank": "poprzednia zawartość obecnie pustej strony: „$1”",
 	"delete-confirm": "Usuwanie „$1”",
 	"delete-legend": "Usuń",
 	"historywarning": "<strong>Uwaga:</strong> Strona, którą chcesz usunąć, ma {{PLURAL:$1|jedną starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
