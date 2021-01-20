@@ -21,6 +21,9 @@ Some specific notes for MediaWiki 1.36 upgrades are below:
 For notes on 1.35.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.36 ===
+MediaWiki update script, maintenance/update.php, used to accept `--nopurge`
+option to prevent clearing caches stored in the database during upgrade,
+this is no longer recommended and the option has been removed.
 …
 
 ==== New configuration ====
