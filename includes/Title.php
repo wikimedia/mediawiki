@@ -3930,16 +3930,71 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Compare with another title.
+	 * Compares with another Title.
 	 *
-	 * @param LinkTarget $title
+	 * A Title object is considered equal to another Title if it has the same text,
+	 * the same interwiki prefix, and the same namespace.
+	 *
+	 * @note This is different from isSameLinkAs(), which also compares the fragment part,
+	 *       and from isSamePageAs(), which takes into account the page ID.
+	 *
+	 * @phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object $other
+	 *
+	 * @return bool true if $other is a Title and refers to the same page.
+	 */
+	public function equals( object $other ) {
+		if ( $other instanceof Title ) {
+			// NOTE: In contrast to isSameLinkAs(), this ignores the fragment part!
+			// NOTE: In contrast to isSamePageAs(), this ignores the page ID!
+			// NOTE: === is necessary for proper matching of number-like titles
+			return $this->getInterwiki() === $other->getInterwiki()
+				&& $this->getNamespace() === $other->getNamespace()
+				&& $this->getDBkey() === $other->getDBkey();
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @see LinkTarget::isSameLinkAs()
+	 * @since 1.36
+	 *
+	 * @param LinkTarget $other
 	 * @return bool
 	 */
-	public function equals( LinkTarget $title ) {
-		// Note: === is necessary for proper matching of number-like titles.
-		return $this->mInterwiki === $title->getInterwiki()
-			&& $this->mNamespace == $title->getNamespace()
-			&& $this->mDbkeyform === $title->getDBkey();
+	public function isSameLinkAs( LinkTarget $other ) {
+		// NOTE: keep in sync with TitleValue::isSameLinkAs()!
+		// NOTE: === is needed for number-like titles
+		return ( $other->getInterwiki() === $this->getInterwiki() )
+			&& ( $other->getDBkey() === $this->getDBkey() )
+			&& ( $other->getNamespace() === $this->getNamespace() )
+			&& ( $other->getFragment() === $this->getFragment() );
+	}
+
+	/**
+	 * @see PageIdentity::isSamePageAs()
+	 * @since 1.36
+	 *
+	 * @param PageIdentity $other
+	 * @return bool
+	 */
+	public function isSamePageAs( PageIdentity $other ) {
+		// NOTE: keep in sync with PageIdentityValue::isSamePageAs()!
+
+		if ( $other->getWikiId() !== $this->getWikiId()
+			|| $other->getId() !== $this->getId() ) {
+			return false;
+		}
+
+		if ( $this->getId() === 0 ) {
+			if ( $other->getNamespace() !== $this->getNamespace()
+				|| $other->getDBkey() !== $this->getDBkey() ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
