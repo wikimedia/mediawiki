@@ -23,6 +23,7 @@
 namespace MediaWiki\Revision;
 
 use IDBAccessObject;
+use MediaWiki\Page\PageIdentity;
 use MWException;
 use Title;
 
@@ -67,16 +68,14 @@ interface RevisionFactory extends IDBAccessObject {
 	 * @param \stdClass $row A query result row as a raw object.
 	 *        Use RevisionStore::getQueryInfo() to build a query that yields the required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title A title object for the revision.
-	 *        Use Title::newFromRow when query was built with option 'page'
-	 *        on RevisionStore::getQueryInfo for performance reason
+	 * @param PageIdentity|null $page A page object for the revision.
 	 *
 	 * @return RevisionRecord
 	 */
 	public function newRevisionFromRow(
 		$row,
 		$queryFlags = self::READ_NORMAL,
-		Title $title = null
+		PageIdentity $page = null
 	);
 
 	/**

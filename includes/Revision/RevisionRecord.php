@@ -27,6 +27,7 @@ use Content;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
@@ -45,6 +46,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionRecord
  */
 abstract class RevisionRecord implements WikiAwareEntity {
+	use LegacyArticleIdAccess;
 	use NonSerializableTrait;
 
 	// RevisionRecord deletion constants
@@ -593,27 +595,6 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 */
 	public function isCurrent() {
 		return false;
-	}
-
-	/**
-	 * Before transition to PageIdentity, Title could exist for foreign wikis.
-	 * It was very brittle, but it worked. Until Title is deprecated in RevisionStore
-	 * and in the codebase more general, most of the PageIdentity instances passed
-	 * in here are Titles. So for cross-wiki access, stricter domain validation
-	 * of PageIdentity::getId will break wikis. This method supposed to exist
-	 * only for the transition period and will be removed after.
-	 *
-	 * Additionally, loose checks on Title regarding whether the page can exist or not
-	 * have been depended upon in a number of places in the codebase.
-	 *
-	 * @param PageIdentity $title
-	 * @return int
-	 */
-	protected function getArticleId( PageIdentity $title ): int {
-		if ( $title instanceof Title ) {
-			return $title->getArticleID();
-		}
-		return $title->getId( $this->getWikiId() );
 	}
 }
 

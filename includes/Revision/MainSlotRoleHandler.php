@@ -25,6 +25,7 @@ namespace MediaWiki\Revision;
 use Hooks;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MWUnknownContentModelException;
 use Title;
 
@@ -85,11 +86,11 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 	}
 
 	/**
-	 * @param LinkTarget $page
+	 * @param LinkTarget|PageIdentity $page
 	 *
 	 * @return string
 	 */
-	public function getDefaultModel( LinkTarget $page ) {
+	public function getDefaultModel( $page ) {
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
 		//       because it is used to initialize the mContentModel member.
 
@@ -98,7 +99,11 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		$model = $this->namespaceContentModels[$ns] ?? null;
 
 		// Hook can determine default model
-		$title = Title::newFromLinkTarget( $page );
+		if ( $page instanceof PageIdentity ) {
+			$title = Title::castFromPageIdentity( $page );
+		} else {
+			$title = Title::castFromLinkTarget( $page );
+		}
 		if ( !Hooks::runner()->onContentHandlerDefaultModelFor( $title, $model ) && $model !== null ) {
 			return $model;
 		}
