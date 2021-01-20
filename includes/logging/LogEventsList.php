@@ -36,12 +36,6 @@ class LogEventsList extends ContextSource {
 	public $flags;
 
 	/**
-	 * @var array
-	 * @deprecated since 1.34, no longer used.
-	 */
-	protected $mDefaultQuery;
-
-	/**
 	 * @var bool
 	 */
 	protected $showTagEditUI;
