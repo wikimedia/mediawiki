@@ -111,7 +111,6 @@ class HTMLTextField extends HTMLFormField {
 			// Only used in HTML mode:
 			'pattern',
 			'list',
-			'multiple',
 		];
 
 		$attribs += $this->getAttributes( $allowedParams );
@@ -141,7 +140,6 @@ class HTMLTextField extends HTMLFormField {
 				# Pass through
 				case 'email':
 				case 'password':
-				case 'file':
 				case 'url':
 					$type = $this->mParams['type'];
 					break;
