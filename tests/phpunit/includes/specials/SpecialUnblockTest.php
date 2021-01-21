@@ -26,6 +26,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	protected function tearDown() : void {
 		$this->db->delete( 'ipblocks', '*', __METHOD__ );
+		parent::tearDown();
 	}
 
 	/**
