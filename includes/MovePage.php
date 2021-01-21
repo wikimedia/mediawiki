@@ -982,15 +982,15 @@ class MovePage {
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$this->oldTitle->resetArticleID( $newid );
-				$redirectRevisionRecord = new MutableRevisionRecord( $this->oldTitle );
-				$redirectRevisionRecord->setPageId( $newid );
-				$redirectRevisionRecord->setUser( $user );
-				$redirectRevisionRecord->setComment( $commentObj );
-				$redirectRevisionRecord->setContent( SlotRecord::MAIN, $redirectContent );
-				$redirectRevisionRecord->setTimestamp( MWTimestamp::now( TS_MW ) );
+				$redirectRevRecord = new MutableRevisionRecord( $this->oldTitle );
+				$redirectRevRecord->setPageId( $newid )
+					->setUser( $user )
+					->setComment( $commentObj )
+					->setContent( SlotRecord::MAIN, $redirectContent )
+					->setTimestamp( MWTimestamp::now( TS_MW ) );
 
 				$inserted = $this->revisionStore->insertRevisionOn(
-					$redirectRevisionRecord,
+					$redirectRevRecord,
 					$dbw
 				);
 				$redirectRevId = $inserted->getId();
