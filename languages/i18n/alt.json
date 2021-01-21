@@ -1886,6 +1886,7 @@
 	"move": "Адын солыыр",
 	"pager-newer-n": "$1 {{PLURAL:$1|јаҥызы}}",
 	"pager-older-n": "$1 {{PLURAL:$1|эски}}",
+	"suppress": "Јажырар",
 	"apisandbox-reset": "Арчыр",
 	"booksources": "Бичиктердиҥ алынган јерлери",
 	"booksources-search-legend": "Бичик керегинде бедрер",
