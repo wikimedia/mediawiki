@@ -3244,7 +3244,7 @@
 	"feedback-thanks-title": "Merci!",
 	"feedback-useragent": "User Agent:",
 	"searchsuggest-search": "Op {{SITENAME}} sichen",
-	"searchsuggest-containing": "Sichen a Säiten nom Begrëff",
+	"searchsuggest-containing": "Sichen no Säiten mat",
 	"api-clientside-error-timeout": "De Server huet net bannen där Zäit geäntwert déi virgesinn ass.",
 	"api-error-badtoken": "Interne Feeler: falschen Token.",
 	"api-error-emptypage": "Et ass net erlaabt nei, eidel Säiten unzeleeën.",
