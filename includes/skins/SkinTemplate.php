@@ -1131,6 +1131,10 @@ class SkinTemplate extends Skin {
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
 			foreach ( $links as $key => &$link ) {
+				// Allow links to set their own id for backwards compatibility reasons.
+				if ( isset( $link['id'] ) ) {
+					continue;
+				}
 				$xmlID = $key;
 				if ( isset( $link['context'] ) && $link['context'] == 'subject' ) {
 					$xmlID = 'ca-nstab-' . $xmlID;
