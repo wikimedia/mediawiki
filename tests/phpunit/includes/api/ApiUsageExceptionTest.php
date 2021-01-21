@@ -12,10 +12,10 @@ class ApiUsageExceptionTest extends MediaWikiIntegrationTestCase {
 		$statusValue->fatal( $messageKey, $messageParameter );
 
 		$apiUsageException = new ApiUsageException( null, $statusValue );
-		/** @var \Message $gotMessage */
+		/** @var Message $gotMessage */
 		$gotMessage = $apiUsageException->getMessageObject();
 
-		$this->assertInstanceOf( \Message::class, $gotMessage );
+		$this->assertInstanceOf( Message::class, $gotMessage );
 		$this->assertEquals( $messageKey, $gotMessage->getKey() );
 		$this->assertEquals( [ $messageParameter ], $gotMessage->getParams() );
 	}
@@ -31,10 +31,10 @@ class ApiUsageExceptionTest extends MediaWikiIntegrationTestCase {
 			$expectedCode,
 			$expectedData
 		);
-		/** @var \ApiMessage $gotMessage */
+		/** @var ApiMessage $gotMessage */
 		$gotMessage = $apiUsageException->getMessageObject();
 
-		$this->assertInstanceOf( \ApiMessage::class, $gotMessage );
+		$this->assertInstanceOf( ApiMessage::class, $gotMessage );
 		$this->assertEquals( $expectedMessage->getKey(), $gotMessage->getKey() );
 		$this->assertEquals( $expectedMessage->getParams(), $gotMessage->getParams() );
 		$this->assertEquals( $expectedCode, $gotMessage->getApiCode() );
