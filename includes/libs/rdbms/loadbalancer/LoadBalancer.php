@@ -918,6 +918,7 @@ class LoadBalancer implements ILoadBalancer {
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
 		// Set master DB handles as read-only if there is high replication lag
 		if (
+			$conn &&
 			$serverIndex === $this->getWriterIndex() &&
 			$this->getLaggedReplicaMode( $domain ) &&
 			!is_string( $conn->getLBInfo( $conn::LB_READ_ONLY_REASON ) )
