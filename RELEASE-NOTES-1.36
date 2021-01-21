@@ -359,6 +359,8 @@ because of Phabricator reports.
   cloning all database tables before running tests as MediaWikiIntegrationTest
   does.  If an extension was misusing the hook to *exclude* tables from the
   clone, that will no longer occur and tests may fail.
+* The UserWrapper class, which was only loaded for tests and had no uses found
+  in public MediaWiki-related git, was removed.
 * …
 
 === Deprecations in 1.36 ===
