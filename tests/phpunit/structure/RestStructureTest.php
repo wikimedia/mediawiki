@@ -44,7 +44,6 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePathParameters
-	 * @param array $spec
 	 */
 	public function testPathParameters( array $spec ) : void {
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
@@ -96,9 +95,6 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParameters
-	 * @param array $spec
-	 * @param string $name
-	 * @param mixed $settings
 	 */
 	public function testParameters( array $spec, string $name, $settings ) : void {
 		static $sources = [ 'path', 'query', 'post' ];

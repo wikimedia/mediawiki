@@ -45,9 +45,6 @@ trait SerializationTestTrait {
 	 * Tests that $deserialized objects retrieved from stored files for various MW versions
 	 * equal to the $expected
 	 * @dataProvider provideTestDeserialization
-	 * @param callable $deserializer
-	 * @param object $expected
-	 * @param string $data
 	 */
 	public function testDeserialization( callable $deserializer, object $expected, string $data ) {
 		$deserialized = $deserializer( $data );
@@ -91,9 +88,6 @@ trait SerializationTestTrait {
 	/**
 	 * Test that the current master $serialized instances are equal to stored $expected instances.
 	 * @dataProvider provideSerialization
-	 * @param callable $serializer
-	 * @param string $expected
-	 * @param object $testInstance
 	 */
 	public function testSerialization( callable $serializer, string $expected, object $testInstance ) {
 		$this->assertSame( $expected, $serializer( $testInstance ) );
@@ -123,10 +117,6 @@ trait SerializationTestTrait {
 	 * Test that the $expected instance can be serialized and successfully be deserialized again.
 	 *
 	 * @dataProvider provideSerializationRoundTrip
-	 *
-	 * @param object $instance
-	 * @param callable $serializer
-	 * @param callable $deserializer
 	 */
 	public function testSerializationRoundTrip(
 		object $instance,
@@ -233,8 +223,6 @@ trait SerializationTestTrait {
 	 * @see self::getTestInstancesAndAssertions()
 	 * @dataProvider provideDeserializedTestObjects
 	 * @dataProvider provideCurrentVersionTestObjects
-	 * @param object $testInstance
-	 * @param callable $assertionsCallback
 	 */
 	public function testAcceptanceOfDeserializedInstances(
 		object $testInstance,

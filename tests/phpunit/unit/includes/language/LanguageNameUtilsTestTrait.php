@@ -161,10 +161,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
 	 * @covers Language::fetchLanguageNames
 	 * @covers Language::fetchLanguageName
-	 *
-	 * @param string $expected
-	 * @param string $code
-	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames( $expected, $code, ...$otherArgs ) {
 		$this->assertGetLanguageNames( [], $expected, $code, ...$otherArgs );
@@ -201,10 +197,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
 	 * @covers Language::fetchLanguageNames
 	 * @covers Language::fetchLanguageName
-	 *
-	 * @param string $expected Expected return value of getLanguageName()
-	 * @param string $code
-	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_withHook( $expected, $code, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
@@ -265,10 +257,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
 	 * @covers Language::fetchLanguageNames
 	 * @covers Language::fetchLanguageName
-	 *
-	 * @param string $expected Expected return value of getLanguageName()
-	 * @param string $code
-	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_ExtraLanguageNames( $expected, $code, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
@@ -323,8 +311,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNames
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNamesUncached
 	 * @covers Language::fetchLanguageNames
-	 *
-	 * @param mixed ...$args To pass to method
 	 */
 	public function testGetLanguageNames_sorted( ...$args ) {
 		$names = $this->getLanguageNames( ...$args );
@@ -375,9 +361,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
 	 * @covers Language::fetchLanguageNames
 	 * @covers Language::fetchLanguageName
-	 *
-	 * @param string $expected
-	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
 	public function testGetLanguageNames_pigLatin( $expected, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
@@ -437,9 +420,6 @@ trait LanguageNameUtilsTestTrait {
 	 * @dataProvider provideGetFileName
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getFileName
 	 * @covers Language::getFileName
-	 *
-	 * @param string $expected
-	 * @param mixed ...$args To pass to method
 	 */
 	public function testGetFileName( $expected, ...$args ) {
 		$this->assertSame( $expected, $this->getFileName( ...$args ) );

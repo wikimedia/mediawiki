@@ -3515,9 +3515,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAccountLink
-	 * @param StatusValue $preTest
-	 * @param array $primaryResponses
-	 * @param array $managerResponses
 	 */
 	public function testAccountLink(
 		StatusValue $preTest, array $primaryResponses, array $managerResponses

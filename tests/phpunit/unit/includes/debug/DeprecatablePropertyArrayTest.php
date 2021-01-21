@@ -11,7 +11,6 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideDeprecationWarning
-	 * @param callable $callback
 	 */
 	public function testDeprecationWarning( callable $callback, string $message ) {
 		$this->expectDeprecation();

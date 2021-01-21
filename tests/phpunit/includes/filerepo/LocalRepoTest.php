@@ -359,8 +359,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string $method
-	 * @param mixed ...$args
 	 * @dataProvider provideSkipWriteOperationIfSha1
 	 * @covers ::store
 	 * @covers ::storeBatch

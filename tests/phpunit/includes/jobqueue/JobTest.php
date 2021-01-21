@@ -103,8 +103,6 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTestJobFactory
 	 *
-	 * @param mixed $handler
-	 *
 	 * @covers Job::factory
 	 */
 	public function testJobFactory( $handler ) {

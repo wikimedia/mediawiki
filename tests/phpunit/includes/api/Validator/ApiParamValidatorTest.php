@@ -529,9 +529,6 @@ class ApiParamValidatorTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideGetValue
-	 * @param string|null $data Request value
-	 * @param mixed $settings
-	 * @param mixed $expect Expected value, or an expected ApiUsageException
 	 */
 	public function testGetValue( ?string $data, $settings, $expect ) : void {
 		[ $validator, $main ] = $this->getValidator( new FauxRequest( [ 'aptest' => $data ] ) );
@@ -619,9 +616,6 @@ class ApiParamValidatorTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideValidateValue
-	 * @param mixed $value Value to validate
-	 * @param mixed $settings
-	 * @param mixed $expect Expected value, or an expected ApiUsageException
 	 */
 	public function testValidateValue( $value, $settings, $expect ) : void {
 		[ $validator, $main ] = $this->getValidator( new FauxRequest() );

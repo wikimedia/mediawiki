@@ -57,9 +57,6 @@ class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiIntegratio
 	 * @covers \Wikimedia\ObjectFactory::createObject
 	 *
 	 * @dataProvider provideHandlerSpecsWithMWException
-	 *
-	 * @param array $handlerSpecs
-	 * @param string $exceptionName
 	 */
 	public function testCreateContentHandlerForModelID_callWithProvider_throwsException(
 		array $handlerSpecs,

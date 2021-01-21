@@ -102,9 +102,6 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideNormalizeSettings
-	 * @param array $settings
-	 * @param array $expect
-	 * @param array $options Options array
 	 */
 	public function testNormalizeSettings( array $settings, array $expect, array $options = [] ) {
 		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );
@@ -170,10 +167,6 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideStringifyValue
-	 * @param mixed $value
-	 * @param string|null $expect
-	 * @param array $settings
-	 * @param array $options Options array
 	 */
 	public function testStringifyValue( $value, $expect, array $settings = [], array $options = [] ) {
 		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );
@@ -193,10 +186,6 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideGetInfo
-	 * @param array $settings
-	 * @param array $expectParamInfo
-	 * @param array $expectHelpInfo
-	 * @param array $options Options array
 	 */
 	public function testGetInfo(
 		array $settings, array $expectParamInfo, array $expectHelpInfo, array $options = []

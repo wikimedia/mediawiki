@@ -489,10 +489,6 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataForParseNamespacePrefix
-	 * @param array $params
-	 * @param array|false $expected
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public function testParseNamespacePrefix( array $params, $expected ) {
 		$this->setTemporaryHook( 'PrefixSearchExtractNamespace', function ( &$namespaces, &$query ) {

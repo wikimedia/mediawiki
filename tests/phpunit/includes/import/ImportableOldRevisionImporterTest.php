@@ -26,7 +26,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ::import
-	 * @param string[] $expectedTags
 	 * @dataProvider provideTestCases
 	 */
 	public function testImport( $expectedTags ) {

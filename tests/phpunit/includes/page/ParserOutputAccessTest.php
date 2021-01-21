@@ -652,11 +652,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * flagged as "dirty".
 	 *
 	 * @dataProvider providePoolWorkDirty
-	 * @param Status $status
-	 * @param bool $fastStale
-	 * @param string $expectedMessage
-	 *
-	 * @throws MWException
 	 */
 	public function testPoolWorkDirty( $status, $fastStale, $expectedMessage ) {
 		MWTimestamp::setFakeTime( '2020-04-04T01:02:03' );

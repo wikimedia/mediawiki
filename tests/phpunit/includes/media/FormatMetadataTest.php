@@ -39,8 +39,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @param mixed $input
-	 * @param mixed $output
 	 * @dataProvider provideResolveMultivalueValue
 	 * @covers FormatMetadata::resolveMultivalueValue
 	 */
@@ -99,8 +97,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @param mixed $input
-	 * @param mixed $output
 	 * @dataProvider provideGetFormattedData
 	 * @covers FormatMetadata::getFormattedData
 	 */

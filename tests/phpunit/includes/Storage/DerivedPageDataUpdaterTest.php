@@ -862,15 +862,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideIsReusableFor
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isReusableFor()
-	 *
-	 * @param User|null $prepUser
-	 * @param RevisionRecord|null $prepRevision
-	 * @param RevisionSlotsUpdate|null $prepUpdate
-	 * @param User|null $forUser
-	 * @param RevisionRecord|null $forRevision
-	 * @param RevisionSlotsUpdate|null $forUpdate
-	 * @param int|null $forParent
-	 * @param bool $isReusable
 	 */
 	public function testIsReusableFor(
 		?User $prepUser,
@@ -944,11 +935,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideIsCountable
 	 *
-	 * @param string $articleCountMethod
-	 * @param string $wikitextContent
-	 * @param int $revisionVisibility
-	 * @param bool $isCountable
-	 * @throws \MWException
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
 	 */
 	public function testIsCountable(
@@ -1133,9 +1119,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeEnqueueRevertedTagUpdateJob
 	 * @dataProvider provideEnqueueRevertedTagUpdateJob
-	 *
-	 * @param bool $approved
-	 * @param int $queueSize
 	 */
 	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
 		$page = $this->getPage( __METHOD__ );

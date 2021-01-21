@@ -411,8 +411,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param mixed $contentNamespaces To pass to constructor
-	 * @param array $expected
 	 * @dataProvider provideGetContentNamespaces
 	 * @covers NamespaceInfo::getContentNamespaces
 	 */
@@ -1254,11 +1252,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * Remove when deprecated method is removed.
 	 * @dataProvider provideGetRestrictionLevels
 	 * @covers NamespaceInfo::getRestrictionLevels
-	 *
-	 * @param array $expected
-	 * @param int $ns
-	 * @param array|null $groups
-	 * @throws MWException
 	 */
 	public function testGetRestrictionLevels( array $expected, $ns, array $groups = null ) {
 		$this->hideDeprecated( 'NamespaceInfo::getRestrictionLevels' );

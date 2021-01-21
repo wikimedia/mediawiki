@@ -240,9 +240,6 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlers
 		 * @dataProvider provideGetHandlers
-		 * @param string $hook
-		 * @param callable|null $handlerToRegister
-		 * @param array $expectedReturn
 		 */
 		public function testGetHandlers( $hook, $handlerToRegister, $expectedReturn ) {
 			if ( $handlerToRegister ) {
@@ -302,11 +299,6 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * @dataProvider provideRunLegacy
 		 * Test Hook run with legacy hook system, registered via wgHooks()
-		 * @param string $event
-		 * @param callable $hook
-		 * @param array $hookArguments
-		 * @param array $options
-		 * @throws \FatalError
 		 */
 		public function testRunLegacy( $event, $hook, $hookArguments = [], $options = [] ) {
 			$hookContainer = $this->newHookContainer();
