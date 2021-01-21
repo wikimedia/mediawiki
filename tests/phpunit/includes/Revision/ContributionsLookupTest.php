@@ -339,9 +339,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$actual = $revisions[$idx];
 			$this->assertSame( $expected->getId(), $actual->getId(), 'rev_id' );
 			$this->assertSame( $expected->getPageId(), $actual->getPageId(), 'rev_page_id' );
-			$this->assertSame(
-				$expected->getPageAsLinkTarget()->getPrefixedDBkey(),
-				$actual->getPageAsLinkTarget()->getPrefixedDBkey()
+			$this->assertTrue(
+				$expected->getPageAsLinkTarget()->isSameLinkAs( $actual->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
 			);
 
 			$expectedUser = $expected->getUser( RevisionRecord::RAW )->getName();

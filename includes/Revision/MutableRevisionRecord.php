@@ -25,11 +25,11 @@ namespace MediaWiki\Revision;
 use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use MWTimestamp;
-use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -54,9 +54,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @return MutableRevisionRecord
 	 */
 	public static function newFromParentRevision( RevisionRecord $parent ) {
-		// TODO: ideally, we wouldn't need a Title here
-		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$rev = new MutableRevisionRecord( $parent->getPage(), $parent->getWikiId() );
 
 		foreach ( $parent->getSlotRoles() as $role ) {
 			$slot = $parent->getSlot( $role, self::RAW );
@@ -75,17 +73,17 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @stable to call.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $page The page this Revision is associated with.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( Title $title, $dbDomain = false ) {
+	public function __construct( PageIdentity $page, $dbDomain = false ) {
 		$slots = new MutableRevisionSlots( [], function () {
 			$this->resetAggregateValues();
 		} );
 
-		parent::__construct( $title, $slots, $dbDomain );
+		parent::__construct( $page, $slots, $dbDomain );
 	}
 
 	/**
@@ -319,9 +317,10 @@ class MutableRevisionRecord extends RevisionRecord {
 	public function setPageId( $pageId ) {
 		Assert::parameterType( 'integer', $pageId, '$pageId' );
 
-		if ( $this->mTitle->exists() && $pageId !== $this->mTitle->getArticleID() ) {
+		$pageIdBasedOnPage = $this->getArticleId( $this->mPage );
+		if ( $pageIdBasedOnPage && $pageIdBasedOnPage !== $this->getArticleId( $this->mPage ) ) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId
+				'The given page does not belong to page ID ' . $this->mPageId
 			);
 		}
 
