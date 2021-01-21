@@ -4,12 +4,15 @@ namespace MediaWiki\Tests\Revision;
 
 use ChangeTags;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Message;
-use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -29,6 +32,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @var \User
 	 */
 	private static $testUser;
+
+	/**
+	 * @var Authority
+	 */
+	private static $performer;
 
 	/**
 	 * @var int[][]
@@ -72,6 +80,8 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		} );
 
 		self::$testUser = $user;
+		self::$performer = new UltimateAuthority( $user );
+
 		$revisionText = [ 1 => 'Lorem', 2 => 'Lorem Ipsum', 3 => 'Lor', 4 => 'Lorem' ];
 		// maps $storedRevision revision number to delta of revision length from its parent
 		self::$storedDeltas = [ 1 => 5, 2 => 11, 3 => -2, 4 => -6 ];
@@ -124,15 +134,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
-		$performer = self::$testUser;
 
 		$segment =
-			$contributionsLookup->getContributions( self::$testUser, 10, $performer );
+			$contributionsLookup->getContributions( self::$testUser, 10, self::$performer );
 
 		// Contributions are returned in descending order.
 		$revIds = array_map(
@@ -153,7 +161,6 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetUnknownDeltas() {
 		$user = $this->getTestUser()->getUser();
-		$performer = $user;
 
 		$rev1 = $this->editPage( __METHOD__ . '_1', 'foo', 'test', NS_MAIN, $user )
 			->getValue()['revision-record'];
@@ -181,14 +188,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
 
 		$segment =
-			$contributionsLookup->getContributions( $user, 10, $performer );
+			$contributionsLookup->getContributions( $user, 10, self::$performer );
 
 		$this->assertNull( $segment->getDeltaForRevision( $rev1->getId() ) );
 		$this->assertNull( $segment->getDeltaForRevision( $rev2->getId() ) );
@@ -204,15 +210,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
-		$performer = self::$testUser;
 
 		$segment =
-			$contributionsLookup->getContributions( self::$testUser, 2, $performer );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 
 		// Desc order comes back from db query
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
@@ -232,15 +236,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
-		$performer = self::$testUser;
 
 		$segment =
-			$contributionsLookup->getContributions( self::$testUser, 2, $performer );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 
 		// Desc order comes back from db query
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
@@ -256,29 +258,27 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
 
 		$target = self::$testUser;
-		$performer = self::$testUser;
 
 		$segment1 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG1 );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', self::TAG1 );
 
 		$this->assertSegmentRevisions( [ 2 ], $segment1 );
 		$this->assertTrue( $segment1->isOldest() );
 
 		$segment2 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG2 );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', self::TAG2 );
 
 		$this->assertSegmentRevisions( [ 3, 2 ], $segment2 );
 		$this->assertTrue( $segment1->isOldest() );
 
 		$segment0 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', 'not-a-tag' );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', 'not-a-tag' );
 
 		$this->assertEmpty( $segment0->getRevisions() );
 	}
@@ -293,13 +293,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
 
-		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser );
+		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment1 );
 		$this->assertCount( 2, $segment1->getRevisions() );
 		$this->assertNotNull( $segment1->getAfter() );
@@ -307,14 +306,14 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $segment1->isOldest() );
 
 		$segment2 =
-			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment1->getBefore() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment1->getBefore() );
 		$this->assertCount( 2, $segment2->getRevisions() );
 		$this->assertNotNull( $segment2->getAfter() );
 		$this->assertNull( $segment2->getBefore() );
 		$this->assertTrue( $segment2->isOldest() );
 
 		$segment3 =
-			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment2->getAfter() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment2->getAfter() );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment3 );
 		$this->assertCount( 2, $segment3->getRevisions() );
 		$this->assertNotNull( $segment3->getAfter() );
@@ -378,13 +377,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
 
-		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment );
+		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 	}
 
@@ -398,12 +396,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
-		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$testUser );
+
+		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$performer );
 		$this->assertSame( count( self::$storedRevisions ), $count );
 	}
 
@@ -417,14 +415,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
 		$count = $contributionsLookup->getContributionCount(
 			self::$testUser,
-			self::$testUser,
+			self::$performer,
 			self::TAG2
 		);
 		$this->assertSame( 2, $count );
@@ -432,8 +429,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testPermissionChecksAreApplied() {
 		$editingUser = self::$testUser;
-		$sysop = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
-		$anon = User::newFromId( 0 );
+		$dummyUser = new UserIdentityValue( 0, 'test', 0 );
 
 		$services = MediaWikiServices::getInstance();
 		$contributionsLookup = new ContributionsLookup(
@@ -441,7 +437,6 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
@@ -459,17 +454,21 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs
-		$segment = $contributionsLookup->getContributions( $editingUser, 10, $anon );
+		$segment = $contributionsLookup->getContributions( $editingUser, 10,
+			new SimpleAuthority( $dummyUser, [] ) );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 
-		$count = $contributionsLookup->getContributionCount( $editingUser, $anon );
+		$count = $contributionsLookup->getContributionCount( $editingUser,
+			new SimpleAuthority( $dummyUser, [] ) );
 		$this->assertSame( 2, $count );
 
-		// sysop also gets suppressed contribs
-		$segment = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
+		// Actor with suppressrevision right should
+		$segment = $contributionsLookup->getContributions( $editingUser, 10,
+			new SimpleAuthority( $dummyUser, [ 'deletedhistory', 'suppressrevision' ] ) );
 		$this->assertSegmentRevisions( [ 4, 3, 2, 1 ], $segment );
 
-		$count = $contributionsLookup->getContributionCount( $editingUser, $sysop );
+		$count = $contributionsLookup->getContributionCount( $editingUser,
+			new SimpleAuthority( $dummyUser, [ 'deletedhistory', 'suppressrevision' ] ) );
 		$this->assertSame( 4, $count );
 	}
 

@@ -298,7 +298,6 @@ return [
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()

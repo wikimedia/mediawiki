@@ -24,7 +24,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\IPUtils;
@@ -114,9 +113,6 @@ class ContribsPager extends RangeChronologicalPager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ActorMigration */
 	private $actorMigration;
 
@@ -132,7 +128,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param LinkRenderer|null $linkRenderer
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param HookContainer|null $hookContainer
-	 * @param PermissionManager|null $permissionManager
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
@@ -144,7 +139,6 @@ class ContribsPager extends RangeChronologicalPager {
 		LinkRenderer $linkRenderer = null,
 		LinkBatchFactory $linkBatchFactory = null,
 		HookContainer $hookContainer = null,
-		PermissionManager $permissionManager = null,
 		ILoadBalancer $loadBalancer = null,
 		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
@@ -201,7 +195,6 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->templateParser = new TemplateParser();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
 	}
@@ -372,15 +365,14 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = 'rev_minor_edit = 0';
 		}
 
-		$user = $this->getUser();
 		$queryInfo['conds'] = array_merge( $queryInfo['conds'], $this->getNamespaceCond() );
 
 		// Paranoia: avoid brute force searches (T19342)
-		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$queryInfo['conds'][] = $dbr->bitAnd(
 				'rev_deleted', RevisionRecord::DELETED_USER
 				) . ' = 0';
-		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$queryInfo['conds'][] = $dbr->bitAnd(
 				'rev_deleted', RevisionRecord::SUPPRESSED_USER
 				) . ' != ' . RevisionRecord::SUPPRESSED_USER;
@@ -676,8 +668,8 @@ class ContribsPager extends RangeChronologicalPager {
 				$classes[] = 'mw-contributions-current';
 				# Add rollback link
 				if ( !$row->page_is_new &&
-					$this->permissionManager->quickUserCan( 'rollback', $user, $page ) &&
-					$this->permissionManager->quickUserCan( 'edit', $user, $page )
+					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
+					$this->getAuthority()->probablyCan( 'edit', $page )
 				) {
 					$this->preventClickjacking();
 					$topmarktext .= ' ' . Linker::generateRollback(
