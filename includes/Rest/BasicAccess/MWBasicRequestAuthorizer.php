@@ -2,10 +2,9 @@
 
 namespace MediaWiki\Rest\BasicAccess;
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\User\UserIdentity;
 
 /**
  * The concrete implementation of basic read/write restrictions in MediaWiki
@@ -13,30 +12,23 @@ use MediaWiki\User\UserIdentity;
  * @internal
  */
 class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
-	/** @var UserIdentity */
-	private $user;
+	/** @var Authority */
+	private $authority;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	public function __construct( RequestInterface $request, Handler $handler,
-		UserIdentity $user, PermissionManager $permissionManager
+	public function __construct(
+		RequestInterface $request,
+		Handler $handler,
+		Authority $authority
 	) {
 		parent::__construct( $request, $handler );
-		$this->user = $user;
-		$this->permissionManager = $permissionManager;
+		$this->authority = $authority;
 	}
 
 	protected function isReadAllowed() {
-		return $this->permissionManager->isEveryoneAllowed( 'read' )
-			|| $this->isAllowed( 'read' );
+		return $this->authority->isAllowed( 'read' );
 	}
 
 	protected function isWriteAllowed() {
-		return $this->isAllowed( 'writeapi' );
-	}
-
-	private function isAllowed( $action ) {
-		return $this->permissionManager->userHasRight( $this->user, $action );
+		return $this->authority->isAllowed( 'writeapi' );
 	}
 }

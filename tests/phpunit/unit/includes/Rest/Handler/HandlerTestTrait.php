@@ -3,7 +3,9 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestInterface;
@@ -50,8 +52,14 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks Hook overrides
+	 * @param Authority|null $authority
 	 */
-	private function initHandler( Handler $handler, RequestInterface $request, $config = [], $hooks = []
+	private function initHandler(
+		Handler $handler,
+		RequestInterface $request,
+		$config = [],
+		$hooks = [],
+		Authority $authority = null
 	) {
 		$formatter = $this->createMock( ITextFormatter::class );
 		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
@@ -70,9 +78,10 @@ trait HandlerTestTrait {
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );
 
+		$authority = $authority ?: new UltimateAuthority( new UserIdentityValue( 0, 'Fake User', 0 ) );
 		$hookContainer = $this->createHookContainer( $hooks );
 
-		$handler->init( $router, $request, $config, $responseFactory, $hookContainer );
+		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer );
 	}
 
 	/**
@@ -81,30 +90,17 @@ trait HandlerTestTrait {
 	 * @internal to the trait
 	 * @param Handler $handler
 	 * @param null|Validator $validator
-	 * @param User|null $user User provided by request
 	 * @throws HttpException
 	 */
 	private function validateHandler(
 		Handler $handler,
-		Validator $validator = null,
-		?User $user = null
+		Validator $validator = null
 	) {
 		if ( !$validator ) {
-			/** @var PermissionManager|MockObject $permissionManager */
-			$permissionManager = $this->createNoOpMock(
-				PermissionManager::class, [ 'userCan', 'userHasRight' ]
-			);
-			$permissionManager->method( 'userCan' )->willReturn( true );
-			$permissionManager->method( 'userHasRight' )->willReturn( true );
-
 			/** @var ServiceContainer|MockObject $serviceContainer */
 			$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
 			$objectFactory = new ObjectFactory( $serviceContainer );
-
-			if ( !$user ) {
-				$user = new UserIdentityValue( 0, 'Fake User', 0 );
-			}
-			$validator = new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
+			$validator = new Validator( $objectFactory, $handler->getRequest(), $handler->getAuthority() );
 		}
 		$handler->validate( $validator );
 	}
@@ -137,8 +133,9 @@ trait HandlerTestTrait {
 	 * @param array $hooks Hook overrides
 	 * @param array $validatedParams Path/query params to return as already valid
 	 * @param array $validatedBody Body params to return as already valid
-	 * @param User|null $user User provided by request
+	 * @param Authority|null $authority
 	 * @return ResponseInterface
+	 * @throws HttpException
 	 */
 	private function executeHandler(
 		Handler $handler,
@@ -147,18 +144,18 @@ trait HandlerTestTrait {
 		$hooks = [],
 		$validatedParams = [],
 		$validatedBody = [],
-		?User $user = null
+		Authority $authority = null
 	) {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
-		$this->initHandler( $handler, $request, $config, $hooks );
+		$this->initHandler( $handler, $request, $config, $hooks, $authority );
 		$validator = null;
 		if ( $validatedParams || $validatedBody ) {
 			/** @var Validator|MockObject $validator */
 			$validator = $this->getMockValidator( $validatedParams, $validatedBody );
 		}
-		$this->validateHandler( $handler, $validator, $user );
+		$this->validateHandler( $handler, $validator );
 
 		// Check conditional request headers
 		$earlyResponse = $handler->checkPreconditions();
@@ -185,9 +182,9 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks
-	 * @param array $validatedParams Path/query params to return as already valid
-	 * @param array $validatedBody Body params to return as already valid
-	 * @param User|null $user User provided by request
+	 * @param array $validatedParams
+	 * @param array $validatedBody
+	 * @param Authority|null $authority
 	 * @return array
 	 */
 	private function executeHandlerAndGetBodyData(
@@ -197,17 +194,10 @@ trait HandlerTestTrait {
 		$hooks = [],
 		$validatedParams = [],
 		$validatedBody = [],
-		?User $user = null
+		Authority $authority = null
 	) {
-		$response = $this->executeHandler(
-			 $handler,
-			 $request,
-			 $config,
-			 $hooks,
-			 $validatedParams,
-			 $validatedBody,
-			 $user
-		);
+		$response = $this->executeHandler( $handler, $request, $config, $hooks,
+			$validatedParams, $validatedBody, $authority );
 
 		$this->assertTrue(
 			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,
