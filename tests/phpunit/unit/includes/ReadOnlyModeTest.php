@@ -1,12 +1,29 @@
 <?php
 
 /**
- * @group Database
- *
  * @covers ReadOnlyMode
  * @covers ConfiguredReadOnlyMode
  */
-class ReadOnlyModeTest extends MediaWikiIntegrationTestCase {
+class ReadOnlyModeTest extends MediaWikiUnitTestCase {
+
+	private $fileName;
+
+	protected function setUp(): void {
+		parent::setUp();
+		// Based on MediaWikiIntegrationTestCase::getNewTempFile()
+		$this->fileName = tempnam(
+			wfTempDir(),
+			'MW_PHPUnit_ReadOnlyModeTest'
+		);
+	}
+
+	protected function tearDown(): void {
+		if ( is_file( $this->fileName ) || is_link( $this->fileName ) ) {
+			unlink( $this->fileName );
+		}
+		parent::tearDown();
+	}
+
 	public function provider() {
 		$rawTests = [
 			'None of anything' => [
@@ -119,12 +136,11 @@ class ReadOnlyModeTest extends MediaWikiIntegrationTestCase {
 
 	private function createFile( $params ) {
 		if ( $params['hasFileName'] ) {
-			$fileName = $this->getNewTempFile();
-
+			$fileName = $this->fileName;
 			if ( $params['fileContents'] === false ) {
-				unlink( $fileName );
+				unlink( $this->fileName );
 			} else {
-				file_put_contents( $fileName, $params['fileContents'] );
+				file_put_contents( $this->fileName, $params['fileContents'] );
 			}
 		} else {
 			$fileName = null;
