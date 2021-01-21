@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -31,8 +31,8 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-		$permissionManager = $this->createMock( PermissionManager::class );
 		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
+		$authority = new UltimateAuthority( new User );
 		return new Router(
 			$routeFiles,
 			[],
@@ -41,8 +41,9 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			new \EmptyBagOStuff(),
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer( $authError ),
+			$authority,
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, new User ),
+			new Validator( $objectFactory, $request, $authority ),
 			$this->createHookContainer()
 		);
 	}

@@ -5,6 +5,7 @@ namespace MediaWiki\Rest;
 use AppendIterator;
 use BagOStuff;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -50,6 +51,9 @@ class Router {
 	/** @var BasicAuthorizerInterface */
 	private $basicAuth;
 
+	/** @var Authority */
+	private $authority;
+
 	/** @var ObjectFactory */
 	private $objectFactory;
 
@@ -63,7 +67,6 @@ class Router {
 	private $hookContainer;
 
 	/**
-	 * @internal
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
 	 * @param string $baseUrl The base URL
@@ -71,14 +74,16 @@ class Router {
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
 	 * @param BasicAuthorizerInterface $basicAuth
+	 * @param Authority $authority
 	 * @param ObjectFactory $objectFactory
 	 * @param Validator $restValidator
 	 * @param HookContainer $hookContainer
+	 * @internal
 	 */
 	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
 		BagOStuff $cacheBag, ResponseFactory $responseFactory,
-		BasicAuthorizerInterface $basicAuth, ObjectFactory $objectFactory,
-		Validator $restValidator, HookContainer $hookContainer
+		BasicAuthorizerInterface $basicAuth, Authority $authority,
+		ObjectFactory $objectFactory, Validator $restValidator, HookContainer $hookContainer
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -87,6 +92,7 @@ class Router {
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
 		$this->basicAuth = $basicAuth;
+		$this->authority = $authority;
 		$this->objectFactory = $objectFactory;
 		$this->restValidator = $restValidator;
 		$this->hookContainer = $hookContainer;
@@ -358,7 +364,7 @@ class Router {
 		);
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
-		$handler->init( $this, $request, $spec, $this->responseFactory, $this->hookContainer );
+		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory, $this->hookContainer );
 
 		return $handler;
 	}
