@@ -14,7 +14,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWikiIntegrationTestCase;
-use Title;
+use MockTitleTrait;
 use WikiPage;
 use WikitextContent;
 
@@ -24,6 +24,7 @@ use WikitextContent;
  * @see EditResultBuilderTest for non-DB tests
  */
 class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	private const PAGE_NAME = 'ManualRevertTestPage';
 	private const CONTENT_A = 'Aaa.';
@@ -151,9 +152,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	) : MutableRevisionRecord {
 		$parentRevision = $this->getLatestTestRevision();
 
-		$revision = new MutableRevisionRecord(
-			$this->createMock( Title::class )
-		);
+		$revision = new MutableRevisionRecord( $this->wikiPage->getTitle() );
 		$revision->setParentId( $parentRevision->getId() );
 		$revision->setPageId( $this->wikiPage->getId() );
 		$revision->setContent(

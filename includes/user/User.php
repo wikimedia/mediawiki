@@ -4150,6 +4150,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.36 Use UserGroupManager::getGroupsChangeableByGroup instead.
 	 */
 	public static function changeableByGroup( $group ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getGroupsChangeableByGroup( $group );
@@ -4164,6 +4165,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.36 Use UserGroupManager::getGroupsChangeableBy instead.
 	 */
 	public function changeableGroups() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getGroupsChangeableBy( $this );

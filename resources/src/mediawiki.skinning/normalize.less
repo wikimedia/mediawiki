@@ -70,6 +70,15 @@ img {
 
 // Forms and form elements
 
+button,
+input,
+optgroup,
+select,
+textarea {
+	// Support Firefox, Safari: Remove user-agent stylesheet `margin`.
+	margin: 0;
+}
+
 button::-moz-focus-inner,
 [ type='button' ]::-moz-focus-inner,
 [ type='reset' ]::-moz-focus-inner,

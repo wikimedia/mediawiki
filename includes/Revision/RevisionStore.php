@@ -2725,13 +2725,7 @@ class RevisionStore
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, $flags = 0 ) {
-		if ( $flags instanceof Title ) {
-			// Old calling convention, we don't use Title here anymore
-			wfDeprecated( __METHOD__ . ' with Title', '1.34' );
-			$flags = 0;
-		}
-
+	public function getPreviousRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {
 		return $this->getRelativeRevision( $rev, $flags, 'prev' );
 	}
 
@@ -2748,13 +2742,7 @@ class RevisionStore
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, $flags = 0 ) {
-		if ( $flags instanceof Title ) {
-			// Old calling convention, we don't use Title here anymore
-			wfDeprecated( __METHOD__ . ' with Title', '1.34' );
-			$flags = 0;
-		}
-
+	public function getNextRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {
 		return $this->getRelativeRevision( $rev, $flags, 'next' );
 	}
 

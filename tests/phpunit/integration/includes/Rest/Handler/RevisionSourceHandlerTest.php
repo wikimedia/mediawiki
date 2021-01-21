@@ -140,8 +140,6 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $data
 	 */
 	private function assertResponseData( RevisionRecord $rev, array $data ): void {
-		$title = $rev->getPageAsLinkTarget();
-
 		$this->assertSame( $rev->getId(), $data['id'] );
 		$this->assertSame( $rev->getSize(), $data['size'] );
 		$this->assertSame( $rev->isMinor(), $data['minor'] );
@@ -149,9 +147,12 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 			wfTimestampOrNull( TS_ISO_8601, $rev->getTimestamp() ),
 			$data['timestamp']
 		);
-		$this->assertSame( $title->getArticleID(), $data['page']['id'] );
-		$this->assertSame( $title->getDBkey(), $data['page']['key'] ); // assume main namespace
-		$this->assertSame( $title->getText(), $data['page']['title'] ); // assume main namespace
+		$this->assertSame( $rev->getPage()->getId(), $data['page']['id'] );
+		$this->assertSame( $rev->getPage()->getDBkey(), $data['page']['key'] ); // assume main namespace
+		$this->assertSame(
+			$rev->getPageAsLinkTarget()->getText(),
+			$data['page']['title']
+		); // assume main namespace
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );
 		$this->assertSame( 'https://example.com/rights', $data['license']['url'] );
 		$this->assertSame( 'some rights', $data['license']['title'] );

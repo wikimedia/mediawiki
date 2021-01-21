@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
@@ -11,8 +13,11 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use stdClass;
 use TextContent;
 use Title;
+use TitleValue;
+use Wikimedia\Assert\PreconditionException;
 
 /**
  * @covers \MediaWiki\Revision\RevisionArchiveRecord
@@ -59,9 +64,6 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideConstructor() {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
-
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
@@ -72,7 +74,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		$protoRow = [
 			'ar_id' => '5',
 			'ar_rev_id' => '7',
-			'ar_page_id' => strval( $title->getArticleID() ),
+			'ar_page_id' => '17',
 			'ar_timestamp' => '20200101000000',
 			'ar_deleted' => 0,
 			'ar_minor_edit' => 0,
@@ -83,12 +85,42 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 		$row = $protoRow;
 		yield 'all info' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+			'acmewiki',
+			PreconditionException::class
+		];
+
+		yield 'all info, local' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+		];
+
+		$title = Title::newFromText( 'Dummy' );
+		$title->resetArticleID( 17 );
+
+		yield 'all info, local, with Title' => [
 			$title,
 			$user,
 			$comment,
 			(object)$row,
 			$slots,
-			'acmewiki'
+		];
+
+		// this case exists for b/c and should be deprecated
+		yield 'all info, foreign, with Title' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+			'acmewiki',
 		];
 
 		$row = $protoRow;
@@ -139,25 +171,26 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConstructor
 	 *
-	 * @param Title $title
+	 * @param Title $page
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param bool $wikiId
+	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		$wikiId = PageIdentity::LOCAL,
+		string $expectedException = null
 	) {
-		$rec = new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		$rec = new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $wikiId );
 
-		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
-		$this->assertSame( $title, $rec->getPage(), 'getPage' );
+		$this->assertTrue( $page->isSamePageAs( $rec->getPage() ), 'getPage' );
 		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 
@@ -188,6 +221,16 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertSame( $slots->computeSha1(), $rec->getSha1(), 'getSha1' );
 		}
+
+		if ( $expectedException ) {
+			$this->expectException( $expectedException );
+			$rec->getPageAsLinkTarget();
+		} else {
+			$this->assertTrue(
+				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
+			);
+		}
 	}
 
 	public function provideConstructorFailure() {
@@ -214,8 +257,28 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			'ar_sha1' => $slots->computeSha1(),
 		];
 
+		yield 'mismatching wiki ID' => [
+			new PageIdentityValue(
+				$title->getArticleID(),
+				$title->getNamespace(),
+				$title->getDBkey(),
+				PageIdentity::LOCAL
+			),
+			$user,
+			$comment,
+			'not a row',
+			$slots,
+			'acmewiki',
+			PreconditionException::class
+		];
+
 		yield 'not a row' => [
-			$title,
+			new PageIdentityValue(
+				$title->getArticleID(),
+				$title->getNamespace(),
+				$title->getDBkey(),
+				'acmewiki'
+			),
 			$user,
 			$comment,
 			'not a row',
@@ -251,23 +314,25 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConstructorFailure
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param stdClass $row
 	 * @param RevisionSlots $slots
-	 * @param bool $wikiId
+	 * @param bool $wikiId,
+	 * @param string|null $expectedException
 	 */
 	public function testConstructorFailure(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		$wikiId = false,
+		string $expectedException = InvalidArgumentException::class
 	) {
-		$this->expectException( InvalidArgumentException::class );
-		new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		$this->expectException( $expectedException );
+		new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $wikiId );
 	}
 
 	/**

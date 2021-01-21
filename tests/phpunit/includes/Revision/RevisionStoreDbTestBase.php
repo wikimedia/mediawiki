@@ -838,18 +838,20 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$localLoadBalancerMock->expects( $this->never() )
 			->method( $this->anything() );
 
-		$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
+		try {
+			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
 
-		$storeRecord = $store->getRevisionByTitle(
-			new TitleValue( $page->getTitle()->getNamespace(), $page->getTitle()->getDBkey() )
-		);
+			$storeRecord = $store->getRevisionByTitle(
+				new TitleValue( $page->getTitle()->getNamespace(), $page->getTitle()->getDBkey() )
+			);
 
-		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
-		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
-		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
-
-		// Restore the original load balancer to make test teardown work
-		$this->setService( 'DBLoadBalancer', $dbLoadBalancer );
+			$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
+			$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
+			$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+		} finally {
+			// Restore the original load balancer to make test teardown work
+			$this->setService( 'DBLoadBalancer', $dbLoadBalancer );
+		}
 	}
 
 	/**

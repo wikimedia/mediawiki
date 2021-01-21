@@ -24,9 +24,10 @@ namespace MediaWiki\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Title;
 use User;
 
 /**
@@ -47,7 +48,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * in RevisionStore instead.
 	 *
 	 * @param callable $callback Callback for loading data.  Signature: function ( $id ): \stdClass
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $page The page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
@@ -57,14 +58,14 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 */
 	public function __construct(
 		$callback,
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
 		$dbDomain = false
 	) {
-		parent::__construct( $title, $user, $comment, $row, $slots, $dbDomain );
+		parent::__construct( $page, $user, $comment, $row, $slots, $dbDomain );
 		$this->mCallback = $callback;
 	}
 
@@ -84,15 +85,15 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * Overridden to ensure that we return a fresh value and not a cached one.
 	 *
 	 * @param int $audience
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 *
 	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
 	 */
-	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		if ( $this->mCallback ) {
 			$this->loadFreshRow();
 		}
-		return parent::getUser( $audience, $user );
+		return parent::getUser( $audience, $performer );
 	}
 
 	/**
@@ -120,7 +121,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 				wfWarn(
 					__METHOD__
 					. ': '
-					. $this->mTitle->getPrefixedDBkey()
+					. $this->mPage
 					. ': '
 					. $ex->getMessage()
 				);

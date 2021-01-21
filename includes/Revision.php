@@ -404,6 +404,7 @@ class Revision implements IDBAccessObject {
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
+	 * @throws RevisionAccessException if title can not be found
 	 * @return Title $title if not null, or a Title constructed from information in $row.
 	 */
 	private function ensureTitle( $row, $queryFlags, $title = null ) {
@@ -427,18 +428,7 @@ class Revision implements IDBAccessObject {
 			$revId = $row->rev_id ?? 0;
 		}
 
-		try {
-			$title = self::getRevisionStore()->getTitle( $pageId, $revId, $queryFlags );
-		} catch ( RevisionAccessException $ex ) {
-			// construct a dummy title!
-			wfLogWarning( __METHOD__ . ': ' . $ex->getMessage() );
-
-			// NOTE: this Title will only be used inside RevisionRecord
-			$title = Title::makeTitleSafe( NS_SPECIAL, "Badtitle/ID=$pageId" );
-			$title->resetArticleID( $pageId );
-		}
-
-		return $title;
+		return self::getRevisionStore()->getTitle( $pageId, $revId, $queryFlags );
 	}
 
 	/**
@@ -595,8 +585,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getTitle() {
 		wfDeprecated( __METHOD__, '1.31' );
-		$linkTarget = $this->mRecord->getPageAsLinkTarget();
-		return Title::newFromLinkTarget( $linkTarget );
+		return Title::castFromPageIdentity( $this->mRecord->getPage() );
 	}
 
 	/**
