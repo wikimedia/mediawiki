@@ -30,6 +30,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
@@ -54,13 +55,17 @@ class UserGroupManager implements IDBAccessObject {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
+		'AddGroups',
 		'Autopromote',
 		'AutopromoteOnce',
 		'AutopromoteOnceLogInRC',
 		'EmailAuthentication',
 		'ImplicitGroups',
 		'GroupPermissions',
+		'GroupsAddToSelf',
+		'GroupsRemoveFromSelf',
 		'RevokePermissions',
+		'RemoveGroups',
 	];
 
 	/** @var ServiceOptions */
@@ -966,6 +971,97 @@ class UserGroupManager implements IDBAccessObject {
 			$this->loadBalancerFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 		} while ( $res->numRows() > 0 );
 		return $purgedRows;
+	}
+
+	/**
+	 * @param array $config
+	 * @param string $group
+	 * @return string[]
+	 */
+	private function expandChangeableGroupConfig( array $config, string $group ): array {
+		if ( empty( $config[$group] ) ) {
+			return [];
+		} elseif ( $config[$group] === true ) {
+			// You get everything
+			return $this->listAllGroups();
+		} elseif ( is_array( $config[$group] ) ) {
+			return $config[$group];
+		}
+		return [];
+	}
+
+	/**
+	 * Returns an array of the groups that a particular group can add/remove.
+	 *
+	 * @param string $group The group to check for whether it can add/remove
+	 * @return array [
+	 *     'add' => [ addablegroups ],
+	 *     'remove' => [ removablegroups ],
+	 *     'add-self' => [ addablegroups to self ],
+	 *     'remove-self' => [ removable groups from self ] ]
+	 */
+	public function getGroupsChangeableByGroup( string $group ): array {
+		return [
+			'add' => $this->expandChangeableGroupConfig(
+				$this->options->get( 'AddGroups' ), $group
+			),
+			'remove' => $this->expandChangeableGroupConfig(
+				$this->options->get( 'RemoveGroups' ), $group
+			),
+			'add-self' => $this->expandChangeableGroupConfig(
+				$this->options->get( 'GroupsAddToSelf' ), $group
+			),
+			'remove-self' => $this->expandChangeableGroupConfig(
+				$this->options->get( 'GroupsRemoveFromSelf' ), $group
+			),
+		];
+	}
+
+	/**
+	 * Returns an array of groups that this $actor can add and remove.
+	 *
+	 * @param Authority $authority
+	 * @return array [
+	 *  'add' => [ addablegroups ],
+	 *  'remove' => [ removablegroups ],
+	 *  'add-self' => [ addablegroups to self ],
+	 *  'remove-self' => [ removable groups from self ]
+	 * ]
+	 */
+	public function getGroupsChangeableBy( Authority $authority ): array {
+		if ( $authority->isAllowed( 'userrights' ) ) {
+			// This group gives the right to modify everything (reverse-
+			// compatibility with old "userrights lets you change
+			// everything")
+			// Using array_merge to make the groups reindexed
+			$all = array_merge( $this->listAllGroups() );
+			return [
+				'add' => $all,
+				'remove' => $all,
+				'add-self' => [],
+				'remove-self' => []
+			];
+		}
+
+		// Okay, it's not so simple, we will have to go through the arrays
+		$groups = [
+			'add' => [],
+			'remove' => [],
+			'add-self' => [],
+			'remove-self' => []
+		];
+		$actorGroups = $this->getUserEffectiveGroups( $authority->getActor() );
+
+		foreach ( $actorGroups as $actorGroup ) {
+			$groups = array_merge_recursive(
+				$groups, $this->getGroupsChangeableByGroup( $actorGroup )
+			);
+			$groups['add'] = array_unique( $groups['add'] );
+			$groups['remove'] = array_unique( $groups['remove'] );
+			$groups['add-self'] = array_unique( $groups['add-self'] );
+			$groups['remove-self'] = array_unique( $groups['remove-self'] );
+		}
+		return $groups;
 	}
 
 	/**

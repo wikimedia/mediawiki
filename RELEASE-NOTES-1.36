@@ -525,6 +525,8 @@ because of Phabricator reports.
 * PermissionManager::groupHasPermission, ::getGroupPermissions and
   ::getGroupsWithPermission were deprecated, use GroupPermissionsLookup
   service instead.
+* User::changeableGroups and ::changeableByGroup were deprecated, use
+  corresponding methods in UserGroupManager instead.
 
 == Compatibility ==
 MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
