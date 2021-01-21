@@ -361,6 +361,8 @@ because of Phabricator reports.
   clone, that will no longer occur and tests may fail.
 * The UserWrapper class, which was only loaded for tests and had no uses found
   in public MediaWiki-related git, was removed.
+* Passing Title as a second parameter to RevisionStore::getPreviousRevision and
+  getNextRevision, hard deprecated since 1.31, was prohibited.
 * …
 
 === Deprecations in 1.36 ===
