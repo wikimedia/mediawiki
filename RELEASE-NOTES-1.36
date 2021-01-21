@@ -525,7 +525,7 @@ because of Phabricator reports.
 * PermissionManager::groupHasPermission, ::getGroupPermissions and
   ::getGroupsWithPermission were deprecated, use GroupPermissionsLookup
   service instead.
-* User::changeableGroups and ::changeableByGroup were deprecated, use
+* User::changeableGroups and ::changeableByGroup were hard deprecated, use
   corresponding methods in UserGroupManager instead.
 
 == Compatibility ==
