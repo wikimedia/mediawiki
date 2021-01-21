@@ -71,9 +71,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var DatabaseDomain Local DB domain ID and default for selectDB() calls */
 	private $localDomain;
 
-	/**
-	 * @var IDatabase[][][]|Database[][][] Map of (connection category => server index => IDatabase[])
-	 */
+	/** @var Database[][][] Map of (pool category => server index => domain => IDatabase) */
 	private $conns;
 
 	/** @var array[] Map of (server index => server config array) */
@@ -147,15 +145,19 @@ class LoadBalancer implements ILoadBalancer {
 	private static $INFO_FORIEGN = 'foreign';
 	private static $INFO_FOREIGN_REF_COUNT = 'foreignPoolRefCount';
 
-	/** @var int Warn when this many connection are held */
-	private const CONN_HELD_WARN_THRESHOLD = 10;
+	/**
+	 * @var int Default 'maxLag' when unspecified
+	 * @internal Only for use within LoadBalancer/LoadMonitor
+	 */
+	public const MAX_LAG_DEFAULT = 6;
 
-	/** @var int Default 'maxLag' when unspecified */
-	private const MAX_LAG_DEFAULT = 6;
 	/** @var int Default 'waitTimeout' when unspecified */
 	private const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master DB server read-only status */
 	private const TTL_CACHE_READONLY = 5;
+
+	/** @var int Warn when this many connection are held */
+	private const CONN_HELD_WARN_THRESHOLD = 10;
 
 	private const KEY_LOCAL = 'local';
 	private const KEY_FOREIGN_FREE = 'foreignFree';
@@ -164,6 +166,8 @@ class LoadBalancer implements ILoadBalancer {
 	private const KEY_LOCAL_NOROUND = 'localAutoCommit';
 	private const KEY_FOREIGN_FREE_NOROUND = 'foreignFreeAutoCommit';
 	private const KEY_FOREIGN_INUSE_NOROUND = 'foreignInUseAutoCommit';
+
+	private const KEY_LOCAL_DOMAIN = '__local__';
 
 	/** @var string Transaction round, explicit or implicit, has not finished writing */
 	private const ROUND_CURSORY = 'cursory';
@@ -914,6 +918,7 @@ class LoadBalancer implements ILoadBalancer {
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
 		// Set master DB handles as read-only if there is high replication lag
 		if (
+			$conn &&
 			$serverIndex === $this->getWriterIndex() &&
 			$this->getLaggedReplicaMode( $domain ) &&
 			!is_string( $conn->getLBInfo( $conn::LB_READ_ONLY_REASON ) )
@@ -1016,17 +1021,18 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$domain = $conn->getDomainID();
-		if ( !isset( $this->conns[$connInUseKey][$serverIndex][$domain] ) ) {
+		$existingDomainConn = $this->conns[$connInUseKey][$serverIndex][$domain] ?? null;
+		if ( !$existingDomainConn ) {
 			throw new InvalidArgumentException(
 				"Connection $serverIndex/$domain not found; it may have already been freed" );
-		} elseif ( $this->conns[$connInUseKey][$serverIndex][$domain] !== $conn ) {
+		} elseif ( $existingDomainConn !== $conn ) {
 			throw new InvalidArgumentException(
 				"Connection $serverIndex/$domain mismatched; it may have already been freed" );
 		}
 
-		$conn->setLBInfo( self::$INFO_FOREIGN_REF_COUNT, --$refCount );
+		$existingDomainConn->setLBInfo( self::$INFO_FOREIGN_REF_COUNT, --$refCount );
 		if ( $refCount <= 0 ) {
-			$this->conns[$connFreeKey][$serverIndex][$domain] = $conn;
+			$this->conns[$connFreeKey][$serverIndex][$domain] = $existingDomainConn;
 			unset( $this->conns[$connInUseKey][$serverIndex][$domain] );
 			if ( !$this->conns[$connInUseKey][$serverIndex] ) {
 				unset( $this->conns[$connInUseKey][$serverIndex] ); // clean up
@@ -1101,8 +1107,8 @@ class LoadBalancer implements ILoadBalancer {
 		// pool since the main pool is effected by implicit and explicit transaction rounds
 		$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
 
-		if ( isset( $this->conns[$connKey][$i][0] ) ) {
-			$conn = $this->conns[$connKey][$i][0];
+		if ( isset( $this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN] ) ) {
+			$conn = $this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN];
 		} else {
 			$conn = $this->reallyOpenConnection(
 				$i,
@@ -1111,7 +1117,7 @@ class LoadBalancer implements ILoadBalancer {
 			);
 			if ( $conn->isOpen() ) {
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i" );
-				$this->conns[$connKey][$i][0] = $conn;
+				$this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN] = $conn;
 			} else {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i" );
 				$this->errorConnection = $conn;
