@@ -3,7 +3,7 @@
 /**
  * James doesn't like having to manually fix these things.
  */
-class ReleaseNotesTest extends MediaWikiIntegrationTestCase {
+class ReleaseNotesTest extends MediaWikiUnitTestCase {
 	/**
 	 * Verify that at least one Release Notes file exists, have content, and
 	 * aren't overly long.
