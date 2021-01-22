@@ -4,7 +4,7 @@
 		"url": "https://packages.bluespice.com/"
 	}],
 	"require": {
-		"monolog/monolog": "~1.25.3",
+		"monolog/monolog": "~2.2.0",
 
 		"bluespice/foundation": "dev-master",
 		"bluespice/about": "dev-master",
