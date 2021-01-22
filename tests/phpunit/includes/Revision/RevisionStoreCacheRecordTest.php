@@ -8,6 +8,7 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreCacheRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Unit\Revision\RevisionRecordTests;
 use MediaWiki\User\UserIdentityValue;
 use TextContent;
 use Title;
@@ -18,6 +19,8 @@ use Title;
  * @covers \MediaWiki\Revision\RevisionRecord
  */
 class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
+
+	use RevisionRecordTests;
 
 	/**
 	 * @param array $rowOverrides

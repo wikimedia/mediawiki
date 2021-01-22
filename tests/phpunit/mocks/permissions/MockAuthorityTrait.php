@@ -47,7 +47,27 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredNullAuthority(): Authority {
-		return new UltimateAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ) );
+		return new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) );
+	}
+
+	/**
+	 * Create a mock Authority for anon user with $permissions.
+	 *
+	 * @param array $permissions
+	 * @return Authority
+	 */
+	private function mockAnonAuthorityWithPermissions( array $permissions ): Authority {
+		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ), $permissions );
+	}
+
+	/**
+	 * Create a mock Authority for a registered user with $permissions.
+	 *
+	 * @param array $permissions
+	 * @return Authority
+	 */
+	private function mockRegisteredAuthorityWithPermissions( array $permissions ): Authority {
+		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr', 24 ), $permissions );
 	}
 
 	/**
