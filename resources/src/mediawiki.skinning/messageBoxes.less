@@ -1,8 +1,13 @@
 /* stylelint-disable selector-class-pattern */
-.messagebox,
-.errorbox,
-.warningbox,
-.successbox {
+.mw-message-box,
+.mw-error-box,
+.mw-warning-box,
+.mw-success-box,
+.messagebox, /* Deprecated since v1.36 */
+.errorbox, /* Deprecated since v1.36 */
+.warningbox, /* Deprecated since v1.36 */
+.successbox { /* Deprecated since v1.36 */
+	/* stylelint-enable selector-class-pattern */
 	color: #000;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -30,22 +35,26 @@
 	}
 }
 
-.messagebox {
+.mw-message-box,
+.messagebox { /* stylelint-disable-line selector-class-pattern */
 	background-color: #eaecf0;
 	border-color: #a2a9b1;
 }
 
-.errorbox {
+.mw-error-box,
+.errorbox { /* stylelint-disable-line selector-class-pattern */
 	background-color: #fee7e6;
 	border-color: #d33;
 }
 
-.warningbox {
+.mw-warning-box,
+.warningbox { /* stylelint-disable-line selector-class-pattern */
 	background-color: #fef6e7;
 	border-color: #fc3;
 }
 
-.successbox {
+.mw-success-box,
+.successbox { /* stylelint-disable-line selector-class-pattern */
 	background-color: #d5fdf4;
 	border-color: #14866d;
 }
