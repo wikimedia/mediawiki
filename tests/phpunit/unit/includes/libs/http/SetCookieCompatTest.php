@@ -4,9 +4,11 @@ use PHPUnit\Framework\TestCase;
 use Wikimedia\Http\SetCookieCompat;
 
 /**
- * @covers SetCookieCompat
+ * @covers \Wikimedia\Http\SetCookieCompat
  */
 class SetCookieCompatTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public static function provideSetCookieEmulated() {
 		// Expected values are all copied from PHP 7.3
 		// phpcs:disable Generic.Files.LineLength.TooLong
