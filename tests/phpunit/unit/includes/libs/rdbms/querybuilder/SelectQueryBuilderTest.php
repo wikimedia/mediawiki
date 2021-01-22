@@ -6,9 +6,10 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 /**
  * @covers \Wikimedia\Rdbms\SelectQueryBuilder
  * @covers \Wikimedia\Rdbms\JoinGroup
- * @covers \Wikimedia\Rdbms\BuilderSubquery
  */
 class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
+	use MediaWikiCoversValidator;
+
 	/** @var DatabaseTestHelper */
 	private $db;
 
