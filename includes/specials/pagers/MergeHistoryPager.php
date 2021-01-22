@@ -92,8 +92,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->mForm->prevId = [];
 		$rev_id = null;
 		foreach ( $this->mResult as $row ) {
-			$batch->add( NS_USER, $row->user_name );
-			$batch->add( NS_USER_TALK, $row->user_name );
+			$batch->add( NS_USER, $row->rev_user_text );
+			$batch->add( NS_USER_TALK, $row->rev_user_text );
 
 			if ( isset( $rev_id ) ) {
 				if ( $rev_id > $row->rev_id ) {
