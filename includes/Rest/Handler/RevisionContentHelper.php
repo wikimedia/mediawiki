@@ -123,7 +123,7 @@ class RevisionContentHelper extends PageContentHelper {
 			],
 		];
 
-		$revUser = $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
+		$revUser = $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->authority );
 		if ( $revUser ) {
 			$metadata['user'] = [
 				'id' => $revUser->isRegistered() ? $revUser->getId() : null,
@@ -133,7 +133,7 @@ class RevisionContentHelper extends PageContentHelper {
 			$metadata['user'] = null;
 		}
 
-		$comment = $revision->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
+		$comment = $revision->getComment( RevisionRecord::FOR_THIS_USER, $this->authority );
 		$metadata['comment'] = $comment ? $comment->text : null;
 
 		$parent = $this->revisionLookup->getPreviousRevision( $revision );
@@ -173,7 +173,7 @@ class RevisionContentHelper extends PageContentHelper {
 			);
 		}
 
-		if ( !$this->isAccessible() ) {
+		if ( !$this->authority->authorizeRead( 'read', $this->getTitle() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-revision' )->plaintextParams( $revId ),
 				403

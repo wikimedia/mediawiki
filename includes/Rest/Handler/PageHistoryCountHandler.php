@@ -12,9 +12,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use RequestContext;
 use Title;
-use User;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -59,9 +57,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var WANObjectCache */
 	private $cache;
 
-	/** @var User */
-	private $user;
-
 	/** @var RevisionRecord|bool */
 	private $revision;
 
@@ -90,9 +85,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	private function normalizeType( $type ) {
@@ -147,7 +139,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
@@ -519,7 +511,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	) {
 		list( $fromRev, $toRev ) = $this->orderRevisions( $fromRev, $toRev );
 		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
-			$toRev, $this->user, self::COUNT_LIMITS['editors'] );
+			$toRev, $this->getAuthority(), self::COUNT_LIMITS['editors'] );
 	}
 
 	/**

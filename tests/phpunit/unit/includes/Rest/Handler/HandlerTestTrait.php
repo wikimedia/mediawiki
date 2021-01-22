@@ -2,10 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestInterface;
@@ -14,11 +11,9 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCaseTrait;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use User;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
@@ -33,7 +28,7 @@ use Wikimedia\Services\ServiceContainer;
  * @package MediaWiki\Tests\Rest\Handler
  */
 trait HandlerTestTrait {
-	use MediaWikiTestCaseTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * Expected to be provided by the class, probably inherited from TestCase.
@@ -78,7 +73,7 @@ trait HandlerTestTrait {
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );
 
-		$authority = $authority ?: new UltimateAuthority( new UserIdentityValue( 0, 'Fake User', 0 ) );
+		$authority = $authority ?: $this->mockAnonUltimateAuthority();
 		$hookContainer = $this->createHookContainer( $hooks );
 
 		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer );
@@ -113,7 +108,7 @@ trait HandlerTestTrait {
 	 * @param array $bodyParams
 	 * @return Validator|MockObject
 	 */
-	private function getMockValidator( array $queryPathParams, array $bodyParams ) {
+	private function getMockValidator( array $queryPathParams, array $bodyParams ): Validator {
 		$validator = $this->createNoOpMock( Validator::class, [ 'validateParams', 'validateBody' ] );
 		if ( $queryPathParams ) {
 			$validator->method( 'validateParams' )->willReturn( $queryPathParams );
@@ -135,7 +130,6 @@ trait HandlerTestTrait {
 	 * @param array $validatedBody Body params to return as already valid
 	 * @param Authority|null $authority
 	 * @return ResponseInterface
-	 * @throws HttpException
 	 */
 	private function executeHandler(
 		Handler $handler,
@@ -145,7 +139,7 @@ trait HandlerTestTrait {
 		$validatedParams = [],
 		$validatedBody = [],
 		Authority $authority = null
-	) {
+	): ResponseInterface {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
@@ -195,7 +189,7 @@ trait HandlerTestTrait {
 		$validatedParams = [],
 		$validatedBody = [],
 		Authority $authority = null
-	) {
+	): array {
 		$response = $this->executeHandler( $handler, $request, $config, $hooks,
 			$validatedParams, $validatedBody, $authority );
 
@@ -227,29 +221,12 @@ trait HandlerTestTrait {
 		RequestInterface $request,
 		$config = [],
 		$hooks = []
-	) {
+	): HttpException {
 		try {
 			$this->executeHandler( $handler, $request, $config, $hooks );
 			Assert::fail( 'Expected a HttpException to be thrown' );
 		} catch ( HttpException $ex ) {
 			return $ex;
 		}
-	}
-
-	/**
-	 * @internal
-	 * @return PermissionManager|MockObject
-	 */
-	private function makeMockPermissionManager() {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan' ]
-		);
-		$permissionManager->method( 'userCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
-
-		return $permissionManager;
 	}
 }

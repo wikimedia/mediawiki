@@ -4,15 +4,12 @@ namespace MediaWiki\Rest\Handler;
 
 use MalformedTitleException;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use RequestContext;
 use Title;
 use TitleFormatter;
 use TitleParser;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -33,17 +30,11 @@ class LanguageLinksHandler extends SimpleHandler {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
 	/** @var TitleParser */
 	private $titleParser;
-
-	/** @var User */
-	private $user;
 
 	/**
 	 * @var Title|bool|null
@@ -53,25 +44,19 @@ class LanguageLinksHandler extends SimpleHandler {
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LanguageNameUtils $languageNameUtils
-	 * @param PermissionManager $permissionManager
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleParser $titleParser
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LanguageNameUtils $languageNameUtils,
-		PermissionManager $permissionManager,
 		TitleFormatter $titleFormatter,
 		TitleParser $titleParser
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->languageNameUtils = $languageNameUtils;
-		$this->permissionManager = $permissionManager;
 		$this->titleFormatter = $titleFormatter;
 		$this->titleParser = $titleParser;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -99,7 +84,7 @@ class LanguageLinksHandler extends SimpleHandler {
 				404
 			);
 		}
-		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),

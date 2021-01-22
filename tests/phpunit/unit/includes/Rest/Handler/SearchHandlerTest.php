@@ -5,8 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use HashConfig;
 use InvalidArgumentException;
 use Language;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -21,7 +20,6 @@ use SearchResultSet;
 use SearchSuggestion;
 use SearchSuggestionSet;
 use Status;
-use User;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -63,15 +61,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$hookContainer = $this->createHookContainer();
 		$searchEngineConfig = new \SearchEngineConfig( $config, $language, $hookContainer, [] );
 
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'quickUserCan' ]
-		);
-		$permissionManager->method( 'quickUserCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
-
 		/** @var SearchEngine|MockObject $searchEngine */
 		$this->searchEngine = $this->createMock( SearchEngine::class );
 		$this->searchEngine->method( 'searchTitle' )
@@ -94,7 +83,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		return new SearchHandler(
 			$config,
-			$permissionManager,
 			$searchEngineFactory,
 			$searchEngineConfig
 		);
@@ -167,7 +155,10 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
 		$config = [ 'mode' => SearchHandler::FULLTEXT_MODE ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], [], [],
+			$this->mockAnonAuthority( function ( string $permission, ?PageIdentity $target ) {
+				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
+			} ) );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 4, $data['pages'] );

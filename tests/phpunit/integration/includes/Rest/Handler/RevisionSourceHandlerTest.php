@@ -49,7 +49,6 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 				'RightsUrl' => 'https://example.com/rights',
 				'RightsText' => 'some rights',
 			] ),
-			$this->getServiceContainer()->getPermissionManager(),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$this->getServiceContainer()->getTitleFactory()

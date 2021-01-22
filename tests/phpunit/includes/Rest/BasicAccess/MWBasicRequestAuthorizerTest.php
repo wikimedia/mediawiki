@@ -10,9 +10,9 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Psr\Container\ContainerInterface;
-use User;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -25,11 +25,10 @@ use Wikimedia\ObjectFactory;
  */
 class MWBasicRequestAuthorizerTest extends MediaWikiIntegrationTestCase {
 	private function createRouter( $userRights, $request ) {
-		$user = User::newFromName( 'Test user' );
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-		$authority = new SimpleAuthority( $user, $userRights );
+		$authority = new SimpleAuthority( new UserIdentityValue( 0, 'Test user', 0 ), $userRights );
 
 		global $IP;
 
