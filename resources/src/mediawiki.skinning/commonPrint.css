@@ -275,7 +275,7 @@ html .thumbcaption {
 	padding: 3px;
 }
 
-img.thumbborder {
+html .thumbborder {
 	border: 1pt solid #ddd;
 }
 
