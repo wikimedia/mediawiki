@@ -23,7 +23,6 @@ class TagsDefTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::defineTag( 'tag2' );
 
 		$this->tablesUsed[] = 'change_tag_def';
-		$this->tablesUsed[] = 'valid_tag';
 
 		// Since the type def shouldn't care about the specific user,
 		// remove the right from relevant groups to ensure that it's not
