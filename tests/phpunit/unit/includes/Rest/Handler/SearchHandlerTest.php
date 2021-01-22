@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use HashConfig;
 use InvalidArgumentException;
 use Language;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -154,8 +155,10 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
 		$config = [ 'mode' => SearchHandler::FULLTEXT_MODE ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config,
-			[], [], [], $this->makeMockAuthority() );
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], [], [],
+			$this->mockAnonAuthority( function ( string $permission, ?PageIdentity $target ) {
+				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
+			} ) );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 4, $data['pages'] );

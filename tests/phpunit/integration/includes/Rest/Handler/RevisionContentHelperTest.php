@@ -4,14 +4,12 @@ namespace MediaWiki\Tests\Rest\Helper;
 
 use HashConfig;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\SimpleAuthority;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\RevisionContentHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
-use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
 use Title;
 
@@ -20,6 +18,7 @@ use Title;
  * @group Database
  */
 class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	private const NO_REVISION_ETAG = '"b620cd7841f9ea8f545f11cc44ce794f848fa2d3"';
 
@@ -56,8 +55,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getTitleFactory()
 		);
 
-		$authority = $authority ?: new UltimateAuthority(
-			new UserIdentityValue( 0, 'Test user', 0 ) );
+		$authority = $authority ?: $this->mockRegisteredUltimateAuthority();
 		$helper->init( $authority, $params );
 		return $helper;
 	}
@@ -216,7 +214,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 		$title = $page->getTitle();
 		$helper = $this->newHelper(
 			[ 'id' => $revisions['first']->getId() ],
-			new SimpleAuthority( new UserIdentityValue( 0, 'Test User', 0 ), [] )
+			$this->mockAnonNullAuthority()
 		);
 
 		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitleText() );

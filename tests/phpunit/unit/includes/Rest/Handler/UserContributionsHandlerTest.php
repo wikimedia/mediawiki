@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use CommentStoreComment;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\UserContributionsHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -170,15 +169,15 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testThatParametersAreHandledCorrectlyForMeEndpoint( $queryParams ) {
 		$request = new RequestData( [ 'queryParams' => $queryParams ] );
-		$user = new UserIdentityValue( 42, 'Petr', 24 );
-		$performer = new UltimateAuthority( $user );
+		$performer = $this->mockRegisteredUltimateAuthority();
+		$performingUser = $performer->getActor();
 		$validatedParams = [
 			'user' => null,
 			'limit' => $queryParams['limit'] ?? self::DEFAULT_LIMIT,
 			'tag' => $queryParams['tag'] ?? null,
 			'segment' => $queryParams['segment'] ?? '',
 		];
-		$mockContributionsLookup = $this->newContributionsLookupForRequest( $request, $user, $performer );
+		$mockContributionsLookup = $this->newContributionsLookupForRequest( $request, $performingUser, $performer );
 		$handler = $this->newHandler( $mockContributionsLookup );
 
 		$response = $this->executeHandler( $handler, $request, [ 'mode' => 'me' ],
@@ -193,7 +192,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatParametersAreHandledCorrectlyForUserEndpoint( $queryParams ) {
 		$username = 'Test';
 		$target = new UserIdentityValue( 7, $username, 7 );
-		$performer = new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) );
+		$performer = $this->mockRegisteredUltimateAuthority();
 		$request = new RequestData( [
 			'pathParams' => [ 'user' => $target->getName() ],
 			'queryParams' => $queryParams ]
@@ -385,7 +384,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		];
 		$config = [ 'path' => '/me/contributions', 'mode' => 'me' ];
 		$response = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], $validatedParams, [],
-			new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) ) );
+			$this->mockRegisteredUltimateAuthority() );
 		$this->assertSame( $expectedResponse, $response );
 	}
 }
