@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\ContributionsCountHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -17,6 +16,7 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\Rest\Handler\ContributionsCountHandler
  */
 class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
+
 	use HandlerTestTrait;
 
 	private function newHandler( $numContributions = 5 ) {
@@ -65,8 +65,6 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributionCount' ]
 		);
-		$performer = $mode === 'me' ? new UltimateAuthority(
-			new UserIdentityValue( 42, 'Petr', 24 ) ) : null;
 		$username = $request->getPathParams()['user'] ?? null;
 		$user = $username ? new UserIdentityValue( 42, $username, 24 ) : null;
 
@@ -80,8 +78,8 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 			'user' => $user,
 			'tag' => $tag ?? null,
 		];
-		$response = $this->executeHandler( $handler, $request, [ 'mode' => $mode ],
-			[], $validatedParams, [], $performer );
+		$response = $this->executeHandler( $handler, $request, [ 'mode' => $mode ], [], $validatedParams, [],
+			$mode === 'me' ? $this->mockRegisteredUltimateAuthority() : null );
 
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
@@ -95,7 +93,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-anon' ), 401 )
 		);
 		$this->executeHandler( $handler, $request, [ 'mode' => 'me' ], [], $validatedParams, [],
-			new UltimateAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ) ) );
+			$this->mockAnonUltimateAuthority() );
 	}
 
 	public function provideThatResponseConformsToSchema() {
@@ -119,7 +117,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 
 		$response = $this->executeHandlerAndGetBodyData(
 			$handler, $request, [ 'mode' => $mode ], [], $validatedParams, [],
-				new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) )
+				$this->mockRegisteredUltimateAuthority()
 		);
 
 		$this->assertSame( $expectedResponse, $response );

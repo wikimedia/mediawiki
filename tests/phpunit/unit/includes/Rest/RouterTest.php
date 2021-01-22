@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -14,7 +13,7 @@ use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
@@ -22,6 +21,8 @@ use Wikimedia\ObjectFactory;
  * @covers \MediaWiki\Rest\Router
  */
 class RouterTest extends \MediaWikiUnitTestCase {
+	use MockAuthorityTrait;
+
 	/** @return Router */
 	private function createRouter(
 		RequestInterface $request,
@@ -32,7 +33,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
 		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
-		$authority = new UltimateAuthority( new UserIdentityValue( 0, 'Test User', 0 ) );
+		$authority = $this->mockAnonUltimateAuthority();
 		return new Router(
 			$routeFiles,
 			[],
