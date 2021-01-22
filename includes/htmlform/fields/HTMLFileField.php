@@ -42,7 +42,7 @@ class HTMLFileField extends HTMLFormField {
 			$this->mPlaceholder = $params['placeholder'];
 		}
 
-		$this->mAccept = $params['accept'] ?: null;
+		$this->mAccept = $params['accept'] ?? null;
 		$this->mMultiple = !empty( $params['multiple'] );
 	}
 
