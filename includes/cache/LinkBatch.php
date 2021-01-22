@@ -34,37 +34,37 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class LinkBatch {
 	/**
-	 * 2-d array, first index namespace, second index dbkey, value arbitrary
+	 * @var array[] 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	public $data = [];
 
 	/**
-	 * For debugging which method is using this class.
+	 * @var string|null For debugging which method is using this class.
 	 */
 	protected $caller;
 
 	/**
-	 * @var LinkCache|null
+	 * @var LinkCache
 	 */
 	private $linkCache;
 
 	/**
-	 * @var TitleFormatter|null
+	 * @var TitleFormatter
 	 */
 	private $titleFormatter;
 
 	/**
-	 * @var Language|null
+	 * @var Language
 	 */
 	private $contentLanguage;
 
 	/**
-	 * @var GenderCache|null
+	 * @var GenderCache
 	 */
 	private $genderCache;
 
 	/**
-	 * @var ILoadBalancer|null
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
