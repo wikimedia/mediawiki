@@ -166,7 +166,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		$this->opts = ContribsPager::processDateFilter( $this->opts );
 
-		if ( $this->opts['namespace'] < NS_MAIN ) {
+		if ( $this->opts['namespace'] !== '' && $this->opts['namespace'] < NS_MAIN ) {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class=\"mw-negative-namespace-not-supported error\">\n\$1\n</div>",
 				[ 'negative-namespace-not-supported' ]
