@@ -171,7 +171,8 @@
 [submodule "extensions/Timeline"]
 	path = extensions/Timeline
 	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
-		branch = REL1_35
+	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/CategoryTree"]
 	path = extensions/CategoryTree
 	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree
@@ -831,10 +832,12 @@
 	path = extensions/GlobalUserPage
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUserPage
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/GlobalPreferences"]
 	path = extensions/GlobalPreferences
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalPreferences
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/QuizGame"]
 	path = extensions/QuizGame
 	url = https://github.com/wikimedia/mediawiki-extensions-QuizGame
@@ -959,7 +962,7 @@
 [submodule "extensions/NukeDPL"]
 	path = extensions/NukeDPL
 	url = https://github.com/wikimedia/mediawiki-extensions-NukeDPL.git
-		ignore = dirty
+	ignore = dirty
 [submodule "extensions/ImageRating"]
 	path = extensions/ImageRating
 	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating.git
@@ -1094,26 +1097,32 @@
 	path = extensions/StopForumSpam
 	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/PageDisqus"]
 	path = extensions/PageDisqus
 	url = https://github.com/wikimedia/mediawiki-extensions-PageDisqus
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/DisqusTag"]
 	path = extensions/DisqusTag
 	url = https://github.com/wikimedia/mediawiki-extensions-DisqusTag
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
 	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
 	branch = master
+	ignore = dirty
 [submodule "extensions/AdvancedSearch"]
 	path = extensions/AdvancedSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/CommonsMetadata"]
 	path = extensions/CommonsMetadata
 	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
 	branch = REL1_35
+	ignore = dirty
 [submodule "extensions/HeaderFooter"]
 	path = extensions/HeaderFooter
 	url = https://github.com/enterprisemediawiki/HeaderFooter.git
@@ -1337,7 +1346,7 @@
 	path = extensions/TimeMachine
 	url = https://github.com/wikimedia/mediawiki-extensions-TimeMachine
 	branch = REL1_35
-	ignpre = dirty
+	ignore = dirty
 [submodule "skins/Nimbus"]
 	path = skins/Nimbus
 	url = https://github.com/wikimedia/mediawiki-skins-Nimbus
