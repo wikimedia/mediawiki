@@ -10,7 +10,7 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	/* Maybe belongs in element.css for figure */
 	margin: 0;
 
-	a {
+	> a {
 		border: 0;
 	}
 
@@ -67,12 +67,11 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	display: table;
 	text-align: center;
 	border: 1px solid #c8ccd1;
-	border-collapse: separate;
-	border-spacing: 3px;
+	border-bottom: 0;  // No border to figcaption
+	border-collapse: collapse;
 	background-color: #f8f9fa;
-	width: 1px;  // From https://stackoverflow.com/a/6536025
 
-	a {
+	> a {
 		border: 0;
 	}
 
@@ -136,8 +135,6 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		 * And, also, matches *.center * in element.less
 		 */
 		margin: 0 auto 0.5em auto;
-		display: table;
-		border-collapse: separate;
 		clear: none;
 		float: none;
 	}
@@ -148,11 +145,16 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		> video {
 			border: 1px solid #c8ccd1;
 			background: #fff;
+			margin: 3px;
 		}
 	}
 
 	> figcaption {
-		display: block;
+		display: table-caption;
+		caption-side: bottom;
+		border: 1px solid #c8ccd1;
+		border-top: 0;
+		background-color: #f8f9fa;
 
 		/**
 		 * The "break-word" value is deprecated, however, it's well supported
@@ -193,23 +195,49 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		}
 
 		/* taken from .thumbcaption, plus .thumbinner */
-		padding: 3px;
+		padding: 0 6px 6px 6px;
 	}
 }
 
+/* Magnify clip */
 figure[ typeof~='mw:Image/Thumb' ],
 figure[ typeof~='mw:Video/Thumb' ],
 figure[ typeof~='mw:Audio/Thumb' ] {
+	> figcaption:before {
+		content: '';
+		width: 15px;
+		height: 11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			margin-left: 3px;
+			/* @noflip */
+			float: right;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			margin-right: 3px;
+			/* @noflip */
+			float: left;
+		}
+	}
+
+	> a {
+		display: inline-block;
+		position: relative;
+	}
+
 	> a:after {
 		content: '';
 		width: 15px;
 		height: 11px;
-		margin: 3px;
-		margin-bottom: 0;
+		position: absolute;
+		bottom: -11px;
 
 		.mw-content-ltr & {
 			/* @noflip */
-			float: right;
+			right: 6px;
 			/* @noflip */
 			background-image: url( images/magnify-clip-ltr.png );
 			/* @noflip */
@@ -218,7 +246,7 @@ figure[ typeof~='mw:Audio/Thumb' ] {
 
 		.mw-content-rtl & {
 			/* @noflip */
-			float: left;
+			left: 6px;
 			/* @noflip */
 			background-image: url( images/magnify-clip-rtl.png );
 			/* @noflip */
