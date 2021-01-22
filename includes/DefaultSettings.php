@@ -7456,7 +7456,7 @@ $wgDisableAnonTalk = false;
 
 /**
  * Allow filtering by change tag in recentchanges, history, etc
- * Has no effect if no tags are defined in valid_tag.
+ * Has no effect if no tags are defined.
  */
 $wgUseTagFilter = true;
 
