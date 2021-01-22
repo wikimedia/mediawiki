@@ -43,7 +43,7 @@ class TestFileReader {
 		$testFormat = intval( $parsoidReader->fileOptions['version'] ?? '1' );
 		if ( $testFormat < 2 ) {
 			throw new MWException(
-				"Support for the parserTest v1 file format was removed in MediaWiki 1.36"
+				"$file needs an update. Support for the parserTest v1 file format was removed in MediaWiki 1.36"
 			);
 		}
 		$tests = [];
