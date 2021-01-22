@@ -3,11 +3,15 @@
 namespace MediaWiki\Tests\Rest\Helper;
 
 use HashConfig;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\PageContentHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Title;
 
@@ -33,22 +37,29 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param array $params
+	 * @param Authority|null $authority
 	 * @return PageContentHelper
+	 * @throws \Exception
 	 */
-	private function newHelper( $params = [], $user = null ): PageContentHelper {
+	private function newHelper(
+		array $params = [],
+		Authority $authority = null
+	): PageContentHelper {
 		$helper = new PageContentHelper(
 			new HashConfig( [
 				'RightsUrl' => 'https://example.com/rights',
 				'RightsText' => 'some rights',
 			] ),
-			$this->getServiceContainer()->getPermissionManager(),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$this->getServiceContainer()->getTitleFactory()
 		);
 
-		$user = $user ?: $this->getTestUser()->getUser();
-		$helper->init( $user, $params );
+		$authority = $authority ?: new UltimateAuthority(
+			new UserIdentityValue( 0, 'Test User', 0 )
+		);
+		$helper->init( $authority, $params );
 		return $helper;
 	}
 
@@ -187,19 +198,12 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
 	 */
 	public function testForbidenPage() {
-		$this->mergeMwGlobalArrayValue(
-			'wgGroupPermissions', [
-				'*' => [ 'read' => false ],
-				'user' => [ 'read' => false ],
-				'autoconfirmed' => [ 'read' => false ],
-			]
-		);
-
-		$user = $this->getTestUser()->getUser();
-
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$title = $page->getTitle();
-		$helper = $this->newHelper( [ 'title' => $title->getPrefixedDBkey() ], $user );
+		$helper = $this->newHelper(
+			[ 'title' => $title->getPrefixedDBkey() ],
+			new SimpleAuthority( new UserIdentityValue( 0, 'Test User', 0 ), [] )
+		);
 
 		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitleText() );
 		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitle()->getPrefixedDBkey() );

@@ -14,8 +14,8 @@ use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\User\UserIdentityValue;
 use Psr\Container\ContainerInterface;
-use User;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -32,7 +32,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
 		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
-		$authority = new UltimateAuthority( new User );
+		$authority = new UltimateAuthority( new UserIdentityValue( 0, 'Test User', 0 ) );
 		return new Router(
 			$routeFiles,
 			[],

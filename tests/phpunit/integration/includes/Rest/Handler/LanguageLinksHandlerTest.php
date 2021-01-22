@@ -59,7 +59,6 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		return new LanguageLinksHandler(
 			$services->getDBLoadBalancer(),
 			$languageNameUtils,
-			$this->makeMockPermissionManager(),
 			$titleCodec,
 			$titleCodec
 		);
@@ -155,7 +154,7 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-title' ), 403 )
 		);
-		$this->executeHandler( $handler, $request, [ 'userCan' => false ] );
+		$this->executeHandler( $handler, $request, [ 'userCan' => false ], [], [], [], $this->makeMockAuthority() );
 	}
 
 }

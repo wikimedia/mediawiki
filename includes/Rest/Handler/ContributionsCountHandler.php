@@ -5,7 +5,6 @@ namespace MediaWiki\Rest\Handler;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use RequestContext;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -18,10 +17,9 @@ class ContributionsCountHandler extends AbstractContributionHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function execute() {
-		$performer = RequestContext::getMain()->getUser();
 		$target = $this->getTargetUser();
 		$tag = $this->getValidatedParams()['tag'];
-		$count = $this->contributionsLookup->getContributionCount( $target, $performer, $tag );
+		$count = $this->contributionsLookup->getContributionCount( $target, $this->getAuthority(), $tag );
 		$response = [ 'count' => $count ];
 		return $response;
 	}

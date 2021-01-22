@@ -8,7 +8,6 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\ContributionsSegment;
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use MediaWiki\User\UserIdentity;
-use RequestContext;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -22,13 +21,12 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function execute() {
-		$performer = RequestContext::getMain()->getUser();
 		$target = $this->getTargetUser();
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
 		$tag = $this->getValidatedParams()['tag'];
 		$contributionsSegment =
-			$this->contributionsLookup->getContributions( $target, $limit, $performer, $segment, $tag );
+			$this->contributionsLookup->getContributions( $target, $limit, $this->getAuthority(), $segment, $tag );
 
 		$contributions = $this->getContributionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
