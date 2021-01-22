@@ -2800,6 +2800,16 @@ class RevisionStore
 			$id = $flags;
 			$flags = func_num_args() > 2 ? func_get_arg( 2 ) : 0;
 		}
+
+		// T270149: Bail out if we know the query will definitely return false. Some callers are
+		// passing RevisionRecord::getId() call directly as $id which can possibly return null.
+		// Null $id or $id <= 0 will lead to useless query with WHERE clause of 'rev_id IS NULL'
+		// or 'rev_id = 0', but 'rev_id' is always greater than zero and cannot be null.
+		// @todo typehint $id and remove the null check
+		if ( $id === null || $id <= 0 ) {
+			return false;
+		}
+
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 
 		$timestamp =

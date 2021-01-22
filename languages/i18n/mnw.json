@@ -5,7 +5,8 @@
 			"DannyS712",
 			"Dr Lotus Black",
 			"Htawmonzel",
-			"Ninjastrikers"
+			"Ninjastrikers",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "လေန် မတာပၞောန်သၟဝ်",
@@ -398,7 +399,7 @@
 	"createacct-error": "အကံက် မခၞံကၠောန် ယောၚ်",
 	"createaccounterror": "ခၞံဗဒှ် အကံက် ဟွံဂွံ:$1",
 	"loginsuccesstitle": "လံက်အေန်တုဲ",
-	"loginsuccess": "<strong>လၟုဟ်မၞးဂှ်လံက်အေန်လဝ်ပ္ဍဲသွက်{{SITNAME}}ညံၚ်\"$1\" .</strong>",
+	"loginsuccess": "<strong>လၟုဟ်မၞးဂှ်လံက်အေန်လဝ်ပ္ဍဲသွက်{{SITENAME}}ညံၚ်\"$1\" .</strong>",
 	"nosuchusershort": "ညးလွပ် ဟွံမွဲပုဟ် နကဵုယၟု \"$1\" ဏအ်\nစၟဳစၟတ် မက္ခရ်မၞးညိ.",
 	"nouserspecified": "မၞး ထေက်ကဵုဒးစှ်ေဗိုတ် ယၟုညးလွပ်မွဲ",
 	"login-userblocked": "ညးလွပ်ဏအ် ဒးကၟာတ်လဝ်. ဟွံကဵုအခေါၚ်လုပ်ရ.",

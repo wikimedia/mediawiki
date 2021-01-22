@@ -780,7 +780,7 @@
 	"invalid-content-data": "מידע שגוי על התוכן",
 	"content-not-allowed-here": "תוכן מסוג \"$1\" אינו מותר בדף [[:$2]] במשבצת \"$3\"",
 	"confirmleave-warning": "עזיבת הדף הזה יכולה לגרום לאובדן השינויים שעשית.",
-	"editwarning-warning": "עזיבת הדף הזה עלולה לגרום לך לאבד את כל השינויים שעשית.\nאם יש לך חשבון באתר, באפשרותך לבטל את האזהרה הזאת בחלק \"{{int:prefs-editing}}\" שבהעדפות שלך.",
+	"editwarning-warning": "עזיבת הדף הזה עלולה לגרום לך לאבד את כל השינויים שעשית. אם נכנסת לחשבון, אפשר לבטל את האזהרה הזאת בחלק \"{{int:prefs-editing}}\" בהעדפות שלך.",
 	"editpage-invalidcontentmodel-title": "מודל התוכן אינו נתמך",
 	"editpage-invalidcontentmodel-text": "מודל התוכן \"$1\" אינו נתמך.",
 	"editpage-notsupportedcontentformat-title": "סוג התוכן אינו נתמך",

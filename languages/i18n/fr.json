@@ -2420,7 +2420,7 @@
 	"emailuser-title-target": "Envoyer un courriel à cet{{GENDER:$1||te}} utilisat{{GENDER:$1|eur|rice}}",
 	"emailuser-title-notarget": "Envoyer un courriel à l’utilisateur",
 	"emailpagetext": "Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à cet{{GENDER:$1||te}} utilisat{{GENDER:$1|eur|rice}}.\nL’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message ; ainsi, le destinataire pourra vous répondre directement.",
-	"defemailsubject": "Courriel de l’utilisat{{GENDER:$1|eur|rice}} « $1 » sur {{SITENAME}}",
+	"defemailsubject": "Courriel de l’utilisat{{GENDER:$1|eur|rice}} « $1 » sur {{SITENAME}}",
 	"usermaildisabled": "L’envoi de courriels entre utilisateurs est désactivé",
 	"usermaildisabledtext": "Vous ne pouvez pas envoyer de courriels à d’autres utilisateurs sur ce wiki",
 	"noemailtitle": "Aucune adresse de courriel",
