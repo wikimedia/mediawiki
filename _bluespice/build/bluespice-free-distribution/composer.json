@@ -17,7 +17,6 @@
 		"mediawiki/lingo": "~3.0",
 		"mediawiki/nuke": "dev-master",
 		"mediawiki/pluggable-auth": "dev-master",
-		"mediawiki/quiz": "dev-master",
 		"mediawiki/rss": "dev-master",
 		"mediawiki/simple-s-a-m-lphp": "dev-master",
 		"mediawiki/template-styles": "dev-master",
