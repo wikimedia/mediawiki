@@ -154,6 +154,7 @@ class HTMLForm extends ContextSource {
 		'check' => HTMLCheckField::class,
 		'toggle' => HTMLCheckField::class,
 		'int' => HTMLIntField::class,
+		'file' => HTMLFileField::class,
 		'float' => HTMLFloatField::class,
 		'info' => HTMLInfoField::class,
 		'selectorother' => HTMLSelectOrOtherField::class,
