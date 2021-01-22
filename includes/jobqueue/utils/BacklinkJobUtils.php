@@ -99,7 +99,6 @@ class BacklinkJobUtils {
 			$realBSize = $params['range']['batchSize'];
 		} else {
 			// This is a base job to trigger the insertion of partitioned jobs...
-			// @phan-suppress-next-line SecurityCheck-SQLInjection False positive T268905
 			$ranges = $title->getBacklinkCache()->partition( $params['table'], $bSize );
 			$realBSize = $bSize;
 		}
@@ -110,7 +109,6 @@ class BacklinkJobUtils {
 		// Combine the first range (of size $bSize) backlinks into leaf jobs
 		if ( isset( $ranges[0] ) ) {
 			list( $start, $end ) = $ranges[0];
-			// @phan-suppress-next-line SecurityCheck-SQLInjection False positive T268905
 			$iter = $title->getBacklinkCache()->getLinks( $params['table'], $start, $end );
 			$titles = iterator_to_array( $iter );
 			/** @var Title[] $titleBatch */

@@ -39,6 +39,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
@@ -2160,14 +2161,34 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		}
 
 		if ( !$this->mActorId && $dbwOrWikiId instanceof IDatabase ) {
-			$migration = MediaWikiServices::getInstance()->getActorMigration();
-			$this->mActorId = $migration->getNewActorId( $dbwOrWikiId, $this );
-
-			$this->invalidateCache();
-			$this->setItemLoaded( 'actor' );
+			MediaWikiServices::getInstance()
+				->getActorStoreFactory()
+				->getActorNormalization( $dbwOrWikiId->getDomainID() )
+				->acquireActorId( $this, $dbwOrWikiId );
+			// acquireActorId will call setActorId on $this
+			Assert::postcondition(
+				$this->mActorId !== null,
+				"Failed to acquire actor ID for user id {$this->mId} name {$this->mName}"
+			);
 		}
 
 		return (int)$this->mActorId;
+	}
+
+	/**
+	 * Sets the actor id.
+	 *
+	 * This method is deprecated upon introduction. It only exists for transition to ActorStore,
+	 * and will be removed shortly - T274148
+	 *
+	 * @internal
+	 * @deprecated since 1.36
+	 * @param int $actorId
+	 */
+	public function setActorId( int $actorId ) {
+		$this->mActorId = $actorId;
+		$this->invalidateCache();
+		$this->setItemLoaded( 'actor' );
 	}
 
 	/**

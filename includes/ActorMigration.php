@@ -21,9 +21,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -115,19 +115,19 @@ class ActorMigration {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	/** @var ActorStoreFactory */
+	private $actorStoreFactory;
 
 	/**
-	 * @internal
 	 * @param int $stage
 	 * @param UserFactory $userFactory
-	 * @param UserNameUtils $userNameUtils
+	 * @param ActorStoreFactory $actorStoreFactory
+	 * @internal
 	 */
 	public function __construct(
 		$stage,
 		UserFactory $userFactory,
-		UserNameUtils $userNameUtils
+		ActorStoreFactory $actorStoreFactory
 	) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
@@ -147,7 +147,7 @@ class ActorMigration {
 
 		$this->stage = $stage;
 		$this->userFactory = $userFactory;
-		$this->userNameUtils = $userNameUtils;
+		$this->actorStoreFactory = $actorStoreFactory;
 	}
 
 	/**
@@ -260,23 +260,21 @@ class ActorMigration {
 	 * Get actor ID from UserIdentity, if it exists
 	 *
 	 * @since 1.35.0
+	 * @deprecated since 1.36. Use ActorStore::findActorId instead.
 	 *
 	 * @param IDatabase $db
 	 * @param UserIdentity $user
 	 * @return int|false
 	 */
 	public function getExistingActorId( IDatabase $db, UserIdentity $user ) {
-		$row = $db->selectRow(
-			'actor',
-			[ 'actor_id' ],
-			[ 'actor_name' => $user->getName() ],
-			__METHOD__
-		);
-		if ( $row === false ) {
-			return false;
-		}
-
-		return (int)$row->actor_id;
+		wfDeprecated( __METHOD__, '1.36' );
+		// Get the correct ActorStore based on the DB passed,
+		// and not on the passed $user wiki ID, since before all
+		// User object are LOCAL, but the databased passed here can be
+		// foreign.
+		return $this->actorStoreFactory
+			->getActorNormalization( $db->getDomainID() )
+			->findActorId( $user );
 	}
 
 	/**
@@ -284,6 +282,7 @@ class ActorMigration {
 	 * If it is already assigned, return the existing ID.
 	 *
 	 * @since 1.35.0
+	 * @deprecated since 1.36. Use ActorStore::acquireActorId instead.
 	 *
 	 * @param IDatabase $dbw
 	 * @param UserIdentity $user
@@ -291,47 +290,14 @@ class ActorMigration {
 	 * @return int The new actor ID
 	 */
 	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
-		$q = [
-			'actor_user' => $user->getId() ?: null,
-			// make sure to use normalized form of IP for anonymous users
-			'actor_name' => IPUtils::sanitizeIP( $user->getName() ),
-		];
-		if ( $q['actor_user'] === null && $this->userNameUtils->isUsable( $q['actor_name'] ) ) {
-			throw new CannotCreateActorException(
-				'Cannot create an actor for a usable name that is not an existing user: ' .
-				"user_id={$user->getId()} user_name=\"{$user->getName()}\""
-			);
-		}
-		if ( $q['actor_name'] === '' ) {
-			throw new CannotCreateActorException(
-				'Cannot create an actor for a user with no name: ' .
-				"user_id={$user->getId()} user_name=\"{$user->getName()}\""
-			);
-		}
-
-		$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
-
-		if ( $dbw->affectedRows() ) {
-			$actorId = (int)$dbw->insertId();
-		} else {
-			// Outdated cache?
-			// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-			$actorId = (int)$dbw->selectField(
-				'actor',
-				'actor_id',
-				$q,
-				__METHOD__,
-				[ 'LOCK IN SHARE MODE' ]
-			);
-			if ( !$actorId ) {
-				throw new CannotCreateActorException(
-					"Failed to create actor ID for " .
-					"user_id={$user->getId()} user_name=\"{$user->getName()}\""
-				);
-			}
-		}
-
-		return $actorId;
+		wfDeprecated( __METHOD__, '1.36' );
+		// Get the correct ActorStore based on the DB passed,
+		// and not on the passed $user wiki ID, since before all
+		// User object are LOCAL, but the databased passed here can be
+		// foreign.
+		return $this->actorStoreFactory
+			->getActorNormalization( $dbw->getDomainID() )
+			->acquireActorId( $user, $dbw );
 	}
 
 	/**
@@ -357,14 +323,9 @@ class ActorMigration {
 			$ret[$text] = $user->getName();
 		}
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			// NOTE: Don't use $user->getActorId(), since that may be for the wrong wiki (T260485)
-			// TODO: Make User object wiki-aware and let it handle all cases (T260933)
-			$existingActorId = $this->getExistingActorId( $dbw, $user );
-			if ( $existingActorId !== false ) {
-				$ret[$actor] = $existingActorId;
-			} else {
-				$ret[$actor] = $this->getNewActorId( $dbw, $user );
-			}
+			$ret[$actor] = $this->actorStoreFactory
+				->getActorNormalization( $dbw->getDomainID() )
+				->acquireActorId( $user, $dbw );
 		}
 		return $ret;
 	}
@@ -398,15 +359,9 @@ class ActorMigration {
 			$ret[$text] = $user->getName();
 		}
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			// We need to be able to assign an actor ID if none exists
-			if ( !$user instanceof User && !$user->getActorId() ) {
-				$user = $this->userFactory->newFromAnyId(
-					$user->getId(),
-					$user->getName(),
-					null
-				);
-			}
-			$id = $user->getActorId( $dbw );
+			$id = $this->actorStoreFactory
+				->getActorNormalization( $dbw->getDomainID() )
+				->acquireActorId( $user, $dbw );
 
 			if ( isset( self::$tempTables[$key] ) ) {
 				$func = __METHOD__;
@@ -540,5 +495,4 @@ class ActorMigration {
 			'joins' => $joins,
 		];
 	}
-
 }
