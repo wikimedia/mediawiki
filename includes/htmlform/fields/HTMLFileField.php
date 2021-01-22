@@ -7,14 +7,16 @@ use OOUI\Widget;
  *
  * Besides the parameters recognized by HTMLFormField, the following are
  * recognized:
- *   accept - Acceptable MIME types to show in file choose
+ *   placeholder/placeholder-message - HTML placeholder attribute
+ *   accept - Array of acceptable MIME types/extensions to show in file chooser,
+ *            null to accept all files.
  *   multiple - Allow multiple files to be selected
  *
  * @stable to extend
  */
 class HTMLFileField extends HTMLFormField {
 	protected $mPlaceholder = '';
-	protected $mAccept = '';
+	protected $mAccept = null;
 
 	/** @var bool */
 	protected $mMultiple;
@@ -23,7 +25,7 @@ class HTMLFileField extends HTMLFormField {
 	 * @stable to call
 	 *
 	 * @param array $params
-	 *   - placeholder/placeholder-message: set HTML placeholder attribute
+	 *   - placeholder/placeholder-message
 	 *   - accept
 	 *   - multiple
 	 */
@@ -40,7 +42,7 @@ class HTMLFileField extends HTMLFormField {
 			$this->mPlaceholder = $params['placeholder'];
 		}
 
-		$this->mAccept = $params['accept'] ?: '';
+		$this->mAccept = $params['accept'] ?: null;
 		$this->mMultiple = !empty( $params['multiple'] );
 	}
 
@@ -58,15 +60,13 @@ class HTMLFileField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
-		if ( $this->mPlaceholder !== '' ) {
-			$attribs['placeholder'] = $this->mPlaceholder;
+		if ( $this->mAccept ) {
+			$attribs['accept'] = implode( ',', $this->mAccept );
 		}
-		if ( $this->mAccept !== '' ) {
-			$attribs['accept'] = $this->mAccept;
-		}
-		if ( $this->mMultiple !== '' ) {
+		if ( $this->mMultiple ) {
 			$attribs['multiple'] = '';
 		}
+		// Note: Placeholders are not supported by native file inputs
 
 		$allowedParams = [
 			'title',
@@ -95,10 +95,10 @@ class HTMLFileField extends HTMLFormField {
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;
 		}
-		if ( $this->mAccept !== '' ) {
+		if ( $this->mAccept ) {
 			$attribs['accept'] = $this->mAccept;
 		}
-		if ( $this->mMultiple !== '' ) {
+		if ( $this->mMultiple ) {
 			$attribs['multiple'] = true;
 		}
 
