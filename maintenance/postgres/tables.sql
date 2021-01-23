@@ -116,35 +116,6 @@ CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
 
-CREATE SEQUENCE ipblocks_ipb_id_seq;
-CREATE TABLE ipblocks (
-  ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
-  ipb_address           TEXT             NULL,
-  ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ipb_by_actor          INTEGER      NOT NULL,
-  ipb_reason_id         INTEGER      NOT NULL,
-  ipb_timestamp         TIMESTAMPTZ  NOT NULL,
-  ipb_auto              SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_anon_only         SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_create_account    SMALLINT     NOT NULL  DEFAULT 1,
-  ipb_enable_autoblock  SMALLINT     NOT NULL  DEFAULT 1,
-  ipb_expiry            TIMESTAMPTZ  NOT NULL,
-  ipb_range_start       TEXT,
-  ipb_range_end         TEXT,
-  ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_allow_usertalk    SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_parent_block_id   INTEGER          NULL            REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ipb_sitewide          SMALLINT     NOT NULL  DEFAULT 1
-);
-ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
-CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto);
-CREATE INDEX ipb_user    ON ipblocks (ipb_user);
-CREATE INDEX ipb_timestamp ON ipblocks (ipb_timestamp);
-CREATE INDEX ipb_expiry ON ipblocks (ipb_expiry);
-CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
-CREATE INDEX ipb_parent_block_id   ON ipblocks (ipb_parent_block_id);
-
 CREATE TABLE image (
   img_name         TEXT      NOT NULL  PRIMARY KEY,
   img_size         INTEGER   NOT NULL,

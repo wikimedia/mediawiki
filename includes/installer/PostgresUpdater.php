@@ -933,6 +933,14 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'objectcache', 'keyname', 'patch-objectcache_keyname-pk.sql' ],
 			[ 'changeField', 'objectcache', 'value', 'TEXT', '' ],
 			[ 'changeNullableField', 'objectcache', 'value', 'NULL', true ],
+			[ 'dropFkey', 'ipblocks', 'ipb_user' ],
+			[ 'dropFkey', 'ipblocks', 'ipb_parent_block_id' ],
+			[ 'setDefault', 'ipblocks', 'ipb_user', 0 ],
+			[ 'changeNullableField', 'ipblocks', 'ipb_user', 'NOT NULL', true ],
+			[ 'changeNullableField', 'ipblocks', 'ipb_range_start', 'NOT NULL', true ],
+			[ 'changeNullableField', 'ipblocks', 'ipb_range_end', 'NOT NULL', true ],
+			[ 'changeField', 'ipblocks', 'ipb_by_actor', 'BIGINT', '' ],
+			[ 'changeField', 'ipblocks', 'ipb_reason_id', 'BIGINT', '' ],
 		];
 	}
 

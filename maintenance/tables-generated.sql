@@ -670,3 +670,39 @@ CREATE TABLE /*_*/objectcache (
   INDEX exptime (exptime),
   PRIMARY KEY(keyname)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/ipblocks (
+  ipb_id INT AUTO_INCREMENT NOT NULL,
+  ipb_address TINYBLOB NOT NULL,
+  ipb_user INT UNSIGNED DEFAULT 0 NOT NULL,
+  ipb_by_actor BIGINT UNSIGNED NOT NULL,
+  ipb_reason_id BIGINT UNSIGNED NOT NULL,
+  ipb_timestamp BINARY(14) NOT NULL,
+  ipb_auto TINYINT(1) DEFAULT 0 NOT NULL,
+  ipb_anon_only TINYINT(1) DEFAULT 0 NOT NULL,
+  ipb_create_account TINYINT(1) DEFAULT 1 NOT NULL,
+  ipb_enable_autoblock TINYINT(1) DEFAULT 1 NOT NULL,
+  ipb_expiry VARBINARY(14) NOT NULL,
+  ipb_range_start TINYBLOB NOT NULL,
+  ipb_range_end TINYBLOB NOT NULL,
+  ipb_deleted TINYINT(1) DEFAULT 0 NOT NULL,
+  ipb_block_email TINYINT(1) DEFAULT 0 NOT NULL,
+  ipb_allow_usertalk TINYINT(1) DEFAULT 0 NOT NULL,
+  ipb_parent_block_id INT DEFAULT NULL,
+  ipb_sitewide TINYINT(1) DEFAULT 1 NOT NULL,
+  UNIQUE INDEX ipb_address_unique (
+    ipb_address(255),
+    ipb_user,
+    ipb_auto
+  ),
+  INDEX ipb_user (ipb_user),
+  INDEX ipb_range (
+    ipb_range_start(8),
+    ipb_range_end(8)
+  ),
+  INDEX ipb_timestamp (ipb_timestamp),
+  INDEX ipb_expiry (ipb_expiry),
+  INDEX ipb_parent_block_id (ipb_parent_block_id),
+  PRIMARY KEY(ipb_id)
+) /*$wgDBTableOptions*/;

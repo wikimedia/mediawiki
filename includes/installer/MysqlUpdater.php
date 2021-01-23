@@ -486,6 +486,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'oldimage', 'oi_name', 'patch-oldimage-oi_name-varbinary.sql' ],
 			[ 'dropDefault', 'oldimage', 'oi_timestamp' ],
 			[ 'modifyField', 'objectcache', 'exptime', 'patch-objectcache-exptime-notnull.sql' ],
+			[ 'dropDefault', 'ipblocks', 'ipb_timestamp' ],
+			[ 'dropDefault', 'ipblocks', 'ipb_expiry' ],
 		];
 	}
 
