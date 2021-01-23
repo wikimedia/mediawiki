@@ -96,6 +96,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $script = '';
 	protected $styles = '';
 	protected $skipFunction = null;
+	protected $es6 = false;
 	protected $isRaw = false;
 	protected $isKnownEmpty = false;
 	protected $type = ResourceLoaderModule::LOAD_GENERAL;
@@ -146,6 +147,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 
 	public function getSkipFunction() {
 		return $this->skipFunction;
+	}
+
+	public function requiresES6() {
+		return $this->es6;
 	}
 
 	public function isRaw() {

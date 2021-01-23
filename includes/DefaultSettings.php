@@ -3908,6 +3908,16 @@ $wgMangleFlashPolicy = true;
  *
  *   Default: `[]`
  *
+ *  - es6 `{bool}`:
+ *    If true, this module will only be executed in browsers that support ES6. You should set this
+ *    flag for modules that use ES6 in their JavaScript. Only use this for modules that provide
+ *    progressive enhancements that are safe to not load in browsers that are not modern but still
+ *    have a substantial user base, like IE11.
+ *
+ *    Since: **MW 1.36**
+ *
+ *    Default: `false`
+ *
  * ## Examples
  *
  * @par Example: Using an alternate subclass

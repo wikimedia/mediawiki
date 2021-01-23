@@ -307,6 +307,10 @@
 									"items": {
 										"type": ["string", "object"]
 									}
+								},
+								"es6": {
+									"type": "boolean",
+									"description": "Whether this module requires an ES6-capable browser. If set to true, loading this module in a non-ES6 browser will cause an error. Using ES6 syntax in modules is not yet supported, but will be in the near future. Default is false."
 								}
 							}
 						},

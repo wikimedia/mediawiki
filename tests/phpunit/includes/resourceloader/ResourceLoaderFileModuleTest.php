@@ -867,4 +867,16 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			$this->assertEquals( $expected, $module->getScript( $context ) );
 		}
 	}
+
+	/**
+	 * @covers ResourceLoaderFileModule::requiresES6
+	 */
+	public function testRequiresES6() {
+		$module = new ResourceLoaderFileModule();
+		$this->assertFalse( $module->requiresES6(), 'requiresES6 defaults to false' );
+		$module = new ResourceLoaderFileModule( [ 'es6' => false ] );
+		$this->assertFalse( $module->requiresES6(), 'requiresES6 is false when set to false' );
+		$module = new ResourceLoaderFileModule( [ 'es6' => true ] );
+		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
+	}
 }
