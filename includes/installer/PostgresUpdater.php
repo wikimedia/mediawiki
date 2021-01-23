@@ -506,7 +506,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'archive', 'ar_user', 'NOT NULL', true ],
 			[ 'setDefault', 'archive', 'ar_user_text', '' ],
 			[ 'addPgField', 'archive', 'ar_actor', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgIndex', 'archive', 'archive_actor', '( ar_actor )' ],
 			[ 'setDefault', 'ipblocks', 'ipb_by', 0 ],
 			[ 'addPgField', 'ipblocks', 'ipb_by_actor', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'setDefault', 'image', 'img_user', 0 ],
@@ -941,6 +940,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'ipblocks', 'ipb_range_end', 'NOT NULL', true ],
 			[ 'changeField', 'ipblocks', 'ipb_by_actor', 'BIGINT', '' ],
 			[ 'changeField', 'ipblocks', 'ipb_reason_id', 'BIGINT', '' ],
+			[ 'renameIndex', 'archive', 'archive_name_title_timestamp', 'ar_name_title_timestamp' ],
+			[ 'dropPgIndex', 'archive', 'archive_actor' ],
+			[ 'addPgIndex', 'archive', 'ar_actor_timestamp', '(ar_actor,ar_timestamp)' ],
 		];
 	}
 

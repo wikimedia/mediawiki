@@ -299,13 +299,13 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$sort = ( $dir == 'newer' ? '' : ' DESC' );
 		$orderby = [];
 		if ( $optimizeGenerateTitles ) {
-			// Targeting index name_title_timestamp
+			// Targeting index ar_name_title_timestamp
 			if ( $params['namespace'] === null || count( array_unique( $params['namespace'] ) ) > 1 ) {
 				$orderby[] = "ar_namespace $sort";
 			}
 			$orderby[] = "ar_title $sort";
 		} elseif ( $mode == 'all' ) {
-			// Targeting index name_title_timestamp
+			// Targeting index ar_name_title_timestamp
 			if ( $params['namespace'] === null || count( array_unique( $params['namespace'] ) ) > 1 ) {
 				$orderby[] = "ar_namespace $sort";
 			}

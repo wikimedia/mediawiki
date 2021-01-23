@@ -328,6 +328,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'oldimage', 'oi_name', 'patch-oldimage-oi_name-varbinary.sql' ],
 			[ 'modifyField', 'objectcache', 'exptime', 'patch-objectcache-exptime-notnull.sql' ],
 			[ 'modifyField', 'ipblocks', 'ipb_timestamp', 'patch-ipblocks-ipb_timestamp-drop-default.sql' ],
+			[ 'renameIndex', 'archive', 'name_title_timestamp', 'ar_name_title_timestamp', false,
+				'patch-archive-rename-name_title_timestamp-index.sql' ],
 		];
 	}
 

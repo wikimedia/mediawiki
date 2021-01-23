@@ -327,7 +327,7 @@ CREATE TABLE /*_*/archive (
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions
-CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX /*i*/ar_name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 
 -- Index for Special:DeletedContributions
 CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
