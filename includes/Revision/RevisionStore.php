@@ -1574,19 +1574,30 @@ class RevisionStore
 					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
 						// If we found no slots, try looking on the master database (T259738)
 						$this->logger->info(
-							 'RevisionStoreCacheRecord refresh callback  falling back to READ_LATEST.',
+							 'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
 								'revid' => $revId,
 								'trace' => wfBacktrace( true )
 							]
 						);
 						$dbw = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
-						return $this->fetchRevisionRowFromConds(
+						$row = $this->fetchRevisionRowFromConds(
 							$dbw,
 							[ 'rev_id' => intval( $revId ) ]
 						);
 					}
-					return $row;
+					if ( !$row ) {
+						return [ null, null ];
+					}
+					return [
+						$row->rev_deleted,
+						User::newFromAnyId(
+							$row->rev_user ?? null,
+							$row->rev_user_text ?? null,
+							$row->rev_actor ?? null,
+							$this->dbDomain
+						)
+					];
 				},
 				$title, $user, $comment, $row, $slots, $this->dbDomain
 			);

@@ -23,23 +23,21 @@
 namespace MediaWiki\Revision;
 
 use CommentStoreComment;
-use InvalidArgumentException;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
-use User;
 
 /**
  * A cached RevisionStoreRecord.  Ensures that changes performed "behind the back"
  * of the cache do not cause the revision record to deliver stale data.
  *
+ * @internal
  * @since 1.33
  */
 class RevisionStoreCacheRecord extends RevisionStoreRecord {
 
 	/**
-	 * @var callable
+	 * @var callable ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
 	 */
 	private $mCallback;
 
@@ -47,7 +45,8 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param callable $callback Callback for loading data.  Signature: function ( $id ): \stdClass
+	 * @param callable $callback Callback for loading data.
+	 *        Signature: function ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
 	 * @param PageIdentity $page The page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
@@ -57,7 +56,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
 	public function __construct(
-		$callback,
+		callable $callback,
 		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
@@ -102,31 +101,15 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @throws RevisionAccessException if the row could not be loaded
 	 */
 	private function loadFreshRow() {
-		$freshRow = call_user_func( $this->mCallback, $this->mId );
+		list( $freshRevDeleted, $freshUser ) = call_user_func( $this->mCallback, $this->mId );
 
 		// Set to null to ensure we do not make unnecessary queries for subsequent getter calls,
 		// and to allow the closure to be freed.
 		$this->mCallback = null;
 
-		if ( $freshRow ) {
-			$this->mDeleted = intval( $freshRow->rev_deleted );
-
-			try {
-				$this->mUser = User::newFromAnyId(
-					$freshRow->rev_user ?? null,
-					$freshRow->rev_user_text ?? null,
-					$freshRow->rev_actor ?? null
-				);
-			} catch ( InvalidArgumentException $ex ) {
-				wfWarn(
-					__METHOD__
-					. ': '
-					. $this->mPage
-					. ': '
-					. $ex->getMessage()
-				);
-				$this->mUser = new UserIdentityValue( 0, 'Unknown user', 0 );
-			}
+		if ( $freshRevDeleted !== null && $freshUser !== null ) {
+			$this->mDeleted = intval( $freshRevDeleted );
+			$this->mUser = $freshUser;
 		} else {
 			throw new RevisionAccessException(
 				'Unable to load fresh row for rev_id: ' . $this->mId

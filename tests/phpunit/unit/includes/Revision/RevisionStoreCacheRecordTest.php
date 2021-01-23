@@ -1,17 +1,17 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use CommentStoreComment;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreCacheRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Tests\Unit\Revision\RevisionRecordTests;
 use MediaWiki\User\UserIdentityValue;
 use TextContent;
-use Title;
 
 /**
  * @covers \MediaWiki\Revision\RevisionStoreCacheRecord
@@ -29,8 +29,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 	 * @return RevisionStoreRecord
 	 */
 	protected function newRevision( array $rowOverrides = [], $callback = false ) {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
+		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL );
 
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
@@ -41,7 +40,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 
 		$row = [
 			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
+			'rev_page' => '17',
 			'rev_timestamp' => '20200101000000',
 			'rev_deleted' => 0,
 			'rev_minor_edit' => 0,
@@ -56,7 +55,11 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 
 		if ( !$callback ) {
 			$callback = function ( $revId ) use ( $row ) {
-				return (object)$row;
+				$this->assertSame( 7, $revId );
+				return [
+					$row['rev_deleted'],
+					new UserIdentityValue( intval( $row['rev_user'] ), 'Bla', 10 )
+				];
 			};
 		}
 
@@ -74,14 +77,14 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 		// Provide a callback that returns non-default values. Asserting the revision returns
 		// these values confirms callback execution and behavior. Also confirm the callback
 		// is only invoked once, even for multiple getter calls.
-		$rowOverrides = [
-			'rev_deleted' => RevisionRecord::DELETED_TEXT,
-			'rev_user' => 12,
-		];
 		$callbackInvoked = 0;
-		$callback = function ( $revId ) use ( &$callbackInvoked, $rowOverrides ) {
+		$callback = function ( $revId ) use ( &$callbackInvoked ) {
+			$this->assertSame( 7, $revId );
 			$callbackInvoked++;
-			return (object)$rowOverrides;
+			return [
+				RevisionRecord::DELETED_TEXT,
+				new UserIdentityValue( 12, 'Lalala', 24 )
+			];
 		};
 		$rev = $this->newRevision( [], $callback );
 
