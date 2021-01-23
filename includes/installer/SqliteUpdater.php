@@ -327,6 +327,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'filearchive', 'fa_name', 'patch-filearchive-fa_name.sql' ],
 			[ 'modifyField', 'oldimage', 'oi_name', 'patch-oldimage-oi_name-varbinary.sql' ],
 			[ 'modifyField', 'objectcache', 'exptime', 'patch-objectcache-exptime-notnull.sql' ],
+			[ 'modifyField', 'ipblocks', 'ipb_timestamp', 'patch-ipblocks-ipb_timestamp-drop-default.sql' ],
 		];
 	}
 
