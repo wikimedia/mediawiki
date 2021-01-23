@@ -558,11 +558,6 @@
 	url = https://github.com/JeroenDeDauw/Maps
 	branch = master
 	ignore = dirty
-[submodule "extensions/ContentTranslation"]
-	path = extensions/ContentTranslation
-	url = https://github.com/wikimedia/mediawiki-extensions-ContentTranslation
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/MassEditRegex"]
 	path = extensions/MassEditRegex
 	url = https://github.com/wikimedia/mediawiki-extensions-MassEditRegex
@@ -1143,11 +1138,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatePageUw
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/RecentChangesLogFilter"]
-	path = extensions/RecentChangesLogFilter
-	url = https://github.com/poke/mediawiki-RecentChangesLogFilter
-	branch = master
-	ignore = dirty
 [submodule "extensions/DarkMode"]
 	path = extensions/DarkMode
 	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
@@ -1162,10 +1152,6 @@
 	path = extensions/Preloader
 	url = https://gitlab.com/troyengel/Preloader
 	branch = master
-	ignore = dirty
-[submodule "extensions/ContributionTracking"]
-	path = extensions/ContributionTracking
-	url = https://github.com/wikimedia/mediawiki-extensions-ContributionTracking
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
 	path = extensions/SpriteSheet
