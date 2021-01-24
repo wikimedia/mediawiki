@@ -864,7 +864,6 @@ class OutputPage extends ContextSource {
 	 * @param string $policy The literal string to output as the contents of
 	 *   the meta tag.  Will be parsed according to the spec and output in
 	 *   standardized form.
-	 * @return null
 	 */
 	public function setRobotPolicy( $policy ) {
 		$policy = Article::formatRobotPolicy( $policy );
@@ -892,7 +891,6 @@ class OutputPage extends ContextSource {
 	 * touched.
 	 *
 	 * @param string $policy Either 'index' or 'noindex'.
-	 * @return null
 	 */
 	public function setIndexPolicy( $policy ) {
 		$policy = trim( $policy );
@@ -915,7 +913,6 @@ class OutputPage extends ContextSource {
 	 * touched.
 	 *
 	 * @param string $policy Either 'follow' or 'nofollow'.
-	 * @return null
 	 */
 	public function setFollowPolicy( $policy ) {
 		$policy = trim( $policy );
