@@ -193,7 +193,8 @@ interface ILoadBalancer {
 	 * do so once such a connection is opened.
 	 *
 	 * If a timeout happens when waiting, then getLaggedReplicaMode()/laggedReplicaUsed()
-	 * will return true.
+	 * will return true. This is useful for discouraging clients from taking further actions
+	 * if session consistency could not be maintained with respect to their last actions.
 	 *
 	 * @param DBMasterPos|bool $pos Master position or false
 	 */
@@ -201,6 +202,9 @@ interface ILoadBalancer {
 
 	/**
 	 * Set the master wait position and wait for a generic replica DB to catch up to it
+	 *
+	 * This method is only intented for use a throttling mechanism for high-volume updates.
+	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
@@ -213,6 +217,9 @@ interface ILoadBalancer {
 	/**
 	 * Set the master wait position and wait for ALL replica DBs to catch up to it
 	 *
+	 * This method is only intented for use a throttling mechanism for high-volume updates.
+	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
+	 *
 	 * @param DBMasterPos|bool $pos Master position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
@@ -220,11 +227,13 @@ interface ILoadBalancer {
 	public function waitForAll( $pos, $timeout = null );
 
 	/**
-	 * Get any open connection to a given server index, local or foreign
+	 * Get an existing live handle to the given server index (on any domain)
 	 *
-	 * Use CONN_TRX_AUTOCOMMIT to only look for connections opened with that flag.
-	 * Avoid the use of transaction methods like IDatabase::begin() or IDatabase::startAtomic()
-	 * on any such connections.
+	 * Use the CONN_TRX_AUTOCOMMIT flag to only look for connections opened with that flag.
+	 *
+	 * Avoid the use of begin()/commit() and startAtomic()/endAtomic() on any handle returned.
+	 * This method is largely intended for internal by RDBMs callers that issue queries that do
+	 * not affect any current transaction.
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param int $flags Bitfield of CONN_* class constants
@@ -332,8 +341,8 @@ interface ILoadBalancer {
 	 * Get a live database handle reference for a real or virtual (DB_MASTER/DB_REPLICA) server index
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
-	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
+	 * (e.g. sqlite) in order to avoid deadlocks. The getServerAttributes() method can be used
+	 * to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
