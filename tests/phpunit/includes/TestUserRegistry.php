@@ -96,8 +96,6 @@ class TestUserRegistry {
 	 * are not reused. We don't reset the counter or random string by design.
 	 *
 	 * @since 1.28
-	 *
-	 * @return TestUser
 	 */
 	public static function clear() {
 		self::$testUsers = [];

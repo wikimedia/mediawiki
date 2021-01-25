@@ -104,7 +104,6 @@ class ParserTestPrinter extends TestRecorder {
 	 * Print a happy success message.
 	 *
 	 * @param ParserTestResult $testResult
-	 * @return bool
 	 */
 	private function showSuccess( ParserTestResult $testResult ) {
 		if ( $this->showProgress ) {
