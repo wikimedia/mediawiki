@@ -4024,7 +4024,7 @@
 	"specialmute": "Ignoruj",
 	"specialmute-success": "Twoje preferencje ignorowania zostały zaktualizowane. Zobacz wszystkich ignorowanych użytkowników w [[Special:Preferences|swoich preferencjach]].",
 	"specialmute-submit": "Potwierdź",
-	"specialmute-label-mute-email": "Ignoruj e-maile od tego użytkownika",
+	"specialmute-label-mute-email": "Ignoruj e-maile od {{GENDER:$1|tego użytkownika|tej użytkowniczki}}",
 	"specialmute-header": "Wybierz swoje preferencje ignorowania dla {{GENDER:$1|użytkownika|użytkowniczki}} <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Pożądana nazwa użytkownika nie została odnaleziona.",
 	"specialmute-error-no-options": "Funkcje wyciszania są niedostępne. Jest tak dlatego że nie {{GENDER:|potwierdziłeś|potwierdziłaś}} swojego adresu e-mail, administrator wiki wyłączył funkcję wysyłania maili i/lub czarną listę adresów e-mail dla tej wiki.",
