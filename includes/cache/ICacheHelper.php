@@ -25,6 +25,7 @@
 /**
  * Interface for all classes implementing CacheHelper functionality.
  *
+ * @deprecated since 1.36
  * @since 1.20
  */
 interface ICacheHelper {

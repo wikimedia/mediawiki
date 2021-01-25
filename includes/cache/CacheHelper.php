@@ -94,6 +94,10 @@ class CacheHelper implements ICacheHelper {
 	 */
 	protected $cacheKey = [];
 
+	public function __construct() {
+		wfDeprecated( __CLASS__, '1.36' );
+	}
+
 	/**
 	 * Sets if the cache should be enabled or not.
 	 *
