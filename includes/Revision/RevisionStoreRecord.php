@@ -143,11 +143,12 @@ class RevisionStoreRecord extends RevisionRecord {
 	}
 
 	/**
-	 * @return int The revision id, never null.
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 * @return int|null The revision id, never null.
 	 */
-	public function getId() {
+	public function getId( $wikiId = self::LOCAL ) {
 		// overwritten just to add a guarantee to the contract
-		return parent::getId();
+		return parent::getId( $wikiId );
 	}
 
 	/**

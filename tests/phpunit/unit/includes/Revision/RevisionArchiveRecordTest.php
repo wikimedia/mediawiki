@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Unit\Revision;
 
 use CommentStoreComment;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionArchiveRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
@@ -25,7 +25,9 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 	 * @return RevisionArchiveRecord
 	 */
 	protected function newRevision( array $rowOverrides = [] ) {
-		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL );
+		$wikiId = $rowOverrides['wikiId'] ?? RevisionRecord::LOCAL;
+
+		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', $wikiId );
 
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
@@ -47,11 +49,15 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 		];
 
 		foreach ( $rowOverrides as $field => $value ) {
-			$field = preg_replace( '/^rev_/', 'ar_', $field );
+			if ( $field === 'rev_id' ) {
+				$field = 'ar_rev_id';
+			} else {
+				$field = preg_replace( '/^rev_/', 'ar_', $field );
+			}
 			$row[$field] = $value;
 		}
 
-		return new RevisionArchiveRecord( $title, $user, $comment, (object)$row, $slots );
+		return new RevisionArchiveRecord( $title, $user, $comment, (object)$row, $slots, $wikiId );
 	}
 
 	/**

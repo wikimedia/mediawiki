@@ -437,7 +437,7 @@ class RevisionStore
 		);
 
 		// sanity checks
-		Assert::postcondition( $rev->getId() > 0, 'revision must have an ID' );
+		Assert::postcondition( $rev->getId( $this->dbDomain ) > 0, 'revision must have an ID' );
 		Assert::postcondition( $rev->getPageId() > 0, 'revision must have a page ID' );
 		Assert::postcondition(
 			$rev->getComment( RevisionRecord::RAW ) !== null,
@@ -753,9 +753,9 @@ class RevisionStore
 			'rev_sha1'       => $rev->getSha1(),
 		];
 
-		if ( $rev->getId() !== null ) {
+		if ( $rev->getId( $this->dbDomain ) !== null ) {
 			// Needed to restore revisions with their original ID
-			$revisionRow['rev_id'] = $rev->getId();
+			$revisionRow['rev_id'] = $rev->getId( $this->dbDomain );
 		}
 
 		return $revisionRow;
@@ -985,7 +985,7 @@ class RevisionStore
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
 		$rc = RecentChange::newFromConds(
-			[ 'rc_this_oldid' => $rev->getId() ],
+			[ 'rc_this_oldid' => $rev->getId( $this->dbDomain ) ],
 			__METHOD__,
 			$dbType
 		);
@@ -2678,7 +2678,9 @@ class RevisionStore
 		$op = $dir === 'next' ? '>' : '<';
 		$sort = $dir === 'next' ? 'ASC' : 'DESC';
 
-		if ( !$rev->getId() || !$rev->getPageId() ) {
+		$revisionIdValue = $rev->getId( $this->dbDomain );
+
+		if ( !$revisionIdValue || !$rev->getPageId() ) {
 			// revision is unsaved or otherwise incomplete
 			return null;
 		}
@@ -2691,11 +2693,11 @@ class RevisionStore
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
 
-		$ts = $this->getTimestampFromId( $rev->getId(), $flags );
+		$ts = $this->getTimestampFromId( $revisionIdValue, $flags );
 		if ( $ts === false ) {
 			// XXX Should this be moved into getTimestampFromId?
 			$ts = $db->selectField( 'archive', 'ar_timestamp',
-				[ 'ar_rev_id' => $rev->getId() ], __METHOD__ );
+				[ 'ar_rev_id' => $revisionIdValue ], __METHOD__ );
 			if ( $ts === false ) {
 				// XXX Is this reachable? How can we have a page id but no timestamp?
 				return null;
@@ -2706,7 +2708,7 @@ class RevisionStore
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $rev->getPageId(),
-				"rev_timestamp $op $dbts OR (rev_timestamp = $dbts AND rev_id $op {$rev->getId()})"
+				"rev_timestamp $op $dbts OR (rev_timestamp = $dbts AND rev_id $op $revisionIdValue )"
 			],
 			__METHOD__,
 			[
@@ -2776,7 +2778,7 @@ class RevisionStore
 			return 0;
 		}
 		# Use page_latest if ID is not given
-		if ( !$rev->getId() ) {
+		if ( !$rev->getId( $this->dbDomain ) ) {
 			$prevId = $db->selectField(
 				'page', 'page_latest',
 				[ 'page_id' => $rev->getPageId() ],
@@ -2785,7 +2787,7 @@ class RevisionStore
 		} else {
 			$prevId = $db->selectField(
 				'revision', 'rev_id',
-				[ 'rev_page' => $rev->getPageId(), 'rev_id < ' . $rev->getId() ],
+				[ 'rev_page' => $rev->getPageId(), 'rev_id < ' . $rev->getId( $this->dbDomain ) ],
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_id DESC' ]
 			);
@@ -3042,12 +3044,12 @@ class RevisionStore
 	 */
 	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
 		if ( $rev ) {
-			if ( $rev->getId() === null ) {
+			if ( $rev->getId( $this->dbDomain ) === null ) {
 				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
 			}
 			if ( $rev->getPageId() !== $pageId ) {
 				throw new InvalidArgumentException(
-					"Revision {$rev->getId()} doesn't belong to page {$pageId}"
+					"Revision {$rev->getId( $this->dbDomain )} doesn't belong to page {$pageId}"
 				);
 			}
 		}
@@ -3090,12 +3092,12 @@ class RevisionStore
 		$conds = [];
 		if ( $old ) {
 			$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId()}) " .
+			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId( $this->dbDomain )}) " .
 				"OR rev_timestamp > {$oldTs}";
 		}
 		if ( $new ) {
 			$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId()}) " .
+			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId( $this->dbDomain )}) " .
 				"OR rev_timestamp < {$newTs}";
 		}
 		return $conds;
@@ -3149,8 +3151,8 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		// a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId() === $old->getId() ) {
-			return $includeOld || $includeNew ? [ $new->getId() ] : [];
+		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
+			return $includeOld || $includeNew ? [ $new->getId( $this->dbDomain ) ] : [];
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -3217,7 +3219,7 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		//a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId() === $old->getId() ) {
+		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
 			if ( empty( $options ) ) {
 				return [];
 			} elseif ( $performer ) {
@@ -3321,7 +3323,7 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		//a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId() === $old->getId() ) {
+		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
 			return 0;
 		}
 

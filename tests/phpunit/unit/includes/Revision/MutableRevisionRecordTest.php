@@ -34,9 +34,11 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	protected function newRevision( array $rowOverrides = [] ) {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
+		$wikiId = $rowOverrides['wikiId'] ?? RevisionRecord::LOCAL;
 
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL )
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', $wikiId ),
+			$wikiId
 		);
 
 		if ( isset( $rowOverrides['rev_deleted'] ) ) {
