@@ -570,7 +570,7 @@ final class SessionManager implements SessionManagerInterface {
 			// Sanity check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
 				$this->logger->warning( 'Session "{session}": Bad data', [
-					'session' => $info,
+					'session' => $info->__toString(),
 				] );
 				$this->store->delete( $key );
 				return $failHandler();
@@ -581,7 +581,7 @@ final class SessionManager implements SessionManagerInterface {
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
 				$this->logger->warning( 'Session "{session}": Bad data structure', [
-					'session' => $info,
+					'session' => $info->__toString(),
 				] );
 				$this->store->delete( $key );
 				return $failHandler();
@@ -598,7 +598,7 @@ final class SessionManager implements SessionManagerInterface {
 				!array_key_exists( 'provider', $metadata )
 			) {
 				$this->logger->warning( 'Session "{session}": Bad metadata', [
-					'session' => $info,
+					'session' => $info->__toString(),
 				] );
 				$this->store->delete( $key );
 				return $failHandler();
@@ -612,7 +612,7 @@ final class SessionManager implements SessionManagerInterface {
 					$this->logger->warning(
 						'Session "{session}": Unknown provider ' . $metadata['provider'],
 						[
-							'session' => $info,
+							'session' => $info->__toString(),
 						]
 					);
 					$this->store->delete( $key );
@@ -622,7 +622,7 @@ final class SessionManager implements SessionManagerInterface {
 				$this->logger->warning( 'Session "{session}": Wrong provider ' .
 					$metadata['provider'] . ' !== ' . $provider,
 					[
-						'session' => $info,
+						'session' => $info->__toString(),
 				] );
 				return $failHandler();
 			}
@@ -644,7 +644,7 @@ final class SessionManager implements SessionManagerInterface {
 						$this->logger->warning(
 							'Session "{session}": Metadata merge failed: {exception}',
 							[
-								'session' => $info,
+								'session' => $info->__toString(),
 								'exception' => $ex,
 							] + $ex->getContext()
 						);
@@ -667,7 +667,7 @@ final class SessionManager implements SessionManagerInterface {
 					}
 				} catch ( \InvalidArgumentException $ex ) {
 					$this->logger->error( 'Session "{session}": {exception}', [
-						'session' => $info,
+						'session' => $info->__toString(),
 						'exception' => $ex,
 					] );
 					return $failHandler();
@@ -681,7 +681,7 @@ final class SessionManager implements SessionManagerInterface {
 						$this->logger->warning(
 							'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}',
 							[
-								'session' => $info,
+								'session' => $info->__toString(),
 								'uid_a' => $metadata['userId'],
 								'uid_b' => $userInfo->getId(),
 						] );
@@ -695,7 +695,7 @@ final class SessionManager implements SessionManagerInterface {
 						$this->logger->warning(
 							'Session "{session}": User ID matched but name didn\'t (rename?), {uname_a} !== {uname_b}',
 							[
-								'session' => $info,
+								'session' => $info->__toString(),
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
 						] );
@@ -707,7 +707,7 @@ final class SessionManager implements SessionManagerInterface {
 						$this->logger->warning(
 							'Session "{session}": User name mismatch, {uname_a} !== {uname_b}',
 							[
-								'session' => $info,
+								'session' => $info->__toString(),
 								'uname_a' => $metadata['userName'],
 								'uname_b' => $userInfo->getName(),
 						] );
@@ -719,7 +719,7 @@ final class SessionManager implements SessionManagerInterface {
 					$this->logger->warning(
 						'Session "{session}": Metadata has an anonymous user, but a non-anon user was provided',
 						[
-							'session' => $info,
+							'session' => $info->__toString(),
 					] );
 					return $failHandler();
 				}
@@ -730,7 +730,7 @@ final class SessionManager implements SessionManagerInterface {
 				$userInfo->getToken() !== $metadata['userToken']
 			) {
 				$this->logger->warning( 'Session "{session}": User token mismatch', [
-					'session' => $info,
+					'session' => $info->__toString(),
 				] );
 				return $failHandler();
 			}
@@ -757,7 +757,7 @@ final class SessionManager implements SessionManagerInterface {
 				$this->logger->warning(
 					'Session "{session}": Null provider and no metadata',
 					[
-						'session' => $info,
+						'session' => $info->__toString(),
 				] );
 				return $failHandler();
 			}
@@ -770,7 +770,7 @@ final class SessionManager implements SessionManagerInterface {
 					$this->logger->info(
 						'Session "{session}": No user provided and provider cannot set user',
 						[
-							'session' => $info,
+							'session' => $info->__toString(),
 					] );
 					return $failHandler();
 				}
@@ -779,7 +779,7 @@ final class SessionManager implements SessionManagerInterface {
 				$this->logger->info(
 					'Session "{session}": Unverified user provided and no metadata to auth it',
 					[
-						'session' => $info,
+						'session' => $info->__toString(),
 				] );
 				return $failHandler();
 			}
@@ -820,7 +820,7 @@ final class SessionManager implements SessionManagerInterface {
 			$reason, $info, $request, $metadata, $data )
 		) {
 			$this->logger->warning( 'Session "{session}": ' . $reason, [
-				'session' => $info,
+				'session' => $info->__toString(),
 			] );
 			return $failHandler();
 		}
