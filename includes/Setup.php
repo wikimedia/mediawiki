@@ -531,9 +531,8 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 
 MWDebug::setup();
 
-// Reset the global service locator, so any services that have already been created will be
-// re-created while taking into account any custom settings and extensions.
-MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
+// Enable the global service locator.
+MediaWikiServices::allowGlobalInstance();
 
 // Define a constant that indicates that the bootstrapping of the service locator
 // is complete.
