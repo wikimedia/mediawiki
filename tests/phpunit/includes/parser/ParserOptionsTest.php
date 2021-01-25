@@ -110,8 +110,9 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideIsSafeToCache
 	 * @param bool $expect Expected value
 	 * @param array $options Options to set
+	 * @param array|null $userOptions
 	 */
-	public function testIsSafeToCache( $expect, $options ) {
+	public function testIsSafeToCache( bool $expect, array $options, array $userOptions = null ) {
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
@@ -128,13 +129,27 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		return [
 			'No overrides' => [ true, [] ],
+			'No overrides, some used' => [ true, [], [ 'thumbsize', 'removeComments' ] ],
 			'In-key options are ok' => [ true, [
 				'thumbsize' => 1e100,
 				'printable' => false,
 			] ],
+			'In-key options are ok, some used' => [ true, [
+				'thumbsize' => 1e100,
+				'printable' => false,
+			], [ 'thumbsize', 'removeComments' ] ],
 			'Non-in-key options are not ok' => [ false, [
 				'removeComments' => false,
 			] ],
+			'Non-in-key options are not ok, used' => [ false, [
+				'removeComments' => false,
+			], [ 'removeComments' ] ],
+			'Non-in-key options are ok if other used' => [ false, [
+				'removeComments' => false,
+			], [ 'thumbsize' ] ],
+			'Non-in-key options are ok if nothing used' => [ false, [
+				'removeComments' => false,
+			], [] ],
 			'Non-in-key options are not ok (2)' => [ false, [
 				'wrapclass' => 'foobar',
 			] ],
@@ -184,6 +199,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		return [
 			'Canonical options, nothing used' => [ [], 'canonical', [] ],
 			'Canonical options, used some options' => [ $used, 'canonical', [] ],
+			'Canonical options, used some more options' => [ array_merge( $used, [ 'wrapclass' ] ), 'canonical', [] ],
 			'Used some options, non-default values' => [
 				$used,
 				'printable=1!thumbsize=200',
@@ -192,6 +208,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 					'printable' => true,
 				]
 			],
+
 			'Canonical options, used all non-lazy options' => [ $allUsableOptions, 'canonical', [] ],
 			'Canonical options, nothing used, but with hooks and $wgRenderHashAppend' => [
 				[],
