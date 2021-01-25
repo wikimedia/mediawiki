@@ -242,7 +242,6 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		$options1 = ParserOptions::newCanonical( 'canonical' );
 		$options1->setOption( $this->getDummyUsedOptions()[0], 'value1' );
-		wfDebug( 'AAAA ' . ( $options1->isSafeToCache() ? 'true' : 'false' ) );
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
 
 		$savedOutput = $cache->get( $this->page, $options1 );
@@ -280,6 +279,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test that non-cacheable output is not stored
 	 * @covers ParserCache::save
+	 * @covers ParserCache::get
 	 */
 	public function testDoesNotStoreNonCacheable() {
 		$cache = $this->createParserCache();
@@ -298,9 +298,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * Test that ParserOptions::isSafeToCache is respected on save
 	 * @covers ParserCache::save
 	 */
-	public function testDoesNotStoreNotSafeToCache() {
+	public function testDoesNotStoreNotSafeToCacheAndUsed() {
 		$cache = $this->createParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+		$parserOutput->recordOption( 'wrapclass' );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$options->setOption( 'wrapclass', 'wrapwrap' );
@@ -319,6 +320,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	public function testDoesNotGetNotSafeToCache() {
 		$cache = $this->createParserCache();
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+		$parserOutput->recordOption( 'wrapclass' );
 
 		$cache->save( $parserOutput, $this->page, ParserOptions::newCanonical( 'canonical' ), $this->cacheTime );
 
@@ -328,6 +330,22 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $cache->get( $this->page, $otherOptions ) );
 		$this->assertFalse( $cache->get( $this->page, $otherOptions, true ) );
 		$this->assertFalse( $cache->getDirty( $this->page, $otherOptions ) );
+	}
+
+	/**
+	 * Test that ParserOptions::isSafeToCache is respected on save
+	 * @covers ParserCache::save
+	 * @covers ParserCache::get
+	 */
+	public function testStoresNotSafeToCacheAndUnused() {
+		$cache = $this->createParserCache();
+		$parserOutput = new ParserOutput( 'TEST_TEXT' );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$options->setOption( 'wrapclass', 'wrapwrap' );
+
+		$cache->save( $parserOutput, $this->page, $options, $this->cacheTime );
+		$this->assertStringContainsString( 'TEST_TEXT', $cache->get( $this->page, $options )->getText() );
 	}
 
 	/**

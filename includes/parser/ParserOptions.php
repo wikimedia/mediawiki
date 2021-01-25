@@ -1461,13 +1461,16 @@ class ParserOptions {
 
 	/**
 	 * Test whether these options are safe to cache
-	 * @since 1.30
+	 * @param string[]|null $usedOptions the list of options actually used in the parse. Defaults to all options.
 	 * @return bool
+	 * @since 1.30
 	 */
-	public function isSafeToCache() {
+	public function isSafeToCache( array $usedOptions = null ) {
 		$defaults = self::getCanonicalOverrides() + self::getDefaults();
-		foreach ( $this->options as $option => $value ) {
+		$usedOptions = $usedOptions ?? array_keys( $this->options );
+		foreach ( $usedOptions as $option ) {
 			if ( empty( self::$inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
+				$value = $this->options[$option] ?? null;
 				$v = $this->optionToString( $value );
 				$d = $this->optionToString( $defaults[$option] );
 				if ( $v !== $d ) {

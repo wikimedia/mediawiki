@@ -21,19 +21,27 @@ class ShiConverterTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				[
-					'shi'      => 'AƔ',
-					'shi-tfng' => 'ⴰⵖ',
-					'shi-latn' => 'AƔ',
+					'shi'      => 'ABGGʷDḌEFKKʷ HḤƐXQIJLMN URṚƔSṢCTṬW YZẒ OPV',
+					'shi-tfng' => 'ⴰⴱⴳⴳⵯⴷⴹⴻⴼⴽⴽⵯ ⵀⵃⵄⵅⵇⵉⵊⵍⵎⵏ ⵓⵔⵕⵖⵙⵚⵛⵜⵟⵡ ⵢⵣⵥ ⵓⴱⴼ',
+					'shi-latn' => 'ABGGʷDḌEFKKʷ HḤƐXQIJLMN URṚƔSṢCTṬW YZẒ OPV',
 				],
-				'AƔ'
+				'ABGGʷDḌEFKKʷ HḤƐXQIJLMN URṚƔSṢCTṬW YZẒ OPV'
 			],
 			[
 				[
-					'shi'      => 'ⴰⵖ',
-					'shi-tfng' => 'ⴰⵖ',
-					'shi-latn' => 'aɣ',
+					'shi'      => 'abggʷdḍefkkʷ hḥɛxqijlmn urṛɣsṣctṭw yzẓ opv',
+					'shi-tfng' => 'ⴰⴱⴳⴳⵯⴷⴹⴻⴼⴽⴽⵯ ⵀⵃⵄⵅⵇⵉⵊⵍⵎⵏ ⵓⵔⵕⵖⵙⵚⵛⵜⵟⵡ ⵢⵣⵥ ⵓⴱⴼ',
+					'shi-latn' => 'abggʷdḍefkkʷ hḥɛxqijlmn urṛɣsṣctṭw yzẓ opv',
 				],
-				'ⴰⵖ'
+				'abggʷdḍefkkʷ hḥɛxqijlmn urṛɣsṣctṭw yzẓ opv'
+			],
+			[
+				[
+					'shi'      => 'ⴰⴱⴳⴳⵯⴷⴹⴻⴼⴽⴽⵯ ⵀⵃⵄⵅⵇⵉⵊⵍⵎⵏ ⵓⵔⵕⵖⵙⵚⵛⵜⵟⵡ ⵢⵣⵥ',
+					'shi-tfng' => 'ⴰⴱⴳⴳⵯⴷⴹⴻⴼⴽⴽⵯ ⵀⵃⵄⵅⵇⵉⵊⵍⵎⵏ ⵓⵔⵕⵖⵙⵚⵛⵜⵟⵡ ⵢⵣⵥ',
+					'shi-latn' => 'abggʷdḍefkkʷ hḥɛxqijlmn urṛɣsṣctṭw yzẓ',
+				],
+				'ⴰⴱⴳⴳⵯⴷⴹⴻⴼⴽⴽⵯ ⵀⵃⵄⵅⵇⵉⵊⵍⵎⵏ ⵓⵔⵕⵖⵙⵚⵛⵜⵟⵡ ⵢⵣⵥ'
 			],
 		];
 	}
