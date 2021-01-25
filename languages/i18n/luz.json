@@ -9,6 +9,7 @@
 			"MtDu",
 			"MuratTheTurkish",
 			"Sahh",
+			"Setenly",
 			"Shahriar dehghani",
 			"Shahriar.dehghani24",
 			"علی ساکی لرستانی"
@@ -665,6 +666,7 @@
 	"proxyblocker": "بٱئسٱنداٛی پروکٛسی",
 	"movelogpage": "داسۊناٛی جاڤٱجایی",
 	"export": "بألگل صادرھ",
+	"allmessages-filter-submit": "فیلتر",
 	"thumbnail-more": "گأپ کردن",
 	"importlogpage": "داسۊناٛی ڤاراٛختٱن",
 	"tooltip-pt-userpage": "ولاگ {{GENDER:|کاربری ایشا}}",
@@ -813,5 +815,6 @@
 	"mw-widgets-mediasearch-noresults": "نتیجلی سیل نوابی.",
 	"randomrootpage": "بونبٱرگاٛی شانسٱکی",
 	"specialmute": "بی‌صدا",
+	"specialmute-label-mute-email": "ایمیل وه ای کاربر مخفی او ووی {{GENDER:$1|user}}",
 	"userlogout-continue": "ایخیت برِیِتو وَدَر"
 }

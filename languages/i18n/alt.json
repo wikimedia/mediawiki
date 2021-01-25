@@ -1465,6 +1465,7 @@
 	"rcfilters-highlightmenu-title": "Ӧҥин талдагар",
 	"rcfilters-highlightmenu-help": "Ӧҥди талдагар, бу чыҥдыйын јарыдарга",
 	"rcfilters-filterlist-noresults": "Ылгаштырулар табылбады",
+	"rcfilters-noresults-conflict": "Бедрештиҥ критерийлериниҥ јарашпазы учун турулталар табылбады",
 	"rcfilters-filtergroup-authorship": "Авторствозын тӱзедер",
 	"rcfilters-filter-editsbyself-label": "Слер эткен солынтылар",
 	"rcfilters-filter-editsbyself-description": "Слер эткен кожулталар.",
