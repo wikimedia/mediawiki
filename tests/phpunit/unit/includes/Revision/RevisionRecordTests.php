@@ -2,25 +2,29 @@
 
 // phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotClass
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use CommentStoreComment;
 use LogicException;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
+use MockTitleTrait;
 use TextContent;
-use Title;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
  *
- * @note Expects to be used in classes that extend MediaWikiIntegrationTestCase.
+ * @note Expects to be used in classes that extend MediaWikiUnitTestCase.
  */
 trait RevisionRecordTests {
+	use MockTitleTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @param array $rowOverrides
@@ -32,42 +36,42 @@ trait RevisionRecordTests {
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,
-			[ 'oversight' ],
+			[ 'deletedtext', 'deletedhistory', 'viewsuppressed', 'suppressrevision' ],
 			true,
 			false
 		];
 
 		yield 'field accessible for oversighter' => [
 			RevisionRecord::DELETED_RESTRICTED | $field,
-			[ 'oversight' ],
+			[ 'deletedtext', 'deletedhistory', 'viewsuppressed', 'suppressrevision' ],
 			true,
 			false
 		];
 
 		yield 'field not accessible for sysops (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			false,
 			false
 		];
 
 		yield 'field not accessible for sysops' => [
 			RevisionRecord::DELETED_RESTRICTED | $field,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			false,
 			false
 		];
 
 		yield 'field accessible for sysops' => [
 			$field,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			true,
 			false
 		];
 
 		yield 'field suppressed for logged in users' => [
 			$field,
-			[ 'user' ],
+			[],
 			false,
 			false
 		];
@@ -76,14 +80,14 @@ trait RevisionRecordTests {
 			$field === RevisionRecord::DELETED_COMMENT
 				? RevisionRecord::DELETED_USER
 				: RevisionRecord::DELETED_COMMENT,
-			[ 'user' ],
+			[],
 			true,
 			true
 		];
 
 		yield 'nothing suppressed' => [
 			0,
-			[ 'user' ],
+			[],
 			true,
 			true
 		];
@@ -99,39 +103,11 @@ trait RevisionRecordTests {
 		return $this->provideAudienceCheckData( RevisionRecord::DELETED_COMMENT );
 	}
 
-	private function forceStandardPermissions() {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
-			[
-				'user' => [
-					'viewsuppressed' => false,
-					'suppressrevision' => false,
-					'deletedtext' => false,
-					'deletedhistory' => false,
-				],
-				'sysop' => [
-					'viewsuppressed' => false,
-					'suppressrevision' => false,
-					'deletedtext' => true,
-					'deletedhistory' => true,
-				],
-				'oversight' => [
-					'deletedtext' => true,
-					'deletedhistory' => true,
-					'viewsuppressed' => true,
-					'suppressrevision' => true,
-				],
-			]
-		);
-	}
-
 	/**
 	 * @dataProvider provideGetComment_audience
 	 */
-	public function testGetComment_audience( $visibility, $groups, $userCan, $publicCan ) {
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $groups )->getUser();
+	public function testGetComment_audience( $visibility, $permissions, $userCan, $publicCan ) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		$this->assertNotNull( $rev->getComment( RevisionRecord::RAW ), 'raw can' );
@@ -143,7 +119,7 @@ trait RevisionRecordTests {
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getComment( RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getComment( RevisionRecord::FOR_THIS_USER, $performer ) !== null,
 			'user can'
 		);
 	}
@@ -155,10 +131,8 @@ trait RevisionRecordTests {
 	/**
 	 * @dataProvider provideGetUser_audience
 	 */
-	public function testGetUser_audience( $visibility, $groups, $userCan, $publicCan ) {
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $groups )->getUser();
+	public function testGetUser_audience( $visibility, $permissions, $userCan, $publicCan ) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		$this->assertNotNull( $rev->getUser( RevisionRecord::RAW ), 'raw can' );
@@ -170,7 +144,7 @@ trait RevisionRecordTests {
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getUser( RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getUser( RevisionRecord::FOR_THIS_USER, $performer ) !== null,
 			'user can'
 		);
 	}
@@ -182,10 +156,8 @@ trait RevisionRecordTests {
 	/**
 	 * @dataProvider provideGetSlot_audience
 	 */
-	public function testGetSlot_audience( $visibility, $groups, $userCan, $publicCan ) {
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $groups )->getUser();
+	public function testGetSlot_audience( $visibility, $permissions, $userCan, $publicCan ) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		// NOTE: slot meta-data is never suppressed, just the content is!
@@ -195,7 +167,7 @@ trait RevisionRecordTests {
 			'public meta' );
 
 		$this->assertNotNull(
-			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $performer ),
 			'user can'
 		);
 
@@ -213,7 +185,7 @@ trait RevisionRecordTests {
 		);
 
 		try {
-			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )->getContent();
+			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $performer )->getContent();
 			$exception = null;
 		} catch ( SuppressedDataException $ex ) {
 			$exception = $ex;
@@ -229,10 +201,8 @@ trait RevisionRecordTests {
 	/**
 	 * @dataProvider provideGetSlot_audience
 	 */
-	public function testGetContent_audience( $visibility, $groups, $userCan, $publicCan ) {
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $groups )->getUser();
+	public function testGetContent_audience( $visibility, $permissions, $userCan, $publicCan ) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		$this->assertNotNull( $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw can' );
@@ -244,7 +214,7 @@ trait RevisionRecordTests {
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $performer ) !== null,
 			'user can'
 		);
 	}
@@ -307,21 +277,21 @@ trait RevisionRecordTests {
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			null,
 			true,
 		];
 		yield [
 			RevisionRecord::DELETED_COMMENT,
 			RevisionRecord::DELETED_COMMENT,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			null,
 			true,
 		];
 		yield [
 			RevisionRecord::DELETED_USER,
 			RevisionRecord::DELETED_USER,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			null,
 			true,
 		];
@@ -329,7 +299,7 @@ trait RevisionRecordTests {
 		yield [
 			RevisionRecord::DELETED_RESTRICTED,
 			RevisionRecord::DELETED_RESTRICTED,
-			[ 'sysop' ],
+			[ 'deletedtext', 'deletedhistory' ],
 			null,
 			false,
 		];
@@ -337,7 +307,7 @@ trait RevisionRecordTests {
 		yield [
 			RevisionRecord::DELETED_RESTRICTED,
 			RevisionRecord::DELETED_RESTRICTED,
-			[ 'oversight' ],
+			[ 'deletedtext', 'deletedhistory', 'viewsuppressed', 'suppressrevision' ],
 			null,
 			true,
 		];
@@ -345,15 +315,15 @@ trait RevisionRecordTests {
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
-			[ 'sysop' ],
-			__METHOD__,
+			[ 'deletedtext', 'deletedhistory' ],
+			$this->makeMockTitle( __METHOD__ ),
 			true,
 		];
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
 			[],
-			__METHOD__,
+			$this->makeMockTitle( __METHOD__ ),
 			false,
 		];
 	}
@@ -362,19 +332,12 @@ trait RevisionRecordTests {
 	 * @dataProvider provideUserCanBitfield
 	 * @covers \MediaWiki\Revision\RevisionRecord::userCanBitfield
 	 */
-	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
-		if ( is_string( $title ) ) {
-			// NOTE: Data providers cannot instantiate Title objects! See T202641.
-			$title = Title::newFromText( $title );
-		}
-
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $userGroups )->getUser();
+	public function testUserCanBitfield( $bitField, $field, $permissions, ?PageIdentity $title, $expected ) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 
 		$this->assertSame(
 			$expected,
-			RevisionRecord::userCanBitfield( $bitField, $field, $user, $title )
+			RevisionRecord::userCanBitfield( $bitField, $field, $performer, $title )
 		);
 	}
 
@@ -385,57 +348,50 @@ trait RevisionRecordTests {
 		$auxA = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 		$auxB = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
 
-		$initialRecordSpec = [ [ $mainA ], 12 ];
-
 		return [
 			'same record object' => [
 				true,
-				$initialRecordSpec,
-				$initialRecordSpec,
+				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
 			],
 			'same record content, different object' => [
 				true,
-				[ [ $mainA ], 12 ],
-				[ [ $mainA ], 13 ],
+				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				$this->makeHasSameContentTestRecord( [ $mainA ], 13 )
 			],
 			'same record content, aux slot, different object' => [
 				true,
-				[ [ $auxA ], 12 ],
-				[ [ $auxB ], 13 ],
+				$this->makeHasSameContentTestRecord( [ $auxA ], 12 ),
+				$this->makeHasSameContentTestRecord( [ $auxB ], 13 ),
 			],
 			'different content' => [
 				false,
-				[ [ $mainA ], 12 ],
-				[ [ $mainB ], 13 ],
+				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				$this->makeHasSameContentTestRecord( [ $mainB ], 13 ),
 			],
 			'different content and number of slots' => [
 				false,
-				[ [ $mainA ], 12 ],
-				[ [ $mainA, $mainB ], 13 ],
+				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				$this->makeHasSameContentTestRecord( [ $mainA, $mainB ], 13 ),
 			],
 		];
 	}
 
 	/**
-	 * @note Do not call directly from a data provider! Data providers cannot instantiate
-	 * Title objects! See T202641.
-	 *
 	 * @param SlotRecord[] $slots
 	 * @param int $revId
 	 * @return RevisionStoreRecord
 	 */
 	private function makeHasSameContentTestRecord( array $slots, $revId ) {
-		$title = Title::newFromText( 'provideHasSameContent' );
-		$title->resetArticleID( 19 );
 		$slots = new RevisionSlots( $slots );
 
 		return new RevisionStoreRecord(
-			$title,
+			$this->makeMockTitle( 'provideHasSameContent', [ 'id' => 19 ] ),
 			new UserIdentityValue( 11, __METHOD__, 0 ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ ),
 			(object)[
 				'rev_id' => strval( $revId ),
-				'rev_page' => strval( $title->getArticleID() ),
+				'rev_page' => strval( 19 ),
 				'rev_timestamp' => '20200101000000',
 				'rev_deleted' => 0,
 				'rev_minor_edit' => 0,
@@ -451,16 +407,12 @@ trait RevisionRecordTests {
 	/**
 	 * @dataProvider provideHasSameContent
 	 * @covers \MediaWiki\Revision\RevisionRecord::hasSameContent
-	 * @group Database
 	 */
 	public function testHasSameContent(
 		$expected,
-		$recordSpec1,
-		$recordSpec2
+		$record1,
+		$record2
 	) {
-		$record1 = $this->makeHasSameContentTestRecord( ...$recordSpec1 );
-		$record2 = $this->makeHasSameContentTestRecord( ...$recordSpec2 );
-
 		$this->assertSame(
 			$expected,
 			$record1->hasSameContent( $record2 )
@@ -524,5 +476,4 @@ trait RevisionRecordTests {
 		$rev = $this->newRevision();
 		$this->assertTrue( $rev->isReadyForInsertion() );
 	}
-
 }
