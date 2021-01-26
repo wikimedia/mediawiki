@@ -707,6 +707,7 @@ return [
 		}
 
 		$params = $mainConfig->get( 'ObjectCaches' )[$id];
+		$params['stats'] = $services->getStatsdDataFactory();
 
 		$store = ObjectCache::newFromParams( $params, $mainConfig );
 		$store->getLogger()->debug( 'MainObjectStash using store {class}', [
@@ -738,6 +739,7 @@ return [
 				"wgObjectCaches must have \"$cacheId\" set (via wgWANObjectCaches)"
 			);
 		}
+		$storeParams['stats'] = $services->getStatsdDataFactory();
 		$store = ObjectCache::newFromParams( $storeParams, $mainConfig );
 		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [

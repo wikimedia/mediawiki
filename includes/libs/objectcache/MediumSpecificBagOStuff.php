@@ -62,6 +62,15 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var int Idiom for doGet() to return extra information by reference */
 	protected const PASS_BY_REF = -1;
 
+	protected const METRIC_OP_GET = 'get';
+	protected const METRIC_OP_SET = 'set';
+	protected const METRIC_OP_DELETE = 'delete';
+	protected const METRIC_OP_CHANGE_TTL = 'change_ttl';
+	protected const METRIC_OP_ADD = 'add';
+	protected const METRIC_OP_INCR = 'incr';
+	protected const METRIC_OP_DECR = 'decr';
+	protected const METRIC_OP_CAS = 'cas';
+
 	/**
 	 * @see BagOStuff::__construct()
 	 * Additional $params options include:
@@ -357,7 +366,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool Success
 	 */
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		// @TODO: the lock() call assumes that all other relavent sets() use one
+		// @TODO: the use of lock() assumes that all other relevant sets() use a lock
 		if ( !$this->lock( $key, 0 ) ) {
 			return false; // non-blocking
 		}
@@ -419,6 +428,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
+		// @TODO: the use of lock() assumes that all other relevant sets() use a lock
 		if ( !$this->lock( $key, 0 ) ) {
 			return false;
 		}
@@ -574,7 +584,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
-	 * @return array Map of (key => value) for existing keys
+	 * @return array Map of (key => value) for existing keys; preserves the order of $keys
 	 */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$res = [];
@@ -660,11 +670,20 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
 	 * @return bool Success
-	 * @see BagOStuff::changeTTL()
 	 *
 	 * @since 1.34
 	 */
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		return $this->doChangeTTLMulti( $keys, $exptime, $flags );
+	}
+
+	/**
+	 * @param string[] $keys List of keys
+	 * @param int $exptime TTL or UNIX timestamp
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success
+	 */
+	protected function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		$res = true;
 		foreach ( $keys as $key ) {
 			$res = $this->doChangeTTL( $key, $exptime, $flags ) && $res;
@@ -883,11 +902,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return ( $value === (string)$integer );
 	}
 
-	public function makeGlobalKey( $class, ...$components ) {
+	public function makeGlobalKey( $collection, ...$components ) {
 		return $this->makeKeyInternal( self::GLOBAL_KEYSPACE, func_get_args() );
 	}
 
-	public function makeKey( $class, ...$components ) {
+	public function makeKey( $collection, ...$components ) {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
 	}
 
@@ -1040,6 +1059,53 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	protected function debug( $text ) {
 		if ( $this->debugMode ) {
 			$this->logger->debug( "{class} debug: $text", [ 'class' => static::class ] );
+		}
+	}
+
+	/**
+	 * @param string $op Operation name as a MediumSpecificBagOStuff::METRIC_OP_* constant
+	 * @param string[] $keys List of cache keys referenced by this operation
+	 * @param int[]|null $sSizes List of corresponding send payload sizes; null if not applicable
+	 * @param int[]|false[]|null $rSizes List of corresponding receive payload sizes,
+	 *  with "false" entries indicating that the key was not found; null if not applicable
+	 */
+	protected function updateOpStats(
+		string $op,
+		array $keys,
+		?array $sSizes = null,
+		?array $rSizes = null
+	) {
+		$deltasByMetric = [];
+		foreach ( $keys as $i => $key ) {
+			// Metric prefix for the cache wrapper and key collection name
+			$prefix = $this->determineKeyPrefixForStats( $key );
+
+			if ( $op === self::METRIC_OP_GET && $rSizes ) {
+				// This operation was either a "hit" or "miss" for this key
+				$name = ( $rSizes[$i] === false )
+					? "{$prefix}.{$op}_miss_rate"
+					: "{$prefix}.{$op}_hit_rate";
+			} else {
+				// There is no concept of "hit" or "miss" for this operation
+				$name = "{$prefix}.{$op}_rate";
+			}
+			$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + 1;
+
+			$bytesSent = ( $sSizes ? $sSizes[$i] : 0 );
+			if ( $bytesSent > 0 ) {
+				$name = "{$prefix}.{$op}_bytes_sent";
+				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $bytesSent;
+			}
+
+			$bytesRead = ( $rSizes ? $rSizes[$i] : 0 );
+			if ( $bytesRead > 0 ) {
+				$name = "{$prefix}.{$op}_bytes_read";
+				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $bytesRead;
+			}
+		}
+
+		foreach ( $deltasByMetric as $name => $delta ) {
+			$this->stats->updateCount( $name, $delta );
 		}
 	}
 }

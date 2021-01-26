@@ -344,6 +344,12 @@ class WANObjectCache implements
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
+
+		$this->cache->registerWrapperInfoForStats(
+			'WANCache',
+			'wanobjectcache',
+			[ __CLASS__, 'getCollectionFromKey' ]
+		);
 	}
 
 	/**
@@ -1681,6 +1687,29 @@ class WANObjectCache implements
 	}
 
 	/**
+	 * @param string $sisterKey Sister key from makeSisterKey()
+	 * @return string Key collection name
+	 * @internal For use by WANObjectCache/BagOStuff only
+	 * @since 1.36
+	 */
+	public static function getCollectionFromKey( string $sisterKey ) {
+		if ( substr( $sisterKey, -4 ) === '|#|v' ) {
+			// Key style: "WANCache:<base key>|#|<character>"
+			$collection = substr( $sisterKey, 9, strcspn( $sisterKey, ':|', 9 ) );
+		} elseif ( substr( $sisterKey, -3 ) === '}:v' ) {
+			// Key style: "WANCache:{<base key>}:<character>"
+			$collection = substr( $sisterKey, 10, strcspn( $sisterKey, ':}', 10 ) );
+		} elseif ( substr( $sisterKey, 9, 2 ) === 'v:' ) {
+			// Old key style: "WANCache:<character>:<base key>"
+			$collection = substr( $sisterKey, 11, strcspn( $sisterKey, ':', 11 ) );
+		} else {
+			$collection = 'internal';
+		}
+
+		return $collection;
+	}
+
+	/**
 	 * @param float $age Age of volatile/interim key in seconds
 	 * @return bool Whether the age of a volatile value is negligible
 	 */
@@ -2157,25 +2186,31 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @see BagOStuff::makeKey()
-	 * @param string $class Key collection name
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
+	 * Make a cache key for the global keyspace and given components
+	 *
+	 * @see IStoreKeyEncoder::makeGlobalKey()
+	 *
+	 * @param string $collection Key collection name component
+	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 * @since 1.27
 	 */
-	public function makeKey( $class, ...$components ) {
-		return $this->cache->makeKey( ...func_get_args() );
+	public function makeGlobalKey( $collection, ...$components ) {
+		return $this->cache->makeGlobalKey( ...func_get_args() );
 	}
 
 	/**
-	 * @see BagOStuff::makeGlobalKey()
-	 * @param string $class Key collection name
-	 * @param string|int ...$components Key components (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components
+	 * Make a cache key using the "global" keyspace for the given components
+	 *
+	 * @see IStoreKeyEncoder::makeKey()
+	 *
+	 * @param string $collection Key collection name component
+	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 * @since 1.27
 	 */
-	public function makeGlobalKey( $class, ...$components ) {
-		return $this->cache->makeGlobalKey( ...func_get_args() );
+	public function makeKey( $collection, ...$components ) {
+		return $this->cache->makeKey( ...func_get_args() );
 	}
 
 	/**
@@ -2774,7 +2809,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key String of the format <scope>:<class>[:<class or variable>]...
+	 * @param string $key String of the format <scope>:<collection>[:<constant or variable>]...
 	 * @return string A collection name to describe this class of key
 	 */
 	private function determineKeyClassForStats( $key ) {

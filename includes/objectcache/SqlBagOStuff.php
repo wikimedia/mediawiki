@@ -265,24 +265,40 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$blobs = $this->fetchBlobMulti( [ $key ] );
 		if ( array_key_exists( $key, $blobs ) ) {
 			$blob = $blobs[$key];
-			$value = $this->unserialize( $blob );
-			if ( $getToken && $value !== false ) {
+			$result = $this->unserialize( $blob );
+			if ( $getToken && $blob !== false ) {
 				$casToken = $blob;
 			}
-
-			return $value;
+			$valueSize = strlen( $blob );
+		} else {
+			$result = false;
+			$valueSize = false;
 		}
 
-		return false;
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key ], null, [ $valueSize ] );
+
+		return $result;
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$values = [];
+		$valueSizes = [];
 
-		$blobs = $this->fetchBlobMulti( $keys );
-		foreach ( $blobs as $key => $blob ) {
-			$values[$key] = $this->unserialize( $blob );
+		$blobsByKey = $this->fetchBlobMulti( $keys );
+		foreach ( $keys as $key ) {
+			if ( array_key_exists( $key, $blobsByKey ) ) {
+				$blob = $blobsByKey[$key];
+				$value = $this->unserialize( $blob );
+				if ( $value !== false ) {
+					$values[$key] = $value;
+				}
+				$valueSizes[] = strlen( $blob );
+			} else {
+				$valueSizes[] = false;
+			}
 		}
+
+		$this->updateOpStats( self::METRIC_OP_GET, $keys, null, $valueSizes );
 
 		return $values;
 	}
@@ -424,14 +440,17 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function updateTable( $op, $db, $table, $tableKeys, $data, $dbExpiry ) {
 		$success = true;
 
+		$valueSizes = [];
 		if ( $op === self::$OP_ADD ) {
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
+				$serialized = $this->serialize( $data[$key] );
 				$rows[] = [
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
+				$valueSizes[] = strlen( $serialized );
 			}
 			$db->delete(
 				$table,
@@ -444,18 +463,26 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$db->insert( $table, $rows, __METHOD__, [ 'IGNORE' ] );
 
 			$success = ( $db->affectedRows() == count( $rows ) );
+
+			$this->updateOpStats( self::METRIC_OP_ADD, $tableKeys, $valueSizes );
 		} elseif ( $op === self::$OP_SET ) {
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
+				$serialized = $this->serialize( $data[$key] );
 				$rows[] = [
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
+				$valueSizes[] = strlen( $serialized );
 			}
 			$db->replace( $table, 'keyname', $rows, __METHOD__ );
+
+			$this->updateOpStats( self::METRIC_OP_SET, $tableKeys, $valueSizes );
 		} elseif ( $op === self::$OP_DELETE ) {
 			$db->delete( $table, [ 'keyname' => $tableKeys ], __METHOD__ );
+
+			$this->updateOpStats( self::METRIC_OP_DELETE, $tableKeys );
 		} elseif ( $op === self::$OP_TOUCH ) {
 			$db->update(
 				$table,
@@ -468,6 +495,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 
 			$success = ( $db->affectedRows() == count( $tableKeys ) );
+
+			$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, $tableKeys );
 		} else {
 			throw new InvalidArgumentException( "Invalid operation '$op'" );
 		}
@@ -486,6 +515,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
 		$exptime = $this->getExpirationAsTimestamp( $exptime );
+		$serialized = $this->serialize( $value );
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -498,7 +528,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$tableName,
 				[
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $value ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $exptime
 						? $db->timestamp( $exptime )
 						: $this->getMaxDateTime( $db )
@@ -520,6 +550,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
 			$success = $this->waitForReplication( $shardIndex ) && $success;
 		}
+
+		$this->updateOpStats( self::METRIC_OP_CAS, [ $key ], [ strlen( $serialized ) ] );
 
 		return $success;
 	}
@@ -568,6 +600,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->handleWriteError( $e, $db, $shardIndex );
 		}
 
+		$this->updateOpStats( $step >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
+
 		return $newCount;
 	}
 
@@ -575,7 +609,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->incr( $key, -$value, $flags );
 	}
 
-	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		return $this->modifyMulti(
 			array_fill_keys( $keys, null ),
 			$exptime,

@@ -26,6 +26,7 @@
  * @defgroup Cache Cache
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -69,10 +70,17 @@ abstract class BagOStuff implements
 	IStoreKeyEncoder,
 	LoggerAwareInterface
 {
+	/** @var StatsdDataFactoryInterface */
+	protected $stats;
 	/** @var LoggerInterface */
 	protected $logger;
 	/** @var callable|null */
 	protected $asyncHandler;
+	/**
+	 * @var array<string,array> Cache key processing callbacks and info for metrics
+	 * @phan-var array<string,array{0:string,1:callable}>
+	 */
+	protected $wrapperInfoByPrefix = [];
 
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
@@ -117,11 +125,17 @@ abstract class BagOStuff implements
 	/** @var int Item does not involve any keys */
 	protected const RES_NONKEY = 1;
 
+	/** Key to the metric group to use for the relevant cache wrapper */
+	private const WRAPPER_STATS_GROUP = 0;
+	/** Key to the callback that extracts collection names from cache wrapper keys */
+	private const WRAPPER_COLLECTION_CALLBACK = 1;
+
 	/**
 	 * Parameters include:
 	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
 	 *      In CLI mode, it should run the task immediately. [Default: null]
+	 *   - stats: IStatsdDataFactory instance. [optional]
 	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
 	 * @param array $params
 	 * @codingStandardsIgnoreStart
@@ -130,8 +144,9 @@ abstract class BagOStuff implements
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';
-		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
+		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
+		$this->setLogger( $params['logger'] ?? new NullLogger() );
 	}
 
 	/**
@@ -494,22 +509,26 @@ abstract class BagOStuff implements
 	/**
 	 * Make a cache key for the default keyspace and given components
 	 *
-	 * @param string $class Key collection name component
-	 * @param string|int ...$components Key components for entity IDs
-	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 * @see IStoreKeyEncoder::makeGlobalKey()
+	 *
+	 * @param string $collection Key collection name component
+	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 * @since 1.27
 	 */
-	abstract public function makeGlobalKey( $class, ...$components );
+	abstract public function makeGlobalKey( $collection, ...$components );
 
 	/**
 	 * Make a cache key for the global keyspace and given components
 	 *
-	 * @param string $class Key collection name component
-	 * @param string|int ...$components Key components for entity IDs
-	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 * @see IStoreKeyEncoder::makeKey()
+	 *
+	 * @param string $collection Key collection name component
+	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 * @since 1.27
 	 */
-	abstract public function makeKey( $class, ...$components );
+	abstract public function makeKey( $collection, ...$components );
 
 	/**
 	 * Check whether a cache key is in the global keyspace
@@ -606,6 +625,39 @@ abstract class BagOStuff implements
 	abstract public function setNewPreparedValues( array $valueByKey );
 
 	/**
+	 * Register info about a caching layer class that uses BagOStuff as a backing store
+	 *
+	 * Object cache wrappers are classes that implement generic caching/storage functionality,
+	 * use a BagOStuff instance as the backing store, and implement IStoreKeyEncoder with the
+	 * same "generic" style key encoding as BagOStuff. Such wrappers transform keys before
+	 * passing them to BagOStuff methods; a wrapper-specific prefix component will be prepended
+	 * along with other possible additions. Transformed keys still use the "generic" BagOStuff
+	 * encoding.
+	 *
+	 * The provided callback takes a transformed key, having the specified prefix component,
+	 * and extracts the key collection name. For sanity, the callback must be able to handle
+	 * keys that bear the prefix (by coincidence) but do not originate from the wrapper class.
+	 *
+	 * Calls to this method should be idempotent.
+	 *
+	 * @param string $prefixComponent Key prefix component used by the wrapper
+	 * @param string $statsGroup Stats group to use for metrics from this wrapper
+	 * @param callable $collectionCallback Static callback that gets the key collection name
+	 * @internal For use with BagOStuff and WANObjectCache only
+	 * @since 1.36
+	 */
+	public function registerWrapperInfoForStats(
+		string $prefixComponent,
+		string $statsGroup,
+		callable $collectionCallback
+	) {
+		$this->wrapperInfoByPrefix[$prefixComponent] = [
+			self::WRAPPER_STATS_GROUP => $statsGroup,
+			self::WRAPPER_COLLECTION_CALLBACK => $collectionCallback
+		];
+	}
+
+	/**
 	 * At a minimum, there must be a keyspace and collection name component
 	 *
 	 * @param string|int ...$components Key components for keyspace, collection name, and IDs
@@ -699,6 +751,31 @@ abstract class BagOStuff implements
 		}
 
 		return $genericRes;
+	}
+
+	/**
+	 * @param string $key Key generated by an IStoreKeyEncoder instance
+	 * @return string A stats prefix to describe this class of key (e.g. "objectcache.file")
+	 */
+	protected function determineKeyPrefixForStats( $key ) {
+		$firstComponent = substr( $key, 0, strcspn( $key, ':' ) );
+
+		$wrapperInfo = $this->wrapperInfoByPrefix[$firstComponent] ?? null;
+		if ( $wrapperInfo ) {
+			// Key has the prefix of a cache wrapper class that wraps BagOStuff
+			$collection = $wrapperInfo[self::WRAPPER_COLLECTION_CALLBACK]( $key );
+			$statsGroup = $wrapperInfo[self::WRAPPER_STATS_GROUP];
+		} else {
+			// Key came directly from BagOStuff::makeKey() or BagOStuff::makeGlobalKey()
+			// and thus has the format of "<scope>:<collection>[:<constant or variable>]..."
+			$components = explode( ':', $key, 3 );
+			// Handle legacy callers that fail to use the key building methods
+			$collection = $components[1] ?? $components[0];
+			$statsGroup = 'objectcache';
+		}
+
+		// Replace dots because they are special in StatsD (T232907)
+		return $statsGroup . '.' . strtr( $collection, '.', '_' );
 	}
 
 	/**
