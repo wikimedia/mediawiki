@@ -195,7 +195,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				return;
 			}
 
-			$out->addSubtitle( $this->contributionsSub( $userObj ) );
+			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
 			$out->setHTMLTitle( $this->msg(
 				'pagetitle',
 				$this->msg( 'contributions-title', $target )->plain()
@@ -214,7 +214,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$id = $userObj->getId();
 
 			$target = $nt->getText();
-			$out->addSubtitle( $this->contributionsSub( $userObj ) );
+			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
 			$out->setHTMLTitle( $this->msg(
 				'pagetitle',
 				$this->msg( 'contributions-title', $target )->plain()
@@ -299,7 +299,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
-			$pager = $this->getPager();
+			$pager = $this->getPager( $target );
 			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
@@ -374,11 +374,13 @@ class SpecialContributions extends IncludableSpecialPage {
 	/**
 	 * Generates the subheading with links
 	 * @param User $userObj User object for the target
+	 * @param string $targetName This mostly the same as $userObj->getName() but
+	 * normalization may make it differ. // T272225
 	 * @return string Appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php.
 	 * Could be combined.
 	 */
-	protected function contributionsSub( $userObj ) {
+	protected function contributionsSub( $userObj, $targetName ) {
 		$isAnon = $userObj->isAnon();
 		if ( !$isAnon && $userObj->isHidden() &&
 			!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
@@ -415,7 +417,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// T211910. Don't show action links if a range is outside block limit
 		$showForIp = IPUtils::isValid( $userObj ) ||
-			( IPUtils::isValidRange( $userObj ) && $this->getPager()->isQueryableRange( $userObj ) );
+			( IPUtils::isValidRange( $userObj ) && $this->getPager( $targetName )->isQueryableRange( $userObj ) );
 
 		if ( $talk && ( $userObj->isRegistered() || $showForIp ) ) {
 			$tools = self::getUserLinks( $this, $userObj );
@@ -820,10 +822,14 @@ class SpecialContributions extends IncludableSpecialPage {
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
-	private function getPager() {
+	/**
+	 * @param string $target The normalized target username.
+	 * @return ContribsPager
+	 */
+	private function getPager( $target ) {
 		if ( $this->pager === null ) {
 			$options = [
-				'target' => $this->opts['target'],
+				'target' => $target,
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
 				'start' => $this->opts['start'] ?? '',
