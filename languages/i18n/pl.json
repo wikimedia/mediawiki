@@ -726,7 +726,7 @@
 	"missingsummary": "<strong>Uwaga:</strong> Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.\nJeżeli nie chcesz go wprowadzać, naciśnij przycisk „$1” jeszcze raz.",
 	"selfredirect": "<strong>Ostrzeżenie:</strong> Przekierowujesz tę stronę do niej samej.\nByć może został przez Ciebie wybrany zły cel przekierowania lub edytujesz niewłaściwą stronę.\nJeżeli ponownie klikniesz „$1”, przekierowanie zostanie utworzone.",
 	"missingcommenttext": "Wprowadź komentarz poniżej.",
-	"missingcommentheader": "<strong>Uwaga:</strong> treść tytułu komentarza jest pusta.\nJeśli ponownie klikniesz „$1”, zmiany zostaną opublikowanee bez niego.",
+	"missingcommentheader": "<strong>Uwaga:</strong> Nie podano tytułu dla tego komentarza.\nJeśli ponownie klikniesz „$1”, zmiany zostaną opublikowane bez niego.",
 	"summary-preview": "Podgląd opisu zmian:",
 	"subject-preview": "Podgląd tematu:",
 	"previewerrortext": "Wystąpił błąd podczas próby podglądu Twoich zmian.",
