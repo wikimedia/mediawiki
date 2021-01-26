@@ -126,8 +126,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					}
 				} else {
 					// FIXME: BadFile is known
+					$label = $alt ?? '';
 					$thumbhtml = Linker::makeBrokenImageLinkObj(
-						$nt, '', '', '', '', false, $transformOptions
+						$nt, $label, '', '', '', false, $transformOptions
 					);
 					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 				}
