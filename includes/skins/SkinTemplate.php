@@ -374,9 +374,13 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 
-		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
 		$content_navigation = $this->buildContentNavigationUrls();
+		# Personal toolbar
+		$tpl->set( 'personal_urls', $this->insertNotificationsIntoPersonalTools( $content_navigation ) );
+		// user-menu and notifications are new content navigation entries and aren't expected
+		// to be part of content_navigation or content_actions. Adding them in there breaks skins
+		// that do not expect it.
+		unset( $content_navigation['user-menu'], $content_navigation['notifications'] );
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
 		$tpl->set( 'content_actions', $content_actions );
@@ -476,9 +480,10 @@ class SkinTemplate extends Skin {
 	 * build array of urls for personal toolbar
 	 * Please ensure setupTemplateContext is called before calling
 	 * this method.
+	 * @param bool $includeNotifications Sinc 1.36, notifications are optional
 	 * @return array
 	 */
-	protected function buildPersonalUrls() {
+	protected function buildPersonalUrls( bool $includeNotifications = true ) {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
@@ -519,6 +524,14 @@ class SkinTemplate extends Skin {
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
 				'dir' => 'auto'
 			];
+
+			// Merge notifications into the personal menu for older skins.
+			if ( $includeNotifications ) {
+				$contentNavigation = $this->buildContentNavigationUrls();
+
+				$personal_urls += $contentNavigation['notifications'];
+			}
+
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 			$personal_urls['mytalk'] = [
 				'text' => $this->msg( 'mytalk' )->text(),
@@ -844,6 +857,8 @@ class SkinTemplate extends Skin {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$content_navigation = [
+			'user-menu' => $this->buildPersonalUrls( false ),
+			'notifications' => [],
 			'namespaces' => [],
 			'views' => [],
 			'actions' => [],
@@ -1183,7 +1198,7 @@ class SkinTemplate extends Skin {
 
 		$content_actions = [];
 
-		foreach ( $content_navigation as $links ) {
+		foreach ( $content_navigation as $navigation => $links ) {
 			foreach ( $links as $key => $value ) {
 				if ( isset( $value['redundant'] ) && $value['redundant'] ) {
 					// Redundant tabs are dropped from content_actions
@@ -1245,5 +1260,30 @@ class SkinTemplate extends Skin {
 	 */
 	protected function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
+	}
+
+	/**
+	 * Insert the notifications content navigation into the personal tools, in their old position,
+	 * following the userpage.
+	 *
+	 * @internal
+	 *
+	 * @param array $contentNavigation
+	 * @return array
+	 */
+	final protected function insertNotificationsIntoPersonalTools(
+		array $contentNavigation
+	) : array {
+		// userpage is only defined for logged-in users, and wfArrayInsertAfter requires the
+		// $after parameter to be a known key in the array.
+		if ( isset( $contentNavigation['user-menu']['userpage'] ) ) {
+			return wfArrayInsertAfter(
+				$contentNavigation['user-menu'],
+				$contentNavigation['notifications'],
+				'userpage'
+			);
+		} else {
+			return $contentNavigation['user-menu'];
+		}
 	}
 }

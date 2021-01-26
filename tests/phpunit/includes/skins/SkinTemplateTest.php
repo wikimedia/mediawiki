@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers SkinTemplate
  *
@@ -99,5 +101,83 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expectedModuleStyles as $expected ) {
 			$this->assertContains( $expected, $actualStylesModule );
 		}
+	}
+
+	/**
+	 * @covers SkinTemplate::insertNotificationsIntoPersonalTools
+	 * @dataProvider provideContentNavigation
+	 *
+	 * @param array $contentNavigation
+	 * @param array $expected
+	 */
+	public function testInsertNotificationsIntoPersonalTools(
+		array $contentNavigation,
+		array $expected
+	) {
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
+
+		$this->assertEquals(
+			$expected,
+			$wrapper->insertNotificationsIntoPersonalTools( $contentNavigation )
+		);
+	}
+
+	public function provideContentNavigation() : array {
+		return [
+			'No userpage set' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'userpage set, no notifications' => [
+				'contentNavigation' => [
+					'notifications' => [],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'userpage' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'userpage set, notification defined' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'userpage' => [],
+					'notification 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			]
+		];
 	}
 }
