@@ -24,6 +24,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -292,7 +293,8 @@ class ActorMigration {
 	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
 		$q = [
 			'actor_user' => $user->getId() ?: null,
-			'actor_name' => (string)$user->getName(),
+			// make sure to use normalized form of IP for anonymous users
+			'actor_name' => IPUtils::sanitizeIP( (string)$user->getName() ),
 		];
 		if ( $q['actor_user'] === null && $this->userNameUtils->isUsable( $q['actor_name'] ) ) {
 			throw new CannotCreateActorException(
@@ -497,7 +499,8 @@ class ActorMigration {
 			if ( $useId && $user->getId() ) {
 				$ids[] = $user->getId();
 			} else {
-				$names[] = $user->getName();
+				// make sure to use normalized form of IP for anonymous users
+				$names[] = IPUtils::sanitizeIP( $user->getName() );
 			}
 			$actorId = $user->getActorId();
 			if ( $actorId ) {

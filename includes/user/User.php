@@ -374,7 +374,10 @@ class User implements IDBAccessObject, UserIdentity {
 				$row = wfGetDB( $index )->selectRow(
 					'actor',
 					[ 'actor_id', 'actor_user', 'actor_name' ],
-					$this->mFrom === 'name' ? [ 'actor_name' => $this->mName ] : [ 'actor_id' => $this->mActorId ],
+					$this->mFrom === 'name'
+						// make sure to use normalized form of IP for anonymous users
+						? [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ]
+						: [ 'actor_id' => $this->mActorId ],
 					__METHOD__,
 					$options
 				);
