@@ -36,8 +36,11 @@
 	"ooui-dialog-process-continue": "Продовжити",
 	"ooui-combobox-button-label": "Перемкнути опції",
 	"ooui-selectfile-button-select": "Оберіть файл",
+	"ooui-selectfile-button-select-multiple": "Оберіть файли",
 	"ooui-selectfile-not-supported": "Вибір файлу не підтримується",
 	"ooui-selectfile-placeholder": "Жодного файлу не вибрано",
 	"ooui-selectfile-dragdrop-placeholder": "Помістіть файл сюди",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Перемістіть файли сюди",
+	"ooui-popup-widget-close-button-aria-label": "Закрити",
 	"ooui-field-help": "Допомога"
 }
