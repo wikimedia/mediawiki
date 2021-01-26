@@ -34,7 +34,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
  *
  * Code that deserializes instances of PageIdentityValue must ensure that the original
  * meaning of the "local" Wiki ID is preserved: When an instance of PageIdentityValue
- * is created with PageIdentity::LOCAL as the Wiki ID on one wiki, gets serialized,
+ * is created with self::LOCAL as the Wiki ID on one wiki, gets serialized,
  * stored, and later read and unserialized on another wiki, the value of the Wiki ID
  * must be adjusted to refer to the original wiki.
  *
@@ -62,7 +62,7 @@ class PageIdentityValue implements ProperPageIdentity {
 	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
 	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
 	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
-	 *        or PageIdentity::LOCAL for the local wiki.
+	 *        or self::LOCAL for the local wiki.
 	 */
 	public function __construct( int $pageId, int $namespace, string $dbKey, $wikiId ) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -113,8 +113,8 @@ class PageIdentityValue implements ProperPageIdentity {
 	 */
 	public function assertWiki( $wikiId ) {
 		if ( $wikiId !== $this->getWikiId() ) {
-			$expected = $wikiId === PageIdentity::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$actual = $this->getWikiId() === false ? 'the local wiki' : "'{$this->getWikiId()}'";
+			$expected = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
+			$actual = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
 			throw new PreconditionException( "Expected PageIdentity to belong to $expected, "
 				. "but it belongs to $actual" );
 		}
@@ -128,7 +128,7 @@ class PageIdentityValue implements ProperPageIdentity {
 	 *
 	 * @return int
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL ): int {
+	public function getId( $wikiId = self::LOCAL ): int {
 		$this->assertWiki( $wikiId );
 		return $this->pageId;
 	}
