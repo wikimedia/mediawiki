@@ -177,7 +177,6 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/Revision
 	'MediaWiki\Tests\Revision\RevisionSlotsTest' => "$testDir/phpunit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Revision\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Revision/RevisionStoreDbTestBase.php",
-	'MediaWiki\Tests\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/includes/Revision/RevisionStoreRecordTest.php",
 
 	# test/phpunit/includes/user
 	'UserOptionsLookupTest' => "$testDir/phpunit/includes/user/UserOptionsLookupTest.php",
