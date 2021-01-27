@@ -102,7 +102,7 @@ class Hooks {
 	public static function getHandlers( $name ) {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$handlers = $hookContainer->getLegacyHandlers( $name );
-		$funcName = 'on' . str_replace( ':', '_',  ucfirst( $name ) );
+		$funcName = 'on' . strtr( ucfirst( $name ), ':-', '__' );
 		foreach ( $hookContainer->getHandlers( $name ) as $obj ) {
 			$handlers[] = [ $obj, $funcName ];
 		}
