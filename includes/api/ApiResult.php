@@ -305,7 +305,7 @@ class ApiResult implements ApiSerializable {
 					"Conflicting keys ($keys) when attempting to merge element $name"
 				);
 			}
-		} else {
+		} elseif ( $value !== $arr[$name] ) {
 			throw new RuntimeException(
 				"Attempting to add element $name=$value, existing value is {$arr[$name]}"
 			);
