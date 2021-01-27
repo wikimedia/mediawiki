@@ -39,6 +39,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -250,6 +251,34 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 */
 	public function __construct() {
 		$this->clearInstanceCache( 'defaults' );
+	}
+
+	/**
+	 * Returns self::LOCAL to indicate the user is associated with the local wiki.
+	 *
+	 * @since 1.36
+	 *
+	 * @return string|false
+	 */
+	public function getWikiId() {
+		return self::LOCAL;
+	}
+
+	/**
+	 * Throws if $wikiId is not the local wiki
+	 *
+	 * @since 1.36
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *
+	 * @throws PreconditionException
+	 */
+	public function assertWiki( $wikiId ) {
+		if ( $wikiId !== self::LOCAL ) {
+			throw new PreconditionException(
+				"Expected User to belong to local wiki, but it belongs to $wikiId"
+			);
+		}
 	}
 
 	/**
@@ -2032,12 +2061,15 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * Get the user's ID.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
+	 * @deprecated since 1.36, use getUserId() instead
 	 */
-	public function getId() {
+	public function getId() : int {
 		if ( $this->mId === null && $this->mName !== null &&
 			( self::isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
 		) {
 			// Special case, we know the user is anonymous
+			// Note that "external" users are "local" (they have an actor ID that is relative to
+			// the local wiki).
 			return 0;
 		}
 
@@ -2047,6 +2079,21 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		}
 
 		return (int)$this->mId;
+	}
+
+	/**
+	 * @since 1.36
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *        Use self::LOCAL for the local wiki.
+	 *
+	 * @return int The user id.  May be 0 for anonymous users or for users with no local account.
+	 *
+	 * @throws PreconditionException if $wikiId mismatches $this->getWikiId()
+	 */
+	public function getUserId( $wikiId = self::LOCAL ) : int {
+		$this->assertWiki( $wikiId );
+		return $this->getId();
 	}
 
 	/**
@@ -2098,17 +2145,23 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * Get the user's actor ID.
 	 * @since 1.31
-	 * @param IDatabase|null $dbw Assign a new actor ID, using this DB handle, if none exists
+	 * @param IDatabase|string|false $dbwOrWikiId Assign a new actor ID, using this DB handle,
+	 * if none exists; wiki ID, if provided, must be self::LOCAL; Usage with IDatabase is deprecated
+	 * since 1.36
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
+	 * @throws PreconditionException if $dbwOrWikiId is a string and does not match the local wiki
 	 */
-	public function getActorId( IDatabase $dbw = null ) {
+	public function getActorId( $dbwOrWikiId = self::LOCAL ) : int {
+		if ( !$dbwOrWikiId instanceof IDatabase ) {
+			$this->assertWiki( $dbwOrWikiId );
+		}
 		if ( !$this->isItemLoaded( 'actor' ) ) {
 			$this->load();
 		}
 
-		if ( !$this->mActorId && $dbw ) {
+		if ( !$this->mActorId && $dbwOrWikiId instanceof IDatabase ) {
 			$migration = MediaWikiServices::getInstance()->getActorMigration();
-			$this->mActorId = $migration->getNewActorId( $dbw, $this );
+			$this->mActorId = $migration->getNewActorId( $dbwOrWikiId, $this );
 
 			$this->invalidateCache();
 			$this->setItemLoaded( 'actor' );

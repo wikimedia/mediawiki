@@ -1301,7 +1301,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$dbw = $this->getConnectionRef( DB_MASTER );
 		$selectTables = [ 'watchlist' ];
 		$selectConds = [
-			'wl_user != ' . intval( $editor->getId() ),
+			'wl_user != ' . $editor->getId(),
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 			'wl_notificationtimestamp IS NULL',
