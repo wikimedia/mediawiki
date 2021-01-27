@@ -64,7 +64,7 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 			// submitted text, value of 'IPAddresses' key or false for validation error
 			[ null, [ '0.0.0.0/0', '::/0' ] ],
 			[ '', [] ],
-			[ "1.2.3.4\n::/0", [ '1.2.3.4', '::/0' ] ],
+			[ "1.2.3.4\n::0", [ '1.2.3.4', '::0' ] ],
 			[ "1.2.3.4\n::/x", false ],
 		];
 	}

@@ -1296,7 +1296,11 @@ class WebRequest {
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
-				$curIP = IPUtils::sanitizeIP( IPUtils::canonicalize( $curIP ) );
+				$curIP = IPUtils::sanitizeIP(
+					IPUtils::canonicalize(
+						self::canonicalizeIPv6LoopbackAddress( $curIP )
+					)
+				);
 				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
 					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
@@ -1307,14 +1311,19 @@ class WebRequest {
 					$wgUsePrivateIPs ||
 					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
 				) {
+					$nextIP = $ipchain[$i + 1];
+
 					// Follow the next IP according to the proxy
-					$nextIP = IPUtils::canonicalize( $ipchain[$i + 1] );
+					$nextIP = IPUtils::canonicalize(
+						self::canonicalizeIPv6LoopbackAddress( $nextIP )
+					);
 					if ( !$nextIP && $isConfigured ) {
 						// We have not yet made it past CDN/proxy servers of this site,
 						// so either they are misconfigured or there is some IP spoofing.
 						throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
 					}
 					$ip = $nextIP;
+
 					// keep traversing the chain
 					continue;
 				}
@@ -1330,6 +1339,23 @@ class WebRequest {
 		}
 
 		$this->ip = $ip;
+		return $ip;
+	}
+
+	/**
+	 * Converts ::1 (IPv6 loopback address) to 127.0.0.1 (IPv4 loopback address);
+	 * assists in matching trusted proxies.
+	 *
+	 * @param string $ip
+	 * @return string either '127.0.0.1' or $ip
+	 * @since 1.36
+	 */
+	public static function canonicalizeIPv6LoopbackAddress( $ip ) {
+		// Code moved from IPUtils library. See T248237#6614927
+		$m = [];
+		if ( preg_match( '/^0*' . IPUtils::RE_IPV6_GAP . '1$/', $ip, $m ) ) {
+			return '127.0.0.1';
+		}
 		return $ip;
 	}
 
