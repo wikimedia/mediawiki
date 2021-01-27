@@ -1572,8 +1572,10 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *   To improve performance, non-critical checks are done against replica DBs.
 	 *   Check when actually saving should be done against master.
+	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
+	 *   a infinite recursion with autopromote. See T270145.
 	 */
-	private function getBlockedStatus( $fromReplica = true ) {
+	private function getBlockedStatus( $fromReplica = true, $disableIpBlockExemptChecking = false ) {
 		if ( $this->mBlockedby != -1 ) {
 			return;
 		}
@@ -1603,7 +1605,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		$block = MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
 			$this,
 			$request,
-			$fromReplica
+			$fromReplica,
+			$disableIpBlockExemptChecking
 		);
 
 		if ( $block ) {
@@ -1893,10 +1896,12 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
+	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
+	 *   a infinite recursion with autopromote. See T270145.
 	 * @return AbstractBlock|null
 	 */
-	public function getBlock( $fromReplica = true ) {
-		$this->getBlockedStatus( $fromReplica );
+	public function getBlock( $fromReplica = true, $disableIpBlockExemptChecking = false ) {
+		$this->getBlockedStatus( $fromReplica, $disableIpBlockExemptChecking );
 		return $this->mBlock instanceof AbstractBlock ? $this->mBlock : null;
 	}
 
