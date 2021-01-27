@@ -1639,7 +1639,7 @@ class RevisionStore
 					] + $context
 				);
 			} else {
-				throw new InvalidArgumentException(
+				throw new RevisionAccessException(
 					"Revision $revId belongs to page ID $revPageId, "
 					. "the provided Title object belongs to page ID $masterPageId"
 				);
