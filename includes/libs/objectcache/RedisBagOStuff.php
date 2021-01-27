@@ -248,28 +248,31 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$op = $ttl ? 'setex' : 'set';
 
 		$result = true;
+		$valueKeys = [];
 		$valueSizes = [];
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
 			$e = null;
-			$serialized = $this->getSerialized( $data[$key], $key );
-			$valueSizes[] = strlen( $serialized );
 			try {
 				// Avoid mset() to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
+					$serialized = $this->getSerialized( $data[$key], $key );
 					if ( $ttl ) {
 						$conn->setex( $key, $ttl, $serialized );
 					} else {
 						$conn->set( $key, $serialized );
 					}
+					$valueKeys[] = $key;
+					$valueSizes[] = strlen( $serialized );
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
 					$this->logRequest( $op, implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
+
 				$result = $result && !in_array( false, $batchResult, true );
 			} catch ( RedisException $e ) {
 				$this->handleException( $conn, $e );
@@ -279,7 +282,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_SET, array_keys( $data ), $valueSizes );
+		$this->updateOpStats( self::METRIC_OP_SET, $valueKeys, $valueSizes );
 
 		return $result;
 	}
@@ -561,7 +564,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $op
 	 * @param string $keys
 	 * @param string $server
-	 * @param Exception|bool|null $e
+	 * @param Exception|true|null $e
 	 */
 	public function logRequest( $op, $keys, $server, $e = null ) {
 		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );
