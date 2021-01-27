@@ -28,7 +28,8 @@
 	"ooui-selectfile-button-select": "Изаберите датотеку",
 	"ooui-selectfile-not-supported": "Избор датотеке није подржан",
 	"ooui-selectfile-placeholder": "Датотека није изабрана",
-	"ooui-selectfile-dragdrop-placeholder": "Овде отпустите датотеку",
+	"ooui-selectfile-dragdrop-placeholder": "Отпустите датотеку овде",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Отпустите датотеке овде",
 	"ooui-popup-widget-close-button-aria-label": "Затвори",
 	"ooui-field-help": "Помоћ"
 }

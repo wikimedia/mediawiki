@@ -1,4 +1,25 @@
 # OOUI Release History
+## v0.41.1 / 2021-01-26
+### Features
+* Create RequiredElement mixin and use (Ed Sanders)
+
+### Styles
+* icons: Amend stroke width in 'network' and 'networkOff' icons (Volker E.)
+* themes: Fix TagItem size (Volker E.)
+
+### Code
+* OO.ui.infuse: Add test for passing an empty jQuery collection (Thalia Chan)
+* OO.ui.infuse: Throw error if called on more than one node (Thalia Chan)
+* code: Fix line length warnings in Element and PopupWidget (Thalia Chan)
+* build: Add .phan to .gitattributes (Umherirrender)
+* build: Updating ini to 1.3.8 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 34.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.5 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.6 (libraryupgrader)
+* build: Upgrade eslint-config-wikimedia from 0.17.0 to 0.18.0 and make pass (James D. Forrester)
+* stylelint: Remove needless disable directives (Thalia Chan)
+
+
 ## v0.41.0 / 2020-12-03
 ### Deprecating changes
 * Deprecate passing a string to OO.ui.infuse (Thalia Chan)

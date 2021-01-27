@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.0
+ * OOUI v0.41.1
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2020 OOUI Team and other contributors.
+ * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-12-03T18:16:24Z
+ * Date: 2021-01-26T22:57:01Z
  */
 ( function ( OO ) {
 
@@ -322,7 +322,7 @@ OO.ui.throttle = function ( func, wait ) {
  *
  * This is an alias for `OO.ui.Element.static.infuse()`.
  *
- * @param {string|HTMLElement|jQuery} node Node for the widget to infuse.
+ * @param {string|HTMLElement|jQuery} node A single node for the widget to infuse.
  *   String must be a selector (deprecated).
  * @param {Object} [config] Configuration options
  * @return {OO.ui.Element}
@@ -680,7 +680,7 @@ OO.ui.Element.static.tagName = 'div';
  * by the PHP implementation.
  *
  * @param {HTMLElement|jQuery} node
- *   A node for the widget to infuse.
+ *   A single node for the widget to infuse.
  * @param {Object} [config] Configuration options
  * @return {OO.ui.Element}
  *   The `OO.ui.Element` corresponding to this (infusable) document node.
@@ -715,10 +715,17 @@ OO.ui.Element.static.infuse = function ( node, config ) {
  */
 OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var error, data, cls, parts, obj, top, state, infusedChildren, doc,
-		$elem = $( elem ),
-		id = $elem.attr( 'id' );
+	var error, data, cls, parts, obj, top, state, infusedChildren, doc, id,
+		$elem = $( elem );
 
+	if ( $elem.length > 1 ) {
+		if ( elem && elem.selector ) {
+			error = 'Collection contains more than one element: ' + elem.selector;
+		} else {
+			error = 'Collection contains more than one element';
+		}
+		throw new Error( error );
+	}
 	if ( !$elem.length ) {
 		if ( elem && elem.selector ) {
 			error = 'Widget not found: ' + elem.selector;
@@ -730,6 +737,8 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	if ( $elem[ 0 ].$oouiInfused ) {
 		$elem = $elem[ 0 ].$oouiInfused;
 	}
+
+	id = $elem.attr( 'id' );
 	doc = this.getDocument( $elem );
 	data = $elem.data( 'ooui-infused' );
 	if ( data ) {
@@ -746,8 +755,13 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 			infusedChildren = $elem.data( 'ooui-infused-children' );
 			if ( infusedChildren && infusedChildren.length ) {
 				infusedChildren.forEach( function ( childData ) {
-					var childState = childData.constructor.static.gatherPreInfuseState( $elem, childData );
-					domPromise.done( childData.restorePreInfuseState.bind( childData, childState ) );
+					var childState = childData.constructor.static.gatherPreInfuseState(
+						$elem,
+						childData
+					);
+					domPromise.done(
+						childData.restorePreInfuseState.bind( childData, childState )
+					);
 				} );
 			}
 		}
@@ -3303,7 +3317,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 /**
  * Get the symbolic name of the indicator (e.g., ‘clear’ or  ‘down’).
  *
- * @return {string} Symbolic name of indicator
+ * @return {string|null} Symbolic name of indicator, null if not set
  */
 OO.ui.mixin.IndicatorElement.prototype.getIndicator = function () {
 	return this.indicator;
@@ -3817,6 +3831,100 @@ OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( t
 		title += ' [' + accessKey + ']';
 	}
 	return title;
+};
+
+/**
+ * RequiredElement is mixed into other classes to provide a `required` attribute.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$required] The element to which the `required` attribute is applied.
+ *  If this config is omitted, the required functionality is applied to $input if it
+ *  exists, or $element if it doesn't.
+ * @cfg {boolean} [required=false] Mark the field as required with `true`.
+ * @cfg {OO.ui.Element} [indicatorElement=this] Element which mixes in OO.ui.mixin.IndicatorElement
+ *  Will set the indicator on that element to 'required' when the element is required.
+ *  Note that `false` & setting `indicator: 'required'` will result in no indicator shown.
+ */
+OO.ui.mixin.RequiredElement = function OoUiMixinRequiredElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties
+	this.$required = null;
+	this.required = false;
+	this.indicatorElement = config.indicatorElement !== undefined ? config.indicatorElement : this;
+	if ( this.indicatorElement && !this.indicatorElement.getIndicator ) {
+		throw new Error( 'config.indicatorElement must mixin OO.ui.mixin.IndicatorElement.' );
+	}
+
+	// Initialization
+	this.setRequiredElement( config.$required || this.$input || this.$element );
+	this.setRequired( !!config.required );
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.mixin.RequiredElement );
+
+/* Methods */
+
+/**
+ * Set the element which can take the required attribute.
+ *
+ * This method is used to retarget a RequiredElement mixin so that its functionality applies to the
+ * specified element.
+ * If an element is already set, the mixin’s effect on that element is removed before the new
+ * element is set up.
+ *
+ * @param {jQuery} $required Element that should use the 'required' functionality
+ */
+OO.ui.mixin.RequiredElement.prototype.setRequiredElement = function ( $required ) {
+	if ( this.$required ) {
+		this.$required.removeProp( 'required' ).removeAttr( 'aria-required' );
+	}
+
+	this.$required = $required;
+	this.setRequired( this.isRequired() );
+};
+
+/**
+ * Check if the input is {@link #required required}.
+ *
+ * @return {boolean}
+ */
+OO.ui.mixin.RequiredElement.prototype.isRequired = function () {
+	return this.required;
+};
+
+/**
+ * Set the {@link #required required} state of the input.
+ *
+ * @param {boolean} state Make input required
+ * @chainable
+ * @return {OO.ui.Widget} The widget, for chaining
+ */
+OO.ui.mixin.RequiredElement.prototype.setRequired = function ( state ) {
+	this.required = !!state;
+	if ( this.required ) {
+		this.$required
+			.prop( 'required', true )
+			.attr( 'aria-required', 'true' );
+		if ( this.indicatorElement && this.indicatorElement.getIndicator() === null ) {
+			this.indicatorElement.setIndicator( 'required' );
+		}
+	} else {
+		this.$required
+			.prop( 'required', false )
+			.removeAttr( 'aria-required' );
+		if ( this.indicatorElement && this.indicatorElement.getIndicator() === 'required' ) {
+			this.indicatorElement.setIndicator( null );
+		}
+	}
+	return this;
 };
 
 /**
@@ -5974,7 +6082,8 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
-				// Remove binded keydown event from the first and last focusable elements when popup closes
+				// Remove binded keydown event from the first and last focusable elements
+				// when popup closes
 				$lastFocusableElement.off( 'keydown', this.onTabKeyDownHandler );
 				$firstFocusableElement.off( 'keydown', this.onShiftTabKeyDownHandler );
 
@@ -9905,6 +10014,12 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	// Parent constructor
 	OO.ui.CheckboxInputWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+		// TODO: Display the required indicator somewhere
+		indicatorElement: null
+	}, config ) );
+
 	// Properties
 	this.checkIcon = new OO.ui.IconWidget( {
 		icon: 'check',
@@ -9923,6 +10038,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.CheckboxInputWidget, OO.ui.mixin.RequiredElement );
 
 /* Events */
 
@@ -9938,7 +10054,6 @@ OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
 /* Static Properties */
 
 /**
- * @static
  * @inheritdoc
  */
 OO.ui.CheckboxInputWidget.static.tagName = 'span';
@@ -10136,6 +10251,12 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Parent constructor
 	OO.ui.DropdownInputWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+		// TODO: Display the required indicator somewhere
+		indicatorElement: null
+	}, config ) );
+
 	// Events
 	this.dropdownWidget.getMenu().connect( this, {
 		select: 'onMenuSelect'
@@ -10155,6 +10276,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.DropdownInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.RequiredElement );
 
 /* Methods */
 
@@ -10418,6 +10540,12 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	// Parent constructor
 	OO.ui.RadioInputWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+		// TODO: Display the required indicator somewhere
+		indicatorElement: null
+	}, config ) );
+
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-radioInputWidget' )
@@ -10429,6 +10557,7 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.RadioInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.RadioInputWidget, OO.ui.mixin.RequiredElement );
 
 /* Static Properties */
 
@@ -10988,9 +11117,6 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *  many emojis) count as 2 characters each.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
- * @cfg {boolean} [required=false] Mark the field as required with `true`. Implies `indicator:
- *  'required'`. Note that `false` & setting `indicator: 'required' will result in no indicator
- *  shown.
  * @cfg {boolean|string} [autocomplete] Should the browser support autocomplete for this field?
  *  Type hints such as 'email' are also allowed.
  * @cfg {boolean} [spellcheck] Should the browser support spellcheck for this field (`undefined`
@@ -11022,11 +11148,11 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	OO.ui.mixin.PendingElement.call( this, $.extend( { $pending: this.$input }, config ) );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
+	OO.ui.mixin.RequiredElement.call( this, config );
 
 	// Properties
 	this.type = this.getSaneType( config );
 	this.readOnly = false;
-	this.required = false;
 	this.validate = null;
 	this.scrollWidth = null;
 
@@ -11049,7 +11175,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		.addClass( 'oo-ui-textInputWidget oo-ui-textInputWidget-type-' + this.type )
 		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
-	this.setRequired( !!config.required );
 	if ( config.placeholder !== undefined ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
@@ -11094,6 +11219,7 @@ OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.PendingElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.FlaggedElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.RequiredElement );
 
 /* Static Properties */
 
@@ -11220,42 +11346,6 @@ OO.ui.TextInputWidget.prototype.isReadOnly = function () {
 OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
 	this.readOnly = !!state;
 	this.$input.prop( 'readOnly', this.readOnly );
-	return this;
-};
-
-/**
- * Check if the input is {@link #required required}.
- *
- * @return {boolean}
- */
-OO.ui.TextInputWidget.prototype.isRequired = function () {
-	return this.required;
-};
-
-/**
- * Set the {@link #required required} state of the input.
- *
- * @param {boolean} state Make input required
- * @chainable
- * @return {OO.ui.Widget} The widget, for chaining
- */
-OO.ui.TextInputWidget.prototype.setRequired = function ( state ) {
-	this.required = !!state;
-	if ( this.required ) {
-		this.$input
-			.prop( 'required', true )
-			.attr( 'aria-required', 'true' );
-		if ( this.getIndicator() === null ) {
-			this.setIndicator( 'required' );
-		}
-	} else {
-		this.$input
-			.prop( 'required', false )
-			.removeAttr( 'aria-required' );
-		if ( this.getIndicator() === 'required' ) {
-			this.setIndicator( null );
-		}
-	}
 	return this;
 };
 
@@ -13702,6 +13792,12 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	// Parent constructor
 	OO.ui.SelectFileInputWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+		// TODO: Display the required indicator somewhere
+		indicatorElement: null
+	}, config ) );
+
 	// Properties
 	this.currentFiles = this.filterFiles( this.$input[ 0 ].files || [] );
 	if ( Array.isArray( config.accept ) ) {
@@ -13759,8 +13855,9 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.SelectFileInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.SelectFileInputWidget, OO.ui.mixin.RequiredElement );
 
-/* Static properties */
+/* Static Properties */
 
 // Set empty title so that browser default tooltips like "No file chosen" don't appear.
 // On SelectFileWidget this tooltip will often be incorrect, so create a consistent
