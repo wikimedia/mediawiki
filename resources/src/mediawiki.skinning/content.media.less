@@ -147,6 +147,16 @@ figure[ typeof~='mw:Audio/Frame' ] {
 			background: #fff;
 			margin: 3px;
 		}
+		/* Broken media get a span instead */
+		> span {
+			display: inline-block;
+			/* The extra horizontal margin here is to make up for the lack of a border */
+			margin: 3px 4px;
+			/* This is hardcoded in Linker::makeThumbLink2 for broken media */
+			width: 180px;
+			/* From .thumbinner, styles the text of broken media */
+			font-size: 94%;
+		}
 	}
 
 	> figcaption {
@@ -199,10 +209,10 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 }
 
-/* Magnify clip */
-figure[ typeof~='mw:Image/Thumb' ],
-figure[ typeof~='mw:Video/Thumb' ],
-figure[ typeof~='mw:Audio/Thumb' ] {
+/* Magnify clip, not present for broken media */
+figure[ typeof~='mw:Image/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Video/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
 	> figcaption:before {
 		content: '';
 		width: 15px;
