@@ -474,7 +474,7 @@
 	"sharedupload-desc-here": "Berkas andre moroi $1 ba te te'oguna'ö ba proyek tanö bö'ö.\nDeskripsi ba [$2 nga'örö deskripsi berkas] te'oroma'ö tou ba da'a.",
 	"filepage-nofile": "Lö berkas sotöi simanö",
 	"upload-disallowed-here": "Tebai ösura berkas andre.",
-	"randompage": "Nga'örö öna'öna",
+	"randompage": "Gofu nga'örö",
 	"statistics": "Statistik",
 	"double-redirect-fixer": "Fangatulö'ö wangaekhugö nga'örö",
 	"nbytes": "$1 {{PLURAL:$1|bita}}",
@@ -602,7 +602,7 @@
 	"tooltip-n-portal": "Sanandrösa ba proyek, hadia zi tola ölau, heza musöndra oi hadia ia",
 	"tooltip-n-currentevents": "Alui turia sanandrösa ba zalua ba ginötö andre",
 	"tooltip-n-recentchanges": "Fefu zi tebulö si bohou ba wiki",
-	"tooltip-n-randompage": "Oroma'ö nga'örö öna'öna",
+	"tooltip-n-randompage": "Oroma'ö gofu nga'örö",
 	"tooltip-n-help": "Nahia wanöndra fanolo",
 	"tooltip-t-whatlinkshere": "Fefu nga'örö wiki sitokahi ba da'a",
 	"tooltip-t-recentchangeslinked": "Sifabö'ö safuria fefu nga'örö nifakhai ba nga'örö andre",
@@ -708,7 +708,7 @@
 	"logentry-delete-revision": "$1 {{GENDER:$2|mamulö'ö}} wa'oroma {{PLURAL:$5|revisi|$5 revisi}} ba nga'örö $3: $4",
 	"revdelete-content-hid": "ösi no tobini",
 	"logentry-move-move": "No {{GENDER:$2|ifawu'a}} $1 nga'örö $3 tobali $4",
-	"logentry-move-move-noredirect": "$1 {{GENDER:$2|ifawu'a}} nga'örö $3 tobali $4 ba lö redirect",
+	"logentry-move-move-noredirect": "No {{GENDER:$2|ifawu'a}} $1 nga'örö $3 tobali $4 ba lö fangaekhugö",
 	"logentry-move-move_redir": "{{GENDER:$2|Ifawu'a}} ga $1 nga'örö $3 ba nga'örö $4 faoma ''redirect''",
 	"logentry-patrol-patrol-auto": "No {{GENDER:$2|itandrai}} $1 revisi $4 ngaörö $3 tobali nifahuhuosi",
 	"logentry-newusers-create": "Akun zi $1 no {{GENDER:$2|tefazökhi}}",
@@ -717,5 +717,5 @@
 	"logentry-upload-overwrite": "{{GENDER:$2|ifairö}} $1 versi si bohou $3",
 	"searchsuggest-search": "Alui {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ngaluo}}",
-	"randomrootpage": "Nga'örö oroita gofu hadia"
+	"randomrootpage": "Gonfu nga'örö oroita"
 }
