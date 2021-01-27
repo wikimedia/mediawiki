@@ -1027,7 +1027,7 @@
 	"editusergroup": "Immodifika l-gruppi tal-utent",
 	"editinguser": "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' $2",
 	"userrights-editusergroup": "Immodifika l-gruppi tal-utent",
-	"userrights-viewusergroup": "Ara l-gruppi tal-{{GENDER:$1|-utent}}",
+	"userrights-viewusergroup": "Ara l-gruppi tal-{{GENDER:$1|utent}}",
 	"saveusergroups": "Ara l-gruppi tal-{{GENDER:$1|-utent}}",
 	"userrights-groupsmember": "Membru ta':",
 	"userrights-groupsmember-auto": "Membru impliċitu ta':",
