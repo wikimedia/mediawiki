@@ -93,6 +93,10 @@ trait MockHttpTrait {
 			'HTTPMaxConnectTimeout' => 1,
 		] );
 
+		$failCallback = function ( /* discard any arguments */ ) {
+			TestCase::fail( 'method should not be called' );
+		};
+
 		/** @var HttpRequestFactory|MockObject $mockHttpRequestFactory */
 		$mockHttpRequestFactory = $this->getMockBuilder( HttpRequestFactory::class )
 			->setConstructorArgs( [ $options, new NullLogger() ] )
@@ -117,13 +121,13 @@ trait MockHttpTrait {
 
 		if ( $request === null ) {
 			$mockHttpRequestFactory->method( 'create' )
-				->willReturnCallback( [ TestCase::class, 'fail' ] );
+				->willReturnCallback( $failCallback );
 		} elseif ( $request instanceof MultiHttpClient ) {
 			$mockHttpRequestFactory->method( 'create' )
-				->willReturnCallback( [ TestCase::class, 'fail' ] );
+				->willReturnCallback( $failCallback );
 		} elseif ( $request instanceof GuzzleHttp\Client ) {
 			$mockHttpRequestFactory->method( 'create' )
-				->willReturnCallback( [ TestCase::class, 'fail' ] );
+				->willReturnCallback( $failCallback );
 		} elseif ( $request instanceof MWHttpRequest ) {
 			$mockHttpRequestFactory->method( 'create' )
 				->willReturn( $request );
