@@ -23,7 +23,7 @@
 		"linkExternal": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/linkExternal-ltr.svg",
-				"rtl":  "../wikimediaui/images/icons/linkExternal-rtl.svg"
+				"rtl": "../wikimediaui/images/icons/linkExternal-rtl.svg"
 			}
 		},
 		"linkSecure": {

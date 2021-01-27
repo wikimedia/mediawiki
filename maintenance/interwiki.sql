@@ -27,7 +27,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local,iw_api) VALUES
 ('linuxwiki','http://linuxwiki.de/$1',0,''),
 ('lojban','https://www.lojban.org/tiki/tiki-index.php?page=$1',0,''),
 ('lqwiki','http://wiki.linuxquestions.org/wiki/$1',0,''),
-('meatball','http://www.usemod.com/cgi-bin/mb.pl?$1',0,''),
+('meatball','http://meatballwiki.org/wiki/$1',0,''),
 ('mediawikiwiki','https://www.mediawiki.org/wiki/$1',0,'https://www.mediawiki.org/w/api.php'),
 ('memoryalpha','http://en.memory-alpha.org/wiki/$1',0,'http://en.memory-alpha.org/api.php'),
 ('metawiki','http://sunir.org/apps/meta.pl?$1',0,''),
