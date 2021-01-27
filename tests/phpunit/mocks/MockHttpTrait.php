@@ -104,7 +104,7 @@ trait MockHttpTrait {
 				->willReturn( $request );
 		} else {
 			$mockHttpRequestFactory->method( 'createMultiClient' )
-				->willReturnCallback( [ TestCase::class, 'fail' ] );
+				->willReturn( $this->createNoOpMock( MultiHttpClient::class ) );
 		}
 
 		if ( $request instanceof GuzzleHttp\Client ) {
@@ -112,7 +112,7 @@ trait MockHttpTrait {
 				->willReturn( $request );
 		} else {
 			$mockHttpRequestFactory->method( 'createGuzzleClient' )
-				->willReturnCallback( [ TestCase::class, 'fail' ] );
+				->willReturn( $this->createNoOpMock( GuzzleHttp\Client::class ) );
 		}
 
 		if ( $request === null ) {
