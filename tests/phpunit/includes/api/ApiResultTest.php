@@ -32,6 +32,9 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			'setContentValue' => '3',
 		], $arr );
 
+		ApiResult::setValue( $arr, 'setValue', '1' );
+		$this->assertSame( '1', $arr['setValue'] );
+
 		try {
 			ApiResult::setValue( $arr, 'setValue', '99' );
 			$this->fail( 'Expected exception not thrown' );
