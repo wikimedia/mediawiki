@@ -232,6 +232,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+		$result = true;
+
 		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
 		$batches = [];
@@ -241,13 +243,14 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				$server = $conn->getServer();
 				$conns[$server] = $conn;
 				$batches[$server][] = $key;
+			} else {
+				$result = false;
 			}
 		}
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		$op = $ttl ? 'setex' : 'set';
 
-		$result = true;
 		$valueKeys = [];
 		$valueSizes = [];
 		foreach ( $batches as $server => $batchKeys ) {
@@ -269,6 +272,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
+					$result = false;
 					$this->logRequest( $op, implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
@@ -288,6 +292,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
+		$result = true;
+
 		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
 		$batches = [];
@@ -297,10 +303,11 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				$server = $conn->getServer();
 				$conns[$server] = $conn;
 				$batches[$server][] = $key;
+			} else {
+				$result = false;
 			}
 		}
 
-		$result = true;
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
@@ -313,6 +320,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
+					$result = false;
 					$this->logRequest( 'delete', implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
@@ -332,6 +340,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		$result = true;
+
 		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
 		$batches = [];
@@ -341,6 +351,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				$server = $conn->getServer();
 				$conns[$server] = $conn;
 				$batches[$server][] = $key;
+			} else {
+				$result = false;
 			}
 		}
 
@@ -349,7 +361,6 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			? 'persist'
 			: ( $relative ? 'expire' : 'expireAt' );
 
-		$result = true;
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
@@ -367,6 +378,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
+					$result = false;
 					$this->logRequest( $op, implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
