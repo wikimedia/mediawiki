@@ -59,8 +59,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			),
 			$services->getPermissionManager(),
 			$logger,
-			$services->getHookContainer(),
-			$services->getUserGroupManagerFactory()->getUserGroupManager()
+			$services->getHookContainer()
 		];
 	}
 
@@ -68,8 +67,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getUserBlock
 	 */
 	public function testGetBlock() {
-		$this->markTestSkipped( 'Current code is broken, see T271551' );
-
 		// Reset so that hooks are called
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$permissionManager->invalidateUsersRightsCache();
