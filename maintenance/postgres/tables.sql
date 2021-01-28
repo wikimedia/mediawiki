@@ -111,8 +111,8 @@ CREATE TABLE archive (
   ar_len            INTEGER          NULL
 );
 ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
-CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
-CREATE INDEX archive_actor                ON archive (ar_actor);
+CREATE INDEX ar_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX ar_actor_timestamp                ON archive (ar_actor,ar_timestamp);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
 
