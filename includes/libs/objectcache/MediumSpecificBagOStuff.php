@@ -1057,9 +1057,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $text
 	 */
 	protected function debug( $text ) {
-		if ( $this->debugMode ) {
-			$this->logger->debug( "{class} debug: $text", [ 'class' => static::class ] );
-		}
+		$this->logger->debug( "{class} debug: $text", [ 'class' => static::class ] );
 	}
 
 	/**

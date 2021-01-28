@@ -104,13 +104,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->cacheIndexes = array_keys( $this->caches );
 	}
 
-	public function setDebug( $enabled ) {
-		parent::setDebug( $enabled );
-		foreach ( $this->caches as $cache ) {
-			$cache->setDebug( $enabled );
-		}
-	}
-
 	public function get( $key, $flags = 0 ) {
 		$args = func_get_args();
 

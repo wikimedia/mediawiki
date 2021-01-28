@@ -54,11 +54,6 @@ class CachedBagOStuff extends BagOStuff {
 		$this->attrMap = $backend->attrMap;
 	}
 
-	public function setDebug( $enabled ) {
-		parent::setDebug( $enabled );
-		$this->store->setDebug( $enabled );
-	}
-
 	public function get( $key, $flags = 0 ) {
 		$value = $this->procCache->get( $key, $flags );
 		if ( $value !== false || $this->procCache->hasKey( $key ) ) {

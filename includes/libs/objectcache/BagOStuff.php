@@ -88,8 +88,11 @@ abstract class BagOStuff implements
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
 
-	/** @var bool Whether to send debug log entries to the SPI logger instance */
-	protected $debugMode = false;
+	/**
+	 * @var bool Whether to send debug log entries to the SPI logger instance
+	 * @deprecated since 1.36 -- unused
+	 */
+	protected $debugMode = true;
 
 	/** @var float|null */
 	private $wallClockOverride;
@@ -167,9 +170,10 @@ abstract class BagOStuff implements
 
 	/**
 	 * @param bool $enabled
+	 * @deprecated since 1.36, always true
 	 */
 	public function setDebug( $enabled ) {
-		$this->debugMode = $enabled;
+		wfDeprecated( __METHOD__, '1.36' );
 	}
 
 	/**
