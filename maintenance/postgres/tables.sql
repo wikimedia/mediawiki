@@ -111,29 +111,10 @@ CREATE TABLE archive (
   ar_len            INTEGER          NULL
 );
 ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
-CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
-CREATE INDEX archive_actor                ON archive (ar_actor);
+CREATE INDEX ar_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX ar_actor_timestamp                ON archive (ar_actor,ar_timestamp);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
-
-CREATE TABLE image (
-  img_name         TEXT      NOT NULL  PRIMARY KEY,
-  img_size         INTEGER   NOT NULL,
-  img_width        INTEGER   NOT NULL,
-  img_height       INTEGER   NOT NULL,
-  img_metadata     BYTEA     NOT NULL  DEFAULT '',
-  img_bits         SMALLINT,
-  img_media_type   TEXT,
-  img_major_mime   TEXT                DEFAULT 'unknown',
-  img_minor_mime   TEXT                DEFAULT 'unknown',
-  img_description_id INTEGER NOT NULL,
-  img_actor        INTEGER   NOT NULL,
-  img_timestamp    TIMESTAMPTZ,
-  img_sha1         TEXT      NOT NULL  DEFAULT ''
-);
-CREATE INDEX img_size_idx      ON image (img_size);
-CREATE INDEX img_timestamp_idx ON image (img_timestamp);
-CREATE INDEX img_sha1          ON image (img_sha1);
 
 CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (

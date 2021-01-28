@@ -488,6 +488,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'objectcache', 'exptime', 'patch-objectcache-exptime-notnull.sql' ],
 			[ 'dropDefault', 'ipblocks', 'ipb_timestamp' ],
 			[ 'dropDefault', 'ipblocks', 'ipb_expiry' ],
+			[ 'renameIndex', 'archive', 'name_title_timestamp', 'ar_name_title_timestamp', false,
+				'patch-archive-rename-name_title_timestamp-index.sql' ],
+			[ 'modifyField', 'image', 'img_name', 'patch-image-img_name-varbinary.sql' ],
+			[ 'dropDefault', 'image', 'img_timestamp' ],
 		];
 	}
 

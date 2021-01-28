@@ -327,7 +327,7 @@ CREATE TABLE /*_*/archive (
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions
-CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX /*i*/ar_name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 
 -- Index for Special:DeletedContributions
 CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
@@ -335,68 +335,6 @@ CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
 -- Index for linking archive rows with tables that normally link with revision
 -- rows, such as change_tag.
 CREATE UNIQUE INDEX /*i*/ar_revid_uniq ON /*_*/archive (ar_rev_id);
-
-
---
--- Uploaded images and other files.
---
-CREATE TABLE /*_*/image (
-  -- Filename.
-  -- This is also the title of the associated description page,
-  -- which will be in namespace 6 (NS_FILE).
-  img_name varchar(255) binary NOT NULL default '' PRIMARY KEY,
-
-  -- File size in bytes.
-  img_size int unsigned NOT NULL default 0,
-
-  -- For images, size in pixels.
-  img_width int NOT NULL default 0,
-  img_height int NOT NULL default 0,
-
-  -- Extracted Exif metadata stored as a serialized PHP array.
-  img_metadata mediumblob NOT NULL,
-
-  -- For images, bits per pixel if known.
-  img_bits int NOT NULL default 0,
-
-  -- Media type as defined by the MEDIATYPE_xxx constants
-  img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D") default NULL,
-
-  -- major part of a MIME media type as defined by IANA
-  -- see https://www.iana.org/assignments/media-types/
-  -- for "chemical" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS
-  img_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") NOT NULL default "unknown",
-
-  -- minor part of a MIME media type as defined by IANA
-  -- the minor parts are not required to adher to any standard
-  -- but should be consistent throughout the database
-  -- see https://www.iana.org/assignments/media-types/
-  img_minor_mime varbinary(100) NOT NULL default "unknown",
-
-  -- Foreign key to comment table, which contains the description field as entered by the uploader.
-  -- This is displayed in image upload history and logs.
-  img_description_id bigint unsigned NOT NULL,
-
-  -- actor_id of the uploader.
-  img_actor bigint unsigned NOT NULL,
-
-  -- Time of the upload.
-  img_timestamp varbinary(14) NOT NULL default '',
-
-  -- SHA-1 content hash in base-36
-  img_sha1 varbinary(32) NOT NULL default ''
-) /*$wgDBTableOptions*/;
-
--- Used by Special:Newimages and ApiQueryAllImages
-CREATE INDEX /*i*/img_actor_timestamp ON /*_*/image (img_actor,img_timestamp);
--- Used by Special:ListFiles for sort-by-size
-CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
--- Used by Special:Newimages and Special:ListFiles
-CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
--- Used in API and duplicate search
-CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
--- Used to get media of one type
-CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
 
 
 --
