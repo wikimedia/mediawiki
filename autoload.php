@@ -1282,7 +1282,6 @@ $wgAutoloadLocalClasses = [
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
 	'PrefixSearch' => __DIR__ . '/includes/search/PrefixSearch.php',
 	'PrefixingStatsdDataFactoryProxy' => __DIR__ . '/includes/libs/stats/PrefixingStatsdDataFactoryProxy.php',
-	'PreprocessDump' => __DIR__ . '/maintenance/preprocessDump.php',
 	'Preprocessor' => __DIR__ . '/includes/parser/Preprocessor.php',
 	'Preprocessor_Hash' => __DIR__ . '/includes/parser/Preprocessor_Hash.php',
 	'Processor' => __DIR__ . '/includes/registration/Processor.php',
