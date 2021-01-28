@@ -418,6 +418,7 @@
 	"apihelp-query+fileusage-param-show": "Mostra solo gli elementi che soddisfano questi criteri:\n;redirect:mostra solo i redirect.\n;!redirect:mostra solo i non redirect.",
 	"apihelp-query+fileusage-example-simple": "Ottieni un elenco di pagine che usano [[:File:Example.jpg]].",
 	"apihelp-query+imageinfo-summary": "Restituisce informazione sul file sulla cronologia di caricamento.",
+	"apihelp-query+imageinfo-param-prop": "Quali informazioni sul file ottenere:",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Aggiunge il tipo MIME del file. Se il file è stato cancellato dalla versione, sarà restituita una proprietà <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-param-start": "Il timestamp da cui iniziare l'elenco.",
 	"apihelp-query+imageinfo-param-urlheight": "Simile a $1urlwidth.",

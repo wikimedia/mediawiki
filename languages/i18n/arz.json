@@ -980,6 +980,7 @@
 	"recentchanges-legend-watchlistexpiry": "صفحه متراقبه بشكل مؤقت",
 	"rcfilters-legend-heading": "<strong>ليستة الاختصارات:</strong>",
 	"rcfilters-other-review-tools": "ادوات مراجعه تانيه",
+	"rcfilters-filter-humans-label": "بشرى (مش بوت)",
 	"rcnotefrom": "{{PLURAL:$5|ده التعديل|دى التعديلات}} من اول <strong>$3, $4</strong> (لغايه<strong>$1</strong> معروضه).",
 	"rclistfrom": "اظهر التعديلات بدايه من $3 $2",
 	"rcshowhideminor": "$1 تعديلات صغيره",

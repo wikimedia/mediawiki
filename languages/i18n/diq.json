@@ -3380,6 +3380,7 @@
 	"duplicate-displaytitle": "<strong>İqaz:</strong> Sernamey \"$2\" sernamey \"$1\" sero do bınuşiyo.",
 	"restricted-displaytitle": "<strong>Tembe:</strong> seekea raştê pela rê hemerc niyo coki ra \"$1\" mocniyeno",
 	"invalid-indicator-name": "<strong>Xeta:</strong>Xısusiyetê asengehê weziyetê pelan <code>name</code> veng nêbeno .",
+	"invalid-langconvert-attrs": "<strong>Xeta:</strong>xısusiyetê etiketê Langconvert  <code>from</code> u <code>to</code> wa veng nêbê u qandê varyantê eyni zıwani rê wa çerğbıyaye kodi ihtiwa bıkerê.",
 	"version": "Versiyon",
 	"version-extensions": "Ekstensiyonî ke ronaye",
 	"version-skins": "Bar kerde bejni",
