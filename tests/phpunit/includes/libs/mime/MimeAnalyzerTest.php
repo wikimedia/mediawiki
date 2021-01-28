@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Media
  * @covers MimeAnalyzer
@@ -216,7 +219,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * @covers MimeAnalyzer::addExtraInfo
 	 */
 	public function testAddExtraTypes() {
-		$mimeAnalyzer = new MimeAnalyzer( [
+		$mime = new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
 			'xmlTypes' => [],
@@ -226,9 +229,11 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				$instance->mExtToMime[ 'no_such_extension' ] = 'fake/mime';
 			},
 		] );
-		$this->assertSame( MEDIATYPE_OFFICE, $mimeAnalyzer->findMediaType( '.fake_extension' ) );
-		$this->assertSame(
-			'fake/mime', $mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
+		$this->assertSame( [ 'fake/mime' ], $mime->getMimeTypesFromExtension( 'fake_extension' ) );
+		$this->assertSame( 'fake/mime', $mime->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
+
+		$mimeAccess = TestingAccessWrapper::newFromObject( $mime );
+		$this->assertSame( MEDIATYPE_OFFICE, $mimeAccess->findMediaType( '.fake_extension' ) );
 	}
 
 	public function testGetMimeTypesFromExtension() {
