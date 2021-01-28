@@ -339,7 +339,7 @@ mw.message = function ( key ) {
  * @return {string}
  */
 mw.msg = function () {
-	return mw.message.apply( mw.message, arguments ).toString();
+	return mw.message.apply( mw, arguments ).toString();
 };
 
 /**
