@@ -761,3 +761,33 @@ CREATE INDEX ipb_timestamp ON ipblocks (ipb_timestamp);
 CREATE INDEX ipb_expiry ON ipblocks (ipb_expiry);
 
 CREATE INDEX ipb_parent_block_id ON ipblocks (ipb_parent_block_id);
+
+
+CREATE TABLE image (
+  img_name TEXT DEFAULT '' NOT NULL,
+  img_size INT DEFAULT 0 NOT NULL,
+  img_width INT DEFAULT 0 NOT NULL,
+  img_height INT DEFAULT 0 NOT NULL,
+  img_metadata TEXT NOT NULL,
+  img_bits INT DEFAULT 0 NOT NULL,
+  img_media_type TEXT DEFAULT NULL,
+  img_major_mime TEXT DEFAULT 'unknown' NOT NULL,
+  img_minor_mime TEXT DEFAULT 'unknown' NOT NULL,
+  img_description_id BIGINT NOT NULL,
+  img_actor BIGINT NOT NULL,
+  img_timestamp TIMESTAMPTZ NOT NULL,
+  img_sha1 TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(img_name)
+);
+
+CREATE INDEX img_actor_timestamp ON image (img_actor, img_timestamp);
+
+CREATE INDEX img_size ON image (img_size);
+
+CREATE INDEX img_timestamp ON image (img_timestamp);
+
+CREATE INDEX img_sha1 ON image (img_sha1);
+
+CREATE INDEX img_media_mime ON image (
+  img_media_type, img_major_mime, img_minor_mime
+);
