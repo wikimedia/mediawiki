@@ -706,3 +706,39 @@ CREATE TABLE /*_*/ipblocks (
   INDEX ipb_parent_block_id (ipb_parent_block_id),
   PRIMARY KEY(ipb_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/image (
+  img_name VARBINARY(255) DEFAULT '' NOT NULL,
+  img_size INT UNSIGNED DEFAULT 0 NOT NULL,
+  img_width INT DEFAULT 0 NOT NULL,
+  img_height INT DEFAULT 0 NOT NULL,
+  img_metadata MEDIUMBLOB NOT NULL,
+  img_bits INT DEFAULT 0 NOT NULL,
+  img_media_type ENUM(
+    'UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO',
+    'VIDEO', 'MULTIMEDIA', 'OFFICE',
+    'TEXT', 'EXECUTABLE', 'ARCHIVE',
+    '3D'
+  ) DEFAULT NULL,
+  img_major_mime ENUM(
+    'unknown', 'application', 'audio',
+    'image', 'text', 'video', 'message',
+    'model', 'multipart', 'chemical'
+  ) DEFAULT 'unknown' NOT NULL,
+  img_minor_mime VARBINARY(100) DEFAULT 'unknown' NOT NULL,
+  img_description_id BIGINT UNSIGNED NOT NULL,
+  img_actor BIGINT UNSIGNED NOT NULL,
+  img_timestamp BINARY(14) NOT NULL,
+  img_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
+  INDEX img_actor_timestamp (img_actor, img_timestamp),
+  INDEX img_size (img_size),
+  INDEX img_timestamp (img_timestamp),
+  INDEX img_sha1 (
+    img_sha1(10)
+  ),
+  INDEX img_media_mime (
+    img_media_type, img_major_mime, img_minor_mime
+  ),
+  PRIMARY KEY(img_name)
+) /*$wgDBTableOptions*/;
