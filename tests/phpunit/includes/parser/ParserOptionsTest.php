@@ -110,14 +110,14 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideIsSafeToCache
 	 * @param bool $expect Expected value
 	 * @param array $options Options to set
-	 * @param array|null $userOptions
+	 * @param array|null $usedOptions
 	 */
-	public function testIsSafeToCache( bool $expect, array $options, array $userOptions = null ) {
+	public function testIsSafeToCache( bool $expect, array $options, array $usedOptions = null ) {
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
 		}
-		$this->assertSame( $expect, $popt->isSafeToCache() );
+		$this->assertSame( $expect, $popt->isSafeToCache( $usedOptions ) );
 	}
 
 	public static function provideIsSafeToCache() {
@@ -144,12 +144,14 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'Non-in-key options are not ok, used' => [ false, [
 				'removeComments' => false,
 			], [ 'removeComments' ] ],
-			'Non-in-key options are ok if other used' => [ false, [
+			'Non-in-key options are ok if other used' => [ true, [
 				'removeComments' => false,
 			], [ 'thumbsize' ] ],
-			'Non-in-key options are ok if nothing used' => [ false, [
+			'Non-in-key options are ok if nothing used' => [ true, [
 				'removeComments' => false,
 			], [] ],
+			'Unknown used options do not crash' => [ true, [
+			], [ 'unknown' ] ],
 			'Non-in-key options are not ok (2)' => [ false, [
 				'wrapclass' => 'foobar',
 			] ],

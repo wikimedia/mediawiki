@@ -1470,9 +1470,8 @@ class ParserOptions {
 		$usedOptions = $usedOptions ?? array_keys( $this->options );
 		foreach ( $usedOptions as $option ) {
 			if ( empty( self::$inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
-				$value = $this->options[$option] ?? null;
-				$v = $this->optionToString( $value );
-				$d = $this->optionToString( $defaults[$option] );
+				$v = $this->optionToString( $this->options[$option] ?? null );
+				$d = $this->optionToString( $defaults[$option] ?? null );
 				if ( $v !== $d ) {
 					return false;
 				}
