@@ -118,7 +118,9 @@ class MovePage {
 		# The move is allowed only if (1) the target doesn't exist, or
 		# (2) the target is a redirect to the source, and has no history
 		# (so we can undo bad moves right after they're done).
-		if ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
+		if ( $this->newTitle->getArticleID( Title::READ_LATEST /* T272386 */ )
+			&& !$this->isValidMoveTarget()
+		) {
 			$status->fatal( 'articleexists' );
 		}
 
