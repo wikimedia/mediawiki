@@ -722,6 +722,10 @@ class Linker {
 			}
 		}
 
+		if ( !$enableLegacyMediaDOM && $parser && $rdfaType === 'mw:File/Thumb' ) {
+			$parser->getOutput()->addModules( [ 'mediawiki.page.media' ] );
+		}
+
 		$url = Title::newFromLinkTarget( $title )->getLocalURL( $query );
 		$linkTitleQuery = [];
 		if ( $page || $lang ) {
@@ -814,9 +818,6 @@ class Linker {
 				// Only thumbs gets the magnify link
 				if ( $rdfaType === 'mw:File/Thumb' ) {
 					$params['magnify-resource'] = $url;
-					if ( $parser ) {
-						$parser->getOutput()->addModules( [ 'mediawiki.page.media' ] );
-					}
 				}
 			}
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
