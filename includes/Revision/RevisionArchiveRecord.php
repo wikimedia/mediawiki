@@ -102,12 +102,13 @@ class RevisionArchiveRecord extends RevisionRecord {
 	}
 
 	/**
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int|null The revision id, or null if the original revision ID
 	 *         was not recorded in the archive table.
 	 */
-	public function getId() {
+	public function getId( $wikiId = self::LOCAL ) {
 		// overwritten just to refine the contract specification.
-		return parent::getId();
+		return parent::getId( $wikiId );
 	}
 
 	/**

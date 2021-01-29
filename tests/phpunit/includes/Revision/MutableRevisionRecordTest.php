@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Revision;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use Title;
@@ -44,7 +45,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstructorAndGetters(
 		PageIdentity $page,
-		$wikiId = PageIdentity::LOCAL,
+		$wikiId = RevisionRecord::LOCAL,
 		string $expectedException = null
 	) {
 		$rec = new MutableRevisionRecord( $page, $wikiId );

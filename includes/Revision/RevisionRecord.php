@@ -25,12 +25,14 @@ namespace MediaWiki\Revision;
 use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use Title;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -42,7 +44,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionRecord
  */
-abstract class RevisionRecord {
+abstract class RevisionRecord implements WikiAwareEntity {
 	use NonSerializableTrait;
 
 	// RevisionRecord deletion constants
@@ -253,15 +255,40 @@ abstract class RevisionRecord {
 	}
 
 	/**
+	 * Throws if $wikiId is not equal to dbDomain provided in construct
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *
+	 * @throws PreconditionException
+	 */
+	public function assertWiki( $wikiId ) {
+		if ( $wikiId !== $this->getWikiId() ) {
+			$expected = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
+			$actual = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
+			throw new PreconditionException( "Expected RevisionRecord to belong to $expected, "
+			. "but it belongs to $actual" );
+		}
+	}
+
+	/**
 	 * Get revision ID. Depending on the concrete subclass, this may return null if
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
 	 *
 	 * MCR migration note: this replaces Revision::getId
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int|null
 	 */
-	public function getId() {
+	public function getId( $wikiId = self::LOCAL ) {
+		if ( $wikiId !== $this->getWikiId() ) {
+			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
+			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
+
+			wfDeprecatedMsg( "Expected RevisionRecord to belong to $provided, "
+			. "but it belongs to $stored", '1.36' );
+			return $this->mId;
+		}
 		return $this->mId;
 	}
 

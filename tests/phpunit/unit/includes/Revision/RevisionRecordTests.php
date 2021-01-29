@@ -33,6 +33,23 @@ trait RevisionRecordTests {
 	 */
 	abstract protected function newRevision( array $rowOverrides = [] );
 
+	/**
+	 * provided by MediaWikiTestCaseTrait
+	 * @param string $regex
+	 */
+	abstract public function filterDeprecated( $regex );
+
+	public function testGetIdSuccessful() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
+		$this->assertEquals( 5, $revision->getId( 'acmewiki' ) );
+	}
+
+	public function testGetIdDeprecated() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
+		$this->filterDeprecated( '/Expected RevisionRecord to belong to .*/' );
+		$this->assertEquals( 5, $revision->getId() );
+	}
+
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,

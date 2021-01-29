@@ -844,8 +844,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			$storeRecord = $store->getRevisionByTitle(
 				new TitleValue( $page->getTitle()->getNamespace(), $page->getTitle()->getDBkey() )
 			);
-
-			$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
+			$this->assertSame( $revRecord->getId(), $storeRecord->getId( $dbDomain ) );
 			$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 			$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
 		} finally {

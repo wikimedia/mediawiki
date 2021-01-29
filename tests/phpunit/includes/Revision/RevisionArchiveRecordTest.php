@@ -147,7 +147,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = PageIdentity::LOCAL,
+		$wikiId = RevisionRecord::LOCAL,
 		string $expectedException = null
 	) {
 		$rec = new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $wikiId );
@@ -160,7 +160,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
 
 		$this->assertSame( (int)$row->ar_id, $rec->getArchiveId(), 'getArchiveId' );
-		$this->assertSame( (int)$row->ar_rev_id, $rec->getId(), 'getId' );
+		$this->assertSame( (int)$row->ar_rev_id, $rec->getId( $wikiId ), 'getId' );
 		$this->assertSame( (int)$row->ar_page_id, $rec->getPageId(), 'getId' );
 		$this->assertSame( $row->ar_timestamp, $rec->getTimestamp(), 'getTimestamp' );
 		$this->assertSame( (int)$row->ar_deleted, $rec->getVisibility(), 'getVisibility' );
