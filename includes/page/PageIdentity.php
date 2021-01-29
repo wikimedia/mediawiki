@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page;
 
+use MediaWiki\DAO\WikiAwareEntity;
 use RuntimeException;
 use Wikimedia\Assert\PreconditionException;
 
@@ -30,7 +31,7 @@ use Wikimedia\Assert\PreconditionException;
  * namespace, the dbkey, and the wiki ID.
  * The page ID together with the wiki ID also identifies the page,
  * unless the page ID is 0.
- * If the wiki ID is PageIdentity::LOCAL, the identity is relative to the local wiki.
+ * If the wiki ID is self::LOCAL, the identity is relative to the local wiki.
  *
  * @note For compatibility with the Title class, PageIdentity instances
  *   may for now not only represent non-existing pages, but also things
@@ -61,13 +62,7 @@ use Wikimedia\Assert\PreconditionException;
  *
  * @since 1.36
  */
-interface PageIdentity {
-
-	/**
-	 * @var bool Wiki ID value to use with PageIdentity instances that are
-	 *      defined relative to the local wiki.
-	 */
-	public const LOCAL = false;
+interface PageIdentity extends WikiAwareEntity {
 
 	/**
 	 * Get the ID of the wiki this page belongs to.
@@ -78,20 +73,9 @@ interface PageIdentity {
 	 * @see RevisionRecord::getWikiId()
 	 *
 	 * @return string|false The wiki's logical name,
-	 *         or PageIdentity::LOCAL to indicate the local wiki.
+	 *         or self::LOCAL to indicate the local wiki.
 	 */
 	public function getWikiId();
-
-	/**
-	 * Throws if $wikiId is different from the return value of getWikiId().
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Use PageIdentity::LOCAL for the local wiki.
-	 *
-	 * @throws PreconditionException If $wikiId is not the ID of the wiki this PageIdentity
-	 *         belongs to.
-	 */
-	public function assertWiki( $wikiId );
 
 	/**
 	 * Returns the page ID.
@@ -123,7 +107,7 @@ interface PageIdentity {
 	 * @see canExist()
 	 *
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL ): int;
+	public function getId( $wikiId = self::LOCAL ): int;
 
 	/**
 	 * Checks whether this PageIdentity represents a "proper" page,

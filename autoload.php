@@ -863,6 +863,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
+	'MediaWiki\\DAO\\WikiAwareEntity' => __DIR__ . '/includes/dao/WikiAwareEntity.php',
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/debug/DeprecatablePropertyArray.php',
 	'MediaWiki\\FileBackend\\FSFile\\TempFSFileFactory' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFileFactory.php',
 	'MediaWiki\\Hook\\AbortEmailNotificationHook' => __DIR__ . '/includes/changes/Hook/AbortEmailNotificationHook.php',

@@ -332,7 +332,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return $pageIdentity;
 		}
 
-		$pageIdentity->assertWiki( PageIdentity::LOCAL );
+		$pageIdentity->assertWiki( self::LOCAL );
 		$title = self::makeTitle( $pageIdentity->getNamespace(), $pageIdentity->getDBkey() );
 		$title->resetArticleID( $pageIdentity->getId() );
 		return $title;
@@ -4654,7 +4654,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool false
 	 */
 	public function getWikiId() {
-		return PageIdentity::LOCAL;
+		return self::LOCAL;
 	}
 
 	/**
@@ -4665,7 +4665,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @throws PreconditionException
 	 */
 	public function assertWiki( $wikiId ) {
-		if ( $wikiId !== PageIdentity::LOCAL ) {
+		if ( $wikiId !== self::LOCAL ) {
 			throw new PreconditionException(
 				"Expected this PageIdentity to belong to $wikiId, "
 				. 'but it belongs to the local wiki'
@@ -4689,7 +4689,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return int
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL ): int {
+	public function getId( $wikiId = self::LOCAL ): int {
 		$this->assertWiki( $wikiId );
 		$this->assertProperPage();
 		return $this->getArticleID();
@@ -4740,7 +4740,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$this->getId(),
 			$this->getNamespace(),
 			$this->getDBkey(),
-			PageIdentity::LOCAL
+			self::LOCAL
 		);
 	}
 
