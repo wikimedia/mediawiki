@@ -4160,7 +4160,7 @@
 	"specialmute": "ミュート",
 	"specialmute-success": "ミュートの個人設定が更新されました。[[Special:Preferences|個人設定]]からミュートした利用者の一覧を確認できます。",
 	"specialmute-submit": "確定",
-	"specialmute-label-mute-email": "この利用者からのウィキメールをミュートする",
+	"specialmute-label-mute-email": "この{{GENDER:$1|利用者}}からのウィキメールをミュートする",
 	"specialmute-header": "<b>{{BIDI:[[User:$1|$1]]}}</b>さんに対するミュートを個人設定で選択してください。",
 	"specialmute-error-invalid-user": "あなたが要求した利用者名は見つかりませんでした。",
 	"specialmute-error-no-options": "ミュート機能はご使用になれません。いくつかの理由が考えられます: メールアドレスをまだ確認されていないか、このウィキの管理者がメールの機能および/もしくはこのウィキのメールのブラックリストを無効にしているか、です。",
