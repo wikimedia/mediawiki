@@ -84,7 +84,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->firstRev = $page->getRevisionRecord();
 
 		// Insert IP revision
-		$this->ipEditor = '2001:db8::1';
+		$this->ipEditor = '2001:DB8:0:0:0:0:0:1';
 
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
