@@ -326,6 +326,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$makeUserIdentity( 3, 'User3', 0 ),
 			$makeUserIdentity( 0, '192.168.12.34', 34 ),
 			$makeUserIdentity( 0, '192.168.12.35', 0 ),
+			// test handling of non-normalized IPv6 IP
+			$makeUserIdentity( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e', 0 ),
 		];
 
 		return [
@@ -429,7 +431,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [],
 					'orconds' => [
 						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
+							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
@@ -439,7 +442,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [],
 					'orconds' => [
 						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
+							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
@@ -463,28 +467,30 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				SCHEMA_COMPAT_OLD, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
+							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, read-old' => [
+			'Multiple users, no use ID, read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
+							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, read-new' => [
+			'Multiple users, no use ID, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],
-			'Multiple users, new' => [
+			'Multiple users, no use ID, new' => [
 				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
