@@ -16,6 +16,7 @@ important information when upgrading from versions prior to 1.11.
 Some specific notes for MediaWiki 1.36 upgrades are below:
 * MediaWiki 1.36 now requires the PHP internationalization extension
   (commonly referred to as Intl, ext-intl and php-intl).
+* MediaWiki refuses to run on PHP 7.4.0–7.4.8, which have a PHP bug (T270228).
 * …
 
 For notes on 1.35.x and older releases, see HISTORY.
@@ -583,7 +584,8 @@ because of Phabricator reports.
   service instead.
 
 == Compatibility ==
-MediaWiki 1.36 requires PHP 7.2.22 or later, and the following PHP extensions:
+MediaWiki 1.36 requires PHP 7.2.22 or later, avoiding PHP 7.4.0–7.4.8, and the
+following PHP extensions:
 
 * ctype
 * dom
