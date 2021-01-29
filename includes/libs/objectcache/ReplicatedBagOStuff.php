@@ -78,12 +78,6 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->attrMap = $this->mergeFlagMaps( [ $this->readStore, $this->writeStore ] );
 	}
 
-	public function setDebug( $enabled ) {
-		parent::setDebug( $enabled );
-		$this->writeStore->setDebug( $enabled );
-		$this->readStore->setDebug( $enabled );
-	}
-
 	public function get( $key, $flags = 0 ) {
 		$store = (
 			$this->hadRecentSessionWrite( [ $key ] ) ||
