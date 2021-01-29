@@ -3426,7 +3426,7 @@
 	"duplicate-displaytitle": "<strong>Aviso:</strong> O título exibido \"$2\" substituí o título anterior \"$1\".",
 	"restricted-displaytitle": "<strong>Aviso:</strong> O título de exibição “$1” foi ignorado devido a não ser equivalente ao título verdadeiro da página.",
 	"invalid-indicator-name": "<strong>Erro:</strong> O atributo indicador do status da página <code>name</code> não deve estar vazio.",
-	"invalid-langconvert-attrs": "<strong>Erro:</strong> Os atributos <code>from</code> e <code>to</code> da etiqueta langconvert não podem estar vazios e necessitam conter códigos de variantes conversíveis da mesma língua.",
+	"invalid-langconvert-attrs": "<strong>Erro:</strong> Os atributos <code>from</code> e <code>to</code> da etiqueta langconvert não podem estar vazios e necessitam conter códigos  BCP 47 de variantes conversíveis da mesma língua.",
 	"version": "Versão",
 	"version-extensions": "Extensões instaladas",
 	"version-skins": "Temas instalados",
