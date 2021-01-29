@@ -16,11 +16,11 @@
  */
 'use strict';
 
-var slice = Array.prototype.slice,
+var queue,
+	slice = Array.prototype.slice,
 	mwLoaderTrack = mw.track,
 	trackCallbacks = $.Callbacks( 'memory' ),
-	trackHandlers = [],
-	queue;
+	trackHandlers = [];
 
 // Apply site-level config
 mw.config.set( require( './config.json' ) );
@@ -92,7 +92,7 @@ function Message( map, key, parameters ) {
 	this.format = 'text';
 	this.map = map;
 	this.key = key;
-	this.parameters = parameters === undefined ? [] : slice.call( parameters );
+	this.parameters = parameters === undefined ? [] : parameters;
 	return this;
 }
 
@@ -339,7 +339,7 @@ mw.message = function ( key ) {
  * @return {string}
  */
 mw.msg = function () {
-	return mw.message.apply( mw.message, arguments ).toString();
+	return mw.message.apply( mw, arguments ).toString();
 };
 
 /**
