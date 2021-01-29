@@ -51,11 +51,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$this->client = new MemcachedClient( $params );
 		$this->client->set_servers( $params['servers'] );
-	}
-
-	public function setDebug( $enabled ) {
-		parent::debug( $enabled );
-		$this->client->set_debug( $enabled );
+		$this->client->set_debug( true );
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {

@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * @group BagOStuff
  */
@@ -86,24 +84,6 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 		// But a fresh value is read from the backend
 		$backend->set( 'bar', true );
 		$this->assertTrue( $cache->get( 'bar' ) );
-	}
-
-	/**
-	 * @covers CachedBagOStuff::setDebug
-	 */
-	public function testSetDebug() {
-		$backend = new HashBagOStuff();
-		$cache = new CachedBagOStuff( $backend );
-		// Access private property 'debugMode'
-		$backend = TestingAccessWrapper::newFromObject( $backend );
-		$cache = TestingAccessWrapper::newFromObject( $cache );
-		$this->assertFalse( $backend->debugMode );
-		$this->assertFalse( $cache->debugMode );
-
-		$cache->setDebug( true );
-		// Should have set both
-		$this->assertTrue( $backend->debugMode, 'sets backend' );
-		$this->assertTrue( $cache->debugMode, 'sets self' );
 	}
 
 	/**
