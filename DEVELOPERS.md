@@ -9,8 +9,8 @@ general information on contributing to MediaWiki.
 MediaWiki provides an extendable local development environment based on
 Docker Compose.
 
-The default environment provides PHP, Apache, XDebug and a SQLite database.
-(**Do not run this stack in production! Bad things might happen!**)
+The default environment provides PHP, Apache, Xdebug and a SQLite database.
+(**Do not run this stack in production! Bad things would happen!**)
 
 More documentation as well as example overrides and configuration recipes
 are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
@@ -36,22 +36,31 @@ You'll need a locally running Docker and Docker Compose:
 
 **Linux users**
 
-* We recommend installing `docker-compose` by [downloading the binary release](https://docs.docker.com/compose/install/#install-compose-on-linux-systems). You can also use `pip`, your OS package manager, or even run it in a container, but downloading the binary release is the easiest method.
-* Follow the instructions to ["Manage Docker as a non-root user"](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
+* We recommend installing `docker-compose` by [downloading the binary
+  release][dc-release]. You can also use `pip`, your OS package manager, or
+  even run it in a container, but downloading the binary release is the easiest
+  method.
+* Follow the instructions to ["Manage Docker as a non-root user"][dc-non-root]
+
+[dc-release]: https://docs.docker.com/compose/install/#install-compose-on-linux-systems
+[dc-non-root]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
 
 ---
 
 ### Quickstart
 
-Using a text editor, create a `.env` file in the root of the MediaWiki core repository, and copy these contents into that file:
+Using a text editor, create a `.env` file in the root of the MediaWiki core
+repository, and copy these contents into that file:
 
-```bash
-MW_DOCKER_PORT=8080
+```sh
 MW_SCRIPT_PATH=/w
 MW_SERVER=http://localhost:8080
+MW_DOCKER_PORT=8080
 MEDIAWIKI_USER=Admin
 MEDIAWIKI_PASSWORD=dockerpass
-XDEBUG_CONFIG=''
+XDEBUG_CONFIG=
+XDEBUG_ENABLE=true
+XHPROF_ENABLE=true
 ```
 
 #### Linux users
@@ -64,14 +73,21 @@ If you are on a Linux system, first create a
 ```yaml
 version: '3.7'
 services:
+  # On Linux, these lines ensure file ownership is set to your host user/group
   mediawiki:
-    # On Linux, these lines ensure file ownership is set to your host user/group
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
+    # Necessary for Xdebug:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  mediawiki-web:
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
+  mediawiki-jobrunner:
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
 ```
 
 Run the following command to add your user ID and group ID to your `.env` file:
 
-```bash
+```sh
 echo "MW_DOCKER_UID=$(id -u)
 MW_DOCKER_GID=$(id -g)" >> .env
 ```
@@ -173,7 +189,8 @@ npm run api-testing
 You can override the default services with a `docker-compose.override.yml`
 file, and configure those overrides with changes to `LocalSettings.php`.
 
-Example overrides and configurations can be found at [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker)
+Example overrides and configurations can be found at
+[MediaWiki-Docker][mw-docker].
 
 After updating `docker-compose.override.yml`, run `docker-compose down`
 followed by `docker-compose up -d` for changes to take effect.
@@ -198,35 +215,65 @@ Configure MediaWiki to use the skin:
 echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
 ```
 
-#### XDebug
+#### Xdebug
 
-You can override the XDebug configuration included with the default image by
-passing `XDEBUG_CONFIG={your config}` in the `.env` file at the root of the MediaWiki repository:
+By default, you will need to set `XDEBUG_TRIGGER=1` in the GET/POST, or as an
+environment variable, to turn on Xdebug for a request.
+
+You can also install a browser extension for controlling whether Xdebug is
+active.  See the [official Xdebug Step Debugging][step-debug], particularly the
+"Activating Step Debugging" section, for more details.
+
+[step-debug]: https://xdebug.org/docs/step_debug
+
+If you wish to run Xdebug on every request, you can set
+`start_with_request=yes` in `XDEBUG_CONFIG` in your .env file:
 
 ```
-XDEBUG_CONFIG=remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
+XDEBUG_CONFIG=start_with_request=yes
 ```
+
+You can pass any of Xdebug's configuration values in this variable.  For example:
+
+```
+XDEBUG_CONFIG=client_host=192.168.42.34 client_port=9000 log=/tmp/xdebug.log
+```
+
+This shouldn't be necessary for basic use cases, but see [the Xdebug settings
+documentation](https://xdebug.org/docs/all_settings) for available settings.
 
 ##### Troubleshooting
 
-###### Port conflicts
+###### Xdebug ports
 
-If you installed php-fpm on your host, that is listening on port 9000 and
-will conflict with XDebug. The workaround is to tell your IDE to listen on a
-different port (e.g. 9009) and to set the configuration in your
-`.env` file: `XDEBUG_CONFIG=remote_port=9009`
+Older versions of Xdebug used port 9000, which could conflict with php-fpm
+running on the host.  This document used to recommend a workaround of telling
+your IDE to listen on a different port (e.g. 9009) and setting
+`XDEBUG_CONFIG=remote_port=9009` in your `.env`.
+
+Xdebug 3.x now uses the `client_port` value, which defaults to 9003.  This
+should no longer conflict with local php-fpm installations, but you may need
+to change the settings in your IDE or debugger.
 
 ###### Linux desktop, host not found
 
-The image uses `host.docker.internal` as the `remote_host` value which
-should work for Docker for Mac/Windows. On Linux hosts, you need to specify
-the hostname or IP address of your host. The IP address works more reliably.
-You can obtain it by running e.g. `ip -4 addr show docker0` and copying the
-IP address into the config, like `XDEBUG_CONFIG=remote_host=172.17.0.1`
+The image uses `host.docker.internal` as the `client_host` value which
+should allow Xdebug work for Docker for Mac/Windows.
+
+With the latest version of Docker on Linux hosts, this _should_ work
+transparently as long as you're using the recommended
+`docker-compose.override.yml`.  If it doesn't, first check `docker version` to
+make sure you're running Docker 20.10.2 or above, and `docker-compose version`
+to make sure it's 1.27.4 or above.
+
+If Xdebug still doesn't work, try specifying the hostname or IP address of your
+host. The IP address works more reliably.  You can obtain it by running e.g.
+`ip -4 addr show docker0` and copying the IP address into the config in `.env`,
+like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 
 ###### Generating logs
 
-Switching on the remote log for XDebug comes at a performance cost so only
+Switching on the remote log for Xdebug comes at a performance cost so only
 use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG=remote_log=/tmp/xdebug.log`
 
 ###### "(Cannot access the database: Unknown error (localhost))"
