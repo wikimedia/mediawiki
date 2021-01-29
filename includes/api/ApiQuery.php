@@ -119,12 +119,7 @@ class ApiQuery extends ApiBase {
 		'allmessages' => ApiQueryAllMessages::class,
 		'authmanagerinfo' => ApiQueryAuthManagerInfo::class,
 		'siteinfo' => ApiQuerySiteinfo::class,
-		'userinfo' => [
-			'class' => ApiQueryUserInfo::class,
-			'services' => [
-				'UserGroupManager'
-			]
-		],
+		'userinfo' => ApiQueryUserInfo::class,
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,
 		'tokens' => ApiQueryTokens::class,
 		'languageinfo' => [
