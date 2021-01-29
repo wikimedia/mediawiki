@@ -1478,36 +1478,4 @@ abstract class DatabaseUpdater {
 		return $func( ...$params );
 	}
 
-	/**
-	 * Rename multiple indexes from an existing table. To rename
-	 * a single index, please use self::renameIndex().
-	 *
-	 * @note Code in a LoadExtensionSchemaUpdates handler should
-	 *       use renameExtensionIndex to rename each index individually.
-	 *
-	 * @stable to override
-	 * @since 1.36
-	 * @param string $table Name of the table to modify
-	 * @param string $patch Path to the patch file.
-	 * @param int $count How many indexes are being renamed.
-	 * @param bool $fullpath Whether to treat $patch path as a relative or not
-	 * @return bool False if this was skipped because schema changes are skipped
-	 */
-	protected function renameIndexes( $table, $patch, $count, $fullpath = false ) {
-		if ( !$this->doTable( $table ) ) {
-			return true;
-		}
-
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
-			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-			return true;
-		}
-
-		return $this->applyPatch(
-			$patch,
-			$fullpath,
-			"Renaming $count indexes on $table table"
-		);
-	}
-
 }
