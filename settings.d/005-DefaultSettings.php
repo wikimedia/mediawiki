@@ -4,7 +4,6 @@ $wgLocalTZoffset = date("Z") / 60;
 $wgLocaltimezone = 'Europe/Berlin';
 $wgUrlProtocols[] = 'file://';
 $wgNamespacesWithSubpages[NS_MAIN] = true;
-$wgExternalLinkTarget = '_blank';
 $wgBlockDisablesLogin = true;
 $wgEnableUploads = true;
 
