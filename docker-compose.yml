@@ -8,8 +8,11 @@ version: '3.7'
 services:
   mediawiki:
     image: docker-registry.wikimedia.org/dev/stretch-php72-fpm:2.0.0
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
     environment:
       COMPOSER_CACHE_DIR: '/var/www/html/w/cache/composer'
       MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
@@ -27,17 +30,22 @@ services:
 
   mediawiki-web:
     image: docker-registry.wikimedia.org/dev/stretch-apache2:1.0.0-s1
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
     volumes:
       - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
     environment:
       MW_LOG_DIR: /var/www/html/w/cache
-
   mediawiki-jobrunner:
     image: docker-registry.wikimedia.org/dev/stretch-php72-jobrunner:2.0.0
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
     environment:
       MW_LOG_DIR: /var/www/html/w/cache
       MW_INSTALL_PATH: /var/www/html/w

@@ -63,20 +63,15 @@ XDEBUG_ENABLE=true
 XHPROF_ENABLE=true
 ```
 
-#### Linux users
-
-If you are on a Linux system, first create a
-
-`docker-compose.override.yml` containing the following:
-
+Next, create a `docker-compose.override.yml` containing the following:
 
 ```yaml
 version: '3.7'
 services:
-  # On Linux, these lines ensure file ownership is set to your host user/group
+  # These lines ensure file ownership is set to your host user/group
   mediawiki:
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
-    # Necessary for Xdebug:
+    # Linux users only: this extra_hosts section is necessary for Xdebug:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   mediawiki-web:
@@ -259,6 +254,17 @@ to change the settings in your IDE or debugger.
 
 The image uses `host.docker.internal` as the `client_host` value which
 should allow Xdebug work for Docker for Mac/Windows.
+
+On Linux, you need to create a `docker-compose.override.yml` file with the following
+contents:
+
+``` lang=yaml
+version: '3.7'
+services:
+  mediawiki:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+```
 
 With the latest version of Docker on Linux hosts, this _should_ work
 transparently as long as you're using the recommended
