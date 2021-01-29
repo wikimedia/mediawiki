@@ -22,7 +22,8 @@
 
 /**
  * Use this trait in classes which have properties for which public access
- * is deprecated. Set the list of properties in $deprecatedPublicProperties
+ * is deprecated or implementation has been move to another class.
+ * Set the list of properties in $deprecatedPublicProperties
  * and make the properties non-public. The trait will preserve public access
  * but issue deprecation warnings when it is needed.
  *
@@ -32,11 +33,25 @@
  *         protected $bar;
  *         public function __construct() {
  *             $this->deprecatePublicProperty( 'bar', '1.21', __CLASS__ );
+ *             $this->deprecatePublicPropertyFallback(
+ *                 'movedValue',
+ *                 '1.35',
+ *                 function () {
+ *                     return MediawikiServices()::getInstance()
+ *                         ->getNewImplementationService()->getValue();
+ *                 },
+ *                 function ( $value ) {
+ *                     MediawikiServices()::getInstance()
+ *                         ->getNewImplementationService()->setValue( $value );
+ *                 }
+ *             );
  *         }
  *     }
  *
  *     $foo = new Foo;
  *     $foo->bar; // works but logs a warning
+ *     $foo->movedValue = 10; // works but logs a warning
+ *     $movedValue = $foo->movedValue; // also works
  *
  * Cannot be used with classes that have their own __get/__set methods.
  *
@@ -45,8 +60,9 @@
 trait DeprecationHelper {
 
 	/**
-	 * List of deprecated properties, in <property name> => [<version>, <class>, <component>] format
-	 * where <version> is the MediaWiki version where the property got deprecated, <class> is the
+	 * List of deprecated properties, in <property name> => [<version>, <class>,
+	 * <component>, <getter>, <setter> ] format where <version> is the MediaWiki version
+	 * where the property got deprecated, <class> is the
 	 * the name of the class defining the property, <component> is the MediaWiki component
 	 * (extension, skin etc.) for use in the deprecation warning) or null if it is MediaWiki.
 	 * E.g. [ 'mNewRev' => [ '1.32', 'DifferenceEngine', null ]
@@ -57,6 +73,9 @@ trait DeprecationHelper {
 	/**
 	 * Mark a property as deprecated. Only use this for properties that used to be public and only
 	 *   call it in the constructor.
+	 *
+	 * @note  Providing callbacks makes it not serializable
+	 *
 	 * @param string $property The name of the property.
 	 * @param string $version MediaWiki version where the property became deprecated.
 	 * @param string|null $class The class which has the deprecated property. This can usually be
@@ -66,16 +85,60 @@ trait DeprecationHelper {
 	 * @see wfDeprecated()
 	 */
 	protected function deprecatePublicProperty(
-		$property, $version, $class = null, $component = null
+		$property,
+		$version,
+		$class = null,
+		$component = null
 	) {
-		$this->deprecatedPublicProperties[$property] = [ $version, $class ?: __CLASS__, $component ];
+		$this->deprecatedPublicProperties[$property] = [
+			$version,
+			$class ?: __CLASS__,
+			$component,
+			null, null
+		];
+	}
+
+	/**
+	 * Mark a removed public property as deprecated and provide fallback getter and setter callables.
+	 * Only use this for properties that used to be public and only
+	 * call it in the constructor.
+	 *
+	 * @param string $property The name of the property.
+	 * @param string $version MediaWiki version where the property became deprecated.
+	 * @param callable $getter an user provided getter that implements a `get` logic for the property
+	 * @param callable|null $setter an user provided getter that implements a `set` logic for the property
+	 * @param string|null $class The class which has the deprecated property.
+	 * @param string|null $component
+	 *
+	 * @since 1.36
+	 * @see wfDeprecated()
+	 */
+	protected function deprecatePublicPropertyFallback(
+		string $property,
+		string $version,
+		callable $getter,
+		?callable $setter = null,
+		$class = null,
+		$component = null
+	) {
+		$this->deprecatedPublicProperties[$property] = [
+			$version,
+			$class ?: __CLASS__,
+			null,
+			$getter,
+			$setter,
+			$component
+		];
 	}
 
 	public function __get( $name ) {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
-			list( $version, $class, $component ) = $this->deprecatedPublicProperties[$name];
+			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
 			wfDeprecated( $qualifiedName, $version, $component, 3 );
+			if ( $getter ) {
+				return $getter();
+			}
 			return $this->$name;
 		}
 
@@ -93,10 +156,16 @@ trait DeprecationHelper {
 
 	public function __set( $name, $value ) {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
-			list( $version, $class, $component ) = $this->deprecatedPublicProperties[$name];
+			list( $version, $class, $component, , $setter ) = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
 			wfDeprecated( $qualifiedName, $version, $component, 3 );
-			$this->$name = $value;
+			if ( $setter ) {
+				$setter( $value );
+			} elseif ( property_exists( $this, $name ) ) {
+				$this->$name = $value;
+			} else {
+				trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
+			}
 			return;
 		}
 

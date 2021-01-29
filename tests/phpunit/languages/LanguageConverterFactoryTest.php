@@ -167,12 +167,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$testConverter = TestingAccessWrapper::newFromObject( $converter );
 			$this->assertSame( $lang, $testConverter->mLangObj, "Language should be as provided" );
 
-			$this->assertEquals( $code, $testConverter->mMainLanguageCode,
+			$this->assertEquals( $code, $testConverter->getMainCode(),
 				"mMainLanguageCode should be as $code" );
-			$this->assertEquals( $manualLevel, $testConverter->mManualLevel, "Manual Level" );
+			$this->assertEquals( $manualLevel, $testConverter->getManualLevel(), "Manual Level" );
 
-			$this->assertEquals( $variants, $testConverter->mVariants, "Variants" );
-			$this->assertEquals( $variantFallbacks, $testConverter->mVariantFallbacks, "Variant Fallbacks" );
+			$this->assertEquals( $variants, $testConverter->getVariants(), "Variants" );
+			$this->assertEquals( $variantFallbacks, $testConverter->getVariantsFallbacks(), "Variant Fallbacks" );
 			$defaultFlags = [
 				'A' => 'A',
 				'T' => 'T',
@@ -184,7 +184,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			];
 			$this->assertArraySubmapSame(
 				array_merge( $defaultFlags, $flags ),
-				$converter->mFlags,
+				$converter->getFlags(),
 				"Flags"
 			);
 		}

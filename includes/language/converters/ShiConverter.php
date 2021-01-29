@@ -34,9 +34,6 @@
  * @ingroup Language
  */
 class ShiConverter extends LanguageConverterSpecific {
-
-	protected $mDoContentConvert;
-
 	// The Tifinagh alphabet sequence is based on
 	// "Dictionnaire Général de la Langue Amazighe Informatisé"
 	// by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
@@ -155,18 +152,37 @@ class ShiConverter extends LanguageConverterSpecific {
 	];
 
 	/**
-	 * @param Language $langobj
+	 * Get main language code.
+	 * @since 1.36
+	 *
+	 * @return string
 	 */
-	public function __construct( $langobj ) {
-		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
-		$variantfallbacks = [
+	public function getMainCode(): string {
+		return 'shi';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [ 'shi', 'shi-tfng', 'shi-latn' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
 			'shi' => 'shi-tfng',
 			'shi-tfng' => 'shi',
 			'shi-latn' => 'shi',
 		];
-
-		$flags = [];
-		parent::__construct( $langobj, 'shi', $variants, $variantfallbacks, $flags );
 	}
 
 	protected function loadDefaultTables() {

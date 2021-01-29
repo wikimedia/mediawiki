@@ -25,14 +25,25 @@
  * @ingroup Language
  */
 class ZhConverter extends LanguageConverter {
-	/**
-	 * @param Language $langobj
-	 */
-	public function __construct( $langobj ) {
-		$this->mDescCodeSep = '：';
-		$this->mDescVarSep = '；';
 
-		$variants = [
+	/**
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getMainCode(): string {
+		return 'zh';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [
 			'zh',
 			'zh-hans',
 			'zh-hant',
@@ -43,9 +54,26 @@ class ZhConverter extends LanguageConverter {
 			'zh-sg',
 			'zh-tw'
 		];
+	}
 
-		$variantfallbacks = [
-			'zh' => [ 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ],
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
+			'zh' => [
+				'zh-hans',
+				'zh-hant',
+				'zh-cn',
+				'zh-tw',
+				'zh-hk',
+				'zh-sg',
+				'zh-mo',
+				'zh-my'
+			],
 			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my' ],
 			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo' ],
 			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my' ],
@@ -55,17 +83,49 @@ class ZhConverter extends LanguageConverter {
 			'zh-hk' => [ 'zh-hant', 'zh-mo', 'zh-tw' ],
 			'zh-mo' => [ 'zh-hant', 'zh-hk', 'zh-tw' ],
 		];
-		$ml = [
+	}
+
+	/**
+	 * Get manual level limits for variants supported by converter.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getAdditionalManualLevel(): array {
+		return [
 			'zh' => 'disable',
 			'zh-hans' => 'unidirectional',
 			'zh-hant' => 'unidirectional',
 		];
+	}
 
-		parent::__construct( $langobj, 'zh',
-			$variants,
-			$variantfallbacks,
-			[],
-			$ml );
+	/**
+	 * Get desc. code separator.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getDescCodeSeparator(): string {
+		return '：';
+	}
+
+	/**
+	 * Get desc. var separator.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getDescVarSeparator(): string {
+		return '；';
+	}
+
+	/**
+	 * Get variant names.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantNames(): array {
 		$names = [
 			'zh' => '原文',
 			'zh-hans' => '简体',
@@ -77,7 +137,7 @@ class ZhConverter extends LanguageConverter {
 			'zh-sg' => '新加坡',
 			'zh-my' => '大马',
 		];
-		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
+		return array_merge( parent::getVariantNames(), $names );
 	}
 
 	protected function loadDefaultTables() {

@@ -39,12 +39,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		} ) );
 		$this->lang->expects( $this->never() )
 			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
-		$this->lc = new DummyConverter(
-			$this->lang, 'tg',
-			# Adding 'sgs' as a variant to ensure we handle deprecated codes
-			# adding 'simple' as a variant to ensure we handle non BCP 47 codes
-			[ 'tg', 'tg-latn', 'sgs', 'simple' ]
-		);
+		$this->lc = new DummyConverter( $this->lang );
 	}
 
 	protected function tearDown() : void {
