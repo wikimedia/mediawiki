@@ -63,7 +63,7 @@ interface ProperPageIdentity extends PageIdentity {
 	 *
 	 * @return int
 	 */
-	public function getId( $wikiId = PageIdentity::LOCAL ): int;
+	public function getId( $wikiId = self::LOCAL ): int;
 
 	/**
 	 * Always true.
