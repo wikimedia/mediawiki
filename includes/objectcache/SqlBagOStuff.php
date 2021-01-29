@@ -275,14 +275,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$valueSize = false;
 		}
 
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key ], null, [ $valueSize ] );
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
 
 		return $result;
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$values = [];
-		$valueSizes = [];
+		$valueSizeByKey = [];
 
 		$blobsByKey = $this->fetchBlobMulti( $keys );
 		foreach ( $keys as $key ) {
@@ -292,13 +292,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				if ( $value !== false ) {
 					$values[$key] = $value;
 				}
-				$valueSizes[] = strlen( $blob );
+				$valueSize = strlen( $blob );
 			} else {
-				$valueSizes[] = false;
+				$valueSize = false;
 			}
+			$valueSizeByKey[$key] = [ null, $valueSize ];
 		}
 
-		$this->updateOpStats( self::METRIC_OP_GET, $keys, null, $valueSizes );
+		$this->updateOpStats( self::METRIC_OP_GET, $valueSizeByKey );
 
 		return $values;
 	}
@@ -440,8 +441,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function updateTable( $op, $db, $table, $tableKeys, $data, $dbExpiry ) {
 		$success = true;
 
-		$valueSizes = [];
 		if ( $op === self::$OP_ADD ) {
+			$valueSizesByKey = [];
+
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
 				$serialized = $this->serialize( $data[$key] );
@@ -450,7 +452,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
-				$valueSizes[] = strlen( $serialized );
+				$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
 			}
 			$db->delete(
 				$table,
@@ -464,8 +466,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$success = ( $db->affectedRows() == count( $rows ) );
 
-			$this->updateOpStats( self::METRIC_OP_ADD, $tableKeys, $valueSizes );
+			$this->updateOpStats( self::METRIC_OP_ADD, $valueSizesByKey );
 		} elseif ( $op === self::$OP_SET ) {
+			$valueSizesByKey = [];
+
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
 				$serialized = $this->serialize( $data[$key] );
@@ -474,11 +478,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
-				$valueSizes[] = strlen( $serialized );
+				$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
 			}
 			$db->replace( $table, 'keyname', $rows, __METHOD__ );
 
-			$this->updateOpStats( self::METRIC_OP_SET, $tableKeys, $valueSizes );
+			$this->updateOpStats( self::METRIC_OP_SET, $valueSizesByKey );
 		} elseif ( $op === self::$OP_DELETE ) {
 			$db->delete( $table, [ 'keyname' => $tableKeys ], __METHOD__ );
 
@@ -551,7 +555,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$success = $this->waitForReplication( $shardIndex ) && $success;
 		}
 
-		$this->updateOpStats( self::METRIC_OP_CAS, [ $key ], [ strlen( $serialized ) ] );
+		$this->updateOpStats( self::METRIC_OP_CAS, [ $key => [ strlen( $serialized ), null ] ] );
 
 		return $success;
 	}
