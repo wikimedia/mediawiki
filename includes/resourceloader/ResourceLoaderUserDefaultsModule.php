@@ -19,6 +19,8 @@
  * @author Ori Livneh
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module for default user preferences.
  *
@@ -40,8 +42,11 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
+		// TODO inject
+		$defaults = MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+
 		return 'mw.user.options.set('
-			. $context->encodeJson( User::getDefaultOptions() )
+			. $context->encodeJson( $defaults )
 			. ');';
 	}
 }
