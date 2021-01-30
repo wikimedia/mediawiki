@@ -35,12 +35,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
 			// 1.2
-			[ 'addField', 'ipblocks', 'ipb_id', 'patch-ipblocks.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ],
 			[ 'doInterwikiUpdate' ],
-			[ 'doIndexUpdate' ],
-			[ 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ],
-			[ 'addIndex', 'recentchanges', 'new_name_timestamp', 'patch-rc-newindex.sql' ],
 
 			// 1.3
 			[ 'addField', 'user', 'user_real_name', 'patch-user-realname.sql' ],
@@ -565,23 +560,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			true,
 			'Adding default interwiki definitions'
 		);
-	}
-
-	/**
-	 * Check that proper indexes are in place
-	 */
-	protected function doIndexUpdate() {
-		$meta = $this->db->fieldInfo( 'recentchanges', 'rc_timestamp' );
-		if ( $meta === false ) {
-			throw new MWException( 'Missing rc_timestamp field of recentchanges table. Should not happen.' );
-		}
-		if ( $meta->isMultipleKey() ) {
-			$this->output( "...indexes seem up to 20031107 standards.\n" );
-
-			return;
-		}
-
-		$this->applyPatch( 'patch-indexes.sql', true, "Updating indexes to 20031107" );
 	}
 
 	protected function doOldLinksUpdate() {
