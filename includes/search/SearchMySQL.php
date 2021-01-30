@@ -27,7 +27,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Search engine hook for MySQL 4+
+ * Search engine hook for MySQL
  * @ingroup Search
  */
 class SearchMySQL extends SearchDatabase {
