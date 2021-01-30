@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserGroupManager;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -39,16 +38,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	/** @var array */
 	private $prop = [];
 
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	public function __construct(
-		ApiQuery $query,
-		$moduleName,
-		UserGroupManager $userGroupManager
-	) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ui' );
-		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute() {
@@ -156,7 +147,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
-			$vals['changeablegroups'] = $this->userGroupManager->getGroupsChangeableBy( $this->getAuthority() );
+			$vals['changeablegroups'] = $user->changeableGroups();
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
