@@ -318,22 +318,21 @@ class WebRequest {
 	}
 
 	/**
-	 * Get the unique request ID.
-	 * This is either the value of the UNIQUE_ID envvar (if present) or a
-	 * randomly-generated 24-character string.
+	 * Get the current request ID.
+	 *
+	 * This is usually based on the `X-Request-Id` header, or the `UNIQUE_ID`
+	 * environment variable, falling back to (process cached) randomly-generated string.
 	 *
 	 * @return string
 	 * @since 1.27
 	 */
 	public static function getRequestId() {
-		// This method is called from various error handlers and should be kept simple.
-
+		// This method is called from various error handlers and MUST be kept simple and stateless.
 		if ( !self::$reqId ) {
 			global $wgAllowExternalReqID;
-			$id = $wgAllowExternalReqID
-				? RequestContext::getMain()->getRequest()->getHeader( 'X-Request-Id' )
-				: null;
-			if ( !$id ) {
+			if ( $wgAllowExternalReqID ) {
+				$id = $_SERVER['HTTP_X_REQUEST_ID'] ?? $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
+			} else {
 				$id = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
 			}
 			self::$reqId = $id;
