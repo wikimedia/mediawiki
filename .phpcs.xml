@@ -244,6 +244,15 @@
 	<rule ref="MediaWiki.Commenting.MissingCovers.MissingCovers">
 		<exclude-pattern>tests/phpunit/structure/*</exclude-pattern>
 	</rule>
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+		<!--
+			T273340: Rule not to be enabled on any other file.
+			PHPVersionCheck.php requires syntax to be old PHP compatible.
+			The rest should therefore use [] rather than array() as per the
+			MediaWiki style guide.
+		-->
+		<include-pattern>includes/PHPVersionCheck\.php</include-pattern>
+	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
