@@ -1934,7 +1934,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testChangeableGroups() {
 		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$this->hideDeprecated( 'User::changeableGroups' );
 
 		$allGroups = User::getAllGroups();
 
@@ -1998,7 +1997,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testChangeableByGroup( string $group, array $expected ) {
 		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$this->hideDeprecated( 'User::changeableByGroup' );
 		$this->assertGroupsEquals( $expected, User::changeableByGroup( $group ) );
 	}
 

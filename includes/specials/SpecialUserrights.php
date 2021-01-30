@@ -1078,7 +1078,7 @@ class UserrightsPage extends SpecialPage {
 	 *  ]
 	 */
 	protected function changeableGroups() {
-		return $this->userGroupManager->getGroupsChangeableBy( $this->getContext()->getAuthority() );
+		return $this->getUser()->changeableGroups();
 	}
 
 	/**
