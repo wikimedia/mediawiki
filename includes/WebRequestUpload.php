@@ -22,6 +22,9 @@
 
 use MediaWiki\MediaWikiServices;
 
+// The point of this class is to be a wrapper around super globals
+// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+
 /**
  * Object to access the $_FILES array
  *

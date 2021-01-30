@@ -97,17 +97,32 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 	}
 }
 
-/** Test function #1 for XhprofTest::testCallAny */
+/**
+ * Test function #1 for XhprofTest::testCallAny
+ * @param int $a
+ * @param int $b
+ * @return int
+ */
 function wfTestCallAny_func1( $a, $b ) {
 	return $a * $b;
 }
 
-/** Test function #2 for XhprofTest::testCallAny */
+/**
+ * Test function #2 for XhprofTest::testCallAny
+ * @param int $a
+ * @param int $b
+ * @return int
+ */
 function wfTestCallAny_func2( $a, $b ) {
 	return $a + $b;
 }
 
-/** Test function #3 for XhprofTest::testCallAny */
+/**
+ * Test function #3 for XhprofTest::testCallAny
+ * @param int $a
+ * @param int $b
+ * @return int
+ */
 function wfTestCallAny_func3( $a, $b ) {
 	return $a - $b;
 }

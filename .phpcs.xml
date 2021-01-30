@@ -5,6 +5,7 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPublic" />
@@ -13,6 +14,7 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
+		<exclude name="MediaWiki.PHPUnit.AssertCount.NotUsed" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgContLang" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
@@ -22,11 +24,9 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.is_resource" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-	</rule>
-	<!-- TODO Still to be done -->
-	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
-		<exclude-pattern>includes/</exclude-pattern>
+		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">

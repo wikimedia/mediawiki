@@ -1254,7 +1254,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function doCategoryLinkAsserts( OutputPage $op, $expectedNormal, $expectedHidden ) {
 		$catLinks = $op->getCategoryLinks();
-		$this->assertSame( (bool)$expectedNormal + (bool)$expectedHidden, count( $catLinks ) );
+		$this->assertCount( (bool)$expectedNormal + (bool)$expectedHidden, $catLinks );
 		if ( $expectedNormal ) {
 			$this->assertSame( count( $expectedNormal ), count( $catLinks['normal'] ) );
 		}

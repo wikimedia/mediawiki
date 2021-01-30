@@ -218,7 +218,7 @@ namespace MediaWiki\HookContainer {
 			// handlers registered in 2 different ways
 			$this->assertCount( 2, $hookContainer->getLegacyHandlers( 'MWTestHook' ) );
 			$hookContainer->run( 'MWTestHook' );
-			$this->assertEquals( $numCalls, 2 );
+			$this->assertEquals( 2, $numCalls );
 
 			// Remove one of the handlers that increments $called
 			ScopedCallback::consume( $reset );
@@ -226,7 +226,7 @@ namespace MediaWiki\HookContainer {
 
 			$numCalls = 0;
 			$hookContainer->run( 'MWTestHook' );
-			$this->assertEquals( $numCalls, 1 );
+			$this->assertSame( 1, $numCalls );
 		}
 
 		/**

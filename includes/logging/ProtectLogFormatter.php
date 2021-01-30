@@ -91,7 +91,7 @@ class ProtectLogFormatter extends LogFormatter {
 		$title = $this->entry->getTarget();
 		$links = [];
 		if ( $title->exists() ) {
-			$links [] = $linkRenderer->makeLink( $title,
+			$links[] = $linkRenderer->makeLink( $title,
 				$this->msg( 'hist' )->text(),
 				[],
 				[
