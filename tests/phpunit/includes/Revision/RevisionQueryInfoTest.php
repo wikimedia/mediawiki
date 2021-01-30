@@ -396,6 +396,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param array $expected
 	 * @param array $actual
+	 * @param string|null $message
 	 */
 	private function assertArrayEqualsIgnoringIntKeyOrder(
 		array $expected,

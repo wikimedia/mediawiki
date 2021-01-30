@@ -130,6 +130,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	 * @param Title $title
 	 * @param null|int $id
 	 * @param int $visibility
+	 * @param Content[]|null $content
 	 * @return RevisionRecord
 	 */
 	private function getMockRevision(

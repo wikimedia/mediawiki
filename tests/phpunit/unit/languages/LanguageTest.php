@@ -12,6 +12,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 	 * @param array $options Valid keys:
 	 *   'code'
 	 *   'grammarTransformCache'
+	 * @return Language
 	 */
 	private function getObj( array $options = [] ) {
 		return new Language(

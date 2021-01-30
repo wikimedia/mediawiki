@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
+	 * @param array|null $options
 	 * @return HttpRequestFactory
 	 */
 	private function newFactory( $options = null ) {
@@ -29,6 +30,9 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param MWHttpRequest $req
+	 * @param string $expectedUrl
+	 * @param array $expectedOptions
 	 * @return HttpRequestFactory
 	 */
 	private function newFactoryWithFakeRequest(
@@ -61,6 +65,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param Status|string $result
 	 * @return MWHttpRequest
 	 */
 	private function newFakeRequest( $result ) {

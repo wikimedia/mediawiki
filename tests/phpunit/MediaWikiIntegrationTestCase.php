@@ -157,6 +157,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @stable for calling
+	 * @param string|null $name
+	 * @param array $data
+	 * @param string $dataName
 	 */
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -1725,6 +1728,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Applies the schema overrides returned by getSchemaOverrides(),
 	 * after undoing any previously applied schema overrides.
 	 * Called once per test class, just before addDataOnce().
+	 * @param IMaintainableDatabase $db
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.

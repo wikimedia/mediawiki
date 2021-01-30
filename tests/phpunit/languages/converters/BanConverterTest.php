@@ -103,7 +103,12 @@ class BanConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertConverted( $text, 'ban', $msg );
 	}
 
-	/** Wrapper for converter::convertTo() method */
+	/**
+	 * Wrapper for converter::convertTo() method
+	 * @param string $text
+	 * @param string $variant
+	 * @return string
+	 */
 	protected function convertTo( $text, $variant ) {
 		return $this->getLanguageConverter()->convertTo( $text, $variant );
 	}

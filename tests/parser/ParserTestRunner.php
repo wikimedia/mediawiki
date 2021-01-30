@@ -576,6 +576,8 @@ class ParserTestRunner {
 	 * isn't used because it doesn't alter the result of
 	 * Interwiki::getAllPrefixes() and so is incompatible with some users,
 	 * including Parsoid.)
+	 * @param array &$setup
+	 * @param array &$teardown
 	 */
 	private function appendInterwikiSetup( &$setup, &$teardown ) {
 		static $testInterwikis = [

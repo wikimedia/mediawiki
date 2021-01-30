@@ -20,13 +20,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	/** @var User */
 	private $sysop;
 
-	/** @var integer */
+	/** @var int */
 	private $expiredBlockId = 11111;
 
-	/** @var integer */
+	/** @var int */
 	private $unexpiredBlockId = 22222;
 
-	/** @var integer */
+	/** @var int */
 	private $autoblockId = 33333;
 
 	/**

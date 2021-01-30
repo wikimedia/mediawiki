@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $extraInfo To pass to LocalRepo constructor
+	 * @return LocalRepo
 	 */
 	private function newRepo( array $extraInfo = [] ) {
 		return new LocalRepo( $extraInfo + [

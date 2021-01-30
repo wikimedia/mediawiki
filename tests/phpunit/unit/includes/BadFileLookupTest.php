@@ -25,7 +25,12 @@ WIKITEXT;
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** Shared with GlobalWithDBTest */
+	/**
+	 * Shared with GlobalWithDBTest
+	 * @param string $name
+	 * @param bool &$bad
+	 * @return bool
+	 */
 	public static function badImageHook( $name, &$bad ) {
 		switch ( $name ) {
 			case 'Hook_bad.jpg':
@@ -71,6 +76,7 @@ WIKITEXT;
 
 	/**
 	 * Just returns null for every findFile().
+	 * @return RepoGroup
 	 */
 	private function getMockRepoGroupNull() {
 		$mock = $this->createMock( RepoGroup::class );

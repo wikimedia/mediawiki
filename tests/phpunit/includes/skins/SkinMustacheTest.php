@@ -10,6 +10,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
+	 * @param string $html
+	 * @param Title $title
 	 * @return MockObject|OutputPage
 	 */
 	private function getMockOutputPage( $html, $title ) {

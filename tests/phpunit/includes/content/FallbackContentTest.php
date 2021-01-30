@@ -7,6 +7,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $data
+	 * @param string $type
 	 *
 	 * @return FallbackContent
 	 */

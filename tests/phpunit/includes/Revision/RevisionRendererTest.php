@@ -107,6 +107,8 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param int $maxRev
+	 * @param bool $useMaster
 	 * @return RevisionRenderer
 	 */
 	private function newRevisionRenderer( $maxRev = 100, $useMaster = false ) {

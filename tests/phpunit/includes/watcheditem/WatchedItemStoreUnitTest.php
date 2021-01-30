@@ -30,6 +30,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param IDatabase $mockDb
+	 * @param string|null $expectedConnectionType
 	 * @return MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer(
@@ -53,6 +55,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param IDatabase $mockDb
+	 * @param string|null $expectedConnectionType
 	 * @return MockObject|LBFactory
 	 */
 	private function getMockLBFactory(
@@ -106,6 +110,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param bool $readOnly
 	 * @return MockObject|ReadOnlyMode
 	 */
 	private function getMockReadOnlyMode( $readOnly = false ) {
@@ -121,6 +126,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Assumes that only getSubjectPage and getTalkPage will ever be called, and everything passed
 	 * to them will have namespace 0.
+	 * @return NamespaceInfo
 	 */
 	private function getMockNsInfo() : NamespaceInfo {
 		$mock = $this->createMock( NamespaceInfo::class );
@@ -141,6 +147,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	 * @param array $callbacks Keys are method names, values are callbacks
 	 * @param array $counts Keys are method names, values are expected number of times to be called
 	 *   (default is any number is okay)
+	 * @return RevisionLookup
 	 */
 	private function getMockRevisionLookup(
 		array $callbacks = [], array $counts = []
@@ -158,6 +165,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param IDatabase $mockDb
 	 * @return MockObject|LinkBatchFactory
 	 */
 	private function getMockLinkBatchFactory( $mockDb ) {

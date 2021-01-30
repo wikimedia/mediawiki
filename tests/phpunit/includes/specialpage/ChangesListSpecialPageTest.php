@@ -82,7 +82,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $queryConditions;
 	}
 
-	/** helper to test SpecialRecentchanges::buildQuery() */
+	/**
+	 * helper to test SpecialRecentchanges::buildQuery()
+	 * @param array $expected
+	 * @param array|null $requestOptions
+	 * @param string $message
+	 * @param User|null $user
+	 */
 	private function assertConditions(
 		$expected,
 		$requestOptions = null,
@@ -115,7 +121,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $normalized;
 	}
 
-	/** return false if condition begins with 'rc_timestamp ' */
+	/**
+	 * @param array|string $var
+	 * @return bool false if condition begins with 'rc_timestamp '
+	 */
 	private static function filterOutRcTimestampCondition( $var ) {
 		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
