@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'id';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Mèḍia',
 	NS_SPECIAL          => 'Spesial',
