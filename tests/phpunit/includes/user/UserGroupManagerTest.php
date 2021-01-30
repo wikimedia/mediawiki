@@ -26,7 +26,6 @@ use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserEditTracker;
@@ -69,7 +68,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				UserGroupManager::CONSTRUCTOR_OPTIONS,
 				$configOverrides,
 				[
-					'AddGroups' => [],
 					'Autopromote' => [
 						'autoconfirmed' => [ APCOND_EDITCOUNT, 0 ]
 					],
@@ -79,10 +77,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 							'runtest' => true,
 						]
 					],
-					'GroupsAddToSelf' => [],
-					'GroupsRemoveFromSelf' => [],
 					'ImplicitGroups' => [ '*', 'user', 'autoconfirmed' ],
-					'RemoveGroups' => [],
 					'RevokePermissions' => [],
 				],
 				$services->getMainConfig()
@@ -1060,103 +1055,5 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				] )
 			] ]
 		);
-	}
-
-	private const CHANGEABLE_GROUPS_TEST_CONFIG = [
-		'GroupPermissions' => [],
-		'AddGroups' => [
-			'sysop' => [ 'rollback' ],
-			'bureaucrat' => [ 'sysop', 'bureaucrat' ],
-		],
-		'RemoveGroups' => [
-			'sysop' => [ 'rollback' ],
-			'bureaucrat' => [ 'sysop' ],
-		],
-		'GroupsAddToSelf' => [
-			'sysop' => [ 'flood' ],
-		],
-		'GroupsRemoveFromSelf' => [
-			'flood' => [ 'flood' ],
-		],
-	];
-
-	private function assertGroupsEquals( array $expected, array $actual ) {
-		// assertArrayEquals can compare without requiring the same order,
-		// but the elements of an array are still required to be in the same order,
-		// so just compare each element
-		$this->assertArrayEquals( $expected['add'], $actual['add'], 'Add must match' );
-		$this->assertArrayEquals( $expected['remove'], $actual['remove'], 'Remove must match' );
-		$this->assertArrayEquals( $expected['add-self'], $actual['add-self'], 'Add-self must match' );
-		$this->assertArrayEquals( $expected['remove-self'], $actual['remove-self'], 'Remove-self must match' );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\UserGroupManager::getGroupsChangeableBy
-	 */
-	public function testChangeableGroups() {
-		$manager = $this->getManager( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$allGroups = $manager->listAllGroups();
-
-		$user = $this->getTestUser()->getUser();
-		$changeableGroups = $manager->getGroupsChangeableBy( new SimpleAuthority( $user, [ 'userrights' ] ) );
-		$this->assertGroupsEquals(
-			[
-				'add' => $allGroups,
-				'remove' => $allGroups,
-				'add-self' => [],
-				'remove-self' => [],
-			],
-			$changeableGroups
-		);
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'sysop' ] )->getUser();
-		$changeableGroups = $manager->getGroupsChangeableBy( new SimpleAuthority( $user, [] ) );
-		$this->assertGroupsEquals(
-			[
-				'add' => [ 'sysop', 'bureaucrat', 'rollback' ],
-				'remove' => [ 'sysop', 'rollback' ],
-				'add-self' => [ 'flood' ],
-				'remove-self' => [],
-			],
-			$changeableGroups
-		);
-
-		$user = $this->getTestUser( [ 'flood' ] )->getUser();
-		$changeableGroups = $manager->getGroupsChangeableBy( new SimpleAuthority( $user, [] ) );
-		$this->assertGroupsEquals(
-			[
-				'add' => [],
-				'remove' => [],
-				'add-self' => [],
-				'remove-self' => [ 'flood' ],
-			],
-			$changeableGroups
-		);
-	}
-
-	public function provideChangeableByGroup() {
-		yield 'sysop' => [ 'sysop', [
-			'add' => [ 'rollback' ],
-			'remove' => [ 'rollback' ],
-			'add-self' => [ 'flood' ],
-			'remove-self' => [],
-		] ];
-		yield 'flood' => [ 'flood', [
-			'add' => [],
-			'remove' => [],
-			'add-self' => [],
-			'remove-self' => [ 'flood' ],
-		] ];
-	}
-
-	/**
-	 * @dataProvider provideChangeableByGroup
-	 * @covers \MediaWiki\User\UserGroupManager::getGroupsChangeableByGroup
-	 * @param string $group
-	 * @param array $expected
-	 */
-	public function testChangeableByGroup( string $group, array $expected ) {
-		$manager = $this->getManager( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$this->assertGroupsEquals( $expected, $manager->getGroupsChangeableByGroup( $group ) );
 	}
 }
