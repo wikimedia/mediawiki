@@ -15,6 +15,10 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ChangesListSpecialPage
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
+
+	/**
+	 * @return ChangesListSpecialPage
+	 */
 	protected function getPage() {
 		$mock = $this->getMockBuilder( ChangesListSpecialPage::class )
 			->setConstructorArgs(
@@ -38,9 +42,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	private function buildQuery(
-		$requestOptions = null,
-		$user = null
-	) {
+		array $requestOptions,
+		User $user = null
+	) : array {
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $requestOptions ) );
 		if ( $user ) {
@@ -51,7 +55,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->changesListSpecialPage->filterGroups = [];
 		$formOptions = $this->changesListSpecialPage->setup( null );
 
-		#  Filter out rc_timestamp conditions which depends on the test runtime
+		# Filter out rc_timestamp conditions which depends on the test runtime
 		# This condition is not needed as of march 2, 2011 -- hashar
 		# @todo FIXME: Find a way to generate the correct rc_timestamp
 
@@ -84,15 +88,15 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	/**
 	 * helper to test SpecialRecentchanges::buildQuery()
 	 * @param array $expected
-	 * @param array|null $requestOptions
+	 * @param array $requestOptions
 	 * @param string $message
 	 * @param User|null $user
 	 */
 	private function assertConditions(
-		$expected,
-		$requestOptions = null,
-		$message = '',
-		$user = null
+		array $expected,
+		array $requestOptions,
+		string $message,
+		User $user = null
 	) {
 		$queryConditions = $this->buildQuery( $requestOptions, $user );
 
@@ -103,7 +107,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	private static function normalizeCondition( $conds ) {
+	private static function normalizeCondition( array $conds ) : array {
 		$dbr = wfGetDB( DB_REPLICA );
 		$normalized = array_map(
 			static function ( $k, $v ) use ( $dbr ) {
@@ -124,7 +128,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	 * @param array|string $var
 	 * @return bool false if condition begins with 'rc_timestamp '
 	 */
-	private static function filterOutRcTimestampCondition( $var ) {
+	private static function filterOutRcTimestampCondition( $var ) : bool {
 		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
 
@@ -643,7 +647,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	private function createUsers( $specs, $now ) {
+	private function createUsers( array $specs, int $now ) {
 		$dbw = wfGetDB( DB_PRIMARY );
 		foreach ( $specs as $name => $spec ) {
 			User::createNew(
@@ -657,7 +661,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		}
 	}
 
-	private function fetchUsers( $filters, $now ) {
+	private function fetchUsers( array $filters, int $now ) : array {
 		$tables = [];
 		$conds = [];
 		$fields = [];
@@ -698,7 +702,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $usernames;
 	}
 
-	private function daysAgo( $days, $now ) {
+	private function daysAgo( int $days, int $now ) : int {
 		$secondsPerDay = 86400;
 		return $now - $days * $secondsPerDay;
 	}
