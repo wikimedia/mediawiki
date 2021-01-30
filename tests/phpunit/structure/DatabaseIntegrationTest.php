@@ -32,7 +32,6 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 			'user_newtalk',
 			'revision_actor_temp',
 			'change_tag',
-			'site_identifiers',
 			'objectcache',
 		];
 

@@ -961,6 +961,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'image', 'img_timestamp_idx', 'img_timestamp' ],
 			[ 'addPgIndex', 'image', 'img_actor_timestamp', '(img_actor, img_timestamp)' ],
 			[ 'addPgIndex', 'image', 'img_media_mime', '(img_media_type, img_major_mime, img_minor_mime)' ],
+			[ 'renameIndex', 'site_identifiers', 'site_ids_site', 'si_site' ],
+			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key' ],
 		];
 	}
 

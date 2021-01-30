@@ -492,6 +492,8 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-archive-rename-name_title_timestamp-index.sql' ],
 			[ 'modifyField', 'image', 'img_name', 'patch-image-img_name-varbinary.sql' ],
 			[ 'dropDefault', 'image', 'img_timestamp' ],
+			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
+				'patch-site_identifiers-rename-indexes.sql' ],
 		];
 	}
 
