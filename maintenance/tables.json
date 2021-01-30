@@ -23,8 +23,8 @@
 			}
 		],
 		"indexes": [
-			{ "name": "site_ids_site", "columns": [ "si_site" ], "unique": false },
-			{ "name": "site_ids_key", "columns": [ "si_key" ], "unique": false }
+			{ "name": "si_site", "columns": [ "si_site" ], "unique": false },
+			{ "name": "si_key", "columns": [ "si_key" ], "unique": false }
 		],
 		"pk": [ "si_type", "si_key" ]
 	},
