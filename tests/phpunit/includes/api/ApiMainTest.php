@@ -62,6 +62,7 @@ class ApiMainTest extends ApiTestCase {
 	 *
 	 * @param array $requestData Query parameters for the WebRequest
 	 * @param array $headers Headers for the WebRequest
+	 * @return ApiMain
 	 */
 	private function getNonInternalApiMain( array $requestData, array $headers = [] ) {
 		$req = $this->getMockBuilder( WebRequest::class )

@@ -46,6 +46,8 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param bool $isSyndicated
+	 * @param string $html
 	 * @return OutputPage
 	 */
 	private function getMockOutputPage( $isSyndicated, $html ) {

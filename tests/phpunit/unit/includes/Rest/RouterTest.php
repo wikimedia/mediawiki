@@ -23,7 +23,12 @@ use Wikimedia\ObjectFactory;
 class RouterTest extends \MediaWikiUnitTestCase {
 	use MockAuthorityTrait;
 
-	/** @return Router */
+	/**
+	 * @param RequestInterface $request
+	 * @param string|null $authError
+	 * @param string[] $additionalRouteFiles
+	 * @return Router
+	 */
 	private function createRouter(
 		RequestInterface $request,
 		$authError = null,

@@ -72,6 +72,7 @@ trait ActionModuleBasedHandlerTestTrait {
 	}
 
 	/**
+	 * @param bool $csrfSafe
 	 * @return ApiMain
 	 */
 	private function getApiMain( $csrfSafe = false ) {

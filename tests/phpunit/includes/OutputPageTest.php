@@ -648,6 +648,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Shorthand for getting the text of a message, in content language.
+	 * @param MessageLocalizer $op
+	 * @param mixed ...$msgParams
+	 * @return string
 	 */
 	private static function getMsgText( MessageLocalizer $op, ...$msgParams ) {
 		return $op->msg( ...$msgParams )->inContentLanguage()->text();
@@ -1172,6 +1175,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * We allow different expectations for different tests as an associative array, like
 	 * [ 'set' => [ ... ], 'default' => [ ... ] ] if setCategoryLinks() will give a different
 	 * result.
+	 * @param array $expected
+	 * @param string $key
+	 * @return array
 	 */
 	private function extractExpectedCategories( array $expected, $key ) {
 		if ( !$expected || isset( $expected[0] ) ) {
@@ -1472,6 +1478,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Call either with arguments $methodName, $returnValue; or an array
 	 * [ $methodName => $returnValue, $methodName => $returnValue, ... ]
+	 * @param mixed ...$args
+	 * @return ParserOutput
 	 */
 	private function createParserOutputStub( ...$args ) : ParserOutput {
 		if ( count( $args ) === 0 ) {

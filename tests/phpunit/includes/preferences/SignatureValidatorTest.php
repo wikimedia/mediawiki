@@ -37,6 +37,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Get a basic SignatureValidator for testing with.
+	 * @return SignatureValidator
 	 */
 	protected function getSignatureValidator() {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );

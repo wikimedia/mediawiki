@@ -136,6 +136,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * Helper to create a new User object with given options
 	 * User remains anonymous though
 	 * @param array|null $opt
+	 * @return User
 	 */
 	protected function newUserWithSearchNS( $opt = null ) {
 		$u = User::newFromId( 0 );

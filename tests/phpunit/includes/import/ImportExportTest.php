@@ -158,6 +158,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @param string $schemaVersion
 	 * @return string[]
 	 */
 	private function getSiteVars( $schemaVersion ) {

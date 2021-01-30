@@ -44,6 +44,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $prefix
+	 * @param string[] $keys
 	 *
 	 * @return string[]
 	 */
