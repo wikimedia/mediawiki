@@ -1403,3 +1403,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ProtectionIndicator
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/GeoGebra"]
+	path = extensions/GeoGebra
+	url = https://github.com/wikimedia/mediawiki-extensions-GeoGebra
+	branch = REL1_35
+	ignore = dirty
