@@ -11,7 +11,6 @@
 $namespaceNames = [
 	NS_MEDIA            => 'Mèḍia',
 	NS_SPECIAL          => 'Spesial',
-	NS_MAIN             => '',
 	NS_TALK             => 'Pakanḍhâ\'ân',
 	NS_USER             => 'Pangangghuy',
 	NS_USER_TALK        => 'Pakanḍhâ\'ânna_pangangghuy',
