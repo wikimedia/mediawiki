@@ -4,8 +4,6 @@
 -- and comparisons of what's changed from the previous run will be
 -- displayed at the end of each run.
 --
--- These tables currently require MySQL 5 (or maybe 4.1?) for subselects.
---
 
 drop table if exists /*$wgDBprefix*/testitem;
 drop table if exists /*$wgDBprefix*/testrun;
