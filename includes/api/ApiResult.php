@@ -771,11 +771,13 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Test whether a key should be considered metadata
 	 *
-	 * @param string $key
+	 * @param string|int $key
 	 * @return bool
 	 */
 	public static function isMetadataKey( $key ) {
-		return substr( $key, 0, 1 ) === '_';
+		// Cast ints to string before using offset access
+		$key = (string)$key;
+		return ( $key !== '' && $key[0] === '_' );
 	}
 
 	/**
