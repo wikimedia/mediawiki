@@ -155,7 +155,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$set[] = 'sql_mode = ' . $this->addQuotes( $this->sqlMode );
 			}
 			// Set any custom settings defined by site config
-			// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
+			// https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html
 			foreach ( $this->connectionVariables as $var => $val ) {
 				// Escape strings but not numbers to avoid MySQL complaining
 				if ( !is_int( $val ) && !is_float( $val ) ) {
@@ -260,7 +260,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -293,7 +293,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_array can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -329,7 +329,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
 		// there are no errors mysql_num_rows can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
 		// See https://phabricator.wikimedia.org/T44430
 		return $n;
 	}
@@ -1230,8 +1230,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * FROM MYSQL DOCS:
-	 * https://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * See
+	 * https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_release-lock
 	 * @param string $lockName
 	 * @param string $method
 	 * @return bool
