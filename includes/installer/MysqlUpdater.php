@@ -37,17 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.4
-			[ 'addIndex', 'image', 'PRIMARY', 'patch-image_name_primary.sql' ],
-			[ 'addField', 'recentchanges', 'rc_id', 'patch-rc_id.sql' ],
-			[ 'addField', 'recentchanges', 'rc_patrolled', 'patch-rc-patrol.sql' ],
-			[ 'addTable', 'logging', 'patch-logging.sql' ],
-			[ 'addField', 'user', 'user_token', 'patch-user_token.sql' ],
-			[ 'addField', 'watchlist', 'wl_notificationtimestamp', 'patch-email-notification.sql' ],
-			[ 'doWatchlistUpdate' ],
-			[ 'dropField', 'user', 'user_emailauthenticationtimestamp',
-				'patch-email-authentication.sql' ],
-
 			// 1.5
 			[ 'doSchemaRestructuring' ],
 			[ 'addField', 'logging', 'log_params', 'patch-log_params.sql' ],
