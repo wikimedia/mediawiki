@@ -338,7 +338,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			wfMessage( 'autosumm-newblank' )->inContentLanguage()->text() );
 		// now check, what we become with another bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 92 );
-		$this->assertEquals( $autoSummary, '' );
+		$this->assertSame( '', $autoSummary );
 	}
 
 	/**
@@ -354,7 +354,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$newContent = ContentHandler::makeContent( '', null, CONTENT_MODEL_WIKITEXT, null );
 		// Get the tag for this edit
 		$tag = $wikitextContentHandler->getChangeTag( $oldContent, $newContent, EDIT_UPDATE );
-		$this->assertSame( $tag, 'mw-contentmodelchange' );
+		$this->assertSame( 'mw-contentmodelchange', $tag );
 	}
 
 	/**

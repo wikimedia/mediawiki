@@ -128,7 +128,6 @@ class BadFileLookup {
 		}
 
 		return isset( $this->badFiles[$name] ) && ( !$contextTitle ||
-			!isset( $this->badFiles[$name][$contextTitle->getNamespace()]
-				[$contextTitle->getDBkey()] ) );
+			!isset( $this->badFiles[$name][$contextTitle->getNamespace()][$contextTitle->getDBkey()] ) );
 	}
 }

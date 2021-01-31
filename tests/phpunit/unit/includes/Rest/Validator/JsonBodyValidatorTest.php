@@ -16,7 +16,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 	public function provideValidateBody() {
 		yield 'empty object' => [
 			[],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( (object)[] ),
 			] ),
 			[]
@@ -24,7 +24,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 
 		yield 'extra data' => [
 			[],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( (object)[
 					'kittens' => 'cute',
 					'number' => 5,
@@ -43,7 +43,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 					ParamValidator::PARAM_REQUIRED => false,
 				]
 			],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( (object)[
 					'kittens' => 'cute',
 				] ),
@@ -62,7 +62,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 					ParamValidator::PARAM_DEFAULT => 10,
 				]
 			],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( (object)[] ),
 			] ),
 			[
@@ -83,7 +83,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 	public function provideValidateBody_failure() {
 		yield 'empty body' => [
 			[],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => '',
 			] ),
 			new LocalizedHttpException( new MessageValue( 'rest-json-body-parse-error' ), 400 ),
@@ -91,7 +91,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 
 		yield 'bad syntax' => [
 			[],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => '.....',
 			] ),
 			new LocalizedHttpException( new MessageValue( 'rest-json-body-parse-error' ), 400 ),
@@ -99,7 +99,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 
 		yield 'not an object' => [
 			[],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( 'evil' ),
 			] ),
 			new LocalizedHttpException( new MessageValue( 'rest-bad-json-body' ), 400 ),
@@ -112,7 +112,7 @@ class JsonBodyValidatorTest extends \MediaWikiUnitTestCase {
 					ParamValidator::PARAM_REQUIRED => true,
 				]
 			],
-			$request = new RequestData( [
+			new RequestData( [
 				'bodyContents' => json_encode( (object)[
 					'kittens' => 'cute',
 				] ),

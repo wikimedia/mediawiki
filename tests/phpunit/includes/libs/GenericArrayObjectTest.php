@@ -269,7 +269,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 		$copy = unserialize( $serialization );
 
 		$this->assertEquals( $serialization, serialize( $copy ) );
-		$this->assertEquals( count( $list ), count( $copy ) );
+		$this->assertSame( count( $list ), count( $copy ) );
 
 		$list = $list->getArrayCopy();
 		$copy = $copy->getArrayCopy();

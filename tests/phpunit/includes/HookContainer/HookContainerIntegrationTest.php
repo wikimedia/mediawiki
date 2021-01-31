@@ -22,9 +22,9 @@ namespace MediaWiki\HookContainer {
 				] ] ]
 			];
 			$reset = $extensionRegistry->setAttributeForTest( 'Hooks', $handlers );
-			$this->assertEquals( $numHandlersExecuted, 0 );
+			$this->assertSame( 0, $numHandlersExecuted );
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
-			$this->assertEquals( $numHandlersExecuted, 1 );
+			$this->assertSame( 1, $numHandlersExecuted );
 			ScopedCallback::consume( $reset );
 		}
 
@@ -85,7 +85,7 @@ namespace MediaWiki\HookContainer {
 			];
 			$reset3 = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $handlerThree );
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
-			$this->assertEquals( $numHandlersExecuted, 3 );
+			$this->assertEquals( 3, $numHandlersExecuted );
 			ScopedCallback::consume( $reset );
 			ScopedCallback::consume( $reset2 );
 			ScopedCallback::consume( $reset3 );

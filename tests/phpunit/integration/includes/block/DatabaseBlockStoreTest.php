@@ -138,7 +138,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $result );
 		$this->assertArrayHasKey( 'id', $result );
 		$this->assertArrayHasKey( 'autoIds', $result );
-		$this->assertSame( 0, count( $result['autoIds'] ) );
+		$this->assertCount( 0, $result['autoIds'] );
 
 		$retrievedBlock = DatabaseBlock::newFromId( $result['id'] );
 		$this->assertTrue( $block->equals( $retrievedBlock ) );

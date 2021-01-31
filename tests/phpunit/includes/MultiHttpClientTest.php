@@ -172,7 +172,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$this->assertEquals( 200, $rcode );
-		$this->assertEquals( count( $headers ), count( $rhdrs ) );
+		$this->assertSame( count( $headers ), count( $rhdrs ) );
 		foreach ( $headers as $name => $values ) {
 			$value = implode( ', ', $values );
 			$this->assertArrayHasKey( $name, $rhdrs );
