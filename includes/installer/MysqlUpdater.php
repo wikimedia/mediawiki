@@ -37,15 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.3
-			[ 'addField', 'user', 'user_real_name', 'patch-user-realname.sql' ],
-			[ 'addTable', 'querycache', 'patch-querycache.sql' ],
-			[ 'addTable', 'objectcache', 'patch-objectcache.sql' ],
-			[ 'addTable', 'categorylinks', 'patch-categorylinks.sql' ],
-			[ 'doOldLinksUpdate' ],
-			[ 'doFixAncientImagelinks' ],
-			[ 'addField', 'recentchanges', 'rc_ip', 'patch-rc_ip.sql' ],
-
 			// 1.4
 			[ 'addIndex', 'image', 'PRIMARY', 'patch-image_name_primary.sql' ],
 			[ 'addField', 'recentchanges', 'rc_id', 'patch-rc_id.sql' ],
