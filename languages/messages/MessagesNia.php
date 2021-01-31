@@ -10,7 +10,6 @@
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Si_tohude',
-	NS_MAIN             => '',
 	NS_TALK             => 'Huhuo',
 	NS_USER             => 'Sangoguna',
 	NS_USER_TALK        => 'Huhuo_zangoguna',
