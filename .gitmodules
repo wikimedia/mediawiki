@@ -1398,3 +1398,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-LogoFunctions
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/ProtectionIndicator"]
+	path = extensions/ProtectionIndicator
+	url = https://github.com/wikimedia/mediawiki-extensions-ProtectionIndicator
+	branch = REL1_35
+	ignore = dirty
