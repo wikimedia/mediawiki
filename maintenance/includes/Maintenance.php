@@ -1058,7 +1058,7 @@ abstract class Maintenance {
 	 * Definitely show the help. Does not exit.
 	 */
 	protected function showHelp() {
-		$screenWidth = 80; // TODO: Calculate this!
+		$screenWidth = self::getTermSize()[0];
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 
@@ -1671,13 +1671,20 @@ abstract class Maintenance {
 	 * @return array
 	 */
 	public static function getTermSize() {
+		static $termSize = null;
+
+		if ( $termSize !== null ) {
+			return $termSize;
+		}
+
 		$default = [ 80, 50 ];
-		if ( wfIsWindows() ) {
-			return $default;
+
+		if ( wfIsWindows() || Shell::isDisabled() ) {
+			$termSize = $default;
+
+			return $termSize;
 		}
-		if ( Shell::isDisabled() ) {
-			return $default;
-		}
+
 		// It's possible to get the screen size with VT-100 terminal escapes,
 		// but reading the responses is not possible without setting raw mode
 		// (unless you want to require the user to press enter), and that
@@ -1685,16 +1692,18 @@ abstract class Maintenance {
 		// something that can do the relevant syscalls. There are a few
 		// options. Linux and Mac OS X both have "stty size" which does the
 		// job directly.
-		$result = Shell::command( 'stty', 'size' )
-			->passStdin()
-			->execute();
-		if ( $result->getExitCode() !== 0 ) {
-			return $default;
+		$result = Shell::command( 'stty', 'size' )->passStdin()->execute();
+		if ( $result->getExitCode() !== 0 ||
+			!preg_match( '/^(\d+) (\d+)$/', $result->getStdout(), $m )
+		) {
+			$termSize = $default;
+
+			return $termSize;
 		}
-		if ( !preg_match( '/^(\d+) (\d+)$/', $result->getStdout(), $m ) ) {
-			return $default;
-		}
-		return [ intval( $m[2] ), intval( $m[1] ) ];
+
+		$termSize = [ intval( $m[2] ), intval( $m[1] ) ];
+
+		return $termSize;
 	}
 
 	/**
