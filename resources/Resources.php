@@ -1513,6 +1513,7 @@ return [
 					'search' => true,
 					'collapsible' => true,
 					'sortable' => true,
+					'selectorLogoutLink' => '#pt-logout a[data-mw="interface"]'
 				];
 
 				Hooks::runner()->onSkinPageReadyConfig( $context, $readyConfig );

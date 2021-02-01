@@ -111,7 +111,7 @@ $( function () {
 	} );
 
 	// Turn logout to a POST action
-	$( '#pt-logout a[data-mw="interface"]' ).on( 'click', function ( e ) {
+	$( config.selectorLogoutLink ).on( 'click', function ( e ) {
 		var api = new mw.Api(),
 			url = this.href;
 		mw.notify(
