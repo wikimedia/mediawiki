@@ -446,8 +446,8 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	/**
-	 * 1.4 betas were missing the 'binary' marker from logging.log_title,
-	 * which causes a collation mismatch error on joins in MySQL 4.1.
+	 * MW 1.4 betas were missing the 'binary' marker from logging.log_title,
+	 * which caused a MySQL collation mismatch error.
 	 *
 	 * @param string $table Table name
 	 * @param string $field Field name to check
