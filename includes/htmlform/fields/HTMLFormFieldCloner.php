@@ -367,6 +367,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--delete" ),
 			'cssclass' => 'mw-htmlform-cloner-delete-button',
 			'default' => $this->getMessage( $label )->text(),
+			'disabled' => $this->mParams['disabled'] ?? false,
 		], $this->mParent );
 		return $field;
 	}
@@ -381,6 +382,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->getMessage( $label )->text(),
+			'disabled' => $this->mParams['disabled'] ?? false,
 		], $this->mParent );
 	}
 
