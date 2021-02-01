@@ -539,7 +539,7 @@
 	"month": "Sian bulan (dohot andorang na)",
 	"year": "Sian taon (dohot andorang na):",
 	"sp-contributions-blocklog": "ambati log",
-	"sp-contributions-uploads": "mamindahon tu bagasan",
+	"sp-contributions-uploads": "unggah",
 	"sp-contributions-logs": "log",
 	"sp-contributions-talk": "pangkataion",
 	"sp-contributions-search": "Lului silua",
@@ -726,7 +726,7 @@
 	"logentry-newusers-create": "Nunga {{GENDER:$2|dibahen}} do Akun $1",
 	"logentry-newusers-autocreate": "Akun panghasea $1 {{GENDER:$2|ditompa}} otomatis",
 	"logentry-upload-upload": "$1 {{GENDER:$2|unggah}} $3",
-	"logentry-upload-overwrite": "$1 {{GENDER:$2|pamasukhon}} persi na imbaru of $3",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|unggah}} persi na imbaru of $3",
 	"searchsuggest-search": "Lului di bagasan {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ari|ari-ari}}",
 	"randomrootpage": "alaman bingkas na sursar"

@@ -2023,6 +2023,7 @@
 	"namespace_association": "بۆشاییی ناوی پەیوەندیدار",
 	"tooltip-namespace_association": "ھەروەھا نیشانە لەم بۆکسەش بدە بۆ شاردنەوەی پەڕەی لێدوانەکانیان",
 	"blanknamespace": "(سەرەکی)",
+	"contributions": "بەشدارییەکانی بەکارھێنەر",
 	"tool-link-contributions": "بەشدارییەکانی {{GENDER:$1|بەکارھێنەر}}",
 	"contributions-title": "بەشدارییەکانی بەکارھێنەر $1",
 	"mycontris": "بەشدارییەکان",

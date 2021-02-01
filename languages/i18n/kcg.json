@@ -158,7 +158,7 @@
 	"help": "Beang",
 	"help-mediawiki": "Beang tazwa MidyaWiki",
 	"search": "Zop",
-	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Pyipyia̱ a̱lyiat nang á̱ na mgbi̱t di̱ zop.\n# Á̱ na ntyia̱ di̱n ta̱m a̱ka̱shai nang á̱ nyia̱ nani ka̱nang á̱ nga̱fang peji hu ku byia̱ a̱pyia̱ a̱lyiat ka a̱ni.\n# A maai tyia̱ peji hu ku bu nyia̱ ga̱fang di̱ ta ka̱ a nyia̱ jhyuk piit.\n# Ya̱mak-á̱zanson huhwa yet:\n#   * Kuzang kyang neet zwunzwuo \"#\" naat a̱mgba̱m lang hu yet a̱di̱dam wa.\n#   * Kuzang kyang ku nwai yet lang ku sang kyang a̱ni yet a̱cacaat a̱lyoot nang á̱ na gbi̱t a̱ni, shi zwunzwuo ma̱ng kuzang kyang.\nYa̱fang\nA̱ka̱fwop nta\nDi mameang\n #</pre> <!-- leave this line exactly as it is -->",
+	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Pyipyia̱ a̱lyiat nang á̱ na nnwuan gbi̱t di̱ zop.\n# Á̱ na ntyia̱ di̱n ta̱m a̱ka̱shai nang á̱ nyia̱ nani ka̱nang á̱ nga̱fang peji hu ku byia̱ a̱pyia̱ a̱lyiat ka a̱ni.\n# A maai tyia̱ peji hu ku bu nyia̱ ga̱fang di̱ ta ka̱ a nyia̱ jhyuk piit.\n# Ya̱mak-a̱zanson huhwa yet:\n#   * Kuzang kyang neet zwunzwuo \"#\" naat a̱mgba̱m lang hu yet a̱di̱dam wa.\n#   * Kuzang kyang ku nwai yet lang ku sang kyang a̱ni yet a̱cacaat a̱lyoot nang á̱ na gbi̱t a̱ni, shi zwunzwuo ma̱ng kuzang kyang.\nTa̱fang\nA̱ka̱fwop nta\nDi mameang\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Zop",
 	"go": "Nkat",
 	"searcharticle": "Nkat",
