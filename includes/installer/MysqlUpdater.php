@@ -37,31 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.5
-			[ 'doSchemaRestructuring' ],
-			[ 'addField', 'logging', 'log_params', 'patch-log_params.sql' ],
-			[ 'checkBin', 'logging', 'log_title', 'patch-logging-title.sql', ],
-			[ 'addField', 'archive', 'ar_rev_id', 'patch-archive-rev_id.sql' ],
-			[ 'addField', 'page', 'page_len', 'patch-page_len.sql' ],
-			[ 'dropField', 'revision', 'inverse_timestamp', 'patch-inverse_timestamp.sql' ],
-			[ 'ifTableNotExists', 'content',
-				'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ],
-			[ 'addField', 'revision', 'rev_deleted', 'patch-rev_deleted.sql' ],
-			[ 'addField', 'image', 'img_width', 'patch-img_width.sql' ],
-			[ 'addField', 'image', 'img_metadata', 'patch-img_metadata.sql' ],
-			[ 'addField', 'user', 'user_email_token', 'patch-user_email_token.sql' ],
-			[ 'ifTableNotExists', 'content',
-				'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ],
-			[ 'doNamespaceSize' ],
-			[ 'addField', 'image', 'img_media_type', 'patch-img_media_type.sql' ],
-			[ 'doPagelinksUpdate' ],
-			[ 'dropField', 'image', 'img_type', 'patch-drop_img_type.sql' ],
-			[ 'doUserUniqueUpdate' ],
-			[ 'doUserGroupsUpdate' ],
-			[ 'addField', 'site_stats', 'ss_total_pages', 'patch-ss_total_articles.sql' ],
-			[ 'addTable', 'user_newtalk', 'patch-usernewtalk.sql' ],
-			[ 'addField', 'interwiki', 'iw_trans', 'patch-interwiki-trans.sql' ],
-
 			// 1.6
 			[ 'doWatchlistNull' ],
 			[ 'addIndex', 'logging', 'times', 'patch-logging-times-index.sql' ],
