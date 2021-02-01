@@ -5,5 +5,5 @@ updates:
   schedule:
     interval: monthly
     time: "00:00"
-  open-pull-requests-limit: 99
+  open-pull-requests-limit: 250
   target-branch: REL1_35
