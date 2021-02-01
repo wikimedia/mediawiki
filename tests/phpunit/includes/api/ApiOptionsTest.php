@@ -292,9 +292,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideOptionManupulation
-	 * @param array $params
-	 * @param array $setOptions
-	 * @param array|null $result
 	 */
 	public function testOptionManupulation( array $params, array $setOptions, array $result = null,
 		$message = ''

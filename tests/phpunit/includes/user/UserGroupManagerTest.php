@@ -611,9 +611,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteEditCount
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredCount
-	 * @param bool $userRegistered
-	 * @param int $userEditCount
 	 */
 	public function testGetUserAutopromoteEditCount(
 		int $requiredCount,

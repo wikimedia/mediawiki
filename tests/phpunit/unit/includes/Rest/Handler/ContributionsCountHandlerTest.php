@@ -58,7 +58,6 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param RequestInterface $request
 	 * @dataProvider provideTestThatParametersAreHandledCorrectly
 	 */
 	public function testThatParametersAreHandledCorrectly( RequestInterface $request, $mode ) {
