@@ -38,6 +38,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\LegacyArticleIdAccess;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -79,6 +81,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
+	use LegacyArticleIdAccess;
 
 	public const ROW_CACHE_KEY = 'revision-row-1.29';
 
@@ -213,6 +216,15 @@ class RevisionStore
 	 */
 	private function getDBLoadBalancer() {
 		return $this->loadBalancer;
+	}
+
+	/**
+	 * Get the ID of the wiki this revision belongs to.
+	 *
+	 * @return string|false The wiki's logical name, of false to indicate the local wiki.
+	 */
+	public function getWikiId() {
+		return $this->dbDomain;
 	}
 
 	/**
@@ -405,8 +417,6 @@ class RevisionStore
 			);
 		}
 
-		// TODO: we shouldn't need an actual Title here.
-		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
 
 		$parentId = $rev->getParentId() === null
@@ -420,7 +430,6 @@ class RevisionStore
 				$rev,
 				$user,
 				$comment,
-				$title,
 				$pageId,
 				$parentId
 			) {
@@ -429,7 +438,7 @@ class RevisionStore
 					$dbw,
 					$user,
 					$comment,
-					$title,
+					$rev->getPage(),
 					$pageId,
 					$parentId
 				);
@@ -483,7 +492,7 @@ class RevisionStore
 		IDatabase $dbw,
 		UserIdentity $user,
 		CommentStoreComment $comment,
-		Title $title,
+		PageIdentity $page,
 		$pageId,
 		$parentId
 	) {
@@ -492,7 +501,6 @@ class RevisionStore
 		$revisionRow = $this->insertRevisionRowOn(
 			$dbw,
 			$rev,
-			$title,
 			$parentId
 		);
 
@@ -529,14 +537,14 @@ class RevisionStore
 
 				$newSlots[$role] = $slot;
 			} else {
-				$newSlots[$role] = $this->insertSlotOn( $dbw, $revisionId, $slot, $title, $blobHints );
+				$newSlots[$role] = $this->insertSlotOn( $dbw, $revisionId, $slot, $page, $blobHints );
 			}
 		}
 
 		$this->insertIpChangesRow( $dbw, $user, $rev, $revisionId );
 
 		$rev = new RevisionStoreRecord(
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$revisionRow,
@@ -551,7 +559,7 @@ class RevisionStore
 	 * @param IDatabase $dbw
 	 * @param int $revisionId
 	 * @param SlotRecord $protoSlot
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $blobHints See the BlobStore::XXX_HINT constants
 	 * @return SlotRecord
 	 */
@@ -559,13 +567,13 @@ class RevisionStore
 		IDatabase $dbw,
 		$revisionId,
 		SlotRecord $protoSlot,
-		Title $title,
+		PageIdentity $page,
 		array $blobHints = []
 	) {
 		if ( $protoSlot->hasAddress() ) {
 			$blobAddress = $protoSlot->getAddress();
 		} else {
-			$blobAddress = $this->storeContentBlob( $protoSlot, $title, $blobHints );
+			$blobAddress = $this->storeContentBlob( $protoSlot, $page, $blobHints );
 		}
 
 		$contentId = null;
@@ -612,7 +620,6 @@ class RevisionStore
 	/**
 	 * @param IDatabase $dbw
 	 * @param RevisionRecord $rev
-	 * @param Title $title
 	 * @param int $parentId
 	 *
 	 * @return array a revision table row
@@ -623,10 +630,9 @@ class RevisionStore
 	private function insertRevisionRowOn(
 		IDatabase $dbw,
 		RevisionRecord $rev,
-		Title $title,
 		$parentId
 	) {
-		$revisionRow = $this->getBaseRevisionRow( $dbw, $rev, $title, $parentId );
+		$revisionRow = $this->getBaseRevisionRow( $dbw, $rev, $parentId );
 
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable(
@@ -731,7 +737,6 @@ class RevisionStore
 	/**
 	 * @param IDatabase $dbw
 	 * @param RevisionRecord $rev
-	 * @param Title $title
 	 * @param int $parentId
 	 *
 	 * @return array a revision table row
@@ -739,7 +744,6 @@ class RevisionStore
 	private function getBaseRevisionRow(
 		IDatabase $dbw,
 		RevisionRecord $rev,
-		Title $title,
 		$parentId
 	) {
 		// Record the edit in revisions
@@ -763,7 +767,7 @@ class RevisionStore
 
 	/**
 	 * @param SlotRecord $slot
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $blobHints See the BlobStore::XXX_HINT constants
 	 *
 	 * @throws MWException
@@ -771,14 +775,14 @@ class RevisionStore
 	 */
 	private function storeContentBlob(
 		SlotRecord $slot,
-		Title $title,
+		PageIdentity $page,
 		array $blobHints = []
 	) {
 		$content = $slot->getContent();
 		$format = $content->getDefaultFormat();
 		$model = $content->getModel();
 
-		$this->checkContent( $content, $title, $slot->getRole() );
+		$this->checkContent( $content, $page, $slot->getRole() );
 
 		return $this->blobStore->storeBlob(
 			$content->serialize( $format ),
@@ -836,28 +840,28 @@ class RevisionStore
 	 * MCR migration note: this corresponds to Revision::checkContentModel
 	 *
 	 * @param Content $content
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param string $role
 	 *
 	 * @throws MWException
 	 * @throws MWUnknownContentModelException
 	 */
-	private function checkContent( Content $content, Title $title, $role ) {
+	private function checkContent( Content $content, PageIdentity $page, string $role ) {
 		// Note: may return null for revisions that have not yet been inserted
 
 		$model = $content->getModel();
 		$format = $content->getDefaultFormat();
 		$handler = $content->getContentHandler();
 
-		$name = "$title";
-
 		if ( !$handler->isSupportedFormat( $format ) ) {
-			throw new MWException( "Can't use format $format with content model $model on $name" );
+			throw new MWException(
+				"Can't use format $format with content model $model on $page role $role"
+			);
 		}
 
 		if ( !$content->isValid() ) {
 			throw new MWException(
-				"New content for $name is not valid! Content model is $model"
+				"New content for $page role $role is not valid! Content model is $model"
 			);
 		}
 	}
@@ -880,7 +884,7 @@ class RevisionStore
 	 * (or go away).
 	 *
 	 * @param IDatabase $dbw used for obtaining the lock on the page table row
-	 * @param Title $title Title of the page to read from
+	 * @param PageIdentity $page the page to read from
 	 * @param CommentStoreComment $comment RevisionRecord's summary
 	 * @param bool $minor Whether the revision should be considered as minor
 	 * @param UserIdentity $user The user to attribute the revision to
@@ -889,14 +893,14 @@ class RevisionStore
 	 */
 	public function newNullRevision(
 		IDatabase $dbw,
-		Title $title,
+		PageIdentity $page,
 		CommentStoreComment $comment,
 		$minor,
 		UserIdentity $user
 	) {
 		$this->checkDatabaseDomain( $dbw );
 
-		$pageId = $title->getArticleID();
+		$pageId = $this->getArticleId( $page );
 
 		// T51581: Lock the page table row to ensure no other process
 		// is adding a revision to the page at the same time.
@@ -910,9 +914,8 @@ class RevisionStore
 		);
 
 		if ( !$pageLatest ) {
-			$id = $title->getArticleID( self::READ_EXCLUSIVE );
 			$msg = 'T235589: Failed to select table row during null revision creation' .
-				" Page id '$pageId' does not exist. Maybe it is different from '$id'?";
+				" Page id '$pageId' does not exist.";
 			$this->logger->error(
 				$msg,
 				[ 'exception' => new RuntimeException( $msg ) ]
@@ -926,7 +929,7 @@ class RevisionStore
 			$dbw,
 			[ 'rev_id' => intval( $pageLatest ) ],
 			self::READ_LATEST,
-			$title
+			$page
 		);
 
 		if ( !$oldRevision ) {
@@ -1216,11 +1219,11 @@ class RevisionStore
 	/**
 	 * @param int $revId The revision to load slots for.
 	 * @param int $queryFlags
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 *
 	 * @return SlotRecord[]
 	 */
-	private function loadSlotRecords( $revId, $queryFlags, Title $title ) {
+	private function loadSlotRecords( $revId, $queryFlags, PageIdentity $page ) {
 		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
@@ -1249,11 +1252,11 @@ class RevisionStore
 			return $this->loadSlotRecords(
 				$revId,
 				$queryFlags | self::READ_LATEST,
-				$title
+				$page
 			);
 		}
 
-		return $this->constructSlotRecords( $revId, $res, $queryFlags, $title );
+		return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
 	}
 
 	/**
@@ -1262,7 +1265,7 @@ class RevisionStore
 	 * @param int $revId The revision to load slots for.
 	 * @param \stdClass[]|IResultWrapper $slotRows
 	 * @param int $queryFlags
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array|null $slotContents a map from blobAddress to slot
 	 * 	content blob or Content object.
 	 *
@@ -1272,7 +1275,7 @@ class RevisionStore
 		$revId,
 		$slotRows,
 		$queryFlags,
-		Title $title,
+		PageIdentity $page,
 		$slotContents = null
 	) {
 		$slots = [];
@@ -1290,7 +1293,7 @@ class RevisionStore
 					// We may get here if $row->model_name is set but null, perhaps because it
 					// came from rev_content_model, which is NULL for the default model.
 					$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( $row->role_name );
-					$row->model_name = $slotRoleHandler->getDefaultModel( $title );
+					$row->model_name = $slotRoleHandler->getDefaultModel( $page );
 				}
 			}
 
@@ -1341,7 +1344,7 @@ class RevisionStore
 	 * @param \stdClass $revisionRow
 	 * @param \stdClass[]|null $slotRows
 	 * @param int $queryFlags
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 *
 	 * @return RevisionSlots
 	 * @throws MWException
@@ -1351,18 +1354,18 @@ class RevisionStore
 		$revisionRow,
 		$slotRows,
 		$queryFlags,
-		Title $title
+		PageIdentity $page
 	) {
 		if ( $slotRows ) {
 			$slots = new RevisionSlots(
-				$this->constructSlotRecords( $revId, $slotRows, $queryFlags, $title )
+				$this->constructSlotRecords( $revId, $slotRows, $queryFlags, $page )
 			);
 		} else {
 			// XXX: do we need the same kind of caching here
 			// that getKnownCurrentRevision uses (if $revId == page_latest?)
 
-			$slots = new RevisionSlots( function () use( $revId, $queryFlags, $title ) {
-				return $this->loadSlotRecords( $revId, $queryFlags, $title );
+			$slots = new RevisionSlots( function () use( $revId, $queryFlags, $page ) {
+				return $this->loadSlotRecords( $revId, $queryFlags, $page );
 			} );
 		}
 
@@ -1402,8 +1405,7 @@ class RevisionStore
 	 *
 	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
-	 * @param Title|null $title Preloaded title object based on Title::newFromRow from database row
-	 *   when query was build with option 'page' on getQueryInfo
+	 * @param PageIdentity|null $page Preloaded page object
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
 	 *   data is returned from getters, by querying the database as needed
 	 * @return RevisionRecord
@@ -1411,10 +1413,10 @@ class RevisionStore
 	public function newRevisionFromRow(
 		$row,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $page = null,
 		$fromCache = false
 	) {
-		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $title, $fromCache );
+		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $page, $fromCache );
 	}
 
 	/**
@@ -1509,7 +1511,7 @@ class RevisionStore
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
 	 *   data is returned from getters, by querying the database as needed
 	 *
@@ -1521,25 +1523,18 @@ class RevisionStore
 		$row,
 		$slots,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $page = null,
 		$fromCache = false
 	) {
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 
-		if ( !$title ) {
+		if ( !$page ) {
 			$pageId = (int)( $row->rev_page ?? 0 ); // XXX: fall back to page_id?
 			$revId = (int)( $row->rev_id ?? 0 );
 
-			$title = $this->getTitle( $pageId, $revId, $queryFlags );
+			$page = $this->getTitle( $pageId, $revId, $queryFlags );
 		} else {
-			$this->ensureRevisionRowMatchesTitle( $row, $title );
-		}
-
-		if ( !isset( $row->page_latest ) ) {
-			$row->page_latest = $title->getLatestRevID();
-			if ( $row->page_latest === 0 && $title->exists() ) {
-				wfWarn( 'Encountered title object in limbo: ID ' . $title->getArticleID() );
-			}
+			$this->ensureRevisionRowMatchesPage( $row, $page );
 		}
 
 		try {
@@ -1550,7 +1545,7 @@ class RevisionStore
 				$this->dbDomain
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
+			wfWarn( __METHOD__ . ': ' . $page . ': ' . $ex->getMessage() );
 			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
 		}
 
@@ -1559,7 +1554,7 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $title );
+			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $page );
 		}
 
 		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
@@ -1599,11 +1594,11 @@ class RevisionStore
 						)
 					];
 				},
-				$title, $user, $comment, $row, $slots, $this->dbDomain
+				$page, $user, $comment, $row, $slots, $this->dbDomain
 			);
 		} else {
 			$rev = new RevisionStoreRecord(
-				$title, $user, $comment, $row, $slots, $this->dbDomain );
+				$page, $user, $comment, $row, $slots, $this->dbDomain );
 		}
 		return $rev;
 	}
@@ -1644,6 +1639,34 @@ class RevisionStore
 					. "the provided Title object belongs to page ID $masterPageId"
 				);
 			}
+		}
+	}
+
+	/**
+	 * Check that the given row matches the given PageIdentity object.
+	 * When a mismatch is detected, this tries to re-load the title from master,
+	 * to avoid spurious errors during page moves.
+	 *
+	 * @param \stdClass $row
+	 * @param PageIdentity $page
+	 * @param array $context
+	 */
+	private function ensureRevisionRowMatchesPage( $row, PageIdentity $page, $context = [] ) {
+		if ( $page instanceof Title ) {
+			$this->ensureRevisionRowMatchesTitle( $row, Title::castFromPageIdentity( $page ), $context );
+			return;
+		}
+
+		$revId = (int)( $row->rev_id ?? 0 );
+		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
+		$titlePageId = $this->getArticleId( $page );
+
+		// Raise fatal error when the Title's ID changed, T246720
+		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
+			throw new RevisionAccessException(
+				"Revision $revId belongs to page ID $revPageId, "
+				. "the provided Title object belongs to page ID $titlePageId"
+			);
 		}
 	}
 
@@ -2317,7 +2340,7 @@ class RevisionStore
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title|null $title (optional)
+	 * @param PageIdentity|null $page (optional)
 	 * @param array $options (optional) additional query options
 	 *
 	 * @return RevisionRecord|null
@@ -2325,11 +2348,11 @@ class RevisionStore
 	private function newRevisionFromConds(
 		array $conditions,
 		int $flags = IDBAccessObject::READ_NORMAL,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $options = []
 	) {
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
-		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title, $options );
+		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $page, $options );
 
 		$lb = $this->getDBLoadBalancer();
 
@@ -2342,7 +2365,7 @@ class RevisionStore
 		) {
 			$flags = self::READ_LATEST;
 			$dbw = $this->getDBConnectionRef( DB_MASTER );
-			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $title, $options );
+			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $page, $options );
 		}
 
 		return $rev;
@@ -2357,7 +2380,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title|null $title (optional) additional query options
+	 * @param PageIdentity|null $page (optional) additional query options
 	 * @param array $options (optional) additional query options
 	 *
 	 * @return RevisionRecord|null
@@ -2366,12 +2389,12 @@ class RevisionStore
 		IDatabase $db,
 		array $conditions,
 		int $flags = IDBAccessObject::READ_NORMAL,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $options = []
 	) {
 		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags, $options );
 		if ( $row ) {
-			return $this->newRevisionFromRow( $row, $flags, $title );
+			return $this->newRevisionFromRow( $row, $flags, $page );
 		}
 
 		return null;
@@ -2860,11 +2883,11 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::countByTitle
 	 *
 	 * @param IDatabase $db
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @return int
 	 */
-	public function countRevisionsByTitle( IDatabase $db, $title ) {
-		$id = $title->getArticleID();
+	public function countRevisionsByTitle( IDatabase $db, PageIdentity $page ) {
+		$id = $this->getArticleId( $page );
 		if ( $id ) {
 			return $this->countRevisionsByPageId( $db, $id );
 		}

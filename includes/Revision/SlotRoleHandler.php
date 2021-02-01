@@ -23,6 +23,7 @@
 namespace MediaWiki\Revision;
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * SlotRoleHandler instances are used to declare the existence and behavior of slot roles.
@@ -122,11 +123,11 @@ class SlotRoleHandler {
 	 *
 	 * @stable to override
 	 *
-	 * @param LinkTarget $page
+	 * @param LinkTarget|PageIdentity $page
 	 *
 	 * @return string
 	 */
-	public function getDefaultModel( LinkTarget $page ) {
+	public function getDefaultModel( $page ) {
 		return $this->contentModel;
 	}
 
