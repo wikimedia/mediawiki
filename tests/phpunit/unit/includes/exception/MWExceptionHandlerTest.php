@@ -169,6 +169,10 @@ TEXT;
 	/**
 	 * Helper function for testGetRedactedTrace
 	 *
+	 * @param array $a
+	 * phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object $b
+	 * @param mixed &$c
 	 * @throws Exception
 	 */
 	protected static function helperThrowForArgs( array $a, object $b, &$c ) {

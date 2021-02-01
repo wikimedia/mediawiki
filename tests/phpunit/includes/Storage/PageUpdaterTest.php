@@ -764,7 +764,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSetUsePageCreationLog
-	 * @param bool $use
 	 */
 	public function testSetUsePageCreationLog( $use, $expected ) {
 		$user = $this->getTestUser()->getUser();

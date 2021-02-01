@@ -343,7 +343,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 * @covers FormatJson::encode
 	 * @covers FormatJson::decode
 	 * @dataProvider provideEmptyJsonKeyStrings
-	 * @param string $json
 	 *
 	 * Decoding behavior with empty keys can be surprising.
 	 * See https://phabricator.wikimedia.org/T206411

@@ -1,6 +1,7 @@
 <?php
 
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+// phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
 
 namespace Wikimedia\Tests;
 
