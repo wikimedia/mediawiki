@@ -28,10 +28,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
-	<!-- See T238572 -->
-	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
-		<exclude-pattern>tests/</exclude-pattern>
-	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--

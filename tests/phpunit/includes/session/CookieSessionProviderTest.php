@@ -842,6 +842,9 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * To be mocked for hooks, since PHPUnit can't otherwise mock methods that
 	 * take references.
+	 * @param User $user
+	 * @param array &$sessionData
+	 * @param string[] &$cookies
 	 */
 	public function onUserSetCookies( $user, &$sessionData, &$cookies ) {
 	}

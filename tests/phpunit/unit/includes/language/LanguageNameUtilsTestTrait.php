@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
+
 use MediaWiki\Languages\LanguageNameUtils;
 
 const AUTONYMS = LanguageNameUtils::AUTONYMS;
