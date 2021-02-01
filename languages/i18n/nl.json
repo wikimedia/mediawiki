@@ -3340,7 +3340,7 @@
 	"duplicate-displaytitle": "<strong>Waarschuwing:</strong>Titelweergave \"$2\" overschrijft eerdere titelweergave \"$1\".",
 	"restricted-displaytitle": "<strong>Waarschuwing:</strong> Titelweergave \"$1\" werd genegeerd omdat deze niet overeenkomt met de werkelijke paginatitel.",
 	"invalid-indicator-name": "<strong>Fout:</strong> de eigenschap <code>name</code> van de paginastatusindicators mag niet leeg zijn.",
-	"invalid-langconvert-attrs": "<strong>Fout:</strong> De attributen <code>from</code> en <code>to</code> van het langconvert element mogen niet leeg zijn en moeten de code voor converteerbare varianten van dezelfde taal bevatten.",
+	"invalid-langconvert-attrs": "<strong>Fout:</strong> De attributen <code>from</code> en <code>to</code> van het langconvert element mogen niet leeg zijn en moeten BCP 47 codes voor converteerbare varianten van dezelfde taal bevatten.",
 	"version": "Versie",
 	"version-extensions": "Geïnstalleerde uitbreidingen",
 	"version-skins": "Geïnstalleerde vormgevingen",

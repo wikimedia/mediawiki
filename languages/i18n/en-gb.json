@@ -76,6 +76,7 @@
 	"linter-pager-tidy-font-bug-details": "Font tag tries to change link colour",
 	"grant-group-customization": "Customisation and preferences",
 	"recentchangeslinked-summary": "Enter a page name to see changes on the pages linked to or from that page. (To see members of a category, enter \"{{ns:category}}:Name of category\"). Changes to pages on [[Special:Watchlist|your Watchlist]] are highlighted in <strong>bold</strong>.",
+	"licenses-edit": "Edit licence options",
 	"linkstoimage": "The following {{PLURAL:$1|page uses|$1 pages use}} this file:",
 	"uncategorizedpages": "Uncategorised pages",
 	"uncategorizedcategories": "Uncategorised categories",

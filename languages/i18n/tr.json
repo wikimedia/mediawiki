@@ -3399,7 +3399,7 @@
 	"duplicate-displaytitle": "<strong>Uyarı:</strong> \"$2\" şeklindeki yeni başlık \"$1\" şeklindeki eski başlığın üzerine yazılacak.",
 	"restricted-displaytitle": "<strong>Uyarı:</strong> Sayfanın gerçek başlığına eşdeğer olmadığından \"$1\" başlık görüntüleniyor.",
 	"invalid-indicator-name": "<strong>Hata:</strong> Sayfa durum göstergelerinin <code>name</code> özelliği boş olamaz.",
-	"invalid-langconvert-attrs": "<strong>Hata:</strong> Langconvert etiketinin <code>from</code> ve <code>to</code> özellikleri boş olmamalı ve aynı dilin dönüştürülebilir varyantları için kodlar içermelidir.",
+	"invalid-langconvert-attrs": "<strong>Hata:</strong> Langconvert etiketinin <code>from</code> ve <code>to</code> nitelikleri boş olmamalı ve aynı dilin dönüştürülebilir varyantları için BCP 47 kodlarını içermelidir.",
 	"version": "Sürüm",
 	"version-extensions": "Yüklü uzantılar",
 	"version-skins": "Yüklü görünümler",
