@@ -4111,7 +4111,7 @@
 	"specialmute": "Silenciar",
 	"specialmute-success": "Tus preferencias de silencio han sido actualizadas. Mira todos los usuarios silenciados en [[Special:Preferences|tus preferencias]].",
 	"specialmute-submit": "Confirmar",
-	"specialmute-label-mute-email": "Silenciar los correos electrónicos de este usuario",
+	"specialmute-label-mute-email": "Silenciar los correos electrónicos de {{GENDER:$1|este usuario|esta usuaria}}",
 	"specialmute-header": "Selecciona tus preferencias de silencio para <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "No se encontró el nombre de usuario solicitado.",
 	"specialmute-error-no-options": "Las funciones de silencio no están disponibles. Esto podría deberse a que: no ha confirmado su dirección de correo electrónico o el administrador de wiki ha deshabilitado las funciones de correo electrónico y/o la lista negra de correo electrónico para este wiki.",

@@ -3350,7 +3350,7 @@
 	"duplicate-displaytitle": "<strong>אזהרה:</strong> כותרת התצוגה \"$2\" דורסת את כותרת התצוגה הקודמת \"$1\".",
 	"restricted-displaytitle": "<strong>אזהרה:</strong> כותרת התצוגה \"$1\" לא הופעלה כי היא אינה תואמת לכותרת האמיתית של הדף.",
 	"invalid-indicator-name": "<strong>שגיאה:</strong> התכונה <code>name</code> של מצייני מצב הדף אינה יכולה להיות ריקה.",
-	"invalid-langconvert-attrs": "<strong>שגיאה:</strong> המאפיינים <code>from</code> ו־<code>to</code> של תג langconvert אינם יכולים להיות ריקים והם חייבים להכיל קודים להגוונים של אותה שפה שאפשר להמיר ביניהם.",
+	"invalid-langconvert-attrs": "<strong>שגיאה:</strong> המאפיינים <code>from</code> ו־<code>to</code> של תג langconvert אינם יכולים להיות ריקים והם חייבים להכיל קודי BCP 47 להגוונים של אותה שפה שאפשר להמיר ביניהם.",
 	"version": "גרסת התוכנה",
 	"version-extensions": "הרחבות מותקנות",
 	"version-skins": "עיצובים מותקנים",

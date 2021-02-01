@@ -1849,6 +1849,6 @@
 	"api-usage-docref": "API kullanımı için $1 bakın.",
 	"api-usage-mailinglist-ref": "API kullanımdan kaldırma ve değişikliklerin bildirilmesi için &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; adresinden mediawiki-api-announce posta listesine abone olun.",
 	"api-exception-trace": "$1 - $2($3)\n$4",
-	"api-credits-header": "Katkılar",
+	"api-credits-header": "Katkıda bulunanlar",
 	"api-credits": "API geliştiricileri:\n* Yuri Astrakhan (yaratıcı, baş geliştirici Eylül 2006 – Eylül 2007)\n* Roan Kattouw (öncü geliştirici Eylül 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (öncü geliştirici 2013 – günümüz)\n\nLütfen yorumlarınızı, önerilerinizi ve sorularınızı mediawiki-api@lists.wikimedia.org adresine gönderin.\nveya https://phabricator.wikimedia.org/ adresinde bir hata raporu sunun."
 }
