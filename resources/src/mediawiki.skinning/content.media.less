@@ -1,3 +1,5 @@
+@import 'variables';
+
 /**
  * Block media items
  */
@@ -7,17 +9,15 @@ figure[ typeof~='mw:Audio' ],
 figure[ typeof~='mw:Image/Frameless' ],
 figure[ typeof~='mw:Video/Frameless' ],
 figure[ typeof~='mw:Audio/Frameless' ] {
-	/* Maybe belongs in element.css for figure */
-	margin: 0;
+	margin: 0;  // Maybe belongs in element.css for figure
 
 	> a {
 		border: 0;
 	}
 
 	&.mw-halign-right {
-		/* Matches div.floatright in content.less */
 		/* @noflip */
-		margin: 0 0 0.5em 0.5em;
+		margin: @margin-floatright;
 		/* @noflip */
 		clear: right;
 		/* @noflip */
@@ -25,9 +25,8 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 
 	&.mw-halign-left {
-		/* Matches div.floatleft in content.less */
 		/* @noflip */
-		margin: 0 0.5em 0.5em 0;
+		margin: @margin-floatleft;
 		/* @noflip */
 		clear: left;
 		/* @noflip */
@@ -40,7 +39,7 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 
 	&.mw-halign-center {
-		/* Matches *.center * in element.less */
+		/* Matches *.center * in element.css */
 		margin: 0 auto;
 		display: table;
 		border-collapse: collapse;
@@ -60,16 +59,14 @@ figure[ typeof~='mw:Audio/Thumb' ],
 figure[ typeof~='mw:Image/Frame' ],
 figure[ typeof~='mw:Video/Frame' ],
 figure[ typeof~='mw:Audio/Frame' ] {
-	/* As above, resetting defaults for figure maybe belongs in element.css
-	 * And, matches div.thumb in content.less
-	 */
-	margin: 0 0 0.5em 0;
+	margin: 0;  // Maybe belongs in element.css for figure
+	margin-bottom: @margin-bottom-thumb;
 	display: table;
 	text-align: center;
-	border: 1px solid #c8ccd1;
+	border: @border-thumbinner;
 	border-bottom: 0;  // No border to figcaption
 	border-collapse: collapse;
-	background-color: #f8f9fa;
+	background-color: @background-color-thumbinner;
 
 	> a {
 		border: 0;
@@ -78,9 +75,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	// Defaults for page content language
 
 	.mw-content-ltr & {
-		/* Matches div.tright in content.less */
 		/* @noflip */
-		margin: 0.5em 0 1.3em 1.4em;
+		margin: @margin-tright;
 		/* @noflip */
 		clear: right;
 		/* @noflip */
@@ -88,9 +84,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	.mw-content-rtl & {
-		/* Matches div.tleft in content.less */
 		/* @noflip */
-		margin: 0.5em 1.4em 1.3em 0;
+		margin: @margin-tleft;
 		/* @noflip */
 		clear: left;
 		/* @noflip */
@@ -101,9 +96,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	// Order of application is important, so don't combine with the defaults
 
 	&.mw-halign-right {
-		/* Matches div.tright in content.less */
 		/* @noflip */
-		margin: 0.5em 0 1.3em 1.4em;
+		margin: @margin-tright;
 		/* @noflip */
 		clear: right;
 		/* @noflip */
@@ -111,9 +105,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	&.mw-halign-left {
-		/* Matches div.tleft in content.less */
 		/* @noflip */
-		margin: 0.5em 1.4em 1.3em 0;
+		margin: @margin-tleft;
 		/* @noflip */
 		clear: left;
 		/* @noflip */
@@ -121,20 +114,18 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 
 	&.mw-halign-none {
-		/* Override the default margin from mw-content-xxx above
-		 * And, matches div.thumb in content.less
-		 */
-		margin: 0 0 0.5em 0;
+		/* Override the default margin from mw-content-xxx above */
+		margin: 0;
+		margin-bottom: @margin-bottom-thumb;
 		clear: none;
 		float: none;
 	}
 
 	&.mw-halign-center {
 		/* Override the default margin from mw-content-xxx above
-		 * And, matches div.thumb in content.less
-		 * And, also, matches *.center * in element.less
+		 * And, matches *.center * in element.css
 		 */
-		margin: 0 auto 0.5em auto;
+		margin: 0 auto @margin-bottom-thumb auto;
 		clear: none;
 		float: none;
 	}
@@ -143,8 +134,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		> audio,
 		> img,
 		> video {
-			border: 1px solid #c8ccd1;
-			background: #fff;
+			border: @border-thumbimage;
+			background: @background-color-thumbimage;
 			margin: 3px;
 		}
 		/* Broken media get a span instead */
@@ -154,17 +145,18 @@ figure[ typeof~='mw:Audio/Frame' ] {
 			margin: 3px 4px;
 			/* This is hardcoded in Linker::makeThumbLink2 for broken media */
 			width: 180px;
-			/* From .thumbinner, styles the text of broken media */
-			font-size: 94%;
+			/* Styles the text of broken media */
+			font-size: @font-size-thumbinner;
 		}
 	}
 
 	> figcaption {
 		display: table-caption;
 		caption-side: bottom;
-		border: 1px solid #c8ccd1;
+		border: @border-thumbinner;
 		border-top: 0;
-		background-color: #f8f9fa;
+		background-color: @background-color-thumbinner;
+		line-height: @line-height-thumbcaption;
 
 		/**
 		 * The "break-word" value is deprecated, however, it's well supported
@@ -188,11 +180,10 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		 */
 		word-break: break-word;
 
-		/* In mw-core the font-size is duplicated, 94% in thumbiner
+		/* In mw-core the font-size is duplicated, 94% in thumbinner
 		 * and again 94% in thumbcaption. 88.4% for font size of the
 		 * caption results in the same behavior. */
-		font-size: 88.4%;
-		line-height: 1.4em;
+		font-size: 88.4%;  // @font-size-thumbinner * @font-size-thumbcaption
 
 		.mw-content-ltr & {
 			/* @noflip */
@@ -249,28 +240,27 @@ figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
 			/* @noflip */
 			right: 6px;
 			/* @noflip */
-			background-image: url( images/magnify-clip-ltr.png );
+			background-image: @background-image-magnify-ltr-1;
 			/* @noflip */
-			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+			background-image: @background-image-magnify-ltr-2;
 		}
 
 		.mw-content-rtl & {
 			/* @noflip */
 			left: 6px;
 			/* @noflip */
-			background-image: url( images/magnify-clip-rtl.png );
+			background-image: @background-image-magnify-rtl-1;
 			/* @noflip */
-			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
+			background-image: @background-image-magnify-rtl-2;
 		}
 	}
 }
 
-/* Same as html .thumbborder in content.less */
 .mw-image-border > *:first-child {
 	> audio,
 	> img,
 	> video {
-		border: 1px solid #eaecf0;
+		border: @border-thumbborder;
 	}
 }
 
