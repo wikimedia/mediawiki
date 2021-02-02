@@ -301,6 +301,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ProtectionForm__buildFormHook,
 	\MediaWiki\Hook\ProtectionForm__saveHook,
 	\MediaWiki\Hook\ProtectionForm__showLogExtractHook,
+	\MediaWiki\Hook\ProtectionFormAddFormFieldsHook,
 	\MediaWiki\Hook\RandomPageQueryHook,
 	\MediaWiki\Hook\RawPageViewBeforeOutputHook,
 	\MediaWiki\Hook\RecentChangesPurgeRowsHook,
@@ -3142,6 +3143,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ProtectionForm::buildForm',
 			[ $article, &$output ]
+		);
+	}
+
+	public function onProtectionFormAddFormFields( $article, &$hookFormOptions ) {
+		return $this->container->run(
+			'ProtectionFormAddFormFields',
+			[ $article, &$hookFormOptions ]
 		);
 	}
 

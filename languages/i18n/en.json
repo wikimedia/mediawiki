@@ -2588,6 +2588,7 @@
 	"restriction-move": "Move",
 	"restriction-create": "Create",
 	"restriction-upload": "Upload",
+	"restriction-blank": "",
 	"restriction-level-sysop": "fully protected",
 	"restriction-level-autoconfirmed": "semi protected",
 	"restriction-level-all": "any level",

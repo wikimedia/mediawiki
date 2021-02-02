@@ -118,7 +118,7 @@ abstract class Maintenance {
 	 * @var array[]
 	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
 	 */
-	private $mDependantParameters = [];
+	private $mDependentParameters = [];
 
 	/**
 	 * Used by getDB() / setDB()
@@ -383,7 +383,7 @@ abstract class Maintenance {
 				'per batch, default: ' . $this->mBatchSize, false, true );
 			if ( isset( $this->mParams['batch-size'] ) ) {
 				// This seems a little ugly...
-				$this->mDependantParameters['batch-size'] = $this->mParams['batch-size'];
+				$this->mDependentParameters['batch-size'] = $this->mParams['batch-size'];
 			}
 		}
 	}
@@ -551,7 +551,7 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
-		# Generic (non script dependant) options:
+		# Generic (non-script-dependent) options:
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
 		$this->addOption( 'quiet', 'Whether to suppress non-error output', false, false, 'q' );
@@ -573,7 +573,7 @@ abstract class Maintenance {
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
 
-		# Script dependant options:
+		# Script-dependent options:
 
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
@@ -582,9 +582,9 @@ abstract class Maintenance {
 			$this->addOption( 'dbgroupdefault', 'The default DB group to use.', false, true );
 		}
 
-		# Save additional script dependant options to display
+		# Save additional script-dependent options to display
 		#  them separately in help
-		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
+		$this->mDependentParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
 	}
 
 	/**
@@ -1107,11 +1107,11 @@ abstract class Maintenance {
 		}
 		$this->output( "\n" );
 
-		$scriptDependantParams = $this->mDependantParameters;
-		if ( count( $scriptDependantParams ) > 0 ) {
-			$this->output( "Script dependant parameters:\n" );
+		$scriptDependentParams = $this->mDependentParameters;
+		if ( count( $scriptDependentParams ) > 0 ) {
+			$this->output( "Script-dependent parameters:\n" );
 			// Parameters description
-			foreach ( $scriptDependantParams as $par => $info ) {
+			foreach ( $scriptDependentParams as $par => $info ) {
 				if ( $info['shortName'] !== false ) {
 					$par .= " (-{$info['shortName']})";
 				}
@@ -1123,18 +1123,18 @@ abstract class Maintenance {
 			$this->output( "\n" );
 		}
 
-		// Script specific parameters not defined on construction by
+		// Script-specific parameters not defined on construction by
 		// Maintenance::addDefaultParams()
 		$scriptSpecificParams = array_diff_key(
 			# all script parameters:
 			$this->mParams,
 			# remove the Maintenance default parameters:
 			$this->mGenericParameters,
-			$this->mDependantParameters
+			$this->mDependentParameters
 		);
 		'@phan-var array[] $scriptSpecificParams';
 		if ( count( $scriptSpecificParams ) > 0 ) {
-			$this->output( "Script specific parameters:\n" );
+			$this->output( "Script-specific parameters:\n" );
 			// Parameters description
 			foreach ( $scriptSpecificParams as $par => $info ) {
 				if ( $info['shortName'] !== false ) {
