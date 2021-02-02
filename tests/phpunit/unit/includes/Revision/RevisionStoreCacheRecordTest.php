@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Revision;
 
 use CommentStoreComment;
+use DummyContentForTesting;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
@@ -11,7 +12,6 @@ use MediaWiki\Revision\RevisionStoreCacheRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
-use TextContent;
 
 /**
  * @covers \MediaWiki\Revision\RevisionStoreCacheRecord
@@ -34,8 +34,8 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
-		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
-		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
+		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );
+		$aux = SlotRecord::newUnsaved( 'aux', new DummyContentForTesting( 'Frumious Bandersnatch' ) );
 		$slots = new RevisionSlots( [ $main, $aux ] );
 
 		$row = [
