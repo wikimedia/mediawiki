@@ -632,8 +632,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Clear any cached test users so they don't retain references to old services
 		TestUserRegistry::clear();
 
-		// Re-enable any disabled deprecation warnings
-		MWDebug::clearLog();
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
