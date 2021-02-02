@@ -311,12 +311,9 @@ class CSSMin {
 				);
 
 				if ( $embedData ) {
-					// Remember the occurring MIME types to avoid fallbacks when embedding some files.
-					$mimeTypes = [];
-
 					$ruleWithEmbedded = preg_replace_callback(
 						$pattern,
-						function ( $match ) use ( $embedAll, $local, $remote, &$mimeTypes ) {
+						function ( $match ) use ( $embedAll, $local, $remote ) {
 							$embed = $embedAll || $match['embed'];
 							$embedded = self::remapOne(
 								$match['file'],
@@ -325,23 +322,10 @@ class CSSMin {
 								$remote,
 								$embed
 							);
-
-							$url = $match['file'] . $match['query'];
-							$file = "{$local}/{$match['file']}";
-							if (
-								!self::isRemoteUrl( $url ) && !self::isLocalUrl( $url )
-								&& file_exists( $file )
-							) {
-								$mimeTypes[ self::getMimeType( $file ) ] = true;
-							}
-
 							return self::buildUrlValue( $embedded );
 						},
 						$rule
 					);
-
-					// Are all referenced images SVGs?
-					$needsEmbedFallback = $mimeTypes !== [ 'image/svg+xml' => true ];
 				}
 
 				if ( !$embedData || $ruleWithEmbedded === $ruleWithRemapped ) {
