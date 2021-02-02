@@ -831,14 +831,11 @@ class SpecialBlock extends FormSpecialPage {
 		$namespaceRestrictions = [];
 		if ( $isPartialBlock ) {
 			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
-				$pageRestrictions = array_map( function ( $text ) {
-					$title = Title::newFromText( $text );
-					// Use the link cache since the title has already been loaded when
-					// the field was validated.
-					$restriction = new PageRestriction( 0, $title->getArticleID() );
-					$restriction->setTitle( $title );
-					return $restriction;
-				}, explode( "\n", $data['PageRestrictions'] ) );
+				$titles = explode( "\n", $data['PageRestrictions'] );
+				$pageRestrictions = [];
+				foreach ( $titles as $title ) {
+					$pageRestrictions[] = PageRestriction::newFromTitle( $title );
+				}
 			}
 			if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
 				$namespaceRestrictions = array_map( function ( $id ) {
