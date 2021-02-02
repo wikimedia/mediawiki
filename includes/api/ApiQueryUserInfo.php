@@ -96,7 +96,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
 		$vals = [];
-		$vals['id'] = (int)$user->getId();
+		$vals['id'] = $user->getId();
 		$vals['name'] = $user->getName();
 
 		if ( $user->isAnon() ) {
@@ -298,7 +298,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$user = $this->getUser();
 		$dbr = $this->getDB();
 
-		if ( $user->getActorId() === null ) {
+		if ( $user->getActorId() === 0 ) {
 			return null;
 		}
 		$res = $dbr->selectField( 'revision_actor_temp',

@@ -74,7 +74,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		# Sneak a single revision into place
 		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
 		if ( $user ) {
-			$userId = intval( $user->getId() );
+			$userId = $user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;

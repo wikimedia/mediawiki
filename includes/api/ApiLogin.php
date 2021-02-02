@@ -200,7 +200,7 @@ class ApiLogin extends ApiBase {
 				$injected_html = '';
 				$this->getHookRunner()->onUserLoginComplete( $user, $injected_html, true );
 
-				$result['lguserid'] = (int)$user->getId();
+				$result['lguserid'] = $user->getId();
 				$result['lgusername'] = $user->getName();
 				break;
 

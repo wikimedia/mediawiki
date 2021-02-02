@@ -22,6 +22,9 @@
 
 namespace MediaWiki\User;
 
+use MediaWiki\DAO\WikiAwareEntity;
+use Wikimedia\Assert\PreconditionException;
+
 /**
  * Interface for objects representing user identity.
  *
@@ -29,14 +32,28 @@ namespace MediaWiki\User;
  *
  * @since 1.31
  */
-interface UserIdentity {
+interface UserIdentity extends WikiAwareEntity {
 
 	/**
 	 * @since 1.31
 	 *
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
+	 *
+	 * @deprecated since 1.36, use getUserId() instead
 	 */
-	public function getId();
+	public function getId() : int;
+
+	/**
+	 * @since 1.36
+	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *        Use self::LOCAL for the local wiki.
+	 *
+	 * @return int The user id.  May be 0 for anonymous users or for users with no local account.
+	 *
+	 * @throws PreconditionException if $wikiId mismatches $this->getWikiId()
+	 */
+	public function getUserId( $wikiId = self::LOCAL ) : int;
 
 	/**
 	 * @since 1.31
@@ -48,9 +65,15 @@ interface UserIdentity {
 	/**
 	 * @since 1.31
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *        Use self::LOCAL for the local wiki.
+	 *
 	 * @return int The user's actor ID. May be 0 if no actor ID is set.
+	 *
+	 * @note This will trigger a deprecation warning when $wikiId mismatches $this->getWikiId().
+	 *       In the future, it will throw PreconditionException.
 	 */
-	public function getActorId();
+	public function getActorId( $wikiId = self::LOCAL ) : int;
 
 	// TODO: we may want to (optionally?) provide a global ID, see CentralIdLookup.
 

@@ -8,6 +8,7 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1066,6 +1067,53 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user2 = User::newFromActorId( $user->getActorId() );
 		$this->assertSame( $user->getName(), $user2->getName(),
 			'User::newFromActorId works for an anonymous user' );
+	}
+
+	/**
+	 * @covers User::getActorId
+	 */
+	public function testForeignGetActorId() {
+		$user = User::newFromName( 'UserTestActorId1' );
+		$this->expectException( PreconditionException::class );
+		$user->getActorId( 'Foreign Wiki' );
+	}
+
+	/**
+	 * @covers User::getUserId
+	 */
+	public function testGetUserId() {
+		$id = '88888888';
+		$user = User::newFromId( $id );
+
+		$this->assertEquals( $id, $user->getUserId(),
+			'Can get user ID for user passing no parameter' );
+
+		$this->assertEquals( $id, $user->getUserId( User::LOCAL ),
+			'Can get user ID for user passing local wiki' );
+
+		$this->expectException( PreconditionException::class );
+		$user->getUserId( 'Foreign Wiki' );
+	}
+
+	/**
+	 * @covers User::getWikiId
+	 */
+	public function testGetWiki() {
+		$user = User::newFromName( 'UserTestActorId1' );
+		$this->assertSame( User::LOCAL, $user->getWikiId() );
+	}
+
+	/**
+	 * @covers User::assertWiki
+	 */
+	public function testAssertWiki() {
+		$user = User::newFromName( 'UserTestActorId1' );
+
+		$user->assertWiki( User::LOCAL );
+		$this->assertTrue( true, 'User is for local wiki' );
+
+		$this->expectException( PreconditionException::class );
+		$user->assertWiki( 'Foreign Wiki' );
 	}
 
 	/**
