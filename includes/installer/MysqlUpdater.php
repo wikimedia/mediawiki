@@ -37,25 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.6
-			[ 'doWatchlistNull' ],
-			[ 'addIndex', 'logging', 'times', 'patch-logging-times-index.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_range_start', 'patch-ipb_range_start.sql' ],
-			[ 'doPageRandomUpdate' ],
-			[ 'addField', 'user', 'user_registration', 'patch-user_registration.sql' ],
-			[ 'doTemplatelinksUpdate' ],
-			[ 'addTable', 'externallinks', 'patch-externallinks.sql' ],
-			[ 'addTable', 'job', 'patch-job.sql' ],
-			[ 'addField', 'site_stats', 'ss_images', 'patch-ss_images.sql' ],
-			[ 'addTable', 'langlinks', 'patch-langlinks.sql' ],
-			[ 'addTable', 'querycache_info', 'patch-querycacheinfo.sql' ],
-			[ 'addTable', 'filearchive', 'patch-filearchive.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_anon_only', 'patch-ipb_anon_only.sql' ],
-			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_ns_usertext',
-				'patch-recentchanges-utindex.sql' ],
-			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_user_text',
-				'patch-rc_user_text-index.sql' ],
-
 			// 1.9
 			[ 'addField', 'user', 'user_newpass_time', 'patch-user_newpass_time.sql' ],
 			[ 'addTable', 'redirect', 'patch-redirect.sql' ],
