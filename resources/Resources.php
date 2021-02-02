@@ -1241,6 +1241,19 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.action.protect' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.action",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
+		'packageFiles' => [
+			'mediawiki.action.protect.js',
+			[ 'name' => 'config.json', 'config' => [ 'CascadingRestrictionLevels' ] ],
+		],
+		'dependencies' => [
+			'oojs-ui-core',
+			'jquery.lengthLimit'
+		],
+		'messages' => [ 'protect-unchain-permissions' ]
+	],
 	'mediawiki.action.view.metadata' => [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
@@ -2282,6 +2295,7 @@ return [
 		],
 	],
 	'mediawiki.legacy.protect' => [
+		'deprecated' => "Please use mediawiki.action.protect",
 		'localBasePath' => "$IP/resources/src/mediawiki.legacy",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.legacy",
 		'packageFiles' => [
