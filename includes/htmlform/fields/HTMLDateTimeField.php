@@ -163,18 +163,9 @@ class HTMLDateTimeField extends HTMLTextField {
 			'id' => $this->mID,
 		];
 
-		if ( isset( $this->mParams['min'] ) ) {
-			$min = $this->parseDate( $this->mParams['min'] );
-			if ( $min ) {
-				$params['min'] = $this->formatDate( $min );
-			}
-		}
-		if ( isset( $this->mParams['max'] ) ) {
-			$max = $this->parseDate( $this->mParams['max'] );
-			if ( $max ) {
-				$params['max'] = $this->formatDate( $max );
-			}
-		}
+		$params += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( [ 'disabled', 'readonly', 'min', 'max' ] )
+		);
 
 		if ( $this->mType === 'date' ) {
 			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
