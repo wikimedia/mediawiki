@@ -540,7 +540,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @todo Remove $ext param
 	 *
 	 * @param string $file
-	 * @param mixed $ext
+	 * @param string|bool $ext
 	 * @return bool|string
 	 * @throws UnexpectedValueException
 	 */
