@@ -717,7 +717,7 @@ abstract class Maintenance {
 				require_once $classFile;
 			}
 			if ( !class_exists( $maintClass ) ) {
-				$this->error( "Cannot spawn child: $maintClass" );
+				$this->fatalError( "Cannot spawn child: $maintClass" );
 			}
 		}
 
