@@ -7,6 +7,8 @@
 
 /* stylelint-disable selector-class-pattern */
 
+@import 'variables';
+
 /* Table of Contents */
 .toc,
 .toccolours {
@@ -96,27 +98,27 @@ table.toc td {
 /* @noflip */
 div.floatright,
 table.floatright {
-	margin: 0 0 0.5em 0.5em;
+	margin: @margin-floatright;
 }
 
 /* @noflip */
 div.floatleft,
 table.floatleft {
-	margin: 0 0.5em 0.5em 0;
+	margin: @margin-floatleft;
 }
 
 /* Thumbnails */
 div.thumb {
-	margin-bottom: 0.5em;
+	margin-bottom: @margin-bottom-thumb;
 	width: auto;
 	background-color: transparent;
 }
 
 div.thumbinner {
-	border: 1px solid #c8ccd1;
+	border: @border-thumbinner;
 	padding: 3px;
-	background-color: #f8f9fa;
-	font-size: 94%;
+	background-color: @background-color-thumbinner;
+	font-size: @font-size-thumbinner;
 	text-align: center;
 	/* new block formatting context,
 	 * to clear background from floating content */
@@ -124,15 +126,15 @@ div.thumbinner {
 }
 
 .thumbimage {
-	background-color: #fff;
-	border: 1px solid #c8ccd1;
+	background-color: @background-color-thumbimage;
+	border: @border-thumbimage;
 }
 
 .thumbcaption {
 	border: 0;
-	line-height: 1.4em;
+	line-height: @line-height-thumbcaption;
 	padding: 3px;
-	font-size: 94%;
+	font-size: @font-size-thumbcaption;
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	text-align: left;
 }
@@ -165,7 +167,7 @@ div.thumbinner {
 }
 
 .thumbborder {
-	border: 1px solid #eaecf0;
+	border: @border-thumbborder;
 }
 
 /* Directionality-specific styles for thumbnails - their positioning depends on content language */
@@ -185,8 +187,8 @@ div.thumbinner {
 /* @noflip */
 .mw-content-ltr .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
-	background-image: url( images/magnify-clip-ltr.png );
-	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+	background-image: @background-image-magnify-ltr-1;
+	background-image: @background-image-magnify-ltr-2;
 }
 
 /* @noflip */
@@ -204,18 +206,18 @@ div.thumbinner {
 /* @noflip */
 .mw-content-rtl .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
-	background-image: url( images/magnify-clip-rtl.png );
-	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
+	background-image: @background-image-magnify-rtl-1;
+	background-image: @background-image-magnify-rtl-2;
 }
 
 /* @noflip */
 div.tright {
-	margin: 0.5em 0 1.3em 1.4em;
+	margin: @margin-tright;
 }
 
 /* @noflip */
 div.tleft {
-	margin: 0.5em 1.4em 1.3em 0;
+	margin: @margin-tleft;
 }
 
 /* Hide elements that are marked as "empty" according to legacy Tidy rules,
