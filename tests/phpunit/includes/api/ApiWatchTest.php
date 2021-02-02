@@ -192,8 +192,10 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testGetRollbackToken() {
-		// Needs to be here to have rollback-able edit by a different user
-		$this->editPage( 'Help:UTPage', __FUNCTION__, '', NS_HELP, $this->getTestUser()->getUser() );
+		// Needs to be here to make sure the page definitely exists and to have
+		// rollback-able edit by a different user for the testWatchRollback() below.
+		$this->editPage( 'UTPage', __FUNCTION__, '', NS_HELP, $this->getTestUser()->getUser() );
+
 		$contextUser = self::$users['sysop']->getUser();
 
 		$data = $this->doApiRequest( [
@@ -219,33 +221,26 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	/**
-	 * @group Broken
-	 * Broken because there is currently no revision info in the $pageinfo
-	 *
 	 * @depends testGetRollbackToken
 	 */
-	public function testWatchRollback( $data ) {
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
-		$pageinfo = $data[0]['query']['pages'][$key];
-		$revinfo = $pageinfo['revisions'][0];
+	public function testWatchRollback( $info ) {
+		list( $data, $revInfo, $contextUser ) = $info;
 
-		try {
-			$data = $this->doApiRequest( [
-				'action' => 'rollback',
-				'title' => 'Help:UTPage',
-				'user' => $revinfo['user'],
-				'token' => $pageinfo['rollbacktoken'],
-				'watchlist' => 'watch' ] );
+		$title = Title::makeTitle( NS_HELP, 'UTPage' );
 
-			$this->assertArrayHasKey( 'rollback', $data[0] );
-			$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
-		} catch ( ApiUsageException $ue ) {
-			if ( self::apiExceptionHasCode( $ue, 'onlyauthor' ) ) {
-				$this->markTestIncomplete( "Only one author to 'Help:UTPage', cannot test rollback" );
-			} else {
-				$this->fail( "Received error '" . $ue->getMessage() . "'" );
-			}
-		}
+		// This (and assertTrue below) are mostly for completeness.
+		$this->assertFalse( $contextUser->isWatched( $title ) );
+
+		$data = $this->doApiRequest( [
+			'action' => 'rollback',
+			'title' => 'Help:UTPage',
+			'user' => $revInfo['user'],
+			'token' => $contextUser->getEditToken( 'rollback' ),
+			'watchlist' => 'watch'
+		] );
+
+		$this->assertArrayHasKey( 'rollback', $data[0] );
+		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
+		$this->assertTrue( $contextUser->isWatched( $title ) );
 	}
 }
