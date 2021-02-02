@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Package\Package;
+use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 
 $GLOBALS['IP'] = __DIR__ . '/../../';
@@ -13,7 +14,29 @@ require_once __DIR__ . '/../AutoLoader.php';
 class ComposerHookHandler {
 
 	public static function onPreUpdate( Event $event ) {
+		self::checkMergePluginActive( $event );
 		self::handleChangeEvent( $event );
+	}
+
+	/**
+	 * Check if composer-merge-plugin has been activated. If not, the most
+	 * likely explanation is that an old version of the plugin was present
+	 * which did not support Composer 2, and so Composer disabled it.
+	 *
+	 * @param Event $event
+	 * @throws Exception
+	 */
+	private static function checkMergePluginActive( Event $event ) {
+		if ( version_compare( PluginInterface::PLUGIN_API_VERSION, '2.0.0', '>=' ) ) {
+			foreach ( $event->getComposer()->getPluginManager()->getPlugins() as $plugin ) {
+				if ( $plugin instanceof \Wikimedia\Composer\Merge\V2\MergePlugin ) {
+					return;
+				}
+			}
+			throw new \Exception( "composer-merge-plugin is not activated. " .
+				"Use Composer 1.x to update wikimedia/composer-merge-plugin to version " .
+				"2.x before running Composer 2.x." );
+		}
 	}
 
 	public static function onPreInstall( Event $event ) {
@@ -33,5 +56,4 @@ class ComposerHookHandler {
 			$packageModifier->setProvidesMediaWiki();
 		}
 	}
-
 }
