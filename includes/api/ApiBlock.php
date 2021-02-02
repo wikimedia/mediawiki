@@ -123,12 +123,11 @@ class ApiBlock extends ApiBase {
 
 		$restrictions = [];
 		if ( $params['partial'] ) {
-			$pageRestrictions = array_map( function ( $text ) {
-				$title = $this->titleFactory->newFromText( $text );
-				$restriction = new PageRestriction( 0, $title->getArticleID() );
-				$restriction->setTitle( $title );
-				return $restriction;
-			}, (array)$params['pagerestrictions'] );
+			$pageRestrictions = [];
+			foreach ( (array)$params['pagerestrictions'] as $title ) {
+				$pageRestrictions[] = PageRestriction::newFromTitle( $title );
+			}
+
 			$namespaceRestrictions = array_map( function ( $id ) {
 				return new NamespaceRestriction( 0, $id );
 			}, (array)$params['namespacerestrictions'] );
