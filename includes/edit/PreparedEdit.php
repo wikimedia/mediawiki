@@ -34,13 +34,6 @@ use RuntimeException;
  */
 class PreparedEdit {
 	/**
-	 * Time this prepared edit was made
-	 *
-	 * @var string
-	 */
-	public $timestamp;
-
-	/**
 	 * Revision ID
 	 *
 	 * @var int|null
@@ -117,6 +110,8 @@ class PreparedEdit {
 	public function __get( $name ) {
 		if ( $name === 'output' ) {
 			return $this->getOutput();
+		} elseif ( $name === 'timestamp' ) {
+			return $this->getOutput()->getCacheTime();
 		}
 
 		throw new RuntimeException( "Undefined field $name." );
