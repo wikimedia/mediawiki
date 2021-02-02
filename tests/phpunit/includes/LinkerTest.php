@@ -95,6 +95,40 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'Anonymous with IPv4 and an alternative username'
 			],
 
+			# External (imported) user, unknown prefix
+			[
+				'<span class="mw-userlink mw-extuserlink mw-anonuserlink"><bdi>acme&gt;Alice</bdi></span>',
+				0, "acme>Alice", false,
+				'User from acme wiki'
+			],
+
+			# Corrupt user names
+			[
+				"<span class=\"mw-userlink mw-anonuserlink\"><bdi>Foo\nBar</bdi></span>",
+				0, "Foo\nBar", false,
+				'User name with line break'
+			],
+			[
+				'<span class="mw-userlink mw-anonuserlink"><bdi>Barf_</bdi></span>',
+				0, "Barf_", false,
+				'User name with trailing underscore'
+			],
+			[
+				'<span class="mw-userlink mw-anonuserlink"><bdi>abcd</bdi></span>',
+				0, "abcd", false,
+				'Lower case user name'
+			],
+			[
+				'<span class="mw-userlink mw-anonuserlink"><bdi>For/Bar</bdi></span>',
+				0, "For/Bar", false,
+				'User name with slash'
+			],
+			[
+				'<span class="mw-userlink mw-anonuserlink"><bdi>For#Bar</bdi></span>',
+				0, "For#Bar", false,
+				'User name with hash'
+			],
+
 			# ## Regular user ##########################################
 			# TODO!
 		];

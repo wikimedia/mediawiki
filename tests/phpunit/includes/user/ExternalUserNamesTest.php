@@ -9,16 +9,51 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetUserLinkTitle() {
 		return [
-			[ 'valid:>User1', Title::makeTitle( NS_MAIN, ':User:User1', '', 'valid' ) ],
 			[
+				'Valid user name from known import source',
+				'valid:>User1',
+				Title::makeTitle( NS_MAIN, ':User:User1', '', 'valid' )
+			],
+			[
+				'Valid user name that looks like an import source, from known import source',
 				'valid:valid:>User1',
 				Title::makeTitle( NS_MAIN, 'valid::User:User1', '', 'valid' )
 			],
 			[
+				'Local IP address',
 				'127.0.0.1',
 				Title::makeTitle( NS_SPECIAL, 'Contributions/127.0.0.1', '', '' )
 			],
-			[ 'invalid:>User1', null ]
+			[
+				'Valid user name from unknown import source',
+				'invalid:>User1',
+				null
+			],
+			[
+				'Corrupt local user name with linebreak',
+				"Foo\nBar",
+				null
+			],
+			[
+				'Corrupt local user name with terminal underscore',
+				'Barf_',
+				null
+			],
+			[
+				'Corrupt local user name with initial lowercase',
+				'abcd',
+				null
+			],
+			[
+				'Corrupt local user name with slash',
+				'For/Bar',
+				null
+			],
+			[
+				'Corrupt local user name with octothorpe',
+				'For#Bar',
+				null
+			],
 		];
 	}
 
@@ -26,7 +61,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 	 * @covers ExternalUserNames::getUserLinkTitle
 	 * @dataProvider provideGetUserLinkTitle
 	 */
-	public function testGetUserLinkTitle( $username, $expected ) {
+	public function testGetUserLinkTitle( $caseDescription, $username, $expected ) {
 		$this->setContentLang( 'en' );
 
 		$interwikiLookupMock = $this->getMockBuilder( InterwikiLookup::class )
@@ -44,7 +79,8 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals(
 			$expected,
-			ExternalUserNames::getUserLinkTitle( $username )
+			ExternalUserNames::getUserLinkTitle( $username ),
+			$caseDescription
 		);
 	}
 
