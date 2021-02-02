@@ -6,6 +6,7 @@
 namespace MediaWiki\Tests\Unit\Revision;
 
 use CommentStoreComment;
+use DummyContentForTesting;
 use LogicException;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
@@ -16,7 +17,6 @@ use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
-use TextContent;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
@@ -257,7 +257,11 @@ trait RevisionRecordTests {
 
 		$content = $rev->getSlot( SlotRecord::MAIN );
 		$this->assertNotNull( $content, 'getContent()' );
-		$this->assertSame( CONTENT_MODEL_TEXT, $content->getModel(), 'getModel()' );
+		$this->assertSame(
+			DummyContentForTesting::MODEL_ID,
+			$content->getModel(),
+			'getModel()'
+		);
 	}
 
 	public function provideUserCanBitfield() {
@@ -361,10 +365,10 @@ trait RevisionRecordTests {
 
 	public function provideHasSameContent() {
 		// Create some slots with content
-		$mainA = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'A' ) );
-		$mainB = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'B' ) );
-		$auxA = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
-		$auxB = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
+		$mainA = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
+		$mainB = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'B' ) );
+		$auxA = SlotRecord::newUnsaved( 'aux', new DummyContentForTesting( 'A' ) );
+		$auxB = SlotRecord::newUnsaved( 'aux', new DummyContentForTesting( 'A' ) );
 
 		return [
 			'same record object' => [

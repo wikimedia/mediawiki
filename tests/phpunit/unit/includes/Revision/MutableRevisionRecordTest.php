@@ -15,9 +15,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use TextContent;
 use Wikimedia\Assert\PreconditionException;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\MutableRevisionRecord
@@ -53,7 +51,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			$record->setPageId( $rowOverrides['rev_page'] );
 		}
 
-		$record->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
+		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );
 		$record->setComment( $comment );
 		$record->setUser( $user );
 		$record->setTimestamp( '20101010000000' );
@@ -135,7 +133,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$record = new MutableRevisionRecord(
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
 		);
-		$content = new WikitextContent( 'Badger' );
+		$content = new DummyContentForTesting( 'Badger' );
 		$record->setContent( SlotRecord::MAIN, $content );
 		$this->assertSame( $content, $record->getContent( SlotRecord::MAIN ) );
 	}
@@ -156,7 +154,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		);
 		$slot = SlotRecord::newUnsaved(
 			SlotRecord::MAIN,
-			new WikitextContent( 'x' )
+			new DummyContentForTesting( 'x' )
 		);
 		$record->setSlot( $slot );
 		$this->assertTrue( $record->hasSlot( SlotRecord::MAIN ) );
@@ -239,16 +237,16 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
 		);
 
-		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'foo' ) );
 		$fooSize = $record->getSize();
 
 		// setting the content directly updates the hash
-		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'barx' ) );
+		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'barx' ) );
 		$barxSize = $record->getSize();
 		$this->assertNotSame( $fooSize, $barxSize );
 
 		// setting the content indirectly also updates the hash
-		$record->getSlots()->setContent( 'aux', new WikitextContent( 'frump' ) );
+		$record->getSlots()->setContent( 'aux', new DummyContentForTesting( 'frump' ) );
 		$frumpSize = $record->getSize();
 		$this->assertNotSame( $barxSize, $frumpSize );
 	}
@@ -277,7 +275,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 				'role_name' => 'main',
 				'slot_origin' => null // touched
 			],
-			new WikitextContent( 'main' )
+			new DummyContentForTesting( 'main' )
 		);
 		$auxSlot = new SlotRecord(
 			(object)[
@@ -289,7 +287,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 				'role_name' => 'aux',
 				'slot_origin' => 1 // inherited
 			],
-			new WikitextContent( 'aux' )
+			new DummyContentForTesting( 'aux' )
 		);
 
 		$record->setSlot( $mainSlot );
@@ -307,8 +305,8 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
 		);
 
-		$a = new WikitextContent( 'a' );
-		$b = new WikitextContent( 'b' );
+		$a = new DummyContentForTesting( 'a' );
+		$b = new DummyContentForTesting( 'b' );
 
 		$record->inheritSlot( SlotRecord::newSaved( 7, 3, 'a', SlotRecord::newUnsaved( 'a', $a ) ) );
 		$record->inheritSlot( SlotRecord::newSaved( 7, 4, 'b', SlotRecord::newUnsaved( 'b', $b ) ) );
@@ -322,10 +320,10 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	public function testApplyUpdate() {
 		$update = new RevisionSlotsUpdate();
 
-		$a = new WikitextContent( 'a' );
-		$b = new WikitextContent( 'b' );
-		$c = new WikitextContent( 'c' );
-		$x = new WikitextContent( 'x' );
+		$a = new DummyContentForTesting( 'a' );
+		$b = new DummyContentForTesting( 'b' );
+		$c = new DummyContentForTesting( 'c' );
+		$x = new DummyContentForTesting( 'x' );
 
 		$update->modifyContent( 'b', $x );
 		$update->modifyContent( 'c', $x );
@@ -356,7 +354,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$content = new TextContent( 'Test' );
+		$content = new DummyContentForTesting( 'Test' );
 
 		$rev = new MutableRevisionRecord( $title );
 		yield 'empty' => [ $rev ];
