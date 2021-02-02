@@ -37,15 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.9
-			[ 'addField', 'user', 'user_newpass_time', 'patch-user_newpass_time.sql' ],
-			[ 'addTable', 'redirect', 'patch-redirect.sql' ],
-			[ 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_enable_autoblock', 'patch-ipb_optional_autoblock.sql' ],
-			[ 'doBacklinkingIndicesUpdate' ],
-			[ 'addField', 'recentchanges', 'rc_old_len', 'patch-rc_len.sql' ],
-			[ 'addField', 'user', 'user_editcount', 'patch-user_editcount.sql' ],
-
 			// 1.10
 			[ 'doRestrictionsUpdate' ],
 			[ 'addField', 'logging', 'log_id', 'patch-log_id.sql' ],
