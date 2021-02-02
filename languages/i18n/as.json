@@ -2611,7 +2611,7 @@
 	"watchlisttools-view": "সংগতি থকা সাল-সলনিবোৰ চাওক",
 	"watchlisttools-edit": "লক্ষ্য-তালিকা চাওক আৰু সম্পাদনা কৰক",
 	"watchlisttools-raw": "অশোধিত লক্ষ্য-তালিকা সম্পাদনা কৰক",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|বাৰ্তা]])",
 	"timezone-utc": "ইউ.টি.চি.",
 	"duplicate-defaultsort": "'''সাৱধান!''' পূৰ্বনিৰ্ধাৰিত ক্ৰমসূচক \"$2\"-এ আগৰ ক্ৰমসূচক \"$1\"ক বিস্থাপিত কৰিছে।",
 	"version": "সংস্কৰণ",
