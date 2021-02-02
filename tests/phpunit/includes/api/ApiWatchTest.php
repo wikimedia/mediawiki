@@ -24,11 +24,6 @@ class ApiWatchTest extends ApiTestCase {
 		] );
 	}
 
-	protected function tearDown(): void {
-		ConvertibleTimestamp::setFakeTime( false );
-		parent::tearDown();
-	}
-
 	protected function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
@@ -96,10 +91,10 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatchInvalidExpiry() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Invalid value "invalid expiry" for expiry parameter "expiry".'
-		);
+		$this->setExpectedApiException( [
+			'paramvalidator-badexpiry', 'expiry', 'invalid expiry',
+		] );
+
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'Talk:Test page',
@@ -109,10 +104,10 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatchExpiryInPast() {
-		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Value "20010101000000" for expiry parameter "expiry" is in the past.'
-		);
+		$this->setExpectedApiException( [
+			'paramvalidator-badexpiry-past', 'expiry', '20010101000000',
+		] );
+
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'Talk:Test page',
@@ -129,7 +124,9 @@ class ApiWatchTest extends ApiTestCase {
 			'title' => 'Help:UTPage', // Help namespace is hopefully wikitext
 			'text' => 'new text',
 			'token' => $tokens['edittoken'],
-			'watchlist' => 'watch' ] );
+			'watchlist' => 'watch'
+		] );
+
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
@@ -185,7 +182,8 @@ class ApiWatchTest extends ApiTestCase {
 			'token' => $tokens['protecttoken'],
 			'title' => 'Help:UTPage',
 			'protections' => 'edit=sysop',
-			'watchlist' => 'unwatch' ] );
+			'watchlist' => 'unwatch'
+		] );
 
 		$this->assertArrayHasKey( 'protect', $data[0] );
 		$this->assertArrayHasKey( 'protections', $data[0]['protect'] );
@@ -194,33 +192,30 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testGetRollbackToken() {
-		$this->getTokens();
-
-		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
-			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); // TODO: just create it?
-		}
+		// Needs to be here to have rollback-able edit by a different user
+		$this->editPage( 'Help:UTPage', __FUNCTION__, '', NS_HELP, $this->getTestUser()->getUser() );
+		$contextUser = self::$users['sysop']->getUser();
 
 		$data = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'revisions',
 			'titles' => 'Help:UTPage',
-			'rvtoken' => 'rollback' ] );
+			'rvtoken' => 'rollback'
+		], null, null, $contextUser );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
+		$pageInfo = $data[0]['query']['pages'][$key];
+		$revInfo = $pageInfo['revisions'][0];
 
-		if ( isset( $data[0]['query']['pages'][$key]['missing'] ) ) {
-			$this->markTestSkipped( "Target page (Help:UTPage) doesn't exist" );
-		}
+		$this->assertArrayHasKey( 'pageid', $pageInfo );
+		$this->assertArrayHasKey( 'revisions', $pageInfo );
+		$this->assertArrayHasKey( 0, $pageInfo['revisions'] );
+		$this->assertArrayHasKey( 'rollbacktoken', $revInfo );
 
-		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 0, $data[0]['query']['pages'][$key]['revisions'] );
-		$this->assertArrayHasKey( 'rollbacktoken', $data[0]['query']['pages'][$key]['revisions'][0] );
-
-		return $data;
+		return [ $data, $revInfo, $contextUser ];
 	}
 
 	/**
