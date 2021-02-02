@@ -256,54 +256,6 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	/**
-	 * @todo Should this test just be deleted?
-	 * @group Broken
-	 */
-	public function testGotCookie() {
-		$this->markTestIncomplete( "The server can't do external HTTP requests, "
-			. "and the internal one won't give cookies" );
-
-		global $wgServer, $wgScriptPath;
-
-		$user = self::$users['sysop'];
-		$userName = $user->getUser()->getName();
-		$password = $user->getPassword();
-
-		$req = MWHttpRequest::factory(
-			self::$apiUrl . '?action=login&format=json',
-			[
-				'method' => 'POST',
-				'postData' => [
-					'lgname' => $userName,
-					'lgpassword' => $password,
-				],
-			],
-			__METHOD__
-		);
-		$req->execute();
-
-		$content = json_decode( $req->getContent() );
-
-		$this->assertSame( 'NeedToken', $content->login->result );
-
-		$req->setData( [
-			'lgtoken' => $content->login->token,
-			'lgname' => $userName,
-			'lgpassword' => $password,
-		] );
-		$req->execute();
-
-		$cj = $req->getCookieJar();
-		$serverName = parse_url( $wgServer, PHP_URL_HOST );
-		$this->assertIsString( $serverName );
-		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
-		$this->assertRegExp(
-			'/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $userName . '; .*Token=/',
-			$serializedCookie
-		);
-	}
-
-	/**
 	 * @return [ $username, $password ] suitable for passing to an API request for successful login
 	 */
 	private function setUpForBotPassword() {
