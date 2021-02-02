@@ -325,7 +325,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoWatchNoCheckRights() {
-		$notPermittedUser = $this->getUser( null, null, [] );
+		$notPermittedUser = $this->getUser( false, null, [] );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $notPermittedUser, false );
 		$this->assertTrue( $actual->isGood() );
 	}
@@ -335,7 +335,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoWatchUserNotPermittedStatusNotGood() {
-		$notPermittedUser = $this->getUser( null, null, [] );
+		$notPermittedUser = $this->getUser( false, null, [] );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $notPermittedUser, true );
 		$this->assertFalse( $actual->isGood() );
 	}
@@ -345,7 +345,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoWatchCallsUserAddWatch() {
-		$permittedUser = $this->getUser( null, null, [ 'editmywatchlist' ] );
+		$permittedUser = $this->getUser( false, null, [ 'editmywatchlist' ] );
 		$permittedUser->expects( $this->once() )
 			->method( 'addWatch' )
 			->with( $this->equalTo( $this->testWikiPage->getTitle() ), $this->equalTo( true ) );
@@ -360,7 +360,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoUnWatchWithoutRights() {
-		$notPermittedUser = $this->getUser( null, null, [] );
+		$notPermittedUser = $this->getUser( false, null, [] );
 		$actual = WatchAction::doUnwatch( $this->testWikiPage->getTitle(), $notPermittedUser );
 
 		$this->assertFalse( $actual->isGood() );
@@ -370,7 +370,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @covers WatchAction::doUnWatch()
 	 */
 	public function testDoUnWatchUserHookAborted() {
-		$permittedUser = $this->getUser( null, null, [ 'editmywatchlist' ] );
+		$permittedUser = $this->getUser( false, null, [ 'editmywatchlist' ] );
 		Hooks::register( 'UnwatchArticle', function () {
 			return false;
 		} );
@@ -388,7 +388,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testDoUnWatchCallsUserRemoveWatch() {
-		$permittedUser = $this->getUser( null, null,  [ 'editmywatchlist' ] );
+		$permittedUser = $this->getUser( false, null,  [ 'editmywatchlist' ] );
 		$permittedUser->expects( $this->once() )
 			->method( 'removeWatch' )
 			->with( $this->equalTo( $this->testWikiPage->getTitle() ) );
@@ -403,7 +403,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testGetWatchTokenNormalizesToWatch() {
-		$user = $this->getUser( null, null );
+		$user = $this->getUser( false, null );
 		$user->expects( $this->once() )
 			->method( 'getEditToken' )
 			->with( $this->equalTo( 'watch' ) );
@@ -416,7 +416,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testGetWatchTokenProxiesUserGetEditToken() {
-		$user = $this->getUser( null, null );
+		$user = $this->getUser( false, null );
 		$user->expects( $this->once() )->method( 'getEditToken' );
 
 		WatchAction::getWatchToken( $this->watchAction->getTitle(), $user );
@@ -661,7 +661,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	private function getUser(
-		$isRegistered = true,
+		bool $isRegistered = true,
 		$isWatched = true,
 		$permissions = []
 	) {

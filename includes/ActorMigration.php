@@ -294,7 +294,7 @@ class ActorMigration {
 		$q = [
 			'actor_user' => $user->getId() ?: null,
 			// make sure to use normalized form of IP for anonymous users
-			'actor_name' => IPUtils::sanitizeIP( (string)$user->getName() ),
+			'actor_name' => IPUtils::sanitizeIP( $user->getName() ),
 		];
 		if ( $q['actor_user'] === null && $this->userNameUtils->isUsable( $q['actor_name'] ) ) {
 			throw new CannotCreateActorException(
