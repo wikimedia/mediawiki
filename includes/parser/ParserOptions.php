@@ -306,7 +306,7 @@ class ParserOptions {
 	/**
 	 * Use tidy to cleanup output HTML?
 	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
+	 * @return null
 	 * @deprecated since 1.35; tidy is always enabled so this has no effect
 	 */
 	public function setTidy( $x ) {
@@ -1337,7 +1337,7 @@ class ParserOptions {
 	/**
 	 * Registers a callback for tracking which ParserOptions which are used.
 	 * This is a private API with the parser.
-	 * @param callable $callback
+	 * @param callable|null $callback
 	 */
 	public function registerWatcher( $callback ) {
 		$this->onAccessCallback = $callback;
@@ -1436,11 +1436,9 @@ class ParserOptions {
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-
-		$lang = $title ? $title->getPageLanguage() :
-			MediaWikiServices::getInstance()->getContentLanguage();
-		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $lang );
+		$services = MediaWikiServices::getInstance();
+		$lang = $title ? $title->getPageLanguage() : $services->getContentLanguage();
+		$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
 		$confstr .= $converter->getExtraHashOptions();
 
 		$confstr .= $wgRenderHashAppend;
