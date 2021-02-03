@@ -67,7 +67,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserCache = new ParserCache(
 			'test',
 			$bag ?: new HashBagOStuff(),
-			'',
+			'19900220000000',
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
@@ -83,7 +83,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'test',
 			$wanCache,
 			$expiry,
-			'',
+			'19900220000000',
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger()
