@@ -17,6 +17,7 @@ use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
+use MWDebug;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
@@ -43,6 +44,14 @@ trait RevisionRecordTests {
 	public function testGetIdSuccessful() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
 		$this->assertEquals( 5, $revision->getId( 'acmewiki' ) );
+	}
+
+	public function testGetIdTriggerDeprecatedWarning() {
+		MWDebug::clearDeprecationFilters();
+		$this->expectDeprecation();
+		$this->expectDeprecationMessageMatches( '/Expected RevisionRecord to belong to .*/' );
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
+		$revision->getId();
 	}
 
 	public function testGetIdDeprecated() {
