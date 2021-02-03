@@ -458,7 +458,7 @@ abstract class UploadBase {
 				fclose( $fp );
 
 				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-				$extMime = $magic->getMimeTypeFromExtensionOrNull( $this->mFinalExtension );
+				$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
 				$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 				foreach ( $ieTypes as $ieType ) {
 					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
@@ -490,7 +490,9 @@ abstract class UploadBase {
 
 		if ( $wgVerifyMimeType ) {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
-			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
+			if ( (string)$this->mFinalExtension !== '' &&
+				!$this->verifyExtension( $mime, $this->mFinalExtension )
+			) {
 				return [ 'filetype-mime-mismatch', $this->mFinalExtension, $mime ];
 			}
 		}
@@ -701,7 +703,7 @@ abstract class UploadBase {
 			$warnings['badfilename'] = $badFileName;
 		}
 
-		$unwantedFileExtensionDetails = $this->checkUnwantedFileExtensions( $this->mFinalExtension );
+		$unwantedFileExtensionDetails = $this->checkUnwantedFileExtensions( (string)$this->mFinalExtension );
 		if ( $unwantedFileExtensionDetails !== null ) {
 			$warnings['filetype-unwanted-type'] = $unwantedFileExtensionDetails;
 		}
@@ -1334,7 +1336,7 @@ abstract class UploadBase {
 	 *
 	 * @param string $file Pathname to the temporary upload file
 	 * @param string $mime The MIME type of the file
-	 * @param string $extension The extension of the file
+	 * @param string|null $extension The extension of the file
 	 * @return bool True if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
