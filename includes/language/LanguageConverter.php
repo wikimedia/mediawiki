@@ -55,14 +55,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'zh',
 	];
 
-	public $mMainLanguageCode;
-
-	/**
-	 * @var string[]
-	 */
-	public $mVariants;
-	private $mVariantFallbacks;
-	public $mVariantNames;
 	private $mTablesLoaded = false;
 
 	/**
@@ -70,16 +62,11 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected $mTables;
 
-	/** @var string[] One of 'bidirectional' 'unidirectional' 'disable' for each variant */
-	public $mManualLevel;
-
 	/**
 	 * @var Language
 	 */
 	private $mLangObj;
-	public $mFlags;
-	public $mDescCodeSep = ':';
-	public $mDescVarSep = ';';
+
 	private $mUcfirst = false;
 	private $mConvRuleTitle = false;
 	private $mURLVariant;
@@ -92,23 +79,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * @param Language $langobj
-	 * @param string $maincode The main language code of this language
-	 * @param string[] $variants The supported variants of this language
-	 * @param array $variantfallbacks The fallback language of each variant
-	 * @param array $flags Defining the custom strings that maps to the flags
-	 * @param array $manualLevel Limit for supported variants
 	 */
-	public function __construct(
-		$langobj,
-		$maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = [],
-		$manualLevel = []
-	) {
-		global $wgDisabledVariants;
-
-		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
+	public function __construct( $langobj ) {
 		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
@@ -121,12 +93,67 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->deprecatePublicProperty( 'mTables', '1.35', __CLASS__ );
 
 		$this->mLangObj = $langobj;
-		$this->mMainLanguageCode = $maincode;
-		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
-		$this->mVariantFallbacks = $variantfallbacks;
-		$this->mVariantNames = MediaWikiServices::getInstance()
-			->getLanguageNameUtils()
-			->getLanguageNames();
+
+		$this->deprecatePublicPropertyFallback( 'mVariants', '1.36', function () {
+			return $this->getVariants();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mMainLanguageCode', '1.36', function () {
+			return $this->getMainCode();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mVariantFallbacks', '1.36', function () {
+			return $this->getVariantsFallbacks();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mFlags', '1.36', function () {
+			return $this->getFlags();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mVariantNames', '1.36', function () {
+			return $this->getVariantNames();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mDescCodeSep', '1.36', function () {
+			return $this->getDescCodeSeparator();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mDescVarSep', '1.36', function () {
+			return $this->getDescVarSeparator();
+		} );
+	}
+
+	/**
+	 * Get main language code.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	abstract public function getMainCode(): string;
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	abstract protected function getLanguageVariants(): array;
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	abstract public function getVariantsFallbacks(): array;
+
+	/**
+	 * Get strings that maps to the flags.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	final public function getFlags(): array {
 		$defaultflags = [
 			// 'S' show converted text
 			// '+' add rules for alltext
@@ -140,25 +167,94 @@ abstract class LanguageConverter implements ILanguageConverter {
 			'H' => 'H',   // add rule for convert code (but no display in placed code)
 			'N' => 'N',   // current variant name
 		];
-		$this->mFlags = array_merge( $defaultflags, $flags );
-		foreach ( $this->mVariants as $v ) {
-			if ( array_key_exists( $v, $manualLevel ) ) {
-				$this->mManualLevel[$v] = $manualLevel[$v];
-			} else {
-				$this->mManualLevel[$v] = 'bidirectional';
-			}
-			$this->mFlags[$v] = $v;
+		$flags = array_merge( $defaultflags, $this->getAdditionalFlags() );
+		foreach ( $this->getVariants() as $v ) {
+			$flags[$v] = $v;
 		}
+		return $flags;
 	}
 
 	/**
-	 * Get all valid variants.
-	 * Call this instead of using $this->mVariants directly.
+	 * Provides additinal flags for converter. By default it return empty array and
+	 * typicslly should be overridden by implementation of converter..
+	 *
+	 * @return array
+	 */
+	protected function getAdditionalFlags(): array {
+		return [];
+	}
+
+	/**
+	 * Get manual level limit for supported variants.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	final public function getManualLevel() {
+		$manualLevel  = $this->getAdditionalManualLevel();
+		$result = [];
+		foreach ( $this->getVariants() as $v ) {
+			if ( array_key_exists( $v, $manualLevel ) ) {
+				$result[$v] = $manualLevel[$v];
+			} else {
+				$result[$v] = 'bidirectional';
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Provides additinal flags for converter. By default it return empty array and
+	 * typicslly should be overridden by implementation of converter.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	protected function getAdditionalManualLevel(): array {
+		return [];
+	}
+
+	/**
+	 * Get desc code separator. By default returns ":", can be overridden by
+	 * implementation of converter.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getDescCodeSeparator(): string {
+		return ':';
+	}
+
+	/**
+	 * Get desc var separator. By default returns ";", can be overridden by
+	 * implementation of converter.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getDescVarSeparator(): string {
+		return ';';
+	}
+
+	/**
+	 * Get variant names.
+	 *
+	 * @return array
+	 */
+	public function getVariantNames(): array {
+		return MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames();
+	}
+
+	/**
+	 * Get all valid variants for current Coverter. It uses abstract
 	 *
 	 * @return string[] Contains all valid variants
 	 */
-	public function getVariants() {
-		return $this->mVariants;
+	final public function getVariants() {
+		global $wgDisabledVariants;
+		return array_diff( $this->getLanguageVariants(), $wgDisabledVariants );
 	}
 
 	/**
@@ -173,7 +269,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 *   main code if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
-		return $this->mVariantFallbacks[$variant] ?? $this->mMainLanguageCode;
+		return $this->getVariantsFallbacks()[$variant] ?? $this->getMainCode();
 	}
 
 	/**
@@ -217,7 +313,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		if ( $req ) {
 			return $req;
 		}
-		return $this->mMainLanguageCode;
+		return $this->getMainCode();
 	}
 
 	/**
@@ -240,7 +336,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		if ( $req ) {
 			return $req;
 		}
-		return $this->mMainLanguageCode;
+		return $this->getMainCode();
 	}
 
 	/**
@@ -259,14 +355,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// Our internal variants are always lower-case; the variant we
 		// are validating may have mixed case.
 		$variant = LanguageCode::replaceDeprecatedCodes( strtolower( $variant ) );
-		if ( in_array( $variant, $this->mVariants ) ) {
+		if ( in_array( $variant, $this->getVariants() ) ) {
 			return $variant;
 		}
 		// Browsers are supposed to use BCP 47 standard in the
 		// Accept-Language header, but not all of our internal
 		// mediawiki variant codes are BCP 47.  Map BCP 47 code
 		// to our internal code.
-		foreach ( $this->mVariants as $v ) {
+		foreach ( $this->getVariants() as $v ) {
 			// Case-insensitive match (BCP 47 is mixed case)
 			if ( strtolower( LanguageCode::bcp47( $v ) ) === $variant ) {
 				return $v;
@@ -314,12 +410,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 		if ( $user->isRegistered() ) {
 			// Get language variant preference from logged in users
 			if (
-				$this->mMainLanguageCode ==
+				$this->getMainCode() ==
 				MediaWikiServices::getInstance()->getContentLanguage()->getCode()
 			) {
 				$ret = $user->getOption( 'variant' );
 			} else {
-				$ret = $user->getOption( 'variant-' . $this->mMainLanguageCode );
+				$ret = $user->getOption( 'variant-' . $this->getMainCode() );
 			}
 		} else {
 			// figure out user lang without constructing wgLang to avoid
@@ -361,7 +457,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			// We record these fallback variants, and process
 			// them later.
 			$fallbacks = $this->getVariantFallbacks( $language );
-			if ( is_string( $fallbacks ) && $fallbacks !== $this->mMainLanguageCode ) {
+			if ( is_string( $fallbacks ) && $fallbacks !== $this->getMainCode() ) {
 				$fallbackLanguages[] = $fallbacks;
 			} elseif ( is_array( $fallbacks ) ) {
 				$fallbackLanguages =
@@ -573,7 +669,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->loadTables();
 
 		$ret = [];
-		foreach ( $this->mVariants as $variant ) {
+		foreach ( $this->getVariants() as $variant ) {
 			$ret[$variant] = $this->translate( $text, $variant );
 		}
 
@@ -987,7 +1083,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// Do not use null as starting value, as that would confuse phan a lot.
 		$this->mTables = [];
 		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
-		$cacheKey = $cache->makeKey( 'conversiontables', $this->mMainLanguageCode );
+		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode() );
 		if ( $fromCache ) {
 			$this->mTables = $cache->get( $cacheKey );
 		}
@@ -996,7 +1092,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			// We will first load the default tables
 			// then update them using things in MediaWiki:Conversiontable/*
 			$this->loadDefaultTables();
-			foreach ( $this->mVariants as $var ) {
+			foreach ( $this->getVariants() as $var ) {
 				$cached = $this->parseCachedTable( $var );
 				// @phan-suppress-next-next-line PhanTypeArraySuspiciousNullable
 				// FIXME: $this->mTables could theoretically be null here
@@ -1228,7 +1324,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			//    [2] => ''
 			//  ]
 			$expandedVariants = [];
-			foreach ( $this->mVariants as $variant ) {
+			foreach ( $this->getVariants() as $variant ) {
 				$expandedVariants[ $variant ] = 1;
 				// Accept standard BCP 47 names for variants as well.
 				$expandedVariants[ LanguageCode::bcp47( $variant ) ] = 1;

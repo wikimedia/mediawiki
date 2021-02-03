@@ -28,19 +28,41 @@
 class BanConverter extends LanguageConverterIcu {
 
 	/**
-	 * @param Language $langobj
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
 	 */
-	public function __construct( $langobj ) {
-		$variants = [ 'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku' ];
-		$variantfallbacks = [
+	public function getMainCode(): string {
+		return 'ban';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [ 'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
 			'ban-bali' => 'ban',
 			'ban-x-dharma' => 'ban',
 			'ban-x-palmleaf' => 'ban',
 			'ban-x-pku' => 'ban',
 		];
+	}
 
-		parent::__construct( $langobj, 'ban', $variants, $variantfallbacks, [] );
-
+	public function getVariantNames(): array {
 		$names = [
 			'ban' => 'Basa Bali',
 			'ban-bali' => 'ᬩᬲᬩᬮᬶ',
@@ -48,7 +70,7 @@ class BanConverter extends LanguageConverterIcu {
 			'ban-x-palmleaf' => 'Basa Bali (alih aksara Palmleaf.org)',
 			'ban-x-pku' => 'Basa Bali (alih aksara Puri Kauhan Ubud)',
 		];
-		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
+		return array_merge( parent::getVariantNames(), $names );
 	}
 
 	protected function getIcuRules() {

@@ -36,7 +36,7 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 	 */
 	protected function loadDefaultTables() {
 		$this->mTables = [];
-		foreach ( $this->mVariants as $variant ) {
+		foreach ( $this->getVariants() as $variant ) {
 			$this->mTables[$variant] = new ReplacementArray();
 		}
 	}

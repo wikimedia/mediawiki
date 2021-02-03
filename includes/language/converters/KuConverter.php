@@ -151,17 +151,37 @@ class KuConverter extends LanguageConverterSpecific {
 		];
 
 	/**
-	 * @param Language $langobj
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
 	 */
-	public function __construct( $langobj ) {
-		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
-		$variantfallbacks = [
+	public function getMainCode(): string {
+		return 'ku';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [ 'ku', 'ku-arab', 'ku-latn' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
 			'ku' => 'ku-latn',
 			'ku-arab' => 'ku-latn',
 			'ku-latn' => 'ku-arab',
 		];
-
-		parent::__construct( $langobj, 'ku', $variants, $variantfallbacks );
 	}
 
 	protected function loadDefaultTables() {
