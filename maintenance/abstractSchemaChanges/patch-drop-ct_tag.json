@@ -31,7 +31,7 @@
 				"name": "ct_tag",
 				"comment": "Tag applied, this will go away and be replaced with ct_tag_id",
 				"type": "string",
-				"options": { "length": 255, "notnull": true, "default": ""  }
+				"options": { "length": 255, "notnull": true, "default": "" }
 			},
 			{
 				"name": "ct_params",

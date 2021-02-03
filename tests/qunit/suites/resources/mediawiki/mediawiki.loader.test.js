@@ -164,7 +164,9 @@
 			return;
 		}
 
+		// eslint-disable-next-line compat/compat
 		this.nativeSet = window.Set;
+		// eslint-disable-next-line compat/compat
 		window.Set = undefined;
 		mw.redefineFallbacksForTest();
 

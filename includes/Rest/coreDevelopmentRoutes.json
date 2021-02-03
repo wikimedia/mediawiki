@@ -6,7 +6,7 @@
 			"ContributionsLookup",
 			"UserNameUtils"
 		],
-		"mode" : "me"
+		"mode": "me"
 	},
 	{
 		"path": "/coredev/v0/user/{user}/contributions",
@@ -15,7 +15,7 @@
 			"ContributionsLookup",
 			"UserNameUtils"
 		],
-		"mode" : "user"
+		"mode": "user"
 	},
 	{
 		"path": "/coredev/v0/me/contributions/count",
@@ -24,7 +24,7 @@
 			"ContributionsLookup",
 			"UserNameUtils"
 		],
-		"mode" : "me"
+		"mode": "me"
 	},
 	{
 		"path": "/coredev/v0/user/{user}/contributions/count",
@@ -33,7 +33,7 @@
 			"ContributionsLookup",
 			"UserNameUtils"
 		],
-		"mode" : "user"
+		"mode": "user"
 	},
 	{
 		"path": "/coredev/v0/revision/{id}",
