@@ -196,7 +196,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$result = $this->lc->autoConvert( $testString, 'tg-latn' );
 		// The в in the id attribute should not get converted to a v
 		$this->assertStringNotContainsString(
-			$result, 'v',
+			'v',
+			$result,
 			"в converted to v despite being in attribue"
 		);
 	}
