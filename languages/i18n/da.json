@@ -1866,7 +1866,7 @@
 	"mimesearch": "Søge efter MIME-type",
 	"mimesearch-summary": "Denne side gør det muligt at filtrere filer efter deres MIME-type.\nInput: indholdstype/subtype eller indholdstype/*, f.eks. <code>image/jpeg</code>.",
 	"mimetype": "MIME-type:",
-	"download": "DownloadHerunterladen",
+	"download": "hent ned",
 	"unwatchedpages": "Ikke overvågede sider",
 	"listredirects": "Liste over omdirigeringer",
 	"listduplicatedfiles": "Liste over filer med dubletter",
