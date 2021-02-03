@@ -55,8 +55,9 @@ class MWFileProps {
 	 *   - minor_mime
 	 *
 	 * @param string $path Filesystem path to a file
-	 * @param string|bool $ext The file extension, or true to extract it from the filename.
-	 *             Set it to false to ignore the extension.
+	 * @param string|bool|null $ext The file extension, or true to extract it from the filename.
+	 *  Set it to false to ignore the extension. Might be null in case the file is going to be
+	 *  stashed.
 	 * @return array
 	 * @since 1.28
 	 */
@@ -72,9 +73,6 @@ class MWFileProps {
 			# MIME type according to file contents
 			$info['file-mime'] = $this->magic->guessMimeType( $path, false );
 			# Logical MIME type
-			// FIXME: $ext is sometimes null here, which is not valid.
-			// Cast to empty string as MimeAnalyzer did prior to strict typing
-			// until we figure out what to do with this. (T273249)
 			$ext = ( $ext === true ) ? FileBackend::extensionFromPath( $path ) : (string)$ext;
 
 			# XXX: MimeAnalyzer::improveTypeFromExtension() may return null (T253483).
