@@ -43,51 +43,6 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			# rename tables 1.7.3
-			# r15791 Change reserved word table names "user" and "text"
-			[ 'renameTable', 'user', 'mwuser' ],
-			[ 'renameIndex', 'mwuser', 'user_pkey', 'mwuser_pkey' ],
-			[ 'renameIndex', 'mwuser', 'user_user_name_key', 'mwuser_user_name_key' ],
-
-			# renamed sequences
-			[ 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq' ],
-			[ 'renameSequence', 'rev_rev_id_val', 'revision_rev_id_seq' ],
-			[ 'renameSequence', 'text_old_id_val', 'text_old_id_seq' ],
-			[ 'renameSequence', 'rc_rc_id_seq', 'recentchanges_rc_id_seq' ],
-			[ 'renameSequence', 'log_log_id_seq', 'logging_log_id_seq' ],
-			[ 'renameSequence', 'pr_id_val', 'page_restrictions_pr_id_seq' ],
-			[ 'renameSequence', 'us_id_seq', 'uploadstash_us_id_seq' ],
-
-			# since r58263
-			[ 'renameSequence', 'category_id_seq', 'category_cat_id_seq' ],
-
-			# new sequences if not renamed above
-			[ 'addSequence', 'logging', false, 'logging_log_id_seq' ],
-			[ 'addSequence', 'page_restrictions', false, 'page_restrictions_pr_id_seq' ],
-			[ 'addSequence', 'filearchive', 'fa_id', 'filearchive_fa_id_seq' ],
-			[ 'addSequence', 'archive', false, 'archive_ar_id_seq' ],
-			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
-			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
-			[ 'addSequence', 'change_tag', false, 'change_tag_ct_id_seq' ],
-
-			# new tables
-			[ 'addTable', 'category', 'patch-category.sql' ],
-			[ 'addTable', 'page', 'patch-page.sql' ],
-			[ 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ],
-			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
-			[ 'addTable', 'page_restrictions', 'patch-page_restrictions.sql' ],
-			[ 'addTable', 'protected_titles', 'patch-protected_titles.sql' ],
-			[ 'addTable', 'redirect', 'patch-redirect.sql' ],
-			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
-			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
-			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
-			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
-			[ 'addTable', 'iwlinks', 'patch-iwlinks.sql' ],
-			[ 'addTable', 'module_deps', 'patch-module_deps.sql' ],
-			[ 'addTable', 'uploadstash', 'patch-uploadstash.sql' ],
-			[ 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ],
-			[ 'addTable', 'sites', 'patch-sites.sql' ],
 			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
 
 			# Needed before new field
