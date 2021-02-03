@@ -139,7 +139,7 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
-	public function getName() {
+	public function getName() : string {
 		return $this->name;
 	}
 
@@ -171,7 +171,7 @@ class UserIdentityValue implements UserIdentity {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) {
+	public function equals( UserIdentity $user ) : bool {
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}
@@ -183,7 +183,7 @@ class UserIdentityValue implements UserIdentity {
 	 *   anonymous or has no local account (which can happen when importing). This is equivalent to
 	 *   getId() != 0 and is provided for code readability.
 	 */
-	public function isRegistered() {
+	public function isRegistered() : bool {
 		return $this->getId() != 0;
 	}
 }
