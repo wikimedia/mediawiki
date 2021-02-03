@@ -1092,36 +1092,17 @@ abstract class Maintenance {
 		}
 		$this->output( "$output\n\n" );
 
-		# TODO abstract some repetitive code below
+		$this->formatHelpItems(
+			$this->mGenericParameters,
+			'Generic maintenance parameters',
+			$descWidth, $tab
+		);
 
-		// Generic parameters
-		$this->output( "Generic maintenance parameters:\n" );
-		foreach ( $this->mGenericParameters as $par => $info ) {
-			if ( $info['shortName'] !== false ) {
-				$par .= " (-{$info['shortName']})";
-			}
-			$this->output(
-				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-					"\n$tab$tab" ) . "\n"
-			);
-		}
-		$this->output( "\n" );
-
-		$scriptDependentParams = $this->mDependentParameters;
-		if ( count( $scriptDependentParams ) > 0 ) {
-			$this->output( "Script-dependent parameters:\n" );
-			// Parameters description
-			foreach ( $scriptDependentParams as $par => $info ) {
-				if ( $info['shortName'] !== false ) {
-					$par .= " (-{$info['shortName']})";
-				}
-				$this->output(
-					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-						"\n$tab$tab" ) . "\n"
-				);
-			}
-			$this->output( "\n" );
-		}
+		$this->formatHelpItems(
+			$this->mDependentParameters,
+			'Script dependent parameters',
+			$descWidth, $tab
+		);
 
 		// Script-specific parameters not defined on construction by
 		// Maintenance::addDefaultParams()
@@ -1132,21 +1113,12 @@ abstract class Maintenance {
 			$this->mGenericParameters,
 			$this->mDependentParameters
 		);
-		'@phan-var array[] $scriptSpecificParams';
-		if ( count( $scriptSpecificParams ) > 0 ) {
-			$this->output( "Script-specific parameters:\n" );
-			// Parameters description
-			foreach ( $scriptSpecificParams as $par => $info ) {
-				if ( $info['shortName'] !== false ) {
-					$par .= " (-{$info['shortName']})";
-				}
-				$this->output(
-					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-						"\n$tab$tab" ) . "\n"
-				);
-			}
-			$this->output( "\n" );
-		}
+
+		$this->formatHelpItems(
+			$scriptSpecificParams,
+			'Script specific parameters',
+			$descWidth, $tab
+		);
 
 		// Print arguments
 		if ( count( $this->mArgList ) > 0 ) {
@@ -1162,6 +1134,29 @@ abstract class Maintenance {
 			}
 			$this->output( "\n" );
 		}
+	}
+
+	private function formatHelpItems( array $items, $heading, $descWidth, $tab ) {
+		if ( $items === [] ) {
+			return;
+		}
+
+		$this->output( "$heading:\n" );
+
+		foreach ( $items as $name => $info ) {
+			if ( $info['shortName'] !== false ) {
+				$name .= ' (-' . $info['shortName'] . ')';
+			}
+			$this->output(
+				wordwrap(
+					"$tab--$name: " . $info['desc'],
+					$descWidth,
+					"\n$tab$tab"
+				) . "\n"
+			);
+		}
+
+		$this->output( "\n" );
 	}
 
 	/**
