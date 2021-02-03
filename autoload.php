@@ -366,7 +366,6 @@ $wgAutoloadLocalClasses = [
 	'DeduplicateArchiveRevId' => __DIR__ . '/maintenance/deduplicateArchiveRevId.php',
 	'DeferrableCallback' => __DIR__ . '/includes/deferred/DeferrableCallback.php',
 	'DeferrableUpdate' => __DIR__ . '/includes/deferred/DeferrableUpdate.php',
-	'DeferredStringifier' => __DIR__ . '/includes/libs/DeferredStringifier.php',
 	'DeferredUpdates' => __DIR__ . '/includes/deferred/DeferredUpdates.php',
 	'DeferredUpdatesScope' => __DIR__ . '/includes/deferred/DeferredUpdatesScope.php',
 	'DeferredUpdatesScopeStack' => __DIR__ . '/includes/deferred/DeferredUpdatesScopeStack.php',
