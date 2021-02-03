@@ -136,8 +136,9 @@ class WebRequest {
 	 * If the REQUEST_URI is not provided we'll fall back on the PATH_INFO
 	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
-	 * @internal This has many odd special cases and so should only be used by
-	 *   interpolateTitle() for index.php. Instead try getRequestPathSuffix().
+	 * This internal method handles many odd cases and is tailored specifically for
+	 * used by WebRequest::interpolateTitle, for index.php requests.
+	 * Consider using WebRequest::getRequestPathSuffix for other path-related use cases.
 	 *
 	 * @param string $want If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
@@ -146,7 +147,7 @@ class WebRequest {
 	 * @return string[] Any query arguments found in path matches.
 	 * @throws FatalError If invalid routes are configured (T48998)
 	 */
-	public static function getPathInfo( $want = 'all' ) {
+	protected static function getPathInfo( $want = 'all' ) {
 		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
