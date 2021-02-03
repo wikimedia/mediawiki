@@ -45,7 +45,7 @@ abstract class LanguageConverterSpecific extends LanguageConverter {
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
+		if ( $this->getPreferredVariant() == $this->getMainCode() ) {
 			$link = $oldlink;
 		}
 	}

@@ -91,7 +91,7 @@ class ConverterRule {
 
 		$sepPos = strpos( $text, '|' );
 		if ( $sepPos !== false ) {
-			$validFlags = $this->mConverter->mFlags;
+			$validFlags = $this->mConverter->getFlags();
 			$f = StringUtils::explode( ';', substr( $text, 0, $sepPos ) );
 			foreach ( $f as $ff ) {
 				$ff = trim( $ff );
@@ -189,7 +189,7 @@ class ConverterRule {
 				}
 			}
 			// syntax error, pass
-			if ( !isset( $this->mConverter->mVariantNames[$vv] ) ) {
+			if ( !isset( $this->mConverter->getVariantNames()[$vv] ) ) {
 				$bidtable = [];
 				$unidtable = [];
 				break;
@@ -203,15 +203,15 @@ class ConverterRule {
 	 * @return string
 	 */
 	private function getRulesDesc() {
-		$codesep = $this->mConverter->mDescCodeSep;
-		$varsep = $this->mConverter->mDescVarSep;
+		$codesep = $this->mConverter->getDescCodeSeparator();
+		$varsep = $this->mConverter->getDescVarSeparator();
 		$text = '';
 		foreach ( $this->mBidtable as $k => $v ) {
-			$text .= $this->mConverter->mVariantNames[$k] . "$codesep$v$varsep";
+			$text .= $this->mConverter->getVariantNames()[$k] . "$codesep$v$varsep";
 		}
 		foreach ( $this->mUnidtable as $k => $a ) {
 			foreach ( $a as $from => $to ) {
-				$text .= $from . '⇒' . $this->mConverter->mVariantNames[$k] .
+				$text .= $from . '⇒' . $this->mConverter->getVariantNames()[$k] .
 					"$codesep$to$varsep";
 			}
 		}
@@ -245,7 +245,7 @@ class ConverterRule {
 			$disp = array_values( $unidtable[$variant] )[0];
 		}
 		// or display first text under disable manual convert
-		if ( $disp === false && $this->mConverter->mManualLevel[$variant] === 'disable' ) {
+		if ( $disp === false && $this->mConverter->getManualLevel()[$variant] === 'disable' ) {
 			if ( count( $bidtable ) > 0 ) {
 				$disp = array_values( $bidtable )[0];
 			} else {
@@ -258,7 +258,7 @@ class ConverterRule {
 
 	/**
 	 * Similar to getRuleConvertedStr(), but this prefers to use original
-	 * page title if $variant === $this->mConverter->mMainLanguageCode
+	 * page title if $variant === $this->mConverter->getMainCode()
 	 * and may return false in this case (so this title conversion rule
 	 * will be ignored and the original title is shown).
 	 *
@@ -267,7 +267,7 @@ class ConverterRule {
 	 * @return string|bool The converted title or false if just page name
 	 */
 	private function getRuleConvertedTitle( $variant ) {
-		if ( $variant === $this->mConverter->mMainLanguageCode ) {
+		if ( $variant === $this->mConverter->getMainCode() ) {
 			// If a string targeting exactly this variant is set,
 			// use it. Otherwise, just return false, so the real
 			// page name can be shown (and because variant === main,
@@ -298,10 +298,10 @@ class ConverterRule {
 
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
-		$manLevel = $this->mConverter->mManualLevel;
+		$manLevel = $this->mConverter->getManualLevel();
 
 		$vmarked = [];
-		foreach ( $this->mConverter->mVariants as $v ) {
+		foreach ( $this->mConverter->getVariants() as $v ) {
 			/* for bidirectional array
 				fill in the missing variants, if any,
 				with fallbacks */
@@ -395,7 +395,7 @@ class ConverterRule {
 			if ( isset( $flags['+'] ) || isset( $flags['-'] ) ) {
 				// fill all variants if text in -{A/H/-|text}- is non-empty but without rules
 				if ( $rules !== '' ) {
-					foreach ( $this->mConverter->mVariants as $v ) {
+					foreach ( $this->mConverter->getVariants() as $v ) {
 						$this->mBidtable[$v] = $rules;
 					}
 				}
@@ -414,7 +414,7 @@ class ConverterRule {
 				case 'N':
 					// process N flag: output current variant name
 					$ruleVar = trim( $rules );
-					$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar] ?? '';
+					$this->mRuleDisplay = $this->mConverter->getVariantNames()[$ruleVar] ?? '';
 					break;
 				case 'D':
 					// process D flag: output rules description

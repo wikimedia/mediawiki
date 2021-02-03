@@ -25,13 +25,36 @@
  */
 class EnConverter extends LanguageConverter {
 
-	public function __construct( $langobj ) {
-		parent::__construct( $langobj, 'en', [ 'en', 'en-x-piglatin' ] );
+	/**
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getMainCode(): string {
+		return 'en';
 	}
 
 	/**
-	 * Dummy methods required by base class.
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
 	 */
+	public function getLanguageVariants(): array {
+		return [ 'en', 'en-x-piglatin' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [];
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'en' => new ReplacementArray(),

@@ -29,7 +29,6 @@ interface ILanguageConverter {
 
 	/**
 	 * Get all valid variants.
-	 * Call this instead of using $this->mVariants directly.
 	 * @return string[] Contains all valid variants
 	 */
 	public function getVariants();
