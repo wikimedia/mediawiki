@@ -182,7 +182,9 @@
 
 		// Initialization
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
-		this.setTabIndexedElement( this.$handle );
+		if ( !this.isDisabled() ) {
+			this.setTabIndexedElement( this.$handle );
+		}
 		this.$handle
 			.append( this.innerLabel.$element, this.$indicator )
 			.addClass( 'mw-widget-dateInputWidget-handle' );
@@ -520,7 +522,7 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onClick = function ( e ) {
-		if ( !this.isDisabled() && e.which === 1 ) {
+		if ( !this.isDisabled() && !this.isReadOnly() && e.which === 1 ) {
 			this.activate();
 		}
 		return false;
@@ -534,7 +536,7 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onKeyPress = function ( e ) {
-		if ( !this.isDisabled() &&
+		if ( !this.isDisabled() && !this.isReadOnly() &&
 			( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 		) {
 			this.activate();
@@ -548,7 +550,7 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onFocus = function () {
-		if ( !this.closing ) {
+		if ( !this.isDisabled() && !this.isReadOnly() && !this.closing ) {
 			this.activate();
 		}
 	};
