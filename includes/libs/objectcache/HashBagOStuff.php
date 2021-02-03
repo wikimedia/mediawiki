@@ -32,7 +32,7 @@
 class HashBagOStuff extends MediumSpecificBagOStuff {
 	/** @var mixed[] */
 	protected $bag = [];
-	/** @var int Max entries allowed */
+	/** @var int|double Max entries allowed, INF for unlimited */
 	protected $maxCacheKeys;
 
 	/** @var string CAS token prefix for this instance */
@@ -58,10 +58,11 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		parent::__construct( $params );
 
 		$this->token = microtime( true ) . ':' . mt_rand();
-		$this->maxCacheKeys = $params['maxKeys'] ?? INF;
-		if ( $this->maxCacheKeys <= 0 ) {
+		$maxKeys = $params['maxKeys'] ?? INF;
+		if ( $maxKeys !== INF && ( !is_int( $maxKeys ) || $maxKeys <= 0 ) ) {
 			throw new InvalidArgumentException( '$maxKeys parameter must be above zero' );
 		}
+		$this->maxCacheKeys = $maxKeys;
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
