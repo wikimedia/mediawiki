@@ -60,7 +60,7 @@ interface UserIdentity extends WikiAwareEntity {
 	 *
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
-	public function getName();
+	public function getName() : string;
 
 	/**
 	 * @since 1.31
@@ -83,7 +83,7 @@ interface UserIdentity extends WikiAwareEntity {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user );
+	public function equals( UserIdentity $user ) : bool;
 
 	/**
 	 * @since 1.34
@@ -92,5 +92,5 @@ interface UserIdentity extends WikiAwareEntity {
 	 *   anonymous or has no local account (which can happen when importing). This must be
 	 *   equivalent to getId() != 0 and is provided for code readability.
 	 */
-	public function isRegistered();
+	public function isRegistered() : bool;
 }

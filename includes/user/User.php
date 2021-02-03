@@ -285,7 +285,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @return string
 	 */
 	public function __toString() {
-		return (string)$this->getName();
+		return $this->getName();
 	}
 
 	public function &__get( $name ) {
@@ -2109,7 +2109,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Get the user name, or the IP of an anonymous user
 	 * @return string User's name or IP address
 	 */
-	public function getName() {
+	public function getName() : string {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			// Special case optimisation
 			return $this->mName;
@@ -3033,7 +3033,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *   getId() != 0 and is provided for code readability.
 	 * @since 1.34
 	 */
-	public function isRegistered() {
+	public function isRegistered() : bool {
 		return $this->getId() != 0;
 	}
 
@@ -4468,7 +4468,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) {
+	public function equals( UserIdentity $user ) : bool {
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}
