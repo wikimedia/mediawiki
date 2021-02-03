@@ -68,9 +68,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
-	 * @note Avoid calling this constructor directly. Use the appropriate methods
-	 * in RevisionStore instead.
-	 *
 	 * @stable to call.
 	 *
 	 * @param PageIdentity $page The page this Revision is associated with.

@@ -503,6 +503,8 @@ because of Phabricator reports.
   ecosystem, so no replacement was provided.
 * The ProtectionForm::buildForm hook has been deprecated. Please use the
   ProtectionFormAddFormFields hook instead.
+* RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
+  MutableRevisionRecord should be constructed directly via constructor.
 * …
 
 === Other changes in 1.36 ===
