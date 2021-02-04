@@ -232,6 +232,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MediaWikiServices::getInstance()->getActorMigration(),
+			MediaWikiServices::getInstance()->getActorStoreFactory()->getActorStore( $dbDomain ),
 			MediaWikiServices::getInstance()->getContentHandlerFactory(),
 			MediaWikiServices::getInstance()->getHookContainer(),
 			$dbDomain
@@ -845,6 +846,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			$services->getSlotRoleStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getActorMigration(),
+			$services->getActorStoreFactory()->getActorStore( $dbDomain ),
 			$services->getContentHandlerFactory(),
 			$services->getHookContainer(),
 			$dbDomain
@@ -941,6 +943,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			'rev_id' => (string)$revRecord->getId(),
 			'rev_page' => (string)$revRecord->getPageId(),
 			'rev_timestamp' => $this->db->timestamp( $revRecord->getTimestamp() ),
+			'rev_actor' => $revUser ? $revUser->getActorId() : null,
 			'rev_user_text' => $revUser ? $revUser->getName() : '',
 			'rev_user' => (string)( $revUser ? $revUser->getId() : 0 ) ?: null,
 			'rev_minor_edit' => $revRecord->isMinor() ? '1' : '0',
@@ -2970,5 +2973,34 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 				->getRevisionStore()
 				->getFirstRevision( $this->getNonexistingTestPage( __METHOD__ )->getTitle() )
 		);
+	}
+
+	public function provideInsertRevisionByAnonAssignsNewActor() {
+		yield 'User' => [ '127.1.1.0', function ( MediaWikiServices $services, string $ip ) {
+			return $services->getUserFactory()->newAnonymous( $ip );
+		} ];
+		yield 'User identity, anon' => [ '127.1.1.1', function ( MediaWikiServices $services, string $ip ) {
+			return new UserIdentityValue( 0, $ip, 0 );
+		} ];
+	}
+
+	/**
+	 * @dataProvider provideInsertRevisionByAnonAssignsNewActor
+	 */
+	public function testInsertRevisionByAnonAssignsNewActor( string $ip, callable $userInitCallback ) {
+		$user = $userInitCallback( $this->getServiceContainer(), $ip );
+		$this->assertSame( 0, $user->getActorId(), 'Sanity, new actor has no actor_id' );
+
+		$page = $this->getTestPage();
+		$rev = new MutableRevisionRecord( $page->getTitle() );
+		$rev->setTimestamp( '20180101000000' )
+			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
+			->setUser( $user )
+			->setContent( 'main', new WikitextContent( 'Text' ) )
+			->setPageId( $page->getId() );
+
+		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->db );
+		$this->assertSame( $ip, $return->getUser()->getName() );
+		$this->assertNotSame( 0, $return->getUser()->getActorId() );
 	}
 }

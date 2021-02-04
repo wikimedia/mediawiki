@@ -571,4 +571,16 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' )
 		);
 	}
+
+	/**
+	 * @covers ::getUnknownActor
+	 */
+	public function testGetUnknownActor() {
+		$store = $this->getStore();
+		$unknownActor = $store->getUnknownActor();
+		$this->assertInstanceOf( UserIdentity::class, $unknownActor );
+		$this->assertTrue( $unknownActor->getActorId( UserIdentity::LOCAL ) > 0 );
+		$this->assertSame( ActorStore::UNKNOWN_USER_NAME, $unknownActor->getName() );
+		$this->assertSameActors( $unknownActor, $store->getUnknownActor() );
+	}
 }

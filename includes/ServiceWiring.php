@@ -1212,6 +1212,7 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
+			$services->getActorStoreFactory(),
 			LoggerFactory::getInstance( 'RevisionStore' ),
 			$services->getContentHandlerFactory(),
 			$services->getHookContainer()
