@@ -574,12 +574,15 @@ class SpecialUndelete extends SpecialPage {
 		// TODO: MCR: this will have to become something like $hasTextSlots and $hasNonTextSlots
 		$isText = ( $content instanceof TextContent );
 
-		if ( $this->mPreview || $isText ) {
-			$openDiv = '<div id="mw-undelete-revision" class="warningbox">';
-		} else {
-			$openDiv = '<div id="mw-undelete-revision">';
-		}
-		$out->addHTML( $openDiv );
+		$out->addHTML(
+			Html::openElement(
+				'div',
+				[
+					'id' => 'mw-undelete-revision',
+					'class' => $this->mPreview || $isText ? 'warningbox' : '',
+				]
+			)
+		);
 
 		// Revision delete links
 		if ( !$this->mDiff ) {
@@ -598,7 +601,7 @@ class SpecialUndelete extends SpecialPage {
 			Message::rawParam( $link ), $time,
 			Message::rawParam( $userLink ), $d, $t
 		);
-		$out->addHTML( '</div>' );
+		$out->addHTML( Html::closeElement( 'div' ) );
 
 		if ( $this->mPreview || !$isText ) {
 			// NOTE: non-text content has no source view, so always use rendered preview
@@ -853,14 +856,14 @@ class SpecialUndelete extends SpecialPage {
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		$this->getHookRunner()->onUndeleteForm__showHistory( $archive, $this->mTargetObj );
 
-		$out->addHTML( '<div class="mw-undelete-history">' );
+		$out->addHTML( Html::openElement( 'div', [ 'class' => 'mw-undelete-history' ] ) );
 		if ( $this->mAllowed ) {
 			$out->addWikiMsg( 'undeletehistory' );
 			$out->addWikiMsg( 'undeleterevdel' );
 		} else {
 			$out->addWikiMsg( 'undeletehistorynoadmin' );
 		}
-		$out->addHTML( '</div>' );
+		$out->addHTML( Html::closeElement( 'div' ) );
 
 		# List all stored revisions
 		$revisions = $archive->listRevisions();
@@ -1011,7 +1014,7 @@ class SpecialUndelete extends SpecialPage {
 				) . "\n";
 			}
 
-			$history .= '<ul class="mw-undelete-revlist">';
+			$history .= Html::openElement( 'ul', [ 'class' => 'mw-undelete-revlist' ] );
 			$remaining = $revisions->numRows();
 			$firstRev = $this->revisionStore->getFirstRevision( $this->mTargetObj );
 			$earliestLiveTime = $firstRev ? $firstRev->getTimestamp() : null;
@@ -1021,19 +1024,19 @@ class SpecialUndelete extends SpecialPage {
 				$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $remaining );
 			}
 			$revisions->free();
-			$history .= '</ul>';
+			$history .= Html::closeElement( 'ul' );
 		} else {
 			$out->addWikiMsg( 'nohistory' );
 		}
 
 		if ( $haveFiles ) {
 			$history .= Xml::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n";
-			$history .= '<ul class="mw-undelete-revlist">';
+			$history .= Html::openElement( 'ul', [ 'class' => 'mw-undelete-revlist' ] );
 			foreach ( $files as $row ) {
 				$history .= $this->formatFileRow( $row );
 			}
 			$files->free();
-			$history .= '</ul>';
+			$history .= Html::closeElement( 'ul' );
 		}
 
 		if ( $this->mAllowed ) {
@@ -1205,7 +1208,12 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			// TODO The condition cannot be true when the function is called
-			return '<span class="history-deleted">' . htmlspecialchars( $time ) . '</span>';
+			// TODO use Html::element and let it handle escaping
+			return Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				htmlspecialchars( $time )
+			);
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
@@ -1241,7 +1249,12 @@ class SpecialUndelete extends SpecialPage {
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
-			return '<span class="history-deleted">' . htmlspecialchars( $time ) . '</span>';
+			// TODO use Html::element and let it handle escaping
+			return Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				htmlspecialchars( $time )
+			);
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
@@ -1271,16 +1284,22 @@ class SpecialUndelete extends SpecialPage {
 	private function getFileUser( $file ) {
 		$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
 		if ( !$uploader ) {
-			return '<span class="history-deleted">' .
-				$this->msg( 'rev-deleted-user' )->escaped() .
-				'</span>';
+			return Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				$this->msg( 'rev-deleted-user' )->escaped()
+			);
 		}
 
 		$link = Linker::userLink( $uploader->getId(), $uploader->getName() ) .
 			Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
 
 		if ( $file->isDeleted( File::DELETED_USER ) ) {
-			$link = '<span class="history-deleted">' . $link . '</span>';
+			$link = Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				$link
+			);
 		}
 
 		return $link;
@@ -1295,14 +1314,25 @@ class SpecialUndelete extends SpecialPage {
 	private function getFileComment( $file ) {
 		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
 		if ( !$comment ) {
-			return '<span class="history-deleted"><span class="comment">' .
-				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></span>';
+			return Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				Html::rawElement(
+					'span',
+					[ 'class' => 'comment' ],
+					$this->msg( 'rev-deleted-comment' )->escaped()
+				)
+			);
 		}
 
 		$link = Linker::commentBlock( $comment );
 
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$link = '<span class="history-deleted">' . $link . '</span>';
+			$link = Html::rawElement(
+				'span',
+				[ 'class' => 'history-deleted' ],
+				$link
+			);
 		}
 
 		return $link;

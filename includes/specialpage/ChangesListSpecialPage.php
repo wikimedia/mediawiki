@@ -987,9 +987,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function outputNoResults() {
 		$this->getOutput()->addHTML(
-			'<div class="mw-changeslist-empty">' .
-			$this->msg( 'recentchanges-noresult' )->parse() .
-			'</div>'
+			Html::rawElement(
+				'div',
+				[ 'class' => 'mw-changeslist-empty' ],
+				$this->msg( 'recentchanges-noresult' )->parse()
+			)
 		);
 	}
 
@@ -1799,13 +1801,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		# Collapsible
 		$collapsedState = $this->getRequest()->getCookie( 'changeslist-state' );
-		$collapsedClass = $collapsedState === 'collapsed' ? ' mw-collapsed' : '';
+		$collapsedClass = $collapsedState === 'collapsed' ? 'mw-collapsed' : '';
 
-		$legend =
-			'<div class="mw-changeslist-legend mw-collapsible' . $collapsedClass . '">' .
-				$legendHeading .
-				'<div class="mw-collapsible-content">' . $legend . '</div>' .
-			'</div>';
+		$legend = Html::rawElement(
+			'div',
+			[ 'class' => [ 'mw-changeslist-legend', 'mw-collapsible', $collapsedClass ] ],
+			$legendHeading .
+				Html::rawElement( 'div', [ 'class' => 'mw-collapsible-content' ], $legend )
+		);
 
 		return $legend;
 	}

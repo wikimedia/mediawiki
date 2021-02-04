@@ -575,8 +575,11 @@ abstract class Skin extends ContextSource {
 			} else {
 				$link = $msg->escaped();
 			}
-			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
-				$link . $colon . '<ul>' . $t . '</ul></div>';
+			$s .= Html::rawElement(
+				'div',
+				[ 'id' => 'mw-normal-catlinks', 'class' => 'mw-normal-catlinks' ],
+				$link . $colon . Html::rawElement( 'ul', [], $t )
+			);
 		}
 
 		# Hidden categories
@@ -591,10 +594,17 @@ abstract class Skin extends ContextSource {
 				$class = ' mw-hidden-cats-hidden';
 			}
 
-			$s .= "<div id=\"mw-hidden-catlinks\" class=\"mw-hidden-catlinks$class\">" .
+			$s .= Html::rawElement(
+				'div',
+				[ 'id' => 'mw-hidden-catlinks', 'class' => "mw-hidden-catlinks$class" ],
 				$this->msg( 'hidden-categories' )->numParams( count( $allCats['hidden'] ) )->escaped() .
-				$colon . '<ul>' . $embed . implode( $pop . $embed, $allCats['hidden'] ) . $pop . '</ul>' .
-				'</div>';
+					$colon .
+					Html::rawElement(
+						'ul',
+						[],
+						$embed . implode( $pop . $embed, $allCats['hidden'] ) . $pop
+					)
+			);
 		}
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
@@ -2040,7 +2050,8 @@ abstract class Skin extends ContextSource {
 
 		$this->getHookRunner()->onSkinEditSectionLinks( $this, $nt, $section, $tooltip, $links, $lang );
 
-		$result = '<span class="mw-editsection"><span class="mw-editsection-bracket">[</span>';
+		$result = Html::openElement( 'span', [ 'class' => 'mw-editsection' ] );
+		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], '[' );
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$linksHtml = [];
@@ -2054,13 +2065,16 @@ abstract class Skin extends ContextSource {
 		}
 
 		$result .= implode(
-			'<span class="mw-editsection-divider">'
-				. $this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
-				. '</span>',
+			Html::rawElement(
+				'span',
+				[ 'class' => 'mw-editsection-divider' ],
+				$this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
+			),
 			$linksHtml
 		);
 
-		$result .= '<span class="mw-editsection-bracket">]</span></span>';
+		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], ']' );
+		$result .= Html::closeElement( 'span' );
 		return $result;
 	}
 
@@ -2562,7 +2576,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$subpagestr = $this->subPageSubtitleInternal();
 		if ( $subpagestr !== '' ) {
-			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
+			$subpagestr = Html::rawElement( 'span', [ 'class' => 'subpages' ], $subpagestr );
 		}
 		return $subpagestr . $out->getSubtitle();
 	}

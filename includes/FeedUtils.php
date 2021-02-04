@@ -105,11 +105,11 @@ class FeedUtils {
 		global $wgFeedDiffCutoff, $wgLang;
 
 		// log entries
-		$completeText = '<p>' . implode( ' ',
-			array_filter(
-				[
-					$actiontext,
-					Linker::formatComment( $comment ) ] ) ) . "</p>\n";
+		$unwrappedText = implode(
+			' ',
+			array_filter( [ $actiontext, Linker::formatComment( $comment ) ] )
+		);
+		$completeText = Html::rawElement( 'p', [], $unwrappedText ) . "\n";
 
 		// NOTE: Check permissions for anonymous users, not current user.
 		//       No "privileged" version should end up in the cache.
@@ -163,7 +163,11 @@ class FeedUtils {
 				$diffText = self::getDiffLink( $title, $newid, $oldid );
 			} elseif ( $diffText === false ) {
 				// Error in diff engine, probably a missing revision
-				$diffText = "<p>Can't load revision $newid</p>";
+				$diffText = Html::rawElement(
+					'p',
+					[],
+					"Can't load revision $newid"
+				);
 			} else {
 				// Diff output fine, clean up any illegal UTF-8
 				$diffText = UtfNormal\Validator::cleanUp( $diffText );
@@ -201,8 +205,12 @@ class FeedUtils {
 				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {
-				$diffText = '<p><b>' . wfMessage( 'newpage' )->text() . '</b></p>' .
-					'<div>' . $html . '</div>';
+				$diffText = Html::rawElement(
+					'p',
+					[],
+					Html::rawElement( 'b', [], wfMessage( 'newpage' )->text() )
+				);
+				$diffText .= Html::rawElement( 'div', [], $html );
 			}
 		}
 		$completeText .= $diffText;
