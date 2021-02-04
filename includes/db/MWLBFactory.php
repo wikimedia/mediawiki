@@ -185,9 +185,9 @@ abstract class MWLBFactory {
 			$isHttpRead = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
 			if ( MW_ENTRY_POINT === 'rest' && !$isHttpRead ) {
 				// Hack to support some re-entrant invocations using sqlite
-				// See: T259685
+				// See: T259685, T91820
 				$request = \MediaWiki\Rest\EntryPoint::getMainRequest();
-				if ( $request->hasHeader( 'X-MediaWiki-Read' ) ) {
+				if ( $request->hasHeader( 'Promise-Non-Write-API-Action' ) ) {
 					$isHttpRead = true;
 				}
 			}
