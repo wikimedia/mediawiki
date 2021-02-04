@@ -174,7 +174,7 @@ class SearchSuggestion {
 	public static function fromText( $score, $text ) {
 		$suggestion = new self( $score, $text );
 		if ( $text ) {
-			$suggestion->setSuggestedTitle( Title::makeTitle( 0, $text ) );
+			$suggestion->setSuggestedTitle( Title::newFromText( $text ) );
 		}
 		return $suggestion;
 	}
