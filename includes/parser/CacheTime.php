@@ -139,7 +139,7 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 		global $wgParserCacheExpireTime;
 
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
-		if ( $this->mCacheTime < 0 ) {
+		if ( $this->mCacheTime !== '' && $this->mCacheTime < 0 ) {
 			return 0;
 		}
 
