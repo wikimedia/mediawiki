@@ -2077,6 +2077,13 @@ return [
 	],
 	'mediawiki.special.import' => [
 		'scripts' => 'resources/src/mediawiki.special.import.js',
+		'dependencies' => [
+			'mediawiki.widgets'
+		]
+	],
+	'mediawiki.special.import.styles.ooui' => [
+		'styles' => 'resources/src/mediawiki.special.import.styles.ooui.less',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.preferences.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
