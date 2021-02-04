@@ -68,6 +68,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
+
 		// First create our dummy page
 		$page = Title::newFromText( 'PageArchiveTest_thePage' );
 		$page = new WikiPage( $page );

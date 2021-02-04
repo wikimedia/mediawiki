@@ -1844,6 +1844,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testNewMutableRevisionFromArray( array $array ) {
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
+
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// HACK: if $array['page'] is given, make sure that the page exists
