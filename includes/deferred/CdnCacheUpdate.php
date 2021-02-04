@@ -303,16 +303,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 					? wfAppendQuery( $urlInfo['path'], $urlInfo['query'] )
 					: $urlInfo['path'];
 				$baseReq = [
-					'method' => 'PURGE',		
-					// In April 2020, PURGE requests were converted from
-					// raw crafted requests to MultiHttpClient (curl).
-					// However, curl needs a full url (protocol + domain
-					// name + path), otherwise it fails with an invalid
-					// url error. By using self::expand(), we get a full 
-					// URL, but MediaWiki assumes HTTPS, which is not
-					// supported by Varnish, so we convert the request
-					// to 'http://'.
-					$url = str_replace( 'https://', 'http://', self::expand( $url ) );
+					'method' => 'PURGE',
+					'url' => $urlPath,
 					'headers' => [
 						'Host' => $urlHost,
 						'Connection' => 'Keep-Alive',
