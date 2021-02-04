@@ -44,7 +44,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @deprecated since 1.31. Use a MutableRevisionRecord instead.
+	 * @deprecated since 1.31, hard deprecated since 1.36' Use a MutableRevisionRecord instead.
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.

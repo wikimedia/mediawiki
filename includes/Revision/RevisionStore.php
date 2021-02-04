@@ -2061,6 +2061,8 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
+	 * @deprecated since 1.31, hard deprecated since 1.36'
+	 *
 	 * @param array $fields
 	 * @param int $queryFlags
 	 * @param Title|null $title
@@ -2074,6 +2076,8 @@ class RevisionStore
 		$queryFlags = 0,
 		Title $title = null
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		if ( !$title && isset( $fields['title'] ) ) {
 			if ( !( $fields['title'] instanceof Title ) ) {
 				throw new MWException( 'title field must contain a Title object.' );

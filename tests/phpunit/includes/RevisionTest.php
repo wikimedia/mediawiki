@@ -53,6 +53,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::getContentModel' );
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( $rowArray, 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
@@ -67,6 +68,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	public function testConstructFromEmptyArray() {
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( [], 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$this->assertNull( $rev->getContent(), 'no content object should be available' );
@@ -78,6 +80,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstructFromArrayWithBadPageId() {
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 		$this->expectException( RevisionAccessException::class );
 		new Revision( [ 'page' => 77777777 ] );
 	}
@@ -126,6 +129,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$testUser = $this->getTestUser()->getUser();
 		$this->setMwGlobals( 'wgUser', $testUser );
@@ -173,6 +177,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$this->expectException( get_class( $expectedException ) );
 		$this->expectExceptionMessage( $expectedException->getMessage() );
@@ -311,6 +316,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetId( $rowArray, $expectedId ) {
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( $rowArray, 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$this->assertEquals( $expectedId, $rev->getId() );
@@ -328,6 +334,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	public function testSetId( $input, $expected ) {
 		$this->hideDeprecated( 'Revision::setId' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( [], 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$rev->setId( $input );
@@ -347,6 +354,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::setUserIdAndName' );
 		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( [], 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$rev->setUserIdAndName( $inputId, $name );
@@ -367,6 +375,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 	public function testGetParentId( $rowArray, $expected ) {
 		$this->hideDeprecated( 'Revision::getParentId' );
 		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		$rev = new Revision( $rowArray, 0, $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] ) );
 		$this->assertSame( $expected, $rev->getParentId() );
