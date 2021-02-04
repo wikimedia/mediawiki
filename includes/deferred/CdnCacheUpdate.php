@@ -312,7 +312,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 					// URL, but MediaWiki assumes HTTPS, which is not
 					// supported by Varnish, so we convert the request
 					// to 'http://'.
-					$url = str_replace( 'https://', 'http://', self::expand( $url ) ),
+					$url = str_replace( 'https://', 'http://', self::expand( $url ) );
 					'headers' => [
 						'Host' => $urlHost,
 						'Connection' => 'Keep-Alive',
