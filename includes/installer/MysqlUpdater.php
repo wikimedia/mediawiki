@@ -37,19 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.10
-			[ 'doRestrictionsUpdate' ],
-			[ 'addField', 'logging', 'log_id', 'patch-log_id.sql' ],
-			[ 'addField', 'revision', 'rev_parent_id', 'patch-rev_parent_id.sql' ],
-			[ 'addField', 'page_restrictions', 'pr_id', 'patch-page_restrictions_sortkey.sql' ],
-			[ 'addField', 'revision', 'rev_len', 'patch-rev_len.sql' ],
-			[ 'addField', 'recentchanges', 'rc_deleted', 'patch-rc_deleted.sql' ],
-			[ 'addField', 'logging', 'log_deleted', 'patch-log_deleted.sql' ],
-			[ 'addField', 'archive', 'ar_deleted', 'patch-ar_deleted.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_deleted', 'patch-ipb_deleted.sql' ],
-			[ 'addField', 'filearchive', 'fa_deleted', 'patch-fa_deleted.sql' ],
-			[ 'addField', 'archive', 'ar_len', 'patch-ar_len.sql' ],
-
 			// 1.11
 			[ 'addField', 'ipblocks', 'ipb_block_email', 'patch-ipb_emailban.sql' ],
 			[ 'doCategorylinksIndicesUpdate' ],
