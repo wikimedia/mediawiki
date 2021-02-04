@@ -53,7 +53,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
+	 * @param false|string $wikiID Relevant wiki id or self::LOCAL for the current one.
 	 */
 	public function __construct(
 		callable $callback,
@@ -62,9 +62,9 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$dbDomain = false
+		$wikiID = self::LOCAL
 	) {
-		parent::__construct( $page, $user, $comment, $row, $slots, $dbDomain );
+		parent::__construct( $page, $user, $comment, $row, $slots, $wikiID );
 		$this->mCallback = $callback;
 	}
 
