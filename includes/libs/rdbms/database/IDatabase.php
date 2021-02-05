@@ -554,10 +554,11 @@ interface IDatabase {
 	 *
 	 * If no result rows are returned from the query, false is returned.
 	 *
-	 * @param string|array $table Table name. See IDatabase::select() for details.
-	 * @param string $var The field name to select. This must be a valid SQL
-	 *   fragment: do not use unvalidated user input.
-	 * @param string|array $cond The condition array. See IDatabase::select() for details.
+	 * @param string|array $table Table name. {@see select} for details.
+	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
+	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
+	 *  {@see select} for details.
+	 * @param string|array $cond The condition array. {@see select} for details.
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. {@see select} for details.
 	 * @param string|array $join_conds The query join conditions. {@see select} for details.

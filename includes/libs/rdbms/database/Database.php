@@ -1742,6 +1742,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
+		} elseif ( is_array( $var ) && count( $var ) !== 1 ) {
+			throw new DBUnexpectedError( $this, 'Cannot use more than one field' );
 		}
 
 		$options = $this->normalizeOptions( $options );
