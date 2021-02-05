@@ -37,18 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.13
-			[ 'ifTableNotExists', 'actor', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
-			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
-			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
-			[ 'addTable', 'category', 'patch-category.sql' ],
-			[ 'doCategoryPopulation' ],
-			[ 'addField', 'archive', 'ar_parent_id', 'patch-ar_parent_id.sql' ],
-			[ 'addField', 'user_newtalk', 'user_last_timestamp', 'patch-user_last_timestamp.sql' ],
-			[ 'doPopulateParentId' ],
-			[ 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ],
-			[ 'ifTableNotExists', 'actor', 'doFilearchiveIndicesUpdate' ],
-
 			// 1.14
 			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
 			[ 'doActiveUsersInit' ],
