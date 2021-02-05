@@ -343,17 +343,15 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		// Versions tested
 		$versions = [
-			// '1.13', disabled for now, was totally screwed up
-			// SQLite wasn't included in 1.14
-			'1.15',
-			'1.16',
-			'1.17',
-			'1.18',
-			'1.19',
-			'1.20',
-			'1.21',
-			'1.22',
-			'1.23',
+			'1.27',
+			'1.28',
+			'1.29',
+			'1.30',
+			'1.31',
+			'1.32',
+			'1.33',
+			'1.34',
+			'1.35',
 		];
 
 		// Mismatches for these columns we can safely ignore
