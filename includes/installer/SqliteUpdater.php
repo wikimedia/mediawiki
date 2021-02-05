@@ -34,15 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.14
-			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
-			[ 'doActiveUsersInit' ],
-			[ 'addField', 'ipblocks', 'ipb_allow_usertalk', 'patch-ipb_allow_usertalk.sql' ],
-			[ 'sqliteInitialIndexes' ],
-
-			// 1.15
-			[ 'addTable', 'change_tag', 'patch-change_tag.sql' ],
-
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
