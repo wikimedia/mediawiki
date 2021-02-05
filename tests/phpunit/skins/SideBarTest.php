@@ -12,7 +12,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @var SkinTemplate
 	 */
 	private $skin;
-	/** Local cache for sidebar messages */
+	/** @var string[][] Local cache for sidebar messages */
 	private $messages;
 
 	/** Build $this->messages array */

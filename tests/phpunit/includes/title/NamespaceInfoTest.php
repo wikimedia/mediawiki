@@ -17,6 +17,8 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * Shared code
 	 * %{
 	 */
+
+	/** @var ScopedCallback */
 	private $scopedCallback;
 
 	protected function setUp() : void {
