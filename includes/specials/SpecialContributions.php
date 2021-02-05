@@ -170,10 +170,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
-		if ( MediaWikiServices::getInstance()
-				 ->getPermissionManager()
-				 ->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' )
-		) {
+		if ( $this->permissionManager->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' ) ) {
 			$this->opts['bot'] = '1';
 		}
 
@@ -420,7 +417,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			( IPUtils::isValidRange( $userObj ) && $this->getPager( $targetName )->isQueryableRange( $userObj ) );
 
 		if ( $talk && ( $userObj->isRegistered() || $showForIp ) ) {
-			$tools = self::getUserLinks( $this, $userObj );
+			$tools = self::getUserLinks(
+				$this,
+				$userObj,
+				$this->permissionManager,
+				$this->getHookRunner()
+			);
 			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
 			foreach ( $tools as $tool ) {
 				$links .= Html::rawElement( 'span', [], $tool ) . ' ';
@@ -845,7 +847,13 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->pager = new ContribsPager(
 				$this->getContext(),
 				$options,
-				$this->getLinkRenderer()
+				$this->getLinkRenderer(),
+				$this->linkBatchFactory,
+				$this->getHookContainer(),
+				$this->loadBalancer,
+				$this->actorMigration,
+				$this->revisionStore,
+				$this->namespaceInfo
 			);
 		}
 
