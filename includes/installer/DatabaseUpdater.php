@@ -100,7 +100,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * File handle for SQL output.
 	 *
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $fileHandle = null;
 
