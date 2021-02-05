@@ -52,7 +52,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWikiIds
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
-	public function testGetRevisionStore( $dbDomain ) {
+	public function testGetRevisionStore( $wikiId ) {
 		$lbFactory = $this->getMockLoadBalancerFactory();
 		$blobStoreFactory = $this->getMockBlobStoreFactory();
 		$nameTableStoreFactory = $this->getNameTableStoreFactory();
@@ -77,14 +77,14 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$hookContainer
 		);
 
-		$store = $factory->getRevisionStore( $dbDomain );
+		$store = $factory->getRevisionStore( $wikiId );
 		$wrapper = TestingAccessWrapper::newFromObject( $store );
 
 		// ensure the correct object type is returned
 		$this->assertInstanceOf( RevisionStore::class, $store );
 
 		// ensure the RevisionStore is for the given wikiId
-		$this->assertSame( $dbDomain, $wrapper->dbDomain );
+		$this->assertSame( $wikiId, $wrapper->wikiId );
 
 		// ensure all other required services are correctly set
 		$this->assertSame( $cache, $wrapper->cache );

@@ -35,6 +35,7 @@ use FallbackContent;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -101,7 +102,7 @@ class RevisionStore
 	/**
 	 * @var bool|string
 	 */
-	private $dbDomain;
+	private $wikiId;
 
 	/**
 	 * @var ILoadBalancer
@@ -156,7 +157,7 @@ class RevisionStore
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache A cache for caching revision rows. This can be the local
-	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
+	 *        wiki's default instance even if $wikiId refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached revision rows from
 	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
@@ -168,7 +169,7 @@ class RevisionStore
 	 * @param ActorMigration $actorMigration
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
+	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
@@ -181,9 +182,9 @@ class RevisionStore
 		ActorMigration $actorMigration,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
-		$dbDomain = false
+		$wikiId = WikiAwareEntity::LOCAL
 	) {
-		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
+		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
@@ -193,7 +194,7 @@ class RevisionStore
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->actorMigration = $actorMigration;
-		$this->dbDomain = $dbDomain;
+		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookContainer = $hookContainer;
@@ -224,7 +225,7 @@ class RevisionStore
 	 * @return string|false The wiki's logical name, of false to indicate the local wiki.
 	 */
 	public function getWikiId() {
-		return $this->dbDomain;
+		return $this->wikiId;
 	}
 
 	/**
@@ -245,7 +246,7 @@ class RevisionStore
 	 */
 	private function getDBConnectionRef( $mode, $groups = [] ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $mode, $groups, $this->dbDomain );
+		return $lb->getConnectionRef( $mode, $groups, $this->wikiId );
 	}
 
 	/**
@@ -273,7 +274,7 @@ class RevisionStore
 			$queryFlags = self::READ_NORMAL;
 		}
 
-		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->dbDomain === false );
+		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->wikiId === false );
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
@@ -446,7 +447,7 @@ class RevisionStore
 		);
 
 		// sanity checks
-		Assert::postcondition( $rev->getId( $this->dbDomain ) > 0, 'revision must have an ID' );
+		Assert::postcondition( $rev->getId( $this->wikiId ) > 0, 'revision must have an ID' );
 		Assert::postcondition( $rev->getPageId() > 0, 'revision must have a page ID' );
 		Assert::postcondition(
 			$rev->getComment( RevisionRecord::RAW ) !== null,
@@ -549,7 +550,7 @@ class RevisionStore
 			$comment,
 			(object)$revisionRow,
 			new RevisionSlots( $newSlots ),
-			$this->dbDomain
+			$this->wikiId
 		);
 
 		return $rev;
@@ -757,9 +758,9 @@ class RevisionStore
 			'rev_sha1'       => $rev->getSha1(),
 		];
 
-		if ( $rev->getId( $this->dbDomain ) !== null ) {
+		if ( $rev->getId( $this->wikiId ) !== null ) {
 			// Needed to restore revisions with their original ID
-			$revisionRow['rev_id'] = $rev->getId( $this->dbDomain );
+			$revisionRow['rev_id'] = $rev->getId( $this->wikiId );
 		}
 
 		return $revisionRow;
@@ -988,7 +989,7 @@ class RevisionStore
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
 		$rc = RecentChange::newFromConds(
-			[ 'rc_this_oldid' => $rev->getId( $this->dbDomain ) ],
+			[ 'rc_this_oldid' => $rev->getId( $this->wikiId ) ],
 			__METHOD__,
 			$dbType
 		);
@@ -1120,7 +1121,7 @@ class RevisionStore
 
 		// Only resolve to a Title when operating in the context of the local wiki (T248756)
 		// TODO should not require Title in future (T206498)
-		$title = $this->dbDomain === false ? Title::newFromLinkTarget( $linkTarget ) : null;
+		$title = $this->wikiId === WikiAwareEntity::LOCAL ? Title::newFromLinkTarget( $linkTarget ) : null;
 
 		if ( $revId ) {
 			// Use the specified revision ID.
@@ -1478,7 +1479,7 @@ class RevisionStore
 				$row->ar_user ?? null,
 				$row->ar_user_text ?? null,
 				$row->ar_actor ?? null,
-				$this->dbDomain
+				$this->wikiId
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
@@ -1499,7 +1500,7 @@ class RevisionStore
 			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $title );
 		}
 
-		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->dbDomain );
+		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
 	}
 
 	/**
@@ -1542,7 +1543,7 @@ class RevisionStore
 				$row->rev_user ?? null,
 				$row->rev_user_text ?? null,
 				$row->rev_actor ?? null,
-				$this->dbDomain
+				$this->wikiId
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $page . ': ' . $ex->getMessage() );
@@ -1590,15 +1591,15 @@ class RevisionStore
 							$row->rev_user ?? null,
 							$row->rev_user_text ?? null,
 							$row->rev_actor ?? null,
-							$this->dbDomain
+							$this->wikiId
 						)
 					];
 				},
-				$page, $user, $comment, $row, $slots, $this->dbDomain
+				$page, $user, $comment, $row, $slots, $this->wikiId
 			);
 		} else {
 			$rev = new RevisionStoreRecord(
-				$page, $user, $comment, $row, $slots, $this->dbDomain );
+				$page, $user, $comment, $row, $slots, $this->wikiId );
 		}
 		return $rev;
 	}
@@ -2130,7 +2131,7 @@ class RevisionStore
 			}
 		}
 
-		$revision = new MutableRevisionRecord( $title, $this->dbDomain );
+		$revision = new MutableRevisionRecord( $title, $this->wikiId );
 
 		/** @var Content[] $slotContent */
 		if ( isset( $fields['content'] ) ) {
@@ -2178,7 +2179,7 @@ class RevisionStore
 		// remote wiki with unsuppressed ids, due to issues described in T222212.
 		if ( isset( $fields['user'] ) &&
 			( $fields['user'] instanceof UserIdentity ) &&
-			( $this->dbDomain === false ||
+			( $this->wikiId === false ||
 				( !$fields['user']->getId() && !$fields['user']->getActorId() ) )
 		) {
 			$user = $fields['user'];
@@ -2189,7 +2190,7 @@ class RevisionStore
 					$userID,
 					$fields['user_text'] ?? null,
 					$fields['actor'] ?? null,
-					$this->dbDomain
+					$this->wikiId
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				$user = null;
@@ -2413,7 +2414,7 @@ class RevisionStore
 	 */
 	private function checkDatabaseDomain( IDatabase $db ) {
 		$dbDomain = $db->getDomainID();
-		$storeDomain = $this->loadBalancer->resolveDomainID( $this->dbDomain );
+		$storeDomain = $this->loadBalancer->resolveDomainID( $this->wikiId );
 		if ( $dbDomain === $storeDomain ) {
 			return;
 		}
@@ -2705,7 +2706,7 @@ class RevisionStore
 		$op = $dir === 'next' ? '>' : '<';
 		$sort = $dir === 'next' ? 'ASC' : 'DESC';
 
-		$revisionIdValue = $rev->getId( $this->dbDomain );
+		$revisionIdValue = $rev->getId( $this->wikiId );
 
 		if ( !$revisionIdValue || !$rev->getPageId() ) {
 			// revision is unsaved or otherwise incomplete
@@ -2805,7 +2806,7 @@ class RevisionStore
 			return 0;
 		}
 		# Use page_latest if ID is not given
-		if ( !$rev->getId( $this->dbDomain ) ) {
+		if ( !$rev->getId( $this->wikiId ) ) {
 			$prevId = $db->selectField(
 				'page', 'page_latest',
 				[ 'page_id' => $rev->getPageId() ],
@@ -2814,7 +2815,7 @@ class RevisionStore
 		} else {
 			$prevId = $db->selectField(
 				'revision', 'rev_id',
-				[ 'rev_page' => $rev->getPageId(), 'rev_id < ' . $rev->getId( $this->dbDomain ) ],
+				[ 'rev_page' => $rev->getPageId(), 'rev_id < ' . $rev->getId( $this->wikiId ) ],
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_id DESC' ]
 			);
@@ -3071,12 +3072,12 @@ class RevisionStore
 	 */
 	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
 		if ( $rev ) {
-			if ( $rev->getId( $this->dbDomain ) === null ) {
+			if ( $rev->getId( $this->wikiId ) === null ) {
 				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
 			}
 			if ( $rev->getPageId() !== $pageId ) {
 				throw new InvalidArgumentException(
-					"Revision {$rev->getId( $this->dbDomain )} doesn't belong to page {$pageId}"
+					"Revision {$rev->getId( $this->wikiId )} doesn't belong to page {$pageId}"
 				);
 			}
 		}
@@ -3119,12 +3120,12 @@ class RevisionStore
 		$conds = [];
 		if ( $old ) {
 			$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId( $this->dbDomain )}) " .
+			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId( $this->wikiId )}) " .
 				"OR rev_timestamp > {$oldTs}";
 		}
 		if ( $new ) {
 			$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId( $this->dbDomain )}) " .
+			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId( $this->wikiId )}) " .
 				"OR rev_timestamp < {$newTs}";
 		}
 		return $conds;
@@ -3178,8 +3179,8 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		// a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
-			return $includeOld || $includeNew ? [ $new->getId( $this->dbDomain ) ] : [];
+		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
+			return $includeOld || $includeNew ? [ $new->getId( $this->wikiId ) ] : [];
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -3246,7 +3247,7 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		//a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
+		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
 			if ( empty( $options ) ) {
 				return [];
 			} elseif ( $performer ) {
@@ -3350,7 +3351,7 @@ class RevisionStore
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
 		//a revision and it's parent. See T185167 for more details.
-		if ( $old && $new && $new->getId( $this->dbDomain ) === $old->getId( $this->dbDomain ) ) {
+		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
 			return 0;
 		}
 
