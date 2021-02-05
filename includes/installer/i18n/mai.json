@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Umeshberma",
-			"बिप्लब आनन्द",
 			"Bijay chaurasia",
-			"Tulsi Bhagat"
+			"Tulsi Bhagat",
+			"Umeshberma",
+			"बिप्लब आनन्द"
 		]
 	},
 	"config-desc": "मेडिया-विकी के लेल इंस्टॉलर",
@@ -24,7 +24,6 @@
 	"config-page-install": "स्थापित करी",
 	"config-page-complete": "पूर्ण!",
 	"config-page-restart": "स्थापनाक पुनारम्भ करी",
-	"config-page-readme": "पढू",
 	"config-page-releasenotes": "रिलीज नोट्स",
 	"config-page-copying": "अनुकरण",
 	"config-page-upgradedoc": "उपारोपण भऽ रहल अछि।",

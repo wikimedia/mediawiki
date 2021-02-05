@@ -1,15 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
+			"PiefPafPier",
+			"Robin van der Vliet",
 			"Robin0van0der0vliet"
 		]
 	},
-	"apihelp-createaccount-param-name": "Brûkersnamme.",
-	"apihelp-login-param-name": "Brûkersnamme.",
+	"apihelp-login-param-name": "Meidochnamme.",
 	"apihelp-login-param-password": "Wachtwurd.",
-	"apihelp-userrights-param-user": "Brûkersnamme.",
-	"api-help-param-default": "Standert: $1",
+	"apihelp-userrights-param-user": "Meidogger.",
 	"api-help-param-default-empty": "Standert: <span class=\"apihelp-empty\">(leech)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(gjin beskriuwing)</span>",
-	"api-help-examples": "{{PLURAL:$1|Foarbyld|Foarbylden}}:"
+	"api-help-examples": "{{PLURAL:$1|Foarbyld|Foarbylden}}:",
+	"apierror-missingparam-one-of": "{{PLURAL:$2|De parameter|Ien fan de parameters}} $1 wurdt frege.",
+	"apierror-mustbeloggedin-generic": "Jo moatte ynlogd wêze.",
+	"apierror-mustbeloggedin": "Jo moatte oanmeld wêze om $1.",
+	"apierror-permissiondenied": "Jo hawwe gjin rjochten $1."
 }

@@ -2,16 +2,43 @@
 	"@metadata": {
 		"authors": [
 			"Palapa",
-			"Semso98"
+			"Semso98",
+			"Srđan"
 		]
 	},
 	"apihelp-main-param-action": "Koju akciju izvesti.",
 	"apihelp-main-param-format": "Format izlaza.",
-	"apihelp-block-summary": "Blokiraj korisnika",
+	"apihelp-block-summary": "Blokiraj korisnika.",
 	"apihelp-block-param-reason": "Razlog za blokadu",
+	"apihelp-block-param-nocreate": "Spriječi pravljenje računa.",
+	"apihelp-block-param-reblock": "Ako je korisnik već blokiran, prepiši preko postojećeg bloka.",
 	"apihelp-block-example-ip-simple": "Blokiraj IP adresu <kbd>192.0.2.5</kbd> na tri dana sa razlogom <kbd>Prvi napad</kbd>.",
+	"apihelp-checktoken-param-type": "Vrsta žetona koja se testira.",
+	"apihelp-checktoken-param-token": "Žeton koji se testira.",
 	"apihelp-compare-param-fromtitle": "Prvi naslov za poređenje.",
+	"apihelp-compare-param-fromid": "Prvi ID stranice za uporedbu.",
+	"apihelp-compare-param-fromrev": "Prva izmjena za uporedbu.",
+	"apihelp-compare-param-totitle": "Drugi naslov za uporedbu.",
+	"apihelp-compare-param-toid": "Drugi ID stranice za uporedbu.",
+	"apihelp-createaccount-summary": "Napravi novi korisnički račun.",
 	"apihelp-delete-summary": "Obriši stranicu.",
+	"apihelp-delete-param-watch": "Dodaj stranicu na spisak praćenja trenutnog korisnika.",
+	"apihelp-delete-example-simple": "Obriši <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-reason": "Obriši <kbd>Main Page</kbd> s razlogom <kbd>Preparing for move</kbd>.",
+	"apihelp-disabled-summary": "Modul je deaktiviran.",
+	"apihelp-edit-summary": "Pravi i uređuj stranice.",
 	"apihelp-edit-param-text": "Sadržaj stranice.",
-	"apihelp-edit-param-minor": "Mala izmjena."
+	"apihelp-edit-param-minor": "Mala izmjena.",
+	"apihelp-edit-param-redirect": "Automatski rješavaj preusmjerenja.",
+	"apihelp-edit-example-edit": "Uredi stranicu.",
+	"apihelp-emailuser-summary": "Pošalji e-poruku korisniku.",
+	"apihelp-emailuser-param-target": "Kojem korisniku treba poslati e-poruku.",
+	"apihelp-emailuser-param-subject": "Naslov.",
+	"apihelp-emailuser-param-text": "Sadržaj.",
+	"apihelp-emailuser-param-ccme": "Pošalji mi primjerak poruke.",
+	"apihelp-expandtemplates-param-title": "Naslov stranice.",
+	"apihelp-expandtemplates-param-text": "Wikitekst za pretvoriti.",
+	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Prošireni wikitekst.",
+	"apihelp-feedcontributions-param-hideminor": "Sakrij manje izmjene.",
+	"apihelp-feedrecentchanges-param-from": "Prikaži izmjene otada."
 }

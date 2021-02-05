@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Zoranzoki21"
+			"Obsuser",
+			"Zoranzoki21",
+			"Сербијана"
 		]
 	},
 	"apihelp-block-summary": "Blokiraj korisnika.",
 	"apihelp-block-param-reason": "Razlog za blokiranje.",
-	"apihelp-createaccount-param-name": "Korisničko ime.",
 	"apihelp-delete-summary": "Obriši stranicu.",
 	"apihelp-edit-param-text": "Stranica sa sadržajem.",
 	"apihelp-edit-param-minor": "Manja izmena.",
@@ -22,6 +23,10 @@
 	"apihelp-login-param-password": "Lozinka.",
 	"apihelp-login-example-login": "Prijava.",
 	"apihelp-move-summary": "Premeštanje stranice.",
+	"apihelp-query+alldeletedrevisions-param-miser-user-namespace": "<strong>Napomena:</strong> Zbog [[mw:Special:MyLanguage/Manual:$wgMiserMode|režima štednje]], korišćenje <var>$1user</var> i <var>$1namespace</var> zajedno može da rezultuje vraćanjem manje od <var>$1limit</var> rezultata pre nastavka; u ekstremnim slučajevima, nula rezultata takođe može da bude vraćeno.",
 	"apihelp-query+allrevisions-param-namespace": "Samo spisak stranica u ovom imenskom prostoru.",
-	"apihelp-stashedit-param-text": "Stranica sa sadržajem."
+	"apihelp-stashedit-param-text": "Stranica sa sadržajem.",
+	"api-help-main-header": "Glavni modul",
+	"api-help-flag-deprecated": "Ovaj modul je zastario.",
+	"api-help-param-limited-in-miser-mode": "<strong>Napomena:</strong> Zbog [[mw:Special:MyLanguage/Manual:$wgMiserMode|režima štednje]], korišćenje ovoga može da rezultuje vraćanjem manje od <var>$1limit</var> rezultata pre nastavka; u ekstremnim slučajevima, nula rezultata takođe može da bude vraćeno."
 }

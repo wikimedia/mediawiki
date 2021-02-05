@@ -1,11 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mashoi7",
-			"Ilja.mos"
+			"Ilja.mos",
+			"Mashoi7"
 		]
 	},
-	"apihelp-createaccount-param-name": "Käyttäitunnus.",
 	"apihelp-delete-summary": "Ota sivu iäre.",
 	"apihelp-login-param-name": "Käyttäitunnus.",
 	"apihelp-login-param-password": "Salasana.",

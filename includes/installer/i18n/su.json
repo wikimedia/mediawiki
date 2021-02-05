@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kandar"
+			"Kandar",
+			"Uchup19"
 		]
 	},
 	"config-desc": "Panginstal MediaWiki",
@@ -11,6 +12,8 @@
 	"config-localsettings-cli-upgrade": "Hiji berkas <code>LocalSettings.php</code> geus kabaca.\nPikeun apgréd ieu instalasi, mangga jalankeun <code>update.php</code>",
 	"config-localsettings-key": "Sandi apgréd:",
 	"config-localsettings-badkey": "Sandi anu diasupkeun salah.",
+	"config-restart": "Nya, hirupkeun ulang",
+	"config-profile-fishbowl": "Husus éditor kadaptar",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
 	"mainpagedocfooter": "Mangga tingal ''[https://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }

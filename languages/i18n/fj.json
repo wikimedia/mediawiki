@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jose77 (on fj.wikipedia.org)"
+			"Jose77 (on fj.wikipedia.org)",
+			"MarcoAurelio"
 		]
 	},
 	"sunday": "Sigatabu",
@@ -54,7 +55,6 @@
 	"cancel": "Sasamaki",
 	"mytalk": "Noqu vosa",
 	"navigation": "Vakatasosoko",
-	"qbedit": "Veisautaki",
 	"help": "Veivuke",
 	"search": "Vaqaqara",
 	"searchbutton": "Vaqaqara",
@@ -78,20 +78,17 @@
 	"mainpage": "Tabana levu",
 	"mainpage-description": "Tabana levu",
 	"portal": "Soqosoqo toso",
+	"portal-url": "Project:Soqosoqo toso",
 	"editsection": "Veisautaki",
 	"editold": "Veisautaki",
 	"nstab-main": "Vola volai",
 	"yourname": "Yaca vakayagataki",
 	"yourpassword": "Yaca vuni",
 	"yourpasswordagain": "Vola tale na Yaca vuni",
-	"remembermypassword": "Nanuma na yacaqu ena komipiuta oqo (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"login": "Curu mai",
-	"userlogin": "Curu mai / Dolava nomu Akaude",
 	"logout": "Curu yani",
 	"userlogout": "Curu yani",
-	"nologinlink": "Dolava nomu Akaude",
 	"createaccount": "Dolava nomu Akaude",
-	"gotaccountlink": "Curu mai",
 	"summary": "Kena i Soqoni:",
 	"watchthis": "Vakaraica toka na tabana oqo",
 	"savearticle": "Vakabula na tabana oqo",
@@ -130,7 +127,6 @@
 	"whatlinkshere": "Sema cava oqo",
 	"ipbreason": "Vuna",
 	"move-page-legend": "Toso kina yasana kadua",
-	"movearticle": "Toso kina yasana kadua",
 	"move-watch": "Vakaraica toka na tabana oqo",
 	"movepagebtn": "Toso kina yasana kadua",
 	"movereason": "Vuna",

@@ -22,7 +22,6 @@
 	"config-page-options": "选项",
 	"config-page-install": "装下克",
 	"config-page-complete": "搞好哒！",
-	"config-page-readme": "自述",
 	"config-page-copying": "复制",
 	"config-page-upgradedoc": "升级",
 	"config-page-existingwiki": "现成的wiki",
@@ -30,6 +29,5 @@
 	"config-restart": "嗯，重搞",
 	"config-env-good": "环境检查哈好哒。你可以安装MediaWiki哒。",
 	"config-env-bad": "环境检查好哒，可惜你搞不了MediaWiki。",
-	"config-env-php": "PHP $1装哒。",
-	"config-env-hhvm": "HHVM $1装哒。"
+	"config-env-php": "PHP $1装哒。"
 }

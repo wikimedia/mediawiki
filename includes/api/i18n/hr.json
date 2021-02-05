@@ -1,9 +1,30 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ex13"
+			"Bugoslav",
+			"Ex13",
+			"MaGa",
+			"Neptune, the Mystic",
+			"Vlad5250"
 		]
 	},
 	"apihelp-block-summary": "Blokiraj suradnika.",
-	"apihelp-block-param-user": "Suradničko ime, IP adresa ili opseg koje želite blokirati."
+	"apihelp-block-param-user": "Suradničko ime koje želite blokirati.",
+	"apihelp-delete-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-edit-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-move-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-protect-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-rollback-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-undelete-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-upload-param-watchlistexpiry": "Vremenski pečat isteka stavke popisa praćenja. Izostavi potpuno ovaj parametar da bi trenutačno isteknuće ostalo nepromijenjeno.",
+	"apihelp-userrights-param-user": "Suradnik.",
+	"api-help-examples": "{{PLURAL:$1|Primjer|Primjeri}}:",
+	"api-help-permissions": "{{PLURAL:$1|Dozvola|Dozvole}}:",
+	"api-help-permissions-granted-to": "{{PLURAL:$1|Dodijeljeno na}}: $2",
+	"apierror-assertuserfailed": "suradnik nije prijavljen.",
+	"apierror-badtoken": "Žeton CSRF nije valjan.",
+	"apierror-mustbeloggedin-generic": "Morate biti prijavljeni.",
+	"apierror-mustbeloggedin-linkaccounts": "Da biste povezali suradničke račune morate biti prijavljeni.",
+	"apierror-mustbeloggedin-removeauth": "Da biste uklonili podatke za provjeru autentičnosti morate biti prijavljeni.",
+	"apierror-mustbeloggedin": "Morate biti prijavljeni za $1."
 }

@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Saimawnkham",
 			"Saosukham"
 		]
 	},
-	"apihelp-feedrecentchanges-param-hidecategorization": "သိူင်ႇပၢႆး ၽူႈၶဝ်ႈၸုမ်းလႅၵ်ႈလၢႆႈ"
+	"apihelp-feedrecentchanges-param-hidecategorization": "သိူင်ႇပိူင်ထၢၼ်ႈ လွင်ႈလႅၵ်ႈလၢႆႈၽူႈၶဝ်ႈၸုမ်း",
+	"apiwarn-invalidcategory": "\"$1\" ၼႆႉ ဢမ်ႇၸႂ်ႈပိူင်ထၢၼ်ႈ။"
 }

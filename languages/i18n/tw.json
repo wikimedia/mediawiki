@@ -1,11 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Celestinesucess",
+			"JiveJay",
+			"MF-Warburg",
+			"Matma Rex",
 			"Nemo bis",
-			"Rberchie",
-			"MF-Warburg"
+			"Rberchie"
 		]
 	},
+	"sunday": "Kwasiada",
+	"monday": "Dwoada",
+	"tuesday": "Benada",
+	"wednesday": "Wukuada",
+	"thursday": "Yawoada",
+	"friday": "Efiada",
+	"saturday": "Memeneda",
 	"sun": "Kwasiada",
 	"mon": "Dwoada",
 	"tue": "Benada",
@@ -26,13 +36,24 @@
 	"october-gen": "ahinime",
 	"november-gen": "obubuo",
 	"december-gen": "ɔpɛnimma",
+	"apr": "Oforisuo",
+	"may": "Kotonimma",
+	"jul": "Kitawonsa",
+	"oct": "Ahinime",
+	"nov": "Obubuo",
 	"faq": "Nsemisa  amanfour tae bisa",
+	"search": "Hwehwɛ",
 	"searchbutton": "Hwewhe'",
+	"edit": "Sesa",
 	"create": "Bo",
 	"protect_change": "Sesa",
-	"talkpagelinktext": "Kasa",
+	"talkpagelinktext": "kasa",
 	"otherlanguages": "Wo kasa ahodour mu",
+	"mainpage": "Krataa Fuforo",
+	"editsection": "sesamu",
+	"editsectionhint": "Sesan Krataa yi $1",
 	"toc": "Biribiara",
+	"mainpage-nstab": "Krataa Fuforo",
 	"viewsource": "Hwe bebia efiri",
 	"template-protected": "(Wei yabo eho ban)",
 	"searchprofile-everything": "Biribiara",
@@ -49,5 +70,6 @@
 	"tooltip-pt-mycontris": "Wonom a woboayen",
 	"tooltip-pt-logout": "Pue",
 	"tooltip-ca-watch": "Fa wei ka nnema wo hwe so",
-	"tooltip-summary": "Bo no tofa"
+	"tooltip-summary": "Bo no tofa",
+	"mw-widgets-mediasearch-input-placeholder": "Hwehwɛ mfonini"
 }

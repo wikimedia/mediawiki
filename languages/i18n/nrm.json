@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Crochet.david",
+			"Fitoschido",
 			"Nemo bis",
 			"WikiEoFrEn"
 		]
@@ -21,7 +22,6 @@
 	"november": "Novembe",
 	"december": "Décembe",
 	"cancel": "R'nonchi",
-	"qbedit": "Amendaer",
 	"help": "Aîgue",
 	"search": "Trachi",
 	"searchbutton": "Trachi",
@@ -29,8 +29,6 @@
 	"printableversion": "Versioun imprimablle",
 	"edit": "Amendaer",
 	"create": "Criyaer",
-	"editthispage": "Amendaer la page",
-	"create-this-page": "Criyaer la page",
 	"specialpage": "Page espéciâle",
 	"toolbox": "Boête à ôtis",
 	"otherlanguages": "En d'aut's langues",
@@ -47,7 +45,6 @@
 	"login": "Se merqùi",
 	"nav-login-createaccount": "Se merqùi / Coumpte nouvé",
 	"userlogout": "S'n alaer",
-	"gotaccountlink": "Se merqùi",
 	"summary": "Countenun:",
 	"minoredit": "Ch'tî-chîn est un p'tit amendement",
 	"savearticle": "Saôvaer la page",
@@ -74,6 +71,7 @@
 	"deletepage": "Dénichi la page",
 	"blanknamespace": "(Principâ)",
 	"mycontris": "M's abyinements",
+	"uctop": "drein",
 	"contribslink": "abyinements",
 	"allmessagesname": "Noum",
 	"allmessages-filter-all": "Touot",

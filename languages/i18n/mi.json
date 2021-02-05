@@ -3,8 +3,10 @@
 		"authors": [
 			"Iketsi",
 			"Kiharoa",
+			"Kiwi128",
+			"Piwaiwaka",
 			"Sonia",
-			"Piwaiwaka"
+			"Xð"
 		]
 	},
 	"sunday": "Rātapu",
@@ -42,6 +44,7 @@
 	"talkpagelinktext": "Kōrerohia",
 	"talk": "Kōrerorero",
 	"toolbox": "Pouaka utauta",
+	"otherlanguages": "Reo kē",
 	"aboutsite": "Mo {{SITENAME}}",
 	"currentevents": "Kawepūrongo",
 	"currentevents-url": "Project:Kōrero",
@@ -54,7 +57,7 @@
 	"toc": "Rārangi kōrero",
 	"showtoc": "whakakite",
 	"hidetoc": "hunaia",
-	"nstab-main": "tuhi pānui",
+	"nstab-main": "Tuhi Pānui",
 	"nstab-template": "papa tauira",
 	"nstab-help": "Āwhina",
 	"nstab-category": "Wāhanga",
@@ -63,6 +66,7 @@
 	"showdiff": "Tiro rerekētanga",
 	"preferences": "Kōwhiringa",
 	"recentchanges": "Huringa hou",
+	"recentchanges-summary": "Ka whakaaturia i raro iho nei ngā '''huringa hou''' o tēnei Wiki.",
 	"hide": "Hunaia",
 	"show": "Whakaaturia",
 	"recentchangeslinked": "Huringa pūtahi",
@@ -77,7 +81,7 @@
 	"mywatchlist": "Rārangi mātaki",
 	"watch": "Mātaki",
 	"unwatch": "kāti te mātaki",
-	"contributions": "Ngā mahi a tēnei mema",
+	"tool-link-contributions": "Ngā mahi a tēnei mema",
 	"mycontris": "āku mahi",
 	"whatlinkshere": "Ngā hononga mai",
 	"allmessages": "Pānui pūnaha",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aboubacar.banamoridou.toure",
 			"Amire80",
 			"BaRaN6161 TURK",
 			"Babamamadidiane",
@@ -621,6 +622,7 @@
 	"previewnote": "<strong>ߌ ߖߊ߲߬ߓߌ߬ߟߊ߬ ߞߏ߫ ߣߌ߲߬ ߦߋ߫ ߢߍߝߟߍߟߌ ߘߐߙߐ߲߫ ߠߋ߬ ߘߌ߫.</strong>\nߌ ߟߊ߫ ߡߝߊ߬ߟߋ߲߬ߠߌ ߟߎ߫ ߡߊ߫ ߟߊߞߎ߲߬ߘߎ߬ ߝߟߐ߫ ߘߋ߬߹",
 	"continue-editing": "ߥߊ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߬ ߞߣߍ ߞߊ߲߬",
 	"editing": "ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߦߋ߫ ߛߋ߲߬ߠߊ߫ $1",
+	"edit-textarea-aria-label": "ߥߞߌߞߟߏߜߍ ߓߐߛߎ߲ ߡߊߦߟߍ߬ߡߊ߬ߟߊ߲",
 	"creating": "$1 ߛߌ߲ߘߟߌ ߦߋ߫ ߛߋ߲߬ߠߊ߫",
 	"editingsection": "(ߛߌ߰ߘߊ߬) $1 ߡߊߦߟߍ߬ߡߊ߲ ߦߋ߫ ߛߋ߲߬ߠߊ߫",
 	"editingcomment": "(ߛߌ߰ߘߊ߬ ߞߎߘߊ߫) ߡߊߦߟߍ߬ߡߊ߲ ߦߴߌ ߘߐ߫ $1",

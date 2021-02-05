@@ -2,6 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Rahuldeshmukh101",
+			"Rupalichinchure",
+			"Sureshkhole",
 			"V.narsikar"
 		]
 	},
@@ -16,11 +18,9 @@
 	"apihelp-edit-example-edit": "पान संपादा",
 	"apihelp-expandtemplates-summary": "विकिमजकूरात सर्व साच्यांचा विस्तार करा.",
 	"apihelp-feedcontributions-param-toponly": "केवळ नवीनतम आवर्तने असलेलीच संपादने दाखवा.",
-	"apihelp-feedrecentchanges-param-categories": "या सर्व वर्गात असलेल्या पानांमधील बदलच फक्त  दाखवा.",
-	"apihelp-feedrecentchanges-param-categories_any": "त्यापेक्षा,या कोणत्याही वर्गांमधील,पानांना झालेले बदलच फक्त दाखवा.",
 	"apihelp-login-param-name": "सदस्य नाव.",
 	"apihelp-login-param-password": "परवलीचा शब्द.",
-	"apihelp-login-example-login": "सनोंद-प्रवेश करा.",
+	"apihelp-login-example-login": "प्रवेश करा(लॉग इन करा)",
 	"apihelp-move-summary": "पृष्ठाचे स्थानांतरण करा.",
 	"apihelp-move-param-ignorewarnings": "सर्व सूचनांकडे दुर्लक्ष करा.",
 	"apihelp-options-example-reset": "पसंतीक्रमाची पुनर्स्थापना",
@@ -43,7 +43,7 @@
 	"apihelp-query+allusers-param-witheditsonly": "फक्त संपादन केलेल्या सदस्यांचीच यादी करा.",
 	"apihelp-query+allusers-param-activeusers": "मागील $1 {{PLURAL:$1|दिवसात}} सक्रिय सदस्यांचीच यादी करा.",
 	"apihelp-query+allusers-param-attachedwiki": "<kbd>$1prop=centralids</kbd> याद्वारे असेही दर्शविण्यात येते कि सदस्य हा या विकिशी जुळलेला असून तो या ओळखणीद्वारे ओळखल्या जातो.",
-	"apihelp-query+allusers-example-Y": "<kbd>य</kbd> पासून सदस्यनाव सुरु होणाऱ्या सदस्यांचीच यादी करा.",
+	"apihelp-query+allusers-example-y": "<kbd>य</kbd> पासून सदस्यनाव सुरु होणाऱ्या सदस्यांचीच यादी करा.",
 	"apihelp-query+backlinks-summary": "दिलेल्या पानास दुवे असणारी सर्व पाने शोधा.",
 	"apihelp-query+backlinks-param-title": "शोधावयाचे शीर्षक.<var>$1pageid</var>यासमवेत वापरु शकत नाही.",
 	"apihelp-query+backlinks-param-pageid": "शोधावयाची पान ओळखण.<var>$1title</var>यासमवेत वापरु शकत नाही.",
@@ -71,7 +71,7 @@
 	"apihelp-query+categories-param-dir": "कोणत्या दिशेस यादी करावयाची.",
 	"apihelp-query+categories-example-simple": "<kbd>अल्बर्ट आईन्स्टाईन</kbd>हे पान कोणकोणत्या वर्गात आहे त्याची यादी करा.",
 	"apihelp-query+categories-example-generator": "<kbd>अल्बर्ट आईन्स्टाईन</kbd>या पानात वापरलेल्या सर्व वर्गांची माहिती द्या.",
-	"apihelp-query+categorymembers-summary": "दिलेल्या वर्गात असलेल्या सर्व पानांची यादी करते.",
+	"apihelp-query+categorymembers-summary": "दिलेल्या वर्गात असलेल्या सर्व पानांची यादी करा.",
 	"apihelp-query+deletedrevs-param-end": "कुठपर्यंत प्रगणना संपवायची त्याचा वेळठसा.",
 	"apihelp-query+deletedrevs-param-from": "या शीर्षकापासून यादी करणे सुरु करा.",
 	"apihelp-query+deletedrevs-param-to": "या शीर्षकास यादी करणे थांबवा.",
@@ -103,5 +103,6 @@
 	"apihelp-stashedit-param-title": "पानाच्या मथळ्याचे संपादन होत आहे.",
 	"apihelp-stashedit-param-sectiontitle": "नविन विभागाचा मथळा",
 	"apihelp-stashedit-param-summary": "सारांश बदला.",
-	"api-help-examples": "{{PLURAL:$1|उदाहरण|उदाहरणे}}:"
+	"api-help-examples": "{{PLURAL:$1|उदाहरण|उदाहरणे}}:",
+	"apierror-cannotreauthenticate": "आपली ओळखण स्थापित न झाल्यामुळे ही क्रिया अनुपलब्ध आहे."
 }

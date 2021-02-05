@@ -1,12 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
-			"Умар",
+			"Adam-Yourist",
 			"ElizaMag",
-			"Adam-Yourist"
+			"Tusholi",
+			"Умар"
 		]
 	},
+	"config-desc": "MediaWiki инсталлятор",
+	"config-title": "MediaWiki $1 дӏоттаер",
+	"config-information": "Хоам",
 	"config-localsettings-key": "Кердадаккхара дIоагIа:",
 	"config-localsettings-badkey": "Iа белгалдаьккхад харцахь дола кердадаккхара дIоагIа.",
+	"config-your-language": "Хьа мотт:",
+	"config-your-language-help": "МалагIача меттала хургда дIаоттадар? Хьахаржа мотт.",
+	"config-wiki-language": "Вики чу лелабергбола мотт",
+	"config-page-language": "Мотт",
+	"config-page-welcome": "Марша доагӀалда MediaWiki чу!",
+	"config-page-name": "ЦIи",
+	"config-page-install": "ДӀаоттадар",
+	"config-page-complete": "Кийчда!",
+	"config-page-restart": "ДӀаоттадар юхадоладе",
+	"config-page-releasenotes": "Эршах бола хоам",
+	"config-page-copying": "Лицензи",
+	"config-page-upgradedoc": "Кердадаккхар",
+	"config-page-existingwiki": "Йолаш йола вики",
 	"config-help": "новкъoстал"
 }
