@@ -76,7 +76,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$queryConditions = array_filter(
 			$queryConditions,
-			'ChangesListSpecialPageTest::filterOutRcTimestampCondition'
+			[ __CLASS__, 'filterOutRcTimestampCondition' ]
 		);
 
 		return $queryConditions;

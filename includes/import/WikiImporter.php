@@ -37,12 +37,31 @@ use MediaWiki\Revision\SlotRecord;
 class WikiImporter {
 	/** @var XMLReader */
 	private $reader;
+	/** @var array|null */
 	private $foreignNamespaces = null;
-	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mPageOutCallback;
-	private $mNoticeCallback, $mDebug;
-	private $mImportUploads, $mImageBasePath;
+	/** @var callable */
+	private $mLogItemCallback;
+	/** @var callable */
+	private $mUploadCallback;
+	/** @var callable */
+	private $mRevisionCallback;
+	/** @var callable */
+	private $mPageCallback;
+	/** @var callable|null */
+	private $mSiteInfoCallback;
+	/** @var callable */
+	private $mPageOutCallback;
+	/** @var callable|null */
+	private $mNoticeCallback;
+	/** @var bool|null */
+	private $mDebug;
+	/** @var bool|null */
+	private $mImportUploads;
+	/** @var string|null */
+	private $mImageBasePath;
+	/** @var bool */
 	private $mNoUpdates = false;
+	/** @var int */
 	private $pageOffset = 0;
 	/** @var Config */
 	private $config;
@@ -107,21 +126,34 @@ class WikiImporter {
 		return $this->reader;
 	}
 
+	/**
+	 * @param string $err
+	 */
 	public function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
 		wfDebug( "WikiImporter XML error: $err" );
 	}
 
+	/**
+	 * @param string $data
+	 */
 	public function debug( $data ) {
 		if ( $this->mDebug ) {
 			wfDebug( "IMPORT: $data" );
 		}
 	}
 
+	/**
+	 * @param string $data
+	 */
 	public function warn( $data ) {
 		wfDebug( "IMPORT: $data" );
 	}
 
+	/**
+	 * @param string $msg
+	 * @param mixed ...$params
+	 */
 	public function notice( $msg, ...$params ) {
 		if ( is_callable( $this->mNoticeCallback ) ) {
 			call_user_func( $this->mNoticeCallback, $msg, $params );
@@ -458,7 +490,7 @@ class WikiImporter {
 	/**
 	 * Notify the callback function of site info
 	 * @param array $siteInfo
-	 * @return bool|mixed
+	 * @return mixed|false
 	 */
 	private function siteInfoCallback( $siteInfo ) {
 		if ( isset( $this->mSiteInfoCallback ) ) {
@@ -511,7 +543,7 @@ class WikiImporter {
 	/**
 	 * Notify the callback function of a new log item
 	 * @param WikiRevision $revision
-	 * @return bool|mixed
+	 * @return mixed|false
 	 */
 	private function logItemCallback( $revision ) {
 		if ( isset( $this->mLogItemCallback ) ) {
@@ -691,7 +723,7 @@ class WikiImporter {
 
 	/**
 	 * @param array $logInfo
-	 * @return bool|mixed
+	 * @return mixed|false
 	 */
 	private function processLogItem( $logInfo ) {
 		$revision = new WikiRevision( $this->config );
@@ -940,7 +972,7 @@ class WikiImporter {
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
 	 * @throws MWException
-	 * @return bool|mixed
+	 * @return mixed|false
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
 		$revision = new WikiRevision( $this->config );
@@ -1126,7 +1158,7 @@ class WikiImporter {
 	/**
 	 * @param string $text
 	 * @param string|null $ns
-	 * @return array|bool
+	 * @return array|false
 	 */
 	private function processTitle( $text, $ns = null ) {
 		if ( $this->foreignNamespaces === null ) {

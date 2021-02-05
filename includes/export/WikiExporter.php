@@ -222,7 +222,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param array $names
+	 * @param string[] $names
 	 */
 	public function pagesByName( $names ) {
 		foreach ( $names as $name ) {

@@ -143,7 +143,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
 				],
 				'rows' => array_combine(
-					array_map( 'MWGrants::getGrantsLink', $showGrants ),
+					array_map( [ MWGrants::class, 'getGrantsLink' ], $showGrants ),
 					$showGrants
 				),
 				'default' => array_map(
@@ -153,10 +153,10 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$this->botPassword->getGrants()
 				),
 				'tooltips' => array_combine(
-					array_map( 'MWGrants::getGrantsLink', $showGrants ),
+					array_map( [ MWGrants::class, 'getGrantsLink' ], $showGrants ),
 					array_map(
 						function ( $rights ) use ( $lang ) {
-							return $lang->semicolonList( array_map( 'User::getRightDescription', $rights ) );
+							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
 						},
 						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 					)

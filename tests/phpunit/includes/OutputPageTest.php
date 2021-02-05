@@ -2354,14 +2354,27 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		if ( !in_array( 'notitle', $options ) ) {
 			$mockLang = $this->createMock( Language::class );
+			$mockLang->method( 'getCode' )->willReturn( $code );
 
+			$mockLanguageConverter = $this
+				->createMock( ILanguageConverter::class );
 			if ( in_array( 'varianturl', $options ) ) {
-				$mockLang->expects( $this->never() )->method( $this->anything() );
+				$mockLanguageConverter->expects( $this->never() )->method( $this->anything() );
 			} else {
-				$mockLang->method( 'hasVariants' )->willReturn( count( $variants ) > 1 );
-				$mockLang->method( 'getVariants' )->willReturn( $variants );
-				$mockLang->method( 'getCode' )->willReturn( $code );
+				$mockLanguageConverter->method( 'hasVariants' )->willReturn( count( $variants ) > 1 );
+				$mockLanguageConverter->method( 'getVariants' )->willReturn( $variants );
 			}
+
+			$languageConverterFactory = $this
+				->createMock( LanguageConverterFactory::class );
+			$languageConverterFactory
+				->expects( $this->any() )
+				->method( 'getLanguageConverter' )
+				->willReturn( $mockLanguageConverter );
+			$this->setService(
+				'LanguageConverterFactory',
+				$languageConverterFactory
+			);
 
 			$mockTitle = $this->createMock( Title::class );
 			$mockTitle->method( 'getPageLanguage' )->willReturn( $mockLang );

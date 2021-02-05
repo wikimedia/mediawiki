@@ -91,7 +91,7 @@ class Xml {
 	 */
 	public static function elementClean( $element, $attribs = [], $contents = '' ) {
 		if ( $attribs ) {
-			$attribs = array_map( [ 'UtfNormal\Validator', 'cleanUp' ], $attribs );
+			$attribs = array_map( [ UtfNormal\Validator::class, 'cleanUp' ], $attribs );
 		}
 		if ( $contents ) {
 			$contents =

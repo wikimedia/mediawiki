@@ -2322,8 +2322,9 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-		$lang = $title->getPageLanguage();
-		if ( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
+		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $title->getPageLanguage() );
+		if ( !$this->getRequest()->getCheck( 'variant' ) && $languageConverter->hasVariants() ) {
 			$this->addVaryHeader( 'Accept-Language' );
 		}
 	}
@@ -3056,7 +3057,8 @@ class OutputPage extends ContextSource {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		$config = $this->getConfig();
 		$userdir = $this->getLanguage()->getDir();
-		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
+		$services = MediaWikiServices::getInstance();
+		$sitedir = $services->getContentLanguage()->getDir();
 
 		$pieces = [];
 		$htmlAttribs = Sanitizer::mergeAttributes( Sanitizer::mergeAttributes(
@@ -3097,7 +3099,7 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
 
-		$underline = $this->getUser()->getOption( 'underline' );
+		$underline = $services->getUserOptionsLookup()->getOption( $this->getUser(), 'underline' );
 		if ( $underline < 2 ) {
 			// The following classes can be used here:
 			// * mw-underline-always
@@ -3331,7 +3333,7 @@ class OutputPage extends ContextSource {
 			'wgIsRedirect' => $title->isRedirect(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
-			'wgUserGroups' => $user->getEffectiveGroups(),
+			'wgUserGroups' => $services->getUserGroupManager()->getUserEffectiveGroups( $user ),
 			'wgCategories' => $this->getCategories(),
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgPageContentModel' => $title->getContentModel(),
@@ -3607,12 +3609,13 @@ class OutputPage extends ContextSource {
 
 		# Language variants
 		$services = MediaWikiServices::getInstance();
-		$disableLangConversion =
-			$services->getLanguageConverterFactory()->isConversionDisabled();
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		$disableLangConversion = $languageConverterFactory->isConversionDisabled();
 		if ( !$disableLangConversion ) {
 			$lang = $this->getTitle()->getPageLanguage();
-			if ( $lang->hasVariants() ) {
-				$variants = $lang->getVariants();
+			$languageConverter = $languageConverterFactory->getLanguageConverter( $lang );
+			if ( $languageConverter->hasVariants() ) {
+				$variants = $languageConverter->getVariants();
 				foreach ( $variants as $variant ) {
 					$tags["variant-$variant"] = Html::element( 'link', [
 						'rel' => 'alternate',
