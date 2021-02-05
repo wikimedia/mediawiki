@@ -38,5 +38,7 @@
 	"rest-missing-body-field": "Cambe obbligatorie \"$1\" mangande da 'u cuèrpe d'a richieste.",
 	"rest-bad-content-model": "Condenute d'u modelle sbagliate: $1",
 	"rest-update-cannot-create-page": "'A pàgene \"$1\" non ge pò essere ccrejate purcé ggià esiste. Pe aggiornà 'a pàgene esistende, mitte l'ID d'a revisione de base jndr'à strutture sotte a 'u taste \"urteme\" jndr'à 'u cuèrpe d'a richieste.",
-	"rest-cannot-load-file": "'U file pu titole \"$1\" non ge pò essere carecate."
+	"rest-extraneous-csrf-token": "Acchiate 'nu gettone CSRF estranèe. Le getture CRSF non ge onna essere ausate quanne ste ause 'u meccanisme de autendicazione cumme OAuth ca sò secure condre le attache CSRF.",
+	"rest-cannot-load-file": "'U file pu titole \"$1\" non ge pò essere carecate.",
+	"rest-cross-origin-anon-write": "Le richeiste de scretture anonime cu origgene misckate non ge sò permesse"
 }

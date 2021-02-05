@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sindhu",
 			"Aursani",
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Sindhu"
 		]
 	},
 	"config-desc": "ميڊياوڪيءَ لاءِ تنصيبڪار",
@@ -27,12 +27,11 @@
 	"config-page-install": "تنصيبيو",
 	"config-page-complete": "پُورو!",
 	"config-page-restart": "تنصيبڪاري وري کان شروع ڪريو",
-	"config-page-readme": "مون کي پڙهو",
 	"config-page-copying": "پرت ڪندي",
 	"config-page-upgradedoc": "اپگريڊڪندي",
 	"config-page-existingwiki": "موجوده وڪِي",
 	"config-help-restart": "ڇا توھان سڄي سانڍيل ڊيٽا ختم ڪرڻ چاھيو ٿا جيڪا توھان داخل ڪئي آھي ۽ تنصيبڪاريءَ جي عمل کي ٻيھر شروع ڪرڻ چاھيو ٿا؟",
 	"config-restart": "ها، وري کان شروع ڪريو",
 	"config-env-php": "PHP $1 تنصيب ٿي چڪو",
-	"config-env-hhvm": "HHVM $1 تنصيب ٿي چڪو."
+	"config-project-namespace": "رٿا نانءُپولار:"
 }

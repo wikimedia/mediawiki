@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Bharathesha Alasandemajalu",
-			"Vishwanatha Badikana",
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"Vishwanatha Badikana"
 		]
 	},
-	"apihelp-createaccount-param-name": "ಸದಸ್ಯೆರ್ನ ಪುದರ್:",
+	"apihelp-main-param-action": "ವಾ ಕ್ರಮೊಡು ನಿರ್ವಹನೆ",
 	"apihelp-delete-summary": "ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ",
 	"apihelp-edit-param-minor": "ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲು",
 	"apihelp-edit-example-edit": "ಪುಟೊನ್ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ",

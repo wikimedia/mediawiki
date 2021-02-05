@@ -1267,6 +1267,7 @@
 	"rcfilters-activefilters": "सक्रिय छनाेटहरू",
 	"rcfilters-activefilters-hide": "लुकाउने",
 	"rcfilters-activefilters-show": "देखाउने",
+	"rcfilters-limit-title": "देखिने नतिजाहरू",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरू}} $2",
 	"rcfilters-date-popup-title": "खोजी गर्न समयावधि",
 	"rcfilters-days-title": "हालसालैका दिनहरू",

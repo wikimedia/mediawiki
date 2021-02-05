@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vahe Gharakhanyan",
-			"Kareyac"
+			"Kareyac",
+			"Vahe Gharakhanyan"
 		]
 	},
 	"config-title": "ՄեդիաՎիքի $1-ի տեղադրում",
@@ -19,7 +19,6 @@
 	"config-page-options": "Ընտրանքներ",
 	"config-page-install": "Տեղադրում",
 	"config-page-complete": "Պատրաստ է:",
-	"config-page-readme": "Կարդա ինձ",
 	"config-page-releasenotes": "Տեղեկություն տարբերակի մասին",
 	"config-page-existingwiki": "Գոյություն ունեցող վիքի",
 	"config-restart": "Այո, նորից սկսել",

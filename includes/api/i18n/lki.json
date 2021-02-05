@@ -1,22 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hosseinblue",
 			"Arash71",
+			"Hosseinblue",
 			"Lakzon"
 		]
 	},
 	"apihelp-main-param-action": "کام عملیات انجؤم بِ.",
 	"apihelp-main-param-format": "فرمت خروجی",
 	"apihelp-block-summary": "بستن کاربر.",
-	"apihelp-createaccount-param-name": "نۆم کاربەری:",
-	"apihelp-delete-summary": "حةذف وةڵگة",
+	"apihelp-delete-summary": "ئاسڕین(حذف)پەڕە",
 	"apihelp-delete-example-simple": "حذف <kbd>Main Page</kbd>.",
 	"apihelp-disabled-summary": "اێ پودمانە إکار کەتێە(غیرفعال بیە).",
 	"apihelp-edit-summary": "دؤرس کردن و دۀسکاری وۀلگۀ",
 	"apihelp-edit-param-sectiontitle": "نام سۀر وۀلگ تازۀ",
-	"apihelp-edit-example-edit": ".دةسکاری وةڵگة",
-	"apihelp-emailuser-param-subject": "موضوع سةر وةڵگ",
+	"apihelp-edit-example-edit": "دەسکاری ڤەڵگە",
+	"apihelp-emailuser-param-subject": "موضوع هدر.",
 	"apihelp-emailuser-param-text": "متن رایانه.",
 	"apihelp-help-example-main": "راهنما برای پودمان اصلی",
 	"apihelp-login-param-name": "نام کاربری",
