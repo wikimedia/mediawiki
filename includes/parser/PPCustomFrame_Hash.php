@@ -26,8 +26,13 @@
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_Hash extends PPFrame_Hash {
 
+	/** @var array */
 	public $args;
 
+	/**
+	 * @param Preprocessor $preprocessor
+	 * @param array $args
+	 */
 	public function __construct( $preprocessor, $args ) {
 		parent::__construct( $preprocessor );
 		$this->args = $args;
@@ -58,7 +63,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 
 	/**
 	 * @param int|string $index
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getArgument( $index ) {
 		return $this->args[$index] ?? false;

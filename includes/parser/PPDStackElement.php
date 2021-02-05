@@ -57,8 +57,12 @@ class PPDStackElement {
 	 */
 	public $lineStart;
 
+	/** @var string */
 	public $partClass = PPDPart::class;
 
+	/**
+	 * @param array $data
+	 */
 	public function __construct( $data = [] ) {
 		$class = $this->partClass;
 		$this->parts = [ new $class ];

@@ -40,21 +40,29 @@ class PPFrame_Hash implements PPFrame {
 	 * @var Title
 	 */
 	public $title;
+
+	/**
+	 * @var (string|false)[]
+	 */
 	public $titleCache;
 
 	/**
 	 * Hashtable listing templates which are disallowed for expansion in this frame,
 	 * having been encountered previously in parent frames.
+	 * @var string[]
 	 */
 	public $loopCheckHash;
 
 	/**
 	 * Recursion depth of this frame, top = 0
 	 * Note that this is NOT the same as expansion depth in expand()
+	 * @var int
 	 */
 	public $depth;
 
+	/** @var bool */
 	private $volatile = false;
+	/** @var int|null */
 	private $ttl = null;
 
 	/**
@@ -79,8 +87,8 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param array|bool|PPNode_Hash_Array $args
-	 * @param Title|bool $title
+	 * @param array|false|PPNode_Hash_Array $args
+	 * @param Title|false $title
 	 * @param int $indexOffset
 	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
@@ -500,8 +508,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param bool $level
-	 * @return array|bool|string
+	 * @param string|false $level
+	 * @return array|false|string
 	 */
 	public function getPDBK( $level = false ) {
 		if ( $level === false ) {
