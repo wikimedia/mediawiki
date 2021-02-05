@@ -212,9 +212,14 @@ trait MediaWikiTestCaseTrait {
 				. " Did you forget AtEase::restoreWarnings?";
 			$this->fail( $message );
 		}
+	}
 
-		// Re-enable any disabled deprecation warnings and allow same deprecations
-		// to be thrown multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	/**
+	 * Re-enable any disabled deprecation warnings and allow same deprecations to be thrown
+	 * multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	 * @after
+	 */
+	protected function mwDebugTearDown() {
 		MWDebug::clearLog();
 	}
 
