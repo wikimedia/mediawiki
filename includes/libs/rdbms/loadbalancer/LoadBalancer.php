@@ -1074,13 +1074,26 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' CONN_SILENCE_ERRORS is not supported'
+			);
+		}
+
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
+		$conn = $this->getConnection( $i, $groups, $domain, $flags );
 
-		return new DBConnRef( $this, $this->getConnection( $i, $groups, $domain, $flags ), $role );
+		return new DBConnRef( $this, $conn, $role );
 	}
 
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
+			);
+		}
+
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
 
@@ -1088,11 +1101,17 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ' CONN_SILENCE_ERRORS is not supported'
+			);
+		}
+
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
+		$conn = $this->getConnection( $i, $groups, $domain, $flags );
 
-		return new MaintainableDBConnRef(
-			$this, $this->getConnection( $i, $groups, $domain, $flags ), $role );
+		return new MaintainableDBConnRef( $this, $conn, $role );
 	}
 
 	/**
