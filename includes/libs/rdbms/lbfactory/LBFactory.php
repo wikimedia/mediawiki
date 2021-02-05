@@ -62,9 +62,9 @@ abstract class LBFactory implements ILBFactory {
 	private $deprecationLogger;
 
 	/** @var BagOStuff */
-	protected $srvCache;
+	protected $cpStash;
 	/** @var BagOStuff */
-	protected $memStash;
+	protected $srvCache;
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -134,8 +134,8 @@ abstract class LBFactory implements ILBFactory {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
 
+		$this->cpStash = $conf['cpStash'] ?? new EmptyBagOStuff();
 		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
-		$this->memStash = $conf['memStash'] ?? new EmptyBagOStuff();
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
 		foreach ( self::$loggerFields as $key ) {
@@ -215,7 +215,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function shutdown(
-		$mode = self::SHUTDOWN_CHRONPROT_SYNC,
+		$flags = self::SHUTDOWN_NORMAL,
 		callable $workCallback = null,
 		&$cpIndex = null,
 		&$cpClientId = null
@@ -224,12 +224,10 @@ abstract class LBFactory implements ILBFactory {
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$chronProt = $this->getChronologyProtector();
-		if ( $mode === self::SHUTDOWN_CHRONPROT_SYNC ) {
-			$this->shutdownChronologyProtector( $chronProt, $workCallback, 'sync', $cpIndex );
-		} elseif ( $mode === self::SHUTDOWN_CHRONPROT_ASYNC ) {
-			$this->shutdownChronologyProtector( $chronProt, null, 'async', $cpIndex );
+		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
+			$this->shutdownChronologyProtector( $chronProt, $workCallback, $cpIndex );
+			$this->replLogger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
-
 		$cpClientId = $chronProt->getClientId();
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
@@ -554,7 +552,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->chronProt = new ChronologyProtector(
-			$this->memStash,
+			$this->cpStash,
 			[
 				'ip' => $this->requestInfo['IPAddress'],
 				'agent' => $this->requestInfo['UserAgent'],
@@ -571,10 +569,10 @@ abstract class LBFactory implements ILBFactory {
 			// Request opted out of using position wait logic. This is useful for requests
 			// done by the job queue or background ETL that do not have a meaningful session.
 			$this->chronProt->setWaitEnabled( false );
-		} elseif ( $this->memStash instanceof EmptyBagOStuff ) {
+		} elseif ( $this->cpStash instanceof EmptyBagOStuff ) {
 			// No where to store any DB positions and wait for them to appear
 			$this->chronProt->setEnabled( false );
-			$this->replLogger->info( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
+			$this->replLogger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
 		}
 
 		$this->replLogger->debug(
@@ -590,27 +588,25 @@ abstract class LBFactory implements ILBFactory {
 	 *
 	 * @param ChronologyProtector $cp
 	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
-	 * @param string $mode One of (sync, async); whether to wait on remote datacenters
-	 * @param int|null &$cpIndex DB position key write counter; incremented on update
+	 * @param int|null &$cpIndex DB position key write counter; incremented on update [returned]
 	 */
 	protected function shutdownChronologyProtector(
-		ChronologyProtector $cp, $workCallback, $mode, &$cpIndex = null
+		ChronologyProtector $cp, $workCallback, &$cpIndex = null
 	) {
-		// Record all the master positions needed
+		// Remark all of the relevant DB master positions
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $cp ) {
-			$cp->storeSessionReplicationPosition( $lb );
+			$cp->stageSessionReplicationPosition( $lb );
 		} );
-		// Write them to the persistent stash. Try to do something useful by running $work
-		// while ChronologyProtector waits for the stash write to replicate to all DCs.
-		$unsavedPositions = $cp->shutdown( $workCallback, $mode, $cpIndex );
+		// Write the positions to the persistent stash
+		$unsavedPositions = $cp->shutdown( $cpIndex );
 		if ( $unsavedPositions && $workCallback ) {
 			// Invoke callback in case it did not cache the result yet
-			$workCallback(); // work now to block for less time in waitForAll()
+			$workCallback();
 		}
-		// If the positions failed to write to the stash, at least wait on local datacenter
-		// replica DBs to catch up before responding. Even if there are several DCs, this increases
-		// the chance that the user will see their own changes immediately afterwards. As long
-		// as the sticky DC cookie applies (same domain), this is not even an issue.
+		// If the positions failed to write to the stash, then wait on the local datacenter
+		// replica DBs to catch up before sending an HTTP response. As long as the request that
+		// caused such DB writes occurred in the master datacenter, and clients are temporarily
+		// pinned to the master datacenter after causing DB writes, then this should suffice.
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			if ( isset( $unsavedPositions[$masterName] ) ) {
@@ -813,5 +809,13 @@ abstract class LBFactory implements ILBFactory {
 
 	public function __destruct() {
 		$this->destroy();
+	}
+
+	/**
+	 * @param float|null &$time Mock UNIX timestamp for testing
+	 * @codeCoverageIgnore
+	 */
+	public function setMockTime( &$time ) {
+		$this->getChronologyProtector()->setMockTime( $time );
 	}
 }

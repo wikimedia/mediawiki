@@ -338,10 +338,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->applySessionReplicationPosition( $lb1 );
 		$cp->applySessionReplicationPosition( $lb2 );
 		// Record positions in stash on first HTTP request end
-		$cp->storeSessionReplicationPosition( $lb1 );
-		$cp->storeSessionReplicationPosition( $lb2 );
+		$cp->stageSessionReplicationPosition( $lb1 );
+		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( null, 'sync', $cpIndex );
+		$cp->shutdown( $cpIndex );
 
 		$this->assertSame( 1, $cpIndex, "CP write index set" );
 
@@ -381,10 +381,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->applySessionReplicationPosition( $lb1 );
 		$cp->applySessionReplicationPosition( $lb2 );
 		// Shutdown (nothing to record)
-		$cp->storeSessionReplicationPosition( $lb1 );
-		$cp->storeSessionReplicationPosition( $lb2 );
+		$cp->stageSessionReplicationPosition( $lb1 );
+		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( null, 'sync', $cpIndex );
+		$cp->shutdown( $cpIndex );
 
 		$this->assertNull( $cpIndex, "CP write index retained" );
 
@@ -809,13 +809,27 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testGetChronologyProtectorTouched() {
 		$store = new HashBagOStuff;
 		$lbFactory = $this->newLBFactoryMulti( [
-			'memStash' => $store
+			'cpStash' => $store,
+			'cliMode' => false
 		] );
 		$lbFactory->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
-		$key = $store->makeGlobalKey( ChronologyProtector::class,
-			'mtime', 'ii', 'test-db1' );
-		$store->set( $key, 2 );
+
+		$mockWallClock = 1549343530.2053;
+		$priorTime = $mockWallClock; // reference time
+		$lbFactory->setMockTime( $mockWallClock );
+
+		$key = $store->makeGlobalKey( ChronologyProtector::class, 'ii', 'v2' );
+		$store->set(
+			$key,
+			[
+				'positions' => [],
+				'timestamps' => [ $lbFactory::CLUSTER_MAIN_DEFAULT => $priorTime ]
+			],
+			3600
+		);
+
+		$mockWallClock += 1.0;
 		$touched = $lbFactory->getChronologyProtectorTouched();
-		$this->assertEquals( 2, $touched );
+		$this->assertEquals( $priorTime, $touched );
 	}
 }

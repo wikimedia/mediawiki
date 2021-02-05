@@ -28,7 +28,6 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
-use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
@@ -576,8 +575,6 @@ class MediaWiki {
 					exit;
 				}
 			}
-			// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
-			// ChronologyProtector synchronizes DB positions or replicas across all datacenters.
 			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		} catch ( Throwable $e ) {
 			// Type errors and such: at least handle it now and clean up the LBFactory state
@@ -687,31 +684,44 @@ class MediaWiki {
 		// Run updates that need to block the client or affect output (this is the last chance)
 		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
+
 		// Persist the session to avoid race conditions on subsequent requests by the client
 		$request->getSession()->save(); // T214471
 		wfDebug( __METHOD__ . ': session changes committed' );
 
-		// Figure out whether to wait for DB replication now or to use some method that assures
-		// that subsequent requests by the client will use the DB replication positions written
-		// during the shutdown() call below; the later requires working around replication lag
-		// of the store containing DB replication positions (e.g. dynomite, mcrouter).
-		list( $flags, $strategy ) = self::getChronProtStrategy( $lbFactory, $output );
-		// Record ChronologyProtector positions for DBs affected in this request at this point
+		// Subsequent requests by the client should see the DB replication positions written
+		// during the shutdown() call below, even if the position store itself has asynchronous
+		// replication. Setting the cpPosIndex cookie is normally enough. However, this might not
+		// work for cross-domain redirects to foreign wikis, so set the ?cpPoxIndex in that case.
+		$isCrossWikiRedirect = (
+			$output->getRedirect() &&
+			$lbFactory->hasOrMadeRecentMasterChanges( INF ) &&
+			self::getUrlDomainDistance( $output->getRedirect() ) === 'remote'
+		);
+
+		// Persist replication positions for DBs modified by this request (at this point).
+		// These help provide "session consistency" for the client on their next requests.
 		$cpIndex = null;
 		$cpClientId = null;
-		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex, $cpClientId );
+		$lbFactory->shutdown(
+			$lbFactory::SHUTDOWN_NORMAL,
+			$postCommitWork,
+			$cpIndex,
+			$cpClientId
+		);
+		$now = time();
 
 		$allowHeaders = !( $output->isDisabled() || headers_sent() );
+
 		if ( $cpIndex > 0 ) {
 			if ( $allowHeaders ) {
-				$now = time();
 				$expires = $now + ChronologyProtector::POSITION_COOKIE_TTL;
 				$options = [ 'prefix' => '' ];
 				$value = $lbFactory::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
 				$request->response()->setCookie( 'cpPosIndex', $value, $expires, $options );
 			}
 
-			if ( $strategy === 'cookie+url' ) {
+			if ( $isCrossWikiRedirect ) {
 				if ( $output->getRedirect() ) { // sanity
 					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
 						$output->getRedirect(),
@@ -732,7 +742,10 @@ class MediaWiki {
 			// handles this POST request (e.g. the "master" data center). Also have the user
 			// briefly bypass CDN so ChronologyProtector works for cacheable URLs.
 			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
-				$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
+				$expires = $now + max(
+					ChronologyProtector::POSITION_COOKIE_TTL,
+					$config->get( 'DataCenterUpdateStickTTL' )
+				);
 				$options = [ 'prefix' => '' ];
 				$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
 				$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
@@ -771,38 +784,6 @@ class MediaWiki {
 					->trackBlockWithCookie( $user, $request->response() );
 			}
 		}
-	}
-
-	/**
-	 * @param ILBFactory $lbFactory
-	 * @param OutputPage $output
-	 * @return array
-	 */
-	private static function getChronProtStrategy( ILBFactory $lbFactory, OutputPage $output ) {
-		// Should the client return, their request should observe the new ChronologyProtector
-		// DB positions. This request might be on a foreign wiki domain, so synchronously update
-		// the DB positions in all datacenters to be safe. If this output is not a redirect,
-		// then OutputPage::output() will be relatively slow, meaning that running it in
-		// $postCommitWork should help mask the latency of those updates.
-		$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
-		$strategy = 'cookie+sync';
-
-		$allowHeaders = !( $output->isDisabled() || headers_sent() );
-		if ( $output->getRedirect() && $lbFactory->hasOrMadeRecentMasterChanges( INF ) ) {
-			// OutputPage::output() will be fast, so $postCommitWork is useless for masking
-			// the latency of synchronously updating the DB positions in all datacenters.
-			// Try to make use of the time the client spends following redirects instead.
-			$domainDistance = self::getUrlDomainDistance( $output->getRedirect() );
-			if ( $domainDistance === 'local' && $allowHeaders ) {
-				$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
-				$strategy = 'cookie'; // use same-domain cookie and keep the URL uncluttered
-			} elseif ( $domainDistance === 'remote' ) {
-				$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
-				$strategy = 'cookie+url'; // cross-domain cookie might not work
-			}
-		}
-
-		return [ $flags, $strategy ];
 	}
 
 	/**
@@ -943,8 +924,7 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
-		// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
-		// ChronologyProtector synchronizes DB positions or replicas across all datacenters.
+		// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit()
 		$buffer = null;
 		$outputWork = static function () use ( $output, &$buffer ) {
 			if ( $buffer === null ) {

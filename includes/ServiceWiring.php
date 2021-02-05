@@ -382,15 +382,15 @@ return [
 	static function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LBFactory {
 		$mainConfig = $services->getMainConfig();
 
-		try {
-			$stash = $services->getMainObjectStash();
-		} catch ( RecursiveServiceDependencyException $e ) {
-			$stash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
-		}
-
-		if ( $stash instanceof EmptyBagOStuff ) {
-			// Use process cache if the main stash is disabled or there was recursion
-			$stash = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		$cpStashType = $mainConfig->get( 'ChronologyProtectorStash' );
+		if ( is_string( $cpStashType ) ) {
+			$cpStash = ObjectCache::getInstance( $cpStashType );
+		} else {
+			try {
+				$cpStash = ObjectCache::getLocalClusterInstance();
+			} catch ( RecursiveServiceDependencyException $e ) {
+				$cpStash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
+			}
 		}
 
 		try {
@@ -409,8 +409,8 @@ return [
 			$mainConfig->get( 'LBFactoryConf' ),
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
+			$cpStash,
 			$srvCache,
-			$stash,
 			$wanCache
 		);
 
