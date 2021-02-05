@@ -64,7 +64,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	public const RAW = 3;
 
 	/** @var string|false Wiki ID; false means the current wiki */
-	protected $mWiki = false;
+	protected $wikiId = false;
 	/** @var int|null */
 	protected $mId;
 	/** @var int */
@@ -98,14 +98,14 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @param PageIdentity $page The page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
+	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 */
-	public function __construct( PageIdentity $page, RevisionSlots $slots, $dbDomain = false ) {
-		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
+	public function __construct( PageIdentity $page, RevisionSlots $slots, $wikiId = self::LOCAL ) {
+		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
 
 		$this->mPage = $page;
 		$this->mSlots = $slots;
-		$this->mWiki = $dbDomain;
+		$this->wikiId = $wikiId;
 		$this->mPageId = $this->getArticleId( $page );
 	}
 
@@ -257,7 +257,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * Throws if $wikiId is not equal to dbDomain provided in construct
+	 * Throws if $wikiId is not equal to wikiId provided in construct
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 *
@@ -352,7 +352,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return string|false The wiki's logical name, of false to indicate the local wiki.
 	 */
 	public function getWikiId() {
-		return $this->mWiki;
+		return $this->wikiId;
 	}
 
 	/**

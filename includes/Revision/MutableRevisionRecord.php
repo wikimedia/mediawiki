@@ -71,16 +71,16 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @stable to call.
 	 *
 	 * @param PageIdentity $page The page this Revision is associated with.
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
+	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( PageIdentity $page, $dbDomain = false ) {
+	public function __construct( PageIdentity $page, $wikiId = self::LOCAL ) {
 		$slots = new MutableRevisionSlots( [], function () {
 			$this->resetAggregateValues();
 		} );
 
-		parent::__construct( $page, $slots, $dbDomain );
+		parent::__construct( $page, $slots, $wikiId );
 	}
 
 	/**

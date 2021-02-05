@@ -52,7 +52,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
+	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 */
 	public function __construct(
 		PageIdentity $page,
@@ -60,9 +60,9 @@ class RevisionStoreRecord extends RevisionRecord {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$dbDomain = false
+		$wikiId = self::LOCAL
 	) {
-		parent::__construct( $page, $slots, $dbDomain );
+		parent::__construct( $page, $slots, $wikiId );
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 		$this->mId = intval( $row->rev_id );
 		$this->mPageId = intval( $row->rev_page );

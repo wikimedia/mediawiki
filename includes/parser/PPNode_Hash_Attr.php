@@ -25,8 +25,14 @@
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Attr implements PPNode {
 
-	public $name, $value;
-	private $store, $index;
+	/** @var string */
+	public $name;
+	/** @var string */
+	public $value;
+	/** @var array */
+	private $store;
+	/** @var int */
+	private $index;
 
 	/**
 	 * Construct an object using the data from $store[$index]. The rest of the
