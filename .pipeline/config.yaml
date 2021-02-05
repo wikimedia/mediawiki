@@ -24,4 +24,5 @@ pipelines:
         publish:
           image:
             id: "${build.imageID}"
+            name: mediawiki
             tags: [ "${setup.branch}" ]
