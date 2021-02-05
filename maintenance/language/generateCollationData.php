@@ -311,7 +311,7 @@ class GenerateCollationData extends Maintenance {
 
 			if ( $this->debugOutFile ) {
 				fwrite( $this->debugOutFile, sprintf( "%05X %s %s (%s)\n", $cp, $weight, $char,
-					implode( ' ', array_map( 'UtfNormal\Utils::codepointToUtf8', $group ) ) ) );
+					implode( ' ', array_map( [ UtfNormal\Utils::class, 'codepointToUtf8' ], $group ) ) ) );
 			}
 		}
 
