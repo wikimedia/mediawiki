@@ -16,6 +16,7 @@
  */
 
 $fallback = 'ru';
+
 $fallback8bitEncoding = "windows-1251";
 
 $namespaceNames = [

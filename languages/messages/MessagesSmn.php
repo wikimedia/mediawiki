@@ -9,6 +9,8 @@
  * @author Muotâ
  */
 
+$fallback = 'fi';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Tooimah',
@@ -29,5 +31,3 @@ $namespaceNames = [
 ];
 
 $linkTrail = '/^([a-zâčđŋšžäá]+)(.*)$/sDu';
-
-$fallback = 'fi';

@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'ne';
+
 $namespaceNames = [
 	NS_MEDIA            => 'मिडिया',
 	NS_SPECIAL          => 'बिशेष',
@@ -26,5 +28,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'श्रेणी',
 	NS_CATEGORY_TALK    => 'श्रेणी_कुरणि',
 ];
-
-$fallback = 'ne';

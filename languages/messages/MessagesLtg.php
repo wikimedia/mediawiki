@@ -12,6 +12,8 @@
  * @author Reedy
  */
 
+$fallback = 'lv';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medeja',
 	NS_SPECIAL          => 'Seviškuo',
@@ -30,5 +32,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Kategoreja',
 	NS_CATEGORY_TALK    => 'Sprīža_ap_kategoreju',
 ];
-
-$fallback = 'lv';
