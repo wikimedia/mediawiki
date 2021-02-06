@@ -355,9 +355,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		];
 
 		// Mismatches for these columns we can safely ignore
-		$ignoredColumns = [
-			'user_newtalk.user_last_timestamp', // r84185
-		];
+		$ignoredColumns = [];
 
 		$currentDB = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
@@ -481,9 +479,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'searchindex_content',
 			'searchindex_segments',
 			'searchindex_segdir',
-			// FTS4 ready!!1
-			'searchindex_docsize',
-			'searchindex_stat',
 		];
 		foreach ( $excluded as $t ) {
 			unset( $list[$t] );
