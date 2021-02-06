@@ -70,7 +70,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return callable
 	 */
 	private function getMockDBConnRefCallback( ILoadBalancer $mockLoadBalancer, IDatabase $db ) {
-		return function ( $i, $g, $domain, $flg ) use ( $mockLoadBalancer, $db ) {
+		return static function ( $i, $g, $domain, $flg ) use ( $mockLoadBalancer, $db ) {
 			return new MaintainableDBConnRef( $mockLoadBalancer, $db, $i );
 		};
 	}

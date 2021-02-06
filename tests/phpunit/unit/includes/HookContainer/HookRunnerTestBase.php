@@ -34,7 +34,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 			}
 			$interfacesWithMethod = array_filter(
 				$hookInterfaces,
-				function ( ReflectionClass $interface ) use ( $method ) {
+				static function ( ReflectionClass $interface ) use ( $method ) {
 					return $interface->hasMethod( $method->getName() );
 				}
 			);

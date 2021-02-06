@@ -103,7 +103,7 @@ class FileJournalTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetChangeEntries( $start, $limit, $expectedNext, array $expectedReturn ) {
 		$expectedReturn = array_map(
-			function ( $val ) {
+			static function ( $val ) {
 				return [ 'id' => $val ];
 			}, $expectedReturn
 		);

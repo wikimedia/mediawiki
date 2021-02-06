@@ -201,7 +201,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturnCallback( function () use ( $dbw, $fname, $goodUpdate ) {
 				$dbw->selectRow( 'page', '*', '', $fname );
-				$dbw->onTransactionResolution( function () {
+				$dbw->onTransactionResolution( static function () {
 				}, $fname );
 
 				return [ $goodUpdate ];

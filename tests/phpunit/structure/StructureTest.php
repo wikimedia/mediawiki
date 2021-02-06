@@ -23,7 +23,7 @@ class StructureTest extends MediaWikiIntegrationTestCase {
 
 		$results = array_filter(
 			$results,
-			function ( $filename ) use ( $testClassRegex, $suitesPath ) {
+			static function ( $filename ) use ( $testClassRegex, $suitesPath ) {
 				// Remove testUnitTestFileNamesEndWithTest false positives
 				if ( strpos( $filename, $suitesPath ) === 0
 					|| substr( $filename, -8 ) === 'Test.php'

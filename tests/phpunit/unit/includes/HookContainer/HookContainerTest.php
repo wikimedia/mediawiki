@@ -18,7 +18,7 @@ namespace MediaWiki\HookContainer {
 			$oldHooks = null, $newHooks = null, $deprecatedHooksArray = []
 		) {
 			if ( $oldHooks === null ) {
-				$oldHooks[ 'FoobarActionComplete' ][] = function ( &$called ) {
+				$oldHooks[ 'FoobarActionComplete' ][] = static function ( &$called ) {
 					$called[] = 11;
 				};
 			}

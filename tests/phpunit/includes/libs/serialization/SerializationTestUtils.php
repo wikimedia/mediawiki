@@ -162,7 +162,7 @@ class SerializationTestUtils {
 	public function getFixturesForTestCase( string $class, string $testCaseName ): array {
 		return array_filter(
 			$this->getMatchingFiles( $class, $this->ext ),
-			function ( $fileInfo ) use ( $testCaseName ) {
+			static function ( $fileInfo ) use ( $testCaseName ) {
 				return $fileInfo->testCaseName === $testCaseName;
 			} );
 	}
@@ -175,9 +175,11 @@ class SerializationTestUtils {
 	 * @return array
 	 */
 	public function getDeserializedInstancesForTestCase( string $class, string $testCaseName ): array {
-		return array_filter( $this->getDeserializedInstances( $class ), function ( $fileInfo ) use ( $testCaseName ) {
-			return $fileInfo->testCaseName === $testCaseName;
-		} );
+		return array_filter( $this->getDeserializedInstances( $class ),
+			static function ( $fileInfo ) use ( $testCaseName ) {
+				return $fileInfo->testCaseName === $testCaseName;
+			}
+		);
 	}
 
 	/**

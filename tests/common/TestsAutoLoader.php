@@ -280,7 +280,7 @@ $wgAutoloadClasses += [
  * mapping. Once we drop support for PHPUnit 4 this
  * should be considered deprecated and eventually removed.
  */
-spl_autoload_register( function ( $class ) {
+spl_autoload_register( static function ( $class ) {
 	if ( strpos( $class, 'PHPUnit_' ) !== 0 ) {
 		// Skip if it doesn't start with the old prefix
 		return;

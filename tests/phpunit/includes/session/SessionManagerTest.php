@@ -913,7 +913,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$rClass = new \ReflectionClass( $manager );
 		$rMethod = $rClass->getMethod( 'loadSessionInfoFromStore' );
 		$rMethod->setAccessible( true );
-		$loadSessionInfoFromStore = function ( &$info ) use ( $rMethod, $manager, $request ) {
+		$loadSessionInfoFromStore = static function ( &$info ) use ( $rMethod, $manager, $request ) {
 			return $rMethod->invokeArgs( $manager, [ &$info, $request ] );
 		};
 

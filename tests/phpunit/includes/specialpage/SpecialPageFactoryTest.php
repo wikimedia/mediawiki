@@ -148,7 +148,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		// Catch the warnings we expect to be raised
 		$warnings = [];
 		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
-		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
+		set_error_handler( static function ( $errno, $errstr ) use ( &$warnings ) {
 			if ( preg_match( '/First alias \'[^\']*\' for .*/', $errstr ) ||
 				preg_match( '/Did not find a usable alias for special page .*/', $errstr )
 			) {

@@ -11,7 +11,7 @@ class PreparedEditTest extends \MediaWikiUnitTestCase {
 	public function testCallback() {
 		$output = new ParserOutput();
 		$edit = new PreparedEdit();
-		$edit->parserOutputCallback = function () {
+		$edit->parserOutputCallback = static function () {
 			return new ParserOutput();
 		};
 

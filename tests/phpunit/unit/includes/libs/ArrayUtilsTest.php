@@ -29,7 +29,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 				return $val;
 			};
 		};
-		$comparisonCallback = function ( $a, $b ) {
+		$comparisonCallback = static function ( $a, $b ) {
 			return $a - $b;
 		};
 
