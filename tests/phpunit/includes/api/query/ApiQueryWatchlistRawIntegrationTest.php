@@ -13,6 +13,12 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();
+
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'watchlist', 'watchlist_expiry' ]
+		);
+
 		self::$users['ApiQueryWatchlistRawIntegrationTestUser']
 			= $this->getMutableTestUser();
 		self::$users['ApiQueryWatchlistRawIntegrationTestUser2']
