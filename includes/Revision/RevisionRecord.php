@@ -26,14 +26,13 @@ use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use Title;
-use Wikimedia\Assert\Assert;
-use Wikimedia\Assert\PreconditionException;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -48,6 +47,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 abstract class RevisionRecord implements WikiAwareEntity {
 	use LegacyArticleIdAccess;
 	use NonSerializableTrait;
+	use WikiAwareEntityTrait;
 
 	// RevisionRecord deletion constants
 	public const DELETED_TEXT = 1;
@@ -101,7 +101,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 */
 	public function __construct( PageIdentity $page, RevisionSlots $slots, $wikiId = self::LOCAL ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		$this->assertWikiIdParam( $wikiId );
 
 		$this->mPage = $page;
 		$this->mSlots = $slots;
@@ -257,22 +257,6 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * Throws if $wikiId is not equal to wikiId provided in construct
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *
-	 * @throws PreconditionException
-	 */
-	public function assertWiki( $wikiId ) {
-		if ( $wikiId !== $this->getWikiId() ) {
-			$expected = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$actual = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
-			throw new PreconditionException( "Expected RevisionRecord to belong to $expected, "
-			. "but it belongs to $actual" );
-		}
-	}
-
-	/**
 	 * Get revision ID. Depending on the concrete subclass, this may return null if
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
@@ -283,14 +267,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return int|null
 	 */
 	public function getId( $wikiId = self::LOCAL ) {
-		if ( $wikiId !== $this->getWikiId() ) {
-			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
-
-			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
-			. "but it belongs to $stored", '1.36' );
-			return $this->mId;
-		}
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		return $this->mId;
 	}
 
@@ -308,14 +285,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return int|null
 	 */
 	public function getParentId( $wikiId = self::LOCAL ) {
-		if ( $wikiId !== $this->getWikiId() ) {
-			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
-
-			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
-			. "but it belongs to $stored", '1.36' );
-			return $this->mParentId;
-		}
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		return $this->mParentId;
 	}
 
@@ -353,14 +323,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return int
 	 */
 	public function getPageId( $wikiId = self::LOCAL ) {
-		if ( $wikiId !== $this->getWikiId() ) {
-			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
-
-			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
-			. "but it belongs to $stored", '1.36' );
-			return $this->mPageId;
-		}
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		return $this->mPageId;
 	}
 
