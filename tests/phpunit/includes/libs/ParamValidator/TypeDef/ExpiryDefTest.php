@@ -4,6 +4,7 @@ namespace Wikimedia\ParamValidator\TypeDef;
 
 use InvalidArgumentException;
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -12,7 +13,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class ExpiryDefTest extends TypeDefTestCase {
 
-	protected static $testClass = ExpiryDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new ExpiryDef( $callbacks, $options );
+	}
 
 	/**
 	 * Get an entry for the provideValidate() provider, where a given value

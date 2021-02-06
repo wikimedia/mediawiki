@@ -12,14 +12,8 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class StringDefTest extends TypeDefTestCase {
 
-	protected static $testClass = StringDef::class;
-
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
-		if ( static::$testClass === null ) {
-			throw new \LogicException( 'Either assign static::$testClass or override ' . __METHOD__ );
-		}
-
-		return new static::$testClass( $callbacks, $options );
+		return new StringDef( $callbacks, $options );
 	}
 
 	public function provideValidate() {
